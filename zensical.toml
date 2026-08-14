@@ -1,0 +1,41 @@
+site_name = "rboto"
+site_description = "Async, strictly typed AWS clients for Python powered by Rust"
+site_url = "https://ferrumio.github.io/rboto"
+repo_url = "https://github.com/ferrumio/rboto"
+repo_name = "ferrumio/rboto"
+
+nav = [
+    { "Home" = "index.md" },
+    { "Clients" = "clients.md" },
+]
+
+[theme]
+name = "material"
+features = ["navigation.sections", "content.code.copy", "content.code.annotate"]
+
+[[theme.palette]]
+scheme = "default"
+primary = "deep purple"
+accent = "amber"
+[theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+[[theme.palette]]
+scheme = "slate"
+primary = "deep purple"
+accent = "amber"
+[theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+[markdown_extensions]
+admonition = {}
+
+[markdown_extensions."pymdownx.highlight"]
+anchor_linenums = true
+
+[markdown_extensions."pymdownx.superfences"]
+
+[markdown_extensions."pymdownx.tabbed"]
+alternate_style = true

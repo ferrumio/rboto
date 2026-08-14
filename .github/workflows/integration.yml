@@ -1,0 +1,64 @@
+name: Integration
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "crates/**"
+      - "packages/**"
+      - "examples/**"
+      - "codegen/**"
+      - ".github/workflows/integration.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  localstack:
+    runs-on: ubuntu-latest
+    services:
+      localstack:
+        image: localstack/localstack:4.4.0
+        ports:
+          - 4566:4566
+        env:
+          SERVICES: s3,sqs,dynamodb
+        options: >-
+          --health-cmd "curl -f http://localhost:4566/_localstack/health"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 20
+    env:
+      AWS_ACCESS_KEY_ID: testing
+      AWS_SECRET_ACCESS_KEY: testing
+      AWS_REGION: us-east-1
+      AWS_ENDPOINT_URL: http://localhost:4566
+      RBOTO_CLEANUP_BUCKET: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Build editable service packages
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install maturin pytest pytest-asyncio
+          .venv/bin/pip install -e packages/rboto
+          (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --release --locked)
+
+      - name: Run package tests
+        run: >-
+          .venv/bin/pytest
+          packages/rboto/tests packages/rboto-s3/tests
+          packages/rboto-sqs/tests packages/rboto-dynamodb/tests -q
+
+      - name: Run examples against LocalStack
+        run: |
+          .venv/bin/python examples/s3.py
+          .venv/bin/python examples/sqs.py
+          .venv/bin/python examples/dynamodb.py

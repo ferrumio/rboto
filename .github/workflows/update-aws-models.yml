@@ -1,0 +1,58 @@
+name: Update AWS models
+
+on:
+  schedule:
+    - cron: "17 9 * * 1"
+  workflow_dispatch:
+    inputs:
+      aws_release:
+        description: "AWS SDK release tag or 'latest'"
+        required: true
+        default: latest
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install codegen
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -e codegen mypy pyright pytest
+
+      - name: Update locks and regenerate
+        env:
+          REQUESTED_RELEASE: ${{ inputs.aws_release || 'latest' }}
+        run: |
+          RELEASE=$(.venv/bin/python .github/scripts/update_aws_models.py --release "$REQUESTED_RELEASE")
+          echo "AWS_RELEASE=$RELEASE" >> "$GITHUB_ENV"
+          cargo update
+          .venv/bin/rboto-codegen fetch-model --all
+          .venv/bin/rboto-codegen report --all
+          .venv/bin/rboto-codegen generate --all
+          cargo fmt --all
+          cargo check --workspace
+          .venv/bin/pytest codegen/tests -q
+
+      - name: Create update pull request
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          branch: automation/aws-models-${{ env.AWS_RELEASE }}
+          delete-branch: true
+          commit-message: "deps: update AWS models to ${{ env.AWS_RELEASE }}"
+          title: "deps: update AWS models to ${{ env.AWS_RELEASE }}"
+          body: |
+            Automated Smithy model and AWS SDK crate update.
+
+            All model hashes were verified, generated sources refreshed, and the Rust workspace compiled.
+          labels: dependencies,aws-models

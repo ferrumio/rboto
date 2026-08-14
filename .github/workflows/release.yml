@@ -1,0 +1,237 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version already present in all manifests"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      services: ${{ steps.release.outputs.services }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate release metadata
+        id: release
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          else
+            VERSION="$INPUT_VERSION"
+          fi
+          python .github/scripts/check_version.py --expected "$VERSION"
+          python -m venv .venv
+          .venv/bin/pip install -e codegen
+          SERVICES=$(.venv/bin/rboto-codegen list --json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "services=$SERVICES" >> "$GITHUB_OUTPUT"
+
+  linux-x86:
+    name: ${{ matrix.service }} manylinux x86_64 cp${{ matrix.python }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJSON(needs.prepare.outputs.services) }}
+        python: ["3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          target: x86_64
+          args: --release --locked --out dist -i python${{ matrix.python }}
+          manylinux: "2_17"
+          working-directory: packages/rboto-${{ matrix.service }}
+          sccache: true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: service-${{ matrix.service }}-cp${{ matrix.python }}-manylinux-x86_64
+          path: packages/rboto-${{ matrix.service }}/dist/*.whl
+
+  linux-arm:
+    name: ${{ matrix.service }} manylinux aarch64 cp${{ matrix.python }}
+    needs: prepare
+    runs-on: ubuntu-24.04-arm
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJSON(needs.prepare.outputs.services) }}
+        python: ["3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          target: aarch64
+          args: --release --locked --out dist -i python${{ matrix.python }}
+          manylinux: "2_17"
+          working-directory: packages/rboto-${{ matrix.service }}
+          sccache: true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: service-${{ matrix.service }}-cp${{ matrix.python }}-manylinux-aarch64
+          path: packages/rboto-${{ matrix.service }}/dist/*.whl
+
+  macos:
+    name: ${{ matrix.service }} macOS ${{ matrix.target }} cp${{ matrix.python }}
+    needs: prepare
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJSON(needs.prepare.outputs.services) }}
+        python: ["3.12", "3.13", "3.14"]
+        target: [x86_64-apple-darwin, aarch64-apple-darwin]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          target: ${{ matrix.target }}
+          args: --release --locked --out dist -i python${{ matrix.python }}
+          working-directory: packages/rboto-${{ matrix.service }}
+          sccache: true
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: service-${{ matrix.service }}-cp${{ matrix.python }}-macos-${{ matrix.target }}
+          path: packages/rboto-${{ matrix.service }}/dist/*.whl
+
+  service-sdist:
+    name: ${{ matrix.service }} sdist
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: ${{ fromJSON(needs.prepare.outputs.services) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          command: sdist
+          args: --out dist
+          working-directory: packages/rboto-${{ matrix.service }}
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: service-${{ matrix.service }}-sdist
+          path: packages/rboto-${{ matrix.service }}/dist/*.tar.gz
+
+  core:
+    name: Core wheel and sdist
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - run: pip install build && python -m build --outdir dist packages/rboto
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: core
+          path: dist/*
+
+  smoke-wheelhouse:
+    name: Smoke test Linux wheelhouse
+    needs: [prepare, linux-x86, core]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: service-*-cp3.12-manylinux-x86_64
+          path: dist
+          merge-multiple: true
+      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: core
+          path: dist
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Install all extras from wheelhouse
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install --no-index --find-links dist "rboto[all]==${{ needs.prepare.outputs.version }}"
+          .venv/bin/python -c "from rboto import s3, sqs, dynamodb; s3(); sqs(); dynamodb()"
+
+  publish-services:
+    name: Publish service distributions
+    needs: [prepare, linux-x86, linux-arm, macos, service-sdist, smoke-wheelhouse]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi-services
+      url: https://pypi.org/search/?q=rboto
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: service-*
+          path: dist
+          merge-multiple: true
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist
+
+  publish-core:
+    name: Publish rboto core last
+    needs: [prepare, core, publish-services]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/rboto
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: core
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+        with:
+          packages-dir: dist
+
+  github-release:
+    name: Create GitHub release
+    needs: [prepare, publish-core]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: "*"
+          path: dist
+          merge-multiple: true
+      - name: Publish release and artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "v${{ needs.prepare.outputs.version }}"
+          dist/* --target "$GITHUB_SHA" --generate-notes
+
+  docs:
+    needs: github-release
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/docs.yml

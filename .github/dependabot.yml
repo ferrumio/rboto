@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: pip
+    directories:
+      - /packages/rboto
+      - /codegen
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps
+    groups:
+      python-dependencies:
+        patterns: ["*"]
+
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps
+    groups:
+      rust-dependencies:
+        patterns: ["*"]
+    ignore:
+      - dependency-name: aws-sdk-*
+      - dependency-name: aws-smithy-*
+      - dependency-name: aws-config
+      - dependency-name: aws-runtime
+      - dependency-name: aws-runtime-api
+      - dependency-name: aws-types

@@ -1,0 +1,52 @@
+name: Real AWS smoke tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      role_arn:
+        description: "AWS IAM role ARN assumed through GitHub OIDC"
+        required: true
+        type: string
+      region:
+        description: "AWS region"
+        required: true
+        default: us-east-1
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  smoke:
+    environment: aws-smoke
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ inputs.region }}
+      RBOTO_CLEANUP_BUCKET: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5.1.1
+        with:
+          role-to-assume: ${{ inputs.role_arn }}
+          aws-region: ${{ inputs.region }}
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Build packages
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install maturin
+          .venv/bin/pip install -e packages/rboto
+          (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --release --locked)
+
+      - name: Run real AWS examples
+        run: |
+          .venv/bin/python examples/s3.py
+          .venv/bin/python examples/sqs.py
+          .venv/bin/python examples/dynamodb.py

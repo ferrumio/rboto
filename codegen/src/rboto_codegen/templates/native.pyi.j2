@@ -1,0 +1,27 @@
+from collections.abc import AsyncIterator
+from typing import final
+
+@final
+class ByteStream:
+    def __aiter__(self) -> AsyncIterator[bytes]: ...
+    async def __anext__(self) -> bytes: ...
+    async def read(self) -> bytes: ...
+
+{% for stream in event_streams %}@final
+class {{ stream.receiver_class }}:
+    def __aiter__(self) -> AsyncIterator[dict[str, object]]: ...
+    async def __anext__(self) -> dict[str, object]: ...
+{% endfor %}
+
+@final
+class {{ client_class }}:
+    def __init__(
+        self,
+        *,
+        region: str | None = None,
+        profile: str | None = None,
+        endpoint_url: str | None = None,
+    ) -> None: ...
+{% for method in methods %}
+    async def {{ method.name }}(self, params: dict[str, object]) -> object: ...
+{% endfor %}

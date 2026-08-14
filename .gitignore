@@ -1,0 +1,95 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Generated model cache (generated source remains committed)
+/codegen/models/
+/.codegen-cache/
+
+# Python bytecode and native development artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+*.dll
+.Python
+
+# Python builds and packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.whl
+
+# Virtual environments and local environment
+.env
+.env.*
+!.env.example
+.venv/
+env/
+venv/
+ENV/
+.python-version
+
+# Tests, coverage, typing, and benchmarks
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.pyright/
+.ruff_cache/
+*.cover
+.benchmarks/
+
+# Documentation output
+/site/
+/.cache/
+
+# IDEs and editors
+.vscode/
+*.code-workspace
+.kiro/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Operating systems
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+
+# CDK and deployment artifacts
+**/cdk.out/

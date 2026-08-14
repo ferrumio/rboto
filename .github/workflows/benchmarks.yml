@@ -1,0 +1,36 @@
+name: Benchmarks
+
+on:
+  pull_request:
+    paths: ["benchmarks/**", "crates/**", "packages/**"]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  codspeed:
+    runs-on: ubuntu-latest
+    env:
+      CARGO_PROFILE_RELEASE_DEBUG: line-tables-only
+      CARGO_PROFILE_RELEASE_STRIP: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Build benchmark environment
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install maturin pytest pytest-codspeed pytest-benchmark
+          .venv/bin/pip install -e packages/rboto
+          (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --release --locked)
+      - uses: CodSpeedHQ/action@4296e51e7041e24dadb86d1d6e8b9320d223dbe8 # v5.0.3
+        with:
+          mode: walltime
+          run: .venv/bin/pytest benchmarks --codspeed

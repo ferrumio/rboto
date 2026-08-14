@@ -1,0 +1,107 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  quality:
+    name: Python and codegen quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install tools
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -e codegen -e packages/rboto pytest mypy pyright ruff
+
+      - name: Fetch locked Smithy models
+        run: |
+          cargo fetch --locked
+          .venv/bin/rboto-codegen fetch-model --all
+
+      - name: Python lint
+        run: >-
+          .venv/bin/ruff check
+          codegen/src codegen/tests packages/rboto/src packages/rboto/tests
+          examples benchmarks .github/scripts
+
+      - name: Unit tests
+        run: .venv/bin/pytest codegen/tests packages/rboto/tests -q
+
+      - name: Strict typing
+        run: |
+          .venv/bin/mypy --strict \
+            codegen/src codegen/tests packages/rboto/src \
+            packages/rboto-s3/python packages/rboto-sqs/python \
+            packages/rboto-dynamodb/python tests/typecheck examples
+          .venv/bin/pyright
+
+      - name: Version consistency
+        run: .venv/bin/python .github/scripts/check_version.py
+
+  rust-quality:
+    name: Rust quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Rust format
+        run: cargo fmt --all -- --check
+
+      - name: Rust tests
+        run: cargo test --workspace --locked
+
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+
+  wheel:
+    name: Wheel ${{ matrix.service }} (${{ matrix.os }} / cp${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [s3, sqs, dynamodb]
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.12", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Build service wheel
+        uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          command: build
+          args: --release --locked --out dist
+          working-directory: packages/rboto-${{ matrix.service }}
+          sccache: true
+
+      - name: Install and import wheel
+        shell: bash
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install packages/rboto
+          .venv/bin/pip install packages/rboto-${{ matrix.service }}/dist/*.whl
+          .venv/bin/python -c "import rboto_${{ matrix.service }}"
+
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ci-${{ matrix.service }}-${{ matrix.os }}-cp${{ matrix.python }}
+          path: packages/rboto-${{ matrix.service }}/dist/*.whl
+          retention-days: 1

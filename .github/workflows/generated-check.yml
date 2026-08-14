@@ -1,0 +1,50 @@
+name: Generated source check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "codegen/**"
+      - "crates/**"
+      - "packages/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - ".github/workflows/generated-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "codegen/**"
+      - "crates/**"
+      - "packages/**"
+
+permissions:
+  contents: read
+
+jobs:
+  generated-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Install codegen
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -e codegen
+
+      - name: Regenerate from locked models
+        run: |
+          cargo fetch --locked
+          .venv/bin/rboto-codegen fetch-model --all
+          .venv/bin/rboto-codegen report --all
+          .venv/bin/rboto-codegen generate --all
+          cargo fmt --all
+
+      - name: Require a clean generated diff
+        run: git diff --exit-code
+
+      - name: Compile generated workspace
+        run: cargo check --workspace --locked

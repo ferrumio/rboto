@@ -1,0 +1,23 @@
+{
+  "include": [
+    "packages/rboto/src",
+    "packages/rboto-s3/python",
+    "packages/rboto-s3/tests",
+    "packages/rboto-sqs/python",
+    "packages/rboto-dynamodb/python",
+    "codegen/src",
+    "examples",
+    "tests/typecheck"
+  ],
+  "extraPaths": [
+    "packages/rboto/src",
+    "packages/rboto-s3/python",
+    "packages/rboto-sqs/python",
+    "packages/rboto-dynamodb/python",
+    "codegen/src"
+  ],
+  "pythonVersion": "3.12",
+  "venvPath": ".",
+  "venv": ".venv",
+  "typeCheckingMode": "strict"
+}
