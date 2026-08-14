@@ -19,6 +19,10 @@ def test_s3_descriptor_is_loaded_from_toml() -> None:
     assert descriptor.force_path_style_for_custom_endpoint
 
 
+def test_all_services_enable_native_outputs() -> None:
+    assert all(service.native_outputs for service in list_services())
+
+
 def test_filename_must_match_service_id(tmp_path: Path) -> None:
     config = tmp_path / "wrong.toml"
     config.write_text(

@@ -23,8 +23,8 @@ def configure_aws() -> str:
 async def wait_until_active(client: DynamoDBClient, table_name: str) -> None:
     for _ in range(40):
         response = await client.describe_table(table_name=table_name)
-        description = response.get("table")
-        if description is not None and description.get("table_status") == "ACTIVE":
+        description = response.table
+        if description is not None and description.table_status == "ACTIVE":
             return
         await asyncio.sleep(0.25)
     raise TimeoutError(f"table did not become active: {table_name}")
@@ -32,7 +32,7 @@ async def wait_until_active(client: DynamoDBClient, table_name: str) -> None:
 
 async def main() -> None:
     region = configure_aws()
-    client = dynamodb(region=region)
+    client = dynamodb(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     table_name = f"rboto-example-{uuid.uuid4().hex[:12]}"
     table_created = False
 
@@ -48,7 +48,8 @@ async def main() -> None:
             billing_mode="PAY_PER_REQUEST",
         )
         table_created = True
-        print("created table:", created.get("table_description", {}).get("table_name"))
+        description = created.table_description
+        print("created table:", description.table_name if description is not None else None)
         await wait_until_active(client, table_name)
 
         item: dict[str, AttributeValue] = {
@@ -63,14 +64,14 @@ async def main() -> None:
 
         key: dict[str, AttributeValue] = {"pk": {"s": "USER#1"}}
         fetched = await client.get_item(table_name=table_name, key=key)
-        print("fetched item:", fetched.get("item"))
+        print("fetched item:", fetched.item)
 
         queried = await client.query(
             table_name=table_name,
             key_condition_expression="pk = :pk",
             expression_attribute_values={":pk": {"s": "USER#1"}},
         )
-        print("query items:", queried.get("items", []))
+        print("query items:", queried.items or [])
     finally:
         if table_created:
             await client.delete_table(table_name=table_name)

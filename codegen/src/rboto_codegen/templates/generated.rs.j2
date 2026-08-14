@@ -4,6 +4,8 @@ use super::*;
 
 {{ converters }}
 
+{{ native_class_code }}
+
 {% for stream in event_streams %}
 #[pyclass(name = "{{ stream.receiver_class }}")]
 struct {{ stream.rust_class }} {
@@ -44,6 +46,8 @@ impl {{ stream.rust_class }} {
 {% endfor %}
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
+{% for class in native_classes %}    module.add_class::<{{ class }}>()?;
+{% endfor %}
 {% for stream in event_streams %}    module.add_class::<{{ stream.rust_class }}>()?;
 {% endfor %}    Ok(())
 }

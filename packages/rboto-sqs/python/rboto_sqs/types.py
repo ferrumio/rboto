@@ -36,13 +36,6 @@ CancelMessageMoveTaskRequest = TypedDict(
     },
 )
 
-CancelMessageMoveTaskResult = TypedDict(
-    "CancelMessageMoveTaskResult",
-    {
-    "approximate_number_of_messages_moved": Required["int"],
-    },
-)
-
 ChangeMessageVisibilityBatchRequest = TypedDict(
     "ChangeMessageVisibilityBatchRequest",
     {
@@ -57,14 +50,6 @@ ChangeMessageVisibilityBatchRequestEntry = TypedDict(
     "id": Required["str"],
     "receipt_handle": Required["str"],
     "visibility_timeout": NotRequired["int"],
-    },
-)
-
-ChangeMessageVisibilityBatchResult = TypedDict(
-    "ChangeMessageVisibilityBatchResult",
-    {
-    "successful": Required["list[ChangeMessageVisibilityBatchResultEntry]"],
-    "failed": Required["list[BatchResultErrorEntry]"],
     },
 )
 
@@ -93,13 +78,6 @@ CreateQueueRequest = TypedDict(
     },
 )
 
-CreateQueueResult = TypedDict(
-    "CreateQueueResult",
-    {
-    "queue_url": NotRequired["str"],
-    },
-)
-
 DeleteMessageBatchRequest = TypedDict(
     "DeleteMessageBatchRequest",
     {
@@ -113,14 +91,6 @@ DeleteMessageBatchRequestEntry = TypedDict(
     {
     "id": Required["str"],
     "receipt_handle": Required["str"],
-    },
-)
-
-DeleteMessageBatchResult = TypedDict(
-    "DeleteMessageBatchResult",
-    {
-    "successful": Required["list[DeleteMessageBatchResultEntry]"],
-    "failed": Required["list[BatchResultErrorEntry]"],
     },
 )
 
@@ -154,25 +124,11 @@ GetQueueAttributesRequest = TypedDict(
     },
 )
 
-GetQueueAttributesResult = TypedDict(
-    "GetQueueAttributesResult",
-    {
-    "attributes": NotRequired["dict[QueueAttributeName, str]"],
-    },
-)
-
 GetQueueUrlRequest = TypedDict(
     "GetQueueUrlRequest",
     {
     "queue_name": Required["str"],
     "queue_owner_aws_account_id": NotRequired["str"],
-    },
-)
-
-GetQueueUrlResult = TypedDict(
-    "GetQueueUrlResult",
-    {
-    "queue_url": NotRequired["str"],
     },
 )
 
@@ -185,26 +141,11 @@ ListDeadLetterSourceQueuesRequest = TypedDict(
     },
 )
 
-ListDeadLetterSourceQueuesResult = TypedDict(
-    "ListDeadLetterSourceQueuesResult",
-    {
-    "queue_urls": Required["list[str]"],
-    "next_token": NotRequired["str"],
-    },
-)
-
 ListMessageMoveTasksRequest = TypedDict(
     "ListMessageMoveTasksRequest",
     {
     "source_arn": Required["str"],
     "max_results": NotRequired["int"],
-    },
-)
-
-ListMessageMoveTasksResult = TypedDict(
-    "ListMessageMoveTasksResult",
-    {
-    "results": NotRequired["list[ListMessageMoveTasksResultEntry]"],
     },
 )
 
@@ -230,27 +171,12 @@ ListQueueTagsRequest = TypedDict(
     },
 )
 
-ListQueueTagsResult = TypedDict(
-    "ListQueueTagsResult",
-    {
-    "tags": NotRequired["dict[str, str]"],
-    },
-)
-
 ListQueuesRequest = TypedDict(
     "ListQueuesRequest",
     {
     "queue_name_prefix": NotRequired["str"],
     "next_token": NotRequired["str"],
     "max_results": NotRequired["int"],
-    },
-)
-
-ListQueuesResult = TypedDict(
-    "ListQueuesResult",
-    {
-    "queue_urls": NotRequired["list[str]"],
-    "next_token": NotRequired["str"],
     },
 )
 
@@ -310,13 +236,6 @@ ReceiveMessageRequest = TypedDict(
     },
 )
 
-ReceiveMessageResult = TypedDict(
-    "ReceiveMessageResult",
-    {
-    "messages": NotRequired["list[Message]"],
-    },
-)
-
 RemovePermissionRequest = TypedDict(
     "RemovePermissionRequest",
     {
@@ -346,14 +265,6 @@ SendMessageBatchRequestEntry = TypedDict(
     },
 )
 
-SendMessageBatchResult = TypedDict(
-    "SendMessageBatchResult",
-    {
-    "successful": Required["list[SendMessageBatchResultEntry]"],
-    "failed": Required["list[BatchResultErrorEntry]"],
-    },
-)
-
 SendMessageBatchResultEntry = TypedDict(
     "SendMessageBatchResultEntry",
     {
@@ -379,17 +290,6 @@ SendMessageRequest = TypedDict(
     },
 )
 
-SendMessageResult = TypedDict(
-    "SendMessageResult",
-    {
-    "md5_of_message_body": NotRequired["str"],
-    "md5_of_message_attributes": NotRequired["str"],
-    "md5_of_message_system_attributes": NotRequired["str"],
-    "message_id": NotRequired["str"],
-    "sequence_number": NotRequired["str"],
-    },
-)
-
 SetQueueAttributesRequest = TypedDict(
     "SetQueueAttributesRequest",
     {
@@ -404,13 +304,6 @@ StartMessageMoveTaskRequest = TypedDict(
     "source_arn": Required["str"],
     "destination_arn": NotRequired["str"],
     "max_number_of_messages_per_second": NotRequired["int"],
-    },
-)
-
-StartMessageMoveTaskResult = TypedDict(
-    "StartMessageMoveTaskResult",
-    {
-    "task_handle": NotRequired["str"],
     },
 )
 

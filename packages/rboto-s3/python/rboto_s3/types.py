@@ -93,13 +93,6 @@ AbortIncompleteMultipartUpload = TypedDict(
     },
 )
 
-AbortMultipartUploadOutput = TypedDict(
-    "AbortMultipartUploadOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 AbortMultipartUploadRequest = TypedDict(
     "AbortMultipartUploadRequest",
     {
@@ -275,28 +268,6 @@ CommonPrefix = TypedDict(
     },
 )
 
-CompleteMultipartUploadOutput = TypedDict(
-    "CompleteMultipartUploadOutput",
-    {
-    "location": NotRequired["str"],
-    "bucket": NotRequired["str"],
-    "key": NotRequired["str"],
-    "expiration": NotRequired["str"],
-    "e_tag": NotRequired["str"],
-    "checksum_crc32": NotRequired["str"],
-    "checksum_crc32_c": NotRequired["str"],
-    "checksum_crc64_nvme": NotRequired["str"],
-    "checksum_sha1": NotRequired["str"],
-    "checksum_sha256": NotRequired["str"],
-    "checksum_type": NotRequired["ChecksumType"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "version_id": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 CompleteMultipartUploadRequest = TypedDict(
     "CompleteMultipartUploadRequest",
     {
@@ -352,23 +323,6 @@ Condition = TypedDict(
 ContinuationEvent = TypedDict(
     "ContinuationEvent",
     {
-    },
-)
-
-CopyObjectOutput = TypedDict(
-    "CopyObjectOutput",
-    {
-    "copy_object_result": NotRequired["CopyObjectResult"],
-    "expiration": NotRequired["str"],
-    "copy_source_version_id": NotRequired["str"],
-    "version_id": NotRequired["str"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "ssekms_encryption_context": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -480,14 +434,6 @@ CreateBucketMetadataTableConfigurationRequest = TypedDict(
     },
 )
 
-CreateBucketOutput = TypedDict(
-    "CreateBucketOutput",
-    {
-    "location": NotRequired["str"],
-    "bucket_arn": NotRequired["str"],
-    },
-)
-
 CreateBucketRequest = TypedDict(
     "CreateBucketRequest",
     {
@@ -501,26 +447,6 @@ CreateBucketRequest = TypedDict(
     "grant_write_acp": NotRequired["str"],
     "object_lock_enabled_for_bucket": NotRequired["bool"],
     "object_ownership": NotRequired["ObjectOwnership"],
-    },
-)
-
-CreateMultipartUploadOutput = TypedDict(
-    "CreateMultipartUploadOutput",
-    {
-    "abort_date": NotRequired["str"],
-    "abort_rule_id": NotRequired["str"],
-    "bucket": NotRequired["str"],
-    "key": NotRequired["str"],
-    "upload_id": NotRequired["str"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "ssekms_encryption_context": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "request_charged": NotRequired["RequestCharged"],
-    "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
-    "checksum_type": NotRequired["ChecksumType"],
     },
 )
 
@@ -558,17 +484,6 @@ CreateMultipartUploadRequest = TypedDict(
     "expected_bucket_owner": NotRequired["str"],
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "checksum_type": NotRequired["ChecksumType"],
-    },
-)
-
-CreateSessionOutput = TypedDict(
-    "CreateSessionOutput",
-    {
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "ssekms_key_id": NotRequired["str"],
-    "ssekms_encryption_context": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "credentials": Required["SessionCredentials"],
     },
 )
 
@@ -743,15 +658,6 @@ DeleteMarkerReplication = TypedDict(
     },
 )
 
-DeleteObjectOutput = TypedDict(
-    "DeleteObjectOutput",
-    {
-    "delete_marker": NotRequired["bool"],
-    "version_id": NotRequired["str"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 DeleteObjectRequest = TypedDict(
     "DeleteObjectRequest",
     {
@@ -768,13 +674,6 @@ DeleteObjectRequest = TypedDict(
     },
 )
 
-DeleteObjectTaggingOutput = TypedDict(
-    "DeleteObjectTaggingOutput",
-    {
-    "version_id": NotRequired["str"],
-    },
-)
-
 DeleteObjectTaggingRequest = TypedDict(
     "DeleteObjectTaggingRequest",
     {
@@ -782,15 +681,6 @@ DeleteObjectTaggingRequest = TypedDict(
     "key": Required["str"],
     "version_id": NotRequired["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-DeleteObjectsOutput = TypedDict(
-    "DeleteObjectsOutput",
-    {
-    "deleted": NotRequired["list[DeletedObject]"],
-    "request_charged": NotRequired["RequestCharged"],
-    "errors": NotRequired["list[Error]"],
     },
 )
 
@@ -915,26 +805,11 @@ FilterRule = TypedDict(
     },
 )
 
-GetBucketAbacOutput = TypedDict(
-    "GetBucketAbacOutput",
-    {
-    "abac_status": NotRequired["AbacStatus"],
-    },
-)
-
 GetBucketAbacRequest = TypedDict(
     "GetBucketAbacRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketAccelerateConfigurationOutput = TypedDict(
-    "GetBucketAccelerateConfigurationOutput",
-    {
-    "status": NotRequired["BucketAccelerateStatus"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -947,26 +822,11 @@ GetBucketAccelerateConfigurationRequest = TypedDict(
     },
 )
 
-GetBucketAclOutput = TypedDict(
-    "GetBucketAclOutput",
-    {
-    "owner": NotRequired["Owner"],
-    "grants": NotRequired["list[Grant]"],
-    },
-)
-
 GetBucketAclRequest = TypedDict(
     "GetBucketAclRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketAnalyticsConfigurationOutput = TypedDict(
-    "GetBucketAnalyticsConfigurationOutput",
-    {
-    "analytics_configuration": NotRequired["AnalyticsConfiguration"],
     },
 )
 
@@ -979,13 +839,6 @@ GetBucketAnalyticsConfigurationRequest = TypedDict(
     },
 )
 
-GetBucketCorsOutput = TypedDict(
-    "GetBucketCorsOutput",
-    {
-    "cors_rules": NotRequired["list[CORSRule]"],
-    },
-)
-
 GetBucketCorsRequest = TypedDict(
     "GetBucketCorsRequest",
     {
@@ -994,25 +847,11 @@ GetBucketCorsRequest = TypedDict(
     },
 )
 
-GetBucketEncryptionOutput = TypedDict(
-    "GetBucketEncryptionOutput",
-    {
-    "server_side_encryption_configuration": NotRequired["ServerSideEncryptionConfiguration"],
-    },
-)
-
 GetBucketEncryptionRequest = TypedDict(
     "GetBucketEncryptionRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketIntelligentTieringConfigurationOutput = TypedDict(
-    "GetBucketIntelligentTieringConfigurationOutput",
-    {
-    "intelligent_tiering_configuration": NotRequired["IntelligentTieringConfiguration"],
     },
 )
 
@@ -1025,27 +864,12 @@ GetBucketIntelligentTieringConfigurationRequest = TypedDict(
     },
 )
 
-GetBucketInventoryConfigurationOutput = TypedDict(
-    "GetBucketInventoryConfigurationOutput",
-    {
-    "inventory_configuration": NotRequired["InventoryConfiguration"],
-    },
-)
-
 GetBucketInventoryConfigurationRequest = TypedDict(
     "GetBucketInventoryConfigurationRequest",
     {
     "bucket": Required["str"],
     "id": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketLifecycleConfigurationOutput = TypedDict(
-    "GetBucketLifecycleConfigurationOutput",
-    {
-    "rules": NotRequired["list[LifecycleRule]"],
-    "transition_default_minimum_object_size": NotRequired["TransitionDefaultMinimumObjectSize"],
     },
 )
 
@@ -1057,13 +881,6 @@ GetBucketLifecycleConfigurationRequest = TypedDict(
     },
 )
 
-GetBucketLocationOutput = TypedDict(
-    "GetBucketLocationOutput",
-    {
-    "location_constraint": NotRequired["BucketLocationConstraint"],
-    },
-)
-
 GetBucketLocationRequest = TypedDict(
     "GetBucketLocationRequest",
     {
@@ -1072,25 +889,11 @@ GetBucketLocationRequest = TypedDict(
     },
 )
 
-GetBucketLoggingOutput = TypedDict(
-    "GetBucketLoggingOutput",
-    {
-    "logging_enabled": NotRequired["LoggingEnabled"],
-    },
-)
-
 GetBucketLoggingRequest = TypedDict(
     "GetBucketLoggingRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketMetadataConfigurationOutput = TypedDict(
-    "GetBucketMetadataConfigurationOutput",
-    {
-    "get_bucket_metadata_configuration_result": NotRequired["GetBucketMetadataConfigurationResult"],
     },
 )
 
@@ -1106,13 +909,6 @@ GetBucketMetadataConfigurationResult = TypedDict(
     "GetBucketMetadataConfigurationResult",
     {
     "metadata_configuration_result": Required["MetadataConfigurationResult"],
-    },
-)
-
-GetBucketMetadataTableConfigurationOutput = TypedDict(
-    "GetBucketMetadataTableConfigurationOutput",
-    {
-    "get_bucket_metadata_table_configuration_result": NotRequired["GetBucketMetadataTableConfigurationResult"],
     },
 )
 
@@ -1133,13 +929,6 @@ GetBucketMetadataTableConfigurationResult = TypedDict(
     },
 )
 
-GetBucketMetricsConfigurationOutput = TypedDict(
-    "GetBucketMetricsConfigurationOutput",
-    {
-    "metrics_configuration": NotRequired["MetricsConfiguration"],
-    },
-)
-
 GetBucketMetricsConfigurationRequest = TypedDict(
     "GetBucketMetricsConfigurationRequest",
     {
@@ -1157,25 +946,11 @@ GetBucketNotificationConfigurationRequest = TypedDict(
     },
 )
 
-GetBucketOwnershipControlsOutput = TypedDict(
-    "GetBucketOwnershipControlsOutput",
-    {
-    "ownership_controls": NotRequired["OwnershipControls"],
-    },
-)
-
 GetBucketOwnershipControlsRequest = TypedDict(
     "GetBucketOwnershipControlsRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketPolicyOutput = TypedDict(
-    "GetBucketPolicyOutput",
-    {
-    "policy": NotRequired["str"],
     },
 )
 
@@ -1187,25 +962,11 @@ GetBucketPolicyRequest = TypedDict(
     },
 )
 
-GetBucketPolicyStatusOutput = TypedDict(
-    "GetBucketPolicyStatusOutput",
-    {
-    "policy_status": NotRequired["PolicyStatus"],
-    },
-)
-
 GetBucketPolicyStatusRequest = TypedDict(
     "GetBucketPolicyStatusRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketReplicationOutput = TypedDict(
-    "GetBucketReplicationOutput",
-    {
-    "replication_configuration": NotRequired["ReplicationConfiguration"],
     },
 )
 
@@ -1217,25 +978,11 @@ GetBucketReplicationRequest = TypedDict(
     },
 )
 
-GetBucketRequestPaymentOutput = TypedDict(
-    "GetBucketRequestPaymentOutput",
-    {
-    "payer": NotRequired["Payer"],
-    },
-)
-
 GetBucketRequestPaymentRequest = TypedDict(
     "GetBucketRequestPaymentRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketTaggingOutput = TypedDict(
-    "GetBucketTaggingOutput",
-    {
-    "tag_set": Required["list[Tag]"],
     },
 )
 
@@ -1247,29 +994,11 @@ GetBucketTaggingRequest = TypedDict(
     },
 )
 
-GetBucketVersioningOutput = TypedDict(
-    "GetBucketVersioningOutput",
-    {
-    "status": NotRequired["BucketVersioningStatus"],
-    "mfa_delete": NotRequired["MFADeleteStatus"],
-    },
-)
-
 GetBucketVersioningRequest = TypedDict(
     "GetBucketVersioningRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetBucketWebsiteOutput = TypedDict(
-    "GetBucketWebsiteOutput",
-    {
-    "redirect_all_requests_to": NotRequired["RedirectAllRequestsTo"],
-    "index_document": NotRequired["IndexDocument"],
-    "error_document": NotRequired["ErrorDocument"],
-    "routing_rules": NotRequired["list[RoutingRule]"],
     },
 )
 
@@ -1281,15 +1010,6 @@ GetBucketWebsiteRequest = TypedDict(
     },
 )
 
-GetObjectAclOutput = TypedDict(
-    "GetObjectAclOutput",
-    {
-    "owner": NotRequired["Owner"],
-    "grants": NotRequired["list[Grant]"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 GetObjectAclRequest = TypedDict(
     "GetObjectAclRequest",
     {
@@ -1298,21 +1018,6 @@ GetObjectAclRequest = TypedDict(
     "version_id": NotRequired["str"],
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetObjectAttributesOutput = TypedDict(
-    "GetObjectAttributesOutput",
-    {
-    "delete_marker": NotRequired["bool"],
-    "last_modified": NotRequired["str"],
-    "version_id": NotRequired["str"],
-    "request_charged": NotRequired["RequestCharged"],
-    "e_tag": NotRequired["str"],
-    "checksum": NotRequired["Checksum"],
-    "object_parts": NotRequired["GetObjectAttributesParts"],
-    "storage_class": NotRequired["StorageClass"],
-    "object_size": NotRequired["int"],
     },
 )
 
@@ -1345,13 +1050,6 @@ GetObjectAttributesRequest = TypedDict(
     },
 )
 
-GetObjectLegalHoldOutput = TypedDict(
-    "GetObjectLegalHoldOutput",
-    {
-    "legal_hold": NotRequired["ObjectLockLegalHold"],
-    },
-)
-
 GetObjectLegalHoldRequest = TypedDict(
     "GetObjectLegalHoldRequest",
     {
@@ -1363,62 +1061,11 @@ GetObjectLegalHoldRequest = TypedDict(
     },
 )
 
-GetObjectLockConfigurationOutput = TypedDict(
-    "GetObjectLockConfigurationOutput",
-    {
-    "object_lock_configuration": NotRequired["ObjectLockConfiguration"],
-    },
-)
-
 GetObjectLockConfigurationRequest = TypedDict(
     "GetObjectLockConfigurationRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetObjectOutput = TypedDict(
-    "GetObjectOutput",
-    {
-    "body": Required["ByteStream"],
-    "delete_marker": NotRequired["bool"],
-    "accept_ranges": NotRequired["str"],
-    "expiration": NotRequired["str"],
-    "restore": NotRequired["str"],
-    "last_modified": NotRequired["str"],
-    "content_length": NotRequired["int"],
-    "e_tag": NotRequired["str"],
-    "checksum_crc32": NotRequired["str"],
-    "checksum_crc32_c": NotRequired["str"],
-    "checksum_crc64_nvme": NotRequired["str"],
-    "checksum_sha1": NotRequired["str"],
-    "checksum_sha256": NotRequired["str"],
-    "checksum_type": NotRequired["ChecksumType"],
-    "missing_meta": NotRequired["int"],
-    "version_id": NotRequired["str"],
-    "cache_control": NotRequired["str"],
-    "content_disposition": NotRequired["str"],
-    "content_encoding": NotRequired["str"],
-    "content_language": NotRequired["str"],
-    "content_range": NotRequired["str"],
-    "content_type": NotRequired["str"],
-    "expires": NotRequired["str"],
-    "website_redirect_location": NotRequired["str"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "metadata": NotRequired["dict[str, str]"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "storage_class": NotRequired["StorageClass"],
-    "request_charged": NotRequired["RequestCharged"],
-    "replication_status": NotRequired["ReplicationStatus"],
-    "parts_count": NotRequired["int"],
-    "tag_count": NotRequired["int"],
-    "object_lock_mode": NotRequired["ObjectLockMode"],
-    "object_lock_retain_until_date": NotRequired["str"],
-    "object_lock_legal_hold_status": NotRequired["ObjectLockLegalHoldStatus"],
     },
 )
 
@@ -1449,13 +1096,6 @@ GetObjectRequest = TypedDict(
     },
 )
 
-GetObjectRetentionOutput = TypedDict(
-    "GetObjectRetentionOutput",
-    {
-    "retention": NotRequired["ObjectLockRetention"],
-    },
-)
-
 GetObjectRetentionRequest = TypedDict(
     "GetObjectRetentionRequest",
     {
@@ -1464,14 +1104,6 @@ GetObjectRetentionRequest = TypedDict(
     "version_id": NotRequired["str"],
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetObjectTaggingOutput = TypedDict(
-    "GetObjectTaggingOutput",
-    {
-    "version_id": NotRequired["str"],
-    "tag_set": Required["list[Tag]"],
     },
 )
 
@@ -1486,14 +1118,6 @@ GetObjectTaggingRequest = TypedDict(
     },
 )
 
-GetObjectTorrentOutput = TypedDict(
-    "GetObjectTorrentOutput",
-    {
-    "body": Required["ByteStream"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 GetObjectTorrentRequest = TypedDict(
     "GetObjectTorrentRequest",
     {
@@ -1501,13 +1125,6 @@ GetObjectTorrentRequest = TypedDict(
     "key": Required["str"],
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-GetPublicAccessBlockOutput = TypedDict(
-    "GetPublicAccessBlockOutput",
-    {
-    "public_access_block_configuration": NotRequired["PublicAccessBlockConfiguration"],
     },
 )
 
@@ -1545,66 +1162,11 @@ Grantee = TypedDict(
     },
 )
 
-HeadBucketOutput = TypedDict(
-    "HeadBucketOutput",
-    {
-    "bucket_arn": NotRequired["str"],
-    "bucket_location_type": NotRequired["LocationType"],
-    "bucket_location_name": NotRequired["str"],
-    "bucket_region": NotRequired["str"],
-    "access_point_alias": NotRequired["bool"],
-    },
-)
-
 HeadBucketRequest = TypedDict(
     "HeadBucketRequest",
     {
     "bucket": Required["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-HeadObjectOutput = TypedDict(
-    "HeadObjectOutput",
-    {
-    "delete_marker": NotRequired["bool"],
-    "accept_ranges": NotRequired["str"],
-    "expiration": NotRequired["str"],
-    "restore": NotRequired["str"],
-    "archive_status": NotRequired["ArchiveStatus"],
-    "last_modified": NotRequired["str"],
-    "content_length": NotRequired["int"],
-    "checksum_crc32": NotRequired["str"],
-    "checksum_crc32_c": NotRequired["str"],
-    "checksum_crc64_nvme": NotRequired["str"],
-    "checksum_sha1": NotRequired["str"],
-    "checksum_sha256": NotRequired["str"],
-    "checksum_type": NotRequired["ChecksumType"],
-    "e_tag": NotRequired["str"],
-    "missing_meta": NotRequired["int"],
-    "version_id": NotRequired["str"],
-    "cache_control": NotRequired["str"],
-    "content_disposition": NotRequired["str"],
-    "content_encoding": NotRequired["str"],
-    "content_language": NotRequired["str"],
-    "content_type": NotRequired["str"],
-    "content_range": NotRequired["str"],
-    "expires": NotRequired["str"],
-    "website_redirect_location": NotRequired["str"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "metadata": NotRequired["dict[str, str]"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "storage_class": NotRequired["StorageClass"],
-    "request_charged": NotRequired["RequestCharged"],
-    "replication_status": NotRequired["ReplicationStatus"],
-    "parts_count": NotRequired["int"],
-    "tag_count": NotRequired["int"],
-    "object_lock_mode": NotRequired["ObjectLockMode"],
-    "object_lock_retain_until_date": NotRequired["str"],
-    "object_lock_legal_hold_status": NotRequired["ObjectLockLegalHoldStatus"],
     },
 )
 
@@ -1862,32 +1424,12 @@ LifecycleRuleFilter = TypedDict(
     },
 )
 
-ListBucketAnalyticsConfigurationsOutput = TypedDict(
-    "ListBucketAnalyticsConfigurationsOutput",
-    {
-    "is_truncated": NotRequired["bool"],
-    "continuation_token": NotRequired["str"],
-    "next_continuation_token": NotRequired["str"],
-    "analytics_configuration_list": NotRequired["list[AnalyticsConfiguration]"],
-    },
-)
-
 ListBucketAnalyticsConfigurationsRequest = TypedDict(
     "ListBucketAnalyticsConfigurationsRequest",
     {
     "bucket": Required["str"],
     "continuation_token": NotRequired["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-ListBucketIntelligentTieringConfigurationsOutput = TypedDict(
-    "ListBucketIntelligentTieringConfigurationsOutput",
-    {
-    "is_truncated": NotRequired["bool"],
-    "continuation_token": NotRequired["str"],
-    "next_continuation_token": NotRequired["str"],
-    "intelligent_tiering_configuration_list": NotRequired["list[IntelligentTieringConfiguration]"],
     },
 )
 
@@ -1900,16 +1442,6 @@ ListBucketIntelligentTieringConfigurationsRequest = TypedDict(
     },
 )
 
-ListBucketInventoryConfigurationsOutput = TypedDict(
-    "ListBucketInventoryConfigurationsOutput",
-    {
-    "continuation_token": NotRequired["str"],
-    "inventory_configuration_list": NotRequired["list[InventoryConfiguration]"],
-    "is_truncated": NotRequired["bool"],
-    "next_continuation_token": NotRequired["str"],
-    },
-)
-
 ListBucketInventoryConfigurationsRequest = TypedDict(
     "ListBucketInventoryConfigurationsRequest",
     {
@@ -1919,32 +1451,12 @@ ListBucketInventoryConfigurationsRequest = TypedDict(
     },
 )
 
-ListBucketMetricsConfigurationsOutput = TypedDict(
-    "ListBucketMetricsConfigurationsOutput",
-    {
-    "is_truncated": NotRequired["bool"],
-    "continuation_token": NotRequired["str"],
-    "next_continuation_token": NotRequired["str"],
-    "metrics_configuration_list": NotRequired["list[MetricsConfiguration]"],
-    },
-)
-
 ListBucketMetricsConfigurationsRequest = TypedDict(
     "ListBucketMetricsConfigurationsRequest",
     {
     "bucket": Required["str"],
     "continuation_token": NotRequired["str"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-ListBucketsOutput = TypedDict(
-    "ListBucketsOutput",
-    {
-    "buckets": NotRequired["list[Bucket]"],
-    "owner": NotRequired["Owner"],
-    "continuation_token": NotRequired["str"],
-    "prefix": NotRequired["str"],
     },
 )
 
@@ -1958,38 +1470,11 @@ ListBucketsRequest = TypedDict(
     },
 )
 
-ListDirectoryBucketsOutput = TypedDict(
-    "ListDirectoryBucketsOutput",
-    {
-    "buckets": NotRequired["list[Bucket]"],
-    "continuation_token": NotRequired["str"],
-    },
-)
-
 ListDirectoryBucketsRequest = TypedDict(
     "ListDirectoryBucketsRequest",
     {
     "continuation_token": NotRequired["str"],
     "max_directory_buckets": NotRequired["int"],
-    },
-)
-
-ListMultipartUploadsOutput = TypedDict(
-    "ListMultipartUploadsOutput",
-    {
-    "bucket": NotRequired["str"],
-    "key_marker": NotRequired["str"],
-    "upload_id_marker": NotRequired["str"],
-    "next_key_marker": NotRequired["str"],
-    "prefix": NotRequired["str"],
-    "delimiter": NotRequired["str"],
-    "next_upload_id_marker": NotRequired["str"],
-    "max_uploads": NotRequired["int"],
-    "is_truncated": NotRequired["bool"],
-    "uploads": NotRequired["list[MultipartUpload]"],
-    "common_prefixes": NotRequired["list[CommonPrefix]"],
-    "encoding_type": NotRequired["EncodingType"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -2005,26 +1490,6 @@ ListMultipartUploadsRequest = TypedDict(
     "upload_id_marker": NotRequired["str"],
     "expected_bucket_owner": NotRequired["str"],
     "request_payer": NotRequired["RequestPayer"],
-    },
-)
-
-ListObjectVersionsOutput = TypedDict(
-    "ListObjectVersionsOutput",
-    {
-    "is_truncated": NotRequired["bool"],
-    "key_marker": NotRequired["str"],
-    "version_id_marker": NotRequired["str"],
-    "next_key_marker": NotRequired["str"],
-    "next_version_id_marker": NotRequired["str"],
-    "versions": NotRequired["list[ObjectVersion]"],
-    "delete_markers": NotRequired["list[DeleteMarkerEntry]"],
-    "name": NotRequired["str"],
-    "prefix": NotRequired["str"],
-    "delimiter": NotRequired["str"],
-    "max_keys": NotRequired["int"],
-    "common_prefixes": NotRequired["list[CommonPrefix]"],
-    "encoding_type": NotRequired["EncodingType"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -2044,23 +1509,6 @@ ListObjectVersionsRequest = TypedDict(
     },
 )
 
-ListObjectsOutput = TypedDict(
-    "ListObjectsOutput",
-    {
-    "is_truncated": NotRequired["bool"],
-    "marker": NotRequired["str"],
-    "next_marker": NotRequired["str"],
-    "contents": NotRequired["list[Object]"],
-    "name": NotRequired["str"],
-    "prefix": NotRequired["str"],
-    "delimiter": NotRequired["str"],
-    "max_keys": NotRequired["int"],
-    "common_prefixes": NotRequired["list[CommonPrefix]"],
-    "encoding_type": NotRequired["EncodingType"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 ListObjectsRequest = TypedDict(
     "ListObjectsRequest",
     {
@@ -2073,25 +1521,6 @@ ListObjectsRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
     "optional_object_attributes": NotRequired["list[OptionalObjectAttributes]"],
-    },
-)
-
-ListObjectsV2Output = TypedDict(
-    "ListObjectsV2Output",
-    {
-    "is_truncated": NotRequired["bool"],
-    "contents": NotRequired["list[Object]"],
-    "name": NotRequired["str"],
-    "prefix": NotRequired["str"],
-    "delimiter": NotRequired["str"],
-    "max_keys": NotRequired["int"],
-    "common_prefixes": NotRequired["list[CommonPrefix]"],
-    "encoding_type": NotRequired["EncodingType"],
-    "key_count": NotRequired["int"],
-    "continuation_token": NotRequired["str"],
-    "next_continuation_token": NotRequired["str"],
-    "start_after": NotRequired["str"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -2109,28 +1538,6 @@ ListObjectsV2Request = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
     "optional_object_attributes": NotRequired["list[OptionalObjectAttributes]"],
-    },
-)
-
-ListPartsOutput = TypedDict(
-    "ListPartsOutput",
-    {
-    "abort_date": NotRequired["str"],
-    "abort_rule_id": NotRequired["str"],
-    "bucket": NotRequired["str"],
-    "key": NotRequired["str"],
-    "upload_id": NotRequired["str"],
-    "part_number_marker": NotRequired["str"],
-    "next_part_number_marker": NotRequired["str"],
-    "max_parts": NotRequired["int"],
-    "is_truncated": NotRequired["bool"],
-    "parts": NotRequired["list[Part]"],
-    "initiator": NotRequired["Initiator"],
-    "owner": NotRequired["Owner"],
-    "storage_class": NotRequired["StorageClass"],
-    "request_charged": NotRequired["RequestCharged"],
-    "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
-    "checksum_type": NotRequired["ChecksumType"],
     },
 )
 
@@ -2569,13 +1976,6 @@ PutBucketInventoryConfigurationRequest = TypedDict(
     },
 )
 
-PutBucketLifecycleConfigurationOutput = TypedDict(
-    "PutBucketLifecycleConfigurationOutput",
-    {
-    "transition_default_minimum_object_size": NotRequired["TransitionDefaultMinimumObjectSize"],
-    },
-)
-
 PutBucketLifecycleConfigurationRequest = TypedDict(
     "PutBucketLifecycleConfigurationRequest",
     {
@@ -2698,13 +2098,6 @@ PutBucketWebsiteRequest = TypedDict(
     },
 )
 
-PutObjectAclOutput = TypedDict(
-    "PutObjectAclOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 PutObjectAclRequest = TypedDict(
     "PutObjectAclRequest",
     {
@@ -2725,13 +2118,6 @@ PutObjectAclRequest = TypedDict(
     },
 )
 
-PutObjectLegalHoldOutput = TypedDict(
-    "PutObjectLegalHoldOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 PutObjectLegalHoldRequest = TypedDict(
     "PutObjectLegalHoldRequest",
     {
@@ -2746,13 +2132,6 @@ PutObjectLegalHoldRequest = TypedDict(
     },
 )
 
-PutObjectLockConfigurationOutput = TypedDict(
-    "PutObjectLockConfigurationOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 PutObjectLockConfigurationRequest = TypedDict(
     "PutObjectLockConfigurationRequest",
     {
@@ -2763,29 +2142,6 @@ PutObjectLockConfigurationRequest = TypedDict(
     "content_md5": NotRequired["str"],
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-PutObjectOutput = TypedDict(
-    "PutObjectOutput",
-    {
-    "expiration": NotRequired["str"],
-    "e_tag": NotRequired["str"],
-    "checksum_crc32": NotRequired["str"],
-    "checksum_crc32_c": NotRequired["str"],
-    "checksum_crc64_nvme": NotRequired["str"],
-    "checksum_sha1": NotRequired["str"],
-    "checksum_sha256": NotRequired["str"],
-    "checksum_type": NotRequired["ChecksumType"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "version_id": NotRequired["str"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "ssekms_encryption_context": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "size": NotRequired["int"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 
@@ -2836,13 +2192,6 @@ PutObjectRequest = TypedDict(
     },
 )
 
-PutObjectRetentionOutput = TypedDict(
-    "PutObjectRetentionOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 PutObjectRetentionRequest = TypedDict(
     "PutObjectRetentionRequest",
     {
@@ -2855,13 +2204,6 @@ PutObjectRetentionRequest = TypedDict(
     "content_md5": NotRequired["str"],
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "expected_bucket_owner": NotRequired["str"],
-    },
-)
-
-PutObjectTaggingOutput = TypedDict(
-    "PutObjectTaggingOutput",
-    {
-    "version_id": NotRequired["str"],
     },
 )
 
@@ -2931,12 +2273,6 @@ RedirectAllRequestsTo = TypedDict(
     {
     "host_name": Required["str"],
     "protocol": NotRequired["Protocol"],
-    },
-)
-
-RenameObjectOutput = TypedDict(
-    "RenameObjectOutput",
-    {
     },
 )
 
@@ -3031,14 +2367,6 @@ RequestProgress = TypedDict(
     "RequestProgress",
     {
     "enabled": NotRequired["bool"],
-    },
-)
-
-RestoreObjectOutput = TypedDict(
-    "RestoreObjectOutput",
-    {
-    "request_charged": NotRequired["RequestCharged"],
-    "restore_output_path": NotRequired["str"],
     },
 )
 
@@ -3353,20 +2681,6 @@ UpdateBucketMetadataJournalTableConfigurationRequest = TypedDict(
     },
 )
 
-UploadPartCopyOutput = TypedDict(
-    "UploadPartCopyOutput",
-    {
-    "copy_source_version_id": NotRequired["str"],
-    "copy_part_result": NotRequired["CopyPartResult"],
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "request_charged": NotRequired["RequestCharged"],
-    },
-)
-
 UploadPartCopyRequest = TypedDict(
     "UploadPartCopyRequest",
     {
@@ -3389,24 +2703,6 @@ UploadPartCopyRequest = TypedDict(
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
     "expected_source_bucket_owner": NotRequired["str"],
-    },
-)
-
-UploadPartOutput = TypedDict(
-    "UploadPartOutput",
-    {
-    "server_side_encryption": NotRequired["ServerSideEncryption"],
-    "e_tag": NotRequired["str"],
-    "checksum_crc32": NotRequired["str"],
-    "checksum_crc32_c": NotRequired["str"],
-    "checksum_crc64_nvme": NotRequired["str"],
-    "checksum_sha1": NotRequired["str"],
-    "checksum_sha256": NotRequired["str"],
-    "sse_customer_algorithm": NotRequired["str"],
-    "sse_customer_key_md5": NotRequired["str"],
-    "ssekms_key_id": NotRequired["str"],
-    "bucket_key_enabled": NotRequired["bool"],
-    "request_charged": NotRequired["RequestCharged"],
     },
 )
 

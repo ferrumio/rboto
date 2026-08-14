@@ -18,3 +18,4 @@ class ServiceDescriptor:
     smithy_codegen_revision: str
     customization: str | None = None
     force_path_style_for_custom_endpoint: bool = False
+    native_outputs: bool = False

@@ -54,6 +54,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         force_path_style_for_custom_endpoint=_boolean(
             data, "force_path_style_for_custom_endpoint"
         ),
+        native_outputs=_boolean(data, "native_outputs"),
     )
     if path.stem != descriptor.service_id:
         raise ValueError(

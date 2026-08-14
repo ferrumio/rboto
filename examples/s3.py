@@ -89,7 +89,7 @@ async def download_concurrently(
 
     results = await asyncio.gather(
         *(
-            consume_stream(key, response["body"])
+            consume_stream(key, response.body)
             for key, response in zip(payloads, responses, strict=True)
         )
     )
@@ -105,7 +105,7 @@ async def download_concurrently(
 
 async def main() -> None:
     region = configure_aws()
-    client = s3(region=region)
+    client = s3(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     bucket = f"rboto-example-{uuid.uuid4().hex[:12]}"
     payloads = {
         f"stream-{index}.bin": make_payload(index)
@@ -141,12 +141,12 @@ async def main() -> None:
 
         # read() is the convenience path that aggregates the remaining stream.
         single = await client.get_object(bucket=bucket, key="stream-1.bin")
-        aggregated = await single["body"].read()
+        aggregated = await single.body.read()
         print("aggregated read bytes:", len(aggregated))
 
         listed = await client.list_objects_v2(bucket=bucket)
-        for item in listed.get("contents", []):
-            print("listed object:", item.get("key"), item.get("size"))
+        for item in listed.contents or []:
+            print("listed object:", item.key, item.size)
     finally:
         if bucket_created:
             await asyncio.gather(

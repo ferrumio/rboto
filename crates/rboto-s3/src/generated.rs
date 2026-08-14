@@ -22,7 +22,7 @@ fn abac_status_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
 fn abac_status_to_py(py: Python<'_>, value: &aws_sdk_s3::types::AbacStatus) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.status {
-        let converted_3 = value.as_str().into_py_any(py)?;
+        let converted_3 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_3)?;
     } else {
         result.set_item("status", py.None())?;
@@ -75,7 +75,7 @@ fn accelerate_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.status {
-        let converted_8 = value.as_str().into_py_any(py)?;
+        let converted_8 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_8)?;
     } else {
         result.set_item("status", py.None())?;
@@ -149,7 +149,7 @@ fn access_control_translation_to_py(
     value: &aws_sdk_s3::types::AccessControlTranslation,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_20 = &value.owner.as_str().into_py_any(py)?;
+    let converted_20 = (&value.owner).as_str().into_py_any(py)?;
     result.set_item("owner", converted_20)?;
     Ok(result.into_any().unbind())
 }
@@ -181,7 +181,7 @@ fn analytics_and_operator_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_26 = value.as_str().into_py_any(py)?;
+        let converted_26 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_26)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -227,7 +227,7 @@ fn analytics_configuration_to_py(
     value: &aws_sdk_s3::types::AnalyticsConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_33 = &value.id.as_str().into_py_any(py)?;
+    let converted_33 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_33)?;
     if let Some(value) = &value.filter {
         let converted_34 = analytics_filter_to_py(py, value)?;
@@ -298,7 +298,7 @@ fn analytics_filter_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_s3::types::AnalyticsFilter::Prefix(value) => {
-            let converted_41 = value.as_str().into_py_any(py)?;
+            let converted_41 = (value).as_str().into_py_any(py)?;
             result.set_item("prefix", converted_41)?;
         }
         aws_sdk_s3::types::AnalyticsFilter::Tag(value) => {
@@ -349,18 +349,18 @@ fn analytics_s3_bucket_destination_to_py(
     value: &aws_sdk_s3::types::AnalyticsS3BucketDestination,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_49 = &value.format.as_str().into_py_any(py)?;
+    let converted_49 = (&value.format).as_str().into_py_any(py)?;
     result.set_item("format", converted_49)?;
     if let Some(value) = &value.bucket_account_id {
-        let converted_50 = value.as_str().into_py_any(py)?;
+        let converted_50 = (value).as_str().into_py_any(py)?;
         result.set_item("bucket_account_id", converted_50)?;
     } else {
         result.set_item("bucket_account_id", py.None())?;
     }
-    let converted_51 = &value.bucket.as_str().into_py_any(py)?;
+    let converted_51 = (&value.bucket).as_str().into_py_any(py)?;
     result.set_item("bucket", converted_51)?;
     if let Some(value) = &value.prefix {
-        let converted_52 = value.as_str().into_py_any(py)?;
+        let converted_52 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_52)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -394,7 +394,7 @@ fn blocked_encryption_types_to_py(
     if let Some(value) = &value.encryption_type {
         let converted_58_list = PyList::empty(py);
         for item_59 in value {
-            let converted_item_60 = item_59.as_str().into_py_any(py)?;
+            let converted_item_60 = (item_59).as_str().into_py_any(py)?;
             converted_58_list.append(converted_item_60)?;
         }
         let converted_58 = converted_58_list.into_any().unbind();
@@ -435,25 +435,25 @@ fn bucket_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Bucke
 fn bucket_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Bucket) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_66 = value.as_str().into_py_any(py)?;
+        let converted_66 = (value).as_str().into_py_any(py)?;
         result.set_item("name", converted_66)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.creation_date {
-        let converted_67 = value.to_string().into_py_any(py)?;
+        let converted_67 = (value).to_string().into_py_any(py)?;
         result.set_item("creation_date", converted_67)?;
     } else {
         result.set_item("creation_date", py.None())?;
     }
     if let Some(value) = &value.bucket_region {
-        let converted_68 = value.as_str().into_py_any(py)?;
+        let converted_68 = (value).as_str().into_py_any(py)?;
         result.set_item("bucket_region", converted_68)?;
     } else {
         result.set_item("bucket_region", py.None())?;
     }
     if let Some(value) = &value.bucket_arn {
-        let converted_69 = value.as_str().into_py_any(py)?;
+        let converted_69 = (value).as_str().into_py_any(py)?;
         result.set_item("bucket_arn", converted_69)?;
     } else {
         result.set_item("bucket_arn", py.None())?;
@@ -480,13 +480,13 @@ fn bucket_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
 fn bucket_info_to_py(py: Python<'_>, value: &aws_sdk_s3::types::BucketInfo) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.data_redundancy {
-        let converted_74 = value.as_str().into_py_any(py)?;
+        let converted_74 = (value).as_str().into_py_any(py)?;
         result.set_item("data_redundancy", converted_74)?;
     } else {
         result.set_item("data_redundancy", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_75 = value.as_str().into_py_any(py)?;
+        let converted_75 = (value).as_str().into_py_any(py)?;
         result.set_item("type", converted_75)?;
     } else {
         result.set_item("type", py.None())?;
@@ -588,37 +588,37 @@ fn checksum_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Che
 fn checksum_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Checksum) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.checksum_crc32 {
-        let converted_92 = value.as_str().into_py_any(py)?;
+        let converted_92 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_92)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_93 = value.as_str().into_py_any(py)?;
+        let converted_93 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_93)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_94 = value.as_str().into_py_any(py)?;
+        let converted_94 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_94)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_95 = value.as_str().into_py_any(py)?;
+        let converted_95 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_95)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_96 = value.as_str().into_py_any(py)?;
+        let converted_96 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_96)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
     }
     if let Some(value) = &value.checksum_type {
-        let converted_97 = value.as_str().into_py_any(py)?;
+        let converted_97 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_type", converted_97)?;
     } else {
         result.set_item("checksum_type", py.None())?;
@@ -642,7 +642,7 @@ fn common_prefix_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_99 = value.as_str().into_py_any(py)?;
+        let converted_99 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_99)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -726,37 +726,37 @@ fn completed_part_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.e_tag {
-        let converted_114 = value.as_str().into_py_any(py)?;
+        let converted_114 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_114)?;
     } else {
         result.set_item("e_tag", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32 {
-        let converted_115 = value.as_str().into_py_any(py)?;
+        let converted_115 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_115)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_116 = value.as_str().into_py_any(py)?;
+        let converted_116 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_116)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_117 = value.as_str().into_py_any(py)?;
+        let converted_117 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_117)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_118 = value.as_str().into_py_any(py)?;
+        let converted_118 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_118)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_119 = value.as_str().into_py_any(py)?;
+        let converted_119 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_119)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
@@ -787,13 +787,13 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
 fn condition_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Condition) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.http_error_code_returned_equals {
-        let converted_123 = value.as_str().into_py_any(py)?;
+        let converted_123 = (value).as_str().into_py_any(py)?;
         result.set_item("http_error_code_returned_equals", converted_123)?;
     } else {
         result.set_item("http_error_code_returned_equals", py.None())?;
     }
     if let Some(value) = &value.key_prefix_equals {
-        let converted_124 = value.as_str().into_py_any(py)?;
+        let converted_124 = (value).as_str().into_py_any(py)?;
         result.set_item("key_prefix_equals", converted_124)?;
     } else {
         result.set_item("key_prefix_equals", py.None())?;
@@ -869,49 +869,49 @@ fn copy_object_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.e_tag {
-        let converted_135 = value.as_str().into_py_any(py)?;
+        let converted_135 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_135)?;
     } else {
         result.set_item("e_tag", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_136 = value.to_string().into_py_any(py)?;
+        let converted_136 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_136)?;
     } else {
         result.set_item("last_modified", py.None())?;
     }
     if let Some(value) = &value.checksum_type {
-        let converted_137 = value.as_str().into_py_any(py)?;
+        let converted_137 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_type", converted_137)?;
     } else {
         result.set_item("checksum_type", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32 {
-        let converted_138 = value.as_str().into_py_any(py)?;
+        let converted_138 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_138)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_139 = value.as_str().into_py_any(py)?;
+        let converted_139 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_139)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_140 = value.as_str().into_py_any(py)?;
+        let converted_140 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_140)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_141 = value.as_str().into_py_any(py)?;
+        let converted_141 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_141)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_142 = value.as_str().into_py_any(py)?;
+        let converted_142 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_142)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
@@ -966,43 +966,43 @@ fn copy_part_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.e_tag {
-        let converted_151 = value.as_str().into_py_any(py)?;
+        let converted_151 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_151)?;
     } else {
         result.set_item("e_tag", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_152 = value.to_string().into_py_any(py)?;
+        let converted_152 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_152)?;
     } else {
         result.set_item("last_modified", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32 {
-        let converted_153 = value.as_str().into_py_any(py)?;
+        let converted_153 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_153)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_154 = value.as_str().into_py_any(py)?;
+        let converted_154 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_154)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_155 = value.as_str().into_py_any(py)?;
+        let converted_155 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_155)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_156 = value.as_str().into_py_any(py)?;
+        let converted_156 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_156)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_157 = value.as_str().into_py_any(py)?;
+        let converted_157 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_157)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
@@ -1099,7 +1099,7 @@ fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
 fn cors_rule_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CorsRule) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_183 = value.as_str().into_py_any(py)?;
+        let converted_183 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_183)?;
     } else {
         result.set_item("id", py.None())?;
@@ -1107,7 +1107,7 @@ fn cors_rule_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CorsRule) -> PyRes
     if let Some(value) = &value.allowed_headers {
         let converted_184_list = PyList::empty(py);
         for item_185 in value {
-            let converted_item_186 = item_185.as_str().into_py_any(py)?;
+            let converted_item_186 = (item_185).as_str().into_py_any(py)?;
             converted_184_list.append(converted_item_186)?;
         }
         let converted_184 = converted_184_list.into_any().unbind();
@@ -1117,14 +1117,14 @@ fn cors_rule_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CorsRule) -> PyRes
     }
     let converted_187_list = PyList::empty(py);
     for item_188 in &value.allowed_methods {
-        let converted_item_189 = item_188.as_str().into_py_any(py)?;
+        let converted_item_189 = (item_188).as_str().into_py_any(py)?;
         converted_187_list.append(converted_item_189)?;
     }
     let converted_187 = converted_187_list.into_any().unbind();
     result.set_item("allowed_methods", converted_187)?;
     let converted_190_list = PyList::empty(py);
     for item_191 in &value.allowed_origins {
-        let converted_item_192 = item_191.as_str().into_py_any(py)?;
+        let converted_item_192 = (item_191).as_str().into_py_any(py)?;
         converted_190_list.append(converted_item_192)?;
     }
     let converted_190 = converted_190_list.into_any().unbind();
@@ -1132,7 +1132,7 @@ fn cors_rule_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CorsRule) -> PyRes
     if let Some(value) = &value.expose_headers {
         let converted_193_list = PyList::empty(py);
         for item_194 in value {
-            let converted_item_195 = item_194.as_str().into_py_any(py)?;
+            let converted_item_195 = (item_194).as_str().into_py_any(py)?;
             converted_193_list.append(converted_item_195)?;
         }
         let converted_193 = converted_193_list.into_any().unbind();
@@ -1186,7 +1186,7 @@ fn create_bucket_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.location_constraint {
-        let converted_205 = value.as_str().into_py_any(py)?;
+        let converted_205 = (value).as_str().into_py_any(py)?;
         result.set_item("location_constraint", converted_205)?;
     } else {
         result.set_item("location_constraint", py.None())?;
@@ -1255,37 +1255,37 @@ fn csv_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Cs
 fn csv_input_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CsvInput) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.file_header_info {
-        let converted_219 = value.as_str().into_py_any(py)?;
+        let converted_219 = (value).as_str().into_py_any(py)?;
         result.set_item("file_header_info", converted_219)?;
     } else {
         result.set_item("file_header_info", py.None())?;
     }
     if let Some(value) = &value.comments {
-        let converted_220 = value.as_str().into_py_any(py)?;
+        let converted_220 = (value).as_str().into_py_any(py)?;
         result.set_item("comments", converted_220)?;
     } else {
         result.set_item("comments", py.None())?;
     }
     if let Some(value) = &value.quote_escape_character {
-        let converted_221 = value.as_str().into_py_any(py)?;
+        let converted_221 = (value).as_str().into_py_any(py)?;
         result.set_item("quote_escape_character", converted_221)?;
     } else {
         result.set_item("quote_escape_character", py.None())?;
     }
     if let Some(value) = &value.record_delimiter {
-        let converted_222 = value.as_str().into_py_any(py)?;
+        let converted_222 = (value).as_str().into_py_any(py)?;
         result.set_item("record_delimiter", converted_222)?;
     } else {
         result.set_item("record_delimiter", py.None())?;
     }
     if let Some(value) = &value.field_delimiter {
-        let converted_223 = value.as_str().into_py_any(py)?;
+        let converted_223 = (value).as_str().into_py_any(py)?;
         result.set_item("field_delimiter", converted_223)?;
     } else {
         result.set_item("field_delimiter", py.None())?;
     }
     if let Some(value) = &value.quote_character {
-        let converted_224 = value.as_str().into_py_any(py)?;
+        let converted_224 = (value).as_str().into_py_any(py)?;
         result.set_item("quote_character", converted_224)?;
     } else {
         result.set_item("quote_character", py.None())?;
@@ -1329,31 +1329,31 @@ fn csv_output_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::C
 fn csv_output_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CsvOutput) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.quote_fields {
-        let converted_232 = value.as_str().into_py_any(py)?;
+        let converted_232 = (value).as_str().into_py_any(py)?;
         result.set_item("quote_fields", converted_232)?;
     } else {
         result.set_item("quote_fields", py.None())?;
     }
     if let Some(value) = &value.quote_escape_character {
-        let converted_233 = value.as_str().into_py_any(py)?;
+        let converted_233 = (value).as_str().into_py_any(py)?;
         result.set_item("quote_escape_character", converted_233)?;
     } else {
         result.set_item("quote_escape_character", py.None())?;
     }
     if let Some(value) = &value.record_delimiter {
-        let converted_234 = value.as_str().into_py_any(py)?;
+        let converted_234 = (value).as_str().into_py_any(py)?;
         result.set_item("record_delimiter", converted_234)?;
     } else {
         result.set_item("record_delimiter", py.None())?;
     }
     if let Some(value) = &value.field_delimiter {
-        let converted_235 = value.as_str().into_py_any(py)?;
+        let converted_235 = (value).as_str().into_py_any(py)?;
         result.set_item("field_delimiter", converted_235)?;
     } else {
         result.set_item("field_delimiter", py.None())?;
     }
     if let Some(value) = &value.quote_character {
-        let converted_236 = value.as_str().into_py_any(py)?;
+        let converted_236 = (value).as_str().into_py_any(py)?;
         result.set_item("quote_character", converted_236)?;
     } else {
         result.set_item("quote_character", py.None())?;
@@ -1389,7 +1389,7 @@ fn default_retention_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.mode {
-        let converted_241 = value.as_str().into_py_any(py)?;
+        let converted_241 = (value).as_str().into_py_any(py)?;
         result.set_item("mode", converted_241)?;
     } else {
         result.set_item("mode", py.None())?;
@@ -1493,13 +1493,13 @@ fn delete_marker_entry_to_py(
         result.set_item("owner", py.None())?;
     }
     if let Some(value) = &value.key {
-        let converted_260 = value.as_str().into_py_any(py)?;
+        let converted_260 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_260)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.version_id {
-        let converted_261 = value.as_str().into_py_any(py)?;
+        let converted_261 = (value).as_str().into_py_any(py)?;
         result.set_item("version_id", converted_261)?;
     } else {
         result.set_item("version_id", py.None())?;
@@ -1511,7 +1511,7 @@ fn delete_marker_entry_to_py(
         result.set_item("is_latest", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_263 = value.to_string().into_py_any(py)?;
+        let converted_263 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_263)?;
     } else {
         result.set_item("last_modified", py.None())?;
@@ -1539,7 +1539,7 @@ fn delete_marker_replication_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.status {
-        let converted_266 = value.as_str().into_py_any(py)?;
+        let converted_266 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_266)?;
     } else {
         result.set_item("status", py.None())?;
@@ -1575,13 +1575,13 @@ fn deleted_object_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key {
-        let converted_271 = value.as_str().into_py_any(py)?;
+        let converted_271 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_271)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.version_id {
-        let converted_272 = value.as_str().into_py_any(py)?;
+        let converted_272 = (value).as_str().into_py_any(py)?;
         result.set_item("version_id", converted_272)?;
     } else {
         result.set_item("version_id", py.None())?;
@@ -1593,7 +1593,7 @@ fn deleted_object_to_py(
         result.set_item("delete_marker", py.None())?;
     }
     if let Some(value) = &value.delete_marker_version_id {
-        let converted_274 = value.as_str().into_py_any(py)?;
+        let converted_274 = (value).as_str().into_py_any(py)?;
         result.set_item("delete_marker_version_id", converted_274)?;
     } else {
         result.set_item("delete_marker_version_id", py.None())?;
@@ -1643,16 +1643,16 @@ fn destination_to_py(
     value: &aws_sdk_s3::types::Destination,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_283 = &value.bucket.as_str().into_py_any(py)?;
+    let converted_283 = (&value.bucket).as_str().into_py_any(py)?;
     result.set_item("bucket", converted_283)?;
     if let Some(value) = &value.account {
-        let converted_284 = value.as_str().into_py_any(py)?;
+        let converted_284 = (value).as_str().into_py_any(py)?;
         result.set_item("account", converted_284)?;
     } else {
         result.set_item("account", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_285 = value.as_str().into_py_any(py)?;
+        let converted_285 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_285)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -1711,19 +1711,19 @@ fn destination_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.table_bucket_type {
-        let converted_294 = value.as_str().into_py_any(py)?;
+        let converted_294 = (value).as_str().into_py_any(py)?;
         result.set_item("table_bucket_type", converted_294)?;
     } else {
         result.set_item("table_bucket_type", py.None())?;
     }
     if let Some(value) = &value.table_bucket_arn {
-        let converted_295 = value.as_str().into_py_any(py)?;
+        let converted_295 = (value).as_str().into_py_any(py)?;
         result.set_item("table_bucket_arn", converted_295)?;
     } else {
         result.set_item("table_bucket_arn", py.None())?;
     }
     if let Some(value) = &value.table_namespace {
-        let converted_296 = value.as_str().into_py_any(py)?;
+        let converted_296 = (value).as_str().into_py_any(py)?;
         result.set_item("table_namespace", converted_296)?;
     } else {
         result.set_item("table_namespace", py.None())?;
@@ -1754,16 +1754,16 @@ fn encryption_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::E
 
 fn encryption_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Encryption) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_301 = &value.encryption_type.as_str().into_py_any(py)?;
+    let converted_301 = (&value.encryption_type).as_str().into_py_any(py)?;
     result.set_item("encryption_type", converted_301)?;
     if let Some(value) = &value.kms_key_id {
-        let converted_302 = value.as_str().into_py_any(py)?;
+        let converted_302 = (value).as_str().into_py_any(py)?;
         result.set_item("kms_key_id", converted_302)?;
     } else {
         result.set_item("kms_key_id", py.None())?;
     }
     if let Some(value) = &value.kms_context {
-        let converted_303 = value.as_str().into_py_any(py)?;
+        let converted_303 = (value).as_str().into_py_any(py)?;
         result.set_item("kms_context", converted_303)?;
     } else {
         result.set_item("kms_context", py.None())?;
@@ -1789,7 +1789,7 @@ fn encryption_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.replica_kms_key_id {
-        let converted_305 = value.as_str().into_py_any(py)?;
+        let converted_305 = (value).as_str().into_py_any(py)?;
         result.set_item("replica_kms_key_id", converted_305)?;
     } else {
         result.set_item("replica_kms_key_id", py.None())?;
@@ -1833,25 +1833,25 @@ fn error_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Error>
 fn error_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Error) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key {
-        let converted_310 = value.as_str().into_py_any(py)?;
+        let converted_310 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_310)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.version_id {
-        let converted_311 = value.as_str().into_py_any(py)?;
+        let converted_311 = (value).as_str().into_py_any(py)?;
         result.set_item("version_id", converted_311)?;
     } else {
         result.set_item("version_id", py.None())?;
     }
     if let Some(value) = &value.code {
-        let converted_312 = value.as_str().into_py_any(py)?;
+        let converted_312 = (value).as_str().into_py_any(py)?;
         result.set_item("code", converted_312)?;
     } else {
         result.set_item("code", py.None())?;
     }
     if let Some(value) = &value.message {
-        let converted_313 = value.as_str().into_py_any(py)?;
+        let converted_313 = (value).as_str().into_py_any(py)?;
         result.set_item("message", converted_313)?;
     } else {
         result.set_item("message", py.None())?;
@@ -1879,13 +1879,13 @@ fn error_details_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.error_code {
-        let converted_316 = value.as_str().into_py_any(py)?;
+        let converted_316 = (value).as_str().into_py_any(py)?;
         result.set_item("error_code", converted_316)?;
     } else {
         result.set_item("error_code", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_317 = value.as_str().into_py_any(py)?;
+        let converted_317 = (value).as_str().into_py_any(py)?;
         result.set_item("error_message", converted_317)?;
     } else {
         result.set_item("error_message", py.None())?;
@@ -1910,7 +1910,7 @@ fn error_document_to_py(
     value: &aws_sdk_s3::types::ErrorDocument,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_319 = &value.key.as_str().into_py_any(py)?;
+    let converted_319 = (&value.key).as_str().into_py_any(py)?;
     result.set_item("key", converted_319)?;
     Ok(result.into_any().unbind())
 }
@@ -1952,7 +1952,7 @@ fn existing_object_replication_to_py(
     value: &aws_sdk_s3::types::ExistingObjectReplication,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_322 = &value.status.as_str().into_py_any(py)?;
+    let converted_322 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_322)?;
     Ok(result.into_any().unbind())
 }
@@ -1975,13 +1975,13 @@ fn filter_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
 fn filter_rule_to_py(py: Python<'_>, value: &aws_sdk_s3::types::FilterRule) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_326 = value.as_str().into_py_any(py)?;
+        let converted_326 = (value).as_str().into_py_any(py)?;
         result.set_item("name", converted_326)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_327 = value.as_str().into_py_any(py)?;
+        let converted_327 = (value).as_str().into_py_any(py)?;
         result.set_item("value", converted_327)?;
     } else {
         result.set_item("value", py.None())?;
@@ -2048,7 +2048,7 @@ fn get_bucket_metadata_table_configuration_result_to_py(
     } else {
         result.set_item("metadata_table_configuration_result", py.None())?;
     }
-    let converted_334 = &value.status.as_str().into_py_any(py)?;
+    let converted_334 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_334)?;
     if let Some(value) = &value.error {
         let converted_335 = error_details_to_py(py, value)?;
@@ -2108,13 +2108,13 @@ fn get_object_attributes_parts_to_py(
         result.set_item("total_parts_count", py.None())?;
     }
     if let Some(value) = &value.part_number_marker {
-        let converted_346 = value.as_str().into_py_any(py)?;
+        let converted_346 = (value).as_str().into_py_any(py)?;
         result.set_item("part_number_marker", converted_346)?;
     } else {
         result.set_item("part_number_marker", py.None())?;
     }
     if let Some(value) = &value.next_part_number_marker {
-        let converted_347 = value.as_str().into_py_any(py)?;
+        let converted_347 = (value).as_str().into_py_any(py)?;
         result.set_item("next_part_number_marker", converted_347)?;
     } else {
         result.set_item("next_part_number_marker", py.None())?;
@@ -2165,7 +2165,7 @@ fn glacier_job_parameters_to_py(
     value: &aws_sdk_s3::types::GlacierJobParameters,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_355 = &value.tier.as_str().into_py_any(py)?;
+    let converted_355 = (&value.tier).as_str().into_py_any(py)?;
     result.set_item("tier", converted_355)?;
     Ok(result.into_any().unbind())
 }
@@ -2194,7 +2194,7 @@ fn grant_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Grant) -> PyResult<Py<
         result.set_item("grantee", py.None())?;
     }
     if let Some(value) = &value.permission {
-        let converted_360 = value.as_str().into_py_any(py)?;
+        let converted_360 = (value).as_str().into_py_any(py)?;
         result.set_item("permission", converted_360)?;
     } else {
         result.set_item("permission", py.None())?;
@@ -2234,30 +2234,30 @@ fn grantee_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Gran
 fn grantee_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Grantee) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.display_name {
-        let converted_367 = value.as_str().into_py_any(py)?;
+        let converted_367 = (value).as_str().into_py_any(py)?;
         result.set_item("display_name", converted_367)?;
     } else {
         result.set_item("display_name", py.None())?;
     }
     if let Some(value) = &value.email_address {
-        let converted_368 = value.as_str().into_py_any(py)?;
+        let converted_368 = (value).as_str().into_py_any(py)?;
         result.set_item("email_address", converted_368)?;
     } else {
         result.set_item("email_address", py.None())?;
     }
     if let Some(value) = &value.id {
-        let converted_369 = value.as_str().into_py_any(py)?;
+        let converted_369 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_369)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.uri {
-        let converted_370 = value.as_str().into_py_any(py)?;
+        let converted_370 = (value).as_str().into_py_any(py)?;
         result.set_item("uri", converted_370)?;
     } else {
         result.set_item("uri", py.None())?;
     }
-    let converted_371 = &value.r#type.as_str().into_py_any(py)?;
+    let converted_371 = (&value.r#type).as_str().into_py_any(py)?;
     result.set_item("type", converted_371)?;
     Ok(result.into_any().unbind())
 }
@@ -2279,7 +2279,7 @@ fn index_document_to_py(
     value: &aws_sdk_s3::types::IndexDocument,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_373 = &value.suffix.as_str().into_py_any(py)?;
+    let converted_373 = (&value.suffix).as_str().into_py_any(py)?;
     result.set_item("suffix", converted_373)?;
     Ok(result.into_any().unbind())
 }
@@ -2301,13 +2301,13 @@ fn initiator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::In
 fn initiator_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Initiator) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_376 = value.as_str().into_py_any(py)?;
+        let converted_376 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_376)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.display_name {
-        let converted_377 = value.as_str().into_py_any(py)?;
+        let converted_377 = (value).as_str().into_py_any(py)?;
         result.set_item("display_name", converted_377)?;
     } else {
         result.set_item("display_name", py.None())?;
@@ -2352,7 +2352,7 @@ fn input_serialization_to_py(
         result.set_item("csv", py.None())?;
     }
     if let Some(value) = &value.compression_type {
-        let converted_384 = value.as_str().into_py_any(py)?;
+        let converted_384 = (value).as_str().into_py_any(py)?;
         result.set_item("compression_type", converted_384)?;
     } else {
         result.set_item("compression_type", py.None())?;
@@ -2399,7 +2399,7 @@ fn intelligent_tiering_and_operator_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_392 = value.as_str().into_py_any(py)?;
+        let converted_392 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_392)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -2456,7 +2456,7 @@ fn intelligent_tiering_configuration_to_py(
     value: &aws_sdk_s3::types::IntelligentTieringConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_404 = &value.id.as_str().into_py_any(py)?;
+    let converted_404 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_404)?;
     if let Some(value) = &value.filter {
         let converted_405 = intelligent_tiering_filter_to_py(py, value)?;
@@ -2464,7 +2464,7 @@ fn intelligent_tiering_configuration_to_py(
     } else {
         result.set_item("filter", py.None())?;
     }
-    let converted_406 = &value.status.as_str().into_py_any(py)?;
+    let converted_406 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_406)?;
     let converted_407_list = PyList::empty(py);
     for item_408 in &value.tierings {
@@ -2502,7 +2502,7 @@ fn intelligent_tiering_filter_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_413 = value.as_str().into_py_any(py)?;
+        let converted_413 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_413)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -2588,14 +2588,14 @@ fn inventory_configuration_to_py(
     } else {
         result.set_item("filter", py.None())?;
     }
-    let converted_431 = &value.id.as_str().into_py_any(py)?;
+    let converted_431 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_431)?;
-    let converted_432 = &value.included_object_versions.as_str().into_py_any(py)?;
+    let converted_432 = (&value.included_object_versions).as_str().into_py_any(py)?;
     result.set_item("included_object_versions", converted_432)?;
     if let Some(value) = &value.optional_fields {
         let converted_433_list = PyList::empty(py);
         for item_434 in value {
-            let converted_item_435 = item_434.as_str().into_py_any(py)?;
+            let converted_item_435 = (item_434).as_str().into_py_any(py)?;
             converted_433_list.append(converted_item_435)?;
         }
         let converted_433 = converted_433_list.into_any().unbind();
@@ -2693,7 +2693,7 @@ fn inventory_filter_to_py(
     value: &aws_sdk_s3::types::InventoryFilter,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_444 = &value.prefix.as_str().into_py_any(py)?;
+    let converted_444 = (&value.prefix).as_str().into_py_any(py)?;
     result.set_item("prefix", converted_444)?;
     Ok(result.into_any().unbind())
 }
@@ -2735,17 +2735,17 @@ fn inventory_s3_bucket_destination_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.account_id {
-        let converted_451 = value.as_str().into_py_any(py)?;
+        let converted_451 = (value).as_str().into_py_any(py)?;
         result.set_item("account_id", converted_451)?;
     } else {
         result.set_item("account_id", py.None())?;
     }
-    let converted_452 = &value.bucket.as_str().into_py_any(py)?;
+    let converted_452 = (&value.bucket).as_str().into_py_any(py)?;
     result.set_item("bucket", converted_452)?;
-    let converted_453 = &value.format.as_str().into_py_any(py)?;
+    let converted_453 = (&value.format).as_str().into_py_any(py)?;
     result.set_item("format", converted_453)?;
     if let Some(value) = &value.prefix {
-        let converted_454 = value.as_str().into_py_any(py)?;
+        let converted_454 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_454)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -2779,7 +2779,7 @@ fn inventory_schedule_to_py(
     value: &aws_sdk_s3::types::InventorySchedule,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_458 = &value.frequency.as_str().into_py_any(py)?;
+    let converted_458 = (&value.frequency).as_str().into_py_any(py)?;
     result.set_item("frequency", converted_458)?;
     Ok(result.into_any().unbind())
 }
@@ -2809,7 +2809,7 @@ fn inventory_table_configuration_to_py(
     value: &aws_sdk_s3::types::InventoryTableConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_462 = &value.configuration_state.as_str().into_py_any(py)?;
+    let converted_462 = (&value.configuration_state).as_str().into_py_any(py)?;
     result.set_item("configuration_state", converted_462)?;
     if let Some(value) = &value.encryption_configuration {
         let converted_463 = metadata_table_encryption_configuration_to_py(py, value)?;
@@ -2857,10 +2857,10 @@ fn inventory_table_configuration_result_to_py(
     value: &aws_sdk_s3::types::InventoryTableConfigurationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_470 = &value.configuration_state.as_str().into_py_any(py)?;
+    let converted_470 = (&value.configuration_state).as_str().into_py_any(py)?;
     result.set_item("configuration_state", converted_470)?;
     if let Some(value) = &value.table_status {
-        let converted_471 = value.as_str().into_py_any(py)?;
+        let converted_471 = (value).as_str().into_py_any(py)?;
         result.set_item("table_status", converted_471)?;
     } else {
         result.set_item("table_status", py.None())?;
@@ -2872,13 +2872,13 @@ fn inventory_table_configuration_result_to_py(
         result.set_item("error", py.None())?;
     }
     if let Some(value) = &value.table_name {
-        let converted_473 = value.as_str().into_py_any(py)?;
+        let converted_473 = (value).as_str().into_py_any(py)?;
         result.set_item("table_name", converted_473)?;
     } else {
         result.set_item("table_name", py.None())?;
     }
     if let Some(value) = &value.table_arn {
-        let converted_474 = value.as_str().into_py_any(py)?;
+        let converted_474 = (value).as_str().into_py_any(py)?;
         result.set_item("table_arn", converted_474)?;
     } else {
         result.set_item("table_arn", py.None())?;
@@ -2911,7 +2911,7 @@ fn inventory_table_configuration_updates_to_py(
     value: &aws_sdk_s3::types::InventoryTableConfigurationUpdates,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_478 = &value.configuration_state.as_str().into_py_any(py)?;
+    let converted_478 = (&value.configuration_state).as_str().into_py_any(py)?;
     result.set_item("configuration_state", converted_478)?;
     if let Some(value) = &value.encryption_configuration {
         let converted_479 = metadata_table_encryption_configuration_to_py(py, value)?;
@@ -2993,7 +2993,7 @@ fn journal_table_configuration_result_to_py(
     value: &aws_sdk_s3::types::JournalTableConfigurationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_489 = &value.table_status.as_str().into_py_any(py)?;
+    let converted_489 = (&value.table_status).as_str().into_py_any(py)?;
     result.set_item("table_status", converted_489)?;
     if let Some(value) = &value.error {
         let converted_490 = error_details_to_py(py, value)?;
@@ -3001,10 +3001,10 @@ fn journal_table_configuration_result_to_py(
     } else {
         result.set_item("error", py.None())?;
     }
-    let converted_491 = &value.table_name.as_str().into_py_any(py)?;
+    let converted_491 = (&value.table_name).as_str().into_py_any(py)?;
     result.set_item("table_name", converted_491)?;
     if let Some(value) = &value.table_arn {
-        let converted_492 = value.as_str().into_py_any(py)?;
+        let converted_492 = (value).as_str().into_py_any(py)?;
         result.set_item("table_arn", converted_492)?;
     } else {
         result.set_item("table_arn", py.None())?;
@@ -3058,7 +3058,7 @@ fn json_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::J
 fn json_input_to_py(py: Python<'_>, value: &aws_sdk_s3::types::JsonInput) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_498 = value.as_str().into_py_any(py)?;
+        let converted_498 = (value).as_str().into_py_any(py)?;
         result.set_item("type", converted_498)?;
     } else {
         result.set_item("type", py.None())?;
@@ -3079,7 +3079,7 @@ fn json_output_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
 fn json_output_to_py(py: Python<'_>, value: &aws_sdk_s3::types::JsonOutput) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.record_delimiter {
-        let converted_500 = value.as_str().into_py_any(py)?;
+        let converted_500 = (value).as_str().into_py_any(py)?;
         result.set_item("record_delimiter", converted_500)?;
     } else {
         result.set_item("record_delimiter", py.None())?;
@@ -3125,16 +3125,16 @@ fn lambda_function_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_509 = value.as_str().into_py_any(py)?;
+        let converted_509 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_509)?;
     } else {
         result.set_item("id", py.None())?;
     }
-    let converted_510 = &value.lambda_function_arn.as_str().into_py_any(py)?;
+    let converted_510 = (&value.lambda_function_arn).as_str().into_py_any(py)?;
     result.set_item("lambda_function_arn", converted_510)?;
     let converted_511_list = PyList::empty(py);
     for item_512 in &value.events {
-        let converted_item_513 = item_512.as_str().into_py_any(py)?;
+        let converted_item_513 = (item_512).as_str().into_py_any(py)?;
         converted_511_list.append(converted_item_513)?;
     }
     let converted_511 = converted_511_list.into_any().unbind();
@@ -3179,7 +3179,7 @@ fn lifecycle_expiration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.date {
-        let converted_519 = value.to_string().into_py_any(py)?;
+        let converted_519 = (value).to_string().into_py_any(py)?;
         result.set_item("date", converted_519)?;
     } else {
         result.set_item("date", py.None())?;
@@ -3266,13 +3266,13 @@ fn lifecycle_rule_to_py(
         result.set_item("expiration", py.None())?;
     }
     if let Some(value) = &value.id {
-        let converted_539 = value.as_str().into_py_any(py)?;
+        let converted_539 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_539)?;
     } else {
         result.set_item("id", py.None())?;
     }
     if let Some(value) = &value.prefix {
-        let converted_540 = value.as_str().into_py_any(py)?;
+        let converted_540 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_540)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -3283,7 +3283,7 @@ fn lifecycle_rule_to_py(
     } else {
         result.set_item("filter", py.None())?;
     }
-    let converted_542 = &value.status.as_str().into_py_any(py)?;
+    let converted_542 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_542)?;
     if let Some(value) = &value.transitions {
         let converted_543_list = PyList::empty(py);
@@ -3357,7 +3357,7 @@ fn lifecycle_rule_and_operator_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_558 = value.as_str().into_py_any(py)?;
+        let converted_558 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_558)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -3422,7 +3422,7 @@ fn lifecycle_rule_filter_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_569 = value.as_str().into_py_any(py)?;
+        let converted_569 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_569)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -3475,13 +3475,13 @@ fn location_info_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_577 = value.as_str().into_py_any(py)?;
+        let converted_577 = (value).as_str().into_py_any(py)?;
         result.set_item("type", converted_577)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.name {
-        let converted_578 = value.as_str().into_py_any(py)?;
+        let converted_578 = (value).as_str().into_py_any(py)?;
         result.set_item("name", converted_578)?;
     } else {
         result.set_item("name", py.None())?;
@@ -3525,7 +3525,7 @@ fn logging_enabled_to_py(
     value: &aws_sdk_s3::types::LoggingEnabled,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_586 = &value.target_bucket.as_str().into_py_any(py)?;
+    let converted_586 = (&value.target_bucket).as_str().into_py_any(py)?;
     result.set_item("target_bucket", converted_586)?;
     if let Some(value) = &value.target_grants {
         let converted_587_list = PyList::empty(py);
@@ -3538,7 +3538,7 @@ fn logging_enabled_to_py(
     } else {
         result.set_item("target_grants", py.None())?;
     }
-    let converted_590 = &value.target_prefix.as_str().into_py_any(py)?;
+    let converted_590 = (&value.target_prefix).as_str().into_py_any(py)?;
     result.set_item("target_prefix", converted_590)?;
     if let Some(value) = &value.target_object_key_format {
         let converted_591 = target_object_key_format_to_py(py, value)?;
@@ -3651,13 +3651,13 @@ fn metadata_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_604 = value.as_str().into_py_any(py)?;
+        let converted_604 = (value).as_str().into_py_any(py)?;
         result.set_item("name", converted_604)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_605 = value.as_str().into_py_any(py)?;
+        let converted_605 = (value).as_str().into_py_any(py)?;
         result.set_item("value", converted_605)?;
     } else {
         result.set_item("value", py.None())?;
@@ -3741,10 +3741,10 @@ fn metadata_table_encryption_configuration_to_py(
     value: &aws_sdk_s3::types::MetadataTableEncryptionConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_613 = &value.sse_algorithm.as_str().into_py_any(py)?;
+    let converted_613 = (&value.sse_algorithm).as_str().into_py_any(py)?;
     result.set_item("sse_algorithm", converted_613)?;
     if let Some(value) = &value.kms_key_arn {
-        let converted_614 = value.as_str().into_py_any(py)?;
+        let converted_614 = (value).as_str().into_py_any(py)?;
         result.set_item("kms_key_arn", converted_614)?;
     } else {
         result.set_item("kms_key_arn", py.None())?;
@@ -3771,7 +3771,7 @@ fn metrics_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Metr
 
 fn metrics_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Metrics) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_618 = &value.status.as_str().into_py_any(py)?;
+    let converted_618 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_618)?;
     if let Some(value) = &value.event_threshold {
         let converted_619 = replication_time_value_to_py(py, value)?;
@@ -3813,7 +3813,7 @@ fn metrics_and_operator_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_626 = value.as_str().into_py_any(py)?;
+        let converted_626 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_626)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -3830,7 +3830,7 @@ fn metrics_and_operator_to_py(
         result.set_item("tags", py.None())?;
     }
     if let Some(value) = &value.access_point_arn {
-        let converted_630 = value.as_str().into_py_any(py)?;
+        let converted_630 = (value).as_str().into_py_any(py)?;
         result.set_item("access_point_arn", converted_630)?;
     } else {
         result.set_item("access_point_arn", py.None())?;
@@ -3861,7 +3861,7 @@ fn metrics_configuration_to_py(
     value: &aws_sdk_s3::types::MetricsConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_633 = &value.id.as_str().into_py_any(py)?;
+    let converted_633 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_633)?;
     if let Some(value) = &value.filter {
         let converted_634 = metrics_filter_to_py(py, value)?;
@@ -3904,7 +3904,7 @@ fn metrics_filter_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_s3::types::MetricsFilter::Prefix(value) => {
-            let converted_639 = value.as_str().into_py_any(py)?;
+            let converted_639 = (value).as_str().into_py_any(py)?;
             result.set_item("prefix", converted_639)?;
         }
         aws_sdk_s3::types::MetricsFilter::Tag(value) => {
@@ -3912,7 +3912,7 @@ fn metrics_filter_to_py(
             result.set_item("tag", converted_640)?;
         }
         aws_sdk_s3::types::MetricsFilter::AccessPointArn(value) => {
-            let converted_641 = value.as_str().into_py_any(py)?;
+            let converted_641 = (value).as_str().into_py_any(py)?;
             result.set_item("access_point_arn", converted_641)?;
         }
         aws_sdk_s3::types::MetricsFilter::And(value) => {
@@ -3980,25 +3980,25 @@ fn multipart_upload_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.upload_id {
-        let converted_655 = value.as_str().into_py_any(py)?;
+        let converted_655 = (value).as_str().into_py_any(py)?;
         result.set_item("upload_id", converted_655)?;
     } else {
         result.set_item("upload_id", py.None())?;
     }
     if let Some(value) = &value.key {
-        let converted_656 = value.as_str().into_py_any(py)?;
+        let converted_656 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_656)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.initiated {
-        let converted_657 = value.to_string().into_py_any(py)?;
+        let converted_657 = (value).to_string().into_py_any(py)?;
         result.set_item("initiated", converted_657)?;
     } else {
         result.set_item("initiated", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_658 = value.as_str().into_py_any(py)?;
+        let converted_658 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_658)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -4016,13 +4016,13 @@ fn multipart_upload_to_py(
         result.set_item("initiator", py.None())?;
     }
     if let Some(value) = &value.checksum_algorithm {
-        let converted_661 = value.as_str().into_py_any(py)?;
+        let converted_661 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_algorithm", converted_661)?;
     } else {
         result.set_item("checksum_algorithm", py.None())?;
     }
     if let Some(value) = &value.checksum_type {
-        let converted_662 = value.as_str().into_py_any(py)?;
+        let converted_662 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_type", converted_662)?;
     } else {
         result.set_item("checksum_type", py.None())?;
@@ -4100,7 +4100,7 @@ fn noncurrent_version_transition_to_py(
         result.set_item("noncurrent_days", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_672 = value.as_str().into_py_any(py)?;
+        let converted_672 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_672)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -4285,19 +4285,19 @@ fn object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Objec
 fn object_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Object) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key {
-        let converted_715 = value.as_str().into_py_any(py)?;
+        let converted_715 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_715)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_716 = value.to_string().into_py_any(py)?;
+        let converted_716 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_716)?;
     } else {
         result.set_item("last_modified", py.None())?;
     }
     if let Some(value) = &value.e_tag {
-        let converted_717 = value.as_str().into_py_any(py)?;
+        let converted_717 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_717)?;
     } else {
         result.set_item("e_tag", py.None())?;
@@ -4305,7 +4305,7 @@ fn object_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Object) -> PyResult<P
     if let Some(value) = &value.checksum_algorithm {
         let converted_718_list = PyList::empty(py);
         for item_719 in value {
-            let converted_item_720 = item_719.as_str().into_py_any(py)?;
+            let converted_item_720 = (item_719).as_str().into_py_any(py)?;
             converted_718_list.append(converted_item_720)?;
         }
         let converted_718 = converted_718_list.into_any().unbind();
@@ -4314,7 +4314,7 @@ fn object_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Object) -> PyResult<P
         result.set_item("checksum_algorithm", py.None())?;
     }
     if let Some(value) = &value.checksum_type {
-        let converted_721 = value.as_str().into_py_any(py)?;
+        let converted_721 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_type", converted_721)?;
     } else {
         result.set_item("checksum_type", py.None())?;
@@ -4326,7 +4326,7 @@ fn object_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Object) -> PyResult<P
         result.set_item("size", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_723 = value.as_str().into_py_any(py)?;
+        let converted_723 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_723)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -4386,22 +4386,22 @@ fn object_identifier_to_py(
     value: &aws_sdk_s3::types::ObjectIdentifier,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_732 = &value.key.as_str().into_py_any(py)?;
+    let converted_732 = (&value.key).as_str().into_py_any(py)?;
     result.set_item("key", converted_732)?;
     if let Some(value) = &value.version_id {
-        let converted_733 = value.as_str().into_py_any(py)?;
+        let converted_733 = (value).as_str().into_py_any(py)?;
         result.set_item("version_id", converted_733)?;
     } else {
         result.set_item("version_id", py.None())?;
     }
     if let Some(value) = &value.e_tag {
-        let converted_734 = value.as_str().into_py_any(py)?;
+        let converted_734 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_734)?;
     } else {
         result.set_item("e_tag", py.None())?;
     }
     if let Some(value) = &value.last_modified_time {
-        let converted_735 = value.to_string().into_py_any(py)?;
+        let converted_735 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified_time", converted_735)?;
     } else {
         result.set_item("last_modified_time", py.None())?;
@@ -4438,7 +4438,7 @@ fn object_lock_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.object_lock_enabled {
-        let converted_740 = value.as_str().into_py_any(py)?;
+        let converted_740 = (value).as_str().into_py_any(py)?;
         result.set_item("object_lock_enabled", converted_740)?;
     } else {
         result.set_item("object_lock_enabled", py.None())?;
@@ -4472,7 +4472,7 @@ fn object_lock_legal_hold_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.status {
-        let converted_744 = value.as_str().into_py_any(py)?;
+        let converted_744 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_744)?;
     } else {
         result.set_item("status", py.None())?;
@@ -4509,13 +4509,13 @@ fn object_lock_retention_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.mode {
-        let converted_749 = value.as_str().into_py_any(py)?;
+        let converted_749 = (value).as_str().into_py_any(py)?;
         result.set_item("mode", converted_749)?;
     } else {
         result.set_item("mode", py.None())?;
     }
     if let Some(value) = &value.retain_until_date {
-        let converted_750 = value.to_string().into_py_any(py)?;
+        let converted_750 = (value).to_string().into_py_any(py)?;
         result.set_item("retain_until_date", converted_750)?;
     } else {
         result.set_item("retain_until_date", py.None())?;
@@ -4598,31 +4598,31 @@ fn object_part_to_py(py: Python<'_>, value: &aws_sdk_s3::types::ObjectPart) -> P
         result.set_item("size", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32 {
-        let converted_762 = value.as_str().into_py_any(py)?;
+        let converted_762 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_762)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_763 = value.as_str().into_py_any(py)?;
+        let converted_763 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_763)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_764 = value.as_str().into_py_any(py)?;
+        let converted_764 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_764)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_765 = value.as_str().into_py_any(py)?;
+        let converted_765 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_765)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_766 = value.as_str().into_py_any(py)?;
+        let converted_766 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_766)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
@@ -4701,7 +4701,7 @@ fn object_version_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.e_tag {
-        let converted_785 = value.as_str().into_py_any(py)?;
+        let converted_785 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_785)?;
     } else {
         result.set_item("e_tag", py.None())?;
@@ -4709,7 +4709,7 @@ fn object_version_to_py(
     if let Some(value) = &value.checksum_algorithm {
         let converted_786_list = PyList::empty(py);
         for item_787 in value {
-            let converted_item_788 = item_787.as_str().into_py_any(py)?;
+            let converted_item_788 = (item_787).as_str().into_py_any(py)?;
             converted_786_list.append(converted_item_788)?;
         }
         let converted_786 = converted_786_list.into_any().unbind();
@@ -4718,7 +4718,7 @@ fn object_version_to_py(
         result.set_item("checksum_algorithm", py.None())?;
     }
     if let Some(value) = &value.checksum_type {
-        let converted_789 = value.as_str().into_py_any(py)?;
+        let converted_789 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_type", converted_789)?;
     } else {
         result.set_item("checksum_type", py.None())?;
@@ -4730,19 +4730,19 @@ fn object_version_to_py(
         result.set_item("size", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_791 = value.as_str().into_py_any(py)?;
+        let converted_791 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_791)?;
     } else {
         result.set_item("storage_class", py.None())?;
     }
     if let Some(value) = &value.key {
-        let converted_792 = value.as_str().into_py_any(py)?;
+        let converted_792 = (value).as_str().into_py_any(py)?;
         result.set_item("key", converted_792)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.version_id {
-        let converted_793 = value.as_str().into_py_any(py)?;
+        let converted_793 = (value).as_str().into_py_any(py)?;
         result.set_item("version_id", converted_793)?;
     } else {
         result.set_item("version_id", py.None())?;
@@ -4754,7 +4754,7 @@ fn object_version_to_py(
         result.set_item("is_latest", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_795 = value.to_string().into_py_any(py)?;
+        let converted_795 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_795)?;
     } else {
         result.set_item("last_modified", py.None())?;
@@ -4853,13 +4853,13 @@ fn owner_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Owner>
 fn owner_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Owner) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.display_name {
-        let converted_806 = value.as_str().into_py_any(py)?;
+        let converted_806 = (value).as_str().into_py_any(py)?;
         result.set_item("display_name", converted_806)?;
     } else {
         result.set_item("display_name", py.None())?;
     }
     if let Some(value) = &value.id {
-        let converted_807 = value.as_str().into_py_any(py)?;
+        let converted_807 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_807)?;
     } else {
         result.set_item("id", py.None())?;
@@ -4921,7 +4921,7 @@ fn ownership_controls_rule_to_py(
     value: &aws_sdk_s3::types::OwnershipControlsRule,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_817 = &value.object_ownership.as_str().into_py_any(py)?;
+    let converted_817 = (&value.object_ownership).as_str().into_py_any(py)?;
     result.set_item("object_ownership", converted_817)?;
     Ok(result.into_any().unbind())
 }
@@ -4996,13 +4996,13 @@ fn part_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Part) -> PyResult<Py<Py
         result.set_item("part_number", py.None())?;
     }
     if let Some(value) = &value.last_modified {
-        let converted_829 = value.to_string().into_py_any(py)?;
+        let converted_829 = (value).to_string().into_py_any(py)?;
         result.set_item("last_modified", converted_829)?;
     } else {
         result.set_item("last_modified", py.None())?;
     }
     if let Some(value) = &value.e_tag {
-        let converted_830 = value.as_str().into_py_any(py)?;
+        let converted_830 = (value).as_str().into_py_any(py)?;
         result.set_item("e_tag", converted_830)?;
     } else {
         result.set_item("e_tag", py.None())?;
@@ -5014,31 +5014,31 @@ fn part_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Part) -> PyResult<Py<Py
         result.set_item("size", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32 {
-        let converted_832 = value.as_str().into_py_any(py)?;
+        let converted_832 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32", converted_832)?;
     } else {
         result.set_item("checksum_crc32", py.None())?;
     }
     if let Some(value) = &value.checksum_crc32_c {
-        let converted_833 = value.as_str().into_py_any(py)?;
+        let converted_833 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc32_c", converted_833)?;
     } else {
         result.set_item("checksum_crc32_c", py.None())?;
     }
     if let Some(value) = &value.checksum_crc64_nvme {
-        let converted_834 = value.as_str().into_py_any(py)?;
+        let converted_834 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_crc64_nvme", converted_834)?;
     } else {
         result.set_item("checksum_crc64_nvme", py.None())?;
     }
     if let Some(value) = &value.checksum_sha1 {
-        let converted_835 = value.as_str().into_py_any(py)?;
+        let converted_835 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha1", converted_835)?;
     } else {
         result.set_item("checksum_sha1", py.None())?;
     }
     if let Some(value) = &value.checksum_sha256 {
-        let converted_836 = value.as_str().into_py_any(py)?;
+        let converted_836 = (value).as_str().into_py_any(py)?;
         result.set_item("checksum_sha256", converted_836)?;
     } else {
         result.set_item("checksum_sha256", py.None())?;
@@ -5065,7 +5065,7 @@ fn partitioned_prefix_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.partition_date_source {
-        let converted_839 = value.as_str().into_py_any(py)?;
+        let converted_839 = (value).as_str().into_py_any(py)?;
         result.set_item("partition_date_source", converted_839)?;
     } else {
         result.set_item("partition_date_source", py.None())?;
@@ -5256,16 +5256,16 @@ fn queue_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_866 = value.as_str().into_py_any(py)?;
+        let converted_866 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_866)?;
     } else {
         result.set_item("id", py.None())?;
     }
-    let converted_867 = &value.queue_arn.as_str().into_py_any(py)?;
+    let converted_867 = (&value.queue_arn).as_str().into_py_any(py)?;
     result.set_item("queue_arn", converted_867)?;
     let converted_868_list = PyList::empty(py);
     for item_869 in &value.events {
-        let converted_item_870 = item_869.as_str().into_py_any(py)?;
+        let converted_item_870 = (item_869).as_str().into_py_any(py)?;
         converted_868_list.append(converted_item_870)?;
     }
     let converted_868 = converted_868_list.into_any().unbind();
@@ -5303,7 +5303,7 @@ fn record_expiration_to_py(
     value: &aws_sdk_s3::types::RecordExpiration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_875 = &value.expiration.as_str().into_py_any(py)?;
+    let converted_875 = (&value.expiration).as_str().into_py_any(py)?;
     result.set_item("expiration", converted_875)?;
     if let Some(value) = &value.days {
         let converted_876 = (value).to_owned().into_py_any(py)?;
@@ -5331,7 +5331,7 @@ fn records_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.payload {
-        let converted_879 = PyBytes::new(py, value.as_ref()).into_any().unbind();
+        let converted_879 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
         result.set_item("payload", converted_879)?;
     } else {
         result.set_item("payload", py.None())?;
@@ -5369,31 +5369,31 @@ fn redirect_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Red
 fn redirect_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Redirect) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.host_name {
-        let converted_886 = value.as_str().into_py_any(py)?;
+        let converted_886 = (value).as_str().into_py_any(py)?;
         result.set_item("host_name", converted_886)?;
     } else {
         result.set_item("host_name", py.None())?;
     }
     if let Some(value) = &value.http_redirect_code {
-        let converted_887 = value.as_str().into_py_any(py)?;
+        let converted_887 = (value).as_str().into_py_any(py)?;
         result.set_item("http_redirect_code", converted_887)?;
     } else {
         result.set_item("http_redirect_code", py.None())?;
     }
     if let Some(value) = &value.protocol {
-        let converted_888 = value.as_str().into_py_any(py)?;
+        let converted_888 = (value).as_str().into_py_any(py)?;
         result.set_item("protocol", converted_888)?;
     } else {
         result.set_item("protocol", py.None())?;
     }
     if let Some(value) = &value.replace_key_prefix_with {
-        let converted_889 = value.as_str().into_py_any(py)?;
+        let converted_889 = (value).as_str().into_py_any(py)?;
         result.set_item("replace_key_prefix_with", converted_889)?;
     } else {
         result.set_item("replace_key_prefix_with", py.None())?;
     }
     if let Some(value) = &value.replace_key_with {
-        let converted_890 = value.as_str().into_py_any(py)?;
+        let converted_890 = (value).as_str().into_py_any(py)?;
         result.set_item("replace_key_with", converted_890)?;
     } else {
         result.set_item("replace_key_with", py.None())?;
@@ -5425,10 +5425,10 @@ fn redirect_all_requests_to_to_py(
     value: &aws_sdk_s3::types::RedirectAllRequestsTo,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_894 = &value.host_name.as_str().into_py_any(py)?;
+    let converted_894 = (&value.host_name).as_str().into_py_any(py)?;
     result.set_item("host_name", converted_894)?;
     if let Some(value) = &value.protocol {
-        let converted_895 = value.as_str().into_py_any(py)?;
+        let converted_895 = (value).as_str().into_py_any(py)?;
         result.set_item("protocol", converted_895)?;
     } else {
         result.set_item("protocol", py.None())?;
@@ -5457,7 +5457,7 @@ fn replica_modifications_to_py(
     value: &aws_sdk_s3::types::ReplicaModifications,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_898 = &value.status.as_str().into_py_any(py)?;
+    let converted_898 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_898)?;
     Ok(result.into_any().unbind())
 }
@@ -5490,7 +5490,7 @@ fn replication_configuration_to_py(
     value: &aws_sdk_s3::types::ReplicationConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_904 = &value.role.as_str().into_py_any(py)?;
+    let converted_904 = (&value.role).as_str().into_py_any(py)?;
     result.set_item("role", converted_904)?;
     let converted_905_list = PyList::empty(py);
     for item_906 in &value.rules {
@@ -5555,7 +5555,7 @@ fn replication_rule_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_918 = value.as_str().into_py_any(py)?;
+        let converted_918 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_918)?;
     } else {
         result.set_item("id", py.None())?;
@@ -5567,7 +5567,7 @@ fn replication_rule_to_py(
         result.set_item("priority", py.None())?;
     }
     if let Some(value) = &value.prefix {
-        let converted_920 = value.as_str().into_py_any(py)?;
+        let converted_920 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_920)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -5578,7 +5578,7 @@ fn replication_rule_to_py(
     } else {
         result.set_item("filter", py.None())?;
     }
-    let converted_922 = &value.status.as_str().into_py_any(py)?;
+    let converted_922 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_922)?;
     if let Some(value) = &value.source_selection_criteria {
         let converted_923 = source_selection_criteria_to_py(py, value)?;
@@ -5634,7 +5634,7 @@ fn replication_rule_and_operator_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_932 = value.as_str().into_py_any(py)?;
+        let converted_932 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_932)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -5679,7 +5679,7 @@ fn replication_rule_filter_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.prefix {
-        let converted_939 = value.as_str().into_py_any(py)?;
+        let converted_939 = (value).as_str().into_py_any(py)?;
         result.set_item("prefix", converted_939)?;
     } else {
         result.set_item("prefix", py.None())?;
@@ -5723,7 +5723,7 @@ fn replication_time_to_py(
     value: &aws_sdk_s3::types::ReplicationTime,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_945 = &value.status.as_str().into_py_any(py)?;
+    let converted_945 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_945)?;
     if let Some(value) = &value.time {
         let converted_946 = replication_time_value_to_py(py, value)?;
@@ -5780,7 +5780,7 @@ fn request_payment_configuration_to_py(
     value: &aws_sdk_s3::types::RequestPaymentConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_951 = &value.payer.as_str().into_py_any(py)?;
+    let converted_951 = (&value.payer).as_str().into_py_any(py)?;
     result.set_item("payer", converted_951)?;
     Ok(result.into_any().unbind())
 }
@@ -5867,19 +5867,19 @@ fn restore_request_to_py(
         result.set_item("glacier_job_parameters", py.None())?;
     }
     if let Some(value) = &value.r#type {
-        let converted_965 = value.as_str().into_py_any(py)?;
+        let converted_965 = (value).as_str().into_py_any(py)?;
         result.set_item("type", converted_965)?;
     } else {
         result.set_item("type", py.None())?;
     }
     if let Some(value) = &value.tier {
-        let converted_966 = value.as_str().into_py_any(py)?;
+        let converted_966 = (value).as_str().into_py_any(py)?;
         result.set_item("tier", converted_966)?;
     } else {
         result.set_item("tier", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_967 = value.as_str().into_py_any(py)?;
+        let converted_967 = (value).as_str().into_py_any(py)?;
         result.set_item("description", converted_967)?;
     } else {
         result.set_item("description", py.None())?;
@@ -5930,7 +5930,7 @@ fn restore_status_to_py(
         result.set_item("is_restore_in_progress", py.None())?;
     }
     if let Some(value) = &value.restore_expiry_date {
-        let converted_974 = value.to_string().into_py_any(py)?;
+        let converted_974 = (value).to_string().into_py_any(py)?;
         result.set_item("restore_expiry_date", converted_974)?;
     } else {
         result.set_item("restore_expiry_date", py.None())?;
@@ -6060,9 +6060,9 @@ fn s3_location_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
 
 fn s3_location_to_py(py: Python<'_>, value: &aws_sdk_s3::types::S3Location) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1002 = &value.bucket_name.as_str().into_py_any(py)?;
+    let converted_1002 = (&value.bucket_name).as_str().into_py_any(py)?;
     result.set_item("bucket_name", converted_1002)?;
-    let converted_1003 = &value.prefix.as_str().into_py_any(py)?;
+    let converted_1003 = (&value.prefix).as_str().into_py_any(py)?;
     result.set_item("prefix", converted_1003)?;
     if let Some(value) = &value.encryption {
         let converted_1004 = encryption_to_py(py, value)?;
@@ -6071,7 +6071,7 @@ fn s3_location_to_py(py: Python<'_>, value: &aws_sdk_s3::types::S3Location) -> P
         result.set_item("encryption", py.None())?;
     }
     if let Some(value) = &value.canned_acl {
-        let converted_1005 = value.as_str().into_py_any(py)?;
+        let converted_1005 = (value).as_str().into_py_any(py)?;
         result.set_item("canned_acl", converted_1005)?;
     } else {
         result.set_item("canned_acl", py.None())?;
@@ -6105,7 +6105,7 @@ fn s3_location_to_py(py: Python<'_>, value: &aws_sdk_s3::types::S3Location) -> P
         result.set_item("user_metadata", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_1013 = value.as_str().into_py_any(py)?;
+        let converted_1013 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_1013)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -6136,9 +6136,9 @@ fn s3_tables_destination_to_py(
     value: &aws_sdk_s3::types::S3TablesDestination,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1016 = &value.table_bucket_arn.as_str().into_py_any(py)?;
+    let converted_1016 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
     result.set_item("table_bucket_arn", converted_1016)?;
-    let converted_1017 = &value.table_name.as_str().into_py_any(py)?;
+    let converted_1017 = (&value.table_name).as_str().into_py_any(py)?;
     result.set_item("table_name", converted_1017)?;
     Ok(result.into_any().unbind())
 }
@@ -6174,13 +6174,13 @@ fn s3_tables_destination_result_to_py(
     value: &aws_sdk_s3::types::S3TablesDestinationResult,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1022 = &value.table_bucket_arn.as_str().into_py_any(py)?;
+    let converted_1022 = (&value.table_bucket_arn).as_str().into_py_any(py)?;
     result.set_item("table_bucket_arn", converted_1022)?;
-    let converted_1023 = &value.table_name.as_str().into_py_any(py)?;
+    let converted_1023 = (&value.table_name).as_str().into_py_any(py)?;
     result.set_item("table_name", converted_1023)?;
-    let converted_1024 = &value.table_arn.as_str().into_py_any(py)?;
+    let converted_1024 = (&value.table_arn).as_str().into_py_any(py)?;
     result.set_item("table_arn", converted_1024)?;
-    let converted_1025 = &value.table_namespace.as_str().into_py_any(py)?;
+    let converted_1025 = (&value.table_namespace).as_str().into_py_any(py)?;
     result.set_item("table_namespace", converted_1025)?;
     Ok(result.into_any().unbind())
 }
@@ -6326,9 +6326,9 @@ fn select_parameters_to_py(
     } else {
         result.set_item("input_serialization", py.None())?;
     }
-    let converted_1046 = &value.expression_type.as_str().into_py_any(py)?;
+    let converted_1046 = (&value.expression_type).as_str().into_py_any(py)?;
     result.set_item("expression_type", converted_1046)?;
-    let converted_1047 = &value.expression.as_str().into_py_any(py)?;
+    let converted_1047 = (&value.expression).as_str().into_py_any(py)?;
     result.set_item("expression", converted_1047)?;
     if let Some(value) = &value.output_serialization {
         let converted_1048 = output_serialization_to_py(py, value)?;
@@ -6364,10 +6364,10 @@ fn server_side_encryption_by_default_to_py(
     value: &aws_sdk_s3::types::ServerSideEncryptionByDefault,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1052 = &value.sse_algorithm.as_str().into_py_any(py)?;
+    let converted_1052 = (&value.sse_algorithm).as_str().into_py_any(py)?;
     result.set_item("sse_algorithm", converted_1052)?;
     if let Some(value) = &value.kms_master_key_id {
-        let converted_1053 = value.as_str().into_py_any(py)?;
+        let converted_1053 = (value).as_str().into_py_any(py)?;
         result.set_item("kms_master_key_id", converted_1053)?;
     } else {
         result.set_item("kms_master_key_id", py.None())?;
@@ -6491,13 +6491,13 @@ fn session_credentials_to_py(
     value: &aws_sdk_s3::types::SessionCredentials,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1072 = &value.access_key_id.as_str().into_py_any(py)?;
+    let converted_1072 = (&value.access_key_id).as_str().into_py_any(py)?;
     result.set_item("access_key_id", converted_1072)?;
-    let converted_1073 = &value.secret_access_key.as_str().into_py_any(py)?;
+    let converted_1073 = (&value.secret_access_key).as_str().into_py_any(py)?;
     result.set_item("secret_access_key", converted_1073)?;
-    let converted_1074 = &value.session_token.as_str().into_py_any(py)?;
+    let converted_1074 = (&value.session_token).as_str().into_py_any(py)?;
     result.set_item("session_token", converted_1074)?;
-    let converted_1075 = &value.expiration.to_string().into_py_any(py)?;
+    let converted_1075 = (&value.expiration).to_string().into_py_any(py)?;
     result.set_item("expiration", converted_1075)?;
     Ok(result.into_any().unbind())
 }
@@ -6573,7 +6573,7 @@ fn sse_kms_encrypted_objects_to_py(
     value: &aws_sdk_s3::types::SseKmsEncryptedObjects,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1082 = &value.status.as_str().into_py_any(py)?;
+    let converted_1082 = (&value.status).as_str().into_py_any(py)?;
     result.set_item("status", converted_1082)?;
     Ok(result.into_any().unbind())
 }
@@ -6592,7 +6592,7 @@ fn ssekms_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Ssekm
 
 fn ssekms_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Ssekms) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1084 = &value.key_id.as_str().into_py_any(py)?;
+    let converted_1084 = (&value.key_id).as_str().into_py_any(py)?;
     result.set_item("key_id", converted_1084)?;
     Ok(result.into_any().unbind())
 }
@@ -6721,7 +6721,7 @@ fn storage_class_analysis_data_export_to_py(
     value: &aws_sdk_s3::types::StorageClassAnalysisDataExport,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1098 = &value.output_schema_version.as_str().into_py_any(py)?;
+    let converted_1098 = (&value.output_schema_version).as_str().into_py_any(py)?;
     result.set_item("output_schema_version", converted_1098)?;
     if let Some(value) = &value.destination {
         let converted_1099 = analytics_export_destination_to_py(py, value)?;
@@ -6750,9 +6750,9 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Tag> {
 
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1102 = &value.key.as_str().into_py_any(py)?;
+    let converted_1102 = (&value.key).as_str().into_py_any(py)?;
     result.set_item("key", converted_1102)?;
-    let converted_1103 = &value.value.as_str().into_py_any(py)?;
+    let converted_1103 = (&value.value).as_str().into_py_any(py)?;
     result.set_item("value", converted_1103)?;
     Ok(result.into_any().unbind())
 }
@@ -6814,7 +6814,7 @@ fn target_grant_to_py(
         result.set_item("grantee", py.None())?;
     }
     if let Some(value) = &value.permission {
-        let converted_1115 = value.as_str().into_py_any(py)?;
+        let converted_1115 = (value).as_str().into_py_any(py)?;
         result.set_item("permission", converted_1115)?;
     } else {
         result.set_item("permission", py.None())?;
@@ -6880,7 +6880,7 @@ fn tiering_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Tiering) -> PyResult
     let result = PyDict::new(py);
     let converted_1123 = (&value.days).to_owned().into_py_any(py)?;
     result.set_item("days", converted_1123)?;
-    let converted_1124 = &value.access_tier.as_str().into_py_any(py)?;
+    let converted_1124 = (&value.access_tier).as_str().into_py_any(py)?;
     result.set_item("access_tier", converted_1124)?;
     Ok(result.into_any().unbind())
 }
@@ -6923,16 +6923,16 @@ fn topic_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.id {
-        let converted_1133 = value.as_str().into_py_any(py)?;
+        let converted_1133 = (value).as_str().into_py_any(py)?;
         result.set_item("id", converted_1133)?;
     } else {
         result.set_item("id", py.None())?;
     }
-    let converted_1134 = &value.topic_arn.as_str().into_py_any(py)?;
+    let converted_1134 = (&value.topic_arn).as_str().into_py_any(py)?;
     result.set_item("topic_arn", converted_1134)?;
     let converted_1135_list = PyList::empty(py);
     for item_1136 in &value.events {
-        let converted_item_1137 = item_1136.as_str().into_py_any(py)?;
+        let converted_item_1137 = (item_1136).as_str().into_py_any(py)?;
         converted_1135_list.append(converted_item_1137)?;
     }
     let converted_1135 = converted_1135_list.into_any().unbind();
@@ -6974,7 +6974,7 @@ fn transition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::T
 fn transition_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Transition) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.date {
-        let converted_1144 = value.to_string().into_py_any(py)?;
+        let converted_1144 = (value).to_string().into_py_any(py)?;
         result.set_item("date", converted_1144)?;
     } else {
         result.set_item("date", py.None())?;
@@ -6986,7 +6986,7 @@ fn transition_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Transition) -> Py
         result.set_item("days", py.None())?;
     }
     if let Some(value) = &value.storage_class {
-        let converted_1146 = value.as_str().into_py_any(py)?;
+        let converted_1146 = (value).as_str().into_py_any(py)?;
         result.set_item("storage_class", converted_1146)?;
     } else {
         result.set_item("storage_class", py.None())?;
@@ -7019,13 +7019,13 @@ fn versioning_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.mfa_delete {
-        let converted_1151 = value.as_str().into_py_any(py)?;
+        let converted_1151 = (value).as_str().into_py_any(py)?;
         result.set_item("mfa_delete", converted_1151)?;
     } else {
         result.set_item("mfa_delete", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_1152 = value.as_str().into_py_any(py)?;
+        let converted_1152 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_1152)?;
     } else {
         result.set_item("status", py.None())?;
@@ -7099,6 +7099,11426 @@ fn website_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[pyclass(name = "AbacStatus", frozen)]
+struct PyAbacStatus {
+    inner: aws_sdk_s3::types::AbacStatus,
+}
+
+#[pymethods]
+impl PyAbacStatus {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2019 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2019)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        abac_status_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AbortIncompleteMultipartUpload", frozen)]
+struct PyAbortIncompleteMultipartUpload {
+    inner: aws_sdk_s3::types::AbortIncompleteMultipartUpload,
+}
+
+#[pymethods]
+impl PyAbortIncompleteMultipartUpload {
+    #[getter]
+    fn days_after_initiation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.days_after_initiation {
+            let converted_2020 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2020)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        abort_incomplete_multipart_upload_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AccessControlTranslation", frozen)]
+struct PyAccessControlTranslation {
+    inner: aws_sdk_s3::types::AccessControlTranslation,
+}
+
+#[pymethods]
+impl PyAccessControlTranslation {
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2021 = (&self.inner.owner).as_str().into_py_any(py)?;
+        Ok(converted_2021)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        access_control_translation_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AnalyticsConfiguration", frozen)]
+struct PyAnalyticsConfiguration {
+    inner: aws_sdk_s3::types::AnalyticsConfiguration,
+}
+
+#[pymethods]
+impl PyAnalyticsConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2022 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_2022)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2023 = analytics_filter_to_py(py, value)?;
+            Ok(converted_2023)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class_analysis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class_analysis {
+            let converted_2024 = Py::new(
+                py,
+                PyStorageClassAnalysis {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2024)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        analytics_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AnalyticsExportDestination", frozen)]
+struct PyAnalyticsExportDestination {
+    inner: aws_sdk_s3::types::AnalyticsExportDestination,
+}
+
+#[pymethods]
+impl PyAnalyticsExportDestination {
+    #[getter]
+    fn s3_bucket_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.s3_bucket_destination {
+            let converted_2025 = Py::new(
+                py,
+                PyAnalyticsS3BucketDestination {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2025)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        analytics_export_destination_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AnalyticsS3BucketDestination", frozen)]
+struct PyAnalyticsS3BucketDestination {
+    inner: aws_sdk_s3::types::AnalyticsS3BucketDestination,
+}
+
+#[pymethods]
+impl PyAnalyticsS3BucketDestination {
+    #[getter]
+    fn format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2026 = (&self.inner.format).as_str().into_py_any(py)?;
+        Ok(converted_2026)
+    }
+
+    #[getter]
+    fn bucket_account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_account_id {
+            let converted_2027 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2027)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2028 = (&self.inner.bucket).as_str().into_py_any(py)?;
+        Ok(converted_2028)
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2029 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2029)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        analytics_s3_bucket_destination_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "BlockedEncryptionTypes", frozen)]
+struct PyBlockedEncryptionTypes {
+    inner: aws_sdk_s3::types::BlockedEncryptionTypes,
+}
+
+#[pymethods]
+impl PyBlockedEncryptionTypes {
+    #[getter]
+    fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encryption_type {
+            let converted_2030_list = PyList::empty(py);
+            for item_2031 in value {
+                let converted_item_2032 = (item_2031).as_str().into_py_any(py)?;
+                converted_2030_list.append(converted_item_2032)?;
+            }
+            let converted_2030 = converted_2030_list.into_any().unbind();
+            Ok(converted_2030)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        blocked_encryption_types_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Bucket", frozen)]
+struct PyBucket {
+    inner: aws_sdk_s3::types::Bucket,
+}
+
+#[pymethods]
+impl PyBucket {
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_2033 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2033)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.creation_date {
+            let converted_2034 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2034)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_region {
+            let converted_2035 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2035)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_arn {
+            let converted_2036 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2036)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        bucket_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Checksum", frozen)]
+struct PyChecksum {
+    inner: aws_sdk_s3::types::Checksum,
+}
+
+#[pymethods]
+impl PyChecksum {
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2037 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2037)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2038 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2038)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2039 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2039)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2040 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2040)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2041 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2041)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2042 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2042)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        checksum_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "CommonPrefix", frozen)]
+struct PyCommonPrefix {
+    inner: aws_sdk_s3::types::CommonPrefix,
+}
+
+#[pymethods]
+impl PyCommonPrefix {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2043 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2043)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        common_prefix_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Condition", frozen)]
+struct PyCondition {
+    inner: aws_sdk_s3::types::Condition,
+}
+
+#[pymethods]
+impl PyCondition {
+    #[getter]
+    fn http_error_code_returned_equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.http_error_code_returned_equals {
+            let converted_2044 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2044)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key_prefix_equals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_prefix_equals {
+            let converted_2045 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2045)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        condition_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "CopyObjectResult", frozen)]
+struct PyCopyObjectResult {
+    inner: aws_sdk_s3::types::CopyObjectResult,
+}
+
+#[pymethods]
+impl PyCopyObjectResult {
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2046 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2046)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2047 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2047)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2048 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2048)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2049 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2049)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2050 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2050)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2051 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2051)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2052 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2052)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2053 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2053)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        copy_object_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "CopyPartResult", frozen)]
+struct PyCopyPartResult {
+    inner: aws_sdk_s3::types::CopyPartResult,
+}
+
+#[pymethods]
+impl PyCopyPartResult {
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2054 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2054)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2055 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2055)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2056 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2056)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2057)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2058 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2058)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2059 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2059)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2060 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2060)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        copy_part_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "CorsRule", frozen)]
+struct PyCorsRule {
+    inner: aws_sdk_s3::types::CorsRule,
+}
+
+#[pymethods]
+impl PyCorsRule {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2061 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2061)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn allowed_headers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.allowed_headers {
+            let converted_2062_list = PyList::empty(py);
+            for item_2063 in value {
+                let converted_item_2064 = (item_2063).as_str().into_py_any(py)?;
+                converted_2062_list.append(converted_item_2064)?;
+            }
+            let converted_2062 = converted_2062_list.into_any().unbind();
+            Ok(converted_2062)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn allowed_methods(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2065_list = PyList::empty(py);
+        for item_2066 in &self.inner.allowed_methods {
+            let converted_item_2067 = (item_2066).as_str().into_py_any(py)?;
+            converted_2065_list.append(converted_item_2067)?;
+        }
+        let converted_2065 = converted_2065_list.into_any().unbind();
+        Ok(converted_2065)
+    }
+
+    #[getter]
+    fn allowed_origins(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2068_list = PyList::empty(py);
+        for item_2069 in &self.inner.allowed_origins {
+            let converted_item_2070 = (item_2069).as_str().into_py_any(py)?;
+            converted_2068_list.append(converted_item_2070)?;
+        }
+        let converted_2068 = converted_2068_list.into_any().unbind();
+        Ok(converted_2068)
+    }
+
+    #[getter]
+    fn expose_headers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expose_headers {
+            let converted_2071_list = PyList::empty(py);
+            for item_2072 in value {
+                let converted_item_2073 = (item_2072).as_str().into_py_any(py)?;
+                converted_2071_list.append(converted_item_2073)?;
+            }
+            let converted_2071 = converted_2071_list.into_any().unbind();
+            Ok(converted_2071)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_age_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_age_seconds {
+            let converted_2074 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2074)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        cors_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DefaultRetention", frozen)]
+struct PyDefaultRetention {
+    inner: aws_sdk_s3::types::DefaultRetention,
+}
+
+#[pymethods]
+impl PyDefaultRetention {
+    #[getter]
+    fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.mode {
+            let converted_2075 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2075)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.days {
+            let converted_2076 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2076)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn years(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.years {
+            let converted_2077 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2077)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        default_retention_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DeleteMarkerEntry", frozen)]
+struct PyDeleteMarkerEntry {
+    inner: aws_sdk_s3::types::DeleteMarkerEntry,
+}
+
+#[pymethods]
+impl PyDeleteMarkerEntry {
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2078 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2078)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2079 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2079)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2080 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2080)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_latest(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_latest {
+            let converted_2081 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2081)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2082 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2082)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        delete_marker_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DeleteMarkerReplication", frozen)]
+struct PyDeleteMarkerReplication {
+    inner: aws_sdk_s3::types::DeleteMarkerReplication,
+}
+
+#[pymethods]
+impl PyDeleteMarkerReplication {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2083 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2083)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        delete_marker_replication_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DeletedObject", frozen)]
+struct PyDeletedObject {
+    inner: aws_sdk_s3::types::DeletedObject,
+}
+
+#[pymethods]
+impl PyDeletedObject {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2084 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2084)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2085 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2085)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2086 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2086)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delete_marker_version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker_version_id {
+            let converted_2087 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2087)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        deleted_object_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Destination", frozen)]
+struct PyDestination {
+    inner: aws_sdk_s3::types::Destination,
+}
+
+#[pymethods]
+impl PyDestination {
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2088 = (&self.inner.bucket).as_str().into_py_any(py)?;
+        Ok(converted_2088)
+    }
+
+    #[getter]
+    fn account(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.account {
+            let converted_2089 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2089)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2090 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2090)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn access_control_translation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.access_control_translation {
+            let converted_2091 = Py::new(
+                py,
+                PyAccessControlTranslation {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2091)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encryption_configuration {
+            let converted_2092 = Py::new(
+                py,
+                PyEncryptionConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2092)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replication_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_time {
+            let converted_2093 = Py::new(
+                py,
+                PyReplicationTime {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2093)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn metrics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metrics {
+            let converted_2094 = Py::new(
+                py,
+                PyMetrics {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2094)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        destination_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DestinationResult", frozen)]
+struct PyDestinationResult {
+    inner: aws_sdk_s3::types::DestinationResult,
+}
+
+#[pymethods]
+impl PyDestinationResult {
+    #[getter]
+    fn table_bucket_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_bucket_type {
+            let converted_2095 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2095)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_bucket_arn {
+            let converted_2096 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2096)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_namespace {
+            let converted_2097 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2097)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        destination_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "EncryptionConfiguration", frozen)]
+struct PyEncryptionConfiguration {
+    inner: aws_sdk_s3::types::EncryptionConfiguration,
+}
+
+#[pymethods]
+impl PyEncryptionConfiguration {
+    #[getter]
+    fn replica_kms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replica_kms_key_id {
+            let converted_2098 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2098)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        encryption_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Error", frozen)]
+struct PyError {
+    inner: aws_sdk_s3::types::Error,
+}
+
+#[pymethods]
+impl PyError {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2099 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2099)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2100 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2100)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.code {
+            let converted_2101 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2101)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.message {
+            let converted_2102 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2102)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        error_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ErrorDetails", frozen)]
+struct PyErrorDetails {
+    inner: aws_sdk_s3::types::ErrorDetails,
+}
+
+#[pymethods]
+impl PyErrorDetails {
+    #[getter]
+    fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_code {
+            let converted_2103 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2103)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_message {
+            let converted_2104 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2104)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        error_details_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ErrorDocument", frozen)]
+struct PyErrorDocument {
+    inner: aws_sdk_s3::types::ErrorDocument,
+}
+
+#[pymethods]
+impl PyErrorDocument {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2105 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_2105)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        error_document_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "EventBridgeConfiguration", frozen)]
+struct PyEventBridgeConfiguration {
+    inner: aws_sdk_s3::types::EventBridgeConfiguration,
+}
+
+#[pymethods]
+impl PyEventBridgeConfiguration {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        event_bridge_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ExistingObjectReplication", frozen)]
+struct PyExistingObjectReplication {
+    inner: aws_sdk_s3::types::ExistingObjectReplication,
+}
+
+#[pymethods]
+impl PyExistingObjectReplication {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2106 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2106)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        existing_object_replication_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "FilterRule", frozen)]
+struct PyFilterRule {
+    inner: aws_sdk_s3::types::FilterRule,
+}
+
+#[pymethods]
+impl PyFilterRule {
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_2107 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2107)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.value {
+            let converted_2108 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2108)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        filter_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "GetBucketMetadataConfigurationResult", frozen)]
+struct PyGetBucketMetadataConfigurationResult {
+    inner: aws_sdk_s3::types::GetBucketMetadataConfigurationResult,
+}
+
+#[pymethods]
+impl PyGetBucketMetadataConfigurationResult {
+    #[getter]
+    fn metadata_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metadata_configuration_result {
+            let converted_2109 = Py::new(
+                py,
+                PyMetadataConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2109)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        get_bucket_metadata_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "GetBucketMetadataTableConfigurationResult", frozen)]
+struct PyGetBucketMetadataTableConfigurationResult {
+    inner: aws_sdk_s3::types::GetBucketMetadataTableConfigurationResult,
+}
+
+#[pymethods]
+impl PyGetBucketMetadataTableConfigurationResult {
+    #[getter]
+    fn metadata_table_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metadata_table_configuration_result {
+            let converted_2110 = Py::new(
+                py,
+                PyMetadataTableConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2110)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2111 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2111)
+    }
+
+    #[getter]
+    fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error {
+            let converted_2112 = Py::new(
+                py,
+                PyErrorDetails {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2112)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        get_bucket_metadata_table_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "GetObjectAttributesParts", frozen)]
+struct PyGetObjectAttributesParts {
+    inner: aws_sdk_s3::types::GetObjectAttributesParts,
+}
+
+#[pymethods]
+impl PyGetObjectAttributesParts {
+    #[getter]
+    fn total_parts_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.total_parts_count {
+            let converted_2113 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2113)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn part_number_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.part_number_marker {
+            let converted_2114 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2114)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_part_number_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_part_number_marker {
+            let converted_2115 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2115)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_parts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_parts {
+            let converted_2116 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2116)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2117 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2117)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn parts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.parts {
+            let converted_2118_list = PyList::empty(py);
+            for item_2119 in value {
+                let converted_item_2120 = Py::new(
+                    py,
+                    PyObjectPart {
+                        inner: (item_2119).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2118_list.append(converted_item_2120)?;
+            }
+            let converted_2118 = converted_2118_list.into_any().unbind();
+            Ok(converted_2118)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        get_object_attributes_parts_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Grant", frozen)]
+struct PyGrant {
+    inner: aws_sdk_s3::types::Grant,
+}
+
+#[pymethods]
+impl PyGrant {
+    #[getter]
+    fn grantee(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.grantee {
+            let converted_2121 = Py::new(
+                py,
+                PyGrantee {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2121)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn permission(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.permission {
+            let converted_2122 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2122)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        grant_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Grantee", frozen)]
+struct PyGrantee {
+    inner: aws_sdk_s3::types::Grantee,
+}
+
+#[pymethods]
+impl PyGrantee {
+    #[getter]
+    fn display_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.display_name {
+            let converted_2123 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2123)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn email_address(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.email_address {
+            let converted_2124 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2124)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2125 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2125)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.uri {
+            let converted_2126 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2126)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2127 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_2127)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        grantee_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "IndexDocument", frozen)]
+struct PyIndexDocument {
+    inner: aws_sdk_s3::types::IndexDocument,
+}
+
+#[pymethods]
+impl PyIndexDocument {
+    #[getter]
+    fn suffix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2128 = (&self.inner.suffix).as_str().into_py_any(py)?;
+        Ok(converted_2128)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        index_document_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Initiator", frozen)]
+struct PyInitiator {
+    inner: aws_sdk_s3::types::Initiator,
+}
+
+#[pymethods]
+impl PyInitiator {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2129 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2129)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn display_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.display_name {
+            let converted_2130 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2130)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        initiator_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "IntelligentTieringAndOperator", frozen)]
+struct PyIntelligentTieringAndOperator {
+    inner: aws_sdk_s3::types::IntelligentTieringAndOperator,
+}
+
+#[pymethods]
+impl PyIntelligentTieringAndOperator {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2131 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2131)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tags {
+            let converted_2132_list = PyList::empty(py);
+            for item_2133 in value {
+                let converted_item_2134 = Py::new(
+                    py,
+                    PyTag {
+                        inner: (item_2133).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2132_list.append(converted_item_2134)?;
+            }
+            let converted_2132 = converted_2132_list.into_any().unbind();
+            Ok(converted_2132)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        intelligent_tiering_and_operator_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "IntelligentTieringConfiguration", frozen)]
+struct PyIntelligentTieringConfiguration {
+    inner: aws_sdk_s3::types::IntelligentTieringConfiguration,
+}
+
+#[pymethods]
+impl PyIntelligentTieringConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2135 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_2135)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2136 = Py::new(
+                py,
+                PyIntelligentTieringFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2136)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2137 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2137)
+    }
+
+    #[getter]
+    fn tierings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2138_list = PyList::empty(py);
+        for item_2139 in &self.inner.tierings {
+            let converted_item_2140 = Py::new(
+                py,
+                PyTiering {
+                    inner: (item_2139).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2138_list.append(converted_item_2140)?;
+        }
+        let converted_2138 = converted_2138_list.into_any().unbind();
+        Ok(converted_2138)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        intelligent_tiering_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "IntelligentTieringFilter", frozen)]
+struct PyIntelligentTieringFilter {
+    inner: aws_sdk_s3::types::IntelligentTieringFilter,
+}
+
+#[pymethods]
+impl PyIntelligentTieringFilter {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2141 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2141)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tag {
+            let converted_2142 = Py::new(
+                py,
+                PyTag {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2142)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn and_(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.and {
+            let converted_2143 = Py::new(
+                py,
+                PyIntelligentTieringAndOperator {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2143)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        intelligent_tiering_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryConfiguration", frozen)]
+struct PyInventoryConfiguration {
+    inner: aws_sdk_s3::types::InventoryConfiguration,
+}
+
+#[pymethods]
+impl PyInventoryConfiguration {
+    #[getter]
+    fn destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination {
+            let converted_2144 = Py::new(
+                py,
+                PyInventoryDestination {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2144)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2145 = (&self.inner.is_enabled).to_owned().into_py_any(py)?;
+        Ok(converted_2145)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2146 = Py::new(
+                py,
+                PyInventoryFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2146)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2147 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_2147)
+    }
+
+    #[getter]
+    fn included_object_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2148 = (&self.inner.included_object_versions)
+            .as_str()
+            .into_py_any(py)?;
+        Ok(converted_2148)
+    }
+
+    #[getter]
+    fn optional_fields(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.optional_fields {
+            let converted_2149_list = PyList::empty(py);
+            for item_2150 in value {
+                let converted_item_2151 = (item_2150).as_str().into_py_any(py)?;
+                converted_2149_list.append(converted_item_2151)?;
+            }
+            let converted_2149 = converted_2149_list.into_any().unbind();
+            Ok(converted_2149)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn schedule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.schedule {
+            let converted_2152 = Py::new(
+                py,
+                PyInventorySchedule {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2152)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryDestination", frozen)]
+struct PyInventoryDestination {
+    inner: aws_sdk_s3::types::InventoryDestination,
+}
+
+#[pymethods]
+impl PyInventoryDestination {
+    #[getter]
+    fn s3_bucket_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.s3_bucket_destination {
+            let converted_2153 = Py::new(
+                py,
+                PyInventoryS3BucketDestination {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2153)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_destination_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryEncryption", frozen)]
+struct PyInventoryEncryption {
+    inner: aws_sdk_s3::types::InventoryEncryption,
+}
+
+#[pymethods]
+impl PyInventoryEncryption {
+    #[getter]
+    fn sses3(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sses3 {
+            let converted_2154 = Py::new(
+                py,
+                PySses3 {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2154)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms {
+            let converted_2155 = Py::new(
+                py,
+                PySsekms {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2155)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_encryption_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryFilter", frozen)]
+struct PyInventoryFilter {
+    inner: aws_sdk_s3::types::InventoryFilter,
+}
+
+#[pymethods]
+impl PyInventoryFilter {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2156 = (&self.inner.prefix).as_str().into_py_any(py)?;
+        Ok(converted_2156)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryS3BucketDestination", frozen)]
+struct PyInventoryS3BucketDestination {
+    inner: aws_sdk_s3::types::InventoryS3BucketDestination,
+}
+
+#[pymethods]
+impl PyInventoryS3BucketDestination {
+    #[getter]
+    fn account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.account_id {
+            let converted_2157 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2157)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2158 = (&self.inner.bucket).as_str().into_py_any(py)?;
+        Ok(converted_2158)
+    }
+
+    #[getter]
+    fn format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2159 = (&self.inner.format).as_str().into_py_any(py)?;
+        Ok(converted_2159)
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2160 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2160)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encryption {
+            let converted_2161 = Py::new(
+                py,
+                PyInventoryEncryption {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2161)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_s3_bucket_destination_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventorySchedule", frozen)]
+struct PyInventorySchedule {
+    inner: aws_sdk_s3::types::InventorySchedule,
+}
+
+#[pymethods]
+impl PyInventorySchedule {
+    #[getter]
+    fn frequency(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2162 = (&self.inner.frequency).as_str().into_py_any(py)?;
+        Ok(converted_2162)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_schedule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "InventoryTableConfigurationResult", frozen)]
+struct PyInventoryTableConfigurationResult {
+    inner: aws_sdk_s3::types::InventoryTableConfigurationResult,
+}
+
+#[pymethods]
+impl PyInventoryTableConfigurationResult {
+    #[getter]
+    fn configuration_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2163 = (&self.inner.configuration_state).as_str().into_py_any(py)?;
+        Ok(converted_2163)
+    }
+
+    #[getter]
+    fn table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_status {
+            let converted_2164 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2164)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error {
+            let converted_2165 = Py::new(
+                py,
+                PyErrorDetails {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2165)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_name {
+            let converted_2166 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2166)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_arn {
+            let converted_2167 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2167)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        inventory_table_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "JournalTableConfigurationResult", frozen)]
+struct PyJournalTableConfigurationResult {
+    inner: aws_sdk_s3::types::JournalTableConfigurationResult,
+}
+
+#[pymethods]
+impl PyJournalTableConfigurationResult {
+    #[getter]
+    fn table_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2168 = (&self.inner.table_status).as_str().into_py_any(py)?;
+        Ok(converted_2168)
+    }
+
+    #[getter]
+    fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error {
+            let converted_2169 = Py::new(
+                py,
+                PyErrorDetails {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2169)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2170 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_2170)
+    }
+
+    #[getter]
+    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_arn {
+            let converted_2171 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2171)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn record_expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.record_expiration {
+            let converted_2172 = Py::new(
+                py,
+                PyRecordExpiration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2172)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        journal_table_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LambdaFunctionConfiguration", frozen)]
+struct PyLambdaFunctionConfiguration {
+    inner: aws_sdk_s3::types::LambdaFunctionConfiguration,
+}
+
+#[pymethods]
+impl PyLambdaFunctionConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2173 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2173)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn lambda_function_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2174 = (&self.inner.lambda_function_arn).as_str().into_py_any(py)?;
+        Ok(converted_2174)
+    }
+
+    #[getter]
+    fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2175_list = PyList::empty(py);
+        for item_2176 in &self.inner.events {
+            let converted_item_2177 = (item_2176).as_str().into_py_any(py)?;
+            converted_2175_list.append(converted_item_2177)?;
+        }
+        let converted_2175 = converted_2175_list.into_any().unbind();
+        Ok(converted_2175)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2178 = Py::new(
+                py,
+                PyNotificationConfigurationFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2178)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        lambda_function_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LifecycleExpiration", frozen)]
+struct PyLifecycleExpiration {
+    inner: aws_sdk_s3::types::LifecycleExpiration,
+}
+
+#[pymethods]
+impl PyLifecycleExpiration {
+    #[getter]
+    fn date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.date {
+            let converted_2179 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2179)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.days {
+            let converted_2180 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2180)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expired_object_delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expired_object_delete_marker {
+            let converted_2181 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2181)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        lifecycle_expiration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LifecycleRule", frozen)]
+struct PyLifecycleRule {
+    inner: aws_sdk_s3::types::LifecycleRule,
+}
+
+#[pymethods]
+impl PyLifecycleRule {
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_2182 = Py::new(
+                py,
+                PyLifecycleExpiration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2182)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2183 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2183)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2184 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2184)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2185 = Py::new(
+                py,
+                PyLifecycleRuleFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2185)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2186 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2186)
+    }
+
+    #[getter]
+    fn transitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.transitions {
+            let converted_2187_list = PyList::empty(py);
+            for item_2188 in value {
+                let converted_item_2189 = Py::new(
+                    py,
+                    PyTransition {
+                        inner: (item_2188).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2187_list.append(converted_item_2189)?;
+            }
+            let converted_2187 = converted_2187_list.into_any().unbind();
+            Ok(converted_2187)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn noncurrent_version_transitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.noncurrent_version_transitions {
+            let converted_2190_list = PyList::empty(py);
+            for item_2191 in value {
+                let converted_item_2192 = Py::new(
+                    py,
+                    PyNoncurrentVersionTransition {
+                        inner: (item_2191).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2190_list.append(converted_item_2192)?;
+            }
+            let converted_2190 = converted_2190_list.into_any().unbind();
+            Ok(converted_2190)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn noncurrent_version_expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.noncurrent_version_expiration {
+            let converted_2193 = Py::new(
+                py,
+                PyNoncurrentVersionExpiration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2193)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn abort_incomplete_multipart_upload(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abort_incomplete_multipart_upload {
+            let converted_2194 = Py::new(
+                py,
+                PyAbortIncompleteMultipartUpload {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2194)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        lifecycle_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LifecycleRuleAndOperator", frozen)]
+struct PyLifecycleRuleAndOperator {
+    inner: aws_sdk_s3::types::LifecycleRuleAndOperator,
+}
+
+#[pymethods]
+impl PyLifecycleRuleAndOperator {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2195 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2195)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tags {
+            let converted_2196_list = PyList::empty(py);
+            for item_2197 in value {
+                let converted_item_2198 = Py::new(
+                    py,
+                    PyTag {
+                        inner: (item_2197).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2196_list.append(converted_item_2198)?;
+            }
+            let converted_2196 = converted_2196_list.into_any().unbind();
+            Ok(converted_2196)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_size_greater_than(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_size_greater_than {
+            let converted_2199 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2199)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_size_less_than(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_size_less_than {
+            let converted_2200 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2200)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        lifecycle_rule_and_operator_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LifecycleRuleFilter", frozen)]
+struct PyLifecycleRuleFilter {
+    inner: aws_sdk_s3::types::LifecycleRuleFilter,
+}
+
+#[pymethods]
+impl PyLifecycleRuleFilter {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2201 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2201)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tag {
+            let converted_2202 = Py::new(
+                py,
+                PyTag {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2202)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_size_greater_than(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_size_greater_than {
+            let converted_2203 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2203)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_size_less_than(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_size_less_than {
+            let converted_2204 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2204)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn and_(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.and {
+            let converted_2205 = Py::new(
+                py,
+                PyLifecycleRuleAndOperator {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2205)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        lifecycle_rule_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "LoggingEnabled", frozen)]
+struct PyLoggingEnabled {
+    inner: aws_sdk_s3::types::LoggingEnabled,
+}
+
+#[pymethods]
+impl PyLoggingEnabled {
+    #[getter]
+    fn target_bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2206 = (&self.inner.target_bucket).as_str().into_py_any(py)?;
+        Ok(converted_2206)
+    }
+
+    #[getter]
+    fn target_grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.target_grants {
+            let converted_2207_list = PyList::empty(py);
+            for item_2208 in value {
+                let converted_item_2209 = Py::new(
+                    py,
+                    PyTargetGrant {
+                        inner: (item_2208).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2207_list.append(converted_item_2209)?;
+            }
+            let converted_2207 = converted_2207_list.into_any().unbind();
+            Ok(converted_2207)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn target_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2210 = (&self.inner.target_prefix).as_str().into_py_any(py)?;
+        Ok(converted_2210)
+    }
+
+    #[getter]
+    fn target_object_key_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.target_object_key_format {
+            let converted_2211 = Py::new(
+                py,
+                PyTargetObjectKeyFormat {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2211)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        logging_enabled_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "MetadataConfigurationResult", frozen)]
+struct PyMetadataConfigurationResult {
+    inner: aws_sdk_s3::types::MetadataConfigurationResult,
+}
+
+#[pymethods]
+impl PyMetadataConfigurationResult {
+    #[getter]
+    fn destination_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination_result {
+            let converted_2212 = Py::new(
+                py,
+                PyDestinationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2212)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn journal_table_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.journal_table_configuration_result {
+            let converted_2213 = Py::new(
+                py,
+                PyJournalTableConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2213)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn inventory_table_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inventory_table_configuration_result {
+            let converted_2214 = Py::new(
+                py,
+                PyInventoryTableConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2214)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        metadata_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "MetadataTableConfigurationResult", frozen)]
+struct PyMetadataTableConfigurationResult {
+    inner: aws_sdk_s3::types::MetadataTableConfigurationResult,
+}
+
+#[pymethods]
+impl PyMetadataTableConfigurationResult {
+    #[getter]
+    fn s3_tables_destination_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.s3_tables_destination_result {
+            let converted_2215 = Py::new(
+                py,
+                PyS3TablesDestinationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2215)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        metadata_table_configuration_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Metrics", frozen)]
+struct PyMetrics {
+    inner: aws_sdk_s3::types::Metrics,
+}
+
+#[pymethods]
+impl PyMetrics {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2216 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2216)
+    }
+
+    #[getter]
+    fn event_threshold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.event_threshold {
+            let converted_2217 = Py::new(
+                py,
+                PyReplicationTimeValue {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2217)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        metrics_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "MetricsConfiguration", frozen)]
+struct PyMetricsConfiguration {
+    inner: aws_sdk_s3::types::MetricsConfiguration,
+}
+
+#[pymethods]
+impl PyMetricsConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2218 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_2218)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2219 = metrics_filter_to_py(py, value)?;
+            Ok(converted_2219)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        metrics_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "MultipartUpload", frozen)]
+struct PyMultipartUpload {
+    inner: aws_sdk_s3::types::MultipartUpload,
+}
+
+#[pymethods]
+impl PyMultipartUpload {
+    #[getter]
+    fn upload_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.upload_id {
+            let converted_2220 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2220)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2221 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2221)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn initiated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.initiated {
+            let converted_2222 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2222)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2223 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2223)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2224 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2224)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn initiator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.initiator {
+            let converted_2225 = Py::new(
+                py,
+                PyInitiator {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2225)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_2226 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2226)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2227 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2227)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        multipart_upload_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "NoncurrentVersionExpiration", frozen)]
+struct PyNoncurrentVersionExpiration {
+    inner: aws_sdk_s3::types::NoncurrentVersionExpiration,
+}
+
+#[pymethods]
+impl PyNoncurrentVersionExpiration {
+    #[getter]
+    fn noncurrent_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.noncurrent_days {
+            let converted_2228 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2228)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn newer_noncurrent_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.newer_noncurrent_versions {
+            let converted_2229 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2229)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        noncurrent_version_expiration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "NoncurrentVersionTransition", frozen)]
+struct PyNoncurrentVersionTransition {
+    inner: aws_sdk_s3::types::NoncurrentVersionTransition,
+}
+
+#[pymethods]
+impl PyNoncurrentVersionTransition {
+    #[getter]
+    fn noncurrent_days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.noncurrent_days {
+            let converted_2230 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2230)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2231 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2231)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn newer_noncurrent_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.newer_noncurrent_versions {
+            let converted_2232 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2232)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        noncurrent_version_transition_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "NotificationConfigurationFilter", frozen)]
+struct PyNotificationConfigurationFilter {
+    inner: aws_sdk_s3::types::NotificationConfigurationFilter,
+}
+
+#[pymethods]
+impl PyNotificationConfigurationFilter {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2233 = Py::new(
+                py,
+                PyS3KeyFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2233)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        notification_configuration_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Object", frozen)]
+struct PyObject {
+    inner: aws_sdk_s3::types::Object,
+}
+
+#[pymethods]
+impl PyObject {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2234 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2234)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2235 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2235)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2236 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2236)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_2237_list = PyList::empty(py);
+            for item_2238 in value {
+                let converted_item_2239 = (item_2238).as_str().into_py_any(py)?;
+                converted_2237_list.append(converted_item_2239)?;
+            }
+            let converted_2237 = converted_2237_list.into_any().unbind();
+            Ok(converted_2237)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2240)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size {
+            let converted_2241 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2241)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2242 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2242)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2243 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2243)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore_status {
+            let converted_2244 = Py::new(
+                py,
+                PyRestoreStatus {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2244)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectLockConfiguration", frozen)]
+struct PyObjectLockConfiguration {
+    inner: aws_sdk_s3::types::ObjectLockConfiguration,
+}
+
+#[pymethods]
+impl PyObjectLockConfiguration {
+    #[getter]
+    fn object_lock_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_enabled {
+            let converted_2245 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2245)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn rule(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.rule {
+            let converted_2246 = Py::new(
+                py,
+                PyObjectLockRule {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2246)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_lock_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectLockLegalHold", frozen)]
+struct PyObjectLockLegalHold {
+    inner: aws_sdk_s3::types::ObjectLockLegalHold,
+}
+
+#[pymethods]
+impl PyObjectLockLegalHold {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2247 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2247)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_lock_legal_hold_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectLockRetention", frozen)]
+struct PyObjectLockRetention {
+    inner: aws_sdk_s3::types::ObjectLockRetention,
+}
+
+#[pymethods]
+impl PyObjectLockRetention {
+    #[getter]
+    fn mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.mode {
+            let converted_2248 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2248)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn retain_until_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.retain_until_date {
+            let converted_2249 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2249)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_lock_retention_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectLockRule", frozen)]
+struct PyObjectLockRule {
+    inner: aws_sdk_s3::types::ObjectLockRule,
+}
+
+#[pymethods]
+impl PyObjectLockRule {
+    #[getter]
+    fn default_retention(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.default_retention {
+            let converted_2250 = Py::new(
+                py,
+                PyDefaultRetention {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2250)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_lock_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectPart", frozen)]
+struct PyObjectPart {
+    inner: aws_sdk_s3::types::ObjectPart,
+}
+
+#[pymethods]
+impl PyObjectPart {
+    #[getter]
+    fn part_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.part_number {
+            let converted_2251 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2251)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size {
+            let converted_2252 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2252)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2253 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2253)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2254 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2254)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2255 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2255)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2256 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2256)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2257 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2257)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_part_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ObjectVersion", frozen)]
+struct PyObjectVersion {
+    inner: aws_sdk_s3::types::ObjectVersion,
+}
+
+#[pymethods]
+impl PyObjectVersion {
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2258 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2258)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_2259_list = PyList::empty(py);
+            for item_2260 in value {
+                let converted_item_2261 = (item_2260).as_str().into_py_any(py)?;
+                converted_2259_list.append(converted_item_2261)?;
+            }
+            let converted_2259 = converted_2259_list.into_any().unbind();
+            Ok(converted_2259)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2262 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2262)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size {
+            let converted_2263 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2263)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2264 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2264)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2265)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2266 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2266)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_latest(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_latest {
+            let converted_2267 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2267)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2268 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2268)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2269 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2269)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore_status {
+            let converted_2270 = Py::new(
+                py,
+                PyRestoreStatus {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2270)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        object_version_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Owner", frozen)]
+struct PyOwner {
+    inner: aws_sdk_s3::types::Owner,
+}
+
+#[pymethods]
+impl PyOwner {
+    #[getter]
+    fn display_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.display_name {
+            let converted_2271 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2271)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2272 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2272)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        owner_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "OwnershipControls", frozen)]
+struct PyOwnershipControls {
+    inner: aws_sdk_s3::types::OwnershipControls,
+}
+
+#[pymethods]
+impl PyOwnershipControls {
+    #[getter]
+    fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2273_list = PyList::empty(py);
+        for item_2274 in &self.inner.rules {
+            let converted_item_2275 = Py::new(
+                py,
+                PyOwnershipControlsRule {
+                    inner: (item_2274).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2273_list.append(converted_item_2275)?;
+        }
+        let converted_2273 = converted_2273_list.into_any().unbind();
+        Ok(converted_2273)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        ownership_controls_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "OwnershipControlsRule", frozen)]
+struct PyOwnershipControlsRule {
+    inner: aws_sdk_s3::types::OwnershipControlsRule,
+}
+
+#[pymethods]
+impl PyOwnershipControlsRule {
+    #[getter]
+    fn object_ownership(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2276 = (&self.inner.object_ownership).as_str().into_py_any(py)?;
+        Ok(converted_2276)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        ownership_controls_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Part", frozen)]
+struct PyPart {
+    inner: aws_sdk_s3::types::Part,
+}
+
+#[pymethods]
+impl PyPart {
+    #[getter]
+    fn part_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.part_number {
+            let converted_2277 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2277)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2278 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2278)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2279 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2279)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size {
+            let converted_2280 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2280)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2281 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2281)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2282 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2282)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2283 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2283)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2284 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2284)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2285 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2285)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        part_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "PartitionedPrefix", frozen)]
+struct PyPartitionedPrefix {
+    inner: aws_sdk_s3::types::PartitionedPrefix,
+}
+
+#[pymethods]
+impl PyPartitionedPrefix {
+    #[getter]
+    fn partition_date_source(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.partition_date_source {
+            let converted_2286 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2286)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        partitioned_prefix_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "PolicyStatus", frozen)]
+struct PyPolicyStatus {
+    inner: aws_sdk_s3::types::PolicyStatus,
+}
+
+#[pymethods]
+impl PyPolicyStatus {
+    #[getter]
+    fn is_public(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_public {
+            let converted_2287 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2287)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        policy_status_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "PublicAccessBlockConfiguration", frozen)]
+struct PyPublicAccessBlockConfiguration {
+    inner: aws_sdk_s3::types::PublicAccessBlockConfiguration,
+}
+
+#[pymethods]
+impl PyPublicAccessBlockConfiguration {
+    #[getter]
+    fn block_public_acls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.block_public_acls {
+            let converted_2288 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2288)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ignore_public_acls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ignore_public_acls {
+            let converted_2289 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2289)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn block_public_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.block_public_policy {
+            let converted_2290 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2290)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restrict_public_buckets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restrict_public_buckets {
+            let converted_2291 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2291)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        public_access_block_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "QueueConfiguration", frozen)]
+struct PyQueueConfiguration {
+    inner: aws_sdk_s3::types::QueueConfiguration,
+}
+
+#[pymethods]
+impl PyQueueConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2292 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2292)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn queue_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2293 = (&self.inner.queue_arn).as_str().into_py_any(py)?;
+        Ok(converted_2293)
+    }
+
+    #[getter]
+    fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2294_list = PyList::empty(py);
+        for item_2295 in &self.inner.events {
+            let converted_item_2296 = (item_2295).as_str().into_py_any(py)?;
+            converted_2294_list.append(converted_item_2296)?;
+        }
+        let converted_2294 = converted_2294_list.into_any().unbind();
+        Ok(converted_2294)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2297 = Py::new(
+                py,
+                PyNotificationConfigurationFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2297)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        queue_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "RecordExpiration", frozen)]
+struct PyRecordExpiration {
+    inner: aws_sdk_s3::types::RecordExpiration,
+}
+
+#[pymethods]
+impl PyRecordExpiration {
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2298 = (&self.inner.expiration).as_str().into_py_any(py)?;
+        Ok(converted_2298)
+    }
+
+    #[getter]
+    fn days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.days {
+            let converted_2299 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2299)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        record_expiration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Redirect", frozen)]
+struct PyRedirect {
+    inner: aws_sdk_s3::types::Redirect,
+}
+
+#[pymethods]
+impl PyRedirect {
+    #[getter]
+    fn host_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.host_name {
+            let converted_2300 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2300)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn http_redirect_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.http_redirect_code {
+            let converted_2301 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2301)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn protocol(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.protocol {
+            let converted_2302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2302)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replace_key_prefix_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replace_key_prefix_with {
+            let converted_2303 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2303)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replace_key_with(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replace_key_with {
+            let converted_2304 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2304)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        redirect_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "RedirectAllRequestsTo", frozen)]
+struct PyRedirectAllRequestsTo {
+    inner: aws_sdk_s3::types::RedirectAllRequestsTo,
+}
+
+#[pymethods]
+impl PyRedirectAllRequestsTo {
+    #[getter]
+    fn host_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2305 = (&self.inner.host_name).as_str().into_py_any(py)?;
+        Ok(converted_2305)
+    }
+
+    #[getter]
+    fn protocol(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.protocol {
+            let converted_2306 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2306)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        redirect_all_requests_to_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicaModifications", frozen)]
+struct PyReplicaModifications {
+    inner: aws_sdk_s3::types::ReplicaModifications,
+}
+
+#[pymethods]
+impl PyReplicaModifications {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2307 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2307)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replica_modifications_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationConfiguration", frozen)]
+struct PyReplicationConfiguration {
+    inner: aws_sdk_s3::types::ReplicationConfiguration,
+}
+
+#[pymethods]
+impl PyReplicationConfiguration {
+    #[getter]
+    fn role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2308 = (&self.inner.role).as_str().into_py_any(py)?;
+        Ok(converted_2308)
+    }
+
+    #[getter]
+    fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2309_list = PyList::empty(py);
+        for item_2310 in &self.inner.rules {
+            let converted_item_2311 = Py::new(
+                py,
+                PyReplicationRule {
+                    inner: (item_2310).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2309_list.append(converted_item_2311)?;
+        }
+        let converted_2309 = converted_2309_list.into_any().unbind();
+        Ok(converted_2309)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationRule", frozen)]
+struct PyReplicationRule {
+    inner: aws_sdk_s3::types::ReplicationRule,
+}
+
+#[pymethods]
+impl PyReplicationRule {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2312 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2312)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn priority(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.priority {
+            let converted_2313 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2313)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2314 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2314)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2315 = Py::new(
+                py,
+                PyReplicationRuleFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2315)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2316 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2316)
+    }
+
+    #[getter]
+    fn source_selection_criteria(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.source_selection_criteria {
+            let converted_2317 = Py::new(
+                py,
+                PySourceSelectionCriteria {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2317)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn existing_object_replication(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.existing_object_replication {
+            let converted_2318 = Py::new(
+                py,
+                PyExistingObjectReplication {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2318)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination {
+            let converted_2319 = Py::new(
+                py,
+                PyDestination {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2319)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delete_marker_replication(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker_replication {
+            let converted_2320 = Py::new(
+                py,
+                PyDeleteMarkerReplication {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2320)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationRuleAndOperator", frozen)]
+struct PyReplicationRuleAndOperator {
+    inner: aws_sdk_s3::types::ReplicationRuleAndOperator,
+}
+
+#[pymethods]
+impl PyReplicationRuleAndOperator {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2321)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tags {
+            let converted_2322_list = PyList::empty(py);
+            for item_2323 in value {
+                let converted_item_2324 = Py::new(
+                    py,
+                    PyTag {
+                        inner: (item_2323).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2322_list.append(converted_item_2324)?;
+            }
+            let converted_2322 = converted_2322_list.into_any().unbind();
+            Ok(converted_2322)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_rule_and_operator_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationRuleFilter", frozen)]
+struct PyReplicationRuleFilter {
+    inner: aws_sdk_s3::types::ReplicationRuleFilter,
+}
+
+#[pymethods]
+impl PyReplicationRuleFilter {
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2325 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2325)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tag {
+            let converted_2326 = Py::new(
+                py,
+                PyTag {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2326)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn and_(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.and {
+            let converted_2327 = Py::new(
+                py,
+                PyReplicationRuleAndOperator {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2327)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_rule_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationTime", frozen)]
+struct PyReplicationTime {
+    inner: aws_sdk_s3::types::ReplicationTime,
+}
+
+#[pymethods]
+impl PyReplicationTime {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2328 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2328)
+    }
+
+    #[getter]
+    fn time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.time {
+            let converted_2329 = Py::new(
+                py,
+                PyReplicationTimeValue {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2329)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_time_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ReplicationTimeValue", frozen)]
+struct PyReplicationTimeValue {
+    inner: aws_sdk_s3::types::ReplicationTimeValue,
+}
+
+#[pymethods]
+impl PyReplicationTimeValue {
+    #[getter]
+    fn minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.minutes {
+            let converted_2330 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2330)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        replication_time_value_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "RestoreStatus", frozen)]
+struct PyRestoreStatus {
+    inner: aws_sdk_s3::types::RestoreStatus,
+}
+
+#[pymethods]
+impl PyRestoreStatus {
+    #[getter]
+    fn is_restore_in_progress(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_restore_in_progress {
+            let converted_2331 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2331)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore_expiry_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore_expiry_date {
+            let converted_2332 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2332)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        restore_status_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "RoutingRule", frozen)]
+struct PyRoutingRule {
+    inner: aws_sdk_s3::types::RoutingRule,
+}
+
+#[pymethods]
+impl PyRoutingRule {
+    #[getter]
+    fn condition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.condition {
+            let converted_2333 = Py::new(
+                py,
+                PyCondition {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2333)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn redirect(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.redirect {
+            let converted_2334 = Py::new(
+                py,
+                PyRedirect {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2334)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        routing_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "S3KeyFilter", frozen)]
+struct PyS3KeyFilter {
+    inner: aws_sdk_s3::types::S3KeyFilter,
+}
+
+#[pymethods]
+impl PyS3KeyFilter {
+    #[getter]
+    fn filter_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter_rules {
+            let converted_2335_list = PyList::empty(py);
+            for item_2336 in value {
+                let converted_item_2337 = Py::new(
+                    py,
+                    PyFilterRule {
+                        inner: (item_2336).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2335_list.append(converted_item_2337)?;
+            }
+            let converted_2335 = converted_2335_list.into_any().unbind();
+            Ok(converted_2335)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        s3_key_filter_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "S3TablesDestinationResult", frozen)]
+struct PyS3TablesDestinationResult {
+    inner: aws_sdk_s3::types::S3TablesDestinationResult,
+}
+
+#[pymethods]
+impl PyS3TablesDestinationResult {
+    #[getter]
+    fn table_bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2338 = (&self.inner.table_bucket_arn).as_str().into_py_any(py)?;
+        Ok(converted_2338)
+    }
+
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2339 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_2339)
+    }
+
+    #[getter]
+    fn table_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2340 = (&self.inner.table_arn).as_str().into_py_any(py)?;
+        Ok(converted_2340)
+    }
+
+    #[getter]
+    fn table_namespace(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2341 = (&self.inner.table_namespace).as_str().into_py_any(py)?;
+        Ok(converted_2341)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        s3_tables_destination_result_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ServerSideEncryptionByDefault", frozen)]
+struct PyServerSideEncryptionByDefault {
+    inner: aws_sdk_s3::types::ServerSideEncryptionByDefault,
+}
+
+#[pymethods]
+impl PyServerSideEncryptionByDefault {
+    #[getter]
+    fn sse_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2342 = (&self.inner.sse_algorithm).as_str().into_py_any(py)?;
+        Ok(converted_2342)
+    }
+
+    #[getter]
+    fn kms_master_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.kms_master_key_id {
+            let converted_2343 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2343)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        server_side_encryption_by_default_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ServerSideEncryptionConfiguration", frozen)]
+struct PyServerSideEncryptionConfiguration {
+    inner: aws_sdk_s3::types::ServerSideEncryptionConfiguration,
+}
+
+#[pymethods]
+impl PyServerSideEncryptionConfiguration {
+    #[getter]
+    fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2344_list = PyList::empty(py);
+        for item_2345 in &self.inner.rules {
+            let converted_item_2346 = Py::new(
+                py,
+                PyServerSideEncryptionRule {
+                    inner: (item_2345).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2344_list.append(converted_item_2346)?;
+        }
+        let converted_2344 = converted_2344_list.into_any().unbind();
+        Ok(converted_2344)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        server_side_encryption_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ServerSideEncryptionRule", frozen)]
+struct PyServerSideEncryptionRule {
+    inner: aws_sdk_s3::types::ServerSideEncryptionRule,
+}
+
+#[pymethods]
+impl PyServerSideEncryptionRule {
+    #[getter]
+    fn apply_server_side_encryption_by_default(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.apply_server_side_encryption_by_default {
+            let converted_2347 = Py::new(
+                py,
+                PyServerSideEncryptionByDefault {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2347)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2348 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2348)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn blocked_encryption_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.blocked_encryption_types {
+            let converted_2349 = Py::new(
+                py,
+                PyBlockedEncryptionTypes {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2349)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        server_side_encryption_rule_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SessionCredentials", frozen)]
+struct PySessionCredentials {
+    inner: aws_sdk_s3::types::SessionCredentials,
+}
+
+#[pymethods]
+impl PySessionCredentials {
+    #[getter]
+    fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2350 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
+        Ok(converted_2350)
+    }
+
+    #[getter]
+    fn secret_access_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2351 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
+        Ok(converted_2351)
+    }
+
+    #[getter]
+    fn session_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2352 = (&self.inner.session_token).as_str().into_py_any(py)?;
+        Ok(converted_2352)
+    }
+
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2353 = (&self.inner.expiration).to_string().into_py_any(py)?;
+        Ok(converted_2353)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        session_credentials_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SimplePrefix", frozen)]
+struct PySimplePrefix {
+    inner: aws_sdk_s3::types::SimplePrefix,
+}
+
+#[pymethods]
+impl PySimplePrefix {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        simple_prefix_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SourceSelectionCriteria", frozen)]
+struct PySourceSelectionCriteria {
+    inner: aws_sdk_s3::types::SourceSelectionCriteria,
+}
+
+#[pymethods]
+impl PySourceSelectionCriteria {
+    #[getter]
+    fn sse_kms_encrypted_objects(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_kms_encrypted_objects {
+            let converted_2354 = Py::new(
+                py,
+                PySseKmsEncryptedObjects {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2354)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replica_modifications(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replica_modifications {
+            let converted_2355 = Py::new(
+                py,
+                PyReplicaModifications {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2355)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        source_selection_criteria_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SseKmsEncryptedObjects", frozen)]
+struct PySseKmsEncryptedObjects {
+    inner: aws_sdk_s3::types::SseKmsEncryptedObjects,
+}
+
+#[pymethods]
+impl PySseKmsEncryptedObjects {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2356 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_2356)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        sse_kms_encrypted_objects_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Ssekms", frozen)]
+struct PySsekms {
+    inner: aws_sdk_s3::types::Ssekms,
+}
+
+#[pymethods]
+impl PySsekms {
+    #[getter]
+    fn key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2357 = (&self.inner.key_id).as_str().into_py_any(py)?;
+        Ok(converted_2357)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        ssekms_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Sses3", frozen)]
+struct PySses3 {
+    inner: aws_sdk_s3::types::Sses3,
+}
+
+#[pymethods]
+impl PySses3 {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        sses3_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "StorageClassAnalysis", frozen)]
+struct PyStorageClassAnalysis {
+    inner: aws_sdk_s3::types::StorageClassAnalysis,
+}
+
+#[pymethods]
+impl PyStorageClassAnalysis {
+    #[getter]
+    fn data_export(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.data_export {
+            let converted_2358 = Py::new(
+                py,
+                PyStorageClassAnalysisDataExport {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2358)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        storage_class_analysis_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "StorageClassAnalysisDataExport", frozen)]
+struct PyStorageClassAnalysisDataExport {
+    inner: aws_sdk_s3::types::StorageClassAnalysisDataExport,
+}
+
+#[pymethods]
+impl PyStorageClassAnalysisDataExport {
+    #[getter]
+    fn output_schema_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2359 = (&self.inner.output_schema_version)
+            .as_str()
+            .into_py_any(py)?;
+        Ok(converted_2359)
+    }
+
+    #[getter]
+    fn destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination {
+            let converted_2360 = Py::new(
+                py,
+                PyAnalyticsExportDestination {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2360)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        storage_class_analysis_data_export_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Tag", frozen)]
+struct PyTag {
+    inner: aws_sdk_s3::types::Tag,
+}
+
+#[pymethods]
+impl PyTag {
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2361 = (&self.inner.key).as_str().into_py_any(py)?;
+        Ok(converted_2361)
+    }
+
+    #[getter]
+    fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2362 = (&self.inner.value).as_str().into_py_any(py)?;
+        Ok(converted_2362)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        tag_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "TargetGrant", frozen)]
+struct PyTargetGrant {
+    inner: aws_sdk_s3::types::TargetGrant,
+}
+
+#[pymethods]
+impl PyTargetGrant {
+    #[getter]
+    fn grantee(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.grantee {
+            let converted_2363 = Py::new(
+                py,
+                PyGrantee {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2363)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn permission(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.permission {
+            let converted_2364 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2364)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        target_grant_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "TargetObjectKeyFormat", frozen)]
+struct PyTargetObjectKeyFormat {
+    inner: aws_sdk_s3::types::TargetObjectKeyFormat,
+}
+
+#[pymethods]
+impl PyTargetObjectKeyFormat {
+    #[getter]
+    fn simple_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.simple_prefix {
+            let converted_2365 = Py::new(
+                py,
+                PySimplePrefix {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2365)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn partitioned_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.partitioned_prefix {
+            let converted_2366 = Py::new(
+                py,
+                PyPartitionedPrefix {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2366)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        target_object_key_format_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Tiering", frozen)]
+struct PyTiering {
+    inner: aws_sdk_s3::types::Tiering,
+}
+
+#[pymethods]
+impl PyTiering {
+    #[getter]
+    fn days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2367 = (&self.inner.days).to_owned().into_py_any(py)?;
+        Ok(converted_2367)
+    }
+
+    #[getter]
+    fn access_tier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2368 = (&self.inner.access_tier).as_str().into_py_any(py)?;
+        Ok(converted_2368)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        tiering_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "TopicConfiguration", frozen)]
+struct PyTopicConfiguration {
+    inner: aws_sdk_s3::types::TopicConfiguration,
+}
+
+#[pymethods]
+impl PyTopicConfiguration {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.id {
+            let converted_2369 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2369)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2370 = (&self.inner.topic_arn).as_str().into_py_any(py)?;
+        Ok(converted_2370)
+    }
+
+    #[getter]
+    fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2371_list = PyList::empty(py);
+        for item_2372 in &self.inner.events {
+            let converted_item_2373 = (item_2372).as_str().into_py_any(py)?;
+            converted_2371_list.append(converted_item_2373)?;
+        }
+        let converted_2371 = converted_2371_list.into_any().unbind();
+        Ok(converted_2371)
+    }
+
+    #[getter]
+    fn filter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.filter {
+            let converted_2374 = Py::new(
+                py,
+                PyNotificationConfigurationFilter {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2374)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        topic_configuration_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Transition", frozen)]
+struct PyTransition {
+    inner: aws_sdk_s3::types::Transition,
+}
+
+#[pymethods]
+impl PyTransition {
+    #[getter]
+    fn date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.date {
+            let converted_2375 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2375)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn days(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.days {
+            let converted_2376 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2376)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2377 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2377)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        transition_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "AbortMultipartUploadOutput", frozen)]
+struct PyAbortMultipartUploadOutput {
+    inner: aws_sdk_s3::operation::abort_multipart_upload::AbortMultipartUploadOutput,
+}
+
+#[pymethods]
+impl PyAbortMultipartUploadOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2378 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2378)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2379 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2379)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CompleteMultipartUploadOutput", frozen)]
+struct PyCompleteMultipartUploadOutput {
+    inner: aws_sdk_s3::operation::complete_multipart_upload::CompleteMultipartUploadOutput,
+}
+
+#[pymethods]
+impl PyCompleteMultipartUploadOutput {
+    #[getter]
+    fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.location {
+            let converted_2380 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2380)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket {
+            let converted_2381 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2381)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2382 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2382)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_2383 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2383)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2384 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2384)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2385 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2385)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2386 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2386)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2387 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2387)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2388 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2388)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2389 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2389)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2390 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2390)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2391)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2392 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2392)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2393 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2393)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2394 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2394)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2395 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2395)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.location {
+            let converted_2396 = (value).as_str().into_py_any(py)?;
+            result.set_item("location", converted_2396)?;
+        } else {
+            result.set_item("location", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket {
+            let converted_2397 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket", converted_2397)?;
+        } else {
+            result.set_item("bucket", py.None())?;
+        }
+        if let Some(value) = &self.inner.key {
+            let converted_2398 = (value).as_str().into_py_any(py)?;
+            result.set_item("key", converted_2398)?;
+        } else {
+            result.set_item("key", py.None())?;
+        }
+        if let Some(value) = &self.inner.expiration {
+            let converted_2399 = (value).as_str().into_py_any(py)?;
+            result.set_item("expiration", converted_2399)?;
+        } else {
+            result.set_item("expiration", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2400 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_2400)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2401 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32", converted_2401)?;
+        } else {
+            result.set_item("checksum_crc32", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2402 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32_c", converted_2402)?;
+        } else {
+            result.set_item("checksum_crc32_c", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2403 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc64_nvme", converted_2403)?;
+        } else {
+            result.set_item("checksum_crc64_nvme", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2404 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha1", converted_2404)?;
+        } else {
+            result.set_item("checksum_sha1", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2405 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha256", converted_2405)?;
+        } else {
+            result.set_item("checksum_sha256", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2406 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_2406)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2407 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2407)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2408 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2408)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2409 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2409)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2410 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2410)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2411 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2411)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CopyObjectOutput", frozen)]
+struct PyCopyObjectOutput {
+    inner: aws_sdk_s3::operation::copy_object::CopyObjectOutput,
+}
+
+#[pymethods]
+impl PyCopyObjectOutput {
+    #[getter]
+    fn copy_object_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.copy_object_result {
+            let converted_2412 = Py::new(
+                py,
+                PyCopyObjectResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2412)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_2413 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2413)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn copy_source_version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.copy_source_version_id {
+            let converted_2414 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2414)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2415)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2416 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2416)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2417 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2417)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2418 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2418)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2419 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2419)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2420 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2420)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2421 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2421)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2422 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2422)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.copy_object_result {
+            let converted_2423 = copy_object_result_to_py(py, value)?;
+            result.set_item("copy_object_result", converted_2423)?;
+        } else {
+            result.set_item("copy_object_result", py.None())?;
+        }
+        if let Some(value) = &self.inner.expiration {
+            let converted_2424 = (value).as_str().into_py_any(py)?;
+            result.set_item("expiration", converted_2424)?;
+        } else {
+            result.set_item("expiration", py.None())?;
+        }
+        if let Some(value) = &self.inner.copy_source_version_id {
+            let converted_2425 = (value).as_str().into_py_any(py)?;
+            result.set_item("copy_source_version_id", converted_2425)?;
+        } else {
+            result.set_item("copy_source_version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2426 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2426)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2427 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2427)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2428 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_2428)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2429 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_2429)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2430 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2430)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2431 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_encryption_context", converted_2431)?;
+        } else {
+            result.set_item("ssekms_encryption_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2432 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2432)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2433 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2433)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CreateBucketOutput", frozen)]
+struct PyCreateBucketOutput {
+    inner: aws_sdk_s3::operation::create_bucket::CreateBucketOutput,
+}
+
+#[pymethods]
+impl PyCreateBucketOutput {
+    #[getter]
+    fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.location {
+            let converted_2434 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2434)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_arn {
+            let converted_2435 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2435)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.location {
+            let converted_2436 = (value).as_str().into_py_any(py)?;
+            result.set_item("location", converted_2436)?;
+        } else {
+            result.set_item("location", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_arn {
+            let converted_2437 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket_arn", converted_2437)?;
+        } else {
+            result.set_item("bucket_arn", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CreateMultipartUploadOutput", frozen)]
+struct PyCreateMultipartUploadOutput {
+    inner: aws_sdk_s3::operation::create_multipart_upload::CreateMultipartUploadOutput,
+}
+
+#[pymethods]
+impl PyCreateMultipartUploadOutput {
+    #[getter]
+    fn abort_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abort_date {
+            let converted_2438 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2438)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn abort_rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abort_rule_id {
+            let converted_2439 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2439)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket {
+            let converted_2440 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2440)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_2441 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2441)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn upload_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.upload_id {
+            let converted_2442 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2442)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2443 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2443)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2444 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2444)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2445 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2445)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2446 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2446)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2447 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2447)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2448 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2448)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2449 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2449)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_2450 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2450)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2451 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2451)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.abort_date {
+            let converted_2452 = (value).to_string().into_py_any(py)?;
+            result.set_item("abort_date", converted_2452)?;
+        } else {
+            result.set_item("abort_date", py.None())?;
+        }
+        if let Some(value) = &self.inner.abort_rule_id {
+            let converted_2453 = (value).as_str().into_py_any(py)?;
+            result.set_item("abort_rule_id", converted_2453)?;
+        } else {
+            result.set_item("abort_rule_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket {
+            let converted_2454 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket", converted_2454)?;
+        } else {
+            result.set_item("bucket", py.None())?;
+        }
+        if let Some(value) = &self.inner.key {
+            let converted_2455 = (value).as_str().into_py_any(py)?;
+            result.set_item("key", converted_2455)?;
+        } else {
+            result.set_item("key", py.None())?;
+        }
+        if let Some(value) = &self.inner.upload_id {
+            let converted_2456 = (value).as_str().into_py_any(py)?;
+            result.set_item("upload_id", converted_2456)?;
+        } else {
+            result.set_item("upload_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2457 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2457)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2458 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_2458)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2459 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_2459)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2460 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2460)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2461 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_encryption_context", converted_2461)?;
+        } else {
+            result.set_item("ssekms_encryption_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2462 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2462)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2463 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2463)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_2464 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_algorithm", converted_2464)?;
+        } else {
+            result.set_item("checksum_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2465 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_2465)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CreateSessionOutput", frozen)]
+struct PyCreateSessionOutput {
+    inner: aws_sdk_s3::operation::create_session::CreateSessionOutput,
+}
+
+#[pymethods]
+impl PyCreateSessionOutput {
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2466 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2466)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2467 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2467)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2468 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2468)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2469 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2469)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn credentials(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.credentials {
+            let converted_2470 = Py::new(
+                py,
+                PySessionCredentials {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2470)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2471 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2471)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2472 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2472)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_2473 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_encryption_context", converted_2473)?;
+        } else {
+            result.set_item("ssekms_encryption_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2474 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2474)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.credentials {
+            let converted_2475 = session_credentials_to_py(py, value)?;
+            result.set_item("credentials", converted_2475)?;
+        } else {
+            result.set_item("credentials", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "DeleteObjectOutput", frozen)]
+struct PyDeleteObjectOutput {
+    inner: aws_sdk_s3::operation::delete_object::DeleteObjectOutput,
+}
+
+#[pymethods]
+impl PyDeleteObjectOutput {
+    #[getter]
+    fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2476 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2476)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2477 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2477)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2478 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2478)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2479 = (value).to_owned().into_py_any(py)?;
+            result.set_item("delete_marker", converted_2479)?;
+        } else {
+            result.set_item("delete_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2480 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2480)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2481 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2481)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "DeleteObjectsOutput", frozen)]
+struct PyDeleteObjectsOutput {
+    inner: aws_sdk_s3::operation::delete_objects::DeleteObjectsOutput,
+}
+
+#[pymethods]
+impl PyDeleteObjectsOutput {
+    #[getter]
+    fn deleted(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.deleted {
+            let converted_2482_list = PyList::empty(py);
+            for item_2483 in value {
+                let converted_item_2484 = Py::new(
+                    py,
+                    PyDeletedObject {
+                        inner: (item_2483).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2482_list.append(converted_item_2484)?;
+            }
+            let converted_2482 = converted_2482_list.into_any().unbind();
+            Ok(converted_2482)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2485 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2485)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.errors {
+            let converted_2486_list = PyList::empty(py);
+            for item_2487 in value {
+                let converted_item_2488 = Py::new(
+                    py,
+                    PyError {
+                        inner: (item_2487).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2486_list.append(converted_item_2488)?;
+            }
+            let converted_2486 = converted_2486_list.into_any().unbind();
+            Ok(converted_2486)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.deleted {
+            let converted_2489_list = PyList::empty(py);
+            for item_2490 in value {
+                let converted_item_2491 = deleted_object_to_py(py, item_2490)?;
+                converted_2489_list.append(converted_item_2491)?;
+            }
+            let converted_2489 = converted_2489_list.into_any().unbind();
+            result.set_item("deleted", converted_2489)?;
+        } else {
+            result.set_item("deleted", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2492 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2492)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.errors {
+            let converted_2493_list = PyList::empty(py);
+            for item_2494 in value {
+                let converted_item_2495 = error_to_py(py, item_2494)?;
+                converted_2493_list.append(converted_item_2495)?;
+            }
+            let converted_2493 = converted_2493_list.into_any().unbind();
+            result.set_item("errors", converted_2493)?;
+        } else {
+            result.set_item("errors", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "DeleteObjectTaggingOutput", frozen)]
+struct PyDeleteObjectTaggingOutput {
+    inner: aws_sdk_s3::operation::delete_object_tagging::DeleteObjectTaggingOutput,
+}
+
+#[pymethods]
+impl PyDeleteObjectTaggingOutput {
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2496 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2496)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.version_id {
+            let converted_2497 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2497)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketAbacOutput", frozen)]
+struct PyGetBucketAbacOutput {
+    inner: aws_sdk_s3::operation::get_bucket_abac::GetBucketAbacOutput,
+}
+
+#[pymethods]
+impl PyGetBucketAbacOutput {
+    #[getter]
+    fn abac_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abac_status {
+            let converted_2498 = Py::new(
+                py,
+                PyAbacStatus {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2498)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.abac_status {
+            let converted_2499 = abac_status_to_py(py, value)?;
+            result.set_item("abac_status", converted_2499)?;
+        } else {
+            result.set_item("abac_status", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketAccelerateConfigurationOutput", frozen)]
+struct PyGetBucketAccelerateConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_accelerate_configuration::GetBucketAccelerateConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketAccelerateConfigurationOutput {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2500 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2500)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2501 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2501)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.status {
+            let converted_2502 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_2502)?;
+        } else {
+            result.set_item("status", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2503 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2503)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketAclOutput", frozen)]
+struct PyGetBucketAclOutput {
+    inner: aws_sdk_s3::operation::get_bucket_acl::GetBucketAclOutput,
+}
+
+#[pymethods]
+impl PyGetBucketAclOutput {
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2504 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2504)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.grants {
+            let converted_2505_list = PyList::empty(py);
+            for item_2506 in value {
+                let converted_item_2507 = Py::new(
+                    py,
+                    PyGrant {
+                        inner: (item_2506).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2505_list.append(converted_item_2507)?;
+            }
+            let converted_2505 = converted_2505_list.into_any().unbind();
+            Ok(converted_2505)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.owner {
+            let converted_2508 = owner_to_py(py, value)?;
+            result.set_item("owner", converted_2508)?;
+        } else {
+            result.set_item("owner", py.None())?;
+        }
+        if let Some(value) = &self.inner.grants {
+            let converted_2509_list = PyList::empty(py);
+            for item_2510 in value {
+                let converted_item_2511 = grant_to_py(py, item_2510)?;
+                converted_2509_list.append(converted_item_2511)?;
+            }
+            let converted_2509 = converted_2509_list.into_any().unbind();
+            result.set_item("grants", converted_2509)?;
+        } else {
+            result.set_item("grants", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketAnalyticsConfigurationOutput", frozen)]
+struct PyGetBucketAnalyticsConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_analytics_configuration::GetBucketAnalyticsConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketAnalyticsConfigurationOutput {
+    #[getter]
+    fn analytics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.analytics_configuration {
+            let converted_2512 = Py::new(
+                py,
+                PyAnalyticsConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2512)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.analytics_configuration {
+            let converted_2513 = analytics_configuration_to_py(py, value)?;
+            result.set_item("analytics_configuration", converted_2513)?;
+        } else {
+            result.set_item("analytics_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketCorsOutput", frozen)]
+struct PyGetBucketCorsOutput {
+    inner: aws_sdk_s3::operation::get_bucket_cors::GetBucketCorsOutput,
+}
+
+#[pymethods]
+impl PyGetBucketCorsOutput {
+    #[getter]
+    fn cors_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.cors_rules {
+            let converted_2514_list = PyList::empty(py);
+            for item_2515 in value {
+                let converted_item_2516 = Py::new(
+                    py,
+                    PyCorsRule {
+                        inner: (item_2515).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2514_list.append(converted_item_2516)?;
+            }
+            let converted_2514 = converted_2514_list.into_any().unbind();
+            Ok(converted_2514)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.cors_rules {
+            let converted_2517_list = PyList::empty(py);
+            for item_2518 in value {
+                let converted_item_2519 = cors_rule_to_py(py, item_2518)?;
+                converted_2517_list.append(converted_item_2519)?;
+            }
+            let converted_2517 = converted_2517_list.into_any().unbind();
+            result.set_item("cors_rules", converted_2517)?;
+        } else {
+            result.set_item("cors_rules", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketEncryptionOutput", frozen)]
+struct PyGetBucketEncryptionOutput {
+    inner: aws_sdk_s3::operation::get_bucket_encryption::GetBucketEncryptionOutput,
+}
+
+#[pymethods]
+impl PyGetBucketEncryptionOutput {
+    #[getter]
+    fn server_side_encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption_configuration {
+            let converted_2520 = Py::new(
+                py,
+                PyServerSideEncryptionConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2520)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.server_side_encryption_configuration {
+            let converted_2521 = server_side_encryption_configuration_to_py(py, value)?;
+            result.set_item("server_side_encryption_configuration", converted_2521)?;
+        } else {
+            result.set_item("server_side_encryption_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketIntelligentTieringConfigurationOutput", frozen)]
+struct PyGetBucketIntelligentTieringConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_intelligent_tiering_configuration::GetBucketIntelligentTieringConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketIntelligentTieringConfigurationOutput {
+    #[getter]
+    fn intelligent_tiering_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.intelligent_tiering_configuration {
+            let converted_2522 = Py::new(
+                py,
+                PyIntelligentTieringConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2522)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.intelligent_tiering_configuration {
+            let converted_2523 = intelligent_tiering_configuration_to_py(py, value)?;
+            result.set_item("intelligent_tiering_configuration", converted_2523)?;
+        } else {
+            result.set_item("intelligent_tiering_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketInventoryConfigurationOutput", frozen)]
+struct PyGetBucketInventoryConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_inventory_configuration::GetBucketInventoryConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketInventoryConfigurationOutput {
+    #[getter]
+    fn inventory_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inventory_configuration {
+            let converted_2524 = Py::new(
+                py,
+                PyInventoryConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2524)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.inventory_configuration {
+            let converted_2525 = inventory_configuration_to_py(py, value)?;
+            result.set_item("inventory_configuration", converted_2525)?;
+        } else {
+            result.set_item("inventory_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketLifecycleConfigurationOutput", frozen)]
+struct PyGetBucketLifecycleConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_lifecycle_configuration::GetBucketLifecycleConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketLifecycleConfigurationOutput {
+    #[getter]
+    fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.rules {
+            let converted_2526_list = PyList::empty(py);
+            for item_2527 in value {
+                let converted_item_2528 = Py::new(
+                    py,
+                    PyLifecycleRule {
+                        inner: (item_2527).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2526_list.append(converted_item_2528)?;
+            }
+            let converted_2526 = converted_2526_list.into_any().unbind();
+            Ok(converted_2526)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn transition_default_minimum_object_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.transition_default_minimum_object_size {
+            let converted_2529 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2529)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.rules {
+            let converted_2530_list = PyList::empty(py);
+            for item_2531 in value {
+                let converted_item_2532 = lifecycle_rule_to_py(py, item_2531)?;
+                converted_2530_list.append(converted_item_2532)?;
+            }
+            let converted_2530 = converted_2530_list.into_any().unbind();
+            result.set_item("rules", converted_2530)?;
+        } else {
+            result.set_item("rules", py.None())?;
+        }
+        if let Some(value) = &self.inner.transition_default_minimum_object_size {
+            let converted_2533 = (value).as_str().into_py_any(py)?;
+            result.set_item("transition_default_minimum_object_size", converted_2533)?;
+        } else {
+            result.set_item("transition_default_minimum_object_size", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketLocationOutput", frozen)]
+struct PyGetBucketLocationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_location::GetBucketLocationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketLocationOutput {
+    #[getter]
+    fn location_constraint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.location_constraint {
+            let converted_2534 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2534)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.location_constraint {
+            let converted_2535 = (value).as_str().into_py_any(py)?;
+            result.set_item("location_constraint", converted_2535)?;
+        } else {
+            result.set_item("location_constraint", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketLoggingOutput", frozen)]
+struct PyGetBucketLoggingOutput {
+    inner: aws_sdk_s3::operation::get_bucket_logging::GetBucketLoggingOutput,
+}
+
+#[pymethods]
+impl PyGetBucketLoggingOutput {
+    #[getter]
+    fn logging_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.logging_enabled {
+            let converted_2536 = Py::new(
+                py,
+                PyLoggingEnabled {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2536)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.logging_enabled {
+            let converted_2537 = logging_enabled_to_py(py, value)?;
+            result.set_item("logging_enabled", converted_2537)?;
+        } else {
+            result.set_item("logging_enabled", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketMetadataConfigurationOutput", frozen)]
+struct PyGetBucketMetadataConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_metadata_configuration::GetBucketMetadataConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketMetadataConfigurationOutput {
+    #[getter]
+    fn get_bucket_metadata_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.get_bucket_metadata_configuration_result {
+            let converted_2538 = Py::new(
+                py,
+                PyGetBucketMetadataConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2538)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.get_bucket_metadata_configuration_result {
+            let converted_2539 = get_bucket_metadata_configuration_result_to_py(py, value)?;
+            result.set_item("get_bucket_metadata_configuration_result", converted_2539)?;
+        } else {
+            result.set_item("get_bucket_metadata_configuration_result", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketMetadataTableConfigurationOutput", frozen)]
+struct PyGetBucketMetadataTableConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_metadata_table_configuration::GetBucketMetadataTableConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketMetadataTableConfigurationOutput {
+    #[getter]
+    fn get_bucket_metadata_table_configuration_result(
+        &self,
+        py: Python<'_>,
+    ) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.get_bucket_metadata_table_configuration_result {
+            let converted_2540 = Py::new(
+                py,
+                PyGetBucketMetadataTableConfigurationResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2540)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.get_bucket_metadata_table_configuration_result {
+            let converted_2541 = get_bucket_metadata_table_configuration_result_to_py(py, value)?;
+            result.set_item(
+                "get_bucket_metadata_table_configuration_result",
+                converted_2541,
+            )?;
+        } else {
+            result.set_item("get_bucket_metadata_table_configuration_result", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketMetricsConfigurationOutput", frozen)]
+struct PyGetBucketMetricsConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_metrics_configuration::GetBucketMetricsConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketMetricsConfigurationOutput {
+    #[getter]
+    fn metrics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metrics_configuration {
+            let converted_2542 = Py::new(
+                py,
+                PyMetricsConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2542)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.metrics_configuration {
+            let converted_2543 = metrics_configuration_to_py(py, value)?;
+            result.set_item("metrics_configuration", converted_2543)?;
+        } else {
+            result.set_item("metrics_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketNotificationConfigurationOutput", frozen)]
+struct PyGetBucketNotificationConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_notification_configuration::GetBucketNotificationConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketNotificationConfigurationOutput {
+    #[getter]
+    fn topic_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.topic_configurations {
+            let converted_2544_list = PyList::empty(py);
+            for item_2545 in value {
+                let converted_item_2546 = Py::new(
+                    py,
+                    PyTopicConfiguration {
+                        inner: (item_2545).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2544_list.append(converted_item_2546)?;
+            }
+            let converted_2544 = converted_2544_list.into_any().unbind();
+            Ok(converted_2544)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn queue_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_configurations {
+            let converted_2547_list = PyList::empty(py);
+            for item_2548 in value {
+                let converted_item_2549 = Py::new(
+                    py,
+                    PyQueueConfiguration {
+                        inner: (item_2548).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2547_list.append(converted_item_2549)?;
+            }
+            let converted_2547 = converted_2547_list.into_any().unbind();
+            Ok(converted_2547)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn lambda_function_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.lambda_function_configurations {
+            let converted_2550_list = PyList::empty(py);
+            for item_2551 in value {
+                let converted_item_2552 = Py::new(
+                    py,
+                    PyLambdaFunctionConfiguration {
+                        inner: (item_2551).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2550_list.append(converted_item_2552)?;
+            }
+            let converted_2550 = converted_2550_list.into_any().unbind();
+            Ok(converted_2550)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn event_bridge_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.event_bridge_configuration {
+            let converted_2553 = Py::new(
+                py,
+                PyEventBridgeConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2553)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.topic_configurations {
+            let converted_2554_list = PyList::empty(py);
+            for item_2555 in value {
+                let converted_item_2556 = topic_configuration_to_py(py, item_2555)?;
+                converted_2554_list.append(converted_item_2556)?;
+            }
+            let converted_2554 = converted_2554_list.into_any().unbind();
+            result.set_item("topic_configurations", converted_2554)?;
+        } else {
+            result.set_item("topic_configurations", py.None())?;
+        }
+        if let Some(value) = &self.inner.queue_configurations {
+            let converted_2557_list = PyList::empty(py);
+            for item_2558 in value {
+                let converted_item_2559 = queue_configuration_to_py(py, item_2558)?;
+                converted_2557_list.append(converted_item_2559)?;
+            }
+            let converted_2557 = converted_2557_list.into_any().unbind();
+            result.set_item("queue_configurations", converted_2557)?;
+        } else {
+            result.set_item("queue_configurations", py.None())?;
+        }
+        if let Some(value) = &self.inner.lambda_function_configurations {
+            let converted_2560_list = PyList::empty(py);
+            for item_2561 in value {
+                let converted_item_2562 = lambda_function_configuration_to_py(py, item_2561)?;
+                converted_2560_list.append(converted_item_2562)?;
+            }
+            let converted_2560 = converted_2560_list.into_any().unbind();
+            result.set_item("lambda_function_configurations", converted_2560)?;
+        } else {
+            result.set_item("lambda_function_configurations", py.None())?;
+        }
+        if let Some(value) = &self.inner.event_bridge_configuration {
+            let converted_2563 = event_bridge_configuration_to_py(py, value)?;
+            result.set_item("event_bridge_configuration", converted_2563)?;
+        } else {
+            result.set_item("event_bridge_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketOwnershipControlsOutput", frozen)]
+struct PyGetBucketOwnershipControlsOutput {
+    inner: aws_sdk_s3::operation::get_bucket_ownership_controls::GetBucketOwnershipControlsOutput,
+}
+
+#[pymethods]
+impl PyGetBucketOwnershipControlsOutput {
+    #[getter]
+    fn ownership_controls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ownership_controls {
+            let converted_2564 = Py::new(
+                py,
+                PyOwnershipControls {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2564)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.ownership_controls {
+            let converted_2565 = ownership_controls_to_py(py, value)?;
+            result.set_item("ownership_controls", converted_2565)?;
+        } else {
+            result.set_item("ownership_controls", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketPolicyOutput", frozen)]
+struct PyGetBucketPolicyOutput {
+    inner: aws_sdk_s3::operation::get_bucket_policy::GetBucketPolicyOutput,
+}
+
+#[pymethods]
+impl PyGetBucketPolicyOutput {
+    #[getter]
+    fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.policy {
+            let converted_2566 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2566)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.policy {
+            let converted_2567 = (value).as_str().into_py_any(py)?;
+            result.set_item("policy", converted_2567)?;
+        } else {
+            result.set_item("policy", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketPolicyStatusOutput", frozen)]
+struct PyGetBucketPolicyStatusOutput {
+    inner: aws_sdk_s3::operation::get_bucket_policy_status::GetBucketPolicyStatusOutput,
+}
+
+#[pymethods]
+impl PyGetBucketPolicyStatusOutput {
+    #[getter]
+    fn policy_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.policy_status {
+            let converted_2568 = Py::new(
+                py,
+                PyPolicyStatus {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2568)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.policy_status {
+            let converted_2569 = policy_status_to_py(py, value)?;
+            result.set_item("policy_status", converted_2569)?;
+        } else {
+            result.set_item("policy_status", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketReplicationOutput", frozen)]
+struct PyGetBucketReplicationOutput {
+    inner: aws_sdk_s3::operation::get_bucket_replication::GetBucketReplicationOutput,
+}
+
+#[pymethods]
+impl PyGetBucketReplicationOutput {
+    #[getter]
+    fn replication_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_configuration {
+            let converted_2570 = Py::new(
+                py,
+                PyReplicationConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2570)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.replication_configuration {
+            let converted_2571 = replication_configuration_to_py(py, value)?;
+            result.set_item("replication_configuration", converted_2571)?;
+        } else {
+            result.set_item("replication_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketRequestPaymentOutput", frozen)]
+struct PyGetBucketRequestPaymentOutput {
+    inner: aws_sdk_s3::operation::get_bucket_request_payment::GetBucketRequestPaymentOutput,
+}
+
+#[pymethods]
+impl PyGetBucketRequestPaymentOutput {
+    #[getter]
+    fn payer(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.payer {
+            let converted_2572 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2572)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.payer {
+            let converted_2573 = (value).as_str().into_py_any(py)?;
+            result.set_item("payer", converted_2573)?;
+        } else {
+            result.set_item("payer", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketTaggingOutput", frozen)]
+struct PyGetBucketTaggingOutput {
+    inner: aws_sdk_s3::operation::get_bucket_tagging::GetBucketTaggingOutput,
+}
+
+#[pymethods]
+impl PyGetBucketTaggingOutput {
+    #[getter]
+    fn tag_set(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2574_list = PyList::empty(py);
+        for item_2575 in &self.inner.tag_set {
+            let converted_item_2576 = Py::new(
+                py,
+                PyTag {
+                    inner: (item_2575).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2574_list.append(converted_item_2576)?;
+        }
+        let converted_2574 = converted_2574_list.into_any().unbind();
+        Ok(converted_2574)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_2577_list = PyList::empty(py);
+        for item_2578 in &self.inner.tag_set {
+            let converted_item_2579 = tag_to_py(py, item_2578)?;
+            converted_2577_list.append(converted_item_2579)?;
+        }
+        let converted_2577 = converted_2577_list.into_any().unbind();
+        result.set_item("tag_set", converted_2577)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketVersioningOutput", frozen)]
+struct PyGetBucketVersioningOutput {
+    inner: aws_sdk_s3::operation::get_bucket_versioning::GetBucketVersioningOutput,
+}
+
+#[pymethods]
+impl PyGetBucketVersioningOutput {
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_2580 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2580)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn mfa_delete(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.mfa_delete {
+            let converted_2581 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2581)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.status {
+            let converted_2582 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_2582)?;
+        } else {
+            result.set_item("status", py.None())?;
+        }
+        if let Some(value) = &self.inner.mfa_delete {
+            let converted_2583 = (value).as_str().into_py_any(py)?;
+            result.set_item("mfa_delete", converted_2583)?;
+        } else {
+            result.set_item("mfa_delete", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetBucketWebsiteOutput", frozen)]
+struct PyGetBucketWebsiteOutput {
+    inner: aws_sdk_s3::operation::get_bucket_website::GetBucketWebsiteOutput,
+}
+
+#[pymethods]
+impl PyGetBucketWebsiteOutput {
+    #[getter]
+    fn redirect_all_requests_to(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.redirect_all_requests_to {
+            let converted_2584 = Py::new(
+                py,
+                PyRedirectAllRequestsTo {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2584)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn index_document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.index_document {
+            let converted_2585 = Py::new(
+                py,
+                PyIndexDocument {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2585)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn error_document(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.error_document {
+            let converted_2586 = Py::new(
+                py,
+                PyErrorDocument {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2586)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn routing_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.routing_rules {
+            let converted_2587_list = PyList::empty(py);
+            for item_2588 in value {
+                let converted_item_2589 = Py::new(
+                    py,
+                    PyRoutingRule {
+                        inner: (item_2588).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2587_list.append(converted_item_2589)?;
+            }
+            let converted_2587 = converted_2587_list.into_any().unbind();
+            Ok(converted_2587)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.redirect_all_requests_to {
+            let converted_2590 = redirect_all_requests_to_to_py(py, value)?;
+            result.set_item("redirect_all_requests_to", converted_2590)?;
+        } else {
+            result.set_item("redirect_all_requests_to", py.None())?;
+        }
+        if let Some(value) = &self.inner.index_document {
+            let converted_2591 = index_document_to_py(py, value)?;
+            result.set_item("index_document", converted_2591)?;
+        } else {
+            result.set_item("index_document", py.None())?;
+        }
+        if let Some(value) = &self.inner.error_document {
+            let converted_2592 = error_document_to_py(py, value)?;
+            result.set_item("error_document", converted_2592)?;
+        } else {
+            result.set_item("error_document", py.None())?;
+        }
+        if let Some(value) = &self.inner.routing_rules {
+            let converted_2593_list = PyList::empty(py);
+            for item_2594 in value {
+                let converted_item_2595 = routing_rule_to_py(py, item_2594)?;
+                converted_2593_list.append(converted_item_2595)?;
+            }
+            let converted_2593 = converted_2593_list.into_any().unbind();
+            result.set_item("routing_rules", converted_2593)?;
+        } else {
+            result.set_item("routing_rules", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectOutput", frozen)]
+struct PyGetObjectOutput {
+    inner: aws_sdk_s3::operation::get_object::GetObjectOutput,
+    body: Py<PyByteStream>,
+}
+
+#[pymethods]
+impl PyGetObjectOutput {
+    #[getter]
+    fn body(&self, py: Python<'_>) -> Py<PyAny> {
+        self.body.clone_ref(py).into_any()
+    }
+
+    #[getter]
+    fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2596 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2596)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn accept_ranges(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.accept_ranges {
+            let converted_2597 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2597)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_2598 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2598)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore {
+            let converted_2599 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2599)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2600 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2600)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_length(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_length {
+            let converted_2601 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2601)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2602 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2602)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2603 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2603)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2604 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2604)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2605 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2605)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2606 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2606)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2607 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2607)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2608 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2608)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn missing_meta(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.missing_meta {
+            let converted_2609 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2609)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2610 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2610)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn cache_control(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.cache_control {
+            let converted_2611 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2611)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_disposition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_disposition {
+            let converted_2612 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2612)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_encoding {
+            let converted_2613 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2613)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_language(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_language {
+            let converted_2614 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2614)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_range(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_range {
+            let converted_2615 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2615)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_type {
+            let converted_2616 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2616)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn website_redirect_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.website_redirect_location {
+            let converted_2617 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2617)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2618 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2618)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metadata {
+            let converted_2619_dict = PyDict::new(py);
+            for (key_2620, value_2621) in value {
+                let converted_key_2622 = (key_2620).as_str().into_py_any(py)?;
+                let converted_value_2623 = (value_2621).as_str().into_py_any(py)?;
+                converted_2619_dict.set_item(converted_key_2622, converted_value_2623)?;
+            }
+            let converted_2619 = converted_2619_dict.into_any().unbind();
+            Ok(converted_2619)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2624 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2624)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2625 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2625)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2626 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2626)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2627 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2627)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2628 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2628)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2629 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2629)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replication_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_status {
+            let converted_2630 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2630)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn parts_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.parts_count {
+            let converted_2631 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2631)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tag_count {
+            let converted_2632 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2632)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_mode {
+            let converted_2633 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2633)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_retain_until_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_retain_until_date {
+            let converted_2634 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2634)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_legal_hold_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_legal_hold_status {
+            let converted_2635 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2635)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expires(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expires {
+            let converted_2636 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2636)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expires_string(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expires_string {
+            let converted_2637 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2637)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        result.set_item("body", self.body.clone_ref(py))?;
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2638 = (value).to_owned().into_py_any(py)?;
+            result.set_item("delete_marker", converted_2638)?;
+        } else {
+            result.set_item("delete_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.accept_ranges {
+            let converted_2639 = (value).as_str().into_py_any(py)?;
+            result.set_item("accept_ranges", converted_2639)?;
+        } else {
+            result.set_item("accept_ranges", py.None())?;
+        }
+        if let Some(value) = &self.inner.expiration {
+            let converted_2640 = (value).as_str().into_py_any(py)?;
+            result.set_item("expiration", converted_2640)?;
+        } else {
+            result.set_item("expiration", py.None())?;
+        }
+        if let Some(value) = &self.inner.restore {
+            let converted_2641 = (value).as_str().into_py_any(py)?;
+            result.set_item("restore", converted_2641)?;
+        } else {
+            result.set_item("restore", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2642 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified", converted_2642)?;
+        } else {
+            result.set_item("last_modified", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_length {
+            let converted_2643 = (value).to_owned().into_py_any(py)?;
+            result.set_item("content_length", converted_2643)?;
+        } else {
+            result.set_item("content_length", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2644 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_2644)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2645 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32", converted_2645)?;
+        } else {
+            result.set_item("checksum_crc32", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2646 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32_c", converted_2646)?;
+        } else {
+            result.set_item("checksum_crc32_c", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2647 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc64_nvme", converted_2647)?;
+        } else {
+            result.set_item("checksum_crc64_nvme", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2648 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha1", converted_2648)?;
+        } else {
+            result.set_item("checksum_sha1", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2649 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha256", converted_2649)?;
+        } else {
+            result.set_item("checksum_sha256", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2650 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_2650)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.missing_meta {
+            let converted_2651 = (value).to_owned().into_py_any(py)?;
+            result.set_item("missing_meta", converted_2651)?;
+        } else {
+            result.set_item("missing_meta", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2652 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2652)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.cache_control {
+            let converted_2653 = (value).as_str().into_py_any(py)?;
+            result.set_item("cache_control", converted_2653)?;
+        } else {
+            result.set_item("cache_control", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_disposition {
+            let converted_2654 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_disposition", converted_2654)?;
+        } else {
+            result.set_item("content_disposition", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_encoding {
+            let converted_2655 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_encoding", converted_2655)?;
+        } else {
+            result.set_item("content_encoding", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_language {
+            let converted_2656 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_language", converted_2656)?;
+        } else {
+            result.set_item("content_language", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_range {
+            let converted_2657 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_range", converted_2657)?;
+        } else {
+            result.set_item("content_range", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_type {
+            let converted_2658 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_2658)?;
+        } else {
+            result.set_item("content_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.website_redirect_location {
+            let converted_2659 = (value).as_str().into_py_any(py)?;
+            result.set_item("website_redirect_location", converted_2659)?;
+        } else {
+            result.set_item("website_redirect_location", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2660 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2660)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.metadata {
+            let converted_2661_dict = PyDict::new(py);
+            for (key_2662, value_2663) in value {
+                let converted_key_2664 = (key_2662).as_str().into_py_any(py)?;
+                let converted_value_2665 = (value_2663).as_str().into_py_any(py)?;
+                converted_2661_dict.set_item(converted_key_2664, converted_value_2665)?;
+            }
+            let converted_2661 = converted_2661_dict.into_any().unbind();
+            result.set_item("metadata", converted_2661)?;
+        } else {
+            result.set_item("metadata", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2666 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_2666)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2667 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_2667)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2668 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2668)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2669 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2669)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2670 = (value).as_str().into_py_any(py)?;
+            result.set_item("storage_class", converted_2670)?;
+        } else {
+            result.set_item("storage_class", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2671 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2671)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.replication_status {
+            let converted_2672 = (value).as_str().into_py_any(py)?;
+            result.set_item("replication_status", converted_2672)?;
+        } else {
+            result.set_item("replication_status", py.None())?;
+        }
+        if let Some(value) = &self.inner.parts_count {
+            let converted_2673 = (value).to_owned().into_py_any(py)?;
+            result.set_item("parts_count", converted_2673)?;
+        } else {
+            result.set_item("parts_count", py.None())?;
+        }
+        if let Some(value) = &self.inner.tag_count {
+            let converted_2674 = (value).to_owned().into_py_any(py)?;
+            result.set_item("tag_count", converted_2674)?;
+        } else {
+            result.set_item("tag_count", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_mode {
+            let converted_2675 = (value).as_str().into_py_any(py)?;
+            result.set_item("object_lock_mode", converted_2675)?;
+        } else {
+            result.set_item("object_lock_mode", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_retain_until_date {
+            let converted_2676 = (value).to_string().into_py_any(py)?;
+            result.set_item("object_lock_retain_until_date", converted_2676)?;
+        } else {
+            result.set_item("object_lock_retain_until_date", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_legal_hold_status {
+            let converted_2677 = (value).as_str().into_py_any(py)?;
+            result.set_item("object_lock_legal_hold_status", converted_2677)?;
+        } else {
+            result.set_item("object_lock_legal_hold_status", py.None())?;
+        }
+        if let Some(value) = &self.inner.expires {
+            let converted_2678 = (value).to_string().into_py_any(py)?;
+            result.set_item("expires", converted_2678)?;
+        } else {
+            result.set_item("expires", py.None())?;
+        }
+        if let Some(value) = &self.inner.expires_string {
+            let converted_2679 = (value).as_str().into_py_any(py)?;
+            result.set_item("expires_string", converted_2679)?;
+        } else {
+            result.set_item("expires_string", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectAclOutput", frozen)]
+struct PyGetObjectAclOutput {
+    inner: aws_sdk_s3::operation::get_object_acl::GetObjectAclOutput,
+}
+
+#[pymethods]
+impl PyGetObjectAclOutput {
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2680 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2680)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.grants {
+            let converted_2681_list = PyList::empty(py);
+            for item_2682 in value {
+                let converted_item_2683 = Py::new(
+                    py,
+                    PyGrant {
+                        inner: (item_2682).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2681_list.append(converted_item_2683)?;
+            }
+            let converted_2681 = converted_2681_list.into_any().unbind();
+            Ok(converted_2681)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2684 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2684)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.owner {
+            let converted_2685 = owner_to_py(py, value)?;
+            result.set_item("owner", converted_2685)?;
+        } else {
+            result.set_item("owner", py.None())?;
+        }
+        if let Some(value) = &self.inner.grants {
+            let converted_2686_list = PyList::empty(py);
+            for item_2687 in value {
+                let converted_item_2688 = grant_to_py(py, item_2687)?;
+                converted_2686_list.append(converted_item_2688)?;
+            }
+            let converted_2686 = converted_2686_list.into_any().unbind();
+            result.set_item("grants", converted_2686)?;
+        } else {
+            result.set_item("grants", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2689 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2689)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectAttributesOutput", frozen)]
+struct PyGetObjectAttributesOutput {
+    inner: aws_sdk_s3::operation::get_object_attributes::GetObjectAttributesOutput,
+}
+
+#[pymethods]
+impl PyGetObjectAttributesOutput {
+    #[getter]
+    fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2690 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2690)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2691 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2691)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2692 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2692)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2693 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2693)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2694 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2694)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum {
+            let converted_2695 = Py::new(
+                py,
+                PyChecksum {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2695)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_parts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_parts {
+            let converted_2696 = Py::new(
+                py,
+                PyGetObjectAttributesParts {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2696)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2697 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2697)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_size {
+            let converted_2698 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2698)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2699 = (value).to_owned().into_py_any(py)?;
+            result.set_item("delete_marker", converted_2699)?;
+        } else {
+            result.set_item("delete_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2700 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified", converted_2700)?;
+        } else {
+            result.set_item("last_modified", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2701 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2701)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2702 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2702)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2703 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_2703)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum {
+            let converted_2704 = checksum_to_py(py, value)?;
+            result.set_item("checksum", converted_2704)?;
+        } else {
+            result.set_item("checksum", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_parts {
+            let converted_2705 = get_object_attributes_parts_to_py(py, value)?;
+            result.set_item("object_parts", converted_2705)?;
+        } else {
+            result.set_item("object_parts", py.None())?;
+        }
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2706 = (value).as_str().into_py_any(py)?;
+            result.set_item("storage_class", converted_2706)?;
+        } else {
+            result.set_item("storage_class", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_size {
+            let converted_2707 = (value).to_owned().into_py_any(py)?;
+            result.set_item("object_size", converted_2707)?;
+        } else {
+            result.set_item("object_size", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectLegalHoldOutput", frozen)]
+struct PyGetObjectLegalHoldOutput {
+    inner: aws_sdk_s3::operation::get_object_legal_hold::GetObjectLegalHoldOutput,
+}
+
+#[pymethods]
+impl PyGetObjectLegalHoldOutput {
+    #[getter]
+    fn legal_hold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.legal_hold {
+            let converted_2708 = Py::new(
+                py,
+                PyObjectLockLegalHold {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2708)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.legal_hold {
+            let converted_2709 = object_lock_legal_hold_to_py(py, value)?;
+            result.set_item("legal_hold", converted_2709)?;
+        } else {
+            result.set_item("legal_hold", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectLockConfigurationOutput", frozen)]
+struct PyGetObjectLockConfigurationOutput {
+    inner: aws_sdk_s3::operation::get_object_lock_configuration::GetObjectLockConfigurationOutput,
+}
+
+#[pymethods]
+impl PyGetObjectLockConfigurationOutput {
+    #[getter]
+    fn object_lock_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_configuration {
+            let converted_2710 = Py::new(
+                py,
+                PyObjectLockConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2710)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.object_lock_configuration {
+            let converted_2711 = object_lock_configuration_to_py(py, value)?;
+            result.set_item("object_lock_configuration", converted_2711)?;
+        } else {
+            result.set_item("object_lock_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectRetentionOutput", frozen)]
+struct PyGetObjectRetentionOutput {
+    inner: aws_sdk_s3::operation::get_object_retention::GetObjectRetentionOutput,
+}
+
+#[pymethods]
+impl PyGetObjectRetentionOutput {
+    #[getter]
+    fn retention(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.retention {
+            let converted_2712 = Py::new(
+                py,
+                PyObjectLockRetention {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2712)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.retention {
+            let converted_2713 = object_lock_retention_to_py(py, value)?;
+            result.set_item("retention", converted_2713)?;
+        } else {
+            result.set_item("retention", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectTaggingOutput", frozen)]
+struct PyGetObjectTaggingOutput {
+    inner: aws_sdk_s3::operation::get_object_tagging::GetObjectTaggingOutput,
+}
+
+#[pymethods]
+impl PyGetObjectTaggingOutput {
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2714 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2714)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag_set(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_2715_list = PyList::empty(py);
+        for item_2716 in &self.inner.tag_set {
+            let converted_item_2717 = Py::new(
+                py,
+                PyTag {
+                    inner: (item_2716).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_2715_list.append(converted_item_2717)?;
+        }
+        let converted_2715 = converted_2715_list.into_any().unbind();
+        Ok(converted_2715)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.version_id {
+            let converted_2718 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2718)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        let converted_2719_list = PyList::empty(py);
+        for item_2720 in &self.inner.tag_set {
+            let converted_item_2721 = tag_to_py(py, item_2720)?;
+            converted_2719_list.append(converted_item_2721)?;
+        }
+        let converted_2719 = converted_2719_list.into_any().unbind();
+        result.set_item("tag_set", converted_2719)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetObjectTorrentOutput", frozen)]
+struct PyGetObjectTorrentOutput {
+    inner: aws_sdk_s3::operation::get_object_torrent::GetObjectTorrentOutput,
+    body: Py<PyByteStream>,
+}
+
+#[pymethods]
+impl PyGetObjectTorrentOutput {
+    #[getter]
+    fn body(&self, py: Python<'_>) -> Py<PyAny> {
+        self.body.clone_ref(py).into_any()
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2722 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2722)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        result.set_item("body", self.body.clone_ref(py))?;
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2723 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2723)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetPublicAccessBlockOutput", frozen)]
+struct PyGetPublicAccessBlockOutput {
+    inner: aws_sdk_s3::operation::get_public_access_block::GetPublicAccessBlockOutput,
+}
+
+#[pymethods]
+impl PyGetPublicAccessBlockOutput {
+    #[getter]
+    fn public_access_block_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.public_access_block_configuration {
+            let converted_2724 = Py::new(
+                py,
+                PyPublicAccessBlockConfiguration {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2724)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.public_access_block_configuration {
+            let converted_2725 = public_access_block_configuration_to_py(py, value)?;
+            result.set_item("public_access_block_configuration", converted_2725)?;
+        } else {
+            result.set_item("public_access_block_configuration", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "HeadBucketOutput", frozen)]
+struct PyHeadBucketOutput {
+    inner: aws_sdk_s3::operation::head_bucket::HeadBucketOutput,
+}
+
+#[pymethods]
+impl PyHeadBucketOutput {
+    #[getter]
+    fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_arn {
+            let converted_2726 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2726)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_location_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_location_type {
+            let converted_2727 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2727)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_location_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_location_name {
+            let converted_2728 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2728)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_region {
+            let converted_2729 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2729)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn access_point_alias(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.access_point_alias {
+            let converted_2730 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2730)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.bucket_arn {
+            let converted_2731 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket_arn", converted_2731)?;
+        } else {
+            result.set_item("bucket_arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_location_type {
+            let converted_2732 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket_location_type", converted_2732)?;
+        } else {
+            result.set_item("bucket_location_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_location_name {
+            let converted_2733 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket_location_name", converted_2733)?;
+        } else {
+            result.set_item("bucket_location_name", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_region {
+            let converted_2734 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket_region", converted_2734)?;
+        } else {
+            result.set_item("bucket_region", py.None())?;
+        }
+        if let Some(value) = &self.inner.access_point_alias {
+            let converted_2735 = (value).to_owned().into_py_any(py)?;
+            result.set_item("access_point_alias", converted_2735)?;
+        } else {
+            result.set_item("access_point_alias", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "HeadObjectOutput", frozen)]
+struct PyHeadObjectOutput {
+    inner: aws_sdk_s3::operation::head_object::HeadObjectOutput,
+}
+
+#[pymethods]
+impl PyHeadObjectOutput {
+    #[getter]
+    fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2736 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2736)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn accept_ranges(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.accept_ranges {
+            let converted_2737 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2737)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_2738 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2738)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore {
+            let converted_2739 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2739)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn archive_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.archive_status {
+            let converted_2740 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2740)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2741 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2741)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_length(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_length {
+            let converted_2742 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2742)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2743 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2743)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2744 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2744)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2745 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2745)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2746 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2746)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2747 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2747)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2748 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2748)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2749 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2749)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn missing_meta(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.missing_meta {
+            let converted_2750 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2750)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_2751 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2751)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn cache_control(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.cache_control {
+            let converted_2752 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2752)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_disposition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_disposition {
+            let converted_2753 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2753)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_encoding {
+            let converted_2754 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2754)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_language(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_language {
+            let converted_2755 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2755)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_type {
+            let converted_2756 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2756)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn content_range(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.content_range {
+            let converted_2757 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2757)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn website_redirect_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.website_redirect_location {
+            let converted_2758 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2758)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2759 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2759)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metadata {
+            let converted_2760_dict = PyDict::new(py);
+            for (key_2761, value_2762) in value {
+                let converted_key_2763 = (key_2761).as_str().into_py_any(py)?;
+                let converted_value_2764 = (value_2762).as_str().into_py_any(py)?;
+                converted_2760_dict.set_item(converted_key_2763, converted_value_2764)?;
+            }
+            let converted_2760 = converted_2760_dict.into_any().unbind();
+            Ok(converted_2760)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2765 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2765)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2766 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2766)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2767 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2767)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2768 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2768)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2769 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2769)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2770 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2770)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn replication_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.replication_status {
+            let converted_2771 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2771)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn parts_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.parts_count {
+            let converted_2772 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2772)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn tag_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tag_count {
+            let converted_2773 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2773)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_mode(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_mode {
+            let converted_2774 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2774)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_retain_until_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_retain_until_date {
+            let converted_2775 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2775)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn object_lock_legal_hold_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.object_lock_legal_hold_status {
+            let converted_2776 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2776)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expires(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expires {
+            let converted_2777 = (value).to_string().into_py_any(py)?;
+            Ok(converted_2777)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn expires_string(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expires_string {
+            let converted_2778 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2778)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.delete_marker {
+            let converted_2779 = (value).to_owned().into_py_any(py)?;
+            result.set_item("delete_marker", converted_2779)?;
+        } else {
+            result.set_item("delete_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.accept_ranges {
+            let converted_2780 = (value).as_str().into_py_any(py)?;
+            result.set_item("accept_ranges", converted_2780)?;
+        } else {
+            result.set_item("accept_ranges", py.None())?;
+        }
+        if let Some(value) = &self.inner.expiration {
+            let converted_2781 = (value).as_str().into_py_any(py)?;
+            result.set_item("expiration", converted_2781)?;
+        } else {
+            result.set_item("expiration", py.None())?;
+        }
+        if let Some(value) = &self.inner.restore {
+            let converted_2782 = (value).as_str().into_py_any(py)?;
+            result.set_item("restore", converted_2782)?;
+        } else {
+            result.set_item("restore", py.None())?;
+        }
+        if let Some(value) = &self.inner.archive_status {
+            let converted_2783 = (value).as_str().into_py_any(py)?;
+            result.set_item("archive_status", converted_2783)?;
+        } else {
+            result.set_item("archive_status", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified {
+            let converted_2784 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified", converted_2784)?;
+        } else {
+            result.set_item("last_modified", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_length {
+            let converted_2785 = (value).to_owned().into_py_any(py)?;
+            result.set_item("content_length", converted_2785)?;
+        } else {
+            result.set_item("content_length", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_2786 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32", converted_2786)?;
+        } else {
+            result.set_item("checksum_crc32", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_2787 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32_c", converted_2787)?;
+        } else {
+            result.set_item("checksum_crc32_c", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_2788 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc64_nvme", converted_2788)?;
+        } else {
+            result.set_item("checksum_crc64_nvme", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_2789 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha1", converted_2789)?;
+        } else {
+            result.set_item("checksum_sha1", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_2790 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha256", converted_2790)?;
+        } else {
+            result.set_item("checksum_sha256", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_2791 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_2791)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_2792 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_2792)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.missing_meta {
+            let converted_2793 = (value).to_owned().into_py_any(py)?;
+            result.set_item("missing_meta", converted_2793)?;
+        } else {
+            result.set_item("missing_meta", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_2794 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_2794)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.cache_control {
+            let converted_2795 = (value).as_str().into_py_any(py)?;
+            result.set_item("cache_control", converted_2795)?;
+        } else {
+            result.set_item("cache_control", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_disposition {
+            let converted_2796 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_disposition", converted_2796)?;
+        } else {
+            result.set_item("content_disposition", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_encoding {
+            let converted_2797 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_encoding", converted_2797)?;
+        } else {
+            result.set_item("content_encoding", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_language {
+            let converted_2798 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_language", converted_2798)?;
+        } else {
+            result.set_item("content_language", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_type {
+            let converted_2799 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_2799)?;
+        } else {
+            result.set_item("content_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.content_range {
+            let converted_2800 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_range", converted_2800)?;
+        } else {
+            result.set_item("content_range", py.None())?;
+        }
+        if let Some(value) = &self.inner.website_redirect_location {
+            let converted_2801 = (value).as_str().into_py_any(py)?;
+            result.set_item("website_redirect_location", converted_2801)?;
+        } else {
+            result.set_item("website_redirect_location", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_2802 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_2802)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.metadata {
+            let converted_2803_dict = PyDict::new(py);
+            for (key_2804, value_2805) in value {
+                let converted_key_2806 = (key_2804).as_str().into_py_any(py)?;
+                let converted_value_2807 = (value_2805).as_str().into_py_any(py)?;
+                converted_2803_dict.set_item(converted_key_2806, converted_value_2807)?;
+            }
+            let converted_2803 = converted_2803_dict.into_any().unbind();
+            result.set_item("metadata", converted_2803)?;
+        } else {
+            result.set_item("metadata", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_2808 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_2808)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_2809 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_2809)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_2810 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_2810)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_2811 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_2811)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.storage_class {
+            let converted_2812 = (value).as_str().into_py_any(py)?;
+            result.set_item("storage_class", converted_2812)?;
+        } else {
+            result.set_item("storage_class", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2813 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2813)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.replication_status {
+            let converted_2814 = (value).as_str().into_py_any(py)?;
+            result.set_item("replication_status", converted_2814)?;
+        } else {
+            result.set_item("replication_status", py.None())?;
+        }
+        if let Some(value) = &self.inner.parts_count {
+            let converted_2815 = (value).to_owned().into_py_any(py)?;
+            result.set_item("parts_count", converted_2815)?;
+        } else {
+            result.set_item("parts_count", py.None())?;
+        }
+        if let Some(value) = &self.inner.tag_count {
+            let converted_2816 = (value).to_owned().into_py_any(py)?;
+            result.set_item("tag_count", converted_2816)?;
+        } else {
+            result.set_item("tag_count", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_mode {
+            let converted_2817 = (value).as_str().into_py_any(py)?;
+            result.set_item("object_lock_mode", converted_2817)?;
+        } else {
+            result.set_item("object_lock_mode", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_retain_until_date {
+            let converted_2818 = (value).to_string().into_py_any(py)?;
+            result.set_item("object_lock_retain_until_date", converted_2818)?;
+        } else {
+            result.set_item("object_lock_retain_until_date", py.None())?;
+        }
+        if let Some(value) = &self.inner.object_lock_legal_hold_status {
+            let converted_2819 = (value).as_str().into_py_any(py)?;
+            result.set_item("object_lock_legal_hold_status", converted_2819)?;
+        } else {
+            result.set_item("object_lock_legal_hold_status", py.None())?;
+        }
+        if let Some(value) = &self.inner.expires {
+            let converted_2820 = (value).to_string().into_py_any(py)?;
+            result.set_item("expires", converted_2820)?;
+        } else {
+            result.set_item("expires", py.None())?;
+        }
+        if let Some(value) = &self.inner.expires_string {
+            let converted_2821 = (value).as_str().into_py_any(py)?;
+            result.set_item("expires_string", converted_2821)?;
+        } else {
+            result.set_item("expires_string", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListBucketAnalyticsConfigurationsOutput", frozen)]
+struct PyListBucketAnalyticsConfigurationsOutput {
+    inner: aws_sdk_s3::operation::list_bucket_analytics_configurations::ListBucketAnalyticsConfigurationsOutput,
+}
+
+#[pymethods]
+impl PyListBucketAnalyticsConfigurationsOutput {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2822 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2822)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2823 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2823)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2824)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn analytics_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.analytics_configuration_list {
+            let converted_2825_list = PyList::empty(py);
+            for item_2826 in value {
+                let converted_item_2827 = Py::new(
+                    py,
+                    PyAnalyticsConfiguration {
+                        inner: (item_2826).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2825_list.append(converted_item_2827)?;
+            }
+            let converted_2825 = converted_2825_list.into_any().unbind();
+            Ok(converted_2825)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2828 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2828)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2829 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2829)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2830 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_continuation_token", converted_2830)?;
+        } else {
+            result.set_item("next_continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.analytics_configuration_list {
+            let converted_2831_list = PyList::empty(py);
+            for item_2832 in value {
+                let converted_item_2833 = analytics_configuration_to_py(py, item_2832)?;
+                converted_2831_list.append(converted_item_2833)?;
+            }
+            let converted_2831 = converted_2831_list.into_any().unbind();
+            result.set_item("analytics_configuration_list", converted_2831)?;
+        } else {
+            result.set_item("analytics_configuration_list", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListBucketIntelligentTieringConfigurationsOutput", frozen)]
+struct PyListBucketIntelligentTieringConfigurationsOutput {
+    inner: aws_sdk_s3::operation::list_bucket_intelligent_tiering_configurations::ListBucketIntelligentTieringConfigurationsOutput,
+}
+
+#[pymethods]
+impl PyListBucketIntelligentTieringConfigurationsOutput {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2834 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2834)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2835 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2835)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2836 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2836)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn intelligent_tiering_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.intelligent_tiering_configuration_list {
+            let converted_2837_list = PyList::empty(py);
+            for item_2838 in value {
+                let converted_item_2839 = Py::new(
+                    py,
+                    PyIntelligentTieringConfiguration {
+                        inner: (item_2838).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2837_list.append(converted_item_2839)?;
+            }
+            let converted_2837 = converted_2837_list.into_any().unbind();
+            Ok(converted_2837)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2840 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2840)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2841 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2841)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2842 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_continuation_token", converted_2842)?;
+        } else {
+            result.set_item("next_continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.intelligent_tiering_configuration_list {
+            let converted_2843_list = PyList::empty(py);
+            for item_2844 in value {
+                let converted_item_2845 = intelligent_tiering_configuration_to_py(py, item_2844)?;
+                converted_2843_list.append(converted_item_2845)?;
+            }
+            let converted_2843 = converted_2843_list.into_any().unbind();
+            result.set_item("intelligent_tiering_configuration_list", converted_2843)?;
+        } else {
+            result.set_item("intelligent_tiering_configuration_list", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListBucketInventoryConfigurationsOutput", frozen)]
+struct PyListBucketInventoryConfigurationsOutput {
+    inner: aws_sdk_s3::operation::list_bucket_inventory_configurations::ListBucketInventoryConfigurationsOutput,
+}
+
+#[pymethods]
+impl PyListBucketInventoryConfigurationsOutput {
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2846 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2846)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn inventory_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.inventory_configuration_list {
+            let converted_2847_list = PyList::empty(py);
+            for item_2848 in value {
+                let converted_item_2849 = Py::new(
+                    py,
+                    PyInventoryConfiguration {
+                        inner: (item_2848).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2847_list.append(converted_item_2849)?;
+            }
+            let converted_2847 = converted_2847_list.into_any().unbind();
+            Ok(converted_2847)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2850 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2850)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2851 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2851)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2852 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2852)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.inventory_configuration_list {
+            let converted_2853_list = PyList::empty(py);
+            for item_2854 in value {
+                let converted_item_2855 = inventory_configuration_to_py(py, item_2854)?;
+                converted_2853_list.append(converted_item_2855)?;
+            }
+            let converted_2853 = converted_2853_list.into_any().unbind();
+            result.set_item("inventory_configuration_list", converted_2853)?;
+        } else {
+            result.set_item("inventory_configuration_list", py.None())?;
+        }
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2856 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2856)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2857 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_continuation_token", converted_2857)?;
+        } else {
+            result.set_item("next_continuation_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListBucketMetricsConfigurationsOutput", frozen)]
+struct PyListBucketMetricsConfigurationsOutput {
+    inner: aws_sdk_s3::operation::list_bucket_metrics_configurations::ListBucketMetricsConfigurationsOutput,
+}
+
+#[pymethods]
+impl PyListBucketMetricsConfigurationsOutput {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2858 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2858)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2859 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2859)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2860 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2860)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn metrics_configuration_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.metrics_configuration_list {
+            let converted_2861_list = PyList::empty(py);
+            for item_2862 in value {
+                let converted_item_2863 = Py::new(
+                    py,
+                    PyMetricsConfiguration {
+                        inner: (item_2862).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2861_list.append(converted_item_2863)?;
+            }
+            let converted_2861 = converted_2861_list.into_any().unbind();
+            Ok(converted_2861)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2864 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2864)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2865 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2865)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2866 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_continuation_token", converted_2866)?;
+        } else {
+            result.set_item("next_continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.metrics_configuration_list {
+            let converted_2867_list = PyList::empty(py);
+            for item_2868 in value {
+                let converted_item_2869 = metrics_configuration_to_py(py, item_2868)?;
+                converted_2867_list.append(converted_item_2869)?;
+            }
+            let converted_2867 = converted_2867_list.into_any().unbind();
+            result.set_item("metrics_configuration_list", converted_2867)?;
+        } else {
+            result.set_item("metrics_configuration_list", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListBucketsOutput", frozen)]
+struct PyListBucketsOutput {
+    inner: aws_sdk_s3::operation::list_buckets::ListBucketsOutput,
+}
+
+#[pymethods]
+impl PyListBucketsOutput {
+    #[getter]
+    fn buckets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.buckets {
+            let converted_2870_list = PyList::empty(py);
+            for item_2871 in value {
+                let converted_item_2872 = Py::new(
+                    py,
+                    PyBucket {
+                        inner: (item_2871).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2870_list.append(converted_item_2872)?;
+            }
+            let converted_2870 = converted_2870_list.into_any().unbind();
+            Ok(converted_2870)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_2873 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_2873)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2874 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2874)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2875 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2875)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.buckets {
+            let converted_2876_list = PyList::empty(py);
+            for item_2877 in value {
+                let converted_item_2878 = bucket_to_py(py, item_2877)?;
+                converted_2876_list.append(converted_item_2878)?;
+            }
+            let converted_2876 = converted_2876_list.into_any().unbind();
+            result.set_item("buckets", converted_2876)?;
+        } else {
+            result.set_item("buckets", py.None())?;
+        }
+        if let Some(value) = &self.inner.owner {
+            let converted_2879 = owner_to_py(py, value)?;
+            result.set_item("owner", converted_2879)?;
+        } else {
+            result.set_item("owner", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2880 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2880)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.prefix {
+            let converted_2881 = (value).as_str().into_py_any(py)?;
+            result.set_item("prefix", converted_2881)?;
+        } else {
+            result.set_item("prefix", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListDirectoryBucketsOutput", frozen)]
+struct PyListDirectoryBucketsOutput {
+    inner: aws_sdk_s3::operation::list_directory_buckets::ListDirectoryBucketsOutput,
+}
+
+#[pymethods]
+impl PyListDirectoryBucketsOutput {
+    #[getter]
+    fn buckets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.buckets {
+            let converted_2882_list = PyList::empty(py);
+            for item_2883 in value {
+                let converted_item_2884 = Py::new(
+                    py,
+                    PyBucket {
+                        inner: (item_2883).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2882_list.append(converted_item_2884)?;
+            }
+            let converted_2882 = converted_2882_list.into_any().unbind();
+            Ok(converted_2882)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2885 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2885)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.buckets {
+            let converted_2886_list = PyList::empty(py);
+            for item_2887 in value {
+                let converted_item_2888 = bucket_to_py(py, item_2887)?;
+                converted_2886_list.append(converted_item_2888)?;
+            }
+            let converted_2886 = converted_2886_list.into_any().unbind();
+            result.set_item("buckets", converted_2886)?;
+        } else {
+            result.set_item("buckets", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2889 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2889)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListMultipartUploadsOutput", frozen)]
+struct PyListMultipartUploadsOutput {
+    inner: aws_sdk_s3::operation::list_multipart_uploads::ListMultipartUploadsOutput,
+}
+
+#[pymethods]
+impl PyListMultipartUploadsOutput {
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket {
+            let converted_2890 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2890)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_marker {
+            let converted_2891 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2891)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn upload_id_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.upload_id_marker {
+            let converted_2892 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2892)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_key_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_key_marker {
+            let converted_2893 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2893)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2894 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2894)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delimiter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2895 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2895)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_upload_id_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_upload_id_marker {
+            let converted_2896 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2896)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_uploads(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_uploads {
+            let converted_2897 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2897)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2898 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2898)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn uploads(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.uploads {
+            let converted_2899_list = PyList::empty(py);
+            for item_2900 in value {
+                let converted_item_2901 = Py::new(
+                    py,
+                    PyMultipartUpload {
+                        inner: (item_2900).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2899_list.append(converted_item_2901)?;
+            }
+            let converted_2899 = converted_2899_list.into_any().unbind();
+            Ok(converted_2899)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn common_prefixes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2902_list = PyList::empty(py);
+            for item_2903 in value {
+                let converted_item_2904 = Py::new(
+                    py,
+                    PyCommonPrefix {
+                        inner: (item_2903).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2902_list.append(converted_item_2904)?;
+            }
+            let converted_2902 = converted_2902_list.into_any().unbind();
+            Ok(converted_2902)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encoding_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2905 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2905)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2906 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2906)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.bucket {
+            let converted_2907 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket", converted_2907)?;
+        } else {
+            result.set_item("bucket", py.None())?;
+        }
+        if let Some(value) = &self.inner.key_marker {
+            let converted_2908 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_marker", converted_2908)?;
+        } else {
+            result.set_item("key_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.upload_id_marker {
+            let converted_2909 = (value).as_str().into_py_any(py)?;
+            result.set_item("upload_id_marker", converted_2909)?;
+        } else {
+            result.set_item("upload_id_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_key_marker {
+            let converted_2910 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_key_marker", converted_2910)?;
+        } else {
+            result.set_item("next_key_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.prefix {
+            let converted_2911 = (value).as_str().into_py_any(py)?;
+            result.set_item("prefix", converted_2911)?;
+        } else {
+            result.set_item("prefix", py.None())?;
+        }
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2912 = (value).as_str().into_py_any(py)?;
+            result.set_item("delimiter", converted_2912)?;
+        } else {
+            result.set_item("delimiter", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_upload_id_marker {
+            let converted_2913 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_upload_id_marker", converted_2913)?;
+        } else {
+            result.set_item("next_upload_id_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.max_uploads {
+            let converted_2914 = (value).to_owned().into_py_any(py)?;
+            result.set_item("max_uploads", converted_2914)?;
+        } else {
+            result.set_item("max_uploads", py.None())?;
+        }
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2915 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2915)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.uploads {
+            let converted_2916_list = PyList::empty(py);
+            for item_2917 in value {
+                let converted_item_2918 = multipart_upload_to_py(py, item_2917)?;
+                converted_2916_list.append(converted_item_2918)?;
+            }
+            let converted_2916 = converted_2916_list.into_any().unbind();
+            result.set_item("uploads", converted_2916)?;
+        } else {
+            result.set_item("uploads", py.None())?;
+        }
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2919_list = PyList::empty(py);
+            for item_2920 in value {
+                let converted_item_2921 = common_prefix_to_py(py, item_2920)?;
+                converted_2919_list.append(converted_item_2921)?;
+            }
+            let converted_2919 = converted_2919_list.into_any().unbind();
+            result.set_item("common_prefixes", converted_2919)?;
+        } else {
+            result.set_item("common_prefixes", py.None())?;
+        }
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2922 = (value).as_str().into_py_any(py)?;
+            result.set_item("encoding_type", converted_2922)?;
+        } else {
+            result.set_item("encoding_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2923 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2923)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListObjectsOutput", frozen)]
+struct PyListObjectsOutput {
+    inner: aws_sdk_s3::operation::list_objects::ListObjectsOutput,
+}
+
+#[pymethods]
+impl PyListObjectsOutput {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2924 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2924)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.marker {
+            let converted_2925 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2925)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_marker {
+            let converted_2926 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2926)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn contents(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.contents {
+            let converted_2927_list = PyList::empty(py);
+            for item_2928 in value {
+                let converted_item_2929 = Py::new(
+                    py,
+                    PyObject {
+                        inner: (item_2928).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2927_list.append(converted_item_2929)?;
+            }
+            let converted_2927 = converted_2927_list.into_any().unbind();
+            Ok(converted_2927)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_2930 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2930)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2931 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2931)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delimiter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2932 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2932)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_keys {
+            let converted_2933 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2933)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn common_prefixes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2934_list = PyList::empty(py);
+            for item_2935 in value {
+                let converted_item_2936 = Py::new(
+                    py,
+                    PyCommonPrefix {
+                        inner: (item_2935).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2934_list.append(converted_item_2936)?;
+            }
+            let converted_2934 = converted_2934_list.into_any().unbind();
+            Ok(converted_2934)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encoding_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2937 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2937)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2938 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2938)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2939 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2939)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.marker {
+            let converted_2940 = (value).as_str().into_py_any(py)?;
+            result.set_item("marker", converted_2940)?;
+        } else {
+            result.set_item("marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_marker {
+            let converted_2941 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_marker", converted_2941)?;
+        } else {
+            result.set_item("next_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.contents {
+            let converted_2942_list = PyList::empty(py);
+            for item_2943 in value {
+                let converted_item_2944 = object_to_py(py, item_2943)?;
+                converted_2942_list.append(converted_item_2944)?;
+            }
+            let converted_2942 = converted_2942_list.into_any().unbind();
+            result.set_item("contents", converted_2942)?;
+        } else {
+            result.set_item("contents", py.None())?;
+        }
+        if let Some(value) = &self.inner.name {
+            let converted_2945 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_2945)?;
+        } else {
+            result.set_item("name", py.None())?;
+        }
+        if let Some(value) = &self.inner.prefix {
+            let converted_2946 = (value).as_str().into_py_any(py)?;
+            result.set_item("prefix", converted_2946)?;
+        } else {
+            result.set_item("prefix", py.None())?;
+        }
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2947 = (value).as_str().into_py_any(py)?;
+            result.set_item("delimiter", converted_2947)?;
+        } else {
+            result.set_item("delimiter", py.None())?;
+        }
+        if let Some(value) = &self.inner.max_keys {
+            let converted_2948 = (value).to_owned().into_py_any(py)?;
+            result.set_item("max_keys", converted_2948)?;
+        } else {
+            result.set_item("max_keys", py.None())?;
+        }
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2949_list = PyList::empty(py);
+            for item_2950 in value {
+                let converted_item_2951 = common_prefix_to_py(py, item_2950)?;
+                converted_2949_list.append(converted_item_2951)?;
+            }
+            let converted_2949 = converted_2949_list.into_any().unbind();
+            result.set_item("common_prefixes", converted_2949)?;
+        } else {
+            result.set_item("common_prefixes", py.None())?;
+        }
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2952 = (value).as_str().into_py_any(py)?;
+            result.set_item("encoding_type", converted_2952)?;
+        } else {
+            result.set_item("encoding_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2953 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2953)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListObjectsV2Output", frozen)]
+struct PyListObjectsV2Output {
+    inner: aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Output,
+}
+
+#[pymethods]
+impl PyListObjectsV2Output {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2954 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2954)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn contents(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.contents {
+            let converted_2955_list = PyList::empty(py);
+            for item_2956 in value {
+                let converted_item_2957 = Py::new(
+                    py,
+                    PyObject {
+                        inner: (item_2956).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2955_list.append(converted_item_2957)?;
+            }
+            let converted_2955 = converted_2955_list.into_any().unbind();
+            Ok(converted_2955)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_2958 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2958)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_2959 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2959)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delimiter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2960 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2960)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_keys {
+            let converted_2961 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2961)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn common_prefixes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2962_list = PyList::empty(py);
+            for item_2963 in value {
+                let converted_item_2964 = Py::new(
+                    py,
+                    PyCommonPrefix {
+                        inner: (item_2963).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2962_list.append(converted_item_2964)?;
+            }
+            let converted_2962 = converted_2962_list.into_any().unbind();
+            Ok(converted_2962)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encoding_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2965 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2965)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_count {
+            let converted_2966 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2966)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2967 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2967)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2968 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2968)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn start_after(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.start_after {
+            let converted_2969 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2969)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2970 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2970)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2971 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_2971)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.contents {
+            let converted_2972_list = PyList::empty(py);
+            for item_2973 in value {
+                let converted_item_2974 = object_to_py(py, item_2973)?;
+                converted_2972_list.append(converted_item_2974)?;
+            }
+            let converted_2972 = converted_2972_list.into_any().unbind();
+            result.set_item("contents", converted_2972)?;
+        } else {
+            result.set_item("contents", py.None())?;
+        }
+        if let Some(value) = &self.inner.name {
+            let converted_2975 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_2975)?;
+        } else {
+            result.set_item("name", py.None())?;
+        }
+        if let Some(value) = &self.inner.prefix {
+            let converted_2976 = (value).as_str().into_py_any(py)?;
+            result.set_item("prefix", converted_2976)?;
+        } else {
+            result.set_item("prefix", py.None())?;
+        }
+        if let Some(value) = &self.inner.delimiter {
+            let converted_2977 = (value).as_str().into_py_any(py)?;
+            result.set_item("delimiter", converted_2977)?;
+        } else {
+            result.set_item("delimiter", py.None())?;
+        }
+        if let Some(value) = &self.inner.max_keys {
+            let converted_2978 = (value).to_owned().into_py_any(py)?;
+            result.set_item("max_keys", converted_2978)?;
+        } else {
+            result.set_item("max_keys", py.None())?;
+        }
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_2979_list = PyList::empty(py);
+            for item_2980 in value {
+                let converted_item_2981 = common_prefix_to_py(py, item_2980)?;
+                converted_2979_list.append(converted_item_2981)?;
+            }
+            let converted_2979 = converted_2979_list.into_any().unbind();
+            result.set_item("common_prefixes", converted_2979)?;
+        } else {
+            result.set_item("common_prefixes", py.None())?;
+        }
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_2982 = (value).as_str().into_py_any(py)?;
+            result.set_item("encoding_type", converted_2982)?;
+        } else {
+            result.set_item("encoding_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.key_count {
+            let converted_2983 = (value).to_owned().into_py_any(py)?;
+            result.set_item("key_count", converted_2983)?;
+        } else {
+            result.set_item("key_count", py.None())?;
+        }
+        if let Some(value) = &self.inner.continuation_token {
+            let converted_2984 = (value).as_str().into_py_any(py)?;
+            result.set_item("continuation_token", converted_2984)?;
+        } else {
+            result.set_item("continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_continuation_token {
+            let converted_2985 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_continuation_token", converted_2985)?;
+        } else {
+            result.set_item("next_continuation_token", py.None())?;
+        }
+        if let Some(value) = &self.inner.start_after {
+            let converted_2986 = (value).as_str().into_py_any(py)?;
+            result.set_item("start_after", converted_2986)?;
+        } else {
+            result.set_item("start_after", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_2987 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_2987)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListObjectVersionsOutput", frozen)]
+struct PyListObjectVersionsOutput {
+    inner: aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput,
+}
+
+#[pymethods]
+impl PyListObjectVersionsOutput {
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_2988 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_2988)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key_marker {
+            let converted_2989 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2989)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id_marker {
+            let converted_2990 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2990)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_key_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_key_marker {
+            let converted_2991 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2991)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_version_id_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_version_id_marker {
+            let converted_2992 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2992)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.versions {
+            let converted_2993_list = PyList::empty(py);
+            for item_2994 in value {
+                let converted_item_2995 = Py::new(
+                    py,
+                    PyObjectVersion {
+                        inner: (item_2994).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2993_list.append(converted_item_2995)?;
+            }
+            let converted_2993 = converted_2993_list.into_any().unbind();
+            Ok(converted_2993)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delete_markers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delete_markers {
+            let converted_2996_list = PyList::empty(py);
+            for item_2997 in value {
+                let converted_item_2998 = Py::new(
+                    py,
+                    PyDeleteMarkerEntry {
+                        inner: (item_2997).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_2996_list.append(converted_item_2998)?;
+            }
+            let converted_2996 = converted_2996_list.into_any().unbind();
+            Ok(converted_2996)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.name {
+            let converted_2999 = (value).as_str().into_py_any(py)?;
+            Ok(converted_2999)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.prefix {
+            let converted_3000 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3000)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn delimiter(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.delimiter {
+            let converted_3001 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3001)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_keys {
+            let converted_3002 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3002)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn common_prefixes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_3003_list = PyList::empty(py);
+            for item_3004 in value {
+                let converted_item_3005 = Py::new(
+                    py,
+                    PyCommonPrefix {
+                        inner: (item_3004).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_3003_list.append(converted_item_3005)?;
+            }
+            let converted_3003 = converted_3003_list.into_any().unbind();
+            Ok(converted_3003)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encoding_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_3006 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3006)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3007 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3007)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_3008 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_3008)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.key_marker {
+            let converted_3009 = (value).as_str().into_py_any(py)?;
+            result.set_item("key_marker", converted_3009)?;
+        } else {
+            result.set_item("key_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id_marker {
+            let converted_3010 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id_marker", converted_3010)?;
+        } else {
+            result.set_item("version_id_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_key_marker {
+            let converted_3011 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_key_marker", converted_3011)?;
+        } else {
+            result.set_item("next_key_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_version_id_marker {
+            let converted_3012 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_version_id_marker", converted_3012)?;
+        } else {
+            result.set_item("next_version_id_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.versions {
+            let converted_3013_list = PyList::empty(py);
+            for item_3014 in value {
+                let converted_item_3015 = object_version_to_py(py, item_3014)?;
+                converted_3013_list.append(converted_item_3015)?;
+            }
+            let converted_3013 = converted_3013_list.into_any().unbind();
+            result.set_item("versions", converted_3013)?;
+        } else {
+            result.set_item("versions", py.None())?;
+        }
+        if let Some(value) = &self.inner.delete_markers {
+            let converted_3016_list = PyList::empty(py);
+            for item_3017 in value {
+                let converted_item_3018 = delete_marker_entry_to_py(py, item_3017)?;
+                converted_3016_list.append(converted_item_3018)?;
+            }
+            let converted_3016 = converted_3016_list.into_any().unbind();
+            result.set_item("delete_markers", converted_3016)?;
+        } else {
+            result.set_item("delete_markers", py.None())?;
+        }
+        if let Some(value) = &self.inner.name {
+            let converted_3019 = (value).as_str().into_py_any(py)?;
+            result.set_item("name", converted_3019)?;
+        } else {
+            result.set_item("name", py.None())?;
+        }
+        if let Some(value) = &self.inner.prefix {
+            let converted_3020 = (value).as_str().into_py_any(py)?;
+            result.set_item("prefix", converted_3020)?;
+        } else {
+            result.set_item("prefix", py.None())?;
+        }
+        if let Some(value) = &self.inner.delimiter {
+            let converted_3021 = (value).as_str().into_py_any(py)?;
+            result.set_item("delimiter", converted_3021)?;
+        } else {
+            result.set_item("delimiter", py.None())?;
+        }
+        if let Some(value) = &self.inner.max_keys {
+            let converted_3022 = (value).to_owned().into_py_any(py)?;
+            result.set_item("max_keys", converted_3022)?;
+        } else {
+            result.set_item("max_keys", py.None())?;
+        }
+        if let Some(value) = &self.inner.common_prefixes {
+            let converted_3023_list = PyList::empty(py);
+            for item_3024 in value {
+                let converted_item_3025 = common_prefix_to_py(py, item_3024)?;
+                converted_3023_list.append(converted_item_3025)?;
+            }
+            let converted_3023 = converted_3023_list.into_any().unbind();
+            result.set_item("common_prefixes", converted_3023)?;
+        } else {
+            result.set_item("common_prefixes", py.None())?;
+        }
+        if let Some(value) = &self.inner.encoding_type {
+            let converted_3026 = (value).as_str().into_py_any(py)?;
+            result.set_item("encoding_type", converted_3026)?;
+        } else {
+            result.set_item("encoding_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3027 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3027)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListPartsOutput", frozen)]
+struct PyListPartsOutput {
+    inner: aws_sdk_s3::operation::list_parts::ListPartsOutput,
+}
+
+#[pymethods]
+impl PyListPartsOutput {
+    #[getter]
+    fn abort_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abort_date {
+            let converted_3028 = (value).to_string().into_py_any(py)?;
+            Ok(converted_3028)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn abort_rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.abort_rule_id {
+            let converted_3029 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3029)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket {
+            let converted_3030 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3030)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.key {
+            let converted_3031 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3031)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn upload_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.upload_id {
+            let converted_3032 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3032)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn part_number_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.part_number_marker {
+            let converted_3033 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3033)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_part_number_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_part_number_marker {
+            let converted_3034 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3034)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_parts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_parts {
+            let converted_3035 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3035)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_3036 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3036)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn parts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.parts {
+            let converted_3037_list = PyList::empty(py);
+            for item_3038 in value {
+                let converted_item_3039 = Py::new(
+                    py,
+                    PyPart {
+                        inner: (item_3038).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_3037_list.append(converted_item_3039)?;
+            }
+            let converted_3037 = converted_3037_list.into_any().unbind();
+            Ok(converted_3037)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn initiator(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.initiator {
+            let converted_3040 = Py::new(
+                py,
+                PyInitiator {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_3040)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.owner {
+            let converted_3041 = Py::new(
+                py,
+                PyOwner {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_3041)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn storage_class(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.storage_class {
+            let converted_3042 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3042)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3043 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3043)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_3044 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3044)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_3045 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3045)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.abort_date {
+            let converted_3046 = (value).to_string().into_py_any(py)?;
+            result.set_item("abort_date", converted_3046)?;
+        } else {
+            result.set_item("abort_date", py.None())?;
+        }
+        if let Some(value) = &self.inner.abort_rule_id {
+            let converted_3047 = (value).as_str().into_py_any(py)?;
+            result.set_item("abort_rule_id", converted_3047)?;
+        } else {
+            result.set_item("abort_rule_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket {
+            let converted_3048 = (value).as_str().into_py_any(py)?;
+            result.set_item("bucket", converted_3048)?;
+        } else {
+            result.set_item("bucket", py.None())?;
+        }
+        if let Some(value) = &self.inner.key {
+            let converted_3049 = (value).as_str().into_py_any(py)?;
+            result.set_item("key", converted_3049)?;
+        } else {
+            result.set_item("key", py.None())?;
+        }
+        if let Some(value) = &self.inner.upload_id {
+            let converted_3050 = (value).as_str().into_py_any(py)?;
+            result.set_item("upload_id", converted_3050)?;
+        } else {
+            result.set_item("upload_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.part_number_marker {
+            let converted_3051 = (value).as_str().into_py_any(py)?;
+            result.set_item("part_number_marker", converted_3051)?;
+        } else {
+            result.set_item("part_number_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_part_number_marker {
+            let converted_3052 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_part_number_marker", converted_3052)?;
+        } else {
+            result.set_item("next_part_number_marker", py.None())?;
+        }
+        if let Some(value) = &self.inner.max_parts {
+            let converted_3053 = (value).to_owned().into_py_any(py)?;
+            result.set_item("max_parts", converted_3053)?;
+        } else {
+            result.set_item("max_parts", py.None())?;
+        }
+        if let Some(value) = &self.inner.is_truncated {
+            let converted_3054 = (value).to_owned().into_py_any(py)?;
+            result.set_item("is_truncated", converted_3054)?;
+        } else {
+            result.set_item("is_truncated", py.None())?;
+        }
+        if let Some(value) = &self.inner.parts {
+            let converted_3055_list = PyList::empty(py);
+            for item_3056 in value {
+                let converted_item_3057 = part_to_py(py, item_3056)?;
+                converted_3055_list.append(converted_item_3057)?;
+            }
+            let converted_3055 = converted_3055_list.into_any().unbind();
+            result.set_item("parts", converted_3055)?;
+        } else {
+            result.set_item("parts", py.None())?;
+        }
+        if let Some(value) = &self.inner.initiator {
+            let converted_3058 = initiator_to_py(py, value)?;
+            result.set_item("initiator", converted_3058)?;
+        } else {
+            result.set_item("initiator", py.None())?;
+        }
+        if let Some(value) = &self.inner.owner {
+            let converted_3059 = owner_to_py(py, value)?;
+            result.set_item("owner", converted_3059)?;
+        } else {
+            result.set_item("owner", py.None())?;
+        }
+        if let Some(value) = &self.inner.storage_class {
+            let converted_3060 = (value).as_str().into_py_any(py)?;
+            result.set_item("storage_class", converted_3060)?;
+        } else {
+            result.set_item("storage_class", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3061 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3061)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_algorithm {
+            let converted_3062 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_algorithm", converted_3062)?;
+        } else {
+            result.set_item("checksum_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_3063 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_3063)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutBucketLifecycleConfigurationOutput", frozen)]
+struct PyPutBucketLifecycleConfigurationOutput {
+    inner: aws_sdk_s3::operation::put_bucket_lifecycle_configuration::PutBucketLifecycleConfigurationOutput,
+}
+
+#[pymethods]
+impl PyPutBucketLifecycleConfigurationOutput {
+    #[getter]
+    fn transition_default_minimum_object_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.transition_default_minimum_object_size {
+            let converted_3064 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3064)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.transition_default_minimum_object_size {
+            let converted_3065 = (value).as_str().into_py_any(py)?;
+            result.set_item("transition_default_minimum_object_size", converted_3065)?;
+        } else {
+            result.set_item("transition_default_minimum_object_size", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectOutput", frozen)]
+struct PyPutObjectOutput {
+    inner: aws_sdk_s3::operation::put_object::PutObjectOutput,
+}
+
+#[pymethods]
+impl PyPutObjectOutput {
+    #[getter]
+    fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.expiration {
+            let converted_3066 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3066)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_3067 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3067)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_3068 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3068)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_3069 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3069)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_3070 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3070)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_3071 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3071)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_3072 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3072)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_3073 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3073)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3074 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3074)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_3075 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3075)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3076 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3076)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3077 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3077)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3078 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3078)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_3079 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3079)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3080 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3080)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.size {
+            let converted_3081 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3081)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3082 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3082)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.expiration {
+            let converted_3083 = (value).as_str().into_py_any(py)?;
+            result.set_item("expiration", converted_3083)?;
+        } else {
+            result.set_item("expiration", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_3084 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_3084)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_3085 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32", converted_3085)?;
+        } else {
+            result.set_item("checksum_crc32", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_3086 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32_c", converted_3086)?;
+        } else {
+            result.set_item("checksum_crc32_c", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_3087 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc64_nvme", converted_3087)?;
+        } else {
+            result.set_item("checksum_crc64_nvme", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_3088 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha1", converted_3088)?;
+        } else {
+            result.set_item("checksum_sha1", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_3089 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha256", converted_3089)?;
+        } else {
+            result.set_item("checksum_sha256", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_type {
+            let converted_3090 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_type", converted_3090)?;
+        } else {
+            result.set_item("checksum_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3091 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_3091)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.version_id {
+            let converted_3092 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_3092)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3093 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_3093)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3094 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_3094)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3095 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_3095)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_encryption_context {
+            let converted_3096 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_encryption_context", converted_3096)?;
+        } else {
+            result.set_item("ssekms_encryption_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3097 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_3097)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.size {
+            let converted_3098 = (value).to_owned().into_py_any(py)?;
+            result.set_item("size", converted_3098)?;
+        } else {
+            result.set_item("size", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3099 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3099)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectAclOutput", frozen)]
+struct PyPutObjectAclOutput {
+    inner: aws_sdk_s3::operation::put_object_acl::PutObjectAclOutput,
+}
+
+#[pymethods]
+impl PyPutObjectAclOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3100 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3100)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3101 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3101)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectLegalHoldOutput", frozen)]
+struct PyPutObjectLegalHoldOutput {
+    inner: aws_sdk_s3::operation::put_object_legal_hold::PutObjectLegalHoldOutput,
+}
+
+#[pymethods]
+impl PyPutObjectLegalHoldOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3102 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3102)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3103 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3103)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectLockConfigurationOutput", frozen)]
+struct PyPutObjectLockConfigurationOutput {
+    inner: aws_sdk_s3::operation::put_object_lock_configuration::PutObjectLockConfigurationOutput,
+}
+
+#[pymethods]
+impl PyPutObjectLockConfigurationOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3104 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3104)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3105 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3105)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectRetentionOutput", frozen)]
+struct PyPutObjectRetentionOutput {
+    inner: aws_sdk_s3::operation::put_object_retention::PutObjectRetentionOutput,
+}
+
+#[pymethods]
+impl PyPutObjectRetentionOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3106 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3106)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3107 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3107)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "PutObjectTaggingOutput", frozen)]
+struct PyPutObjectTaggingOutput {
+    inner: aws_sdk_s3::operation::put_object_tagging::PutObjectTaggingOutput,
+}
+
+#[pymethods]
+impl PyPutObjectTaggingOutput {
+    #[getter]
+    fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.version_id {
+            let converted_3108 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3108)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.version_id {
+            let converted_3109 = (value).as_str().into_py_any(py)?;
+            result.set_item("version_id", converted_3109)?;
+        } else {
+            result.set_item("version_id", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "RenameObjectOutput", frozen)]
+struct PyRenameObjectOutput {
+    inner: aws_sdk_s3::operation::rename_object::RenameObjectOutput,
+}
+
+#[pymethods]
+impl PyRenameObjectOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "RestoreObjectOutput", frozen)]
+struct PyRestoreObjectOutput {
+    inner: aws_sdk_s3::operation::restore_object::RestoreObjectOutput,
+}
+
+#[pymethods]
+impl PyRestoreObjectOutput {
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3110 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3110)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn restore_output_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.restore_output_path {
+            let converted_3111 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3111)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3112 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3112)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        if let Some(value) = &self.inner.restore_output_path {
+            let converted_3113 = (value).as_str().into_py_any(py)?;
+            result.set_item("restore_output_path", converted_3113)?;
+        } else {
+            result.set_item("restore_output_path", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "UploadPartOutput", frozen)]
+struct PyUploadPartOutput {
+    inner: aws_sdk_s3::operation::upload_part::UploadPartOutput,
+}
+
+#[pymethods]
+impl PyUploadPartOutput {
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3114 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3114)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn e_tag(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.e_tag {
+            let converted_3115 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3115)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_3116 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3116)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc32_c(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_3117 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3117)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_crc64_nvme(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_3118 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3118)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha1(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_3119 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3119)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn checksum_sha256(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_3120 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3120)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3121 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3121)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3122 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3122)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3123 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3123)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3124 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3124)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3125 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3125)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3126 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_3126)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.e_tag {
+            let converted_3127 = (value).as_str().into_py_any(py)?;
+            result.set_item("e_tag", converted_3127)?;
+        } else {
+            result.set_item("e_tag", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32 {
+            let converted_3128 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32", converted_3128)?;
+        } else {
+            result.set_item("checksum_crc32", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc32_c {
+            let converted_3129 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc32_c", converted_3129)?;
+        } else {
+            result.set_item("checksum_crc32_c", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_crc64_nvme {
+            let converted_3130 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_crc64_nvme", converted_3130)?;
+        } else {
+            result.set_item("checksum_crc64_nvme", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha1 {
+            let converted_3131 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha1", converted_3131)?;
+        } else {
+            result.set_item("checksum_sha1", py.None())?;
+        }
+        if let Some(value) = &self.inner.checksum_sha256 {
+            let converted_3132 = (value).as_str().into_py_any(py)?;
+            result.set_item("checksum_sha256", converted_3132)?;
+        } else {
+            result.set_item("checksum_sha256", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3133 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_3133)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3134 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_3134)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3135 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_3135)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3136 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_3136)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3137 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3137)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "UploadPartCopyOutput", frozen)]
+struct PyUploadPartCopyOutput {
+    inner: aws_sdk_s3::operation::upload_part_copy::UploadPartCopyOutput,
+}
+
+#[pymethods]
+impl PyUploadPartCopyOutput {
+    #[getter]
+    fn copy_source_version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.copy_source_version_id {
+            let converted_3138 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3138)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn copy_part_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.copy_part_result {
+            let converted_3139 = Py::new(
+                py,
+                PyCopyPartResult {
+                    inner: (value).to_owned(),
+                },
+            )?
+            .into_any();
+            Ok(converted_3139)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3140 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3140)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_algorithm(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3141 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3141)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sse_customer_key_md5(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3142 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3142)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn ssekms_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3143 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3143)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn bucket_key_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3144 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3144)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3145 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3145)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.copy_source_version_id {
+            let converted_3146 = (value).as_str().into_py_any(py)?;
+            result.set_item("copy_source_version_id", converted_3146)?;
+        } else {
+            result.set_item("copy_source_version_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.copy_part_result {
+            let converted_3147 = copy_part_result_to_py(py, value)?;
+            result.set_item("copy_part_result", converted_3147)?;
+        } else {
+            result.set_item("copy_part_result", py.None())?;
+        }
+        if let Some(value) = &self.inner.server_side_encryption {
+            let converted_3148 = (value).as_str().into_py_any(py)?;
+            result.set_item("server_side_encryption", converted_3148)?;
+        } else {
+            result.set_item("server_side_encryption", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_algorithm {
+            let converted_3149 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_algorithm", converted_3149)?;
+        } else {
+            result.set_item("sse_customer_algorithm", py.None())?;
+        }
+        if let Some(value) = &self.inner.sse_customer_key_md5 {
+            let converted_3150 = (value).as_str().into_py_any(py)?;
+            result.set_item("sse_customer_key_md5", converted_3150)?;
+        } else {
+            result.set_item("sse_customer_key_md5", py.None())?;
+        }
+        if let Some(value) = &self.inner.ssekms_key_id {
+            let converted_3151 = (value).as_str().into_py_any(py)?;
+            result.set_item("ssekms_key_id", converted_3151)?;
+        } else {
+            result.set_item("ssekms_key_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.bucket_key_enabled {
+            let converted_3152 = (value).to_owned().into_py_any(py)?;
+            result.set_item("bucket_key_enabled", converted_3152)?;
+        } else {
+            result.set_item("bucket_key_enabled", py.None())?;
+        }
+        if let Some(value) = &self.inner.request_charged {
+            let converted_3153 = (value).as_str().into_py_any(py)?;
+            result.set_item("request_charged", converted_3153)?;
+        } else {
+            result.set_item("request_charged", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
 #[pyclass(name = "SelectObjectContentEventStreamReceiver")]
 struct PySelectObjectContentEventStreamReceiver {
     inner: Arc<
@@ -7159,6 +18579,177 @@ impl PySelectObjectContentEventStreamReceiver {
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_class::<PyAbacStatus>()?;
+    module.add_class::<PyAbortIncompleteMultipartUpload>()?;
+    module.add_class::<PyAccessControlTranslation>()?;
+    module.add_class::<PyAnalyticsConfiguration>()?;
+    module.add_class::<PyAnalyticsExportDestination>()?;
+    module.add_class::<PyAnalyticsS3BucketDestination>()?;
+    module.add_class::<PyBlockedEncryptionTypes>()?;
+    module.add_class::<PyBucket>()?;
+    module.add_class::<PyChecksum>()?;
+    module.add_class::<PyCommonPrefix>()?;
+    module.add_class::<PyCondition>()?;
+    module.add_class::<PyCopyObjectResult>()?;
+    module.add_class::<PyCopyPartResult>()?;
+    module.add_class::<PyCorsRule>()?;
+    module.add_class::<PyDefaultRetention>()?;
+    module.add_class::<PyDeleteMarkerEntry>()?;
+    module.add_class::<PyDeleteMarkerReplication>()?;
+    module.add_class::<PyDeletedObject>()?;
+    module.add_class::<PyDestination>()?;
+    module.add_class::<PyDestinationResult>()?;
+    module.add_class::<PyEncryptionConfiguration>()?;
+    module.add_class::<PyError>()?;
+    module.add_class::<PyErrorDetails>()?;
+    module.add_class::<PyErrorDocument>()?;
+    module.add_class::<PyEventBridgeConfiguration>()?;
+    module.add_class::<PyExistingObjectReplication>()?;
+    module.add_class::<PyFilterRule>()?;
+    module.add_class::<PyGetBucketMetadataConfigurationResult>()?;
+    module.add_class::<PyGetBucketMetadataTableConfigurationResult>()?;
+    module.add_class::<PyGetObjectAttributesParts>()?;
+    module.add_class::<PyGrant>()?;
+    module.add_class::<PyGrantee>()?;
+    module.add_class::<PyIndexDocument>()?;
+    module.add_class::<PyInitiator>()?;
+    module.add_class::<PyIntelligentTieringAndOperator>()?;
+    module.add_class::<PyIntelligentTieringConfiguration>()?;
+    module.add_class::<PyIntelligentTieringFilter>()?;
+    module.add_class::<PyInventoryConfiguration>()?;
+    module.add_class::<PyInventoryDestination>()?;
+    module.add_class::<PyInventoryEncryption>()?;
+    module.add_class::<PyInventoryFilter>()?;
+    module.add_class::<PyInventoryS3BucketDestination>()?;
+    module.add_class::<PyInventorySchedule>()?;
+    module.add_class::<PyInventoryTableConfigurationResult>()?;
+    module.add_class::<PyJournalTableConfigurationResult>()?;
+    module.add_class::<PyLambdaFunctionConfiguration>()?;
+    module.add_class::<PyLifecycleExpiration>()?;
+    module.add_class::<PyLifecycleRule>()?;
+    module.add_class::<PyLifecycleRuleAndOperator>()?;
+    module.add_class::<PyLifecycleRuleFilter>()?;
+    module.add_class::<PyLoggingEnabled>()?;
+    module.add_class::<PyMetadataConfigurationResult>()?;
+    module.add_class::<PyMetadataTableConfigurationResult>()?;
+    module.add_class::<PyMetrics>()?;
+    module.add_class::<PyMetricsConfiguration>()?;
+    module.add_class::<PyMultipartUpload>()?;
+    module.add_class::<PyNoncurrentVersionExpiration>()?;
+    module.add_class::<PyNoncurrentVersionTransition>()?;
+    module.add_class::<PyNotificationConfigurationFilter>()?;
+    module.add_class::<PyObject>()?;
+    module.add_class::<PyObjectLockConfiguration>()?;
+    module.add_class::<PyObjectLockLegalHold>()?;
+    module.add_class::<PyObjectLockRetention>()?;
+    module.add_class::<PyObjectLockRule>()?;
+    module.add_class::<PyObjectPart>()?;
+    module.add_class::<PyObjectVersion>()?;
+    module.add_class::<PyOwner>()?;
+    module.add_class::<PyOwnershipControls>()?;
+    module.add_class::<PyOwnershipControlsRule>()?;
+    module.add_class::<PyPart>()?;
+    module.add_class::<PyPartitionedPrefix>()?;
+    module.add_class::<PyPolicyStatus>()?;
+    module.add_class::<PyPublicAccessBlockConfiguration>()?;
+    module.add_class::<PyQueueConfiguration>()?;
+    module.add_class::<PyRecordExpiration>()?;
+    module.add_class::<PyRedirect>()?;
+    module.add_class::<PyRedirectAllRequestsTo>()?;
+    module.add_class::<PyReplicaModifications>()?;
+    module.add_class::<PyReplicationConfiguration>()?;
+    module.add_class::<PyReplicationRule>()?;
+    module.add_class::<PyReplicationRuleAndOperator>()?;
+    module.add_class::<PyReplicationRuleFilter>()?;
+    module.add_class::<PyReplicationTime>()?;
+    module.add_class::<PyReplicationTimeValue>()?;
+    module.add_class::<PyRestoreStatus>()?;
+    module.add_class::<PyRoutingRule>()?;
+    module.add_class::<PyS3KeyFilter>()?;
+    module.add_class::<PyS3TablesDestinationResult>()?;
+    module.add_class::<PyServerSideEncryptionByDefault>()?;
+    module.add_class::<PyServerSideEncryptionConfiguration>()?;
+    module.add_class::<PyServerSideEncryptionRule>()?;
+    module.add_class::<PySessionCredentials>()?;
+    module.add_class::<PySimplePrefix>()?;
+    module.add_class::<PySourceSelectionCriteria>()?;
+    module.add_class::<PySseKmsEncryptedObjects>()?;
+    module.add_class::<PySsekms>()?;
+    module.add_class::<PySses3>()?;
+    module.add_class::<PyStorageClassAnalysis>()?;
+    module.add_class::<PyStorageClassAnalysisDataExport>()?;
+    module.add_class::<PyTag>()?;
+    module.add_class::<PyTargetGrant>()?;
+    module.add_class::<PyTargetObjectKeyFormat>()?;
+    module.add_class::<PyTiering>()?;
+    module.add_class::<PyTopicConfiguration>()?;
+    module.add_class::<PyTransition>()?;
+    module.add_class::<PyAbortMultipartUploadOutput>()?;
+    module.add_class::<PyCompleteMultipartUploadOutput>()?;
+    module.add_class::<PyCopyObjectOutput>()?;
+    module.add_class::<PyCreateBucketOutput>()?;
+    module.add_class::<PyCreateMultipartUploadOutput>()?;
+    module.add_class::<PyCreateSessionOutput>()?;
+    module.add_class::<PyDeleteObjectOutput>()?;
+    module.add_class::<PyDeleteObjectsOutput>()?;
+    module.add_class::<PyDeleteObjectTaggingOutput>()?;
+    module.add_class::<PyGetBucketAbacOutput>()?;
+    module.add_class::<PyGetBucketAccelerateConfigurationOutput>()?;
+    module.add_class::<PyGetBucketAclOutput>()?;
+    module.add_class::<PyGetBucketAnalyticsConfigurationOutput>()?;
+    module.add_class::<PyGetBucketCorsOutput>()?;
+    module.add_class::<PyGetBucketEncryptionOutput>()?;
+    module.add_class::<PyGetBucketIntelligentTieringConfigurationOutput>()?;
+    module.add_class::<PyGetBucketInventoryConfigurationOutput>()?;
+    module.add_class::<PyGetBucketLifecycleConfigurationOutput>()?;
+    module.add_class::<PyGetBucketLocationOutput>()?;
+    module.add_class::<PyGetBucketLoggingOutput>()?;
+    module.add_class::<PyGetBucketMetadataConfigurationOutput>()?;
+    module.add_class::<PyGetBucketMetadataTableConfigurationOutput>()?;
+    module.add_class::<PyGetBucketMetricsConfigurationOutput>()?;
+    module.add_class::<PyGetBucketNotificationConfigurationOutput>()?;
+    module.add_class::<PyGetBucketOwnershipControlsOutput>()?;
+    module.add_class::<PyGetBucketPolicyOutput>()?;
+    module.add_class::<PyGetBucketPolicyStatusOutput>()?;
+    module.add_class::<PyGetBucketReplicationOutput>()?;
+    module.add_class::<PyGetBucketRequestPaymentOutput>()?;
+    module.add_class::<PyGetBucketTaggingOutput>()?;
+    module.add_class::<PyGetBucketVersioningOutput>()?;
+    module.add_class::<PyGetBucketWebsiteOutput>()?;
+    module.add_class::<PyGetObjectOutput>()?;
+    module.add_class::<PyGetObjectAclOutput>()?;
+    module.add_class::<PyGetObjectAttributesOutput>()?;
+    module.add_class::<PyGetObjectLegalHoldOutput>()?;
+    module.add_class::<PyGetObjectLockConfigurationOutput>()?;
+    module.add_class::<PyGetObjectRetentionOutput>()?;
+    module.add_class::<PyGetObjectTaggingOutput>()?;
+    module.add_class::<PyGetObjectTorrentOutput>()?;
+    module.add_class::<PyGetPublicAccessBlockOutput>()?;
+    module.add_class::<PyHeadBucketOutput>()?;
+    module.add_class::<PyHeadObjectOutput>()?;
+    module.add_class::<PyListBucketAnalyticsConfigurationsOutput>()?;
+    module.add_class::<PyListBucketIntelligentTieringConfigurationsOutput>()?;
+    module.add_class::<PyListBucketInventoryConfigurationsOutput>()?;
+    module.add_class::<PyListBucketMetricsConfigurationsOutput>()?;
+    module.add_class::<PyListBucketsOutput>()?;
+    module.add_class::<PyListDirectoryBucketsOutput>()?;
+    module.add_class::<PyListMultipartUploadsOutput>()?;
+    module.add_class::<PyListObjectsOutput>()?;
+    module.add_class::<PyListObjectsV2Output>()?;
+    module.add_class::<PyListObjectVersionsOutput>()?;
+    module.add_class::<PyListPartsOutput>()?;
+    module.add_class::<PyPutBucketLifecycleConfigurationOutput>()?;
+    module.add_class::<PyPutObjectOutput>()?;
+    module.add_class::<PyPutObjectAclOutput>()?;
+    module.add_class::<PyPutObjectLegalHoldOutput>()?;
+    module.add_class::<PyPutObjectLockConfigurationOutput>()?;
+    module.add_class::<PyPutObjectRetentionOutput>()?;
+    module.add_class::<PyPutObjectTaggingOutput>()?;
+    module.add_class::<PyRenameObjectOutput>()?;
+    module.add_class::<PyRestoreObjectOutput>()?;
+    module.add_class::<PyUploadPartOutput>()?;
+    module.add_class::<PyUploadPartCopyOutput>()?;
+
     module.add_class::<PySelectObjectContentEventStreamReceiver>()?;
     Ok(())
 }
@@ -7245,16 +18836,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AbortMultipartUpload"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_1174 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1174)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyAbortMultipartUploadOutput { inner: output }))
         })
     }
 
@@ -7266,116 +18848,116 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
+            let converted_1174: String = value.extract()?;
+            Some(converted_1174)
+        } else {
+            None
+        };
+        let key_value = if let Some(value) = dict_value(params, "key")? {
             let converted_1175: String = value.extract()?;
             Some(converted_1175)
         } else {
             None
         };
-        let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1176: String = value.extract()?;
+        let multipart_upload_value = if let Some(value) = dict_value(params, "multipart_upload")? {
+            let converted_1176 = completed_multipart_upload_from_py(&value)?;
             Some(converted_1176)
         } else {
             None
         };
-        let multipart_upload_value = if let Some(value) = dict_value(params, "multipart_upload")? {
-            let converted_1177 = completed_multipart_upload_from_py(&value)?;
+        let upload_id_value = if let Some(value) = dict_value(params, "upload_id")? {
+            let converted_1177: String = value.extract()?;
             Some(converted_1177)
         } else {
             None
         };
-        let upload_id_value = if let Some(value) = dict_value(params, "upload_id")? {
+        let checksum_crc32_value = if let Some(value) = dict_value(params, "checksum_crc32")? {
             let converted_1178: String = value.extract()?;
             Some(converted_1178)
         } else {
             None
         };
-        let checksum_crc32_value = if let Some(value) = dict_value(params, "checksum_crc32")? {
+        let checksum_crc32_c_value = if let Some(value) = dict_value(params, "checksum_crc32_c")? {
             let converted_1179: String = value.extract()?;
             Some(converted_1179)
         } else {
             None
         };
-        let checksum_crc32_c_value = if let Some(value) = dict_value(params, "checksum_crc32_c")? {
-            let converted_1180: String = value.extract()?;
-            Some(converted_1180)
-        } else {
-            None
-        };
         let checksum_crc64_nvme_value =
             if let Some(value) = dict_value(params, "checksum_crc64_nvme")? {
-                let converted_1181: String = value.extract()?;
-                Some(converted_1181)
+                let converted_1180: String = value.extract()?;
+                Some(converted_1180)
             } else {
                 None
             };
         let checksum_sha1_value = if let Some(value) = dict_value(params, "checksum_sha1")? {
+            let converted_1181: String = value.extract()?;
+            Some(converted_1181)
+        } else {
+            None
+        };
+        let checksum_sha256_value = if let Some(value) = dict_value(params, "checksum_sha256")? {
             let converted_1182: String = value.extract()?;
             Some(converted_1182)
         } else {
             None
         };
-        let checksum_sha256_value = if let Some(value) = dict_value(params, "checksum_sha256")? {
-            let converted_1183: String = value.extract()?;
+        let checksum_type_value = if let Some(value) = dict_value(params, "checksum_type")? {
+            let enum_value_1184: String = value.extract()?;
+            let converted_1183 = aws_sdk_s3::types::ChecksumType::from(enum_value_1184.as_str());
             Some(converted_1183)
         } else {
             None
         };
-        let checksum_type_value = if let Some(value) = dict_value(params, "checksum_type")? {
-            let enum_value_1185: String = value.extract()?;
-            let converted_1184 = aws_sdk_s3::types::ChecksumType::from(enum_value_1185.as_str());
-            Some(converted_1184)
-        } else {
-            None
-        };
         let mpu_object_size_value = if let Some(value) = dict_value(params, "mpu_object_size")? {
-            let converted_1186: i64 = value.extract()?;
-            Some(converted_1186)
+            let converted_1185: i64 = value.extract()?;
+            Some(converted_1185)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1188: String = value.extract()?;
-            let converted_1187 = aws_sdk_s3::types::RequestPayer::from(enum_value_1188.as_str());
-            Some(converted_1187)
+            let enum_value_1187: String = value.extract()?;
+            let converted_1186 = aws_sdk_s3::types::RequestPayer::from(enum_value_1187.as_str());
+            Some(converted_1186)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1189: String = value.extract()?;
-                Some(converted_1189)
+                let converted_1188: String = value.extract()?;
+                Some(converted_1188)
             } else {
                 None
             };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
+            let converted_1189: String = value.extract()?;
+            Some(converted_1189)
+        } else {
+            None
+        };
+        let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
             let converted_1190: String = value.extract()?;
             Some(converted_1190)
         } else {
             None
         };
-        let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
-            let converted_1191: String = value.extract()?;
-            Some(converted_1191)
-        } else {
-            None
-        };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1192: String = value.extract()?;
-                Some(converted_1192)
+                let converted_1191: String = value.extract()?;
+                Some(converted_1191)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1193: String = value.extract()?;
-            Some(converted_1193)
+            let converted_1192: String = value.extract()?;
+            Some(converted_1192)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1194: String = value.extract()?;
-                Some(converted_1194)
+                let converted_1193: String = value.extract()?;
+                Some(converted_1193)
             } else {
                 None
             };
@@ -7405,106 +18987,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CompleteMultipartUpload"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.location {
-                    let converted_1195 = value.as_str().into_py_any(py)?;
-                    result.set_item("location", converted_1195)?;
-                } else {
-                    result.set_item("location", py.None())?;
-                }
-                if let Some(value) = &output.bucket {
-                    let converted_1196 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket", converted_1196)?;
-                } else {
-                    result.set_item("bucket", py.None())?;
-                }
-                if let Some(value) = &output.key {
-                    let converted_1197 = value.as_str().into_py_any(py)?;
-                    result.set_item("key", converted_1197)?;
-                } else {
-                    result.set_item("key", py.None())?;
-                }
-                if let Some(value) = &output.expiration {
-                    let converted_1198 = value.as_str().into_py_any(py)?;
-                    result.set_item("expiration", converted_1198)?;
-                } else {
-                    result.set_item("expiration", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_1199 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_1199)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32 {
-                    let converted_1200 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32", converted_1200)?;
-                } else {
-                    result.set_item("checksum_crc32", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32_c {
-                    let converted_1201 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32_c", converted_1201)?;
-                } else {
-                    result.set_item("checksum_crc32_c", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc64_nvme {
-                    let converted_1202 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc64_nvme", converted_1202)?;
-                } else {
-                    result.set_item("checksum_crc64_nvme", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha1 {
-                    let converted_1203 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha1", converted_1203)?;
-                } else {
-                    result.set_item("checksum_sha1", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha256 {
-                    let converted_1204 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha256", converted_1204)?;
-                } else {
-                    result.set_item("checksum_sha256", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_1205 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_1205)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1206 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1206)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1207 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1207)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1208 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1208)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1209 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1209)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1210 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1210)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCompleteMultipartUploadOutput { inner: output }))
         })
     }
 
@@ -7516,322 +18999,322 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_1212: String = value.extract()?;
-            let converted_1211 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1212.as_str());
-            Some(converted_1211)
+            let enum_value_1195: String = value.extract()?;
+            let converted_1194 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1195.as_str());
+            Some(converted_1194)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1213: String = value.extract()?;
-            Some(converted_1213)
+            let converted_1196: String = value.extract()?;
+            Some(converted_1196)
         } else {
             None
         };
         let cache_control_value = if let Some(value) = dict_value(params, "cache_control")? {
-            let converted_1214: String = value.extract()?;
-            Some(converted_1214)
+            let converted_1197: String = value.extract()?;
+            Some(converted_1197)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1216: String = value.extract()?;
-                let converted_1215 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1216.as_str());
-                Some(converted_1215)
+                let enum_value_1199: String = value.extract()?;
+                let converted_1198 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1199.as_str());
+                Some(converted_1198)
             } else {
                 None
             };
         let content_disposition_value =
             if let Some(value) = dict_value(params, "content_disposition")? {
-                let converted_1217: String = value.extract()?;
-                Some(converted_1217)
+                let converted_1200: String = value.extract()?;
+                Some(converted_1200)
             } else {
                 None
             };
         let content_encoding_value = if let Some(value) = dict_value(params, "content_encoding")? {
-            let converted_1218: String = value.extract()?;
-            Some(converted_1218)
+            let converted_1201: String = value.extract()?;
+            Some(converted_1201)
         } else {
             None
         };
         let content_language_value = if let Some(value) = dict_value(params, "content_language")? {
-            let converted_1219: String = value.extract()?;
-            Some(converted_1219)
+            let converted_1202: String = value.extract()?;
+            Some(converted_1202)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1220: String = value.extract()?;
-            Some(converted_1220)
+            let converted_1203: String = value.extract()?;
+            Some(converted_1203)
         } else {
             None
         };
         let copy_source_value = if let Some(value) = dict_value(params, "copy_source")? {
-            let converted_1221: String = value.extract()?;
-            Some(converted_1221)
+            let converted_1204: String = value.extract()?;
+            Some(converted_1204)
         } else {
             None
         };
         let copy_source_if_match_value =
             if let Some(value) = dict_value(params, "copy_source_if_match")? {
-                let converted_1222: String = value.extract()?;
-                Some(converted_1222)
+                let converted_1205: String = value.extract()?;
+                Some(converted_1205)
             } else {
                 None
             };
         let copy_source_if_modified_since_value =
             if let Some(value) = dict_value(params, "copy_source_if_modified_since")? {
-                let timestamp_1224: String = value.extract()?;
-                let converted_1223 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1224,
+                let timestamp_1207: String = value.extract()?;
+                let converted_1206 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1207,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1223)
+                Some(converted_1206)
             } else {
                 None
             };
         let copy_source_if_none_match_value =
             if let Some(value) = dict_value(params, "copy_source_if_none_match")? {
-                let converted_1225: String = value.extract()?;
-                Some(converted_1225)
+                let converted_1208: String = value.extract()?;
+                Some(converted_1208)
             } else {
                 None
             };
         let copy_source_if_unmodified_since_value =
             if let Some(value) = dict_value(params, "copy_source_if_unmodified_since")? {
-                let timestamp_1227: String = value.extract()?;
-                let converted_1226 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1227,
+                let timestamp_1210: String = value.extract()?;
+                let converted_1209 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1210,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1226)
+                Some(converted_1209)
             } else {
                 None
             };
         let expires_value = if let Some(value) = dict_value(params, "expires")? {
-            let timestamp_1229: String = value.extract()?;
-            let converted_1228 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1229,
+            let timestamp_1212: String = value.extract()?;
+            let converted_1211 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1212,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1228)
+            Some(converted_1211)
         } else {
             None
         };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_1230: String = value.extract()?;
-                Some(converted_1230)
+                let converted_1213: String = value.extract()?;
+                Some(converted_1213)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_1231: String = value.extract()?;
-            Some(converted_1231)
+            let converted_1214: String = value.extract()?;
+            Some(converted_1214)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_1232: String = value.extract()?;
-            Some(converted_1232)
+            let converted_1215: String = value.extract()?;
+            Some(converted_1215)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_1233: String = value.extract()?;
-            Some(converted_1233)
+            let converted_1216: String = value.extract()?;
+            Some(converted_1216)
         } else {
             None
         };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
-            let converted_1234: String = value.extract()?;
-            Some(converted_1234)
+            let converted_1217: String = value.extract()?;
+            Some(converted_1217)
         } else {
             None
         };
         let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
-            let converted_1235: String = value.extract()?;
-            Some(converted_1235)
+            let converted_1218: String = value.extract()?;
+            Some(converted_1218)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1236: String = value.extract()?;
-            Some(converted_1236)
+            let converted_1219: String = value.extract()?;
+            Some(converted_1219)
         } else {
             None
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
-            let mapping_1238 = value.cast::<PyDict>()?;
-            let mut converted_1237 = HashMap::new();
-            for (key_1239, value_1240) in mapping_1238.iter() {
-                let converted_key_1241: String = key_1239.extract()?;
-                let converted_value_1242: String = value_1240.extract()?;
-                converted_1237.insert(converted_key_1241, converted_value_1242);
+            let mapping_1221 = value.cast::<PyDict>()?;
+            let mut converted_1220 = HashMap::new();
+            for (key_1222, value_1223) in mapping_1221.iter() {
+                let converted_key_1224: String = key_1222.extract()?;
+                let converted_value_1225: String = value_1223.extract()?;
+                converted_1220.insert(converted_key_1224, converted_value_1225);
             }
-            Some(converted_1237)
+            Some(converted_1220)
         } else {
             None
         };
         let metadata_directive_value =
             if let Some(value) = dict_value(params, "metadata_directive")? {
-                let enum_value_1244: String = value.extract()?;
-                let converted_1243 =
-                    aws_sdk_s3::types::MetadataDirective::from(enum_value_1244.as_str());
-                Some(converted_1243)
+                let enum_value_1227: String = value.extract()?;
+                let converted_1226 =
+                    aws_sdk_s3::types::MetadataDirective::from(enum_value_1227.as_str());
+                Some(converted_1226)
             } else {
                 None
             };
         let tagging_directive_value = if let Some(value) = dict_value(params, "tagging_directive")?
         {
-            let enum_value_1246: String = value.extract()?;
-            let converted_1245 =
-                aws_sdk_s3::types::TaggingDirective::from(enum_value_1246.as_str());
-            Some(converted_1245)
+            let enum_value_1229: String = value.extract()?;
+            let converted_1228 =
+                aws_sdk_s3::types::TaggingDirective::from(enum_value_1229.as_str());
+            Some(converted_1228)
         } else {
             None
         };
         let server_side_encryption_value =
             if let Some(value) = dict_value(params, "server_side_encryption")? {
-                let enum_value_1248: String = value.extract()?;
-                let converted_1247 =
-                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1248.as_str());
-                Some(converted_1247)
+                let enum_value_1231: String = value.extract()?;
+                let converted_1230 =
+                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1231.as_str());
+                Some(converted_1230)
             } else {
                 None
             };
         let storage_class_value = if let Some(value) = dict_value(params, "storage_class")? {
-            let enum_value_1250: String = value.extract()?;
-            let converted_1249 = aws_sdk_s3::types::StorageClass::from(enum_value_1250.as_str());
-            Some(converted_1249)
+            let enum_value_1233: String = value.extract()?;
+            let converted_1232 = aws_sdk_s3::types::StorageClass::from(enum_value_1233.as_str());
+            Some(converted_1232)
         } else {
             None
         };
         let website_redirect_location_value =
             if let Some(value) = dict_value(params, "website_redirect_location")? {
-                let converted_1251: String = value.extract()?;
-                Some(converted_1251)
+                let converted_1234: String = value.extract()?;
+                Some(converted_1234)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1252: String = value.extract()?;
-                Some(converted_1252)
+                let converted_1235: String = value.extract()?;
+                Some(converted_1235)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1253: String = value.extract()?;
-            Some(converted_1253)
+            let converted_1236: String = value.extract()?;
+            Some(converted_1236)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1254: String = value.extract()?;
-                Some(converted_1254)
+                let converted_1237: String = value.extract()?;
+                Some(converted_1237)
             } else {
                 None
             };
         let ssekms_key_id_value = if let Some(value) = dict_value(params, "ssekms_key_id")? {
-            let converted_1255: String = value.extract()?;
-            Some(converted_1255)
+            let converted_1238: String = value.extract()?;
+            Some(converted_1238)
         } else {
             None
         };
         let ssekms_encryption_context_value =
             if let Some(value) = dict_value(params, "ssekms_encryption_context")? {
-                let converted_1256: String = value.extract()?;
-                Some(converted_1256)
+                let converted_1239: String = value.extract()?;
+                Some(converted_1239)
             } else {
                 None
             };
         let bucket_key_enabled_value =
             if let Some(value) = dict_value(params, "bucket_key_enabled")? {
-                let converted_1257: bool = value.extract()?;
-                Some(converted_1257)
+                let converted_1240: bool = value.extract()?;
+                Some(converted_1240)
             } else {
                 None
             };
         let copy_source_sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_algorithm")? {
-                let converted_1258: String = value.extract()?;
-                Some(converted_1258)
+                let converted_1241: String = value.extract()?;
+                Some(converted_1241)
             } else {
                 None
             };
         let copy_source_sse_customer_key_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_key")? {
-                let converted_1259: String = value.extract()?;
-                Some(converted_1259)
+                let converted_1242: String = value.extract()?;
+                Some(converted_1242)
             } else {
                 None
             };
         let copy_source_sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_key_md5")? {
-                let converted_1260: String = value.extract()?;
-                Some(converted_1260)
+                let converted_1243: String = value.extract()?;
+                Some(converted_1243)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1262: String = value.extract()?;
-            let converted_1261 = aws_sdk_s3::types::RequestPayer::from(enum_value_1262.as_str());
-            Some(converted_1261)
+            let enum_value_1245: String = value.extract()?;
+            let converted_1244 = aws_sdk_s3::types::RequestPayer::from(enum_value_1245.as_str());
+            Some(converted_1244)
         } else {
             None
         };
         let tagging_value = if let Some(value) = dict_value(params, "tagging")? {
-            let converted_1263: String = value.extract()?;
-            Some(converted_1263)
+            let converted_1246: String = value.extract()?;
+            Some(converted_1246)
         } else {
             None
         };
         let object_lock_mode_value = if let Some(value) = dict_value(params, "object_lock_mode")? {
-            let enum_value_1265: String = value.extract()?;
-            let converted_1264 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1265.as_str());
-            Some(converted_1264)
+            let enum_value_1248: String = value.extract()?;
+            let converted_1247 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1248.as_str());
+            Some(converted_1247)
         } else {
             None
         };
         let object_lock_retain_until_date_value =
             if let Some(value) = dict_value(params, "object_lock_retain_until_date")? {
-                let timestamp_1267: String = value.extract()?;
-                let converted_1266 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1267,
+                let timestamp_1250: String = value.extract()?;
+                let converted_1249 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1250,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1266)
+                Some(converted_1249)
             } else {
                 None
             };
         let object_lock_legal_hold_status_value =
             if let Some(value) = dict_value(params, "object_lock_legal_hold_status")? {
-                let enum_value_1269: String = value.extract()?;
-                let converted_1268 =
-                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_1269.as_str());
-                Some(converted_1268)
+                let enum_value_1252: String = value.extract()?;
+                let converted_1251 =
+                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_1252.as_str());
+                Some(converted_1251)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1270: String = value.extract()?;
-                Some(converted_1270)
+                let converted_1253: String = value.extract()?;
+                Some(converted_1253)
             } else {
                 None
             };
         let expected_source_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_source_bucket_owner")? {
-                let converted_1271: String = value.extract()?;
-                Some(converted_1271)
+                let converted_1254: String = value.extract()?;
+                Some(converted_1254)
             } else {
                 None
             };
@@ -7887,76 +19370,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CopyObject")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.copy_object_result {
-                    let converted_1272 = copy_object_result_to_py(py, value)?;
-                    result.set_item("copy_object_result", converted_1272)?;
-                } else {
-                    result.set_item("copy_object_result", py.None())?;
-                }
-                if let Some(value) = &output.expiration {
-                    let converted_1273 = value.as_str().into_py_any(py)?;
-                    result.set_item("expiration", converted_1273)?;
-                } else {
-                    result.set_item("expiration", py.None())?;
-                }
-                if let Some(value) = &output.copy_source_version_id {
-                    let converted_1274 = value.as_str().into_py_any(py)?;
-                    result.set_item("copy_source_version_id", converted_1274)?;
-                } else {
-                    result.set_item("copy_source_version_id", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1275 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1275)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1276 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1276)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_1277 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_1277)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_1278 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_1278)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1279 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1279)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_encryption_context {
-                    let converted_1280 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_encryption_context", converted_1280)?;
-                } else {
-                    result.set_item("ssekms_encryption_context", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1281 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1281)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1282 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1282)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCopyObjectOutput { inner: output }))
         })
     }
 
@@ -7968,67 +19382,67 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_1284: String = value.extract()?;
-            let converted_1283 = aws_sdk_s3::types::BucketCannedAcl::from(enum_value_1284.as_str());
-            Some(converted_1283)
+            let enum_value_1256: String = value.extract()?;
+            let converted_1255 = aws_sdk_s3::types::BucketCannedAcl::from(enum_value_1256.as_str());
+            Some(converted_1255)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1285: String = value.extract()?;
-            Some(converted_1285)
+            let converted_1257: String = value.extract()?;
+            Some(converted_1257)
         } else {
             None
         };
         let create_bucket_configuration_value =
             if let Some(value) = dict_value(params, "create_bucket_configuration")? {
-                let converted_1286 = create_bucket_configuration_from_py(&value)?;
-                Some(converted_1286)
+                let converted_1258 = create_bucket_configuration_from_py(&value)?;
+                Some(converted_1258)
             } else {
                 None
             };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_1287: String = value.extract()?;
-                Some(converted_1287)
+                let converted_1259: String = value.extract()?;
+                Some(converted_1259)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_1288: String = value.extract()?;
-            Some(converted_1288)
+            let converted_1260: String = value.extract()?;
+            Some(converted_1260)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_1289: String = value.extract()?;
-            Some(converted_1289)
+            let converted_1261: String = value.extract()?;
+            Some(converted_1261)
         } else {
             None
         };
         let grant_write_value = if let Some(value) = dict_value(params, "grant_write")? {
-            let converted_1290: String = value.extract()?;
-            Some(converted_1290)
+            let converted_1262: String = value.extract()?;
+            Some(converted_1262)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_1291: String = value.extract()?;
-            Some(converted_1291)
+            let converted_1263: String = value.extract()?;
+            Some(converted_1263)
         } else {
             None
         };
         let object_lock_enabled_for_bucket_value =
             if let Some(value) = dict_value(params, "object_lock_enabled_for_bucket")? {
-                let converted_1292: bool = value.extract()?;
-                Some(converted_1292)
+                let converted_1264: bool = value.extract()?;
+                Some(converted_1264)
             } else {
                 None
             };
         let object_ownership_value = if let Some(value) = dict_value(params, "object_ownership")? {
-            let enum_value_1294: String = value.extract()?;
-            let converted_1293 = aws_sdk_s3::types::ObjectOwnership::from(enum_value_1294.as_str());
-            Some(converted_1293)
+            let enum_value_1266: String = value.extract()?;
+            let converted_1265 = aws_sdk_s3::types::ObjectOwnership::from(enum_value_1266.as_str());
+            Some(converted_1265)
         } else {
             None
         };
@@ -8050,22 +19464,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBucket"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.location {
-                    let converted_1295 = value.as_str().into_py_any(py)?;
-                    result.set_item("location", converted_1295)?;
-                } else {
-                    result.set_item("location", py.None())?;
-                }
-                if let Some(value) = &output.bucket_arn {
-                    let converted_1296 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket_arn", converted_1296)?;
-                } else {
-                    result.set_item("bucket_arn", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCreateBucketOutput { inner: output }))
         })
     }
 
@@ -8077,37 +19476,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1297: String = value.extract()?;
-            Some(converted_1297)
+            let converted_1267: String = value.extract()?;
+            Some(converted_1267)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_1298: String = value.extract()?;
-            Some(converted_1298)
+            let converted_1268: String = value.extract()?;
+            Some(converted_1268)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1300: String = value.extract()?;
-                let converted_1299 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1300.as_str());
-                Some(converted_1299)
+                let enum_value_1270: String = value.extract()?;
+                let converted_1269 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1270.as_str());
+                Some(converted_1269)
             } else {
                 None
             };
         let metadata_configuration_value =
             if let Some(value) = dict_value(params, "metadata_configuration")? {
-                let converted_1301 = metadata_configuration_from_py(&value)?;
-                Some(converted_1301)
+                let converted_1271 = metadata_configuration_from_py(&value)?;
+                Some(converted_1271)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1302: String = value.extract()?;
-                Some(converted_1302)
+                let converted_1272: String = value.extract()?;
+                Some(converted_1272)
             } else {
                 None
             };
@@ -8138,37 +19537,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1303: String = value.extract()?;
-            Some(converted_1303)
+            let converted_1273: String = value.extract()?;
+            Some(converted_1273)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_1304: String = value.extract()?;
-            Some(converted_1304)
+            let converted_1274: String = value.extract()?;
+            Some(converted_1274)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1306: String = value.extract()?;
-                let converted_1305 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1306.as_str());
-                Some(converted_1305)
+                let enum_value_1276: String = value.extract()?;
+                let converted_1275 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1276.as_str());
+                Some(converted_1275)
             } else {
                 None
             };
         let metadata_table_configuration_value =
             if let Some(value) = dict_value(params, "metadata_table_configuration")? {
-                let converted_1307 = metadata_table_configuration_from_py(&value)?;
-                Some(converted_1307)
+                let converted_1277 = metadata_table_configuration_from_py(&value)?;
+                Some(converted_1277)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1308: String = value.extract()?;
-                Some(converted_1308)
+                let converted_1278: String = value.extract()?;
+                Some(converted_1278)
             } else {
                 None
             };
@@ -8199,227 +19598,227 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_1310: String = value.extract()?;
-            let converted_1309 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1310.as_str());
-            Some(converted_1309)
+            let enum_value_1280: String = value.extract()?;
+            let converted_1279 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1280.as_str());
+            Some(converted_1279)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1311: String = value.extract()?;
-            Some(converted_1311)
+            let converted_1281: String = value.extract()?;
+            Some(converted_1281)
         } else {
             None
         };
         let cache_control_value = if let Some(value) = dict_value(params, "cache_control")? {
-            let converted_1312: String = value.extract()?;
-            Some(converted_1312)
+            let converted_1282: String = value.extract()?;
+            Some(converted_1282)
         } else {
             None
         };
         let content_disposition_value =
             if let Some(value) = dict_value(params, "content_disposition")? {
-                let converted_1313: String = value.extract()?;
-                Some(converted_1313)
+                let converted_1283: String = value.extract()?;
+                Some(converted_1283)
             } else {
                 None
             };
         let content_encoding_value = if let Some(value) = dict_value(params, "content_encoding")? {
-            let converted_1314: String = value.extract()?;
-            Some(converted_1314)
+            let converted_1284: String = value.extract()?;
+            Some(converted_1284)
         } else {
             None
         };
         let content_language_value = if let Some(value) = dict_value(params, "content_language")? {
-            let converted_1315: String = value.extract()?;
-            Some(converted_1315)
+            let converted_1285: String = value.extract()?;
+            Some(converted_1285)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_1316: String = value.extract()?;
-            Some(converted_1316)
+            let converted_1286: String = value.extract()?;
+            Some(converted_1286)
         } else {
             None
         };
         let expires_value = if let Some(value) = dict_value(params, "expires")? {
-            let timestamp_1318: String = value.extract()?;
-            let converted_1317 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1318,
+            let timestamp_1288: String = value.extract()?;
+            let converted_1287 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1288,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1317)
+            Some(converted_1287)
         } else {
             None
         };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_1319: String = value.extract()?;
-                Some(converted_1319)
+                let converted_1289: String = value.extract()?;
+                Some(converted_1289)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_1320: String = value.extract()?;
-            Some(converted_1320)
+            let converted_1290: String = value.extract()?;
+            Some(converted_1290)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_1321: String = value.extract()?;
-            Some(converted_1321)
+            let converted_1291: String = value.extract()?;
+            Some(converted_1291)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_1322: String = value.extract()?;
-            Some(converted_1322)
+            let converted_1292: String = value.extract()?;
+            Some(converted_1292)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1323: String = value.extract()?;
-            Some(converted_1323)
+            let converted_1293: String = value.extract()?;
+            Some(converted_1293)
         } else {
             None
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
-            let mapping_1325 = value.cast::<PyDict>()?;
-            let mut converted_1324 = HashMap::new();
-            for (key_1326, value_1327) in mapping_1325.iter() {
-                let converted_key_1328: String = key_1326.extract()?;
-                let converted_value_1329: String = value_1327.extract()?;
-                converted_1324.insert(converted_key_1328, converted_value_1329);
+            let mapping_1295 = value.cast::<PyDict>()?;
+            let mut converted_1294 = HashMap::new();
+            for (key_1296, value_1297) in mapping_1295.iter() {
+                let converted_key_1298: String = key_1296.extract()?;
+                let converted_value_1299: String = value_1297.extract()?;
+                converted_1294.insert(converted_key_1298, converted_value_1299);
             }
-            Some(converted_1324)
+            Some(converted_1294)
         } else {
             None
         };
         let server_side_encryption_value =
             if let Some(value) = dict_value(params, "server_side_encryption")? {
-                let enum_value_1331: String = value.extract()?;
-                let converted_1330 =
-                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1331.as_str());
-                Some(converted_1330)
+                let enum_value_1301: String = value.extract()?;
+                let converted_1300 =
+                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1301.as_str());
+                Some(converted_1300)
             } else {
                 None
             };
         let storage_class_value = if let Some(value) = dict_value(params, "storage_class")? {
-            let enum_value_1333: String = value.extract()?;
-            let converted_1332 = aws_sdk_s3::types::StorageClass::from(enum_value_1333.as_str());
-            Some(converted_1332)
+            let enum_value_1303: String = value.extract()?;
+            let converted_1302 = aws_sdk_s3::types::StorageClass::from(enum_value_1303.as_str());
+            Some(converted_1302)
         } else {
             None
         };
         let website_redirect_location_value =
             if let Some(value) = dict_value(params, "website_redirect_location")? {
-                let converted_1334: String = value.extract()?;
-                Some(converted_1334)
+                let converted_1304: String = value.extract()?;
+                Some(converted_1304)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1335: String = value.extract()?;
-                Some(converted_1335)
+                let converted_1305: String = value.extract()?;
+                Some(converted_1305)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1336: String = value.extract()?;
-            Some(converted_1336)
+            let converted_1306: String = value.extract()?;
+            Some(converted_1306)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1337: String = value.extract()?;
-                Some(converted_1337)
+                let converted_1307: String = value.extract()?;
+                Some(converted_1307)
             } else {
                 None
             };
         let ssekms_key_id_value = if let Some(value) = dict_value(params, "ssekms_key_id")? {
-            let converted_1338: String = value.extract()?;
-            Some(converted_1338)
+            let converted_1308: String = value.extract()?;
+            Some(converted_1308)
         } else {
             None
         };
         let ssekms_encryption_context_value =
             if let Some(value) = dict_value(params, "ssekms_encryption_context")? {
-                let converted_1339: String = value.extract()?;
-                Some(converted_1339)
+                let converted_1309: String = value.extract()?;
+                Some(converted_1309)
             } else {
                 None
             };
         let bucket_key_enabled_value =
             if let Some(value) = dict_value(params, "bucket_key_enabled")? {
-                let converted_1340: bool = value.extract()?;
-                Some(converted_1340)
+                let converted_1310: bool = value.extract()?;
+                Some(converted_1310)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1342: String = value.extract()?;
-            let converted_1341 = aws_sdk_s3::types::RequestPayer::from(enum_value_1342.as_str());
-            Some(converted_1341)
+            let enum_value_1312: String = value.extract()?;
+            let converted_1311 = aws_sdk_s3::types::RequestPayer::from(enum_value_1312.as_str());
+            Some(converted_1311)
         } else {
             None
         };
         let tagging_value = if let Some(value) = dict_value(params, "tagging")? {
-            let converted_1343: String = value.extract()?;
-            Some(converted_1343)
+            let converted_1313: String = value.extract()?;
+            Some(converted_1313)
         } else {
             None
         };
         let object_lock_mode_value = if let Some(value) = dict_value(params, "object_lock_mode")? {
-            let enum_value_1345: String = value.extract()?;
-            let converted_1344 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1345.as_str());
-            Some(converted_1344)
+            let enum_value_1315: String = value.extract()?;
+            let converted_1314 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1315.as_str());
+            Some(converted_1314)
         } else {
             None
         };
         let object_lock_retain_until_date_value =
             if let Some(value) = dict_value(params, "object_lock_retain_until_date")? {
-                let timestamp_1347: String = value.extract()?;
-                let converted_1346 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1347,
+                let timestamp_1317: String = value.extract()?;
+                let converted_1316 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1317,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1346)
+                Some(converted_1316)
             } else {
                 None
             };
         let object_lock_legal_hold_status_value =
             if let Some(value) = dict_value(params, "object_lock_legal_hold_status")? {
-                let enum_value_1349: String = value.extract()?;
-                let converted_1348 =
-                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_1349.as_str());
-                Some(converted_1348)
+                let enum_value_1319: String = value.extract()?;
+                let converted_1318 =
+                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_1319.as_str());
+                Some(converted_1318)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1350: String = value.extract()?;
-                Some(converted_1350)
+                let converted_1320: String = value.extract()?;
+                Some(converted_1320)
             } else {
                 None
             };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1352: String = value.extract()?;
-                let converted_1351 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1352.as_str());
-                Some(converted_1351)
+                let enum_value_1322: String = value.extract()?;
+                let converted_1321 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1322.as_str());
+                Some(converted_1321)
             } else {
                 None
             };
         let checksum_type_value = if let Some(value) = dict_value(params, "checksum_type")? {
-            let enum_value_1354: String = value.extract()?;
-            let converted_1353 = aws_sdk_s3::types::ChecksumType::from(enum_value_1354.as_str());
-            Some(converted_1353)
+            let enum_value_1324: String = value.extract()?;
+            let converted_1323 = aws_sdk_s3::types::ChecksumType::from(enum_value_1324.as_str());
+            Some(converted_1323)
         } else {
             None
         };
@@ -8462,94 +19861,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultipartUpload"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.abort_date {
-                    let converted_1355 = value.to_string().into_py_any(py)?;
-                    result.set_item("abort_date", converted_1355)?;
-                } else {
-                    result.set_item("abort_date", py.None())?;
-                }
-                if let Some(value) = &output.abort_rule_id {
-                    let converted_1356 = value.as_str().into_py_any(py)?;
-                    result.set_item("abort_rule_id", converted_1356)?;
-                } else {
-                    result.set_item("abort_rule_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket {
-                    let converted_1357 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket", converted_1357)?;
-                } else {
-                    result.set_item("bucket", py.None())?;
-                }
-                if let Some(value) = &output.key {
-                    let converted_1358 = value.as_str().into_py_any(py)?;
-                    result.set_item("key", converted_1358)?;
-                } else {
-                    result.set_item("key", py.None())?;
-                }
-                if let Some(value) = &output.upload_id {
-                    let converted_1359 = value.as_str().into_py_any(py)?;
-                    result.set_item("upload_id", converted_1359)?;
-                } else {
-                    result.set_item("upload_id", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1360 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1360)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_1361 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_1361)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_1362 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_1362)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1363 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1363)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_encryption_context {
-                    let converted_1364 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_encryption_context", converted_1364)?;
-                } else {
-                    result.set_item("ssekms_encryption_context", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1365 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1365)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1366 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1366)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.checksum_algorithm {
-                    let converted_1367 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_algorithm", converted_1367)?;
-                } else {
-                    result.set_item("checksum_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_1368 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_1368)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCreateMultipartUploadOutput { inner: output }))
         })
     }
 
@@ -8561,44 +19873,44 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_mode_value = if let Some(value) = dict_value(params, "session_mode")? {
-            let enum_value_1370: String = value.extract()?;
-            let converted_1369 = aws_sdk_s3::types::SessionMode::from(enum_value_1370.as_str());
-            Some(converted_1369)
+            let enum_value_1326: String = value.extract()?;
+            let converted_1325 = aws_sdk_s3::types::SessionMode::from(enum_value_1326.as_str());
+            Some(converted_1325)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1371: String = value.extract()?;
-            Some(converted_1371)
+            let converted_1327: String = value.extract()?;
+            Some(converted_1327)
         } else {
             None
         };
         let server_side_encryption_value =
             if let Some(value) = dict_value(params, "server_side_encryption")? {
-                let enum_value_1373: String = value.extract()?;
-                let converted_1372 =
-                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1373.as_str());
-                Some(converted_1372)
+                let enum_value_1329: String = value.extract()?;
+                let converted_1328 =
+                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1329.as_str());
+                Some(converted_1328)
             } else {
                 None
             };
         let ssekms_key_id_value = if let Some(value) = dict_value(params, "ssekms_key_id")? {
-            let converted_1374: String = value.extract()?;
-            Some(converted_1374)
+            let converted_1330: String = value.extract()?;
+            Some(converted_1330)
         } else {
             None
         };
         let ssekms_encryption_context_value =
             if let Some(value) = dict_value(params, "ssekms_encryption_context")? {
-                let converted_1375: String = value.extract()?;
-                Some(converted_1375)
+                let converted_1331: String = value.extract()?;
+                Some(converted_1331)
             } else {
                 None
             };
         let bucket_key_enabled_value =
             if let Some(value) = dict_value(params, "bucket_key_enabled")? {
-                let converted_1376: bool = value.extract()?;
-                Some(converted_1376)
+                let converted_1332: bool = value.extract()?;
+                Some(converted_1332)
             } else {
                 None
             };
@@ -8616,40 +19928,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1377 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1377)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1378 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1378)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_encryption_context {
-                    let converted_1379 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_encryption_context", converted_1379)?;
-                } else {
-                    result.set_item("ssekms_encryption_context", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1380 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1380)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.credentials {
-                    let converted_1381 = session_credentials_to_py(py, value)?;
-                    result.set_item("credentials", converted_1381)?;
-                } else {
-                    result.set_item("credentials", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCreateSessionOutput { inner: output }))
         })
     }
 
@@ -8661,15 +19940,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1382: String = value.extract()?;
-            Some(converted_1382)
+            let converted_1333: String = value.extract()?;
+            Some(converted_1333)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1383: String = value.extract()?;
-                Some(converted_1383)
+                let converted_1334: String = value.extract()?;
+                Some(converted_1334)
             } else {
                 None
             };
@@ -8695,21 +19974,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1384: String = value.extract()?;
-            Some(converted_1384)
+            let converted_1335: String = value.extract()?;
+            Some(converted_1335)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1385: String = value.extract()?;
-            Some(converted_1385)
+            let converted_1336: String = value.extract()?;
+            Some(converted_1336)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1386: String = value.extract()?;
-                Some(converted_1386)
+                let converted_1337: String = value.extract()?;
+                Some(converted_1337)
             } else {
                 None
             };
@@ -8738,15 +20017,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1387: String = value.extract()?;
-            Some(converted_1387)
+            let converted_1338: String = value.extract()?;
+            Some(converted_1338)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1388: String = value.extract()?;
-                Some(converted_1388)
+                let converted_1339: String = value.extract()?;
+                Some(converted_1339)
             } else {
                 None
             };
@@ -8772,15 +20051,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1389: String = value.extract()?;
-            Some(converted_1389)
+            let converted_1340: String = value.extract()?;
+            Some(converted_1340)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1390: String = value.extract()?;
-                Some(converted_1390)
+                let converted_1341: String = value.extract()?;
+                Some(converted_1341)
             } else {
                 None
             };
@@ -8806,21 +20085,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1391: String = value.extract()?;
-            Some(converted_1391)
+            let converted_1342: String = value.extract()?;
+            Some(converted_1342)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1392: String = value.extract()?;
-            Some(converted_1392)
+            let converted_1343: String = value.extract()?;
+            Some(converted_1343)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1393: String = value.extract()?;
-                Some(converted_1393)
+                let converted_1344: String = value.extract()?;
+                Some(converted_1344)
             } else {
                 None
             };
@@ -8849,21 +20128,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1394: String = value.extract()?;
-            Some(converted_1394)
+            let converted_1345: String = value.extract()?;
+            Some(converted_1345)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1395: String = value.extract()?;
-            Some(converted_1395)
+            let converted_1346: String = value.extract()?;
+            Some(converted_1346)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1396: String = value.extract()?;
-                Some(converted_1396)
+                let converted_1347: String = value.extract()?;
+                Some(converted_1347)
             } else {
                 None
             };
@@ -8892,15 +20171,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1397: String = value.extract()?;
-            Some(converted_1397)
+            let converted_1348: String = value.extract()?;
+            Some(converted_1348)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1398: String = value.extract()?;
-                Some(converted_1398)
+                let converted_1349: String = value.extract()?;
+                Some(converted_1349)
             } else {
                 None
             };
@@ -8926,15 +20205,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1399: String = value.extract()?;
-            Some(converted_1399)
+            let converted_1350: String = value.extract()?;
+            Some(converted_1350)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1400: String = value.extract()?;
-                Some(converted_1400)
+                let converted_1351: String = value.extract()?;
+                Some(converted_1351)
             } else {
                 None
             };
@@ -8962,15 +20241,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1401: String = value.extract()?;
-            Some(converted_1401)
+            let converted_1352: String = value.extract()?;
+            Some(converted_1352)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1402: String = value.extract()?;
-                Some(converted_1402)
+                let converted_1353: String = value.extract()?;
+                Some(converted_1353)
             } else {
                 None
             };
@@ -8998,21 +20277,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1403: String = value.extract()?;
-            Some(converted_1403)
+            let converted_1354: String = value.extract()?;
+            Some(converted_1354)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1404: String = value.extract()?;
-            Some(converted_1404)
+            let converted_1355: String = value.extract()?;
+            Some(converted_1355)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1405: String = value.extract()?;
-                Some(converted_1405)
+                let converted_1356: String = value.extract()?;
+                Some(converted_1356)
             } else {
                 None
             };
@@ -9039,15 +20318,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1406: String = value.extract()?;
-            Some(converted_1406)
+            let converted_1357: String = value.extract()?;
+            Some(converted_1357)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1407: String = value.extract()?;
-                Some(converted_1407)
+                let converted_1358: String = value.extract()?;
+                Some(converted_1358)
             } else {
                 None
             };
@@ -9073,15 +20352,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1408: String = value.extract()?;
-            Some(converted_1408)
+            let converted_1359: String = value.extract()?;
+            Some(converted_1359)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1409: String = value.extract()?;
-                Some(converted_1409)
+                let converted_1360: String = value.extract()?;
+                Some(converted_1360)
             } else {
                 None
             };
@@ -9107,15 +20386,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1410: String = value.extract()?;
-            Some(converted_1410)
+            let converted_1361: String = value.extract()?;
+            Some(converted_1361)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1411: String = value.extract()?;
-                Some(converted_1411)
+                let converted_1362: String = value.extract()?;
+                Some(converted_1362)
             } else {
                 None
             };
@@ -9141,15 +20420,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1412: String = value.extract()?;
-            Some(converted_1412)
+            let converted_1363: String = value.extract()?;
+            Some(converted_1363)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1413: String = value.extract()?;
-                Some(converted_1413)
+                let converted_1364: String = value.extract()?;
+                Some(converted_1364)
             } else {
                 None
             };
@@ -9175,15 +20454,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1414: String = value.extract()?;
-            Some(converted_1414)
+            let converted_1365: String = value.extract()?;
+            Some(converted_1365)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1415: String = value.extract()?;
-                Some(converted_1415)
+                let converted_1366: String = value.extract()?;
+                Some(converted_1366)
             } else {
                 None
             };
@@ -9209,71 +20488,71 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1416: String = value.extract()?;
-            Some(converted_1416)
+            let converted_1367: String = value.extract()?;
+            Some(converted_1367)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1417: String = value.extract()?;
-            Some(converted_1417)
+            let converted_1368: String = value.extract()?;
+            Some(converted_1368)
         } else {
             None
         };
         let mfa_value = if let Some(value) = dict_value(params, "mfa")? {
-            let converted_1418: String = value.extract()?;
-            Some(converted_1418)
+            let converted_1369: String = value.extract()?;
+            Some(converted_1369)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1419: String = value.extract()?;
-            Some(converted_1419)
+            let converted_1370: String = value.extract()?;
+            Some(converted_1370)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1421: String = value.extract()?;
-            let converted_1420 = aws_sdk_s3::types::RequestPayer::from(enum_value_1421.as_str());
-            Some(converted_1420)
+            let enum_value_1372: String = value.extract()?;
+            let converted_1371 = aws_sdk_s3::types::RequestPayer::from(enum_value_1372.as_str());
+            Some(converted_1371)
         } else {
             None
         };
         let bypass_governance_retention_value =
             if let Some(value) = dict_value(params, "bypass_governance_retention")? {
-                let converted_1422: bool = value.extract()?;
-                Some(converted_1422)
+                let converted_1373: bool = value.extract()?;
+                Some(converted_1373)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1423: String = value.extract()?;
-                Some(converted_1423)
+                let converted_1374: String = value.extract()?;
+                Some(converted_1374)
             } else {
                 None
             };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
-            let converted_1424: String = value.extract()?;
-            Some(converted_1424)
+            let converted_1375: String = value.extract()?;
+            Some(converted_1375)
         } else {
             None
         };
         let if_match_last_modified_time_value =
             if let Some(value) = dict_value(params, "if_match_last_modified_time")? {
-                let timestamp_1426: String = value.extract()?;
-                let converted_1425 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1426,
+                let timestamp_1377: String = value.extract()?;
+                let converted_1376 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1377,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1425)
+                Some(converted_1376)
             } else {
                 None
             };
         let if_match_size_value = if let Some(value) = dict_value(params, "if_match_size")? {
-            let converted_1427: i64 = value.extract()?;
-            Some(converted_1427)
+            let converted_1378: i64 = value.extract()?;
+            Some(converted_1378)
         } else {
             None
         };
@@ -9295,28 +20574,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObject"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.delete_marker {
-                    let converted_1428 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("delete_marker", converted_1428)?;
-                } else {
-                    result.set_item("delete_marker", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1429 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1429)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1430 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1430)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyDeleteObjectOutput { inner: output }))
         })
     }
 
@@ -9328,50 +20586,50 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1431: String = value.extract()?;
-            Some(converted_1431)
+            let converted_1379: String = value.extract()?;
+            Some(converted_1379)
         } else {
             None
         };
         let delete_value = if let Some(value) = dict_value(params, "delete")? {
-            let converted_1432 = delete_from_py(&value)?;
-            Some(converted_1432)
+            let converted_1380 = delete_from_py(&value)?;
+            Some(converted_1380)
         } else {
             None
         };
         let mfa_value = if let Some(value) = dict_value(params, "mfa")? {
-            let converted_1433: String = value.extract()?;
-            Some(converted_1433)
+            let converted_1381: String = value.extract()?;
+            Some(converted_1381)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1435: String = value.extract()?;
-            let converted_1434 = aws_sdk_s3::types::RequestPayer::from(enum_value_1435.as_str());
-            Some(converted_1434)
+            let enum_value_1383: String = value.extract()?;
+            let converted_1382 = aws_sdk_s3::types::RequestPayer::from(enum_value_1383.as_str());
+            Some(converted_1382)
         } else {
             None
         };
         let bypass_governance_retention_value =
             if let Some(value) = dict_value(params, "bypass_governance_retention")? {
-                let converted_1436: bool = value.extract()?;
-                Some(converted_1436)
+                let converted_1384: bool = value.extract()?;
+                Some(converted_1384)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1437: String = value.extract()?;
-                Some(converted_1437)
+                let converted_1385: String = value.extract()?;
+                Some(converted_1385)
             } else {
                 None
             };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1439: String = value.extract()?;
-                let converted_1438 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1439.as_str());
-                Some(converted_1438)
+                let enum_value_1387: String = value.extract()?;
+                let converted_1386 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1387.as_str());
+                Some(converted_1386)
             } else {
                 None
             };
@@ -9390,38 +20648,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjects"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.deleted {
-                    let converted_1440_list = PyList::empty(py);
-                    for item_1441 in value {
-                        let converted_item_1442 = deleted_object_to_py(py, item_1441)?;
-                        converted_1440_list.append(converted_item_1442)?;
-                    }
-                    let converted_1440 = converted_1440_list.into_any().unbind();
-                    result.set_item("deleted", converted_1440)?;
-                } else {
-                    result.set_item("deleted", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1443 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1443)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.errors {
-                    let converted_1444_list = PyList::empty(py);
-                    for item_1445 in value {
-                        let converted_item_1446 = error_to_py(py, item_1445)?;
-                        converted_1444_list.append(converted_item_1446)?;
-                    }
-                    let converted_1444 = converted_1444_list.into_any().unbind();
-                    result.set_item("errors", converted_1444)?;
-                } else {
-                    result.set_item("errors", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyDeleteObjectsOutput { inner: output }))
         })
     }
 
@@ -9433,27 +20660,27 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1447: String = value.extract()?;
-            Some(converted_1447)
+            let converted_1388: String = value.extract()?;
+            Some(converted_1388)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1448: String = value.extract()?;
-            Some(converted_1448)
+            let converted_1389: String = value.extract()?;
+            Some(converted_1389)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1449: String = value.extract()?;
-            Some(converted_1449)
+            let converted_1390: String = value.extract()?;
+            Some(converted_1390)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1450: String = value.extract()?;
-                Some(converted_1450)
+                let converted_1391: String = value.extract()?;
+                Some(converted_1391)
             } else {
                 None
             };
@@ -9469,16 +20696,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectTagging"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.version_id {
-                    let converted_1451 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1451)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyDeleteObjectTaggingOutput { inner: output }))
         })
     }
 
@@ -9490,15 +20708,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1452: String = value.extract()?;
-            Some(converted_1452)
+            let converted_1392: String = value.extract()?;
+            Some(converted_1392)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1453: String = value.extract()?;
-                Some(converted_1453)
+                let converted_1393: String = value.extract()?;
+                Some(converted_1393)
             } else {
                 None
             };
@@ -9524,15 +20742,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1454: String = value.extract()?;
-            Some(converted_1454)
+            let converted_1394: String = value.extract()?;
+            Some(converted_1394)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1455: String = value.extract()?;
-                Some(converted_1455)
+                let converted_1395: String = value.extract()?;
+                Some(converted_1395)
             } else {
                 None
             };
@@ -9546,16 +20764,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAbac"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.abac_status {
-                    let converted_1456 = abac_status_to_py(py, value)?;
-                    result.set_item("abac_status", converted_1456)?;
-                } else {
-                    result.set_item("abac_status", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketAbacOutput { inner: output }))
         })
     }
 
@@ -9567,22 +20776,22 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1457: String = value.extract()?;
-            Some(converted_1457)
+            let converted_1396: String = value.extract()?;
+            Some(converted_1396)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1458: String = value.extract()?;
-                Some(converted_1458)
+                let converted_1397: String = value.extract()?;
+                Some(converted_1397)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1460: String = value.extract()?;
-            let converted_1459 = aws_sdk_s3::types::RequestPayer::from(enum_value_1460.as_str());
-            Some(converted_1459)
+            let enum_value_1399: String = value.extract()?;
+            let converted_1398 = aws_sdk_s3::types::RequestPayer::from(enum_value_1399.as_str());
+            Some(converted_1398)
         } else {
             None
         };
@@ -9598,20 +20807,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAccelerateConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.status {
-                    let converted_1461 = value.as_str().into_py_any(py)?;
-                    result.set_item("status", converted_1461)?;
-                } else {
-                    result.set_item("status", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1462 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1462)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketAccelerateConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -9624,15 +20823,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1463: String = value.extract()?;
-            Some(converted_1463)
+            let converted_1400: String = value.extract()?;
+            Some(converted_1400)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1464: String = value.extract()?;
-                Some(converted_1464)
+                let converted_1401: String = value.extract()?;
+                Some(converted_1401)
             } else {
                 None
             };
@@ -9646,27 +20845,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAcl"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.owner {
-                    let converted_1465 = owner_to_py(py, value)?;
-                    result.set_item("owner", converted_1465)?;
-                } else {
-                    result.set_item("owner", py.None())?;
-                }
-                if let Some(value) = &output.grants {
-                    let converted_1466_list = PyList::empty(py);
-                    for item_1467 in value {
-                        let converted_item_1468 = grant_to_py(py, item_1467)?;
-                        converted_1466_list.append(converted_item_1468)?;
-                    }
-                    let converted_1466 = converted_1466_list.into_any().unbind();
-                    result.set_item("grants", converted_1466)?;
-                } else {
-                    result.set_item("grants", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketAclOutput { inner: output }))
         })
     }
 
@@ -9678,21 +20857,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1469: String = value.extract()?;
-            Some(converted_1469)
+            let converted_1402: String = value.extract()?;
+            Some(converted_1402)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1470: String = value.extract()?;
-            Some(converted_1470)
+            let converted_1403: String = value.extract()?;
+            Some(converted_1403)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1471: String = value.extract()?;
-                Some(converted_1471)
+                let converted_1404: String = value.extract()?;
+                Some(converted_1404)
             } else {
                 None
             };
@@ -9708,14 +20887,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAnalyticsConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.analytics_configuration {
-                    let converted_1472 = analytics_configuration_to_py(py, value)?;
-                    result.set_item("analytics_configuration", converted_1472)?;
-                } else {
-                    result.set_item("analytics_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketAnalyticsConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -9728,15 +20903,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1473: String = value.extract()?;
-            Some(converted_1473)
+            let converted_1405: String = value.extract()?;
+            Some(converted_1405)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1474: String = value.extract()?;
-                Some(converted_1474)
+                let converted_1406: String = value.extract()?;
+                Some(converted_1406)
             } else {
                 None
             };
@@ -9750,21 +20925,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketCors"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.cors_rules {
-                    let converted_1475_list = PyList::empty(py);
-                    for item_1476 in value {
-                        let converted_item_1477 = cors_rule_to_py(py, item_1476)?;
-                        converted_1475_list.append(converted_item_1477)?;
-                    }
-                    let converted_1475 = converted_1475_list.into_any().unbind();
-                    result.set_item("cors_rules", converted_1475)?;
-                } else {
-                    result.set_item("cors_rules", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketCorsOutput { inner: output }))
         })
     }
 
@@ -9776,15 +20937,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1478: String = value.extract()?;
-            Some(converted_1478)
+            let converted_1407: String = value.extract()?;
+            Some(converted_1407)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1479: String = value.extract()?;
-                Some(converted_1479)
+                let converted_1408: String = value.extract()?;
+                Some(converted_1408)
             } else {
                 None
             };
@@ -9798,16 +20959,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketEncryption"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.server_side_encryption_configuration {
-                    let converted_1480 = server_side_encryption_configuration_to_py(py, value)?;
-                    result.set_item("server_side_encryption_configuration", converted_1480)?;
-                } else {
-                    result.set_item("server_side_encryption_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketEncryptionOutput { inner: output }))
         })
     }
 
@@ -9819,21 +20971,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1481: String = value.extract()?;
-            Some(converted_1481)
+            let converted_1409: String = value.extract()?;
+            Some(converted_1409)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1482: String = value.extract()?;
-            Some(converted_1482)
+            let converted_1410: String = value.extract()?;
+            Some(converted_1410)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1483: String = value.extract()?;
-                Some(converted_1483)
+                let converted_1411: String = value.extract()?;
+                Some(converted_1411)
             } else {
                 None
             };
@@ -9851,14 +21003,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.intelligent_tiering_configuration {
-                    let converted_1484 = intelligent_tiering_configuration_to_py(py, value)?;
-                    result.set_item("intelligent_tiering_configuration", converted_1484)?;
-                } else {
-                    result.set_item("intelligent_tiering_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketIntelligentTieringConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -9871,21 +21019,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1485: String = value.extract()?;
-            Some(converted_1485)
+            let converted_1412: String = value.extract()?;
+            Some(converted_1412)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1486: String = value.extract()?;
-            Some(converted_1486)
+            let converted_1413: String = value.extract()?;
+            Some(converted_1413)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1487: String = value.extract()?;
-                Some(converted_1487)
+                let converted_1414: String = value.extract()?;
+                Some(converted_1414)
             } else {
                 None
             };
@@ -9901,14 +21049,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketInventoryConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.inventory_configuration {
-                    let converted_1488 = inventory_configuration_to_py(py, value)?;
-                    result.set_item("inventory_configuration", converted_1488)?;
-                } else {
-                    result.set_item("inventory_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketInventoryConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -9921,15 +21065,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1489: String = value.extract()?;
-            Some(converted_1489)
+            let converted_1415: String = value.extract()?;
+            Some(converted_1415)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1490: String = value.extract()?;
-                Some(converted_1490)
+                let converted_1416: String = value.extract()?;
+                Some(converted_1416)
             } else {
                 None
             };
@@ -9944,25 +21088,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLifecycleConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.rules {
-                    let converted_1491_list = PyList::empty(py);
-                    for item_1492 in value {
-                        let converted_item_1493 = lifecycle_rule_to_py(py, item_1492)?;
-                        converted_1491_list.append(converted_item_1493)?;
-                    }
-                    let converted_1491 = converted_1491_list.into_any().unbind();
-                    result.set_item("rules", converted_1491)?;
-                } else {
-                    result.set_item("rules", py.None())?;
-                }
-                if let Some(value) = &output.transition_default_minimum_object_size {
-                    let converted_1494 = value.as_str().into_py_any(py)?;
-                    result.set_item("transition_default_minimum_object_size", converted_1494)?;
-                } else {
-                    result.set_item("transition_default_minimum_object_size", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketLifecycleConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -9975,15 +21104,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1495: String = value.extract()?;
-            Some(converted_1495)
+            let converted_1417: String = value.extract()?;
+            Some(converted_1417)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1496: String = value.extract()?;
-                Some(converted_1496)
+                let converted_1418: String = value.extract()?;
+                Some(converted_1418)
             } else {
                 None
             };
@@ -9997,16 +21126,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLocation"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.location_constraint {
-                    let converted_1497 = value.as_str().into_py_any(py)?;
-                    result.set_item("location_constraint", converted_1497)?;
-                } else {
-                    result.set_item("location_constraint", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketLocationOutput { inner: output }))
         })
     }
 
@@ -10018,15 +21138,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1498: String = value.extract()?;
-            Some(converted_1498)
+            let converted_1419: String = value.extract()?;
+            Some(converted_1419)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1499: String = value.extract()?;
-                Some(converted_1499)
+                let converted_1420: String = value.extract()?;
+                Some(converted_1420)
             } else {
                 None
             };
@@ -10040,16 +21160,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLogging"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.logging_enabled {
-                    let converted_1500 = logging_enabled_to_py(py, value)?;
-                    result.set_item("logging_enabled", converted_1500)?;
-                } else {
-                    result.set_item("logging_enabled", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketLoggingOutput { inner: output }))
         })
     }
 
@@ -10061,15 +21172,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1501: String = value.extract()?;
-            Some(converted_1501)
+            let converted_1421: String = value.extract()?;
+            Some(converted_1421)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1502: String = value.extract()?;
-                Some(converted_1502)
+                let converted_1422: String = value.extract()?;
+                Some(converted_1422)
             } else {
                 None
             };
@@ -10084,14 +21195,7 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetadataConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.get_bucket_metadata_configuration_result {
-                    let converted_1503 = get_bucket_metadata_configuration_result_to_py(py, value)?;
-                    result.set_item("get_bucket_metadata_configuration_result", converted_1503)?;
-                } else {
-                    result.set_item("get_bucket_metadata_configuration_result", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(py, PyGetBucketMetadataConfigurationOutput { inner: output })
             })
         })
     }
@@ -10104,15 +21208,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1504: String = value.extract()?;
-            Some(converted_1504)
+            let converted_1423: String = value.extract()?;
+            Some(converted_1423)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1505: String = value.extract()?;
-                Some(converted_1505)
+                let converted_1424: String = value.extract()?;
+                Some(converted_1424)
             } else {
                 None
             };
@@ -10129,18 +21233,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.get_bucket_metadata_table_configuration_result {
-                    let converted_1506 =
-                        get_bucket_metadata_table_configuration_result_to_py(py, value)?;
-                    result.set_item(
-                        "get_bucket_metadata_table_configuration_result",
-                        converted_1506,
-                    )?;
-                } else {
-                    result.set_item("get_bucket_metadata_table_configuration_result", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketMetadataTableConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -10153,21 +21249,21 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1507: String = value.extract()?;
-            Some(converted_1507)
+            let converted_1425: String = value.extract()?;
+            Some(converted_1425)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_1508: String = value.extract()?;
-            Some(converted_1508)
+            let converted_1426: String = value.extract()?;
+            Some(converted_1426)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1509: String = value.extract()?;
-                Some(converted_1509)
+                let converted_1427: String = value.extract()?;
+                Some(converted_1427)
             } else {
                 None
             };
@@ -10183,14 +21279,7 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetricsConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.metrics_configuration {
-                    let converted_1510 = metrics_configuration_to_py(py, value)?;
-                    result.set_item("metrics_configuration", converted_1510)?;
-                } else {
-                    result.set_item("metrics_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(py, PyGetBucketMetricsConfigurationOutput { inner: output })
             })
         })
     }
@@ -10203,15 +21292,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1511: String = value.extract()?;
-            Some(converted_1511)
+            let converted_1428: String = value.extract()?;
+            Some(converted_1428)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1512: String = value.extract()?;
-                Some(converted_1512)
+                let converted_1429: String = value.extract()?;
+                Some(converted_1429)
             } else {
                 None
             };
@@ -10228,48 +21317,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.topic_configurations {
-                    let converted_1513_list = PyList::empty(py);
-                    for item_1514 in value {
-                        let converted_item_1515 = topic_configuration_to_py(py, item_1514)?;
-                        converted_1513_list.append(converted_item_1515)?;
-                    }
-                    let converted_1513 = converted_1513_list.into_any().unbind();
-                    result.set_item("topic_configurations", converted_1513)?;
-                } else {
-                    result.set_item("topic_configurations", py.None())?;
-                }
-                if let Some(value) = &output.queue_configurations {
-                    let converted_1516_list = PyList::empty(py);
-                    for item_1517 in value {
-                        let converted_item_1518 = queue_configuration_to_py(py, item_1517)?;
-                        converted_1516_list.append(converted_item_1518)?;
-                    }
-                    let converted_1516 = converted_1516_list.into_any().unbind();
-                    result.set_item("queue_configurations", converted_1516)?;
-                } else {
-                    result.set_item("queue_configurations", py.None())?;
-                }
-                if let Some(value) = &output.lambda_function_configurations {
-                    let converted_1519_list = PyList::empty(py);
-                    for item_1520 in value {
-                        let converted_item_1521 =
-                            lambda_function_configuration_to_py(py, item_1520)?;
-                        converted_1519_list.append(converted_item_1521)?;
-                    }
-                    let converted_1519 = converted_1519_list.into_any().unbind();
-                    result.set_item("lambda_function_configurations", converted_1519)?;
-                } else {
-                    result.set_item("lambda_function_configurations", py.None())?;
-                }
-                if let Some(value) = &output.event_bridge_configuration {
-                    let converted_1522 = event_bridge_configuration_to_py(py, value)?;
-                    result.set_item("event_bridge_configuration", converted_1522)?;
-                } else {
-                    result.set_item("event_bridge_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyGetBucketNotificationConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -10282,15 +21333,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1523: String = value.extract()?;
-            Some(converted_1523)
+            let converted_1430: String = value.extract()?;
+            Some(converted_1430)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1524: String = value.extract()?;
-                Some(converted_1524)
+                let converted_1431: String = value.extract()?;
+                Some(converted_1431)
             } else {
                 None
             };
@@ -10304,16 +21355,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketOwnershipControls"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.ownership_controls {
-                    let converted_1525 = ownership_controls_to_py(py, value)?;
-                    result.set_item("ownership_controls", converted_1525)?;
-                } else {
-                    result.set_item("ownership_controls", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketOwnershipControlsOutput { inner: output }))
         })
     }
 
@@ -10325,15 +21367,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1526: String = value.extract()?;
-            Some(converted_1526)
+            let converted_1432: String = value.extract()?;
+            Some(converted_1432)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1527: String = value.extract()?;
-                Some(converted_1527)
+                let converted_1433: String = value.extract()?;
+                Some(converted_1433)
             } else {
                 None
             };
@@ -10347,16 +21389,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicy"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.policy {
-                    let converted_1528 = value.as_str().into_py_any(py)?;
-                    result.set_item("policy", converted_1528)?;
-                } else {
-                    result.set_item("policy", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketPolicyOutput { inner: output }))
         })
     }
 
@@ -10368,15 +21401,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1529: String = value.extract()?;
-            Some(converted_1529)
+            let converted_1434: String = value.extract()?;
+            Some(converted_1434)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1530: String = value.extract()?;
-                Some(converted_1530)
+                let converted_1435: String = value.extract()?;
+                Some(converted_1435)
             } else {
                 None
             };
@@ -10390,16 +21423,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicyStatus"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.policy_status {
-                    let converted_1531 = policy_status_to_py(py, value)?;
-                    result.set_item("policy_status", converted_1531)?;
-                } else {
-                    result.set_item("policy_status", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketPolicyStatusOutput { inner: output }))
         })
     }
 
@@ -10411,15 +21435,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1532: String = value.extract()?;
-            Some(converted_1532)
+            let converted_1436: String = value.extract()?;
+            Some(converted_1436)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1533: String = value.extract()?;
-                Some(converted_1533)
+                let converted_1437: String = value.extract()?;
+                Some(converted_1437)
             } else {
                 None
             };
@@ -10433,16 +21457,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketReplication"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.replication_configuration {
-                    let converted_1534 = replication_configuration_to_py(py, value)?;
-                    result.set_item("replication_configuration", converted_1534)?;
-                } else {
-                    result.set_item("replication_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketReplicationOutput { inner: output }))
         })
     }
 
@@ -10454,15 +21469,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1535: String = value.extract()?;
-            Some(converted_1535)
+            let converted_1438: String = value.extract()?;
+            Some(converted_1438)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1536: String = value.extract()?;
-                Some(converted_1536)
+                let converted_1439: String = value.extract()?;
+                Some(converted_1439)
             } else {
                 None
             };
@@ -10476,16 +21491,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketRequestPayment"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.payer {
-                    let converted_1537 = value.as_str().into_py_any(py)?;
-                    result.set_item("payer", converted_1537)?;
-                } else {
-                    result.set_item("payer", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketRequestPaymentOutput { inner: output }))
         })
     }
 
@@ -10497,15 +21503,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1538: String = value.extract()?;
-            Some(converted_1538)
+            let converted_1440: String = value.extract()?;
+            Some(converted_1440)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1539: String = value.extract()?;
-                Some(converted_1539)
+                let converted_1441: String = value.extract()?;
+                Some(converted_1441)
             } else {
                 None
             };
@@ -10519,17 +21525,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketTagging"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_1540_list = PyList::empty(py);
-                for item_1541 in &output.tag_set {
-                    let converted_item_1542 = tag_to_py(py, item_1541)?;
-                    converted_1540_list.append(converted_item_1542)?;
-                }
-                let converted_1540 = converted_1540_list.into_any().unbind();
-                result.set_item("tag_set", converted_1540)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketTaggingOutput { inner: output }))
         })
     }
 
@@ -10541,15 +21537,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1543: String = value.extract()?;
-            Some(converted_1543)
+            let converted_1442: String = value.extract()?;
+            Some(converted_1442)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1544: String = value.extract()?;
-                Some(converted_1544)
+                let converted_1443: String = value.extract()?;
+                Some(converted_1443)
             } else {
                 None
             };
@@ -10563,22 +21559,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketVersioning"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.status {
-                    let converted_1545 = value.as_str().into_py_any(py)?;
-                    result.set_item("status", converted_1545)?;
-                } else {
-                    result.set_item("status", py.None())?;
-                }
-                if let Some(value) = &output.mfa_delete {
-                    let converted_1546 = value.as_str().into_py_any(py)?;
-                    result.set_item("mfa_delete", converted_1546)?;
-                } else {
-                    result.set_item("mfa_delete", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketVersioningOutput { inner: output }))
         })
     }
 
@@ -10590,15 +21571,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1547: String = value.extract()?;
-            Some(converted_1547)
+            let converted_1444: String = value.extract()?;
+            Some(converted_1444)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1548: String = value.extract()?;
-                Some(converted_1548)
+                let converted_1445: String = value.extract()?;
+                Some(converted_1445)
             } else {
                 None
             };
@@ -10612,39 +21593,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketWebsite"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.redirect_all_requests_to {
-                    let converted_1549 = redirect_all_requests_to_to_py(py, value)?;
-                    result.set_item("redirect_all_requests_to", converted_1549)?;
-                } else {
-                    result.set_item("redirect_all_requests_to", py.None())?;
-                }
-                if let Some(value) = &output.index_document {
-                    let converted_1550 = index_document_to_py(py, value)?;
-                    result.set_item("index_document", converted_1550)?;
-                } else {
-                    result.set_item("index_document", py.None())?;
-                }
-                if let Some(value) = &output.error_document {
-                    let converted_1551 = error_document_to_py(py, value)?;
-                    result.set_item("error_document", converted_1551)?;
-                } else {
-                    result.set_item("error_document", py.None())?;
-                }
-                if let Some(value) = &output.routing_rules {
-                    let converted_1552_list = PyList::empty(py);
-                    for item_1553 in value {
-                        let converted_item_1554 = routing_rule_to_py(py, item_1553)?;
-                        converted_1552_list.append(converted_item_1554)?;
-                    }
-                    let converted_1552 = converted_1552_list.into_any().unbind();
-                    result.set_item("routing_rules", converted_1552)?;
-                } else {
-                    result.set_item("routing_rules", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetBucketWebsiteOutput { inner: output }))
         })
     }
 
@@ -10656,155 +21605,155 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1555: String = value.extract()?;
-            Some(converted_1555)
+            let converted_1446: String = value.extract()?;
+            Some(converted_1446)
         } else {
             None
         };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
-            let converted_1556: String = value.extract()?;
-            Some(converted_1556)
+            let converted_1447: String = value.extract()?;
+            Some(converted_1447)
         } else {
             None
         };
         let if_modified_since_value = if let Some(value) = dict_value(params, "if_modified_since")?
         {
-            let timestamp_1558: String = value.extract()?;
-            let converted_1557 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1558,
+            let timestamp_1449: String = value.extract()?;
+            let converted_1448 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1449,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1557)
+            Some(converted_1448)
         } else {
             None
         };
         let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
-            let converted_1559: String = value.extract()?;
-            Some(converted_1559)
+            let converted_1450: String = value.extract()?;
+            Some(converted_1450)
         } else {
             None
         };
         let if_unmodified_since_value =
             if let Some(value) = dict_value(params, "if_unmodified_since")? {
-                let timestamp_1561: String = value.extract()?;
-                let converted_1560 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1561,
+                let timestamp_1452: String = value.extract()?;
+                let converted_1451 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1452,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1560)
+                Some(converted_1451)
             } else {
                 None
             };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1562: String = value.extract()?;
-            Some(converted_1562)
+            let converted_1453: String = value.extract()?;
+            Some(converted_1453)
         } else {
             None
         };
         let range_value = if let Some(value) = dict_value(params, "range")? {
-            let converted_1563: String = value.extract()?;
-            Some(converted_1563)
+            let converted_1454: String = value.extract()?;
+            Some(converted_1454)
         } else {
             None
         };
         let response_cache_control_value =
             if let Some(value) = dict_value(params, "response_cache_control")? {
-                let converted_1564: String = value.extract()?;
-                Some(converted_1564)
+                let converted_1455: String = value.extract()?;
+                Some(converted_1455)
             } else {
                 None
             };
         let response_content_disposition_value =
             if let Some(value) = dict_value(params, "response_content_disposition")? {
-                let converted_1565: String = value.extract()?;
-                Some(converted_1565)
+                let converted_1456: String = value.extract()?;
+                Some(converted_1456)
             } else {
                 None
             };
         let response_content_encoding_value =
             if let Some(value) = dict_value(params, "response_content_encoding")? {
-                let converted_1566: String = value.extract()?;
-                Some(converted_1566)
+                let converted_1457: String = value.extract()?;
+                Some(converted_1457)
             } else {
                 None
             };
         let response_content_language_value =
             if let Some(value) = dict_value(params, "response_content_language")? {
-                let converted_1567: String = value.extract()?;
-                Some(converted_1567)
+                let converted_1458: String = value.extract()?;
+                Some(converted_1458)
             } else {
                 None
             };
         let response_content_type_value =
             if let Some(value) = dict_value(params, "response_content_type")? {
-                let converted_1568: String = value.extract()?;
-                Some(converted_1568)
+                let converted_1459: String = value.extract()?;
+                Some(converted_1459)
             } else {
                 None
             };
         let response_expires_value = if let Some(value) = dict_value(params, "response_expires")? {
-            let timestamp_1570: String = value.extract()?;
-            let converted_1569 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1570,
+            let timestamp_1461: String = value.extract()?;
+            let converted_1460 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1461,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1569)
+            Some(converted_1460)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1571: String = value.extract()?;
-            Some(converted_1571)
+            let converted_1462: String = value.extract()?;
+            Some(converted_1462)
         } else {
             None
         };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1572: String = value.extract()?;
-                Some(converted_1572)
+                let converted_1463: String = value.extract()?;
+                Some(converted_1463)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1573: String = value.extract()?;
-            Some(converted_1573)
+            let converted_1464: String = value.extract()?;
+            Some(converted_1464)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1574: String = value.extract()?;
-                Some(converted_1574)
+                let converted_1465: String = value.extract()?;
+                Some(converted_1465)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1576: String = value.extract()?;
-            let converted_1575 = aws_sdk_s3::types::RequestPayer::from(enum_value_1576.as_str());
-            Some(converted_1575)
+            let enum_value_1467: String = value.extract()?;
+            let converted_1466 = aws_sdk_s3::types::RequestPayer::from(enum_value_1467.as_str());
+            Some(converted_1466)
         } else {
             None
         };
         let part_number_value = if let Some(value) = dict_value(params, "part_number")? {
-            let converted_1577: i32 = value.extract()?;
-            Some(converted_1577)
+            let converted_1468: i32 = value.extract()?;
+            Some(converted_1468)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1578: String = value.extract()?;
-                Some(converted_1578)
+                let converted_1469: String = value.extract()?;
+                Some(converted_1469)
             } else {
                 None
             };
         let checksum_mode_value = if let Some(value) = dict_value(params, "checksum_mode")? {
-            let enum_value_1580: String = value.extract()?;
-            let converted_1579 = aws_sdk_s3::types::ChecksumMode::from(enum_value_1580.as_str());
-            Some(converted_1579)
+            let enum_value_1471: String = value.extract()?;
+            let converted_1470 = aws_sdk_s3::types::ChecksumMode::from(enum_value_1471.as_str());
+            Some(converted_1470)
         } else {
             None
         };
@@ -10834,249 +21783,20 @@ impl S3Client {
                 .set_part_number(part_number_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let output = request
+            let mut output = request
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetObject")))?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                let stream = Py::new(py, PyByteStream::new(output.body))?;
-                result.set_item("body", stream)?;
-                if let Some(value) = &output.delete_marker {
-                    let converted_1581 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("delete_marker", converted_1581)?;
-                } else {
-                    result.set_item("delete_marker", py.None())?;
-                }
-                if let Some(value) = &output.accept_ranges {
-                    let converted_1582 = value.as_str().into_py_any(py)?;
-                    result.set_item("accept_ranges", converted_1582)?;
-                } else {
-                    result.set_item("accept_ranges", py.None())?;
-                }
-                if let Some(value) = &output.expiration {
-                    let converted_1583 = value.as_str().into_py_any(py)?;
-                    result.set_item("expiration", converted_1583)?;
-                } else {
-                    result.set_item("expiration", py.None())?;
-                }
-                if let Some(value) = &output.restore {
-                    let converted_1584 = value.as_str().into_py_any(py)?;
-                    result.set_item("restore", converted_1584)?;
-                } else {
-                    result.set_item("restore", py.None())?;
-                }
-                if let Some(value) = &output.last_modified {
-                    let converted_1585 = value.to_string().into_py_any(py)?;
-                    result.set_item("last_modified", converted_1585)?;
-                } else {
-                    result.set_item("last_modified", py.None())?;
-                }
-                if let Some(value) = &output.content_length {
-                    let converted_1586 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("content_length", converted_1586)?;
-                } else {
-                    result.set_item("content_length", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_1587 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_1587)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32 {
-                    let converted_1588 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32", converted_1588)?;
-                } else {
-                    result.set_item("checksum_crc32", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32_c {
-                    let converted_1589 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32_c", converted_1589)?;
-                } else {
-                    result.set_item("checksum_crc32_c", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc64_nvme {
-                    let converted_1590 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc64_nvme", converted_1590)?;
-                } else {
-                    result.set_item("checksum_crc64_nvme", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha1 {
-                    let converted_1591 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha1", converted_1591)?;
-                } else {
-                    result.set_item("checksum_sha1", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha256 {
-                    let converted_1592 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha256", converted_1592)?;
-                } else {
-                    result.set_item("checksum_sha256", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_1593 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_1593)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                if let Some(value) = &output.missing_meta {
-                    let converted_1594 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("missing_meta", converted_1594)?;
-                } else {
-                    result.set_item("missing_meta", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1595 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1595)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.cache_control {
-                    let converted_1596 = value.as_str().into_py_any(py)?;
-                    result.set_item("cache_control", converted_1596)?;
-                } else {
-                    result.set_item("cache_control", py.None())?;
-                }
-                if let Some(value) = &output.content_disposition {
-                    let converted_1597 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_disposition", converted_1597)?;
-                } else {
-                    result.set_item("content_disposition", py.None())?;
-                }
-                if let Some(value) = &output.content_encoding {
-                    let converted_1598 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_encoding", converted_1598)?;
-                } else {
-                    result.set_item("content_encoding", py.None())?;
-                }
-                if let Some(value) = &output.content_language {
-                    let converted_1599 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_language", converted_1599)?;
-                } else {
-                    result.set_item("content_language", py.None())?;
-                }
-                if let Some(value) = &output.content_range {
-                    let converted_1600 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_range", converted_1600)?;
-                } else {
-                    result.set_item("content_range", py.None())?;
-                }
-                if let Some(value) = &output.content_type {
-                    let converted_1601 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_type", converted_1601)?;
-                } else {
-                    result.set_item("content_type", py.None())?;
-                }
-                if let Some(value) = &output.website_redirect_location {
-                    let converted_1602 = value.as_str().into_py_any(py)?;
-                    result.set_item("website_redirect_location", converted_1602)?;
-                } else {
-                    result.set_item("website_redirect_location", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1603 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1603)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.metadata {
-                    let converted_1604_dict = PyDict::new(py);
-                    for (key_1605, value_1606) in value {
-                        let converted_key_1607 = key_1605.as_str().into_py_any(py)?;
-                        let converted_value_1608 = value_1606.as_str().into_py_any(py)?;
-                        converted_1604_dict.set_item(converted_key_1607, converted_value_1608)?;
-                    }
-                    let converted_1604 = converted_1604_dict.into_any().unbind();
-                    result.set_item("metadata", converted_1604)?;
-                } else {
-                    result.set_item("metadata", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_1609 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_1609)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_1610 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_1610)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1611 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1611)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1612 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1612)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.storage_class {
-                    let converted_1613 = value.as_str().into_py_any(py)?;
-                    result.set_item("storage_class", converted_1613)?;
-                } else {
-                    result.set_item("storage_class", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1614 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1614)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.replication_status {
-                    let converted_1615 = value.as_str().into_py_any(py)?;
-                    result.set_item("replication_status", converted_1615)?;
-                } else {
-                    result.set_item("replication_status", py.None())?;
-                }
-                if let Some(value) = &output.parts_count {
-                    let converted_1616 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("parts_count", converted_1616)?;
-                } else {
-                    result.set_item("parts_count", py.None())?;
-                }
-                if let Some(value) = &output.tag_count {
-                    let converted_1617 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("tag_count", converted_1617)?;
-                } else {
-                    result.set_item("tag_count", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_mode {
-                    let converted_1618 = value.as_str().into_py_any(py)?;
-                    result.set_item("object_lock_mode", converted_1618)?;
-                } else {
-                    result.set_item("object_lock_mode", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_retain_until_date {
-                    let converted_1619 = value.to_string().into_py_any(py)?;
-                    result.set_item("object_lock_retain_until_date", converted_1619)?;
-                } else {
-                    result.set_item("object_lock_retain_until_date", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_legal_hold_status {
-                    let converted_1620 = value.as_str().into_py_any(py)?;
-                    result.set_item("object_lock_legal_hold_status", converted_1620)?;
-                } else {
-                    result.set_item("object_lock_legal_hold_status", py.None())?;
-                }
-                if let Some(value) = &output.expires {
-                    let converted_1621 = value.to_string().into_py_any(py)?;
-                    result.set_item("expires", converted_1621)?;
-                } else {
-                    result.set_item("expires", py.None())?;
-                }
-                if let Some(value) = &output.expires_string {
-                    let converted_1622 = value.as_str().into_py_any(py)?;
-                    result.set_item("expires_string", converted_1622)?;
-                } else {
-                    result.set_item("expires_string", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                let body = std::mem::take(&mut output.body);
+                let py_body = Py::new(py, PyByteStream::new(body))?;
+                Py::new(
+                    py,
+                    PyGetObjectOutput {
+                        inner: output,
+                        body: py_body,
+                    },
+                )
             })
         })
     }
@@ -11089,34 +21809,34 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1623: String = value.extract()?;
-            Some(converted_1623)
+            let converted_1472: String = value.extract()?;
+            Some(converted_1472)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1624: String = value.extract()?;
-            Some(converted_1624)
+            let converted_1473: String = value.extract()?;
+            Some(converted_1473)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1625: String = value.extract()?;
-            Some(converted_1625)
+            let converted_1474: String = value.extract()?;
+            Some(converted_1474)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1627: String = value.extract()?;
-            let converted_1626 = aws_sdk_s3::types::RequestPayer::from(enum_value_1627.as_str());
-            Some(converted_1626)
+            let enum_value_1476: String = value.extract()?;
+            let converted_1475 = aws_sdk_s3::types::RequestPayer::from(enum_value_1476.as_str());
+            Some(converted_1475)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1628: String = value.extract()?;
-                Some(converted_1628)
+                let converted_1477: String = value.extract()?;
+                Some(converted_1477)
             } else {
                 None
             };
@@ -11133,33 +21853,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAcl"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.owner {
-                    let converted_1629 = owner_to_py(py, value)?;
-                    result.set_item("owner", converted_1629)?;
-                } else {
-                    result.set_item("owner", py.None())?;
-                }
-                if let Some(value) = &output.grants {
-                    let converted_1630_list = PyList::empty(py);
-                    for item_1631 in value {
-                        let converted_item_1632 = grant_to_py(py, item_1631)?;
-                        converted_1630_list.append(converted_item_1632)?;
-                    }
-                    let converted_1630 = converted_1630_list.into_any().unbind();
-                    result.set_item("grants", converted_1630)?;
-                } else {
-                    result.set_item("grants", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1633 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1633)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectAclOutput { inner: output }))
         })
     }
 
@@ -11171,81 +21865,81 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1634: String = value.extract()?;
-            Some(converted_1634)
+            let converted_1478: String = value.extract()?;
+            Some(converted_1478)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1635: String = value.extract()?;
-            Some(converted_1635)
+            let converted_1479: String = value.extract()?;
+            Some(converted_1479)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1636: String = value.extract()?;
-            Some(converted_1636)
+            let converted_1480: String = value.extract()?;
+            Some(converted_1480)
         } else {
             None
         };
         let max_parts_value = if let Some(value) = dict_value(params, "max_parts")? {
-            let converted_1637: i32 = value.extract()?;
-            Some(converted_1637)
+            let converted_1481: i32 = value.extract()?;
+            Some(converted_1481)
         } else {
             None
         };
         let part_number_marker_value =
             if let Some(value) = dict_value(params, "part_number_marker")? {
-                let converted_1638: String = value.extract()?;
-                Some(converted_1638)
+                let converted_1482: String = value.extract()?;
+                Some(converted_1482)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1639: String = value.extract()?;
-                Some(converted_1639)
+                let converted_1483: String = value.extract()?;
+                Some(converted_1483)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1640: String = value.extract()?;
-            Some(converted_1640)
+            let converted_1484: String = value.extract()?;
+            Some(converted_1484)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1641: String = value.extract()?;
-                Some(converted_1641)
+                let converted_1485: String = value.extract()?;
+                Some(converted_1485)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1643: String = value.extract()?;
-            let converted_1642 = aws_sdk_s3::types::RequestPayer::from(enum_value_1643.as_str());
-            Some(converted_1642)
+            let enum_value_1487: String = value.extract()?;
+            let converted_1486 = aws_sdk_s3::types::RequestPayer::from(enum_value_1487.as_str());
+            Some(converted_1486)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1644: String = value.extract()?;
-                Some(converted_1644)
+                let converted_1488: String = value.extract()?;
+                Some(converted_1488)
             } else {
                 None
             };
         let object_attributes_value = if let Some(value) = dict_value(params, "object_attributes")?
         {
-            let mut converted_1645 = Vec::new();
-            for item_result_1646 in value.try_iter()? {
-                let item_1647 = item_result_1646?;
-                let enum_value_1649: String = item_1647.extract()?;
-                let converted_item_1648 =
-                    aws_sdk_s3::types::ObjectAttributes::from(enum_value_1649.as_str());
-                converted_1645.push(converted_item_1648);
+            let mut converted_1489 = Vec::new();
+            for item_result_1490 in value.try_iter()? {
+                let item_1491 = item_result_1490?;
+                let enum_value_1493: String = item_1491.extract()?;
+                let converted_item_1492 =
+                    aws_sdk_s3::types::ObjectAttributes::from(enum_value_1493.as_str());
+                converted_1489.push(converted_item_1492);
             }
-            Some(converted_1645)
+            Some(converted_1489)
         } else {
             None
         };
@@ -11268,64 +21962,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAttributes"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.delete_marker {
-                    let converted_1650 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("delete_marker", converted_1650)?;
-                } else {
-                    result.set_item("delete_marker", py.None())?;
-                }
-                if let Some(value) = &output.last_modified {
-                    let converted_1651 = value.to_string().into_py_any(py)?;
-                    result.set_item("last_modified", converted_1651)?;
-                } else {
-                    result.set_item("last_modified", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1652 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1652)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1653 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1653)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_1654 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_1654)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.checksum {
-                    let converted_1655 = checksum_to_py(py, value)?;
-                    result.set_item("checksum", converted_1655)?;
-                } else {
-                    result.set_item("checksum", py.None())?;
-                }
-                if let Some(value) = &output.object_parts {
-                    let converted_1656 = get_object_attributes_parts_to_py(py, value)?;
-                    result.set_item("object_parts", converted_1656)?;
-                } else {
-                    result.set_item("object_parts", py.None())?;
-                }
-                if let Some(value) = &output.storage_class {
-                    let converted_1657 = value.as_str().into_py_any(py)?;
-                    result.set_item("storage_class", converted_1657)?;
-                } else {
-                    result.set_item("storage_class", py.None())?;
-                }
-                if let Some(value) = &output.object_size {
-                    let converted_1658 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("object_size", converted_1658)?;
-                } else {
-                    result.set_item("object_size", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectAttributesOutput { inner: output }))
         })
     }
 
@@ -11337,34 +21974,34 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1659: String = value.extract()?;
-            Some(converted_1659)
+            let converted_1494: String = value.extract()?;
+            Some(converted_1494)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1660: String = value.extract()?;
-            Some(converted_1660)
+            let converted_1495: String = value.extract()?;
+            Some(converted_1495)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1661: String = value.extract()?;
-            Some(converted_1661)
+            let converted_1496: String = value.extract()?;
+            Some(converted_1496)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1663: String = value.extract()?;
-            let converted_1662 = aws_sdk_s3::types::RequestPayer::from(enum_value_1663.as_str());
-            Some(converted_1662)
+            let enum_value_1498: String = value.extract()?;
+            let converted_1497 = aws_sdk_s3::types::RequestPayer::from(enum_value_1498.as_str());
+            Some(converted_1497)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1664: String = value.extract()?;
-                Some(converted_1664)
+                let converted_1499: String = value.extract()?;
+                Some(converted_1499)
             } else {
                 None
             };
@@ -11381,16 +22018,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLegalHold"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.legal_hold {
-                    let converted_1665 = object_lock_legal_hold_to_py(py, value)?;
-                    result.set_item("legal_hold", converted_1665)?;
-                } else {
-                    result.set_item("legal_hold", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectLegalHoldOutput { inner: output }))
         })
     }
 
@@ -11402,15 +22030,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1666: String = value.extract()?;
-            Some(converted_1666)
+            let converted_1500: String = value.extract()?;
+            Some(converted_1500)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1667: String = value.extract()?;
-                Some(converted_1667)
+                let converted_1501: String = value.extract()?;
+                Some(converted_1501)
             } else {
                 None
             };
@@ -11424,16 +22052,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLockConfiguration"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.object_lock_configuration {
-                    let converted_1668 = object_lock_configuration_to_py(py, value)?;
-                    result.set_item("object_lock_configuration", converted_1668)?;
-                } else {
-                    result.set_item("object_lock_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectLockConfigurationOutput { inner: output }))
         })
     }
 
@@ -11445,34 +22064,34 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1669: String = value.extract()?;
-            Some(converted_1669)
+            let converted_1502: String = value.extract()?;
+            Some(converted_1502)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1670: String = value.extract()?;
-            Some(converted_1670)
+            let converted_1503: String = value.extract()?;
+            Some(converted_1503)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1671: String = value.extract()?;
-            Some(converted_1671)
+            let converted_1504: String = value.extract()?;
+            Some(converted_1504)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1673: String = value.extract()?;
-            let converted_1672 = aws_sdk_s3::types::RequestPayer::from(enum_value_1673.as_str());
-            Some(converted_1672)
+            let enum_value_1506: String = value.extract()?;
+            let converted_1505 = aws_sdk_s3::types::RequestPayer::from(enum_value_1506.as_str());
+            Some(converted_1505)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1674: String = value.extract()?;
-                Some(converted_1674)
+                let converted_1507: String = value.extract()?;
+                Some(converted_1507)
             } else {
                 None
             };
@@ -11489,16 +22108,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectRetention"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.retention {
-                    let converted_1675 = object_lock_retention_to_py(py, value)?;
-                    result.set_item("retention", converted_1675)?;
-                } else {
-                    result.set_item("retention", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectRetentionOutput { inner: output }))
         })
     }
 
@@ -11510,34 +22120,34 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1676: String = value.extract()?;
-            Some(converted_1676)
+            let converted_1508: String = value.extract()?;
+            Some(converted_1508)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1677: String = value.extract()?;
-            Some(converted_1677)
+            let converted_1509: String = value.extract()?;
+            Some(converted_1509)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1678: String = value.extract()?;
-            Some(converted_1678)
+            let converted_1510: String = value.extract()?;
+            Some(converted_1510)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1679: String = value.extract()?;
-                Some(converted_1679)
+                let converted_1511: String = value.extract()?;
+                Some(converted_1511)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1681: String = value.extract()?;
-            let converted_1680 = aws_sdk_s3::types::RequestPayer::from(enum_value_1681.as_str());
-            Some(converted_1680)
+            let enum_value_1513: String = value.extract()?;
+            let converted_1512 = aws_sdk_s3::types::RequestPayer::from(enum_value_1513.as_str());
+            Some(converted_1512)
         } else {
             None
         };
@@ -11554,23 +22164,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTagging"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.version_id {
-                    let converted_1682 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1682)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                let converted_1683_list = PyList::empty(py);
-                for item_1684 in &output.tag_set {
-                    let converted_item_1685 = tag_to_py(py, item_1684)?;
-                    converted_1683_list.append(converted_item_1685)?;
-                }
-                let converted_1683 = converted_1683_list.into_any().unbind();
-                result.set_item("tag_set", converted_1683)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetObjectTaggingOutput { inner: output }))
         })
     }
 
@@ -11582,28 +22176,28 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1686: String = value.extract()?;
-            Some(converted_1686)
+            let converted_1514: String = value.extract()?;
+            Some(converted_1514)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1687: String = value.extract()?;
-            Some(converted_1687)
+            let converted_1515: String = value.extract()?;
+            Some(converted_1515)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1689: String = value.extract()?;
-            let converted_1688 = aws_sdk_s3::types::RequestPayer::from(enum_value_1689.as_str());
-            Some(converted_1688)
+            let enum_value_1517: String = value.extract()?;
+            let converted_1516 = aws_sdk_s3::types::RequestPayer::from(enum_value_1517.as_str());
+            Some(converted_1516)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1690: String = value.extract()?;
-                Some(converted_1690)
+                let converted_1518: String = value.extract()?;
+                Some(converted_1518)
             } else {
                 None
             };
@@ -11616,20 +22210,19 @@ impl S3Client {
                 .set_key(key_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let mut output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTorrent"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                let stream = Py::new(py, PyByteStream::new(output.body))?;
-                result.set_item("body", stream)?;
-                if let Some(value) = &output.request_charged {
-                    let converted_1691 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1691)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                let body = std::mem::take(&mut output.body);
+                let py_body = Py::new(py, PyByteStream::new(body))?;
+                Py::new(
+                    py,
+                    PyGetObjectTorrentOutput {
+                        inner: output,
+                        body: py_body,
+                    },
+                )
             })
         })
     }
@@ -11642,15 +22235,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1692: String = value.extract()?;
-            Some(converted_1692)
+            let converted_1519: String = value.extract()?;
+            Some(converted_1519)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1693: String = value.extract()?;
-                Some(converted_1693)
+                let converted_1520: String = value.extract()?;
+                Some(converted_1520)
             } else {
                 None
             };
@@ -11664,16 +22257,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicAccessBlock"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.public_access_block_configuration {
-                    let converted_1694 = public_access_block_configuration_to_py(py, value)?;
-                    result.set_item("public_access_block_configuration", converted_1694)?;
-                } else {
-                    result.set_item("public_access_block_configuration", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetPublicAccessBlockOutput { inner: output }))
         })
     }
 
@@ -11685,15 +22269,15 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1695: String = value.extract()?;
-            Some(converted_1695)
+            let converted_1521: String = value.extract()?;
+            Some(converted_1521)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1696: String = value.extract()?;
-                Some(converted_1696)
+                let converted_1522: String = value.extract()?;
+                Some(converted_1522)
             } else {
                 None
             };
@@ -11708,40 +22292,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadBucket")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.bucket_arn {
-                    let converted_1697 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket_arn", converted_1697)?;
-                } else {
-                    result.set_item("bucket_arn", py.None())?;
-                }
-                if let Some(value) = &output.bucket_location_type {
-                    let converted_1698 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket_location_type", converted_1698)?;
-                } else {
-                    result.set_item("bucket_location_type", py.None())?;
-                }
-                if let Some(value) = &output.bucket_location_name {
-                    let converted_1699 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket_location_name", converted_1699)?;
-                } else {
-                    result.set_item("bucket_location_name", py.None())?;
-                }
-                if let Some(value) = &output.bucket_region {
-                    let converted_1700 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket_region", converted_1700)?;
-                } else {
-                    result.set_item("bucket_region", py.None())?;
-                }
-                if let Some(value) = &output.access_point_alias {
-                    let converted_1701 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("access_point_alias", converted_1701)?;
-                } else {
-                    result.set_item("access_point_alias", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyHeadBucketOutput { inner: output }))
         })
     }
 
@@ -11753,155 +22304,155 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1702: String = value.extract()?;
-            Some(converted_1702)
+            let converted_1523: String = value.extract()?;
+            Some(converted_1523)
         } else {
             None
         };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
-            let converted_1703: String = value.extract()?;
-            Some(converted_1703)
+            let converted_1524: String = value.extract()?;
+            Some(converted_1524)
         } else {
             None
         };
         let if_modified_since_value = if let Some(value) = dict_value(params, "if_modified_since")?
         {
-            let timestamp_1705: String = value.extract()?;
-            let converted_1704 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1705,
+            let timestamp_1526: String = value.extract()?;
+            let converted_1525 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1526,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1704)
+            Some(converted_1525)
         } else {
             None
         };
         let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
-            let converted_1706: String = value.extract()?;
-            Some(converted_1706)
+            let converted_1527: String = value.extract()?;
+            Some(converted_1527)
         } else {
             None
         };
         let if_unmodified_since_value =
             if let Some(value) = dict_value(params, "if_unmodified_since")? {
-                let timestamp_1708: String = value.extract()?;
-                let converted_1707 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_1708,
+                let timestamp_1529: String = value.extract()?;
+                let converted_1528 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1529,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_1707)
+                Some(converted_1528)
             } else {
                 None
             };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1709: String = value.extract()?;
-            Some(converted_1709)
+            let converted_1530: String = value.extract()?;
+            Some(converted_1530)
         } else {
             None
         };
         let range_value = if let Some(value) = dict_value(params, "range")? {
-            let converted_1710: String = value.extract()?;
-            Some(converted_1710)
+            let converted_1531: String = value.extract()?;
+            Some(converted_1531)
         } else {
             None
         };
         let response_cache_control_value =
             if let Some(value) = dict_value(params, "response_cache_control")? {
-                let converted_1711: String = value.extract()?;
-                Some(converted_1711)
+                let converted_1532: String = value.extract()?;
+                Some(converted_1532)
             } else {
                 None
             };
         let response_content_disposition_value =
             if let Some(value) = dict_value(params, "response_content_disposition")? {
-                let converted_1712: String = value.extract()?;
-                Some(converted_1712)
+                let converted_1533: String = value.extract()?;
+                Some(converted_1533)
             } else {
                 None
             };
         let response_content_encoding_value =
             if let Some(value) = dict_value(params, "response_content_encoding")? {
-                let converted_1713: String = value.extract()?;
-                Some(converted_1713)
+                let converted_1534: String = value.extract()?;
+                Some(converted_1534)
             } else {
                 None
             };
         let response_content_language_value =
             if let Some(value) = dict_value(params, "response_content_language")? {
-                let converted_1714: String = value.extract()?;
-                Some(converted_1714)
+                let converted_1535: String = value.extract()?;
+                Some(converted_1535)
             } else {
                 None
             };
         let response_content_type_value =
             if let Some(value) = dict_value(params, "response_content_type")? {
-                let converted_1715: String = value.extract()?;
-                Some(converted_1715)
+                let converted_1536: String = value.extract()?;
+                Some(converted_1536)
             } else {
                 None
             };
         let response_expires_value = if let Some(value) = dict_value(params, "response_expires")? {
-            let timestamp_1717: String = value.extract()?;
-            let converted_1716 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_1717,
+            let timestamp_1538: String = value.extract()?;
+            let converted_1537 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1538,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_1716)
+            Some(converted_1537)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_1718: String = value.extract()?;
-            Some(converted_1718)
+            let converted_1539: String = value.extract()?;
+            Some(converted_1539)
         } else {
             None
         };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1719: String = value.extract()?;
-                Some(converted_1719)
+                let converted_1540: String = value.extract()?;
+                Some(converted_1540)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1720: String = value.extract()?;
-            Some(converted_1720)
+            let converted_1541: String = value.extract()?;
+            Some(converted_1541)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1721: String = value.extract()?;
-                Some(converted_1721)
+                let converted_1542: String = value.extract()?;
+                Some(converted_1542)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1723: String = value.extract()?;
-            let converted_1722 = aws_sdk_s3::types::RequestPayer::from(enum_value_1723.as_str());
-            Some(converted_1722)
+            let enum_value_1544: String = value.extract()?;
+            let converted_1543 = aws_sdk_s3::types::RequestPayer::from(enum_value_1544.as_str());
+            Some(converted_1543)
         } else {
             None
         };
         let part_number_value = if let Some(value) = dict_value(params, "part_number")? {
-            let converted_1724: i32 = value.extract()?;
-            Some(converted_1724)
+            let converted_1545: i32 = value.extract()?;
+            Some(converted_1545)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1725: String = value.extract()?;
-                Some(converted_1725)
+                let converted_1546: String = value.extract()?;
+                Some(converted_1546)
             } else {
                 None
             };
         let checksum_mode_value = if let Some(value) = dict_value(params, "checksum_mode")? {
-            let enum_value_1727: String = value.extract()?;
-            let converted_1726 = aws_sdk_s3::types::ChecksumMode::from(enum_value_1727.as_str());
-            Some(converted_1726)
+            let enum_value_1548: String = value.extract()?;
+            let converted_1547 = aws_sdk_s3::types::ChecksumMode::from(enum_value_1548.as_str());
+            Some(converted_1547)
         } else {
             None
         };
@@ -11935,250 +22486,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadObject")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.delete_marker {
-                    let converted_1728 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("delete_marker", converted_1728)?;
-                } else {
-                    result.set_item("delete_marker", py.None())?;
-                }
-                if let Some(value) = &output.accept_ranges {
-                    let converted_1729 = value.as_str().into_py_any(py)?;
-                    result.set_item("accept_ranges", converted_1729)?;
-                } else {
-                    result.set_item("accept_ranges", py.None())?;
-                }
-                if let Some(value) = &output.expiration {
-                    let converted_1730 = value.as_str().into_py_any(py)?;
-                    result.set_item("expiration", converted_1730)?;
-                } else {
-                    result.set_item("expiration", py.None())?;
-                }
-                if let Some(value) = &output.restore {
-                    let converted_1731 = value.as_str().into_py_any(py)?;
-                    result.set_item("restore", converted_1731)?;
-                } else {
-                    result.set_item("restore", py.None())?;
-                }
-                if let Some(value) = &output.archive_status {
-                    let converted_1732 = value.as_str().into_py_any(py)?;
-                    result.set_item("archive_status", converted_1732)?;
-                } else {
-                    result.set_item("archive_status", py.None())?;
-                }
-                if let Some(value) = &output.last_modified {
-                    let converted_1733 = value.to_string().into_py_any(py)?;
-                    result.set_item("last_modified", converted_1733)?;
-                } else {
-                    result.set_item("last_modified", py.None())?;
-                }
-                if let Some(value) = &output.content_length {
-                    let converted_1734 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("content_length", converted_1734)?;
-                } else {
-                    result.set_item("content_length", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32 {
-                    let converted_1735 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32", converted_1735)?;
-                } else {
-                    result.set_item("checksum_crc32", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32_c {
-                    let converted_1736 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32_c", converted_1736)?;
-                } else {
-                    result.set_item("checksum_crc32_c", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc64_nvme {
-                    let converted_1737 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc64_nvme", converted_1737)?;
-                } else {
-                    result.set_item("checksum_crc64_nvme", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha1 {
-                    let converted_1738 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha1", converted_1738)?;
-                } else {
-                    result.set_item("checksum_sha1", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha256 {
-                    let converted_1739 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha256", converted_1739)?;
-                } else {
-                    result.set_item("checksum_sha256", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_1740 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_1740)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_1741 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_1741)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.missing_meta {
-                    let converted_1742 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("missing_meta", converted_1742)?;
-                } else {
-                    result.set_item("missing_meta", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_1743 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_1743)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.cache_control {
-                    let converted_1744 = value.as_str().into_py_any(py)?;
-                    result.set_item("cache_control", converted_1744)?;
-                } else {
-                    result.set_item("cache_control", py.None())?;
-                }
-                if let Some(value) = &output.content_disposition {
-                    let converted_1745 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_disposition", converted_1745)?;
-                } else {
-                    result.set_item("content_disposition", py.None())?;
-                }
-                if let Some(value) = &output.content_encoding {
-                    let converted_1746 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_encoding", converted_1746)?;
-                } else {
-                    result.set_item("content_encoding", py.None())?;
-                }
-                if let Some(value) = &output.content_language {
-                    let converted_1747 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_language", converted_1747)?;
-                } else {
-                    result.set_item("content_language", py.None())?;
-                }
-                if let Some(value) = &output.content_type {
-                    let converted_1748 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_type", converted_1748)?;
-                } else {
-                    result.set_item("content_type", py.None())?;
-                }
-                if let Some(value) = &output.content_range {
-                    let converted_1749 = value.as_str().into_py_any(py)?;
-                    result.set_item("content_range", converted_1749)?;
-                } else {
-                    result.set_item("content_range", py.None())?;
-                }
-                if let Some(value) = &output.website_redirect_location {
-                    let converted_1750 = value.as_str().into_py_any(py)?;
-                    result.set_item("website_redirect_location", converted_1750)?;
-                } else {
-                    result.set_item("website_redirect_location", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_1751 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_1751)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.metadata {
-                    let converted_1752_dict = PyDict::new(py);
-                    for (key_1753, value_1754) in value {
-                        let converted_key_1755 = key_1753.as_str().into_py_any(py)?;
-                        let converted_value_1756 = value_1754.as_str().into_py_any(py)?;
-                        converted_1752_dict.set_item(converted_key_1755, converted_value_1756)?;
-                    }
-                    let converted_1752 = converted_1752_dict.into_any().unbind();
-                    result.set_item("metadata", converted_1752)?;
-                } else {
-                    result.set_item("metadata", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_1757 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_1757)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_1758 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_1758)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_1759 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_1759)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_1760 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_1760)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.storage_class {
-                    let converted_1761 = value.as_str().into_py_any(py)?;
-                    result.set_item("storage_class", converted_1761)?;
-                } else {
-                    result.set_item("storage_class", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1762 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1762)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.replication_status {
-                    let converted_1763 = value.as_str().into_py_any(py)?;
-                    result.set_item("replication_status", converted_1763)?;
-                } else {
-                    result.set_item("replication_status", py.None())?;
-                }
-                if let Some(value) = &output.parts_count {
-                    let converted_1764 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("parts_count", converted_1764)?;
-                } else {
-                    result.set_item("parts_count", py.None())?;
-                }
-                if let Some(value) = &output.tag_count {
-                    let converted_1765 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("tag_count", converted_1765)?;
-                } else {
-                    result.set_item("tag_count", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_mode {
-                    let converted_1766 = value.as_str().into_py_any(py)?;
-                    result.set_item("object_lock_mode", converted_1766)?;
-                } else {
-                    result.set_item("object_lock_mode", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_retain_until_date {
-                    let converted_1767 = value.to_string().into_py_any(py)?;
-                    result.set_item("object_lock_retain_until_date", converted_1767)?;
-                } else {
-                    result.set_item("object_lock_retain_until_date", py.None())?;
-                }
-                if let Some(value) = &output.object_lock_legal_hold_status {
-                    let converted_1768 = value.as_str().into_py_any(py)?;
-                    result.set_item("object_lock_legal_hold_status", converted_1768)?;
-                } else {
-                    result.set_item("object_lock_legal_hold_status", py.None())?;
-                }
-                if let Some(value) = &output.expires {
-                    let converted_1769 = value.to_string().into_py_any(py)?;
-                    result.set_item("expires", converted_1769)?;
-                } else {
-                    result.set_item("expires", py.None())?;
-                }
-                if let Some(value) = &output.expires_string {
-                    let converted_1770 = value.as_str().into_py_any(py)?;
-                    result.set_item("expires_string", converted_1770)?;
-                } else {
-                    result.set_item("expires_string", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyHeadObjectOutput { inner: output }))
         })
     }
 
@@ -12190,22 +22498,22 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1771: String = value.extract()?;
-            Some(converted_1771)
+            let converted_1549: String = value.extract()?;
+            Some(converted_1549)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1772: String = value.extract()?;
-                Some(converted_1772)
+                let converted_1550: String = value.extract()?;
+                Some(converted_1550)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1773: String = value.extract()?;
-                Some(converted_1773)
+                let converted_1551: String = value.extract()?;
+                Some(converted_1551)
             } else {
                 None
             };
@@ -12223,37 +22531,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1774 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1774)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1775 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1775)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.next_continuation_token {
-                    let converted_1776 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_continuation_token", converted_1776)?;
-                } else {
-                    result.set_item("next_continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.analytics_configuration_list {
-                    let converted_1777_list = PyList::empty(py);
-                    for item_1778 in value {
-                        let converted_item_1779 = analytics_configuration_to_py(py, item_1778)?;
-                        converted_1777_list.append(converted_item_1779)?;
-                    }
-                    let converted_1777 = converted_1777_list.into_any().unbind();
-                    result.set_item("analytics_configuration_list", converted_1777)?;
-                } else {
-                    result.set_item("analytics_configuration_list", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyListBucketAnalyticsConfigurationsOutput { inner: output },
+                )
             })
         })
     }
@@ -12266,22 +22547,22 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1780: String = value.extract()?;
-            Some(converted_1780)
+            let converted_1552: String = value.extract()?;
+            Some(converted_1552)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1781: String = value.extract()?;
-                Some(converted_1781)
+                let converted_1553: String = value.extract()?;
+                Some(converted_1553)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1782: String = value.extract()?;
-                Some(converted_1782)
+                let converted_1554: String = value.extract()?;
+                Some(converted_1554)
             } else {
                 None
             };
@@ -12299,38 +22580,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1783 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1783)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1784 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1784)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.next_continuation_token {
-                    let converted_1785 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_continuation_token", converted_1785)?;
-                } else {
-                    result.set_item("next_continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.intelligent_tiering_configuration_list {
-                    let converted_1786_list = PyList::empty(py);
-                    for item_1787 in value {
-                        let converted_item_1788 =
-                            intelligent_tiering_configuration_to_py(py, item_1787)?;
-                        converted_1786_list.append(converted_item_1788)?;
-                    }
-                    let converted_1786 = converted_1786_list.into_any().unbind();
-                    result.set_item("intelligent_tiering_configuration_list", converted_1786)?;
-                } else {
-                    result.set_item("intelligent_tiering_configuration_list", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyListBucketIntelligentTieringConfigurationsOutput { inner: output },
+                )
             })
         })
     }
@@ -12343,22 +22596,22 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1789: String = value.extract()?;
-            Some(converted_1789)
+            let converted_1555: String = value.extract()?;
+            Some(converted_1555)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1790: String = value.extract()?;
-                Some(converted_1790)
+                let converted_1556: String = value.extract()?;
+                Some(converted_1556)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1791: String = value.extract()?;
-                Some(converted_1791)
+                let converted_1557: String = value.extract()?;
+                Some(converted_1557)
             } else {
                 None
             };
@@ -12376,37 +22629,10 @@ impl S3Client {
                 })
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.continuation_token {
-                    let converted_1792 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1792)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.inventory_configuration_list {
-                    let converted_1793_list = PyList::empty(py);
-                    for item_1794 in value {
-                        let converted_item_1795 = inventory_configuration_to_py(py, item_1794)?;
-                        converted_1793_list.append(converted_item_1795)?;
-                    }
-                    let converted_1793 = converted_1793_list.into_any().unbind();
-                    result.set_item("inventory_configuration_list", converted_1793)?;
-                } else {
-                    result.set_item("inventory_configuration_list", py.None())?;
-                }
-                if let Some(value) = &output.is_truncated {
-                    let converted_1796 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1796)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.next_continuation_token {
-                    let converted_1797 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_continuation_token", converted_1797)?;
-                } else {
-                    result.set_item("next_continuation_token", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyListBucketInventoryConfigurationsOutput { inner: output },
+                )
             })
         })
     }
@@ -12419,22 +22645,22 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1798: String = value.extract()?;
-            Some(converted_1798)
+            let converted_1558: String = value.extract()?;
+            Some(converted_1558)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1799: String = value.extract()?;
-                Some(converted_1799)
+                let converted_1559: String = value.extract()?;
+                Some(converted_1559)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1800: String = value.extract()?;
-                Some(converted_1800)
+                let converted_1560: String = value.extract()?;
+                Some(converted_1560)
             } else {
                 None
             };
@@ -12450,37 +22676,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBucketMetricsConfigurations"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1801 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1801)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1802 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1802)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.next_continuation_token {
-                    let converted_1803 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_continuation_token", converted_1803)?;
-                } else {
-                    result.set_item("next_continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.metrics_configuration_list {
-                    let converted_1804_list = PyList::empty(py);
-                    for item_1805 in value {
-                        let converted_item_1806 = metrics_configuration_to_py(py, item_1805)?;
-                        converted_1804_list.append(converted_item_1806)?;
-                    }
-                    let converted_1804 = converted_1804_list.into_any().unbind();
-                    result.set_item("metrics_configuration_list", converted_1804)?;
-                } else {
-                    result.set_item("metrics_configuration_list", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyListBucketMetricsConfigurationsOutput { inner: output },
+                )
             })
         })
     }
@@ -12493,27 +22692,27 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_buckets_value = if let Some(value) = dict_value(params, "max_buckets")? {
-            let converted_1807: i32 = value.extract()?;
-            Some(converted_1807)
+            let converted_1561: i32 = value.extract()?;
+            Some(converted_1561)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1808: String = value.extract()?;
-                Some(converted_1808)
+                let converted_1562: String = value.extract()?;
+                Some(converted_1562)
             } else {
                 None
             };
         let prefix_value = if let Some(value) = dict_value(params, "prefix")? {
-            let converted_1809: String = value.extract()?;
-            Some(converted_1809)
+            let converted_1563: String = value.extract()?;
+            Some(converted_1563)
         } else {
             None
         };
         let bucket_region_value = if let Some(value) = dict_value(params, "bucket_region")? {
-            let converted_1810: String = value.extract()?;
-            Some(converted_1810)
+            let converted_1564: String = value.extract()?;
+            Some(converted_1564)
         } else {
             None
         };
@@ -12530,39 +22729,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBuckets")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.buckets {
-                    let converted_1811_list = PyList::empty(py);
-                    for item_1812 in value {
-                        let converted_item_1813 = bucket_to_py(py, item_1812)?;
-                        converted_1811_list.append(converted_item_1813)?;
-                    }
-                    let converted_1811 = converted_1811_list.into_any().unbind();
-                    result.set_item("buckets", converted_1811)?;
-                } else {
-                    result.set_item("buckets", py.None())?;
-                }
-                if let Some(value) = &output.owner {
-                    let converted_1814 = owner_to_py(py, value)?;
-                    result.set_item("owner", converted_1814)?;
-                } else {
-                    result.set_item("owner", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1815 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1815)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.prefix {
-                    let converted_1816 = value.as_str().into_py_any(py)?;
-                    result.set_item("prefix", converted_1816)?;
-                } else {
-                    result.set_item("prefix", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListBucketsOutput { inner: output }))
         })
     }
 
@@ -12575,15 +22742,15 @@ impl S3Client {
         let state = self.state.clone();
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1817: String = value.extract()?;
-                Some(converted_1817)
+                let converted_1565: String = value.extract()?;
+                Some(converted_1565)
             } else {
                 None
             };
         let max_directory_buckets_value =
             if let Some(value) = dict_value(params, "max_directory_buckets")? {
-                let converted_1818: i32 = value.extract()?;
-                Some(converted_1818)
+                let converted_1566: i32 = value.extract()?;
+                Some(converted_1566)
             } else {
                 None
             };
@@ -12597,27 +22764,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDirectoryBuckets"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.buckets {
-                    let converted_1819_list = PyList::empty(py);
-                    for item_1820 in value {
-                        let converted_item_1821 = bucket_to_py(py, item_1820)?;
-                        converted_1819_list.append(converted_item_1821)?;
-                    }
-                    let converted_1819 = converted_1819_list.into_any().unbind();
-                    result.set_item("buckets", converted_1819)?;
-                } else {
-                    result.set_item("buckets", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1822 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1822)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListDirectoryBucketsOutput { inner: output }))
         })
     }
 
@@ -12629,59 +22776,59 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1823: String = value.extract()?;
-            Some(converted_1823)
+            let converted_1567: String = value.extract()?;
+            Some(converted_1567)
         } else {
             None
         };
         let delimiter_value = if let Some(value) = dict_value(params, "delimiter")? {
-            let converted_1824: String = value.extract()?;
-            Some(converted_1824)
+            let converted_1568: String = value.extract()?;
+            Some(converted_1568)
         } else {
             None
         };
         let encoding_type_value = if let Some(value) = dict_value(params, "encoding_type")? {
-            let enum_value_1826: String = value.extract()?;
-            let converted_1825 = aws_sdk_s3::types::EncodingType::from(enum_value_1826.as_str());
-            Some(converted_1825)
+            let enum_value_1570: String = value.extract()?;
+            let converted_1569 = aws_sdk_s3::types::EncodingType::from(enum_value_1570.as_str());
+            Some(converted_1569)
         } else {
             None
         };
         let key_marker_value = if let Some(value) = dict_value(params, "key_marker")? {
-            let converted_1827: String = value.extract()?;
-            Some(converted_1827)
+            let converted_1571: String = value.extract()?;
+            Some(converted_1571)
         } else {
             None
         };
         let max_uploads_value = if let Some(value) = dict_value(params, "max_uploads")? {
-            let converted_1828: i32 = value.extract()?;
-            Some(converted_1828)
+            let converted_1572: i32 = value.extract()?;
+            Some(converted_1572)
         } else {
             None
         };
         let prefix_value = if let Some(value) = dict_value(params, "prefix")? {
-            let converted_1829: String = value.extract()?;
-            Some(converted_1829)
+            let converted_1573: String = value.extract()?;
+            Some(converted_1573)
         } else {
             None
         };
         let upload_id_marker_value = if let Some(value) = dict_value(params, "upload_id_marker")? {
-            let converted_1830: String = value.extract()?;
-            Some(converted_1830)
+            let converted_1574: String = value.extract()?;
+            Some(converted_1574)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1831: String = value.extract()?;
-                Some(converted_1831)
+                let converted_1575: String = value.extract()?;
+                Some(converted_1575)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1833: String = value.extract()?;
-            let converted_1832 = aws_sdk_s3::types::RequestPayer::from(enum_value_1833.as_str());
-            Some(converted_1832)
+            let enum_value_1577: String = value.extract()?;
+            let converted_1576 = aws_sdk_s3::types::RequestPayer::from(enum_value_1577.as_str());
+            Some(converted_1576)
         } else {
             None
         };
@@ -12702,98 +22849,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultipartUploads"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.bucket {
-                    let converted_1834 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket", converted_1834)?;
-                } else {
-                    result.set_item("bucket", py.None())?;
-                }
-                if let Some(value) = &output.key_marker {
-                    let converted_1835 = value.as_str().into_py_any(py)?;
-                    result.set_item("key_marker", converted_1835)?;
-                } else {
-                    result.set_item("key_marker", py.None())?;
-                }
-                if let Some(value) = &output.upload_id_marker {
-                    let converted_1836 = value.as_str().into_py_any(py)?;
-                    result.set_item("upload_id_marker", converted_1836)?;
-                } else {
-                    result.set_item("upload_id_marker", py.None())?;
-                }
-                if let Some(value) = &output.next_key_marker {
-                    let converted_1837 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_key_marker", converted_1837)?;
-                } else {
-                    result.set_item("next_key_marker", py.None())?;
-                }
-                if let Some(value) = &output.prefix {
-                    let converted_1838 = value.as_str().into_py_any(py)?;
-                    result.set_item("prefix", converted_1838)?;
-                } else {
-                    result.set_item("prefix", py.None())?;
-                }
-                if let Some(value) = &output.delimiter {
-                    let converted_1839 = value.as_str().into_py_any(py)?;
-                    result.set_item("delimiter", converted_1839)?;
-                } else {
-                    result.set_item("delimiter", py.None())?;
-                }
-                if let Some(value) = &output.next_upload_id_marker {
-                    let converted_1840 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_upload_id_marker", converted_1840)?;
-                } else {
-                    result.set_item("next_upload_id_marker", py.None())?;
-                }
-                if let Some(value) = &output.max_uploads {
-                    let converted_1841 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("max_uploads", converted_1841)?;
-                } else {
-                    result.set_item("max_uploads", py.None())?;
-                }
-                if let Some(value) = &output.is_truncated {
-                    let converted_1842 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1842)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.uploads {
-                    let converted_1843_list = PyList::empty(py);
-                    for item_1844 in value {
-                        let converted_item_1845 = multipart_upload_to_py(py, item_1844)?;
-                        converted_1843_list.append(converted_item_1845)?;
-                    }
-                    let converted_1843 = converted_1843_list.into_any().unbind();
-                    result.set_item("uploads", converted_1843)?;
-                } else {
-                    result.set_item("uploads", py.None())?;
-                }
-                if let Some(value) = &output.common_prefixes {
-                    let converted_1846_list = PyList::empty(py);
-                    for item_1847 in value {
-                        let converted_item_1848 = common_prefix_to_py(py, item_1847)?;
-                        converted_1846_list.append(converted_item_1848)?;
-                    }
-                    let converted_1846 = converted_1846_list.into_any().unbind();
-                    result.set_item("common_prefixes", converted_1846)?;
-                } else {
-                    result.set_item("common_prefixes", py.None())?;
-                }
-                if let Some(value) = &output.encoding_type {
-                    let converted_1849 = value.as_str().into_py_any(py)?;
-                    result.set_item("encoding_type", converted_1849)?;
-                } else {
-                    result.set_item("encoding_type", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1850 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1850)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListMultipartUploadsOutput { inner: output }))
         })
     }
 
@@ -12805,67 +22861,67 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1851: String = value.extract()?;
-            Some(converted_1851)
+            let converted_1578: String = value.extract()?;
+            Some(converted_1578)
         } else {
             None
         };
         let delimiter_value = if let Some(value) = dict_value(params, "delimiter")? {
-            let converted_1852: String = value.extract()?;
-            Some(converted_1852)
+            let converted_1579: String = value.extract()?;
+            Some(converted_1579)
         } else {
             None
         };
         let encoding_type_value = if let Some(value) = dict_value(params, "encoding_type")? {
-            let enum_value_1854: String = value.extract()?;
-            let converted_1853 = aws_sdk_s3::types::EncodingType::from(enum_value_1854.as_str());
-            Some(converted_1853)
+            let enum_value_1581: String = value.extract()?;
+            let converted_1580 = aws_sdk_s3::types::EncodingType::from(enum_value_1581.as_str());
+            Some(converted_1580)
         } else {
             None
         };
         let marker_value = if let Some(value) = dict_value(params, "marker")? {
-            let converted_1855: String = value.extract()?;
-            Some(converted_1855)
+            let converted_1582: String = value.extract()?;
+            Some(converted_1582)
         } else {
             None
         };
         let max_keys_value = if let Some(value) = dict_value(params, "max_keys")? {
-            let converted_1856: i32 = value.extract()?;
-            Some(converted_1856)
+            let converted_1583: i32 = value.extract()?;
+            Some(converted_1583)
         } else {
             None
         };
         let prefix_value = if let Some(value) = dict_value(params, "prefix")? {
-            let converted_1857: String = value.extract()?;
-            Some(converted_1857)
+            let converted_1584: String = value.extract()?;
+            Some(converted_1584)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1859: String = value.extract()?;
-            let converted_1858 = aws_sdk_s3::types::RequestPayer::from(enum_value_1859.as_str());
-            Some(converted_1858)
+            let enum_value_1586: String = value.extract()?;
+            let converted_1585 = aws_sdk_s3::types::RequestPayer::from(enum_value_1586.as_str());
+            Some(converted_1585)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1860: String = value.extract()?;
-                Some(converted_1860)
+                let converted_1587: String = value.extract()?;
+                Some(converted_1587)
             } else {
                 None
             };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1861 = Vec::new();
-                for item_result_1862 in value.try_iter()? {
-                    let item_1863 = item_result_1862?;
-                    let enum_value_1865: String = item_1863.extract()?;
-                    let converted_item_1864 =
-                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1865.as_str());
-                    converted_1861.push(converted_item_1864);
+                let mut converted_1588 = Vec::new();
+                for item_result_1589 in value.try_iter()? {
+                    let item_1590 = item_result_1589?;
+                    let enum_value_1592: String = item_1590.extract()?;
+                    let converted_item_1591 =
+                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1592.as_str());
+                    converted_1588.push(converted_item_1591);
                 }
-                Some(converted_1861)
+                Some(converted_1588)
             } else {
                 None
             };
@@ -12887,86 +22943,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListObjects")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1866 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1866)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.marker {
-                    let converted_1867 = value.as_str().into_py_any(py)?;
-                    result.set_item("marker", converted_1867)?;
-                } else {
-                    result.set_item("marker", py.None())?;
-                }
-                if let Some(value) = &output.next_marker {
-                    let converted_1868 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_marker", converted_1868)?;
-                } else {
-                    result.set_item("next_marker", py.None())?;
-                }
-                if let Some(value) = &output.contents {
-                    let converted_1869_list = PyList::empty(py);
-                    for item_1870 in value {
-                        let converted_item_1871 = object_to_py(py, item_1870)?;
-                        converted_1869_list.append(converted_item_1871)?;
-                    }
-                    let converted_1869 = converted_1869_list.into_any().unbind();
-                    result.set_item("contents", converted_1869)?;
-                } else {
-                    result.set_item("contents", py.None())?;
-                }
-                if let Some(value) = &output.name {
-                    let converted_1872 = value.as_str().into_py_any(py)?;
-                    result.set_item("name", converted_1872)?;
-                } else {
-                    result.set_item("name", py.None())?;
-                }
-                if let Some(value) = &output.prefix {
-                    let converted_1873 = value.as_str().into_py_any(py)?;
-                    result.set_item("prefix", converted_1873)?;
-                } else {
-                    result.set_item("prefix", py.None())?;
-                }
-                if let Some(value) = &output.delimiter {
-                    let converted_1874 = value.as_str().into_py_any(py)?;
-                    result.set_item("delimiter", converted_1874)?;
-                } else {
-                    result.set_item("delimiter", py.None())?;
-                }
-                if let Some(value) = &output.max_keys {
-                    let converted_1875 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("max_keys", converted_1875)?;
-                } else {
-                    result.set_item("max_keys", py.None())?;
-                }
-                if let Some(value) = &output.common_prefixes {
-                    let converted_1876_list = PyList::empty(py);
-                    for item_1877 in value {
-                        let converted_item_1878 = common_prefix_to_py(py, item_1877)?;
-                        converted_1876_list.append(converted_item_1878)?;
-                    }
-                    let converted_1876 = converted_1876_list.into_any().unbind();
-                    result.set_item("common_prefixes", converted_1876)?;
-                } else {
-                    result.set_item("common_prefixes", py.None())?;
-                }
-                if let Some(value) = &output.encoding_type {
-                    let converted_1879 = value.as_str().into_py_any(py)?;
-                    result.set_item("encoding_type", converted_1879)?;
-                } else {
-                    result.set_item("encoding_type", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1880 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1880)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListObjectsOutput { inner: output }))
         })
     }
 
@@ -12978,80 +22955,80 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1881: String = value.extract()?;
-            Some(converted_1881)
+            let converted_1593: String = value.extract()?;
+            Some(converted_1593)
         } else {
             None
         };
         let delimiter_value = if let Some(value) = dict_value(params, "delimiter")? {
-            let converted_1882: String = value.extract()?;
-            Some(converted_1882)
+            let converted_1594: String = value.extract()?;
+            Some(converted_1594)
         } else {
             None
         };
         let encoding_type_value = if let Some(value) = dict_value(params, "encoding_type")? {
-            let enum_value_1884: String = value.extract()?;
-            let converted_1883 = aws_sdk_s3::types::EncodingType::from(enum_value_1884.as_str());
-            Some(converted_1883)
+            let enum_value_1596: String = value.extract()?;
+            let converted_1595 = aws_sdk_s3::types::EncodingType::from(enum_value_1596.as_str());
+            Some(converted_1595)
         } else {
             None
         };
         let max_keys_value = if let Some(value) = dict_value(params, "max_keys")? {
-            let converted_1885: i32 = value.extract()?;
-            Some(converted_1885)
+            let converted_1597: i32 = value.extract()?;
+            Some(converted_1597)
         } else {
             None
         };
         let prefix_value = if let Some(value) = dict_value(params, "prefix")? {
-            let converted_1886: String = value.extract()?;
-            Some(converted_1886)
+            let converted_1598: String = value.extract()?;
+            Some(converted_1598)
         } else {
             None
         };
         let continuation_token_value =
             if let Some(value) = dict_value(params, "continuation_token")? {
-                let converted_1887: String = value.extract()?;
-                Some(converted_1887)
+                let converted_1599: String = value.extract()?;
+                Some(converted_1599)
             } else {
                 None
             };
         let fetch_owner_value = if let Some(value) = dict_value(params, "fetch_owner")? {
-            let converted_1888: bool = value.extract()?;
-            Some(converted_1888)
+            let converted_1600: bool = value.extract()?;
+            Some(converted_1600)
         } else {
             None
         };
         let start_after_value = if let Some(value) = dict_value(params, "start_after")? {
-            let converted_1889: String = value.extract()?;
-            Some(converted_1889)
+            let converted_1601: String = value.extract()?;
+            Some(converted_1601)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1891: String = value.extract()?;
-            let converted_1890 = aws_sdk_s3::types::RequestPayer::from(enum_value_1891.as_str());
-            Some(converted_1890)
+            let enum_value_1603: String = value.extract()?;
+            let converted_1602 = aws_sdk_s3::types::RequestPayer::from(enum_value_1603.as_str());
+            Some(converted_1602)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1892: String = value.extract()?;
-                Some(converted_1892)
+                let converted_1604: String = value.extract()?;
+                Some(converted_1604)
             } else {
                 None
             };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1893 = Vec::new();
-                for item_result_1894 in value.try_iter()? {
-                    let item_1895 = item_result_1894?;
-                    let enum_value_1897: String = item_1895.extract()?;
-                    let converted_item_1896 =
-                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1897.as_str());
-                    converted_1893.push(converted_item_1896);
+                let mut converted_1605 = Vec::new();
+                for item_result_1606 in value.try_iter()? {
+                    let item_1607 = item_result_1606?;
+                    let enum_value_1609: String = item_1607.extract()?;
+                    let converted_item_1608 =
+                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1609.as_str());
+                    converted_1605.push(converted_item_1608);
                 }
-                Some(converted_1893)
+                Some(converted_1605)
             } else {
                 None
             };
@@ -13074,98 +23051,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectsV2"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1898 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1898)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.contents {
-                    let converted_1899_list = PyList::empty(py);
-                    for item_1900 in value {
-                        let converted_item_1901 = object_to_py(py, item_1900)?;
-                        converted_1899_list.append(converted_item_1901)?;
-                    }
-                    let converted_1899 = converted_1899_list.into_any().unbind();
-                    result.set_item("contents", converted_1899)?;
-                } else {
-                    result.set_item("contents", py.None())?;
-                }
-                if let Some(value) = &output.name {
-                    let converted_1902 = value.as_str().into_py_any(py)?;
-                    result.set_item("name", converted_1902)?;
-                } else {
-                    result.set_item("name", py.None())?;
-                }
-                if let Some(value) = &output.prefix {
-                    let converted_1903 = value.as_str().into_py_any(py)?;
-                    result.set_item("prefix", converted_1903)?;
-                } else {
-                    result.set_item("prefix", py.None())?;
-                }
-                if let Some(value) = &output.delimiter {
-                    let converted_1904 = value.as_str().into_py_any(py)?;
-                    result.set_item("delimiter", converted_1904)?;
-                } else {
-                    result.set_item("delimiter", py.None())?;
-                }
-                if let Some(value) = &output.max_keys {
-                    let converted_1905 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("max_keys", converted_1905)?;
-                } else {
-                    result.set_item("max_keys", py.None())?;
-                }
-                if let Some(value) = &output.common_prefixes {
-                    let converted_1906_list = PyList::empty(py);
-                    for item_1907 in value {
-                        let converted_item_1908 = common_prefix_to_py(py, item_1907)?;
-                        converted_1906_list.append(converted_item_1908)?;
-                    }
-                    let converted_1906 = converted_1906_list.into_any().unbind();
-                    result.set_item("common_prefixes", converted_1906)?;
-                } else {
-                    result.set_item("common_prefixes", py.None())?;
-                }
-                if let Some(value) = &output.encoding_type {
-                    let converted_1909 = value.as_str().into_py_any(py)?;
-                    result.set_item("encoding_type", converted_1909)?;
-                } else {
-                    result.set_item("encoding_type", py.None())?;
-                }
-                if let Some(value) = &output.key_count {
-                    let converted_1910 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("key_count", converted_1910)?;
-                } else {
-                    result.set_item("key_count", py.None())?;
-                }
-                if let Some(value) = &output.continuation_token {
-                    let converted_1911 = value.as_str().into_py_any(py)?;
-                    result.set_item("continuation_token", converted_1911)?;
-                } else {
-                    result.set_item("continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.next_continuation_token {
-                    let converted_1912 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_continuation_token", converted_1912)?;
-                } else {
-                    result.set_item("next_continuation_token", py.None())?;
-                }
-                if let Some(value) = &output.start_after {
-                    let converted_1913 = value.as_str().into_py_any(py)?;
-                    result.set_item("start_after", converted_1913)?;
-                } else {
-                    result.set_item("start_after", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1914 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1914)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListObjectsV2Output { inner: output }))
         })
     }
 
@@ -13177,74 +23063,74 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1915: String = value.extract()?;
-            Some(converted_1915)
+            let converted_1610: String = value.extract()?;
+            Some(converted_1610)
         } else {
             None
         };
         let delimiter_value = if let Some(value) = dict_value(params, "delimiter")? {
-            let converted_1916: String = value.extract()?;
-            Some(converted_1916)
+            let converted_1611: String = value.extract()?;
+            Some(converted_1611)
         } else {
             None
         };
         let encoding_type_value = if let Some(value) = dict_value(params, "encoding_type")? {
-            let enum_value_1918: String = value.extract()?;
-            let converted_1917 = aws_sdk_s3::types::EncodingType::from(enum_value_1918.as_str());
-            Some(converted_1917)
+            let enum_value_1613: String = value.extract()?;
+            let converted_1612 = aws_sdk_s3::types::EncodingType::from(enum_value_1613.as_str());
+            Some(converted_1612)
         } else {
             None
         };
         let key_marker_value = if let Some(value) = dict_value(params, "key_marker")? {
-            let converted_1919: String = value.extract()?;
-            Some(converted_1919)
+            let converted_1614: String = value.extract()?;
+            Some(converted_1614)
         } else {
             None
         };
         let max_keys_value = if let Some(value) = dict_value(params, "max_keys")? {
-            let converted_1920: i32 = value.extract()?;
-            Some(converted_1920)
+            let converted_1615: i32 = value.extract()?;
+            Some(converted_1615)
         } else {
             None
         };
         let prefix_value = if let Some(value) = dict_value(params, "prefix")? {
-            let converted_1921: String = value.extract()?;
-            Some(converted_1921)
+            let converted_1616: String = value.extract()?;
+            Some(converted_1616)
         } else {
             None
         };
         let version_id_marker_value = if let Some(value) = dict_value(params, "version_id_marker")?
         {
-            let converted_1922: String = value.extract()?;
-            Some(converted_1922)
+            let converted_1617: String = value.extract()?;
+            Some(converted_1617)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1923: String = value.extract()?;
-                Some(converted_1923)
+                let converted_1618: String = value.extract()?;
+                Some(converted_1618)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1925: String = value.extract()?;
-            let converted_1924 = aws_sdk_s3::types::RequestPayer::from(enum_value_1925.as_str());
-            Some(converted_1924)
+            let enum_value_1620: String = value.extract()?;
+            let converted_1619 = aws_sdk_s3::types::RequestPayer::from(enum_value_1620.as_str());
+            Some(converted_1619)
         } else {
             None
         };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1926 = Vec::new();
-                for item_result_1927 in value.try_iter()? {
-                    let item_1928 = item_result_1927?;
-                    let enum_value_1930: String = item_1928.extract()?;
-                    let converted_item_1929 =
-                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1930.as_str());
-                    converted_1926.push(converted_item_1929);
+                let mut converted_1621 = Vec::new();
+                for item_result_1622 in value.try_iter()? {
+                    let item_1623 = item_result_1622?;
+                    let enum_value_1625: String = item_1623.extract()?;
+                    let converted_item_1624 =
+                        aws_sdk_s3::types::OptionalObjectAttributes::from(enum_value_1625.as_str());
+                    converted_1621.push(converted_item_1624);
                 }
-                Some(converted_1926)
+                Some(converted_1621)
             } else {
                 None
             };
@@ -13266,109 +23152,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectVersions"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.is_truncated {
-                    let converted_1931 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1931)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.key_marker {
-                    let converted_1932 = value.as_str().into_py_any(py)?;
-                    result.set_item("key_marker", converted_1932)?;
-                } else {
-                    result.set_item("key_marker", py.None())?;
-                }
-                if let Some(value) = &output.version_id_marker {
-                    let converted_1933 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id_marker", converted_1933)?;
-                } else {
-                    result.set_item("version_id_marker", py.None())?;
-                }
-                if let Some(value) = &output.next_key_marker {
-                    let converted_1934 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_key_marker", converted_1934)?;
-                } else {
-                    result.set_item("next_key_marker", py.None())?;
-                }
-                if let Some(value) = &output.next_version_id_marker {
-                    let converted_1935 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_version_id_marker", converted_1935)?;
-                } else {
-                    result.set_item("next_version_id_marker", py.None())?;
-                }
-                if let Some(value) = &output.versions {
-                    let converted_1936_list = PyList::empty(py);
-                    for item_1937 in value {
-                        let converted_item_1938 = object_version_to_py(py, item_1937)?;
-                        converted_1936_list.append(converted_item_1938)?;
-                    }
-                    let converted_1936 = converted_1936_list.into_any().unbind();
-                    result.set_item("versions", converted_1936)?;
-                } else {
-                    result.set_item("versions", py.None())?;
-                }
-                if let Some(value) = &output.delete_markers {
-                    let converted_1939_list = PyList::empty(py);
-                    for item_1940 in value {
-                        let converted_item_1941 = delete_marker_entry_to_py(py, item_1940)?;
-                        converted_1939_list.append(converted_item_1941)?;
-                    }
-                    let converted_1939 = converted_1939_list.into_any().unbind();
-                    result.set_item("delete_markers", converted_1939)?;
-                } else {
-                    result.set_item("delete_markers", py.None())?;
-                }
-                if let Some(value) = &output.name {
-                    let converted_1942 = value.as_str().into_py_any(py)?;
-                    result.set_item("name", converted_1942)?;
-                } else {
-                    result.set_item("name", py.None())?;
-                }
-                if let Some(value) = &output.prefix {
-                    let converted_1943 = value.as_str().into_py_any(py)?;
-                    result.set_item("prefix", converted_1943)?;
-                } else {
-                    result.set_item("prefix", py.None())?;
-                }
-                if let Some(value) = &output.delimiter {
-                    let converted_1944 = value.as_str().into_py_any(py)?;
-                    result.set_item("delimiter", converted_1944)?;
-                } else {
-                    result.set_item("delimiter", py.None())?;
-                }
-                if let Some(value) = &output.max_keys {
-                    let converted_1945 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("max_keys", converted_1945)?;
-                } else {
-                    result.set_item("max_keys", py.None())?;
-                }
-                if let Some(value) = &output.common_prefixes {
-                    let converted_1946_list = PyList::empty(py);
-                    for item_1947 in value {
-                        let converted_item_1948 = common_prefix_to_py(py, item_1947)?;
-                        converted_1946_list.append(converted_item_1948)?;
-                    }
-                    let converted_1946 = converted_1946_list.into_any().unbind();
-                    result.set_item("common_prefixes", converted_1946)?;
-                } else {
-                    result.set_item("common_prefixes", py.None())?;
-                }
-                if let Some(value) = &output.encoding_type {
-                    let converted_1949 = value.as_str().into_py_any(py)?;
-                    result.set_item("encoding_type", converted_1949)?;
-                } else {
-                    result.set_item("encoding_type", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1950 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1950)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListObjectVersionsOutput { inner: output }))
         })
     }
 
@@ -13380,67 +23164,67 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1951: String = value.extract()?;
-            Some(converted_1951)
+            let converted_1626: String = value.extract()?;
+            Some(converted_1626)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_1952: String = value.extract()?;
-            Some(converted_1952)
+            let converted_1627: String = value.extract()?;
+            Some(converted_1627)
         } else {
             None
         };
         let max_parts_value = if let Some(value) = dict_value(params, "max_parts")? {
-            let converted_1953: i32 = value.extract()?;
-            Some(converted_1953)
+            let converted_1628: i32 = value.extract()?;
+            Some(converted_1628)
         } else {
             None
         };
         let part_number_marker_value =
             if let Some(value) = dict_value(params, "part_number_marker")? {
-                let converted_1954: String = value.extract()?;
-                Some(converted_1954)
+                let converted_1629: String = value.extract()?;
+                Some(converted_1629)
             } else {
                 None
             };
         let upload_id_value = if let Some(value) = dict_value(params, "upload_id")? {
-            let converted_1955: String = value.extract()?;
-            Some(converted_1955)
+            let converted_1630: String = value.extract()?;
+            Some(converted_1630)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_1957: String = value.extract()?;
-            let converted_1956 = aws_sdk_s3::types::RequestPayer::from(enum_value_1957.as_str());
-            Some(converted_1956)
+            let enum_value_1632: String = value.extract()?;
+            let converted_1631 = aws_sdk_s3::types::RequestPayer::from(enum_value_1632.as_str());
+            Some(converted_1631)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1958: String = value.extract()?;
-                Some(converted_1958)
+                let converted_1633: String = value.extract()?;
+                Some(converted_1633)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_1959: String = value.extract()?;
-                Some(converted_1959)
+                let converted_1634: String = value.extract()?;
+                Some(converted_1634)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_1960: String = value.extract()?;
-            Some(converted_1960)
+            let converted_1635: String = value.extract()?;
+            Some(converted_1635)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_1961: String = value.extract()?;
-                Some(converted_1961)
+                let converted_1636: String = value.extract()?;
+                Some(converted_1636)
             } else {
                 None
             };
@@ -13463,111 +23247,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListParts")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.abort_date {
-                    let converted_1962 = value.to_string().into_py_any(py)?;
-                    result.set_item("abort_date", converted_1962)?;
-                } else {
-                    result.set_item("abort_date", py.None())?;
-                }
-                if let Some(value) = &output.abort_rule_id {
-                    let converted_1963 = value.as_str().into_py_any(py)?;
-                    result.set_item("abort_rule_id", converted_1963)?;
-                } else {
-                    result.set_item("abort_rule_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket {
-                    let converted_1964 = value.as_str().into_py_any(py)?;
-                    result.set_item("bucket", converted_1964)?;
-                } else {
-                    result.set_item("bucket", py.None())?;
-                }
-                if let Some(value) = &output.key {
-                    let converted_1965 = value.as_str().into_py_any(py)?;
-                    result.set_item("key", converted_1965)?;
-                } else {
-                    result.set_item("key", py.None())?;
-                }
-                if let Some(value) = &output.upload_id {
-                    let converted_1966 = value.as_str().into_py_any(py)?;
-                    result.set_item("upload_id", converted_1966)?;
-                } else {
-                    result.set_item("upload_id", py.None())?;
-                }
-                if let Some(value) = &output.part_number_marker {
-                    let converted_1967 = value.as_str().into_py_any(py)?;
-                    result.set_item("part_number_marker", converted_1967)?;
-                } else {
-                    result.set_item("part_number_marker", py.None())?;
-                }
-                if let Some(value) = &output.next_part_number_marker {
-                    let converted_1968 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_part_number_marker", converted_1968)?;
-                } else {
-                    result.set_item("next_part_number_marker", py.None())?;
-                }
-                if let Some(value) = &output.max_parts {
-                    let converted_1969 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("max_parts", converted_1969)?;
-                } else {
-                    result.set_item("max_parts", py.None())?;
-                }
-                if let Some(value) = &output.is_truncated {
-                    let converted_1970 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("is_truncated", converted_1970)?;
-                } else {
-                    result.set_item("is_truncated", py.None())?;
-                }
-                if let Some(value) = &output.parts {
-                    let converted_1971_list = PyList::empty(py);
-                    for item_1972 in value {
-                        let converted_item_1973 = part_to_py(py, item_1972)?;
-                        converted_1971_list.append(converted_item_1973)?;
-                    }
-                    let converted_1971 = converted_1971_list.into_any().unbind();
-                    result.set_item("parts", converted_1971)?;
-                } else {
-                    result.set_item("parts", py.None())?;
-                }
-                if let Some(value) = &output.initiator {
-                    let converted_1974 = initiator_to_py(py, value)?;
-                    result.set_item("initiator", converted_1974)?;
-                } else {
-                    result.set_item("initiator", py.None())?;
-                }
-                if let Some(value) = &output.owner {
-                    let converted_1975 = owner_to_py(py, value)?;
-                    result.set_item("owner", converted_1975)?;
-                } else {
-                    result.set_item("owner", py.None())?;
-                }
-                if let Some(value) = &output.storage_class {
-                    let converted_1976 = value.as_str().into_py_any(py)?;
-                    result.set_item("storage_class", converted_1976)?;
-                } else {
-                    result.set_item("storage_class", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_1977 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_1977)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.checksum_algorithm {
-                    let converted_1978 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_algorithm", converted_1978)?;
-                } else {
-                    result.set_item("checksum_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_1979 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_1979)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListPartsOutput { inner: output }))
         })
     }
 
@@ -13579,36 +23259,36 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1980: String = value.extract()?;
-            Some(converted_1980)
+            let converted_1637: String = value.extract()?;
+            Some(converted_1637)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_1981: String = value.extract()?;
-            Some(converted_1981)
+            let converted_1638: String = value.extract()?;
+            Some(converted_1638)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1983: String = value.extract()?;
-                let converted_1982 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1983.as_str());
-                Some(converted_1982)
+                let enum_value_1640: String = value.extract()?;
+                let converted_1639 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1640.as_str());
+                Some(converted_1639)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1984: String = value.extract()?;
-                Some(converted_1984)
+                let converted_1641: String = value.extract()?;
+                Some(converted_1641)
             } else {
                 None
             };
         let abac_status_value = if let Some(value) = dict_value(params, "abac_status")? {
-            let converted_1985 = abac_status_from_py(&value)?;
-            Some(converted_1985)
+            let converted_1642 = abac_status_from_py(&value)?;
+            Some(converted_1642)
         } else {
             None
         };
@@ -13637,31 +23317,31 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1986: String = value.extract()?;
-            Some(converted_1986)
+            let converted_1643: String = value.extract()?;
+            Some(converted_1643)
         } else {
             None
         };
         let accelerate_configuration_value =
             if let Some(value) = dict_value(params, "accelerate_configuration")? {
-                let converted_1987 = accelerate_configuration_from_py(&value)?;
-                Some(converted_1987)
+                let converted_1644 = accelerate_configuration_from_py(&value)?;
+                Some(converted_1644)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_1988: String = value.extract()?;
-                Some(converted_1988)
+                let converted_1645: String = value.extract()?;
+                Some(converted_1645)
             } else {
                 None
             };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1990: String = value.extract()?;
-                let converted_1989 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1990.as_str());
-                Some(converted_1989)
+                let enum_value_1647: String = value.extract()?;
+                let converted_1646 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1647.as_str());
+                Some(converted_1646)
             } else {
                 None
             };
@@ -13689,75 +23369,75 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_1992: String = value.extract()?;
-            let converted_1991 = aws_sdk_s3::types::BucketCannedAcl::from(enum_value_1992.as_str());
-            Some(converted_1991)
+            let enum_value_1649: String = value.extract()?;
+            let converted_1648 = aws_sdk_s3::types::BucketCannedAcl::from(enum_value_1649.as_str());
+            Some(converted_1648)
         } else {
             None
         };
         let access_control_policy_value =
             if let Some(value) = dict_value(params, "access_control_policy")? {
-                let converted_1993 = access_control_policy_from_py(&value)?;
-                Some(converted_1993)
+                let converted_1650 = access_control_policy_from_py(&value)?;
+                Some(converted_1650)
             } else {
                 None
             };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_1994: String = value.extract()?;
-            Some(converted_1994)
+            let converted_1651: String = value.extract()?;
+            Some(converted_1651)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_1995: String = value.extract()?;
-            Some(converted_1995)
+            let converted_1652: String = value.extract()?;
+            Some(converted_1652)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_1997: String = value.extract()?;
-                let converted_1996 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1997.as_str());
-                Some(converted_1996)
+                let enum_value_1654: String = value.extract()?;
+                let converted_1653 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1654.as_str());
+                Some(converted_1653)
             } else {
                 None
             };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_1998: String = value.extract()?;
-                Some(converted_1998)
+                let converted_1655: String = value.extract()?;
+                Some(converted_1655)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_1999: String = value.extract()?;
-            Some(converted_1999)
+            let converted_1656: String = value.extract()?;
+            Some(converted_1656)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_2000: String = value.extract()?;
-            Some(converted_2000)
+            let converted_1657: String = value.extract()?;
+            Some(converted_1657)
         } else {
             None
         };
         let grant_write_value = if let Some(value) = dict_value(params, "grant_write")? {
-            let converted_2001: String = value.extract()?;
-            Some(converted_2001)
+            let converted_1658: String = value.extract()?;
+            Some(converted_1658)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_2002: String = value.extract()?;
-            Some(converted_2002)
+            let converted_1659: String = value.extract()?;
+            Some(converted_1659)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2003: String = value.extract()?;
-                Some(converted_2003)
+                let converted_1660: String = value.extract()?;
+                Some(converted_1660)
             } else {
                 None
             };
@@ -13792,28 +23472,28 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2004: String = value.extract()?;
-            Some(converted_2004)
+            let converted_1661: String = value.extract()?;
+            Some(converted_1661)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_2005: String = value.extract()?;
-            Some(converted_2005)
+            let converted_1662: String = value.extract()?;
+            Some(converted_1662)
         } else {
             None
         };
         let analytics_configuration_value =
             if let Some(value) = dict_value(params, "analytics_configuration")? {
-                let converted_2006 = analytics_configuration_from_py(&value)?;
-                Some(converted_2006)
+                let converted_1663 = analytics_configuration_from_py(&value)?;
+                Some(converted_1663)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2007: String = value.extract()?;
-                Some(converted_2007)
+                let converted_1664: String = value.extract()?;
+                Some(converted_1664)
             } else {
                 None
             };
@@ -13841,37 +23521,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2008: String = value.extract()?;
-            Some(converted_2008)
+            let converted_1665: String = value.extract()?;
+            Some(converted_1665)
         } else {
             None
         };
         let cors_configuration_value =
             if let Some(value) = dict_value(params, "cors_configuration")? {
-                let converted_2009 = cors_configuration_from_py(&value)?;
-                Some(converted_2009)
+                let converted_1666 = cors_configuration_from_py(&value)?;
+                Some(converted_1666)
             } else {
                 None
             };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2010: String = value.extract()?;
-            Some(converted_2010)
+            let converted_1667: String = value.extract()?;
+            Some(converted_1667)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2012: String = value.extract()?;
-                let converted_2011 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2012.as_str());
-                Some(converted_2011)
+                let enum_value_1669: String = value.extract()?;
+                let converted_1668 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1669.as_str());
+                Some(converted_1668)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2013: String = value.extract()?;
-                Some(converted_2013)
+                let converted_1670: String = value.extract()?;
+                Some(converted_1670)
             } else {
                 None
             };
@@ -13900,37 +23580,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2014: String = value.extract()?;
-            Some(converted_2014)
+            let converted_1671: String = value.extract()?;
+            Some(converted_1671)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2015: String = value.extract()?;
-            Some(converted_2015)
+            let converted_1672: String = value.extract()?;
+            Some(converted_1672)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2017: String = value.extract()?;
-                let converted_2016 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2017.as_str());
-                Some(converted_2016)
+                let enum_value_1674: String = value.extract()?;
+                let converted_1673 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1674.as_str());
+                Some(converted_1673)
             } else {
                 None
             };
         let server_side_encryption_configuration_value =
             if let Some(value) = dict_value(params, "server_side_encryption_configuration")? {
-                let converted_2018 = server_side_encryption_configuration_from_py(&value)?;
-                Some(converted_2018)
+                let converted_1675 = server_side_encryption_configuration_from_py(&value)?;
+                Some(converted_1675)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2019: String = value.extract()?;
-                Some(converted_2019)
+                let converted_1676: String = value.extract()?;
+                Some(converted_1676)
             } else {
                 None
             };
@@ -13961,28 +23641,28 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2020: String = value.extract()?;
-            Some(converted_2020)
+            let converted_1677: String = value.extract()?;
+            Some(converted_1677)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_2021: String = value.extract()?;
-            Some(converted_2021)
+            let converted_1678: String = value.extract()?;
+            Some(converted_1678)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2022: String = value.extract()?;
-                Some(converted_2022)
+                let converted_1679: String = value.extract()?;
+                Some(converted_1679)
             } else {
                 None
             };
         let intelligent_tiering_configuration_value =
             if let Some(value) = dict_value(params, "intelligent_tiering_configuration")? {
-                let converted_2023 = intelligent_tiering_configuration_from_py(&value)?;
-                Some(converted_2023)
+                let converted_1680 = intelligent_tiering_configuration_from_py(&value)?;
+                Some(converted_1680)
             } else {
                 None
             };
@@ -14012,28 +23692,28 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2024: String = value.extract()?;
-            Some(converted_2024)
+            let converted_1681: String = value.extract()?;
+            Some(converted_1681)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_2025: String = value.extract()?;
-            Some(converted_2025)
+            let converted_1682: String = value.extract()?;
+            Some(converted_1682)
         } else {
             None
         };
         let inventory_configuration_value =
             if let Some(value) = dict_value(params, "inventory_configuration")? {
-                let converted_2026 = inventory_configuration_from_py(&value)?;
-                Some(converted_2026)
+                let converted_1683 = inventory_configuration_from_py(&value)?;
+                Some(converted_1683)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2027: String = value.extract()?;
-                Some(converted_2027)
+                let converted_1684: String = value.extract()?;
+                Some(converted_1684)
             } else {
                 None
             };
@@ -14061,41 +23741,41 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2028: String = value.extract()?;
-            Some(converted_2028)
+            let converted_1685: String = value.extract()?;
+            Some(converted_1685)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2030: String = value.extract()?;
-                let converted_2029 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2030.as_str());
-                Some(converted_2029)
+                let enum_value_1687: String = value.extract()?;
+                let converted_1686 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1687.as_str());
+                Some(converted_1686)
             } else {
                 None
             };
         let lifecycle_configuration_value =
             if let Some(value) = dict_value(params, "lifecycle_configuration")? {
-                let converted_2031 = bucket_lifecycle_configuration_from_py(&value)?;
-                Some(converted_2031)
+                let converted_1688 = bucket_lifecycle_configuration_from_py(&value)?;
+                Some(converted_1688)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2032: String = value.extract()?;
-                Some(converted_2032)
+                let converted_1689: String = value.extract()?;
+                Some(converted_1689)
             } else {
                 None
             };
         let transition_default_minimum_object_size_value =
             if let Some(value) = dict_value(params, "transition_default_minimum_object_size")? {
-                let enum_value_2034: String = value.extract()?;
-                let converted_2033 = aws_sdk_s3::types::TransitionDefaultMinimumObjectSize::from(
-                    enum_value_2034.as_str(),
+                let enum_value_1691: String = value.extract()?;
+                let converted_1690 = aws_sdk_s3::types::TransitionDefaultMinimumObjectSize::from(
+                    enum_value_1691.as_str(),
                 );
-                Some(converted_2033)
+                Some(converted_1690)
             } else {
                 None
             };
@@ -14115,14 +23795,10 @@ impl S3Client {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLifecycleConfiguration"))
             })?;
             Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.transition_default_minimum_object_size {
-                    let converted_2035 = value.as_str().into_py_any(py)?;
-                    result.set_item("transition_default_minimum_object_size", converted_2035)?;
-                } else {
-                    result.set_item("transition_default_minimum_object_size", py.None())?;
-                }
-                Ok(result.into_any().unbind())
+                Py::new(
+                    py,
+                    PyPutBucketLifecycleConfigurationOutput { inner: output },
+                )
             })
         })
     }
@@ -14135,37 +23811,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2036: String = value.extract()?;
-            Some(converted_2036)
+            let converted_1692: String = value.extract()?;
+            Some(converted_1692)
         } else {
             None
         };
         let bucket_logging_status_value =
             if let Some(value) = dict_value(params, "bucket_logging_status")? {
-                let converted_2037 = bucket_logging_status_from_py(&value)?;
-                Some(converted_2037)
+                let converted_1693 = bucket_logging_status_from_py(&value)?;
+                Some(converted_1693)
             } else {
                 None
             };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2038: String = value.extract()?;
-            Some(converted_2038)
+            let converted_1694: String = value.extract()?;
+            Some(converted_1694)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2040: String = value.extract()?;
-                let converted_2039 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2040.as_str());
-                Some(converted_2039)
+                let enum_value_1696: String = value.extract()?;
+                let converted_1695 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1696.as_str());
+                Some(converted_1695)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2041: String = value.extract()?;
-                Some(converted_2041)
+                let converted_1697: String = value.extract()?;
+                Some(converted_1697)
             } else {
                 None
             };
@@ -14194,28 +23870,28 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2042: String = value.extract()?;
-            Some(converted_2042)
+            let converted_1698: String = value.extract()?;
+            Some(converted_1698)
         } else {
             None
         };
         let id_value = if let Some(value) = dict_value(params, "id")? {
-            let converted_2043: String = value.extract()?;
-            Some(converted_2043)
+            let converted_1699: String = value.extract()?;
+            Some(converted_1699)
         } else {
             None
         };
         let metrics_configuration_value =
             if let Some(value) = dict_value(params, "metrics_configuration")? {
-                let converted_2044 = metrics_configuration_from_py(&value)?;
-                Some(converted_2044)
+                let converted_1700 = metrics_configuration_from_py(&value)?;
+                Some(converted_1700)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2045: String = value.extract()?;
-                Some(converted_2045)
+                let converted_1701: String = value.extract()?;
+                Some(converted_1701)
             } else {
                 None
             };
@@ -14243,29 +23919,29 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2046: String = value.extract()?;
-            Some(converted_2046)
+            let converted_1702: String = value.extract()?;
+            Some(converted_1702)
         } else {
             None
         };
         let notification_configuration_value =
             if let Some(value) = dict_value(params, "notification_configuration")? {
-                let converted_2047 = notification_configuration_from_py(&value)?;
-                Some(converted_2047)
+                let converted_1703 = notification_configuration_from_py(&value)?;
+                Some(converted_1703)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2048: String = value.extract()?;
-                Some(converted_2048)
+                let converted_1704: String = value.extract()?;
+                Some(converted_1704)
             } else {
                 None
             };
         let skip_destination_validation_value =
             if let Some(value) = dict_value(params, "skip_destination_validation")? {
-                let converted_2049: bool = value.extract()?;
-                Some(converted_2049)
+                let converted_1705: bool = value.extract()?;
+                Some(converted_1705)
             } else {
                 None
             };
@@ -14295,37 +23971,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2050: String = value.extract()?;
-            Some(converted_2050)
+            let converted_1706: String = value.extract()?;
+            Some(converted_1706)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2051: String = value.extract()?;
-            Some(converted_2051)
+            let converted_1707: String = value.extract()?;
+            Some(converted_1707)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2052: String = value.extract()?;
-                Some(converted_2052)
+                let converted_1708: String = value.extract()?;
+                Some(converted_1708)
             } else {
                 None
             };
         let ownership_controls_value =
             if let Some(value) = dict_value(params, "ownership_controls")? {
-                let converted_2053 = ownership_controls_from_py(&value)?;
-                Some(converted_2053)
+                let converted_1709 = ownership_controls_from_py(&value)?;
+                Some(converted_1709)
             } else {
                 None
             };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2055: String = value.extract()?;
-                let converted_2054 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2055.as_str());
-                Some(converted_2054)
+                let enum_value_1711: String = value.extract()?;
+                let converted_1710 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1711.as_str());
+                Some(converted_1710)
             } else {
                 None
             };
@@ -14354,43 +24030,43 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2056: String = value.extract()?;
-            Some(converted_2056)
+            let converted_1712: String = value.extract()?;
+            Some(converted_1712)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2057: String = value.extract()?;
-            Some(converted_2057)
+            let converted_1713: String = value.extract()?;
+            Some(converted_1713)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2059: String = value.extract()?;
-                let converted_2058 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2059.as_str());
-                Some(converted_2058)
+                let enum_value_1715: String = value.extract()?;
+                let converted_1714 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1715.as_str());
+                Some(converted_1714)
             } else {
                 None
             };
         let confirm_remove_self_bucket_access_value =
             if let Some(value) = dict_value(params, "confirm_remove_self_bucket_access")? {
-                let converted_2060: bool = value.extract()?;
-                Some(converted_2060)
+                let converted_1716: bool = value.extract()?;
+                Some(converted_1716)
             } else {
                 None
             };
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
-            let converted_2061: String = value.extract()?;
-            Some(converted_2061)
+            let converted_1717: String = value.extract()?;
+            Some(converted_1717)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2062: String = value.extract()?;
-                Some(converted_2062)
+                let converted_1718: String = value.extract()?;
+                Some(converted_1718)
             } else {
                 None
             };
@@ -14420,43 +24096,43 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2063: String = value.extract()?;
-            Some(converted_2063)
+            let converted_1719: String = value.extract()?;
+            Some(converted_1719)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2064: String = value.extract()?;
-            Some(converted_2064)
+            let converted_1720: String = value.extract()?;
+            Some(converted_1720)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2066: String = value.extract()?;
-                let converted_2065 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2066.as_str());
-                Some(converted_2065)
+                let enum_value_1722: String = value.extract()?;
+                let converted_1721 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1722.as_str());
+                Some(converted_1721)
             } else {
                 None
             };
         let replication_configuration_value =
             if let Some(value) = dict_value(params, "replication_configuration")? {
-                let converted_2067 = replication_configuration_from_py(&value)?;
-                Some(converted_2067)
+                let converted_1723 = replication_configuration_from_py(&value)?;
+                Some(converted_1723)
             } else {
                 None
             };
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_2068: String = value.extract()?;
-            Some(converted_2068)
+            let converted_1724: String = value.extract()?;
+            Some(converted_1724)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2069: String = value.extract()?;
-                Some(converted_2069)
+                let converted_1725: String = value.extract()?;
+                Some(converted_1725)
             } else {
                 None
             };
@@ -14486,37 +24162,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2070: String = value.extract()?;
-            Some(converted_2070)
+            let converted_1726: String = value.extract()?;
+            Some(converted_1726)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2071: String = value.extract()?;
-            Some(converted_2071)
+            let converted_1727: String = value.extract()?;
+            Some(converted_1727)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2073: String = value.extract()?;
-                let converted_2072 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2073.as_str());
-                Some(converted_2072)
+                let enum_value_1729: String = value.extract()?;
+                let converted_1728 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1729.as_str());
+                Some(converted_1728)
             } else {
                 None
             };
         let request_payment_configuration_value =
             if let Some(value) = dict_value(params, "request_payment_configuration")? {
-                let converted_2074 = request_payment_configuration_from_py(&value)?;
-                Some(converted_2074)
+                let converted_1730 = request_payment_configuration_from_py(&value)?;
+                Some(converted_1730)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2075: String = value.extract()?;
-                Some(converted_2075)
+                let converted_1731: String = value.extract()?;
+                Some(converted_1731)
             } else {
                 None
             };
@@ -14545,36 +24221,36 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2076: String = value.extract()?;
-            Some(converted_2076)
+            let converted_1732: String = value.extract()?;
+            Some(converted_1732)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2077: String = value.extract()?;
-            Some(converted_2077)
+            let converted_1733: String = value.extract()?;
+            Some(converted_1733)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2079: String = value.extract()?;
-                let converted_2078 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2079.as_str());
-                Some(converted_2078)
+                let enum_value_1735: String = value.extract()?;
+                let converted_1734 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1735.as_str());
+                Some(converted_1734)
             } else {
                 None
             };
         let tagging_value = if let Some(value) = dict_value(params, "tagging")? {
-            let converted_2080 = tagging_from_py(&value)?;
-            Some(converted_2080)
+            let converted_1736 = tagging_from_py(&value)?;
+            Some(converted_1736)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2081: String = value.extract()?;
-                Some(converted_2081)
+                let converted_1737: String = value.extract()?;
+                Some(converted_1737)
             } else {
                 None
             };
@@ -14603,43 +24279,43 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2082: String = value.extract()?;
-            Some(converted_2082)
+            let converted_1738: String = value.extract()?;
+            Some(converted_1738)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2083: String = value.extract()?;
-            Some(converted_2083)
+            let converted_1739: String = value.extract()?;
+            Some(converted_1739)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2085: String = value.extract()?;
-                let converted_2084 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2085.as_str());
-                Some(converted_2084)
+                let enum_value_1741: String = value.extract()?;
+                let converted_1740 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1741.as_str());
+                Some(converted_1740)
             } else {
                 None
             };
         let mfa_value = if let Some(value) = dict_value(params, "mfa")? {
-            let converted_2086: String = value.extract()?;
-            Some(converted_2086)
+            let converted_1742: String = value.extract()?;
+            Some(converted_1742)
         } else {
             None
         };
         let versioning_configuration_value =
             if let Some(value) = dict_value(params, "versioning_configuration")? {
-                let converted_2087 = versioning_configuration_from_py(&value)?;
-                Some(converted_2087)
+                let converted_1743 = versioning_configuration_from_py(&value)?;
+                Some(converted_1743)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2088: String = value.extract()?;
-                Some(converted_2088)
+                let converted_1744: String = value.extract()?;
+                Some(converted_1744)
             } else {
                 None
             };
@@ -14669,37 +24345,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2089: String = value.extract()?;
-            Some(converted_2089)
+            let converted_1745: String = value.extract()?;
+            Some(converted_1745)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2090: String = value.extract()?;
-            Some(converted_2090)
+            let converted_1746: String = value.extract()?;
+            Some(converted_1746)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2092: String = value.extract()?;
-                let converted_2091 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2092.as_str());
-                Some(converted_2091)
+                let enum_value_1748: String = value.extract()?;
+                let converted_1747 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1748.as_str());
+                Some(converted_1747)
             } else {
                 None
             };
         let website_configuration_value =
             if let Some(value) = dict_value(params, "website_configuration")? {
-                let converted_2093 = website_configuration_from_py(&value)?;
-                Some(converted_2093)
+                let converted_1749 = website_configuration_from_py(&value)?;
+                Some(converted_1749)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2094: String = value.extract()?;
-                Some(converted_2094)
+                let converted_1750: String = value.extract()?;
+                Some(converted_1750)
             } else {
                 None
             };
@@ -14728,289 +24404,289 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_2096: String = value.extract()?;
-            let converted_2095 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_2096.as_str());
-            Some(converted_2095)
+            let enum_value_1752: String = value.extract()?;
+            let converted_1751 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1752.as_str());
+            Some(converted_1751)
         } else {
             None
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let bytes_2098: Vec<u8> = value.extract()?;
-            let converted_2097 = AwsByteStream::from(bytes_2098);
-            Some(converted_2097)
+            let bytes_1754: Vec<u8> = value.extract()?;
+            let converted_1753 = AwsByteStream::from(bytes_1754);
+            Some(converted_1753)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2099: String = value.extract()?;
-            Some(converted_2099)
+            let converted_1755: String = value.extract()?;
+            Some(converted_1755)
         } else {
             None
         };
         let cache_control_value = if let Some(value) = dict_value(params, "cache_control")? {
-            let converted_2100: String = value.extract()?;
-            Some(converted_2100)
+            let converted_1756: String = value.extract()?;
+            Some(converted_1756)
         } else {
             None
         };
         let content_disposition_value =
             if let Some(value) = dict_value(params, "content_disposition")? {
-                let converted_2101: String = value.extract()?;
-                Some(converted_2101)
+                let converted_1757: String = value.extract()?;
+                Some(converted_1757)
             } else {
                 None
             };
         let content_encoding_value = if let Some(value) = dict_value(params, "content_encoding")? {
-            let converted_2102: String = value.extract()?;
-            Some(converted_2102)
+            let converted_1758: String = value.extract()?;
+            Some(converted_1758)
         } else {
             None
         };
         let content_language_value = if let Some(value) = dict_value(params, "content_language")? {
-            let converted_2103: String = value.extract()?;
-            Some(converted_2103)
+            let converted_1759: String = value.extract()?;
+            Some(converted_1759)
         } else {
             None
         };
         let content_length_value = if let Some(value) = dict_value(params, "content_length")? {
-            let converted_2104: i64 = value.extract()?;
-            Some(converted_2104)
+            let converted_1760: i64 = value.extract()?;
+            Some(converted_1760)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2105: String = value.extract()?;
-            Some(converted_2105)
+            let converted_1761: String = value.extract()?;
+            Some(converted_1761)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_2106: String = value.extract()?;
-            Some(converted_2106)
+            let converted_1762: String = value.extract()?;
+            Some(converted_1762)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2108: String = value.extract()?;
-                let converted_2107 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2108.as_str());
-                Some(converted_2107)
+                let enum_value_1764: String = value.extract()?;
+                let converted_1763 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1764.as_str());
+                Some(converted_1763)
             } else {
                 None
             };
         let checksum_crc32_value = if let Some(value) = dict_value(params, "checksum_crc32")? {
-            let converted_2109: String = value.extract()?;
-            Some(converted_2109)
+            let converted_1765: String = value.extract()?;
+            Some(converted_1765)
         } else {
             None
         };
         let checksum_crc32_c_value = if let Some(value) = dict_value(params, "checksum_crc32_c")? {
-            let converted_2110: String = value.extract()?;
-            Some(converted_2110)
+            let converted_1766: String = value.extract()?;
+            Some(converted_1766)
         } else {
             None
         };
         let checksum_crc64_nvme_value =
             if let Some(value) = dict_value(params, "checksum_crc64_nvme")? {
-                let converted_2111: String = value.extract()?;
-                Some(converted_2111)
+                let converted_1767: String = value.extract()?;
+                Some(converted_1767)
             } else {
                 None
             };
         let checksum_sha1_value = if let Some(value) = dict_value(params, "checksum_sha1")? {
-            let converted_2112: String = value.extract()?;
-            Some(converted_2112)
+            let converted_1768: String = value.extract()?;
+            Some(converted_1768)
         } else {
             None
         };
         let checksum_sha256_value = if let Some(value) = dict_value(params, "checksum_sha256")? {
-            let converted_2113: String = value.extract()?;
-            Some(converted_2113)
+            let converted_1769: String = value.extract()?;
+            Some(converted_1769)
         } else {
             None
         };
         let expires_value = if let Some(value) = dict_value(params, "expires")? {
-            let timestamp_2115: String = value.extract()?;
-            let converted_2114 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_2115,
+            let timestamp_1771: String = value.extract()?;
+            let converted_1770 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1771,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_2114)
+            Some(converted_1770)
         } else {
             None
         };
         let if_match_value = if let Some(value) = dict_value(params, "if_match")? {
-            let converted_2116: String = value.extract()?;
-            Some(converted_2116)
+            let converted_1772: String = value.extract()?;
+            Some(converted_1772)
         } else {
             None
         };
         let if_none_match_value = if let Some(value) = dict_value(params, "if_none_match")? {
-            let converted_2117: String = value.extract()?;
-            Some(converted_2117)
+            let converted_1773: String = value.extract()?;
+            Some(converted_1773)
         } else {
             None
         };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_2118: String = value.extract()?;
-                Some(converted_2118)
+                let converted_1774: String = value.extract()?;
+                Some(converted_1774)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_2119: String = value.extract()?;
-            Some(converted_2119)
+            let converted_1775: String = value.extract()?;
+            Some(converted_1775)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_2120: String = value.extract()?;
-            Some(converted_2120)
+            let converted_1776: String = value.extract()?;
+            Some(converted_1776)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_2121: String = value.extract()?;
-            Some(converted_2121)
+            let converted_1777: String = value.extract()?;
+            Some(converted_1777)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2122: String = value.extract()?;
-            Some(converted_2122)
+            let converted_1778: String = value.extract()?;
+            Some(converted_1778)
         } else {
             None
         };
         let write_offset_bytes_value =
             if let Some(value) = dict_value(params, "write_offset_bytes")? {
-                let converted_2123: i64 = value.extract()?;
-                Some(converted_2123)
+                let converted_1779: i64 = value.extract()?;
+                Some(converted_1779)
             } else {
                 None
             };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
-            let mapping_2125 = value.cast::<PyDict>()?;
-            let mut converted_2124 = HashMap::new();
-            for (key_2126, value_2127) in mapping_2125.iter() {
-                let converted_key_2128: String = key_2126.extract()?;
-                let converted_value_2129: String = value_2127.extract()?;
-                converted_2124.insert(converted_key_2128, converted_value_2129);
+            let mapping_1781 = value.cast::<PyDict>()?;
+            let mut converted_1780 = HashMap::new();
+            for (key_1782, value_1783) in mapping_1781.iter() {
+                let converted_key_1784: String = key_1782.extract()?;
+                let converted_value_1785: String = value_1783.extract()?;
+                converted_1780.insert(converted_key_1784, converted_value_1785);
             }
-            Some(converted_2124)
+            Some(converted_1780)
         } else {
             None
         };
         let server_side_encryption_value =
             if let Some(value) = dict_value(params, "server_side_encryption")? {
-                let enum_value_2131: String = value.extract()?;
-                let converted_2130 =
-                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_2131.as_str());
-                Some(converted_2130)
+                let enum_value_1787: String = value.extract()?;
+                let converted_1786 =
+                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_1787.as_str());
+                Some(converted_1786)
             } else {
                 None
             };
         let storage_class_value = if let Some(value) = dict_value(params, "storage_class")? {
-            let enum_value_2133: String = value.extract()?;
-            let converted_2132 = aws_sdk_s3::types::StorageClass::from(enum_value_2133.as_str());
-            Some(converted_2132)
+            let enum_value_1789: String = value.extract()?;
+            let converted_1788 = aws_sdk_s3::types::StorageClass::from(enum_value_1789.as_str());
+            Some(converted_1788)
         } else {
             None
         };
         let website_redirect_location_value =
             if let Some(value) = dict_value(params, "website_redirect_location")? {
-                let converted_2134: String = value.extract()?;
-                Some(converted_2134)
+                let converted_1790: String = value.extract()?;
+                Some(converted_1790)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_2135: String = value.extract()?;
-                Some(converted_2135)
+                let converted_1791: String = value.extract()?;
+                Some(converted_1791)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_2136: String = value.extract()?;
-            Some(converted_2136)
+            let converted_1792: String = value.extract()?;
+            Some(converted_1792)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_2137: String = value.extract()?;
-                Some(converted_2137)
+                let converted_1793: String = value.extract()?;
+                Some(converted_1793)
             } else {
                 None
             };
         let ssekms_key_id_value = if let Some(value) = dict_value(params, "ssekms_key_id")? {
-            let converted_2138: String = value.extract()?;
-            Some(converted_2138)
+            let converted_1794: String = value.extract()?;
+            Some(converted_1794)
         } else {
             None
         };
         let ssekms_encryption_context_value =
             if let Some(value) = dict_value(params, "ssekms_encryption_context")? {
-                let converted_2139: String = value.extract()?;
-                Some(converted_2139)
+                let converted_1795: String = value.extract()?;
+                Some(converted_1795)
             } else {
                 None
             };
         let bucket_key_enabled_value =
             if let Some(value) = dict_value(params, "bucket_key_enabled")? {
-                let converted_2140: bool = value.extract()?;
-                Some(converted_2140)
+                let converted_1796: bool = value.extract()?;
+                Some(converted_1796)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2142: String = value.extract()?;
-            let converted_2141 = aws_sdk_s3::types::RequestPayer::from(enum_value_2142.as_str());
-            Some(converted_2141)
+            let enum_value_1798: String = value.extract()?;
+            let converted_1797 = aws_sdk_s3::types::RequestPayer::from(enum_value_1798.as_str());
+            Some(converted_1797)
         } else {
             None
         };
         let tagging_value = if let Some(value) = dict_value(params, "tagging")? {
-            let converted_2143: String = value.extract()?;
-            Some(converted_2143)
+            let converted_1799: String = value.extract()?;
+            Some(converted_1799)
         } else {
             None
         };
         let object_lock_mode_value = if let Some(value) = dict_value(params, "object_lock_mode")? {
-            let enum_value_2145: String = value.extract()?;
-            let converted_2144 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_2145.as_str());
-            Some(converted_2144)
+            let enum_value_1801: String = value.extract()?;
+            let converted_1800 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1801.as_str());
+            Some(converted_1800)
         } else {
             None
         };
         let object_lock_retain_until_date_value =
             if let Some(value) = dict_value(params, "object_lock_retain_until_date")? {
-                let timestamp_2147: String = value.extract()?;
-                let converted_2146 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2147,
+                let timestamp_1803: String = value.extract()?;
+                let converted_1802 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1803,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2146)
+                Some(converted_1802)
             } else {
                 None
             };
         let object_lock_legal_hold_status_value =
             if let Some(value) = dict_value(params, "object_lock_legal_hold_status")? {
-                let enum_value_2149: String = value.extract()?;
-                let converted_2148 =
-                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_2149.as_str());
-                Some(converted_2148)
+                let enum_value_1805: String = value.extract()?;
+                let converted_1804 =
+                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_1805.as_str());
+                Some(converted_1804)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2150: String = value.extract()?;
-                Some(converted_2150)
+                let converted_1806: String = value.extract()?;
+                Some(converted_1806)
             } else {
                 None
             };
@@ -15064,112 +24740,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutObject")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.expiration {
-                    let converted_2151 = value.as_str().into_py_any(py)?;
-                    result.set_item("expiration", converted_2151)?;
-                } else {
-                    result.set_item("expiration", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_2152 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_2152)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32 {
-                    let converted_2153 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32", converted_2153)?;
-                } else {
-                    result.set_item("checksum_crc32", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32_c {
-                    let converted_2154 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32_c", converted_2154)?;
-                } else {
-                    result.set_item("checksum_crc32_c", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc64_nvme {
-                    let converted_2155 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc64_nvme", converted_2155)?;
-                } else {
-                    result.set_item("checksum_crc64_nvme", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha1 {
-                    let converted_2156 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha1", converted_2156)?;
-                } else {
-                    result.set_item("checksum_sha1", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha256 {
-                    let converted_2157 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha256", converted_2157)?;
-                } else {
-                    result.set_item("checksum_sha256", py.None())?;
-                }
-                if let Some(value) = &output.checksum_type {
-                    let converted_2158 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_type", converted_2158)?;
-                } else {
-                    result.set_item("checksum_type", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_2159 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_2159)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.version_id {
-                    let converted_2160 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_2160)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_2161 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_2161)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_2162 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_2162)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_2163 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_2163)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_encryption_context {
-                    let converted_2164 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_encryption_context", converted_2164)?;
-                } else {
-                    result.set_item("ssekms_encryption_context", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_2165 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_2165)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.size {
-                    let converted_2166 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("size", converted_2166)?;
-                } else {
-                    result.set_item("size", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_2167 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2167)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectOutput { inner: output }))
         })
     }
 
@@ -15181,94 +24752,94 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
-            let enum_value_2169: String = value.extract()?;
-            let converted_2168 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_2169.as_str());
-            Some(converted_2168)
+            let enum_value_1808: String = value.extract()?;
+            let converted_1807 = aws_sdk_s3::types::ObjectCannedAcl::from(enum_value_1808.as_str());
+            Some(converted_1807)
         } else {
             None
         };
         let access_control_policy_value =
             if let Some(value) = dict_value(params, "access_control_policy")? {
-                let converted_2170 = access_control_policy_from_py(&value)?;
-                Some(converted_2170)
+                let converted_1809 = access_control_policy_from_py(&value)?;
+                Some(converted_1809)
             } else {
                 None
             };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2171: String = value.extract()?;
-            Some(converted_2171)
+            let converted_1810: String = value.extract()?;
+            Some(converted_1810)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2172: String = value.extract()?;
-            Some(converted_2172)
+            let converted_1811: String = value.extract()?;
+            Some(converted_1811)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2174: String = value.extract()?;
-                let converted_2173 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2174.as_str());
-                Some(converted_2173)
+                let enum_value_1813: String = value.extract()?;
+                let converted_1812 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1813.as_str());
+                Some(converted_1812)
             } else {
                 None
             };
         let grant_full_control_value =
             if let Some(value) = dict_value(params, "grant_full_control")? {
-                let converted_2175: String = value.extract()?;
-                Some(converted_2175)
+                let converted_1814: String = value.extract()?;
+                Some(converted_1814)
             } else {
                 None
             };
         let grant_read_value = if let Some(value) = dict_value(params, "grant_read")? {
-            let converted_2176: String = value.extract()?;
-            Some(converted_2176)
+            let converted_1815: String = value.extract()?;
+            Some(converted_1815)
         } else {
             None
         };
         let grant_read_acp_value = if let Some(value) = dict_value(params, "grant_read_acp")? {
-            let converted_2177: String = value.extract()?;
-            Some(converted_2177)
+            let converted_1816: String = value.extract()?;
+            Some(converted_1816)
         } else {
             None
         };
         let grant_write_value = if let Some(value) = dict_value(params, "grant_write")? {
-            let converted_2178: String = value.extract()?;
-            Some(converted_2178)
+            let converted_1817: String = value.extract()?;
+            Some(converted_1817)
         } else {
             None
         };
         let grant_write_acp_value = if let Some(value) = dict_value(params, "grant_write_acp")? {
-            let converted_2179: String = value.extract()?;
-            Some(converted_2179)
+            let converted_1818: String = value.extract()?;
+            Some(converted_1818)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2180: String = value.extract()?;
-            Some(converted_2180)
+            let converted_1819: String = value.extract()?;
+            Some(converted_1819)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2182: String = value.extract()?;
-            let converted_2181 = aws_sdk_s3::types::RequestPayer::from(enum_value_2182.as_str());
-            Some(converted_2181)
+            let enum_value_1821: String = value.extract()?;
+            let converted_1820 = aws_sdk_s3::types::RequestPayer::from(enum_value_1821.as_str());
+            Some(converted_1820)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2183: String = value.extract()?;
-            Some(converted_2183)
+            let converted_1822: String = value.extract()?;
+            Some(converted_1822)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2184: String = value.extract()?;
-                Some(converted_2184)
+                let converted_1823: String = value.extract()?;
+                Some(converted_1823)
             } else {
                 None
             };
@@ -15294,16 +24865,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAcl"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_2185 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2185)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectAclOutput { inner: output }))
         })
     }
 
@@ -15315,55 +24877,55 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2186: String = value.extract()?;
-            Some(converted_2186)
+            let converted_1824: String = value.extract()?;
+            Some(converted_1824)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2187: String = value.extract()?;
-            Some(converted_2187)
+            let converted_1825: String = value.extract()?;
+            Some(converted_1825)
         } else {
             None
         };
         let legal_hold_value = if let Some(value) = dict_value(params, "legal_hold")? {
-            let converted_2188 = object_lock_legal_hold_from_py(&value)?;
-            Some(converted_2188)
+            let converted_1826 = object_lock_legal_hold_from_py(&value)?;
+            Some(converted_1826)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2190: String = value.extract()?;
-            let converted_2189 = aws_sdk_s3::types::RequestPayer::from(enum_value_2190.as_str());
-            Some(converted_2189)
+            let enum_value_1828: String = value.extract()?;
+            let converted_1827 = aws_sdk_s3::types::RequestPayer::from(enum_value_1828.as_str());
+            Some(converted_1827)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2191: String = value.extract()?;
-            Some(converted_2191)
+            let converted_1829: String = value.extract()?;
+            Some(converted_1829)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2192: String = value.extract()?;
-            Some(converted_2192)
+            let converted_1830: String = value.extract()?;
+            Some(converted_1830)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2194: String = value.extract()?;
-                let converted_2193 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2194.as_str());
-                Some(converted_2193)
+                let enum_value_1832: String = value.extract()?;
+                let converted_1831 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1832.as_str());
+                Some(converted_1831)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2195: String = value.extract()?;
-                Some(converted_2195)
+                let converted_1833: String = value.extract()?;
+                Some(converted_1833)
             } else {
                 None
             };
@@ -15383,16 +24945,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLegalHold"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_2196 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2196)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectLegalHoldOutput { inner: output }))
         })
     }
 
@@ -15404,50 +24957,50 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2197: String = value.extract()?;
-            Some(converted_2197)
+            let converted_1834: String = value.extract()?;
+            Some(converted_1834)
         } else {
             None
         };
         let object_lock_configuration_value =
             if let Some(value) = dict_value(params, "object_lock_configuration")? {
-                let converted_2198 = object_lock_configuration_from_py(&value)?;
-                Some(converted_2198)
+                let converted_1835 = object_lock_configuration_from_py(&value)?;
+                Some(converted_1835)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2200: String = value.extract()?;
-            let converted_2199 = aws_sdk_s3::types::RequestPayer::from(enum_value_2200.as_str());
-            Some(converted_2199)
+            let enum_value_1837: String = value.extract()?;
+            let converted_1836 = aws_sdk_s3::types::RequestPayer::from(enum_value_1837.as_str());
+            Some(converted_1836)
         } else {
             None
         };
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_2201: String = value.extract()?;
-            Some(converted_2201)
+            let converted_1838: String = value.extract()?;
+            Some(converted_1838)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2202: String = value.extract()?;
-            Some(converted_2202)
+            let converted_1839: String = value.extract()?;
+            Some(converted_1839)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2204: String = value.extract()?;
-                let converted_2203 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2204.as_str());
-                Some(converted_2203)
+                let enum_value_1841: String = value.extract()?;
+                let converted_1840 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1841.as_str());
+                Some(converted_1840)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2205: String = value.extract()?;
-                Some(converted_2205)
+                let converted_1842: String = value.extract()?;
+                Some(converted_1842)
             } else {
                 None
             };
@@ -15466,16 +25019,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLockConfiguration"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_2206 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2206)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectLockConfigurationOutput { inner: output }))
         })
     }
 
@@ -15487,62 +25031,62 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2207: String = value.extract()?;
-            Some(converted_2207)
+            let converted_1843: String = value.extract()?;
+            Some(converted_1843)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2208: String = value.extract()?;
-            Some(converted_2208)
+            let converted_1844: String = value.extract()?;
+            Some(converted_1844)
         } else {
             None
         };
         let retention_value = if let Some(value) = dict_value(params, "retention")? {
-            let converted_2209 = object_lock_retention_from_py(&value)?;
-            Some(converted_2209)
+            let converted_1845 = object_lock_retention_from_py(&value)?;
+            Some(converted_1845)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2211: String = value.extract()?;
-            let converted_2210 = aws_sdk_s3::types::RequestPayer::from(enum_value_2211.as_str());
-            Some(converted_2210)
+            let enum_value_1847: String = value.extract()?;
+            let converted_1846 = aws_sdk_s3::types::RequestPayer::from(enum_value_1847.as_str());
+            Some(converted_1846)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2212: String = value.extract()?;
-            Some(converted_2212)
+            let converted_1848: String = value.extract()?;
+            Some(converted_1848)
         } else {
             None
         };
         let bypass_governance_retention_value =
             if let Some(value) = dict_value(params, "bypass_governance_retention")? {
-                let converted_2213: bool = value.extract()?;
-                Some(converted_2213)
+                let converted_1849: bool = value.extract()?;
+                Some(converted_1849)
             } else {
                 None
             };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2214: String = value.extract()?;
-            Some(converted_2214)
+            let converted_1850: String = value.extract()?;
+            Some(converted_1850)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2216: String = value.extract()?;
-                let converted_2215 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2216.as_str());
-                Some(converted_2215)
+                let enum_value_1852: String = value.extract()?;
+                let converted_1851 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1852.as_str());
+                Some(converted_1851)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2217: String = value.extract()?;
-                Some(converted_2217)
+                let converted_1853: String = value.extract()?;
+                Some(converted_1853)
             } else {
                 None
             };
@@ -15563,16 +25107,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectRetention"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_2218 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2218)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectRetentionOutput { inner: output }))
         })
     }
 
@@ -15584,55 +25119,55 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2219: String = value.extract()?;
-            Some(converted_2219)
+            let converted_1854: String = value.extract()?;
+            Some(converted_1854)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2220: String = value.extract()?;
-            Some(converted_2220)
+            let converted_1855: String = value.extract()?;
+            Some(converted_1855)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2221: String = value.extract()?;
-            Some(converted_2221)
+            let converted_1856: String = value.extract()?;
+            Some(converted_1856)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2222: String = value.extract()?;
-            Some(converted_2222)
+            let converted_1857: String = value.extract()?;
+            Some(converted_1857)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2224: String = value.extract()?;
-                let converted_2223 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2224.as_str());
-                Some(converted_2223)
+                let enum_value_1859: String = value.extract()?;
+                let converted_1858 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1859.as_str());
+                Some(converted_1858)
             } else {
                 None
             };
         let tagging_value = if let Some(value) = dict_value(params, "tagging")? {
-            let converted_2225 = tagging_from_py(&value)?;
-            Some(converted_2225)
+            let converted_1860 = tagging_from_py(&value)?;
+            Some(converted_1860)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2226: String = value.extract()?;
-                Some(converted_2226)
+                let converted_1861: String = value.extract()?;
+                Some(converted_1861)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2228: String = value.extract()?;
-            let converted_2227 = aws_sdk_s3::types::RequestPayer::from(enum_value_2228.as_str());
-            Some(converted_2227)
+            let enum_value_1863: String = value.extract()?;
+            let converted_1862 = aws_sdk_s3::types::RequestPayer::from(enum_value_1863.as_str());
+            Some(converted_1862)
         } else {
             None
         };
@@ -15652,16 +25187,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectTagging"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.version_id {
-                    let converted_2229 = value.as_str().into_py_any(py)?;
-                    result.set_item("version_id", converted_2229)?;
-                } else {
-                    result.set_item("version_id", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyPutObjectTaggingOutput { inner: output }))
         })
     }
 
@@ -15673,37 +25199,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2230: String = value.extract()?;
-            Some(converted_2230)
+            let converted_1864: String = value.extract()?;
+            Some(converted_1864)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2231: String = value.extract()?;
-            Some(converted_2231)
+            let converted_1865: String = value.extract()?;
+            Some(converted_1865)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2233: String = value.extract()?;
-                let converted_2232 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2233.as_str());
-                Some(converted_2232)
+                let enum_value_1867: String = value.extract()?;
+                let converted_1866 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1867.as_str());
+                Some(converted_1866)
             } else {
                 None
             };
         let public_access_block_configuration_value =
             if let Some(value) = dict_value(params, "public_access_block_configuration")? {
-                let converted_2234 = public_access_block_configuration_from_py(&value)?;
-                Some(converted_2234)
+                let converted_1868 = public_access_block_configuration_from_py(&value)?;
+                Some(converted_1868)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2235: String = value.extract()?;
-                Some(converted_2235)
+                let converted_1869: String = value.extract()?;
+                Some(converted_1869)
             } else {
                 None
             };
@@ -15732,101 +25258,101 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2236: String = value.extract()?;
-            Some(converted_2236)
+            let converted_1870: String = value.extract()?;
+            Some(converted_1870)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2237: String = value.extract()?;
-            Some(converted_2237)
+            let converted_1871: String = value.extract()?;
+            Some(converted_1871)
         } else {
             None
         };
         let rename_source_value = if let Some(value) = dict_value(params, "rename_source")? {
-            let converted_2238: String = value.extract()?;
-            Some(converted_2238)
+            let converted_1872: String = value.extract()?;
+            Some(converted_1872)
         } else {
             None
         };
         let destination_if_match_value =
             if let Some(value) = dict_value(params, "destination_if_match")? {
-                let converted_2239: String = value.extract()?;
-                Some(converted_2239)
+                let converted_1873: String = value.extract()?;
+                Some(converted_1873)
             } else {
                 None
             };
         let destination_if_none_match_value =
             if let Some(value) = dict_value(params, "destination_if_none_match")? {
-                let converted_2240: String = value.extract()?;
-                Some(converted_2240)
+                let converted_1874: String = value.extract()?;
+                Some(converted_1874)
             } else {
                 None
             };
         let destination_if_modified_since_value =
             if let Some(value) = dict_value(params, "destination_if_modified_since")? {
-                let timestamp_2242: String = value.extract()?;
-                let converted_2241 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2242,
+                let timestamp_1876: String = value.extract()?;
+                let converted_1875 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1876,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2241)
+                Some(converted_1875)
             } else {
                 None
             };
         let destination_if_unmodified_since_value =
             if let Some(value) = dict_value(params, "destination_if_unmodified_since")? {
-                let timestamp_2244: String = value.extract()?;
-                let converted_2243 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2244,
+                let timestamp_1878: String = value.extract()?;
+                let converted_1877 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1878,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2243)
+                Some(converted_1877)
             } else {
                 None
             };
         let source_if_match_value = if let Some(value) = dict_value(params, "source_if_match")? {
-            let converted_2245: String = value.extract()?;
-            Some(converted_2245)
+            let converted_1879: String = value.extract()?;
+            Some(converted_1879)
         } else {
             None
         };
         let source_if_none_match_value =
             if let Some(value) = dict_value(params, "source_if_none_match")? {
-                let converted_2246: String = value.extract()?;
-                Some(converted_2246)
+                let converted_1880: String = value.extract()?;
+                Some(converted_1880)
             } else {
                 None
             };
         let source_if_modified_since_value =
             if let Some(value) = dict_value(params, "source_if_modified_since")? {
-                let timestamp_2248: String = value.extract()?;
-                let converted_2247 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2248,
+                let timestamp_1882: String = value.extract()?;
+                let converted_1881 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1882,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2247)
+                Some(converted_1881)
             } else {
                 None
             };
         let source_if_unmodified_since_value =
             if let Some(value) = dict_value(params, "source_if_unmodified_since")? {
-                let timestamp_2250: String = value.extract()?;
-                let converted_2249 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2250,
+                let timestamp_1884: String = value.extract()?;
+                let converted_1883 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1884,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2249)
+                Some(converted_1883)
             } else {
                 None
             };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_2251: String = value.extract()?;
-            Some(converted_2251)
+            let converted_1885: String = value.extract()?;
+            Some(converted_1885)
         } else {
             None
         };
@@ -15850,10 +25376,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RenameObject"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyRenameObjectOutput { inner: output }))
         })
     }
 
@@ -15865,49 +25388,49 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2252: String = value.extract()?;
-            Some(converted_2252)
+            let converted_1886: String = value.extract()?;
+            Some(converted_1886)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2253: String = value.extract()?;
-            Some(converted_2253)
+            let converted_1887: String = value.extract()?;
+            Some(converted_1887)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2254: String = value.extract()?;
-            Some(converted_2254)
+            let converted_1888: String = value.extract()?;
+            Some(converted_1888)
         } else {
             None
         };
         let restore_request_value = if let Some(value) = dict_value(params, "restore_request")? {
-            let converted_2255 = restore_request_from_py(&value)?;
-            Some(converted_2255)
+            let converted_1889 = restore_request_from_py(&value)?;
+            Some(converted_1889)
         } else {
             None
         };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2257: String = value.extract()?;
-            let converted_2256 = aws_sdk_s3::types::RequestPayer::from(enum_value_2257.as_str());
-            Some(converted_2256)
+            let enum_value_1891: String = value.extract()?;
+            let converted_1890 = aws_sdk_s3::types::RequestPayer::from(enum_value_1891.as_str());
+            Some(converted_1890)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2259: String = value.extract()?;
-                let converted_2258 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2259.as_str());
-                Some(converted_2258)
+                let enum_value_1893: String = value.extract()?;
+                let converted_1892 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1893.as_str());
+                Some(converted_1892)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2260: String = value.extract()?;
-                Some(converted_2260)
+                let converted_1894: String = value.extract()?;
+                Some(converted_1894)
             } else {
                 None
             };
@@ -15926,22 +25449,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreObject"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.request_charged {
-                    let converted_2261 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2261)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                if let Some(value) = &output.restore_output_path {
-                    let converted_2262 = value.as_str().into_py_any(py)?;
-                    result.set_item("restore_output_path", converted_2262)?;
-                } else {
-                    result.set_item("restore_output_path", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyRestoreObjectOutput { inner: output }))
         })
     }
 
@@ -15953,80 +25461,80 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2263: String = value.extract()?;
-            Some(converted_2263)
+            let converted_1895: String = value.extract()?;
+            Some(converted_1895)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2264: String = value.extract()?;
-            Some(converted_2264)
+            let converted_1896: String = value.extract()?;
+            Some(converted_1896)
         } else {
             None
         };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_2265: String = value.extract()?;
-                Some(converted_2265)
+                let converted_1897: String = value.extract()?;
+                Some(converted_1897)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_2266: String = value.extract()?;
-            Some(converted_2266)
+            let converted_1898: String = value.extract()?;
+            Some(converted_1898)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_2267: String = value.extract()?;
-                Some(converted_2267)
+                let converted_1899: String = value.extract()?;
+                Some(converted_1899)
             } else {
                 None
             };
         let expression_value = if let Some(value) = dict_value(params, "expression")? {
-            let converted_2268: String = value.extract()?;
-            Some(converted_2268)
+            let converted_1900: String = value.extract()?;
+            Some(converted_1900)
         } else {
             None
         };
         let expression_type_value = if let Some(value) = dict_value(params, "expression_type")? {
-            let enum_value_2270: String = value.extract()?;
-            let converted_2269 = aws_sdk_s3::types::ExpressionType::from(enum_value_2270.as_str());
-            Some(converted_2269)
+            let enum_value_1902: String = value.extract()?;
+            let converted_1901 = aws_sdk_s3::types::ExpressionType::from(enum_value_1902.as_str());
+            Some(converted_1901)
         } else {
             None
         };
         let request_progress_value = if let Some(value) = dict_value(params, "request_progress")? {
-            let converted_2271 = request_progress_from_py(&value)?;
-            Some(converted_2271)
+            let converted_1903 = request_progress_from_py(&value)?;
+            Some(converted_1903)
         } else {
             None
         };
         let input_serialization_value =
             if let Some(value) = dict_value(params, "input_serialization")? {
-                let converted_2272 = input_serialization_from_py(&value)?;
-                Some(converted_2272)
+                let converted_1904 = input_serialization_from_py(&value)?;
+                Some(converted_1904)
             } else {
                 None
             };
         let output_serialization_value =
             if let Some(value) = dict_value(params, "output_serialization")? {
-                let converted_2273 = output_serialization_from_py(&value)?;
-                Some(converted_2273)
+                let converted_1905 = output_serialization_from_py(&value)?;
+                Some(converted_1905)
             } else {
                 None
             };
         let scan_range_value = if let Some(value) = dict_value(params, "scan_range")? {
-            let converted_2274 = scan_range_from_py(&value)?;
-            Some(converted_2274)
+            let converted_1906 = scan_range_from_py(&value)?;
+            Some(converted_1906)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2275: String = value.extract()?;
-                Some(converted_2275)
+                let converted_1907: String = value.extract()?;
+                Some(converted_1907)
             } else {
                 None
             };
@@ -16070,37 +25578,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2276: String = value.extract()?;
-            Some(converted_2276)
+            let converted_1908: String = value.extract()?;
+            Some(converted_1908)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2277: String = value.extract()?;
-            Some(converted_2277)
+            let converted_1909: String = value.extract()?;
+            Some(converted_1909)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2279: String = value.extract()?;
-                let converted_2278 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2279.as_str());
-                Some(converted_2278)
+                let enum_value_1911: String = value.extract()?;
+                let converted_1910 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1911.as_str());
+                Some(converted_1910)
             } else {
                 None
             };
         let inventory_table_configuration_value =
             if let Some(value) = dict_value(params, "inventory_table_configuration")? {
-                let converted_2280 = inventory_table_configuration_updates_from_py(&value)?;
-                Some(converted_2280)
+                let converted_1912 = inventory_table_configuration_updates_from_py(&value)?;
+                Some(converted_1912)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2281: String = value.extract()?;
-                Some(converted_2281)
+                let converted_1913: String = value.extract()?;
+                Some(converted_1913)
             } else {
                 None
             };
@@ -16135,37 +25643,37 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2282: String = value.extract()?;
-            Some(converted_2282)
+            let converted_1914: String = value.extract()?;
+            Some(converted_1914)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2283: String = value.extract()?;
-            Some(converted_2283)
+            let converted_1915: String = value.extract()?;
+            Some(converted_1915)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2285: String = value.extract()?;
-                let converted_2284 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2285.as_str());
-                Some(converted_2284)
+                let enum_value_1917: String = value.extract()?;
+                let converted_1916 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1917.as_str());
+                Some(converted_1916)
             } else {
                 None
             };
         let journal_table_configuration_value =
             if let Some(value) = dict_value(params, "journal_table_configuration")? {
-                let converted_2286 = journal_table_configuration_updates_from_py(&value)?;
-                Some(converted_2286)
+                let converted_1918 = journal_table_configuration_updates_from_py(&value)?;
+                Some(converted_1918)
             } else {
                 None
             };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2287: String = value.extract()?;
-                Some(converted_2287)
+                let converted_1919: String = value.extract()?;
+                Some(converted_1919)
             } else {
                 None
             };
@@ -16196,119 +25704,119 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let bytes_2289: Vec<u8> = value.extract()?;
-            let converted_2288 = AwsByteStream::from(bytes_2289);
-            Some(converted_2288)
+            let bytes_1921: Vec<u8> = value.extract()?;
+            let converted_1920 = AwsByteStream::from(bytes_1921);
+            Some(converted_1920)
         } else {
             None
         };
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2290: String = value.extract()?;
-            Some(converted_2290)
+            let converted_1922: String = value.extract()?;
+            Some(converted_1922)
         } else {
             None
         };
         let content_length_value = if let Some(value) = dict_value(params, "content_length")? {
-            let converted_2291: i64 = value.extract()?;
-            Some(converted_2291)
+            let converted_1923: i64 = value.extract()?;
+            Some(converted_1923)
         } else {
             None
         };
         let content_md5_value = if let Some(value) = dict_value(params, "content_md5")? {
-            let converted_2292: String = value.extract()?;
-            Some(converted_2292)
+            let converted_1924: String = value.extract()?;
+            Some(converted_1924)
         } else {
             None
         };
         let checksum_algorithm_value =
             if let Some(value) = dict_value(params, "checksum_algorithm")? {
-                let enum_value_2294: String = value.extract()?;
-                let converted_2293 =
-                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_2294.as_str());
-                Some(converted_2293)
+                let enum_value_1926: String = value.extract()?;
+                let converted_1925 =
+                    aws_sdk_s3::types::ChecksumAlgorithm::from(enum_value_1926.as_str());
+                Some(converted_1925)
             } else {
                 None
             };
         let checksum_crc32_value = if let Some(value) = dict_value(params, "checksum_crc32")? {
-            let converted_2295: String = value.extract()?;
-            Some(converted_2295)
+            let converted_1927: String = value.extract()?;
+            Some(converted_1927)
         } else {
             None
         };
         let checksum_crc32_c_value = if let Some(value) = dict_value(params, "checksum_crc32_c")? {
-            let converted_2296: String = value.extract()?;
-            Some(converted_2296)
+            let converted_1928: String = value.extract()?;
+            Some(converted_1928)
         } else {
             None
         };
         let checksum_crc64_nvme_value =
             if let Some(value) = dict_value(params, "checksum_crc64_nvme")? {
-                let converted_2297: String = value.extract()?;
-                Some(converted_2297)
+                let converted_1929: String = value.extract()?;
+                Some(converted_1929)
             } else {
                 None
             };
         let checksum_sha1_value = if let Some(value) = dict_value(params, "checksum_sha1")? {
-            let converted_2298: String = value.extract()?;
-            Some(converted_2298)
+            let converted_1930: String = value.extract()?;
+            Some(converted_1930)
         } else {
             None
         };
         let checksum_sha256_value = if let Some(value) = dict_value(params, "checksum_sha256")? {
-            let converted_2299: String = value.extract()?;
-            Some(converted_2299)
+            let converted_1931: String = value.extract()?;
+            Some(converted_1931)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2300: String = value.extract()?;
-            Some(converted_2300)
+            let converted_1932: String = value.extract()?;
+            Some(converted_1932)
         } else {
             None
         };
         let part_number_value = if let Some(value) = dict_value(params, "part_number")? {
-            let converted_2301: i32 = value.extract()?;
-            Some(converted_2301)
+            let converted_1933: i32 = value.extract()?;
+            Some(converted_1933)
         } else {
             None
         };
         let upload_id_value = if let Some(value) = dict_value(params, "upload_id")? {
-            let converted_2302: String = value.extract()?;
-            Some(converted_2302)
+            let converted_1934: String = value.extract()?;
+            Some(converted_1934)
         } else {
             None
         };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_2303: String = value.extract()?;
-                Some(converted_2303)
+                let converted_1935: String = value.extract()?;
+                Some(converted_1935)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_2304: String = value.extract()?;
-            Some(converted_2304)
+            let converted_1936: String = value.extract()?;
+            Some(converted_1936)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_2305: String = value.extract()?;
-                Some(converted_2305)
+                let converted_1937: String = value.extract()?;
+                Some(converted_1937)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2307: String = value.extract()?;
-            let converted_2306 = aws_sdk_s3::types::RequestPayer::from(enum_value_2307.as_str());
-            Some(converted_2306)
+            let enum_value_1939: String = value.extract()?;
+            let converted_1938 = aws_sdk_s3::types::RequestPayer::from(enum_value_1939.as_str());
+            Some(converted_1938)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2308: String = value.extract()?;
-                Some(converted_2308)
+                let converted_1940: String = value.extract()?;
+                Some(converted_1940)
             } else {
                 None
             };
@@ -16339,82 +25847,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UploadPart")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_2309 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_2309)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.e_tag {
-                    let converted_2310 = value.as_str().into_py_any(py)?;
-                    result.set_item("e_tag", converted_2310)?;
-                } else {
-                    result.set_item("e_tag", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32 {
-                    let converted_2311 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32", converted_2311)?;
-                } else {
-                    result.set_item("checksum_crc32", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc32_c {
-                    let converted_2312 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc32_c", converted_2312)?;
-                } else {
-                    result.set_item("checksum_crc32_c", py.None())?;
-                }
-                if let Some(value) = &output.checksum_crc64_nvme {
-                    let converted_2313 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_crc64_nvme", converted_2313)?;
-                } else {
-                    result.set_item("checksum_crc64_nvme", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha1 {
-                    let converted_2314 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha1", converted_2314)?;
-                } else {
-                    result.set_item("checksum_sha1", py.None())?;
-                }
-                if let Some(value) = &output.checksum_sha256 {
-                    let converted_2315 = value.as_str().into_py_any(py)?;
-                    result.set_item("checksum_sha256", converted_2315)?;
-                } else {
-                    result.set_item("checksum_sha256", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_2316 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_2316)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_2317 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_2317)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_2318 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_2318)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_2319 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_2319)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_2320 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2320)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyUploadPartOutput { inner: output }))
         })
     }
 
@@ -16426,139 +25859,139 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
-            let converted_2321: String = value.extract()?;
-            Some(converted_2321)
+            let converted_1941: String = value.extract()?;
+            Some(converted_1941)
         } else {
             None
         };
         let copy_source_value = if let Some(value) = dict_value(params, "copy_source")? {
-            let converted_2322: String = value.extract()?;
-            Some(converted_2322)
+            let converted_1942: String = value.extract()?;
+            Some(converted_1942)
         } else {
             None
         };
         let copy_source_if_match_value =
             if let Some(value) = dict_value(params, "copy_source_if_match")? {
-                let converted_2323: String = value.extract()?;
-                Some(converted_2323)
+                let converted_1943: String = value.extract()?;
+                Some(converted_1943)
             } else {
                 None
             };
         let copy_source_if_modified_since_value =
             if let Some(value) = dict_value(params, "copy_source_if_modified_since")? {
-                let timestamp_2325: String = value.extract()?;
-                let converted_2324 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2325,
+                let timestamp_1945: String = value.extract()?;
+                let converted_1944 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1945,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2324)
+                Some(converted_1944)
             } else {
                 None
             };
         let copy_source_if_none_match_value =
             if let Some(value) = dict_value(params, "copy_source_if_none_match")? {
-                let converted_2326: String = value.extract()?;
-                Some(converted_2326)
+                let converted_1946: String = value.extract()?;
+                Some(converted_1946)
             } else {
                 None
             };
         let copy_source_if_unmodified_since_value =
             if let Some(value) = dict_value(params, "copy_source_if_unmodified_since")? {
-                let timestamp_2328: String = value.extract()?;
-                let converted_2327 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2328,
+                let timestamp_1948: String = value.extract()?;
+                let converted_1947 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_1948,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2327)
+                Some(converted_1947)
             } else {
                 None
             };
         let copy_source_range_value = if let Some(value) = dict_value(params, "copy_source_range")?
         {
-            let converted_2329: String = value.extract()?;
-            Some(converted_2329)
+            let converted_1949: String = value.extract()?;
+            Some(converted_1949)
         } else {
             None
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
-            let converted_2330: String = value.extract()?;
-            Some(converted_2330)
+            let converted_1950: String = value.extract()?;
+            Some(converted_1950)
         } else {
             None
         };
         let part_number_value = if let Some(value) = dict_value(params, "part_number")? {
-            let converted_2331: i32 = value.extract()?;
-            Some(converted_2331)
+            let converted_1951: i32 = value.extract()?;
+            Some(converted_1951)
         } else {
             None
         };
         let upload_id_value = if let Some(value) = dict_value(params, "upload_id")? {
-            let converted_2332: String = value.extract()?;
-            Some(converted_2332)
+            let converted_1952: String = value.extract()?;
+            Some(converted_1952)
         } else {
             None
         };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_2333: String = value.extract()?;
-                Some(converted_2333)
+                let converted_1953: String = value.extract()?;
+                Some(converted_1953)
             } else {
                 None
             };
         let sse_customer_key_value = if let Some(value) = dict_value(params, "sse_customer_key")? {
-            let converted_2334: String = value.extract()?;
-            Some(converted_2334)
+            let converted_1954: String = value.extract()?;
+            Some(converted_1954)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_2335: String = value.extract()?;
-                Some(converted_2335)
+                let converted_1955: String = value.extract()?;
+                Some(converted_1955)
             } else {
                 None
             };
         let copy_source_sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_algorithm")? {
-                let converted_2336: String = value.extract()?;
-                Some(converted_2336)
+                let converted_1956: String = value.extract()?;
+                Some(converted_1956)
             } else {
                 None
             };
         let copy_source_sse_customer_key_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_key")? {
-                let converted_2337: String = value.extract()?;
-                Some(converted_2337)
+                let converted_1957: String = value.extract()?;
+                Some(converted_1957)
             } else {
                 None
             };
         let copy_source_sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "copy_source_sse_customer_key_md5")? {
-                let converted_2338: String = value.extract()?;
-                Some(converted_2338)
+                let converted_1958: String = value.extract()?;
+                Some(converted_1958)
             } else {
                 None
             };
         let request_payer_value = if let Some(value) = dict_value(params, "request_payer")? {
-            let enum_value_2340: String = value.extract()?;
-            let converted_2339 = aws_sdk_s3::types::RequestPayer::from(enum_value_2340.as_str());
-            Some(converted_2339)
+            let enum_value_1960: String = value.extract()?;
+            let converted_1959 = aws_sdk_s3::types::RequestPayer::from(enum_value_1960.as_str());
+            Some(converted_1959)
         } else {
             None
         };
         let expected_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_bucket_owner")? {
-                let converted_2341: String = value.extract()?;
-                Some(converted_2341)
+                let converted_1961: String = value.extract()?;
+                Some(converted_1961)
             } else {
                 None
             };
         let expected_source_bucket_owner_value =
             if let Some(value) = dict_value(params, "expected_source_bucket_owner")? {
-                let converted_2342: String = value.extract()?;
-                Some(converted_2342)
+                let converted_1962: String = value.extract()?;
+                Some(converted_1962)
             } else {
                 None
             };
@@ -16589,58 +26022,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UploadPartCopy"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.copy_source_version_id {
-                    let converted_2343 = value.as_str().into_py_any(py)?;
-                    result.set_item("copy_source_version_id", converted_2343)?;
-                } else {
-                    result.set_item("copy_source_version_id", py.None())?;
-                }
-                if let Some(value) = &output.copy_part_result {
-                    let converted_2344 = copy_part_result_to_py(py, value)?;
-                    result.set_item("copy_part_result", converted_2344)?;
-                } else {
-                    result.set_item("copy_part_result", py.None())?;
-                }
-                if let Some(value) = &output.server_side_encryption {
-                    let converted_2345 = value.as_str().into_py_any(py)?;
-                    result.set_item("server_side_encryption", converted_2345)?;
-                } else {
-                    result.set_item("server_side_encryption", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_algorithm {
-                    let converted_2346 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_algorithm", converted_2346)?;
-                } else {
-                    result.set_item("sse_customer_algorithm", py.None())?;
-                }
-                if let Some(value) = &output.sse_customer_key_md5 {
-                    let converted_2347 = value.as_str().into_py_any(py)?;
-                    result.set_item("sse_customer_key_md5", converted_2347)?;
-                } else {
-                    result.set_item("sse_customer_key_md5", py.None())?;
-                }
-                if let Some(value) = &output.ssekms_key_id {
-                    let converted_2348 = value.as_str().into_py_any(py)?;
-                    result.set_item("ssekms_key_id", converted_2348)?;
-                } else {
-                    result.set_item("ssekms_key_id", py.None())?;
-                }
-                if let Some(value) = &output.bucket_key_enabled {
-                    let converted_2349 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("bucket_key_enabled", converted_2349)?;
-                } else {
-                    result.set_item("bucket_key_enabled", py.None())?;
-                }
-                if let Some(value) = &output.request_charged {
-                    let converted_2350 = value.as_str().into_py_any(py)?;
-                    result.set_item("request_charged", converted_2350)?;
-                } else {
-                    result.set_item("request_charged", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyUploadPartCopyOutput { inner: output }))
         })
     }
 
@@ -16652,288 +26034,288 @@ impl S3Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let request_route_value = if let Some(value) = dict_value(params, "request_route")? {
-            let converted_2351: String = value.extract()?;
-            Some(converted_2351)
+            let converted_1963: String = value.extract()?;
+            Some(converted_1963)
         } else {
             None
         };
         let request_token_value = if let Some(value) = dict_value(params, "request_token")? {
-            let converted_2352: String = value.extract()?;
-            Some(converted_2352)
+            let converted_1964: String = value.extract()?;
+            Some(converted_1964)
         } else {
             None
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
-            let bytes_2354: Vec<u8> = value.extract()?;
-            let converted_2353 = AwsByteStream::from(bytes_2354);
-            Some(converted_2353)
+            let bytes_1966: Vec<u8> = value.extract()?;
+            let converted_1965 = AwsByteStream::from(bytes_1966);
+            Some(converted_1965)
         } else {
             None
         };
         let status_code_value = if let Some(value) = dict_value(params, "status_code")? {
-            let converted_2355: i32 = value.extract()?;
-            Some(converted_2355)
+            let converted_1967: i32 = value.extract()?;
+            Some(converted_1967)
         } else {
             None
         };
         let error_code_value = if let Some(value) = dict_value(params, "error_code")? {
-            let converted_2356: String = value.extract()?;
-            Some(converted_2356)
+            let converted_1968: String = value.extract()?;
+            Some(converted_1968)
         } else {
             None
         };
         let error_message_value = if let Some(value) = dict_value(params, "error_message")? {
-            let converted_2357: String = value.extract()?;
-            Some(converted_2357)
+            let converted_1969: String = value.extract()?;
+            Some(converted_1969)
         } else {
             None
         };
         let accept_ranges_value = if let Some(value) = dict_value(params, "accept_ranges")? {
-            let converted_2358: String = value.extract()?;
-            Some(converted_2358)
+            let converted_1970: String = value.extract()?;
+            Some(converted_1970)
         } else {
             None
         };
         let cache_control_value = if let Some(value) = dict_value(params, "cache_control")? {
-            let converted_2359: String = value.extract()?;
-            Some(converted_2359)
+            let converted_1971: String = value.extract()?;
+            Some(converted_1971)
         } else {
             None
         };
         let content_disposition_value =
             if let Some(value) = dict_value(params, "content_disposition")? {
-                let converted_2360: String = value.extract()?;
-                Some(converted_2360)
+                let converted_1972: String = value.extract()?;
+                Some(converted_1972)
             } else {
                 None
             };
         let content_encoding_value = if let Some(value) = dict_value(params, "content_encoding")? {
-            let converted_2361: String = value.extract()?;
-            Some(converted_2361)
+            let converted_1973: String = value.extract()?;
+            Some(converted_1973)
         } else {
             None
         };
         let content_language_value = if let Some(value) = dict_value(params, "content_language")? {
-            let converted_2362: String = value.extract()?;
-            Some(converted_2362)
+            let converted_1974: String = value.extract()?;
+            Some(converted_1974)
         } else {
             None
         };
         let content_length_value = if let Some(value) = dict_value(params, "content_length")? {
-            let converted_2363: i64 = value.extract()?;
-            Some(converted_2363)
+            let converted_1975: i64 = value.extract()?;
+            Some(converted_1975)
         } else {
             None
         };
         let content_range_value = if let Some(value) = dict_value(params, "content_range")? {
-            let converted_2364: String = value.extract()?;
-            Some(converted_2364)
+            let converted_1976: String = value.extract()?;
+            Some(converted_1976)
         } else {
             None
         };
         let content_type_value = if let Some(value) = dict_value(params, "content_type")? {
-            let converted_2365: String = value.extract()?;
-            Some(converted_2365)
+            let converted_1977: String = value.extract()?;
+            Some(converted_1977)
         } else {
             None
         };
         let checksum_crc32_value = if let Some(value) = dict_value(params, "checksum_crc32")? {
-            let converted_2366: String = value.extract()?;
-            Some(converted_2366)
+            let converted_1978: String = value.extract()?;
+            Some(converted_1978)
         } else {
             None
         };
         let checksum_crc32_c_value = if let Some(value) = dict_value(params, "checksum_crc32_c")? {
-            let converted_2367: String = value.extract()?;
-            Some(converted_2367)
+            let converted_1979: String = value.extract()?;
+            Some(converted_1979)
         } else {
             None
         };
         let checksum_crc64_nvme_value =
             if let Some(value) = dict_value(params, "checksum_crc64_nvme")? {
-                let converted_2368: String = value.extract()?;
-                Some(converted_2368)
+                let converted_1980: String = value.extract()?;
+                Some(converted_1980)
             } else {
                 None
             };
         let checksum_sha1_value = if let Some(value) = dict_value(params, "checksum_sha1")? {
-            let converted_2369: String = value.extract()?;
-            Some(converted_2369)
+            let converted_1981: String = value.extract()?;
+            Some(converted_1981)
         } else {
             None
         };
         let checksum_sha256_value = if let Some(value) = dict_value(params, "checksum_sha256")? {
-            let converted_2370: String = value.extract()?;
-            Some(converted_2370)
+            let converted_1982: String = value.extract()?;
+            Some(converted_1982)
         } else {
             None
         };
         let delete_marker_value = if let Some(value) = dict_value(params, "delete_marker")? {
-            let converted_2371: bool = value.extract()?;
-            Some(converted_2371)
+            let converted_1983: bool = value.extract()?;
+            Some(converted_1983)
         } else {
             None
         };
         let e_tag_value = if let Some(value) = dict_value(params, "e_tag")? {
-            let converted_2372: String = value.extract()?;
-            Some(converted_2372)
+            let converted_1984: String = value.extract()?;
+            Some(converted_1984)
         } else {
             None
         };
         let expires_value = if let Some(value) = dict_value(params, "expires")? {
-            let timestamp_2374: String = value.extract()?;
-            let converted_2373 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_2374,
+            let timestamp_1986: String = value.extract()?;
+            let converted_1985 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1986,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_2373)
+            Some(converted_1985)
         } else {
             None
         };
         let expiration_value = if let Some(value) = dict_value(params, "expiration")? {
-            let converted_2375: String = value.extract()?;
-            Some(converted_2375)
+            let converted_1987: String = value.extract()?;
+            Some(converted_1987)
         } else {
             None
         };
         let last_modified_value = if let Some(value) = dict_value(params, "last_modified")? {
-            let timestamp_2377: String = value.extract()?;
-            let converted_2376 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_2377,
+            let timestamp_1989: String = value.extract()?;
+            let converted_1988 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_1989,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|error| PyValueError::new_err(error.to_string()))?;
-            Some(converted_2376)
+            Some(converted_1988)
         } else {
             None
         };
         let missing_meta_value = if let Some(value) = dict_value(params, "missing_meta")? {
-            let converted_2378: i32 = value.extract()?;
-            Some(converted_2378)
+            let converted_1990: i32 = value.extract()?;
+            Some(converted_1990)
         } else {
             None
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
-            let mapping_2380 = value.cast::<PyDict>()?;
-            let mut converted_2379 = HashMap::new();
-            for (key_2381, value_2382) in mapping_2380.iter() {
-                let converted_key_2383: String = key_2381.extract()?;
-                let converted_value_2384: String = value_2382.extract()?;
-                converted_2379.insert(converted_key_2383, converted_value_2384);
+            let mapping_1992 = value.cast::<PyDict>()?;
+            let mut converted_1991 = HashMap::new();
+            for (key_1993, value_1994) in mapping_1992.iter() {
+                let converted_key_1995: String = key_1993.extract()?;
+                let converted_value_1996: String = value_1994.extract()?;
+                converted_1991.insert(converted_key_1995, converted_value_1996);
             }
-            Some(converted_2379)
+            Some(converted_1991)
         } else {
             None
         };
         let object_lock_mode_value = if let Some(value) = dict_value(params, "object_lock_mode")? {
-            let enum_value_2386: String = value.extract()?;
-            let converted_2385 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_2386.as_str());
-            Some(converted_2385)
+            let enum_value_1998: String = value.extract()?;
+            let converted_1997 = aws_sdk_s3::types::ObjectLockMode::from(enum_value_1998.as_str());
+            Some(converted_1997)
         } else {
             None
         };
         let object_lock_legal_hold_status_value =
             if let Some(value) = dict_value(params, "object_lock_legal_hold_status")? {
-                let enum_value_2388: String = value.extract()?;
-                let converted_2387 =
-                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_2388.as_str());
-                Some(converted_2387)
+                let enum_value_2000: String = value.extract()?;
+                let converted_1999 =
+                    aws_sdk_s3::types::ObjectLockLegalHoldStatus::from(enum_value_2000.as_str());
+                Some(converted_1999)
             } else {
                 None
             };
         let object_lock_retain_until_date_value =
             if let Some(value) = dict_value(params, "object_lock_retain_until_date")? {
-                let timestamp_2390: String = value.extract()?;
-                let converted_2389 = ::aws_smithy_types::DateTime::from_str(
-                    &timestamp_2390,
+                let timestamp_2002: String = value.extract()?;
+                let converted_2001 = ::aws_smithy_types::DateTime::from_str(
+                    &timestamp_2002,
                     ::aws_smithy_types::date_time::Format::DateTime,
                 )
                 .map_err(|error| PyValueError::new_err(error.to_string()))?;
-                Some(converted_2389)
+                Some(converted_2001)
             } else {
                 None
             };
         let parts_count_value = if let Some(value) = dict_value(params, "parts_count")? {
-            let converted_2391: i32 = value.extract()?;
-            Some(converted_2391)
+            let converted_2003: i32 = value.extract()?;
+            Some(converted_2003)
         } else {
             None
         };
         let replication_status_value =
             if let Some(value) = dict_value(params, "replication_status")? {
-                let enum_value_2393: String = value.extract()?;
-                let converted_2392 =
-                    aws_sdk_s3::types::ReplicationStatus::from(enum_value_2393.as_str());
-                Some(converted_2392)
+                let enum_value_2005: String = value.extract()?;
+                let converted_2004 =
+                    aws_sdk_s3::types::ReplicationStatus::from(enum_value_2005.as_str());
+                Some(converted_2004)
             } else {
                 None
             };
         let request_charged_value = if let Some(value) = dict_value(params, "request_charged")? {
-            let enum_value_2395: String = value.extract()?;
-            let converted_2394 = aws_sdk_s3::types::RequestCharged::from(enum_value_2395.as_str());
-            Some(converted_2394)
+            let enum_value_2007: String = value.extract()?;
+            let converted_2006 = aws_sdk_s3::types::RequestCharged::from(enum_value_2007.as_str());
+            Some(converted_2006)
         } else {
             None
         };
         let restore_value = if let Some(value) = dict_value(params, "restore")? {
-            let converted_2396: String = value.extract()?;
-            Some(converted_2396)
+            let converted_2008: String = value.extract()?;
+            Some(converted_2008)
         } else {
             None
         };
         let server_side_encryption_value =
             if let Some(value) = dict_value(params, "server_side_encryption")? {
-                let enum_value_2398: String = value.extract()?;
-                let converted_2397 =
-                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_2398.as_str());
-                Some(converted_2397)
+                let enum_value_2010: String = value.extract()?;
+                let converted_2009 =
+                    aws_sdk_s3::types::ServerSideEncryption::from(enum_value_2010.as_str());
+                Some(converted_2009)
             } else {
                 None
             };
         let sse_customer_algorithm_value =
             if let Some(value) = dict_value(params, "sse_customer_algorithm")? {
-                let converted_2399: String = value.extract()?;
-                Some(converted_2399)
+                let converted_2011: String = value.extract()?;
+                Some(converted_2011)
             } else {
                 None
             };
         let ssekms_key_id_value = if let Some(value) = dict_value(params, "ssekms_key_id")? {
-            let converted_2400: String = value.extract()?;
-            Some(converted_2400)
+            let converted_2012: String = value.extract()?;
+            Some(converted_2012)
         } else {
             None
         };
         let sse_customer_key_md5_value =
             if let Some(value) = dict_value(params, "sse_customer_key_md5")? {
-                let converted_2401: String = value.extract()?;
-                Some(converted_2401)
+                let converted_2013: String = value.extract()?;
+                Some(converted_2013)
             } else {
                 None
             };
         let storage_class_value = if let Some(value) = dict_value(params, "storage_class")? {
-            let enum_value_2403: String = value.extract()?;
-            let converted_2402 = aws_sdk_s3::types::StorageClass::from(enum_value_2403.as_str());
-            Some(converted_2402)
+            let enum_value_2015: String = value.extract()?;
+            let converted_2014 = aws_sdk_s3::types::StorageClass::from(enum_value_2015.as_str());
+            Some(converted_2014)
         } else {
             None
         };
         let tag_count_value = if let Some(value) = dict_value(params, "tag_count")? {
-            let converted_2404: i32 = value.extract()?;
-            Some(converted_2404)
+            let converted_2016: i32 = value.extract()?;
+            Some(converted_2016)
         } else {
             None
         };
         let version_id_value = if let Some(value) = dict_value(params, "version_id")? {
-            let converted_2405: String = value.extract()?;
-            Some(converted_2405)
+            let converted_2017: String = value.extract()?;
+            Some(converted_2017)
         } else {
             None
         };
         let bucket_key_enabled_value =
             if let Some(value) = dict_value(params, "bucket_key_enabled")? {
-                let converted_2406: bool = value.extract()?;
-                Some(converted_2406)
+                let converted_2018: bool = value.extract()?;
+                Some(converted_2018)
             } else {
                 None
             };

@@ -13,3 +13,4 @@ aws_model_hash = "bfef977d8d97b60e00731c40167a8e53cf9a34aa25de64ccabdc63624081b2
 smithy_codegen_revision = "79844ddd1a666a9d7020f5ac97746b5a578548fd"
 customization = "s3"
 force_path_style_for_custom_endpoint = true
+native_outputs = true

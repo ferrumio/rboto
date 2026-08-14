@@ -190,28 +190,11 @@ BatchExecuteStatementInput = TypedDict(
     },
 )
 
-BatchExecuteStatementOutput = TypedDict(
-    "BatchExecuteStatementOutput",
-    {
-    "responses": NotRequired["list[BatchStatementResponse]"],
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
-    },
-)
-
 BatchGetItemInput = TypedDict(
     "BatchGetItemInput",
     {
     "request_items": Required["dict[str, KeysAndAttributes]"],
     "return_consumed_capacity": NotRequired["ReturnConsumedCapacity"],
-    },
-)
-
-BatchGetItemOutput = TypedDict(
-    "BatchGetItemOutput",
-    {
-    "responses": NotRequired["dict[str, list[dict[str, AttributeValue]]]"],
-    "unprocessed_keys": NotRequired["dict[str, KeysAndAttributes]"],
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
     },
 )
 
@@ -249,15 +232,6 @@ BatchWriteItemInput = TypedDict(
     "request_items": Required["dict[str, list[WriteRequest]]"],
     "return_consumed_capacity": NotRequired["ReturnConsumedCapacity"],
     "return_item_collection_metrics": NotRequired["ReturnItemCollectionMetrics"],
-    },
-)
-
-BatchWriteItemOutput = TypedDict(
-    "BatchWriteItemOutput",
-    {
-    "unprocessed_items": NotRequired["dict[str, list[WriteRequest]]"],
-    "item_collection_metrics": NotRequired["dict[str, list[ItemCollectionMetrics]]"],
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
     },
 )
 
@@ -346,13 +320,6 @@ CreateBackupInput = TypedDict(
     },
 )
 
-CreateBackupOutput = TypedDict(
-    "CreateBackupOutput",
-    {
-    "backup_details": NotRequired["BackupDetails"],
-    },
-)
-
 CreateGlobalSecondaryIndexAction = TypedDict(
     "CreateGlobalSecondaryIndexAction",
     {
@@ -370,13 +337,6 @@ CreateGlobalTableInput = TypedDict(
     {
     "global_table_name": Required["str"],
     "replication_group": Required["list[Replica]"],
-    },
-)
-
-CreateGlobalTableOutput = TypedDict(
-    "CreateGlobalTableOutput",
-    {
-    "global_table_description": NotRequired["GlobalTableDescription"],
     },
 )
 
@@ -427,13 +387,6 @@ CreateTableInput = TypedDict(
     },
 )
 
-CreateTableOutput = TypedDict(
-    "CreateTableOutput",
-    {
-    "table_description": NotRequired["TableDescription"],
-    },
-)
-
 CsvOptions = TypedDict(
     "CsvOptions",
     {
@@ -458,13 +411,6 @@ DeleteBackupInput = TypedDict(
     "DeleteBackupInput",
     {
     "backup_arn": Required["str"],
-    },
-)
-
-DeleteBackupOutput = TypedDict(
-    "DeleteBackupOutput",
-    {
-    "backup_description": NotRequired["BackupDescription"],
     },
 )
 
@@ -499,15 +445,6 @@ DeleteItemInput = TypedDict(
     },
 )
 
-DeleteItemOutput = TypedDict(
-    "DeleteItemOutput",
-    {
-    "attributes": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
-    "item_collection_metrics": NotRequired["ItemCollectionMetrics"],
-    },
-)
-
 DeleteReplicaAction = TypedDict(
     "DeleteReplicaAction",
     {
@@ -537,24 +474,10 @@ DeleteResourcePolicyInput = TypedDict(
     },
 )
 
-DeleteResourcePolicyOutput = TypedDict(
-    "DeleteResourcePolicyOutput",
-    {
-    "revision_id": NotRequired["str"],
-    },
-)
-
 DeleteTableInput = TypedDict(
     "DeleteTableInput",
     {
     "table_name": Required["str"],
-    },
-)
-
-DeleteTableOutput = TypedDict(
-    "DeleteTableOutput",
-    {
-    "table_description": NotRequired["TableDescription"],
     },
 )
 
@@ -565,24 +488,10 @@ DescribeBackupInput = TypedDict(
     },
 )
 
-DescribeBackupOutput = TypedDict(
-    "DescribeBackupOutput",
-    {
-    "backup_description": NotRequired["BackupDescription"],
-    },
-)
-
 DescribeContinuousBackupsInput = TypedDict(
     "DescribeContinuousBackupsInput",
     {
     "table_name": Required["str"],
-    },
-)
-
-DescribeContinuousBackupsOutput = TypedDict(
-    "DescribeContinuousBackupsOutput",
-    {
-    "continuous_backups_description": NotRequired["ContinuousBackupsDescription"],
     },
 )
 
@@ -594,29 +503,9 @@ DescribeContributorInsightsInput = TypedDict(
     },
 )
 
-DescribeContributorInsightsOutput = TypedDict(
-    "DescribeContributorInsightsOutput",
-    {
-    "table_name": NotRequired["str"],
-    "index_name": NotRequired["str"],
-    "contributor_insights_rule_list": NotRequired["list[str]"],
-    "contributor_insights_status": NotRequired["ContributorInsightsStatus"],
-    "last_update_date_time": NotRequired["str"],
-    "failure_exception": NotRequired["FailureException"],
-    "contributor_insights_mode": NotRequired["ContributorInsightsMode"],
-    },
-)
-
 DescribeEndpointsRequest = TypedDict(
     "DescribeEndpointsRequest",
     {
-    },
-)
-
-DescribeEndpointsResponse = TypedDict(
-    "DescribeEndpointsResponse",
-    {
-    "endpoints": Required["list[Endpoint]"],
     },
 )
 
@@ -627,24 +516,10 @@ DescribeExportInput = TypedDict(
     },
 )
 
-DescribeExportOutput = TypedDict(
-    "DescribeExportOutput",
-    {
-    "export_description": NotRequired["ExportDescription"],
-    },
-)
-
 DescribeGlobalTableInput = TypedDict(
     "DescribeGlobalTableInput",
     {
     "global_table_name": Required["str"],
-    },
-)
-
-DescribeGlobalTableOutput = TypedDict(
-    "DescribeGlobalTableOutput",
-    {
-    "global_table_description": NotRequired["GlobalTableDescription"],
     },
 )
 
@@ -655,25 +530,10 @@ DescribeGlobalTableSettingsInput = TypedDict(
     },
 )
 
-DescribeGlobalTableSettingsOutput = TypedDict(
-    "DescribeGlobalTableSettingsOutput",
-    {
-    "global_table_name": NotRequired["str"],
-    "replica_settings": NotRequired["list[ReplicaSettingsDescription]"],
-    },
-)
-
 DescribeImportInput = TypedDict(
     "DescribeImportInput",
     {
     "import_arn": Required["str"],
-    },
-)
-
-DescribeImportOutput = TypedDict(
-    "DescribeImportOutput",
-    {
-    "import_table_description": Required["ImportTableDescription"],
     },
 )
 
@@ -684,27 +544,9 @@ DescribeKinesisStreamingDestinationInput = TypedDict(
     },
 )
 
-DescribeKinesisStreamingDestinationOutput = TypedDict(
-    "DescribeKinesisStreamingDestinationOutput",
-    {
-    "table_name": NotRequired["str"],
-    "kinesis_data_stream_destinations": NotRequired["list[KinesisDataStreamDestination]"],
-    },
-)
-
 DescribeLimitsInput = TypedDict(
     "DescribeLimitsInput",
     {
-    },
-)
-
-DescribeLimitsOutput = TypedDict(
-    "DescribeLimitsOutput",
-    {
-    "account_max_read_capacity_units": NotRequired["int"],
-    "account_max_write_capacity_units": NotRequired["int"],
-    "table_max_read_capacity_units": NotRequired["int"],
-    "table_max_write_capacity_units": NotRequired["int"],
     },
 )
 
@@ -715,13 +557,6 @@ DescribeTableInput = TypedDict(
     },
 )
 
-DescribeTableOutput = TypedDict(
-    "DescribeTableOutput",
-    {
-    "table": NotRequired["TableDescription"],
-    },
-)
-
 DescribeTableReplicaAutoScalingInput = TypedDict(
     "DescribeTableReplicaAutoScalingInput",
     {
@@ -729,24 +564,10 @@ DescribeTableReplicaAutoScalingInput = TypedDict(
     },
 )
 
-DescribeTableReplicaAutoScalingOutput = TypedDict(
-    "DescribeTableReplicaAutoScalingOutput",
-    {
-    "table_auto_scaling_description": NotRequired["TableAutoScalingDescription"],
-    },
-)
-
 DescribeTimeToLiveInput = TypedDict(
     "DescribeTimeToLiveInput",
     {
     "table_name": Required["str"],
-    },
-)
-
-DescribeTimeToLiveOutput = TypedDict(
-    "DescribeTimeToLiveOutput",
-    {
-    "time_to_live_description": NotRequired["TimeToLiveDescription"],
     },
 )
 
@@ -778,30 +599,12 @@ ExecuteStatementInput = TypedDict(
     },
 )
 
-ExecuteStatementOutput = TypedDict(
-    "ExecuteStatementOutput",
-    {
-    "items": NotRequired["list[dict[str, AttributeValue]]"],
-    "next_token": NotRequired["str"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
-    "last_evaluated_key": NotRequired["dict[str, AttributeValue]"],
-    },
-)
-
 ExecuteTransactionInput = TypedDict(
     "ExecuteTransactionInput",
     {
     "transact_statements": Required["list[ParameterizedStatement]"],
     "client_request_token": NotRequired["str"],
     "return_consumed_capacity": NotRequired["ReturnConsumedCapacity"],
-    },
-)
-
-ExecuteTransactionOutput = TypedDict(
-    "ExecuteTransactionOutput",
-    {
-    "responses": NotRequired["list[ItemResponse]"],
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
     },
 )
 
@@ -868,13 +671,6 @@ ExportTableToPointInTimeInput = TypedDict(
     },
 )
 
-ExportTableToPointInTimeOutput = TypedDict(
-    "ExportTableToPointInTimeOutput",
-    {
-    "export_description": NotRequired["ExportDescription"],
-    },
-)
-
 FailureException = TypedDict(
     "FailureException",
     {
@@ -906,26 +702,10 @@ GetItemInput = TypedDict(
     },
 )
 
-GetItemOutput = TypedDict(
-    "GetItemOutput",
-    {
-    "item": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
-    },
-)
-
 GetResourcePolicyInput = TypedDict(
     "GetResourcePolicyInput",
     {
     "resource_arn": Required["str"],
-    },
-)
-
-GetResourcePolicyOutput = TypedDict(
-    "GetResourcePolicyOutput",
-    {
-    "policy": NotRequired["str"],
-    "revision_id": NotRequired["str"],
     },
 )
 
@@ -1090,13 +870,6 @@ ImportTableInput = TypedDict(
     },
 )
 
-ImportTableOutput = TypedDict(
-    "ImportTableOutput",
-    {
-    "import_table_description": Required["ImportTableDescription"],
-    },
-)
-
 IncrementalExportSpecification = TypedDict(
     "IncrementalExportSpecification",
     {
@@ -1166,16 +939,6 @@ KinesisStreamingDestinationInput = TypedDict(
     },
 )
 
-KinesisStreamingDestinationOutput = TypedDict(
-    "KinesisStreamingDestinationOutput",
-    {
-    "table_name": NotRequired["str"],
-    "stream_arn": NotRequired["str"],
-    "destination_status": NotRequired["DestinationStatus"],
-    "enable_kinesis_streaming_configuration": NotRequired["EnableKinesisStreamingConfiguration"],
-    },
-)
-
 ListBackupsInput = TypedDict(
     "ListBackupsInput",
     {
@@ -1188,14 +951,6 @@ ListBackupsInput = TypedDict(
     },
 )
 
-ListBackupsOutput = TypedDict(
-    "ListBackupsOutput",
-    {
-    "backup_summaries": NotRequired["list[BackupSummary]"],
-    "last_evaluated_backup_arn": NotRequired["str"],
-    },
-)
-
 ListContributorInsightsInput = TypedDict(
     "ListContributorInsightsInput",
     {
@@ -1205,27 +960,11 @@ ListContributorInsightsInput = TypedDict(
     },
 )
 
-ListContributorInsightsOutput = TypedDict(
-    "ListContributorInsightsOutput",
-    {
-    "contributor_insights_summaries": NotRequired["list[ContributorInsightsSummary]"],
-    "next_token": NotRequired["str"],
-    },
-)
-
 ListExportsInput = TypedDict(
     "ListExportsInput",
     {
     "table_arn": NotRequired["str"],
     "max_results": NotRequired["int"],
-    "next_token": NotRequired["str"],
-    },
-)
-
-ListExportsOutput = TypedDict(
-    "ListExportsOutput",
-    {
-    "export_summaries": NotRequired["list[ExportSummary]"],
     "next_token": NotRequired["str"],
     },
 )
@@ -1239,27 +978,11 @@ ListGlobalTablesInput = TypedDict(
     },
 )
 
-ListGlobalTablesOutput = TypedDict(
-    "ListGlobalTablesOutput",
-    {
-    "global_tables": NotRequired["list[GlobalTable]"],
-    "last_evaluated_global_table_name": NotRequired["str"],
-    },
-)
-
 ListImportsInput = TypedDict(
     "ListImportsInput",
     {
     "table_arn": NotRequired["str"],
     "page_size": NotRequired["int"],
-    "next_token": NotRequired["str"],
-    },
-)
-
-ListImportsOutput = TypedDict(
-    "ListImportsOutput",
-    {
-    "import_summary_list": NotRequired["list[ImportSummary]"],
     "next_token": NotRequired["str"],
     },
 )
@@ -1272,26 +995,10 @@ ListTablesInput = TypedDict(
     },
 )
 
-ListTablesOutput = TypedDict(
-    "ListTablesOutput",
-    {
-    "table_names": NotRequired["list[str]"],
-    "last_evaluated_table_name": NotRequired["str"],
-    },
-)
-
 ListTagsOfResourceInput = TypedDict(
     "ListTagsOfResourceInput",
     {
     "resource_arn": Required["str"],
-    "next_token": NotRequired["str"],
-    },
-)
-
-ListTagsOfResourceOutput = TypedDict(
-    "ListTagsOfResourceOutput",
-    {
-    "tags": NotRequired["list[Tag]"],
     "next_token": NotRequired["str"],
     },
 )
@@ -1431,15 +1138,6 @@ PutItemInput = TypedDict(
     },
 )
 
-PutItemOutput = TypedDict(
-    "PutItemOutput",
-    {
-    "attributes": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
-    "item_collection_metrics": NotRequired["ItemCollectionMetrics"],
-    },
-)
-
 PutRequest = TypedDict(
     "PutRequest",
     {
@@ -1454,13 +1152,6 @@ PutResourcePolicyInput = TypedDict(
     "policy": Required["str"],
     "expected_revision_id": NotRequired["str"],
     "confirm_remove_self_resource_access": NotRequired["bool"],
-    },
-)
-
-PutResourcePolicyOutput = TypedDict(
-    "PutResourcePolicyOutput",
-    {
-    "revision_id": NotRequired["str"],
     },
 )
 
@@ -1484,17 +1175,6 @@ QueryInput = TypedDict(
     "key_condition_expression": NotRequired["str"],
     "expression_attribute_names": NotRequired["dict[str, str]"],
     "expression_attribute_values": NotRequired["dict[str, AttributeValue]"],
-    },
-)
-
-QueryOutput = TypedDict(
-    "QueryOutput",
-    {
-    "items": NotRequired["list[dict[str, AttributeValue]]"],
-    "count": Required["int"],
-    "scanned_count": Required["int"],
-    "last_evaluated_key": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
     },
 )
 
@@ -1667,13 +1347,6 @@ RestoreTableFromBackupInput = TypedDict(
     },
 )
 
-RestoreTableFromBackupOutput = TypedDict(
-    "RestoreTableFromBackupOutput",
-    {
-    "table_description": NotRequired["TableDescription"],
-    },
-)
-
 RestoreTableToPointInTimeInput = TypedDict(
     "RestoreTableToPointInTimeInput",
     {
@@ -1688,13 +1361,6 @@ RestoreTableToPointInTimeInput = TypedDict(
     "provisioned_throughput_override": NotRequired["ProvisionedThroughput"],
     "on_demand_throughput_override": NotRequired["OnDemandThroughput"],
     "sse_specification_override": NotRequired["SSESpecification"],
-    },
-)
-
-RestoreTableToPointInTimeOutput = TypedDict(
-    "RestoreTableToPointInTimeOutput",
-    {
-    "table_description": NotRequired["TableDescription"],
     },
 )
 
@@ -1745,17 +1411,6 @@ ScanInput = TypedDict(
     "expression_attribute_names": NotRequired["dict[str, str]"],
     "expression_attribute_values": NotRequired["dict[str, AttributeValue]"],
     "consistent_read": NotRequired["bool"],
-    },
-)
-
-ScanOutput = TypedDict(
-    "ScanOutput",
-    {
-    "items": NotRequired["list[dict[str, AttributeValue]]"],
-    "count": Required["int"],
-    "scanned_count": Required["int"],
-    "last_evaluated_key": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
     },
 )
 
@@ -1922,14 +1577,6 @@ TransactGetItemsInput = TypedDict(
     },
 )
 
-TransactGetItemsOutput = TypedDict(
-    "TransactGetItemsOutput",
-    {
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
-    "responses": NotRequired["list[ItemResponse]"],
-    },
-)
-
 TransactWriteItem = TypedDict(
     "TransactWriteItem",
     {
@@ -1947,14 +1594,6 @@ TransactWriteItemsInput = TypedDict(
     "return_consumed_capacity": NotRequired["ReturnConsumedCapacity"],
     "return_item_collection_metrics": NotRequired["ReturnItemCollectionMetrics"],
     "client_request_token": NotRequired["str"],
-    },
-)
-
-TransactWriteItemsOutput = TypedDict(
-    "TransactWriteItemsOutput",
-    {
-    "consumed_capacity": NotRequired["list[ConsumedCapacity]"],
-    "item_collection_metrics": NotRequired["dict[str, list[ItemCollectionMetrics]]"],
     },
 )
 
@@ -1987,29 +1626,12 @@ UpdateContinuousBackupsInput = TypedDict(
     },
 )
 
-UpdateContinuousBackupsOutput = TypedDict(
-    "UpdateContinuousBackupsOutput",
-    {
-    "continuous_backups_description": NotRequired["ContinuousBackupsDescription"],
-    },
-)
-
 UpdateContributorInsightsInput = TypedDict(
     "UpdateContributorInsightsInput",
     {
     "table_name": Required["str"],
     "index_name": NotRequired["str"],
     "contributor_insights_action": Required["ContributorInsightsAction"],
-    "contributor_insights_mode": NotRequired["ContributorInsightsMode"],
-    },
-)
-
-UpdateContributorInsightsOutput = TypedDict(
-    "UpdateContributorInsightsOutput",
-    {
-    "table_name": NotRequired["str"],
-    "index_name": NotRequired["str"],
-    "contributor_insights_status": NotRequired["ContributorInsightsStatus"],
     "contributor_insights_mode": NotRequired["ContributorInsightsMode"],
     },
 )
@@ -2032,13 +1654,6 @@ UpdateGlobalTableInput = TypedDict(
     },
 )
 
-UpdateGlobalTableOutput = TypedDict(
-    "UpdateGlobalTableOutput",
-    {
-    "global_table_description": NotRequired["GlobalTableDescription"],
-    },
-)
-
 UpdateGlobalTableSettingsInput = TypedDict(
     "UpdateGlobalTableSettingsInput",
     {
@@ -2048,14 +1663,6 @@ UpdateGlobalTableSettingsInput = TypedDict(
     "global_table_provisioned_write_capacity_auto_scaling_settings_update": NotRequired["AutoScalingSettingsUpdate"],
     "global_table_global_secondary_index_settings_update": NotRequired["list[GlobalTableGlobalSecondaryIndexSettingsUpdate]"],
     "replica_settings_update": NotRequired["list[ReplicaSettingsUpdate]"],
-    },
-)
-
-UpdateGlobalTableSettingsOutput = TypedDict(
-    "UpdateGlobalTableSettingsOutput",
-    {
-    "global_table_name": NotRequired["str"],
-    "replica_settings": NotRequired["list[ReplicaSettingsDescription]"],
     },
 )
 
@@ -2078,15 +1685,6 @@ UpdateItemInput = TypedDict(
     },
 )
 
-UpdateItemOutput = TypedDict(
-    "UpdateItemOutput",
-    {
-    "attributes": NotRequired["dict[str, AttributeValue]"],
-    "consumed_capacity": NotRequired["ConsumedCapacity"],
-    "item_collection_metrics": NotRequired["ItemCollectionMetrics"],
-    },
-)
-
 UpdateKinesisStreamingConfiguration = TypedDict(
     "UpdateKinesisStreamingConfiguration",
     {
@@ -2099,16 +1697,6 @@ UpdateKinesisStreamingDestinationInput = TypedDict(
     {
     "table_name": Required["str"],
     "stream_arn": Required["str"],
-    "update_kinesis_streaming_configuration": NotRequired["UpdateKinesisStreamingConfiguration"],
-    },
-)
-
-UpdateKinesisStreamingDestinationOutput = TypedDict(
-    "UpdateKinesisStreamingDestinationOutput",
-    {
-    "table_name": NotRequired["str"],
-    "stream_arn": NotRequired["str"],
-    "destination_status": NotRequired["DestinationStatus"],
     "update_kinesis_streaming_configuration": NotRequired["UpdateKinesisStreamingConfiguration"],
     },
 )
@@ -2145,13 +1733,6 @@ UpdateTableInput = TypedDict(
     },
 )
 
-UpdateTableOutput = TypedDict(
-    "UpdateTableOutput",
-    {
-    "table_description": NotRequired["TableDescription"],
-    },
-)
-
 UpdateTableReplicaAutoScalingInput = TypedDict(
     "UpdateTableReplicaAutoScalingInput",
     {
@@ -2162,25 +1743,11 @@ UpdateTableReplicaAutoScalingInput = TypedDict(
     },
 )
 
-UpdateTableReplicaAutoScalingOutput = TypedDict(
-    "UpdateTableReplicaAutoScalingOutput",
-    {
-    "table_auto_scaling_description": NotRequired["TableAutoScalingDescription"],
-    },
-)
-
 UpdateTimeToLiveInput = TypedDict(
     "UpdateTimeToLiveInput",
     {
     "table_name": Required["str"],
     "time_to_live_specification": Required["TimeToLiveSpecification"],
-    },
-)
-
-UpdateTimeToLiveOutput = TypedDict(
-    "UpdateTimeToLiveOutput",
-    {
-    "time_to_live_specification": NotRequired["TimeToLiveSpecification"],
     },
 )
 

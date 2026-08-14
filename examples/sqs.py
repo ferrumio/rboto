@@ -20,7 +20,7 @@ def configure_aws() -> str:
 
 async def main() -> None:
     region = configure_aws()
-    client = sqs(region=region)
+    client = sqs(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     queue_name = f"rboto-example-{uuid.uuid4().hex[:12]}"
     queue_url: str | None = None
 
@@ -29,7 +29,7 @@ async def main() -> None:
             queue_name=queue_name,
             tags={"example": "rboto"},
         )
-        queue_url = created.get("queue_url")
+        queue_url = created.queue_url
         if queue_url is None:
             raise RuntimeError("CreateQueue did not return queue_url")
         print("created queue:", queue_url)
@@ -44,7 +44,7 @@ async def main() -> None:
                 }
             },
         )
-        print("sent message:", sent.get("message_id"))
+        print("sent message:", sent.message_id)
 
         received = await client.receive_message(
             queue_url=queue_url,
@@ -52,10 +52,10 @@ async def main() -> None:
             wait_time_seconds=1,
             message_attribute_names=["All"],
         )
-        messages = received.get("messages", [])
+        messages = received.messages or []
         for message in messages:
-            print("received message:", message.get("body"))
-            receipt_handle = message.get("receipt_handle")
+            print("received message:", message.body)
+            receipt_handle = message.receipt_handle
             if receipt_handle is not None:
                 await client.delete_message(
                     queue_url=queue_url,
@@ -67,7 +67,7 @@ async def main() -> None:
             queue_url=queue_url,
             attribute_names=["All"],
         )
-        print("queue attributes:", attributes.get("attributes", {}))
+        print("queue attributes:", attributes.attributes or {})
     finally:
         if queue_url is not None:
             await client.delete_queue(queue_url=queue_url)

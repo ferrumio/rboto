@@ -1,6 +1,7 @@
 from rboto import dynamodb, sqs
-from rboto_dynamodb.types import AttributeValue, GetItemOutput
-from rboto_sqs.types import SendMessageResult
+from rboto_dynamodb import GetItemOutput
+from rboto_dynamodb.types import AttributeValue
+from rboto_sqs import SendMessageResult
 
 
 async def send(queue_url: str) -> str | None:
@@ -9,7 +10,7 @@ async def send(queue_url: str) -> str | None:
         queue_url=queue_url,
         message_body="hello",
     )
-    return response.get("message_id")
+    return response.message_id
 
 
 async def get(table_name: str) -> GetItemOutput:

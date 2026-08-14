@@ -8,6 +8,7 @@ on:
       - "packages/**"
       - "examples/**"
       - "codegen/**"
+      - "tests/**"
       - ".github/workflows/integration.yml"
   workflow_dispatch:
 
@@ -47,15 +48,16 @@ jobs:
           python -m venv .venv
           .venv/bin/pip install maturin pytest pytest-asyncio
           .venv/bin/pip install -e packages/rboto
-          (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
-          (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --release --locked)
-          (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
+          (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)
+          (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --locked)
 
-      - name: Run package tests
+      - name: Run Python client and bridge tests
         run: >-
           .venv/bin/pytest
           packages/rboto/tests packages/rboto-s3/tests
-          packages/rboto-sqs/tests packages/rboto-dynamodb/tests -q
+          packages/rboto-sqs/tests packages/rboto-dynamodb/tests
+          tests/integration -q
 
       - name: Run examples against LocalStack
         run: |

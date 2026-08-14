@@ -32,16 +32,16 @@ response = await client.get_object(
     key="data.bin",
 )
 
-async for chunk in response["body"]:
+async for chunk in response.body:
     process(chunk)
 ```
 
-`response["body"]` is a `ByteStream`. It supports incremental iteration and an
+`response.body` is a `ByteStream`. It supports incremental iteration and an
 aggregating convenience method:
 
 ```python
 response = await client.get_object(bucket="my-bucket", key="data.bin")
-data: bytes = await response["body"].read()
+data: bytes = await response.body.read()
 ```
 
 Multiple streams can progress concurrently:
@@ -55,13 +55,14 @@ responses = await asyncio.gather(
 )
 
 one, two = await asyncio.gather(
-    responses[0]["body"].read(),
-    responses[1]["body"].read(),
+    responses[0].body.read(),
+    responses[1].body.read(),
 )
 ```
 
-The S3 client currently exposes all 106 operations modeled by its pinned AWS SDK
-release, including multipart and `SelectObjectContent` event streaming operations.
+S3 responses are immutable native PyO3 objects with typed properties and `to_dict()`.
+The client exposes all 106 modeled operations, including multipart operations and the
+specialized `SelectObjectContent` event stream.
 
 ## Amazon SQS
 
@@ -74,6 +75,10 @@ from rboto import sqs
 
 client = sqs(region="us-east-1")
 ```
+
+SQS responses are immutable native PyO3 objects with typed properties. Nested
+structures, such as received messages, are native typed objects as well. Every output
+also provides `to_dict()` for interoperability.
 
 ### Send and receive a message
 
@@ -88,7 +93,7 @@ sent = await client.send_message(
         }
     },
 )
-print(sent.get("message_id"))
+print(sent.message_id)
 
 received = await client.receive_message(
     queue_url=queue_url,
@@ -96,9 +101,9 @@ received = await client.receive_message(
     wait_time_seconds=10,
 )
 
-for message in received.get("messages", []):
-    print(message.get("body"))
-    receipt_handle = message.get("receipt_handle")
+for message in received.messages or []:
+    print(message.body)
+    receipt_handle = message.receipt_handle
     if receipt_handle is not None:
         await client.delete_message(
             queue_url=queue_url,
@@ -144,7 +149,7 @@ response = await client.get_item(
     table_name="users",
     key={"pk": {"s": "USER#1"}},
 )
-print(response.get("item"))
+print(response.item)
 ```
 
 ### Query
@@ -158,13 +163,12 @@ response = await client.query(
     },
 )
 
-for item in response.get("items", []):
+for item in response.items or []:
     print(item)
 ```
 
-The DynamoDB client exposes all 57 operations from its pinned model. Automatic native
-Python value conversion is planned as a service customization; the current tagged union
-keeps the generated contract exact and explicit.
+The DynamoDB client exposes all 57 operations as immutable native PyO3 outputs. Nested
+AWS structures are typed objects, while `AttributeValue` remains an exact tagged union.
 
 ## Error handling
 

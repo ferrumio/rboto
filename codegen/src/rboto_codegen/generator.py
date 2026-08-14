@@ -10,7 +10,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .model import ServiceDescriptor
 from .registry import list_services
-from .rust_crate import RustField, RustType, parse_crate
+from .rust_crate import RustField, RustOperation, RustType, parse_crate
 from .smithy import SmithyShape, load_model, short_name, to_snake_case
 
 STRING = "::std::string::String"
@@ -327,17 +327,17 @@ class ServiceGenerator:
     ) -> list[str]:
         kind = self._kind(rust_type)
         if kind == "string":
-            return [f"{indent}let {target} = {source}.as_str().into_py_any(py)?;"]
+            return [f"{indent}let {target} = ({source}).as_str().into_py_any(py)?;"]
         if kind in {"bool", "i32", "i64", "f64"}:
             return [f"{indent}let {target} = ({source}).to_owned().into_py_any(py)?;"]
         if kind == "datetime":
-            return [f"{indent}let {target} = {source}.to_string().into_py_any(py)?;"]
+            return [f"{indent}let {target} = ({source}).to_string().into_py_any(py)?;"]
         if kind == "blob":
             return [
-                f"{indent}let {target} = PyBytes::new(py, {source}.as_ref()).into_any().unbind();"
+                f"{indent}let {target} = PyBytes::new(py, ({source}).as_ref()).into_any().unbind();"
             ]
         if kind == "enum":
-            return [f"{indent}let {target} = {source}.as_str().into_py_any(py)?;"]
+            return [f"{indent}let {target} = ({source}).as_str().into_py_any(py)?;"]
         if kind in {"struct", "union"}:
             name = _crate_type_name(rust_type)
             return [f"{indent}let {target} = {to_snake_case(name or '')}_to_py(py, {source})?;"]
@@ -375,6 +375,260 @@ class ServiceGenerator:
             result.append(f"{indent}let {target} = {target}_dict.into_any().unbind();")
             return result
         raise GenerationError(f"cannot convert Rust output {rust_type} to Python")
+
+    def _to_typed_py(
+        self, rust_type: str, source: str, target: str, indent: str
+    ) -> list[str]:
+        kind = self._kind(rust_type)
+        if kind == "struct":
+            name = _crate_type_name(rust_type)
+            return [
+                f"{indent}let {target} = Py::new(py, Py{name} {{ inner: ({source}).to_owned() }})?.into_any();"
+            ]
+        if kind == "vec":
+            arguments = _generic(rust_type, "::std::vec::Vec")
+            if arguments is None or len(arguments) != 1:
+                raise GenerationError(f"invalid Vec type: {rust_type}")
+            item = self._next("item")
+            converted = self._next("converted_item")
+            lines = [f"{indent}let {target}_list = PyList::empty(py);"]
+            lines.append(f"{indent}for {item} in {source} {{")
+            lines.extend(
+                self._to_typed_py(arguments[0], item, converted, indent + "    ")
+            )
+            lines.append(f"{indent}    {target}_list.append({converted})?;")
+            lines.append(f"{indent}}}")
+            lines.append(f"{indent}let {target} = {target}_list.into_any().unbind();")
+            return lines
+        if kind == "map":
+            arguments = _generic(rust_type, "::std::collections::HashMap")
+            if arguments is None or len(arguments) != 2:
+                raise GenerationError(f"invalid HashMap type: {rust_type}")
+            key = self._next("key")
+            value = self._next("value")
+            converted_key = self._next("converted_key")
+            converted_value = self._next("converted_value")
+            lines = [f"{indent}let {target}_dict = PyDict::new(py);"]
+            lines.append(f"{indent}for ({key}, {value}) in {source} {{")
+            lines.extend(self._to_py(arguments[0], key, converted_key, indent + "    "))
+            lines.extend(
+                self._to_typed_py(
+                    arguments[1], value, converted_value, indent + "    "
+                )
+            )
+            lines.append(
+                f"{indent}    {target}_dict.set_item({converted_key}, {converted_value})?;"
+            )
+            lines.append(f"{indent}}}")
+            lines.append(f"{indent}let {target} = {target}_dict.into_any().unbind();")
+            return lines
+        return self._to_py(rust_type, source, target, indent)
+
+    def _native_structs(self) -> tuple[RustType, ...]:
+        if not self.descriptor.native_outputs:
+            return ()
+        names: set[str] = set()
+
+        def visit(rust_type: str) -> None:
+            kind = self._kind(rust_type)
+            if kind == "struct":
+                name = _crate_type_name(rust_type)
+                if name is None or name in names:
+                    return
+                names.add(name)
+                rust = self.crate.types[name]
+                for field in rust.fields:
+                    visit(field.rust_type)
+            elif kind == "vec":
+                arguments = _generic(rust_type, "::std::vec::Vec")
+                if arguments:
+                    visit(arguments[0])
+            elif kind == "map":
+                arguments = _generic(rust_type, "::std::collections::HashMap")
+                if arguments and len(arguments) == 2:
+                    visit(arguments[1])
+
+        for operation in self.crate.operations.values():
+            for field in operation.output_fields:
+                if self._kind(field.rust_type) not in {"byte_stream", "event_receiver"}:
+                    visit(field.rust_type)
+        return tuple(self.crate.types[name] for name in sorted(names))
+
+    def _native_output_operations(self) -> list[dict[str, str]]:
+        if not self.descriptor.native_outputs:
+            return []
+        target_counts: dict[str, int] = {}
+        input_member_targets: set[str] = set()
+        for operation in self.service.operations:
+            if operation.output_target not in {None, "smithy.api#Unit"}:
+                target = operation.output_target
+                assert target is not None
+                target_counts[target] = target_counts.get(target, 0) + 1
+            if operation.input_target is not None:
+                input_member_targets.update(
+                    member.target
+                    for member in self.service.shapes[operation.input_target].members
+                )
+        outputs: list[dict[str, str]] = []
+        for smithy in self.service.operations:
+            if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
+                continue
+            rust_operation = self.crate.operations[smithy.rust_name]
+            if any(
+                self._kind(field.rust_type) == "event_receiver"
+                for field in rust_operation.output_fields
+            ):
+                continue
+            class_name = short_name(smithy.output_target)
+            if (
+                target_counts[smithy.output_target] > 1
+                or smithy.output_target in input_member_targets
+            ):
+                class_name = f"{smithy.name}Output"
+            outputs.append(
+                {
+                    "operation": smithy.rust_name,
+                    "class_name": class_name,
+                    "rust_class": f"Py{class_name}",
+                    "rust_type": (
+                        f"{self.rust_module}::operation::{smithy.rust_name}::"
+                        f"{smithy.name}Output"
+                    ),
+                }
+            )
+        return outputs
+
+    def _native_getter(self, field: RustField, source: str = "self.inner") -> str:
+        property_name = _safe_parameter(field.rust_name)
+        if self._kind(field.rust_type) == "byte_stream":
+            return "\n".join(
+                [
+                    "    #[getter]",
+                    f"    fn {property_name}(&self, py: Python<'_>) -> Py<PyAny> {{",
+                    f"        self.{field.name}.clone_ref(py).into_any()",
+                    "    }",
+                ]
+            )
+        converted = self._next("converted")
+        lines = [
+            "    #[getter]",
+            f"    fn {property_name}(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {{",
+        ]
+        if field.optional:
+            lines.append(f"        if let Some(value) = &{source}.{field.rust_name} {{")
+            lines.extend(
+                self._to_typed_py(field.rust_type, "value", converted, "            ")
+            )
+            lines.append(f"            Ok({converted})")
+            lines.append("        } else {")
+            lines.append("            Ok(py.None())")
+            lines.append("        }")
+        else:
+            lines.extend(
+                self._to_typed_py(
+                    field.rust_type,
+                    f"&{source}.{field.rust_name}",
+                    converted,
+                    "        ",
+                )
+            )
+            lines.append(f"        Ok({converted})")
+        lines.append("    }")
+        return "\n".join(lines)
+
+    def _native_struct_class(self, rust: RustType) -> str:
+        getters = "\n\n".join(self._native_getter(field) for field in rust.fields)
+        converter = f"{to_snake_case(rust.name)}_to_py"
+        return "\n".join(
+            [
+                f'#[pyclass(name = "{rust.name}", frozen)]',
+                f"struct Py{rust.name} {{",
+                f"    inner: {self.rust_module}::types::{rust.name},",
+                "}",
+                "",
+                "#[pymethods]",
+                f"impl Py{rust.name} {{",
+                getters,
+                "",
+                "    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {",
+                f"        {converter}(py, &self.inner)",
+                "    }",
+                "}",
+            ]
+        )
+
+    def _operation_dict_lines(
+        self,
+        operation: RustOperation,
+        source: str,
+        indent: str,
+        stream_owner: str | None = None,
+    ) -> list[str]:
+        lines = [f"{indent}let result = PyDict::new(py);"]
+        for field in operation.output_fields:
+            if self._kind(field.rust_type) == "byte_stream":
+                if stream_owner is None:
+                    raise GenerationError("ByteStream output requires a stream owner")
+                lines.append(
+                    f'{indent}result.set_item("{field.name}", '
+                    f"{stream_owner}.{field.name}.clone_ref(py))?;"
+                )
+                continue
+            converted = self._next("converted")
+            if field.optional:
+                lines.append(f"{indent}if let Some(value) = &{source}.{field.rust_name} {{")
+                lines.extend(
+                    self._to_py(field.rust_type, "value", converted, indent + "    ")
+                )
+                lines.append(
+                    f'{indent}    result.set_item("{field.name}", {converted})?;'
+                )
+                lines.append(f"{indent}}} else {{")
+                lines.append(f'{indent}    result.set_item("{field.name}", py.None())?;')
+                lines.append(f"{indent}}}")
+            else:
+                lines.extend(
+                    self._to_py(
+                        field.rust_type,
+                        f"&{source}.{field.rust_name}",
+                        converted,
+                        indent,
+                    )
+                )
+                lines.append(f'{indent}result.set_item("{field.name}", {converted})?;')
+        lines.append(f"{indent}Ok(result.into_any().unbind())")
+        return lines
+
+    def _native_operation_class(self, metadata: dict[str, str]) -> str:
+        operation = self.crate.operations[metadata["operation"]]
+        getters = "\n\n".join(
+            self._native_getter(field) for field in operation.output_fields
+        )
+        stream_fields = [
+            field
+            for field in operation.output_fields
+            if self._kind(field.rust_type) == "byte_stream"
+        ]
+        lines = [
+            f'#[pyclass(name = "{metadata["class_name"]}", frozen)]',
+            f'struct {metadata["rust_class"]} {{',
+            f'    inner: {metadata["rust_type"]},',
+            *(f"    {field.name}: Py<PyByteStream>," for field in stream_fields),
+            "}",
+            "",
+            "#[pymethods]",
+            f'impl {metadata["rust_class"]} {{',
+            getters,
+            "",
+            "    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {",
+        ]
+        lines.extend(
+            self._operation_dict_lines(
+                operation, "self.inner", "        ", stream_owner="self"
+            )
+        )
+        lines.extend(["    }", "}"])
+        return "\n".join(lines)
 
     def _struct_from_py(self, rust: RustType) -> str:
         name = to_snake_case(rust.name)
@@ -534,6 +788,18 @@ class ServiceGenerator:
     def _operation_method(self, operation_name: str) -> str:
         operation = self.crate.operations[operation_name]
         smithy = next(op for op in self.service.operations if op.rust_name == operation_name)
+        native_metadata = next(
+            (
+                metadata
+                for metadata in self._native_output_operations()
+                if metadata["operation"] == operation_name
+            ),
+            None,
+        )
+        has_native_stream = native_metadata is not None and any(
+            self._kind(field.rust_type) == "byte_stream"
+            for field in operation.output_fields
+        )
         lines = [
             "    #[pyo3(signature = (params))]",
             f"    fn {operation_name}<'py>(&self, py: Python<'py>, params: &Bound<'py, PyDict>) -> PyResult<Bound<'py, PyAny>> {{",
@@ -560,15 +826,41 @@ class ServiceGenerator:
         lines[-1] += ";"
         lines.extend(
             [
-                "            let output = request.send().await.map_err(|error| {",
+                f"            let {'mut ' if has_native_stream else ''}output = request.send().await.map_err(|error| {{",
                 f'                Python::attach(|py| sdk_error_to_py(py, &error, "{smithy.name}"))',
                 "            })?;",
                 "            Python::attach(|py| {",
             ]
         )
 
-        if smithy.output_target in {None, "smithy.api#Unit"}:
+        if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
             lines.extend(["                Ok(py.None())", "            })", "        })", "    }"])
+            return "\n".join(lines)
+
+        if native_metadata is not None:
+            output_class = native_metadata["class_name"]
+            constructor_fields: list[str] = ["inner: output"]
+            stream_setup: list[str] = []
+            for field in operation.output_fields:
+                if self._kind(field.rust_type) != "byte_stream":
+                    continue
+                stream_name = f"py_{field.name}"
+                stream_setup.extend(
+                    [
+                        f"                let {field.name} = std::mem::take(&mut output.{field.rust_name});",
+                        f"                let {stream_name} = Py::new(py, PyByteStream::new({field.name}))?;",
+                    ]
+                )
+                constructor_fields.append(f"{field.name}: {stream_name}")
+            lines.extend(
+                [
+                    *stream_setup,
+                    f"                Py::new(py, Py{output_class} {{ {', '.join(constructor_fields)} }})",
+                    "            })",
+                    "        })",
+                    "    }",
+                ]
+            )
             return "\n".join(lines)
 
         lines.append("                let result = PyDict::new(py);")
@@ -635,8 +927,18 @@ class ServiceGenerator:
             self._operation_method(operation.rust_name)
             for operation in self.service.operations
         ]
+        native_structs = self._native_structs()
+        native_outputs = self._native_output_operations()
+        native_class_code = [self._native_struct_class(rust) for rust in native_structs]
+        native_class_code.extend(
+            self._native_operation_class(metadata) for metadata in native_outputs
+        )
+        native_classes = [f"Py{rust.name}" for rust in native_structs]
+        native_classes.extend(metadata["rust_class"] for metadata in native_outputs)
         return self.templates.get_template("generated.rs.j2").render(
             converters="\n".join(converters),
+            native_class_code="\n\n".join(native_class_code),
+            native_classes=native_classes,
             methods="\n\n".join(methods),
             client_class=self.descriptor.client_class,
             event_streams=self._event_streams(),
@@ -673,6 +975,10 @@ class ServiceGenerator:
         return self.templates.get_template("package_init.py.j2").render(
             client_class=self.descriptor.client_class,
             event_streams=self._event_streams(),
+            native_output_names=[
+                metadata["class_name"]
+                for metadata in self._native_output_operations()
+            ],
         )
 
     def _render_facade(self) -> str:
@@ -735,6 +1041,80 @@ class ServiceGenerator:
             return "bytes"
         return self._python_type(target)
 
+    def _rust_output_annotation(self, rust_type: str, optional: bool = False) -> str:
+        kind = self._kind(rust_type)
+        if kind in {"string", "datetime", "enum"}:
+            annotation = "str"
+        elif kind == "bool":
+            annotation = "bool"
+        elif kind in {"i32", "i64"}:
+            annotation = "int"
+        elif kind == "f64":
+            annotation = "float"
+        elif kind == "blob":
+            annotation = "bytes"
+        elif kind == "struct":
+            annotation = _crate_type_name(rust_type) or "object"
+        elif kind == "union":
+            annotation = "dict[str, object]"
+        elif kind == "vec":
+            arguments = _generic(rust_type, "::std::vec::Vec")
+            if arguments is None:
+                raise GenerationError(f"invalid Vec type: {rust_type}")
+            annotation = f"list[{self._rust_output_annotation(arguments[0])}]"
+        elif kind == "map":
+            arguments = _generic(rust_type, "::std::collections::HashMap")
+            if arguments is None or len(arguments) != 2:
+                raise GenerationError(f"invalid HashMap type: {rust_type}")
+            annotation = (
+                f"dict[{self._rust_output_annotation(arguments[0])}, "
+                f"{self._rust_output_annotation(arguments[1])}]"
+            )
+        elif kind == "byte_stream":
+            annotation = "ByteStream"
+        else:
+            annotation = "object"
+        return f"{annotation} | None" if optional else annotation
+
+    def _native_stub_classes(self) -> list[dict[str, object]]:
+        classes: list[dict[str, object]] = []
+        for rust in self._native_structs():
+            classes.append(
+                {
+                    "name": rust.name,
+                    "fields": [
+                        {
+                            "name": _safe_parameter(
+                                field.rust_name.removeprefix("r#")
+                            ),
+                            "annotation": self._rust_output_annotation(
+                                field.rust_type, field.optional
+                            ),
+                        }
+                        for field in rust.fields
+                    ],
+                }
+            )
+        for metadata in self._native_output_operations():
+            operation = self.crate.operations[metadata["operation"]]
+            classes.append(
+                {
+                    "name": metadata["class_name"],
+                    "fields": [
+                        {
+                            "name": _safe_parameter(
+                                field.rust_name.removeprefix("r#")
+                            ),
+                            "annotation": self._rust_output_annotation(
+                                field.rust_type, field.optional
+                            ),
+                        }
+                        for field in operation.output_fields
+                    ],
+                }
+            )
+        return classes
+
     def _render_python_types(self) -> str:
         lines = [
             "# Generated by rboto-codegen. DO NOT EDIT.",
@@ -748,13 +1128,32 @@ class ServiceGenerator:
         if self._event_streams():
             lines.insert(4, "from collections.abc import AsyncIterator")
         shapes = sorted(self.service.shapes.values(), key=lambda shape: shape.name)
+        native_operations = {
+            metadata["operation"] for metadata in self._native_output_operations()
+        }
+        input_member_targets = {
+            member.target
+            for operation in self.service.operations
+            if operation.input_target is not None
+            for member in self.service.shapes[operation.input_target].members
+        }
+        native_output_targets = {
+            operation.output_target
+            for operation in self.service.operations
+            if operation.rust_name in native_operations
+            and operation.output_target not in input_member_targets
+        }
         for shape in shapes:
             if shape.kind in {"string", "enum"} and shape.enum_values:
                 values = ", ".join(repr(value) for value in shape.enum_values)
                 lines.append(f"{shape.name}: TypeAlias = Literal[{values}]")
         lines.append("")
         for shape in shapes:
-            if shape.kind == "structure" and not shape.error:
+            if (
+                shape.kind == "structure"
+                and not shape.error
+                and shape.shape_id not in native_output_targets
+            ):
                 entries: list[str] = []
                 for member in shape.members:
                     value_type = self._python_type(member.target)
@@ -809,23 +1208,43 @@ class ServiceGenerator:
                     "required": member.required,
                 }
             )
+        native_output = False
         if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
             output = "None"
+        elif metadata := next(
+            (
+                metadata
+                for metadata in self._native_output_operations()
+                if metadata["operation"] == operation_name
+            ),
+            None,
+        ):
+            output = metadata["class_name"]
+            native_output = True
         else:
             output = short_name(smithy.output_target)
         return {
             "name": operation_name,
             "parameters": parameters,
             "output": output,
+            "native_output": native_output,
         }
 
     def _render_python_client(self) -> str:
         methods = [self._method_signature(op.rust_name) for op in self.service.operations]
         type_names: set[str] = set()
         ignored = {"str", "int", "bool", "float", "bytes", "list", "dict", "None"}
+        native_output_names = {
+            metadata["class_name"] for metadata in self._native_output_operations()
+        }
         for method in methods:
             output = str(method["output"])
-            type_names.update(token for token in re.findall(r"\b[A-Za-z_]\w*\b", output) if token not in ignored)
+            if output not in native_output_names:
+                type_names.update(
+                    token
+                    for token in re.findall(r"\b[A-Za-z_]\w*\b", output)
+                    if token not in ignored
+                )
             raw_parameters = method["parameters"]
             if not isinstance(raw_parameters, list):
                 raise GenerationError("method parameters must be a list")
@@ -842,15 +1261,27 @@ class ServiceGenerator:
         return self.templates.get_template("client.py.j2").render(
             methods=methods,
             type_names=sorted(type_names),
+            native_output_names=sorted(native_output_names),
+            native_outputs=self.descriptor.native_outputs,
             client_class=self.descriptor.client_class,
         )
 
     def _render_native_stub(self) -> str:
         methods = [self._method_signature(op.rust_name) for op in self.service.operations]
+        fallback_types = sorted(
+            {
+                str(method["output"])
+                for method in methods
+                if method["output"] != "None" and not method["native_output"]
+            }
+        )
         return self.templates.get_template("native.pyi.j2").render(
             methods=methods,
             client_class=self.descriptor.client_class,
             event_streams=self._event_streams(),
+            native_classes=self._native_stub_classes(),
+            native_outputs=self.descriptor.native_outputs,
+            fallback_types=fallback_types,
         )
 
     def _render_exceptions(self) -> str:

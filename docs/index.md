@@ -69,8 +69,8 @@ async def main() -> None:
     client = s3(region="us-east-1")
     response = await client.list_buckets()
 
-    for bucket in response.get("buckets", []):
-        print(bucket.get("name"))
+    for bucket in response.buckets or []:
+        print(bucket.name)
 
 
 asyncio.run(main())

@@ -39,14 +39,14 @@ fn batch_result_error_entry_to_py(
     value: &aws_sdk_sqs::types::BatchResultErrorEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_5 = &value.id.as_str().into_py_any(py)?;
+    let converted_5 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_5)?;
     let converted_6 = (&value.sender_fault).to_owned().into_py_any(py)?;
     result.set_item("sender_fault", converted_6)?;
-    let converted_7 = &value.code.as_str().into_py_any(py)?;
+    let converted_7 = (&value.code).as_str().into_py_any(py)?;
     result.set_item("code", converted_7)?;
     if let Some(value) = &value.message {
-        let converted_8 = value.as_str().into_py_any(py)?;
+        let converted_8 = (value).as_str().into_py_any(py)?;
         result.set_item("message", converted_8)?;
     } else {
         result.set_item("message", py.None())?;
@@ -81,9 +81,9 @@ fn change_message_visibility_batch_request_entry_to_py(
     value: &aws_sdk_sqs::types::ChangeMessageVisibilityBatchRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_12 = &value.id.as_str().into_py_any(py)?;
+    let converted_12 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_12)?;
-    let converted_13 = &value.receipt_handle.as_str().into_py_any(py)?;
+    let converted_13 = (&value.receipt_handle).as_str().into_py_any(py)?;
     result.set_item("receipt_handle", converted_13)?;
     if let Some(value) = &value.visibility_timeout {
         let converted_14 = (value).to_owned().into_py_any(py)?;
@@ -113,7 +113,7 @@ fn change_message_visibility_batch_result_entry_to_py(
     value: &aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_16 = &value.id.as_str().into_py_any(py)?;
+    let converted_16 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_16)?;
     Ok(result.into_any().unbind())
 }
@@ -141,9 +141,9 @@ fn delete_message_batch_request_entry_to_py(
     value: &aws_sdk_sqs::types::DeleteMessageBatchRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_19 = &value.id.as_str().into_py_any(py)?;
+    let converted_19 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_19)?;
-    let converted_20 = &value.receipt_handle.as_str().into_py_any(py)?;
+    let converted_20 = (&value.receipt_handle).as_str().into_py_any(py)?;
     result.set_item("receipt_handle", converted_20)?;
     Ok(result.into_any().unbind())
 }
@@ -167,7 +167,7 @@ fn delete_message_batch_result_entry_to_py(
     value: &aws_sdk_sqs::types::DeleteMessageBatchResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_22 = &value.id.as_str().into_py_any(py)?;
+    let converted_22 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_22)?;
     Ok(result.into_any().unbind())
 }
@@ -222,25 +222,25 @@ fn list_message_move_tasks_result_entry_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.task_handle {
-        let converted_32 = value.as_str().into_py_any(py)?;
+        let converted_32 = (value).as_str().into_py_any(py)?;
         result.set_item("task_handle", converted_32)?;
     } else {
         result.set_item("task_handle", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_33 = value.as_str().into_py_any(py)?;
+        let converted_33 = (value).as_str().into_py_any(py)?;
         result.set_item("status", converted_33)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.source_arn {
-        let converted_34 = value.as_str().into_py_any(py)?;
+        let converted_34 = (value).as_str().into_py_any(py)?;
         result.set_item("source_arn", converted_34)?;
     } else {
         result.set_item("source_arn", py.None())?;
     }
     if let Some(value) = &value.destination_arn {
-        let converted_35 = value.as_str().into_py_any(py)?;
+        let converted_35 = (value).as_str().into_py_any(py)?;
         result.set_item("destination_arn", converted_35)?;
     } else {
         result.set_item("destination_arn", py.None())?;
@@ -262,7 +262,7 @@ fn list_message_move_tasks_result_entry_to_py(
         result.set_item("approximate_number_of_messages_to_move", py.None())?;
     }
     if let Some(value) = &value.failure_reason {
-        let converted_39 = value.as_str().into_py_any(py)?;
+        let converted_39 = (value).as_str().into_py_any(py)?;
         result.set_item("failure_reason", converted_39)?;
     } else {
         result.set_item("failure_reason", py.None())?;
@@ -323,25 +323,25 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Mes
 fn message_to_py(py: Python<'_>, value: &aws_sdk_sqs::types::Message) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.message_id {
-        let converted_59 = value.as_str().into_py_any(py)?;
+        let converted_59 = (value).as_str().into_py_any(py)?;
         result.set_item("message_id", converted_59)?;
     } else {
         result.set_item("message_id", py.None())?;
     }
     if let Some(value) = &value.receipt_handle {
-        let converted_60 = value.as_str().into_py_any(py)?;
+        let converted_60 = (value).as_str().into_py_any(py)?;
         result.set_item("receipt_handle", converted_60)?;
     } else {
         result.set_item("receipt_handle", py.None())?;
     }
     if let Some(value) = &value.md5_of_body {
-        let converted_61 = value.as_str().into_py_any(py)?;
+        let converted_61 = (value).as_str().into_py_any(py)?;
         result.set_item("md5_of_body", converted_61)?;
     } else {
         result.set_item("md5_of_body", py.None())?;
     }
     if let Some(value) = &value.body {
-        let converted_62 = value.as_str().into_py_any(py)?;
+        let converted_62 = (value).as_str().into_py_any(py)?;
         result.set_item("body", converted_62)?;
     } else {
         result.set_item("body", py.None())?;
@@ -349,8 +349,8 @@ fn message_to_py(py: Python<'_>, value: &aws_sdk_sqs::types::Message) -> PyResul
     if let Some(value) = &value.attributes {
         let converted_63_dict = PyDict::new(py);
         for (key_64, value_65) in value {
-            let converted_key_66 = key_64.as_str().into_py_any(py)?;
-            let converted_value_67 = value_65.as_str().into_py_any(py)?;
+            let converted_key_66 = (key_64).as_str().into_py_any(py)?;
+            let converted_value_67 = (value_65).as_str().into_py_any(py)?;
             converted_63_dict.set_item(converted_key_66, converted_value_67)?;
         }
         let converted_63 = converted_63_dict.into_any().unbind();
@@ -359,7 +359,7 @@ fn message_to_py(py: Python<'_>, value: &aws_sdk_sqs::types::Message) -> PyResul
         result.set_item("attributes", py.None())?;
     }
     if let Some(value) = &value.md5_of_message_attributes {
-        let converted_68 = value.as_str().into_py_any(py)?;
+        let converted_68 = (value).as_str().into_py_any(py)?;
         result.set_item("md5_of_message_attributes", converted_68)?;
     } else {
         result.set_item("md5_of_message_attributes", py.None())?;
@@ -367,7 +367,7 @@ fn message_to_py(py: Python<'_>, value: &aws_sdk_sqs::types::Message) -> PyResul
     if let Some(value) = &value.message_attributes {
         let converted_69_dict = PyDict::new(py);
         for (key_70, value_71) in value {
-            let converted_key_72 = key_70.as_str().into_py_any(py)?;
+            let converted_key_72 = (key_70).as_str().into_py_any(py)?;
             let converted_value_73 = message_attribute_value_to_py(py, value_71)?;
             converted_69_dict.set_item(converted_key_72, converted_value_73)?;
         }
@@ -427,13 +427,13 @@ fn message_attribute_value_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.string_value {
-        let converted_87 = value.as_str().into_py_any(py)?;
+        let converted_87 = (value).as_str().into_py_any(py)?;
         result.set_item("string_value", converted_87)?;
     } else {
         result.set_item("string_value", py.None())?;
     }
     if let Some(value) = &value.binary_value {
-        let converted_88 = PyBytes::new(py, value.as_ref()).into_any().unbind();
+        let converted_88 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
         result.set_item("binary_value", converted_88)?;
     } else {
         result.set_item("binary_value", py.None())?;
@@ -441,7 +441,7 @@ fn message_attribute_value_to_py(
     if let Some(value) = &value.string_list_values {
         let converted_89_list = PyList::empty(py);
         for item_90 in value {
-            let converted_item_91 = item_90.as_str().into_py_any(py)?;
+            let converted_item_91 = (item_90).as_str().into_py_any(py)?;
             converted_89_list.append(converted_item_91)?;
         }
         let converted_89 = converted_89_list.into_any().unbind();
@@ -452,7 +452,7 @@ fn message_attribute_value_to_py(
     if let Some(value) = &value.binary_list_values {
         let converted_92_list = PyList::empty(py);
         for item_93 in value {
-            let converted_item_94 = PyBytes::new(py, item_93.as_ref()).into_any().unbind();
+            let converted_item_94 = PyBytes::new(py, (item_93).as_ref()).into_any().unbind();
             converted_92_list.append(converted_item_94)?;
         }
         let converted_92 = converted_92_list.into_any().unbind();
@@ -460,7 +460,7 @@ fn message_attribute_value_to_py(
     } else {
         result.set_item("binary_list_values", py.None())?;
     }
-    let converted_95 = &value.data_type.as_str().into_py_any(py)?;
+    let converted_95 = (&value.data_type).as_str().into_py_any(py)?;
     result.set_item("data_type", converted_95)?;
     Ok(result.into_any().unbind())
 }
@@ -513,13 +513,13 @@ fn message_system_attribute_value_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.string_value {
-        let converted_109 = value.as_str().into_py_any(py)?;
+        let converted_109 = (value).as_str().into_py_any(py)?;
         result.set_item("string_value", converted_109)?;
     } else {
         result.set_item("string_value", py.None())?;
     }
     if let Some(value) = &value.binary_value {
-        let converted_110 = PyBytes::new(py, value.as_ref()).into_any().unbind();
+        let converted_110 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
         result.set_item("binary_value", converted_110)?;
     } else {
         result.set_item("binary_value", py.None())?;
@@ -527,7 +527,7 @@ fn message_system_attribute_value_to_py(
     if let Some(value) = &value.string_list_values {
         let converted_111_list = PyList::empty(py);
         for item_112 in value {
-            let converted_item_113 = item_112.as_str().into_py_any(py)?;
+            let converted_item_113 = (item_112).as_str().into_py_any(py)?;
             converted_111_list.append(converted_item_113)?;
         }
         let converted_111 = converted_111_list.into_any().unbind();
@@ -538,7 +538,7 @@ fn message_system_attribute_value_to_py(
     if let Some(value) = &value.binary_list_values {
         let converted_114_list = PyList::empty(py);
         for item_115 in value {
-            let converted_item_116 = PyBytes::new(py, item_115.as_ref()).into_any().unbind();
+            let converted_item_116 = PyBytes::new(py, (item_115).as_ref()).into_any().unbind();
             converted_114_list.append(converted_item_116)?;
         }
         let converted_114 = converted_114_list.into_any().unbind();
@@ -546,7 +546,7 @@ fn message_system_attribute_value_to_py(
     } else {
         result.set_item("binary_list_values", py.None())?;
     }
-    let converted_117 = &value.data_type.as_str().into_py_any(py)?;
+    let converted_117 = (&value.data_type).as_str().into_py_any(py)?;
     result.set_item("data_type", converted_117)?;
     Ok(result.into_any().unbind())
 }
@@ -609,9 +609,9 @@ fn send_message_batch_request_entry_to_py(
     value: &aws_sdk_sqs::types::SendMessageBatchRequestEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_136 = &value.id.as_str().into_py_any(py)?;
+    let converted_136 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_136)?;
-    let converted_137 = &value.message_body.as_str().into_py_any(py)?;
+    let converted_137 = (&value.message_body).as_str().into_py_any(py)?;
     result.set_item("message_body", converted_137)?;
     if let Some(value) = &value.delay_seconds {
         let converted_138 = (value).to_owned().into_py_any(py)?;
@@ -622,7 +622,7 @@ fn send_message_batch_request_entry_to_py(
     if let Some(value) = &value.message_attributes {
         let converted_139_dict = PyDict::new(py);
         for (key_140, value_141) in value {
-            let converted_key_142 = key_140.as_str().into_py_any(py)?;
+            let converted_key_142 = (key_140).as_str().into_py_any(py)?;
             let converted_value_143 = message_attribute_value_to_py(py, value_141)?;
             converted_139_dict.set_item(converted_key_142, converted_value_143)?;
         }
@@ -634,7 +634,7 @@ fn send_message_batch_request_entry_to_py(
     if let Some(value) = &value.message_system_attributes {
         let converted_144_dict = PyDict::new(py);
         for (key_145, value_146) in value {
-            let converted_key_147 = key_145.as_str().into_py_any(py)?;
+            let converted_key_147 = (key_145).as_str().into_py_any(py)?;
             let converted_value_148 = message_system_attribute_value_to_py(py, value_146)?;
             converted_144_dict.set_item(converted_key_147, converted_value_148)?;
         }
@@ -644,13 +644,13 @@ fn send_message_batch_request_entry_to_py(
         result.set_item("message_system_attributes", py.None())?;
     }
     if let Some(value) = &value.message_deduplication_id {
-        let converted_149 = value.as_str().into_py_any(py)?;
+        let converted_149 = (value).as_str().into_py_any(py)?;
         result.set_item("message_deduplication_id", converted_149)?;
     } else {
         result.set_item("message_deduplication_id", py.None())?;
     }
     if let Some(value) = &value.message_group_id {
-        let converted_150 = value.as_str().into_py_any(py)?;
+        let converted_150 = (value).as_str().into_py_any(py)?;
         result.set_item("message_group_id", converted_150)?;
     } else {
         result.set_item("message_group_id", py.None())?;
@@ -697,26 +697,26 @@ fn send_message_batch_result_entry_to_py(
     value: &aws_sdk_sqs::types::SendMessageBatchResultEntry,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_157 = &value.id.as_str().into_py_any(py)?;
+    let converted_157 = (&value.id).as_str().into_py_any(py)?;
     result.set_item("id", converted_157)?;
-    let converted_158 = &value.message_id.as_str().into_py_any(py)?;
+    let converted_158 = (&value.message_id).as_str().into_py_any(py)?;
     result.set_item("message_id", converted_158)?;
-    let converted_159 = &value.md5_of_message_body.as_str().into_py_any(py)?;
+    let converted_159 = (&value.md5_of_message_body).as_str().into_py_any(py)?;
     result.set_item("md5_of_message_body", converted_159)?;
     if let Some(value) = &value.md5_of_message_attributes {
-        let converted_160 = value.as_str().into_py_any(py)?;
+        let converted_160 = (value).as_str().into_py_any(py)?;
         result.set_item("md5_of_message_attributes", converted_160)?;
     } else {
         result.set_item("md5_of_message_attributes", py.None())?;
     }
     if let Some(value) = &value.md5_of_message_system_attributes {
-        let converted_161 = value.as_str().into_py_any(py)?;
+        let converted_161 = (value).as_str().into_py_any(py)?;
         result.set_item("md5_of_message_system_attributes", converted_161)?;
     } else {
         result.set_item("md5_of_message_system_attributes", py.None())?;
     }
     if let Some(value) = &value.sequence_number {
-        let converted_162 = value.as_str().into_py_any(py)?;
+        let converted_162 = (value).as_str().into_py_any(py)?;
         result.set_item("sequence_number", converted_162)?;
     } else {
         result.set_item("sequence_number", py.None())?;
@@ -724,7 +724,1093 @@ fn send_message_batch_result_entry_to_py(
     Ok(result.into_any().unbind())
 }
 
+#[pyclass(name = "BatchResultErrorEntry", frozen)]
+struct PyBatchResultErrorEntry {
+    inner: aws_sdk_sqs::types::BatchResultErrorEntry,
+}
+
+#[pymethods]
+impl PyBatchResultErrorEntry {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_289 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_289)
+    }
+
+    #[getter]
+    fn sender_fault(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_290 = (&self.inner.sender_fault).to_owned().into_py_any(py)?;
+        Ok(converted_290)
+    }
+
+    #[getter]
+    fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_291 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_291)
+    }
+
+    #[getter]
+    fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.message {
+            let converted_292 = (value).as_str().into_py_any(py)?;
+            Ok(converted_292)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        batch_result_error_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ChangeMessageVisibilityBatchResultEntry", frozen)]
+struct PyChangeMessageVisibilityBatchResultEntry {
+    inner: aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry,
+}
+
+#[pymethods]
+impl PyChangeMessageVisibilityBatchResultEntry {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_293 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_293)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        change_message_visibility_batch_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "DeleteMessageBatchResultEntry", frozen)]
+struct PyDeleteMessageBatchResultEntry {
+    inner: aws_sdk_sqs::types::DeleteMessageBatchResultEntry,
+}
+
+#[pymethods]
+impl PyDeleteMessageBatchResultEntry {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_294 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_294)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        delete_message_batch_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "ListMessageMoveTasksResultEntry", frozen)]
+struct PyListMessageMoveTasksResultEntry {
+    inner: aws_sdk_sqs::types::ListMessageMoveTasksResultEntry,
+}
+
+#[pymethods]
+impl PyListMessageMoveTasksResultEntry {
+    #[getter]
+    fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_handle {
+            let converted_295 = (value).as_str().into_py_any(py)?;
+            Ok(converted_295)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_296 = (value).as_str().into_py_any(py)?;
+            Ok(converted_296)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn source_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.source_arn {
+            let converted_297 = (value).as_str().into_py_any(py)?;
+            Ok(converted_297)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn destination_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.destination_arn {
+            let converted_298 = (value).as_str().into_py_any(py)?;
+            Ok(converted_298)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn max_number_of_messages_per_second(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.max_number_of_messages_per_second {
+            let converted_299 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_299)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_300 = (&self.inner.approximate_number_of_messages_moved)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_300)
+    }
+
+    #[getter]
+    fn approximate_number_of_messages_to_move(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.approximate_number_of_messages_to_move {
+            let converted_301 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_301)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn failure_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.failure_reason {
+            let converted_302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_302)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn started_timestamp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_303 = (&self.inner.started_timestamp).to_owned().into_py_any(py)?;
+        Ok(converted_303)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        list_message_move_tasks_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Message", frozen)]
+struct PyMessage {
+    inner: aws_sdk_sqs::types::Message,
+}
+
+#[pymethods]
+impl PyMessage {
+    #[getter]
+    fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.message_id {
+            let converted_304 = (value).as_str().into_py_any(py)?;
+            Ok(converted_304)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn receipt_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.receipt_handle {
+            let converted_305 = (value).as_str().into_py_any(py)?;
+            Ok(converted_305)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn md5_of_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_body {
+            let converted_306 = (value).as_str().into_py_any(py)?;
+            Ok(converted_306)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.body {
+            let converted_307 = (value).as_str().into_py_any(py)?;
+            Ok(converted_307)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.attributes {
+            let converted_308_dict = PyDict::new(py);
+            for (key_309, value_310) in value {
+                let converted_key_311 = (key_309).as_str().into_py_any(py)?;
+                let converted_value_312 = (value_310).as_str().into_py_any(py)?;
+                converted_308_dict.set_item(converted_key_311, converted_value_312)?;
+            }
+            let converted_308 = converted_308_dict.into_any().unbind();
+            Ok(converted_308)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_attributes {
+            let converted_313 = (value).as_str().into_py_any(py)?;
+            Ok(converted_313)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.message_attributes {
+            let converted_314_dict = PyDict::new(py);
+            for (key_315, value_316) in value {
+                let converted_key_317 = (key_315).as_str().into_py_any(py)?;
+                let converted_value_318 = Py::new(
+                    py,
+                    PyMessageAttributeValue {
+                        inner: (value_316).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_314_dict.set_item(converted_key_317, converted_value_318)?;
+            }
+            let converted_314 = converted_314_dict.into_any().unbind();
+            Ok(converted_314)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        message_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "MessageAttributeValue", frozen)]
+struct PyMessageAttributeValue {
+    inner: aws_sdk_sqs::types::MessageAttributeValue,
+}
+
+#[pymethods]
+impl PyMessageAttributeValue {
+    #[getter]
+    fn string_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.string_value {
+            let converted_319 = (value).as_str().into_py_any(py)?;
+            Ok(converted_319)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn binary_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.binary_value {
+            let converted_320 = PyBytes::new(py, (value).as_ref()).into_any().unbind();
+            Ok(converted_320)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn string_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.string_list_values {
+            let converted_321_list = PyList::empty(py);
+            for item_322 in value {
+                let converted_item_323 = (item_322).as_str().into_py_any(py)?;
+                converted_321_list.append(converted_item_323)?;
+            }
+            let converted_321 = converted_321_list.into_any().unbind();
+            Ok(converted_321)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn binary_list_values(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.binary_list_values {
+            let converted_324_list = PyList::empty(py);
+            for item_325 in value {
+                let converted_item_326 = PyBytes::new(py, (item_325).as_ref()).into_any().unbind();
+                converted_324_list.append(converted_item_326)?;
+            }
+            let converted_324 = converted_324_list.into_any().unbind();
+            Ok(converted_324)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn data_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_327 = (&self.inner.data_type).as_str().into_py_any(py)?;
+        Ok(converted_327)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        message_attribute_value_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SendMessageBatchResultEntry", frozen)]
+struct PySendMessageBatchResultEntry {
+    inner: aws_sdk_sqs::types::SendMessageBatchResultEntry,
+}
+
+#[pymethods]
+impl PySendMessageBatchResultEntry {
+    #[getter]
+    fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_328 = (&self.inner.id).as_str().into_py_any(py)?;
+        Ok(converted_328)
+    }
+
+    #[getter]
+    fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_329 = (&self.inner.message_id).as_str().into_py_any(py)?;
+        Ok(converted_329)
+    }
+
+    #[getter]
+    fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_330 = (&self.inner.md5_of_message_body).as_str().into_py_any(py)?;
+        Ok(converted_330)
+    }
+
+    #[getter]
+    fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_attributes {
+            let converted_331 = (value).as_str().into_py_any(py)?;
+            Ok(converted_331)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_system_attributes {
+            let converted_332 = (value).as_str().into_py_any(py)?;
+            Ok(converted_332)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sequence_number {
+            let converted_333 = (value).as_str().into_py_any(py)?;
+            Ok(converted_333)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        send_message_batch_result_entry_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "CancelMessageMoveTaskResult", frozen)]
+struct PyCancelMessageMoveTaskResult {
+    inner: aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskOutput,
+}
+
+#[pymethods]
+impl PyCancelMessageMoveTaskResult {
+    #[getter]
+    fn approximate_number_of_messages_moved(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_334 = (&self.inner.approximate_number_of_messages_moved)
+            .to_owned()
+            .into_py_any(py)?;
+        Ok(converted_334)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_335 = (&self.inner.approximate_number_of_messages_moved)
+            .to_owned()
+            .into_py_any(py)?;
+        result.set_item("approximate_number_of_messages_moved", converted_335)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ChangeMessageVisibilityBatchResult", frozen)]
+struct PyChangeMessageVisibilityBatchResult {
+    inner:
+        aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
+}
+
+#[pymethods]
+impl PyChangeMessageVisibilityBatchResult {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_336_list = PyList::empty(py);
+        for item_337 in &self.inner.successful {
+            let converted_item_338 = Py::new(
+                py,
+                PyChangeMessageVisibilityBatchResultEntry {
+                    inner: (item_337).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_336_list.append(converted_item_338)?;
+        }
+        let converted_336 = converted_336_list.into_any().unbind();
+        Ok(converted_336)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_339_list = PyList::empty(py);
+        for item_340 in &self.inner.failed {
+            let converted_item_341 = Py::new(
+                py,
+                PyBatchResultErrorEntry {
+                    inner: (item_340).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_339_list.append(converted_item_341)?;
+        }
+        let converted_339 = converted_339_list.into_any().unbind();
+        Ok(converted_339)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_342_list = PyList::empty(py);
+        for item_343 in &self.inner.successful {
+            let converted_item_344 =
+                change_message_visibility_batch_result_entry_to_py(py, item_343)?;
+            converted_342_list.append(converted_item_344)?;
+        }
+        let converted_342 = converted_342_list.into_any().unbind();
+        result.set_item("successful", converted_342)?;
+        let converted_345_list = PyList::empty(py);
+        for item_346 in &self.inner.failed {
+            let converted_item_347 = batch_result_error_entry_to_py(py, item_346)?;
+            converted_345_list.append(converted_item_347)?;
+        }
+        let converted_345 = converted_345_list.into_any().unbind();
+        result.set_item("failed", converted_345)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "CreateQueueResult", frozen)]
+struct PyCreateQueueResult {
+    inner: aws_sdk_sqs::operation::create_queue::CreateQueueOutput,
+}
+
+#[pymethods]
+impl PyCreateQueueResult {
+    #[getter]
+    fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_url {
+            let converted_348 = (value).as_str().into_py_any(py)?;
+            Ok(converted_348)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_url {
+            let converted_349 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_349)?;
+        } else {
+            result.set_item("queue_url", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "DeleteMessageBatchResult", frozen)]
+struct PyDeleteMessageBatchResult {
+    inner: aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput,
+}
+
+#[pymethods]
+impl PyDeleteMessageBatchResult {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_350_list = PyList::empty(py);
+        for item_351 in &self.inner.successful {
+            let converted_item_352 = Py::new(
+                py,
+                PyDeleteMessageBatchResultEntry {
+                    inner: (item_351).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_350_list.append(converted_item_352)?;
+        }
+        let converted_350 = converted_350_list.into_any().unbind();
+        Ok(converted_350)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_353_list = PyList::empty(py);
+        for item_354 in &self.inner.failed {
+            let converted_item_355 = Py::new(
+                py,
+                PyBatchResultErrorEntry {
+                    inner: (item_354).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_353_list.append(converted_item_355)?;
+        }
+        let converted_353 = converted_353_list.into_any().unbind();
+        Ok(converted_353)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_356_list = PyList::empty(py);
+        for item_357 in &self.inner.successful {
+            let converted_item_358 = delete_message_batch_result_entry_to_py(py, item_357)?;
+            converted_356_list.append(converted_item_358)?;
+        }
+        let converted_356 = converted_356_list.into_any().unbind();
+        result.set_item("successful", converted_356)?;
+        let converted_359_list = PyList::empty(py);
+        for item_360 in &self.inner.failed {
+            let converted_item_361 = batch_result_error_entry_to_py(py, item_360)?;
+            converted_359_list.append(converted_item_361)?;
+        }
+        let converted_359 = converted_359_list.into_any().unbind();
+        result.set_item("failed", converted_359)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetQueueAttributesResult", frozen)]
+struct PyGetQueueAttributesResult {
+    inner: aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesOutput,
+}
+
+#[pymethods]
+impl PyGetQueueAttributesResult {
+    #[getter]
+    fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.attributes {
+            let converted_362_dict = PyDict::new(py);
+            for (key_363, value_364) in value {
+                let converted_key_365 = (key_363).as_str().into_py_any(py)?;
+                let converted_value_366 = (value_364).as_str().into_py_any(py)?;
+                converted_362_dict.set_item(converted_key_365, converted_value_366)?;
+            }
+            let converted_362 = converted_362_dict.into_any().unbind();
+            Ok(converted_362)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.attributes {
+            let converted_367_dict = PyDict::new(py);
+            for (key_368, value_369) in value {
+                let converted_key_370 = (key_368).as_str().into_py_any(py)?;
+                let converted_value_371 = (value_369).as_str().into_py_any(py)?;
+                converted_367_dict.set_item(converted_key_370, converted_value_371)?;
+            }
+            let converted_367 = converted_367_dict.into_any().unbind();
+            result.set_item("attributes", converted_367)?;
+        } else {
+            result.set_item("attributes", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetQueueUrlResult", frozen)]
+struct PyGetQueueUrlResult {
+    inner: aws_sdk_sqs::operation::get_queue_url::GetQueueUrlOutput,
+}
+
+#[pymethods]
+impl PyGetQueueUrlResult {
+    #[getter]
+    fn queue_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_url {
+            let converted_372 = (value).as_str().into_py_any(py)?;
+            Ok(converted_372)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_url {
+            let converted_373 = (value).as_str().into_py_any(py)?;
+            result.set_item("queue_url", converted_373)?;
+        } else {
+            result.set_item("queue_url", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListDeadLetterSourceQueuesResult", frozen)]
+struct PyListDeadLetterSourceQueuesResult {
+    inner: aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesOutput,
+}
+
+#[pymethods]
+impl PyListDeadLetterSourceQueuesResult {
+    #[getter]
+    fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_374_list = PyList::empty(py);
+        for item_375 in &self.inner.queue_urls {
+            let converted_item_376 = (item_375).as_str().into_py_any(py)?;
+            converted_374_list.append(converted_item_376)?;
+        }
+        let converted_374 = converted_374_list.into_any().unbind();
+        Ok(converted_374)
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_377 = (value).as_str().into_py_any(py)?;
+            Ok(converted_377)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_378_list = PyList::empty(py);
+        for item_379 in &self.inner.queue_urls {
+            let converted_item_380 = (item_379).as_str().into_py_any(py)?;
+            converted_378_list.append(converted_item_380)?;
+        }
+        let converted_378 = converted_378_list.into_any().unbind();
+        result.set_item("queue_urls", converted_378)?;
+        if let Some(value) = &self.inner.next_token {
+            let converted_381 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_381)?;
+        } else {
+            result.set_item("next_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListMessageMoveTasksResult", frozen)]
+struct PyListMessageMoveTasksResult {
+    inner: aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput,
+}
+
+#[pymethods]
+impl PyListMessageMoveTasksResult {
+    #[getter]
+    fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.results {
+            let converted_382_list = PyList::empty(py);
+            for item_383 in value {
+                let converted_item_384 = Py::new(
+                    py,
+                    PyListMessageMoveTasksResultEntry {
+                        inner: (item_383).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_382_list.append(converted_item_384)?;
+            }
+            let converted_382 = converted_382_list.into_any().unbind();
+            Ok(converted_382)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.results {
+            let converted_385_list = PyList::empty(py);
+            for item_386 in value {
+                let converted_item_387 = list_message_move_tasks_result_entry_to_py(py, item_386)?;
+                converted_385_list.append(converted_item_387)?;
+            }
+            let converted_385 = converted_385_list.into_any().unbind();
+            result.set_item("results", converted_385)?;
+        } else {
+            result.set_item("results", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListQueuesResult", frozen)]
+struct PyListQueuesResult {
+    inner: aws_sdk_sqs::operation::list_queues::ListQueuesOutput,
+}
+
+#[pymethods]
+impl PyListQueuesResult {
+    #[getter]
+    fn queue_urls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.queue_urls {
+            let converted_388_list = PyList::empty(py);
+            for item_389 in value {
+                let converted_item_390 = (item_389).as_str().into_py_any(py)?;
+                converted_388_list.append(converted_item_390)?;
+            }
+            let converted_388 = converted_388_list.into_any().unbind();
+            Ok(converted_388)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_391 = (value).as_str().into_py_any(py)?;
+            Ok(converted_391)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.queue_urls {
+            let converted_392_list = PyList::empty(py);
+            for item_393 in value {
+                let converted_item_394 = (item_393).as_str().into_py_any(py)?;
+                converted_392_list.append(converted_item_394)?;
+            }
+            let converted_392 = converted_392_list.into_any().unbind();
+            result.set_item("queue_urls", converted_392)?;
+        } else {
+            result.set_item("queue_urls", py.None())?;
+        }
+        if let Some(value) = &self.inner.next_token {
+            let converted_395 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_395)?;
+        } else {
+            result.set_item("next_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ListQueueTagsResult", frozen)]
+struct PyListQueueTagsResult {
+    inner: aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsOutput,
+}
+
+#[pymethods]
+impl PyListQueueTagsResult {
+    #[getter]
+    fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tags {
+            let converted_396_dict = PyDict::new(py);
+            for (key_397, value_398) in value {
+                let converted_key_399 = (key_397).as_str().into_py_any(py)?;
+                let converted_value_400 = (value_398).as_str().into_py_any(py)?;
+                converted_396_dict.set_item(converted_key_399, converted_value_400)?;
+            }
+            let converted_396 = converted_396_dict.into_any().unbind();
+            Ok(converted_396)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.tags {
+            let converted_401_dict = PyDict::new(py);
+            for (key_402, value_403) in value {
+                let converted_key_404 = (key_402).as_str().into_py_any(py)?;
+                let converted_value_405 = (value_403).as_str().into_py_any(py)?;
+                converted_401_dict.set_item(converted_key_404, converted_value_405)?;
+            }
+            let converted_401 = converted_401_dict.into_any().unbind();
+            result.set_item("tags", converted_401)?;
+        } else {
+            result.set_item("tags", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "ReceiveMessageResult", frozen)]
+struct PyReceiveMessageResult {
+    inner: aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput,
+}
+
+#[pymethods]
+impl PyReceiveMessageResult {
+    #[getter]
+    fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.messages {
+            let converted_406_list = PyList::empty(py);
+            for item_407 in value {
+                let converted_item_408 = Py::new(
+                    py,
+                    PyMessage {
+                        inner: (item_407).to_owned(),
+                    },
+                )?
+                .into_any();
+                converted_406_list.append(converted_item_408)?;
+            }
+            let converted_406 = converted_406_list.into_any().unbind();
+            Ok(converted_406)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.messages {
+            let converted_409_list = PyList::empty(py);
+            for item_410 in value {
+                let converted_item_411 = message_to_py(py, item_410)?;
+                converted_409_list.append(converted_item_411)?;
+            }
+            let converted_409 = converted_409_list.into_any().unbind();
+            result.set_item("messages", converted_409)?;
+        } else {
+            result.set_item("messages", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "SendMessageResult", frozen)]
+struct PySendMessageResult {
+    inner: aws_sdk_sqs::operation::send_message::SendMessageOutput,
+}
+
+#[pymethods]
+impl PySendMessageResult {
+    #[getter]
+    fn md5_of_message_body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_body {
+            let converted_412 = (value).as_str().into_py_any(py)?;
+            Ok(converted_412)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn md5_of_message_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_attributes {
+            let converted_413 = (value).as_str().into_py_any(py)?;
+            Ok(converted_413)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn md5_of_message_system_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.md5_of_message_system_attributes {
+            let converted_414 = (value).as_str().into_py_any(py)?;
+            Ok(converted_414)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.message_id {
+            let converted_415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_415)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn sequence_number(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sequence_number {
+            let converted_416 = (value).as_str().into_py_any(py)?;
+            Ok(converted_416)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.md5_of_message_body {
+            let converted_417 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_body", converted_417)?;
+        } else {
+            result.set_item("md5_of_message_body", py.None())?;
+        }
+        if let Some(value) = &self.inner.md5_of_message_attributes {
+            let converted_418 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_attributes", converted_418)?;
+        } else {
+            result.set_item("md5_of_message_attributes", py.None())?;
+        }
+        if let Some(value) = &self.inner.md5_of_message_system_attributes {
+            let converted_419 = (value).as_str().into_py_any(py)?;
+            result.set_item("md5_of_message_system_attributes", converted_419)?;
+        } else {
+            result.set_item("md5_of_message_system_attributes", py.None())?;
+        }
+        if let Some(value) = &self.inner.message_id {
+            let converted_420 = (value).as_str().into_py_any(py)?;
+            result.set_item("message_id", converted_420)?;
+        } else {
+            result.set_item("message_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.sequence_number {
+            let converted_421 = (value).as_str().into_py_any(py)?;
+            result.set_item("sequence_number", converted_421)?;
+        } else {
+            result.set_item("sequence_number", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "SendMessageBatchResult", frozen)]
+struct PySendMessageBatchResult {
+    inner: aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput,
+}
+
+#[pymethods]
+impl PySendMessageBatchResult {
+    #[getter]
+    fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_422_list = PyList::empty(py);
+        for item_423 in &self.inner.successful {
+            let converted_item_424 = Py::new(
+                py,
+                PySendMessageBatchResultEntry {
+                    inner: (item_423).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_422_list.append(converted_item_424)?;
+        }
+        let converted_422 = converted_422_list.into_any().unbind();
+        Ok(converted_422)
+    }
+
+    #[getter]
+    fn failed(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_425_list = PyList::empty(py);
+        for item_426 in &self.inner.failed {
+            let converted_item_427 = Py::new(
+                py,
+                PyBatchResultErrorEntry {
+                    inner: (item_426).to_owned(),
+                },
+            )?
+            .into_any();
+            converted_425_list.append(converted_item_427)?;
+        }
+        let converted_425 = converted_425_list.into_any().unbind();
+        Ok(converted_425)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_428_list = PyList::empty(py);
+        for item_429 in &self.inner.successful {
+            let converted_item_430 = send_message_batch_result_entry_to_py(py, item_429)?;
+            converted_428_list.append(converted_item_430)?;
+        }
+        let converted_428 = converted_428_list.into_any().unbind();
+        result.set_item("successful", converted_428)?;
+        let converted_431_list = PyList::empty(py);
+        for item_432 in &self.inner.failed {
+            let converted_item_433 = batch_result_error_entry_to_py(py, item_432)?;
+            converted_431_list.append(converted_item_433)?;
+        }
+        let converted_431 = converted_431_list.into_any().unbind();
+        result.set_item("failed", converted_431)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "StartMessageMoveTaskResult", frozen)]
+struct PyStartMessageMoveTaskResult {
+    inner: aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskOutput,
+}
+
+#[pymethods]
+impl PyStartMessageMoveTaskResult {
+    #[getter]
+    fn task_handle(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.task_handle {
+            let converted_434 = (value).as_str().into_py_any(py)?;
+            Ok(converted_434)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.task_handle {
+            let converted_435 = (value).as_str().into_py_any(py)?;
+            result.set_item("task_handle", converted_435)?;
+        } else {
+            result.set_item("task_handle", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    module.add_class::<PyBatchResultErrorEntry>()?;
+    module.add_class::<PyChangeMessageVisibilityBatchResultEntry>()?;
+    module.add_class::<PyDeleteMessageBatchResultEntry>()?;
+    module.add_class::<PyListMessageMoveTasksResultEntry>()?;
+    module.add_class::<PyMessage>()?;
+    module.add_class::<PyMessageAttributeValue>()?;
+    module.add_class::<PySendMessageBatchResultEntry>()?;
+    module.add_class::<PyCancelMessageMoveTaskResult>()?;
+    module.add_class::<PyChangeMessageVisibilityBatchResult>()?;
+    module.add_class::<PyCreateQueueResult>()?;
+    module.add_class::<PyDeleteMessageBatchResult>()?;
+    module.add_class::<PyGetQueueAttributesResult>()?;
+    module.add_class::<PyGetQueueUrlResult>()?;
+    module.add_class::<PyListDeadLetterSourceQueuesResult>()?;
+    module.add_class::<PyListMessageMoveTasksResult>()?;
+    module.add_class::<PyListQueuesResult>()?;
+    module.add_class::<PyListQueueTagsResult>()?;
+    module.add_class::<PyReceiveMessageResult>()?;
+    module.add_class::<PySendMessageResult>()?;
+    module.add_class::<PySendMessageBatchResult>()?;
+    module.add_class::<PyStartMessageMoveTaskResult>()?;
+
     Ok(())
 }
 
@@ -824,14 +1910,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelMessageMoveTask"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_174 = (&output.approximate_number_of_messages_moved)
-                    .to_owned()
-                    .into_py_any(py)?;
-                result.set_item("approximate_number_of_messages_moved", converted_174)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCancelMessageMoveTaskResult { inner: output }))
         })
     }
 
@@ -843,21 +1922,21 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
+            let converted_174: String = value.extract()?;
+            Some(converted_174)
+        } else {
+            None
+        };
+        let receipt_handle_value = if let Some(value) = dict_value(params, "receipt_handle")? {
             let converted_175: String = value.extract()?;
             Some(converted_175)
         } else {
             None
         };
-        let receipt_handle_value = if let Some(value) = dict_value(params, "receipt_handle")? {
-            let converted_176: String = value.extract()?;
-            Some(converted_176)
-        } else {
-            None
-        };
         let visibility_timeout_value =
             if let Some(value) = dict_value(params, "visibility_timeout")? {
-                let converted_177: i32 = value.extract()?;
-                Some(converted_177)
+                let converted_176: i32 = value.extract()?;
+                Some(converted_176)
             } else {
                 None
             };
@@ -884,20 +1963,20 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_178: String = value.extract()?;
-            Some(converted_178)
+            let converted_177: String = value.extract()?;
+            Some(converted_177)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_179 = Vec::new();
-            for item_result_180 in value.try_iter()? {
-                let item_181 = item_result_180?;
-                let converted_item_182 =
-                    change_message_visibility_batch_request_entry_from_py(&item_181)?;
-                converted_179.push(converted_item_182);
+            let mut converted_178 = Vec::new();
+            for item_result_179 in value.try_iter()? {
+                let item_180 = item_result_179?;
+                let converted_item_181 =
+                    change_message_visibility_batch_request_entry_from_py(&item_180)?;
+                converted_178.push(converted_item_181);
             }
-            Some(converted_179)
+            Some(converted_178)
         } else {
             None
         };
@@ -911,25 +1990,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibilityBatch"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_183_list = PyList::empty(py);
-                for item_184 in &output.successful {
-                    let converted_item_185 =
-                        change_message_visibility_batch_result_entry_to_py(py, item_184)?;
-                    converted_183_list.append(converted_item_185)?;
-                }
-                let converted_183 = converted_183_list.into_any().unbind();
-                result.set_item("successful", converted_183)?;
-                let converted_186_list = PyList::empty(py);
-                for item_187 in &output.failed {
-                    let converted_item_188 = batch_result_error_entry_to_py(py, item_187)?;
-                    converted_186_list.append(converted_item_188)?;
-                }
-                let converted_186 = converted_186_list.into_any().unbind();
-                result.set_item("failed", converted_186)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyChangeMessageVisibilityBatchResult { inner: output }))
         })
     }
 
@@ -941,34 +2002,34 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
-            let converted_189: String = value.extract()?;
-            Some(converted_189)
+            let converted_182: String = value.extract()?;
+            Some(converted_182)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_191 = value.cast::<PyDict>()?;
-            let mut converted_190 = HashMap::new();
-            for (key_192, value_193) in mapping_191.iter() {
-                let enum_value_196: String = key_192.extract()?;
-                let converted_key_194 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_196.as_str());
-                let converted_value_195: String = value_193.extract()?;
-                converted_190.insert(converted_key_194, converted_value_195);
+            let mapping_184 = value.cast::<PyDict>()?;
+            let mut converted_183 = HashMap::new();
+            for (key_185, value_186) in mapping_184.iter() {
+                let enum_value_189: String = key_185.extract()?;
+                let converted_key_187 =
+                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_189.as_str());
+                let converted_value_188: String = value_186.extract()?;
+                converted_183.insert(converted_key_187, converted_value_188);
             }
-            Some(converted_190)
+            Some(converted_183)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mapping_198 = value.cast::<PyDict>()?;
-            let mut converted_197 = HashMap::new();
-            for (key_199, value_200) in mapping_198.iter() {
-                let converted_key_201: String = key_199.extract()?;
-                let converted_value_202: String = value_200.extract()?;
-                converted_197.insert(converted_key_201, converted_value_202);
+            let mapping_191 = value.cast::<PyDict>()?;
+            let mut converted_190 = HashMap::new();
+            for (key_192, value_193) in mapping_191.iter() {
+                let converted_key_194: String = key_192.extract()?;
+                let converted_value_195: String = value_193.extract()?;
+                converted_190.insert(converted_key_194, converted_value_195);
             }
-            Some(converted_197)
+            Some(converted_190)
         } else {
             None
         };
@@ -984,16 +2045,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateQueue")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.queue_url {
-                    let converted_203 = value.as_str().into_py_any(py)?;
-                    result.set_item("queue_url", converted_203)?;
-                } else {
-                    result.set_item("queue_url", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyCreateQueueResult { inner: output }))
         })
     }
 
@@ -1005,14 +2057,14 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_204: String = value.extract()?;
-            Some(converted_204)
+            let converted_196: String = value.extract()?;
+            Some(converted_196)
         } else {
             None
         };
         let receipt_handle_value = if let Some(value) = dict_value(params, "receipt_handle")? {
-            let converted_205: String = value.extract()?;
-            Some(converted_205)
+            let converted_197: String = value.extract()?;
+            Some(converted_197)
         } else {
             None
         };
@@ -1038,19 +2090,19 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_206: String = value.extract()?;
-            Some(converted_206)
+            let converted_198: String = value.extract()?;
+            Some(converted_198)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_207 = Vec::new();
-            for item_result_208 in value.try_iter()? {
-                let item_209 = item_result_208?;
-                let converted_item_210 = delete_message_batch_request_entry_from_py(&item_209)?;
-                converted_207.push(converted_item_210);
+            let mut converted_199 = Vec::new();
+            for item_result_200 in value.try_iter()? {
+                let item_201 = item_result_200?;
+                let converted_item_202 = delete_message_batch_request_entry_from_py(&item_201)?;
+                converted_199.push(converted_item_202);
             }
-            Some(converted_207)
+            Some(converted_199)
         } else {
             None
         };
@@ -1064,24 +2116,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessageBatch"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_211_list = PyList::empty(py);
-                for item_212 in &output.successful {
-                    let converted_item_213 = delete_message_batch_result_entry_to_py(py, item_212)?;
-                    converted_211_list.append(converted_item_213)?;
-                }
-                let converted_211 = converted_211_list.into_any().unbind();
-                result.set_item("successful", converted_211)?;
-                let converted_214_list = PyList::empty(py);
-                for item_215 in &output.failed {
-                    let converted_item_216 = batch_result_error_entry_to_py(py, item_215)?;
-                    converted_214_list.append(converted_item_216)?;
-                }
-                let converted_214 = converted_214_list.into_any().unbind();
-                result.set_item("failed", converted_214)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyDeleteMessageBatchResult { inner: output }))
         })
     }
 
@@ -1093,8 +2128,8 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_217: String = value.extract()?;
-            Some(converted_217)
+            let converted_203: String = value.extract()?;
+            Some(converted_203)
         } else {
             None
         };
@@ -1120,21 +2155,21 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_218: String = value.extract()?;
-            Some(converted_218)
+            let converted_204: String = value.extract()?;
+            Some(converted_204)
         } else {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_219 = Vec::new();
-            for item_result_220 in value.try_iter()? {
-                let item_221 = item_result_220?;
-                let enum_value_223: String = item_221.extract()?;
-                let converted_item_222 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_223.as_str());
-                converted_219.push(converted_item_222);
+            let mut converted_205 = Vec::new();
+            for item_result_206 in value.try_iter()? {
+                let item_207 = item_result_206?;
+                let enum_value_209: String = item_207.extract()?;
+                let converted_item_208 =
+                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_209.as_str());
+                converted_205.push(converted_item_208);
             }
-            Some(converted_219)
+            Some(converted_205)
         } else {
             None
         };
@@ -1148,22 +2183,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueAttributes"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.attributes {
-                    let converted_224_dict = PyDict::new(py);
-                    for (key_225, value_226) in value {
-                        let converted_key_227 = key_225.as_str().into_py_any(py)?;
-                        let converted_value_228 = value_226.as_str().into_py_any(py)?;
-                        converted_224_dict.set_item(converted_key_227, converted_value_228)?;
-                    }
-                    let converted_224 = converted_224_dict.into_any().unbind();
-                    result.set_item("attributes", converted_224)?;
-                } else {
-                    result.set_item("attributes", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetQueueAttributesResult { inner: output }))
         })
     }
 
@@ -1175,15 +2195,15 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_name_value = if let Some(value) = dict_value(params, "queue_name")? {
-            let converted_229: String = value.extract()?;
-            Some(converted_229)
+            let converted_210: String = value.extract()?;
+            Some(converted_210)
         } else {
             None
         };
         let queue_owner_aws_account_id_value =
             if let Some(value) = dict_value(params, "queue_owner_aws_account_id")? {
-                let converted_230: String = value.extract()?;
-                Some(converted_230)
+                let converted_211: String = value.extract()?;
+                Some(converted_211)
             } else {
                 None
             };
@@ -1198,16 +2218,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueUrl")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.queue_url {
-                    let converted_231 = value.as_str().into_py_any(py)?;
-                    result.set_item("queue_url", converted_231)?;
-                } else {
-                    result.set_item("queue_url", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyGetQueueUrlResult { inner: output }))
         })
     }
 
@@ -1219,20 +2230,20 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_232: String = value.extract()?;
-            Some(converted_232)
+            let converted_212: String = value.extract()?;
+            Some(converted_212)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_233: String = value.extract()?;
-            Some(converted_233)
+            let converted_213: String = value.extract()?;
+            Some(converted_213)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_234: i32 = value.extract()?;
-            Some(converted_234)
+            let converted_214: i32 = value.extract()?;
+            Some(converted_214)
         } else {
             None
         };
@@ -1247,23 +2258,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDeadLetterSourceQueues"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_235_list = PyList::empty(py);
-                for item_236 in &output.queue_urls {
-                    let converted_item_237 = item_236.as_str().into_py_any(py)?;
-                    converted_235_list.append(converted_item_237)?;
-                }
-                let converted_235 = converted_235_list.into_any().unbind();
-                result.set_item("queue_urls", converted_235)?;
-                if let Some(value) = &output.next_token {
-                    let converted_238 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_token", converted_238)?;
-                } else {
-                    result.set_item("next_token", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListDeadLetterSourceQueuesResult { inner: output }))
         })
     }
 
@@ -1275,14 +2270,14 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
-            let converted_239: String = value.extract()?;
-            Some(converted_239)
+            let converted_215: String = value.extract()?;
+            Some(converted_215)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_240: i32 = value.extract()?;
-            Some(converted_240)
+            let converted_216: i32 = value.extract()?;
+            Some(converted_216)
         } else {
             None
         };
@@ -1296,22 +2291,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessageMoveTasks"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.results {
-                    let converted_241_list = PyList::empty(py);
-                    for item_242 in value {
-                        let converted_item_243 =
-                            list_message_move_tasks_result_entry_to_py(py, item_242)?;
-                        converted_241_list.append(converted_item_243)?;
-                    }
-                    let converted_241 = converted_241_list.into_any().unbind();
-                    result.set_item("results", converted_241)?;
-                } else {
-                    result.set_item("results", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListMessageMoveTasksResult { inner: output }))
         })
     }
 
@@ -1324,20 +2304,20 @@ impl SQSClient {
         let state = self.state.clone();
         let queue_name_prefix_value = if let Some(value) = dict_value(params, "queue_name_prefix")?
         {
-            let converted_244: String = value.extract()?;
-            Some(converted_244)
+            let converted_217: String = value.extract()?;
+            Some(converted_217)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_245: String = value.extract()?;
-            Some(converted_245)
+            let converted_218: String = value.extract()?;
+            Some(converted_218)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_246: i32 = value.extract()?;
-            Some(converted_246)
+            let converted_219: i32 = value.extract()?;
+            Some(converted_219)
         } else {
             None
         };
@@ -1353,27 +2333,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueues")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.queue_urls {
-                    let converted_247_list = PyList::empty(py);
-                    for item_248 in value {
-                        let converted_item_249 = item_248.as_str().into_py_any(py)?;
-                        converted_247_list.append(converted_item_249)?;
-                    }
-                    let converted_247 = converted_247_list.into_any().unbind();
-                    result.set_item("queue_urls", converted_247)?;
-                } else {
-                    result.set_item("queue_urls", py.None())?;
-                }
-                if let Some(value) = &output.next_token {
-                    let converted_250 = value.as_str().into_py_any(py)?;
-                    result.set_item("next_token", converted_250)?;
-                } else {
-                    result.set_item("next_token", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListQueuesResult { inner: output }))
         })
     }
 
@@ -1385,8 +2345,8 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_251: String = value.extract()?;
-            Some(converted_251)
+            let converted_220: String = value.extract()?;
+            Some(converted_220)
         } else {
             None
         };
@@ -1399,22 +2359,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListQueueTags"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.tags {
-                    let converted_252_dict = PyDict::new(py);
-                    for (key_253, value_254) in value {
-                        let converted_key_255 = key_253.as_str().into_py_any(py)?;
-                        let converted_value_256 = value_254.as_str().into_py_any(py)?;
-                        converted_252_dict.set_item(converted_key_255, converted_value_256)?;
-                    }
-                    let converted_252 = converted_252_dict.into_any().unbind();
-                    result.set_item("tags", converted_252)?;
-                } else {
-                    result.set_item("tags", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyListQueueTagsResult { inner: output }))
         })
     }
 
@@ -1426,8 +2371,8 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_257: String = value.extract()?;
-            Some(converted_257)
+            let converted_221: String = value.extract()?;
+            Some(converted_221)
         } else {
             None
         };
@@ -1453,76 +2398,76 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_258: String = value.extract()?;
-            Some(converted_258)
+            let converted_222: String = value.extract()?;
+            Some(converted_222)
         } else {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_259 = Vec::new();
-            for item_result_260 in value.try_iter()? {
-                let item_261 = item_result_260?;
-                let enum_value_263: String = item_261.extract()?;
-                let converted_item_262 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_263.as_str());
-                converted_259.push(converted_item_262);
+            let mut converted_223 = Vec::new();
+            for item_result_224 in value.try_iter()? {
+                let item_225 = item_result_224?;
+                let enum_value_227: String = item_225.extract()?;
+                let converted_item_226 =
+                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_227.as_str());
+                converted_223.push(converted_item_226);
             }
-            Some(converted_259)
+            Some(converted_223)
         } else {
             None
         };
         let message_system_attribute_names_value = if let Some(value) =
             dict_value(params, "message_system_attribute_names")?
         {
-            let mut converted_264 = Vec::new();
-            for item_result_265 in value.try_iter()? {
-                let item_266 = item_result_265?;
-                let enum_value_268: String = item_266.extract()?;
-                let converted_item_267 =
-                    aws_sdk_sqs::types::MessageSystemAttributeName::from(enum_value_268.as_str());
-                converted_264.push(converted_item_267);
+            let mut converted_228 = Vec::new();
+            for item_result_229 in value.try_iter()? {
+                let item_230 = item_result_229?;
+                let enum_value_232: String = item_230.extract()?;
+                let converted_item_231 =
+                    aws_sdk_sqs::types::MessageSystemAttributeName::from(enum_value_232.as_str());
+                converted_228.push(converted_item_231);
             }
-            Some(converted_264)
+            Some(converted_228)
         } else {
             None
         };
         let message_attribute_names_value =
             if let Some(value) = dict_value(params, "message_attribute_names")? {
-                let mut converted_269 = Vec::new();
-                for item_result_270 in value.try_iter()? {
-                    let item_271 = item_result_270?;
-                    let converted_item_272: String = item_271.extract()?;
-                    converted_269.push(converted_item_272);
+                let mut converted_233 = Vec::new();
+                for item_result_234 in value.try_iter()? {
+                    let item_235 = item_result_234?;
+                    let converted_item_236: String = item_235.extract()?;
+                    converted_233.push(converted_item_236);
                 }
-                Some(converted_269)
+                Some(converted_233)
             } else {
                 None
             };
         let max_number_of_messages_value =
             if let Some(value) = dict_value(params, "max_number_of_messages")? {
-                let converted_273: i32 = value.extract()?;
-                Some(converted_273)
+                let converted_237: i32 = value.extract()?;
+                Some(converted_237)
             } else {
                 None
             };
         let visibility_timeout_value =
             if let Some(value) = dict_value(params, "visibility_timeout")? {
-                let converted_274: i32 = value.extract()?;
-                Some(converted_274)
+                let converted_238: i32 = value.extract()?;
+                Some(converted_238)
             } else {
                 None
             };
         let wait_time_seconds_value = if let Some(value) = dict_value(params, "wait_time_seconds")?
         {
-            let converted_275: i32 = value.extract()?;
-            Some(converted_275)
+            let converted_239: i32 = value.extract()?;
+            Some(converted_239)
         } else {
             None
         };
         let receive_request_attempt_id_value =
             if let Some(value) = dict_value(params, "receive_request_attempt_id")? {
-                let converted_276: String = value.extract()?;
-                Some(converted_276)
+                let converted_240: String = value.extract()?;
+                Some(converted_240)
             } else {
                 None
             };
@@ -1542,21 +2487,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReceiveMessage"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.messages {
-                    let converted_277_list = PyList::empty(py);
-                    for item_278 in value {
-                        let converted_item_279 = message_to_py(py, item_278)?;
-                        converted_277_list.append(converted_item_279)?;
-                    }
-                    let converted_277 = converted_277_list.into_any().unbind();
-                    result.set_item("messages", converted_277)?;
-                } else {
-                    result.set_item("messages", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyReceiveMessageResult { inner: output }))
         })
     }
 
@@ -1568,14 +2499,14 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_280: String = value.extract()?;
-            Some(converted_280)
+            let converted_241: String = value.extract()?;
+            Some(converted_241)
         } else {
             None
         };
         let label_value = if let Some(value) = dict_value(params, "label")? {
-            let converted_281: String = value.extract()?;
-            Some(converted_281)
+            let converted_242: String = value.extract()?;
+            Some(converted_242)
         } else {
             None
         };
@@ -1601,63 +2532,63 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_282: String = value.extract()?;
-            Some(converted_282)
+            let converted_243: String = value.extract()?;
+            Some(converted_243)
         } else {
             None
         };
         let message_body_value = if let Some(value) = dict_value(params, "message_body")? {
-            let converted_283: String = value.extract()?;
-            Some(converted_283)
+            let converted_244: String = value.extract()?;
+            Some(converted_244)
         } else {
             None
         };
         let delay_seconds_value = if let Some(value) = dict_value(params, "delay_seconds")? {
-            let converted_284: i32 = value.extract()?;
-            Some(converted_284)
+            let converted_245: i32 = value.extract()?;
+            Some(converted_245)
         } else {
             None
         };
         let message_attributes_value =
             if let Some(value) = dict_value(params, "message_attributes")? {
-                let mapping_286 = value.cast::<PyDict>()?;
-                let mut converted_285 = HashMap::new();
-                for (key_287, value_288) in mapping_286.iter() {
-                    let converted_key_289: String = key_287.extract()?;
-                    let converted_value_290 = message_attribute_value_from_py(&value_288)?;
-                    converted_285.insert(converted_key_289, converted_value_290);
+                let mapping_247 = value.cast::<PyDict>()?;
+                let mut converted_246 = HashMap::new();
+                for (key_248, value_249) in mapping_247.iter() {
+                    let converted_key_250: String = key_248.extract()?;
+                    let converted_value_251 = message_attribute_value_from_py(&value_249)?;
+                    converted_246.insert(converted_key_250, converted_value_251);
                 }
-                Some(converted_285)
+                Some(converted_246)
             } else {
                 None
             };
         let message_system_attributes_value =
             if let Some(value) = dict_value(params, "message_system_attributes")? {
-                let mapping_292 = value.cast::<PyDict>()?;
-                let mut converted_291 = HashMap::new();
-                for (key_293, value_294) in mapping_292.iter() {
-                    let enum_value_297: String = key_293.extract()?;
-                    let converted_key_295 =
+                let mapping_253 = value.cast::<PyDict>()?;
+                let mut converted_252 = HashMap::new();
+                for (key_254, value_255) in mapping_253.iter() {
+                    let enum_value_258: String = key_254.extract()?;
+                    let converted_key_256 =
                         aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
-                            enum_value_297.as_str(),
+                            enum_value_258.as_str(),
                         );
-                    let converted_value_296 = message_system_attribute_value_from_py(&value_294)?;
-                    converted_291.insert(converted_key_295, converted_value_296);
+                    let converted_value_257 = message_system_attribute_value_from_py(&value_255)?;
+                    converted_252.insert(converted_key_256, converted_value_257);
                 }
-                Some(converted_291)
+                Some(converted_252)
             } else {
                 None
             };
         let message_deduplication_id_value =
             if let Some(value) = dict_value(params, "message_deduplication_id")? {
-                let converted_298: String = value.extract()?;
-                Some(converted_298)
+                let converted_259: String = value.extract()?;
+                Some(converted_259)
             } else {
                 None
             };
         let message_group_id_value = if let Some(value) = dict_value(params, "message_group_id")? {
-            let converted_299: String = value.extract()?;
-            Some(converted_299)
+            let converted_260: String = value.extract()?;
+            Some(converted_260)
         } else {
             None
         };
@@ -1677,40 +2608,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendMessage")))?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.md5_of_message_body {
-                    let converted_300 = value.as_str().into_py_any(py)?;
-                    result.set_item("md5_of_message_body", converted_300)?;
-                } else {
-                    result.set_item("md5_of_message_body", py.None())?;
-                }
-                if let Some(value) = &output.md5_of_message_attributes {
-                    let converted_301 = value.as_str().into_py_any(py)?;
-                    result.set_item("md5_of_message_attributes", converted_301)?;
-                } else {
-                    result.set_item("md5_of_message_attributes", py.None())?;
-                }
-                if let Some(value) = &output.md5_of_message_system_attributes {
-                    let converted_302 = value.as_str().into_py_any(py)?;
-                    result.set_item("md5_of_message_system_attributes", converted_302)?;
-                } else {
-                    result.set_item("md5_of_message_system_attributes", py.None())?;
-                }
-                if let Some(value) = &output.message_id {
-                    let converted_303 = value.as_str().into_py_any(py)?;
-                    result.set_item("message_id", converted_303)?;
-                } else {
-                    result.set_item("message_id", py.None())?;
-                }
-                if let Some(value) = &output.sequence_number {
-                    let converted_304 = value.as_str().into_py_any(py)?;
-                    result.set_item("sequence_number", converted_304)?;
-                } else {
-                    result.set_item("sequence_number", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PySendMessageResult { inner: output }))
         })
     }
 
@@ -1722,19 +2620,19 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_305: String = value.extract()?;
-            Some(converted_305)
+            let converted_261: String = value.extract()?;
+            Some(converted_261)
         } else {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_306 = Vec::new();
-            for item_result_307 in value.try_iter()? {
-                let item_308 = item_result_307?;
-                let converted_item_309 = send_message_batch_request_entry_from_py(&item_308)?;
-                converted_306.push(converted_item_309);
+            let mut converted_262 = Vec::new();
+            for item_result_263 in value.try_iter()? {
+                let item_264 = item_result_263?;
+                let converted_item_265 = send_message_batch_request_entry_from_py(&item_264)?;
+                converted_262.push(converted_item_265);
             }
-            Some(converted_306)
+            Some(converted_262)
         } else {
             None
         };
@@ -1748,24 +2646,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendMessageBatch"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                let converted_310_list = PyList::empty(py);
-                for item_311 in &output.successful {
-                    let converted_item_312 = send_message_batch_result_entry_to_py(py, item_311)?;
-                    converted_310_list.append(converted_item_312)?;
-                }
-                let converted_310 = converted_310_list.into_any().unbind();
-                result.set_item("successful", converted_310)?;
-                let converted_313_list = PyList::empty(py);
-                for item_314 in &output.failed {
-                    let converted_item_315 = batch_result_error_entry_to_py(py, item_314)?;
-                    converted_313_list.append(converted_item_315)?;
-                }
-                let converted_313 = converted_313_list.into_any().unbind();
-                result.set_item("failed", converted_313)?;
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PySendMessageBatchResult { inner: output }))
         })
     }
 
@@ -1777,22 +2658,22 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_316: String = value.extract()?;
-            Some(converted_316)
+            let converted_266: String = value.extract()?;
+            Some(converted_266)
         } else {
             None
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mapping_318 = value.cast::<PyDict>()?;
-            let mut converted_317 = HashMap::new();
-            for (key_319, value_320) in mapping_318.iter() {
-                let enum_value_323: String = key_319.extract()?;
-                let converted_key_321 =
-                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_323.as_str());
-                let converted_value_322: String = value_320.extract()?;
-                converted_317.insert(converted_key_321, converted_value_322);
+            let mapping_268 = value.cast::<PyDict>()?;
+            let mut converted_267 = HashMap::new();
+            for (key_269, value_270) in mapping_268.iter() {
+                let enum_value_273: String = key_269.extract()?;
+                let converted_key_271 =
+                    aws_sdk_sqs::types::QueueAttributeName::from(enum_value_273.as_str());
+                let converted_value_272: String = value_270.extract()?;
+                converted_267.insert(converted_key_271, converted_value_272);
             }
-            Some(converted_317)
+            Some(converted_267)
         } else {
             None
         };
@@ -1818,21 +2699,21 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_arn_value = if let Some(value) = dict_value(params, "source_arn")? {
-            let converted_324: String = value.extract()?;
-            Some(converted_324)
+            let converted_274: String = value.extract()?;
+            Some(converted_274)
         } else {
             None
         };
         let destination_arn_value = if let Some(value) = dict_value(params, "destination_arn")? {
-            let converted_325: String = value.extract()?;
-            Some(converted_325)
+            let converted_275: String = value.extract()?;
+            Some(converted_275)
         } else {
             None
         };
         let max_number_of_messages_per_second_value =
             if let Some(value) = dict_value(params, "max_number_of_messages_per_second")? {
-                let converted_326: i32 = value.extract()?;
-                Some(converted_326)
+                let converted_276: i32 = value.extract()?;
+                Some(converted_276)
             } else {
                 None
             };
@@ -1847,16 +2728,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMessageMoveTask"))
             })?;
-            Python::attach(|py| {
-                let result = PyDict::new(py);
-                if let Some(value) = &output.task_handle {
-                    let converted_327 = value.as_str().into_py_any(py)?;
-                    result.set_item("task_handle", converted_327)?;
-                } else {
-                    result.set_item("task_handle", py.None())?;
-                }
-                Ok(result.into_any().unbind())
-            })
+            Python::attach(|py| Py::new(py, PyStartMessageMoveTaskResult { inner: output }))
         })
     }
 
@@ -1868,20 +2740,20 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_328: String = value.extract()?;
-            Some(converted_328)
+            let converted_277: String = value.extract()?;
+            Some(converted_277)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mapping_330 = value.cast::<PyDict>()?;
-            let mut converted_329 = HashMap::new();
-            for (key_331, value_332) in mapping_330.iter() {
-                let converted_key_333: String = key_331.extract()?;
-                let converted_value_334: String = value_332.extract()?;
-                converted_329.insert(converted_key_333, converted_value_334);
+            let mapping_279 = value.cast::<PyDict>()?;
+            let mut converted_278 = HashMap::new();
+            for (key_280, value_281) in mapping_279.iter() {
+                let converted_key_282: String = key_280.extract()?;
+                let converted_value_283: String = value_281.extract()?;
+                converted_278.insert(converted_key_282, converted_value_283);
             }
-            Some(converted_329)
+            Some(converted_278)
         } else {
             None
         };
@@ -1908,19 +2780,19 @@ impl SQSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queue_url_value = if let Some(value) = dict_value(params, "queue_url")? {
-            let converted_335: String = value.extract()?;
-            Some(converted_335)
+            let converted_284: String = value.extract()?;
+            Some(converted_284)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_336 = Vec::new();
-            for item_result_337 in value.try_iter()? {
-                let item_338 = item_result_337?;
-                let converted_item_339: String = item_338.extract()?;
-                converted_336.push(converted_item_339);
+            let mut converted_285 = Vec::new();
+            for item_result_286 in value.try_iter()? {
+                let item_287 = item_result_286?;
+                let converted_item_288: String = item_287.extract()?;
+                converted_285.push(converted_item_288);
             }
-            Some(converted_336)
+            Some(converted_285)
         } else {
             None
         };
