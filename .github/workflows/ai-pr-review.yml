@@ -1,0 +1,20 @@
+name: Aceiro review
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions: {}
+
+jobs:
+  review:
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    uses: svozza/aceiro/.github/workflows/ai-pr-review.yml@0eb9a49f036d5eb3df86f6c5348e7aafa3a1cfb1
+    with:
+      project-description: "ferrumio/rboto, Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust."
+      use-bedrock-api-key: true
+    secrets:
+      BEDROCK_API_KEY: ${{ secrets.BEDROCK_API_KEY }}

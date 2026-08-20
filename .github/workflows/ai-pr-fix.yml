@@ -1,0 +1,24 @@
+name: Aceiro fix
+
+on:
+    issue_comment:
+        types: [created]
+
+permissions: {}
+
+jobs:
+    fix:
+        if: >-
+            github.event.issue.pull_request
+            && contains(github.event.comment.body, '/fix ')
+        permissions:
+            contents: write
+            pull-requests: write
+            id-token: write
+            actions: read
+        uses: svozza/aceiro/.github/workflows/ai-pr-fix.yml@0eb9a49f036d5eb3df86f6c5348e7aafa3a1cfb1
+        with:
+            project-description: "ferrumio/rboto, Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust."
+            use-bedrock-api-key: true
+        secrets:
+            BEDROCK_API_KEY: ${{ secrets.BEDROCK_API_KEY }}
