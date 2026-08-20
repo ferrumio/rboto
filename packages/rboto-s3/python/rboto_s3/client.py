@@ -3029,4 +3029,3 @@ class S3Client:
             params["bucket_key_enabled"] = bucket_key_enabled
         await self._native.write_get_object_response(params)
         return None
-

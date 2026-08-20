@@ -32,3 +32,17 @@ def test_sqs_proves_the_same_pipeline_accepts_another_service() -> None:
     assert not report.mismatched
     assert not report.smithy_only_operations
     assert not report.rust_only_operations
+
+
+def test_sns_model_and_crate_expose_the_same_operations() -> None:
+    descriptor = get_service("sns")
+    service = load_model(MODEL_DIR / "sns.json", descriptor)
+    crate = parse_crate(descriptor)
+    report = align(service, crate)
+
+    assert len(service.operations) == 42
+    assert len(report.aligned) == 42
+    assert crate.operations["get_sms_attributes"].output_type == "GetSmsAttributesOutput"
+    assert not report.mismatched
+    assert not report.smithy_only_operations
+    assert not report.rust_only_operations

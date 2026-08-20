@@ -3,7 +3,7 @@
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
 !!! info "Early development"
-    rboto is currently an experimental project. S3, SQS, and DynamoDB are available
+    rboto is currently an experimental project. S3, SNS, SQS, and DynamoDB are available
     as independently installable clients.
 
 ## Why rboto?
@@ -32,6 +32,11 @@ rboto supports CPython 3.12, 3.13, and 3.14 on Linux and macOS.
 === "SQS"
     ```bash
     pip install "rboto[sqs]"
+    ```
+
+=== "SNS"
+    ```bash
+    pip install "rboto[sns]"
     ```
 
 === "DynamoDB"
@@ -98,4 +103,4 @@ The Python and Rust adapters are generated from release-matched Smithy models an
 SDK crates. Generated sources are checked into the repository, reviewed through pull
 requests, and compiled without downloading models during wheel builds.
 
-Continue to [Clients](clients.md) for S3, SQS, and DynamoDB examples.
+Continue to [Clients](clients.md) for S3, SNS, SQS, and DynamoDB examples.

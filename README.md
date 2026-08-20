@@ -9,7 +9,7 @@
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
 > **Early development:** rboto is experimental and its API may change before 1.0. S3,
-> SQS, and DynamoDB are available as independently installable clients.
+> SNS, SQS, and DynamoDB are available as independently installable clients.
 
 ## Why rboto?
 
@@ -32,6 +32,7 @@ approach:
 | Service | Operations | Package | Highlights |
 |---------|-----------:|---------|------------|
 | Amazon S3 | 106 | `rboto-s3` | Streaming bodies, multipart operations, event streams |
+| Amazon SNS | 42 | `rboto-sns` | Topics, publishing, subscriptions, mobile push, and SMS |
 | Amazon SQS | 23 | `rboto-sqs` | Messages, batches, queues, tags, and permissions |
 | Amazon DynamoDB | 57 | `rboto-dynamodb` | Items, queries, batches, transactions, and streams |
 
@@ -46,6 +47,7 @@ Install one service:
 
 ```bash
 pip install "rboto[s3]"
+pip install "rboto[sns]"
 pip install "rboto[sqs]"
 pip install "rboto[dynamodb]"
 ```
@@ -221,6 +223,7 @@ python3 -m venv .venv
 .venv/bin/pip install -e codegen -e packages/rboto
 
 (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
+(cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)
 (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)
 (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --locked)
 

@@ -24,7 +24,7 @@ jobs:
         ports:
           - 4566:4566
         env:
-          SERVICES: s3,sqs,dynamodb
+          SERVICES: s3,sns,sqs,dynamodb
         options: >-
           --health-cmd "curl -f http://localhost:4566/_localstack/health"
           --health-interval 5s
@@ -49,18 +49,20 @@ jobs:
           .venv/bin/pip install maturin pytest pytest-asyncio
           .venv/bin/pip install -e packages/rboto
           (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
+          (cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)
           (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)
           (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --locked)
 
       - name: Run Python client and bridge tests
         run: >-
           .venv/bin/pytest
-          packages/rboto/tests packages/rboto-s3/tests
+          packages/rboto/tests packages/rboto-s3/tests packages/rboto-sns/tests
           packages/rboto-sqs/tests packages/rboto-dynamodb/tests
           tests/integration -q
 
       - name: Run examples against LocalStack
         run: |
           .venv/bin/python examples/s3.py
+          .venv/bin/python examples/sns.py
           .venv/bin/python examples/sqs.py
           .venv/bin/python examples/dynamodb.py

@@ -28,6 +28,7 @@ jobs:
           .venv/bin/pip install maturin pytest pytest-codspeed pytest-benchmark
           .venv/bin/pip install -e packages/rboto
           (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
+          (cd packages/rboto-sns && ../../.venv/bin/maturin develop --release --locked)
           (cd packages/rboto-sqs && ../../.venv/bin/maturin develop --release --locked)
           (cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --release --locked)
       - uses: CodSpeedHQ/action@4296e51e7041e24dadb86d1d6e8b9320d223dbe8 # v5.0.3

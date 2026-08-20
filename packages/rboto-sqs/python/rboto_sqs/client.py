@@ -403,4 +403,3 @@ class SQSClient:
         }
         await self._native.untag_queue(params)
         return None
-

@@ -13,6 +13,7 @@ Reserve and configure Trusted Publishers for every PyPI project:
 
 - `rboto`
 - `rboto-s3`
+- `rboto-sns`
 - `rboto-sqs`
 - `rboto-dynamodb`
 

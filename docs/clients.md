@@ -113,6 +113,39 @@ for message in received.messages or []:
 
 The SQS client exposes all 23 operations from its pinned Smithy model and Rust crate.
 
+## Amazon SNS
+
+```bash
+pip install "rboto[sns]"
+```
+
+```python
+from rboto import sns
+
+client = sns(region="us-east-1")
+```
+
+### Create a topic and publish
+
+```python
+created = await client.create_topic(
+    name="events",
+    tags=[{"key": "application", "value": "example"}],
+)
+if created.topic_arn is None:
+    raise RuntimeError("SNS did not return a topic ARN")
+
+published = await client.publish(
+    topic_arn=created.topic_arn,
+    subject="New event",
+    message="hello from rboto",
+)
+print(published.message_id)
+```
+
+SNS responses and nested topic, subscription, endpoint, and tag structures are immutable
+native PyO3 objects. The SNS client exposes all 42 operations from its pinned model.
+
 ## Amazon DynamoDB
 
 ```bash

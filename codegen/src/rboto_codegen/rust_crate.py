@@ -20,6 +20,7 @@ class RustOperation:
     name: str
     input_fields: tuple[RustField, ...]
     output_fields: tuple[RustField, ...]
+    output_type: str | None
 
 
 @dataclass(frozen=True, slots=True)
@@ -105,6 +106,13 @@ def parse_fields(path: Path) -> tuple[RustField, ...]:
     return tuple(fields)
 
 
+def parse_struct_name(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    match = re.search(r"pub struct (\w+)\s*\{", path.read_text())
+    return match.group(1) if match is not None else None
+
+
 def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
     path = find_crate(descriptor)
     operations: dict[str, RustOperation] = {}
@@ -114,9 +122,15 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
             continue
         name = candidate.name
         input_fields = parse_fields(candidate / f"_{name}_input.rs")
-        output_fields = parse_fields(candidate / f"_{name}_output.rs")
+        output_path = candidate / f"_{name}_output.rs"
+        output_fields = parse_fields(output_path)
         if input_fields or output_fields:
-            operations[name] = RustOperation(name, input_fields, output_fields)
+            operations[name] = RustOperation(
+                name,
+                input_fields,
+                output_fields,
+                parse_struct_name(output_path),
+            )
 
     types: dict[str, RustType] = {}
     for path_entry in sorted((path / "src" / "types").iterdir()):

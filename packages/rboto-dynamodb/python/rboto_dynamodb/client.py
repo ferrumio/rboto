@@ -1302,4 +1302,3 @@ class DynamoDBClient:
         }
         result = await self._native.update_time_to_live(params)
         return result
-

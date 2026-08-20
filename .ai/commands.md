@@ -12,7 +12,7 @@ Run commands from the repository root unless a working directory is shown.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
-.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-s3/python packages/rboto-sqs/python packages/rboto-dynamodb/python tests/typecheck examples
+.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-s3/python packages/rboto-sns/python packages/rboto-sqs/python packages/rboto-dynamodb/python tests/typecheck examples
 .venv/bin/pyright
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
 ```
@@ -49,7 +49,7 @@ export AWS_ENDPOINT_URL=http://localhost:4566
 Run:
 
 ```bash
-.venv/bin/pytest tests/integration packages/rboto-s3/tests packages/rboto-sqs/tests packages/rboto-dynamodb/tests packages/rboto/tests -q
+.venv/bin/pytest tests/integration packages/rboto-s3/tests packages/rboto-sns/tests packages/rboto-sqs/tests packages/rboto-dynamodb/tests packages/rboto/tests -q
 ```
 
 ## Documentation
