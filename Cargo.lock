@@ -169,6 +169,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-sns"
+version = "1.93.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9131036b60a04dcd9e5a665f464f47058a57b5d3f48f45fa79ce52fd6722939f"
+dependencies = [
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-query",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "aws-smithy-xml",
+ "aws-types",
+ "fastrand",
+ "http 0.2.12",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-sqs"
 version = "1.92.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1674,6 +1698,21 @@ version = "0.1.0"
 dependencies = [
  "aws-config",
  "aws-sdk-s3",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-sns-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-sns",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",

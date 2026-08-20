@@ -13,7 +13,7 @@ installation, compilation, and release artifacts unnecessarily large.
 ## Decision
 
 Each AWS service is distributed as an independent native wheel, such as `rboto-s3`,
-`rboto-sqs`, and `rboto-dynamodb`. The pure-Python `rboto` package provides the shared
+`rboto-sns`, `rboto-sqs`, and `rboto-dynamodb`. The pure-Python `rboto` package provides the shared
 session API, exceptions, optional dependencies, and convenient service factories.
 
 The Cargo workspace may share a small `rboto-core` crate, but service adapters must not
@@ -37,6 +37,7 @@ depend on one another.
 
 - `packages/rboto/`
 - `packages/rboto-s3/`
+- `packages/rboto-sns/`
 - `packages/rboto-sqs/`
 - `packages/rboto-dynamodb/`
 - `crates/rboto-core/`

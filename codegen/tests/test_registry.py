@@ -8,6 +8,7 @@ def test_service_configs_are_discovered() -> None:
     assert [service.service_id for service in list_services()] == [
         "dynamodb",
         "s3",
+        "sns",
         "sqs",
     ]
 

@@ -8,6 +8,7 @@ from .session import Session
 if TYPE_CHECKING:
     from rboto_dynamodb import DynamoDBClient
     from rboto_s3 import S3Client
+    from rboto_sns import SNSClient
     from rboto_sqs import SQSClient
 
 
@@ -66,6 +67,30 @@ def s3(
         session, region, profile, endpoint_url
     )
     return S3Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def sns(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SNSClient:
+    try:
+        from rboto_sns import SNSClient
+    except ImportError as error:
+        raise ImportError(
+            'sns support is not installed. Install it with: '
+            'pip install "rboto[sns]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SNSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,

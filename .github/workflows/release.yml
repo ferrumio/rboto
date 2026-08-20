@@ -167,7 +167,7 @@ jobs:
         run: |
           python -m venv .venv
           .venv/bin/pip install --no-index --find-links dist "rboto[all]==${{ needs.prepare.outputs.version }}"
-          .venv/bin/python -c "from rboto import s3, sqs, dynamodb; s3(); sqs(); dynamodb()"
+          .venv/bin/python -c "from rboto import dynamodb, s3, sns, sqs; dynamodb(); s3(); sns(); sqs()"
 
   publish-services:
     name: Publish service distributions

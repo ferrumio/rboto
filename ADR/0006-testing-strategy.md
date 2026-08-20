@@ -22,7 +22,7 @@ Testing is layered:
 4. Public examples run as independent LocalStack smoke tests.
 5. Strict typing, linting, Rust tests, Clippy, and formatting are required quality gates.
 
-The method-count contract is currently 106 S3, 23 SQS, and 57 DynamoDB operations.
+The method-count contract is currently 106 S3, 42 SNS, 23 SQS, and 57 DynamoDB operations.
 
 ## Consequences
 
@@ -42,5 +42,6 @@ The method-count contract is currently 106 S3, 23 SQS, and 57 DynamoDB operation
 - `codegen/tests/`
 - `tests/integration/test_generated_client_bridge.py`
 - `tests/integration/test_s3_client_methods.py`
+- `tests/integration/test_sns_client_methods.py`
 - `tests/integration/test_sqs_client_methods.py`
 - `tests/integration/test_dynamodb_client_methods.py`

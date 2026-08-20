@@ -3,7 +3,7 @@
 ## Layers
 
 - Codegen tests prove model/crate alignment and configuration behavior.
-- `test_generated_client_bridge.py` proves all 186 Python/PyO3 methods and dispatch paths.
+- `test_generated_client_bridge.py` proves all 228 Python/PyO3 methods and dispatch paths.
 - Service method tests call LocalStack through the real Rust SDK.
 - Package tests cover factories and shared exception behavior.
 - Examples are independent smoke tests and must remain executable.

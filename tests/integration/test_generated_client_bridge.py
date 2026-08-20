@@ -6,11 +6,14 @@ from rboto_dynamodb import DynamoDBClient
 from rboto_dynamodb._native import DynamoDBClient as NativeDynamoDBClient
 from rboto_s3 import S3Client
 from rboto_s3._native import S3Client as NativeS3Client
+from rboto_sns import SNSClient
+from rboto_sns._native import SNSClient as NativeSNSClient
 from rboto_sqs import SQSClient
 from rboto_sqs._native import SQSClient as NativeSQSClient
 
 CLIENTS = (
     (S3Client, NativeS3Client, 106),
+    (SNSClient, NativeSNSClient, 42),
     (SQSClient, NativeSQSClient, 23),
     (DynamoDBClient, NativeDynamoDBClient, 57),
 )

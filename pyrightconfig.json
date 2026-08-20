@@ -3,6 +3,8 @@
     "packages/rboto/src",
     "packages/rboto-s3/python",
     "packages/rboto-s3/tests",
+    "packages/rboto-sns/python",
+    "packages/rboto-sns/tests",
     "packages/rboto-sqs/python",
     "packages/rboto-dynamodb/python",
     "codegen/src",
@@ -12,6 +14,7 @@
   "extraPaths": [
     "packages/rboto/src",
     "packages/rboto-s3/python",
+    "packages/rboto-sns/python",
     "packages/rboto-sqs/python",
     "packages/rboto-dynamodb/python",
     "codegen/src"

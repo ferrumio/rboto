@@ -1,11 +1,11 @@
 [build-system]
-requires = ["hatchling>=1.27"]
-build-backend = "hatchling.build"
+requires = ["maturin>=1.8,<2.0"]
+build-backend = "maturin"
 
 [project]
-name = "rboto"
+name = "rboto-sns"
 version = "0.1.0"
-description = "Async-only Python facade for rboto AWS service clients"
+description = "Async generated sns client for rboto, powered by the AWS SDK for Rust"
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
 authors = [
@@ -22,38 +22,16 @@ classifiers = [
     "Programming Language :: Rust",
     "Topic :: Software Development :: Libraries",
 ]
-keywords = ["aws", "sdk", "async", "rust", "python"]
+keywords = ["aws", "sns", "async", "rust", "python"]
+dependencies = ["rboto==0.1.0"]
 
 [project.urls]
 Documentation = "https://ferrumio.github.io/rboto"
 Repository = "https://github.com/ferrumio/rboto"
 Homepage = "https://github.com/ferrumio/rboto"
 
-[project.optional-dependencies]
-s3 = ["rboto-s3==0.1.0"]
-sns = ["rboto-sns==0.1.0"]
-sqs = ["rboto-sqs==0.1.0"]
-dynamodb = ["rboto-dynamodb==0.1.0"]
-all = [
-    "rboto-s3==0.1.0",
-    "rboto-sns==0.1.0",
-    "rboto-sqs==0.1.0",
-    "rboto-dynamodb==0.1.0",
-]
-
-[dependency-groups]
-test = [
-    "mypy>=1.15",
-    "pyright>=1.1.400",
-    "pytest>=8.3",
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/rboto"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-
-[tool.mypy]
-strict = true
-python_version = "3.12"
+[tool.maturin]
+manifest-path = "../../crates/rboto-sns/Cargo.toml"
+python-source = "python"
+module-name = "rboto_sns._native"
+features = ["pyo3/extension-module"]

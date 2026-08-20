@@ -474,6 +474,10 @@ class ServiceGenerator:
             if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
                 continue
             rust_operation = self.crate.operations[smithy.rust_name]
+            if rust_operation.output_type is None:
+                raise GenerationError(
+                    f"missing Rust output type for operation {smithy.rust_name}"
+                )
             if any(
                 self._kind(field.rust_type) == "event_receiver"
                 for field in rust_operation.output_fields
@@ -492,7 +496,7 @@ class ServiceGenerator:
                     "rust_class": f"Py{class_name}",
                     "rust_type": (
                         f"{self.rust_module}::operation::{smithy.rust_name}::"
-                        f"{smithy.name}Output"
+                        f"{rust_operation.output_type}"
                     ),
                 }
             )
@@ -1258,12 +1262,17 @@ class ServiceGenerator:
                     for token in re.findall(r"\b[A-Za-z_]\w*\b", annotation)
                     if token not in ignored
                 )
-        return self.templates.get_template("client.py.j2").render(
-            methods=methods,
-            type_names=sorted(type_names),
-            native_output_names=sorted(native_output_names),
-            native_outputs=self.descriptor.native_outputs,
-            client_class=self.descriptor.client_class,
+        return (
+            self.templates.get_template("client.py.j2")
+            .render(
+                methods=methods,
+                type_names=sorted(type_names),
+                native_output_names=sorted(native_output_names),
+                native_outputs=self.descriptor.native_outputs,
+                client_class=self.descriptor.client_class,
+            )
+            .rstrip()
+            + "\n"
         )
 
     def _render_native_stub(self) -> str:
@@ -1275,13 +1284,18 @@ class ServiceGenerator:
                 if method["output"] != "None" and not method["native_output"]
             }
         )
-        return self.templates.get_template("native.pyi.j2").render(
-            methods=methods,
-            client_class=self.descriptor.client_class,
-            event_streams=self._event_streams(),
-            native_classes=self._native_stub_classes(),
-            native_outputs=self.descriptor.native_outputs,
-            fallback_types=fallback_types,
+        return (
+            self.templates.get_template("native.pyi.j2")
+            .render(
+                methods=methods,
+                client_class=self.descriptor.client_class,
+                event_streams=self._event_streams(),
+                native_classes=self._native_stub_classes(),
+                native_outputs=self.descriptor.native_outputs,
+                fallback_types=fallback_types,
+            )
+            .rstrip()
+            + "\n"
         )
 
     def _render_exceptions(self) -> str:

@@ -1,0 +1,33 @@
+[package]
+name = "rboto-sns-native"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+keywords.workspace = true
+categories.workspace = true
+rust-version.workspace = true
+publish = false
+
+[lib]
+name = "_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+aws-config.workspace = true
+aws-sdk-sns = "=1.93.0"
+aws-smithy-async.workspace = true
+aws-smithy-runtime-api.workspace = true
+aws-smithy-types.workspace = true
+pyo3.workspace = true
+pyo3-async-runtimes.workspace = true
+rboto-core = { path = "../rboto-core" }
+tokio.workspace = true
+
+[package.metadata.maturin]
+python-source = "../../packages/rboto-sns/python"
+module-name = "rboto_sns._native"
