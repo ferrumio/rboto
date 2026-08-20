@@ -12,7 +12,7 @@ jobs:
       contents: read
       pull-requests: write
       id-token: write
-    uses: svozza/aceiro/.github/workflows/ai-pr-review.yml@bcb11084a005e3e1db9587a3a32eb2a857825b02
+    uses: svozza/aceiro/.github/workflows/ai-pr-review.yml@0eb9a49f036d5eb3df86f6c5348e7aafa3a1cfb1
     with:
       project-description: "ferrumio/rboto, Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust."
       use-bedrock-api-key: true
