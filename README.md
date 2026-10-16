@@ -4,7 +4,7 @@
 [![Integration](https://github.com/ferrumio/rboto/actions/workflows/integration.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/integration.yml)
 [![Documentation](https://github.com/ferrumio/rboto/actions/workflows/docs.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/docs.yml)
 [![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13%20%7C%203.14-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-Apache--2.0-green)](#license)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
