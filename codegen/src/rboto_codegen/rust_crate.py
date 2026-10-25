@@ -31,6 +31,7 @@ class RustType:
     union: bool
     build_fallible: bool
     is_struct: bool
+    variant_types: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -47,9 +48,7 @@ def find_crate(descriptor: ServiceDescriptor) -> Path:
         candidate = index / expected
         if candidate.is_dir():
             return candidate
-    raise FileNotFoundError(
-        f"{expected} is not available in the Cargo registry; run cargo fetch"
-    )
+    raise FileNotFoundError(f"{expected} is not available in the Cargo registry; run cargo fetch")
 
 
 def _join_field_lines(body: str) -> tuple[str, ...]:
@@ -124,7 +123,7 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
         input_fields = parse_fields(candidate / f"_{name}_input.rs")
         output_path = candidate / f"_{name}_output.rs"
         output_fields = parse_fields(output_path)
-        if input_fields or output_fields:
+        if output_path.exists():
             operations[name] = RustOperation(
                 name,
                 input_fields,
@@ -159,6 +158,7 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
         if enum_match is None:
             continue
         variants: list[str] = []
+        variant_types: list[tuple[str, str]] = []
         union = False
         for line in enum_match.group(2).splitlines():
             variant = re.match(r"\s*(\w+)(?:\((.+)\))?\s*,?", line)
@@ -167,7 +167,8 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
             variants.append(variant.group(1))
             if variant.group(2) is not None and variant.group(1) != "Unknown":
                 union = True
+                variant_types.append((variant.group(1), variant.group(2)))
         name = enum_match.group(1)
-        types[name] = RustType(name, (), tuple(variants), union, False, False)
+        types[name] = RustType(name, (), tuple(variants), union, False, False, tuple(variant_types))
 
     return RustCrate(path=path, operations=operations, types=types)

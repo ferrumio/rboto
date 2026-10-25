@@ -12,7 +12,7 @@ Run commands from the repository root unless a working directory is shown.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
-.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-s3/python packages/rboto-sns/python packages/rboto-sqs/python packages/rboto-dynamodb/python tests/typecheck examples
+.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples
 .venv/bin/pyright
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
 ```

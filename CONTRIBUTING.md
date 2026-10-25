@@ -47,10 +47,9 @@ python3 -m venv .venv
 Build the native extensions in editable mode, one per service:
 
 ```bash
-(cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --locked)
+for package in packages/rboto-*; do
+  (cd "$package" && ../../.venv/bin/maturin develop --locked) || exit 1
+done
 ```
 
 ## Making a change
@@ -80,8 +79,9 @@ package, tests, examples, and docs. Changes there follow the normal review proce
 ### Adding a new AWS service
 
 Add a service TOML with the pinned model and crate version, run `fetch-model` and
-`generate`, add the service to the facade, CI, and release workflows, and add
-representative LocalStack tests. See ADR-0001 and ADR-0006.
+`generate --all`, and add representative protocol or LocalStack tests. The facade,
+package extras, compiled contracts, CI wheel jobs, and release matrix follow the service
+registry. See ADR-0001, ADR-0006, and ADR-0009.
 
 ## Required checks
 
@@ -91,7 +91,7 @@ Python and codegen:
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
-.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-s3/python packages/rboto-sns/python packages/rboto-sqs/python packages/rboto-dynamodb/python tests/typecheck examples
+.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples
 .venv/bin/pyright
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
 ```

@@ -30,15 +30,59 @@ Repository = "https://github.com/ferrumio/rboto"
 Homepage = "https://github.com/ferrumio/rboto"
 
 [project.optional-dependencies]
+api-gateway = ["rboto-api-gateway==0.1.0"]
+bedrock = ["rboto-bedrock==0.1.0"]
+bedrock-agent = ["rboto-bedrock-agent==0.1.0"]
+bedrock-agent-runtime = ["rboto-bedrock-agent-runtime==0.1.0"]
+bedrock-agentcore = ["rboto-bedrock-agentcore==0.1.0"]
+bedrock-agentcore-control = ["rboto-bedrock-agentcore-control==0.1.0"]
+bedrock-data-automation = ["rboto-bedrock-data-automation==0.1.0"]
+bedrock-data-automation-runtime = ["rboto-bedrock-data-automation-runtime==0.1.0"]
+bedrock-runtime = ["rboto-bedrock-runtime==0.1.0"]
+cloudtrail = ["rboto-cloudtrail==0.1.0"]
+cognito-identity = ["rboto-cognito-identity==0.1.0"]
+connecthealth = ["rboto-connecthealth==0.1.0"]
+dynamodb = ["rboto-dynamodb==0.1.0"]
+guardduty = ["rboto-guardduty==0.1.0"]
+lambda = ["rboto-lambda==0.1.0"]
+lex-runtime-v2 = ["rboto-lex-runtime-v2==0.1.0"]
+polly = ["rboto-polly==0.1.0"]
+qbusiness = ["rboto-qbusiness==0.1.0"]
 s3 = ["rboto-s3==0.1.0"]
+sagemaker-runtime-http2 = ["rboto-sagemaker-runtime-http2==0.1.0"]
+secrets-manager = ["rboto-secrets-manager==0.1.0"]
+signin = ["rboto-signin==0.1.0"]
 sns = ["rboto-sns==0.1.0"]
 sqs = ["rboto-sqs==0.1.0"]
-dynamodb = ["rboto-dynamodb==0.1.0"]
+sts = ["rboto-sts==0.1.0"]
+transcribe-streaming = ["rboto-transcribe-streaming==0.1.0"]
 all = [
+    "rboto-api-gateway==0.1.0",
+    "rboto-bedrock==0.1.0",
+    "rboto-bedrock-agent==0.1.0",
+    "rboto-bedrock-agent-runtime==0.1.0",
+    "rboto-bedrock-agentcore==0.1.0",
+    "rboto-bedrock-agentcore-control==0.1.0",
+    "rboto-bedrock-data-automation==0.1.0",
+    "rboto-bedrock-data-automation-runtime==0.1.0",
+    "rboto-bedrock-runtime==0.1.0",
+    "rboto-cloudtrail==0.1.0",
+    "rboto-cognito-identity==0.1.0",
+    "rboto-connecthealth==0.1.0",
+    "rboto-dynamodb==0.1.0",
+    "rboto-guardduty==0.1.0",
+    "rboto-lambda==0.1.0",
+    "rboto-lex-runtime-v2==0.1.0",
+    "rboto-polly==0.1.0",
+    "rboto-qbusiness==0.1.0",
     "rboto-s3==0.1.0",
+    "rboto-sagemaker-runtime-http2==0.1.0",
+    "rboto-secrets-manager==0.1.0",
+    "rboto-signin==0.1.0",
     "rboto-sns==0.1.0",
     "rboto-sqs==0.1.0",
-    "rboto-dynamodb==0.1.0",
+    "rboto-sts==0.1.0",
+    "rboto-transcribe-streaming==0.1.0",
 ]
 
 [dependency-groups]

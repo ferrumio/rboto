@@ -8,8 +8,8 @@
 
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
-> **Early development:** rboto is experimental and its API may change before 1.0. S3,
-> SNS, SQS, and DynamoDB are available as independently installable clients.
+> **Early development:** rboto is experimental and its API may change before 1.0.
+> 26 AWS service clients are available as independently installable packages.
 
 ## Why rboto?
 
@@ -29,15 +29,40 @@ approach:
 
 ## Supported services
 
-| Service | Operations | Package | Highlights |
-|---------|-----------:|---------|------------|
-| Amazon S3 | 106 | `rboto-s3` | Streaming bodies, multipart operations, event streams |
-| Amazon SNS | 42 | `rboto-sns` | Topics, publishing, subscriptions, mobile push, and SMS |
-| Amazon SQS | 23 | `rboto-sqs` | Messages, batches, queues, tags, and permissions |
-| Amazon DynamoDB | 57 | `rboto-dynamodb` | Items, queries, batches, transactions, and streams |
+The catalog covers all 25 service clients in the AWS SDK for Python repository at
+revision `ba64dd7377013450e12c211149952910f40000f2`, plus S3: **1,309 operations**.
 
-The public Python API and PyO3 bridge are generated from release-matched Smithy models and
-pinned AWS Rust SDK crates.
+| Service / extra | Factory | Operations |
+|---|---|---:|
+| `api-gateway` | `api_gateway()` | 124 |
+| `bedrock` | `bedrock()` | 108 |
+| `bedrock-agent` | `bedrock_agent()` | 86 |
+| `bedrock-agent-runtime` | `bedrock_agent_runtime()` | 35 |
+| `bedrock-agentcore` | `bedrock_agentcore()` | 67 |
+| `bedrock-agentcore-control` | `bedrock_agentcore_control()` | 171 |
+| `bedrock-data-automation` | `bedrock_data_automation()` | 27 |
+| `bedrock-data-automation-runtime` | `bedrock_data_automation_runtime()` | 6 |
+| `bedrock-runtime` | `bedrock_runtime()` | 11 |
+| `cloudtrail` | `cloudtrail()` | 60 |
+| `cognito-identity` | `cognito_identity()` | 23 |
+| `connecthealth` | `connecthealth()` | 16 |
+| `dynamodb` | `dynamodb()` | 58 |
+| `guardduty` | `guardduty()` | 102 |
+| `lambda` | `lambda_()` | 88 |
+| `lex-runtime-v2` | `lex_runtime_v2()` | 6 |
+| `polly` | `polly()` | 10 |
+| `qbusiness` | `qbusiness()` | 83 |
+| `s3` | `s3()` | 112 |
+| `sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | 1 |
+| `secrets-manager` | `secrets_manager()` | 23 |
+| `signin` | `signin()` | 11 |
+| `sns` | `sns()` | 42 |
+| `sqs` | `sqs()` | 23 |
+| `sts` | `sts()` | 11 |
+| `transcribe-streaming` | `transcribe_streaming()` | 5 |
+
+Each service is packaged as `rboto-<service>`. The public Python API and PyO3 bridge
+are generated from release-matched Smithy models and pinned AWS Rust SDK crates.
 
 ## Installation
 
@@ -50,6 +75,7 @@ pip install "rboto[s3]"
 pip install "rboto[sns]"
 pip install "rboto[sqs]"
 pip install "rboto[dynamodb]"
+pip install "rboto[bedrock-runtime,secrets-manager,sts]"
 ```
 
 Or install every available client:
@@ -212,22 +238,26 @@ patterns, and run the required Python, Rust, bridge, and LocalStack checks.
 
 ## Building from source
 
-Requirements: Python 3.12+, Rust, and a C compiler supported by PyO3.
+Requirements: Python 3.12+, Rust 1.94.1+ with rustfmt, and a C compiler supported by PyO3.
 
 ```bash
 git clone https://github.com/ferrumio/rboto.git
 cd rboto
 
 python3 -m venv .venv
-.venv/bin/pip install maturin pytest mypy pyright ruff
+source .venv/bin/activate
+.venv/bin/pip install maturin pytest pytest-asyncio mypy pyright ruff
 .venv/bin/pip install -e codegen -e packages/rboto
 
-(cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-sqs && ../../.venv/bin/maturin develop --locked)
-(cd packages/rboto-dynamodb && ../../.venv/bin/maturin develop --locked)
+cargo fetch --locked
+.venv/bin/rboto-codegen fetch-model --all
+for service in $(.venv/bin/rboto-codegen list); do
+    (cd "packages/rboto-$service" && ../../.venv/bin/maturin develop --locked)
+done
 
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
+.venv/bin/pytest tests/integration/test_generated_client_bridge.py \
+    tests/integration/test_new_client_protocols.py -q
 ```
 
 See [`.ai/commands.md`](.ai/commands.md) for the complete generation and verification

@@ -5,6 +5,8 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from ._native import ByteStream as ByteStream
 
+JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+
 MessageSystemAttributeName: TypeAlias = Literal['All', 'SenderId', 'SentTimestamp', 'ApproximateReceiveCount', 'ApproximateFirstReceiveTimestamp', 'SequenceNumber', 'MessageDeduplicationId', 'MessageGroupId', 'AWSTraceHeader', 'DeadLetterQueueSourceArn']
 MessageSystemAttributeNameForSends: TypeAlias = Literal['AWSTraceHeader']
 QueueAttributeName: TypeAlias = Literal['All', 'Policy', 'VisibilityTimeout', 'MaximumMessageSize', 'MessageRetentionPeriod', 'ApproximateNumberOfMessages', 'ApproximateNumberOfMessagesNotVisible', 'CreatedTimestamp', 'LastModifiedTimestamp', 'QueueArn', 'ApproximateNumberOfMessagesDelayed', 'DelaySeconds', 'ReceiveMessageWaitTimeSeconds', 'RedrivePolicy', 'FifoQueue', 'ContentBasedDeduplication', 'KmsMasterKeyId', 'KmsDataKeyReusePeriodSeconds', 'DeduplicationScope', 'FifoThroughputLimit', 'RedriveAllowPolicy', 'SqsManagedSseEnabled']

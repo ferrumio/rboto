@@ -33,6 +33,7 @@ class SmithyShape:
     enum_values: tuple[str, ...]
     streaming: bool
     error: bool
+    sparse: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -55,6 +56,8 @@ class SmithyService:
 
 
 def to_snake_case(name: str) -> str:
+    # Smithy/Rust treats plural acronyms (ARNs, IDs) as a single word.
+    name = re.sub(r"([A-Z]{2,})s(?=[A-Z]|$)", lambda m: m[1].title() + "s", name)
     first = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
     return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", first).lower()
 
@@ -114,7 +117,8 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
         traits = _traits(raw_shape.get("traits"))
         members: list[SmithyMember] = []
         for member_name, raw_member_value in _dict(
-            raw_shape.get("members", {}), f"{shape_id}.members"
+            raw_shape.get("members", {}) if kind not in {"enum", "intEnum"} else {},
+            f"{shape_id}.members",
         ).items():
             raw_member = _dict(raw_member_value, f"{shape_id}.{member_name}")
             member_traits = _traits(raw_member.get("traits"))
@@ -122,14 +126,10 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
                 SmithyMember(
                     name=member_name,
                     rust_name=to_snake_case(member_name),
-                    target=_string(
-                        raw_member.get("target"), f"{shape_id}.{member_name}.target"
-                    ),
+                    target=_string(raw_member.get("target"), f"{shape_id}.{member_name}.target"),
                     required="smithy.api#required" in member_traits,
                     streaming="smithy.api#streaming" in member_traits,
-                    documentation=str(
-                        member_traits.get("smithy.api#documentation", "")
-                    ),
+                    documentation=str(member_traits.get("smithy.api#documentation", "")),
                 )
             )
 
@@ -184,6 +184,7 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             enum_values=tuple(enum_values),
             streaming="smithy.api#streaming" in traits,
             error="smithy.api#error" in traits,
+            sparse="smithy.api#sparse" in traits,
         )
 
     service_entries = [shape for shape in shapes.values() if shape.kind == "service"]
@@ -191,14 +192,35 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
         raise ValueError(f"expected one service shape, found {len(service_entries)}")
     service_shape = service_entries[0]
     raw_service = _dict(raw_shapes[service_shape.shape_id], service_shape.shape_id)
-    raw_operations = raw_service.get("operations")
-    if not isinstance(raw_operations, list):
-        raise ValueError("service operations must be a list")
+    # Operations may be attached to nested resources rather than the service.
+    operation_ids: set[str] = set()
+    visited_resources: set[str] = set()
+
+    def reference(value: object) -> str:
+        return _string(_dict(value, "reference").get("target"), "reference target")
+
+    def collect(container: dict[str, object]) -> None:
+        for key in ("operations", "collectionOperations"):
+            values = container.get(key, [])
+            if not isinstance(values, list):
+                raise ValueError(f"{key} must be a list")
+            operation_ids.update(reference(value) for value in cast(list[object], values))
+        for key in ("create", "put", "read", "update", "delete", "list"):
+            if key in container:
+                operation_ids.add(reference(container[key]))
+        resources = container.get("resources", [])
+        if not isinstance(resources, list):
+            raise ValueError("resources must be a list")
+        for resource in cast(list[object], resources):
+            resource_id = reference(resource)
+            if resource_id not in visited_resources:
+                visited_resources.add(resource_id)
+                collect(_dict(raw_shapes.get(resource_id), resource_id))
+
+    collect(raw_service)
 
     operations: list[SmithyOperation] = []
-    for raw_reference_value in cast(list[object], raw_operations):
-        raw_reference = _dict(raw_reference_value, "service operation")
-        operation_id = _string(raw_reference.get("target"), "operation target")
+    for operation_id in sorted(operation_ids):
         raw_operation = _dict(raw_shapes.get(operation_id), operation_id)
         if raw_operation.get("type") != "operation":
             raise ValueError(f"{operation_id} is not an operation")
