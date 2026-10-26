@@ -12,7 +12,7 @@
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
 > **Early development:** rboto is experimental and its API may change before 1.0.
-> 31 AWS service clients are available as independently installable packages.
+> 34 AWS service clients are available as independently installable packages.
 
 ## Why rboto?
 
@@ -32,8 +32,9 @@ approach:
 
 ## Supported services
 
-The catalog provides **31 AWS service clients and 1,786 operations**, including
-CloudWatch Logs, Systems Manager, KMS, Step Functions, and SES v2.
+The catalog provides **34 AWS service clients and 1,865 operations**, including
+EventBridge, Scheduler, Pipes, CloudWatch Logs, Systems Manager, KMS, Step Functions,
+and SES v2.
 
 | Service / extra | Factory | Operations |
 |---|---|---:|
@@ -51,14 +52,17 @@ CloudWatch Logs, Systems Manager, KMS, Step Functions, and SES v2.
 | `cognito-identity` | `cognito_identity()` | 23 |
 | `connecthealth` | `connecthealth()` | 16 |
 | `dynamodb` | `dynamodb()` | 58 |
+| `eventbridge` | `eventbridge()` | 57 |
 | `guardduty` | `guardduty()` | 102 |
 | `kms` | `kms()` | 54 |
 | `lambda` | `lambda_()` | 88 |
 | `lex-runtime-v2` | `lex_runtime_v2()` | 6 |
+| `pipes` | `pipes()` | 10 |
 | `polly` | `polly()` | 10 |
 | `qbusiness` | `qbusiness()` | 83 |
 | `s3` | `s3()` | 112 |
 | `sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | 1 |
+| `scheduler` | `scheduler()` | 12 |
 | `secrets-manager` | `secrets_manager()` | 23 |
 | `sesv2` | `sesv2()` | 116 |
 | `sfn` | `sfn()` | 37 |
@@ -85,6 +89,7 @@ pip install "rboto[sqs]"
 pip install "rboto[dynamodb]"
 pip install "rboto[bedrock-runtime,secrets-manager,sts]"
 pip install "rboto[cloudwatch-logs,ssm,kms,sfn,sesv2]"
+pip install "rboto[eventbridge,scheduler,pipes]"
 ```
 
 Or install every available client:

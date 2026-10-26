@@ -138,7 +138,8 @@ fn add_keys_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AddKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_23 = Vec::new();
+        let mut converted_23 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_24 in value.try_iter()? {
             let item_25 = item_result_24?;
             let converted_item_26 = add_key_entry_from_py(&item_25)?;
@@ -176,7 +177,8 @@ fn aggregate_log_group_summary_from_py(
         builder = builder.set_log_group_count(Some(converted_30));
     }
     if let Some(value) = dict_value(values, "grouping_identifiers")? {
-        let mut converted_31 = Vec::new();
+        let mut converted_31 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_32 in value.try_iter()? {
             let item_33 = item_result_32?;
             let converted_item_34 = grouping_identifier_from_py(&item_33)?;
@@ -262,7 +264,7 @@ fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs:
     }
     if let Some(value) = dict_value(values, "histogram")? {
         let mapping_52 = value.cast::<PyDict>()?;
-        let mut converted_51 = HashMap::new();
+        let mut converted_51 = HashMap::with_capacity(mapping_52.len());
         for (key_53, value_54) in mapping_52.iter() {
             let converted_key_55: String = key_53.extract()?;
             let converted_value_56: i64 = value_54.extract()?;
@@ -271,7 +273,8 @@ fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs:
         builder = builder.set_histogram(Some(converted_51));
     }
     if let Some(value) = dict_value(values, "log_samples")? {
-        let mut converted_57 = Vec::new();
+        let mut converted_57 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_58 in value.try_iter()? {
             let item_59 = item_result_58?;
             let converted_item_60 = log_event_from_py(&item_59)?;
@@ -280,7 +283,8 @@ fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs:
         builder = builder.set_log_samples(Some(converted_57));
     }
     if let Some(value) = dict_value(values, "pattern_tokens")? {
-        let mut converted_61 = Vec::new();
+        let mut converted_61 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_62 in value.try_iter()? {
             let item_63 = item_result_62?;
             let converted_item_64 = pattern_token_from_py(&item_63)?;
@@ -289,7 +293,8 @@ fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs:
         builder = builder.set_pattern_tokens(Some(converted_61));
     }
     if let Some(value) = dict_value(values, "log_group_arn_list")? {
-        let mut converted_65 = Vec::new();
+        let mut converted_65 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_66 in value.try_iter()? {
             let item_67 = item_result_66?;
             let converted_item_68: String = item_67.extract()?;
@@ -415,7 +420,8 @@ fn anomaly_detector_from_py(
         builder = builder.set_detector_name(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "log_group_arn_list")? {
-        let mut converted_104 = Vec::new();
+        let mut converted_104 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_105 in value.try_iter()? {
             let item_106 = item_result_105?;
             let converted_item_107: String = item_106.extract()?;
@@ -553,7 +559,8 @@ fn configuration_template_from_py(
         builder = builder.set_default_delivery_config_values(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "allowed_fields")? {
-        let mut converted_135 = Vec::new();
+        let mut converted_135 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_136 in value.try_iter()? {
             let item_137 = item_result_136?;
             let converted_item_138 = record_field_from_py(&item_137)?;
@@ -562,7 +569,8 @@ fn configuration_template_from_py(
         builder = builder.set_allowed_fields(Some(converted_135));
     }
     if let Some(value) = dict_value(values, "allowed_output_formats")? {
-        let mut converted_139 = Vec::new();
+        let mut converted_139 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_140 in value.try_iter()? {
             let item_141 = item_result_140?;
             let enum_value_143: String = item_141.extract()?;
@@ -581,7 +589,8 @@ fn configuration_template_from_py(
             .set_allowed_action_for_allow_vended_logs_delivery_for_resource(Some(converted_144));
     }
     if let Some(value) = dict_value(values, "allowed_field_delimiters")? {
-        let mut converted_145 = Vec::new();
+        let mut converted_145 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_146 in value.try_iter()? {
             let item_147 = item_result_146?;
             let converted_item_148: String = item_147.extract()?;
@@ -590,7 +599,8 @@ fn configuration_template_from_py(
         builder = builder.set_allowed_field_delimiters(Some(converted_145));
     }
     if let Some(value) = dict_value(values, "allowed_suffix_path_fields")? {
-        let mut converted_149 = Vec::new();
+        let mut converted_149 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_150 in value.try_iter()? {
             let item_151 = item_result_150?;
             let converted_item_152: String = item_151.extract()?;
@@ -599,7 +609,8 @@ fn configuration_template_from_py(
         builder = builder.set_allowed_suffix_path_fields(Some(converted_149));
     }
     if let Some(value) = dict_value(values, "delivery_source_configuration")? {
-        let mut converted_153 = Vec::new();
+        let mut converted_153 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_154 in value.try_iter()? {
             let item_155 = item_result_154?;
             let converted_item_156 = delivery_source_configuration_schema_from_py(&item_155)?;
@@ -732,7 +743,8 @@ fn configuration_template_delivery_config_values_from_py(
     let mut builder =
         aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues::builder();
     if let Some(value) = dict_value(values, "record_fields")? {
-        let mut converted_180 = Vec::new();
+        let mut converted_180 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_181 in value.try_iter()? {
             let item_182 = item_result_181?;
             let converted_item_183: String = item_182.extract()?;
@@ -788,7 +800,8 @@ fn copy_value_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::CopyValue::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_191 = Vec::new();
+        let mut converted_191 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_192 in value.try_iter()? {
             let item_193 = item_result_192?;
             let converted_item_194 = copy_value_entry_from_py(&item_193)?;
@@ -864,7 +877,8 @@ fn csv_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::typ
         builder = builder.set_delimiter(Some(converted_205));
     }
     if let Some(value) = dict_value(values, "columns")? {
-        let mut converted_206 = Vec::new();
+        let mut converted_206 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_207 in value.try_iter()? {
             let item_208 = item_result_207?;
             let converted_item_209: String = item_208.extract()?;
@@ -1009,7 +1023,8 @@ fn date_time_converter_from_py(
         builder = builder.set_target_format(Some(converted_229));
     }
     if let Some(value) = dict_value(values, "match_patterns")? {
-        let mut converted_230 = Vec::new();
+        let mut converted_230 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_231 in value.try_iter()? {
             let item_232 = item_result_231?;
             let converted_item_233: String = item_232.extract()?;
@@ -1083,7 +1098,8 @@ fn delete_keys_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeleteKeys::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
-        let mut converted_246 = Vec::new();
+        let mut converted_246 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_247 in value.try_iter()? {
             let item_248 = item_result_247?;
             let converted_item_249: String = item_248.extract()?;
@@ -1137,7 +1153,8 @@ fn delivery_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs
         builder = builder.set_delivery_destination_type(Some(converted_257));
     }
     if let Some(value) = dict_value(values, "record_fields")? {
-        let mut converted_259 = Vec::new();
+        let mut converted_259 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_260 in value.try_iter()? {
             let item_261 = item_result_260?;
             let converted_item_262: String = item_261.extract()?;
@@ -1155,7 +1172,7 @@ fn delivery_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_266 = value.cast::<PyDict>()?;
-        let mut converted_265 = HashMap::new();
+        let mut converted_265 = HashMap::with_capacity(mapping_266.len());
         for (key_267, value_268) in mapping_266.iter() {
             let converted_key_269: String = key_267.extract()?;
             let converted_value_270: String = value_268.extract()?;
@@ -1274,7 +1291,7 @@ fn delivery_destination_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_295 = value.cast::<PyDict>()?;
-        let mut converted_294 = HashMap::new();
+        let mut converted_294 = HashMap::with_capacity(mapping_295.len());
         for (key_296, value_297) in mapping_295.iter() {
             let converted_key_298: String = key_296.extract()?;
             let converted_value_299: String = value_297.extract()?;
@@ -1379,7 +1396,8 @@ fn delivery_source_from_py(
         builder = builder.set_arn(Some(converted_314));
     }
     if let Some(value) = dict_value(values, "resource_arns")? {
-        let mut converted_315 = Vec::new();
+        let mut converted_315 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_316 in value.try_iter()? {
             let item_317 = item_result_316?;
             let converted_item_318: String = item_317.extract()?;
@@ -1397,7 +1415,7 @@ fn delivery_source_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_322 = value.cast::<PyDict>()?;
-        let mut converted_321 = HashMap::new();
+        let mut converted_321 = HashMap::with_capacity(mapping_322.len());
         for (key_323, value_324) in mapping_322.iter() {
             let converted_key_325: String = key_323.extract()?;
             let converted_value_326: String = value_324.extract()?;
@@ -1407,7 +1425,7 @@ fn delivery_source_from_py(
     }
     if let Some(value) = dict_value(values, "delivery_source_configuration")? {
         let mapping_328 = value.cast::<PyDict>()?;
-        let mut converted_327 = HashMap::new();
+        let mut converted_327 = HashMap::with_capacity(mapping_328.len());
         for (key_329, value_330) in mapping_328.iter() {
             let converted_key_331: String = key_329.extract()?;
             let converted_value_332: String = value_330.extract()?;
@@ -1532,7 +1550,8 @@ fn delivery_source_configuration_schema_from_py(
         builder = builder.set_default_value(Some(converted_359));
     }
     if let Some(value) = dict_value(values, "supported_values")? {
-        let mut converted_360 = Vec::new();
+        let mut converted_360 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_361 in value.try_iter()? {
             let item_362 = item_result_361?;
             let converted_item_363: String = item_362.extract()?;
@@ -1707,7 +1726,7 @@ fn entity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::
     let mut builder = aws_sdk_cloudwatchlogs::types::Entity::builder();
     if let Some(value) = dict_value(values, "key_attributes")? {
         let mapping_391 = value.cast::<PyDict>()?;
-        let mut converted_390 = HashMap::new();
+        let mut converted_390 = HashMap::with_capacity(mapping_391.len());
         for (key_392, value_393) in mapping_391.iter() {
             let converted_key_394: String = key_392.extract()?;
             let converted_value_395: String = value_393.extract()?;
@@ -1717,7 +1736,7 @@ fn entity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::
     }
     if let Some(value) = dict_value(values, "attributes")? {
         let mapping_397 = value.cast::<PyDict>()?;
-        let mut converted_396 = HashMap::new();
+        let mut converted_396 = HashMap::with_capacity(mapping_397.len());
         for (key_398, value_399) in mapping_397.iter() {
             let converted_key_400: String = key_398.extract()?;
             let converted_value_401: String = value_399.extract()?;
@@ -2787,7 +2806,8 @@ fn live_tail_session_start_from_py(
         builder = builder.set_session_id(Some(converted_561));
     }
     if let Some(value) = dict_value(values, "log_group_identifiers")? {
-        let mut converted_562 = Vec::new();
+        let mut converted_562 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_563 in value.try_iter()? {
             let item_564 = item_result_563?;
             let converted_item_565: String = item_564.extract()?;
@@ -2796,7 +2816,8 @@ fn live_tail_session_start_from_py(
         builder = builder.set_log_group_identifiers(Some(converted_562));
     }
     if let Some(value) = dict_value(values, "log_stream_names")? {
-        let mut converted_566 = Vec::new();
+        let mut converted_566 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_567 in value.try_iter()? {
             let item_568 = item_result_567?;
             let converted_item_569: String = item_568.extract()?;
@@ -2805,7 +2826,8 @@ fn live_tail_session_start_from_py(
         builder = builder.set_log_stream_names(Some(converted_566));
     }
     if let Some(value) = dict_value(values, "log_stream_name_prefixes")? {
-        let mut converted_570 = Vec::new();
+        let mut converted_570 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_571 in value.try_iter()? {
             let item_572 = item_result_571?;
             let converted_item_573: String = item_572.extract()?;
@@ -2889,7 +2911,8 @@ fn live_tail_session_update_from_py(
         builder = builder.set_session_metadata(Some(converted_587));
     }
     if let Some(value) = dict_value(values, "session_results")? {
-        let mut converted_588 = Vec::new();
+        let mut converted_588 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_589 in value.try_iter()? {
             let item_590 = item_result_589?;
             let converted_item_591 = live_tail_session_log_event_from_py(&item_590)?;
@@ -2976,7 +2999,8 @@ fn log_field_type_from_py(
         builder = builder.set_element(Some(converted_601));
     }
     if let Some(value) = dict_value(values, "fields")? {
-        let mut converted_603 = Vec::new();
+        let mut converted_603 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_604 in value.try_iter()? {
             let item_605 = item_result_604?;
             let converted_item_606 = log_fields_list_item_from_py(&item_605)?;
@@ -3094,7 +3118,8 @@ fn log_group_from_py(
         builder = builder.set_data_protection_status(Some(converted_623));
     }
     if let Some(value) = dict_value(values, "inherited_properties")? {
-        let mut converted_625 = Vec::new();
+        let mut converted_625 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_626 in value.try_iter()? {
             let item_627 = item_result_626?;
             let enum_value_629: String = item_627.extract()?;
@@ -3410,7 +3435,8 @@ fn lookup_table_from_py(
         builder = builder.set_description(Some(converted_679));
     }
     if let Some(value) = dict_value(values, "table_fields")? {
-        let mut converted_680 = Vec::new();
+        let mut converted_680 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_681 in value.try_iter()? {
             let item_682 = item_result_681?;
             let converted_item_683: String = item_682.extract()?;
@@ -3521,7 +3547,7 @@ fn lookup_table_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_703 = value.cast::<PyDict>()?;
-        let mut converted_702 = HashMap::new();
+        let mut converted_702 = HashMap::with_capacity(mapping_703.len());
         for (key_704, value_705) in mapping_703.iter() {
             let converted_key_706: String = key_704.extract()?;
             let converted_value_707: String = value_705.extract()?;
@@ -3576,7 +3602,8 @@ fn lower_case_string_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LowerCaseString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
-        let mut converted_717 = Vec::new();
+        let mut converted_717 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_718 in value.try_iter()? {
             let item_719 = item_result_718?;
             let converted_item_720: String = item_719.extract()?;
@@ -3618,7 +3645,8 @@ fn metric_filter_from_py(
         builder = builder.set_filter_pattern(Some(converted_725));
     }
     if let Some(value) = dict_value(values, "metric_transformations")? {
-        let mut converted_726 = Vec::new();
+        let mut converted_726 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_727 in value.try_iter()? {
             let item_728 = item_result_727?;
             let converted_item_729 = metric_transformation_from_py(&item_728)?;
@@ -3643,7 +3671,8 @@ fn metric_filter_from_py(
         builder = builder.set_field_selection_criteria(Some(converted_733));
     }
     if let Some(value) = dict_value(values, "emit_system_field_dimensions")? {
-        let mut converted_734 = Vec::new();
+        let mut converted_734 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_735 in value.try_iter()? {
             let item_736 = item_result_735?;
             let converted_item_737: String = item_736.extract()?;
@@ -3733,7 +3762,7 @@ fn metric_filter_match_record_from_py(
     }
     if let Some(value) = dict_value(values, "extracted_values")? {
         let mapping_753 = value.cast::<PyDict>()?;
-        let mut converted_752 = HashMap::new();
+        let mut converted_752 = HashMap::with_capacity(mapping_753.len());
         for (key_754, value_755) in mapping_753.iter() {
             let converted_key_756: String = key_754.extract()?;
             let converted_value_757: String = value_755.extract()?;
@@ -3795,7 +3824,7 @@ fn metric_transformation_from_py(
     }
     if let Some(value) = dict_value(values, "dimensions")? {
         let mapping_770 = value.cast::<PyDict>()?;
-        let mut converted_769 = HashMap::new();
+        let mut converted_769 = HashMap::with_capacity(mapping_770.len());
         for (key_771, value_772) in mapping_770.iter() {
             let converted_key_773: String = key_771.extract()?;
             let converted_value_774: String = value_772.extract()?;
@@ -3894,7 +3923,8 @@ fn move_keys_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MoveKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_793 = Vec::new();
+        let mut converted_793 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_794 in value.try_iter()? {
             let item_795 = item_result_794?;
             let converted_item_796 = move_key_entry_from_py(&item_795)?;
@@ -4314,7 +4344,8 @@ fn open_search_resource_config_from_py(
         builder = builder.set_data_source_role_arn(Some(converted_851));
     }
     if let Some(value) = dict_value(values, "dashboard_viewer_principals")? {
-        let mut converted_852 = Vec::new();
+        let mut converted_852 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_853 in value.try_iter()? {
             let item_854 = item_result_853?;
             let converted_item_855: String = item_854.extract()?;
@@ -4808,7 +4839,7 @@ fn pattern_token_from_py(
     }
     if let Some(value) = dict_value(values, "enumerations")? {
         let mapping_922 = value.cast::<PyDict>()?;
-        let mut converted_921 = HashMap::new();
+        let mut converted_921 = HashMap::with_capacity(mapping_922.len());
         for (key_923, value_924) in mapping_922.iter() {
             let converted_key_925: String = key_923.extract()?;
             let converted_value_926: i64 = value_924.extract()?;
@@ -5233,7 +5264,8 @@ fn query_definition_from_py(
         builder = builder.set_last_modified(Some(converted_998));
     }
     if let Some(value) = dict_value(values, "log_group_names")? {
-        let mut converted_999 = Vec::new();
+        let mut converted_999 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1000 in value.try_iter()? {
             let item_1001 = item_result_1000?;
             let converted_item_1002: String = item_1001.extract()?;
@@ -5242,7 +5274,8 @@ fn query_definition_from_py(
         builder = builder.set_log_group_names(Some(converted_999));
     }
     if let Some(value) = dict_value(values, "parameters")? {
-        let mut converted_1003 = Vec::new();
+        let mut converted_1003 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1004 in value.try_iter()? {
             let item_1005 = item_result_1004?;
             let converted_item_1006 = query_parameter_from_py(&item_1005)?;
@@ -5679,7 +5712,8 @@ fn rename_keys_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RenameKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_1077 = Vec::new();
+        let mut converted_1077 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1078 in value.try_iter()? {
             let item_1079 = item_result_1078?;
             let converted_item_1080 = rename_key_entry_from_py(&item_1079)?;
@@ -6302,7 +6336,8 @@ fn split_string_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SplitString::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_1173 = Vec::new();
+        let mut converted_1173 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1174 in value.try_iter()? {
             let item_1175 = item_result_1174?;
             let converted_item_1176 = split_string_entry_from_py(&item_1175)?;
@@ -6453,7 +6488,8 @@ fn subscription_filter_from_py(
         builder = builder.set_field_selection_criteria(Some(converted_1197));
     }
     if let Some(value) = dict_value(values, "emit_system_fields")? {
-        let mut converted_1198 = Vec::new();
+        let mut converted_1198 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1199 in value.try_iter()? {
             let item_1200 = item_result_1199?;
             let converted_item_1201: String = item_1200.extract()?;
@@ -6541,7 +6577,8 @@ fn substitute_string_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SubstituteString::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_1214 = Vec::new();
+        let mut converted_1214 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1215 in value.try_iter()? {
             let item_1216 = item_result_1215?;
             let converted_item_1217 = substitute_string_entry_from_py(&item_1216)?;
@@ -6707,7 +6744,8 @@ fn tag_filter_from_py(
         builder = builder.set_key(Some(converted_1241));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1242 = Vec::new();
+        let mut converted_1242 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1243 in value.try_iter()? {
             let item_1244 = item_result_1243?;
             let converted_item_1245: String = item_1244.extract()?;
@@ -6807,7 +6845,8 @@ fn trigger_history_record_from_py(
         builder = builder.set_error_message(Some(converted_1260));
     }
     if let Some(value) = dict_value(values, "destinations")? {
-        let mut converted_1261 = Vec::new();
+        let mut converted_1261 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1262 in value.try_iter()? {
             let item_1263 = item_result_1262?;
             let converted_item_1264 = scheduled_query_destination_from_py(&item_1263)?;
@@ -6867,7 +6906,8 @@ fn trim_string_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TrimString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
-        let mut converted_1272 = Vec::new();
+        let mut converted_1272 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1273 in value.try_iter()? {
             let item_1274 = item_result_1273?;
             let converted_item_1275: String = item_1274.extract()?;
@@ -6901,7 +6941,8 @@ fn type_converter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TypeConverter::builder();
     if let Some(value) = dict_value(values, "entries")? {
-        let mut converted_1279 = Vec::new();
+        let mut converted_1279 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1280 in value.try_iter()? {
             let item_1281 = item_result_1280?;
             let converted_item_1282 = type_converter_entry_from_py(&item_1281)?;
@@ -6966,7 +7007,8 @@ fn upper_case_string_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudwatchlogs::types::UpperCaseString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
-        let mut converted_1291 = Vec::new();
+        let mut converted_1291 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1292 in value.try_iter()? {
             let item_1293 = item_result_1292?;
             let converted_item_1294: String = item_1293.extract()?;
@@ -17688,12 +17730,7 @@ impl CloudWatchLogsClient {
                     sdk_error_to_py(py, &error, "AssociateSourceToS3TableIntegration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyAssociateSourceToS3TableIntegrationResponse { inner: output },
-                )
-            })
+            Ok(PyAssociateSourceToS3TableIntegrationResponse { inner: output })
         })
     }
 
@@ -17745,7 +17782,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelImportTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelImportTaskResponse { inner: output }))
+            Ok(PyCancelImportTaskResponse { inner: output })
         })
     }
 
@@ -17771,7 +17808,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let record_fields_value = if let Some(value) = dict_value(params, "record_fields")? {
-            let mut converted_1307 = Vec::new();
+            let mut converted_1307 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1308 in value.try_iter()? {
                 let item_1309 = item_result_1308?;
                 let converted_item_1310: String = item_1309.extract()?;
@@ -17796,7 +17834,7 @@ impl CloudWatchLogsClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1314 = value.cast::<PyDict>()?;
-            let mut converted_1313 = HashMap::new();
+            let mut converted_1313 = HashMap::with_capacity(mapping_1314.len());
             for (key_1315, value_1316) in mapping_1314.iter() {
                 let converted_key_1317: String = key_1315.extract()?;
                 let converted_value_1318: String = value_1316.extract()?;
@@ -17820,7 +17858,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDelivery"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDeliveryResponse { inner: output }))
+            Ok(PyCreateDeliveryResponse { inner: output })
         })
     }
 
@@ -17890,7 +17928,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateExportTaskResponse { inner: output }))
+            Ok(PyCreateExportTaskResponse { inner: output })
         })
     }
 
@@ -17931,7 +17969,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateImportTaskResponse { inner: output }))
+            Ok(PyCreateImportTaskResponse { inner: output })
         })
     }
 
@@ -17944,7 +17982,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let log_group_arn_list_value =
             if let Some(value) = dict_value(params, "log_group_arn_list")? {
-                let mut converted_1329 = Vec::new();
+                let mut converted_1329 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1330 in value.try_iter()? {
                     let item_1331 = item_result_1330?;
                     let converted_item_1332: String = item_1331.extract()?;
@@ -17991,7 +18030,7 @@ impl CloudWatchLogsClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1340 = value.cast::<PyDict>()?;
-            let mut converted_1339 = HashMap::new();
+            let mut converted_1339 = HashMap::with_capacity(mapping_1340.len());
             for (key_1341, value_1342) in mapping_1340.iter() {
                 let converted_key_1343: String = key_1341.extract()?;
                 let converted_value_1344: String = value_1342.extract()?;
@@ -18016,7 +18055,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateLogAnomalyDetector"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateLogAnomalyDetectorResponse { inner: output }))
+            Ok(PyCreateLogAnomalyDetectorResponse { inner: output })
         })
     }
 
@@ -18041,7 +18080,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1348 = value.cast::<PyDict>()?;
-            let mut converted_1347 = HashMap::new();
+            let mut converted_1347 = HashMap::with_capacity(mapping_1348.len());
             for (key_1349, value_1350) in mapping_1348.iter() {
                 let converted_key_1351: String = key_1349.extract()?;
                 let converted_value_1352: String = value_1350.extract()?;
@@ -18156,7 +18195,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1364 = value.cast::<PyDict>()?;
-            let mut converted_1363 = HashMap::new();
+            let mut converted_1363 = HashMap::with_capacity(mapping_1364.len());
             for (key_1365, value_1366) in mapping_1364.iter() {
                 let converted_key_1367: String = key_1365.extract()?;
                 let converted_value_1368: String = value_1366.extract()?;
@@ -18180,7 +18219,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateLookupTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateLookupTableResponse { inner: output }))
+            Ok(PyCreateLookupTableResponse { inner: output })
         })
     }
 
@@ -18219,7 +18258,8 @@ impl CloudWatchLogsClient {
         };
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1374 = Vec::new();
+                let mut converted_1374 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1375 in value.try_iter()? {
                     let item_1376 = item_result_1375?;
                     let converted_item_1377: String = item_1376.extract()?;
@@ -18293,7 +18333,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1389 = value.cast::<PyDict>()?;
-            let mut converted_1388 = HashMap::new();
+            let mut converted_1388 = HashMap::with_capacity(mapping_1389.len());
             for (key_1390, value_1391) in mapping_1389.iter() {
                 let converted_key_1392: String = key_1390.extract()?;
                 let converted_value_1393: String = value_1391.extract()?;
@@ -18326,7 +18366,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateScheduledQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateScheduledQueryResponse { inner: output }))
+            Ok(PyCreateScheduledQueryResponse { inner: output })
         })
     }
 
@@ -18542,7 +18582,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndexPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteIndexPolicyResponse { inner: output }))
+            Ok(PyDeleteIndexPolicyResponse { inner: output })
         })
     }
 
@@ -18575,7 +18615,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteIntegrationResponse { inner: output }))
+            Ok(PyDeleteIntegrationResponse { inner: output })
         })
     }
 
@@ -18747,7 +18787,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteQueryDefinition"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteQueryDefinitionResponse { inner: output }))
+            Ok(PyDeleteQueryDefinitionResponse { inner: output })
         })
     }
 
@@ -18840,7 +18880,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteScheduledQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteScheduledQueryResponse { inner: output }))
+            Ok(PyDeleteScheduledQueryResponse { inner: output })
         })
     }
 
@@ -18961,7 +19001,8 @@ impl CloudWatchLogsClient {
         };
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
-                let mut converted_1427 = Vec::new();
+                let mut converted_1427 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1428 in value.try_iter()? {
                     let item_1429 = item_result_1428?;
                     let converted_item_1430: String = item_1429.extract()?;
@@ -18989,7 +19030,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAccountPolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeAccountPoliciesResponse { inner: output }))
+            Ok(PyDescribeAccountPoliciesResponse { inner: output })
         })
     }
 
@@ -19007,7 +19048,8 @@ impl CloudWatchLogsClient {
             None
         };
         let log_types_value = if let Some(value) = dict_value(params, "log_types")? {
-            let mut converted_1433 = Vec::new();
+            let mut converted_1433 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1434 in value.try_iter()? {
                 let item_1435 = item_result_1434?;
                 let converted_item_1436: String = item_1435.extract()?;
@@ -19018,7 +19060,8 @@ impl CloudWatchLogsClient {
             None
         };
         let resource_types_value = if let Some(value) = dict_value(params, "resource_types")? {
-            let mut converted_1437 = Vec::new();
+            let mut converted_1437 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1438 in value.try_iter()? {
                 let item_1439 = item_result_1438?;
                 let converted_item_1440: String = item_1439.extract()?;
@@ -19030,7 +19073,8 @@ impl CloudWatchLogsClient {
         };
         let delivery_destination_types_value =
             if let Some(value) = dict_value(params, "delivery_destination_types")? {
-                let mut converted_1441 = Vec::new();
+                let mut converted_1441 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1442 in value.try_iter()? {
                     let item_1443 = item_result_1442?;
                     let enum_value_1445: String = item_1443.extract()?;
@@ -19070,12 +19114,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeConfigurationTemplates"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeConfigurationTemplatesResponse { inner: output },
-                )
-            })
+            Ok(PyDescribeConfigurationTemplatesResponse { inner: output })
         })
     }
 
@@ -19100,7 +19139,8 @@ impl CloudWatchLogsClient {
         };
         let delivery_source_names_value =
             if let Some(value) = dict_value(params, "delivery_source_names")? {
-                let mut converted_1450 = Vec::new();
+                let mut converted_1450 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1451 in value.try_iter()? {
                     let item_1452 = item_result_1451?;
                     let converted_item_1453: String = item_1452.extract()?;
@@ -19121,7 +19161,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveries"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeDeliveriesResponse { inner: output }))
+            Ok(PyDescribeDeliveriesResponse { inner: output })
         })
     }
 
@@ -19145,7 +19185,8 @@ impl CloudWatchLogsClient {
             None
         };
         let names_value = if let Some(value) = dict_value(params, "names")? {
-            let mut converted_1456 = Vec::new();
+            let mut converted_1456 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1457 in value.try_iter()? {
                 let item_1458 = item_result_1457?;
                 let converted_item_1459: String = item_1458.extract()?;
@@ -19166,9 +19207,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveryDestinations"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDescribeDeliveryDestinationsResponse { inner: output })
-            })
+            Ok(PyDescribeDeliveryDestinationsResponse { inner: output })
         })
     }
 
@@ -19192,7 +19231,8 @@ impl CloudWatchLogsClient {
             None
         };
         let resource_arns_value = if let Some(value) = dict_value(params, "resource_arns")? {
-            let mut converted_1462 = Vec::new();
+            let mut converted_1462 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1463 in value.try_iter()? {
                 let item_1464 = item_result_1463?;
                 let converted_item_1465: String = item_1464.extract()?;
@@ -19213,7 +19253,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliverySources"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeDeliverySourcesResponse { inner: output }))
+            Ok(PyDescribeDeliverySourcesResponse { inner: output })
         })
     }
 
@@ -19254,7 +19294,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDestinations"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeDestinationsResponse { inner: output }))
+            Ok(PyDescribeDestinationsResponse { inner: output })
         })
     }
 
@@ -19303,7 +19343,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExportTasks"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeExportTasksResponse { inner: output }))
+            Ok(PyDescribeExportTasksResponse { inner: output })
         })
     }
 
@@ -19316,7 +19356,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1474 = Vec::new();
+                let mut converted_1474 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1475 in value.try_iter()? {
                     let item_1476 = item_result_1475?;
                     let converted_item_1477: String = item_1476.extract()?;
@@ -19327,7 +19368,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let index_categories_value = if let Some(value) = dict_value(params, "index_categories")? {
-            let mut converted_1478 = Vec::new();
+            let mut converted_1478 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1479 in value.try_iter()? {
                 let item_1480 = item_result_1479?;
                 let enum_value_1482: String = item_1480.extract()?;
@@ -19356,7 +19398,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeFieldIndexes"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeFieldIndexesResponse { inner: output }))
+            Ok(PyDescribeFieldIndexesResponse { inner: output })
         })
     }
 
@@ -19375,7 +19417,8 @@ impl CloudWatchLogsClient {
         };
         let batch_import_status_value =
             if let Some(value) = dict_value(params, "batch_import_status")? {
-                let mut converted_1485 = Vec::new();
+                let mut converted_1485 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1486 in value.try_iter()? {
                     let item_1487 = item_result_1486?;
                     let enum_value_1489: String = item_1487.extract()?;
@@ -19411,7 +19454,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTaskBatches"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeImportTaskBatchesResponse { inner: output }))
+            Ok(PyDescribeImportTaskBatchesResponse { inner: output })
         })
     }
 
@@ -19468,7 +19511,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTasks"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeImportTasksResponse { inner: output }))
+            Ok(PyDescribeImportTasksResponse { inner: output })
         })
     }
 
@@ -19481,7 +19524,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1498 = Vec::new();
+                let mut converted_1498 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1499 in value.try_iter()? {
                     let item_1500 = item_result_1499?;
                     let converted_item_1501: String = item_1500.extract()?;
@@ -19507,7 +19551,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIndexPolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeIndexPoliciesResponse { inner: output }))
+            Ok(PyDescribeIndexPoliciesResponse { inner: output })
         })
     }
 
@@ -19520,7 +19564,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
-                let mut converted_1503 = Vec::new();
+                let mut converted_1503 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1504 in value.try_iter()? {
                     let item_1505 = item_result_1504?;
                     let converted_item_1506: String = item_1505.extract()?;
@@ -19573,7 +19618,8 @@ impl CloudWatchLogsClient {
         };
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1514 = Vec::new();
+                let mut converted_1514 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1515 in value.try_iter()? {
                     let item_1516 = item_result_1515?;
                     let converted_item_1517: String = item_1516.extract()?;
@@ -19599,7 +19645,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogGroups"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeLogGroupsResponse { inner: output }))
+            Ok(PyDescribeLogGroupsResponse { inner: output })
         })
     }
 
@@ -19671,7 +19717,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogStreams"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeLogStreamsResponse { inner: output }))
+            Ok(PyDescribeLogStreamsResponse { inner: output })
         })
     }
 
@@ -19712,7 +19758,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLookupTables"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeLookupTablesResponse { inner: output }))
+            Ok(PyDescribeLookupTablesResponse { inner: output })
         })
     }
 
@@ -19774,7 +19820,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMetricFilters"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeMetricFiltersResponse { inner: output }))
+            Ok(PyDescribeMetricFiltersResponse { inner: output })
         })
     }
 
@@ -19832,7 +19878,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueries"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeQueriesResponse { inner: output }))
+            Ok(PyDescribeQueriesResponse { inner: output })
         })
     }
 
@@ -19882,7 +19928,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueryDefinitions"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeQueryDefinitionsResponse { inner: output }))
+            Ok(PyDescribeQueryDefinitionsResponse { inner: output })
         })
     }
 
@@ -19931,7 +19977,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeResourcePolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeResourcePoliciesResponse { inner: output }))
+            Ok(PyDescribeResourcePoliciesResponse { inner: output })
         })
     }
 
@@ -19979,9 +20025,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSubscriptionFilters"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDescribeSubscriptionFiltersResponse { inner: output })
-            })
+            Ok(PyDescribeSubscriptionFiltersResponse { inner: output })
         })
     }
 
@@ -20043,12 +20087,7 @@ impl CloudWatchLogsClient {
                     sdk_error_to_py(py, &error, "DisassociateSourceFromS3TableIntegration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateSourceFromS3TableIntegrationResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateSourceFromS3TableIntegrationResponse { inner: output })
         })
     }
 
@@ -20073,7 +20112,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let log_stream_names_value = if let Some(value) = dict_value(params, "log_stream_names")? {
-            let mut converted_1561 = Vec::new();
+            let mut converted_1561 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1562 in value.try_iter()? {
                 let item_1563 = item_result_1562?;
                 let converted_item_1564: String = item_1563.extract()?;
@@ -20158,7 +20198,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "FilterLogEvents"))
             })?;
-            Python::attach(|py| Py::new(py, PyFilterLogEventsResponse { inner: output }))
+            Ok(PyFilterLogEventsResponse { inner: output })
         })
     }
 
@@ -20185,7 +20225,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataProtectionPolicyResponse { inner: output }))
+            Ok(PyGetDataProtectionPolicyResponse { inner: output })
         })
     }
 
@@ -20208,7 +20248,7 @@ impl CloudWatchLogsClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDelivery")))?;
-            Python::attach(|py| Py::new(py, PyGetDeliveryResponse { inner: output }))
+            Ok(PyGetDeliveryResponse { inner: output })
         })
     }
 
@@ -20234,7 +20274,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestination"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDeliveryDestinationResponse { inner: output }))
+            Ok(PyGetDeliveryDestinationResponse { inner: output })
         })
     }
 
@@ -20261,9 +20301,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestinationPolicy"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetDeliveryDestinationPolicyResponse { inner: output })
-            })
+            Ok(PyGetDeliveryDestinationPolicyResponse { inner: output })
         })
     }
 
@@ -20289,7 +20327,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverySource"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDeliverySourceResponse { inner: output }))
+            Ok(PyGetDeliverySourceResponse { inner: output })
         })
     }
 
@@ -20315,7 +20353,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetIntegrationResponse { inner: output }))
+            Ok(PyGetIntegrationResponse { inner: output })
         })
     }
 
@@ -20342,7 +20380,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogAnomalyDetector"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLogAnomalyDetectorResponse { inner: output }))
+            Ok(PyGetLogAnomalyDetectorResponse { inner: output })
         })
     }
 
@@ -20425,7 +20463,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogEvents"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLogEventsResponse { inner: output }))
+            Ok(PyGetLogEventsResponse { inner: output })
         })
     }
 
@@ -20458,7 +20496,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogFields"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLogFieldsResponse { inner: output }))
+            Ok(PyGetLogFieldsResponse { inner: output })
         })
     }
 
@@ -20499,7 +20537,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogGroupFields"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLogGroupFieldsResponse { inner: output }))
+            Ok(PyGetLogGroupFieldsResponse { inner: output })
         })
     }
 
@@ -20575,7 +20613,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLogRecord"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLogRecordResponse { inner: output }))
+            Ok(PyGetLogRecordResponse { inner: output })
         })
     }
 
@@ -20601,7 +20639,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLookupTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLookupTableResponse { inner: output }))
+            Ok(PyGetLookupTableResponse { inner: output })
         })
     }
 
@@ -20641,7 +20679,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetQueryResultsResponse { inner: output }))
+            Ok(PyGetQueryResultsResponse { inner: output })
         })
     }
 
@@ -20667,7 +20705,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetScheduledQueryResponse { inner: output }))
+            Ok(PyGetScheduledQueryResponse { inner: output })
         })
     }
 
@@ -20699,7 +20737,8 @@ impl CloudWatchLogsClient {
         let execution_statuses_value = if let Some(value) =
             dict_value(params, "execution_statuses")?
         {
-            let mut converted_1607 = Vec::new();
+            let mut converted_1607 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1608 in value.try_iter()? {
                 let item_1609 = item_result_1608?;
                 let enum_value_1611: String = item_1609.extract()?;
@@ -20737,7 +20776,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQueryHistory"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetScheduledQueryHistoryResponse { inner: output }))
+            Ok(PyGetScheduledQueryHistoryResponse { inner: output })
         })
     }
 
@@ -20753,7 +20792,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetStorageTierPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetStorageTierPolicyResponse { inner: output }))
+            Ok(PyGetStorageTierPolicyResponse { inner: output })
         })
     }
 
@@ -20780,7 +20819,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTransformer"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetTransformerResponse { inner: output }))
+            Ok(PyGetTransformerResponse { inner: output })
         })
     }
 
@@ -20793,7 +20832,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
-                let mut converted_1615 = Vec::new();
+                let mut converted_1615 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1616 in value.try_iter()? {
                     let item_1617 = item_result_1616?;
                     let converted_item_1618: String = item_1617.extract()?;
@@ -20826,7 +20866,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let data_sources_value = if let Some(value) = dict_value(params, "data_sources")? {
-            let mut converted_1623 = Vec::new();
+            let mut converted_1623 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1624 in value.try_iter()? {
                 let item_1625 = item_result_1624?;
                 let converted_item_1626 = data_source_filter_from_py(&item_1625)?;
@@ -20874,12 +20915,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAggregateLogGroupSummaries"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListAggregateLogGroupSummariesResponse { inner: output },
-                )
-            })
+            Ok(PyListAggregateLogGroupSummariesResponse { inner: output })
         })
     }
 
@@ -20930,7 +20966,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAnomalies"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAnomaliesResponse { inner: output }))
+            Ok(PyListAnomaliesResponse { inner: output })
         })
     }
 
@@ -20977,7 +21013,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIntegrations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListIntegrationsResponse { inner: output }))
+            Ok(PyListIntegrationsResponse { inner: output })
         })
     }
 
@@ -21018,7 +21054,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogAnomalyDetectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyListLogAnomalyDetectorsResponse { inner: output }))
+            Ok(PyListLogAnomalyDetectorsResponse { inner: output })
         })
     }
 
@@ -21053,7 +21089,8 @@ impl CloudWatchLogsClient {
             };
         let account_identifiers_value =
             if let Some(value) = dict_value(params, "account_identifiers")? {
-                let mut converted_1648 = Vec::new();
+                let mut converted_1648 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1649 in value.try_iter()? {
                     let item_1650 = item_result_1649?;
                     let converted_item_1651: String = item_1650.extract()?;
@@ -21076,7 +21113,8 @@ impl CloudWatchLogsClient {
             None
         };
         let data_sources_value = if let Some(value) = dict_value(params, "data_sources")? {
-            let mut converted_1654 = Vec::new();
+            let mut converted_1654 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1655 in value.try_iter()? {
                 let item_1656 = item_result_1655?;
                 let converted_item_1657 = data_source_filter_from_py(&item_1656)?;
@@ -21088,7 +21126,8 @@ impl CloudWatchLogsClient {
         };
         let field_index_names_value = if let Some(value) = dict_value(params, "field_index_names")?
         {
-            let mut converted_1658 = Vec::new();
+            let mut converted_1658 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1659 in value.try_iter()? {
                 let item_1660 = item_result_1659?;
                 let converted_item_1661: String = item_1660.extract()?;
@@ -21099,7 +21138,8 @@ impl CloudWatchLogsClient {
             None
         };
         let log_group_tags_value = if let Some(value) = dict_value(params, "log_group_tags")? {
-            let mut converted_1662 = Vec::new();
+            let mut converted_1662 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1663 in value.try_iter()? {
                 let item_1664 = item_result_1663?;
                 let converted_item_1665 = tag_filter_from_py(&item_1664)?;
@@ -21126,7 +21166,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroups"))
             })?;
-            Python::attach(|py| Py::new(py, PyListLogGroupsResponse { inner: output }))
+            Ok(PyListLogGroupsResponse { inner: output })
         })
     }
 
@@ -21166,7 +21206,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroupsForQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyListLogGroupsForQueryResponse { inner: output }))
+            Ok(PyListLogGroupsForQueryResponse { inner: output })
         })
     }
 
@@ -21217,7 +21257,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduledQueries"))
             })?;
-            Python::attach(|py| Py::new(py, PyListScheduledQueriesResponse { inner: output }))
+            Ok(PyListScheduledQueriesResponse { inner: output })
         })
     }
 
@@ -21257,12 +21297,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSourcesForS3TableIntegration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListSourcesForS3TableIntegrationResponse { inner: output },
-                )
-            })
+            Ok(PyListSourcesForS3TableIntegrationResponse { inner: output })
         })
     }
 
@@ -21310,7 +21345,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSyslogConfigurations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSyslogConfigurationsResponse { inner: output }))
+            Ok(PyListSyslogConfigurationsResponse { inner: output })
         })
     }
 
@@ -21336,7 +21371,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -21362,7 +21397,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsLogGroup"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsLogGroupResponse { inner: output }))
+            Ok(PyListTagsLogGroupResponse { inner: output })
         })
     }
 
@@ -21421,7 +21456,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutAccountPolicyResponse { inner: output }))
+            Ok(PyPutAccountPolicyResponse { inner: output })
         })
     }
 
@@ -21490,7 +21525,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDataProtectionPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutDataProtectionPolicyResponse { inner: output }))
+            Ok(PyPutDataProtectionPolicyResponse { inner: output })
         })
     }
 
@@ -21540,7 +21575,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1703 = value.cast::<PyDict>()?;
-            let mut converted_1702 = HashMap::new();
+            let mut converted_1702 = HashMap::with_capacity(mapping_1703.len());
             for (key_1704, value_1705) in mapping_1703.iter() {
                 let converted_key_1706: String = key_1704.extract()?;
                 let converted_value_1707: String = value_1705.extract()?;
@@ -21564,7 +21599,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestination"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutDeliveryDestinationResponse { inner: output }))
+            Ok(PyPutDeliveryDestinationResponse { inner: output })
         })
     }
 
@@ -21599,9 +21634,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestinationPolicy"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyPutDeliveryDestinationPolicyResponse { inner: output })
-            })
+            Ok(PyPutDeliveryDestinationPolicyResponse { inner: output })
         })
     }
 
@@ -21632,7 +21665,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1714 = value.cast::<PyDict>()?;
-            let mut converted_1713 = HashMap::new();
+            let mut converted_1713 = HashMap::with_capacity(mapping_1714.len());
             for (key_1715, value_1716) in mapping_1714.iter() {
                 let converted_key_1717: String = key_1715.extract()?;
                 let converted_value_1718: String = value_1716.extract()?;
@@ -21645,7 +21678,7 @@ impl CloudWatchLogsClient {
         let delivery_source_configuration_value =
             if let Some(value) = dict_value(params, "delivery_source_configuration")? {
                 let mapping_1720 = value.cast::<PyDict>()?;
-                let mut converted_1719 = HashMap::new();
+                let mut converted_1719 = HashMap::with_capacity(mapping_1720.len());
                 for (key_1721, value_1722) in mapping_1720.iter() {
                     let converted_key_1723: String = key_1721.extract()?;
                     let converted_value_1724: String = value_1722.extract()?;
@@ -21668,7 +21701,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverySource"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutDeliverySourceResponse { inner: output }))
+            Ok(PyPutDeliverySourceResponse { inner: output })
         })
     }
 
@@ -21699,7 +21732,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1729 = value.cast::<PyDict>()?;
-            let mut converted_1728 = HashMap::new();
+            let mut converted_1728 = HashMap::with_capacity(mapping_1729.len());
             for (key_1730, value_1731) in mapping_1729.iter() {
                 let converted_key_1732: String = key_1730.extract()?;
                 let converted_value_1733: String = value_1731.extract()?;
@@ -21721,7 +21754,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDestination"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutDestinationResponse { inner: output }))
+            Ok(PyPutDestinationResponse { inner: output })
         })
     }
 
@@ -21795,7 +21828,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIndexPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutIndexPolicyResponse { inner: output }))
+            Ok(PyPutIndexPolicyResponse { inner: output })
         })
     }
 
@@ -21837,7 +21870,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutIntegrationResponse { inner: output }))
+            Ok(PyPutIntegrationResponse { inner: output })
         })
     }
 
@@ -21861,7 +21894,8 @@ impl CloudWatchLogsClient {
             None
         };
         let log_events_value = if let Some(value) = dict_value(params, "log_events")? {
-            let mut converted_1745 = Vec::new();
+            let mut converted_1745 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1746 in value.try_iter()? {
                 let item_1747 = item_result_1746?;
                 let converted_item_1748 = input_log_event_from_py(&item_1747)?;
@@ -21896,7 +21930,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutLogEvents"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutLogEventsResponse { inner: output }))
+            Ok(PyPutLogEventsResponse { inner: output })
         })
     }
 
@@ -21962,7 +21996,8 @@ impl CloudWatchLogsClient {
         };
         let metric_transformations_value =
             if let Some(value) = dict_value(params, "metric_transformations")? {
-                let mut converted_1756 = Vec::new();
+                let mut converted_1756 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1757 in value.try_iter()? {
                     let item_1758 = item_result_1757?;
                     let converted_item_1759 = metric_transformation_from_py(&item_1758)?;
@@ -21988,7 +22023,8 @@ impl CloudWatchLogsClient {
             };
         let emit_system_field_dimensions_value =
             if let Some(value) = dict_value(params, "emit_system_field_dimensions")? {
-                let mut converted_1762 = Vec::new();
+                let mut converted_1762 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1763 in value.try_iter()? {
                     let item_1764 = item_result_1763?;
                     let converted_item_1765: String = item_1764.extract()?;
@@ -22046,7 +22082,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let log_group_names_value = if let Some(value) = dict_value(params, "log_group_names")? {
-            let mut converted_1770 = Vec::new();
+            let mut converted_1770 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1771 in value.try_iter()? {
                 let item_1772 = item_result_1771?;
                 let converted_item_1773: String = item_1772.extract()?;
@@ -22069,7 +22106,8 @@ impl CloudWatchLogsClient {
             None
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
-            let mut converted_1776 = Vec::new();
+            let mut converted_1776 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1777 in value.try_iter()? {
                 let item_1778 = item_result_1777?;
                 let converted_item_1779 = query_parameter_from_py(&item_1778)?;
@@ -22094,7 +22132,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutQueryDefinition"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutQueryDefinitionResponse { inner: output }))
+            Ok(PyPutQueryDefinitionResponse { inner: output })
         })
     }
 
@@ -22142,7 +22180,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -22204,7 +22242,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutStorageTierPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutStorageTierPolicyResponse { inner: output }))
+            Ok(PyPutStorageTierPolicyResponse { inner: output })
         })
     }
 
@@ -22269,7 +22307,8 @@ impl CloudWatchLogsClient {
             };
         let emit_system_fields_value =
             if let Some(value) = dict_value(params, "emit_system_fields")? {
-                let mut converted_1797 = Vec::new();
+                let mut converted_1797 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1798 in value.try_iter()? {
                     let item_1799 = item_result_1798?;
                     let converted_item_1800: String = item_1799.extract()?;
@@ -22350,7 +22389,8 @@ impl CloudWatchLogsClient {
             };
         let transformer_config_value =
             if let Some(value) = dict_value(params, "transformer_config")? {
-                let mut converted_1804 = Vec::new();
+                let mut converted_1804 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1805 in value.try_iter()? {
                     let item_1806 = item_result_1805?;
                     let converted_item_1807 = processor_from_py(&item_1806)?;
@@ -22383,7 +22423,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1808 = Vec::new();
+                let mut converted_1808 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1809 in value.try_iter()? {
                     let item_1810 = item_result_1809?;
                     let converted_item_1811: String = item_1810.extract()?;
@@ -22394,7 +22435,8 @@ impl CloudWatchLogsClient {
                 None
             };
         let log_stream_names_value = if let Some(value) = dict_value(params, "log_stream_names")? {
-            let mut converted_1812 = Vec::new();
+            let mut converted_1812 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1813 in value.try_iter()? {
                 let item_1814 = item_result_1813?;
                 let converted_item_1815: String = item_1814.extract()?;
@@ -22406,7 +22448,8 @@ impl CloudWatchLogsClient {
         };
         let log_stream_name_prefixes_value =
             if let Some(value) = dict_value(params, "log_stream_name_prefixes")? {
-                let mut converted_1816 = Vec::new();
+                let mut converted_1816 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1817 in value.try_iter()? {
                     let item_1818 = item_result_1817?;
                     let converted_item_1819: String = item_1818.extract()?;
@@ -22472,7 +22515,8 @@ impl CloudWatchLogsClient {
             None
         };
         let log_group_names_value = if let Some(value) = dict_value(params, "log_group_names")? {
-            let mut converted_1824 = Vec::new();
+            let mut converted_1824 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1825 in value.try_iter()? {
                 let item_1826 = item_result_1825?;
                 let converted_item_1827: String = item_1826.extract()?;
@@ -22484,7 +22528,8 @@ impl CloudWatchLogsClient {
         };
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1828 = Vec::new();
+                let mut converted_1828 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1829 in value.try_iter()? {
                     let item_1830 = item_result_1829?;
                     let converted_item_1831: String = item_1830.extract()?;
@@ -22535,7 +22580,7 @@ impl CloudWatchLogsClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
-            Python::attach(|py| Py::new(py, PyStartQueryResponse { inner: output }))
+            Ok(PyStartQueryResponse { inner: output })
         })
     }
 
@@ -22562,7 +22607,7 @@ impl CloudWatchLogsClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopQuery")))?;
-            Python::attach(|py| Py::new(py, PyStopQueryResponse { inner: output }))
+            Ok(PyStopQueryResponse { inner: output })
         })
     }
 
@@ -22581,7 +22626,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1839 = value.cast::<PyDict>()?;
-            let mut converted_1838 = HashMap::new();
+            let mut converted_1838 = HashMap::with_capacity(mapping_1839.len());
             for (key_1840, value_1841) in mapping_1839.iter() {
                 let converted_key_1842: String = key_1840.extract()?;
                 let converted_value_1843: String = value_1841.extract()?;
@@ -22621,7 +22666,7 @@ impl CloudWatchLogsClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1846 = value.cast::<PyDict>()?;
-            let mut converted_1845 = HashMap::new();
+            let mut converted_1845 = HashMap::with_capacity(mapping_1846.len());
             for (key_1847, value_1848) in mapping_1846.iter() {
                 let converted_key_1849: String = key_1847.extract()?;
                 let converted_value_1850: String = value_1848.extract()?;
@@ -22661,7 +22706,8 @@ impl CloudWatchLogsClient {
         };
         let log_event_messages_value =
             if let Some(value) = dict_value(params, "log_event_messages")? {
-                let mut converted_1852 = Vec::new();
+                let mut converted_1852 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1853 in value.try_iter()? {
                     let item_1854 = item_result_1853?;
                     let converted_item_1855: String = item_1854.extract()?;
@@ -22681,7 +22727,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestMetricFilter"))
             })?;
-            Python::attach(|py| Py::new(py, PyTestMetricFilterResponse { inner: output }))
+            Ok(PyTestMetricFilterResponse { inner: output })
         })
     }
 
@@ -22694,7 +22740,8 @@ impl CloudWatchLogsClient {
         let state = self.state.clone();
         let transformer_config_value =
             if let Some(value) = dict_value(params, "transformer_config")? {
-                let mut converted_1856 = Vec::new();
+                let mut converted_1856 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1857 in value.try_iter()? {
                     let item_1858 = item_result_1857?;
                     let converted_item_1859 = processor_from_py(&item_1858)?;
@@ -22706,7 +22753,8 @@ impl CloudWatchLogsClient {
             };
         let log_event_messages_value =
             if let Some(value) = dict_value(params, "log_event_messages")? {
-                let mut converted_1860 = Vec::new();
+                let mut converted_1860 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1861 in value.try_iter()? {
                     let item_1862 = item_result_1861?;
                     let converted_item_1863: String = item_1862.extract()?;
@@ -22726,7 +22774,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestTransformer"))
             })?;
-            Python::attach(|py| Py::new(py, PyTestTransformerResponse { inner: output }))
+            Ok(PyTestTransformerResponse { inner: output })
         })
     }
 
@@ -22744,7 +22792,8 @@ impl CloudWatchLogsClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1865 = Vec::new();
+            let mut converted_1865 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1866 in value.try_iter()? {
                 let item_1867 = item_result_1866?;
                 let converted_item_1868: String = item_1867.extract()?;
@@ -22782,7 +22831,8 @@ impl CloudWatchLogsClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_1870 = Vec::new();
+            let mut converted_1870 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1871 in value.try_iter()? {
                 let item_1872 = item_result_1871?;
                 let converted_item_1873: String = item_1872.extract()?;
@@ -22885,7 +22935,8 @@ impl CloudWatchLogsClient {
             None
         };
         let record_fields_value = if let Some(value) = dict_value(params, "record_fields")? {
-            let mut converted_1882 = Vec::new();
+            let mut converted_1882 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1883 in value.try_iter()? {
                 let item_1884 = item_result_1883?;
                 let converted_item_1885: String = item_1884.extract()?;
@@ -22920,9 +22971,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeliveryConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateDeliveryConfigurationResponse { inner: output })
-            })
+            Ok(PyUpdateDeliveryConfigurationResponse { inner: output })
         })
     }
 
@@ -23036,7 +23085,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateLookupTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateLookupTableResponse { inner: output }))
+            Ok(PyUpdateLookupTableResponse { inner: output })
         })
     }
 
@@ -23075,7 +23124,8 @@ impl CloudWatchLogsClient {
         };
         let log_group_identifiers_value =
             if let Some(value) = dict_value(params, "log_group_identifiers")? {
-                let mut converted_1904 = Vec::new();
+                let mut converted_1904 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1905 in value.try_iter()? {
                     let item_1906 = item_result_1905?;
                     let converted_item_1907: String = item_1906.extract()?;
@@ -23169,7 +23219,7 @@ impl CloudWatchLogsClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateScheduledQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateScheduledQueryResponse { inner: output }))
+            Ok(PyUpdateScheduledQueryResponse { inner: output })
         })
     }
 }

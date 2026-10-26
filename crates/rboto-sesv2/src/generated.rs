@@ -34,7 +34,8 @@ fn account_details_from_py(
         builder = builder.set_use_case_description(Some(converted_6));
     }
     if let Some(value) = dict_value(values, "additional_contact_email_addresses")? {
-        let mut converted_7 = Vec::new();
+        let mut converted_7 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_8 in value.try_iter()? {
             let item_9 = item_result_8?;
             let converted_item_10: String = item_9.extract()?;
@@ -230,7 +231,7 @@ fn batch_get_metric_data_query_from_py(
     }
     if let Some(value) = dict_value(values, "dimensions")? {
         let mapping_45 = value.cast::<PyDict>()?;
-        let mut converted_44 = HashMap::new();
+        let mut converted_44 = HashMap::with_capacity(mapping_45.len());
         for (key_46, value_47) in mapping_45.iter() {
             let enum_value_50: String = key_46.extract()?;
             let converted_key_48 =
@@ -453,7 +454,8 @@ fn bulk_email_entry_from_py(
         builder = builder.set_destination(Some(converted_85));
     }
     if let Some(value) = dict_value(values, "replacement_tags")? {
-        let mut converted_86 = Vec::new();
+        let mut converted_86 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_87 in value.try_iter()? {
             let item_88 = item_result_87?;
             let converted_item_89 = message_tag_from_py(&item_88)?;
@@ -466,7 +468,8 @@ fn bulk_email_entry_from_py(
         builder = builder.set_replacement_email_content(Some(converted_90));
     }
     if let Some(value) = dict_value(values, "replacement_headers")? {
-        let mut converted_91 = Vec::new();
+        let mut converted_91 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_92 in value.try_iter()? {
             let item_93 = item_result_92?;
             let converted_item_94 = message_header_from_py(&item_93)?;
@@ -572,7 +575,8 @@ fn cloud_watch_destination_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::CloudWatchDestination::builder();
     if let Some(value) = dict_value(values, "dimension_configurations")? {
-        let mut converted_110 = Vec::new();
+        let mut converted_110 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_111 in value.try_iter()? {
             let item_112 = item_result_111?;
             let converted_item_113 = cloud_watch_dimension_configuration_from_py(&item_112)?;
@@ -703,7 +707,8 @@ fn contact_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::C
         builder = builder.set_email_address(Some(converted_130));
     }
     if let Some(value) = dict_value(values, "topic_preferences")? {
-        let mut converted_131 = Vec::new();
+        let mut converted_131 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_132 in value.try_iter()? {
             let item_133 = item_result_132?;
             let converted_item_134 = topic_preference_from_py(&item_133)?;
@@ -712,7 +717,8 @@ fn contact_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::C
         builder = builder.set_topic_preferences(Some(converted_131));
     }
     if let Some(value) = dict_value(values, "topic_default_preferences")? {
-        let mut converted_135 = Vec::new();
+        let mut converted_135 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_136 in value.try_iter()? {
             let item_137 = item_result_136?;
             let converted_item_138 = topic_preference_from_py(&item_137)?;
@@ -962,7 +968,8 @@ fn daily_volume_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::typ
         builder = builder.set_volume_statistics(Some(converted_177));
     }
     if let Some(value) = dict_value(values, "domain_isp_placements")? {
-        let mut converted_178 = Vec::new();
+        let mut converted_178 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_179 in value.try_iter()? {
             let item_180 = item_result_179?;
             let converted_item_181 = domain_isp_placement_from_py(&item_180)?;
@@ -1284,7 +1291,8 @@ fn destination_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::type
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::Destination::builder();
     if let Some(value) = dict_value(values, "to_addresses")? {
-        let mut converted_228 = Vec::new();
+        let mut converted_228 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_229 in value.try_iter()? {
             let item_230 = item_result_229?;
             let converted_item_231: String = item_230.extract()?;
@@ -1293,7 +1301,8 @@ fn destination_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::type
         builder = builder.set_to_addresses(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "cc_addresses")? {
-        let mut converted_232 = Vec::new();
+        let mut converted_232 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_233 in value.try_iter()? {
             let item_234 = item_result_233?;
             let converted_item_235: String = item_234.extract()?;
@@ -1302,7 +1311,8 @@ fn destination_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::type
         builder = builder.set_cc_addresses(Some(converted_232));
     }
     if let Some(value) = dict_value(values, "bcc_addresses")? {
-        let mut converted_236 = Vec::new();
+        let mut converted_236 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_237 in value.try_iter()? {
             let item_238 = item_result_237?;
             let converted_item_239: String = item_238.extract()?;
@@ -1358,7 +1368,8 @@ fn details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::D
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::Details::builder();
     if let Some(value) = dict_value(values, "routes_details")? {
-        let mut converted_249 = Vec::new();
+        let mut converted_249 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_250 in value.try_iter()? {
             let item_251 = item_result_250?;
             let converted_item_252 = route_details_from_py(&item_251)?;
@@ -1398,7 +1409,8 @@ fn dkim_attributes_from_py(
         builder = builder.set_status(Some(converted_257));
     }
     if let Some(value) = dict_value(values, "tokens")? {
-        let mut converted_259 = Vec::new();
+        let mut converted_259 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_260 in value.try_iter()? {
             let item_261 = item_result_260?;
             let converted_item_262: String = item_261.extract()?;
@@ -1579,7 +1591,8 @@ fn domain_deliverability_campaign_from_py(
         builder = builder.set_from_address(Some(converted_295));
     }
     if let Some(value) = dict_value(values, "sending_ips")? {
-        let mut converted_296 = Vec::new();
+        let mut converted_296 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_297 in value.try_iter()? {
             let item_298 = item_result_297?;
             let converted_item_299: String = item_298.extract()?;
@@ -1630,7 +1643,8 @@ fn domain_deliverability_campaign_from_py(
         builder = builder.set_projected_volume(Some(converted_309));
     }
     if let Some(value) = dict_value(values, "esps")? {
-        let mut converted_310 = Vec::new();
+        let mut converted_310 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_311 in value.try_iter()? {
             let item_312 = item_result_311?;
             let converted_item_313: String = item_312.extract()?;
@@ -2023,7 +2037,8 @@ fn email_insights_from_py(
         builder = builder.set_isp(Some(converted_371));
     }
     if let Some(value) = dict_value(values, "events")? {
-        let mut converted_372 = Vec::new();
+        let mut converted_372 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_373 in value.try_iter()? {
             let item_374 = item_result_373?;
             let converted_item_375 = insights_event_from_py(&item_374)?;
@@ -2190,7 +2205,8 @@ fn event_destination_from_py(
         builder = builder.set_enabled(Some(converted_395));
     }
     if let Some(value) = dict_value(values, "matching_event_types")? {
-        let mut converted_396 = Vec::new();
+        let mut converted_396 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_397 in value.try_iter()? {
             let item_398 = item_result_397?;
             let enum_value_400: String = item_398.extract()?;
@@ -2283,7 +2299,8 @@ fn event_destination_definition_from_py(
         builder = builder.set_enabled(Some(converted_416));
     }
     if let Some(value) = dict_value(values, "matching_event_types")? {
-        let mut converted_417 = Vec::new();
+        let mut converted_417 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_418 in value.try_iter()? {
             let item_419 = item_result_418?;
             let enum_value_421: String = item_419.extract()?;
@@ -2983,7 +3000,8 @@ fn inbox_placement_tracking_option_from_py(
         builder = builder.set_global(Some(converted_526));
     }
     if let Some(value) = dict_value(values, "tracked_isps")? {
-        let mut converted_527 = Vec::new();
+        let mut converted_527 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_528 in value.try_iter()? {
             let item_529 = item_result_528?;
             let converted_item_530: String = item_529.extract()?;
@@ -3290,7 +3308,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::M
         builder = builder.set_body(Some(converted_573));
     }
     if let Some(value) = dict_value(values, "headers")? {
-        let mut converted_574 = Vec::new();
+        let mut converted_574 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_575 in value.try_iter()? {
             let item_576 = item_result_575?;
             let converted_item_577 = message_header_from_py(&item_576)?;
@@ -3299,7 +3318,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::M
         builder = builder.set_headers(Some(converted_574));
     }
     if let Some(value) = dict_value(values, "attachments")? {
-        let mut converted_578 = Vec::new();
+        let mut converted_578 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_579 in value.try_iter()? {
             let item_580 = item_result_579?;
             let converted_item_581 = attachment_from_py(&item_580)?;
@@ -3455,7 +3475,8 @@ fn message_insights_filters_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::MessageInsightsFilters::builder();
     if let Some(value) = dict_value(values, "from_email_address")? {
-        let mut converted_606 = Vec::new();
+        let mut converted_606 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_607 in value.try_iter()? {
             let item_608 = item_result_607?;
             let converted_item_609: String = item_608.extract()?;
@@ -3464,7 +3485,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_from_email_address(Some(converted_606));
     }
     if let Some(value) = dict_value(values, "destination")? {
-        let mut converted_610 = Vec::new();
+        let mut converted_610 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_611 in value.try_iter()? {
             let item_612 = item_result_611?;
             let converted_item_613: String = item_612.extract()?;
@@ -3473,7 +3495,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_destination(Some(converted_610));
     }
     if let Some(value) = dict_value(values, "subject")? {
-        let mut converted_614 = Vec::new();
+        let mut converted_614 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_615 in value.try_iter()? {
             let item_616 = item_result_615?;
             let converted_item_617: String = item_616.extract()?;
@@ -3482,7 +3505,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_subject(Some(converted_614));
     }
     if let Some(value) = dict_value(values, "isp")? {
-        let mut converted_618 = Vec::new();
+        let mut converted_618 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_619 in value.try_iter()? {
             let item_620 = item_result_619?;
             let converted_item_621: String = item_620.extract()?;
@@ -3491,7 +3515,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_isp(Some(converted_618));
     }
     if let Some(value) = dict_value(values, "tenant_name")? {
-        let mut converted_622 = Vec::new();
+        let mut converted_622 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_623 in value.try_iter()? {
             let item_624 = item_result_623?;
             let converted_item_625: String = item_624.extract()?;
@@ -3500,7 +3525,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_tenant_name(Some(converted_622));
     }
     if let Some(value) = dict_value(values, "last_delivery_event")? {
-        let mut converted_626 = Vec::new();
+        let mut converted_626 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_627 in value.try_iter()? {
             let item_628 = item_result_627?;
             let enum_value_630: String = item_628.extract()?;
@@ -3511,7 +3537,8 @@ fn message_insights_filters_from_py(
         builder = builder.set_last_delivery_event(Some(converted_626));
     }
     if let Some(value) = dict_value(values, "last_engagement_event")? {
-        let mut converted_631 = Vec::new();
+        let mut converted_631 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_632 in value.try_iter()? {
             let item_633 = item_result_632?;
             let enum_value_635: String = item_633.extract()?;
@@ -3720,7 +3747,8 @@ fn metric_data_result_from_py(
         builder = builder.set_id(Some(converted_670));
     }
     if let Some(value) = dict_value(values, "timestamps")? {
-        let mut converted_671 = Vec::new();
+        let mut converted_671 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_672 in value.try_iter()? {
             let item_673 = item_result_672?;
             let timestamp_675: String = item_673.extract()?;
@@ -3734,7 +3762,8 @@ fn metric_data_result_from_py(
         builder = builder.set_timestamps(Some(converted_671));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_676 = Vec::new();
+        let mut converted_676 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_677 in value.try_iter()? {
             let item_678 = item_result_677?;
             let converted_item_679: i64 = item_678.extract()?;
@@ -3788,12 +3817,13 @@ fn metrics_data_source_from_py(
     let mut builder = aws_sdk_sesv2::types::MetricsDataSource::builder();
     if let Some(value) = dict_value(values, "dimensions")? {
         let mapping_688 = value.cast::<PyDict>()?;
-        let mut converted_687 = HashMap::new();
+        let mut converted_687 = HashMap::with_capacity(mapping_688.len());
         for (key_689, value_690) in mapping_688.iter() {
             let enum_value_693: String = key_689.extract()?;
             let converted_key_691 =
                 aws_sdk_sesv2::types::MetricDimensionName::from(enum_value_693.as_str());
-            let mut converted_value_692 = Vec::new();
+            let mut converted_value_692 =
+                Vec::with_capacity(value_690.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_694 in value_690.try_iter()? {
                 let item_695 = item_result_694?;
                 let converted_item_696: String = item_695.extract()?;
@@ -3809,7 +3839,8 @@ fn metrics_data_source_from_py(
         builder = builder.set_namespace(Some(converted_697));
     }
     if let Some(value) = dict_value(values, "metrics")? {
-        let mut converted_699 = Vec::new();
+        let mut converted_699 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_700 in value.try_iter()? {
             let item_701 = item_result_700?;
             let converted_item_702 = export_metric_from_py(&item_701)?;
@@ -3893,7 +3924,8 @@ fn multi_region_endpoint_from_py(
         builder = builder.set_endpoint_id(Some(converted_723));
     }
     if let Some(value) = dict_value(values, "regions")? {
-        let mut converted_724 = Vec::new();
+        let mut converted_724 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_725 in value.try_iter()? {
             let item_726 = item_result_725?;
             let converted_item_727: String = item_726.extract()?;
@@ -3985,7 +4017,8 @@ fn overall_volume_from_py(
         builder = builder.set_read_rate_percent(Some(converted_741));
     }
     if let Some(value) = dict_value(values, "domain_isp_placements")? {
-        let mut converted_742 = Vec::new();
+        let mut converted_742 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_743 in value.try_iter()? {
             let item_744 = item_result_743?;
             let converted_item_745 = domain_isp_placement_from_py(&item_744)?;
@@ -4990,7 +5023,8 @@ fn suppression_attributes_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::SuppressionAttributes::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
-        let mut converted_890 = Vec::new();
+        let mut converted_890 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_891 in value.try_iter()? {
             let item_892 = item_result_891?;
             let enum_value_894: String = item_892.extract()?;
@@ -5132,7 +5166,8 @@ fn suppression_options_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::SuppressionOptions::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
-        let mut converted_911 = Vec::new();
+        let mut converted_911 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_912 in value.try_iter()? {
             let item_913 = item_result_912?;
             let enum_value_915: String = item_913.extract()?;
@@ -5283,7 +5318,8 @@ fn template_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::
         builder = builder.set_template_data(Some(converted_935));
     }
     if let Some(value) = dict_value(values, "headers")? {
-        let mut converted_936 = Vec::new();
+        let mut converted_936 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_937 in value.try_iter()? {
             let item_938 = item_result_937?;
             let converted_item_939 = message_header_from_py(&item_938)?;
@@ -5292,7 +5328,8 @@ fn template_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::
         builder = builder.set_headers(Some(converted_936));
     }
     if let Some(value) = dict_value(values, "attachments")? {
-        let mut converted_940 = Vec::new();
+        let mut converted_940 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_941 in value.try_iter()? {
             let item_942 = item_result_941?;
             let converted_item_943 = attachment_from_py(&item_942)?;
@@ -5379,7 +5416,8 @@ fn tenant_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Te
         builder = builder.set_created_timestamp(Some(converted_957));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_959 = Vec::new();
+        let mut converted_959 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_960 in value.try_iter()? {
             let item_961 = item_result_960?;
             let converted_item_962 = tag_from_py(&item_961)?;
@@ -5564,7 +5602,8 @@ fn tenant_suppression_attributes_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_sesv2::types::TenantSuppressionAttributes::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
-        let mut converted_992 = Vec::new();
+        let mut converted_992 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_993 in value.try_iter()? {
             let item_994 = item_result_993?;
             let enum_value_996: String = item_994.extract()?;
@@ -15673,12 +15712,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "AssociateEmailIdentityCertificate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyAssociateEmailIdentityCertificateResponse { inner: output },
-                )
-            })
+            Ok(PyAssociateEmailIdentityCertificateResponse { inner: output })
         })
     }
 
@@ -15690,7 +15724,8 @@ impl SESv2Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queries_value = if let Some(value) = dict_value(params, "queries")? {
-            let mut converted_1065 = Vec::new();
+            let mut converted_1065 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1066 in value.try_iter()? {
                 let item_1067 = item_result_1066?;
                 let converted_item_1068 = batch_get_metric_data_query_from_py(&item_1067)?;
@@ -15709,7 +15744,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetMetricData"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchGetMetricDataResponse { inner: output }))
+            Ok(PyBatchGetMetricDataResponse { inner: output })
         })
     }
 
@@ -15735,7 +15770,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelExportJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelExportJobResponse { inner: output }))
+            Ok(PyCancelExportJobResponse { inner: output })
         })
     }
 
@@ -15779,7 +15814,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1075 = Vec::new();
+            let mut converted_1075 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1076 in value.try_iter()? {
                 let item_1077 = item_result_1076?;
                 let converted_item_1078 = tag_from_py(&item_1077)?;
@@ -15834,7 +15870,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateConfigurationSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateConfigurationSetResponse { inner: output }))
+            Ok(PyCreateConfigurationSetResponse { inner: output })
         })
     }
 
@@ -15879,12 +15915,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "CreateConfigurationSetEventDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateConfigurationSetEventDestinationResponse { inner: output },
-                )
-            })
+            Ok(PyCreateConfigurationSetEventDestinationResponse { inner: output })
         })
     }
 
@@ -15910,7 +15941,8 @@ impl SESv2Client {
         };
         let topic_preferences_value = if let Some(value) = dict_value(params, "topic_preferences")?
         {
-            let mut converted_1088 = Vec::new();
+            let mut converted_1088 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1089 in value.try_iter()? {
                 let item_1090 = item_result_1089?;
                 let converted_item_1091 = topic_preference_from_py(&item_1090)?;
@@ -15945,7 +15977,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateContact"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateContactResponse { inner: output }))
+            Ok(PyCreateContactResponse { inner: output })
         })
     }
 
@@ -15964,7 +15996,8 @@ impl SESv2Client {
             None
         };
         let topics_value = if let Some(value) = dict_value(params, "topics")? {
-            let mut converted_1095 = Vec::new();
+            let mut converted_1095 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1096 in value.try_iter()? {
                 let item_1097 = item_result_1096?;
                 let converted_item_1098 = topic_from_py(&item_1097)?;
@@ -15981,7 +16014,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1100 = Vec::new();
+            let mut converted_1100 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1101 in value.try_iter()? {
                 let item_1102 = item_result_1101?;
                 let converted_item_1103 = tag_from_py(&item_1102)?;
@@ -16003,7 +16037,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateContactList"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateContactListResponse { inner: output }))
+            Ok(PyCreateContactListResponse { inner: output })
         })
     }
 
@@ -16040,7 +16074,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1108 = Vec::new();
+            let mut converted_1108 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1109 in value.try_iter()? {
                 let item_1110 = item_result_1109?;
                 let converted_item_1111 = tag_from_py(&item_1110)?;
@@ -16081,12 +16116,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "CreateCustomVerificationEmailTemplate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateCustomVerificationEmailTemplateResponse { inner: output },
-                )
-            })
+            Ok(PyCreateCustomVerificationEmailTemplateResponse { inner: output })
         })
     }
 
@@ -16104,7 +16134,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1115 = Vec::new();
+            let mut converted_1115 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1116 in value.try_iter()? {
                 let item_1117 = item_result_1116?;
                 let converted_item_1118 = tag_from_py(&item_1117)?;
@@ -16132,7 +16163,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDedicatedIpPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDedicatedIpPoolResponse { inner: output }))
+            Ok(PyCreateDedicatedIpPoolResponse { inner: output })
         })
     }
 
@@ -16163,7 +16194,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1124 = Vec::new();
+            let mut converted_1124 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1125 in value.try_iter()? {
                 let item_1126 = item_result_1125?;
                 let converted_item_1127 = tag_from_py(&item_1126)?;
@@ -16185,12 +16217,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeliverabilityTestReport"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateDeliverabilityTestReportResponse { inner: output },
-                )
-            })
+            Ok(PyCreateDeliverabilityTestReportResponse { inner: output })
         })
     }
 
@@ -16208,7 +16235,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1129 = Vec::new();
+            let mut converted_1129 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1130 in value.try_iter()? {
                 let item_1131 = item_result_1130?;
                 let converted_item_1132 = tag_from_py(&item_1131)?;
@@ -16244,7 +16272,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEmailIdentityResponse { inner: output }))
+            Ok(PyCreateEmailIdentityResponse { inner: output })
         })
     }
 
@@ -16284,7 +16312,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentityPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEmailIdentityPolicyResponse { inner: output }))
+            Ok(PyCreateEmailIdentityPolicyResponse { inner: output })
         })
     }
 
@@ -16308,7 +16336,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1140 = Vec::new();
+            let mut converted_1140 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1141 in value.try_iter()? {
                 let item_1142 = item_result_1141?;
                 let converted_item_1143 = tag_from_py(&item_1142)?;
@@ -16329,7 +16358,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEmailTemplateResponse { inner: output }))
+            Ok(PyCreateEmailTemplateResponse { inner: output })
         })
     }
 
@@ -16364,7 +16393,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateExportJobResponse { inner: output }))
+            Ok(PyCreateExportJobResponse { inner: output })
         })
     }
 
@@ -16399,7 +16428,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateImportJobResponse { inner: output }))
+            Ok(PyCreateImportJobResponse { inner: output })
         })
     }
 
@@ -16423,7 +16452,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1150 = Vec::new();
+            let mut converted_1150 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1151 in value.try_iter()? {
                 let item_1152 = item_result_1151?;
                 let converted_item_1153 = tag_from_py(&item_1152)?;
@@ -16444,7 +16474,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultiRegionEndpoint"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateMultiRegionEndpointResponse { inner: output }))
+            Ok(PyCreateMultiRegionEndpointResponse { inner: output })
         })
     }
 
@@ -16462,7 +16492,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1155 = Vec::new();
+            let mut converted_1155 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1156 in value.try_iter()? {
                 let item_1157 = item_result_1156?;
                 let converted_item_1158 = tag_from_py(&item_1157)?;
@@ -16490,7 +16521,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenant"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateTenantResponse { inner: output }))
+            Ok(PyCreateTenantResponse { inner: output })
         })
     }
 
@@ -16523,12 +16554,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenantResourceAssociation"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateTenantResourceAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyCreateTenantResourceAssociationResponse { inner: output })
         })
     }
 
@@ -16555,7 +16581,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConfigurationSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteConfigurationSetResponse { inner: output }))
+            Ok(PyDeleteConfigurationSetResponse { inner: output })
         })
     }
 
@@ -16592,12 +16618,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DeleteConfigurationSetEventDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteConfigurationSetEventDestinationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteConfigurationSetEventDestinationResponse { inner: output })
         })
     }
 
@@ -16631,7 +16652,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContact"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteContactResponse { inner: output }))
+            Ok(PyDeleteContactResponse { inner: output })
         })
     }
 
@@ -16658,7 +16679,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContactList"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteContactListResponse { inner: output }))
+            Ok(PyDeleteContactListResponse { inner: output })
         })
     }
 
@@ -16686,12 +16707,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DeleteCustomVerificationEmailTemplate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteCustomVerificationEmailTemplateResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteCustomVerificationEmailTemplateResponse { inner: output })
         })
     }
 
@@ -16717,7 +16733,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDedicatedIpPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDedicatedIpPoolResponse { inner: output }))
+            Ok(PyDeleteDedicatedIpPoolResponse { inner: output })
         })
     }
 
@@ -16743,7 +16759,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteEmailIdentityResponse { inner: output }))
+            Ok(PyDeleteEmailIdentityResponse { inner: output })
         })
     }
 
@@ -16776,7 +16792,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentityPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteEmailIdentityPolicyResponse { inner: output }))
+            Ok(PyDeleteEmailIdentityPolicyResponse { inner: output })
         })
     }
 
@@ -16802,7 +16818,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteEmailTemplateResponse { inner: output }))
+            Ok(PyDeleteEmailTemplateResponse { inner: output })
         })
     }
 
@@ -16828,7 +16844,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMultiRegionEndpoint"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteMultiRegionEndpointResponse { inner: output }))
+            Ok(PyDeleteMultiRegionEndpointResponse { inner: output })
         })
     }
 
@@ -16861,9 +16877,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSuppressedDestination"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDeleteSuppressedDestinationResponse { inner: output })
-            })
+            Ok(PyDeleteSuppressedDestinationResponse { inner: output })
         })
     }
 
@@ -16889,7 +16903,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenant"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteTenantResponse { inner: output }))
+            Ok(PyDeleteTenantResponse { inner: output })
         })
     }
 
@@ -16922,12 +16936,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenantResourceAssociation"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteTenantResourceAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteTenantResourceAssociationResponse { inner: output })
         })
     }
 
@@ -16962,12 +16971,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DisassociateEmailIdentityCertificate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateEmailIdentityCertificateResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateEmailIdentityCertificateResponse { inner: output })
         })
     }
 
@@ -16984,7 +16988,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
-            Python::attach(|py| Py::new(py, PyGetAccountResponse { inner: output }))
+            Ok(PyGetAccountResponse { inner: output })
         })
     }
 
@@ -16997,7 +17001,8 @@ impl SESv2Client {
         let state = self.state.clone();
         let blacklist_item_names_value =
             if let Some(value) = dict_value(params, "blacklist_item_names")? {
-                let mut converted_1182 = Vec::new();
+                let mut converted_1182 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1183 in value.try_iter()? {
                     let item_1184 = item_result_1183?;
                     let converted_item_1185: String = item_1184.extract()?;
@@ -17016,7 +17021,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlacklistReports"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBlacklistReportsResponse { inner: output }))
+            Ok(PyGetBlacklistReportsResponse { inner: output })
         })
     }
 
@@ -17043,7 +17048,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConfigurationSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetConfigurationSetResponse { inner: output }))
+            Ok(PyGetConfigurationSetResponse { inner: output })
         })
     }
 
@@ -17072,12 +17077,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetConfigurationSetEventDestinations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetConfigurationSetEventDestinationsResponse { inner: output },
-                )
-            })
+            Ok(PyGetConfigurationSetEventDestinationsResponse { inner: output })
         })
     }
 
@@ -17112,7 +17112,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetContact")))?;
-            Python::attach(|py| Py::new(py, PyGetContactResponse { inner: output }))
+            Ok(PyGetContactResponse { inner: output })
         })
     }
 
@@ -17139,7 +17139,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetContactList"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetContactListResponse { inner: output }))
+            Ok(PyGetContactListResponse { inner: output })
         })
     }
 
@@ -17167,12 +17167,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetCustomVerificationEmailTemplate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetCustomVerificationEmailTemplateResponse { inner: output },
-                )
-            })
+            Ok(PyGetCustomVerificationEmailTemplateResponse { inner: output })
         })
     }
 
@@ -17194,7 +17189,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIp"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDedicatedIpResponse { inner: output }))
+            Ok(PyGetDedicatedIpResponse { inner: output })
         })
     }
 
@@ -17220,7 +17215,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIpPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDedicatedIpPoolResponse { inner: output }))
+            Ok(PyGetDedicatedIpPoolResponse { inner: output })
         })
     }
 
@@ -17260,7 +17255,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIps"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDedicatedIpsResponse { inner: output }))
+            Ok(PyGetDedicatedIpsResponse { inner: output })
         })
     }
 
@@ -17278,12 +17273,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetDeliverabilityDashboardOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetDeliverabilityDashboardOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyGetDeliverabilityDashboardOptionsResponse { inner: output })
         })
     }
 
@@ -17309,9 +17299,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverabilityTestReport"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetDeliverabilityTestReportResponse { inner: output })
-            })
+            Ok(PyGetDeliverabilityTestReportResponse { inner: output })
         })
     }
 
@@ -17337,12 +17325,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainDeliverabilityCampaign"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetDomainDeliverabilityCampaignResponse { inner: output },
-                )
-            })
+            Ok(PyGetDomainDeliverabilityCampaignResponse { inner: output })
         })
     }
 
@@ -17392,7 +17375,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainStatisticsReport"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDomainStatisticsReportResponse { inner: output }))
+            Ok(PyGetDomainStatisticsReportResponse { inner: output })
         })
     }
 
@@ -17418,7 +17401,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailAddressInsights"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEmailAddressInsightsResponse { inner: output }))
+            Ok(PyGetEmailAddressInsightsResponse { inner: output })
         })
     }
 
@@ -17444,7 +17427,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEmailIdentityResponse { inner: output }))
+            Ok(PyGetEmailIdentityResponse { inner: output })
         })
     }
 
@@ -17470,7 +17453,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentityPolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEmailIdentityPoliciesResponse { inner: output }))
+            Ok(PyGetEmailIdentityPoliciesResponse { inner: output })
         })
     }
 
@@ -17496,7 +17479,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEmailTemplateResponse { inner: output }))
+            Ok(PyGetEmailTemplateResponse { inner: output })
         })
     }
 
@@ -17522,7 +17505,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExportJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetExportJobResponse { inner: output }))
+            Ok(PyGetExportJobResponse { inner: output })
         })
     }
 
@@ -17548,7 +17531,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetImportJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetImportJobResponse { inner: output }))
+            Ok(PyGetImportJobResponse { inner: output })
         })
     }
 
@@ -17574,7 +17557,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMessageInsights"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMessageInsightsResponse { inner: output }))
+            Ok(PyGetMessageInsightsResponse { inner: output })
         })
     }
 
@@ -17600,7 +17583,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMultiRegionEndpoint"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMultiRegionEndpointResponse { inner: output }))
+            Ok(PyGetMultiRegionEndpointResponse { inner: output })
         })
     }
 
@@ -17637,7 +17620,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetReputationEntity"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetReputationEntityResponse { inner: output }))
+            Ok(PyGetReputationEntityResponse { inner: output })
         })
     }
 
@@ -17670,7 +17653,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSuppressedDestination"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSuppressedDestinationResponse { inner: output }))
+            Ok(PyGetSuppressedDestinationResponse { inner: output })
         })
     }
 
@@ -17697,7 +17680,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTenant")))?;
-            Python::attach(|py| Py::new(py, PyGetTenantResponse { inner: output }))
+            Ok(PyGetTenantResponse { inner: output })
         })
     }
 
@@ -17710,7 +17693,7 @@ impl SESv2Client {
         let state = self.state.clone();
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1219 = value.cast::<PyDict>()?;
-            let mut converted_1218 = HashMap::new();
+            let mut converted_1218 = HashMap::with_capacity(mapping_1219.len());
             for (key_1220, value_1221) in mapping_1219.iter() {
                 let enum_value_1224: String = key_1220.extract()?;
                 let converted_key_1222 =
@@ -17745,7 +17728,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConfigurationSets"))
             })?;
-            Python::attach(|py| Py::new(py, PyListConfigurationSetsResponse { inner: output }))
+            Ok(PyListConfigurationSetsResponse { inner: output })
         })
     }
 
@@ -17778,7 +17761,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContactLists"))
             })?;
-            Python::attach(|py| Py::new(py, PyListContactListsResponse { inner: output }))
+            Ok(PyListContactListsResponse { inner: output })
         })
     }
 
@@ -17826,7 +17809,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContacts"))
             })?;
-            Python::attach(|py| Py::new(py, PyListContactsResponse { inner: output }))
+            Ok(PyListContactsResponse { inner: output })
         })
     }
 
@@ -17861,12 +17844,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "ListCustomVerificationEmailTemplates")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListCustomVerificationEmailTemplatesResponse { inner: output },
-                )
-            })
+            Ok(PyListCustomVerificationEmailTemplatesResponse { inner: output })
         })
     }
 
@@ -17899,7 +17877,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDedicatedIpPools"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDedicatedIpPoolsResponse { inner: output }))
+            Ok(PyListDedicatedIpPoolsResponse { inner: output })
         })
     }
 
@@ -17932,12 +17910,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDeliverabilityTestReports"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListDeliverabilityTestReportsResponse { inner: output },
-                )
-            })
+            Ok(PyListDeliverabilityTestReportsResponse { inner: output })
         })
     }
 
@@ -18004,12 +17977,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "ListDomainDeliverabilityCampaigns")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListDomainDeliverabilityCampaignsResponse { inner: output },
-                )
-            })
+            Ok(PyListDomainDeliverabilityCampaignsResponse { inner: output })
         })
     }
 
@@ -18022,7 +17990,7 @@ impl SESv2Client {
         let state = self.state.clone();
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1247 = value.cast::<PyDict>()?;
-            let mut converted_1246 = HashMap::new();
+            let mut converted_1246 = HashMap::with_capacity(mapping_1247.len());
             for (key_1248, value_1249) in mapping_1247.iter() {
                 let enum_value_1252: String = key_1248.extract()?;
                 let converted_key_1250 =
@@ -18057,7 +18025,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentities"))
             })?;
-            Python::attach(|py| Py::new(py, PyListEmailIdentitiesResponse { inner: output }))
+            Ok(PyListEmailIdentitiesResponse { inner: output })
         })
     }
 
@@ -18097,12 +18065,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentityCertificates"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListEmailIdentityCertificatesResponse { inner: output },
-                )
-            })
+            Ok(PyListEmailIdentityCertificatesResponse { inner: output })
         })
     }
 
@@ -18135,7 +18098,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailTemplates"))
             })?;
-            Python::attach(|py| Py::new(py, PyListEmailTemplatesResponse { inner: output }))
+            Ok(PyListEmailTemplatesResponse { inner: output })
         })
     }
 
@@ -18186,7 +18149,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListExportJobs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListExportJobsResponse { inner: output }))
+            Ok(PyListExportJobsResponse { inner: output })
         })
     }
 
@@ -18229,7 +18192,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportJobs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListImportJobsResponse { inner: output }))
+            Ok(PyListImportJobsResponse { inner: output })
         })
     }
 
@@ -18262,7 +18225,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultiRegionEndpoints"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMultiRegionEndpointsResponse { inner: output }))
+            Ok(PyListMultiRegionEndpointsResponse { inner: output })
         })
     }
 
@@ -18275,7 +18238,7 @@ impl SESv2Client {
         let state = self.state.clone();
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1273 = value.cast::<PyDict>()?;
-            let mut converted_1272 = HashMap::new();
+            let mut converted_1272 = HashMap::with_capacity(mapping_1273.len());
             for (key_1274, value_1275) in mapping_1273.iter() {
                 let enum_value_1278: String = key_1274.extract()?;
                 let converted_key_1276 = aws_sdk_sesv2::types::ListRecommendationsFilterKey::from(
@@ -18311,7 +18274,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRecommendations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListRecommendationsResponse { inner: output }))
+            Ok(PyListRecommendationsResponse { inner: output })
         })
     }
 
@@ -18324,7 +18287,7 @@ impl SESv2Client {
         let state = self.state.clone();
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1282 = value.cast::<PyDict>()?;
-            let mut converted_1281 = HashMap::new();
+            let mut converted_1281 = HashMap::with_capacity(mapping_1282.len());
             for (key_1283, value_1284) in mapping_1282.iter() {
                 let enum_value_1287: String = key_1283.extract()?;
                 let converted_key_1285 =
@@ -18359,7 +18322,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListReputationEntities"))
             })?;
-            Python::attach(|py| Py::new(py, PyListReputationEntitiesResponse { inner: output }))
+            Ok(PyListReputationEntitiesResponse { inner: output })
         })
     }
 
@@ -18399,7 +18362,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTenants"))
             })?;
-            Python::attach(|py| Py::new(py, PyListResourceTenantsResponse { inner: output }))
+            Ok(PyListResourceTenantsResponse { inner: output })
         })
     }
 
@@ -18417,7 +18380,8 @@ impl SESv2Client {
             None
         };
         let reasons_value = if let Some(value) = dict_value(params, "reasons")? {
-            let mut converted_1294 = Vec::new();
+            let mut converted_1294 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1295 in value.try_iter()? {
                 let item_1296 = item_result_1295?;
                 let enum_value_1298: String = item_1296.extract()?;
@@ -18477,7 +18441,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSuppressedDestinations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSuppressedDestinationsResponse { inner: output }))
+            Ok(PyListSuppressedDestinationsResponse { inner: output })
         })
     }
 
@@ -18503,7 +18467,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -18522,7 +18486,7 @@ impl SESv2Client {
         };
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1308 = value.cast::<PyDict>()?;
-            let mut converted_1307 = HashMap::new();
+            let mut converted_1307 = HashMap::with_capacity(mapping_1308.len());
             for (key_1309, value_1310) in mapping_1308.iter() {
                 let enum_value_1313: String = key_1309.extract()?;
                 let converted_key_1311 = aws_sdk_sesv2::types::ListTenantResourcesFilterKey::from(
@@ -18559,7 +18523,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTenantResources"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTenantResourcesResponse { inner: output }))
+            Ok(PyListTenantResourcesResponse { inner: output })
         })
     }
 
@@ -18572,7 +18536,7 @@ impl SESv2Client {
         let state = self.state.clone();
         let filter_value = if let Some(value) = dict_value(params, "filter")? {
             let mapping_1317 = value.cast::<PyDict>()?;
-            let mut converted_1316 = HashMap::new();
+            let mut converted_1316 = HashMap::with_capacity(mapping_1317.len());
             for (key_1318, value_1319) in mapping_1317.iter() {
                 let enum_value_1322: String = key_1318.extract()?;
                 let converted_key_1320 =
@@ -18608,7 +18572,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTenants")))?;
-            Python::attach(|py| Py::new(py, PyListTenantsResponse { inner: output }))
+            Ok(PyListTenantsResponse { inner: output })
         })
     }
 
@@ -18637,12 +18601,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutAccountDedicatedIpWarmupAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutAccountDedicatedIpWarmupAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutAccountDedicatedIpWarmupAttributesResponse { inner: output })
         })
     }
 
@@ -18683,7 +18642,8 @@ impl SESv2Client {
             };
         let additional_contact_email_addresses_value =
             if let Some(value) = dict_value(params, "additional_contact_email_addresses")? {
-                let mut converted_1332 = Vec::new();
+                let mut converted_1332 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1333 in value.try_iter()? {
                     let item_1334 = item_result_1333?;
                     let converted_item_1335: String = item_1334.extract()?;
@@ -18714,7 +18674,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountDetails"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutAccountDetailsResponse { inner: output }))
+            Ok(PyPutAccountDetailsResponse { inner: output })
         })
     }
 
@@ -18741,9 +18701,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPricingAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyPutAccountPricingAttributesResponse { inner: output })
-            })
+            Ok(PyPutAccountPricingAttributesResponse { inner: output })
         })
     }
 
@@ -18769,9 +18727,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSendingAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyPutAccountSendingAttributesResponse { inner: output })
-            })
+            Ok(PyPutAccountSendingAttributesResponse { inner: output })
         })
     }
 
@@ -18784,7 +18740,8 @@ impl SESv2Client {
         let state = self.state.clone();
         let suppressed_reasons_value =
             if let Some(value) = dict_value(params, "suppressed_reasons")? {
-                let mut converted_1340 = Vec::new();
+                let mut converted_1340 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1341 in value.try_iter()? {
                     let item_1342 = item_result_1341?;
                     let enum_value_1344: String = item_1342.extract()?;
@@ -18813,12 +18770,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSuppressionAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutAccountSuppressionAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutAccountSuppressionAttributesResponse { inner: output })
         })
     }
 
@@ -18844,7 +18796,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountVdmAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutAccountVdmAttributesResponse { inner: output }))
+            Ok(PyPutAccountVdmAttributesResponse { inner: output })
         })
     }
 
@@ -18880,12 +18832,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetArchivingOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetArchivingOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetArchivingOptionsResponse { inner: output })
         })
     }
 
@@ -18938,12 +18885,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetDeliveryOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetDeliveryOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetDeliveryOptionsResponse { inner: output })
         })
     }
 
@@ -18980,12 +18922,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetReputationOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetReputationOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetReputationOptionsResponse { inner: output })
         })
     }
 
@@ -19021,12 +18958,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetSendingOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetSendingOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetSendingOptionsResponse { inner: output })
         })
     }
 
@@ -19055,7 +18987,8 @@ impl SESv2Client {
         };
         let suppressed_reasons_value =
             if let Some(value) = dict_value(params, "suppressed_reasons")? {
-                let mut converted_1361 = Vec::new();
+                let mut converted_1361 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1362 in value.try_iter()? {
                     let item_1363 = item_result_1362?;
                     let enum_value_1365: String = item_1363.extract()?;
@@ -19088,12 +19021,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetSuppressionOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetSuppressionOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetSuppressionOptionsResponse { inner: output })
         })
     }
 
@@ -19138,12 +19066,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetTrackingOptions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetTrackingOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetTrackingOptionsResponse { inner: output })
         })
     }
 
@@ -19177,12 +19100,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutConfigurationSetVdmOptions"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConfigurationSetVdmOptionsResponse { inner: output },
-                )
-            })
+            Ok(PyPutConfigurationSetVdmOptionsResponse { inner: output })
         })
     }
 
@@ -19216,7 +19134,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpInPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutDedicatedIpInPoolResponse { inner: output }))
+            Ok(PyPutDedicatedIpInPoolResponse { inner: output })
         })
     }
 
@@ -19252,12 +19170,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutDedicatedIpPoolScalingAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutDedicatedIpPoolScalingAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutDedicatedIpPoolScalingAttributesResponse { inner: output })
         })
     }
 
@@ -19291,12 +19204,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpWarmupAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutDedicatedIpWarmupAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutDedicatedIpWarmupAttributesResponse { inner: output })
         })
     }
 
@@ -19316,7 +19224,8 @@ impl SESv2Client {
         };
         let subscribed_domains_value =
             if let Some(value) = dict_value(params, "subscribed_domains")? {
-                let mut converted_1381 = Vec::new();
+                let mut converted_1381 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1382 in value.try_iter()? {
                     let item_1383 = item_result_1382?;
                     let converted_item_1384 =
@@ -19337,12 +19246,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverabilityDashboardOption"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutDeliverabilityDashboardOptionResponse { inner: output },
-                )
-            })
+            Ok(PyPutDeliverabilityDashboardOptionResponse { inner: output })
         })
     }
 
@@ -19378,12 +19282,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityConfigurationSetAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutEmailIdentityConfigurationSetAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutEmailIdentityConfigurationSetAttributesResponse { inner: output })
         })
     }
 
@@ -19416,12 +19315,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEmailIdentityDkimAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutEmailIdentityDkimAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutEmailIdentityDkimAttributesResponse { inner: output })
         })
     }
 
@@ -19468,12 +19362,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityDkimSigningAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutEmailIdentityDkimSigningAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutEmailIdentityDkimSigningAttributesResponse { inner: output })
         })
     }
 
@@ -19509,12 +19398,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityFeedbackAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutEmailIdentityFeedbackAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutEmailIdentityFeedbackAttributesResponse { inner: output })
         })
     }
 
@@ -19559,12 +19443,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityMailFromAttributes")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutEmailIdentityMailFromAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutEmailIdentityMailFromAttributesResponse { inner: output })
         })
     }
 
@@ -19606,7 +19485,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutSuppressedDestination"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutSuppressedDestinationResponse { inner: output }))
+            Ok(PyPutSuppressedDestinationResponse { inner: output })
         })
     }
 
@@ -19625,7 +19504,8 @@ impl SESv2Client {
         };
         let suppressed_reasons_value =
             if let Some(value) = dict_value(params, "suppressed_reasons")? {
-                let mut converted_1404 = Vec::new();
+                let mut converted_1404 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1405 in value.try_iter()? {
                     let item_1406 = item_result_1405?;
                     let enum_value_1408: String = item_1406.extract()?;
@@ -19657,12 +19537,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutTenantSuppressionAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutTenantSuppressionAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyPutTenantSuppressionAttributesResponse { inner: output })
         })
     }
 
@@ -19689,7 +19564,8 @@ impl SESv2Client {
             };
         let reply_to_addresses_value =
             if let Some(value) = dict_value(params, "reply_to_addresses")? {
-                let mut converted_1413 = Vec::new();
+                let mut converted_1413 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1414 in value.try_iter()? {
                     let item_1415 = item_result_1414?;
                     let converted_item_1416: String = item_1415.extract()?;
@@ -19716,7 +19592,8 @@ impl SESv2Client {
         };
         let default_email_tags_value =
             if let Some(value) = dict_value(params, "default_email_tags")? {
-                let mut converted_1419 = Vec::new();
+                let mut converted_1419 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1420 in value.try_iter()? {
                     let item_1421 = item_result_1420?;
                     let converted_item_1422 = message_tag_from_py(&item_1421)?;
@@ -19734,7 +19611,8 @@ impl SESv2Client {
         };
         let bulk_email_entries_value =
             if let Some(value) = dict_value(params, "bulk_email_entries")? {
-                let mut converted_1424 = Vec::new();
+                let mut converted_1424 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1425 in value.try_iter()? {
                     let item_1426 = item_result_1425?;
                     let converted_item_1427 = bulk_email_entry_from_py(&item_1426)?;
@@ -19792,7 +19670,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendBulkEmail"))
             })?;
-            Python::attach(|py| Py::new(py, PySendBulkEmailResponse { inner: output }))
+            Ok(PySendBulkEmailResponse { inner: output })
         })
     }
 
@@ -19833,9 +19711,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendCustomVerificationEmail"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PySendCustomVerificationEmailResponse { inner: output })
-            })
+            Ok(PySendCustomVerificationEmailResponse { inner: output })
         })
     }
 
@@ -19868,7 +19744,8 @@ impl SESv2Client {
         };
         let reply_to_addresses_value =
             if let Some(value) = dict_value(params, "reply_to_addresses")? {
-                let mut converted_1438 = Vec::new();
+                let mut converted_1438 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1439 in value.try_iter()? {
                     let item_1440 = item_result_1439?;
                     let converted_item_1441: String = item_1440.extract()?;
@@ -19900,7 +19777,8 @@ impl SESv2Client {
             None
         };
         let email_tags_value = if let Some(value) = dict_value(params, "email_tags")? {
-            let mut converted_1445 = Vec::new();
+            let mut converted_1445 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1446 in value.try_iter()? {
                 let item_1447 = item_result_1446?;
                 let converted_item_1448 = message_tag_from_py(&item_1447)?;
@@ -19967,7 +19845,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendEmail")))?;
-            Python::attach(|py| Py::new(py, PySendEmailResponse { inner: output }))
+            Ok(PySendEmailResponse { inner: output })
         })
     }
 
@@ -19985,7 +19863,8 @@ impl SESv2Client {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1455 = Vec::new();
+            let mut converted_1455 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1456 in value.try_iter()? {
                 let item_1457 = item_result_1456?;
                 let converted_item_1458 = tag_from_py(&item_1457)?;
@@ -20006,7 +19885,7 @@ impl SESv2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -20039,7 +19918,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestRenderEmailTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyTestRenderEmailTemplateResponse { inner: output }))
+            Ok(PyTestRenderEmailTemplateResponse { inner: output })
         })
     }
 
@@ -20057,7 +19936,8 @@ impl SESv2Client {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_1462 = Vec::new();
+            let mut converted_1462 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1463 in value.try_iter()? {
                 let item_1464 = item_result_1463?;
                 let converted_item_1465: String = item_1464.extract()?;
@@ -20077,7 +19957,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -20112,7 +19992,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConfigurationSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateConfigurationSetResponse { inner: output }))
+            Ok(PyUpdateConfigurationSetResponse { inner: output })
         })
     }
 
@@ -20157,12 +20037,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateConfigurationSetEventDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateConfigurationSetEventDestinationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateConfigurationSetEventDestinationResponse { inner: output })
         })
     }
 
@@ -20188,7 +20063,8 @@ impl SESv2Client {
         };
         let topic_preferences_value = if let Some(value) = dict_value(params, "topic_preferences")?
         {
-            let mut converted_1473 = Vec::new();
+            let mut converted_1473 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1474 in value.try_iter()? {
                 let item_1475 = item_result_1474?;
                 let converted_item_1476 = topic_preference_from_py(&item_1475)?;
@@ -20223,7 +20099,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContact"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateContactResponse { inner: output }))
+            Ok(PyUpdateContactResponse { inner: output })
         })
     }
 
@@ -20242,7 +20118,8 @@ impl SESv2Client {
             None
         };
         let topics_value = if let Some(value) = dict_value(params, "topics")? {
-            let mut converted_1480 = Vec::new();
+            let mut converted_1480 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1481 in value.try_iter()? {
                 let item_1482 = item_result_1481?;
                 let converted_item_1483 = topic_from_py(&item_1482)?;
@@ -20269,7 +20146,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContactList"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateContactListResponse { inner: output }))
+            Ok(PyUpdateContactListResponse { inner: output })
         })
     }
 
@@ -20335,12 +20212,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateCustomVerificationEmailTemplate")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateCustomVerificationEmailTemplateResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateCustomVerificationEmailTemplateResponse { inner: output })
         })
     }
 
@@ -20380,7 +20252,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailIdentityPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateEmailIdentityPolicyResponse { inner: output }))
+            Ok(PyUpdateEmailIdentityPolicyResponse { inner: output })
         })
     }
 
@@ -20413,7 +20285,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateEmailTemplateResponse { inner: output }))
+            Ok(PyUpdateEmailTemplateResponse { inner: output })
         })
     }
 
@@ -20461,12 +20333,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateReputationEntityCustomerManagedStatus")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateReputationEntityCustomerManagedStatusResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateReputationEntityCustomerManagedStatusResponse { inner: output })
         })
     }
 
@@ -20511,9 +20378,7 @@ impl SESv2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateReputationEntityPolicy"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateReputationEntityPolicyResponse { inner: output })
-            })
+            Ok(PyUpdateReputationEntityPolicyResponse { inner: output })
         })
     }
 }

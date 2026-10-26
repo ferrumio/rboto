@@ -2,7 +2,7 @@
 
 ## Service catalog
 
-rboto implements 31 services and 1,786 operations.
+rboto implements 34 services and 1,865 operations.
 Install each service using `pip install "rboto[<service>]"`,
 or use `pip install "rboto[all]"` for the complete catalog. Each service also has an
 independent `rboto-<service>` package.
@@ -23,14 +23,17 @@ independent `rboto-<service>` package.
 | `cognito-identity` | `cognito_identity()` | 23 |
 | `connecthealth` | `connecthealth()` | 16 |
 | `dynamodb` | `dynamodb()` | 58 |
+| `eventbridge` | `eventbridge()` | 57 |
 | `guardduty` | `guardduty()` | 102 |
 | `kms` | `kms()` | 54 |
 | `lambda` | `lambda_()` | 88 |
 | `lex-runtime-v2` | `lex_runtime_v2()` | 6 |
+| `pipes` | `pipes()` | 10 |
 | `polly` | `polly()` | 10 |
 | `qbusiness` | `qbusiness()` | 83 |
 | `s3` | `s3()` | 112 |
 | `sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | 1 |
+| `scheduler` | `scheduler()` | 12 |
 | `secrets-manager` | `secrets_manager()` | 23 |
 | `sesv2` | `sesv2()` | 116 |
 | `sfn` | `sfn()` | 37 |
@@ -225,6 +228,96 @@ async def send_message(sender: str, recipient: str, text: str) -> str | None:
 
 The sender must be an identity allowed by SES. Account sandbox and sending restrictions
 still apply. Attachments and raw messages accept binary content as `bytes`.
+
+## Amazon EventBridge, Scheduler, and Pipes
+
+These are three independent clients:
+
+| Client | Purpose |
+|---|---|
+| `eventbridge()` | Event buses, events, rules, targets, archives, and replays |
+| `scheduler()` | One-time and recurring schedules, time zones, and flexible time windows |
+| `pipes()` | Connect event sources to targets with filtering and optional enrichment |
+
+Traditional scheduled rules belong to `eventbridge()`. EventBridge Scheduler has its own
+`scheduler()` client.
+
+```bash
+pip install "rboto[eventbridge,scheduler,pipes]"
+```
+
+Publish a typed event to an existing bus:
+
+```python
+import json
+
+from rboto import eventbridge
+from rboto_eventbridge.types import PutEventsRequestEntry
+
+async def publish_order(bus_name: str, order_id: str) -> list[str]:
+    entry: PutEventsRequestEntry = {
+        "event_bus_name": bus_name,
+        "source": "myapp.orders",
+        "detail_type": "OrderCreated",
+        "detail": json.dumps({"order_id": order_id}),
+    }
+    response = await eventbridge(region="us-east-1").put_events(entries=[entry])
+    entries = response.entries or []
+    if response.failed_entry_count:
+        failures = [
+            (item.error_code, item.error_message)
+            for item in entries
+            if item.error_code is not None
+        ]
+        raise RuntimeError(f"Event publication failed: {failures}")
+    return [item.event_id for item in entries if item.event_id is not None]
+```
+
+`PutEvents` reports per-entry failures in a successful HTTP response. Check
+`failed_entry_count` and each entry's `error_code`.
+
+Create a schedule using an existing target and execution role:
+
+```python
+from rboto import scheduler
+from rboto_scheduler.types import Target
+
+async def schedule_message(queue_arn: str, role_arn: str) -> str:
+    target: Target = {
+        "arn": queue_arn,
+        "role_arn": role_arn,
+        "input": '{"message":"scheduled by rboto"}',
+    }
+    response = await scheduler(region="us-east-1").create_schedule(
+        name="daily-message",
+        schedule_expression="cron(0 9 * * ? *)",
+        schedule_expression_timezone="America/Sao_Paulo",
+        flexible_time_window={"mode": "OFF"},
+        target=target,
+    )
+    return response.schedule_arn
+```
+
+Create a pipe between existing SQS queues:
+
+```python
+from rboto import pipes
+
+async def connect_queues(source_arn: str, target_arn: str, role_arn: str) -> str | None:
+    response = await pipes(region="us-east-1").create_pipe(
+        name="queue-forwarder",
+        source=source_arn,
+        target=target_arn,
+        role_arn=role_arn,
+        desired_state="RUNNING",
+        source_parameters={"sqs_queue_parameters": {"batch_size": 1}},
+    )
+    return response.arn
+```
+
+The execution roles must trust their respective services and have access to their
+sources and targets. Pipe creation is asynchronous; use `describe_pipe()` to check
+`current_state`. Remove resources with `delete_schedule()` and `delete_pipe()` when done.
 
 ## Amazon S3
 

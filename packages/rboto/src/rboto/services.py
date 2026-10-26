@@ -20,14 +20,17 @@ if TYPE_CHECKING:
     from rboto_cognito_identity import CognitoIdentityClient
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
+    from rboto_eventbridge import EventBridgeClient
     from rboto_guardduty import GuardDutyClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
     from rboto_lex_runtime_v2 import LexRuntimeV2Client
+    from rboto_pipes import PipesClient
     from rboto_polly import PollyClient
     from rboto_qbusiness import QBusinessClient
     from rboto_s3 import S3Client
     from rboto_sagemaker_runtime_http2 import SageMakerRuntimeHTTP2Client
+    from rboto_scheduler import SchedulerClient
     from rboto_secrets_manager import SecretsManagerClient
     from rboto_sesv2 import SESv2Client
     from rboto_sfn import SFNClient
@@ -388,6 +391,30 @@ def dynamodb(
     )
 
 
+def eventbridge(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> EventBridgeClient:
+    try:
+        from rboto_eventbridge import EventBridgeClient
+    except ImportError as error:
+        raise ImportError(
+            'eventbridge support is not installed. Install it with: '
+            'pip install "rboto[eventbridge]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return EventBridgeClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
 def guardduty(
     *,
     session: Session | None = None,
@@ -484,6 +511,30 @@ def lex_runtime_v2(
     )
 
 
+def pipes(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> PipesClient:
+    try:
+        from rboto_pipes import PipesClient
+    except ImportError as error:
+        raise ImportError(
+            'pipes support is not installed. Install it with: '
+            'pip install "rboto[pipes]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return PipesClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
 def polly(
     *,
     session: Session | None = None,
@@ -574,6 +625,30 @@ def sagemaker_runtime_http2(
         session, region, profile, endpoint_url
     )
     return SageMakerRuntimeHTTP2Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def scheduler(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SchedulerClient:
+    try:
+        from rboto_scheduler import SchedulerClient
+    except ImportError as error:
+        raise ImportError(
+            'scheduler support is not installed. Install it with: '
+            'pip install "rboto[scheduler]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SchedulerClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,

@@ -1956,7 +1956,8 @@ fn logging_configuration_from_py(
         builder = builder.set_include_execution_data(Some(converted_299));
     }
     if let Some(value) = dict_value(values, "destinations")? {
-        let mut converted_300 = Vec::new();
+        let mut converted_300 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_301 in value.try_iter()? {
             let item_302 = item_result_301?;
             let converted_item_303 = log_destination_from_py(&item_302)?;
@@ -2550,7 +2551,7 @@ fn state_exited_event_details_from_py(
     }
     if let Some(value) = dict_value(values, "assigned_variables")? {
         let mapping_402 = value.cast::<PyDict>()?;
-        let mut converted_401 = HashMap::new();
+        let mut converted_401 = HashMap::with_capacity(mapping_402.len());
         for (key_403, value_404) in mapping_402.iter() {
             let converted_key_405: String = key_403.extract()?;
             let converted_value_406: String = value_404.extract()?;
@@ -8973,7 +8974,8 @@ impl SFNClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_529 = Vec::new();
+            let mut converted_529 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_530 in value.try_iter()? {
                 let item_531 = item_result_530?;
                 let converted_item_532 = tag_from_py(&item_531)?;
@@ -9001,7 +9003,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateActivity"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateActivityOutput { inner: output }))
+            Ok(PyCreateActivityOutput { inner: output })
         })
     }
 
@@ -9045,7 +9047,8 @@ impl SFNClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_540 = Vec::new();
+            let mut converted_540 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_541 in value.try_iter()? {
                 let item_542 = item_result_541?;
                 let converted_item_543 = tag_from_py(&item_542)?;
@@ -9100,7 +9103,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateStateMachine"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateStateMachineOutput { inner: output }))
+            Ok(PyCreateStateMachineOutput { inner: output })
         })
     }
 
@@ -9125,7 +9128,8 @@ impl SFNClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_550 = Vec::new();
+                let mut converted_550 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_551 in value.try_iter()? {
                     let item_552 = item_result_551?;
                     let converted_item_553 = routing_configuration_list_item_from_py(&item_552)?;
@@ -9146,7 +9150,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateStateMachineAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateStateMachineAliasOutput { inner: output }))
+            Ok(PyCreateStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9172,7 +9176,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteActivity"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteActivityOutput { inner: output }))
+            Ok(PyDeleteActivityOutput { inner: output })
         })
     }
 
@@ -9199,7 +9203,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachine"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteStateMachineOutput { inner: output }))
+            Ok(PyDeleteStateMachineOutput { inner: output })
         })
     }
 
@@ -9226,7 +9230,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachineAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteStateMachineAliasOutput { inner: output }))
+            Ok(PyDeleteStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9253,7 +9257,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachineVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteStateMachineVersionOutput { inner: output }))
+            Ok(PyDeleteStateMachineVersionOutput { inner: output })
         })
     }
 
@@ -9279,7 +9283,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivity"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeActivityOutput { inner: output }))
+            Ok(PyDescribeActivityOutput { inner: output })
         })
     }
 
@@ -9313,7 +9317,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeExecutionOutput { inner: output }))
+            Ok(PyDescribeExecutionOutput { inner: output })
         })
     }
 
@@ -9339,7 +9343,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMapRun"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeMapRunOutput { inner: output }))
+            Ok(PyDescribeMapRunOutput { inner: output })
         })
     }
 
@@ -9374,7 +9378,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachine"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeStateMachineOutput { inner: output }))
+            Ok(PyDescribeStateMachineOutput { inner: output })
         })
     }
 
@@ -9401,7 +9405,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeStateMachineAliasOutput { inner: output }))
+            Ok(PyDescribeStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9435,12 +9439,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineForExecution"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeStateMachineForExecutionOutput { inner: output },
-                )
-            })
+            Ok(PyDescribeStateMachineForExecutionOutput { inner: output })
         })
     }
 
@@ -9473,7 +9472,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetActivityTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetActivityTaskOutput { inner: output }))
+            Ok(PyGetActivityTaskOutput { inner: output })
         })
     }
 
@@ -9528,7 +9527,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionHistory"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetExecutionHistoryOutput { inner: output }))
+            Ok(PyGetExecutionHistoryOutput { inner: output })
         })
     }
 
@@ -9561,7 +9560,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListActivities"))
             })?;
-            Python::attach(|py| Py::new(py, PyListActivitiesOutput { inner: output }))
+            Ok(PyListActivitiesOutput { inner: output })
         })
     }
 
@@ -9626,7 +9625,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListExecutions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListExecutionsOutput { inner: output }))
+            Ok(PyListExecutionsOutput { inner: output })
         })
     }
 
@@ -9667,7 +9666,7 @@ impl SFNClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMapRuns")))?;
-            Python::attach(|py| Py::new(py, PyListMapRunsOutput { inner: output }))
+            Ok(PyListMapRunsOutput { inner: output })
         })
     }
 
@@ -9708,7 +9707,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineAliases"))
             })?;
-            Python::attach(|py| Py::new(py, PyListStateMachineAliasesOutput { inner: output }))
+            Ok(PyListStateMachineAliasesOutput { inner: output })
         })
     }
 
@@ -9749,7 +9748,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListStateMachineVersionsOutput { inner: output }))
+            Ok(PyListStateMachineVersionsOutput { inner: output })
         })
     }
 
@@ -9782,7 +9781,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachines"))
             })?;
-            Python::attach(|py| Py::new(py, PyListStateMachinesOutput { inner: output }))
+            Ok(PyListStateMachinesOutput { inner: output })
         })
     }
 
@@ -9808,7 +9807,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceOutput { inner: output }))
+            Ok(PyListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -9849,7 +9848,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishStateMachineVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyPublishStateMachineVersionOutput { inner: output }))
+            Ok(PyPublishStateMachineVersionOutput { inner: output })
         })
     }
 
@@ -9882,7 +9881,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RedriveExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyRedriveExecutionOutput { inner: output }))
+            Ok(PyRedriveExecutionOutput { inner: output })
         })
     }
 
@@ -9922,7 +9921,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskFailure"))
             })?;
-            Python::attach(|py| Py::new(py, PySendTaskFailureOutput { inner: output }))
+            Ok(PySendTaskFailureOutput { inner: output })
         })
     }
 
@@ -9948,7 +9947,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskHeartbeat"))
             })?;
-            Python::attach(|py| Py::new(py, PySendTaskHeartbeatOutput { inner: output }))
+            Ok(PySendTaskHeartbeatOutput { inner: output })
         })
     }
 
@@ -9981,7 +9980,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskSuccess"))
             })?;
-            Python::attach(|py| Py::new(py, PySendTaskSuccessOutput { inner: output }))
+            Ok(PySendTaskSuccessOutput { inner: output })
         })
     }
 
@@ -10029,7 +10028,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartExecutionOutput { inner: output }))
+            Ok(PyStartExecutionOutput { inner: output })
         })
     }
 
@@ -10085,7 +10084,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSyncExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartSyncExecutionOutput { inner: output }))
+            Ok(PyStartSyncExecutionOutput { inner: output })
         })
     }
 
@@ -10125,7 +10124,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopExecutionOutput { inner: output }))
+            Ok(PyStopExecutionOutput { inner: output })
         })
     }
 
@@ -10143,7 +10142,8 @@ impl SFNClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_624 = Vec::new();
+            let mut converted_624 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_625 in value.try_iter()? {
                 let item_626 = item_result_625?;
                 let converted_item_627 = tag_from_py(&item_626)?;
@@ -10164,7 +10164,7 @@ impl SFNClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceOutput { inner: output }))
+            Ok(PyTagResourceOutput { inner: output })
         })
     }
 
@@ -10256,7 +10256,7 @@ impl SFNClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TestState")))?;
-            Python::attach(|py| Py::new(py, PyTestStateOutput { inner: output }))
+            Ok(PyTestStateOutput { inner: output })
         })
     }
 
@@ -10274,7 +10274,8 @@ impl SFNClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_640 = Vec::new();
+            let mut converted_640 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_641 in value.try_iter()? {
                 let item_642 = item_result_641?;
                 let converted_item_643: String = item_642.extract()?;
@@ -10294,7 +10295,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceOutput { inner: output }))
+            Ok(PyUntagResourceOutput { inner: output })
         })
     }
 
@@ -10343,7 +10344,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMapRun"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMapRunOutput { inner: output }))
+            Ok(PyUpdateMapRunOutput { inner: output })
         })
     }
 
@@ -10423,7 +10424,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStateMachine"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateStateMachineOutput { inner: output }))
+            Ok(PyUpdateStateMachineOutput { inner: output })
         })
     }
 
@@ -10449,7 +10450,8 @@ impl SFNClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_658 = Vec::new();
+                let mut converted_658 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_659 in value.try_iter()? {
                     let item_660 = item_result_659?;
                     let converted_item_661 = routing_configuration_list_item_from_py(&item_660)?;
@@ -10470,7 +10472,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStateMachineAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateStateMachineAliasOutput { inner: output }))
+            Ok(PyUpdateStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -10521,9 +10523,7 @@ impl SFNClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateStateMachineDefinition"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyValidateStateMachineDefinitionOutput { inner: output })
-            })
+            Ok(PyValidateStateMachineDefinitionOutput { inner: output })
         })
     }
 }

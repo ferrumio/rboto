@@ -208,7 +208,7 @@ fn grant_constraints_from_py(
     let mut builder = aws_sdk_kms::types::GrantConstraints::builder();
     if let Some(value) = dict_value(values, "encryption_context_subset")? {
         let mapping_36 = value.cast::<PyDict>()?;
-        let mut converted_35 = HashMap::new();
+        let mut converted_35 = HashMap::with_capacity(mapping_36.len());
         for (key_37, value_38) in mapping_36.iter() {
             let converted_key_39: String = key_37.extract()?;
             let converted_value_40: String = value_38.extract()?;
@@ -218,7 +218,7 @@ fn grant_constraints_from_py(
     }
     if let Some(value) = dict_value(values, "encryption_context_equals")? {
         let mapping_42 = value.cast::<PyDict>()?;
-        let mut converted_41 = HashMap::new();
+        let mut converted_41 = HashMap::with_capacity(mapping_42.len());
         for (key_43, value_44) in mapping_42.iter() {
             let converted_key_45: String = key_43.extract()?;
             let converted_value_46: String = value_44.extract()?;
@@ -310,7 +310,8 @@ fn grant_list_entry_from_py(
         builder = builder.set_issuing_account(Some(converted_66));
     }
     if let Some(value) = dict_value(values, "operations")? {
-        let mut converted_67 = Vec::new();
+        let mut converted_67 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_68 in value.try_iter()? {
             let item_69 = item_result_68?;
             let enum_value_71: String = item_69.extract()?;
@@ -606,7 +607,8 @@ fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types
         builder = builder.set_key_spec(Some(converted_127));
     }
     if let Some(value) = dict_value(values, "encryption_algorithms")? {
-        let mut converted_129 = Vec::new();
+        let mut converted_129 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_130 in value.try_iter()? {
             let item_131 = item_result_130?;
             let enum_value_133: String = item_131.extract()?;
@@ -617,7 +619,8 @@ fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types
         builder = builder.set_encryption_algorithms(Some(converted_129));
     }
     if let Some(value) = dict_value(values, "signing_algorithms")? {
-        let mut converted_134 = Vec::new();
+        let mut converted_134 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_135 in value.try_iter()? {
             let item_136 = item_result_135?;
             let enum_value_138: String = item_136.extract()?;
@@ -628,7 +631,8 @@ fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types
         builder = builder.set_signing_algorithms(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "key_agreement_algorithms")? {
-        let mut converted_139 = Vec::new();
+        let mut converted_139 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_140 in value.try_iter()? {
             let item_141 = item_result_140?;
             let enum_value_143: String = item_141.extract()?;
@@ -651,7 +655,8 @@ fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types
         builder = builder.set_pending_deletion_window_in_days(Some(converted_146));
     }
     if let Some(value) = dict_value(values, "mac_algorithms")? {
-        let mut converted_147 = Vec::new();
+        let mut converted_147 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_148 in value.try_iter()? {
             let item_149 = item_result_148?;
             let enum_value_151: String = item_149.extract()?;
@@ -865,7 +870,8 @@ fn multi_region_configuration_from_py(
         builder = builder.set_primary_key(Some(converted_190));
     }
     if let Some(value) = dict_value(values, "replica_keys")? {
-        let mut converted_191 = Vec::new();
+        let mut converted_191 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_192 in value.try_iter()? {
             let item_193 = item_result_192?;
             let converted_item_194 = multi_region_key_from_py(&item_193)?;
@@ -4936,7 +4942,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelKeyDeletion"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelKeyDeletionResponse { inner: output }))
+            Ok(PyCancelKeyDeletionResponse { inner: output })
         })
     }
 
@@ -4963,7 +4969,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ConnectCustomKeyStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyConnectCustomKeyStoreResponse { inner: output }))
+            Ok(PyConnectCustomKeyStoreResponse { inner: output })
         })
     }
 
@@ -5110,7 +5116,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomKeyStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateCustomKeyStoreResponse { inner: output }))
+            Ok(PyCreateCustomKeyStoreResponse { inner: output })
         })
     }
 
@@ -5142,7 +5148,8 @@ impl KMSClient {
                 None
             };
         let operations_value = if let Some(value) = dict_value(params, "operations")? {
-            let mut converted_277 = Vec::new();
+            let mut converted_277 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_278 in value.try_iter()? {
                 let item_279 = item_result_278?;
                 let enum_value_281: String = item_279.extract()?;
@@ -5161,7 +5168,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_283 = Vec::new();
+            let mut converted_283 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_284 in value.try_iter()? {
                 let item_285 = item_result_284?;
                 let converted_item_286: String = item_285.extract()?;
@@ -5216,7 +5224,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateGrant")))?;
-            Python::attach(|py| Py::new(py, PyCreateGrantResponse { inner: output }))
+            Ok(PyCreateGrantResponse { inner: output })
         })
     }
 
@@ -5284,7 +5292,8 @@ impl KMSClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_303 = Vec::new();
+            let mut converted_303 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_304 in value.try_iter()? {
                 let item_305 = item_result_304?;
                 let converted_item_306 = tag_from_py(&item_305)?;
@@ -5326,7 +5335,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateKey")))?;
-            Python::attach(|py| Py::new(py, PyCreateKeyResponse { inner: output }))
+            Ok(PyCreateKeyResponse { inner: output })
         })
     }
 
@@ -5347,7 +5356,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_312 = value.cast::<PyDict>()?;
-                let mut converted_311 = HashMap::new();
+                let mut converted_311 = HashMap::with_capacity(mapping_312.len());
                 for (key_313, value_314) in mapping_312.iter() {
                     let converted_key_315: String = key_313.extract()?;
                     let converted_value_316: String = value_314.extract()?;
@@ -5358,7 +5367,8 @@ impl KMSClient {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_317 = Vec::new();
+            let mut converted_317 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_318 in value.try_iter()? {
                 let item_319 = item_result_318?;
                 let converted_item_320: String = item_319.extract()?;
@@ -5397,7 +5407,8 @@ impl KMSClient {
         };
         let dry_run_modifiers_value = if let Some(value) = dict_value(params, "dry_run_modifiers")?
         {
-            let mut converted_326 = Vec::new();
+            let mut converted_326 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_327 in value.try_iter()? {
                 let item_328 = item_result_327?;
                 let enum_value_330: String = item_328.extract()?;
@@ -5426,7 +5437,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Decrypt")))?;
-            Python::attach(|py| Py::new(py, PyDecryptResponse { inner: output }))
+            Ok(PyDecryptResponse { inner: output })
         })
     }
 
@@ -5480,7 +5491,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomKeyStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteCustomKeyStoreResponse { inner: output }))
+            Ok(PyDeleteCustomKeyStoreResponse { inner: output })
         })
     }
 
@@ -5513,7 +5524,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedKeyMaterial"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteImportedKeyMaterialResponse { inner: output }))
+            Ok(PyDeleteImportedKeyMaterialResponse { inner: output })
         })
     }
 
@@ -5547,7 +5558,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_340 = Vec::new();
+            let mut converted_340 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_341 in value.try_iter()? {
                 let item_342 = item_result_341?;
                 let converted_item_343: String = item_342.extract()?;
@@ -5583,7 +5595,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeriveSharedSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeriveSharedSecretResponse { inner: output }))
+            Ok(PyDeriveSharedSecretResponse { inner: output })
         })
     }
 
@@ -5632,7 +5644,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeCustomKeyStores"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeCustomKeyStoresResponse { inner: output }))
+            Ok(PyDescribeCustomKeyStoresResponse { inner: output })
         })
     }
 
@@ -5650,7 +5662,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_351 = Vec::new();
+            let mut converted_351 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_352 in value.try_iter()? {
                 let item_353 = item_result_352?;
                 let converted_item_354: String = item_353.extract()?;
@@ -5671,7 +5684,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DescribeKey")))?;
-            Python::attach(|py| Py::new(py, PyDescribeKeyResponse { inner: output }))
+            Ok(PyDescribeKeyResponse { inner: output })
         })
     }
 
@@ -5747,7 +5760,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisconnectCustomKeyStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyDisconnectCustomKeyStoreResponse { inner: output }))
+            Ok(PyDisconnectCustomKeyStoreResponse { inner: output })
         })
     }
 
@@ -5831,7 +5844,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_365 = value.cast::<PyDict>()?;
-                let mut converted_364 = HashMap::new();
+                let mut converted_364 = HashMap::with_capacity(mapping_365.len());
                 for (key_366, value_367) in mapping_365.iter() {
                     let converted_key_368: String = key_366.extract()?;
                     let converted_value_369: String = value_367.extract()?;
@@ -5842,7 +5855,8 @@ impl KMSClient {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_370 = Vec::new();
+            let mut converted_370 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_371 in value.try_iter()? {
                 let item_372 = item_result_371?;
                 let converted_item_373: String = item_372.extract()?;
@@ -5882,7 +5896,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Encrypt")))?;
-            Python::attach(|py| Py::new(py, PyEncryptResponse { inner: output }))
+            Ok(PyEncryptResponse { inner: output })
         })
     }
 
@@ -5902,7 +5916,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_379 = value.cast::<PyDict>()?;
-                let mut converted_378 = HashMap::new();
+                let mut converted_378 = HashMap::with_capacity(mapping_379.len());
                 for (key_380, value_381) in mapping_379.iter() {
                     let converted_key_382: String = key_380.extract()?;
                     let converted_value_383: String = value_381.extract()?;
@@ -5926,7 +5940,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_387 = Vec::new();
+            let mut converted_387 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_388 in value.try_iter()? {
                 let item_389 = item_result_388?;
                 let converted_item_390: String = item_389.extract()?;
@@ -5963,7 +5978,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyGenerateDataKeyResponse { inner: output }))
+            Ok(PyGenerateDataKeyResponse { inner: output })
         })
     }
 
@@ -5977,7 +5992,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_394 = value.cast::<PyDict>()?;
-                let mut converted_393 = HashMap::new();
+                let mut converted_393 = HashMap::with_capacity(mapping_394.len());
                 for (key_395, value_396) in mapping_394.iter() {
                     let converted_key_397: String = key_395.extract()?;
                     let converted_value_398: String = value_396.extract()?;
@@ -6001,7 +6016,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_402 = Vec::new();
+            let mut converted_402 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_403 in value.try_iter()? {
                 let item_404 = item_result_403?;
                 let converted_item_405: String = item_404.extract()?;
@@ -6037,7 +6053,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyPair"))
             })?;
-            Python::attach(|py| Py::new(py, PyGenerateDataKeyPairResponse { inner: output }))
+            Ok(PyGenerateDataKeyPairResponse { inner: output })
         })
     }
 
@@ -6051,7 +6067,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_409 = value.cast::<PyDict>()?;
-                let mut converted_408 = HashMap::new();
+                let mut converted_408 = HashMap::with_capacity(mapping_409.len());
                 for (key_410, value_411) in mapping_409.iter() {
                     let converted_key_412: String = key_410.extract()?;
                     let converted_value_413: String = value_411.extract()?;
@@ -6075,7 +6091,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_417 = Vec::new();
+            let mut converted_417 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_418 in value.try_iter()? {
                 let item_419 = item_result_418?;
                 let converted_item_420: String = item_419.extract()?;
@@ -6106,12 +6123,7 @@ impl KMSClient {
                     sdk_error_to_py(py, &error, "GenerateDataKeyPairWithoutPlaintext")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGenerateDataKeyPairWithoutPlaintextResponse { inner: output },
-                )
-            })
+            Ok(PyGenerateDataKeyPairWithoutPlaintextResponse { inner: output })
         })
     }
 
@@ -6131,7 +6143,7 @@ impl KMSClient {
         let encryption_context_value =
             if let Some(value) = dict_value(params, "encryption_context")? {
                 let mapping_424 = value.cast::<PyDict>()?;
-                let mut converted_423 = HashMap::new();
+                let mut converted_423 = HashMap::with_capacity(mapping_424.len());
                 for (key_425, value_426) in mapping_424.iter() {
                     let converted_key_427: String = key_425.extract()?;
                     let converted_value_428: String = value_426.extract()?;
@@ -6155,7 +6167,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_432 = Vec::new();
+            let mut converted_432 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_433 in value.try_iter()? {
                 let item_434 = item_result_433?;
                 let converted_item_435: String = item_434.extract()?;
@@ -6185,12 +6198,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyWithoutPlaintext"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGenerateDataKeyWithoutPlaintextResponse { inner: output },
-                )
-            })
+            Ok(PyGenerateDataKeyWithoutPlaintextResponse { inner: output })
         })
     }
 
@@ -6222,7 +6230,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_442 = Vec::new();
+            let mut converted_442 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_443 in value.try_iter()? {
                 let item_444 = item_result_443?;
                 let converted_item_445: String = item_444.extract()?;
@@ -6252,7 +6261,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GenerateMac")))?;
-            Python::attach(|py| Py::new(py, PyGenerateMacResponse { inner: output }))
+            Ok(PyGenerateMacResponse { inner: output })
         })
     }
 
@@ -6293,7 +6302,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateRandom"))
             })?;
-            Python::attach(|py| Py::new(py, PyGenerateRandomResponse { inner: output }))
+            Ok(PyGenerateRandomResponse { inner: output })
         })
     }
 
@@ -6319,7 +6328,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyLastUsage"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetKeyLastUsageResponse { inner: output }))
+            Ok(PyGetKeyLastUsageResponse { inner: output })
         })
     }
 
@@ -6352,7 +6361,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetKeyPolicyResponse { inner: output }))
+            Ok(PyGetKeyPolicyResponse { inner: output })
         })
     }
 
@@ -6378,7 +6387,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyRotationStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetKeyRotationStatusResponse { inner: output }))
+            Ok(PyGetKeyRotationStatusResponse { inner: output })
         })
     }
 
@@ -6423,7 +6432,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersForImport"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetParametersForImportResponse { inner: output }))
+            Ok(PyGetParametersForImportResponse { inner: output })
         })
     }
 
@@ -6441,7 +6450,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_460 = Vec::new();
+            let mut converted_460 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_461 in value.try_iter()? {
                 let item_462 = item_result_461?;
                 let converted_item_463: String = item_462.extract()?;
@@ -6461,7 +6471,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPublicKeyResponse { inner: output }))
+            Ok(PyGetPublicKeyResponse { inner: output })
         })
     }
 
@@ -6548,7 +6558,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportKeyMaterial"))
             })?;
-            Python::attach(|py| Py::new(py, PyImportKeyMaterialResponse { inner: output }))
+            Ok(PyImportKeyMaterialResponse { inner: output })
         })
     }
 
@@ -6589,7 +6599,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
-            Python::attach(|py| Py::new(py, PyListAliasesResponse { inner: output }))
+            Ok(PyListAliasesResponse { inner: output })
         })
     }
 
@@ -6653,7 +6663,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGrants")))?;
-            Python::attach(|py| Py::new(py, PyListGrantsOutput { inner: output }))
+            Ok(PyListGrantsOutput { inner: output })
         })
     }
 
@@ -6693,7 +6703,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyPolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyListKeyPoliciesResponse { inner: output }))
+            Ok(PyListKeyPoliciesResponse { inner: output })
         })
     }
 
@@ -6743,7 +6753,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyRotations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListKeyRotationsResponse { inner: output }))
+            Ok(PyListKeyRotationsResponse { inner: output })
         })
     }
 
@@ -6777,7 +6787,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListKeys")))?;
-            Python::attach(|py| Py::new(py, PyListKeysResponse { inner: output }))
+            Ok(PyListKeysResponse { inner: output })
         })
     }
 
@@ -6817,7 +6827,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTags"))
             })?;
-            Python::attach(|py| Py::new(py, PyListResourceTagsResponse { inner: output }))
+            Ok(PyListResourceTagsResponse { inner: output })
         })
     }
 
@@ -6866,7 +6876,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetirableGrants"))
             })?;
-            Python::attach(|py| Py::new(py, PyListRetirableGrantsOutput { inner: output }))
+            Ok(PyListRetirableGrantsOutput { inner: output })
         })
     }
 
@@ -6935,7 +6945,7 @@ impl KMSClient {
         let source_encryption_context_value =
             if let Some(value) = dict_value(params, "source_encryption_context")? {
                 let mapping_510 = value.cast::<PyDict>()?;
-                let mut converted_509 = HashMap::new();
+                let mut converted_509 = HashMap::with_capacity(mapping_510.len());
                 for (key_511, value_512) in mapping_510.iter() {
                     let converted_key_513: String = key_511.extract()?;
                     let converted_value_514: String = value_512.extract()?;
@@ -6961,7 +6971,7 @@ impl KMSClient {
         let destination_encryption_context_value =
             if let Some(value) = dict_value(params, "destination_encryption_context")? {
                 let mapping_518 = value.cast::<PyDict>()?;
-                let mut converted_517 = HashMap::new();
+                let mut converted_517 = HashMap::with_capacity(mapping_518.len());
                 for (key_519, value_520) in mapping_518.iter() {
                     let converted_key_521: String = key_519.extract()?;
                     let converted_value_522: String = value_520.extract()?;
@@ -6990,7 +7000,8 @@ impl KMSClient {
                 None
             };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_527 = Vec::new();
+            let mut converted_527 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_528 in value.try_iter()? {
                 let item_529 = item_result_528?;
                 let converted_item_530: String = item_529.extract()?;
@@ -7008,7 +7019,8 @@ impl KMSClient {
         };
         let dry_run_modifiers_value = if let Some(value) = dict_value(params, "dry_run_modifiers")?
         {
-            let mut converted_532 = Vec::new();
+            let mut converted_532 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_533 in value.try_iter()? {
                 let item_534 = item_result_533?;
                 let enum_value_536: String = item_534.extract()?;
@@ -7039,7 +7051,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ReEncrypt")))?;
-            Python::attach(|py| Py::new(py, PyReEncryptResponse { inner: output }))
+            Ok(PyReEncryptResponse { inner: output })
         })
     }
 
@@ -7082,7 +7094,8 @@ impl KMSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_542 = Vec::new();
+            let mut converted_542 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_543 in value.try_iter()? {
                 let item_544 = item_result_543?;
                 let converted_item_545 = tag_from_py(&item_544)?;
@@ -7106,7 +7119,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyReplicateKeyResponse { inner: output }))
+            Ok(PyReplicateKeyResponse { inner: output })
         })
     }
 
@@ -7221,7 +7234,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RotateKeyOnDemand"))
             })?;
-            Python::attach(|py| Py::new(py, PyRotateKeyOnDemandResponse { inner: output }))
+            Ok(PyRotateKeyOnDemandResponse { inner: output })
         })
     }
 
@@ -7255,7 +7268,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ScheduleKeyDeletion"))
             })?;
-            Python::attach(|py| Py::new(py, PyScheduleKeyDeletionResponse { inner: output }))
+            Ok(PyScheduleKeyDeletionResponse { inner: output })
         })
     }
 
@@ -7287,7 +7300,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_561 = Vec::new();
+            let mut converted_561 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_562 in value.try_iter()? {
                 let item_563 = item_result_562?;
                 let converted_item_564: String = item_563.extract()?;
@@ -7327,7 +7341,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Sign")))?;
-            Python::attach(|py| Py::new(py, PySignResponse { inner: output }))
+            Ok(PySignResponse { inner: output })
         })
     }
 
@@ -7345,7 +7359,8 @@ impl KMSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_569 = Vec::new();
+            let mut converted_569 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_570 in value.try_iter()? {
                 let item_571 = item_result_570?;
                 let converted_item_572 = tag_from_py(&item_571)?;
@@ -7384,7 +7399,8 @@ impl KMSClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_574 = Vec::new();
+            let mut converted_574 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_575 in value.try_iter()? {
                 let item_576 = item_result_575?;
                 let converted_item_577: String = item_576.extract()?;
@@ -7541,7 +7557,7 @@ impl KMSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomKeyStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateCustomKeyStoreResponse { inner: output }))
+            Ok(PyUpdateCustomKeyStoreResponse { inner: output })
         })
     }
 
@@ -7655,7 +7671,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_604 = Vec::new();
+            let mut converted_604 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_605 in value.try_iter()? {
                 let item_606 = item_result_605?;
                 let converted_item_607: String = item_606.extract()?;
@@ -7687,7 +7704,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Verify")))?;
-            Python::attach(|py| Py::new(py, PyVerifyResponse { inner: output }))
+            Ok(PyVerifyResponse { inner: output })
         })
     }
 
@@ -7726,7 +7743,8 @@ impl KMSClient {
             None
         };
         let grant_tokens_value = if let Some(value) = dict_value(params, "grant_tokens")? {
-            let mut converted_616 = Vec::new();
+            let mut converted_616 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_617 in value.try_iter()? {
                 let item_618 = item_result_617?;
                 let converted_item_619: String = item_618.extract()?;
@@ -7757,7 +7775,7 @@ impl KMSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "VerifyMac")))?;
-            Python::attach(|py| Py::new(py, PyVerifyMacResponse { inner: output }))
+            Ok(PyVerifyMacResponse { inner: output })
         })
     }
 }
