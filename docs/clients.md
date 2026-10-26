@@ -2,8 +2,8 @@
 
 ## Service catalog
 
-rboto implements 26 services and 1,309 operations, covering the AWS SDK for Python
-service catalog plus S3. Install each service using `pip install "rboto[<service>]"`,
+rboto implements 31 services and 1,786 operations.
+Install each service using `pip install "rboto[<service>]"`,
 or use `pip install "rboto[all]"` for the complete catalog. Each service also has an
 independent `rboto-<service>` package.
 
@@ -19,10 +19,12 @@ independent `rboto-<service>` package.
 | `bedrock-data-automation-runtime` | `bedrock_data_automation_runtime()` | 6 |
 | `bedrock-runtime` | `bedrock_runtime()` | 11 |
 | `cloudtrail` | `cloudtrail()` | 60 |
+| `cloudwatch-logs` | `cloudwatch_logs()` | 118 |
 | `cognito-identity` | `cognito_identity()` | 23 |
 | `connecthealth` | `connecthealth()` | 16 |
 | `dynamodb` | `dynamodb()` | 58 |
 | `guardduty` | `guardduty()` | 102 |
+| `kms` | `kms()` | 54 |
 | `lambda` | `lambda_()` | 88 |
 | `lex-runtime-v2` | `lex_runtime_v2()` | 6 |
 | `polly` | `polly()` | 10 |
@@ -30,9 +32,12 @@ independent `rboto-<service>` package.
 | `s3` | `s3()` | 112 |
 | `sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | 1 |
 | `secrets-manager` | `secrets_manager()` | 23 |
+| `sesv2` | `sesv2()` | 116 |
+| `sfn` | `sfn()` | 37 |
 | `signin` | `signin()` | 11 |
 | `sns` | `sns()` | 42 |
 | `sqs` | `sqs()` | 23 |
+| `ssm` | `ssm()` | 152 |
 | `sts` | `sts()` | 11 |
 | `transcribe-streaming` | `transcribe_streaming()` | 5 |
 
@@ -87,6 +92,139 @@ remaining body, while `async for` processes it incrementally.
 
 Each AWS service is distributed as an independent native wheel while sharing the small
 `rboto` Python facade.
+
+## Logs, configuration, encryption, workflows, and email
+
+```bash
+pip install "rboto[cloudwatch-logs,ssm,kms,sfn,sesv2]"
+```
+
+| Service | Factory | Examples |
+|---|---|---|
+| CloudWatch Logs | `cloudwatch_logs()` | Log groups, streams, queries, Live Tail |
+| Systems Manager | `ssm()` | Parameter Store, documents, commands, automation |
+| Key Management Service | `kms()` | Encryption, decryption, signatures, keys |
+| Step Functions | `sfn()` | State machines and workflow executions |
+| Simple Email Service v2 | `sesv2()` | Email content, templates, identities, configuration |
+
+### CloudWatch Logs
+
+Send events to an existing log group and stream:
+
+```python
+import time
+
+from rboto import cloudwatch_logs
+from rboto_cloudwatch_logs.types import InputLogEvent
+
+async def write_log(group: str, stream: str, message: str) -> None:
+    event: InputLogEvent = {"timestamp": int(time.time() * 1000), "message": message}
+    response = await cloudwatch_logs(region="us-east-1").put_log_events(
+        log_group_name=group,
+        log_stream_name=stream,
+        log_events=[event],
+    )
+    if response.rejected_log_events_info is not None:
+        raise RuntimeError("One or more log events were rejected")
+```
+
+Live Tail exposes a typed asynchronous event stream. Stream-specific failures raise
+`SessionStreamingError` or `SessionTimeoutError` from `rboto_cloudwatch_logs.exceptions`.
+
+```python
+from collections.abc import AsyncIterator
+
+from rboto import cloudwatch_logs
+from rboto_cloudwatch_logs.types import StartLiveTailResponseStream
+
+async def tail_logs(group_arn: str) -> AsyncIterator[StartLiveTailResponseStream]:
+    response = await cloudwatch_logs(region="us-east-1").start_live_tail(
+        log_group_identifiers=[group_arn],
+    )
+    async for event in response["response_stream"]:
+        yield event
+```
+
+### Systems Manager Parameter Store
+
+```python
+from rboto import ssm
+
+async def read_parameter(name: str) -> str | None:
+    response = await ssm(region="us-east-1").get_parameter(
+        name=name,
+        with_decryption=True,
+    )
+    return response.parameter.value if response.parameter is not None else None
+```
+
+Missing parameters raise `rboto_ssm.exceptions.ParameterNotFoundError`. A parameter
+version or label can be appended to the name, such as `/app/config:3`.
+
+### KMS
+
+Binary inputs and outputs use `bytes`; rboto handles their wire encoding.
+
+```python
+from rboto import kms
+
+async def encrypt_value(key_id: str, value: bytes) -> bytes:
+    response = await kms(region="us-east-1").encrypt(
+        key_id=key_id,
+        plaintext=value,
+        encryption_context={"application": "example"},
+    )
+    if response.ciphertext_blob is None:
+        raise RuntimeError("KMS returned no ciphertext")
+    return response.ciphertext_blob
+```
+
+Supply the same encryption context when decrypting the value.
+
+### Step Functions
+
+Step Functions uses the `sfn` service name. Workflow inputs and outputs are JSON strings.
+
+```python
+import json
+
+from rboto import sfn
+
+async def start_workflow(state_machine_arn: str, order_id: str) -> str:
+    response = await sfn(region="us-east-1").start_execution(
+        state_machine_arn=state_machine_arn,
+        input=json.dumps({"order_id": order_id}),
+    )
+    return response.execution_arn
+```
+
+For synchronous Express executions, use `start_sync_execution()` and check `status`.
+A failed workflow can return a normal API response with `status == "FAILED"` and
+`error`/`cause` populated.
+
+### SES v2
+
+```python
+from rboto import sesv2
+from rboto_sesv2.types import EmailContent
+
+async def send_message(sender: str, recipient: str, text: str) -> str | None:
+    content: EmailContent = {
+        "simple": {
+            "subject": {"data": "Notification", "charset": "UTF-8"},
+            "body": {"text": {"data": text, "charset": "UTF-8"}},
+        }
+    }
+    response = await sesv2(region="us-east-1").send_email(
+        from_email_address=sender,
+        destination={"to_addresses": [recipient]},
+        content=content,
+    )
+    return response.message_id
+```
+
+The sender must be an identity allowed by SES. Account sandbox and sending restrictions
+still apply. Attachments and raw messages accept binary content as `bytes`.
 
 ## Amazon S3
 

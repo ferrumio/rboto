@@ -316,3 +316,261 @@ async def test_unit_union_variants_and_rust_keyword_fields(peer: Peer) -> None:
     tool = json.loads(peer.requests[0][1])["tools"][0]
     assert tool["type"] == "agentcore_gateway"
     assert tool["config"]["agentCoreGateway"]["outboundAuth"] == {"awsIam": {}}
+
+
+@pytest.mark.asyncio
+@service("cloudwatch-logs")
+async def test_logs_batch_rejections_and_large_timestamps(peer: Peer) -> None:
+    from rboto import cloudwatch_logs
+
+    peer.body = json.dumps(
+        {
+            "nextSequenceToken": "next",
+            "rejectedLogEventsInfo": {"tooOldLogEventEndIndex": 0},
+        }
+    ).encode()
+    client = cloudwatch_logs(region="us-east-1", endpoint_url=peer.endpoint)
+    result = await client.put_log_events(
+        log_group_name="example",
+        log_stream_name="stream",
+        log_events=[{"timestamp": 1792972800000, "message": "olá"}],
+    )
+    assert result.rejected_log_events_info is not None
+    assert result.rejected_log_events_info.too_old_log_event_end_index == 0
+    assert result.next_sequence_token == "next"
+    with pytest.raises(AttributeError):
+        result.rejected_log_events_info.too_old_log_event_end_index = 3
+    request = json.loads(peer.requests[0][1])
+    assert request["logEvents"] == [{"timestamp": 1792972800000, "message": "olá"}]
+
+
+@pytest.mark.asyncio
+@service("cloudwatch-logs")
+async def test_logs_live_tail_events_and_modeled_timeout(peer: Peer) -> None:
+    from rboto import cloudwatch_logs
+    from rboto_cloudwatch_logs.exceptions import SessionTimeoutError
+
+    peer.content_type = "application/vnd.amazon.eventstream"
+    peer.body = b"".join(
+        [
+            event_frame("sessionStart", {"sessionId": "session-1"}),
+            event_frame(
+                "sessionUpdate",
+                {
+                    "sessionMetadata": {"sampled": False},
+                    "sessionResults": [{"timestamp": 1792972800000, "message": "live"}],
+                },
+            ),
+            event_frame("SessionTimeoutException", {"message": "session ended"}, exception=True),
+        ]
+    )
+    # The SDK prepends "stream-" to this endpoint; *.localhost stays on loopback.
+    endpoint = peer.endpoint.replace("127.0.0.1", "rboto.localhost")
+    client = cloudwatch_logs(region="us-east-1", endpoint_url=endpoint)
+    response = await client.start_live_tail(
+        log_group_identifiers=["arn:aws:logs:us-east-1:123456789012:log-group:example"]
+    )
+    stream = response["response_stream"]
+    assert (await anext(stream))["session_start"]["session_id"] == "session-1"
+    update = (await anext(stream))["session_update"]
+    assert update["session_metadata"]["sampled"] is False
+    assert update["session_results"][0]["message"] == "live"
+    with pytest.raises(SessionTimeoutError, match="session ended") as caught:
+        await anext(stream)
+    assert caught.value.operation_name == "StartLiveTail"
+    with pytest.raises(StopAsyncIteration):
+        await anext(stream)
+
+
+@pytest.mark.asyncio
+@service("ssm")
+async def test_ssm_parameter_native_outputs_and_decryption_flag(peer: Peer) -> None:
+    from rboto import ssm
+
+    peer.body = json.dumps(
+        {
+            "Parameter": {
+                "Name": "/rboto/example",
+                "Type": "SecureString",
+                "Value": "test-value",
+                "Version": 2,
+                "LastModifiedDate": 1792972800,
+                "ARN": "arn:aws:ssm:us-east-1:123456789012:parameter/rboto/example",
+                "DataType": "text",
+            }
+        }
+    ).encode()
+    result = await ssm(region="us-east-1", endpoint_url=peer.endpoint).get_parameter(
+        name="/rboto/example:2", with_decryption=True
+    )
+    assert result.parameter is not None
+    assert result.parameter.value == "test-value"
+    assert result.parameter.version == 2
+    assert result.parameter.type == "SecureString"
+    assert result.parameter.last_modified_date.startswith("2026-10-26")
+    assert result.to_dict()["parameter"]["name"] == "/rboto/example"
+    assert json.loads(peer.requests[0][1]) == {
+        "Name": "/rboto/example:2",
+        "WithDecryption": True,
+    }
+
+
+@pytest.mark.asyncio
+@service("kms")
+async def test_kms_binary_values_and_encryption_context(peer: Peer) -> None:
+    from rboto import kms
+
+    plaintext = b"\x00rboto\xff"
+    ciphertext = b"\x00ciphertext\xfe"
+    key = "arn:aws:kms:us-east-1:123456789012:key/example"
+    peer.body = json.dumps(
+        {
+            "CiphertextBlob": base64.b64encode(ciphertext).decode(),
+            "KeyId": key,
+            "EncryptionAlgorithm": "SYMMETRIC_DEFAULT",
+        }
+    ).encode()
+    client = kms(region="us-east-1", endpoint_url=peer.endpoint)
+    encrypted = await client.encrypt(
+        key_id=key, plaintext=plaintext, encryption_context={"purpose": "rboto"}
+    )
+    assert encrypted.ciphertext_blob == ciphertext
+    request = json.loads(peer.requests[-1][1])
+    assert base64.b64decode(request["Plaintext"]) == plaintext
+    assert request["EncryptionContext"] == {"purpose": "rboto"}
+    peer.body = json.dumps(
+        {
+            "Plaintext": base64.b64encode(plaintext).decode(),
+            "KeyId": key,
+            "EncryptionAlgorithm": "SYMMETRIC_DEFAULT",
+        }
+    ).encode()
+    decrypted = await client.decrypt(
+        key_id=key, ciphertext_blob=ciphertext, encryption_context={"purpose": "rboto"}
+    )
+    assert decrypted.plaintext == plaintext
+    assert base64.b64decode(json.loads(peer.requests[-1][1])["CiphertextBlob"]) == ciphertext
+
+
+@pytest.mark.asyncio
+@service("sfn")
+@pytest.mark.parametrize("status", ["SUCCEEDED", "FAILED"])
+async def test_sfn_sync_execution_status_and_metadata(peer: Peer, status: str) -> None:
+    from rboto import sfn
+
+    arn = "arn:aws:states:us-east-1:123456789012:stateMachine:example"
+    peer.body = json.dumps(
+        {
+            "executionArn": "arn:aws:states:us-east-1:123456789012:execution:example:run",
+            "stateMachineArn": arn,
+            "status": status,
+            "startDate": 1792972800,
+            "stopDate": 1792972801,
+            "output": '{"ok":true}' if status == "SUCCEEDED" else None,
+            "error": "ExampleFailure" if status == "FAILED" else None,
+            "billingDetails": {"billedMemoryUsedInMB": 64, "billedDurationInMilliseconds": 1000},
+        }
+    ).encode()
+    # The SDK prepends "sync-" to this endpoint; *.localhost stays on loopback.
+    endpoint = peer.endpoint.replace("127.0.0.1", "rboto.localhost")
+    result = await sfn(region="us-east-1", endpoint_url=endpoint).start_sync_execution(
+        state_machine_arn=arn, name="run", input='{"value":42}'
+    )
+    assert result.status == status
+    assert result.start_date.startswith("2026-10-26")
+    assert result.billing_details is not None
+    assert result.billing_details.billed_memory_used_in_mb == 64
+    if status == "SUCCEEDED":
+        assert result.output == '{"ok":true}'
+    else:
+        assert result.error == "ExampleFailure"
+    assert json.loads(peer.requests[0][1])["input"] == '{"value":42}'
+
+
+@pytest.mark.asyncio
+@service("sesv2")
+async def test_sesv2_structured_content_and_binary_attachment(peer: Peer) -> None:
+    from rboto import sesv2
+
+    attachment = b"\x00attachment\xff"
+    peer.body = b'{"MessageId":"message-123"}'
+    result = await sesv2(region="us-east-1", endpoint_url=peer.endpoint).send_email(
+        from_email_address="sender@example.invalid",
+        destination={"to_addresses": ["recipient@example.invalid"]},
+        content={
+            "simple": {
+                "subject": {"data": "Olá", "charset": "UTF-8"},
+                "body": {"text": {"data": "Test message", "charset": "UTF-8"}},
+                "attachments": [
+                    {
+                        "raw_content": attachment,
+                        "file_name": "example.bin",
+                        "content_disposition": "ATTACHMENT",
+                    }
+                ],
+            }
+        },
+    )
+    assert result.message_id == "message-123"
+    path, body = peer.requests[0]
+    assert path == "/v2/email/outbound-emails"
+    content = json.loads(body)["Content"]["Simple"]
+    assert content["Subject"]["Data"] == "Olá"
+    assert base64.b64decode(content["Attachments"][0]["RawContent"]) == attachment
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("service_name", "method", "params", "error_code", "exception_name", "operation"),
+    [
+        pytest.param(
+            "cloudwatch-logs", "get_log_events",
+            {"log_group_name": "missing", "log_stream_name": "missing"},
+            "ResourceNotFoundException", "ResourceNotFoundError", "GetLogEvents",
+            marks=service("cloudwatch-logs"),
+        ),
+        pytest.param(
+            "ssm", "get_parameter", {"name": "/missing"},
+            "ParameterNotFound", "ParameterNotFoundError", "GetParameter",
+            marks=service("ssm"),
+        ),
+        pytest.param(
+            "kms", "decrypt", {"ciphertext_blob": b"invalid"},
+            "InvalidCiphertextException", "InvalidCiphertextError", "Decrypt",
+            marks=service("kms"),
+        ),
+        pytest.param(
+            "sfn", "describe_state_machine",
+            {"state_machine_arn": "arn:aws:states:us-east-1:123456789012:stateMachine:missing"},
+            "StateMachineDoesNotExist", "StateMachineDoesNotExistError", "DescribeStateMachine",
+            marks=service("sfn"),
+        ),
+        pytest.param(
+            "sesv2", "send_email", {"content": {"raw": {"data": b"invalid"}}},
+            "MessageRejected", "MessageRejectedError", "SendEmail",
+            marks=service("sesv2"),
+        ),
+    ],
+)
+async def test_application_service_modeled_errors(
+    peer: Peer,
+    service_name: str,
+    method: str,
+    params: dict[str, object],
+    error_code: str,
+    exception_name: str,
+    operation: str,
+) -> None:
+    import importlib
+
+    import rboto
+
+    peer.status = 400
+    peer.body = json.dumps({"__type": error_code, "message": "modeled failure"}).encode()
+    package = service_name.replace("-", "_")
+    client = getattr(rboto, package)(region="us-east-1", endpoint_url=peer.endpoint)
+    exceptions = importlib.import_module(f"rboto_{package}.exceptions")
+    with pytest.raises(getattr(exceptions, exception_name)) as caught:
+        await getattr(client, method)(**params)
+    assert caught.value.error_code == error_code
+    assert caught.value.operation_name == operation

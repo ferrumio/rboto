@@ -371,6 +371,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-cloudwatchlogs"
+version = "1.160.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9ffb5aa6c64847b66ef776046bdf7e131c538395a626c25b947d10b753bec1b"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-eventstream",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-cognitoidentity"
 version = "1.119.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -452,6 +478,31 @@ name = "aws-sdk-guardduty"
 version = "1.152.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4bdd75174a2be7abb45f8be6e0788be41b328e423bf6150d2d6a386e538559b0"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-kms"
+version = "1.126.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6c17ea00d100b3a51e9d7b7922baf2912977d66545038f2fa78553461f75a450"
 dependencies = [
  "arc-swap",
  "aws-credential-types",
@@ -673,6 +724,56 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-sesv2"
+version = "1.143.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae0f19d5f30fd75714a7dd8bef185d03bb9c62faa5459785674297a775c18663"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-sfn"
+version = "1.123.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c149c59d61748e843ef40e47db88a884148300dfa560c0d84b0fcf04f0c85c2f"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-signin"
 version = "1.30.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -744,6 +845,29 @@ dependencies = [
  "bytes",
  "fastrand",
  "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-ssm"
+version = "1.131.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d790b9c899c5eccca3d79fd9c342a2d6e46d1eec37a803a818bd6194d8dccc2e"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "fastrand",
  "regex-lite",
  "tracing",
 ]
@@ -2530,6 +2654,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rboto-cloudwatch-logs-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-cloudwatchlogs",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
 name = "rboto-cognito-identity-native"
 version = "0.1.0"
 dependencies = [
@@ -2590,6 +2729,21 @@ version = "0.1.0"
 dependencies = [
  "aws-config",
  "aws-sdk-guardduty",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-kms-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-kms",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",
@@ -2705,6 +2859,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "rboto-sesv2-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-sesv2",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-sfn-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-sfn",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
 name = "rboto-signin-native"
 version = "0.1.0"
 dependencies = [
@@ -2740,6 +2924,21 @@ version = "0.1.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sqs",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-ssm-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-ssm",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",
