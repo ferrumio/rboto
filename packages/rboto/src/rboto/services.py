@@ -6,10 +6,32 @@ from typing import TYPE_CHECKING
 from .session import Session
 
 if TYPE_CHECKING:
+    from rboto_api_gateway import APIGatewayClient
+    from rboto_bedrock import BedrockClient
+    from rboto_bedrock_agent import BedrockAgentClient
+    from rboto_bedrock_agent_runtime import BedrockAgentRuntimeClient
+    from rboto_bedrock_agentcore import BedrockAgentCoreClient
+    from rboto_bedrock_agentcore_control import BedrockAgentCoreControlClient
+    from rboto_bedrock_data_automation import BedrockDataAutomationClient
+    from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
+    from rboto_bedrock_runtime import BedrockRuntimeClient
+    from rboto_cloudtrail import CloudTrailClient
+    from rboto_cognito_identity import CognitoIdentityClient
+    from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
+    from rboto_guardduty import GuardDutyClient
+    from rboto_lambda import LambdaClient
+    from rboto_lex_runtime_v2 import LexRuntimeV2Client
+    from rboto_polly import PollyClient
+    from rboto_qbusiness import QBusinessClient
     from rboto_s3 import S3Client
+    from rboto_sagemaker_runtime_http2 import SageMakerRuntimeHTTP2Client
+    from rboto_secrets_manager import SecretsManagerClient
+    from rboto_signin import SignInClient
     from rboto_sns import SNSClient
     from rboto_sqs import SQSClient
+    from rboto_sts import STSClient
+    from rboto_transcribe_streaming import TranscribeStreamingClient
 
 
 def _resolve_config(
@@ -23,6 +45,294 @@ def _resolve_config(
     if any(value is not None for value in (region, profile, endpoint_url)):
         raise ValueError("session cannot be combined with explicit service configuration")
     return session.region, session.profile, session.endpoint_url
+
+
+def api_gateway(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> APIGatewayClient:
+    try:
+        from rboto_api_gateway import APIGatewayClient
+    except ImportError as error:
+        raise ImportError(
+            'api-gateway support is not installed. Install it with: '
+            'pip install "rboto[api-gateway]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return APIGatewayClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockClient:
+    try:
+        from rboto_bedrock import BedrockClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock support is not installed. Install it with: '
+            'pip install "rboto[bedrock]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_agent(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockAgentClient:
+    try:
+        from rboto_bedrock_agent import BedrockAgentClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-agent support is not installed. Install it with: '
+            'pip install "rboto[bedrock-agent]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockAgentClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_agent_runtime(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockAgentRuntimeClient:
+    try:
+        from rboto_bedrock_agent_runtime import BedrockAgentRuntimeClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-agent-runtime support is not installed. Install it with: '
+            'pip install "rboto[bedrock-agent-runtime]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockAgentRuntimeClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_agentcore(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockAgentCoreClient:
+    try:
+        from rboto_bedrock_agentcore import BedrockAgentCoreClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-agentcore support is not installed. Install it with: '
+            'pip install "rboto[bedrock-agentcore]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockAgentCoreClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_agentcore_control(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockAgentCoreControlClient:
+    try:
+        from rboto_bedrock_agentcore_control import BedrockAgentCoreControlClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-agentcore-control support is not installed. Install it with: '
+            'pip install "rboto[bedrock-agentcore-control]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockAgentCoreControlClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_data_automation(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockDataAutomationClient:
+    try:
+        from rboto_bedrock_data_automation import BedrockDataAutomationClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-data-automation support is not installed. Install it with: '
+            'pip install "rboto[bedrock-data-automation]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockDataAutomationClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_data_automation_runtime(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockDataAutomationRuntimeClient:
+    try:
+        from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-data-automation-runtime support is not installed. Install it with: '
+            'pip install "rboto[bedrock-data-automation-runtime]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockDataAutomationRuntimeClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def bedrock_runtime(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> BedrockRuntimeClient:
+    try:
+        from rboto_bedrock_runtime import BedrockRuntimeClient
+    except ImportError as error:
+        raise ImportError(
+            'bedrock-runtime support is not installed. Install it with: '
+            'pip install "rboto[bedrock-runtime]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return BedrockRuntimeClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def cloudtrail(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> CloudTrailClient:
+    try:
+        from rboto_cloudtrail import CloudTrailClient
+    except ImportError as error:
+        raise ImportError(
+            'cloudtrail support is not installed. Install it with: '
+            'pip install "rboto[cloudtrail]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return CloudTrailClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def cognito_identity(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> CognitoIdentityClient:
+    try:
+        from rboto_cognito_identity import CognitoIdentityClient
+    except ImportError as error:
+        raise ImportError(
+            'cognito-identity support is not installed. Install it with: '
+            'pip install "rboto[cognito-identity]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return CognitoIdentityClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def connecthealth(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> ConnectHealthClient:
+    try:
+        from rboto_connecthealth import ConnectHealthClient
+    except ImportError as error:
+        raise ImportError(
+            'connecthealth support is not installed. Install it with: '
+            'pip install "rboto[connecthealth]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return ConnectHealthClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
 
 
 def dynamodb(
@@ -49,6 +359,126 @@ def dynamodb(
     )
 
 
+def guardduty(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> GuardDutyClient:
+    try:
+        from rboto_guardduty import GuardDutyClient
+    except ImportError as error:
+        raise ImportError(
+            'guardduty support is not installed. Install it with: '
+            'pip install "rboto[guardduty]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return GuardDutyClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def lambda_(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> LambdaClient:
+    try:
+        from rboto_lambda import LambdaClient
+    except ImportError as error:
+        raise ImportError(
+            'lambda support is not installed. Install it with: '
+            'pip install "rboto[lambda]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return LambdaClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def lex_runtime_v2(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> LexRuntimeV2Client:
+    try:
+        from rboto_lex_runtime_v2 import LexRuntimeV2Client
+    except ImportError as error:
+        raise ImportError(
+            'lex-runtime-v2 support is not installed. Install it with: '
+            'pip install "rboto[lex-runtime-v2]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return LexRuntimeV2Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def polly(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> PollyClient:
+    try:
+        from rboto_polly import PollyClient
+    except ImportError as error:
+        raise ImportError(
+            'polly support is not installed. Install it with: '
+            'pip install "rboto[polly]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return PollyClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def qbusiness(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> QBusinessClient:
+    try:
+        from rboto_qbusiness import QBusinessClient
+    except ImportError as error:
+        raise ImportError(
+            'qbusiness support is not installed. Install it with: '
+            'pip install "rboto[qbusiness]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return QBusinessClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
 def s3(
     *,
     session: Session | None = None,
@@ -67,6 +497,78 @@ def s3(
         session, region, profile, endpoint_url
     )
     return S3Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def sagemaker_runtime_http2(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SageMakerRuntimeHTTP2Client:
+    try:
+        from rboto_sagemaker_runtime_http2 import SageMakerRuntimeHTTP2Client
+    except ImportError as error:
+        raise ImportError(
+            'sagemaker-runtime-http2 support is not installed. Install it with: '
+            'pip install "rboto[sagemaker-runtime-http2]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SageMakerRuntimeHTTP2Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def secrets_manager(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SecretsManagerClient:
+    try:
+        from rboto_secrets_manager import SecretsManagerClient
+    except ImportError as error:
+        raise ImportError(
+            'secrets-manager support is not installed. Install it with: '
+            'pip install "rboto[secrets-manager]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SecretsManagerClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def signin(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SignInClient:
+    try:
+        from rboto_signin import SignInClient
+    except ImportError as error:
+        raise ImportError(
+            'signin support is not installed. Install it with: '
+            'pip install "rboto[signin]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SignInClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
@@ -115,6 +617,54 @@ def sqs(
         session, region, profile, endpoint_url
     )
     return SQSClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def sts(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> STSClient:
+    try:
+        from rboto_sts import STSClient
+    except ImportError as error:
+        raise ImportError(
+            'sts support is not installed. Install it with: '
+            'pip install "rboto[sts]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return STSClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def transcribe_streaming(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> TranscribeStreamingClient:
+    try:
+        from rboto_transcribe_streaming import TranscribeStreamingClient
+    except ImportError as error:
+        raise ImportError(
+            'transcribe-streaming support is not installed. Install it with: '
+            'pip install "rboto[transcribe-streaming]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return TranscribeStreamingClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,

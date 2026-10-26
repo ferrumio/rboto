@@ -3,8 +3,10 @@
 ## Routine CI
 
 `.github/workflows/ci.yml` runs Python/codegen quality, Rust quality, and one Linux CPython
-3.12 wheel build per service. `.github/workflows/integration.yml` builds editable debug
-extensions on Linux CPython 3.12 and runs the compiled bridge, LocalStack flows, and examples.
+3.12 wheel build per service, discovered from the descriptors. Each wheel job installs its
+wheel and runs its compiled bridge and local protocol tests.
+`.github/workflows/integration.yml` builds editable debug extensions for S3, SNS, SQS,
+and DynamoDB on Linux CPython 3.12 and runs their LocalStack flows and examples.
 
 Keep routine CI focused on fast regression feedback. Do not expand it to a full operating
 system and CPython matrix without measured evidence that the added signal justifies the

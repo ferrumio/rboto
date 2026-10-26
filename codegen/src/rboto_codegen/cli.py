@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import NoReturn
 
 from .alignment import align
+from .catalog import generate_catalog
 from .generator import generate_service
 from .registry import get_service, list_services
 from .rust_crate import parse_crate
@@ -60,6 +61,8 @@ def main() -> None:
         _parser_error(parser, "provide a service_id or --all")
 
     repository_root = Path(__file__).parents[3]
+    if args.command == "generate":
+        generate_catalog(repository_root)
     for descriptor in descriptors:
         model_path = Path(__file__).parents[2] / "models" / f"{descriptor.service_id}.json"
         if args.command == "fetch-model":

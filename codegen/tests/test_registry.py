@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -5,12 +6,11 @@ from rboto_codegen import get_service, list_services, load_service
 
 
 def test_service_configs_are_discovered() -> None:
-    assert [service.service_id for service in list_services()] == [
-        "dynamodb",
+    catalog = json.loads((Path(__file__).parents[1] / "aws-sdk-python-services.json").read_text())
+    assert {service.service_id for service in list_services()} == {
+        *catalog["services"],
         "s3",
-        "sns",
-        "sqs",
-    ]
+    }
 
 
 def test_s3_descriptor_is_loaded_from_toml() -> None:

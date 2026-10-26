@@ -51,9 +51,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         aws_model_hash=_string(data, "aws_model_hash"),
         smithy_codegen_revision=_string(data, "smithy_codegen_revision"),
         customization=_optional_string(data, "customization"),
-        force_path_style_for_custom_endpoint=_boolean(
-            data, "force_path_style_for_custom_endpoint"
-        ),
+        force_path_style_for_custom_endpoint=_boolean(data, "force_path_style_for_custom_endpoint"),
         native_outputs=_boolean(data, "native_outputs"),
     )
     if path.stem != descriptor.service_id:
@@ -66,7 +64,12 @@ def load_service(path: Path) -> ServiceDescriptor:
 
 def list_services(directory: Path | None = None) -> tuple[ServiceDescriptor, ...]:
     root = directory or service_config_dir()
-    return tuple(load_service(path) for path in sorted(root.glob("*.toml")))
+    return tuple(
+        sorted(
+            (load_service(path) for path in root.glob("*.toml")),
+            key=lambda service: service.service_id,
+        )
+    )
 
 
 def get_service(service_id: str, directory: Path | None = None) -> ServiceDescriptor:

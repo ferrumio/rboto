@@ -20,6 +20,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0006: Test generated contracts and representative AWS flows](0006-testing-strategy.md)
 - [ADR-0007: Separate fast CI validation from release builds](0007-ci-and-release-matrix.md)
 - [ADR-0008: Share AWS configuration, credentials, and error mapping through an external Rust crate](0008-shared-aws-core-crate.md)
+- [ADR-0009: Cover the AWS SDK for Python service catalog](0009-expanded-service-catalog.md)
 
 ## Creating an ADR
 

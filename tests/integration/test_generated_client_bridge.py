@@ -1,21 +1,24 @@
+import ast
+import importlib
 import inspect
+import os
 from collections.abc import Awaitable, Callable
+from pathlib import Path
 
 import pytest
-from rboto_dynamodb import DynamoDBClient
-from rboto_dynamodb._native import DynamoDBClient as NativeDynamoDBClient
-from rboto_s3 import S3Client
-from rboto_s3._native import S3Client as NativeS3Client
-from rboto_sns import SNSClient
-from rboto_sns._native import SNSClient as NativeSNSClient
-from rboto_sqs import SQSClient
-from rboto_sqs._native import SQSClient as NativeSQSClient
+from rboto_codegen.registry import list_services
+from rboto_codegen.rust_crate import parse_crate
 
-CLIENTS = (
-    (S3Client, NativeS3Client, 106),
-    (SNSClient, NativeSNSClient, 42),
-    (SQSClient, NativeSQSClient, 23),
-    (DynamoDBClient, NativeDynamoDBClient, 57),
+SELECTED_SERVICES = set(filter(None, os.environ.get("RBOTO_TEST_SERVICES", "").split(",")))
+assert SELECTED_SERVICES <= {service.service_id for service in list_services()}
+CLIENTS = tuple(
+    (
+        getattr(importlib.import_module(service.python_package), service.client_class),
+        getattr(importlib.import_module(f"{service.python_package}._native"), service.client_class),
+        len(parse_crate(service).operations),
+    )
+    for service in list_services()
+    if not SELECTED_SERVICES or service.service_id in SELECTED_SERVICES
 )
 
 
@@ -24,9 +27,7 @@ class NativeSpy:
         self.result = result
         self.calls: list[tuple[str, dict[str, object]]] = []
 
-    def __getattr__(
-        self, name: str
-    ) -> Callable[[dict[str, object]], Awaitable[object]]:
+    def __getattr__(self, name: str) -> Callable[[dict[str, object]], Awaitable[object]]:
         async def call(params: dict[str, object]) -> object:
             self.calls.append((name, params))
             return self.result
@@ -72,8 +73,7 @@ async def test_every_python_method_dispatches_to_its_native_counterpart(
         required = {
             parameter_name: object()
             for parameter_name, parameter in signature.parameters.items()
-            if parameter_name != "self"
-            and parameter.default is inspect.Parameter.empty
+            if parameter_name != "self" and parameter.default is inspect.Parameter.empty
         }
 
         result = await getattr(client, name)(**required)
@@ -85,3 +85,44 @@ async def test_every_python_method_dispatches_to_its_native_counterpart(
             assert result is None
         else:
             assert result is sentinel
+
+        # Exercise optional arguments as well, including keyword escapes.
+        supplied = {
+            parameter_name: object()
+            for parameter_name in signature.parameters
+            if parameter_name != "self"
+        }
+        await getattr(client, name)(**supplied)
+        called_name, params = spy.calls.pop()
+        assert called_name == name
+        assert len(params) == len(supplied)
+        assert all(value in params.values() for value in supplied.values())
+
+
+@pytest.mark.parametrize(
+    "service",
+    [
+        service
+        for service in list_services()
+        if not SELECTED_SERVICES or service.service_id in SELECTED_SERVICES
+    ],
+    ids=lambda service: service.service_id,
+)
+def test_native_properties_match_the_generated_stubs(service: object) -> None:
+    package_name = getattr(service, "python_package")
+    package = importlib.import_module(package_name)
+    native = importlib.import_module(f"{package_name}._native")
+    assert package.__file__ is not None
+    stub = ast.parse(Path(package.__file__).with_name("_native.pyi").read_text())
+    for node in stub.body:
+        if not isinstance(node, ast.ClassDef):
+            continue
+        native_class = getattr(native, node.name)
+        for member in node.body:
+            if isinstance(member, ast.FunctionDef) and any(
+                isinstance(decorator, ast.Name) and decorator.id == "property"
+                for decorator in member.decorator_list
+            ):
+                assert hasattr(native_class, member.name), (
+                    f"{package_name}.{node.name}.{member.name}"
+                )

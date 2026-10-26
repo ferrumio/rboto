@@ -14,4 +14,7 @@ rust-version.workspace = true
 publish = false
 
 [dependencies]
+aws-smithy-types.workspace = true
+futures-util.workspace = true
 pyo3.workspace = true
+pyo3-async-runtimes.workspace = true

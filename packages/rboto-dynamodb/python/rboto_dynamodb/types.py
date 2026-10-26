@@ -5,6 +5,8 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from ._native import ByteStream as ByteStream
 
+JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+
 ApproximateCreationDateTimePrecision: TypeAlias = Literal['MILLISECOND', 'MICROSECOND']
 AttributeAction: TypeAlias = Literal['ADD', 'PUT', 'DELETE']
 BackupStatus: TypeAlias = Literal['CREATING', 'DELETED', 'AVAILABLE']
@@ -19,10 +21,12 @@ ContributorInsightsAction: TypeAlias = Literal['ENABLE', 'DISABLE']
 ContributorInsightsMode: TypeAlias = Literal['ACCESSED_AND_THROTTLED_KEYS', 'THROTTLED_KEYS']
 ContributorInsightsStatus: TypeAlias = Literal['ENABLING', 'ENABLED', 'DISABLING', 'DISABLED', 'FAILED']
 DestinationStatus: TypeAlias = Literal['ENABLING', 'ACTIVE', 'DISABLING', 'DISABLED', 'ENABLE_FAILED', 'UPDATING']
+DisassociationMode: TypeAlias = Literal['WAIT_FOR_REPLICATION']
 ExportFormat: TypeAlias = Literal['DYNAMODB_JSON', 'ION']
 ExportStatus: TypeAlias = Literal['IN_PROGRESS', 'COMPLETED', 'FAILED']
 ExportType: TypeAlias = Literal['FULL_EXPORT', 'INCREMENTAL_EXPORT']
 ExportViewType: TypeAlias = Literal['NEW_IMAGE', 'NEW_AND_OLD_IMAGES']
+GlobalTableSettingsReplicationMode: TypeAlias = Literal['ENABLED', 'DISABLED', 'ENABLED_WITH_OVERRIDES']
 GlobalTableStatus: TypeAlias = Literal['CREATING', 'ACTIVE', 'DELETING', 'UPDATING']
 ImportStatus: TypeAlias = Literal['IN_PROGRESS', 'COMPLETED', 'CANCELLING', 'CANCELLED', 'FAILED']
 IndexStatus: TypeAlias = Literal['CREATING', 'UPDATING', 'DELETING', 'ACTIVE']
@@ -41,11 +45,13 @@ S3SseAlgorithm: TypeAlias = Literal['AES256', 'KMS']
 SSEStatus: TypeAlias = Literal['ENABLING', 'ENABLED', 'DISABLING', 'DISABLED', 'UPDATING']
 SSEType: TypeAlias = Literal['AES256', 'KMS']
 ScalarAttributeType: TypeAlias = Literal['S', 'N', 'B']
+SearchSchemaElementType: TypeAlias = Literal['HASH', 'INLINE_FILTER']
 Select: TypeAlias = Literal['ALL_ATTRIBUTES', 'ALL_PROJECTED_ATTRIBUTES', 'SPECIFIC_ATTRIBUTES', 'COUNT']
 StreamViewType: TypeAlias = Literal['NEW_IMAGE', 'OLD_IMAGE', 'NEW_AND_OLD_IMAGES', 'KEYS_ONLY']
 TableClass: TypeAlias = Literal['STANDARD', 'STANDARD_INFREQUENT_ACCESS']
 TableStatus: TypeAlias = Literal['CREATING', 'UPDATING', 'DELETING', 'ACTIVE', 'INACCESSIBLE_ENCRYPTION_CREDENTIALS', 'ARCHIVING', 'ARCHIVED', 'REPLICATION_NOT_AUTHORIZED']
 TimeToLiveStatus: TypeAlias = Literal['ENABLING', 'DISABLING', 'ENABLED', 'DISABLED']
+VectorDistanceFunction: TypeAlias = Literal['COSINE', 'DOT_PRODUCT', 'EUCLIDEAN']
 WitnessStatus: TypeAlias = Literal['CREATING', 'DELETING', 'ACTIVE']
 
 ArchivalSummary = TypedDict(
@@ -291,6 +297,7 @@ ConsumedCapacity = TypedDict(
     "table": NotRequired["Capacity"],
     "local_secondary_indexes": NotRequired["dict[str, Capacity]"],
     "global_secondary_indexes": NotRequired["dict[str, Capacity]"],
+    "vector_indexes": NotRequired["dict[str, VectorCapacity]"],
     },
 )
 
@@ -369,9 +376,9 @@ CreateReplicationGroupMemberAction = TypedDict(
 CreateTableInput = TypedDict(
     "CreateTableInput",
     {
-    "attribute_definitions": Required["list[AttributeDefinition]"],
+    "attribute_definitions": NotRequired["list[AttributeDefinition]"],
     "table_name": Required["str"],
-    "key_schema": Required["list[KeySchemaElement]"],
+    "key_schema": NotRequired["list[KeySchemaElement]"],
     "local_secondary_indexes": NotRequired["list[LocalSecondaryIndex]"],
     "global_secondary_indexes": NotRequired["list[GlobalSecondaryIndex]"],
     "billing_mode": NotRequired["BillingMode"],
@@ -384,6 +391,21 @@ CreateTableInput = TypedDict(
     "warm_throughput": NotRequired["WarmThroughput"],
     "resource_policy": NotRequired["str"],
     "on_demand_throughput": NotRequired["OnDemandThroughput"],
+    "global_table_source_arn": NotRequired["str"],
+    "global_table_settings_replication_mode": NotRequired["GlobalTableSettingsReplicationMode"],
+    "vector_indexes": NotRequired["list[VectorIndex]"],
+    },
+)
+
+CreateVectorIndexAction = TypedDict(
+    "CreateVectorIndexAction",
+    {
+    "index_name": Required["str"],
+    "vector_attribute": Required["VectorAttributeDefinition"],
+    "search_schema": NotRequired["list[SearchSchemaElement]"],
+    "projection": Required["Projection"],
+    "dimensions": Required["int"],
+    "distance_function": Required["VectorDistanceFunction"],
     },
 )
 
@@ -481,6 +503,13 @@ DeleteTableInput = TypedDict(
     },
 )
 
+DeleteVectorIndexAction = TypedDict(
+    "DeleteVectorIndexAction",
+    {
+    "index_name": Required["str"],
+    },
+)
+
 DescribeBackupInput = TypedDict(
     "DescribeBackupInput",
     {
@@ -571,6 +600,14 @@ DescribeTimeToLiveInput = TypedDict(
     },
 )
 
+DisassociateReplicationGroupMemberAction = TypedDict(
+    "DisassociateReplicationGroupMemberAction",
+    {
+    "region_name": Required["str"],
+    "disassociation_mode": Required["DisassociationMode"],
+    },
+)
+
 EnableKinesisStreamingConfiguration = TypedDict(
     "EnableKinesisStreamingConfiguration",
     {
@@ -642,6 +679,7 @@ ExportDescription = TypedDict(
     "item_count": NotRequired["int"],
     "export_type": NotRequired["ExportType"],
     "incremental_export_specification": NotRequired["IncrementalExportSpecification"],
+    "filter_specification": NotRequired["FilterSpecification"],
     },
 )
 
@@ -668,6 +706,7 @@ ExportTableToPointInTimeInput = TypedDict(
     "export_format": NotRequired["ExportFormat"],
     "export_type": NotRequired["ExportType"],
     "incremental_export_specification": NotRequired["IncrementalExportSpecification"],
+    "filter_specification": NotRequired["FilterSpecification"],
     },
 )
 
@@ -676,6 +715,17 @@ FailureException = TypedDict(
     {
     "exception_name": NotRequired["str"],
     "exception_description": NotRequired["str"],
+    },
+)
+
+FilterSpecification = TypedDict(
+    "FilterSpecification",
+    {
+    "filter_expression": NotRequired["str"],
+    "projection_expression": NotRequired["str"],
+    "key_condition_expression": NotRequired["str"],
+    "expression_attribute_names": NotRequired["dict[str, str]"],
+    "expression_attribute_values": NotRequired["dict[str, AttributeValue]"],
     },
 )
 
@@ -1210,6 +1260,7 @@ ReplicaDescription = TypedDict(
     {
     "region_name": NotRequired["str"],
     "replica_status": NotRequired["ReplicaStatus"],
+    "replica_arn": NotRequired["str"],
     "replica_status_description": NotRequired["str"],
     "replica_status_percent_progress": NotRequired["str"],
     "kms_master_key_id": NotRequired["str"],
@@ -1219,6 +1270,7 @@ ReplicaDescription = TypedDict(
     "global_secondary_indexes": NotRequired["list[ReplicaGlobalSecondaryIndexDescription]"],
     "replica_inaccessible_date_time": NotRequired["str"],
     "replica_table_class_summary": NotRequired["TableClassSummary"],
+    "global_table_settings_replication_mode": NotRequired["GlobalTableSettingsReplicationMode"],
     },
 )
 
@@ -1320,6 +1372,7 @@ ReplicationGroupUpdate = TypedDict(
     "create": NotRequired["CreateReplicationGroupMemberAction"],
     "update": NotRequired["UpdateReplicationGroupMemberAction"],
     "delete": NotRequired["DeleteReplicationGroupMemberAction"],
+    "disassociate": NotRequired["DisassociateReplicationGroupMemberAction"],
     },
 )
 
@@ -1344,6 +1397,7 @@ RestoreTableFromBackupInput = TypedDict(
     "provisioned_throughput_override": NotRequired["ProvisionedThroughput"],
     "on_demand_throughput_override": NotRequired["OnDemandThroughput"],
     "sse_specification_override": NotRequired["SSESpecification"],
+    "vector_index_override": NotRequired["list[VectorIndex]"],
     },
 )
 
@@ -1361,6 +1415,7 @@ RestoreTableToPointInTimeInput = TypedDict(
     "provisioned_throughput_override": NotRequired["ProvisionedThroughput"],
     "on_demand_throughput_override": NotRequired["OnDemandThroughput"],
     "sse_specification_override": NotRequired["SSESpecification"],
+    "vector_index_override": NotRequired["list[VectorIndex]"],
     },
 )
 
@@ -1414,6 +1469,37 @@ ScanInput = TypedDict(
     },
 )
 
+SearchResultItem = TypedDict(
+    "SearchResultItem",
+    {
+    "item": NotRequired["dict[str, AttributeValue]"],
+    "score": NotRequired["float"],
+    },
+)
+
+SearchSchemaElement = TypedDict(
+    "SearchSchemaElement",
+    {
+    "attribute_name": Required["str"],
+    "search_schema_element_type": Required["SearchSchemaElementType"],
+    },
+)
+
+SearchVectorsInput = TypedDict(
+    "SearchVectorsInput",
+    {
+    "table_name": Required["str"],
+    "index_name": Required["str"],
+    "return_consumed_capacity": NotRequired["ReturnConsumedCapacity"],
+    "expression_attribute_names": NotRequired["dict[str, str]"],
+    "expression_attribute_values": NotRequired["dict[str, AttributeValue]"],
+    "projection_expression": NotRequired["str"],
+    "search_vector": Required["list[AttributeValue]"],
+    "search_condition_expression": NotRequired["str"],
+    "top_k": Required["int"],
+    },
+)
+
 SourceTableDetails = TypedDict(
     "SourceTableDetails",
     {
@@ -1438,6 +1524,7 @@ SourceTableFeatureDetails = TypedDict(
     "stream_description": NotRequired["StreamSpecification"],
     "time_to_live_description": NotRequired["TimeToLiveDescription"],
     "sse_description": NotRequired["SSEDescription"],
+    "vector_indexes": NotRequired["list[VectorIndexInfo]"],
     },
 )
 
@@ -1477,6 +1564,7 @@ TableCreationParameters = TypedDict(
     "on_demand_throughput": NotRequired["OnDemandThroughput"],
     "sse_specification": NotRequired["SSESpecification"],
     "global_secondary_indexes": NotRequired["list[GlobalSecondaryIndex]"],
+    "vector_indexes": NotRequired["list[VectorIndex]"],
     },
 )
 
@@ -1502,14 +1590,17 @@ TableDescription = TypedDict(
     "global_table_version": NotRequired["str"],
     "replicas": NotRequired["list[ReplicaDescription]"],
     "global_table_witnesses": NotRequired["list[GlobalTableWitnessDescription]"],
+    "global_table_settings_replication_mode": NotRequired["GlobalTableSettingsReplicationMode"],
     "restore_summary": NotRequired["RestoreSummary"],
     "sse_description": NotRequired["SSEDescription"],
     "archival_summary": NotRequired["ArchivalSummary"],
     "table_class_summary": NotRequired["TableClassSummary"],
     "deletion_protection_enabled": NotRequired["bool"],
+    "disassociation_protection_enabled": NotRequired["bool"],
     "on_demand_throughput": NotRequired["OnDemandThroughput"],
     "warm_throughput": NotRequired["TableWarmThroughputDescription"],
     "multi_region_consistency": NotRequired["MultiRegionConsistency"],
+    "vector_indexes": NotRequired["list[VectorIndexDescription]"],
     },
 )
 
@@ -1730,6 +1821,9 @@ UpdateTableInput = TypedDict(
     "global_table_witness_updates": NotRequired["list[GlobalTableWitnessGroupUpdate]"],
     "on_demand_throughput": NotRequired["OnDemandThroughput"],
     "warm_throughput": NotRequired["WarmThroughput"],
+    "global_table_settings_replication_mode": NotRequired["GlobalTableSettingsReplicationMode"],
+    "disassociation_protection_enabled": NotRequired["bool"],
+    "vector_index_updates": NotRequired["list[VectorIndexUpdate]"],
     },
 )
 
@@ -1748,6 +1842,70 @@ UpdateTimeToLiveInput = TypedDict(
     {
     "table_name": Required["str"],
     "time_to_live_specification": Required["TimeToLiveSpecification"],
+    },
+)
+
+VectorAttributeDefinition = TypedDict(
+    "VectorAttributeDefinition",
+    {
+    "attribute_name": Required["str"],
+    },
+)
+
+VectorCapacity = TypedDict(
+    "VectorCapacity",
+    {
+    "vector_search_request_bytes": NotRequired["float"],
+    "vector_write_request_bytes": NotRequired["float"],
+    },
+)
+
+VectorIndex = TypedDict(
+    "VectorIndex",
+    {
+    "index_name": Required["str"],
+    "vector_attribute": Required["VectorAttributeDefinition"],
+    "search_schema": NotRequired["list[SearchSchemaElement]"],
+    "projection": Required["Projection"],
+    "dimensions": Required["int"],
+    "distance_function": Required["VectorDistanceFunction"],
+    },
+)
+
+VectorIndexDescription = TypedDict(
+    "VectorIndexDescription",
+    {
+    "index_name": NotRequired["str"],
+    "search_schema": NotRequired["list[SearchSchemaElement]"],
+    "projection": NotRequired["Projection"],
+    "vector_attribute": NotRequired["VectorAttributeDefinition"],
+    "dimensions": NotRequired["int"],
+    "distance_function": NotRequired["VectorDistanceFunction"],
+    "index_status": NotRequired["IndexStatus"],
+    "backfilling": NotRequired["bool"],
+    "index_size_bytes": NotRequired["int"],
+    "item_count": NotRequired["int"],
+    "index_arn": NotRequired["str"],
+    },
+)
+
+VectorIndexInfo = TypedDict(
+    "VectorIndexInfo",
+    {
+    "index_name": NotRequired["str"],
+    "vector_attribute": NotRequired["VectorAttributeDefinition"],
+    "search_schema": NotRequired["list[SearchSchemaElement]"],
+    "projection": NotRequired["Projection"],
+    "dimensions": NotRequired["int"],
+    "distance_function": NotRequired["VectorDistanceFunction"],
+    },
+)
+
+VectorIndexUpdate = TypedDict(
+    "VectorIndexUpdate",
+    {
+    "create": NotRequired["CreateVectorIndexAction"],
+    "delete": NotRequired["DeleteVectorIndexAction"],
     },
 )
 

@@ -5,6 +5,8 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from ._native import ByteStream as ByteStream
 
+JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+
 LanguageCodeString: TypeAlias = Literal['en-US', 'en-GB', 'es-419', 'es-ES', 'de-DE', 'fr-CA', 'fr-FR', 'it-IT', 'ja-JP', 'pt-BR', 'kr-KR', 'zh-CN', 'zh-TW']
 NumberCapability: TypeAlias = Literal['SMS', 'MMS', 'VOICE']
 RouteType: TypeAlias = Literal['Transactional', 'Promotional', 'Premium']

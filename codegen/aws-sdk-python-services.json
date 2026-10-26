@@ -1,0 +1,31 @@
+{
+  "repository": "aws/aws-sdk-python",
+  "revision": "ba64dd7377013450e12c211149952910f40000f2",
+  "services": [
+    "api-gateway",
+    "bedrock",
+    "bedrock-agent",
+    "bedrock-agent-runtime",
+    "bedrock-agentcore",
+    "bedrock-agentcore-control",
+    "bedrock-data-automation",
+    "bedrock-data-automation-runtime",
+    "bedrock-runtime",
+    "cloudtrail",
+    "cognito-identity",
+    "connecthealth",
+    "dynamodb",
+    "guardduty",
+    "lambda",
+    "lex-runtime-v2",
+    "polly",
+    "qbusiness",
+    "sagemaker-runtime-http2",
+    "secrets-manager",
+    "signin",
+    "sns",
+    "sqs",
+    "sts",
+    "transcribe-streaming"
+  ]
+}

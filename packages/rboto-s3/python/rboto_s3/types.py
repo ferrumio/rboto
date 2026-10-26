@@ -6,16 +6,21 @@ from collections.abc import AsyncIterator
 
 from ._native import ByteStream as ByteStream
 
+JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+
 AnalyticsS3ExportFileFormat: TypeAlias = Literal['CSV']
+AnnotationConfigurationState: TypeAlias = Literal['ENABLED', 'DISABLED']
+AnnotationDirective: TypeAlias = Literal['COPY', 'EXCLUDE']
 ArchiveStatus: TypeAlias = Literal['ARCHIVE_ACCESS', 'DEEP_ARCHIVE_ACCESS']
 BucketAbacStatus: TypeAlias = Literal['Enabled', 'Disabled']
 BucketAccelerateStatus: TypeAlias = Literal['Enabled', 'Suspended']
 BucketCannedACL: TypeAlias = Literal['private', 'public-read', 'public-read-write', 'authenticated-read']
-BucketLocationConstraint: TypeAlias = Literal['af-south-1', 'ap-east-1', 'ap-northeast-1', 'ap-northeast-2', 'ap-northeast-3', 'ap-south-1', 'ap-south-2', 'ap-southeast-1', 'ap-southeast-2', 'ap-southeast-3', 'ap-southeast-4', 'ap-southeast-5', 'ca-central-1', 'cn-north-1', 'cn-northwest-1', 'EU', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu-south-1', 'eu-south-2', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'il-central-1', 'me-central-1', 'me-south-1', 'sa-east-1', 'us-east-2', 'us-gov-east-1', 'us-gov-west-1', 'us-west-1', 'us-west-2']
+BucketLocationConstraint: TypeAlias = Literal['af-south-1', 'ap-east-1', 'ap-east-2', 'ap-northeast-1', 'ap-northeast-2', 'ap-northeast-3', 'ap-south-1', 'ap-south-2', 'ap-southeast-1', 'ap-southeast-2', 'ap-southeast-3', 'ap-southeast-4', 'ap-southeast-5', 'ap-southeast-6', 'ap-southeast-7', 'ca-central-1', 'ca-west-1', 'cn-north-1', 'cn-northwest-1', 'EU', 'eu-central-1', 'eu-central-2', 'eu-north-1', 'eu-south-1', 'eu-south-2', 'eu-west-1', 'eu-west-2', 'eu-west-3', 'il-central-1', 'me-central-1', 'me-south-1', 'mx-central-1', 'sa-east-1', 'us-east-2', 'us-gov-east-1', 'us-gov-west-1', 'us-west-1', 'us-west-2']
 BucketLogsPermission: TypeAlias = Literal['FULL_CONTROL', 'READ', 'WRITE']
+BucketNamespace: TypeAlias = Literal['account-regional', 'global']
 BucketType: TypeAlias = Literal['Directory']
 BucketVersioningStatus: TypeAlias = Literal['Enabled', 'Suspended']
-ChecksumAlgorithm: TypeAlias = Literal['CRC32', 'CRC32C', 'SHA1', 'SHA256', 'CRC64NVME']
+ChecksumAlgorithm: TypeAlias = Literal['CRC32', 'CRC32C', 'SHA1', 'SHA256', 'CRC64NVME', 'SHA512', 'MD5', 'XXHASH64', 'XXHASH3', 'XXHASH128']
 ChecksumMode: TypeAlias = Literal['ENABLED']
 ChecksumType: TypeAlias = Literal['COMPOSITE', 'FULL_OBJECT']
 CompressionType: TypeAlias = Literal['NONE', 'GZIP', 'BZIP2']
@@ -23,7 +28,7 @@ DataRedundancy: TypeAlias = Literal['SingleAvailabilityZone', 'SingleLocalZone']
 DeleteMarkerReplicationStatus: TypeAlias = Literal['Enabled', 'Disabled']
 EncodingType: TypeAlias = Literal['url']
 EncryptionType: TypeAlias = Literal['NONE', 'SSE-C']
-Event: TypeAlias = Literal['s3:ReducedRedundancyLostObject', 's3:ObjectCreated:*', 's3:ObjectCreated:Put', 's3:ObjectCreated:Post', 's3:ObjectCreated:Copy', 's3:ObjectCreated:CompleteMultipartUpload', 's3:ObjectRemoved:*', 's3:ObjectRemoved:Delete', 's3:ObjectRemoved:DeleteMarkerCreated', 's3:ObjectRestore:*', 's3:ObjectRestore:Post', 's3:ObjectRestore:Completed', 's3:Replication:*', 's3:Replication:OperationFailedReplication', 's3:Replication:OperationNotTracked', 's3:Replication:OperationMissedThreshold', 's3:Replication:OperationReplicatedAfterThreshold', 's3:ObjectRestore:Delete', 's3:LifecycleTransition', 's3:IntelligentTiering', 's3:ObjectAcl:Put', 's3:LifecycleExpiration:*', 's3:LifecycleExpiration:Delete', 's3:LifecycleExpiration:DeleteMarkerCreated', 's3:ObjectTagging:*', 's3:ObjectTagging:Put', 's3:ObjectTagging:Delete']
+Event: TypeAlias = Literal['s3:ReducedRedundancyLostObject', 's3:ObjectCreated:*', 's3:ObjectCreated:Put', 's3:ObjectCreated:Post', 's3:ObjectCreated:Copy', 's3:ObjectCreated:CompleteMultipartUpload', 's3:ObjectRemoved:*', 's3:ObjectRemoved:Delete', 's3:ObjectRemoved:DeleteMarkerCreated', 's3:ObjectRestore:*', 's3:ObjectRestore:Post', 's3:ObjectRestore:Completed', 's3:Replication:*', 's3:Replication:OperationFailedReplication', 's3:Replication:OperationNotTracked', 's3:Replication:OperationMissedThreshold', 's3:Replication:OperationReplicatedAfterThreshold', 's3:ObjectRestore:Delete', 's3:LifecycleTransition', 's3:IntelligentTiering', 's3:ObjectAcl:Put', 's3:LifecycleExpiration:*', 's3:LifecycleExpiration:Delete', 's3:LifecycleExpiration:DeleteMarkerCreated', 's3:ObjectTagging:*', 's3:ObjectTagging:Put', 's3:ObjectTagging:Delete', 's3:ObjectAnnotation:*', 's3:ObjectAnnotation:Put', 's3:ObjectAnnotation:Delete', 's3:ObjectRetention:Put']
 ExistingObjectReplicationStatus: TypeAlias = Literal['Enabled', 'Disabled']
 ExpirationState: TypeAlias = Literal['ENABLED', 'DISABLED']
 ExpirationStatus: TypeAlias = Literal['Enabled', 'Disabled']
@@ -36,7 +41,7 @@ InventoryConfigurationState: TypeAlias = Literal['ENABLED', 'DISABLED']
 InventoryFormat: TypeAlias = Literal['CSV', 'ORC', 'Parquet']
 InventoryFrequency: TypeAlias = Literal['Daily', 'Weekly']
 InventoryIncludedObjectVersions: TypeAlias = Literal['All', 'Current']
-InventoryOptionalField: TypeAlias = Literal['Size', 'LastModifiedDate', 'StorageClass', 'ETag', 'IsMultipartUploaded', 'ReplicationStatus', 'EncryptionStatus', 'ObjectLockRetainUntilDate', 'ObjectLockMode', 'ObjectLockLegalHoldStatus', 'IntelligentTieringAccessTier', 'BucketKeyStatus', 'ChecksumAlgorithm', 'ObjectAccessControlList', 'ObjectOwner', 'LifecycleExpirationDate']
+InventoryOptionalField: TypeAlias = Literal['Size', 'LastModifiedDate', 'StorageClass', 'ETag', 'IsMultipartUploaded', 'ReplicationStatus', 'EncryptionStatus', 'ObjectLockRetainUntilDate', 'ObjectLockMode', 'ObjectLockLegalHoldStatus', 'ObjectLockEventHoldStatus', 'ObjectLockEventHoldDuration', 'IntelligentTieringAccessTier', 'BucketKeyStatus', 'ChecksumAlgorithm', 'ObjectAccessControlList', 'ObjectOwner', 'LifecycleExpirationDate', 'IntelligentTieringReferenceDate']
 JSONType: TypeAlias = Literal['DOCUMENT', 'LINES']
 LocationType: TypeAlias = Literal['AvailabilityZone', 'LocalZone']
 MFADelete: TypeAlias = Literal['Enabled', 'Disabled']
@@ -46,11 +51,12 @@ MetricsStatus: TypeAlias = Literal['Enabled', 'Disabled']
 ObjectAttributes: TypeAlias = Literal['ETag', 'Checksum', 'ObjectParts', 'StorageClass', 'ObjectSize']
 ObjectCannedACL: TypeAlias = Literal['private', 'public-read', 'public-read-write', 'authenticated-read', 'aws-exec-read', 'bucket-owner-read', 'bucket-owner-full-control']
 ObjectLockEnabled: TypeAlias = Literal['Enabled']
+ObjectLockEventHold: TypeAlias = Literal['ON', 'OFF']
 ObjectLockLegalHoldStatus: TypeAlias = Literal['ON', 'OFF']
 ObjectLockMode: TypeAlias = Literal['GOVERNANCE', 'COMPLIANCE']
 ObjectLockRetentionMode: TypeAlias = Literal['GOVERNANCE', 'COMPLIANCE']
 ObjectOwnership: TypeAlias = Literal['BucketOwnerPreferred', 'ObjectWriter', 'BucketOwnerEnforced']
-ObjectStorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'GLACIER', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP']
+ObjectStorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'GLACIER', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP', 'AWS_BACKUP_WARM', 'AWS_BACKUP_LOW_COST_WARM']
 ObjectVersionStorageClass: TypeAlias = Literal['STANDARD']
 OptionalObjectAttributes: TypeAlias = Literal['RestoreStatus']
 OwnerOverride: TypeAlias = Literal['Destination']
@@ -67,10 +73,10 @@ RequestCharged: TypeAlias = Literal['requester']
 RequestPayer: TypeAlias = Literal['requester']
 RestoreRequestType: TypeAlias = Literal['SELECT']
 S3TablesBucketType: TypeAlias = Literal['aws', 'customer']
-ServerSideEncryption: TypeAlias = Literal['AES256', 'aws:fsx', 'aws:kms', 'aws:kms:dsse']
+ServerSideEncryption: TypeAlias = Literal['AES256', 'aws:fsx', 'aws:backup', 'aws:kms', 'aws:kms:dsse']
 SessionMode: TypeAlias = Literal['ReadOnly', 'ReadWrite']
 SseKmsEncryptedObjectsStatus: TypeAlias = Literal['Enabled', 'Disabled']
-StorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'GLACIER', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP']
+StorageClass: TypeAlias = Literal['STANDARD', 'REDUCED_REDUNDANCY', 'STANDARD_IA', 'ONEZONE_IA', 'INTELLIGENT_TIERING', 'GLACIER', 'DEEP_ARCHIVE', 'OUTPOSTS', 'GLACIER_IR', 'SNOW', 'EXPRESS_ONEZONE', 'FSX_OPENZFS', 'FSX_ONTAP', 'AWS_BACKUP_WARM', 'AWS_BACKUP_LOW_COST_WARM']
 StorageClassAnalysisSchemaVersion: TypeAlias = Literal['V_1']
 TableSseAlgorithm: TypeAlias = Literal['aws:kms', 'AES256']
 TaggingDirective: TypeAlias = Literal['COPY', 'REPLACE']
@@ -167,6 +173,48 @@ AnalyticsS3BucketDestination = TypedDict(
     },
 )
 
+AnnotationEntry = TypedDict(
+    "AnnotationEntry",
+    {
+    "annotation_name": Required["str"],
+    "last_modified": Required["str"],
+    "e_tag": NotRequired["str"],
+    "checksum_algorithm": NotRequired["list[ChecksumAlgorithm]"],
+    "size": Required["int"],
+    "replication_status": NotRequired["ReplicationStatus"],
+    },
+)
+
+AnnotationTableConfiguration = TypedDict(
+    "AnnotationTableConfiguration",
+    {
+    "configuration_state": Required["AnnotationConfigurationState"],
+    "encryption_configuration": NotRequired["MetadataTableEncryptionConfiguration"],
+    "role": NotRequired["str"],
+    },
+)
+
+AnnotationTableConfigurationResult = TypedDict(
+    "AnnotationTableConfigurationResult",
+    {
+    "configuration_state": Required["AnnotationConfigurationState"],
+    "table_status": NotRequired["str"],
+    "error": NotRequired["ErrorDetails"],
+    "table_name": NotRequired["str"],
+    "table_arn": NotRequired["str"],
+    "role": NotRequired["str"],
+    },
+)
+
+AnnotationTableConfigurationUpdates = TypedDict(
+    "AnnotationTableConfigurationUpdates",
+    {
+    "configuration_state": Required["AnnotationConfigurationState"],
+    "encryption_configuration": NotRequired["MetadataTableEncryptionConfiguration"],
+    "role": NotRequired["str"],
+    },
+)
+
 BlockedEncryptionTypes = TypedDict(
     "BlockedEncryptionTypes",
     {
@@ -257,6 +305,11 @@ Checksum = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "checksum_type": NotRequired["ChecksumType"],
     },
 )
@@ -280,6 +333,11 @@ CompleteMultipartUploadRequest = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "checksum_type": NotRequired["ChecksumType"],
     "mpu_object_size": NotRequired["int"],
     "request_payer": NotRequired["RequestPayer"],
@@ -308,6 +366,11 @@ CompletedPart = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "part_number": NotRequired["int"],
     },
 )
@@ -353,6 +416,7 @@ CopyObjectRequest = TypedDict(
     "metadata": NotRequired["dict[str, str]"],
     "metadata_directive": NotRequired["MetadataDirective"],
     "tagging_directive": NotRequired["TaggingDirective"],
+    "annotation_directive": NotRequired["AnnotationDirective"],
     "server_side_encryption": NotRequired["ServerSideEncryption"],
     "storage_class": NotRequired["StorageClass"],
     "website_redirect_location": NotRequired["str"],
@@ -370,6 +434,9 @@ CopyObjectRequest = TypedDict(
     "object_lock_mode": NotRequired["ObjectLockMode"],
     "object_lock_retain_until_date": NotRequired["str"],
     "object_lock_legal_hold_status": NotRequired["ObjectLockLegalHoldStatus"],
+    "object_lock_event_hold": NotRequired["ObjectLockEventHold"],
+    "object_lock_event_hold_duration_days": NotRequired["int"],
+    "object_lock_event_hold_duration_years": NotRequired["int"],
     "expected_bucket_owner": NotRequired["str"],
     "expected_source_bucket_owner": NotRequired["str"],
     },
@@ -386,6 +453,11 @@ CopyObjectResult = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     },
 )
 
@@ -399,6 +471,11 @@ CopyPartResult = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     },
 )
 
@@ -447,6 +524,7 @@ CreateBucketRequest = TypedDict(
     "grant_write_acp": NotRequired["str"],
     "object_lock_enabled_for_bucket": NotRequired["bool"],
     "object_ownership": NotRequired["ObjectOwnership"],
+    "bucket_namespace": NotRequired["BucketNamespace"],
     },
 )
 
@@ -481,6 +559,9 @@ CreateMultipartUploadRequest = TypedDict(
     "object_lock_mode": NotRequired["ObjectLockMode"],
     "object_lock_retain_until_date": NotRequired["str"],
     "object_lock_legal_hold_status": NotRequired["ObjectLockLegalHoldStatus"],
+    "object_lock_event_hold": NotRequired["ObjectLockEventHold"],
+    "object_lock_event_hold_duration_days": NotRequired["int"],
+    "object_lock_event_hold_duration_years": NotRequired["int"],
     "expected_bucket_owner": NotRequired["str"],
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "checksum_type": NotRequired["ChecksumType"],
@@ -505,6 +586,7 @@ DefaultRetention = TypedDict(
     "mode": NotRequired["ObjectLockRetentionMode"],
     "days": NotRequired["int"],
     "years": NotRequired["int"],
+    "default_event_hold": NotRequired["EventHoldDuration"],
     },
 )
 
@@ -658,6 +740,19 @@ DeleteMarkerReplication = TypedDict(
     },
 )
 
+DeleteObjectAnnotationRequest = TypedDict(
+    "DeleteObjectAnnotationRequest",
+    {
+    "bucket": Required["str"],
+    "key": Required["str"],
+    "annotation_name": Required["str"],
+    "version_id": NotRequired["str"],
+    "request_payer": NotRequired["RequestPayer"],
+    "expected_bucket_owner": NotRequired["str"],
+    "object_if_match": NotRequired["str"],
+    },
+)
+
 DeleteObjectRequest = TypedDict(
     "DeleteObjectRequest",
     {
@@ -787,6 +882,14 @@ ErrorDocument = TypedDict(
 EventBridgeConfiguration = TypedDict(
     "EventBridgeConfiguration",
     {
+    },
+)
+
+EventHoldDuration = TypedDict(
+    "EventHoldDuration",
+    {
+    "days": NotRequired["int"],
+    "years": NotRequired["int"],
     },
 )
 
@@ -1018,6 +1121,19 @@ GetObjectAclRequest = TypedDict(
     "version_id": NotRequired["str"],
     "request_payer": NotRequired["RequestPayer"],
     "expected_bucket_owner": NotRequired["str"],
+    },
+)
+
+GetObjectAnnotationRequest = TypedDict(
+    "GetObjectAnnotationRequest",
+    {
+    "bucket": Required["str"],
+    "key": Required["str"],
+    "annotation_name": Required["str"],
+    "version_id": NotRequired["str"],
+    "request_payer": NotRequired["RequestPayer"],
+    "expected_bucket_owner": NotRequired["str"],
+    "checksum_mode": NotRequired["ChecksumMode"],
     },
 )
 
@@ -1493,6 +1609,20 @@ ListMultipartUploadsRequest = TypedDict(
     },
 )
 
+ListObjectAnnotationsRequest = TypedDict(
+    "ListObjectAnnotationsRequest",
+    {
+    "bucket": Required["str"],
+    "key": Required["str"],
+    "version_id": NotRequired["str"],
+    "max_annotation_results": NotRequired["int"],
+    "annotation_prefix": NotRequired["str"],
+    "continuation_token": NotRequired["str"],
+    "request_payer": NotRequired["RequestPayer"],
+    "expected_bucket_owner": NotRequired["str"],
+    },
+)
+
 ListObjectVersionsRequest = TypedDict(
     "ListObjectVersionsRequest",
     {
@@ -1580,6 +1710,7 @@ MetadataConfiguration = TypedDict(
     {
     "journal_table_configuration": Required["JournalTableConfiguration"],
     "inventory_table_configuration": NotRequired["InventoryTableConfiguration"],
+    "annotation_table_configuration": NotRequired["AnnotationTableConfiguration"],
     },
 )
 
@@ -1589,6 +1720,7 @@ MetadataConfigurationResult = TypedDict(
     "destination_result": Required["DestinationResult"],
     "journal_table_configuration_result": NotRequired["JournalTableConfigurationResult"],
     "inventory_table_configuration_result": NotRequired["InventoryTableConfigurationResult"],
+    "annotation_table_configuration_result": NotRequired["AnnotationTableConfigurationResult"],
     },
 )
 
@@ -1717,6 +1849,10 @@ Object = TypedDict(
     },
 )
 
+ObjectEncryptionSSEKMS = TypedDict("ObjectEncryptionSSEKMS", {"ssekms": Required["SSEKMSEncryption"]})
+ObjectEncryptionUnknown = TypedDict("ObjectEncryptionUnknown", {"unknown": Required[bool]})
+ObjectEncryption: TypeAlias = ObjectEncryptionSSEKMS | ObjectEncryptionUnknown
+
 ObjectIdentifier = TypedDict(
     "ObjectIdentifier",
     {
@@ -1748,6 +1884,8 @@ ObjectLockRetention = TypedDict(
     {
     "mode": NotRequired["ObjectLockRetentionMode"],
     "retain_until_date": NotRequired["str"],
+    "event_hold": NotRequired["ObjectLockEventHold"],
+    "event_hold_duration": NotRequired["EventHoldDuration"],
     },
 )
 
@@ -1768,6 +1906,11 @@ ObjectPart = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     },
 )
 
@@ -1843,6 +1986,11 @@ Part = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     },
 )
 
@@ -2118,6 +2266,32 @@ PutObjectAclRequest = TypedDict(
     },
 )
 
+PutObjectAnnotationRequest = TypedDict(
+    "PutObjectAnnotationRequest",
+    {
+    "bucket": Required["str"],
+    "key": Required["str"],
+    "version_id": NotRequired["str"],
+    "annotation_name": Required["str"],
+    "annotation_payload": Required["ByteStream"],
+    "object_if_match": NotRequired["str"],
+    "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
+    "checksum_crc32": NotRequired["str"],
+    "checksum_crc32_c": NotRequired["str"],
+    "checksum_crc64_nvme": NotRequired["str"],
+    "checksum_sha1": NotRequired["str"],
+    "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
+    "content_md5": NotRequired["str"],
+    "request_payer": NotRequired["RequestPayer"],
+    "expected_bucket_owner": NotRequired["str"],
+    },
+)
+
 PutObjectLegalHoldRequest = TypedDict(
     "PutObjectLegalHoldRequest",
     {
@@ -2164,6 +2338,11 @@ PutObjectRequest = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "expires": NotRequired["str"],
     "if_match": NotRequired["str"],
     "if_none_match": NotRequired["str"],
@@ -2188,6 +2367,9 @@ PutObjectRequest = TypedDict(
     "object_lock_mode": NotRequired["ObjectLockMode"],
     "object_lock_retain_until_date": NotRequired["str"],
     "object_lock_legal_hold_status": NotRequired["ObjectLockLegalHoldStatus"],
+    "object_lock_event_hold": NotRequired["ObjectLockEventHold"],
+    "object_lock_event_hold_duration_days": NotRequired["int"],
+    "object_lock_event_hold_duration_years": NotRequired["int"],
     "expected_bucket_owner": NotRequired["str"],
     },
 )
@@ -2458,6 +2640,14 @@ SSEKMS = TypedDict(
     },
 )
 
+SSEKMSEncryption = TypedDict(
+    "SSEKMSEncryption",
+    {
+    "kms_key_arn": Required["str"],
+    "bucket_key_enabled": NotRequired["bool"],
+    },
+)
+
 SSES3 = TypedDict(
     "SSES3",
     {
@@ -2659,6 +2849,17 @@ Transition = TypedDict(
     },
 )
 
+UpdateBucketMetadataAnnotationTableConfigurationRequest = TypedDict(
+    "UpdateBucketMetadataAnnotationTableConfigurationRequest",
+    {
+    "bucket": Required["str"],
+    "content_md5": NotRequired["str"],
+    "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
+    "annotation_table_configuration": Required["AnnotationTableConfigurationUpdates"],
+    "expected_bucket_owner": NotRequired["str"],
+    },
+)
+
 UpdateBucketMetadataInventoryTableConfigurationRequest = TypedDict(
     "UpdateBucketMetadataInventoryTableConfigurationRequest",
     {
@@ -2678,6 +2879,20 @@ UpdateBucketMetadataJournalTableConfigurationRequest = TypedDict(
     "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     "journal_table_configuration": Required["JournalTableConfigurationUpdates"],
     "expected_bucket_owner": NotRequired["str"],
+    },
+)
+
+UpdateObjectEncryptionRequest = TypedDict(
+    "UpdateObjectEncryptionRequest",
+    {
+    "bucket": Required["str"],
+    "key": Required["str"],
+    "version_id": NotRequired["str"],
+    "object_encryption": Required["ObjectEncryption"],
+    "request_payer": NotRequired["RequestPayer"],
+    "expected_bucket_owner": NotRequired["str"],
+    "content_md5": NotRequired["str"],
+    "checksum_algorithm": NotRequired["ChecksumAlgorithm"],
     },
 )
 
@@ -2719,6 +2934,11 @@ UploadPartRequest = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "key": Required["str"],
     "part_number": Required["int"],
     "upload_id": Required["str"],
@@ -2770,6 +2990,11 @@ WriteGetObjectResponseRequest = TypedDict(
     "checksum_crc64_nvme": NotRequired["str"],
     "checksum_sha1": NotRequired["str"],
     "checksum_sha256": NotRequired["str"],
+    "checksum_sha512": NotRequired["str"],
+    "checksum_md5": NotRequired["str"],
+    "checksum_xxhash64": NotRequired["str"],
+    "checksum_xxhash3": NotRequired["str"],
+    "checksum_xxhash128": NotRequired["str"],
     "delete_marker": NotRequired["bool"],
     "e_tag": NotRequired["str"],
     "expires": NotRequired["str"],

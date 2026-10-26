@@ -1,6 +1,12 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
+mod document;
+mod event_stream;
+
+pub use document::{document_from_py, document_to_py};
+pub use event_stream::python_event_stream;
+
 pub fn raise_service_error(
     py: Python<'_>,
     exception_module: &str,
