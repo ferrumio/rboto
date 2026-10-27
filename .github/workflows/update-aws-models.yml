@@ -10,9 +10,18 @@ on:
         required: true
         default: latest
         type: string
+      package_version:
+        description: "Optional rboto version (X.Y.Z) to prepare; does not publish"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
+
+concurrency:
+  group: service-model-updates
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -20,41 +29,83 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
 
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
 
-      - name: Install codegen
+      - name: Install codegen and validation tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen mypy pyright pytest
+          .venv/bin/pip install -e codegen -e packages/rboto mypy pyright pytest ruff
 
       - name: Update locks and regenerate
+        id: update
         env:
           REQUESTED_RELEASE: ${{ inputs.aws_release || 'latest' }}
+          PACKAGE_VERSION: ${{ inputs.package_version }}
         run: |
+          if [ -n "$PACKAGE_VERSION" ]; then
+            .venv/bin/python .github/scripts/set_version.py "$PACKAGE_VERSION"
+          fi
           RELEASE=$(.venv/bin/python .github/scripts/update_aws_models.py --release "$REQUESTED_RELEASE")
-          echo "AWS_RELEASE=$RELEASE" >> "$GITHUB_ENV"
-          cargo update
+          echo "release=$RELEASE" >> "$GITHUB_OUTPUT"
+          BRANCH="automation/service-models-$RELEASE"
+          if [ -n "$PACKAGE_VERSION" ]; then
+            BRANCH="$BRANCH-v$PACKAGE_VERSION"
+          fi
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          .venv/bin/rboto-codegen generate-manifests --all
+          cargo update --workspace
+          cargo fetch --locked
           .venv/bin/rboto-codegen fetch-model --all
           .venv/bin/rboto-codegen report --all
           .venv/bin/rboto-codegen generate --all
           cargo fmt --all
-          cargo check --workspace
-          .venv/bin/pytest codegen/tests -q
 
-      - name: Create update pull request
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          branch: automation/aws-models-${{ env.AWS_RELEASE }}
-          delete-branch: true
-          commit-message: "deps: update AWS models to ${{ env.AWS_RELEASE }}"
-          title: "deps: update AWS models to ${{ env.AWS_RELEASE }}"
-          body: |
-            Automated Smithy model and AWS SDK crate update.
+      - name: Validate generated update
+        run: |
+          .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
+          .venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples
+          .venv/bin/pyright
+          .venv/bin/pytest codegen/tests packages/rboto/tests -q
+          .venv/bin/python .github/scripts/check_version.py
+          cargo check --workspace --locked
+          BEFORE=$(git diff --binary | sha256sum)
+          .venv/bin/rboto-codegen generate --all
+          cargo fmt --all -- --check
+          AFTER=$(git diff --binary | sha256sum)
+          test "$BEFORE" = "$AFTER"
+          git diff --check
 
-            All model hashes were verified, generated sources refreshed, and the Rust workspace compiled.
-          labels: dependencies,aws-models
+      - name: Publish update branch and pull request when permitted
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_BRANCH: ${{ steps.update.outputs.branch }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+          UPDATE_TITLE: "deps: refresh service models (${{ steps.update.outputs.release }})"
+        run: >-
+          .venv/bin/python .github/scripts/publish_model_update.py
+          --repository "$GITHUB_REPOSITORY"
+          --branch "$UPDATE_BRANCH"
+          --base "$BASE_BRANCH"
+          --title "$UPDATE_TITLE"
+
+      - name: Dispatch checks for the generated commit
+        if: steps.publish.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPDATE_BRANCH: ${{ steps.publish.outputs.branch }}
+          UPDATE_SHA: ${{ steps.publish.outputs.sha }}
+        run: >-
+          .venv/bin/python .github/scripts/dispatch_update_checks.py
+          --repository "$GITHUB_REPOSITORY"
+          --branch "$UPDATE_BRANCH"
+          --sha "$UPDATE_SHA"

@@ -27,6 +27,23 @@ def workspace_version() -> str:
     return version
 
 
+def check_dependencies(version: str) -> None:
+    core = tomllib.loads((ROOT / "packages/rboto/pyproject.toml").read_text())["project"]
+    expected_all: set[str] = set()
+    for path in sorted((ROOT / "packages").glob("rboto-*/pyproject.toml")):
+        project = tomllib.loads(path.read_text())["project"]
+        expected = f"rboto=={version}"
+        if expected not in project.get("dependencies", []):
+            raise SystemExit(f"{path.relative_to(ROOT)} must depend on {expected}")
+        dependency = f"{project['name']}=={version}"
+        service = project["name"].removeprefix("rboto-")
+        if core["optional-dependencies"].get(service) != [dependency]:
+            raise SystemExit(f"rboto extra {service!r} must pin {dependency}")
+        expected_all.add(dependency)
+    if set(core["optional-dependencies"].get("all", [])) != expected_all:
+        raise SystemExit("rboto[all] must pin every service to the release version")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--expected")
@@ -47,6 +64,7 @@ def main() -> None:
     version = unique.pop()
     if args.expected is not None and version != args.expected:
         raise SystemExit(f"expected version {args.expected}, manifests contain {version}")
+    check_dependencies(version)
     print(version)
 
 
