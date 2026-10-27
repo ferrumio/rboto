@@ -21,7 +21,8 @@ fn audio_extraction_category_from_py(
         builder = builder.set_state(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_3 = Vec::new();
+        let mut converted_3 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_4 in value.try_iter()? {
             let item_5 = item_result_4?;
             let enum_value_7: String = item_5.extract()?;
@@ -102,7 +103,8 @@ fn audio_language_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration::builder();
     if let Some(value) = dict_value(values, "input_languages")? {
-        let mut converted_16 = Vec::new();
+        let mut converted_16 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_17 in value.try_iter()? {
             let item_18 = item_result_17?;
             let enum_value_20: String = item_18.extract()?;
@@ -242,7 +244,8 @@ fn audio_standard_generative_field_from_py(
         builder = builder.set_state(Some(converted_37));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_39 = Vec::new();
+        let mut converted_39 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_40 in value.try_iter()? {
             let item_41 = item_result_40?;
             let enum_value_43: String = item_41.extract()?;
@@ -373,7 +376,7 @@ fn blueprint_from_py(
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_66 = value.cast::<PyDict>()?;
-        let mut converted_65 = HashMap::new();
+        let mut converted_65 = HashMap::with_capacity(mapping_66.len());
         for (key_67, value_68) in mapping_66.iter() {
             let converted_key_69: String = key_67.extract()?;
             let converted_value_70: String = value_68.extract()?;
@@ -382,7 +385,8 @@ fn blueprint_from_py(
         builder = builder.set_kms_encryption_context(Some(converted_65));
     }
     if let Some(value) = dict_value(values, "optimization_samples")? {
-        let mut converted_71 = Vec::new();
+        let mut converted_71 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_72 in value.try_iter()? {
             let item_73 = item_result_72?;
             let converted_item_74 = blueprint_optimization_sample_from_py(&item_73)?;
@@ -776,7 +780,8 @@ fn custom_output_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "blueprints")? {
-        let mut converted_138 = Vec::new();
+        let mut converted_138 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_139 in value.try_iter()? {
             let item_140 = item_result_139?;
             let converted_item_141 = blueprint_item_from_py(&item_140)?;
@@ -850,7 +855,8 @@ fn data_automation_library_from_py(
         builder = builder.set_status(Some(converted_152));
     }
     if let Some(value) = dict_value(values, "entity_types")? {
-        let mut converted_154 = Vec::new();
+        let mut converted_154 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_155 in value.try_iter()? {
             let item_156 = item_result_155?;
             let converted_item_157 = entity_type_info_from_py(&item_156)?;
@@ -864,7 +870,7 @@ fn data_automation_library_from_py(
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_160 = value.cast::<PyDict>()?;
-        let mut converted_159 = HashMap::new();
+        let mut converted_159 = HashMap::with_capacity(mapping_160.len());
         for (key_161, value_162) in mapping_160.iter() {
             let converted_key_163: String = key_161.extract()?;
             let converted_value_164: String = value_162.extract()?;
@@ -935,7 +941,8 @@ fn data_automation_library_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration::builder();
     if let Some(value) = dict_value(values, "libraries")? {
-        let mut converted_179 = Vec::new();
+        let mut converted_179 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_180 in value.try_iter()? {
             let item_181 = item_result_180?;
             let converted_item_182 = data_automation_library_item_from_py(&item_181)?;
@@ -1361,7 +1368,7 @@ fn data_automation_project_from_py(
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_258 = value.cast::<PyDict>()?;
-        let mut converted_257 = HashMap::new();
+        let mut converted_257 = HashMap::with_capacity(mapping_258.len());
         for (key_259, value_260) in mapping_258.iter() {
             let converted_key_261: String = key_259.extract()?;
             let converted_value_262: String = value_260.extract()?;
@@ -1566,7 +1573,8 @@ fn delete_entities_info_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DeleteEntitiesInfo::builder();
     if let Some(value) = dict_value(values, "entity_ids")? {
-        let mut converted_299 = Vec::new();
+        let mut converted_299 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_300 in value.try_iter()? {
             let item_301 = item_result_300?;
             let converted_item_302: String = item_301.extract()?;
@@ -1627,7 +1635,8 @@ fn document_custom_output_configuration_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "fallback_blueprints")? {
-        let mut converted_309 = Vec::new();
+        let mut converted_309 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_310 in value.try_iter()? {
             let item_311 = item_result_310?;
             let converted_item_312 = blueprint_item_from_py(&item_311)?;
@@ -1664,7 +1673,8 @@ fn document_extraction_granularity_from_py(
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity::builder();
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_316 = Vec::new();
+        let mut converted_316 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_317 in value.try_iter()? {
             let item_318 = item_result_317?;
             let enum_value_320: String = item_318.extract()?;
@@ -1767,7 +1777,8 @@ fn document_output_text_format_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat::builder();
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_331 = Vec::new();
+        let mut converted_331 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_332 in value.try_iter()? {
             let item_333 = item_result_332?;
             let enum_value_335: String = item_333.extract()?;
@@ -1969,7 +1980,7 @@ fn encryption_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_360 = value.cast::<PyDict>()?;
-        let mut converted_359 = HashMap::new();
+        let mut converted_359 = HashMap::with_capacity(mapping_360.len());
         for (key_361, value_362) in mapping_360.iter() {
             let converted_key_363: String = key_361.extract()?;
             let converted_value_364: String = value_362.extract()?;
@@ -2135,7 +2146,8 @@ fn image_extraction_category_from_py(
         builder = builder.set_state(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_385 = Vec::new();
+        let mut converted_385 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_386 in value.try_iter()? {
             let item_387 = item_result_386?;
             let enum_value_389: String = item_387.extract()?;
@@ -2257,7 +2269,8 @@ fn image_standard_generative_field_from_py(
         builder = builder.set_state(Some(converted_402));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_404 = Vec::new();
+        let mut converted_404 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_405 in value.try_iter()? {
             let item_406 = item_result_405?;
             let enum_value_408: String = item_406.extract()?;
@@ -2340,7 +2353,8 @@ fn inline_payload_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "upsert_entities_info")? {
-        let mut converted_417 = Vec::new();
+        let mut converted_417 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_418 in value.try_iter()? {
             let item_419 = item_result_418?;
             let converted_item_420 = upsert_entity_info_from_py(&item_419)?;
@@ -2672,7 +2686,8 @@ fn pii_entities_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration::builder();
     if let Some(value) = dict_value(values, "pii_entity_types")? {
-        let mut converted_463 = Vec::new();
+        let mut converted_463 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_464 in value.try_iter()? {
             let item_465 = item_result_464?;
             let enum_value_467: String = item_465.extract()?;
@@ -2764,7 +2779,8 @@ fn sensitive_data_configuration_from_py(
         builder = builder.set_detection_mode(Some(converted_478));
     }
     if let Some(value) = dict_value(values, "detection_scope")? {
-        let mut converted_480 = Vec::new();
+        let mut converted_480 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_481 in value.try_iter()? {
             let item_482 = item_result_481?;
             let enum_value_484: String = item_482.extract()?;
@@ -3089,7 +3105,8 @@ fn video_extraction_category_from_py(
         builder = builder.set_state(Some(converted_522));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_524 = Vec::new();
+        let mut converted_524 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_525 in value.try_iter()? {
             let item_526 = item_result_525?;
             let enum_value_528: String = item_526.extract()?;
@@ -3211,7 +3228,8 @@ fn video_standard_generative_field_from_py(
         builder = builder.set_state(Some(converted_541));
     }
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_543 = Vec::new();
+        let mut converted_543 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_544 in value.try_iter()? {
             let item_545 = item_result_544?;
             let enum_value_547: String = item_545.extract()?;
@@ -3306,7 +3324,8 @@ fn vocabulary_entity_from_py(
         builder = builder.set_language(Some(converted_558));
     }
     if let Some(value) = dict_value(values, "phrases")? {
-        let mut converted_560 = Vec::new();
+        let mut converted_560 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_561 in value.try_iter()? {
             let item_562 = item_result_561?;
             let converted_item_563 = phrase_from_py(&item_562)?;
@@ -3389,7 +3408,8 @@ fn vocabulary_entity_info_from_py(
         builder = builder.set_language(Some(converted_575));
     }
     if let Some(value) = dict_value(values, "phrases")? {
-        let mut converted_577 = Vec::new();
+        let mut converted_577 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_578 in value.try_iter()? {
             let item_579 = item_result_578?;
             let converted_item_580 = phrase_from_py(&item_579)?;
@@ -7210,7 +7230,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CopyBlueprintStage"))
             })?;
-            Python::attach(|py| Py::new(py, PyCopyBlueprintStageResponse { inner: output }))
+            Ok(PyCopyBlueprintStageResponse { inner: output })
         })
     }
 
@@ -7263,7 +7283,8 @@ impl BedrockDataAutomationClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_613 = Vec::new();
+            let mut converted_613 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_614 in value.try_iter()? {
                 let item_615 = item_result_614?;
                 let converted_item_616 = tag_from_py(&item_615)?;
@@ -7288,7 +7309,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprint"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateBlueprintResponse { inner: output }))
+            Ok(PyCreateBlueprintResponse { inner: output })
         })
     }
 
@@ -7321,7 +7342,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBlueprintVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateBlueprintVersionResponse { inner: output }))
+            Ok(PyCreateBlueprintVersionResponse { inner: output })
         })
     }
 
@@ -7359,7 +7380,8 @@ impl BedrockDataAutomationClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_623 = Vec::new();
+            let mut converted_623 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_624 in value.try_iter()? {
                 let item_625 = item_result_624?;
                 let converted_item_626 = tag_from_py(&item_625)?;
@@ -7382,9 +7404,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAutomationLibrary"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyCreateDataAutomationLibraryResponse { inner: output })
-            })
+            Ok(PyCreateDataAutomationLibraryResponse { inner: output })
         })
     }
 
@@ -7470,7 +7490,8 @@ impl BedrockDataAutomationClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_639 = Vec::new();
+            let mut converted_639 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_640 in value.try_iter()? {
                 let item_641 = item_result_640?;
                 let converted_item_642 = tag_from_py(&item_641)?;
@@ -7501,9 +7522,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAutomationProject"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyCreateDataAutomationProjectResponse { inner: output })
-            })
+            Ok(PyCreateDataAutomationProjectResponse { inner: output })
         })
     }
 
@@ -7537,7 +7556,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBlueprint"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteBlueprintResponse { inner: output }))
+            Ok(PyDeleteBlueprintResponse { inner: output })
         })
     }
 
@@ -7563,9 +7582,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAutomationLibrary"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDeleteDataAutomationLibraryResponse { inner: output })
-            })
+            Ok(PyDeleteDataAutomationLibraryResponse { inner: output })
         })
     }
 
@@ -7591,9 +7608,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAutomationProject"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDeleteDataAutomationProjectResponse { inner: output })
-            })
+            Ok(PyDeleteDataAutomationProjectResponse { inner: output })
         })
     }
 
@@ -7636,7 +7651,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprint"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBlueprintResponse { inner: output }))
+            Ok(PyGetBlueprintResponse { inner: output })
         })
     }
 
@@ -7662,12 +7677,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlueprintOptimizationStatus"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBlueprintOptimizationStatusResponse { inner: output },
-                )
-            })
+            Ok(PyGetBlueprintOptimizationStatusResponse { inner: output })
         })
     }
 
@@ -7693,7 +7703,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationLibrary"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataAutomationLibraryResponse { inner: output }))
+            Ok(PyGetDataAutomationLibraryResponse { inner: output })
         })
     }
 
@@ -7735,12 +7745,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationLibraryEntity"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetDataAutomationLibraryEntityResponse { inner: output },
-                )
-            })
+            Ok(PyGetDataAutomationLibraryEntityResponse { inner: output })
         })
     }
 
@@ -7775,12 +7780,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "GetDataAutomationLibraryIngestionJob")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetDataAutomationLibraryIngestionJobResponse { inner: output },
-                )
-            })
+            Ok(PyGetDataAutomationLibraryIngestionJobResponse { inner: output })
         })
     }
 
@@ -7817,7 +7817,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationProject"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataAutomationProjectResponse { inner: output }))
+            Ok(PyGetDataAutomationProjectResponse { inner: output })
         })
     }
 
@@ -7835,7 +7835,8 @@ impl BedrockDataAutomationClient {
             None
         };
         let samples_value = if let Some(value) = dict_value(params, "samples")? {
-            let mut converted_663 = Vec::new();
+            let mut converted_663 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_664 in value.try_iter()? {
                 let item_665 = item_result_664?;
                 let converted_item_666 = blueprint_optimization_sample_from_py(&item_665)?;
@@ -7867,7 +7868,8 @@ impl BedrockDataAutomationClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_670 = Vec::new();
+            let mut converted_670 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_671 in value.try_iter()? {
                 let item_672 = item_result_671?;
                 let converted_item_673 = tag_from_py(&item_672)?;
@@ -7891,12 +7893,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeBlueprintOptimizationAsync"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyInvokeBlueprintOptimizationAsyncResponse { inner: output },
-                )
-            })
+            Ok(PyInvokeBlueprintOptimizationAsyncResponse { inner: output })
         })
     }
 
@@ -7959,7 +7956,8 @@ impl BedrockDataAutomationClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_683 = Vec::new();
+            let mut converted_683 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_684 in value.try_iter()? {
                 let item_685 = item_result_684?;
                 let converted_item_686 = tag_from_py(&item_685)?;
@@ -7987,12 +7985,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "InvokeDataAutomationLibraryIngestionJob")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyInvokeDataAutomationLibraryIngestionJobResponse { inner: output },
-                )
-            })
+            Ok(PyInvokeDataAutomationLibraryIngestionJobResponse { inner: output })
         })
     }
 
@@ -8060,7 +8053,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBlueprints"))
             })?;
-            Python::attach(|py| Py::new(py, PyListBlueprintsResponse { inner: output }))
+            Ok(PyListBlueprintsResponse { inner: output })
         })
     }
 
@@ -8100,9 +8093,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationLibraries"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyListDataAutomationLibrariesResponse { inner: output })
-            })
+            Ok(PyListDataAutomationLibrariesResponse { inner: output })
         })
     }
 
@@ -8153,12 +8144,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "ListDataAutomationLibraryEntities")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListDataAutomationLibraryEntitiesResponse { inner: output },
-                )
-            })
+            Ok(PyListDataAutomationLibraryEntitiesResponse { inner: output })
         })
     }
 
@@ -8200,12 +8186,7 @@ impl BedrockDataAutomationClient {
                     sdk_error_to_py(py, &error, "ListDataAutomationLibraryIngestionJobs")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListDataAutomationLibraryIngestionJobsResponse { inner: output },
-                )
-            })
+            Ok(PyListDataAutomationLibraryIngestionJobsResponse { inner: output })
         })
     }
 
@@ -8273,7 +8254,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAutomationProjects"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDataAutomationProjectsResponse { inner: output }))
+            Ok(PyListDataAutomationProjectsResponse { inner: output })
         })
     }
 
@@ -8299,7 +8280,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -8317,7 +8298,8 @@ impl BedrockDataAutomationClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_716 = Vec::new();
+            let mut converted_716 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_717 in value.try_iter()? {
                 let item_718 = item_result_717?;
                 let converted_item_719 = tag_from_py(&item_718)?;
@@ -8338,7 +8320,7 @@ impl BedrockDataAutomationClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -8356,7 +8338,8 @@ impl BedrockDataAutomationClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_721 = Vec::new();
+            let mut converted_721 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_722 in value.try_iter()? {
                 let item_723 = item_result_722?;
                 let converted_item_724: String = item_723.extract()?;
@@ -8376,7 +8359,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -8426,7 +8409,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBlueprint"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateBlueprintResponse { inner: output }))
+            Ok(PyUpdateBlueprintResponse { inner: output })
         })
     }
 
@@ -8467,9 +8450,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAutomationLibrary"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateDataAutomationLibraryResponse { inner: output })
-            })
+            Ok(PyUpdateDataAutomationLibraryResponse { inner: output })
         })
     }
 
@@ -8556,9 +8537,7 @@ impl BedrockDataAutomationClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAutomationProject"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateDataAutomationProjectResponse { inner: output })
-            })
+            Ok(PyUpdateDataAutomationProjectResponse { inner: output })
         })
     }
 }

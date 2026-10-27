@@ -206,7 +206,8 @@ fn custom_template_from_py(
         builder = builder.set_template_type(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "template_instructions")? {
-        let mut converted_26 = Vec::new();
+        let mut converted_26 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_27 in value.try_iter()? {
             let item_28 = item_result_27?;
             let converted_item_29 = template_section_instruction_from_py(&item_28)?;
@@ -424,7 +425,8 @@ fn input_data_config_from_py(
         builder = builder.set_fhir_server(Some(converted_60));
     }
     if let Some(value) = dict_value(values, "s3_sources")? {
-        let mut converted_61 = Vec::new();
+        let mut converted_61 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_62 in value.try_iter()? {
             let item_63 = item_result_62?;
             let converted_item_64 = s3_source_from_py(&item_63)?;
@@ -660,7 +662,8 @@ fn medical_scribe_configuration_event_from_py(
         builder = builder.set_post_stream_action_settings(Some(converted_91));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_92 = Vec::new();
+        let mut converted_92 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_93 in value.try_iter()? {
             let item_94 = item_result_93?;
             let converted_item_95 = medical_scribe_channel_definition_from_py(&item_94)?;
@@ -809,7 +812,8 @@ fn medical_scribe_listening_session_details_from_py(
         builder = builder.set_media_encoding(Some(converted_116));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_118 = Vec::new();
+        let mut converted_118 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_119 in value.try_iter()? {
             let item_120 = item_result_119?;
             let converted_item_121 = medical_scribe_channel_definition_from_py(&item_120)?;
@@ -3548,7 +3552,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ActivateSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyActivateSubscriptionOutput { inner: output }))
+            Ok(PyActivateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3580,7 +3584,7 @@ impl ConnectHealthClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_241 = value.cast::<PyDict>()?;
-            let mut converted_240 = HashMap::new();
+            let mut converted_240 = HashMap::with_capacity(mapping_241.len());
             for (key_242, value_243) in mapping_241.iter() {
                 let converted_key_244: String = key_242.extract()?;
                 let converted_value_245: String = value_243.extract()?;
@@ -3602,7 +3606,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomain"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDomainOutput { inner: output }))
+            Ok(PyCreateDomainOutput { inner: output })
         })
     }
 
@@ -3628,7 +3632,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSubscriptionOutput { inner: output }))
+            Ok(PyCreateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3661,7 +3665,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeactivateSubscriptionOutput { inner: output }))
+            Ok(PyDeactivateSubscriptionOutput { inner: output })
         })
     }
 
@@ -3687,7 +3691,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDomain"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDomainOutput { inner: output }))
+            Ok(PyDeleteDomainOutput { inner: output })
         })
     }
 
@@ -3714,7 +3718,7 @@ impl ConnectHealthClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDomain")))?;
-            Python::attach(|py| Py::new(py, PyGetDomainOutput { inner: output }))
+            Ok(PyGetDomainOutput { inner: output })
         })
     }
 
@@ -3754,12 +3758,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeListeningSession"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetMedicalScribeListeningSessionOutput { inner: output },
-                )
-            })
+            Ok(PyGetMedicalScribeListeningSessionOutput { inner: output })
         })
     }
 
@@ -3792,7 +3791,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatientInsightsJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPatientInsightsJobResponse { inner: output }))
+            Ok(PyGetPatientInsightsJobResponse { inner: output })
         })
     }
 
@@ -3825,7 +3824,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSubscriptionOutput { inner: output }))
+            Ok(PyGetSubscriptionOutput { inner: output })
         })
     }
 
@@ -3868,7 +3867,7 @@ impl ConnectHealthClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListDomains")))?;
-            Python::attach(|py| Py::new(py, PyListDomainsOutput { inner: output }))
+            Ok(PyListDomainsOutput { inner: output })
         })
     }
 
@@ -3908,7 +3907,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSubscriptionsOutput { inner: output }))
+            Ok(PyListSubscriptionsOutput { inner: output })
         })
     }
 
@@ -3934,7 +3933,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceOutput { inner: output }))
+            Ok(PyListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -4150,7 +4149,7 @@ impl ConnectHealthClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartPatientInsightsJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartPatientInsightsJobResponse { inner: output }))
+            Ok(PyStartPatientInsightsJobResponse { inner: output })
         })
     }
 
@@ -4169,7 +4168,7 @@ impl ConnectHealthClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_292 = value.cast::<PyDict>()?;
-            let mut converted_291 = HashMap::new();
+            let mut converted_291 = HashMap::with_capacity(mapping_292.len());
             for (key_293, value_294) in mapping_292.iter() {
                 let converted_key_295: String = key_293.extract()?;
                 let converted_value_296: String = value_294.extract()?;
@@ -4208,7 +4207,8 @@ impl ConnectHealthClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_298 = Vec::new();
+            let mut converted_298 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_299 in value.try_iter()? {
                 let item_300 = item_result_299?;
                 let converted_item_301: String = item_300.extract()?;

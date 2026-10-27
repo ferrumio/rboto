@@ -295,7 +295,7 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Mes
     }
     if let Some(value) = dict_value(values, "attributes")? {
         let mapping_46 = value.cast::<PyDict>()?;
-        let mut converted_45 = HashMap::new();
+        let mut converted_45 = HashMap::with_capacity(mapping_46.len());
         for (key_47, value_48) in mapping_46.iter() {
             let enum_value_51: String = key_47.extract()?;
             let converted_key_49 =
@@ -311,7 +311,7 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Mes
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
         let mapping_54 = value.cast::<PyDict>()?;
-        let mut converted_53 = HashMap::new();
+        let mut converted_53 = HashMap::with_capacity(mapping_54.len());
         for (key_55, value_56) in mapping_54.iter() {
             let converted_key_57: String = key_55.extract()?;
             let converted_value_58 = message_attribute_value_from_py(&value_56)?;
@@ -396,7 +396,8 @@ fn message_attribute_value_from_py(
         builder = builder.set_binary_value(Some(converted_75));
     }
     if let Some(value) = dict_value(values, "string_list_values")? {
-        let mut converted_77 = Vec::new();
+        let mut converted_77 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_78 in value.try_iter()? {
             let item_79 = item_result_78?;
             let converted_item_80: String = item_79.extract()?;
@@ -405,7 +406,8 @@ fn message_attribute_value_from_py(
         builder = builder.set_string_list_values(Some(converted_77));
     }
     if let Some(value) = dict_value(values, "binary_list_values")? {
-        let mut converted_81 = Vec::new();
+        let mut converted_81 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_82 in value.try_iter()? {
             let item_83 = item_result_82?;
             let bytes_85: Vec<u8> = item_83.extract()?;
@@ -482,7 +484,8 @@ fn message_system_attribute_value_from_py(
         builder = builder.set_binary_value(Some(converted_97));
     }
     if let Some(value) = dict_value(values, "string_list_values")? {
-        let mut converted_99 = Vec::new();
+        let mut converted_99 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_100 in value.try_iter()? {
             let item_101 = item_result_100?;
             let converted_item_102: String = item_101.extract()?;
@@ -491,7 +494,8 @@ fn message_system_attribute_value_from_py(
         builder = builder.set_string_list_values(Some(converted_99));
     }
     if let Some(value) = dict_value(values, "binary_list_values")? {
-        let mut converted_103 = Vec::new();
+        let mut converted_103 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_104 in value.try_iter()? {
             let item_105 = item_result_104?;
             let bytes_107: Vec<u8> = item_105.extract()?;
@@ -572,7 +576,7 @@ fn send_message_batch_request_entry_from_py(
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
         let mapping_122 = value.cast::<PyDict>()?;
-        let mut converted_121 = HashMap::new();
+        let mut converted_121 = HashMap::with_capacity(mapping_122.len());
         for (key_123, value_124) in mapping_122.iter() {
             let converted_key_125: String = key_123.extract()?;
             let converted_value_126 = message_attribute_value_from_py(&value_124)?;
@@ -582,7 +586,7 @@ fn send_message_batch_request_entry_from_py(
     }
     if let Some(value) = dict_value(values, "message_system_attributes")? {
         let mapping_128 = value.cast::<PyDict>()?;
-        let mut converted_127 = HashMap::new();
+        let mut converted_127 = HashMap::with_capacity(mapping_128.len());
         for (key_129, value_130) in mapping_128.iter() {
             let enum_value_133: String = key_129.extract()?;
             let converted_key_131 = aws_sdk_sqs::types::MessageSystemAttributeNameForSends::from(
@@ -1853,7 +1857,8 @@ impl SQSClient {
             None
         };
         let aws_account_ids_value = if let Some(value) = dict_value(params, "aws_account_ids")? {
-            let mut converted_165 = Vec::new();
+            let mut converted_165 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_166 in value.try_iter()? {
                 let item_167 = item_result_166?;
                 let converted_item_168: String = item_167.extract()?;
@@ -1864,7 +1869,8 @@ impl SQSClient {
             None
         };
         let actions_value = if let Some(value) = dict_value(params, "actions")? {
-            let mut converted_169 = Vec::new();
+            let mut converted_169 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_170 in value.try_iter()? {
                 let item_171 = item_result_170?;
                 let converted_item_172: String = item_171.extract()?;
@@ -1912,7 +1918,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelMessageMoveTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelMessageMoveTaskResult { inner: output }))
+            Ok(PyCancelMessageMoveTaskResult { inner: output })
         })
     }
 
@@ -1971,7 +1977,8 @@ impl SQSClient {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_178 = Vec::new();
+            let mut converted_178 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_179 in value.try_iter()? {
                 let item_180 = item_result_179?;
                 let converted_item_181 =
@@ -1992,7 +1999,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibilityBatch"))
             })?;
-            Python::attach(|py| Py::new(py, PyChangeMessageVisibilityBatchResult { inner: output }))
+            Ok(PyChangeMessageVisibilityBatchResult { inner: output })
         })
     }
 
@@ -2011,7 +2018,7 @@ impl SQSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_184 = value.cast::<PyDict>()?;
-            let mut converted_183 = HashMap::new();
+            let mut converted_183 = HashMap::with_capacity(mapping_184.len());
             for (key_185, value_186) in mapping_184.iter() {
                 let enum_value_189: String = key_185.extract()?;
                 let converted_key_187 =
@@ -2025,7 +2032,7 @@ impl SQSClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_191 = value.cast::<PyDict>()?;
-            let mut converted_190 = HashMap::new();
+            let mut converted_190 = HashMap::with_capacity(mapping_191.len());
             for (key_192, value_193) in mapping_191.iter() {
                 let converted_key_194: String = key_192.extract()?;
                 let converted_value_195: String = value_193.extract()?;
@@ -2047,7 +2054,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateQueue")))?;
-            Python::attach(|py| Py::new(py, PyCreateQueueResult { inner: output }))
+            Ok(PyCreateQueueResult { inner: output })
         })
     }
 
@@ -2098,7 +2105,8 @@ impl SQSClient {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_199 = Vec::new();
+            let mut converted_199 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_200 in value.try_iter()? {
                 let item_201 = item_result_200?;
                 let converted_item_202 = delete_message_batch_request_entry_from_py(&item_201)?;
@@ -2118,7 +2126,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessageBatch"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteMessageBatchResult { inner: output }))
+            Ok(PyDeleteMessageBatchResult { inner: output })
         })
     }
 
@@ -2163,7 +2171,8 @@ impl SQSClient {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_205 = Vec::new();
+            let mut converted_205 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_206 in value.try_iter()? {
                 let item_207 = item_result_206?;
                 let enum_value_209: String = item_207.extract()?;
@@ -2185,7 +2194,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetQueueAttributesResult { inner: output }))
+            Ok(PyGetQueueAttributesResult { inner: output })
         })
     }
 
@@ -2220,7 +2229,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueUrl")))?;
-            Python::attach(|py| Py::new(py, PyGetQueueUrlResult { inner: output }))
+            Ok(PyGetQueueUrlResult { inner: output })
         })
     }
 
@@ -2260,7 +2269,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDeadLetterSourceQueues"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDeadLetterSourceQueuesResult { inner: output }))
+            Ok(PyListDeadLetterSourceQueuesResult { inner: output })
         })
     }
 
@@ -2293,7 +2302,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessageMoveTasks"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMessageMoveTasksResult { inner: output }))
+            Ok(PyListMessageMoveTasksResult { inner: output })
         })
     }
 
@@ -2319,7 +2328,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListQueueTags"))
             })?;
-            Python::attach(|py| Py::new(py, PyListQueueTagsResult { inner: output }))
+            Ok(PyListQueueTagsResult { inner: output })
         })
     }
 
@@ -2361,7 +2370,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueues")))?;
-            Python::attach(|py| Py::new(py, PyListQueuesResult { inner: output }))
+            Ok(PyListQueuesResult { inner: output })
         })
     }
 
@@ -2406,7 +2415,8 @@ impl SQSClient {
             None
         };
         let attribute_names_value = if let Some(value) = dict_value(params, "attribute_names")? {
-            let mut converted_223 = Vec::new();
+            let mut converted_223 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_224 in value.try_iter()? {
                 let item_225 = item_result_224?;
                 let enum_value_227: String = item_225.extract()?;
@@ -2421,7 +2431,8 @@ impl SQSClient {
         let message_system_attribute_names_value = if let Some(value) =
             dict_value(params, "message_system_attribute_names")?
         {
-            let mut converted_228 = Vec::new();
+            let mut converted_228 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_229 in value.try_iter()? {
                 let item_230 = item_result_229?;
                 let enum_value_232: String = item_230.extract()?;
@@ -2435,7 +2446,8 @@ impl SQSClient {
         };
         let message_attribute_names_value =
             if let Some(value) = dict_value(params, "message_attribute_names")? {
-                let mut converted_233 = Vec::new();
+                let mut converted_233 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_234 in value.try_iter()? {
                     let item_235 = item_result_234?;
                     let converted_item_236: String = item_235.extract()?;
@@ -2489,7 +2501,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReceiveMessage"))
             })?;
-            Python::attach(|py| Py::new(py, PyReceiveMessageResult { inner: output }))
+            Ok(PyReceiveMessageResult { inner: output })
         })
     }
 
@@ -2554,7 +2566,7 @@ impl SQSClient {
         let message_attributes_value =
             if let Some(value) = dict_value(params, "message_attributes")? {
                 let mapping_247 = value.cast::<PyDict>()?;
-                let mut converted_246 = HashMap::new();
+                let mut converted_246 = HashMap::with_capacity(mapping_247.len());
                 for (key_248, value_249) in mapping_247.iter() {
                     let converted_key_250: String = key_248.extract()?;
                     let converted_value_251 = message_attribute_value_from_py(&value_249)?;
@@ -2567,7 +2579,7 @@ impl SQSClient {
         let message_system_attributes_value =
             if let Some(value) = dict_value(params, "message_system_attributes")? {
                 let mapping_253 = value.cast::<PyDict>()?;
-                let mut converted_252 = HashMap::new();
+                let mut converted_252 = HashMap::with_capacity(mapping_253.len());
                 for (key_254, value_255) in mapping_253.iter() {
                     let enum_value_258: String = key_254.extract()?;
                     let converted_key_256 =
@@ -2610,7 +2622,7 @@ impl SQSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendMessage")))?;
-            Python::attach(|py| Py::new(py, PySendMessageResult { inner: output }))
+            Ok(PySendMessageResult { inner: output })
         })
     }
 
@@ -2628,7 +2640,8 @@ impl SQSClient {
             None
         };
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_262 = Vec::new();
+            let mut converted_262 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_263 in value.try_iter()? {
                 let item_264 = item_result_263?;
                 let converted_item_265 = send_message_batch_request_entry_from_py(&item_264)?;
@@ -2648,7 +2661,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendMessageBatch"))
             })?;
-            Python::attach(|py| Py::new(py, PySendMessageBatchResult { inner: output }))
+            Ok(PySendMessageBatchResult { inner: output })
         })
     }
 
@@ -2667,7 +2680,7 @@ impl SQSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_268 = value.cast::<PyDict>()?;
-            let mut converted_267 = HashMap::new();
+            let mut converted_267 = HashMap::with_capacity(mapping_268.len());
             for (key_269, value_270) in mapping_268.iter() {
                 let enum_value_273: String = key_269.extract()?;
                 let converted_key_271 =
@@ -2730,7 +2743,7 @@ impl SQSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMessageMoveTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartMessageMoveTaskResult { inner: output }))
+            Ok(PyStartMessageMoveTaskResult { inner: output })
         })
     }
 
@@ -2749,7 +2762,7 @@ impl SQSClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_279 = value.cast::<PyDict>()?;
-            let mut converted_278 = HashMap::new();
+            let mut converted_278 = HashMap::with_capacity(mapping_279.len());
             for (key_280, value_281) in mapping_279.iter() {
                 let converted_key_282: String = key_280.extract()?;
                 let converted_value_283: String = value_281.extract()?;
@@ -2788,7 +2801,8 @@ impl SQSClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_285 = Vec::new();
+            let mut converted_285 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_286 in value.try_iter()? {
                 let item_287 = item_result_286?;
                 let converted_item_288: String = item_287.extract()?;

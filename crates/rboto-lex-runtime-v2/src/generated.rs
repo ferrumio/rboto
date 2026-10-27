@@ -25,7 +25,7 @@ fn active_context_from_py(
     }
     if let Some(value) = dict_value(values, "context_attributes")? {
         let mapping_4 = value.cast::<PyDict>()?;
-        let mut converted_3 = HashMap::new();
+        let mut converted_3 = HashMap::with_capacity(mapping_4.len());
         for (key_5, value_6) in mapping_4.iter() {
             let converted_key_7: String = key_5.extract()?;
             let converted_value_8: String = value_6.extract()?;
@@ -251,7 +251,7 @@ fn configuration_event_from_py(
     let mut builder = aws_sdk_lexruntimev2::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "request_attributes")? {
         let mapping_43 = value.cast::<PyDict>()?;
-        let mut converted_42 = HashMap::new();
+        let mut converted_42 = HashMap::with_capacity(mapping_43.len());
         for (key_44, value_45) in mapping_43.iter() {
             let converted_key_46: String = key_44.extract()?;
             let converted_value_47: String = value_45.extract()?;
@@ -268,7 +268,8 @@ fn configuration_event_from_py(
         builder = builder.set_session_state(Some(converted_49));
     }
     if let Some(value) = dict_value(values, "welcome_messages")? {
-        let mut converted_50 = Vec::new();
+        let mut converted_50 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_51 in value.try_iter()? {
             let item_52 = item_result_51?;
             let converted_item_53 = message_from_py(&item_52)?;
@@ -556,7 +557,8 @@ fn image_response_card_from_py(
         builder = builder.set_image_url(Some(converted_99));
     }
     if let Some(value) = dict_value(values, "buttons")? {
-        let mut converted_100 = Vec::new();
+        let mut converted_100 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_101 in value.try_iter()? {
             let item_102 = item_result_101?;
             let converted_item_103 = button_from_py(&item_102)?;
@@ -611,7 +613,7 @@ fn intent_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::ty
     }
     if let Some(value) = dict_value(values, "slots")? {
         let mapping_112 = value.cast::<PyDict>()?;
-        let mut converted_111 = HashMap::new();
+        let mut converted_111 = HashMap::with_capacity(mapping_112.len());
         for (key_113, value_114) in mapping_112.iter() {
             let converted_key_115: String = key_113.extract()?;
             let converted_value_116 = slot_from_py(&value_114)?;
@@ -680,7 +682,8 @@ fn intent_result_event_from_py(
         builder = builder.set_input_mode(Some(converted_129));
     }
     if let Some(value) = dict_value(values, "interpretations")? {
-        let mut converted_131 = Vec::new();
+        let mut converted_131 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_132 in value.try_iter()? {
             let item_133 = item_result_132?;
             let converted_item_134 = interpretation_from_py(&item_133)?;
@@ -694,7 +697,7 @@ fn intent_result_event_from_py(
     }
     if let Some(value) = dict_value(values, "request_attributes")? {
         let mapping_137 = value.cast::<PyDict>()?;
-        let mut converted_136 = HashMap::new();
+        let mut converted_136 = HashMap::with_capacity(mapping_137.len());
         for (key_138, value_139) in mapping_137.iter() {
             let converted_key_140: String = key_138.extract()?;
             let converted_value_141: String = value_139.extract()?;
@@ -1002,7 +1005,8 @@ fn runtime_hint_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lexruntimev2::types::RuntimeHintDetails::builder();
     if let Some(value) = dict_value(values, "runtime_hint_values")? {
-        let mut converted_189 = Vec::new();
+        let mut converted_189 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_190 in value.try_iter()? {
             let item_191 = item_result_190?;
             let converted_item_192 = runtime_hint_value_from_py(&item_191)?;
@@ -1012,7 +1016,7 @@ fn runtime_hint_details_from_py(
     }
     if let Some(value) = dict_value(values, "sub_slot_hints")? {
         let mapping_194 = value.cast::<PyDict>()?;
-        let mut converted_193 = HashMap::new();
+        let mut converted_193 = HashMap::with_capacity(mapping_194.len());
         for (key_195, value_196) in mapping_194.iter() {
             let converted_key_197: String = key_195.extract()?;
             let converted_value_198 = runtime_hint_details_from_py(&value_196)?;
@@ -1085,11 +1089,11 @@ fn runtime_hints_from_py(
     let mut builder = aws_sdk_lexruntimev2::types::RuntimeHints::builder();
     if let Some(value) = dict_value(values, "slot_hints")? {
         let mapping_210 = value.cast::<PyDict>()?;
-        let mut converted_209 = HashMap::new();
+        let mut converted_209 = HashMap::with_capacity(mapping_210.len());
         for (key_211, value_212) in mapping_210.iter() {
             let converted_key_213: String = key_211.extract()?;
             let mapping_215 = value_212.cast::<PyDict>()?;
-            let mut converted_value_214 = HashMap::new();
+            let mut converted_value_214 = HashMap::with_capacity(mapping_215.len());
             for (key_216, value_217) in mapping_215.iter() {
                 let converted_key_218: String = key_216.extract()?;
                 let converted_value_219 = runtime_hint_details_from_py(&value_217)?;
@@ -1220,7 +1224,8 @@ fn session_state_from_py(
         builder = builder.set_intent(Some(converted_243));
     }
     if let Some(value) = dict_value(values, "active_contexts")? {
-        let mut converted_244 = Vec::new();
+        let mut converted_244 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_245 in value.try_iter()? {
             let item_246 = item_result_245?;
             let converted_item_247 = active_context_from_py(&item_246)?;
@@ -1230,7 +1235,7 @@ fn session_state_from_py(
     }
     if let Some(value) = dict_value(values, "session_attributes")? {
         let mapping_249 = value.cast::<PyDict>()?;
-        let mut converted_248 = HashMap::new();
+        let mut converted_248 = HashMap::with_capacity(mapping_249.len());
         for (key_250, value_251) in mapping_249.iter() {
             let converted_key_252: String = key_250.extract()?;
             let converted_value_253: String = value_251.extract()?;
@@ -1317,7 +1322,8 @@ fn slot_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::type
         builder = builder.set_shape(Some(converted_269));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_271 = Vec::new();
+        let mut converted_271 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_272 in value.try_iter()? {
             let item_273 = item_result_272?;
             let converted_item_274 = slot_from_py(&item_273)?;
@@ -1327,7 +1333,7 @@ fn slot_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::type
     }
     if let Some(value) = dict_value(values, "sub_slots")? {
         let mapping_276 = value.cast::<PyDict>()?;
-        let mut converted_275 = HashMap::new();
+        let mut converted_275 = HashMap::with_capacity(mapping_276.len());
         for (key_277, value_278) in mapping_276.iter() {
             let converted_key_279: String = key_277.extract()?;
             let converted_value_280 = slot_from_py(&value_278)?;
@@ -1608,7 +1614,8 @@ fn text_response_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lexruntimev2::types::TextResponseEvent::builder();
     if let Some(value) = dict_value(values, "messages")? {
-        let mut converted_321 = Vec::new();
+        let mut converted_321 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_322 in value.try_iter()? {
             let item_323 = item_result_322?;
             let converted_item_324 = message_from_py(&item_323)?;
@@ -1696,7 +1703,8 @@ fn value_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::typ
         builder = builder.set_interpreted_value(Some(converted_335));
     }
     if let Some(value) = dict_value(values, "resolved_values")? {
-        let mut converted_336 = Vec::new();
+        let mut converted_336 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_337 in value.try_iter()? {
             let item_338 = item_result_337?;
             let converted_item_339: String = item_338.extract()?;
@@ -3400,7 +3408,7 @@ impl LexRuntimeV2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteSessionResponse { inner: output }))
+            Ok(PyDeleteSessionResponse { inner: output })
         })
     }
 
@@ -3448,7 +3456,7 @@ impl LexRuntimeV2Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
-            Python::attach(|py| Py::new(py, PyGetSessionResponse { inner: output }))
+            Ok(PyGetSessionResponse { inner: output })
         })
     }
 
@@ -3484,7 +3492,8 @@ impl LexRuntimeV2Client {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_357 = Vec::new();
+            let mut converted_357 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_358 in value.try_iter()? {
                 let item_359 = item_result_358?;
                 let converted_item_360 = message_from_py(&item_359)?;
@@ -3503,7 +3512,7 @@ impl LexRuntimeV2Client {
         let request_attributes_value =
             if let Some(value) = dict_value(params, "request_attributes")? {
                 let mapping_363 = value.cast::<PyDict>()?;
-                let mut converted_362 = HashMap::new();
+                let mut converted_362 = HashMap::with_capacity(mapping_363.len());
                 for (key_364, value_365) in mapping_363.iter() {
                     let converted_key_366: String = key_364.extract()?;
                     let converted_value_367: String = value_365.extract()?;
@@ -3597,7 +3606,7 @@ impl LexRuntimeV2Client {
         let request_attributes_value =
             if let Some(value) = dict_value(params, "request_attributes")? {
                 let mapping_376 = value.cast::<PyDict>()?;
-                let mut converted_375 = HashMap::new();
+                let mut converted_375 = HashMap::with_capacity(mapping_376.len());
                 for (key_377, value_378) in mapping_376.iter() {
                     let converted_key_379: String = key_377.extract()?;
                     let converted_value_380: String = value_378.extract()?;
@@ -3622,7 +3631,7 @@ impl LexRuntimeV2Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeText"))
             })?;
-            Python::attach(|py| Py::new(py, PyRecognizeTextResponse { inner: output }))
+            Ok(PyRecognizeTextResponse { inner: output })
         })
     }
 

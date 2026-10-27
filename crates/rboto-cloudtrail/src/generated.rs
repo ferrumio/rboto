@@ -20,7 +20,8 @@ fn advanced_event_selector_from_py(
         builder = builder.set_name(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "field_selectors")? {
-        let mut converted_2 = Vec::new();
+        let mut converted_2 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3 in value.try_iter()? {
             let item_4 = item_result_3?;
             let converted_item_5 = advanced_field_selector_from_py(&item_4)?;
@@ -64,7 +65,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_field(Some(converted_10));
     }
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_11 = Vec::new();
+        let mut converted_11 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_12 in value.try_iter()? {
             let item_13 = item_result_12?;
             let converted_item_14: String = item_13.extract()?;
@@ -73,7 +75,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_equals(Some(converted_11));
     }
     if let Some(value) = dict_value(values, "starts_with")? {
-        let mut converted_15 = Vec::new();
+        let mut converted_15 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_16 in value.try_iter()? {
             let item_17 = item_result_16?;
             let converted_item_18: String = item_17.extract()?;
@@ -82,7 +85,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_starts_with(Some(converted_15));
     }
     if let Some(value) = dict_value(values, "ends_with")? {
-        let mut converted_19 = Vec::new();
+        let mut converted_19 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_20 in value.try_iter()? {
             let item_21 = item_result_20?;
             let converted_item_22: String = item_21.extract()?;
@@ -91,7 +95,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_ends_with(Some(converted_19));
     }
     if let Some(value) = dict_value(values, "not_equals")? {
-        let mut converted_23 = Vec::new();
+        let mut converted_23 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_24 in value.try_iter()? {
             let item_25 = item_result_24?;
             let converted_item_26: String = item_25.extract()?;
@@ -100,7 +105,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_not_equals(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "not_starts_with")? {
-        let mut converted_27 = Vec::new();
+        let mut converted_27 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_28 in value.try_iter()? {
             let item_29 = item_result_28?;
             let converted_item_30: String = item_29.extract()?;
@@ -109,7 +115,8 @@ fn advanced_field_selector_from_py(
         builder = builder.set_not_starts_with(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "not_ends_with")? {
-        let mut converted_31 = Vec::new();
+        let mut converted_31 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_32 in value.try_iter()? {
             let item_33 = item_result_32?;
             let converted_item_34: String = item_33.extract()?;
@@ -204,7 +211,8 @@ fn aggregation_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cloudtrail::types::AggregationConfiguration::builder();
     if let Some(value) = dict_value(values, "templates")? {
-        let mut converted_54 = Vec::new();
+        let mut converted_54 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_55 in value.try_iter()? {
             let item_56 = item_result_55?;
             let enum_value_58: String = item_56.extract()?;
@@ -287,7 +295,8 @@ fn context_key_selector_from_py(
         builder = builder.set_type(Some(converted_69));
     }
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_71 = Vec::new();
+        let mut converted_71 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_72 in value.try_iter()? {
             let item_73 = item_result_72?;
             let converted_item_74: String = item_73.extract()?;
@@ -364,7 +373,8 @@ fn data_resource_from_py(
         builder = builder.set_type(Some(converted_84));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_85 = Vec::new();
+        let mut converted_85 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_86 in value.try_iter()? {
             let item_87 = item_result_86?;
             let converted_item_88: String = item_87.extract()?;
@@ -468,7 +478,8 @@ fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types
         builder = builder.set_username(Some(converted_105));
     }
     if let Some(value) = dict_value(values, "resources")? {
-        let mut converted_106 = Vec::new();
+        let mut converted_106 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_107 in value.try_iter()? {
             let item_108 = item_result_107?;
             let converted_item_109 = resource_from_py(&item_108)?;
@@ -571,7 +582,8 @@ fn event_data_store_from_py(
         builder = builder.set_status(Some(converted_125));
     }
     if let Some(value) = dict_value(values, "advanced_event_selectors")? {
-        let mut converted_127 = Vec::new();
+        let mut converted_127 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_128 in value.try_iter()? {
             let item_129 = item_result_128?;
             let converted_item_130 = advanced_event_selector_from_py(&item_129)?;
@@ -700,7 +712,8 @@ fn event_selector_from_py(
         builder = builder.set_include_management_events(Some(converted_152));
     }
     if let Some(value) = dict_value(values, "data_resources")? {
-        let mut converted_153 = Vec::new();
+        let mut converted_153 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_154 in value.try_iter()? {
             let item_155 = item_result_154?;
             let converted_item_156 = data_resource_from_py(&item_155)?;
@@ -709,7 +722,8 @@ fn event_selector_from_py(
         builder = builder.set_data_resources(Some(converted_153));
     }
     if let Some(value) = dict_value(values, "exclude_management_event_sources")? {
-        let mut converted_157 = Vec::new();
+        let mut converted_157 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_158 in value.try_iter()? {
             let item_159 = item_result_158?;
             let converted_item_160: String = item_159.extract()?;
@@ -942,7 +956,8 @@ fn imports_list_item_from_py(
         builder = builder.set_import_status(Some(converted_194));
     }
     if let Some(value) = dict_value(values, "destinations")? {
-        let mut converted_196 = Vec::new();
+        let mut converted_196 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_197 in value.try_iter()? {
             let item_198 = item_result_197?;
             let converted_item_199: String = item_198.extract()?;
@@ -1101,7 +1116,8 @@ fn insight_selector_from_py(
         builder = builder.set_insight_type(Some(converted_223));
     }
     if let Some(value) = dict_value(values, "event_categories")? {
-        let mut converted_225 = Vec::new();
+        let mut converted_225 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_226 in value.try_iter()? {
             let item_227 = item_result_226?;
             let enum_value_229: String = item_227.extract()?;
@@ -1526,7 +1542,8 @@ fn request_widget_from_py(
         builder = builder.set_query_statement(Some(converted_291));
     }
     if let Some(value) = dict_value(values, "query_parameters")? {
-        let mut converted_292 = Vec::new();
+        let mut converted_292 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_293 in value.try_iter()? {
             let item_294 = item_result_293?;
             let converted_item_295: String = item_294.extract()?;
@@ -1536,7 +1553,7 @@ fn request_widget_from_py(
     }
     if let Some(value) = dict_value(values, "view_properties")? {
         let mapping_297 = value.cast::<PyDict>()?;
-        let mut converted_296 = HashMap::new();
+        let mut converted_296 = HashMap::with_capacity(mapping_297.len());
         for (key_298, value_299) in mapping_297.iter() {
             let converted_key_300: String = key_298.extract()?;
             let converted_value_301: String = value_299.extract()?;
@@ -1622,7 +1639,8 @@ fn resource_tag_from_py(
         builder = builder.set_resource_id(Some(converted_315));
     }
     if let Some(value) = dict_value(values, "tags_list")? {
-        let mut converted_316 = Vec::new();
+        let mut converted_316 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_317 in value.try_iter()? {
             let item_318 = item_result_317?;
             let converted_item_319 = tag_from_py(&item_318)?;
@@ -1758,7 +1776,8 @@ fn source_config_from_py(
         builder = builder.set_apply_to_all_regions(Some(converted_338));
     }
     if let Some(value) = dict_value(values, "advanced_event_selectors")? {
-        let mut converted_339 = Vec::new();
+        let mut converted_339 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_340 in value.try_iter()? {
             let item_341 = item_result_340?;
             let converted_item_342 = advanced_event_selector_from_py(&item_341)?;
@@ -2060,7 +2079,8 @@ fn widget_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::type
         builder = builder.set_query_statement(Some(converted_392));
     }
     if let Some(value) = dict_value(values, "query_parameters")? {
-        let mut converted_393 = Vec::new();
+        let mut converted_393 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_394 in value.try_iter()? {
             let item_395 = item_result_394?;
             let converted_item_396: String = item_395.extract()?;
@@ -2070,7 +2090,7 @@ fn widget_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::type
     }
     if let Some(value) = dict_value(values, "view_properties")? {
         let mapping_398 = value.cast::<PyDict>()?;
-        let mut converted_397 = HashMap::new();
+        let mut converted_397 = HashMap::with_capacity(mapping_398.len());
         for (key_399, value_400) in mapping_398.iter() {
             let converted_key_401: String = key_399.extract()?;
             let converted_value_402: String = value_400.extract()?;
@@ -9647,7 +9667,8 @@ impl CloudTrailClient {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_414 = Vec::new();
+            let mut converted_414 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_415 in value.try_iter()? {
                 let item_416 = item_result_415?;
                 let converted_item_417 = tag_from_py(&item_416)?;
@@ -9668,7 +9689,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AddTags")))?;
-            Python::attach(|py| Py::new(py, PyAddTagsResponse { inner: output }))
+            Ok(PyAddTagsResponse { inner: output })
         })
     }
 
@@ -9710,7 +9731,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CancelQuery")))?;
-            Python::attach(|py| Py::new(py, PyCancelQueryResponse { inner: output }))
+            Ok(PyCancelQueryResponse { inner: output })
         })
     }
 
@@ -9734,7 +9755,8 @@ impl CloudTrailClient {
             None
         };
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_423 = Vec::new();
+            let mut converted_423 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_424 in value.try_iter()? {
                 let item_425 = item_result_424?;
                 let converted_item_426 = destination_from_py(&item_425)?;
@@ -9745,7 +9767,8 @@ impl CloudTrailClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_427 = Vec::new();
+            let mut converted_427 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_428 in value.try_iter()? {
                 let item_429 = item_result_428?;
                 let converted_item_430 = tag_from_py(&item_429)?;
@@ -9767,7 +9790,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateChannel"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateChannelResponse { inner: output }))
+            Ok(PyCreateChannelResponse { inner: output })
         })
     }
 
@@ -9791,7 +9814,8 @@ impl CloudTrailClient {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_433 = Vec::new();
+            let mut converted_433 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_434 in value.try_iter()? {
                 let item_435 = item_result_434?;
                 let converted_item_436 = tag_from_py(&item_435)?;
@@ -9809,7 +9833,8 @@ impl CloudTrailClient {
                 None
             };
         let widgets_value = if let Some(value) = dict_value(params, "widgets")? {
-            let mut converted_438 = Vec::new();
+            let mut converted_438 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_439 in value.try_iter()? {
                 let item_440 = item_result_439?;
                 let converted_item_441 = request_widget_from_py(&item_440)?;
@@ -9832,7 +9857,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDashboard"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDashboardResponse { inner: output }))
+            Ok(PyCreateDashboardResponse { inner: output })
         })
     }
 
@@ -9851,7 +9876,8 @@ impl CloudTrailClient {
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_443 = Vec::new();
+                let mut converted_443 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_444 in value.try_iter()? {
                     let item_445 = item_result_444?;
                     let converted_item_446 = advanced_event_selector_from_py(&item_445)?;
@@ -9889,7 +9915,8 @@ impl CloudTrailClient {
                 None
             };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_451 = Vec::new();
+            let mut converted_451 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_452 in value.try_iter()? {
                 let item_453 = item_result_452?;
                 let converted_item_454 = tag_from_py(&item_453)?;
@@ -9937,7 +9964,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventDataStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEventDataStoreResponse { inner: output }))
+            Ok(PyCreateEventDataStoreResponse { inner: output })
         })
     }
 
@@ -10021,7 +10048,8 @@ impl CloudTrailClient {
                 None
             };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_470 = Vec::new();
+            let mut converted_470 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_471 in value.try_iter()? {
                 let item_472 = item_result_471?;
                 let converted_item_473 = tag_from_py(&item_472)?;
@@ -10060,7 +10088,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrail")))?;
-            Python::attach(|py| Py::new(py, PyCreateTrailResponse { inner: output }))
+            Ok(PyCreateTrailResponse { inner: output })
         })
     }
 
@@ -10086,7 +10114,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChannel"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteChannelResponse { inner: output }))
+            Ok(PyDeleteChannelResponse { inner: output })
         })
     }
 
@@ -10112,7 +10140,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDashboard"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDashboardResponse { inner: output }))
+            Ok(PyDeleteDashboardResponse { inner: output })
         })
     }
 
@@ -10138,7 +10166,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventDataStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteEventDataStoreResponse { inner: output }))
+            Ok(PyDeleteEventDataStoreResponse { inner: output })
         })
     }
 
@@ -10164,7 +10192,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourcePolicyResponse { inner: output }))
+            Ok(PyDeleteResourcePolicyResponse { inner: output })
         })
     }
 
@@ -10187,7 +10215,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrail")))?;
-            Python::attach(|py| Py::new(py, PyDeleteTrailResponse { inner: output }))
+            Ok(PyDeleteTrailResponse { inner: output })
         })
     }
 
@@ -10216,12 +10244,7 @@ impl CloudTrailClient {
                     sdk_error_to_py(py, &error, "DeregisterOrganizationDelegatedAdmin")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeregisterOrganizationDelegatedAdminResponse { inner: output },
-                )
-            })
+            Ok(PyDeregisterOrganizationDelegatedAdminResponse { inner: output })
         })
     }
 
@@ -10276,7 +10299,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeQueryResponse { inner: output }))
+            Ok(PyDescribeQueryResponse { inner: output })
         })
     }
 
@@ -10288,7 +10311,8 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trail_name_list_value = if let Some(value) = dict_value(params, "trail_name_list")? {
-            let mut converted_486 = Vec::new();
+            let mut converted_486 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_487 in value.try_iter()? {
                 let item_488 = item_result_487?;
                 let converted_item_489: String = item_488.extract()?;
@@ -10315,7 +10339,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTrails"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeTrailsResponse { inner: output }))
+            Ok(PyDescribeTrailsResponse { inner: output })
         })
     }
 
@@ -10341,7 +10365,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisableFederation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDisableFederationResponse { inner: output }))
+            Ok(PyDisableFederationResponse { inner: output })
         })
     }
 
@@ -10375,7 +10399,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "EnableFederation"))
             })?;
-            Python::attach(|py| Py::new(py, PyEnableFederationResponse { inner: output }))
+            Ok(PyEnableFederationResponse { inner: output })
         })
     }
 
@@ -10388,7 +10412,8 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let event_data_stores_value = if let Some(value) = dict_value(params, "event_data_stores")?
         {
-            let mut converted_494 = Vec::new();
+            let mut converted_494 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_495 in value.try_iter()? {
                 let item_496 = item_result_495?;
                 let converted_item_497: String = item_496.extract()?;
@@ -10414,7 +10439,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
             })?;
-            Python::attach(|py| Py::new(py, PyGenerateQueryResponse { inner: output }))
+            Ok(PyGenerateQueryResponse { inner: output })
         })
     }
 
@@ -10441,7 +10466,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetChannel")))?;
-            Python::attach(|py| Py::new(py, PyGetChannelResponse { inner: output }))
+            Ok(PyGetChannelResponse { inner: output })
         })
     }
 
@@ -10467,7 +10492,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDashboard"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDashboardResponse { inner: output }))
+            Ok(PyGetDashboardResponse { inner: output })
         })
     }
 
@@ -10500,7 +10525,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEventConfigurationResponse { inner: output }))
+            Ok(PyGetEventConfigurationResponse { inner: output })
         })
     }
 
@@ -10526,7 +10551,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventDataStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEventDataStoreResponse { inner: output }))
+            Ok(PyGetEventDataStoreResponse { inner: output })
         })
     }
 
@@ -10552,7 +10577,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSelectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEventSelectorsResponse { inner: output }))
+            Ok(PyGetEventSelectorsResponse { inner: output })
         })
     }
 
@@ -10579,7 +10604,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetImport")))?;
-            Python::attach(|py| Py::new(py, PyGetImportResponse { inner: output }))
+            Ok(PyGetImportResponse { inner: output })
         })
     }
 
@@ -10612,7 +10637,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInsightSelectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetInsightSelectorsResponse { inner: output }))
+            Ok(PyGetInsightSelectorsResponse { inner: output })
         })
     }
 
@@ -10668,7 +10693,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetQueryResultsResponse { inner: output }))
+            Ok(PyGetQueryResultsResponse { inner: output })
         })
     }
 
@@ -10694,7 +10719,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyResponse { inner: output }))
+            Ok(PyGetResourcePolicyResponse { inner: output })
         })
     }
 
@@ -10717,7 +10742,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTrail")))?;
-            Python::attach(|py| Py::new(py, PyGetTrailResponse { inner: output }))
+            Ok(PyGetTrailResponse { inner: output })
         })
     }
 
@@ -10739,7 +10764,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTrailStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetTrailStatusResponse { inner: output }))
+            Ok(PyGetTrailStatusResponse { inner: output })
         })
     }
 
@@ -10772,7 +10797,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListChannels"))
             })?;
-            Python::attach(|py| Py::new(py, PyListChannelsResponse { inner: output }))
+            Ok(PyListChannelsResponse { inner: output })
         })
     }
 
@@ -10821,7 +10846,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDashboards"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDashboardsResponse { inner: output }))
+            Ok(PyListDashboardsResponse { inner: output })
         })
     }
 
@@ -10854,7 +10879,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventDataStores"))
             })?;
-            Python::attach(|py| Py::new(py, PyListEventDataStoresResponse { inner: output }))
+            Ok(PyListEventDataStoresResponse { inner: output })
         })
     }
 
@@ -10894,7 +10919,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportFailures"))
             })?;
-            Python::attach(|py| Py::new(py, PyListImportFailuresResponse { inner: output }))
+            Ok(PyListImportFailuresResponse { inner: output })
         })
     }
 
@@ -10944,7 +10969,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
-            Python::attach(|py| Py::new(py, PyListImportsResponse { inner: output }))
+            Ok(PyListImportsResponse { inner: output })
         })
     }
 
@@ -10971,7 +10996,7 @@ impl CloudTrailClient {
         };
         let dimensions_value = if let Some(value) = dict_value(params, "dimensions")? {
             let mapping_537 = value.cast::<PyDict>()?;
-            let mut converted_536 = HashMap::new();
+            let mut converted_536 = HashMap::with_capacity(mapping_537.len());
             for (key_538, value_539) in mapping_537.iter() {
                 let enum_value_542: String = key_538.extract()?;
                 let converted_key_540 =
@@ -11034,7 +11059,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsData"))
             })?;
-            Python::attach(|py| Py::new(py, PyListInsightsDataResponse { inner: output }))
+            Ok(PyListInsightsDataResponse { inner: output })
         })
     }
 
@@ -11144,7 +11169,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsMetricData"))
             })?;
-            Python::attach(|py| Py::new(py, PyListInsightsMetricDataResponse { inner: output }))
+            Ok(PyListInsightsMetricDataResponse { inner: output })
         })
     }
 
@@ -11194,7 +11219,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPublicKeys"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPublicKeysResponse { inner: output }))
+            Ok(PyListPublicKeysResponse { inner: output })
         })
     }
 
@@ -11268,7 +11293,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueries")))?;
-            Python::attach(|py| Py::new(py, PyListQueriesResponse { inner: output }))
+            Ok(PyListQueriesResponse { inner: output })
         })
     }
 
@@ -11280,7 +11305,8 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_id_list_value = if let Some(value) = dict_value(params, "resource_id_list")? {
-            let mut converted_578 = Vec::new();
+            let mut converted_578 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_579 in value.try_iter()? {
                 let item_580 = item_result_579?;
                 let converted_item_581: String = item_580.extract()?;
@@ -11307,7 +11333,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
-            Python::attach(|py| Py::new(py, PyListTagsResponse { inner: output }))
+            Ok(PyListTagsResponse { inner: output })
         })
     }
 
@@ -11334,7 +11360,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTrails")))?;
-            Python::attach(|py| Py::new(py, PyListTrailsResponse { inner: output }))
+            Ok(PyListTrailsResponse { inner: output })
         })
     }
 
@@ -11347,7 +11373,8 @@ impl CloudTrailClient {
         let state = self.state.clone();
         let lookup_attributes_value = if let Some(value) = dict_value(params, "lookup_attributes")?
         {
-            let mut converted_584 = Vec::new();
+            let mut converted_584 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_585 in value.try_iter()? {
                 let item_586 = item_result_585?;
                 let converted_item_587 = lookup_attribute_from_py(&item_586)?;
@@ -11413,7 +11440,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LookupEvents"))
             })?;
-            Python::attach(|py| Py::new(py, PyLookupEventsResponse { inner: output }))
+            Ok(PyLookupEventsResponse { inner: output })
         })
     }
 
@@ -11446,7 +11473,8 @@ impl CloudTrailClient {
         };
         let context_key_selectors_value =
             if let Some(value) = dict_value(params, "context_key_selectors")? {
-                let mut converted_600 = Vec::new();
+                let mut converted_600 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_601 in value.try_iter()? {
                     let item_602 = item_result_601?;
                     let converted_item_603 = context_key_selector_from_py(&item_602)?;
@@ -11458,7 +11486,8 @@ impl CloudTrailClient {
             };
         let aggregation_configurations_value =
             if let Some(value) = dict_value(params, "aggregation_configurations")? {
-                let mut converted_604 = Vec::new();
+                let mut converted_604 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_605 in value.try_iter()? {
                     let item_606 = item_result_605?;
                     let converted_item_607 = aggregation_configuration_from_py(&item_606)?;
@@ -11481,7 +11510,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEventConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutEventConfigurationResponse { inner: output }))
+            Ok(PyPutEventConfigurationResponse { inner: output })
         })
     }
 
@@ -11499,7 +11528,8 @@ impl CloudTrailClient {
             None
         };
         let event_selectors_value = if let Some(value) = dict_value(params, "event_selectors")? {
-            let mut converted_609 = Vec::new();
+            let mut converted_609 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_610 in value.try_iter()? {
                 let item_611 = item_result_610?;
                 let converted_item_612 = event_selector_from_py(&item_611)?;
@@ -11511,7 +11541,8 @@ impl CloudTrailClient {
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_613 = Vec::new();
+                let mut converted_613 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_614 in value.try_iter()? {
                     let item_615 = item_result_614?;
                     let converted_item_616 = advanced_event_selector_from_py(&item_615)?;
@@ -11532,7 +11563,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEventSelectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutEventSelectorsResponse { inner: output }))
+            Ok(PyPutEventSelectorsResponse { inner: output })
         })
     }
 
@@ -11551,7 +11582,8 @@ impl CloudTrailClient {
         };
         let insight_selectors_value = if let Some(value) = dict_value(params, "insight_selectors")?
         {
-            let mut converted_618 = Vec::new();
+            let mut converted_618 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_619 in value.try_iter()? {
                 let item_620 = item_result_619?;
                 let converted_item_621 = insight_selector_from_py(&item_620)?;
@@ -11586,7 +11618,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInsightSelectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutInsightSelectorsResponse { inner: output }))
+            Ok(PyPutInsightSelectorsResponse { inner: output })
         })
     }
 
@@ -11619,7 +11651,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -11648,12 +11680,7 @@ impl CloudTrailClient {
                     sdk_error_to_py(py, &error, "RegisterOrganizationDelegatedAdmin")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyRegisterOrganizationDelegatedAdminResponse { inner: output },
-                )
-            })
+            Ok(PyRegisterOrganizationDelegatedAdminResponse { inner: output })
         })
     }
 
@@ -11671,7 +11698,8 @@ impl CloudTrailClient {
             None
         };
         let tags_list_value = if let Some(value) = dict_value(params, "tags_list")? {
-            let mut converted_628 = Vec::new();
+            let mut converted_628 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_629 in value.try_iter()? {
                 let item_630 = item_result_629?;
                 let converted_item_631 = tag_from_py(&item_630)?;
@@ -11692,7 +11720,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTags")))?;
-            Python::attach(|py| Py::new(py, PyRemoveTagsResponse { inner: output }))
+            Ok(PyRemoveTagsResponse { inner: output })
         })
     }
 
@@ -11718,7 +11746,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreEventDataStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyRestoreEventDataStoreResponse { inner: output }))
+            Ok(PyRestoreEventDataStoreResponse { inner: output })
         })
     }
 
@@ -11758,7 +11786,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchSampleQueries"))
             })?;
-            Python::attach(|py| Py::new(py, PySearchSampleQueriesResponse { inner: output }))
+            Ok(PySearchSampleQueriesResponse { inner: output })
         })
     }
 
@@ -11778,7 +11806,7 @@ impl CloudTrailClient {
         let query_parameter_values_value =
             if let Some(value) = dict_value(params, "query_parameter_values")? {
                 let mapping_638 = value.cast::<PyDict>()?;
-                let mut converted_637 = HashMap::new();
+                let mut converted_637 = HashMap::with_capacity(mapping_638.len());
                 for (key_639, value_640) in mapping_638.iter() {
                     let converted_key_641: String = key_639.extract()?;
                     let converted_value_642: String = value_640.extract()?;
@@ -11798,7 +11826,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartDashboardRefresh"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartDashboardRefreshResponse { inner: output }))
+            Ok(PyStartDashboardRefreshResponse { inner: output })
         })
     }
 
@@ -11824,9 +11852,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartEventDataStoreIngestion"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyStartEventDataStoreIngestionResponse { inner: output })
-            })
+            Ok(PyStartEventDataStoreIngestionResponse { inner: output })
         })
     }
 
@@ -11838,7 +11864,8 @@ impl CloudTrailClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_644 = Vec::new();
+            let mut converted_644 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_645 in value.try_iter()? {
                 let item_646 = item_result_645?;
                 let converted_item_647: String = item_646.extract()?;
@@ -11896,7 +11923,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartImport")))?;
-            Python::attach(|py| Py::new(py, PyStartImportResponse { inner: output }))
+            Ok(PyStartImportResponse { inner: output })
         })
     }
 
@@ -11918,7 +11945,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartLogging"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartLoggingResponse { inner: output }))
+            Ok(PyStartLoggingResponse { inner: output })
         })
     }
 
@@ -11948,7 +11975,8 @@ impl CloudTrailClient {
             None
         };
         let query_parameters_value = if let Some(value) = dict_value(params, "query_parameters")? {
-            let mut converted_658 = Vec::new();
+            let mut converted_658 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_659 in value.try_iter()? {
                 let item_660 = item_result_659?;
                 let converted_item_661: String = item_660.extract()?;
@@ -11979,7 +12007,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
-            Python::attach(|py| Py::new(py, PyStartQueryResponse { inner: output }))
+            Ok(PyStartQueryResponse { inner: output })
         })
     }
 
@@ -12005,9 +12033,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopEventDataStoreIngestion"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyStopEventDataStoreIngestionResponse { inner: output })
-            })
+            Ok(PyStopEventDataStoreIngestionResponse { inner: output })
         })
     }
 
@@ -12034,7 +12060,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopImport")))?;
-            Python::attach(|py| Py::new(py, PyStopImportResponse { inner: output }))
+            Ok(PyStopImportResponse { inner: output })
         })
     }
 
@@ -12057,7 +12083,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopLogging")))?;
-            Python::attach(|py| Py::new(py, PyStopLoggingResponse { inner: output }))
+            Ok(PyStopLoggingResponse { inner: output })
         })
     }
 
@@ -12075,7 +12101,8 @@ impl CloudTrailClient {
             None
         };
         let destinations_value = if let Some(value) = dict_value(params, "destinations")? {
-            let mut converted_667 = Vec::new();
+            let mut converted_667 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_668 in value.try_iter()? {
                 let item_669 = item_result_668?;
                 let converted_item_670 = destination_from_py(&item_669)?;
@@ -12102,7 +12129,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChannel"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateChannelResponse { inner: output }))
+            Ok(PyUpdateChannelResponse { inner: output })
         })
     }
 
@@ -12120,7 +12147,8 @@ impl CloudTrailClient {
             None
         };
         let widgets_value = if let Some(value) = dict_value(params, "widgets")? {
-            let mut converted_673 = Vec::new();
+            let mut converted_673 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_674 in value.try_iter()? {
                 let item_675 = item_result_674?;
                 let converted_item_676 = request_widget_from_py(&item_675)?;
@@ -12155,7 +12183,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDashboard"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDashboardResponse { inner: output }))
+            Ok(PyUpdateDashboardResponse { inner: output })
         })
     }
 
@@ -12180,7 +12208,8 @@ impl CloudTrailClient {
         };
         let advanced_event_selectors_value =
             if let Some(value) = dict_value(params, "advanced_event_selectors")? {
-                let mut converted_681 = Vec::new();
+                let mut converted_681 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_682 in value.try_iter()? {
                     let item_683 = item_result_682?;
                     let converted_item_684 = advanced_event_selector_from_py(&item_683)?;
@@ -12248,7 +12277,7 @@ impl CloudTrailClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventDataStore"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateEventDataStoreResponse { inner: output }))
+            Ok(PyUpdateEventDataStoreResponse { inner: output })
         })
     }
 
@@ -12359,7 +12388,7 @@ impl CloudTrailClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrail")))?;
-            Python::attach(|py| Py::new(py, PyUpdateTrailResponse { inner: output }))
+            Ok(PyUpdateTrailResponse { inner: output })
         })
     }
 }

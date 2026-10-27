@@ -136,7 +136,7 @@ fn encryption_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_17 = value.cast::<PyDict>()?;
-        let mut converted_16 = HashMap::new();
+        let mut converted_16 = HashMap::with_capacity(mapping_17.len());
         for (key_18, value_19) in mapping_17.iter() {
             let converted_key_20: String = key_18.extract()?;
             let converted_value_21: String = value_19.extract()?;
@@ -913,7 +913,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAutomationStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataAutomationStatusResponse { inner: output }))
+            Ok(PyGetDataAutomationStatusResponse { inner: output })
         })
     }
 
@@ -939,7 +939,8 @@ impl BedrockDataAutomationRuntimeClient {
                 None
             };
         let blueprints_value = if let Some(value) = dict_value(params, "blueprints")? {
-            let mut converted_65 = Vec::new();
+            let mut converted_65 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_66 in value.try_iter()? {
                 let item_67 = item_result_66?;
                 let converted_item_68 = blueprint_from_py(&item_67)?;
@@ -984,7 +985,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeDataAutomation"))
             })?;
-            Python::attach(|py| Py::new(py, PyInvokeDataAutomationResponse { inner: output }))
+            Ok(PyInvokeDataAutomationResponse { inner: output })
         })
     }
 
@@ -1037,7 +1038,8 @@ impl BedrockDataAutomationRuntimeClient {
                 None
             };
         let blueprints_value = if let Some(value) = dict_value(params, "blueprints")? {
-            let mut converted_78 = Vec::new();
+            let mut converted_78 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_79 in value.try_iter()? {
                 let item_80 = item_result_79?;
                 let converted_item_81 = blueprint_from_py(&item_80)?;
@@ -1055,7 +1057,8 @@ impl BedrockDataAutomationRuntimeClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_83 = Vec::new();
+            let mut converted_83 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_84 in value.try_iter()? {
                 let item_85 = item_result_84?;
                 let converted_item_86 = tag_from_py(&item_85)?;
@@ -1082,7 +1085,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeDataAutomationAsync"))
             })?;
-            Python::attach(|py| Py::new(py, PyInvokeDataAutomationAsyncResponse { inner: output }))
+            Ok(PyInvokeDataAutomationAsyncResponse { inner: output })
         })
     }
 
@@ -1108,7 +1111,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -1126,7 +1129,8 @@ impl BedrockDataAutomationRuntimeClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_89 = Vec::new();
+            let mut converted_89 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_90 in value.try_iter()? {
                 let item_91 = item_result_90?;
                 let converted_item_92 = tag_from_py(&item_91)?;
@@ -1147,7 +1151,7 @@ impl BedrockDataAutomationRuntimeClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -1165,7 +1169,8 @@ impl BedrockDataAutomationRuntimeClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_94 = Vec::new();
+            let mut converted_94 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_95 in value.try_iter()? {
                 let item_96 = item_result_95?;
                 let converted_item_97: String = item_96.extract()?;
@@ -1185,7 +1190,7 @@ impl BedrockDataAutomationRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 }

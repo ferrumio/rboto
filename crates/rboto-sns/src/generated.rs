@@ -65,7 +65,7 @@ fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::En
     }
     if let Some(value) = dict_value(values, "attributes")? {
         let mapping_11 = value.cast::<PyDict>()?;
-        let mut converted_10 = HashMap::new();
+        let mut converted_10 = HashMap::with_capacity(mapping_11.len());
         for (key_12, value_13) in mapping_11.iter() {
             let converted_key_14: String = key_12.extract()?;
             let converted_value_15: String = value_13.extract()?;
@@ -176,7 +176,8 @@ fn phone_number_information_from_py(
         builder = builder.set_route_type(Some(converted_34));
     }
     if let Some(value) = dict_value(values, "number_capabilities")? {
-        let mut converted_36 = Vec::new();
+        let mut converted_36 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_37 in value.try_iter()? {
             let item_38 = item_result_37?;
             let enum_value_40: String = item_38.extract()?;
@@ -249,7 +250,7 @@ fn platform_application_from_py(
     }
     if let Some(value) = dict_value(values, "attributes")? {
         let mapping_51 = value.cast::<PyDict>()?;
-        let mut converted_50 = HashMap::new();
+        let mut converted_50 = HashMap::with_capacity(mapping_51.len());
         for (key_52, value_53) in mapping_51.iter() {
             let converted_key_54: String = key_52.extract()?;
             let converted_value_55: String = value_53.extract()?;
@@ -309,7 +310,7 @@ fn publish_batch_request_entry_from_py(
     }
     if let Some(value) = dict_value(values, "message_attributes")? {
         let mapping_67 = value.cast::<PyDict>()?;
-        let mut converted_66 = HashMap::new();
+        let mut converted_66 = HashMap::with_capacity(mapping_67.len());
         for (key_68, value_69) in mapping_67.iter() {
             let converted_key_70: String = key_68.extract()?;
             let converted_value_71 = message_attribute_value_from_py(&value_69)?;
@@ -2186,7 +2187,8 @@ impl SNSClient {
             None
         };
         let aws_account_id_value = if let Some(value) = dict_value(params, "aws_account_id")? {
-            let mut converted_114 = Vec::new();
+            let mut converted_114 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_115 in value.try_iter()? {
                 let item_116 = item_result_115?;
                 let converted_item_117: String = item_116.extract()?;
@@ -2197,7 +2199,8 @@ impl SNSClient {
             None
         };
         let action_name_value = if let Some(value) = dict_value(params, "action_name")? {
-            let mut converted_118 = Vec::new();
+            let mut converted_118 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_119 in value.try_iter()? {
                 let item_120 = item_result_119?;
                 let converted_item_121: String = item_120.extract()?;
@@ -2245,9 +2248,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckIfPhoneNumberIsOptedOut"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyCheckIfPhoneNumberIsOptedOutResponse { inner: output })
-            })
+            Ok(PyCheckIfPhoneNumberIsOptedOutResponse { inner: output })
         })
     }
 
@@ -2288,7 +2289,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ConfirmSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyConfirmSubscriptionResponse { inner: output }))
+            Ok(PyConfirmSubscriptionResponse { inner: output })
         })
     }
 
@@ -2313,7 +2314,7 @@ impl SNSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_129 = value.cast::<PyDict>()?;
-            let mut converted_128 = HashMap::new();
+            let mut converted_128 = HashMap::with_capacity(mapping_129.len());
             for (key_130, value_131) in mapping_129.iter() {
                 let converted_key_132: String = key_130.extract()?;
                 let converted_value_133: String = value_131.extract()?;
@@ -2334,7 +2335,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformApplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePlatformApplicationResponse { inner: output }))
+            Ok(PyCreatePlatformApplicationResponse { inner: output })
         })
     }
 
@@ -2366,7 +2367,7 @@ impl SNSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_138 = value.cast::<PyDict>()?;
-            let mut converted_137 = HashMap::new();
+            let mut converted_137 = HashMap::with_capacity(mapping_138.len());
             for (key_139, value_140) in mapping_138.iter() {
                 let converted_key_141: String = key_139.extract()?;
                 let converted_value_142: String = value_140.extract()?;
@@ -2388,7 +2389,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformEndpoint"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEndpointResponse { inner: output }))
+            Ok(PyCreateEndpointResponse { inner: output })
         })
     }
 
@@ -2423,7 +2424,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSMSSandboxPhoneNumber"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSMSSandboxPhoneNumberResult { inner: output }))
+            Ok(PyCreateSMSSandboxPhoneNumberResult { inner: output })
         })
     }
 
@@ -2442,7 +2443,7 @@ impl SNSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_148 = value.cast::<PyDict>()?;
-            let mut converted_147 = HashMap::new();
+            let mut converted_147 = HashMap::with_capacity(mapping_148.len());
             for (key_149, value_150) in mapping_148.iter() {
                 let converted_key_151: String = key_149.extract()?;
                 let converted_value_152: String = value_150.extract()?;
@@ -2453,7 +2454,8 @@ impl SNSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_153 = Vec::new();
+            let mut converted_153 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_154 in value.try_iter()? {
                 let item_155 = item_result_154?;
                 let converted_item_156 = tag_from_py(&item_155)?;
@@ -2483,7 +2485,7 @@ impl SNSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTopic")))?;
-            Python::attach(|py| Py::new(py, PyCreateTopicResponse { inner: output }))
+            Ok(PyCreateTopicResponse { inner: output })
         })
     }
 
@@ -2562,7 +2564,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSMSSandboxPhoneNumber"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteSMSSandboxPhoneNumberResult { inner: output }))
+            Ok(PyDeleteSMSSandboxPhoneNumberResult { inner: output })
         })
     }
 
@@ -2615,7 +2617,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataProtectionPolicyResponse { inner: output }))
+            Ok(PyGetDataProtectionPolicyResponse { inner: output })
         })
     }
 
@@ -2641,7 +2643,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEndpointAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEndpointAttributesResponse { inner: output }))
+            Ok(PyGetEndpointAttributesResponse { inner: output })
         })
     }
 
@@ -2668,12 +2670,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPlatformApplicationAttributes"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetPlatformApplicationAttributesResponse { inner: output },
-                )
-            })
+            Ok(PyGetPlatformApplicationAttributesResponse { inner: output })
         })
     }
 
@@ -2685,7 +2682,8 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
-            let mut converted_165 = Vec::new();
+            let mut converted_165 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_166 in value.try_iter()? {
                 let item_167 = item_result_166?;
                 let converted_item_168: String = item_167.extract()?;
@@ -2704,7 +2702,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSMSAttributesResponse { inner: output }))
+            Ok(PyGetSMSAttributesResponse { inner: output })
         })
     }
 
@@ -2720,7 +2718,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSSandboxAccountStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSMSSandboxAccountStatusResult { inner: output }))
+            Ok(PyGetSMSSandboxAccountStatusResult { inner: output })
         })
     }
 
@@ -2746,7 +2744,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscriptionAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSubscriptionAttributesResponse { inner: output }))
+            Ok(PyGetSubscriptionAttributesResponse { inner: output })
         })
     }
 
@@ -2772,7 +2770,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTopicAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetTopicAttributesResponse { inner: output }))
+            Ok(PyGetTopicAttributesResponse { inner: output })
         })
     }
 
@@ -2808,12 +2806,7 @@ impl SNSClient {
                     sdk_error_to_py(py, &error, "ListEndpointsByPlatformApplication")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListEndpointsByPlatformApplicationResponse { inner: output },
-                )
-            })
+            Ok(PyListEndpointsByPlatformApplicationResponse { inner: output })
         })
     }
 
@@ -2846,7 +2839,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOriginationNumbers"))
             })?;
-            Python::attach(|py| Py::new(py, PyListOriginationNumbersResult { inner: output }))
+            Ok(PyListOriginationNumbersResult { inner: output })
         })
     }
 
@@ -2872,7 +2865,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPhoneNumbersOptedOut"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPhoneNumbersOptedOutResponse { inner: output }))
+            Ok(PyListPhoneNumbersOptedOutResponse { inner: output })
         })
     }
 
@@ -2898,7 +2891,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPlatformApplications"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPlatformApplicationsResponse { inner: output }))
+            Ok(PyListPlatformApplicationsResponse { inner: output })
         })
     }
 
@@ -2931,7 +2924,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSMSSandboxPhoneNumbers"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSMSSandboxPhoneNumbersResult { inner: output }))
+            Ok(PyListSMSSandboxPhoneNumbersResult { inner: output })
         })
     }
 
@@ -2957,7 +2950,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSubscriptionsResponse { inner: output }))
+            Ok(PyListSubscriptionsResponse { inner: output })
         })
     }
 
@@ -2990,7 +2983,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptionsByTopic"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSubscriptionsByTopicResponse { inner: output }))
+            Ok(PyListSubscriptionsByTopicResponse { inner: output })
         })
     }
 
@@ -3016,7 +3009,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -3043,7 +3036,7 @@ impl SNSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTopics")))?;
-            Python::attach(|py| Py::new(py, PyListTopicsResponse { inner: output }))
+            Ok(PyListTopicsResponse { inner: output })
         })
     }
 
@@ -3069,7 +3062,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "OptInPhoneNumber"))
             })?;
-            Python::attach(|py| Py::new(py, PyOptInPhoneNumberResponse { inner: output }))
+            Ok(PyOptInPhoneNumberResponse { inner: output })
         })
     }
 
@@ -3120,7 +3113,7 @@ impl SNSClient {
         let message_attributes_value =
             if let Some(value) = dict_value(params, "message_attributes")? {
                 let mapping_192 = value.cast::<PyDict>()?;
-                let mut converted_191 = HashMap::new();
+                let mut converted_191 = HashMap::with_capacity(mapping_192.len());
                 for (key_193, value_194) in mapping_192.iter() {
                     let converted_key_195: String = key_193.extract()?;
                     let converted_value_196 = message_attribute_value_from_py(&value_194)?;
@@ -3161,7 +3154,7 @@ impl SNSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Publish")))?;
-            Python::attach(|py| Py::new(py, PyPublishResponse { inner: output }))
+            Ok(PyPublishResponse { inner: output })
         })
     }
 
@@ -3180,7 +3173,8 @@ impl SNSClient {
         };
         let publish_batch_request_entries_value =
             if let Some(value) = dict_value(params, "publish_batch_request_entries")? {
-                let mut converted_200 = Vec::new();
+                let mut converted_200 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_201 in value.try_iter()? {
                     let item_202 = item_result_201?;
                     let converted_item_203 = publish_batch_request_entry_from_py(&item_202)?;
@@ -3200,7 +3194,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishBatch"))
             })?;
-            Python::attach(|py| Py::new(py, PyPublishBatchResponse { inner: output }))
+            Ok(PyPublishBatchResponse { inner: output })
         })
     }
 
@@ -3286,7 +3280,7 @@ impl SNSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_210 = value.cast::<PyDict>()?;
-            let mut converted_209 = HashMap::new();
+            let mut converted_209 = HashMap::with_capacity(mapping_210.len());
             for (key_211, value_212) in mapping_210.iter() {
                 let converted_key_213: String = key_211.extract()?;
                 let converted_value_214: String = value_212.extract()?;
@@ -3326,7 +3320,7 @@ impl SNSClient {
             };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_217 = value.cast::<PyDict>()?;
-            let mut converted_216 = HashMap::new();
+            let mut converted_216 = HashMap::with_capacity(mapping_217.len());
             for (key_218, value_219) in mapping_217.iter() {
                 let converted_key_220: String = key_218.extract()?;
                 let converted_value_221: String = value_219.extract()?;
@@ -3359,7 +3353,7 @@ impl SNSClient {
         let state = self.state.clone();
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_223 = value.cast::<PyDict>()?;
-            let mut converted_222 = HashMap::new();
+            let mut converted_222 = HashMap::with_capacity(mapping_223.len());
             for (key_224, value_225) in mapping_223.iter() {
                 let converted_key_226: String = key_224.extract()?;
                 let converted_value_227: String = value_225.extract()?;
@@ -3378,7 +3372,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SetSMSAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PySetSMSAttributesResponse { inner: output }))
+            Ok(PySetSMSAttributesResponse { inner: output })
         })
     }
 
@@ -3489,7 +3483,7 @@ impl SNSClient {
         };
         let attributes_value = if let Some(value) = dict_value(params, "attributes")? {
             let mapping_238 = value.cast::<PyDict>()?;
-            let mut converted_237 = HashMap::new();
+            let mut converted_237 = HashMap::with_capacity(mapping_238.len());
             for (key_239, value_240) in mapping_238.iter() {
                 let converted_key_241: String = key_239.extract()?;
                 let converted_value_242: String = value_240.extract()?;
@@ -3520,7 +3514,7 @@ impl SNSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Subscribe")))?;
-            Python::attach(|py| Py::new(py, PySubscribeResponse { inner: output }))
+            Ok(PySubscribeResponse { inner: output })
         })
     }
 
@@ -3538,7 +3532,8 @@ impl SNSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_245 = Vec::new();
+            let mut converted_245 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_246 in value.try_iter()? {
                 let item_247 = item_result_246?;
                 let converted_item_248 = tag_from_py(&item_247)?;
@@ -3559,7 +3554,7 @@ impl SNSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -3604,7 +3599,8 @@ impl SNSClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_251 = Vec::new();
+            let mut converted_251 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_252 in value.try_iter()? {
                 let item_253 = item_result_252?;
                 let converted_item_254: String = item_253.extract()?;
@@ -3624,7 +3620,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -3658,7 +3654,7 @@ impl SNSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "VerifySMSSandboxPhoneNumber"))
             })?;
-            Python::attach(|py| Py::new(py, PyVerifySMSSandboxPhoneNumberResult { inner: output }))
+            Ok(PyVerifySMSSandboxPhoneNumberResult { inner: output })
         })
     }
 }

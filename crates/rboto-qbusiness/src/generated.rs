@@ -16,7 +16,8 @@ fn access_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::AccessConfiguration::builder();
     if let Some(value) = dict_value(values, "access_controls")? {
-        let mut converted_1 = Vec::new();
+        let mut converted_1 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2 in value.try_iter()? {
             let item_3 = item_result_2?;
             let converted_item_4 = access_control_from_py(&item_3)?;
@@ -61,7 +62,8 @@ fn access_control_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::AccessControl::builder();
     if let Some(value) = dict_value(values, "principals")? {
-        let mut converted_11 = Vec::new();
+        let mut converted_11 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_12 in value.try_iter()? {
             let item_13 = item_result_12?;
             let converted_item_14 = principal_from_py(&item_13)?;
@@ -145,7 +147,7 @@ fn action_execution_from_py(
     }
     if let Some(value) = dict_value(values, "payload")? {
         let mapping_27 = value.cast::<PyDict>()?;
-        let mut converted_26 = HashMap::new();
+        let mut converted_26 = HashMap::with_capacity(mapping_27.len());
         for (key_28, value_29) in mapping_27.iter() {
             let converted_key_30: String = key_28.extract()?;
             let converted_value_31 = action_execution_payload_field_from_py(&value_29)?;
@@ -195,7 +197,7 @@ fn action_execution_event_from_py(
     }
     if let Some(value) = dict_value(values, "payload")? {
         let mapping_42 = value.cast::<PyDict>()?;
-        let mut converted_41 = HashMap::new();
+        let mut converted_41 = HashMap::with_capacity(mapping_42.len());
         for (key_43, value_44) in mapping_42.iter() {
             let converted_key_45: String = key_43.extract()?;
             let converted_value_46 = action_execution_payload_field_from_py(&value_44)?;
@@ -300,7 +302,7 @@ fn action_review_from_py(
     }
     if let Some(value) = dict_value(values, "payload")? {
         let mapping_63 = value.cast::<PyDict>()?;
-        let mut converted_62 = HashMap::new();
+        let mut converted_62 = HashMap::with_capacity(mapping_63.len());
         for (key_64, value_65) in mapping_63.iter() {
             let converted_key_66: String = key_64.extract()?;
             let converted_value_67 = action_review_payload_field_from_py(&value_65)?;
@@ -381,7 +383,7 @@ fn action_review_event_from_py(
     }
     if let Some(value) = dict_value(values, "payload")? {
         let mapping_84 = value.cast::<PyDict>()?;
-        let mut converted_83 = HashMap::new();
+        let mut converted_83 = HashMap::with_capacity(mapping_84.len());
         for (key_85, value_86) in mapping_84.iter() {
             let converted_key_87: String = key_85.extract()?;
             let converted_value_88 = action_review_payload_field_from_py(&value_86)?;
@@ -480,7 +482,8 @@ fn action_review_payload_field_from_py(
         builder = builder.set_value(Some(converted_106));
     }
     if let Some(value) = dict_value(values, "allowed_values")? {
-        let mut converted_107 = Vec::new();
+        let mut converted_107 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_108 in value.try_iter()? {
             let item_109 = item_result_108?;
             let converted_item_110 = action_review_payload_field_allowed_value_from_py(&item_109)?;
@@ -1248,7 +1251,8 @@ fn attribute_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::AttributeFilter::builder();
     if let Some(value) = dict_value(values, "and_all_filters")? {
-        let mut converted_223 = Vec::new();
+        let mut converted_223 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_224 in value.try_iter()? {
             let item_225 = item_result_224?;
             let converted_item_226 = attribute_filter_from_py(&item_225)?;
@@ -1257,7 +1261,8 @@ fn attribute_filter_from_py(
         builder = builder.set_and_all_filters(Some(converted_223));
     }
     if let Some(value) = dict_value(values, "or_all_filters")? {
-        let mut converted_227 = Vec::new();
+        let mut converted_227 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_228 in value.try_iter()? {
             let item_229 = item_result_228?;
             let converted_item_230 = attribute_filter_from_py(&item_229)?;
@@ -1528,7 +1533,7 @@ fn auth_challenge_response_from_py(
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeResponse::builder();
     if let Some(value) = dict_value(values, "response_map")? {
         let mapping_273 = value.cast::<PyDict>()?;
-        let mut converted_272 = HashMap::new();
+        let mut converted_272 = HashMap::with_capacity(mapping_273.len());
         for (key_274, value_275) in mapping_273.iter() {
             let converted_key_276: String = key_274.extract()?;
             let converted_value_277: String = value_275.extract()?;
@@ -1564,7 +1569,7 @@ fn auth_challenge_response_event_from_py(
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeResponseEvent::builder();
     if let Some(value) = dict_value(values, "response_map")? {
         let mapping_284 = value.cast::<PyDict>()?;
-        let mut converted_283 = HashMap::new();
+        let mut converted_283 = HashMap::with_capacity(mapping_284.len());
         for (key_285, value_286) in mapping_284.iter() {
             let converted_key_287: String = key_285.extract()?;
             let converted_value_288: String = value_286.extract()?;
@@ -1667,7 +1672,8 @@ fn blocked_phrases_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::BlockedPhrasesConfiguration::builder();
     if let Some(value) = dict_value(values, "blocked_phrases")? {
-        let mut converted_304 = Vec::new();
+        let mut converted_304 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_305 in value.try_iter()? {
             let item_306 = item_result_305?;
             let converted_item_307: String = item_306.extract()?;
@@ -1713,7 +1719,8 @@ fn blocked_phrases_configuration_update_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::BlockedPhrasesConfigurationUpdate::builder();
     if let Some(value) = dict_value(values, "blocked_phrases_to_create_or_update")? {
-        let mut converted_313 = Vec::new();
+        let mut converted_313 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_314 in value.try_iter()? {
             let item_315 = item_result_314?;
             let converted_item_316: String = item_315.extract()?;
@@ -1722,7 +1729,8 @@ fn blocked_phrases_configuration_update_from_py(
         builder = builder.set_blocked_phrases_to_create_or_update(Some(converted_313));
     }
     if let Some(value) = dict_value(values, "blocked_phrases_to_delete")? {
-        let mut converted_317 = Vec::new();
+        let mut converted_317 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_318 in value.try_iter()? {
             let item_319 = item_result_318?;
             let converted_item_320: String = item_319.extract()?;
@@ -1779,7 +1787,8 @@ fn browser_extension_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::BrowserExtensionConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled_browser_extensions")? {
-        let mut converted_329 = Vec::new();
+        let mut converted_329 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_330 in value.try_iter()? {
             let item_331 = item_result_330?;
             let enum_value_333: String = item_331.extract()?;
@@ -2094,7 +2103,7 @@ fn chat_response_configuration_detail_from_py(
     let mut builder = aws_sdk_qbusiness::types::ChatResponseConfigurationDetail::builder();
     if let Some(value) = dict_value(values, "response_configurations")? {
         let mapping_379 = value.cast::<PyDict>()?;
-        let mut converted_378 = HashMap::new();
+        let mut converted_378 = HashMap::with_capacity(mapping_379.len());
         for (key_380, value_381) in mapping_379.iter() {
             let enum_value_384: String = key_380.extract()?;
             let converted_key_382 =
@@ -2254,7 +2263,8 @@ fn content_retrieval_rule_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::ContentRetrievalRule::builder();
     if let Some(value) = dict_value(values, "eligible_data_sources")? {
-        let mut converted_409 = Vec::new();
+        let mut converted_409 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_410 in value.try_iter()? {
             let item_411 = item_result_410?;
             let converted_item_412 = eligible_data_source_from_py(&item_411)?;
@@ -2711,7 +2721,8 @@ fn data_accessor_authentication_detail_from_py(
         builder = builder.set_authentication_configuration(Some(converted_471));
     }
     if let Some(value) = dict_value(values, "external_ids")? {
-        let mut converted_472 = Vec::new();
+        let mut converted_472 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_473 in value.try_iter()? {
             let item_474 = item_result_473?;
             let converted_item_475: String = item_474.extract()?;
@@ -3034,7 +3045,8 @@ fn data_source_vpc_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::DataSourceVpcConfiguration::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_525 = Vec::new();
+        let mut converted_525 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_526 in value.try_iter()? {
             let item_527 = item_result_526?;
             let converted_item_528: String = item_527.extract()?;
@@ -3043,7 +3055,8 @@ fn data_source_vpc_configuration_from_py(
         builder = builder.set_subnet_ids(Some(converted_525));
     }
     if let Some(value) = dict_value(values, "security_group_ids")? {
-        let mut converted_529 = Vec::new();
+        let mut converted_529 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_530 in value.try_iter()? {
             let item_531 = item_result_530?;
             let converted_item_532: String = item_531.extract()?;
@@ -3146,7 +3159,8 @@ fn document_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::typ
         builder = builder.set_id(Some(converted_546));
     }
     if let Some(value) = dict_value(values, "attributes")? {
-        let mut converted_547 = Vec::new();
+        let mut converted_547 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_548 in value.try_iter()? {
             let item_549 = item_result_548?;
             let converted_item_550 = document_attribute_from_py(&item_549)?;
@@ -3288,7 +3302,8 @@ fn document_acl_condition_from_py(
         builder = builder.set_member_relation(Some(converted_572));
     }
     if let Some(value) = dict_value(values, "users")? {
-        let mut converted_574 = Vec::new();
+        let mut converted_574 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_575 in value.try_iter()? {
             let item_576 = item_result_575?;
             let converted_item_577 = document_acl_user_from_py(&item_576)?;
@@ -3297,7 +3312,8 @@ fn document_acl_condition_from_py(
         builder = builder.set_users(Some(converted_574));
     }
     if let Some(value) = dict_value(values, "groups")? {
-        let mut converted_578 = Vec::new();
+        let mut converted_578 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_579 in value.try_iter()? {
             let item_580 = item_result_579?;
             let converted_item_581 = document_acl_group_from_py(&item_580)?;
@@ -3392,7 +3408,8 @@ fn document_acl_membership_from_py(
         builder = builder.set_member_relation(Some(converted_594));
     }
     if let Some(value) = dict_value(values, "conditions")? {
-        let mut converted_596 = Vec::new();
+        let mut converted_596 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_597 in value.try_iter()? {
             let item_598 = item_result_597?;
             let converted_item_599 = document_acl_condition_from_py(&item_598)?;
@@ -3715,7 +3732,8 @@ fn document_attribute_value_from_py(
         return Ok(aws_sdk_qbusiness::types::DocumentAttributeValue::StringValue(converted_643));
     }
     if let Some(value) = dict_value(values, "string_list_value")? {
-        let mut converted_644 = Vec::new();
+        let mut converted_644 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_645 in value.try_iter()? {
             let item_646 = item_result_645?;
             let converted_item_647: String = item_646.extract()?;
@@ -3908,7 +3926,8 @@ fn document_enrichment_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::DocumentEnrichmentConfiguration::builder();
     if let Some(value) = dict_value(values, "inline_configurations")? {
-        let mut converted_675 = Vec::new();
+        let mut converted_675 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_676 in value.try_iter()? {
             let item_677 = item_result_676?;
             let converted_item_678 = inline_document_enrichment_configuration_from_py(&item_677)?;
@@ -4181,7 +4200,8 @@ fn group_members_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::GroupMembers::builder();
     if let Some(value) = dict_value(values, "member_groups")? {
-        let mut converted_711 = Vec::new();
+        let mut converted_711 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_712 in value.try_iter()? {
             let item_713 = item_result_712?;
             let converted_item_714 = member_group_from_py(&item_713)?;
@@ -4190,7 +4210,8 @@ fn group_members_from_py(
         builder = builder.set_member_groups(Some(converted_711));
     }
     if let Some(value) = dict_value(values, "member_users")? {
-        let mut converted_715 = Vec::new();
+        let mut converted_715 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_716 in value.try_iter()? {
             let item_717 = item_result_716?;
             let converted_item_718 = member_user_from_py(&item_717)?;
@@ -4978,7 +4999,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::type
         builder = builder.set_type(Some(converted_825));
     }
     if let Some(value) = dict_value(values, "attachments")? {
-        let mut converted_827 = Vec::new();
+        let mut converted_827 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_828 in value.try_iter()? {
             let item_829 = item_result_828?;
             let converted_item_830 = attachment_output_from_py(&item_829)?;
@@ -4987,7 +5009,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::type
         builder = builder.set_attachments(Some(converted_827));
     }
     if let Some(value) = dict_value(values, "source_attribution")? {
-        let mut converted_831 = Vec::new();
+        let mut converted_831 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_832 in value.try_iter()? {
             let item_833 = item_result_832?;
             let converted_item_834 = if item_833.is_none() {
@@ -5156,7 +5179,8 @@ fn metadata_event_from_py(
         builder = builder.set_system_message_id(Some(converted_864));
     }
     if let Some(value) = dict_value(values, "source_attributions")? {
-        let mut converted_865 = Vec::new();
+        let mut converted_865 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_866 in value.try_iter()? {
             let item_867 = item_result_866?;
             let converted_item_868 = if item_867.is_none() {
@@ -5239,7 +5263,7 @@ fn native_index_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "boosting_override")? {
         let mapping_882 = value.cast::<PyDict>()?;
-        let mut converted_881 = HashMap::new();
+        let mut converted_881 = HashMap::with_capacity(mapping_882.len());
         for (key_883, value_884) in mapping_882.iter() {
             let converted_key_885: String = key_883.extract()?;
             let converted_value_886 =
@@ -5458,7 +5482,8 @@ fn permission_condition_from_py(
         builder = builder.set_condition_key(Some(converted_917));
     }
     if let Some(value) = dict_value(values, "condition_values")? {
-        let mut converted_918 = Vec::new();
+        let mut converted_918 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_919 in value.try_iter()? {
             let item_920 = item_result_919?;
             let converted_item_921: String = item_920.extract()?;
@@ -5970,7 +5995,8 @@ fn relevant_content_from_py(
         builder = builder.set_document_uri(Some(converted_997));
     }
     if let Some(value) = dict_value(values, "document_attributes")? {
-        let mut converted_998 = Vec::new();
+        let mut converted_998 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_999 in value.try_iter()? {
             let item_1000 = item_result_999?;
             let converted_item_1001 = document_attribute_from_py(&item_1000)?;
@@ -6474,7 +6500,8 @@ fn source_attribution_from_py(
         builder = builder.set_updated_at(Some(converted_1067));
     }
     if let Some(value) = dict_value(values, "text_message_segments")? {
-        let mut converted_1069 = Vec::new();
+        let mut converted_1069 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1070 in value.try_iter()? {
             let item_1071 = item_result_1070?;
             let converted_item_1072 = text_segment_from_py(&item_1071)?;
@@ -6633,7 +6660,7 @@ fn string_attribute_boosting_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "attribute_value_boosting")? {
         let mapping_1096 = value.cast::<PyDict>()?;
-        let mut converted_1095 = HashMap::new();
+        let mut converted_1095 = HashMap::with_capacity(mapping_1096.len());
         for (key_1097, value_1098) in mapping_1096.iter() {
             let converted_key_1099: String = key_1097.extract()?;
             let enum_value_1101: String = value_1098.extract()?;
@@ -7081,7 +7108,8 @@ fn topic_configuration_from_py(
         builder = builder.set_description(Some(converted_1162));
     }
     if let Some(value) = dict_value(values, "example_chat_messages")? {
-        let mut converted_1163 = Vec::new();
+        let mut converted_1163 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1164 in value.try_iter()? {
             let item_1165 = item_result_1164?;
             let converted_item_1166: String = item_1165.extract()?;
@@ -7090,7 +7118,8 @@ fn topic_configuration_from_py(
         builder = builder.set_example_chat_messages(Some(converted_1163));
     }
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_1167 = Vec::new();
+        let mut converted_1167 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1168 in value.try_iter()? {
             let item_1169 = item_result_1168?;
             let converted_item_1170 = rule_from_py(&item_1169)?;
@@ -7185,7 +7214,8 @@ fn users_and_groups_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_qbusiness::types::UsersAndGroups::builder();
     if let Some(value) = dict_value(values, "user_ids")? {
-        let mut converted_1185 = Vec::new();
+        let mut converted_1185 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1186 in value.try_iter()? {
             let item_1187 = item_result_1186?;
             let converted_item_1188: String = item_1187.extract()?;
@@ -7194,7 +7224,8 @@ fn users_and_groups_from_py(
         builder = builder.set_user_ids(Some(converted_1185));
     }
     if let Some(value) = dict_value(values, "user_groups")? {
-        let mut converted_1189 = Vec::new();
+        let mut converted_1189 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1190 in value.try_iter()? {
             let item_1191 = item_result_1190?;
             let converted_item_1192: String = item_1191.extract()?;
@@ -16864,7 +16895,8 @@ impl QBusinessClient {
             None
         };
         let actions_value = if let Some(value) = dict_value(params, "actions")? {
-            let mut converted_1234 = Vec::new();
+            let mut converted_1234 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1235 in value.try_iter()? {
                 let item_1236 = item_result_1235?;
                 let converted_item_1237: String = item_1236.extract()?;
@@ -16875,7 +16907,8 @@ impl QBusinessClient {
             None
         };
         let conditions_value = if let Some(value) = dict_value(params, "conditions")? {
-            let mut converted_1238 = Vec::new();
+            let mut converted_1238 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1239 in value.try_iter()? {
                 let item_1240 = item_result_1239?;
                 let converted_item_1241 = permission_condition_from_py(&item_1240)?;
@@ -16904,7 +16937,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociatePermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyAssociatePermissionResponse { inner: output }))
+            Ok(PyAssociatePermissionResponse { inner: output })
         })
     }
 
@@ -16928,7 +16961,8 @@ impl QBusinessClient {
             None
         };
         let documents_value = if let Some(value) = dict_value(params, "documents")? {
-            let mut converted_1245 = Vec::new();
+            let mut converted_1245 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1246 in value.try_iter()? {
                 let item_1247 = item_result_1246?;
                 let converted_item_1248 = delete_document_from_py(&item_1247)?;
@@ -16957,7 +16991,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchDeleteDocumentResponse { inner: output }))
+            Ok(PyBatchDeleteDocumentResponse { inner: output })
         })
     }
 
@@ -16981,7 +17015,8 @@ impl QBusinessClient {
             None
         };
         let documents_value = if let Some(value) = dict_value(params, "documents")? {
-            let mut converted_1252 = Vec::new();
+            let mut converted_1252 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1253 in value.try_iter()? {
                 let item_1254 = item_result_1253?;
                 let converted_item_1255 = document_from_py(&item_1254)?;
@@ -17017,7 +17052,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchPutDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchPutDocumentResponse { inner: output }))
+            Ok(PyBatchPutDocumentResponse { inner: output })
         })
     }
 
@@ -17050,7 +17085,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelSubscriptionResponse { inner: output }))
+            Ok(PyCancelSubscriptionResponse { inner: output })
         })
     }
 
@@ -17074,7 +17109,8 @@ impl QBusinessClient {
             None
         };
         let user_groups_value = if let Some(value) = dict_value(params, "user_groups")? {
-            let mut converted_1262 = Vec::new();
+            let mut converted_1262 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1263 in value.try_iter()? {
                 let item_1264 = item_result_1263?;
                 let converted_item_1265: String = item_1264.extract()?;
@@ -17165,7 +17201,8 @@ impl QBusinessClient {
             None
         };
         let user_groups_value = if let Some(value) = dict_value(params, "user_groups")? {
-            let mut converted_1272 = Vec::new();
+            let mut converted_1272 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1273 in value.try_iter()? {
                 let item_1274 = item_result_1273?;
                 let converted_item_1275: String = item_1274.extract()?;
@@ -17182,7 +17219,8 @@ impl QBusinessClient {
             None
         };
         let attachments_value = if let Some(value) = dict_value(params, "attachments")? {
-            let mut converted_1277 = Vec::new();
+            let mut converted_1277 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1278 in value.try_iter()? {
                 let item_1279 = item_result_1278?;
                 let converted_item_1280 = attachment_input_from_py(&item_1279)?;
@@ -17266,7 +17304,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ChatSync")))?;
-            Python::attach(|py| Py::new(py, PyChatSyncOutput { inner: output }))
+            Ok(PyChatSyncOutput { inner: output })
         })
     }
 
@@ -17320,7 +17358,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckDocumentAccess"))
             })?;
-            Python::attach(|py| Py::new(py, PyCheckDocumentAccessResponse { inner: output }))
+            Ok(PyCheckDocumentAccessResponse { inner: output })
         })
     }
 
@@ -17362,12 +17400,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAnonymousWebExperienceUrl"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateAnonymousWebExperienceUrlResponse { inner: output },
-                )
-            })
+            Ok(PyCreateAnonymousWebExperienceUrlResponse { inner: output })
         })
     }
 
@@ -17414,7 +17447,8 @@ impl QBusinessClient {
             };
         let client_ids_for_oidc_value =
             if let Some(value) = dict_value(params, "client_ids_for_oidc")? {
-                let mut converted_1304 = Vec::new();
+                let mut converted_1304 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1305 in value.try_iter()? {
                     let item_1306 = item_result_1305?;
                     let converted_item_1307: String = item_1306.extract()?;
@@ -17438,7 +17472,8 @@ impl QBusinessClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1310 = Vec::new();
+            let mut converted_1310 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1311 in value.try_iter()? {
                 let item_1312 = item_result_1311?;
                 let converted_item_1313 = tag_from_py(&item_1312)?;
@@ -17504,7 +17539,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateApplicationResponse { inner: output }))
+            Ok(PyCreateApplicationResponse { inner: output })
         })
     }
 
@@ -17537,7 +17572,7 @@ impl QBusinessClient {
             dict_value(params, "response_configurations")?
         {
             let mapping_1323 = value.cast::<PyDict>()?;
-            let mut converted_1322 = HashMap::new();
+            let mut converted_1322 = HashMap::with_capacity(mapping_1323.len());
             for (key_1324, value_1325) in mapping_1323.iter() {
                 let enum_value_1328: String = key_1324.extract()?;
                 let converted_key_1326 = aws_sdk_qbusiness::types::ResponseConfigurationType::from(
@@ -17551,7 +17586,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1329 = Vec::new();
+            let mut converted_1329 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1330 in value.try_iter()? {
                 let item_1331 = item_result_1330?;
                 let converted_item_1332 = tag_from_py(&item_1331)?;
@@ -17574,12 +17610,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateChatResponseConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateChatResponseConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyCreateChatResponseConfigurationResponse { inner: output })
         })
     }
 
@@ -17604,7 +17635,8 @@ impl QBusinessClient {
         };
         let action_configurations_value =
             if let Some(value) = dict_value(params, "action_configurations")? {
-                let mut converted_1335 = Vec::new();
+                let mut converted_1335 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1336 in value.try_iter()? {
                     let item_1337 = item_result_1336?;
                     let converted_item_1338 = action_configuration_from_py(&item_1337)?;
@@ -17634,7 +17666,8 @@ impl QBusinessClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1342 = Vec::new();
+            let mut converted_1342 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1343 in value.try_iter()? {
                 let item_1344 = item_result_1343?;
                 let converted_item_1345 = tag_from_py(&item_1344)?;
@@ -17659,7 +17692,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAccessor"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDataAccessorResponse { inner: output }))
+            Ok(PyCreateDataAccessorResponse { inner: output })
         })
     }
 
@@ -17708,7 +17741,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1352 = Vec::new();
+            let mut converted_1352 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1353 in value.try_iter()? {
                 let item_1354 = item_result_1353?;
                 let converted_item_1355 = tag_from_py(&item_1354)?;
@@ -17770,7 +17804,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDataSourceResponse { inner: output }))
+            Ok(PyCreateDataSourceResponse { inner: output })
         })
     }
 
@@ -17808,7 +17842,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1366 = Vec::new();
+            let mut converted_1366 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1367 in value.try_iter()? {
                 let item_1368 = item_result_1367?;
                 let converted_item_1369 = tag_from_py(&item_1368)?;
@@ -17847,7 +17882,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIndex")))?;
-            Python::attach(|py| Py::new(py, PyCreateIndexResponse { inner: output }))
+            Ok(PyCreateIndexResponse { inner: output })
         })
     }
 
@@ -17899,7 +17934,8 @@ impl QBusinessClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1379 = Vec::new();
+            let mut converted_1379 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1380 in value.try_iter()? {
                 let item_1381 = item_result_1380?;
                 let converted_item_1382 = tag_from_py(&item_1381)?;
@@ -17931,7 +17967,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlugin"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePluginResponse { inner: output }))
+            Ok(PyCreatePluginResponse { inner: output })
         })
     }
 
@@ -17981,7 +18017,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1391 = Vec::new();
+            let mut converted_1391 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1392 in value.try_iter()? {
                 let item_1393 = item_result_1392?;
                 let converted_item_1394 = tag_from_py(&item_1393)?;
@@ -18006,7 +18043,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRetriever"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateRetrieverResponse { inner: output }))
+            Ok(PyCreateRetrieverResponse { inner: output })
         })
     }
 
@@ -18055,7 +18092,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSubscriptionResponse { inner: output }))
+            Ok(PyCreateSubscriptionResponse { inner: output })
         })
     }
 
@@ -18079,7 +18116,8 @@ impl QBusinessClient {
             None
         };
         let user_aliases_value = if let Some(value) = dict_value(params, "user_aliases")? {
-            let mut converted_1402 = Vec::new();
+            let mut converted_1402 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1403 in value.try_iter()? {
                 let item_1404 = item_result_1403?;
                 let converted_item_1405 = user_alias_from_py(&item_1404)?;
@@ -18108,7 +18146,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateUser")))?;
-            Python::attach(|py| Py::new(py, PyCreateUserResponse { inner: output }))
+            Ok(PyCreateUserResponse { inner: output })
         })
     }
 
@@ -18155,7 +18193,8 @@ impl QBusinessClient {
                 None
             };
         let origins_value = if let Some(value) = dict_value(params, "origins")? {
-            let mut converted_1413 = Vec::new();
+            let mut converted_1413 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1414 in value.try_iter()? {
                 let item_1415 = item_result_1414?;
                 let converted_item_1416: String = item_1415.extract()?;
@@ -18172,7 +18211,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1418 = Vec::new();
+            let mut converted_1418 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1419 in value.try_iter()? {
                 let item_1420 = item_result_1419?;
                 let converted_item_1421 = tag_from_py(&item_1420)?;
@@ -18229,7 +18269,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateWebExperience"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateWebExperienceResponse { inner: output }))
+            Ok(PyCreateWebExperienceResponse { inner: output })
         })
     }
 
@@ -18255,7 +18295,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteApplicationResponse { inner: output }))
+            Ok(PyDeleteApplicationResponse { inner: output })
         })
     }
 
@@ -18302,7 +18342,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAttachment"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteAttachmentResponse { inner: output }))
+            Ok(PyDeleteAttachmentResponse { inner: output })
         })
     }
 
@@ -18328,12 +18368,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatControlsConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteChatControlsConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteChatControlsConfigurationResponse { inner: output })
         })
     }
 
@@ -18367,12 +18402,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatResponseConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteChatResponseConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteChatResponseConfigurationResponse { inner: output })
         })
     }
 
@@ -18412,7 +18442,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConversation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteConversationResponse { inner: output }))
+            Ok(PyDeleteConversationResponse { inner: output })
         })
     }
 
@@ -18445,7 +18475,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAccessor"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDataAccessorResponse { inner: output }))
+            Ok(PyDeleteDataAccessorResponse { inner: output })
         })
     }
 
@@ -18485,7 +18515,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDataSourceResponse { inner: output }))
+            Ok(PyDeleteDataSourceResponse { inner: output })
         })
     }
 
@@ -18533,7 +18563,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGroup")))?;
-            Python::attach(|py| Py::new(py, PyDeleteGroupResponse { inner: output }))
+            Ok(PyDeleteGroupResponse { inner: output })
         })
     }
 
@@ -18567,7 +18597,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndex")))?;
-            Python::attach(|py| Py::new(py, PyDeleteIndexResponse { inner: output }))
+            Ok(PyDeleteIndexResponse { inner: output })
         })
     }
 
@@ -18600,7 +18630,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePlugin"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeletePluginResponse { inner: output }))
+            Ok(PyDeletePluginResponse { inner: output })
         })
     }
 
@@ -18633,7 +18663,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetriever"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteRetrieverResponse { inner: output }))
+            Ok(PyDeleteRetrieverResponse { inner: output })
         })
     }
 
@@ -18667,7 +18697,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteUser")))?;
-            Python::attach(|py| Py::new(py, PyDeleteUserResponse { inner: output }))
+            Ok(PyDeleteUserResponse { inner: output })
         })
     }
 
@@ -18701,7 +18731,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteWebExperience"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteWebExperienceResponse { inner: output }))
+            Ok(PyDeleteWebExperienceResponse { inner: output })
         })
     }
 
@@ -18734,7 +18764,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociatePermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyDisassociatePermissionResponse { inner: output }))
+            Ok(PyDisassociatePermissionResponse { inner: output })
         })
     }
 
@@ -18760,7 +18790,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetApplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetApplicationResponse { inner: output }))
+            Ok(PyGetApplicationResponse { inner: output })
         })
     }
 
@@ -18800,9 +18830,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetChatControlsConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetChatControlsConfigurationResponse { inner: output })
-            })
+            Ok(PyGetChatControlsConfigurationResponse { inner: output })
         })
     }
 
@@ -18836,9 +18864,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetChatResponseConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetChatResponseConfigurationResponse { inner: output })
-            })
+            Ok(PyGetChatResponseConfigurationResponse { inner: output })
         })
     }
 
@@ -18871,7 +18897,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAccessor"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataAccessorResponse { inner: output }))
+            Ok(PyGetDataAccessorResponse { inner: output })
         })
     }
 
@@ -18911,7 +18937,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataSourceResponse { inner: output }))
+            Ok(PyGetDataSourceResponse { inner: output })
         })
     }
 
@@ -18967,7 +18993,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDocumentContentResponse { inner: output }))
+            Ok(PyGetDocumentContentResponse { inner: output })
         })
     }
 
@@ -19015,7 +19041,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetGroup")))?;
-            Python::attach(|py| Py::new(py, PyGetGroupResponse { inner: output }))
+            Ok(PyGetGroupResponse { inner: output })
         })
     }
 
@@ -19049,7 +19075,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIndex")))?;
-            Python::attach(|py| Py::new(py, PyGetIndexResponse { inner: output }))
+            Ok(PyGetIndexResponse { inner: output })
         })
     }
 
@@ -19097,7 +19123,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMedia")))?;
-            Python::attach(|py| Py::new(py, PyGetMediaResponse { inner: output }))
+            Ok(PyGetMediaResponse { inner: output })
         })
     }
 
@@ -19131,7 +19157,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPlugin")))?;
-            Python::attach(|py| Py::new(py, PyGetPluginResponse { inner: output }))
+            Ok(PyGetPluginResponse { inner: output })
         })
     }
 
@@ -19158,7 +19184,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
-            Python::attach(|py| Py::new(py, PyGetPolicyResponse { inner: output }))
+            Ok(PyGetPolicyResponse { inner: output })
         })
     }
 
@@ -19191,7 +19217,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRetriever"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRetrieverResponse { inner: output }))
+            Ok(PyGetRetrieverResponse { inner: output })
         })
     }
 
@@ -19225,7 +19251,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUser")))?;
-            Python::attach(|py| Py::new(py, PyGetUserResponse { inner: output }))
+            Ok(PyGetUserResponse { inner: output })
         })
     }
 
@@ -19259,7 +19285,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWebExperience"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetWebExperienceResponse { inner: output }))
+            Ok(PyGetWebExperienceResponse { inner: output })
         })
     }
 
@@ -19292,7 +19318,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListApplications"))
             })?;
-            Python::attach(|py| Py::new(py, PyListApplicationsResponse { inner: output }))
+            Ok(PyListApplicationsResponse { inner: output })
         })
     }
 
@@ -19346,7 +19372,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAttachments"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAttachmentsResponse { inner: output }))
+            Ok(PyListAttachmentsResponse { inner: output })
         })
     }
 
@@ -19386,12 +19412,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListChatResponseConfigurations"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListChatResponseConfigurationsResponse { inner: output },
-                )
-            })
+            Ok(PyListChatResponseConfigurationsResponse { inner: output })
         })
     }
 
@@ -19438,7 +19459,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConversations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListConversationsResponse { inner: output }))
+            Ok(PyListConversationsResponse { inner: output })
         })
     }
 
@@ -19478,7 +19499,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAccessors"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDataAccessorsResponse { inner: output }))
+            Ok(PyListDataAccessorsResponse { inner: output })
         })
     }
 
@@ -19565,7 +19586,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSourceSyncJobs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDataSourceSyncJobsResponse { inner: output }))
+            Ok(PyListDataSourceSyncJobsResponse { inner: output })
         })
     }
 
@@ -19612,7 +19633,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSources"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDataSourcesResponse { inner: output }))
+            Ok(PyListDataSourcesResponse { inner: output })
         })
     }
 
@@ -19636,7 +19657,8 @@ impl QBusinessClient {
             None
         };
         let data_source_ids_value = if let Some(value) = dict_value(params, "data_source_ids")? {
-            let mut converted_1528 = Vec::new();
+            let mut converted_1528 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1529 in value.try_iter()? {
                 let item_1530 = item_result_1529?;
                 let converted_item_1531: String = item_1530.extract()?;
@@ -19671,7 +19693,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDocumentsResponse { inner: output }))
+            Ok(PyListDocumentsResponse { inner: output })
         })
     }
 
@@ -19739,7 +19761,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGroups")))?;
-            Python::attach(|py| Py::new(py, PyListGroupsResponse { inner: output }))
+            Ok(PyListGroupsResponse { inner: output })
         })
     }
 
@@ -19780,7 +19802,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIndices")))?;
-            Python::attach(|py| Py::new(py, PyListIndicesResponse { inner: output }))
+            Ok(PyListIndicesResponse { inner: output })
         })
     }
 
@@ -19834,7 +19856,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessages"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMessagesResponse { inner: output }))
+            Ok(PyListMessagesResponse { inner: output })
         })
     }
 
@@ -19881,7 +19903,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginActions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPluginActionsResponse { inner: output }))
+            Ok(PyListPluginActionsResponse { inner: output })
         })
     }
 
@@ -19923,7 +19945,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeActions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPluginTypeActionsResponse { inner: output }))
+            Ok(PyListPluginTypeActionsResponse { inner: output })
         })
     }
 
@@ -19956,7 +19978,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPluginTypeMetadataResponse { inner: output }))
+            Ok(PyListPluginTypeMetadataResponse { inner: output })
         })
     }
 
@@ -19997,7 +20019,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPlugins")))?;
-            Python::attach(|py| Py::new(py, PyListPluginsResponse { inner: output }))
+            Ok(PyListPluginsResponse { inner: output })
         })
     }
 
@@ -20037,7 +20059,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievers"))
             })?;
-            Python::attach(|py| Py::new(py, PyListRetrieversResponse { inner: output }))
+            Ok(PyListRetrieversResponse { inner: output })
         })
     }
 
@@ -20077,7 +20099,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSubscriptionsResponse { inner: output }))
+            Ok(PyListSubscriptionsResponse { inner: output })
         })
     }
 
@@ -20103,7 +20125,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -20143,7 +20165,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListWebExperiences"))
             })?;
-            Python::attach(|py| Py::new(py, PyListWebExperiencesResponse { inner: output }))
+            Ok(PyListWebExperiencesResponse { inner: output })
         })
     }
 
@@ -20283,7 +20305,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutGroup")))?;
-            Python::attach(|py| Py::new(py, PyPutGroupResponse { inner: output }))
+            Ok(PyPutGroupResponse { inner: output })
         })
     }
 
@@ -20344,7 +20366,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchRelevantContent"))
             })?;
-            Python::attach(|py| Py::new(py, PySearchRelevantContentResponse { inner: output }))
+            Ok(PySearchRelevantContentResponse { inner: output })
         })
     }
 
@@ -20384,7 +20406,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartDataSourceSyncJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartDataSourceSyncJobResponse { inner: output }))
+            Ok(PyStartDataSourceSyncJobResponse { inner: output })
         })
     }
 
@@ -20424,7 +20446,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopDataSourceSyncJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopDataSourceSyncJobResponse { inner: output }))
+            Ok(PyStopDataSourceSyncJobResponse { inner: output })
         })
     }
 
@@ -20442,7 +20464,8 @@ impl QBusinessClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1600 = Vec::new();
+            let mut converted_1600 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1601 in value.try_iter()? {
                 let item_1602 = item_result_1601?;
                 let converted_item_1603 = tag_from_py(&item_1602)?;
@@ -20463,7 +20486,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -20481,7 +20504,8 @@ impl QBusinessClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_1605 = Vec::new();
+            let mut converted_1605 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1606 in value.try_iter()? {
                 let item_1607 = item_result_1606?;
                 let converted_item_1608: String = item_1607.extract()?;
@@ -20501,7 +20525,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -20588,7 +20612,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateApplicationResponse { inner: output }))
+            Ok(PyUpdateApplicationResponse { inner: output })
         })
     }
 
@@ -20635,7 +20659,8 @@ impl QBusinessClient {
             };
         let topic_configurations_to_create_or_update_value =
             if let Some(value) = dict_value(params, "topic_configurations_to_create_or_update")? {
-                let mut converted_1624 = Vec::new();
+                let mut converted_1624 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1625 in value.try_iter()? {
                     let item_1626 = item_result_1625?;
                     let converted_item_1627 = topic_configuration_from_py(&item_1626)?;
@@ -20647,7 +20672,8 @@ impl QBusinessClient {
             };
         let topic_configurations_to_delete_value =
             if let Some(value) = dict_value(params, "topic_configurations_to_delete")? {
-                let mut converted_1628 = Vec::new();
+                let mut converted_1628 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1629 in value.try_iter()? {
                     let item_1630 = item_result_1629?;
                     let converted_item_1631 = topic_configuration_from_py(&item_1630)?;
@@ -20694,12 +20720,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatControlsConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateChatControlsConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateChatControlsConfigurationResponse { inner: output })
         })
     }
 
@@ -20733,7 +20754,7 @@ impl QBusinessClient {
             dict_value(params, "response_configurations")?
         {
             let mapping_1638 = value.cast::<PyDict>()?;
-            let mut converted_1637 = HashMap::new();
+            let mut converted_1637 = HashMap::with_capacity(mapping_1638.len());
             for (key_1639, value_1640) in mapping_1638.iter() {
                 let enum_value_1643: String = key_1639.extract()?;
                 let converted_key_1641 = aws_sdk_qbusiness::types::ResponseConfigurationType::from(
@@ -20765,12 +20786,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatResponseConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateChatResponseConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateChatResponseConfigurationResponse { inner: output })
         })
     }
 
@@ -20795,7 +20811,8 @@ impl QBusinessClient {
         };
         let action_configurations_value =
             if let Some(value) = dict_value(params, "action_configurations")? {
-                let mut converted_1647 = Vec::new();
+                let mut converted_1647 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1648 in value.try_iter()? {
                     let item_1649 = item_result_1648?;
                     let converted_item_1650 = action_configuration_from_py(&item_1649)?;
@@ -20831,7 +20848,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAccessor"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDataAccessorResponse { inner: output }))
+            Ok(PyUpdateDataAccessorResponse { inner: output })
         })
     }
 
@@ -20930,7 +20947,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDataSourceResponse { inner: output }))
+            Ok(PyUpdateDataSourceResponse { inner: output })
         })
     }
 
@@ -20974,7 +20991,8 @@ impl QBusinessClient {
             };
         let document_attribute_configurations_value =
             if let Some(value) = dict_value(params, "document_attribute_configurations")? {
-                let mut converted_1669 = Vec::new();
+                let mut converted_1669 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1670 in value.try_iter()? {
                     let item_1671 = item_result_1670?;
                     let converted_item_1672 = document_attribute_configuration_from_py(&item_1671)?;
@@ -20999,7 +21017,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIndex")))?;
-            Python::attach(|py| Py::new(py, PyUpdateIndexResponse { inner: output }))
+            Ok(PyUpdateIndexResponse { inner: output })
         })
     }
 
@@ -21071,7 +21089,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePlugin"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdatePluginResponse { inner: output }))
+            Ok(PyUpdatePluginResponse { inner: output })
         })
     }
 
@@ -21125,7 +21143,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRetriever"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateRetrieverResponse { inner: output }))
+            Ok(PyUpdateRetrieverResponse { inner: output })
         })
     }
 
@@ -21167,7 +21185,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSubscription"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateSubscriptionResponse { inner: output }))
+            Ok(PyUpdateSubscriptionResponse { inner: output })
         })
     }
 
@@ -21192,7 +21210,8 @@ impl QBusinessClient {
         };
         let user_aliases_to_update_value =
             if let Some(value) = dict_value(params, "user_aliases_to_update")? {
-                let mut converted_1692 = Vec::new();
+                let mut converted_1692 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1693 in value.try_iter()? {
                     let item_1694 = item_result_1693?;
                     let converted_item_1695 = user_alias_from_py(&item_1694)?;
@@ -21204,7 +21223,8 @@ impl QBusinessClient {
             };
         let user_aliases_to_delete_value =
             if let Some(value) = dict_value(params, "user_aliases_to_delete")? {
-                let mut converted_1696 = Vec::new();
+                let mut converted_1696 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1697 in value.try_iter()? {
                     let item_1698 = item_result_1697?;
                     let converted_item_1699 = user_alias_from_py(&item_1698)?;
@@ -21227,7 +21247,7 @@ impl QBusinessClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUser")))?;
-            Python::attach(|py| Py::new(py, PyUpdateUserResponse { inner: output }))
+            Ok(PyUpdateUserResponse { inner: output })
         })
     }
 
@@ -21301,7 +21321,8 @@ impl QBusinessClient {
                 None
             };
         let origins_value = if let Some(value) = dict_value(params, "origins")? {
-            let mut converted_1710 = Vec::new();
+            let mut converted_1710 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1711 in value.try_iter()? {
                 let item_1712 = item_result_1711?;
                 let converted_item_1713: String = item_1712.extract()?;
@@ -21345,7 +21366,7 @@ impl QBusinessClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateWebExperience"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateWebExperienceResponse { inner: output }))
+            Ok(PyUpdateWebExperienceResponse { inner: output })
         })
     }
 }

@@ -91,7 +91,8 @@ fn access_control_policy_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::AccessControlPolicy::builder();
     if let Some(value) = dict_value(values, "grants")? {
-        let mut converted_9 = Vec::new();
+        let mut converted_9 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_10 in value.try_iter()? {
             let item_11 = item_result_10?;
             let converted_item_12 = grant_from_py(&item_11)?;
@@ -166,7 +167,8 @@ fn analytics_and_operator_from_py(
         builder = builder.set_prefix(Some(converted_21));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_22 = Vec::new();
+        let mut converted_22 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_23 in value.try_iter()? {
             let item_24 = item_result_23?;
             let converted_item_25 = tag_from_py(&item_24)?;
@@ -396,7 +398,8 @@ fn annotation_entry_from_py(
         builder = builder.set_e_tag(Some(converted_56));
     }
     if let Some(value) = dict_value(values, "checksum_algorithm")? {
-        let mut converted_57 = Vec::new();
+        let mut converted_57 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_58 in value.try_iter()? {
             let item_59 = item_result_58?;
             let enum_value_61: String = item_59.extract()?;
@@ -631,7 +634,8 @@ fn blocked_encryption_types_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::BlockedEncryptionTypes::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let mut converted_100 = Vec::new();
+        let mut converted_100 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_101 in value.try_iter()? {
             let item_102 = item_result_101?;
             let enum_value_104: String = item_102.extract()?;
@@ -758,7 +762,8 @@ fn bucket_lifecycle_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::BucketLifecycleConfiguration::builder();
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_123 = Vec::new();
+        let mut converted_123 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_124 in value.try_iter()? {
             let item_125 = item_result_124?;
             let converted_item_126 = lifecycle_rule_from_py(&item_125)?;
@@ -964,7 +969,8 @@ fn completed_multipart_upload_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::CompletedMultipartUpload::builder();
     if let Some(value) = dict_value(values, "parts")? {
-        let mut converted_157 = Vec::new();
+        let mut converted_157 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_158 in value.try_iter()? {
             let item_159 = item_result_158?;
             let converted_item_160 = completed_part_from_py(&item_159)?;
@@ -1474,7 +1480,8 @@ fn cors_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::CorsConfiguration::builder();
     if let Some(value) = dict_value(values, "cors_rules")? {
-        let mut converted_245 = Vec::new();
+        let mut converted_245 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_246 in value.try_iter()? {
             let item_247 = item_result_246?;
             let converted_item_248 = cors_rule_from_py(&item_247)?;
@@ -1510,7 +1517,8 @@ fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
         builder = builder.set_id(Some(converted_252));
     }
     if let Some(value) = dict_value(values, "allowed_headers")? {
-        let mut converted_253 = Vec::new();
+        let mut converted_253 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_254 in value.try_iter()? {
             let item_255 = item_result_254?;
             let converted_item_256: String = item_255.extract()?;
@@ -1519,7 +1527,8 @@ fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
         builder = builder.set_allowed_headers(Some(converted_253));
     }
     if let Some(value) = dict_value(values, "allowed_methods")? {
-        let mut converted_257 = Vec::new();
+        let mut converted_257 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_258 in value.try_iter()? {
             let item_259 = item_result_258?;
             let converted_item_260: String = item_259.extract()?;
@@ -1528,7 +1537,8 @@ fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
         builder = builder.set_allowed_methods(Some(converted_257));
     }
     if let Some(value) = dict_value(values, "allowed_origins")? {
-        let mut converted_261 = Vec::new();
+        let mut converted_261 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_262 in value.try_iter()? {
             let item_263 = item_result_262?;
             let converted_item_264: String = item_263.extract()?;
@@ -1537,7 +1547,8 @@ fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Co
         builder = builder.set_allowed_origins(Some(converted_261));
     }
     if let Some(value) = dict_value(values, "expose_headers")? {
-        let mut converted_265 = Vec::new();
+        let mut converted_265 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_266 in value.try_iter()? {
             let item_267 = item_result_266?;
             let converted_item_268: String = item_267.extract()?;
@@ -1627,7 +1638,8 @@ fn create_bucket_configuration_from_py(
         builder = builder.set_bucket(Some(converted_287));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_288 = Vec::new();
+        let mut converted_288 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_289 in value.try_iter()? {
             let item_290 = item_result_289?;
             let converted_item_291 = tag_from_py(&item_290)?;
@@ -1881,7 +1893,8 @@ fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Delet
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::Delete::builder();
     if let Some(value) = dict_value(values, "objects")? {
-        let mut converted_333 = Vec::new();
+        let mut converted_333 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_334 in value.try_iter()? {
             let item_335 = item_result_334?;
             let converted_item_336 = object_identifier_from_py(&item_335)?;
@@ -2589,7 +2602,8 @@ fn get_object_attributes_parts_from_py(
         builder = builder.set_is_truncated(Some(converted_433));
     }
     if let Some(value) = dict_value(values, "parts")? {
-        let mut converted_434 = Vec::new();
+        let mut converted_434 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_435 in value.try_iter()? {
             let item_436 = item_result_435?;
             let converted_item_437 = object_part_from_py(&item_436)?;
@@ -2886,7 +2900,8 @@ fn intelligent_tiering_and_operator_from_py(
         builder = builder.set_prefix(Some(converted_480));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_481 = Vec::new();
+        let mut converted_481 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_482 in value.try_iter()? {
             let item_483 = item_result_482?;
             let converted_item_484 = tag_from_py(&item_483)?;
@@ -2942,7 +2957,8 @@ fn intelligent_tiering_configuration_from_py(
         builder = builder.set_status(Some(converted_491));
     }
     if let Some(value) = dict_value(values, "tierings")? {
-        let mut converted_493 = Vec::new();
+        let mut converted_493 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_494 in value.try_iter()? {
             let item_495 = item_result_494?;
             let converted_item_496 = tiering_from_py(&item_495)?;
@@ -3054,7 +3070,8 @@ fn inventory_configuration_from_py(
         builder = builder.set_included_object_versions(Some(converted_513));
     }
     if let Some(value) = dict_value(values, "optional_fields")? {
-        let mut converted_515 = Vec::new();
+        let mut converted_515 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_516 in value.try_iter()? {
             let item_517 = item_result_516?;
             let enum_value_519: String = item_517.extract()?;
@@ -3605,7 +3622,8 @@ fn lambda_function_configuration_from_py(
         builder = builder.set_lambda_function_arn(Some(converted_595));
     }
     if let Some(value) = dict_value(values, "events")? {
-        let mut converted_596 = Vec::new();
+        let mut converted_596 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_597 in value.try_iter()? {
             let item_598 = item_result_597?;
             let enum_value_600: String = item_598.extract()?;
@@ -3728,7 +3746,8 @@ fn lifecycle_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::type
         builder = builder.set_status(Some(converted_619));
     }
     if let Some(value) = dict_value(values, "transitions")? {
-        let mut converted_621 = Vec::new();
+        let mut converted_621 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_622 in value.try_iter()? {
             let item_623 = item_result_622?;
             let converted_item_624 = transition_from_py(&item_623)?;
@@ -3737,7 +3756,8 @@ fn lifecycle_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::type
         builder = builder.set_transitions(Some(converted_621));
     }
     if let Some(value) = dict_value(values, "noncurrent_version_transitions")? {
-        let mut converted_625 = Vec::new();
+        let mut converted_625 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_626 in value.try_iter()? {
             let item_627 = item_result_626?;
             let converted_item_628 = noncurrent_version_transition_from_py(&item_627)?;
@@ -3836,7 +3856,8 @@ fn lifecycle_rule_and_operator_from_py(
         builder = builder.set_prefix(Some(converted_644));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_645 = Vec::new();
+        let mut converted_645 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_646 in value.try_iter()? {
             let item_647 = item_result_646?;
             let converted_item_648 = tag_from_py(&item_647)?;
@@ -4003,7 +4024,8 @@ fn logging_enabled_from_py(
         builder = builder.set_target_bucket(Some(converted_672));
     }
     if let Some(value) = dict_value(values, "target_grants")? {
-        let mut converted_673 = Vec::new();
+        let mut converted_673 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_674 in value.try_iter()? {
             let item_675 = item_result_674?;
             let converted_item_676 = target_grant_from_py(&item_675)?;
@@ -4316,7 +4338,8 @@ fn metrics_and_operator_from_py(
         builder = builder.set_prefix(Some(converted_717));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_718 = Vec::new();
+        let mut converted_718 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_719 in value.try_iter()? {
             let item_720 = item_result_719?;
             let converted_item_721 = tag_from_py(&item_720)?;
@@ -4647,7 +4670,8 @@ fn notification_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::NotificationConfiguration::builder();
     if let Some(value) = dict_value(values, "topic_configurations")? {
-        let mut converted_771 = Vec::new();
+        let mut converted_771 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_772 in value.try_iter()? {
             let item_773 = item_result_772?;
             let converted_item_774 = topic_configuration_from_py(&item_773)?;
@@ -4656,7 +4680,8 @@ fn notification_configuration_from_py(
         builder = builder.set_topic_configurations(Some(converted_771));
     }
     if let Some(value) = dict_value(values, "queue_configurations")? {
-        let mut converted_775 = Vec::new();
+        let mut converted_775 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_776 in value.try_iter()? {
             let item_777 = item_result_776?;
             let converted_item_778 = queue_configuration_from_py(&item_777)?;
@@ -4665,7 +4690,8 @@ fn notification_configuration_from_py(
         builder = builder.set_queue_configurations(Some(converted_775));
     }
     if let Some(value) = dict_value(values, "lambda_function_configurations")? {
-        let mut converted_779 = Vec::new();
+        let mut converted_779 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_780 in value.try_iter()? {
             let item_781 = item_result_780?;
             let converted_item_782 = lambda_function_configuration_from_py(&item_781)?;
@@ -4774,7 +4800,8 @@ fn object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Objec
         builder = builder.set_e_tag(Some(converted_799));
     }
     if let Some(value) = dict_value(values, "checksum_algorithm")? {
-        let mut converted_800 = Vec::new();
+        let mut converted_800 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_801 in value.try_iter()? {
             let item_802 = item_result_801?;
             let enum_value_804: String = item_802.extract()?;
@@ -5269,7 +5296,8 @@ fn object_version_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::type
         builder = builder.set_e_tag(Some(converted_881));
     }
     if let Some(value) = dict_value(values, "checksum_algorithm")? {
-        let mut converted_882 = Vec::new();
+        let mut converted_882 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_883 in value.try_iter()? {
             let item_884 = item_result_883?;
             let enum_value_886: String = item_884.extract()?;
@@ -5504,7 +5532,8 @@ fn ownership_controls_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::OwnershipControls::builder();
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_922 = Vec::new();
+        let mut converted_922 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_923 in value.try_iter()? {
             let item_924 = item_result_923?;
             let converted_item_925 = ownership_controls_rule_from_py(&item_924)?;
@@ -5913,7 +5942,8 @@ fn queue_configuration_from_py(
         builder = builder.set_queue_arn(Some(converted_983));
     }
     if let Some(value) = dict_value(values, "events")? {
-        let mut converted_984 = Vec::new();
+        let mut converted_984 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_985 in value.try_iter()? {
             let item_986 = item_result_985?;
             let enum_value_988: String = item_986.extract()?;
@@ -6153,7 +6183,8 @@ fn replication_configuration_from_py(
         builder = builder.set_role(Some(converted_1023));
     }
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_1024 = Vec::new();
+        let mut converted_1024 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1025 in value.try_iter()? {
             let item_1026 = item_result_1025?;
             let converted_item_1027 = replication_rule_from_py(&item_1026)?;
@@ -6299,7 +6330,8 @@ fn replication_rule_and_operator_from_py(
         builder = builder.set_prefix(Some(converted_1051));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1052 = Vec::new();
+        let mut converted_1052 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1053 in value.try_iter()? {
             let item_1054 = item_result_1053?;
             let converted_item_1055 = tag_from_py(&item_1054)?;
@@ -6659,7 +6691,8 @@ fn s3_key_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::S3KeyFilter::builder();
     if let Some(value) = dict_value(values, "filter_rules")? {
-        let mut converted_1103 = Vec::new();
+        let mut converted_1103 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1104 in value.try_iter()? {
             let item_1105 = item_result_1104?;
             let converted_item_1106 = filter_rule_from_py(&item_1105)?;
@@ -6710,7 +6743,8 @@ fn s3_location_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
         builder = builder.set_canned_acl(Some(converted_1113));
     }
     if let Some(value) = dict_value(values, "access_control_list")? {
-        let mut converted_1115 = Vec::new();
+        let mut converted_1115 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1116 in value.try_iter()? {
             let item_1117 = item_result_1116?;
             let converted_item_1118 = grant_from_py(&item_1117)?;
@@ -6723,7 +6757,8 @@ fn s3_location_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::
         builder = builder.set_tagging(Some(converted_1119));
     }
     if let Some(value) = dict_value(values, "user_metadata")? {
-        let mut converted_1120 = Vec::new();
+        let mut converted_1120 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1121 in value.try_iter()? {
             let item_1122 = item_result_1121?;
             let converted_item_1123 = metadata_entry_from_py(&item_1122)?;
@@ -7067,7 +7102,8 @@ fn server_side_encryption_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::ServerSideEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_1178 = Vec::new();
+        let mut converted_1178 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1179 in value.try_iter()? {
             let item_1180 = item_result_1179?;
             let converted_item_1181 = server_side_encryption_rule_from_py(&item_1180)?;
@@ -7481,7 +7517,8 @@ fn tagging_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Tagg
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_s3::types::Tagging::builder();
     if let Some(value) = dict_value(values, "tag_set")? {
-        let mut converted_1232 = Vec::new();
+        let mut converted_1232 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1233 in value.try_iter()? {
             let item_1234 = item_result_1233?;
             let converted_item_1235 = tag_from_py(&item_1234)?;
@@ -7619,7 +7656,8 @@ fn topic_configuration_from_py(
         builder = builder.set_topic_arn(Some(converted_1254));
     }
     if let Some(value) = dict_value(values, "events")? {
-        let mut converted_1255 = Vec::new();
+        let mut converted_1255 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1256 in value.try_iter()? {
             let item_1257 = item_result_1256?;
             let enum_value_1259: String = item_1257.extract()?;
@@ -7771,7 +7809,8 @@ fn website_configuration_from_py(
         builder = builder.set_redirect_all_requests_to(Some(converted_1283));
     }
     if let Some(value) = dict_value(values, "routing_rules")? {
-        let mut converted_1284 = Vec::new();
+        let mut converted_1284 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1285 in value.try_iter()? {
             let item_1286 = item_result_1285?;
             let converted_item_1287 = routing_rule_from_py(&item_1286)?;
@@ -21401,7 +21440,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AbortMultipartUpload"))
             })?;
-            Python::attach(|py| Py::new(py, PyAbortMultipartUploadOutput { inner: output }))
+            Ok(PyAbortMultipartUploadOutput { inner: output })
         })
     }
 
@@ -21589,7 +21628,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CompleteMultipartUpload"))
             })?;
-            Python::attach(|py| Py::new(py, PyCompleteMultipartUploadOutput { inner: output }))
+            Ok(PyCompleteMultipartUploadOutput { inner: output })
         })
     }
 
@@ -21753,7 +21792,7 @@ impl S3Client {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_1354 = value.cast::<PyDict>()?;
-            let mut converted_1353 = HashMap::new();
+            let mut converted_1353 = HashMap::with_capacity(mapping_1354.len());
             for (key_1355, value_1356) in mapping_1354.iter() {
                 let converted_key_1357: String = key_1355.extract()?;
                 let converted_value_1358: String = value_1356.extract()?;
@@ -22012,7 +22051,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CopyObject")))?;
-            Python::attach(|py| Py::new(py, PyCopyObjectOutput { inner: output }))
+            Ok(PyCopyObjectOutput { inner: output })
         })
     }
 
@@ -22114,7 +22153,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBucket"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateBucketOutput { inner: output }))
+            Ok(PyCreateBucketOutput { inner: output })
         })
     }
 
@@ -22335,7 +22374,7 @@ impl S3Client {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_1436 = value.cast::<PyDict>()?;
-            let mut converted_1435 = HashMap::new();
+            let mut converted_1435 = HashMap::with_capacity(mapping_1436.len());
             for (key_1437, value_1438) in mapping_1436.iter() {
                 let converted_key_1439: String = key_1437.extract()?;
                 let converted_value_1440: String = value_1438.extract()?;
@@ -22541,7 +22580,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultipartUpload"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateMultipartUploadOutput { inner: output }))
+            Ok(PyCreateMultipartUploadOutput { inner: output })
         })
     }
 
@@ -22608,7 +22647,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSessionOutput { inner: output }))
+            Ok(PyCreateSessionOutput { inner: output })
         })
     }
 
@@ -23254,7 +23293,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObject"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteObjectOutput { inner: output }))
+            Ok(PyDeleteObjectOutput { inner: output })
         })
     }
 
@@ -23324,7 +23363,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectAnnotation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteObjectAnnotationOutput { inner: output }))
+            Ok(PyDeleteObjectAnnotationOutput { inner: output })
         })
     }
 
@@ -23372,7 +23411,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectTagging"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteObjectTaggingOutput { inner: output }))
+            Ok(PyDeleteObjectTaggingOutput { inner: output })
         })
     }
 
@@ -23446,7 +23485,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjects"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteObjectsOutput { inner: output }))
+            Ok(PyDeleteObjectsOutput { inner: output })
         })
     }
 
@@ -23514,7 +23553,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAbac"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketAbacOutput { inner: output }))
+            Ok(PyGetBucketAbacOutput { inner: output })
         })
     }
 
@@ -23556,12 +23595,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAccelerateConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketAccelerateConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketAccelerateConfigurationOutput { inner: output })
         })
     }
 
@@ -23595,7 +23629,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAcl"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketAclOutput { inner: output }))
+            Ok(PyGetBucketAclOutput { inner: output })
         })
     }
 
@@ -23636,12 +23670,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAnalyticsConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketAnalyticsConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketAnalyticsConfigurationOutput { inner: output })
         })
     }
 
@@ -23675,7 +23704,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketCors"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketCorsOutput { inner: output }))
+            Ok(PyGetBucketCorsOutput { inner: output })
         })
     }
 
@@ -23709,7 +23738,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketEncryption"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketEncryptionOutput { inner: output }))
+            Ok(PyGetBucketEncryptionOutput { inner: output })
         })
     }
 
@@ -23752,12 +23781,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketIntelligentTieringConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketIntelligentTieringConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketIntelligentTieringConfigurationOutput { inner: output })
         })
     }
 
@@ -23798,12 +23822,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketInventoryConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketInventoryConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketInventoryConfigurationOutput { inner: output })
         })
     }
 
@@ -23837,12 +23856,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLifecycleConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketLifecycleConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
@@ -23876,7 +23890,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLocation"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketLocationOutput { inner: output }))
+            Ok(PyGetBucketLocationOutput { inner: output })
         })
     }
 
@@ -23910,7 +23924,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLogging"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketLoggingOutput { inner: output }))
+            Ok(PyGetBucketLoggingOutput { inner: output })
         })
     }
 
@@ -23944,9 +23958,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetadataConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetBucketMetadataConfigurationOutput { inner: output })
-            })
+            Ok(PyGetBucketMetadataConfigurationOutput { inner: output })
         })
     }
 
@@ -23982,12 +23994,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketMetadataTableConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketMetadataTableConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketMetadataTableConfigurationOutput { inner: output })
         })
     }
 
@@ -24028,9 +24035,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetricsConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetBucketMetricsConfigurationOutput { inner: output })
-            })
+            Ok(PyGetBucketMetricsConfigurationOutput { inner: output })
         })
     }
 
@@ -24066,12 +24071,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketNotificationConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetBucketNotificationConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetBucketNotificationConfigurationOutput { inner: output })
         })
     }
 
@@ -24105,7 +24105,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketOwnershipControls"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketOwnershipControlsOutput { inner: output }))
+            Ok(PyGetBucketOwnershipControlsOutput { inner: output })
         })
     }
 
@@ -24139,7 +24139,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketPolicyOutput { inner: output }))
+            Ok(PyGetBucketPolicyOutput { inner: output })
         })
     }
 
@@ -24173,7 +24173,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicyStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketPolicyStatusOutput { inner: output }))
+            Ok(PyGetBucketPolicyStatusOutput { inner: output })
         })
     }
 
@@ -24207,7 +24207,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketReplication"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketReplicationOutput { inner: output }))
+            Ok(PyGetBucketReplicationOutput { inner: output })
         })
     }
 
@@ -24241,7 +24241,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketRequestPayment"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketRequestPaymentOutput { inner: output }))
+            Ok(PyGetBucketRequestPaymentOutput { inner: output })
         })
     }
 
@@ -24275,7 +24275,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketTagging"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketTaggingOutput { inner: output }))
+            Ok(PyGetBucketTaggingOutput { inner: output })
         })
     }
 
@@ -24309,7 +24309,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketVersioning"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketVersioningOutput { inner: output }))
+            Ok(PyGetBucketVersioningOutput { inner: output })
         })
     }
 
@@ -24343,7 +24343,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketWebsite"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBucketWebsiteOutput { inner: output }))
+            Ok(PyGetBucketWebsiteOutput { inner: output })
         })
     }
 
@@ -24603,7 +24603,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAcl"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectAclOutput { inner: output }))
+            Ok(PyGetObjectAclOutput { inner: output })
         })
     }
 
@@ -24762,7 +24762,8 @@ impl S3Client {
             };
         let object_attributes_value = if let Some(value) = dict_value(params, "object_attributes")?
         {
-            let mut converted_1651 = Vec::new();
+            let mut converted_1651 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1652 in value.try_iter()? {
                 let item_1653 = item_result_1652?;
                 let enum_value_1655: String = item_1653.extract()?;
@@ -24793,7 +24794,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAttributes"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectAttributesOutput { inner: output }))
+            Ok(PyGetObjectAttributesOutput { inner: output })
         })
     }
 
@@ -24849,7 +24850,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLegalHold"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectLegalHoldOutput { inner: output }))
+            Ok(PyGetObjectLegalHoldOutput { inner: output })
         })
     }
 
@@ -24883,7 +24884,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLockConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectLockConfigurationOutput { inner: output }))
+            Ok(PyGetObjectLockConfigurationOutput { inner: output })
         })
     }
 
@@ -24939,7 +24940,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectRetention"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectRetentionOutput { inner: output }))
+            Ok(PyGetObjectRetentionOutput { inner: output })
         })
     }
 
@@ -24995,7 +24996,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTagging"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetObjectTaggingOutput { inner: output }))
+            Ok(PyGetObjectTaggingOutput { inner: output })
         })
     }
 
@@ -25088,7 +25089,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicAccessBlock"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPublicAccessBlockOutput { inner: output }))
+            Ok(PyGetPublicAccessBlockOutput { inner: output })
         })
     }
 
@@ -25123,7 +25124,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadBucket")))?;
-            Python::attach(|py| Py::new(py, PyHeadBucketOutput { inner: output }))
+            Ok(PyHeadBucketOutput { inner: output })
         })
     }
 
@@ -25317,7 +25318,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadObject")))?;
-            Python::attach(|py| Py::new(py, PyHeadObjectOutput { inner: output }))
+            Ok(PyHeadObjectOutput { inner: output })
         })
     }
 
@@ -25361,12 +25362,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketAnalyticsConfigurations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListBucketAnalyticsConfigurationsOutput { inner: output },
-                )
-            })
+            Ok(PyListBucketAnalyticsConfigurationsOutput { inner: output })
         })
     }
 
@@ -25410,12 +25406,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketIntelligentTieringConfigurations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListBucketIntelligentTieringConfigurationsOutput { inner: output },
-                )
-            })
+            Ok(PyListBucketIntelligentTieringConfigurationsOutput { inner: output })
         })
     }
 
@@ -25459,12 +25450,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketInventoryConfigurations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListBucketInventoryConfigurationsOutput { inner: output },
-                )
-            })
+            Ok(PyListBucketInventoryConfigurationsOutput { inner: output })
         })
     }
 
@@ -25506,12 +25492,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBucketMetricsConfigurations"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListBucketMetricsConfigurationsOutput { inner: output },
-                )
-            })
+            Ok(PyListBucketMetricsConfigurationsOutput { inner: output })
         })
     }
 
@@ -25560,7 +25541,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBuckets")))?;
-            Python::attach(|py| Py::new(py, PyListBucketsOutput { inner: output }))
+            Ok(PyListBucketsOutput { inner: output })
         })
     }
 
@@ -25595,7 +25576,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDirectoryBuckets"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDirectoryBucketsOutput { inner: output }))
+            Ok(PyListDirectoryBucketsOutput { inner: output })
         })
     }
 
@@ -25680,7 +25661,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultipartUploads"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMultipartUploadsOutput { inner: output }))
+            Ok(PyListMultipartUploadsOutput { inner: output })
         })
     }
 
@@ -25760,7 +25741,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectAnnotations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListObjectAnnotationsOutput { inner: output }))
+            Ok(PyListObjectAnnotationsOutput { inner: output })
         })
     }
 
@@ -25831,7 +25812,8 @@ impl S3Client {
         };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1760 = Vec::new();
+                let mut converted_1760 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1761 in value.try_iter()? {
                     let item_1762 = item_result_1761?;
                     let enum_value_1764: String = item_1762.extract()?;
@@ -25861,7 +25843,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListObjectVersionsOutput { inner: output }))
+            Ok(PyListObjectVersionsOutput { inner: output })
         })
     }
 
@@ -25925,7 +25907,8 @@ impl S3Client {
             };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1775 = Vec::new();
+                let mut converted_1775 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1776 in value.try_iter()? {
                     let item_1777 = item_result_1776?;
                     let enum_value_1779: String = item_1777.extract()?;
@@ -25955,7 +25938,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListObjects")))?;
-            Python::attach(|py| Py::new(py, PyListObjectsOutput { inner: output }))
+            Ok(PyListObjectsOutput { inner: output })
         })
     }
 
@@ -26032,7 +26015,8 @@ impl S3Client {
             };
         let optional_object_attributes_value =
             if let Some(value) = dict_value(params, "optional_object_attributes")? {
-                let mut converted_1792 = Vec::new();
+                let mut converted_1792 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1793 in value.try_iter()? {
                     let item_1794 = item_result_1793?;
                     let enum_value_1796: String = item_1794.extract()?;
@@ -26063,7 +26047,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectsV2"))
             })?;
-            Python::attach(|py| Py::new(py, PyListObjectsV2Output { inner: output }))
+            Ok(PyListObjectsV2Output { inner: output })
         })
     }
 
@@ -26158,7 +26142,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListParts")))?;
-            Python::attach(|py| Py::new(py, PyListPartsOutput { inner: output }))
+            Ok(PyListPartsOutput { inner: output })
         })
     }
 
@@ -26705,12 +26689,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLifecycleConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutBucketLifecycleConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyPutBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
@@ -27512,7 +27491,7 @@ impl S3Client {
             };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_1957 = value.cast::<PyDict>()?;
-            let mut converted_1956 = HashMap::new();
+            let mut converted_1956 = HashMap::with_capacity(mapping_1957.len());
             for (key_1958, value_1959) in mapping_1957.iter() {
                 let converted_key_1960: String = key_1958.extract()?;
                 let converted_value_1961: String = value_1959.extract()?;
@@ -27718,7 +27697,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutObject")))?;
-            Python::attach(|py| Py::new(py, PyPutObjectOutput { inner: output }))
+            Ok(PyPutObjectOutput { inner: output })
         })
     }
 
@@ -27843,7 +27822,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAcl"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectAclOutput { inner: output }))
+            Ok(PyPutObjectAclOutput { inner: output })
         })
     }
 
@@ -28012,7 +27991,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAnnotation"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectAnnotationOutput { inner: output }))
+            Ok(PyPutObjectAnnotationOutput { inner: output })
         })
     }
 
@@ -28092,7 +28071,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLegalHold"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectLegalHoldOutput { inner: output }))
+            Ok(PyPutObjectLegalHoldOutput { inner: output })
         })
     }
 
@@ -28166,7 +28145,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLockConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectLockConfigurationOutput { inner: output }))
+            Ok(PyPutObjectLockConfigurationOutput { inner: output })
         })
     }
 
@@ -28254,7 +28233,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectRetention"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectRetentionOutput { inner: output }))
+            Ok(PyPutObjectRetentionOutput { inner: output })
         })
     }
 
@@ -28334,7 +28313,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectTagging"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutObjectTaggingOutput { inner: output }))
+            Ok(PyPutObjectTaggingOutput { inner: output })
         })
     }
 
@@ -28523,7 +28502,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RenameObject"))
             })?;
-            Python::attach(|py| Py::new(py, PyRenameObjectOutput { inner: output }))
+            Ok(PyRenameObjectOutput { inner: output })
         })
     }
 
@@ -28596,7 +28575,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreObject"))
             })?;
-            Python::attach(|py| Py::new(py, PyRestoreObjectOutput { inner: output }))
+            Ok(PyRestoreObjectOutput { inner: output })
         })
     }
 
@@ -28988,7 +28967,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateObjectEncryption"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateObjectEncryptionResponse { inner: output }))
+            Ok(PyUpdateObjectEncryptionResponse { inner: output })
         })
     }
 
@@ -29180,7 +29159,7 @@ impl S3Client {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UploadPart")))?;
-            Python::attach(|py| Py::new(py, PyUploadPartOutput { inner: output }))
+            Ok(PyUploadPartOutput { inner: output })
         })
     }
 
@@ -29355,7 +29334,7 @@ impl S3Client {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UploadPartCopy"))
             })?;
-            Python::attach(|py| Py::new(py, PyUploadPartCopyOutput { inner: output }))
+            Ok(PyUploadPartCopyOutput { inner: output })
         })
     }
 
@@ -29563,7 +29542,7 @@ impl S3Client {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_2221 = value.cast::<PyDict>()?;
-            let mut converted_2220 = HashMap::new();
+            let mut converted_2220 = HashMap::with_capacity(mapping_2221.len());
             for (key_2222, value_2223) in mapping_2221.iter() {
                 let converted_key_2224: String = key_2222.extract()?;
                 let converted_value_2225: String = value_2223.extract()?;

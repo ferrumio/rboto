@@ -204,7 +204,8 @@ fn agent_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent::typ
         builder = builder.set_prepared_at(Some(converted_38));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_40 = Vec::new();
+        let mut converted_40 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_41 in value.try_iter()? {
             let item_42 = item_result_41?;
             let converted_item_43: String = item_42.extract()?;
@@ -213,7 +214,8 @@ fn agent_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent::typ
         builder = builder.set_failure_reasons(Some(converted_40));
     }
     if let Some(value) = dict_value(values, "recommended_actions")? {
-        let mut converted_44 = Vec::new();
+        let mut converted_44 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_45 in value.try_iter()? {
             let item_46 = item_result_45?;
             let converted_item_47: String = item_46.extract()?;
@@ -418,7 +420,7 @@ fn agent_action_group_from_py(
     }
     if let Some(value) = dict_value(values, "parent_action_group_signature_params")? {
         let mapping_93 = value.cast::<PyDict>()?;
-        let mut converted_92 = HashMap::new();
+        let mut converted_92 = HashMap::with_capacity(mapping_93.len());
         for (key_94, value_95) in mapping_93.iter() {
             let converted_key_96: String = key_94.extract()?;
             let converted_value_97: String = value_95.extract()?;
@@ -549,7 +551,8 @@ fn agent_alias_from_py(
         builder = builder.set_description(Some(converted_126));
     }
     if let Some(value) = dict_value(values, "routing_configuration")? {
-        let mut converted_127 = Vec::new();
+        let mut converted_127 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_128 in value.try_iter()? {
             let item_129 = item_result_128?;
             let converted_item_130 =
@@ -577,7 +580,8 @@ fn agent_alias_from_py(
         builder = builder.set_updated_at(Some(converted_133));
     }
     if let Some(value) = dict_value(values, "agent_alias_history_events")? {
-        let mut converted_135 = Vec::new();
+        let mut converted_135 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_136 in value.try_iter()? {
             let item_137 = item_result_136?;
             let converted_item_138 = agent_alias_history_event_from_py(&item_137)?;
@@ -592,7 +596,8 @@ fn agent_alias_from_py(
         builder = builder.set_agent_alias_status(Some(converted_139));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_141 = Vec::new();
+        let mut converted_141 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_142 in value.try_iter()? {
             let item_143 = item_result_142?;
             let converted_item_144: String = item_143.extract()?;
@@ -686,7 +691,8 @@ fn agent_alias_history_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::AgentAliasHistoryEvent::builder();
     if let Some(value) = dict_value(values, "routing_configuration")? {
-        let mut converted_166 = Vec::new();
+        let mut converted_166 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_167 in value.try_iter()? {
             let item_168 = item_result_167?;
             let converted_item_169 =
@@ -803,7 +809,8 @@ fn agent_alias_summary_from_py(
         builder = builder.set_description(Some(converted_185));
     }
     if let Some(value) = dict_value(values, "routing_configuration")? {
-        let mut converted_186 = Vec::new();
+        let mut converted_186 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_187 in value.try_iter()? {
             let item_188 = item_result_187?;
             let converted_item_189 =
@@ -1405,7 +1412,8 @@ fn agent_version_from_py(
         builder = builder.set_updated_at(Some(converted_313));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_315 = Vec::new();
+        let mut converted_315 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_316 in value.try_iter()? {
             let item_317 = item_result_316?;
             let converted_item_318: String = item_317.extract()?;
@@ -1414,7 +1422,8 @@ fn agent_version_from_py(
         builder = builder.set_failure_reasons(Some(converted_315));
     }
     if let Some(value) = dict_value(values, "recommended_actions")? {
-        let mut converted_319 = Vec::new();
+        let mut converted_319 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_320 in value.try_iter()? {
             let item_321 = item_result_320?;
             let converted_item_322: String = item_321.extract()?;
@@ -1817,7 +1826,8 @@ fn bedrock_embedding_model_configuration_from_py(
         builder = builder.set_embedding_data_type(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "audio")? {
-        let mut converted_385 = Vec::new();
+        let mut converted_385 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_386 in value.try_iter()? {
             let item_387 = item_result_386?;
             let converted_item_388 = audio_configuration_from_py(&item_387)?;
@@ -1826,7 +1836,8 @@ fn bedrock_embedding_model_configuration_from_py(
         builder = builder.set_audio(Some(converted_385));
     }
     if let Some(value) = dict_value(values, "video")? {
-        let mut converted_389 = Vec::new();
+        let mut converted_389 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_390 in value.try_iter()? {
             let item_391 = item_result_390?;
             let converted_item_392 = video_configuration_from_py(&item_391)?;
@@ -2034,7 +2045,8 @@ fn chat_prompt_template_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::ChatPromptTemplateConfiguration::builder();
     if let Some(value) = dict_value(values, "messages")? {
-        let mut converted_422 = Vec::new();
+        let mut converted_422 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_423 in value.try_iter()? {
             let item_424 = item_result_423?;
             let converted_item_425 = message_from_py(&item_424)?;
@@ -2043,7 +2055,8 @@ fn chat_prompt_template_configuration_from_py(
         builder = builder.set_messages(Some(converted_422));
     }
     if let Some(value) = dict_value(values, "system")? {
-        let mut converted_426 = Vec::new();
+        let mut converted_426 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_427 in value.try_iter()? {
             let item_428 = item_result_427?;
             let converted_item_429 = system_content_block_from_py(&item_428)?;
@@ -2052,7 +2065,8 @@ fn chat_prompt_template_configuration_from_py(
         builder = builder.set_system(Some(converted_426));
     }
     if let Some(value) = dict_value(values, "input_variables")? {
-        let mut converted_430 = Vec::new();
+        let mut converted_430 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_431 in value.try_iter()? {
             let item_432 = item_result_431?;
             let converted_item_433 = prompt_input_variable_from_py(&item_432)?;
@@ -2190,7 +2204,8 @@ fn condition_flow_node_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::ConditionFlowNodeConfiguration::builder();
     if let Some(value) = dict_value(values, "conditions")? {
-        let mut converted_454 = Vec::new();
+        let mut converted_454 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_455 in value.try_iter()? {
             let item_456 = item_result_455?;
             let converted_item_457 = flow_condition_from_py(&item_456)?;
@@ -2626,7 +2641,8 @@ fn custom_transformation_configuration_from_py(
         builder = builder.set_intermediate_storage(Some(converted_512));
     }
     if let Some(value) = dict_value(values, "transformations")? {
-        let mut converted_513 = Vec::new();
+        let mut converted_513 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_514 in value.try_iter()? {
             let item_515 = item_result_514?;
             let converted_item_516 = transformation_from_py(&item_515)?;
@@ -2764,7 +2780,8 @@ fn data_source_from_py(
         builder = builder.set_updated_at(Some(converted_536));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_538 = Vec::new();
+        let mut converted_538 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_539 in value.try_iter()? {
             let item_540 = item_result_539?;
             let converted_item_541: String = item_540.extract()?;
@@ -3217,7 +3234,8 @@ fn document_metadata_from_py(
         builder = builder.set_type(Some(converted_616));
     }
     if let Some(value) = dict_value(values, "inline_attributes")? {
-        let mut converted_618 = Vec::new();
+        let mut converted_618 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_619 in value.try_iter()? {
             let item_620 = item_result_619?;
             let converted_item_621 = metadata_attribute_from_py(&item_620)?;
@@ -3230,7 +3248,8 @@ fn document_metadata_from_py(
         builder = builder.set_s3_location(Some(converted_622));
     }
     if let Some(value) = dict_value(values, "access_control_list")? {
-        let mut converted_623 = Vec::new();
+        let mut converted_623 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_624 in value.try_iter()? {
             let item_625 = item_result_624?;
             let converted_item_626 = document_access_control_entry_from_py(&item_625)?;
@@ -3525,7 +3544,8 @@ fn flow_alias_summary_from_py(
         builder = builder.set_description(Some(converted_662));
     }
     if let Some(value) = dict_value(values, "routing_configuration")? {
-        let mut converted_663 = Vec::new();
+        let mut converted_663 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_664 in value.try_iter()? {
             let item_665 = item_result_664?;
             let converted_item_666 = flow_alias_routing_configuration_list_item_from_py(&item_665)?;
@@ -3803,7 +3823,8 @@ fn flow_definition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::FlowDefinition::builder();
     if let Some(value) = dict_value(values, "nodes")? {
-        let mut converted_711 = Vec::new();
+        let mut converted_711 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_712 in value.try_iter()? {
             let item_713 = item_result_712?;
             let converted_item_714 = flow_node_from_py(&item_713)?;
@@ -3812,7 +3833,8 @@ fn flow_definition_from_py(
         builder = builder.set_nodes(Some(converted_711));
     }
     if let Some(value) = dict_value(values, "connections")? {
-        let mut converted_715 = Vec::new();
+        let mut converted_715 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_716 in value.try_iter()? {
             let item_717 = item_result_716?;
             let converted_item_718 = flow_connection_from_py(&item_717)?;
@@ -3871,7 +3893,8 @@ fn flow_node_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent:
         builder = builder.set_configuration(Some(converted_728));
     }
     if let Some(value) = dict_value(values, "inputs")? {
-        let mut converted_729 = Vec::new();
+        let mut converted_729 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_730 in value.try_iter()? {
             let item_731 = item_result_730?;
             let converted_item_732 = flow_node_input_from_py(&item_731)?;
@@ -3880,7 +3903,8 @@ fn flow_node_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent:
         builder = builder.set_inputs(Some(converted_729));
     }
     if let Some(value) = dict_value(values, "outputs")? {
-        let mut converted_733 = Vec::new();
+        let mut converted_733 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_734 in value.try_iter()? {
             let item_735 = item_result_734?;
             let converted_item_736 = flow_node_output_from_py(&item_735)?;
@@ -4814,7 +4838,7 @@ fn function_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent::
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_903 = value.cast::<PyDict>()?;
-        let mut converted_902 = HashMap::new();
+        let mut converted_902 = HashMap::with_capacity(mapping_903.len());
         for (key_904, value_905) in mapping_903.iter() {
             let converted_key_906: String = key_904.extract()?;
             let converted_value_907 = parameter_detail_from_py(&value_905)?;
@@ -4875,7 +4899,8 @@ fn function_schema_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "functions")? {
-        let mut converted_918 = Vec::new();
+        let mut converted_918 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_919 in value.try_iter()? {
             let item_920 = item_result_919?;
             let converted_item_921 = function_from_py(&item_920)?;
@@ -4954,7 +4979,8 @@ fn hierarchical_chunking_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::HierarchicalChunkingConfiguration::builder();
     if let Some(value) = dict_value(values, "level_configurations")? {
-        let mut converted_929 = Vec::new();
+        let mut converted_929 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_930 in value.try_iter()? {
             let item_931 = item_result_930?;
             let converted_item_932 = hierarchical_chunking_level_configuration_from_py(&item_931)?;
@@ -5086,7 +5112,8 @@ fn inference_configuration_from_py(
         builder = builder.set_maximum_length(Some(converted_948));
     }
     if let Some(value) = dict_value(values, "stop_sequences")? {
-        let mut converted_949 = Vec::new();
+        let mut converted_949 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_950 in value.try_iter()? {
             let item_951 = item_result_950?;
             let converted_item_952: String = item_951.extract()?;
@@ -5172,7 +5199,8 @@ fn ingestion_job_from_py(
         builder = builder.set_statistics(Some(converted_966));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_967 = Vec::new();
+        let mut converted_967 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_968 in value.try_iter()? {
             let item_969 = item_result_968?;
             let converted_item_970: String = item_969.extract()?;
@@ -5279,7 +5307,8 @@ fn ingestion_job_filter_from_py(
         builder = builder.set_operator(Some(converted_991));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_993 = Vec::new();
+        let mut converted_993 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_994 in value.try_iter()? {
             let item_995 = item_result_994?;
             let converted_item_996: String = item_995.extract()?;
@@ -5779,7 +5808,8 @@ fn knowledge_base_from_py(
         builder = builder.set_updated_at(Some(converted_1079));
     }
     if let Some(value) = dict_value(values, "failure_reasons")? {
-        let mut converted_1081 = Vec::new();
+        let mut converted_1081 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1082 in value.try_iter()? {
             let item_1083 = item_result_1082?;
             let converted_item_1084: String = item_1083.extract()?;
@@ -6126,7 +6156,7 @@ fn knowledge_base_orchestration_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "additional_model_request_fields")? {
         let mapping_1146 = value.cast::<PyDict>()?;
-        let mut converted_1145 = HashMap::new();
+        let mut converted_1145 = HashMap::with_capacity(mapping_1146.len());
         for (key_1147, value_1148) in mapping_1146.iter() {
             let converted_key_1149: String = key_1147.extract()?;
             let converted_value_1150 = rboto_core::document_from_py(&value_1148)?;
@@ -6694,7 +6724,8 @@ fn memory_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::MemoryConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled_memory_types")? {
-        let mut converted_1230 = Vec::new();
+        let mut converted_1230 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1231 in value.try_iter()? {
             let item_1232 = item_result_1231?;
             let enum_value_1234: String = item_1232.extract()?;
@@ -6750,7 +6781,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagent::t
         builder = builder.set_role(Some(converted_1242));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1244 = Vec::new();
+        let mut converted_1244 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1245 in value.try_iter()? {
             let item_1246 = item_result_1245?;
             let converted_item_1247 = content_block_from_py(&item_1246)?;
@@ -6838,7 +6870,8 @@ fn metadata_attribute_value_from_py(
         builder = builder.set_string_value(Some(converted_1260));
     }
     if let Some(value) = dict_value(values, "string_list_value")? {
-        let mut converted_1261 = Vec::new();
+        let mut converted_1261 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1262 in value.try_iter()? {
             let item_1263 = item_result_1262?;
             let converted_item_1264: String = item_1263.extract()?;
@@ -7844,7 +7877,8 @@ fn pattern_object_filter_from_py(
         builder = builder.set_object_type(Some(converted_1393));
     }
     if let Some(value) = dict_value(values, "inclusion_filters")? {
-        let mut converted_1394 = Vec::new();
+        let mut converted_1394 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1395 in value.try_iter()? {
             let item_1396 = item_result_1395?;
             let converted_item_1397: String = item_1396.extract()?;
@@ -7853,7 +7887,8 @@ fn pattern_object_filter_from_py(
         builder = builder.set_inclusion_filters(Some(converted_1394));
     }
     if let Some(value) = dict_value(values, "exclusion_filters")? {
-        let mut converted_1398 = Vec::new();
+        let mut converted_1398 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1399 in value.try_iter()? {
             let item_1400 = item_result_1399?;
             let converted_item_1401: String = item_1400.extract()?;
@@ -7904,7 +7939,8 @@ fn pattern_object_filter_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::PatternObjectFilterConfiguration::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_1409 = Vec::new();
+        let mut converted_1409 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1410 in value.try_iter()? {
             let item_1411 = item_result_1410?;
             let converted_item_1412 = pattern_object_filter_from_py(&item_1411)?;
@@ -8471,7 +8507,8 @@ fn prompt_model_inference_configuration_from_py(
         builder = builder.set_max_tokens(Some(converted_1486));
     }
     if let Some(value) = dict_value(values, "stop_sequences")? {
-        let mut converted_1487 = Vec::new();
+        let mut converted_1487 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1488 in value.try_iter()? {
             let item_1489 = item_result_1488?;
             let converted_item_1490: String = item_1489.extract()?;
@@ -8525,7 +8562,8 @@ fn prompt_override_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::PromptOverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "prompt_configurations")? {
-        let mut converted_1497 = Vec::new();
+        let mut converted_1497 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1498 in value.try_iter()? {
             let item_1499 = item_result_1498?;
             let converted_item_1500 = prompt_configuration_from_py(&item_1499)?;
@@ -8706,7 +8744,8 @@ fn prompt_variant_from_py(
         builder = builder.set_inference_configuration(Some(converted_1531));
     }
     if let Some(value) = dict_value(values, "metadata")? {
-        let mut converted_1532 = Vec::new();
+        let mut converted_1532 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1533 in value.try_iter()? {
             let item_1534 = item_result_1533?;
             let converted_item_1535 = prompt_metadata_entry_from_py(&item_1534)?;
@@ -8870,7 +8909,8 @@ fn query_generation_context_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::QueryGenerationContext::builder();
     if let Some(value) = dict_value(values, "tables")? {
-        let mut converted_1559 = Vec::new();
+        let mut converted_1559 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1560 in value.try_iter()? {
             let item_1561 = item_result_1560?;
             let converted_item_1562 = query_generation_table_from_py(&item_1561)?;
@@ -8879,7 +8919,8 @@ fn query_generation_context_from_py(
         builder = builder.set_tables(Some(converted_1559));
     }
     if let Some(value) = dict_value(values, "curated_queries")? {
-        let mut converted_1563 = Vec::new();
+        let mut converted_1563 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1564 in value.try_iter()? {
             let item_1565 = item_result_1564?;
             let converted_item_1566 = curated_query_from_py(&item_1565)?;
@@ -8940,7 +8981,8 @@ fn query_generation_table_from_py(
         builder = builder.set_inclusion(Some(converted_1575));
     }
     if let Some(value) = dict_value(values, "columns")? {
-        let mut converted_1577 = Vec::new();
+        let mut converted_1577 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1578 in value.try_iter()? {
             let item_1579 = item_result_1578?;
             let converted_item_1580 = query_generation_column_from_py(&item_1579)?;
@@ -9178,7 +9220,8 @@ fn redshift_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::RedshiftConfiguration::builder();
     if let Some(value) = dict_value(values, "storage_configurations")? {
-        let mut converted_1621 = Vec::new();
+        let mut converted_1621 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1622 in value.try_iter()? {
             let item_1623 = item_result_1622?;
             let converted_item_1624 =
@@ -9316,7 +9359,8 @@ fn redshift_query_engine_aws_data_catalog_storage_configuration_from_py(
         aws_sdk_bedrockagent::types::RedshiftQueryEngineAwsDataCatalogStorageConfiguration::builder(
         );
     if let Some(value) = dict_value(values, "table_names")? {
-        let mut converted_1643 = Vec::new();
+        let mut converted_1643 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1644 in value.try_iter()? {
             let item_1645 = item_result_1644?;
             let converted_item_1646: String = item_1645.extract()?;
@@ -9543,7 +9587,8 @@ fn reranking_metadata_selective_mode_configuration_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "fields_to_include")? {
-        let mut converted_1675 = Vec::new();
+        let mut converted_1675 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1676 in value.try_iter()? {
             let item_1677 = item_result_1676?;
             let converted_item_1678 = field_for_reranking_from_py(&item_1677)?;
@@ -9552,7 +9597,8 @@ fn reranking_metadata_selective_mode_configuration_from_py(
         return Ok(aws_sdk_bedrockagent::types::RerankingMetadataSelectiveModeConfiguration::FieldsToInclude(converted_1675));
     }
     if let Some(value) = dict_value(values, "fields_to_exclude")? {
-        let mut converted_1679 = Vec::new();
+        let mut converted_1679 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1680 in value.try_iter()? {
             let item_1681 = item_result_1680?;
             let converted_item_1682 = field_for_reranking_from_py(&item_1681)?;
@@ -9939,7 +9985,8 @@ fn s3_data_source_configuration_from_py(
         builder = builder.set_bucket_arn(Some(converted_1738));
     }
     if let Some(value) = dict_value(values, "inclusion_prefixes")? {
-        let mut converted_1739 = Vec::new();
+        let mut converted_1739 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1740 in value.try_iter()? {
             let item_1741 = item_result_1740?;
             let converted_item_1742: String = item_1741.extract()?;
@@ -10379,7 +10426,8 @@ fn share_point_source_configuration_from_py(
         builder = builder.set_domain(Some(converted_1793));
     }
     if let Some(value) = dict_value(values, "site_urls")? {
-        let mut converted_1794 = Vec::new();
+        let mut converted_1794 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1795 in value.try_iter()? {
             let item_1796 = item_result_1795?;
             let converted_item_1797: String = item_1796.extract()?;
@@ -10692,7 +10740,8 @@ fn supplemental_data_storage_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::SupplementalDataStorageConfiguration::builder();
     if let Some(value) = dict_value(values, "storage_locations")? {
-        let mut converted_1843 = Vec::new();
+        let mut converted_1843 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1844 in value.try_iter()? {
             let item_1845 = item_result_1844?;
             let converted_item_1846 = supplemental_data_storage_location_from_py(&item_1845)?;
@@ -10895,7 +10944,8 @@ fn text_prompt_template_configuration_from_py(
         builder = builder.set_cache_point(Some(converted_1868));
     }
     if let Some(value) = dict_value(values, "input_variables")? {
-        let mut converted_1869 = Vec::new();
+        let mut converted_1869 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1870 in value.try_iter()? {
             let item_1871 = item_result_1870?;
             let converted_item_1872 = prompt_input_variable_from_py(&item_1871)?;
@@ -11032,7 +11082,8 @@ fn tool_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::ToolConfiguration::builder();
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_1888 = Vec::new();
+        let mut converted_1888 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1889 in value.try_iter()? {
             let item_1890 = item_result_1889?;
             let converted_item_1891 = tool_from_py(&item_1890)?;
@@ -11533,7 +11584,8 @@ fn url_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagent::types::UrlConfiguration::builder();
     if let Some(value) = dict_value(values, "seed_urls")? {
-        let mut converted_1942 = Vec::new();
+        let mut converted_1942 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1943 in value.try_iter()? {
             let item_1944 = item_result_1943?;
             let converted_item_1945 = seed_url_from_py(&item_1944)?;
@@ -11752,7 +11804,7 @@ fn vector_search_bedrock_reranking_model_configuration_from_py(
     }
     if let Some(value) = dict_value(values, "additional_model_request_fields")? {
         let mapping_1975 = value.cast::<PyDict>()?;
-        let mut converted_1974 = HashMap::new();
+        let mut converted_1974 = HashMap::with_capacity(mapping_1975.len());
         for (key_1976, value_1977) in mapping_1975.iter() {
             let converted_key_1978: String = key_1976.extract()?;
             let converted_value_1979 = rboto_core::document_from_py(&value_1977)?;
@@ -11925,7 +11977,8 @@ fn vpc_configuration_from_py(
         builder = builder.set_vpc_id(Some(converted_2002));
     }
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_2003 = Vec::new();
+        let mut converted_2003 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2004 in value.try_iter()? {
             let item_2005 = item_result_2004?;
             let converted_item_2006: String = item_2005.extract()?;
@@ -12192,7 +12245,8 @@ fn web_crawler_configuration_from_py(
         builder = builder.set_crawler_limits(Some(converted_2068));
     }
     if let Some(value) = dict_value(values, "inclusion_filters")? {
-        let mut converted_2069 = Vec::new();
+        let mut converted_2069 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2070 in value.try_iter()? {
             let item_2071 = item_result_2070?;
             let converted_item_2072: String = item_2071.extract()?;
@@ -12201,7 +12255,8 @@ fn web_crawler_configuration_from_py(
         builder = builder.set_inclusion_filters(Some(converted_2069));
     }
     if let Some(value) = dict_value(values, "exclusion_filters")? {
-        let mut converted_2073 = Vec::new();
+        let mut converted_2073 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2074 in value.try_iter()? {
             let item_2075 = item_result_2074?;
             let converted_item_2076: String = item_2075.extract()?;
@@ -24560,7 +24615,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateAgentCollaborator"))
             })?;
-            Python::attach(|py| Py::new(py, PyAssociateAgentCollaboratorResponse { inner: output }))
+            Ok(PyAssociateAgentCollaboratorResponse { inner: output })
         })
     }
 
@@ -24618,9 +24673,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateAgentKnowledgeBase"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyAssociateAgentKnowledgeBaseResponse { inner: output })
-            })
+            Ok(PyAssociateAgentKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -24700,7 +24753,7 @@ impl BedrockAgentClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2130 = value.cast::<PyDict>()?;
-            let mut converted_2129 = HashMap::new();
+            let mut converted_2129 = HashMap::with_capacity(mapping_2130.len());
             for (key_2131, value_2132) in mapping_2130.iter() {
                 let converted_key_2133: String = key_2131.extract()?;
                 let converted_value_2134: String = value_2132.extract()?;
@@ -24764,7 +24817,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgent")))?;
-            Python::attach(|py| Py::new(py, PyCreateAgentResponse { inner: output }))
+            Ok(PyCreateAgentResponse { inner: output })
         })
     }
 
@@ -24819,7 +24872,7 @@ impl BedrockAgentClient {
         let parent_action_group_signature_params_value =
             if let Some(value) = dict_value(params, "parent_action_group_signature_params")? {
                 let mapping_2148 = value.cast::<PyDict>()?;
-                let mut converted_2147 = HashMap::new();
+                let mut converted_2147 = HashMap::with_capacity(mapping_2148.len());
                 for (key_2149, value_2150) in mapping_2148.iter() {
                     let converted_key_2151: String = key_2149.extract()?;
                     let converted_value_2152: String = value_2150.extract()?;
@@ -24878,7 +24931,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentActionGroup"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateAgentActionGroupResponse { inner: output }))
+            Ok(PyCreateAgentActionGroupResponse { inner: output })
         })
     }
 
@@ -24915,7 +24968,8 @@ impl BedrockAgentClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_2162 = Vec::new();
+                let mut converted_2162 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2163 in value.try_iter()? {
                     let item_2164 = item_result_2163?;
                     let converted_item_2165 =
@@ -24928,7 +24982,7 @@ impl BedrockAgentClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2167 = value.cast::<PyDict>()?;
-            let mut converted_2166 = HashMap::new();
+            let mut converted_2166 = HashMap::with_capacity(mapping_2167.len());
             for (key_2168, value_2169) in mapping_2167.iter() {
                 let converted_key_2170: String = key_2168.extract()?;
                 let converted_value_2171: String = value_2169.extract()?;
@@ -24952,7 +25006,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateAgentAliasResponse { inner: output }))
+            Ok(PyCreateAgentAliasResponse { inner: output })
         })
     }
 
@@ -25036,7 +25090,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDataSourceResponse { inner: output }))
+            Ok(PyCreateDataSourceResponse { inner: output })
         })
     }
 
@@ -25087,7 +25141,7 @@ impl BedrockAgentClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2188 = value.cast::<PyDict>()?;
-            let mut converted_2187 = HashMap::new();
+            let mut converted_2187 = HashMap::with_capacity(mapping_2188.len());
             for (key_2189, value_2190) in mapping_2188.iter() {
                 let converted_key_2191: String = key_2189.extract()?;
                 let converted_value_2192: String = value_2190.extract()?;
@@ -25113,7 +25167,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlow")))?;
-            Python::attach(|py| Py::new(py, PyCreateFlowResponse { inner: output }))
+            Ok(PyCreateFlowResponse { inner: output })
         })
     }
 
@@ -25138,7 +25192,8 @@ impl BedrockAgentClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_2195 = Vec::new();
+                let mut converted_2195 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2196 in value.try_iter()? {
                     let item_2197 = item_result_2196?;
                     let converted_item_2198 =
@@ -25170,7 +25225,7 @@ impl BedrockAgentClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2203 = value.cast::<PyDict>()?;
-            let mut converted_2202 = HashMap::new();
+            let mut converted_2202 = HashMap::with_capacity(mapping_2203.len());
             for (key_2204, value_2205) in mapping_2203.iter() {
                 let converted_key_2206: String = key_2204.extract()?;
                 let converted_value_2207: String = value_2205.extract()?;
@@ -25195,7 +25250,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlowAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateFlowAliasResponse { inner: output }))
+            Ok(PyCreateFlowAliasResponse { inner: output })
         })
     }
 
@@ -25235,7 +25290,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFlowVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateFlowVersionResponse { inner: output }))
+            Ok(PyCreateFlowVersionResponse { inner: output })
         })
     }
 
@@ -25286,7 +25341,7 @@ impl BedrockAgentClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2218 = value.cast::<PyDict>()?;
-            let mut converted_2217 = HashMap::new();
+            let mut converted_2217 = HashMap::with_capacity(mapping_2218.len());
             for (key_2219, value_2220) in mapping_2218.iter() {
                 let converted_key_2221: String = key_2219.extract()?;
                 let converted_value_2222: String = value_2220.extract()?;
@@ -25311,7 +25366,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateKnowledgeBaseResponse { inner: output }))
+            Ok(PyCreateKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -25348,7 +25403,8 @@ impl BedrockAgentClient {
             None
         };
         let variants_value = if let Some(value) = dict_value(params, "variants")? {
-            let mut converted_2227 = Vec::new();
+            let mut converted_2227 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2228 in value.try_iter()? {
                 let item_2229 = item_result_2228?;
                 let converted_item_2230 = prompt_variant_from_py(&item_2229)?;
@@ -25366,7 +25422,7 @@ impl BedrockAgentClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2233 = value.cast::<PyDict>()?;
-            let mut converted_2232 = HashMap::new();
+            let mut converted_2232 = HashMap::with_capacity(mapping_2233.len());
             for (key_2234, value_2235) in mapping_2233.iter() {
                 let converted_key_2236: String = key_2234.extract()?;
                 let converted_value_2237: String = value_2235.extract()?;
@@ -25391,7 +25447,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePrompt"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePromptResponse { inner: output }))
+            Ok(PyCreatePromptResponse { inner: output })
         })
     }
 
@@ -25423,7 +25479,7 @@ impl BedrockAgentClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2242 = value.cast::<PyDict>()?;
-            let mut converted_2241 = HashMap::new();
+            let mut converted_2241 = HashMap::with_capacity(mapping_2242.len());
             for (key_2243, value_2244) in mapping_2242.iter() {
                 let converted_key_2245: String = key_2243.extract()?;
                 let converted_value_2246: String = value_2244.extract()?;
@@ -25445,7 +25501,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePromptVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePromptVersionResponse { inner: output }))
+            Ok(PyCreatePromptVersionResponse { inner: output })
         })
     }
 
@@ -25489,7 +25545,7 @@ impl BedrockAgentClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2253 = value.cast::<PyDict>()?;
-            let mut converted_2252 = HashMap::new();
+            let mut converted_2252 = HashMap::with_capacity(mapping_2253.len());
             for (key_2254, value_2255) in mapping_2253.iter() {
                 let converted_key_2256: String = key_2254.extract()?;
                 let converted_value_2257: String = value_2255.extract()?;
@@ -25513,7 +25569,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRetrievalInstruction"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateRetrievalInstructionResponse { inner: output }))
+            Ok(PyCreateRetrievalInstructionResponse { inner: output })
         })
     }
 
@@ -25556,12 +25612,7 @@ impl BedrockAgentClient {
                     sdk_error_to_py(py, &error, "CreateRetrievalInstructionVersion")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateRetrievalInstructionVersionResponse { inner: output },
-                )
-            })
+            Ok(PyCreateRetrievalInstructionVersionResponse { inner: output })
         })
     }
 
@@ -25592,7 +25643,8 @@ impl BedrockAgentClient {
             None
         };
         let subnet_ids_value = if let Some(value) = dict_value(params, "subnet_ids")? {
-            let mut converted_2264 = Vec::new();
+            let mut converted_2264 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2265 in value.try_iter()? {
                 let item_2266 = item_result_2265?;
                 let converted_item_2267: String = item_2266.extract()?;
@@ -25674,7 +25726,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateVpcConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateVpcConfigurationResponse { inner: output }))
+            Ok(PyCreateVpcConfigurationResponse { inner: output })
         })
     }
 
@@ -25709,7 +25761,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgent")))?;
-            Python::attach(|py| Py::new(py, PyDeleteAgentResponse { inner: output }))
+            Ok(PyDeleteAgentResponse { inner: output })
         })
     }
 
@@ -25757,7 +25809,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentActionGroup"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteAgentActionGroupResponse { inner: output }))
+            Ok(PyDeleteAgentActionGroupResponse { inner: output })
         })
     }
 
@@ -25790,7 +25842,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteAgentAliasResponse { inner: output }))
+            Ok(PyDeleteAgentAliasResponse { inner: output })
         })
     }
 
@@ -25831,7 +25883,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteAgentVersionResponse { inner: output }))
+            Ok(PyDeleteAgentVersionResponse { inner: output })
         })
     }
 
@@ -25865,7 +25917,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDataSourceResponse { inner: output }))
+            Ok(PyDeleteDataSourceResponse { inner: output })
         })
     }
 
@@ -25900,7 +25952,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlow")))?;
-            Python::attach(|py| Py::new(py, PyDeleteFlowResponse { inner: output }))
+            Ok(PyDeleteFlowResponse { inner: output })
         })
     }
 
@@ -25933,7 +25985,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlowAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteFlowAliasResponse { inner: output }))
+            Ok(PyDeleteFlowAliasResponse { inner: output })
         })
     }
 
@@ -25974,7 +26026,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFlowVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteFlowVersionResponse { inner: output }))
+            Ok(PyDeleteFlowVersionResponse { inner: output })
         })
     }
 
@@ -26001,7 +26053,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteKnowledgeBaseResponse { inner: output }))
+            Ok(PyDeleteKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -26033,7 +26085,8 @@ impl BedrockAgentClient {
         };
         let document_identifiers_value =
             if let Some(value) = dict_value(params, "document_identifiers")? {
-                let mut converted_2302 = Vec::new();
+                let mut converted_2302 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2303 in value.try_iter()? {
                     let item_2304 = item_result_2303?;
                     let converted_item_2305 = document_identifier_from_py(&item_2304)?;
@@ -26055,9 +26108,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteKnowledgeBaseDocuments"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDeleteKnowledgeBaseDocumentsResponse { inner: output })
-            })
+            Ok(PyDeleteKnowledgeBaseDocumentsResponse { inner: output })
         })
     }
 
@@ -26091,7 +26142,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePrompt"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeletePromptResponse { inner: output }))
+            Ok(PyDeletePromptResponse { inner: output })
         })
     }
 
@@ -26125,7 +26176,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourcePolicyResponse { inner: output }))
+            Ok(PyDeleteResourcePolicyResponse { inner: output })
         })
     }
 
@@ -26160,7 +26211,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetrievalInstruction"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteRetrievalInstructionResponse { inner: output }))
+            Ok(PyDeleteRetrievalInstructionResponse { inner: output })
         })
     }
 
@@ -26195,7 +26246,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteVpcConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteVpcConfigurationResponse { inner: output }))
+            Ok(PyDeleteVpcConfigurationResponse { inner: output })
         })
     }
 
@@ -26235,12 +26286,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateAgentCollaborator"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateAgentCollaboratorResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateAgentCollaboratorResponse { inner: output })
         })
     }
 
@@ -26281,12 +26327,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateAgentKnowledgeBase"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateAgentKnowledgeBaseResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateAgentKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -26313,7 +26354,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAgent")))?;
-            Python::attach(|py| Py::new(py, PyGetAgentResponse { inner: output }))
+            Ok(PyGetAgentResponse { inner: output })
         })
     }
 
@@ -26353,7 +26394,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentActionGroup"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentActionGroupResponse { inner: output }))
+            Ok(PyGetAgentActionGroupResponse { inner: output })
         })
     }
 
@@ -26386,7 +26427,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentAliasResponse { inner: output }))
+            Ok(PyGetAgentAliasResponse { inner: output })
         })
     }
 
@@ -26426,7 +26467,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentCollaborator"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentCollaboratorResponse { inner: output }))
+            Ok(PyGetAgentCollaboratorResponse { inner: output })
         })
     }
 
@@ -26467,7 +26508,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentKnowledgeBaseResponse { inner: output }))
+            Ok(PyGetAgentKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -26500,7 +26541,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentVersionResponse { inner: output }))
+            Ok(PyGetAgentVersionResponse { inner: output })
         })
     }
 
@@ -26534,7 +26575,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDataSourceResponse { inner: output }))
+            Ok(PyGetDataSourceResponse { inner: output })
         })
     }
 
@@ -26570,7 +26611,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFlow")))?;
-            Python::attach(|py| Py::new(py, PyGetFlowResponse { inner: output }))
+            Ok(PyGetFlowResponse { inner: output })
         })
     }
 
@@ -26603,7 +26644,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFlowAliasResponse { inner: output }))
+            Ok(PyGetFlowAliasResponse { inner: output })
         })
     }
 
@@ -26645,7 +26686,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFlowVersionResponse { inner: output }))
+            Ok(PyGetFlowVersionResponse { inner: output })
         })
     }
 
@@ -26686,7 +26727,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIngestionJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetIngestionJobResponse { inner: output }))
+            Ok(PyGetIngestionJobResponse { inner: output })
         })
     }
 
@@ -26713,7 +26754,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetKnowledgeBaseResponse { inner: output }))
+            Ok(PyGetKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -26739,7 +26780,8 @@ impl BedrockAgentClient {
         };
         let document_identifiers_value =
             if let Some(value) = dict_value(params, "document_identifiers")? {
-                let mut converted_2351 = Vec::new();
+                let mut converted_2351 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2352 in value.try_iter()? {
                     let item_2353 = item_result_2352?;
                     let converted_item_2354 = document_identifier_from_py(&item_2353)?;
@@ -26760,7 +26802,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKnowledgeBaseDocuments"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetKnowledgeBaseDocumentsResponse { inner: output }))
+            Ok(PyGetKnowledgeBaseDocumentsResponse { inner: output })
         })
     }
 
@@ -26804,7 +26846,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPrompt")))?;
-            Python::attach(|py| Py::new(py, PyGetPromptResponse { inner: output }))
+            Ok(PyGetPromptResponse { inner: output })
         })
     }
 
@@ -26830,7 +26872,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyResponse { inner: output }))
+            Ok(PyGetResourcePolicyResponse { inner: output })
         })
     }
 
@@ -26865,7 +26907,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRetrievalInstruction"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRetrievalInstructionResponse { inner: output }))
+            Ok(PyGetRetrievalInstructionResponse { inner: output })
         })
     }
 
@@ -26900,7 +26942,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetVpcConfigurationResponse { inner: output }))
+            Ok(PyGetVpcConfigurationResponse { inner: output })
         })
     }
 
@@ -26931,7 +26973,8 @@ impl BedrockAgentClient {
             None
         };
         let documents_value = if let Some(value) = dict_value(params, "documents")? {
-            let mut converted_2367 = Vec::new();
+            let mut converted_2367 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2368 in value.try_iter()? {
                 let item_2369 = item_result_2368?;
                 let converted_item_2370 = knowledge_base_document_from_py(&item_2369)?;
@@ -26953,9 +26996,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "IngestKnowledgeBaseDocuments"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyIngestKnowledgeBaseDocumentsResponse { inner: output })
-            })
+            Ok(PyIngestKnowledgeBaseDocumentsResponse { inner: output })
         })
     }
 
@@ -27002,7 +27043,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentActionGroups"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAgentActionGroupsResponse { inner: output }))
+            Ok(PyListAgentActionGroupsResponse { inner: output })
         })
     }
 
@@ -27042,7 +27083,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentAliases"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAgentAliasesResponse { inner: output }))
+            Ok(PyListAgentAliasesResponse { inner: output })
         })
     }
 
@@ -27089,7 +27130,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentCollaborators"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAgentCollaboratorsResponse { inner: output }))
+            Ok(PyListAgentCollaboratorsResponse { inner: output })
         })
     }
 
@@ -27136,7 +27177,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentKnowledgeBases"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAgentKnowledgeBasesResponse { inner: output }))
+            Ok(PyListAgentKnowledgeBasesResponse { inner: output })
         })
     }
 
@@ -27176,7 +27217,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAgentVersionsResponse { inner: output }))
+            Ok(PyListAgentVersionsResponse { inner: output })
         })
     }
 
@@ -27210,7 +27251,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAgents")))?;
-            Python::attach(|py| Py::new(py, PyListAgentsResponse { inner: output }))
+            Ok(PyListAgentsResponse { inner: output })
         })
     }
 
@@ -27251,7 +27292,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSources"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDataSourcesResponse { inner: output }))
+            Ok(PyListDataSourcesResponse { inner: output })
         })
     }
 
@@ -27291,7 +27332,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowAliases"))
             })?;
-            Python::attach(|py| Py::new(py, PyListFlowAliasesResponse { inner: output }))
+            Ok(PyListFlowAliasesResponse { inner: output })
         })
     }
 
@@ -27331,7 +27372,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListFlowVersionsResponse { inner: output }))
+            Ok(PyListFlowVersionsResponse { inner: output })
         })
     }
 
@@ -27365,7 +27406,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListFlows")))?;
-            Python::attach(|py| Py::new(py, PyListFlowsResponse { inner: output }))
+            Ok(PyListFlowsResponse { inner: output })
         })
     }
 
@@ -27390,7 +27431,8 @@ impl BedrockAgentClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_2404 = Vec::new();
+            let mut converted_2404 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2405 in value.try_iter()? {
                 let item_2406 = item_result_2405?;
                 let converted_item_2407 = ingestion_job_filter_from_py(&item_2406)?;
@@ -27432,7 +27474,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIngestionJobs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListIngestionJobsResponse { inner: output }))
+            Ok(PyListIngestionJobsResponse { inner: output })
         })
     }
 
@@ -27480,7 +27522,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKnowledgeBaseDocuments"))
             })?;
-            Python::attach(|py| Py::new(py, PyListKnowledgeBaseDocumentsResponse { inner: output }))
+            Ok(PyListKnowledgeBaseDocumentsResponse { inner: output })
         })
     }
 
@@ -27513,7 +27555,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKnowledgeBases"))
             })?;
-            Python::attach(|py| Py::new(py, PyListKnowledgeBasesResponse { inner: output }))
+            Ok(PyListKnowledgeBasesResponse { inner: output })
         })
     }
 
@@ -27555,7 +27597,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPrompts")))?;
-            Python::attach(|py| Py::new(py, PyListPromptsResponse { inner: output }))
+            Ok(PyListPromptsResponse { inner: output })
         })
     }
 
@@ -27596,12 +27638,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievalInstructionVersions"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListRetrievalInstructionVersionsResponse { inner: output },
-                )
-            })
+            Ok(PyListRetrievalInstructionVersionsResponse { inner: output })
         })
     }
 
@@ -27644,7 +27681,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievalInstructions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListRetrievalInstructionsResponse { inner: output }))
+            Ok(PyListRetrievalInstructionsResponse { inner: output })
         })
     }
 
@@ -27670,7 +27707,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -27720,7 +27757,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListVpcConfigurations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListVpcConfigurationsResponse { inner: output }))
+            Ok(PyListVpcConfigurationsResponse { inner: output })
         })
     }
 
@@ -27746,7 +27783,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PrepareAgent"))
             })?;
-            Python::attach(|py| Py::new(py, PyPrepareAgentResponse { inner: output }))
+            Ok(PyPrepareAgentResponse { inner: output })
         })
     }
 
@@ -27773,7 +27810,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PrepareFlow")))?;
-            Python::attach(|py| Py::new(py, PyPrepareFlowResponse { inner: output }))
+            Ok(PyPrepareFlowResponse { inner: output })
         })
     }
 
@@ -27814,7 +27851,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -27862,7 +27899,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartIngestionJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartIngestionJobResponse { inner: output }))
+            Ok(PyStartIngestionJobResponse { inner: output })
         })
     }
 
@@ -27903,7 +27940,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopIngestionJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopIngestionJobResponse { inner: output }))
+            Ok(PyStopIngestionJobResponse { inner: output })
         })
     }
 
@@ -27922,7 +27959,7 @@ impl BedrockAgentClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2447 = value.cast::<PyDict>()?;
-            let mut converted_2446 = HashMap::new();
+            let mut converted_2446 = HashMap::with_capacity(mapping_2447.len());
             for (key_2448, value_2449) in mapping_2447.iter() {
                 let converted_key_2450: String = key_2448.extract()?;
                 let converted_value_2451: String = value_2449.extract()?;
@@ -27943,7 +27980,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -27961,7 +27998,8 @@ impl BedrockAgentClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_2453 = Vec::new();
+            let mut converted_2453 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2454 in value.try_iter()? {
                 let item_2455 = item_result_2454?;
                 let converted_item_2456: String = item_2455.extract()?;
@@ -27981,7 +28019,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -28112,7 +28150,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgent")))?;
-            Python::attach(|py| Py::new(py, PyUpdateAgentResponse { inner: output }))
+            Ok(PyUpdateAgentResponse { inner: output })
         })
     }
 
@@ -28167,7 +28205,7 @@ impl BedrockAgentClient {
         let parent_action_group_signature_params_value =
             if let Some(value) = dict_value(params, "parent_action_group_signature_params")? {
                 let mapping_2481 = value.cast::<PyDict>()?;
-                let mut converted_2480 = HashMap::new();
+                let mut converted_2480 = HashMap::with_capacity(mapping_2481.len());
                 for (key_2482, value_2483) in mapping_2481.iter() {
                     let converted_key_2484: String = key_2482.extract()?;
                     let converted_value_2485: String = value_2483.extract()?;
@@ -28226,7 +28264,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentActionGroup"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAgentActionGroupResponse { inner: output }))
+            Ok(PyUpdateAgentActionGroupResponse { inner: output })
         })
     }
 
@@ -28263,7 +28301,8 @@ impl BedrockAgentClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_2495 = Vec::new();
+                let mut converted_2495 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2496 in value.try_iter()? {
                     let item_2497 = item_result_2496?;
                     let converted_item_2498 =
@@ -28298,7 +28337,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAgentAliasResponse { inner: output }))
+            Ok(PyUpdateAgentAliasResponse { inner: output })
         })
     }
 
@@ -28372,7 +28411,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentCollaborator"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAgentCollaboratorResponse { inner: output }))
+            Ok(PyUpdateAgentCollaboratorResponse { inner: output })
         })
     }
 
@@ -28430,7 +28469,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAgentKnowledgeBaseResponse { inner: output }))
+            Ok(PyUpdateAgentKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -28514,7 +28553,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataSource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDataSourceResponse { inner: output }))
+            Ok(PyUpdateDataSourceResponse { inner: output })
         })
     }
 
@@ -28578,7 +28617,7 @@ impl BedrockAgentClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFlow")))?;
-            Python::attach(|py| Py::new(py, PyUpdateFlowResponse { inner: output }))
+            Ok(PyUpdateFlowResponse { inner: output })
         })
     }
 
@@ -28603,7 +28642,8 @@ impl BedrockAgentClient {
         };
         let routing_configuration_value =
             if let Some(value) = dict_value(params, "routing_configuration")? {
-                let mut converted_2532 = Vec::new();
+                let mut converted_2532 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2533 in value.try_iter()? {
                     let item_2534 = item_result_2533?;
                     let converted_item_2535 =
@@ -28647,7 +28687,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFlowAlias"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFlowAliasResponse { inner: output }))
+            Ok(PyUpdateFlowAliasResponse { inner: output })
         })
     }
 
@@ -28711,7 +28751,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateKnowledgeBase"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateKnowledgeBaseResponse { inner: output }))
+            Ok(PyUpdateKnowledgeBaseResponse { inner: output })
         })
     }
 
@@ -28748,7 +28788,8 @@ impl BedrockAgentClient {
             None
         };
         let variants_value = if let Some(value) = dict_value(params, "variants")? {
-            let mut converted_2549 = Vec::new();
+            let mut converted_2549 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2550 in value.try_iter()? {
                 let item_2551 = item_result_2550?;
                 let converted_item_2552 = prompt_variant_from_py(&item_2551)?;
@@ -28779,7 +28820,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePrompt"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdatePromptResponse { inner: output }))
+            Ok(PyUpdatePromptResponse { inner: output })
         })
     }
 
@@ -28820,7 +28861,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRetrievalInstruction"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateRetrievalInstructionResponse { inner: output }))
+            Ok(PyUpdateRetrievalInstructionResponse { inner: output })
         })
     }
 
@@ -28846,7 +28887,7 @@ impl BedrockAgentClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateFlowDefinition"))
             })?;
-            Python::attach(|py| Py::new(py, PyValidateFlowDefinitionResponse { inner: output }))
+            Ok(PyValidateFlowDefinitionResponse { inner: output })
         })
     }
 }

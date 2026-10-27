@@ -371,7 +371,12 @@ class ServiceGenerator:
             iterator = self._next("item_result")
             item = self._next("item")
             converted = self._next("converted_item")
-            lines.append(f"{indent}let mut {target} = Vec::new();")
+            # Reserve only for concrete lists. Other accepted iterables may not
+            # have a length, or may execute user code when a length is requested.
+            lines.append(
+                f"{indent}let mut {target} = Vec::with_capacity("
+                f"{source}.cast::<PyList>().map_or(0, |items| items.len()));"
+            )
             lines.append(f"{indent}for {iterator} in {source}.try_iter()? {{")
             lines.append(f"{indent}    let {item} = {iterator}?;")
             lines.extend(self._from_py(item_type, item, converted, indent + "    "))
@@ -389,7 +394,9 @@ class ServiceGenerator:
             converted_key = self._next("converted_key")
             converted_value = self._next("converted_value")
             lines.append(f"{indent}let {dictionary} = {source}.cast::<PyDict>()?;")
-            lines.append(f"{indent}let mut {target} = HashMap::new();")
+            lines.append(
+                f"{indent}let mut {target} = HashMap::with_capacity({dictionary}.len());"
+            )
             lines.append(f"{indent}for ({key}, {value}) in {dictionary}.iter() {{")
             lines.extend(self._from_py(key_type, key, converted_key, indent + "    "))
             lines.extend(self._from_py(value_type, value, converted_value, indent + "    "))
@@ -979,9 +986,22 @@ class ServiceGenerator:
                 f"            let {'mut ' if has_native_stream else ''}output = request.send().await.map_err(|error| {{",
                 f'                Python::attach(|py| sdk_error_to_py(py, &error, "{smithy.name}"))',
                 "            })?;",
-                "            Python::attach(|py| {",
             ]
         )
+
+        if native_metadata is not None and not has_native_stream:
+            # The async bridge converts this owned value while delivering the
+            # result, so creating the Python object here would attach twice.
+            lines.extend(
+                [
+                    f"            Ok({native_metadata['rust_class']} {{ inner: output }})",
+                    "        })",
+                    "    }",
+                ]
+            )
+            return "\n".join(lines)
+
+        lines.append("            Python::attach(|py| {")
 
         if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
             lines.extend(["                Ok(py.None())", "            })", "        })", "    }"])

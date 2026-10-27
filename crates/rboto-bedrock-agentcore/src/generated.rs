@@ -52,7 +52,8 @@ fn ab_test_evaluation_config_from_py(
         );
     }
     if let Some(value) = dict_value(values, "per_variant_online_evaluation_config")? {
-        let mut converted_4 = Vec::new();
+        let mut converted_4 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_5 in value.try_iter()? {
             let item_6 = item_result_5?;
             let converted_item_7 = per_variant_online_evaluation_config_from_py(&item_6)?;
@@ -104,7 +105,8 @@ fn ab_test_results_from_py(
         builder = builder.set_analysis_timestamp(Some(converted_12));
     }
     if let Some(value) = dict_value(values, "evaluator_metrics")? {
-        let mut converted_14 = Vec::new();
+        let mut converted_14 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_15 in value.try_iter()? {
             let item_16 = item_result_15?;
             let converted_item_17 = evaluator_metric_from_py(&item_16)?;
@@ -278,7 +280,8 @@ fn affected_session_from_py(
         builder = builder.set_recommendation(Some(converted_49));
     }
     if let Some(value) = dict_value(values, "failure_spans")? {
-        let mut converted_50 = Vec::new();
+        let mut converted_50 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_51 in value.try_iter()? {
             let item_52 = item_result_51?;
             let converted_item_53 = failure_span_detail_from_py(&item_52)?;
@@ -394,7 +397,8 @@ fn agent_traces_config_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "session_spans")? {
-        let mut converted_69 = Vec::new();
+        let mut converted_69 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_70 in value.try_iter()? {
             let item_71 = item_result_70?;
             let converted_item_72 = rboto_core::document_from_py(&item_71)?;
@@ -650,7 +654,8 @@ fn batch_evaluation_summary_from_py(
         builder = builder.set_description(Some(converted_109));
     }
     if let Some(value) = dict_value(values, "evaluators")? {
-        let mut converted_110 = Vec::new();
+        let mut converted_110 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_111 in value.try_iter()? {
             let item_112 = item_result_111?;
             let converted_item_113 = evaluator_from_py(&item_112)?;
@@ -659,7 +664,8 @@ fn batch_evaluation_summary_from_py(
         builder = builder.set_evaluators(Some(converted_110));
     }
     if let Some(value) = dict_value(values, "insights")? {
-        let mut converted_114 = Vec::new();
+        let mut converted_114 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_115 in value.try_iter()? {
             let item_116 = item_result_115?;
             let converted_item_117 = insight_from_py(&item_116)?;
@@ -672,7 +678,8 @@ fn batch_evaluation_summary_from_py(
         builder = builder.set_evaluation_results(Some(converted_118));
     }
     if let Some(value) = dict_value(values, "error_details")? {
-        let mut converted_119 = Vec::new();
+        let mut converted_119 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_120 in value.try_iter()? {
             let item_121 = item_result_120?;
             let converted_item_122: String = item_121.extract()?;
@@ -1325,7 +1332,8 @@ fn cloud_watch_filter_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::CloudWatchFilterConfig::builder();
     if let Some(value) = dict_value(values, "session_ids")? {
-        let mut converted_218 = Vec::new();
+        let mut converted_218 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_219 in value.try_iter()? {
             let item_220 = item_result_219?;
             let converted_item_221: String = item_220.extract()?;
@@ -1338,7 +1346,8 @@ fn cloud_watch_filter_config_from_py(
         builder = builder.set_time_range(Some(converted_222));
     }
     if let Some(value) = dict_value(values, "session_trace_ids")? {
-        let mut converted_223 = Vec::new();
+        let mut converted_223 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_224 in value.try_iter()? {
             let item_225 = item_result_224?;
             let converted_item_226 = session_trace_ids_from_py(&item_225)?;
@@ -1434,7 +1443,8 @@ fn cloud_watch_logs_rule_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::CloudWatchLogsRule::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_241 = Vec::new();
+        let mut converted_241 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_242 in value.try_iter()? {
             let item_243 = item_result_242?;
             let converted_item_244 = cloud_watch_logs_filter_from_py(&item_243)?;
@@ -1470,7 +1480,8 @@ fn cloud_watch_logs_source_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::CloudWatchLogsSource::builder();
     if let Some(value) = dict_value(values, "service_names")? {
-        let mut converted_248 = Vec::new();
+        let mut converted_248 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_249 in value.try_iter()? {
             let item_250 = item_result_249?;
             let converted_item_251: String = item_250.extract()?;
@@ -1479,7 +1490,8 @@ fn cloud_watch_logs_source_from_py(
         builder = builder.set_service_names(Some(converted_248));
     }
     if let Some(value) = dict_value(values, "log_group_names")? {
-        let mut converted_252 = Vec::new();
+        let mut converted_252 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_253 in value.try_iter()? {
             let item_254 = item_result_253?;
             let converted_item_255: String = item_254.extract()?;
@@ -1488,7 +1500,8 @@ fn cloud_watch_logs_source_from_py(
         builder = builder.set_log_group_names(Some(converted_252));
     }
     if let Some(value) = dict_value(values, "log_group_name_prefixes")? {
-        let mut converted_256 = Vec::new();
+        let mut converted_256 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_257 in value.try_iter()? {
             let item_258 = item_result_257?;
             let converted_item_259: String = item_258.extract()?;
@@ -1550,7 +1563,8 @@ fn cloud_watch_logs_trace_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::CloudWatchLogsTraceConfig::builder();
     if let Some(value) = dict_value(values, "log_group_arns")? {
-        let mut converted_271 = Vec::new();
+        let mut converted_271 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_272 in value.try_iter()? {
             let item_273 = item_result_272?;
             let converted_item_274: String = item_273.extract()?;
@@ -1559,7 +1573,8 @@ fn cloud_watch_logs_trace_config_from_py(
         builder = builder.set_log_group_arns(Some(converted_271));
     }
     if let Some(value) = dict_value(values, "service_names")? {
-        let mut converted_275 = Vec::new();
+        let mut converted_275 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_276 in value.try_iter()? {
             let item_277 = item_result_276?;
             let converted_item_278: String = item_277.extract()?;
@@ -1678,7 +1693,8 @@ fn code_interpreter_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::CodeInterpreterResult::builder();
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_302 = Vec::new();
+        let mut converted_302 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_303 in value.try_iter()? {
             let item_304 = item_result_303?;
             let converted_item_305 = content_block_from_py(&item_304)?;
@@ -2640,7 +2656,8 @@ fn embedded_crypto_wallet_from_py(
         builder = builder.set_network(Some(converted_433));
     }
     if let Some(value) = dict_value(values, "linked_accounts")? {
-        let mut converted_435 = Vec::new();
+        let mut converted_435 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_436 in value.try_iter()? {
             let item_437 = item_result_436?;
             let converted_item_438 = linked_account_from_py(&item_437)?;
@@ -2731,7 +2748,8 @@ fn evaluation_expected_trajectory_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::EvaluationExpectedTrajectory::builder();
     if let Some(value) = dict_value(values, "tool_names")? {
-        let mut converted_449 = Vec::new();
+        let mut converted_449 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_450 in value.try_iter()? {
             let item_451 = item_result_450?;
             let converted_item_452: String = item_451.extract()?;
@@ -2769,7 +2787,8 @@ fn evaluation_input_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "session_spans")? {
-        let mut converted_456 = Vec::new();
+        let mut converted_456 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_457 in value.try_iter()? {
             let item_458 = item_result_457?;
             let converted_item_459 = rboto_core::document_from_py(&item_458)?;
@@ -2830,7 +2849,8 @@ fn evaluation_job_results_from_py(
         builder = builder.set_number_of_sessions_ignored(Some(converted_467));
     }
     if let Some(value) = dict_value(values, "evaluator_summaries")? {
-        let mut converted_468 = Vec::new();
+        let mut converted_468 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_469 in value.try_iter()? {
             let item_470 = item_result_469?;
             let converted_item_471 = evaluator_summary_from_py(&item_470)?;
@@ -2898,7 +2918,8 @@ fn evaluation_metadata_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "session_metadata")? {
-        let mut converted_480 = Vec::new();
+        let mut converted_480 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_481 in value.try_iter()? {
             let item_482 = item_result_481?;
             let converted_item_483 = session_metadata_shape_from_py(&item_482)?;
@@ -2949,7 +2970,8 @@ fn evaluation_reference_input_from_py(
         builder = builder.set_expected_response(Some(converted_488));
     }
     if let Some(value) = dict_value(values, "assertions")? {
-        let mut converted_489 = Vec::new();
+        let mut converted_489 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_490 in value.try_iter()? {
             let item_491 = item_result_490?;
             let converted_item_492 = evaluation_content_from_py(&item_491)?;
@@ -3051,7 +3073,8 @@ fn evaluation_result_content_from_py(
         builder = builder.set_error_code(Some(converted_510));
     }
     if let Some(value) = dict_value(values, "ignored_reference_input_fields")? {
-        let mut converted_511 = Vec::new();
+        let mut converted_511 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_512 in value.try_iter()? {
             let item_513 = item_result_512?;
             let converted_item_514: String = item_513.extract()?;
@@ -3145,7 +3168,8 @@ fn evaluation_target_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "span_ids")? {
-        let mut converted_529 = Vec::new();
+        let mut converted_529 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_530 in value.try_iter()? {
             let item_531 = item_result_530?;
             let converted_item_532: String = item_531.extract()?;
@@ -3156,7 +3180,8 @@ fn evaluation_target_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "trace_ids")? {
-        let mut converted_533 = Vec::new();
+        let mut converted_533 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_534 in value.try_iter()? {
             let item_535 = item_result_534?;
             let converted_item_536: String = item_535.extract()?;
@@ -3240,7 +3265,8 @@ fn evaluator_metric_from_py(
         builder = builder.set_control_stats(Some(converted_546));
     }
     if let Some(value) = dict_value(values, "variant_results")? {
-        let mut converted_547 = Vec::new();
+        let mut converted_547 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_548 in value.try_iter()? {
             let item_549 = item_result_548?;
             let converted_item_550 = variant_result_from_py(&item_549)?;
@@ -3397,7 +3423,8 @@ fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagentcore:
         builder = builder.set_event_timestamp(Some(converted_572));
     }
     if let Some(value) = dict_value(values, "payload")? {
-        let mut converted_574 = Vec::new();
+        let mut converted_574 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_575 in value.try_iter()? {
             let item_576 = item_result_575?;
             let converted_item_577 = payload_type_from_py(&item_576)?;
@@ -3411,7 +3438,7 @@ fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockagentcore:
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_580 = value.cast::<PyDict>()?;
-        let mut converted_579 = HashMap::new();
+        let mut converted_579 = HashMap::with_capacity(mapping_580.len());
         for (key_581, value_582) in mapping_580.iter() {
             let converted_key_583: String = key_581.extract()?;
             let converted_value_584 = metadata_value_from_py(&value_582)?;
@@ -3571,7 +3598,8 @@ fn execution_summary_cluster_from_py(
         builder = builder.set_affected_session_count(Some(converted_615));
     }
     if let Some(value) = dict_value(values, "affected_sessions")? {
-        let mut converted_616 = Vec::new();
+        let mut converted_616 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_617 in value.try_iter()? {
             let item_618 = item_result_617?;
             let converted_item_619 = execution_summary_affected_session_from_py(&item_618)?;
@@ -3614,7 +3642,8 @@ fn execution_summary_clustering_result_content_from_py(
     let mut builder =
         aws_sdk_bedrockagentcore::types::ExecutionSummaryClusteringResultContent::builder();
     if let Some(value) = dict_value(values, "execution_summaries")? {
-        let mut converted_627 = Vec::new();
+        let mut converted_627 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_628 in value.try_iter()? {
             let item_629 = item_result_628?;
             let converted_item_630 = execution_summary_cluster_from_py(&item_629)?;
@@ -3656,7 +3685,8 @@ fn external_proxy_from_py(
         builder = builder.set_port(Some(converted_635));
     }
     if let Some(value) = dict_value(values, "domain_patterns")? {
-        let mut converted_636 = Vec::new();
+        let mut converted_636 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_637 in value.try_iter()? {
             let item_638 = item_result_637?;
             let converted_item_639: String = item_638.extract()?;
@@ -3709,7 +3739,7 @@ fn extraction_config_from_py(
     let mut builder = aws_sdk_bedrockagentcore::types::ExtractionConfig::builder();
     if let Some(value) = dict_value(values, "namespace_variables")? {
         let mapping_648 = value.cast::<PyDict>()?;
-        let mut converted_647 = HashMap::new();
+        let mut converted_647 = HashMap::with_capacity(mapping_648.len());
         for (key_649, value_650) in mapping_648.iter() {
             let converted_key_651: String = key_649.extract()?;
             let converted_value_652: String = value_650.extract()?;
@@ -3830,7 +3860,8 @@ fn extraction_job_messages_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "messages_list")? {
-        let mut converted_669 = Vec::new();
+        let mut converted_669 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_670 in value.try_iter()? {
             let item_671 = item_result_670?;
             let converted_item_672 = message_metadata_from_py(&item_671)?;
@@ -3959,7 +3990,8 @@ fn failure_analysis_result_content_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::FailureAnalysisResultContent::builder();
     if let Some(value) = dict_value(values, "failures")? {
-        let mut converted_691 = Vec::new();
+        let mut converted_691 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_692 in value.try_iter()? {
             let item_693 = item_result_692?;
             let converted_item_694 = failure_category_cluster_from_py(&item_693)?;
@@ -4009,7 +4041,8 @@ fn failure_category_cluster_from_py(
         builder = builder.set_affected_session_count(Some(converted_701));
     }
     if let Some(value) = dict_value(values, "sub_categories")? {
-        let mut converted_702 = Vec::new();
+        let mut converted_702 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_703 in value.try_iter()? {
             let item_704 = item_result_703?;
             let converted_item_705 = failure_sub_category_cluster_from_py(&item_704)?;
@@ -4059,7 +4092,8 @@ fn failure_span_detail_from_py(
         builder = builder.set_trace_id(Some(converted_714));
     }
     if let Some(value) = dict_value(values, "signals")? {
-        let mut converted_715 = Vec::new();
+        let mut converted_715 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_716 in value.try_iter()? {
             let item_717 = item_result_716?;
             let converted_item_718 = insights_failure_signal_from_py(&item_717)?;
@@ -4113,7 +4147,8 @@ fn failure_sub_category_cluster_from_py(
         builder = builder.set_affected_session_count(Some(converted_727));
     }
     if let Some(value) = dict_value(values, "root_causes")? {
-        let mut converted_728 = Vec::new();
+        let mut converted_728 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_729 in value.try_iter()? {
             let item_730 = item_result_729?;
             let converted_item_731 = root_cause_cluster_from_py(&item_730)?;
@@ -4159,7 +4194,8 @@ fn filter_input_from_py(
         builder = builder.set_branch(Some(converted_739));
     }
     if let Some(value) = dict_value(values, "event_metadata")? {
-        let mut converted_740 = Vec::new();
+        let mut converted_740 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_741 in value.try_iter()? {
             let item_742 = item_result_741?;
             let converted_item_743 = event_metadata_filter_expression_from_py(&item_742)?;
@@ -4256,7 +4292,8 @@ fn gateway_filter_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::GatewayFilter::builder();
     if let Some(value) = dict_value(values, "target_paths")? {
-        let mut converted_754 = Vec::new();
+        let mut converted_754 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_755 in value.try_iter()? {
             let item_756 = item_result_755?;
             let converted_item_757: String = item_756.extract()?;
@@ -4632,7 +4669,8 @@ fn harness_content_block_delta_from_py(
         );
     }
     if let Some(value) = dict_value(values, "tool_result")? {
-        let mut converted_800 = Vec::new();
+        let mut converted_800 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_801 in value.try_iter()? {
             let item_802 = item_result_801?;
             let converted_item_803 = harness_tool_result_block_delta_from_py(&item_802)?;
@@ -5157,7 +5195,8 @@ fn harness_message_from_py(
         builder = builder.set_role(Some(converted_877));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_879 = Vec::new();
+        let mut converted_879 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_880 in value.try_iter()? {
             let item_881 = item_result_880?;
             let converted_item_882 = harness_content_block_from_py(&item_881)?;
@@ -5597,7 +5636,7 @@ fn harness_remote_mcp_config_from_py(
     }
     if let Some(value) = dict_value(values, "headers")? {
         let mapping_940 = value.cast::<PyDict>()?;
-        let mut converted_939 = HashMap::new();
+        let mut converted_939 = HashMap::with_capacity(mapping_940.len());
         for (key_941, value_942) in mapping_940.iter() {
             let converted_key_943: String = key_941.extract()?;
             let converted_value_944: String = value_942.extract()?;
@@ -5703,7 +5742,8 @@ fn harness_skill_aws_skills_source_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::HarnessSkillAwsSkillsSource::builder();
     if let Some(value) = dict_value(values, "paths")? {
-        let mut converted_959 = Vec::new();
+        let mut converted_959 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_960 in value.try_iter()? {
             let item_961 = item_result_960?;
             let converted_item_962: String = item_961.extract()?;
@@ -6089,7 +6129,8 @@ fn harness_tool_result_block_from_py(
         builder = builder.set_tool_use_id(Some(converted_1009));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1010 = Vec::new();
+        let mut converted_1010 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1011 in value.try_iter()? {
             let item_1012 = item_result_1011?;
             let converted_item_1013 = harness_tool_result_content_block_from_py(&item_1012)?;
@@ -6479,7 +6520,8 @@ fn inline_ground_truth_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::InlineGroundTruth::builder();
     if let Some(value) = dict_value(values, "assertions")? {
-        let mut converted_1065 = Vec::new();
+        let mut converted_1065 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1066 in value.try_iter()? {
             let item_1067 = item_result_1066?;
             let converted_item_1068 = evaluation_content_from_py(&item_1067)?;
@@ -6492,7 +6534,8 @@ fn inline_ground_truth_from_py(
         builder = builder.set_expected_trajectory(Some(converted_1069));
     }
     if let Some(value) = dict_value(values, "turns")? {
-        let mut converted_1070 = Vec::new();
+        let mut converted_1070 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1071 in value.try_iter()? {
             let item_1072 = item_result_1071?;
             let converted_item_1073 = ground_truth_turn_from_py(&item_1072)?;
@@ -6545,7 +6588,8 @@ fn inline_memory_content_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::InlineMemoryContent::builder();
     if let Some(value) = dict_value(values, "payload")? {
-        let mut converted_1081 = Vec::new();
+        let mut converted_1081 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1082 in value.try_iter()? {
             let item_1083 = item_result_1082?;
             let converted_item_1084 = ingest_payload_type_from_py(&item_1083)?;
@@ -6673,7 +6717,8 @@ fn insight_result_from_py(
         builder = builder.set_affected_session_count(Some(converted_1103));
     }
     if let Some(value) = dict_value(values, "sample_sessions")? {
-        let mut converted_1104 = Vec::new();
+        let mut converted_1104 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1105 in value.try_iter()? {
             let item_1106 = item_result_1105?;
             let converted_item_1107 = sample_session_from_py(&item_1106)?;
@@ -6682,7 +6727,8 @@ fn insight_result_from_py(
         builder = builder.set_sample_sessions(Some(converted_1104));
     }
     if let Some(value) = dict_value(values, "root_causes")? {
-        let mut converted_1108 = Vec::new();
+        let mut converted_1108 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1109 in value.try_iter()? {
             let item_1110 = item_result_1109?;
             let converted_item_1111 = insight_root_cause_from_py(&item_1110)?;
@@ -6761,7 +6807,8 @@ fn insight_root_cause_from_py(
         builder = builder.set_suggested_fix(Some(converted_1126));
     }
     if let Some(value) = dict_value(values, "sample_sessions")? {
-        let mut converted_1127 = Vec::new();
+        let mut converted_1127 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1128 in value.try_iter()? {
             let item_1129 = item_result_1128?;
             let converted_item_1130 = sample_session_from_py(&item_1129)?;
@@ -7099,7 +7146,8 @@ fn key_shortcut_arguments_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::KeyShortcutArguments::builder();
     if let Some(value) = dict_value(values, "keys")? {
-        let mut converted_1174 = Vec::new();
+        let mut converted_1174 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1175 in value.try_iter()? {
             let item_1176 = item_result_1175?;
             let converted_item_1177: String = item_1176.extract()?;
@@ -7652,7 +7700,8 @@ fn memory_record_from_py(
         builder = builder.set_memory_strategy_id(Some(converted_1240));
     }
     if let Some(value) = dict_value(values, "namespaces")? {
-        let mut converted_1241 = Vec::new();
+        let mut converted_1241 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1242 in value.try_iter()? {
             let item_1243 = item_result_1242?;
             let converted_item_1244: String = item_1243.extract()?;
@@ -7680,7 +7729,7 @@ fn memory_record_from_py(
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_1250 = value.cast::<PyDict>()?;
-        let mut converted_1249 = HashMap::new();
+        let mut converted_1249 = HashMap::with_capacity(mapping_1250.len());
         for (key_1251, value_1252) in mapping_1250.iter() {
             let converted_key_1253: String = key_1251.extract()?;
             let converted_value_1254 = memory_record_metadata_value_from_py(&value_1252)?;
@@ -7763,7 +7812,8 @@ fn memory_record_create_input_from_py(
         builder = builder.set_request_identifier(Some(converted_1271));
     }
     if let Some(value) = dict_value(values, "namespaces")? {
-        let mut converted_1272 = Vec::new();
+        let mut converted_1272 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1273 in value.try_iter()? {
             let item_1274 = item_result_1273?;
             let converted_item_1275: String = item_1274.extract()?;
@@ -7790,7 +7840,7 @@ fn memory_record_create_input_from_py(
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_1281 = value.cast::<PyDict>()?;
-        let mut converted_1280 = HashMap::new();
+        let mut converted_1280 = HashMap::with_capacity(mapping_1281.len());
         for (key_1282, value_1283) in mapping_1281.iter() {
             let converted_key_1284: String = key_1282.extract()?;
             let converted_value_1285 = memory_record_metadata_value_from_py(&value_1283)?;
@@ -7931,7 +7981,8 @@ fn memory_record_metadata_value_from_py(
         );
     }
     if let Some(value) = dict_value(values, "string_list_value")? {
-        let mut converted_1305 = Vec::new();
+        let mut converted_1305 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1306 in value.try_iter()? {
             let item_1307 = item_result_1306?;
             let converted_item_1308: String = item_1307.extract()?;
@@ -8118,7 +8169,8 @@ fn memory_record_summary_from_py(
         builder = builder.set_memory_strategy_id(Some(converted_1333));
     }
     if let Some(value) = dict_value(values, "namespaces")? {
-        let mut converted_1334 = Vec::new();
+        let mut converted_1334 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1335 in value.try_iter()? {
             let item_1336 = item_result_1335?;
             let converted_item_1337: String = item_1336.extract()?;
@@ -8150,7 +8202,7 @@ fn memory_record_summary_from_py(
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_1344 = value.cast::<PyDict>()?;
-        let mut converted_1343 = HashMap::new();
+        let mut converted_1343 = HashMap::with_capacity(mapping_1344.len());
         for (key_1345, value_1346) in mapping_1344.iter() {
             let converted_key_1347: String = key_1345.extract()?;
             let converted_value_1348 = memory_record_metadata_value_from_py(&value_1346)?;
@@ -8237,7 +8289,8 @@ fn memory_record_update_input_from_py(
         builder = builder.set_content(Some(converted_1366));
     }
     if let Some(value) = dict_value(values, "namespaces")? {
-        let mut converted_1367 = Vec::new();
+        let mut converted_1367 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1368 in value.try_iter()? {
             let item_1369 = item_result_1368?;
             let converted_item_1370: String = item_1369.extract()?;
@@ -8246,7 +8299,8 @@ fn memory_record_update_input_from_py(
         builder = builder.set_namespaces(Some(converted_1367));
     }
     if let Some(value) = dict_value(values, "source_namespaces")? {
-        let mut converted_1371 = Vec::new();
+        let mut converted_1371 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1372 in value.try_iter()? {
             let item_1373 = item_result_1372?;
             let converted_item_1374: String = item_1373.extract()?;
@@ -8260,7 +8314,7 @@ fn memory_record_update_input_from_py(
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_1377 = value.cast::<PyDict>()?;
-        let mut converted_1376 = HashMap::new();
+        let mut converted_1376 = HashMap::with_capacity(mapping_1377.len());
         for (key_1378, value_1379) in mapping_1377.iter() {
             let converted_key_1380: String = key_1378.extract()?;
             let converted_value_1381 = memory_record_metadata_value_from_py(&value_1379)?;
@@ -8736,7 +8790,8 @@ fn mpp_payment_input_from_py(
         builder = builder.set_version(Some(converted_1455));
     }
     if let Some(value) = dict_value(values, "www_authenticate_headers")? {
-        let mut converted_1456 = Vec::new();
+        let mut converted_1456 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1457 in value.try_iter()? {
             let item_1458 = item_result_1457?;
             let converted_item_1459: String = item_1458.extract()?;
@@ -8876,7 +8931,8 @@ fn o_auth_credential_provider_from_py(
         builder = builder.set_provider_arn(Some(converted_1480));
     }
     if let Some(value) = dict_value(values, "scopes")? {
-        let mut converted_1481 = Vec::new();
+        let mut converted_1481 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1482 in value.try_iter()? {
             let item_1483 = item_result_1482?;
             let converted_item_1484: String = item_1483.extract()?;
@@ -8886,7 +8942,7 @@ fn o_auth_credential_provider_from_py(
     }
     if let Some(value) = dict_value(values, "custom_parameters")? {
         let mapping_1486 = value.cast::<PyDict>()?;
-        let mut converted_1485 = HashMap::new();
+        let mut converted_1485 = HashMap::with_capacity(mapping_1486.len());
         for (key_1487, value_1488) in mapping_1486.iter() {
             let converted_key_1489: String = key_1487.extract()?;
             let converted_value_1490: String = value_1488.extract()?;
@@ -9740,7 +9796,8 @@ fn proxy_bypass_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::ProxyBypass::builder();
     if let Some(value) = dict_value(values, "domain_patterns")? {
-        let mut converted_1623 = Vec::new();
+        let mut converted_1623 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1624 in value.try_iter()? {
             let item_1625 = item_result_1624?;
             let converted_item_1626: String = item_1625.extract()?;
@@ -9776,7 +9833,8 @@ fn proxy_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::ProxyConfiguration::builder();
     if let Some(value) = dict_value(values, "proxies")? {
-        let mut converted_1630 = Vec::new();
+        let mut converted_1630 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1631 in value.try_iter()? {
             let item_1632 = item_result_1631?;
             let converted_item_1633 = proxy_from_py(&item_1632)?;
@@ -9896,7 +9954,8 @@ fn recommendation_evaluation_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::RecommendationEvaluationConfig::builder();
     if let Some(value) = dict_value(values, "evaluators")? {
-        let mut converted_1645 = Vec::new();
+        let mut converted_1645 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1646 in value.try_iter()? {
             let item_1647 = item_result_1646?;
             let converted_item_1648 = recommendation_evaluator_reference_from_py(&item_1647)?;
@@ -10470,7 +10529,8 @@ fn root_cause_cluster_from_py(
         builder = builder.set_affected_session_count(Some(converted_1739));
     }
     if let Some(value) = dict_value(values, "affected_sessions")? {
-        let mut converted_1740 = Vec::new();
+        let mut converted_1740 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1741 in value.try_iter()? {
             let item_1742 = item_result_1741?;
             let converted_item_1743 = affected_session_from_py(&item_1742)?;
@@ -10603,7 +10663,8 @@ fn sample_session_from_py(
         builder = builder.set_last_seen_at(Some(converted_1765));
     }
     if let Some(value) = dict_value(values, "findings")? {
-        let mut converted_1767 = Vec::new();
+        let mut converted_1767 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1768 in value.try_iter()? {
             let item_1769 = item_result_1768?;
             let converted_item_1770 = session_finding_from_py(&item_1769)?;
@@ -10736,7 +10797,8 @@ fn search_criteria_from_py(
         builder = builder.set_top_k(Some(converted_1789));
     }
     if let Some(value) = dict_value(values, "metadata_filters")? {
-        let mut converted_1790 = Vec::new();
+        let mut converted_1790 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1791 in value.try_iter()? {
             let item_1792 = item_result_1791?;
             let converted_item_1793 = memory_metadata_filter_expression_from_py(&item_1792)?;
@@ -11023,7 +11085,7 @@ fn session_metadata_shape_from_py(
     }
     if let Some(value) = dict_value(values, "metadata")? {
         let mapping_1832 = value.cast::<PyDict>()?;
-        let mut converted_1831 = HashMap::new();
+        let mut converted_1831 = HashMap::with_capacity(mapping_1832.len());
         for (key_1833, value_1834) in mapping_1832.iter() {
             let converted_key_1835: String = key_1833.extract()?;
             let converted_value_1836: String = value_1834.extract()?;
@@ -11121,7 +11183,8 @@ fn session_trace_ids_from_py(
         builder = builder.set_session_id(Some(converted_1852));
     }
     if let Some(value) = dict_value(values, "trace_ids")? {
-        let mut converted_1853 = Vec::new();
+        let mut converted_1853 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1854 in value.try_iter()? {
             let item_1855 = item_result_1854?;
             let converted_item_1856: String = item_1855.extract()?;
@@ -11737,7 +11800,8 @@ fn tool_arguments_from_py(
         builder = builder.set_path(Some(converted_1943));
     }
     if let Some(value) = dict_value(values, "paths")? {
-        let mut converted_1944 = Vec::new();
+        let mut converted_1944 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1945 in value.try_iter()? {
             let item_1946 = item_result_1945?;
             let converted_item_1947: String = item_1946.extract()?;
@@ -11746,7 +11810,8 @@ fn tool_arguments_from_py(
         builder = builder.set_paths(Some(converted_1944));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1948 = Vec::new();
+        let mut converted_1948 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1949 in value.try_iter()? {
             let item_1950 = item_result_1949?;
             let converted_item_1951 = input_content_block_from_py(&item_1950)?;
@@ -11897,7 +11962,8 @@ fn tool_description_configuration_bundle_from_py(
         builder = builder.set_version_id(Some(converted_1973));
     }
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_1974 = Vec::new();
+        let mut converted_1974 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1975 in value.try_iter()? {
             let item_1976 = item_result_1975?;
             let converted_item_1977 = configuration_bundle_tool_entry_from_py(&item_1976)?;
@@ -12051,7 +12117,8 @@ fn tool_description_recommendation_result_from_py(
     let mut builder =
         aws_sdk_bedrockagentcore::types::ToolDescriptionRecommendationResult::builder();
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_1997 = Vec::new();
+        let mut converted_1997 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1998 in value.try_iter()? {
             let item_1999 = item_result_1998?;
             let converted_item_2000 = tool_description_output_from_py(&item_1999)?;
@@ -12166,7 +12233,8 @@ fn tool_description_text_input_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::ToolDescriptionTextInput::builder();
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_2014 = Vec::new();
+        let mut converted_2014 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2015 in value.try_iter()? {
             let item_2016 = item_result_2015?;
             let converted_item_2017 = tool_description_input_from_py(&item_2016)?;
@@ -12428,7 +12496,8 @@ fn user_intent_affected_session_from_py(
         builder = builder.set_session_id(Some(converted_2046));
     }
     if let Some(value) = dict_value(values, "user_messages")? {
-        let mut converted_2047 = Vec::new();
+        let mut converted_2047 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2048 in value.try_iter()? {
             let item_2049 = item_result_2048?;
             let converted_item_2050: String = item_2049.extract()?;
@@ -12480,7 +12549,8 @@ fn user_intent_cluster_from_py(
         builder = builder.set_affected_session_count(Some(converted_2058));
     }
     if let Some(value) = dict_value(values, "affected_sessions")? {
-        let mut converted_2059 = Vec::new();
+        let mut converted_2059 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2060 in value.try_iter()? {
             let item_2061 = item_result_2060?;
             let converted_item_2062 = user_intent_affected_session_from_py(&item_2061)?;
@@ -12522,7 +12592,8 @@ fn user_intent_clustering_result_content_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockagentcore::types::UserIntentClusteringResultContent::builder();
     if let Some(value) = dict_value(values, "user_intents")? {
-        let mut converted_2070 = Vec::new();
+        let mut converted_2070 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2071 in value.try_iter()? {
             let item_2072 = item_result_2071?;
             let converted_item_2073 = user_intent_cluster_from_py(&item_2072)?;
@@ -20861,7 +20932,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let records_value = if let Some(value) = dict_value(params, "records")? {
-            let mut converted_2112 = Vec::new();
+            let mut converted_2112 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2113 in value.try_iter()? {
                 let item_2114 = item_result_2113?;
                 let converted_item_2115 = memory_record_create_input_from_py(&item_2114)?;
@@ -20896,7 +20968,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchCreateMemoryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchCreateMemoryRecordsOutput { inner: output }))
+            Ok(PyBatchCreateMemoryRecordsOutput { inner: output })
         })
     }
 
@@ -20914,7 +20986,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let records_value = if let Some(value) = dict_value(params, "records")? {
-            let mut converted_2119 = Vec::new();
+            let mut converted_2119 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2120 in value.try_iter()? {
                 let item_2121 = item_result_2120?;
                 let converted_item_2122 = memory_record_delete_input_from_py(&item_2121)?;
@@ -20934,7 +21007,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteMemoryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchDeleteMemoryRecordsOutput { inner: output }))
+            Ok(PyBatchDeleteMemoryRecordsOutput { inner: output })
         })
     }
 
@@ -20952,7 +21025,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let records_value = if let Some(value) = dict_value(params, "records")? {
-            let mut converted_2124 = Vec::new();
+            let mut converted_2124 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2125 in value.try_iter()? {
                 let item_2126 = item_result_2125?;
                 let converted_item_2127 = memory_record_update_input_from_py(&item_2126)?;
@@ -20980,7 +21054,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchUpdateMemoryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchUpdateMemoryRecordsOutput { inner: output }))
+            Ok(PyBatchUpdateMemoryRecordsOutput { inner: output })
         })
     }
 
@@ -21013,7 +21087,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CompleteResourceTokenAuth"))
             })?;
-            Python::attach(|py| Py::new(py, PyCompleteResourceTokenAuthResponse { inner: output }))
+            Ok(PyCompleteResourceTokenAuthResponse { inner: output })
         })
     }
 
@@ -21043,7 +21117,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let variants_value = if let Some(value) = dict_value(params, "variants")? {
-            let mut converted_2134 = Vec::new();
+            let mut converted_2134 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2135 in value.try_iter()? {
                 let item_2136 = item_result_2135?;
                 let converted_item_2137 = variant_from_py(&item_2136)?;
@@ -21086,7 +21161,7 @@ impl BedrockAgentCoreClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2144 = value.cast::<PyDict>()?;
-            let mut converted_2143 = HashMap::new();
+            let mut converted_2143 = HashMap::with_capacity(mapping_2144.len());
             for (key_2145, value_2146) in mapping_2144.iter() {
                 let converted_key_2147: String = key_2145.extract()?;
                 let converted_value_2148: String = value_2146.extract()?;
@@ -21114,7 +21189,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateABTest"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateABTestResponse { inner: output }))
+            Ok(PyCreateABTestResponse { inner: output })
         })
     }
 
@@ -21155,7 +21230,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let payload_value = if let Some(value) = dict_value(params, "payload")? {
-            let mut converted_2154 = Vec::new();
+            let mut converted_2154 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2155 in value.try_iter()? {
                 let item_2156 = item_result_2155?;
                 let converted_item_2157 = payload_type_from_py(&item_2156)?;
@@ -21179,7 +21255,7 @@ impl BedrockAgentCoreClient {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_2161 = value.cast::<PyDict>()?;
-            let mut converted_2160 = HashMap::new();
+            let mut converted_2160 = HashMap::with_capacity(mapping_2161.len());
             for (key_2162, value_2163) in mapping_2161.iter() {
                 let converted_key_2164: String = key_2162.extract()?;
                 let converted_value_2165 = metadata_value_from_py(&value_2163)?;
@@ -21223,7 +21299,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateEvent")))?;
-            Python::attach(|py| Py::new(py, PyCreateEventOutput { inner: output }))
+            Ok(PyCreateEventOutput { inner: output })
         })
     }
 
@@ -21298,7 +21374,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePaymentInstrument"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePaymentInstrumentResponse { inner: output }))
+            Ok(PyCreatePaymentInstrumentResponse { inner: output })
         })
     }
 
@@ -21361,7 +21437,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePaymentSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePaymentSessionResponse { inner: output }))
+            Ok(PyCreatePaymentSessionResponse { inner: output })
         })
     }
 
@@ -21387,7 +21463,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteABTest"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteABTestResponse { inner: output }))
+            Ok(PyDeleteABTestResponse { inner: output })
         })
     }
 
@@ -21414,7 +21490,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBatchEvaluation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteBatchEvaluationResponse { inner: output }))
+            Ok(PyDeleteBatchEvaluationResponse { inner: output })
         })
     }
 
@@ -21448,12 +21524,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCapacityProviderSession"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteCapacityProviderSessionResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteCapacityProviderSessionResponse { inner: output })
         })
     }
 
@@ -21501,7 +21572,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEvent")))?;
-            Python::attach(|py| Py::new(py, PyDeleteEventOutput { inner: output }))
+            Ok(PyDeleteEventOutput { inner: output })
         })
     }
 
@@ -21541,7 +21612,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMemoryRecord"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteMemoryRecordOutput { inner: output }))
+            Ok(PyDeleteMemoryRecordOutput { inner: output })
         })
     }
 
@@ -21591,7 +21662,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePaymentInstrument"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeletePaymentInstrumentResponse { inner: output }))
+            Ok(PyDeletePaymentInstrumentResponse { inner: output })
         })
     }
 
@@ -21633,7 +21704,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePaymentSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeletePaymentSessionResponse { inner: output }))
+            Ok(PyDeletePaymentSessionResponse { inner: output })
         })
     }
 
@@ -21660,7 +21731,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRecommendation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteRecommendationResponse { inner: output }))
+            Ok(PyDeleteRecommendationResponse { inner: output })
         })
     }
 
@@ -21692,7 +21763,8 @@ impl BedrockAgentCoreClient {
         };
         let evaluation_reference_inputs_value =
             if let Some(value) = dict_value(params, "evaluation_reference_inputs")? {
-                let mut converted_2205 = Vec::new();
+                let mut converted_2205 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2206 in value.try_iter()? {
                     let item_2207 = item_result_2206?;
                     let converted_item_2208 = evaluation_reference_input_from_py(&item_2207)?;
@@ -21715,7 +21787,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Evaluate")))?;
-            Python::attach(|py| Py::new(py, PyEvaluateResponse { inner: output }))
+            Ok(PyEvaluateResponse { inner: output })
         })
     }
 
@@ -21742,7 +21814,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetABTest")))?;
-            Python::attach(|py| Py::new(py, PyGetABTestResponse { inner: output }))
+            Ok(PyGetABTestResponse { inner: output })
         })
     }
 
@@ -21784,7 +21856,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentCard"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAgentCardResponse { inner: output }))
+            Ok(PyGetAgentCardResponse { inner: output })
         })
     }
 
@@ -21811,7 +21883,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBatchEvaluation"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBatchEvaluationResponse { inner: output }))
+            Ok(PyGetBatchEvaluationResponse { inner: output })
         })
     }
 
@@ -21845,7 +21917,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBrowserSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBrowserSessionResponse { inner: output }))
+            Ok(PyGetBrowserSessionResponse { inner: output })
         })
     }
 
@@ -21879,7 +21951,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCodeInterpreterSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCodeInterpreterSessionResponse { inner: output }))
+            Ok(PyGetCodeInterpreterSessionResponse { inner: output })
         })
     }
 
@@ -21927,7 +21999,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetEvent")))?;
-            Python::attach(|py| Py::new(py, PyGetEventOutput { inner: output }))
+            Ok(PyGetEventOutput { inner: output })
         })
     }
 
@@ -21967,7 +22039,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMemoryRecord"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMemoryRecordOutput { inner: output }))
+            Ok(PyGetMemoryRecordOutput { inner: output })
         })
     }
 
@@ -22024,7 +22096,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentInstrument"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPaymentInstrumentResponse { inner: output }))
+            Ok(PyGetPaymentInstrumentResponse { inner: output })
         })
     }
 
@@ -22100,9 +22172,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentInstrumentBalance"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetPaymentInstrumentBalanceResponse { inner: output })
-            })
+            Ok(PyGetPaymentInstrumentBalanceResponse { inner: output })
         })
     }
 
@@ -22151,7 +22221,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPaymentSessionResponse { inner: output }))
+            Ok(PyGetPaymentSessionResponse { inner: output })
         })
     }
 
@@ -22178,7 +22248,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRecommendation"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRecommendationResponse { inner: output }))
+            Ok(PyGetRecommendationResponse { inner: output })
         })
     }
 
@@ -22213,7 +22283,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourceApiKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourceApiKeyResponse { inner: output }))
+            Ok(PyGetResourceApiKeyResponse { inner: output })
         })
     }
 
@@ -22239,7 +22309,8 @@ impl BedrockAgentCoreClient {
                 None
             };
         let scopes_value = if let Some(value) = dict_value(params, "scopes")? {
-            let mut converted_2248 = Vec::new();
+            let mut converted_2248 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2249 in value.try_iter()? {
                 let item_2250 = item_result_2249?;
                 let converted_item_2251: String = item_2250.extract()?;
@@ -22280,7 +22351,7 @@ impl BedrockAgentCoreClient {
         let custom_parameters_value = if let Some(value) = dict_value(params, "custom_parameters")?
         {
             let mapping_2258 = value.cast::<PyDict>()?;
-            let mut converted_2257 = HashMap::new();
+            let mut converted_2257 = HashMap::with_capacity(mapping_2258.len());
             for (key_2259, value_2260) in mapping_2258.iter() {
                 let converted_key_2261: String = key_2259.extract()?;
                 let converted_value_2262: String = value_2260.extract()?;
@@ -22297,7 +22368,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let resources_value = if let Some(value) = dict_value(params, "resources")? {
-            let mut converted_2264 = Vec::new();
+            let mut converted_2264 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2265 in value.try_iter()? {
                 let item_2266 = item_result_2265?;
                 let converted_item_2267: String = item_2266.extract()?;
@@ -22308,7 +22380,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let audiences_value = if let Some(value) = dict_value(params, "audiences")? {
-            let mut converted_2268 = Vec::new();
+            let mut converted_2268 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2269 in value.try_iter()? {
                 let item_2270 = item_result_2269?;
                 let converted_item_2271: String = item_2270.extract()?;
@@ -22337,7 +22410,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourceOauth2Token"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourceOauth2TokenResponse { inner: output }))
+            Ok(PyGetResourceOauth2TokenResponse { inner: output })
         })
     }
 
@@ -22380,7 +22453,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePaymentToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePaymentTokenResponse { inner: output }))
+            Ok(PyGetResourcePaymentTokenResponse { inner: output })
         })
     }
 
@@ -22406,7 +22479,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWorkloadAccessToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetWorkloadAccessTokenResponse { inner: output }))
+            Ok(PyGetWorkloadAccessTokenResponse { inner: output })
         })
     }
 
@@ -22439,9 +22512,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWorkloadAccessTokenForJWT"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetWorkloadAccessTokenForJWTResponse { inner: output })
-            })
+            Ok(PyGetWorkloadAccessTokenForJWTResponse { inner: output })
         })
     }
 
@@ -22474,12 +22545,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWorkloadAccessTokenForUserId"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetWorkloadAccessTokenForUserIdResponse { inner: output },
-                )
-            })
+            Ok(PyGetWorkloadAccessTokenForUserIdResponse { inner: output })
         })
     }
 
@@ -22535,7 +22601,7 @@ impl BedrockAgentCoreClient {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_2288 = value.cast::<PyDict>()?;
-            let mut converted_2287 = HashMap::new();
+            let mut converted_2287 = HashMap::with_capacity(mapping_2288.len());
             for (key_2289, value_2290) in mapping_2288.iter() {
                 let converted_key_2291: String = key_2289.extract()?;
                 let converted_value_2292 = metadata_value_from_py(&value_2290)?;
@@ -22568,7 +22634,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "IngestData")))?;
-            Python::attach(|py| Py::new(py, PyIngestDataOutput { inner: output }))
+            Ok(PyIngestDataOutput { inner: output })
         })
     }
 
@@ -22901,7 +22967,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeBrowser"))
             })?;
-            Python::attach(|py| Py::new(py, PyInvokeBrowserResponse { inner: output }))
+            Ok(PyInvokeBrowserResponse { inner: output })
         })
     }
 
@@ -23043,7 +23109,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_2348 = Vec::new();
+            let mut converted_2348 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2349 in value.try_iter()? {
                 let item_2350 = item_result_2349?;
                 let converted_item_2351 = harness_message_from_py(&item_2350)?;
@@ -23060,7 +23127,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let system_prompt_value = if let Some(value) = dict_value(params, "system_prompt")? {
-            let mut converted_2353 = Vec::new();
+            let mut converted_2353 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2354 in value.try_iter()? {
                 let item_2355 = item_result_2354?;
                 let converted_item_2356 = harness_system_content_block_from_py(&item_2355)?;
@@ -23071,7 +23139,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let tools_value = if let Some(value) = dict_value(params, "tools")? {
-            let mut converted_2357 = Vec::new();
+            let mut converted_2357 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2358 in value.try_iter()? {
                 let item_2359 = item_result_2358?;
                 let converted_item_2360 = harness_tool_from_py(&item_2359)?;
@@ -23082,7 +23151,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let skills_value = if let Some(value) = dict_value(params, "skills")? {
-            let mut converted_2361 = Vec::new();
+            let mut converted_2361 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2362 in value.try_iter()? {
                 let item_2363 = item_result_2362?;
                 let converted_item_2364 = harness_skill_from_py(&item_2363)?;
@@ -23093,7 +23163,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let allowed_tools_value = if let Some(value) = dict_value(params, "allowed_tools")? {
-            let mut converted_2365 = Vec::new();
+            let mut converted_2365 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2366 in value.try_iter()? {
                 let item_2367 = item_result_2366?;
                 let converted_item_2368: String = item_2367.extract()?;
@@ -23195,7 +23266,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListABTests")))?;
-            Python::attach(|py| Py::new(py, PyListABTestsResponse { inner: output }))
+            Ok(PyListABTestsResponse { inner: output })
         })
     }
 
@@ -23236,7 +23307,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListActors")))?;
-            Python::attach(|py| Py::new(py, PyListActorsOutput { inner: output }))
+            Ok(PyListActorsOutput { inner: output })
         })
     }
 
@@ -23269,7 +23340,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBatchEvaluations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListBatchEvaluationsResponse { inner: output }))
+            Ok(PyListBatchEvaluationsResponse { inner: output })
         })
     }
 
@@ -23320,7 +23391,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBrowserSessions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListBrowserSessionsResponse { inner: output }))
+            Ok(PyListBrowserSessionsResponse { inner: output })
         })
     }
 
@@ -23372,9 +23443,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCodeInterpreterSessions"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyListCodeInterpreterSessionsResponse { inner: output })
-            })
+            Ok(PyListCodeInterpreterSessionsResponse { inner: output })
         })
     }
 
@@ -23443,7 +23512,7 @@ impl BedrockAgentCoreClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListEvents")))?;
-            Python::attach(|py| Py::new(py, PyListEventsOutput { inner: output }))
+            Ok(PyListEventsOutput { inner: output })
         })
     }
 
@@ -23490,7 +23559,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMemoryExtractionJobs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMemoryExtractionJobsOutput { inner: output }))
+            Ok(PyListMemoryExtractionJobsOutput { inner: output })
         })
     }
 
@@ -23539,7 +23608,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let metadata_filters_value = if let Some(value) = dict_value(params, "metadata_filters")? {
-            let mut converted_2407 = Vec::new();
+            let mut converted_2407 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2408 in value.try_iter()? {
                 let item_2409 = item_result_2408?;
                 let converted_item_2410 = memory_metadata_filter_expression_from_py(&item_2409)?;
@@ -23564,7 +23634,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMemoryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMemoryRecordsOutput { inner: output }))
+            Ok(PyListMemoryRecordsOutput { inner: output })
         })
     }
 
@@ -23627,7 +23697,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPaymentInstruments"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPaymentInstrumentsResponse { inner: output }))
+            Ok(PyListPaymentInstrumentsResponse { inner: output })
         })
     }
 
@@ -23682,7 +23752,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPaymentSessions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPaymentSessionsResponse { inner: output }))
+            Ok(PyListPaymentSessionsResponse { inner: output })
         })
     }
 
@@ -23725,7 +23795,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRecommendations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListRecommendationsResponse { inner: output }))
+            Ok(PyListRecommendationsResponse { inner: output })
         })
     }
 
@@ -23779,7 +23849,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSessions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSessionsOutput { inner: output }))
+            Ok(PyListSessionsOutput { inner: output })
         })
     }
 
@@ -23859,7 +23929,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ProcessPayment"))
             })?;
-            Python::attach(|py| Py::new(py, PyProcessPaymentResponse { inner: output }))
+            Ok(PyProcessPaymentResponse { inner: output })
         })
     }
 
@@ -23920,7 +23990,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveMemoryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PyRetrieveMemoryRecordsOutput { inner: output }))
+            Ok(PyRetrieveMemoryRecordsOutput { inner: output })
         })
     }
 
@@ -23983,7 +24053,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SaveBrowserSessionProfile"))
             })?;
-            Python::attach(|py| Py::new(py, PySaveBrowserSessionProfileResponse { inner: output }))
+            Ok(PySaveBrowserSessionProfileResponse { inner: output })
         })
     }
 
@@ -24001,7 +24071,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let registry_ids_value = if let Some(value) = dict_value(params, "registry_ids")? {
-            let mut converted_2453 = Vec::new();
+            let mut converted_2453 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2454 in value.try_iter()? {
                 let item_2455 = item_result_2454?;
                 let converted_item_2456: String = item_2455.extract()?;
@@ -24035,7 +24106,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchRegistryRecords"))
             })?;
-            Python::attach(|py| Py::new(py, PySearchRegistryRecordsResponse { inner: output }))
+            Ok(PySearchRegistryRecordsResponse { inner: output })
         })
     }
 
@@ -24054,7 +24125,8 @@ impl BedrockAgentCoreClient {
                 None
             };
         let evaluators_value = if let Some(value) = dict_value(params, "evaluators")? {
-            let mut converted_2460 = Vec::new();
+            let mut converted_2460 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2461 in value.try_iter()? {
                 let item_2462 = item_result_2461?;
                 let converted_item_2463 = evaluator_from_py(&item_2462)?;
@@ -24065,7 +24137,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let insights_value = if let Some(value) = dict_value(params, "insights")? {
-            let mut converted_2464 = Vec::new();
+            let mut converted_2464 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2465 in value.try_iter()? {
                 let item_2466 = item_result_2465?;
                 let converted_item_2467 = insight_from_py(&item_2466)?;
@@ -24097,7 +24170,7 @@ impl BedrockAgentCoreClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2472 = value.cast::<PyDict>()?;
-            let mut converted_2471 = HashMap::new();
+            let mut converted_2471 = HashMap::with_capacity(mapping_2472.len());
             for (key_2473, value_2474) in mapping_2472.iter() {
                 let converted_key_2475: String = key_2473.extract()?;
                 let converted_value_2476: String = value_2474.extract()?;
@@ -24143,7 +24216,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartBatchEvaluation"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartBatchEvaluationResponse { inner: output }))
+            Ok(PyStartBatchEvaluationResponse { inner: output })
         })
     }
 
@@ -24193,7 +24266,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let extensions_value = if let Some(value) = dict_value(params, "extensions")? {
-            let mut converted_2486 = Vec::new();
+            let mut converted_2486 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2487 in value.try_iter()? {
                 let item_2488 = item_result_2487?;
                 let converted_item_2489 = browser_extension_from_py(&item_2488)?;
@@ -24219,7 +24293,8 @@ impl BedrockAgentCoreClient {
             };
         let enterprise_policies_value =
             if let Some(value) = dict_value(params, "enterprise_policies")? {
-                let mut converted_2492 = Vec::new();
+                let mut converted_2492 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2493 in value.try_iter()? {
                     let item_2494 = item_result_2493?;
                     let converted_item_2495 = browser_enterprise_policy_from_py(&item_2494)?;
@@ -24230,7 +24305,8 @@ impl BedrockAgentCoreClient {
                 None
             };
         let certificates_value = if let Some(value) = dict_value(params, "certificates")? {
-            let mut converted_2496 = Vec::new();
+            let mut converted_2496 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2497 in value.try_iter()? {
                 let item_2498 = item_result_2497?;
                 let converted_item_2499 = certificate_from_py(&item_2498)?;
@@ -24242,7 +24318,8 @@ impl BedrockAgentCoreClient {
         };
         let filesystem_configurations_value =
             if let Some(value) = dict_value(params, "filesystem_configurations")? {
-                let mut converted_2500 = Vec::new();
+                let mut converted_2500 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2501 in value.try_iter()? {
                     let item_2502 = item_result_2501?;
                     let converted_item_2503 = tools_file_system_configuration_from_py(&item_2502)?;
@@ -24279,7 +24356,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartBrowserSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartBrowserSessionResponse { inner: output }))
+            Ok(PyStartBrowserSessionResponse { inner: output })
         })
     }
 
@@ -24323,7 +24400,8 @@ impl BedrockAgentCoreClient {
                 None
             };
         let certificates_value = if let Some(value) = dict_value(params, "certificates")? {
-            let mut converted_2510 = Vec::new();
+            let mut converted_2510 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2511 in value.try_iter()? {
                 let item_2512 = item_result_2511?;
                 let converted_item_2513 = certificate_from_py(&item_2512)?;
@@ -24335,7 +24413,8 @@ impl BedrockAgentCoreClient {
         };
         let filesystem_configurations_value =
             if let Some(value) = dict_value(params, "filesystem_configurations")? {
-                let mut converted_2514 = Vec::new();
+                let mut converted_2514 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2515 in value.try_iter()? {
                     let item_2516 = item_result_2515?;
                     let converted_item_2517 = tools_file_system_configuration_from_py(&item_2516)?;
@@ -24367,9 +24446,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartCodeInterpreterSession"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyStartCodeInterpreterSessionResponse { inner: output })
-            })
+            Ok(PyStartCodeInterpreterSessionResponse { inner: output })
         })
     }
 
@@ -24409,7 +24486,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMemoryExtractionJob"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartMemoryExtractionJobOutput { inner: output }))
+            Ok(PyStartMemoryExtractionJobOutput { inner: output })
         })
     }
 
@@ -24461,7 +24538,7 @@ impl BedrockAgentCoreClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_2530 = value.cast::<PyDict>()?;
-            let mut converted_2529 = HashMap::new();
+            let mut converted_2529 = HashMap::with_capacity(mapping_2530.len());
             for (key_2531, value_2532) in mapping_2530.iter() {
                 let converted_key_2533: String = key_2531.extract()?;
                 let converted_value_2534: String = value_2532.extract()?;
@@ -24486,7 +24563,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartRecommendation"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartRecommendationResponse { inner: output }))
+            Ok(PyStartRecommendationResponse { inner: output })
         })
     }
 
@@ -24513,7 +24590,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopBatchEvaluation"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopBatchEvaluationResponse { inner: output }))
+            Ok(PyStopBatchEvaluationResponse { inner: output })
         })
     }
 
@@ -24568,7 +24645,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopBrowserSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopBrowserSessionResponse { inner: output }))
+            Ok(PyStopBrowserSessionResponse { inner: output })
         })
     }
 
@@ -24623,7 +24700,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopCodeInterpreterSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopCodeInterpreterSessionResponse { inner: output }))
+            Ok(PyStopCodeInterpreterSessionResponse { inner: output })
         })
     }
 
@@ -24672,7 +24749,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopRuntimeSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopRuntimeSessionResponse { inner: output }))
+            Ok(PyStopRuntimeSessionResponse { inner: output })
         })
     }
 
@@ -24708,7 +24785,8 @@ impl BedrockAgentCoreClient {
             None
         };
         let variants_value = if let Some(value) = dict_value(params, "variants")? {
-            let mut converted_2554 = Vec::new();
+            let mut converted_2554 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2555 in value.try_iter()? {
                 let item_2556 = item_result_2555?;
                 let converted_item_2557 = variant_from_py(&item_2556)?;
@@ -24763,7 +24841,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateABTest"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateABTestResponse { inner: output }))
+            Ok(PyUpdateABTestResponse { inner: output })
         })
     }
 
@@ -24811,7 +24889,7 @@ impl BedrockAgentCoreClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBrowserStream"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateBrowserStreamResponse { inner: output }))
+            Ok(PyUpdateBrowserStreamResponse { inner: output })
         })
     }
 }
