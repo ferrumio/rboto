@@ -17117,18 +17117,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl DynamoDBClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -17162,7 +17173,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_execute_statement()
                 .set_statements(statements_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
@@ -17204,7 +17215,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_get_item()
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
@@ -17262,7 +17273,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_write_item()
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value)
@@ -17296,7 +17307,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_backup()
                 .set_table_name(table_name_value)
                 .set_backup_name(backup_name_value);
@@ -17337,7 +17348,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replication_group(replication_group_value);
@@ -17520,7 +17531,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_table()
                 .set_attribute_definitions(attribute_definitions_value)
                 .set_table_name(table_name_value)
@@ -17566,7 +17577,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_backup()
                 .set_backup_arn(backup_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -17696,7 +17707,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -17742,7 +17753,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_expected_revision_id(expected_revision_id_value);
@@ -17769,7 +17780,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_table()
                 .set_table_name(table_name_value);
             let output = request
@@ -17796,7 +17807,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_backup()
                 .set_backup_arn(backup_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -17822,7 +17833,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_continuous_backups()
                 .set_table_name(table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -17854,7 +17865,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value);
@@ -17873,7 +17884,7 @@ impl DynamoDBClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.describe_endpoints();
+            let request = state.client().await?.describe_endpoints();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
             })?;
@@ -17897,7 +17908,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_export()
                 .set_export_arn(export_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -17924,7 +17935,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_global_table()
                 .set_global_table_name(global_table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -17951,7 +17962,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_global_table_settings()
                 .set_global_table_name(global_table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -17977,7 +17988,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_import()
                 .set_import_arn(import_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -18003,7 +18014,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_kinesis_streaming_destination()
                 .set_table_name(table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -18023,7 +18034,7 @@ impl DynamoDBClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.describe_limits();
+            let request = state.client().await?.describe_limits();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLimits"))
             })?;
@@ -18047,7 +18058,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_table()
                 .set_table_name(table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -18073,7 +18084,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_table_replica_auto_scaling()
                 .set_table_name(table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -18099,7 +18110,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_time_to_live()
                 .set_table_name(table_name_value);
             let output = request.send().await.map_err(|error| {
@@ -18138,7 +18149,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disable_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
@@ -18183,7 +18194,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .enable_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
@@ -18265,7 +18276,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .execute_statement()
                 .set_statement(statement_value)
                 .set_parameters(parameters_value)
@@ -18322,7 +18333,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .execute_transaction()
                 .set_transact_statements(transact_statements_value)
                 .set_client_request_token(client_request_token_value)
@@ -18430,7 +18441,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .export_table_to_point_in_time()
                 .set_table_arn(table_arn_value)
                 .set_export_time(export_time_value)
@@ -18527,7 +18538,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -18560,7 +18571,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -18623,7 +18634,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .import_table()
                 .set_client_token(client_token_value)
                 .set_s3_bucket_source(s3_bucket_source_value)
@@ -18700,7 +18711,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_backups()
                 .set_table_name(table_name_value)
                 .set_limit(limit_value)
@@ -18744,7 +18755,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_next_token(next_token_value)
@@ -18784,7 +18795,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_exports()
                 .set_table_arn(table_arn_value)
                 .set_max_results(max_results_value)
@@ -18826,7 +18837,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_global_tables()
                 .set_exclusive_start_global_table_name(exclusive_start_global_table_name_value)
                 .set_limit(limit_value)
@@ -18866,7 +18877,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_imports()
                 .set_table_arn(table_arn_value)
                 .set_page_size(page_size_value)
@@ -18902,7 +18913,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tables()
                 .set_exclusive_start_table_name(exclusive_start_table_name_value)
                 .set_limit(limit_value);
@@ -18936,7 +18947,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_of_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_next_token(next_token_value);
@@ -19067,7 +19078,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_item()
                 .set_table_name(table_name_value)
                 .set_item(item_value)
@@ -19126,7 +19137,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_policy(policy_value)
@@ -19302,7 +19313,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .query()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -19421,7 +19432,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .restore_table_from_backup()
                 .set_target_table_name(target_table_name_value)
                 .set_backup_arn(backup_arn_value)
@@ -19557,7 +19568,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .restore_table_to_point_in_time()
                 .set_source_table_arn(source_table_arn_value)
                 .set_source_table_name(source_table_name_value)
@@ -19727,7 +19738,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .scan()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -19842,7 +19853,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .search_vectors()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -19888,7 +19899,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -19931,7 +19942,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .transact_get_items()
                 .set_transact_items(transact_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
@@ -19990,7 +20001,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .transact_write_items()
                 .set_transact_items(transact_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value)
@@ -20031,7 +20042,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -20065,7 +20076,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_continuous_backups()
                 .set_table_name(table_name_value)
                 .set_point_in_time_recovery_specification(
@@ -20120,7 +20131,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -20162,7 +20173,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replica_updates(replica_updates_value);
@@ -20247,7 +20258,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_global_table_settings()
                 .set_global_table_name(global_table_name_value)
                 .set_global_table_billing_mode(global_table_billing_mode_value)
@@ -20408,7 +20419,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -20462,7 +20473,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
@@ -20643,7 +20654,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_table()
                 .set_attribute_definitions(attribute_definitions_value)
                 .set_table_name(table_name_value)
@@ -20722,7 +20733,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_table_replica_auto_scaling()
                 .set_global_secondary_index_updates(global_secondary_index_updates_value)
                 .set_table_name(table_name_value)
@@ -20760,7 +20771,7 @@ impl DynamoDBClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_time_to_live()
                 .set_table_name(table_name_value)
                 .set_time_to_live_specification(time_to_live_specification_value);

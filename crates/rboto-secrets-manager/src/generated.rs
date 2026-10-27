@@ -3253,18 +3253,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SecretsManagerClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -3313,7 +3324,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_get_secret_value()
                 .set_secret_id_list(secret_id_list_value)
                 .set_filters(filters_value)
@@ -3342,7 +3353,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .cancel_rotate_secret()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -3438,7 +3449,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_secret()
                 .set_name(name_value)
                 .set_client_request_token(client_request_token_value)
@@ -3473,7 +3484,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_resource_policy()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -3513,7 +3524,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_secret()
                 .set_secret_id(secret_id_value)
                 .set_recovery_window_in_days(recovery_window_in_days_value)
@@ -3541,7 +3552,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_secret()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -3614,7 +3625,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_random_password()
                 .set_password_length(password_length_value)
                 .set_exclude_characters(exclude_characters_value)
@@ -3647,7 +3658,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_resource_policy()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -3685,7 +3696,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_secret_value()
                 .set_secret_id(secret_id_value)
                 .set_version_id(version_id_value)
@@ -3732,7 +3743,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_secret_version_ids()
                 .set_secret_id(secret_id_value)
                 .set_max_results(max_results_value)
@@ -3802,7 +3813,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_secrets()
                 .set_include_planned_deletion(include_planned_deletion_value)
                 .set_max_results(max_results_value)
@@ -3847,7 +3858,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_resource_policy()
                 .set_secret_id(secret_id_value)
                 .set_resource_policy(resource_policy_value)
@@ -3913,7 +3924,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_secret_value()
                 .set_secret_id(secret_id_value)
                 .set_client_request_token(client_request_token_value)
@@ -3957,7 +3968,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .remove_regions_from_replication()
                 .set_secret_id(secret_id_value)
                 .set_remove_replica_regions(remove_replica_regions_value);
@@ -4004,7 +4015,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .replicate_secret_to_regions()
                 .set_secret_id(secret_id_value)
                 .set_add_replica_regions(add_replica_regions_value)
@@ -4032,7 +4043,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .restore_secret()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -4106,7 +4117,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .rotate_secret()
                 .set_secret_id(secret_id_value)
                 .set_client_request_token(client_request_token_value)
@@ -4138,7 +4149,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_replication_to_replica()
                 .set_secret_id(secret_id_value);
             let output = request.send().await.map_err(|error| {
@@ -4176,7 +4187,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_secret_id(secret_id_value)
                 .set_tags(tags_value);
@@ -4216,7 +4227,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_secret_id(secret_id_value)
                 .set_tag_keys(tag_keys_value);
@@ -4281,7 +4292,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_secret()
                 .set_secret_id(secret_id_value)
                 .set_client_request_token(client_request_token_value)
@@ -4333,7 +4344,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_secret_version_stage()
                 .set_secret_id(secret_id_value)
                 .set_version_stage(version_stage_value)
@@ -4368,7 +4379,7 @@ impl SecretsManagerClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .validate_resource_policy()
                 .set_secret_id(secret_id_value)
                 .set_resource_policy(resource_policy_value);

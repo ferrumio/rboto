@@ -269,18 +269,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SageMakerRuntimeHTTP2Client {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -328,7 +339,7 @@ impl SageMakerRuntimeHTTP2Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_endpoint_with_bidirectional_stream()
                 .set_endpoint_name(endpoint_name_value)
                 .set_body(body_value)

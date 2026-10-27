@@ -8337,18 +8337,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl PipesClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -8452,7 +8463,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_pipe()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -8489,7 +8500,7 @@ impl PipesClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.delete_pipe().set_name(name_value);
+            let request = state.client().await?.delete_pipe().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -8512,7 +8523,7 @@ impl PipesClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.describe_pipe().set_name(name_value);
+            let request = state.client().await?.describe_pipe().set_name(name_value);
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePipe"))
             })?;
@@ -8575,7 +8586,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_pipes()
                 .set_name_prefix(name_prefix_value)
                 .set_desired_state(desired_state_value)
@@ -8608,7 +8619,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -8632,7 +8643,7 @@ impl PipesClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.start_pipe().set_name(name_value);
+            let request = state.client().await?.start_pipe().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -8655,7 +8666,7 @@ impl PipesClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.stop_pipe().set_name(name_value);
+            let request = state.client().await?.stop_pipe().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -8692,7 +8703,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -8732,7 +8743,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -8826,7 +8837,7 @@ impl PipesClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_pipe()
                 .set_name(name_value)
                 .set_description(description_value)

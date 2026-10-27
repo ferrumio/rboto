@@ -41921,18 +41921,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl BedrockAgentCoreControlClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -41963,7 +41974,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .add_dataset_examples()
                 .set_dataset_id(dataset_id_value)
                 .set_client_token(client_token_value)
@@ -42010,7 +42021,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_put_gateway_rate_limits()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_client_token(client_token_value)
@@ -42150,7 +42161,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_agent_runtime()
                 .set_agent_runtime_name(agent_runtime_name_value)
                 .set_agent_runtime_artifact(agent_runtime_artifact_value)
@@ -42227,7 +42238,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_agent_runtime_endpoint()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_name(name_value)
@@ -42293,7 +42304,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_api_key_credential_provider()
                 .set_name(name_value)
                 .set_api_key(api_key_value)
@@ -42411,7 +42422,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_browser()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -42471,7 +42482,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_browser_profile()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -42538,7 +42549,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_capacity_provider()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -42632,7 +42643,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_code_interpreter()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -42725,7 +42736,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_configuration_bundle()
                 .set_client_token(client_token_value)
                 .set_bundle_name(bundle_name_value)
@@ -42802,7 +42813,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_consent_portal()
                 .set_execution_role_arn(execution_role_arn_value)
                 .set_idp_config(idp_config_value)
@@ -42878,7 +42889,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_dataset()
                 .set_client_token(client_token_value)
                 .set_dataset_name(dataset_name_value)
@@ -42916,7 +42927,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_dataset_version()
                 .set_dataset_id(dataset_id_value)
                 .set_client_token(client_token_value);
@@ -42988,7 +42999,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_evaluator()
                 .set_client_token(client_token_value)
                 .set_evaluator_name(evaluator_name_value)
@@ -43118,7 +43129,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_gateway()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -43199,7 +43210,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_gateway_rate_limit()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_client_token(client_token_value)
@@ -43273,7 +43284,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_gateway_rule()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_client_token(client_token_value)
@@ -43370,7 +43381,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_gateway_target()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_name(name_value)
@@ -43558,7 +43569,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_harness()
                 .set_harness_name(harness_name_value)
                 .set_client_token(client_token_value)
@@ -43638,7 +43649,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_harness_endpoint()
                 .set_harness_id(harness_id_value)
                 .set_endpoint_name(endpoint_name_value)
@@ -43758,7 +43769,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_memory()
                 .set_client_token(client_token_value)
                 .set_name(name_value)
@@ -43824,7 +43835,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_oauth2_credential_provider()
                 .set_name(name_value)
                 .set_credential_provider_vendor(credential_provider_vendor_value)
@@ -43941,7 +43952,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_online_evaluation_config()
                 .set_client_token(client_token_value)
                 .set_online_evaluation_config_name(online_evaluation_config_name_value)
@@ -44030,7 +44041,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_payment_connector()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_name(name_value)
@@ -44092,7 +44103,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_payment_credential_provider()
                 .set_name(name_value)
                 .set_credential_provider_vendor(credential_provider_vendor_value)
@@ -44174,7 +44185,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_payment_manager()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -44249,7 +44260,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_policy()
                 .set_name(name_value)
                 .set_definition(definition_value)
@@ -44312,7 +44323,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_policy_engine()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -44378,7 +44389,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_registry()
                 .set_name(name_value)
                 .set_description(description_value)
@@ -44466,7 +44477,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_registry_record()
                 .set_registry_id(registry_id_value)
                 .set_name(name_value)
@@ -44525,7 +44536,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_workload_identity()
                 .set_name(name_value)
                 .set_allowed_resource_oauth2_return_urls(allowed_resource_oauth2_return_urls_value)
@@ -44566,7 +44577,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_agent_runtime()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_agent_runtime_version(agent_runtime_version_value)
@@ -44606,7 +44617,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_agent_runtime_endpoint()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_endpoint_name(endpoint_name_value)
@@ -44634,7 +44645,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_api_key_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -44666,7 +44677,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_browser()
                 .set_browser_id(browser_id_value)
                 .set_client_token(client_token_value);
@@ -44699,7 +44710,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_browser_profile()
                 .set_profile_id(profile_id_value)
                 .set_client_token(client_token_value);
@@ -44733,7 +44744,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_capacity_provider()
                 .set_capacity_provider_id(capacity_provider_id_value)
                 .set_client_token(client_token_value);
@@ -44767,7 +44778,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_code_interpreter()
                 .set_code_interpreter_id(code_interpreter_id_value)
                 .set_client_token(client_token_value);
@@ -44794,7 +44805,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_configuration_bundle()
                 .set_bundle_id(bundle_id_value);
             let output = request.send().await.map_err(|error| {
@@ -44821,7 +44832,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_consent_portal()
                 .set_consent_portal_identifier(consent_portal_identifier_value);
             let output = request.send().await.map_err(|error| {
@@ -44853,7 +44864,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_dataset()
                 .set_dataset_id(dataset_id_value)
                 .set_dataset_version(dataset_version_value);
@@ -44898,7 +44909,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_dataset_examples()
                 .set_dataset_id(dataset_id_value)
                 .set_client_token(client_token_value)
@@ -44926,7 +44937,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_evaluator()
                 .set_evaluator_id(evaluator_id_value);
             let output = request.send().await.map_err(|error| {
@@ -44953,7 +44964,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_gateway()
                 .set_gateway_identifier(gateway_identifier_value);
             let output = request.send().await.map_err(|error| {
@@ -44986,7 +44997,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_gateway_rate_limit()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rate_limit_id(rate_limit_id_value);
@@ -45020,7 +45031,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_gateway_rule()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rule_id(rule_id_value);
@@ -45054,7 +45065,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_gateway_target()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_target_id(target_id_value);
@@ -45094,7 +45105,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_harness()
                 .set_harness_id(harness_id_value)
                 .set_client_token(client_token_value)
@@ -45134,7 +45145,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_harness_endpoint()
                 .set_harness_id(harness_id_value)
                 .set_endpoint_name(endpoint_name_value)
@@ -45168,7 +45179,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_memory()
                 .set_client_token(client_token_value)
                 .set_memory_id(memory_id_value);
@@ -45195,7 +45206,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_oauth2_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -45222,7 +45233,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_online_evaluation_config()
                 .set_online_evaluation_config_id(online_evaluation_config_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45262,7 +45273,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_payment_connector()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_payment_connector_id(payment_connector_id_value)
@@ -45290,7 +45301,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_payment_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -45323,7 +45334,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_payment_manager()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_client_token(client_token_value);
@@ -45356,7 +45367,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_policy()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_policy_id(policy_id_value);
@@ -45383,7 +45394,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_policy_engine()
                 .set_policy_engine_id(policy_engine_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45409,7 +45420,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_registry()
                 .set_registry_id(registry_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45441,7 +45452,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_registry_record()
                 .set_registry_id(registry_id_value)
                 .set_record_id(record_id_value);
@@ -45468,7 +45479,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -45494,7 +45505,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_workload_identity()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -45527,7 +45538,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_agent_runtime()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_agent_runtime_version(agent_runtime_version_value);
@@ -45560,7 +45571,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_agent_runtime_endpoint()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_endpoint_name(endpoint_name_value);
@@ -45587,7 +45598,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_api_key_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -45613,7 +45624,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_browser()
                 .set_browser_id(browser_id_value);
             let output = request
@@ -45640,7 +45651,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_browser_profile()
                 .set_profile_id(profile_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45667,7 +45678,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_capacity_provider()
                 .set_capacity_provider_id(capacity_provider_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45694,7 +45705,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_code_interpreter()
                 .set_code_interpreter_id(code_interpreter_id_value);
             let output = request.send().await.map_err(|error| {
@@ -45726,7 +45737,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_configuration_bundle()
                 .set_bundle_id(bundle_id_value)
                 .set_branch_name(branch_name_value);
@@ -45759,7 +45770,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_configuration_bundle_version()
                 .set_bundle_id(bundle_id_value)
                 .set_version_id(version_id_value);
@@ -45787,7 +45798,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_consent_portal()
                 .set_consent_portal_identifier(consent_portal_identifier_value);
             let output = request.send().await.map_err(|error| {
@@ -45819,7 +45830,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_dataset()
                 .set_dataset_id(dataset_id_value)
                 .set_dataset_version(dataset_version_value);
@@ -45856,7 +45867,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_evaluator()
                 .set_evaluator_id(evaluator_id_value)
                 .set_included_data(included_data_value);
@@ -45884,7 +45895,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_gateway()
                 .set_gateway_identifier(gateway_identifier_value);
             let output = request
@@ -45918,7 +45929,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_gateway_rate_limit()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rate_limit_id(rate_limit_id_value);
@@ -45952,7 +45963,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_gateway_rule()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rule_id(rule_id_value);
@@ -45986,7 +45997,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_gateway_target()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_target_id(target_id_value);
@@ -46019,7 +46030,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_harness()
                 .set_harness_id(harness_id_value)
                 .set_harness_version(harness_version_value);
@@ -46053,7 +46064,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_harness_endpoint()
                 .set_harness_id(harness_id_value)
                 .set_endpoint_name(endpoint_name_value);
@@ -46088,7 +46099,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_memory()
                 .set_memory_id(memory_id_value)
                 .set_view(view_value);
@@ -46116,7 +46127,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_oauth2_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -46143,7 +46154,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_online_evaluation_config()
                 .set_online_evaluation_config_id(online_evaluation_config_id_value);
             let output = request.send().await.map_err(|error| {
@@ -46177,7 +46188,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_payment_connector()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_payment_connector_id(payment_connector_id_value);
@@ -46204,7 +46215,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_payment_credential_provider()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -46231,7 +46242,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_payment_manager()
                 .set_payment_manager_id(payment_manager_id_value);
             let output = request.send().await.map_err(|error| {
@@ -46263,7 +46274,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_policy_id(policy_id_value);
@@ -46291,7 +46302,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy_engine()
                 .set_policy_engine_id(policy_engine_id_value);
             let output = request.send().await.map_err(|error| {
@@ -46317,7 +46328,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy_engine_summary()
                 .set_policy_engine_id(policy_engine_id_value);
             let output = request.send().await.map_err(|error| {
@@ -46350,7 +46361,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy_generation()
                 .set_policy_generation_id(policy_generation_id_value)
                 .set_policy_engine_id(policy_engine_id_value);
@@ -46384,7 +46395,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy_generation_summary()
                 .set_policy_generation_id(policy_generation_id_value)
                 .set_policy_engine_id(policy_engine_id_value);
@@ -46417,7 +46428,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy_summary()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_policy_id(policy_id_value);
@@ -46444,7 +46455,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_registry()
                 .set_registry_id(registry_id_value);
             let output = request
@@ -46477,7 +46488,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_registry_record()
                 .set_registry_id(registry_id_value)
                 .set_record_id(record_id_value);
@@ -46504,7 +46515,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -46530,7 +46541,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_token_vault()
                 .set_token_vault_id(token_vault_id_value);
             let output = request.send().await.map_err(|error| {
@@ -46556,7 +46567,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_workload_identity()
                 .set_name(name_value);
             let output = request.send().await.map_err(|error| {
@@ -46594,7 +46605,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_agent_runtime_endpoints()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_max_results(max_results_value)
@@ -46634,7 +46645,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_agent_runtime_versions()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_max_results(max_results_value)
@@ -46675,7 +46686,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_agent_runtime_versions_by_capacity_provider()
                 .set_capacity_provider_id(capacity_provider_id_value)
                 .set_max_results(max_results_value)
@@ -46711,7 +46722,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_agent_runtimes()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -46744,7 +46755,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_api_key_credential_providers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -46783,7 +46794,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_browser_profiles()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -46826,7 +46837,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_browsers()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -46860,7 +46871,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_capacity_providers()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -46902,7 +46913,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_code_interpreters()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -46948,7 +46959,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_configuration_bundle_versions()
                 .set_bundle_id(bundle_id_value)
                 .set_next_token(next_token_value)
@@ -46983,7 +46994,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_configuration_bundles()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47016,7 +47027,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_consent_portals()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -47061,7 +47072,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_dataset_examples()
                 .set_dataset_id(dataset_id_value)
                 .set_dataset_version(dataset_version_value)
@@ -47102,7 +47113,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_dataset_versions()
                 .set_dataset_id(dataset_id_value)
                 .set_next_token(next_token_value)
@@ -47136,7 +47147,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_datasets()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47169,7 +47180,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_evaluators()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47209,7 +47220,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_gateway_rate_limits()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_max_results(max_results_value)
@@ -47250,7 +47261,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_gateway_rules()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_max_results(max_results_value)
@@ -47291,7 +47302,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_gateway_targets()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_max_results(max_results_value)
@@ -47325,7 +47336,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_gateways()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -47364,7 +47375,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_harness_endpoints()
                 .set_harness_id(harness_id_value)
                 .set_max_results(max_results_value)
@@ -47404,7 +47415,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_harness_versions()
                 .set_harness_id(harness_id_value)
                 .set_max_results(max_results_value)
@@ -47438,7 +47449,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_harnesses()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -47471,7 +47482,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_memories()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -47504,7 +47515,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_oauth2_credential_providers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47537,7 +47548,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_online_evaluation_configs()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47577,7 +47588,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_payment_connectors()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_max_results(max_results_value)
@@ -47611,7 +47622,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_payment_credential_providers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47644,7 +47655,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_payment_managers()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -47690,7 +47701,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policies()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
@@ -47725,7 +47736,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_engine_summaries()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47758,7 +47769,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_engines()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -47804,7 +47815,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_generation_assets()
                 .set_policy_generation_id(policy_generation_id_value)
                 .set_policy_engine_id(policy_engine_id_value)
@@ -47845,7 +47856,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_generation_summaries()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
@@ -47885,7 +47896,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_generations()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
@@ -47932,7 +47943,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_policy_summaries()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
@@ -47986,7 +47997,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_registries()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -48051,7 +48062,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_registry_records()
                 .set_registry_id(registry_id_value)
                 .set_max_results(max_results_value)
@@ -48082,7 +48093,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -48114,7 +48125,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_workload_identities()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -48147,7 +48158,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_policy(policy_value);
@@ -48195,7 +48206,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .rotate_payment_connector_credentials()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_payment_connector_id(payment_connector_id_value)
@@ -48233,7 +48244,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_token_vault_cmk()
                 .set_token_vault_id(token_vault_id_value)
                 .set_kms_configuration(kms_configuration_value);
@@ -48284,7 +48295,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_policy_generation()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_resource(resource_value)
@@ -48320,7 +48331,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .submit_registry_record_for_approval()
                 .set_registry_id(registry_id_value)
                 .set_record_id(record_id_value);
@@ -48360,7 +48371,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .synchronize_gateway_targets()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_target_id_list(target_id_list_value);
@@ -48399,7 +48410,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -48439,7 +48450,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -48572,7 +48583,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_agent_runtime()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_agent_runtime_artifact(agent_runtime_artifact_value)
@@ -48637,7 +48648,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_agent_runtime_endpoint()
                 .set_agent_runtime_id(agent_runtime_id_value)
                 .set_endpoint_name(endpoint_name_value)
@@ -48690,7 +48701,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_api_key_credential_provider()
                 .set_name(name_value)
                 .set_api_key(api_key_value)
@@ -48732,7 +48743,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_capacity_provider()
                 .set_capacity_provider_id(capacity_provider_id_value)
                 .set_description(description_value)
@@ -48827,7 +48838,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_configuration_bundle()
                 .set_client_token(client_token_value)
                 .set_bundle_id(bundle_id_value)
@@ -48882,7 +48893,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_consent_portal()
                 .set_consent_portal_identifier(consent_portal_identifier_value)
                 .set_execution_role_arn(execution_role_arn_value)
@@ -48923,7 +48934,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_dataset()
                 .set_dataset_id(dataset_id_value)
                 .set_client_token(client_token_value)
@@ -48969,7 +48980,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_dataset_examples()
                 .set_dataset_id(dataset_id_value)
                 .set_client_token(client_token_value)
@@ -49030,7 +49041,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_evaluator()
                 .set_client_token(client_token_value)
                 .set_evaluator_id(evaluator_id_value)
@@ -49162,7 +49173,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_gateway()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_name(name_value)
@@ -49226,7 +49237,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_gateway_rate_limit()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rate_limit_id(rate_limit_id_value)
@@ -49298,7 +49309,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_gateway_rule()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_rule_id(rule_id_value)
@@ -49395,7 +49406,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_gateway_target()
                 .set_gateway_identifier(gateway_identifier_value)
                 .set_target_id(target_id_value)
@@ -49571,7 +49582,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_harness()
                 .set_harness_id(harness_id_value)
                 .set_client_token(client_token_value)
@@ -49638,7 +49649,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_harness_endpoint()
                 .set_harness_id(harness_id_value)
                 .set_endpoint_name(endpoint_name_value)
@@ -49732,7 +49743,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_memory()
                 .set_client_token(client_token_value)
                 .set_memory_id(memory_id_value)
@@ -49784,7 +49795,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_oauth2_credential_provider()
                 .set_name(name_value)
                 .set_credential_provider_vendor(credential_provider_vendor_value)
@@ -49892,7 +49903,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_online_evaluation_config()
                 .set_client_token(client_token_value)
                 .set_online_evaluation_config_id(online_evaluation_config_id_value)
@@ -49971,7 +49982,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_payment_connector()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_payment_connector_id(payment_connector_id_value)
@@ -50020,7 +50031,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_payment_credential_provider()
                 .set_name(name_value)
                 .set_credential_provider_vendor(credential_provider_vendor_value)
@@ -50090,7 +50101,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_payment_manager()
                 .set_payment_manager_id(payment_manager_id_value)
                 .set_description(description_value)
@@ -50158,7 +50169,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_policy()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_policy_id(policy_id_value)
@@ -50195,7 +50206,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_policy_engine()
                 .set_policy_engine_id(policy_engine_id_value)
                 .set_description(description_value);
@@ -50248,7 +50259,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_registry()
                 .set_registry_id(registry_id_value)
                 .set_name(name_value)
@@ -50338,7 +50349,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_registry_record()
                 .set_registry_id(registry_id_value)
                 .set_record_id(record_id_value)
@@ -50394,7 +50405,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_registry_record_status()
                 .set_registry_id(registry_id_value)
                 .set_record_id(record_id_value)
@@ -50436,7 +50447,7 @@ impl BedrockAgentCoreControlClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_workload_identity()
                 .set_name(name_value)
                 .set_allowed_resource_oauth2_return_urls(allowed_resource_oauth2_return_urls_value);

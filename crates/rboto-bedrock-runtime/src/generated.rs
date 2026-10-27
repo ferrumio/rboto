@@ -9845,18 +9845,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl BedrockRuntimeClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -9912,7 +9923,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .apply_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
                 .set_guardrail_version(guardrail_version_value)
@@ -10047,7 +10058,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .converse()
                 .set_model_id(model_id_value)
                 .set_messages(messages_value)
@@ -10193,7 +10204,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .converse_stream()
                 .set_model_id(model_id_value)
                 .set_messages(messages_value)
@@ -10247,7 +10258,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .count_tokens()
                 .set_model_id(model_id_value)
                 .set_input(input_value);
@@ -10275,7 +10286,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_async_invoke()
                 .set_invocation_arn(invocation_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -10313,7 +10324,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_guardrail_checks()
                 .set_messages(messages_value)
                 .set_checks(checks_value);
@@ -10405,7 +10416,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_model()
                 .set_body(body_value)
                 .set_content_type(content_type_value)
@@ -10450,7 +10461,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_model_with_bidirectional_stream()
                 .set_model_id(model_id_value)
                 .set_body(body_value);
@@ -10555,7 +10566,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_model_with_response_stream()
                 .set_body(body_value)
                 .set_content_type(content_type_value)
@@ -10667,7 +10678,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_async_invokes()
                 .set_submit_time_after(submit_time_after_value)
                 .set_submit_time_before(submit_time_before_value)
@@ -10731,7 +10742,7 @@ impl BedrockRuntimeClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_async_invoke()
                 .set_client_request_token(client_request_token_value)
                 .set_model_id(model_id_value)

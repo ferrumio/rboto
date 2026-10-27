@@ -36507,18 +36507,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl GuardDutyClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -36549,7 +36560,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .accept_administrator_invitation()
                 .set_detector_id(detector_id_value)
                 .set_administrator_id(administrator_id_value)
@@ -36589,7 +36600,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .accept_invitation()
                 .set_detector_id(detector_id_value)
                 .set_master_id(master_id_value)
@@ -36629,7 +36640,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .archive_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value);
@@ -36682,7 +36693,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value)
@@ -36753,7 +36764,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value)
@@ -36831,7 +36842,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_detector()
                 .set_enable(enable_value)
                 .set_client_token(client_token_value)
@@ -36912,7 +36923,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_filter()
                 .set_detector_id(detector_id_value)
                 .set_name(name_value)
@@ -36996,7 +37007,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_name(name_value)
@@ -37042,7 +37053,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_investigation()
                 .set_detector_id(detector_id_value)
                 .set_trigger_prompt(trigger_prompt_value)
@@ -37101,7 +37112,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_malware_protection_plan()
                 .set_client_token(client_token_value)
                 .set_role(role_value)
@@ -37143,7 +37154,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_members()
                 .set_detector_id(detector_id_value)
                 .set_account_details(account_details_value);
@@ -37203,7 +37214,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_type(destination_type_value)
@@ -37245,7 +37256,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_sample_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_types(finding_types_value);
@@ -37323,7 +37334,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_name(name_value)
@@ -37407,7 +37418,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_name(name_value)
@@ -37491,7 +37502,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_name(name_value)
@@ -37530,7 +37541,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .decline_invitations()
                 .set_account_ids(account_ids_value);
             let output = request.send().await.map_err(|error| {
@@ -37562,7 +37573,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value);
@@ -37599,7 +37610,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value);
@@ -37628,7 +37639,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_detector()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -37660,7 +37671,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_filter()
                 .set_detector_id(detector_id_value)
                 .set_filter_name(filter_name_value);
@@ -37693,7 +37704,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_ip_set_id(ip_set_id_value);
@@ -37727,7 +37738,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_invitations()
                 .set_account_ids(account_ids_value);
             let output = request.send().await.map_err(|error| {
@@ -37754,7 +37765,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_malware_protection_plan()
                 .set_malware_protection_plan_id(malware_protection_plan_id_value);
             let output = request.send().await.map_err(|error| {
@@ -37792,7 +37803,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -37825,7 +37836,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value);
@@ -37859,7 +37870,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_entity_set_id(threat_entity_set_id_value);
@@ -37893,7 +37904,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_intel_set_id(threat_intel_set_id_value);
@@ -37927,7 +37938,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_trusted_entity_set_id(trusted_entity_set_id_value);
@@ -37978,7 +37989,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_malware_scans()
                 .set_detector_id(detector_id_value)
                 .set_next_token(next_token_value)
@@ -38020,7 +38031,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_organization_configuration()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -38056,7 +38067,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value);
@@ -38083,7 +38094,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disable_organization_admin_account()
                 .set_admin_account_id(admin_account_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38109,7 +38120,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disassociate_from_administrator_account()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38137,7 +38148,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disassociate_from_master_account()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38175,7 +38186,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disassociate_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -38202,7 +38213,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .enable_organization_admin_account()
                 .set_admin_account_id(admin_account_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38228,7 +38239,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_administrator_account()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38275,7 +38286,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_coverage_statistics()
                 .set_detector_id(detector_id_value)
                 .set_filter_criteria(filter_criteria_value)
@@ -38303,7 +38314,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_custom_detection_rule()
                 .set_rule_id(rule_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38335,7 +38346,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value);
@@ -38372,7 +38383,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value);
@@ -38401,7 +38412,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_detector()
                 .set_detector_id(detector_id_value);
             let output = request
@@ -38434,7 +38445,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_filter()
                 .set_detector_id(detector_id_value)
                 .set_filter_name(filter_name_value);
@@ -38480,7 +38491,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value)
@@ -38552,7 +38563,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_findings_statistics()
                 .set_detector_id(detector_id_value)
                 .set_finding_statistic_types(finding_statistic_types_value)
@@ -38589,7 +38600,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_ip_set_id(ip_set_id_value);
@@ -38623,7 +38634,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_investigation()
                 .set_detector_id(detector_id_value)
                 .set_investigation_id(investigation_id_value);
@@ -38642,7 +38653,7 @@ impl GuardDutyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_invitations_count();
+            let request = state.client().await?.get_invitations_count();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvitationsCount"))
             })?;
@@ -38667,7 +38678,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_malware_protection_plan()
                 .set_malware_protection_plan_id(malware_protection_plan_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38693,7 +38704,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_malware_scan()
                 .set_scan_id(scan_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38719,7 +38730,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_malware_scan_settings()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38745,7 +38756,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_master_account()
                 .set_detector_id(detector_id_value);
             let output = request.send().await.map_err(|error| {
@@ -38783,7 +38794,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_member_detectors()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -38822,7 +38833,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -38842,7 +38853,7 @@ impl GuardDutyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_organization_statistics();
+            let request = state.client().await?.get_organization_statistics();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOrganizationStatistics"))
             })?;
@@ -38878,7 +38889,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_remaining_free_trial_days()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -38912,7 +38923,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_entity_set_id(threat_entity_set_id_value);
@@ -38946,7 +38957,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_intel_set_id(threat_intel_set_id_value);
@@ -38980,7 +38991,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_trusted_entity_set_id(trusted_entity_set_id_value);
@@ -39040,7 +39051,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_usage_statistics()
                 .set_detector_id(detector_id_value)
                 .set_usage_statistic_type(usage_statistic_type_value)
@@ -39096,7 +39107,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invite_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value)
@@ -39149,7 +39160,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_coverage()
                 .set_detector_id(detector_id_value)
                 .set_next_token(next_token_value)
@@ -39199,7 +39210,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_custom_detection_rule_associations()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -39245,7 +39256,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_custom_detection_rule_org_configurations()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -39293,7 +39304,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_custom_detection_rules()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -39327,7 +39338,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_detectors()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -39366,7 +39377,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_filters()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39419,7 +39430,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_criteria(finding_criteria_value)
@@ -39461,7 +39472,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_ip_sets()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39508,7 +39519,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_investigations()
                 .set_detector_id(detector_id_value)
                 .set_sort_criteria(sort_criteria_value)
@@ -39543,7 +39554,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_invitations()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -39570,7 +39581,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_malware_protection_plans()
                 .set_next_token(next_token_value);
             let output = request.send().await.map_err(|error| {
@@ -39614,7 +39625,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_malware_scans()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -39661,7 +39672,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_members()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39697,7 +39708,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_organization_admin_accounts()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -39736,7 +39747,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_publishing_destinations()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39764,7 +39775,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -39802,7 +39813,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_threat_entity_sets()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39842,7 +39853,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_threat_intel_sets()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39882,7 +39893,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_trusted_entity_sets()
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
@@ -39910,7 +39921,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_object_malware_scan()
                 .set_s3_object(s3_object_value);
             let output = request.send().await.map_err(|error| {
@@ -39949,7 +39960,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_malware_scan()
                 .set_resource_arn(resource_arn_value)
                 .set_client_token(client_token_value)
@@ -39989,7 +40000,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_monitoring_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -40028,7 +40039,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_monitoring_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
@@ -40067,7 +40078,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -40107,7 +40118,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .unarchive_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value);
@@ -40146,7 +40157,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -40187,7 +40198,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value)
@@ -40251,7 +40262,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value)
@@ -40316,7 +40327,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_detector()
                 .set_detector_id(detector_id_value)
                 .set_enable(enable_value)
@@ -40378,7 +40389,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_filter()
                 .set_detector_id(detector_id_value)
                 .set_filter_name(filter_name_value)
@@ -40434,7 +40445,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_findings_feedback()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value)
@@ -40494,7 +40505,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_ip_set_id(ip_set_id_value)
@@ -40546,7 +40557,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_malware_protection_plan()
                 .set_malware_protection_plan_id(malware_protection_plan_id_value)
                 .set_role(role_value)
@@ -40592,7 +40603,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_malware_scan_settings()
                 .set_detector_id(detector_id_value)
                 .set_scan_resource_criteria(scan_resource_criteria_value)
@@ -40650,7 +40661,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_member_detectors()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value)
@@ -40712,7 +40723,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_organization_configuration()
                 .set_detector_id(detector_id_value)
                 .set_auto_enable(auto_enable_value)
@@ -40755,7 +40766,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value)
@@ -40815,7 +40826,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_entity_set_id(threat_entity_set_id_value)
@@ -40878,7 +40889,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_intel_set_id(threat_intel_set_id_value)
@@ -40941,7 +40952,7 @@ impl GuardDutyClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_trusted_entity_set_id(trusted_entity_set_id_value)

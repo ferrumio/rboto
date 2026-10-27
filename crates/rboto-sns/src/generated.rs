@@ -2153,18 +2153,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SNSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -2213,7 +2224,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .add_permission()
                 .set_topic_arn(topic_arn_value)
                 .set_label(label_value)
@@ -2242,7 +2253,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .check_if_phone_number_is_opted_out()
                 .set_phone_number(phone_number_value);
             let output = request.send().await.map_err(|error| {
@@ -2281,7 +2292,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .confirm_subscription()
                 .set_topic_arn(topic_arn_value)
                 .set_token(token_value)
@@ -2327,7 +2338,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_platform_application()
                 .set_name(name_value)
                 .set_platform(platform_value)
@@ -2380,7 +2391,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_platform_endpoint()
                 .set_platform_application_arn(platform_application_arn_value)
                 .set_token(token_value)
@@ -2417,7 +2428,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value)
                 .set_language_code(language_code_value);
@@ -2475,7 +2486,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_topic()
                 .set_name(name_value)
                 .set_attributes(attributes_value)
@@ -2505,7 +2516,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2532,7 +2543,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_platform_application()
                 .set_platform_application_arn(platform_application_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2558,7 +2569,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value);
             let output = request.send().await.map_err(|error| {
@@ -2584,7 +2595,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_topic()
                 .set_topic_arn(topic_arn_value);
             let output = request
@@ -2611,7 +2622,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_protection_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2637,7 +2648,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_endpoint_attributes()
                 .set_endpoint_arn(endpoint_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2664,7 +2675,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_platform_application_attributes()
                 .set_platform_application_arn(platform_application_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2696,7 +2707,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_sms_attributes()
                 .set_attributes(attributes_value);
             let output = request.send().await.map_err(|error| {
@@ -2714,7 +2725,7 @@ impl SNSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_sms_sandbox_account_status();
+            let request = state.client().await?.get_sms_sandbox_account_status();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSSandboxAccountStatus"))
             })?;
@@ -2738,7 +2749,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_subscription_attributes()
                 .set_subscription_arn(subscription_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2764,7 +2775,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_topic_attributes()
                 .set_topic_arn(topic_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -2797,7 +2808,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_endpoints_by_platform_application()
                 .set_platform_application_arn(platform_application_arn_value)
                 .set_next_token(next_token_value);
@@ -2832,7 +2843,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_origination_numbers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -2859,7 +2870,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_phone_numbers_opted_out()
                 .set_next_token(next_token_value);
             let output = request.send().await.map_err(|error| {
@@ -2885,7 +2896,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_platform_applications()
                 .set_next_token(next_token_value);
             let output = request.send().await.map_err(|error| {
@@ -2917,7 +2928,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_sms_sandbox_phone_numbers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -2944,7 +2955,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_subscriptions()
                 .set_next_token(next_token_value);
             let output = request.send().await.map_err(|error| {
@@ -2976,7 +2987,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_subscriptions_by_topic()
                 .set_topic_arn(topic_arn_value)
                 .set_next_token(next_token_value);
@@ -3003,7 +3014,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -3029,7 +3040,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_topics()
                 .set_next_token(next_token_value);
             let output = request
@@ -3056,7 +3067,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .opt_in_phone_number()
                 .set_phone_number(phone_number_value);
             let output = request.send().await.map_err(|error| {
@@ -3139,7 +3150,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .publish()
                 .set_topic_arn(topic_arn_value)
                 .set_target_arn(target_arn_value)
@@ -3187,7 +3198,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .publish_batch()
                 .set_topic_arn(topic_arn_value)
                 .set_publish_batch_request_entries(publish_batch_request_entries_value);
@@ -3221,7 +3232,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_data_protection_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_data_protection_policy(data_protection_policy_value);
@@ -3254,7 +3265,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .remove_permission()
                 .set_topic_arn(topic_arn_value)
                 .set_label(label_value);
@@ -3293,7 +3304,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_endpoint_attributes()
                 .set_endpoint_arn(endpoint_arn_value)
                 .set_attributes(attributes_value);
@@ -3333,7 +3344,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_platform_application_attributes()
                 .set_platform_application_arn(platform_application_arn_value)
                 .set_attributes(attributes_value);
@@ -3366,7 +3377,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_sms_attributes()
                 .set_attributes(attributes_value);
             let output = request.send().await.map_err(|error| {
@@ -3404,7 +3415,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_subscription_attributes()
                 .set_subscription_arn(subscription_arn_value)
                 .set_attribute_name(attribute_name_value)
@@ -3444,7 +3455,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_topic_attributes()
                 .set_topic_arn(topic_arn_value)
                 .set_attribute_name(attribute_name_value)
@@ -3503,7 +3514,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .subscribe()
                 .set_topic_arn(topic_arn_value)
                 .set_protocol(protocol_value)
@@ -3546,7 +3557,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -3574,7 +3585,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .unsubscribe()
                 .set_subscription_arn(subscription_arn_value);
             let output = request
@@ -3613,7 +3624,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -3647,7 +3658,7 @@ impl SNSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .verify_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value)
                 .set_one_time_password(one_time_password_value);

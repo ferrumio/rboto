@@ -16861,18 +16861,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl QBusinessClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -16927,7 +16938,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .associate_permission()
                 .set_application_id(application_id_value)
                 .set_statement_id(statement_id_value)
@@ -16982,7 +16993,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_delete_document()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -17042,7 +17053,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .batch_put_document()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -17078,7 +17089,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .cancel_subscription()
                 .set_application_id(application_id_value)
                 .set_subscription_id(subscription_id_value);
@@ -17156,7 +17167,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .chat()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -17285,7 +17296,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .chat_sync()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -17348,7 +17359,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .check_document_access()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -17392,7 +17403,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_anonymous_web_experience_url()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value)
@@ -17520,7 +17531,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_application()
                 .set_display_name(display_name_value)
                 .set_role_arn(role_arn_value)
@@ -17600,7 +17611,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_display_name(display_name_value)
@@ -17680,7 +17691,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_data_accessor()
                 .set_application_id(application_id_value)
                 .set_principal(principal_value)
@@ -17787,7 +17798,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_data_source()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -17869,7 +17880,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_index()
                 .set_application_id(application_id_value)
                 .set_display_name(display_name_value)
@@ -17954,7 +17965,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_plugin()
                 .set_application_id(application_id_value)
                 .set_display_name(display_name_value)
@@ -18031,7 +18042,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_retriever()
                 .set_application_id(application_id_value)
                 .set_type(type_value)
@@ -18083,7 +18094,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_subscription()
                 .set_application_id(application_id_value)
                 .set_principal(principal_value)
@@ -18136,7 +18147,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -18252,7 +18263,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_web_experience()
                 .set_application_id(application_id_value)
                 .set_title(title_value)
@@ -18289,7 +18300,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_application()
                 .set_application_id(application_id_value);
             let output = request.send().await.map_err(|error| {
@@ -18333,7 +18344,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_attachment()
                 .set_application_id(application_id_value)
                 .set_conversation_id(conversation_id_value)
@@ -18362,7 +18373,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_chat_controls_configuration()
                 .set_application_id(application_id_value);
             let output = request.send().await.map_err(|error| {
@@ -18395,7 +18406,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_chat_response_configuration_id(chat_response_configuration_id_value);
@@ -18434,7 +18445,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_conversation()
                 .set_conversation_id(conversation_id_value)
                 .set_application_id(application_id_value)
@@ -18468,7 +18479,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_data_accessor()
                 .set_application_id(application_id_value)
                 .set_data_accessor_id(data_accessor_id_value);
@@ -18507,7 +18518,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_data_source()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -18553,7 +18564,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_group()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -18589,7 +18600,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_index()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
@@ -18623,7 +18634,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_plugin()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value);
@@ -18656,7 +18667,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_retriever()
                 .set_application_id(application_id_value)
                 .set_retriever_id(retriever_id_value);
@@ -18689,7 +18700,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value);
@@ -18724,7 +18735,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_web_experience()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value);
@@ -18757,7 +18768,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disassociate_permission()
                 .set_application_id(application_id_value)
                 .set_statement_id(statement_id_value);
@@ -18784,7 +18795,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_application()
                 .set_application_id(application_id_value);
             let output = request.send().await.map_err(|error| {
@@ -18822,7 +18833,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_chat_controls_configuration()
                 .set_application_id(application_id_value)
                 .set_max_results(max_results_value)
@@ -18857,7 +18868,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_chat_response_configuration_id(chat_response_configuration_id_value);
@@ -18890,7 +18901,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_accessor()
                 .set_application_id(application_id_value)
                 .set_data_accessor_id(data_accessor_id_value);
@@ -18929,7 +18940,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_source()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -18983,7 +18994,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_document_content()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -19031,7 +19042,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_group()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -19067,7 +19078,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_index()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
@@ -19113,7 +19124,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_media()
                 .set_application_id(application_id_value)
                 .set_conversation_id(conversation_id_value)
@@ -19149,7 +19160,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_plugin()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value);
@@ -19177,7 +19188,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_policy()
                 .set_application_id(application_id_value);
             let output = request
@@ -19210,7 +19221,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_retriever()
                 .set_application_id(application_id_value)
                 .set_retriever_id(retriever_id_value);
@@ -19243,7 +19254,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value);
@@ -19278,7 +19289,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_web_experience()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value);
@@ -19311,7 +19322,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_applications()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -19362,7 +19373,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_attachments()
                 .set_application_id(application_id_value)
                 .set_conversation_id(conversation_id_value)
@@ -19404,7 +19415,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_chat_response_configurations()
                 .set_application_id(application_id_value)
                 .set_max_results(max_results_value)
@@ -19450,7 +19461,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_conversations()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -19491,7 +19502,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_accessors()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -19573,7 +19584,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_source_sync_jobs()
                 .set_data_source_id(data_source_id_value)
                 .set_application_id(application_id_value)
@@ -19624,7 +19635,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_sources()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -19683,7 +19694,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_documents()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -19749,7 +19760,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_groups()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -19793,7 +19804,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_indices()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -19846,7 +19857,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_messages()
                 .set_conversation_id(conversation_id_value)
                 .set_application_id(application_id_value)
@@ -19894,7 +19905,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_plugin_actions()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value)
@@ -19937,7 +19948,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_plugin_type_actions()
                 .set_plugin_type(plugin_type_value)
                 .set_next_token(next_token_value)
@@ -19971,7 +19982,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_plugin_type_metadata()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -20010,7 +20021,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_plugins()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -20051,7 +20062,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_retrievers()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -20091,7 +20102,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_subscriptions()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -20119,7 +20130,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -20157,7 +20168,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_web_experiences()
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
@@ -20222,7 +20233,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_feedback()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -20292,7 +20303,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_group()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -20355,7 +20366,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .search_relevant_content()
                 .set_application_id(application_id_value)
                 .set_query_text(query_text_value)
@@ -20398,7 +20409,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_data_source_sync_job()
                 .set_data_source_id(data_source_id_value)
                 .set_application_id(application_id_value)
@@ -20438,7 +20449,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_data_source_sync_job()
                 .set_data_source_id(data_source_id_value)
                 .set_application_id(application_id_value)
@@ -20478,7 +20489,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -20518,7 +20529,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -20598,7 +20609,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_application()
                 .set_application_id(application_id_value)
                 .set_identity_center_instance_arn(identity_center_instance_arn_value)
@@ -20700,7 +20711,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_chat_controls_configuration()
                 .set_application_id(application_id_value)
                 .set_client_token(client_token_value)
@@ -20776,7 +20787,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_chat_response_configuration_id(chat_response_configuration_id_value)
@@ -20838,7 +20849,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_data_accessor()
                 .set_application_id(application_id_value)
                 .set_data_accessor_id(data_accessor_id_value)
@@ -20931,7 +20942,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_data_source()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -21005,7 +21016,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_index()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
@@ -21077,7 +21088,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_plugin()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value)
@@ -21133,7 +21144,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_retriever()
                 .set_application_id(application_id_value)
                 .set_retriever_id(retriever_id_value)
@@ -21177,7 +21188,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_subscription()
                 .set_application_id(application_id_value)
                 .set_subscription_id(subscription_id_value)
@@ -21237,7 +21248,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value)
@@ -21349,7 +21360,7 @@ impl QBusinessClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_web_experience()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value)

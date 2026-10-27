@@ -1283,18 +1283,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl STSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -1413,7 +1424,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .assume_role()
                 .set_role_arn(role_arn_value)
                 .set_role_session_name(role_session_name_value)
@@ -1495,7 +1506,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .assume_role_with_saml()
                 .set_role_arn(role_arn_value)
                 .set_principal_arn(principal_arn_value)
@@ -1578,7 +1589,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .assume_role_with_web_identity()
                 .set_role_arn(role_arn_value)
                 .set_role_session_name(role_session_name_value)
@@ -1630,7 +1641,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .assume_root()
                 .set_target_principal(target_principal_value)
                 .set_task_policy_arn(task_policy_arn_value)
@@ -1660,7 +1671,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .decode_authorization_message()
                 .set_encoded_message(encoded_message_value);
             let output = request.send().await.map_err(|error| {
@@ -1686,7 +1697,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_access_key_info()
                 .set_access_key_id(access_key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -1704,7 +1715,7 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_caller_identity();
+            let request = state.client().await?.get_caller_identity();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCallerIdentity"))
             })?;
@@ -1728,7 +1739,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_delegated_access_token()
                 .set_trade_in_token(trade_in_token_value);
             let output = request.send().await.map_err(|error| {
@@ -1797,7 +1808,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_federation_token()
                 .set_name(name_value)
                 .set_policy(policy_value)
@@ -1847,7 +1858,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_session_token()
                 .set_duration_seconds(duration_seconds_value)
                 .set_serial_number(serial_number_value)
@@ -1907,7 +1918,7 @@ impl STSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_web_identity_token()
                 .set_audience(audience_value)
                 .set_duration_seconds(duration_seconds_value)

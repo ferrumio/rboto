@@ -117,7 +117,8 @@ jobs:
           RBOTO_TEST_SERVICES: ${{ matrix.service }}
         run: >-
           .venv/bin/pytest tests/integration/test_generated_client_bridge.py
-          tests/integration/test_new_client_protocols.py -q
+          tests/integration/test_new_client_protocols.py
+          tests/integration/test_client_configuration.py -q
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

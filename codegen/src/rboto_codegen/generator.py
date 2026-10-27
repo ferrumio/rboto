@@ -968,7 +968,7 @@ class ServiceGenerator:
         lines.extend(
             [
                 "        future_into_py(py, async move {",
-                f"            let request = state.client().await.{operation_name}()",
+                f"            let request = state.client().await?.{operation_name}()",
             ]
         )
         for field, converted in converted_fields:
