@@ -10,6 +10,7 @@ from types import ModuleType
 from urllib.error import URLError
 
 import pytest
+from rboto_codegen.cli_generator import generate_cli_layout
 from rboto_codegen.manifests import generate_manifests
 from rboto_codegen.registry import get_service, list_services
 from rboto_codegen.rust_crate import find_crate
@@ -93,6 +94,37 @@ def test_version_bump_keeps_package_dependencies_synchronized(
         core.write_text(core.read_text().replace(old, old.replace("0.2.1", "0.1.0")))
     with pytest.raises(SystemExit, match="must"):
         checker.main()
+
+
+@pytest.mark.parametrize("broken", [None, "version", "pin"])
+def test_cli_bootstrap_and_version_checks_follow_the_workspace(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, broken: str | None
+) -> None:
+    seed_repository(tmp_path)
+    setter = load_script("set_version")
+    monkeypatch.setattr(setter, "ROOT", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["set_version.py", "0.2.1"])
+    setter.main()
+    generate_manifests(get_service("kms"), tmp_path)
+    generate_cli_layout(tmp_path)
+    manifest = tmp_path / "cli/Cargo.toml"
+    assert tomllib.loads(manifest.read_text())["workspace"]["package"]["version"] == "0.2.1"
+    checker = load_script("check_version")
+    monkeypatch.setattr(checker, "ROOT", tmp_path)
+    monkeypatch.setattr(sys, "argv", ["check_version.py", "--expected", "0.2.1"])
+    if broken is None:
+        checker.main()
+    else:
+        text = manifest.read_text()
+        old, new = (
+            ('version = "0.2.1"', 'version = "0.1.0"')
+            if broken == "version"
+            else ('aws-config = "=1.13.0"', 'aws-config = "=0.0.0"')
+        )
+        assert old in text
+        manifest.write_text(text.replace(old, new))
+        with pytest.raises(SystemExit, match="synchronized|pin differs"):
+            checker.main()
 
 
 @pytest.mark.parametrize("version", ["0.2.1rc1", "0.2.1-rc.1", "01.2.3", "v0.2.1", "0.2"])
@@ -267,6 +299,7 @@ def test_generated_commit_is_pushed_and_validatable_when_bot_prs_are_forbidden(
     if existing_branch:
         git("push", "origin", f"HEAD:refs/heads/{branch}")
     (tmp_path / "Cargo.lock").write_text("updated\n")
+    (tmp_path / "cli/Cargo.lock").write_text("updated CLI lock\n")
     calls: list[tuple[str, ...]] = []
 
     def run(*args: str) -> str:
@@ -292,6 +325,9 @@ def test_generated_commit_is_pushed_and_validatable_when_bot_prs_are_forbidden(
     assert result["sha"] == remote_sha == git("rev-parse", "HEAD")
     assert remote_sha != initial
     assert git("--git-dir", str(remote), "show", f"{remote_sha}:Cargo.lock") == "updated"
+    assert git("--git-dir", str(remote), "show", f"{remote_sha}:cli/Cargo.lock") == (
+        "updated CLI lock"
+    )
     push = next(args for args in calls if args[:2] == ("git", "push"))
     assert push[2] == f"--force-with-lease=refs/heads/{branch}:{initial if existing_branch else ''}"
     calls.clear()

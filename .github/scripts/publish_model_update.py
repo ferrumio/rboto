@@ -12,7 +12,7 @@ from typing import cast
 from urllib.parse import quote
 
 UPDATE_PATHS = (
-    "Cargo.toml", "Cargo.lock", "codegen", "crates", "packages", "pyrightconfig.json",
+    "Cargo.toml", "Cargo.lock", "cli", "codegen", "crates", "packages", "pyrightconfig.json",
 )
 
 

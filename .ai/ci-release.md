@@ -39,6 +39,10 @@ See ADR-0010.
 renders package manifests with `rboto-codegen generate-manifests --all`, resolves the
 workspace lock, and fetches the pinned crates before model alignment and generation.
 Manifest generation does not need downloaded models or Rust sources.
+The native CLI uses `cli/Cargo.toml` and `cli/Cargo.lock`; bootstrap, dependency
+resolution, formatting, generation and locked compilation cover this workspace too.
+Its version and shared SDK pins must match the Python SDK workspace. The existing
+CI dispatch includes the native CLI job and local protocol tests.
 
 The updater publishes its branch after Python checks, locked Rust compilation, version/pin
 checks, and a second generation pass. It uses `GITHUB_TOKEN` and creates a PR when policy

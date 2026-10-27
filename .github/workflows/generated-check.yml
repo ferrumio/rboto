@@ -7,6 +7,7 @@ on:
     paths:
       - "codegen/**"
       - "crates/**"
+      - "cli/**"
       - "packages/**"
       - "Cargo.toml"
       - "Cargo.lock"
@@ -16,6 +17,7 @@ on:
     paths:
       - "codegen/**"
       - "crates/**"
+      - "cli/**"
       - "packages/**"
 
 permissions:
@@ -41,13 +43,17 @@ jobs:
       - name: Regenerate from locked models
         run: |
           cargo fetch --locked
+          cargo fetch --manifest-path cli/Cargo.toml --locked
           .venv/bin/rboto-codegen fetch-model --all
           .venv/bin/rboto-codegen report --all
           .venv/bin/rboto-codegen generate --all
           cargo fmt --all
+          cargo fmt --manifest-path cli/Cargo.toml --all
 
       - name: Require a clean generated diff
         run: git diff --exit-code
 
       - name: Compile generated workspace
-        run: cargo check --workspace --locked
+        run: |
+          cargo check --workspace --locked
+          cargo check --manifest-path cli/Cargo.toml --workspace --locked

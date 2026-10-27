@@ -19,3 +19,4 @@ class ServiceDescriptor:
     customization: str | None = None
     force_path_style_for_custom_endpoint: bool = False
     native_outputs: bool = False
+    cli_features: tuple[str, ...] = ()

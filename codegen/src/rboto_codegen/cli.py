@@ -6,6 +6,7 @@ from typing import NoReturn
 
 from .alignment import align
 from .catalog import generate_catalog
+from .cli_generator import generate_cli, generate_cli_layout
 from .generator import generate_service
 from .manifests import generate_manifests
 from .registry import get_service, list_services
@@ -35,6 +36,11 @@ def main() -> None:
     _add_service_selection(report)
     generate = subparsers.add_parser("generate", help="generate a complete service adapter")
     _add_service_selection(generate)
+    native_cli = subparsers.add_parser(
+        "generate-cli", help="generate all native CLI service adapters"
+    )
+    native_cli.add_argument("--all", action="store_true", dest="all_services", required=True)
+    native_cli.set_defaults(service_id=None)
     manifests = subparsers.add_parser(
         "generate-manifests", help="render package pins without downloading models or crates"
     )
@@ -66,8 +72,15 @@ def main() -> None:
         _parser_error(parser, "provide a service_id or --all")
 
     repository_root = Path(__file__).parents[3]
+    if args.command == "generate-cli":
+        for path in generate_cli(repository_root):
+            print(path)
+        return
     if args.command in {"generate", "generate-manifests"}:
         generate_catalog(repository_root)
+    if args.command == "generate-manifests" and (repository_root / "cli/core").is_dir():
+        for path in generate_cli_layout(repository_root):
+            print(path)
     for descriptor in descriptors:
         if args.command == "generate-manifests":
             for path in generate_manifests(descriptor, repository_root):
@@ -95,9 +108,7 @@ def main() -> None:
             for mismatch in result.mismatched:
                 print(f"mismatch {mismatch.name}: {mismatch}")
             if result.smithy_only_operations or result.rust_only_operations:
-                raise RuntimeError(
-                    f"operation alignment failed for {descriptor.service_id}"
-                )
+                raise RuntimeError(f"operation alignment failed for {descriptor.service_id}")
             continue
 
         if args.command == "generate":
@@ -117,3 +128,6 @@ def main() -> None:
                 generated.exceptions,
             ):
                 print(path)
+    if args.command == "generate" and args.all_services and (repository_root / "cli/core").is_dir():
+        for path in generate_cli(repository_root):
+            print(path)

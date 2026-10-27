@@ -36,6 +36,11 @@ def _boolean(data: dict[str, object], name: str) -> bool:
 
 def load_service(path: Path) -> ServiceDescriptor:
     data = cast(dict[str, object], tomllib.loads(path.read_text()))
+    raw_cli_features = data.get("cli_features", [])
+    if not isinstance(raw_cli_features, list):
+        raise ValueError("service configuration field 'cli_features' must be a string array")
+    if not all(isinstance(value, str) for value in cast(list[object], raw_cli_features)):
+        raise ValueError("service configuration field 'cli_features' must be a string array")
     descriptor = ServiceDescriptor(
         service_id=_string(data, "service_id"),
         python_name=_string(data, "python_name"),
@@ -53,6 +58,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         customization=_optional_string(data, "customization"),
         force_path_style_for_custom_endpoint=_boolean(data, "force_path_style_for_custom_endpoint"),
         native_outputs=_boolean(data, "native_outputs"),
+        cli_features=tuple(cast(list[str], raw_cli_features)),
     )
     if path.stem != descriptor.service_id:
         raise ValueError(

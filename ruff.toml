@@ -6,4 +6,5 @@ select = ["E", "F", "I", "W"]
 
 [lint.per-file-ignores]
 "codegen/src/rboto_codegen/generator.py" = ["E501"]
+"codegen/src/rboto_codegen/cli_generator.py" = ["E501"]
 "examples/*.py" = ["E402"]

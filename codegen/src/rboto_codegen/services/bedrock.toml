@@ -12,3 +12,4 @@ model_sha256 = "dc2b307fc905bb100b5430cdbc6d8465f4be72a6ccdff13a1a8ea575875f0ad2
 aws_model_hash = "6223717cb4891e232851b93da321e13738333c2cc7b7eca469813558db78a225"
 smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
 native_outputs = true
+cli_features = ["default-https-client", "rt-tokio"]

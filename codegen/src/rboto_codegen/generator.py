@@ -61,14 +61,14 @@ def _split_generic(value: str) -> tuple[str, ...]:
     return tuple(parts)
 
 
-def _generic(rust_type: str, prefix: str) -> tuple[str, ...] | None:
+def generic_arguments(rust_type: str, prefix: str) -> tuple[str, ...] | None:
     marker = prefix + "<"
     if rust_type.startswith(marker) and rust_type.endswith(">"):
         return _split_generic(rust_type[len(marker) : -1])
     return None
 
 
-def _crate_type_name(rust_type: str) -> str | None:
+def crate_type_name(rust_type: str) -> str | None:
     match = re.fullmatch(r"crate::types::(\w+)", rust_type)
     return match.group(1) if match else None
 
@@ -77,7 +77,7 @@ def _safe_parameter(name: str) -> str:
     return name + "_" if keyword.iskeyword(name) else name
 
 
-def _write_generated(path: Path, content: str) -> None:
+def write_generated(path: Path, content: str) -> None:
     # Avoid invalidating native builds when shared or service output is unchanged.
     if path.suffix == ".rs":
         # Long SDK paths can require a second formatting pass to stabilize.
@@ -172,18 +172,18 @@ class ServiceGenerator:
         ):
             path.parent.mkdir(parents=True, exist_ok=True)
 
-        _write_generated(paths.facade, self._render_facade())
-        _write_generated(paths.core_init, self._render_core_init())
-        _write_generated(paths.cargo, self._render_cargo())
-        _write_generated(paths.pyproject, self._render_pyproject())
-        _write_generated(paths.package_init, self._render_package_init())
-        _write_generated(paths.py_typed, "")
-        _write_generated(paths.rust_runtime, self._render_rust_runtime())
-        _write_generated(paths.rust, self._render_rust())
-        _write_generated(paths.types, self._render_python_types())
-        _write_generated(paths.client, self._render_python_client())
-        _write_generated(paths.native_stub, self._render_native_stub())
-        _write_generated(paths.exceptions, self._render_exceptions())
+        write_generated(paths.facade, self._render_facade())
+        write_generated(paths.core_init, self._render_core_init())
+        write_generated(paths.cargo, self._render_cargo())
+        write_generated(paths.pyproject, self._render_pyproject())
+        write_generated(paths.package_init, self._render_package_init())
+        write_generated(paths.py_typed, "")
+        write_generated(paths.rust_runtime, self._render_rust_runtime())
+        write_generated(paths.rust, self._render_rust())
+        write_generated(paths.types, self._render_python_types())
+        write_generated(paths.client, self._render_python_client())
+        write_generated(paths.native_stub, self._render_native_stub())
+        write_generated(paths.exceptions, self._render_exceptions())
         return paths
 
     def _next(self, prefix: str) -> str:
@@ -191,7 +191,7 @@ class ServiceGenerator:
         return f"{prefix}_{self._counter}"
 
     def _rust_type(self, rust_type: str) -> RustType | None:
-        name = _crate_type_name(rust_type)
+        name = crate_type_name(rust_type)
         return self.crate.types.get(name) if name else None
 
     def _shape_for_rust(self, name: str) -> SmithyShape | None:
@@ -216,10 +216,10 @@ class ServiceGenerator:
             for field in operation.output_fields:
                 if self._kind(field.rust_type) != "event_receiver":
                     continue
-                arguments = _generic(field.rust_type, "crate::event_receiver::EventReceiver")
+                arguments = generic_arguments(field.rust_type, "crate::event_receiver::EventReceiver")
                 if arguments is None or len(arguments) != 2:
                     raise GenerationError(f"invalid event receiver: {field.rust_type}")
-                event_name = _crate_type_name(arguments[0])
+                event_name = crate_type_name(arguments[0])
                 if event_name is None:
                     raise GenerationError(f"invalid event type: {arguments[0]}")
                 error_type = self._public_rust_type(arguments[1])
@@ -261,11 +261,11 @@ class ServiceGenerator:
             return rust_type
         if rust_type == DOCUMENT:
             return "document"
-        if _generic(rust_type, "::std::boxed::Box") is not None:
+        if generic_arguments(rust_type, "::std::boxed::Box") is not None:
             return "box"
-        if _generic(rust_type, "::std::option::Option") is not None:
+        if generic_arguments(rust_type, "::std::option::Option") is not None:
             return "option"
-        if _generic(rust_type, EVENT_SENDER) is not None:
+        if generic_arguments(rust_type, EVENT_SENDER) is not None:
             return "event_sender"
         if rust_type == DATETIME:
             return "datetime"
@@ -273,9 +273,9 @@ class ServiceGenerator:
             return "blob"
         if rust_type == BYTE_STREAM:
             return "byte_stream"
-        if _generic(rust_type, "::std::vec::Vec") is not None:
+        if generic_arguments(rust_type, "::std::vec::Vec") is not None:
             return "vec"
-        if _generic(rust_type, "::std::collections::HashMap") is not None:
+        if generic_arguments(rust_type, "::std::collections::HashMap") is not None:
             return "map"
         if rust_type.startswith("crate::event_receiver::EventReceiver<"):
             return "event_receiver"
@@ -300,7 +300,7 @@ class ServiceGenerator:
             return [f"{indent}let {target} = rboto_core::document_from_py(&{source})?;"]
         if kind in {"box", "option"}:
             prefix = "::std::boxed::Box" if kind == "box" else "::std::option::Option"
-            arguments = _generic(rust_type, prefix)
+            arguments = generic_arguments(rust_type, prefix)
             assert arguments is not None
             inner = self._next("inner")
             if kind == "box":
@@ -315,9 +315,9 @@ class ServiceGenerator:
                 f"{indent}}};",
             ]
         if kind == "event_sender":
-            arguments = _generic(rust_type, EVENT_SENDER)
+            arguments = generic_arguments(rust_type, EVENT_SENDER)
             assert arguments is not None and len(arguments) == 2
-            event = _crate_type_name(arguments[0])
+            event = crate_type_name(arguments[0])
             error = self._public_rust_type(arguments[1])
             sender = self._public_rust_type(rust_type)
             return [
@@ -347,17 +347,17 @@ class ServiceGenerator:
                 f"{indent}let {target} = AwsByteStream::from({raw});",
             ]
         if kind == "enum":
-            name = _crate_type_name(rust_type)
+            name = crate_type_name(rust_type)
             raw = self._next("enum_value")
             return [
                 f"{indent}let {raw}: String = {source}.extract()?;",
                 f"{indent}let {target} = {self.rust_module}::types::{name}::from({raw}.as_str());",
             ]
         if kind in {"struct", "union"}:
-            name = _crate_type_name(rust_type)
+            name = crate_type_name(rust_type)
             return [f"{indent}let {target} = {to_snake_case(name or '')}_from_py(&{source})?;"]
         if kind == "vec":
-            arguments = _generic(rust_type, "::std::vec::Vec")
+            arguments = generic_arguments(rust_type, "::std::vec::Vec")
             if arguments is None or len(arguments) != 1:
                 raise GenerationError(f"invalid Vec type: {rust_type}")
             item_type = arguments[0]
@@ -377,7 +377,7 @@ class ServiceGenerator:
             lines.append(f"{indent}}}")
             return lines
         if kind == "map":
-            arguments = _generic(rust_type, "::std::collections::HashMap")
+            arguments = generic_arguments(rust_type, "::std::collections::HashMap")
             if arguments is None or len(arguments) != 2:
                 raise GenerationError(f"invalid HashMap type: {rust_type}")
             key_type, value_type = arguments
@@ -407,11 +407,11 @@ class ServiceGenerator:
         if kind == "document":
             return [f"{indent}let {target} = rboto_core::document_to_py(py, {source})?;"]
         if kind == "box":
-            arguments = _generic(rust_type, "::std::boxed::Box")
+            arguments = generic_arguments(rust_type, "::std::boxed::Box")
             assert arguments is not None
             return self._to_py(arguments[0], f"({source}).as_ref()", target, indent)
         if kind == "option":
-            arguments = _generic(rust_type, "::std::option::Option")
+            arguments = generic_arguments(rust_type, "::std::option::Option")
             assert arguments is not None
             inner = self._next("inner")
             return [
@@ -429,10 +429,10 @@ class ServiceGenerator:
         if kind == "enum":
             return [f"{indent}let {target} = ({source}).as_str().into_py_any(py)?;"]
         if kind in {"struct", "union"}:
-            name = _crate_type_name(rust_type)
+            name = crate_type_name(rust_type)
             return [f"{indent}let {target} = {to_snake_case(name or '')}_to_py(py, {source})?;"]
         if kind == "vec":
-            arguments = _generic(rust_type, "::std::vec::Vec")
+            arguments = generic_arguments(rust_type, "::std::vec::Vec")
             if arguments is None or len(arguments) != 1:
                 raise GenerationError(f"invalid Vec type: {rust_type}")
             item = self._next("item")
@@ -445,7 +445,7 @@ class ServiceGenerator:
             result.append(f"{indent}let {target} = {target}_list.into_any().unbind();")
             return result
         if kind == "map":
-            arguments = _generic(rust_type, "::std::collections::HashMap")
+            arguments = generic_arguments(rust_type, "::std::collections::HashMap")
             if arguments is None or len(arguments) != 2:
                 raise GenerationError(f"invalid HashMap type: {rust_type}")
             key = self._next("key")
@@ -467,11 +467,11 @@ class ServiceGenerator:
     def _to_typed_py(self, rust_type: str, source: str, target: str, indent: str) -> list[str]:
         kind = self._kind(rust_type)
         if kind == "box":
-            arguments = _generic(rust_type, "::std::boxed::Box")
+            arguments = generic_arguments(rust_type, "::std::boxed::Box")
             assert arguments is not None
             return self._to_typed_py(arguments[0], f"({source}).as_ref()", target, indent)
         if kind == "option":
-            arguments = _generic(rust_type, "::std::option::Option")
+            arguments = generic_arguments(rust_type, "::std::option::Option")
             assert arguments is not None
             inner = self._next("inner")
             return [
@@ -481,12 +481,12 @@ class ServiceGenerator:
                 f"{indent}}} else {{ py.None() }};",
             ]
         if kind == "struct":
-            name = _crate_type_name(rust_type)
+            name = crate_type_name(rust_type)
             return [
                 f"{indent}let {target} = Py::new(py, Py{name} {{ inner: ({source}).to_owned() }})?.into_any();"
             ]
         if kind == "vec":
-            arguments = _generic(rust_type, "::std::vec::Vec")
+            arguments = generic_arguments(rust_type, "::std::vec::Vec")
             if arguments is None or len(arguments) != 1:
                 raise GenerationError(f"invalid Vec type: {rust_type}")
             item = self._next("item")
@@ -499,7 +499,7 @@ class ServiceGenerator:
             lines.append(f"{indent}let {target} = {target}_list.into_any().unbind();")
             return lines
         if kind == "map":
-            arguments = _generic(rust_type, "::std::collections::HashMap")
+            arguments = generic_arguments(rust_type, "::std::collections::HashMap")
             if arguments is None or len(arguments) != 2:
                 raise GenerationError(f"invalid HashMap type: {rust_type}")
             key = self._next("key")
@@ -526,7 +526,7 @@ class ServiceGenerator:
         def visit(rust_type: str) -> None:
             kind = self._kind(rust_type)
             if kind == "struct":
-                name = _crate_type_name(rust_type)
+                name = crate_type_name(rust_type)
                 if name is None or name in names:
                     return
                 names.add(name)
@@ -534,16 +534,16 @@ class ServiceGenerator:
                 for field in rust.fields:
                     visit(field.rust_type)
             elif kind == "vec":
-                arguments = _generic(rust_type, "::std::vec::Vec")
+                arguments = generic_arguments(rust_type, "::std::vec::Vec")
                 if arguments:
                     visit(arguments[0])
             elif kind == "map":
-                arguments = _generic(rust_type, "::std::collections::HashMap")
+                arguments = generic_arguments(rust_type, "::std::collections::HashMap")
                 if arguments and len(arguments) == 2:
                     visit(arguments[1])
             elif kind in {"box", "option"}:
                 prefix = "::std::boxed::Box" if kind == "box" else "::std::option::Option"
-                arguments = _generic(rust_type, prefix)
+                arguments = generic_arguments(rust_type, prefix)
                 if arguments:
                     visit(arguments[0])
 
@@ -1041,10 +1041,10 @@ class ServiceGenerator:
                 lines.append(f'                result.set_item("{field.name}", stream)?;')
                 continue
             if kind == "event_receiver":
-                arguments = _generic(field.rust_type, "crate::event_receiver::EventReceiver")
+                arguments = generic_arguments(field.rust_type, "crate::event_receiver::EventReceiver")
                 if arguments is None or len(arguments) != 2:
                     raise GenerationError(f"invalid event receiver: {field.rust_type}")
-                event_name = _crate_type_name(arguments[0])
+                event_name = crate_type_name(arguments[0])
                 if event_name is None:
                     raise GenerationError(f"invalid event type: {arguments[0]}")
                 constructor = f'Py::new(py, Py{event_name}Receiver::new(stream, "{smithy.name}"))'
@@ -1215,26 +1215,26 @@ class ServiceGenerator:
             annotation = "JSONValue"
         elif kind in {"box", "option"}:
             prefix = "::std::boxed::Box" if kind == "box" else "::std::option::Option"
-            arguments = _generic(rust_type, prefix)
+            arguments = generic_arguments(rust_type, prefix)
             assert arguments is not None
             annotation = self._rust_output_annotation(arguments[0], kind == "option")
         elif kind == "blob":
             annotation = "bytes"
         elif kind == "struct":
-            annotation = _crate_type_name(rust_type) or "object"
+            annotation = crate_type_name(rust_type) or "object"
         elif kind == "union":
-            name = _crate_type_name(rust_type)
+            name = crate_type_name(rust_type)
             shape = self._shape_for_rust(name or "")
             if shape is None:
                 raise GenerationError(f"missing Smithy union for {rust_type}")
             annotation = f"_types.{shape.name}"
         elif kind == "vec":
-            arguments = _generic(rust_type, "::std::vec::Vec")
+            arguments = generic_arguments(rust_type, "::std::vec::Vec")
             if arguments is None:
                 raise GenerationError(f"invalid Vec type: {rust_type}")
             annotation = f"list[{self._rust_output_annotation(arguments[0])}]"
         elif kind == "map":
-            arguments = _generic(rust_type, "::std::collections::HashMap")
+            arguments = generic_arguments(rust_type, "::std::collections::HashMap")
             if arguments is None or len(arguments) != 2:
                 raise GenerationError(f"invalid HashMap type: {rust_type}")
             annotation = (

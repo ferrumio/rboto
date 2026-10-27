@@ -78,6 +78,45 @@ jobs:
       - name: Clippy
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
 
+  cli:
+    name: Native CLI
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      CARGO_BUILD_JOBS: "1"
+      CARGO_INCREMENTAL: "0"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+
+      - name: Format, runtime tests and Clippy
+        run: |
+          cargo fmt --manifest-path cli/Cargo.toml --all -- --check
+          cargo test --manifest-path cli/Cargo.toml -p rboto-cli-core --locked
+          cargo clippy --manifest-path cli/Cargo.toml --workspace --all-targets --locked -- -D warnings
+
+      - name: Build standalone binary
+        run: cargo build --manifest-path cli/Cargo.toml --release --locked
+
+      - name: CLI protocol tests
+        env:
+          RBOTO_CLI_BINARY: cli/target/release/rboto
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install pytest
+          .venv/bin/pytest tests/cli -q
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: rboto-cli-linux-x86_64
+          path: cli/target/release/rboto
+          retention-days: 1
+
   wheel:
     name: Wheel ${{ matrix.service }} (Linux / cp315)
     runs-on: ubuntu-latest

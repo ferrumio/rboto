@@ -63,11 +63,14 @@ jobs:
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
           .venv/bin/rboto-codegen generate-manifests --all
           cargo update --workspace
+          cargo update --manifest-path cli/Cargo.toml --workspace
           cargo fetch --locked
+          cargo fetch --manifest-path cli/Cargo.toml --locked
           .venv/bin/rboto-codegen fetch-model --all
           .venv/bin/rboto-codegen report --all
           .venv/bin/rboto-codegen generate --all
           cargo fmt --all
+          cargo fmt --manifest-path cli/Cargo.toml --all
 
       - name: Validate generated update
         run: |
@@ -77,9 +80,11 @@ jobs:
           .venv/bin/pytest codegen/tests packages/rboto/tests -q
           .venv/bin/python .github/scripts/check_version.py
           cargo check --workspace --locked
+          cargo check --manifest-path cli/Cargo.toml --workspace --locked
           BEFORE=$(git diff --binary | sha256sum)
           .venv/bin/rboto-codegen generate --all
           cargo fmt --all -- --check
+          cargo fmt --manifest-path cli/Cargo.toml --all -- --check
           AFTER=$(git diff --binary | sha256sum)
           test "$BEFORE" = "$AFTER"
           git diff --check

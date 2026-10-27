@@ -30,6 +30,20 @@ approach:
   Python async iterators.
 - **Install only what you use** - every AWS service ships as an independent native wheel.
 
+## Native CLI
+
+The standalone Rust CLI embeds the same service catalog, including files, pagination
+and event streams. It does not need Python or installed service packages.
+
+```bash
+CARGO_BUILD_JOBS=1 cargo build --manifest-path cli/Cargo.toml --release --locked
+./cli/target/release/rboto --services
+./cli/target/release/rboto s3 get-object --bucket example --key archive.tar \
+  --output-file archive.tar --region us-east-1
+```
+
+See the [CLI guide](docs/cli.md) for credentials, JSON input and streaming.
+
 ## Supported services
 
 The catalog provides **34 AWS service clients and 1,865 operations**, including

@@ -50,6 +50,18 @@ def main() -> None:
     args = parser.parse_args()
 
     versions = {"Cargo workspace": workspace_version()}
+    cli_manifest = ROOT / "cli/Cargo.toml"
+    if cli_manifest.exists():
+        cli = tomllib.loads(cli_manifest.read_text())["workspace"]
+        versions["CLI workspace"] = cli["package"]["version"]
+        workspace = tomllib.loads((ROOT / "Cargo.toml").read_text())["workspace"]
+        for name in ("aws-config", "aws-smithy-runtime-api", "aws-smithy-types"):
+            shared_pin = workspace["dependencies"][name]
+            cli_pin = cli["dependencies"][name]
+            shared_version = shared_pin["version"] if isinstance(shared_pin, dict) else shared_pin
+            cli_version = cli_pin["version"] if isinstance(cli_pin, dict) else cli_pin
+            if shared_version != cli_version:
+                raise SystemExit(f"CLI {name} pin differs from the SDK workspace")
     for path in sorted((ROOT / "packages").glob("*/pyproject.toml")):
         versions[str(path.relative_to(ROOT))] = project_version(path)
     versions["codegen/pyproject.toml"] = project_version(

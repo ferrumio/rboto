@@ -13,3 +13,4 @@ aws_model_hash = "084bc202b5cf19e35aad0016d021a879d38ee43a039a929f2befc7e0c70f53
 smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
 customization = "dynamodb"
 native_outputs = true
+cli_features = ["default-https-client", "rt-tokio"]

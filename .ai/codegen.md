@@ -28,3 +28,11 @@ Generation must respect both. Do not silence an alignment mismatch without docum
 the SDK representation is intentionally different.
 
 See ADR-0002 and ADR-0003.
+
+## Native CLI
+
+`cli_generator.py` extends the same model/parser alignment used by `ServiceGenerator`.
+Change CLI adapters in this generator, the `cli_*.j2` templates or service descriptors.
+`generate --all` regenerates CLI and Python artifacts; `generate-cli --all` can refresh
+just the CLI. `generate-manifests --all` bootstraps both workspaces before downloading
+crates. Keep both Cargo lockfiles synchronized after changing pins. See ADR-0012.
