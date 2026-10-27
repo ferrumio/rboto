@@ -32,3 +32,36 @@ Native packages require maturin 1.15+. PyO3 and pyo3-async-runtimes must be upgr
 together and validated with rebuilt extensions on the minimum and newest CPython.
 
 See ADR-0010.
+
+## Model updates and package versions
+
+`update-aws-models.yml` runs weekly or manually. It updates all service descriptors,
+renders package manifests with `rboto-codegen generate-manifests --all`, resolves the
+workspace lock, and fetches the pinned crates before model alignment and generation.
+Manifest generation does not need downloaded models or Rust sources.
+
+The updater publishes its branch after Python checks, locked Rust compilation, version/pin
+checks, and a second generation pass. It uses `GITHUB_TOKEN` and creates a PR when policy
+allows it. If the organization/repository forbids bot-created PRs, the workflow keeps the
+branch, provides a link to open a PR manually, and still dispatches CI, generated-source
+checks, and integration on that branch. Only the explicit bot-PR policy error uses this
+fallback; other publication errors fail the workflow. Existing PRs are reused.
+
+Dispatch verifies the generated commit before starting each workflow. This is required
+because the built-in token does not trigger normal PR/push events. `actions: write` is
+scoped to the updater job. No App token or personal access token is required. The workflow
+does not approve, merge, or publish packages, and does not change organization policy.
+
+The optional `package_version` dispatch input prepares a stable `X.Y.Z` rboto release.
+It updates the workspace, core and codegen versions; generated service versions and their
+core dependency pins follow the workspace version. Extras and `Cargo.lock` are refreshed
+as part of generation/resolution. Versioned update branches are separate from model-only
+updates so the next schedule does not erase a pending version bump.
+
+Leaving `package_version` empty preserves the rboto package version. Neither the schedule
+nor manual model updates publish packages. After merging a prepared version, create its
+`vX.Y.Z` tag or dispatch `release.yml` with that same version to build, smoke-test, and
+publish the full wheelhouse. Release preparation checks both manifest versions and the
+mutual core/service dependency pins.
+
+See ADR-0011.

@@ -7,8 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from jinja2 import Environment, FileSystemLoader, StrictUndefined
-
+from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .registry import list_services
 from .rust_crate import RustField, RustOperation, RustType, parse_crate
@@ -128,13 +127,7 @@ class ServiceGenerator:
             self._required_output_members[smithy_operation.output_target] = {
                 field.name for field in rust_operation.output_fields if not field.optional
             }
-        template_root = Path(__file__).parent / "templates"
-        self.templates = Environment(
-            loader=FileSystemLoader(template_root),
-            undefined=StrictUndefined,
-            autoescape=False,
-            keep_trailing_newline=True,
-        )
+        self.templates = template_environment()
 
     def generate(self) -> GeneratedPaths:
         paths = GeneratedPaths(
@@ -1134,20 +1127,10 @@ class ServiceGenerator:
         )
 
     def _render_cargo(self) -> str:
-        return self.templates.get_template("Cargo.toml.j2").render(
-            adapter_crate=self.descriptor.adapter_crate,
-            rust_crate=self.descriptor.rust_crate,
-            rust_crate_version=self.descriptor.rust_crate_version,
-            distribution_name=self.descriptor.distribution_name,
-            python_package=self.descriptor.python_package,
-        )
+        return render_cargo(self.descriptor)
 
     def _render_pyproject(self) -> str:
-        return self.templates.get_template("pyproject.toml.j2").render(
-            distribution_name=self.descriptor.distribution_name,
-            python_package=self.descriptor.python_package,
-            service_id=self.descriptor.service_id,
-        )
+        return render_pyproject(self.descriptor, self.repository_root)
 
     def _render_package_init(self) -> str:
         return self.templates.get_template("package_init.py.j2").render(

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -42,12 +43,14 @@ class RustCrate:
 
 
 def find_crate(descriptor: ServiceDescriptor) -> Path:
-    registry = Path.home() / ".cargo" / "registry" / "src"
+    cargo_home = Path(os.environ.get("CARGO_HOME", str(Path.home() / ".cargo"))).expanduser()
+    registry = cargo_home / "registry" / "src"
     expected = f"{descriptor.rust_crate}-{descriptor.rust_crate_version}"
-    for index in registry.iterdir():
-        candidate = index / expected
-        if candidate.is_dir():
-            return candidate
+    if registry.is_dir():
+        for index in registry.iterdir():
+            candidate = index / expected
+            if candidate.is_dir():
+                return candidate
     raise FileNotFoundError(f"{expected} is not available in the Cargo registry; run cargo fetch")
 
 

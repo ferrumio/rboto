@@ -7,6 +7,7 @@ from typing import NoReturn
 from .alignment import align
 from .catalog import generate_catalog
 from .generator import generate_service
+from .manifests import generate_manifests
 from .registry import get_service, list_services
 from .rust_crate import parse_crate
 from .smithy import fetch_model, load_model
@@ -34,6 +35,10 @@ def main() -> None:
     _add_service_selection(report)
     generate = subparsers.add_parser("generate", help="generate a complete service adapter")
     _add_service_selection(generate)
+    manifests = subparsers.add_parser(
+        "generate-manifests", help="render package pins without downloading models or crates"
+    )
+    _add_service_selection(manifests)
     args = parser.parse_args()
 
     if args.command == "list":
@@ -61,9 +66,13 @@ def main() -> None:
         _parser_error(parser, "provide a service_id or --all")
 
     repository_root = Path(__file__).parents[3]
-    if args.command == "generate":
+    if args.command in {"generate", "generate-manifests"}:
         generate_catalog(repository_root)
     for descriptor in descriptors:
+        if args.command == "generate-manifests":
+            for path in generate_manifests(descriptor, repository_root):
+                print(path)
+            continue
         model_path = Path(__file__).parents[2] / "models" / f"{descriptor.service_id}.json"
         if args.command == "fetch-model":
             print(fetch_model(descriptor, model_path))

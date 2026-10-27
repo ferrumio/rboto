@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime
 import hashlib
 import json
 import re
@@ -28,7 +29,7 @@ def latest_release() -> str:
     for raw_entry in raw_tags:
         entry = cast(dict[str, object], raw_entry)
         name = entry.get("name")
-        if isinstance(name, str) and name.startswith("release-"):
+        if isinstance(name, str) and re.fullmatch(r"release-\d{4}-\d{2}-\d{2}", name):
             names.append(name)
     if not names:
         raise RuntimeError("no AWS SDK release tags found")
@@ -44,7 +45,7 @@ def replace_toml_string(text: str, key: str, value: str) -> str:
     return updated
 
 
-def update_service(path: Path, release: str, versions: dict[str, object]) -> None:
+def updated_service(path: Path, release: str, versions: dict[str, object]) -> str:
     data = cast(dict[str, object], tomllib.loads(path.read_text()))
     crate_name = cast(str, data["rust_crate"])
     service_id = cast(str, data["service_id"])
@@ -68,10 +69,10 @@ def update_service(path: Path, release: str, versions: dict[str, object]) -> Non
         ("smithy_codegen_revision", smithy_revision),
     ):
         text = replace_toml_string(text, key, value)
-    path.write_text(text)
+    return text
 
 
-def update_workspace_dependencies(versions: dict[str, object]) -> None:
+def updated_workspace_dependencies(versions: dict[str, object]) -> str:
     crates = cast(dict[str, object], versions["crates"])
     path = ROOT / "Cargo.toml"
     text = path.read_text()
@@ -88,7 +89,32 @@ def update_workspace_dependencies(versions: dict[str, object]) -> None:
         text, count = re.subn(pattern, replacement, text, flags=re.MULTILINE)
         if count != 1:
             raise RuntimeError(f"workspace dependency not found: {dependency}")
-    path.write_text(text)
+    return text
+
+
+def validate_release(release: str) -> None:
+    if re.fullmatch(r"release-\d{4}-\d{2}-\d{2}", release) is None:
+        raise ValueError("release must be a release-YYYY-MM-DD tag")
+    datetime.date.fromisoformat(release.removeprefix("release-"))
+
+
+def update(release: str) -> None:
+    validate_release(release)
+    versions_url = (
+        "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/"
+        f"{release}/versions.toml"
+    )
+    versions = cast(dict[str, object], tomllib.loads(fetch(versions_url).decode()))
+    # Validate and download every model before changing the source descriptors.
+    changes = {
+        path: updated_service(path, release, versions)
+        for path in sorted(SERVICE_DIR.glob("*.toml"))
+    }
+    if not changes:
+        raise RuntimeError("no service descriptors found")
+    changes[ROOT / "Cargo.toml"] = updated_workspace_dependencies(versions)
+    for path, text in changes.items():
+        path.write_text(text)
 
 
 def main() -> None:
@@ -96,15 +122,7 @@ def main() -> None:
     parser.add_argument("--release", default="latest")
     args = parser.parse_args()
     release = latest_release() if args.release == "latest" else args.release
-    versions_url = (
-        "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/"
-        f"{release}/versions.toml"
-    )
-    versions = cast(dict[str, object], tomllib.loads(fetch(versions_url).decode()))
-
-    for path in sorted(SERVICE_DIR.glob("*.toml")):
-        update_service(path, release, versions)
-    update_workspace_dependencies(versions)
+    update(release)
     print(release)
 
 

@@ -22,7 +22,7 @@ def replace_first_version(path: Path, version: str) -> None:
 
 
 def update_extra_pins(path: Path, version: str) -> None:
-    text = re.sub(r"(rboto-[a-z0-9-]+)==[0-9.]+", rf"\1=={version}", path.read_text())
+    text = re.sub(r'(rboto-[a-z0-9-]+)==[^"\s]+', rf"\1=={version}", path.read_text())
     path.write_text(text)
 
 
@@ -30,16 +30,14 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("version")
     args = parser.parse_args()
-    if re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+(?:[a-zA-Z0-9.-]+)?", args.version) is None:
+    if re.fullmatch(
+        r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", args.version
+    ) is None:
         raise SystemExit(f"invalid version: {args.version}")
 
     replace_first_version(ROOT / "Cargo.toml", args.version)
     replace_first_version(ROOT / "packages/rboto/pyproject.toml", args.version)
     replace_first_version(ROOT / "codegen/pyproject.toml", args.version)
-    replace_first_version(
-        ROOT / "codegen/src/rboto_codegen/templates/pyproject.toml.j2",
-        args.version,
-    )
     update_extra_pins(ROOT / "packages/rboto/pyproject.toml", args.version)
     print(args.version)
 
