@@ -92,7 +92,8 @@ fn api_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::typ
         builder = builder.set_last_updated_date(Some(converted_13));
     }
     if let Some(value) = dict_value(values, "stage_keys")? {
-        let mut converted_15 = Vec::new();
+        let mut converted_15 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_16 in value.try_iter()? {
             let item_17 = item_result_16?;
             let converted_item_18: String = item_17.extract()?;
@@ -102,7 +103,7 @@ fn api_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::typ
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_20 = value.cast::<PyDict>()?;
-        let mut converted_19 = HashMap::new();
+        let mut converted_19 = HashMap::with_capacity(mapping_20.len());
         for (key_21, value_22) in mapping_20.iter() {
             let converted_key_23: String = key_21.extract()?;
             let converted_value_24: String = value_22.extract()?;
@@ -198,7 +199,7 @@ fn api_stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::t
     }
     if let Some(value) = dict_value(values, "throttle")? {
         let mapping_44 = value.cast::<PyDict>()?;
-        let mut converted_43 = HashMap::new();
+        let mut converted_43 = HashMap::with_capacity(mapping_44.len());
         for (key_45, value_46) in mapping_44.iter() {
             let converted_key_47: String = key_45.extract()?;
             let converted_value_48 = throttle_settings_from_py(&value_46)?;
@@ -258,7 +259,8 @@ fn authorizer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::
         builder = builder.set_type(Some(converted_58));
     }
     if let Some(value) = dict_value(values, "provider_arns")? {
-        let mut converted_60 = Vec::new();
+        let mut converted_60 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_61 in value.try_iter()? {
             let item_62 = item_result_61?;
             let converted_item_63: String = item_62.extract()?;
@@ -427,7 +429,7 @@ fn canary_settings_from_py(
     }
     if let Some(value) = dict_value(values, "stage_variable_overrides")? {
         let mapping_91 = value.cast::<PyDict>()?;
-        let mut converted_90 = HashMap::new();
+        let mut converted_90 = HashMap::with_capacity(mapping_91.len());
         for (key_92, value_93) in mapping_91.iter() {
             let converted_key_94: String = key_92.extract()?;
             let converted_value_95: String = value_93.extract()?;
@@ -509,7 +511,7 @@ fn client_certificate_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_113 = value.cast::<PyDict>()?;
-        let mut converted_112 = HashMap::new();
+        let mut converted_112 = HashMap::with_capacity(mapping_113.len());
         for (key_114, value_115) in mapping_113.iter() {
             let converted_key_116: String = key_114.extract()?;
             let converted_value_117: String = value_115.extract()?;
@@ -592,11 +594,11 @@ fn deployment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::
     }
     if let Some(value) = dict_value(values, "api_summary")? {
         let mapping_133 = value.cast::<PyDict>()?;
-        let mut converted_132 = HashMap::new();
+        let mut converted_132 = HashMap::with_capacity(mapping_133.len());
         for (key_134, value_135) in mapping_133.iter() {
             let converted_key_136: String = key_134.extract()?;
             let mapping_138 = value_135.cast::<PyDict>()?;
-            let mut converted_value_137 = HashMap::new();
+            let mut converted_value_137 = HashMap::with_capacity(mapping_138.len());
             for (key_139, value_140) in mapping_138.iter() {
                 let converted_key_141: String = key_139.extract()?;
                 let converted_value_142 = method_snapshot_from_py(&value_140)?;
@@ -664,7 +666,7 @@ fn deployment_canary_settings_from_py(
     }
     if let Some(value) = dict_value(values, "stage_variable_overrides")? {
         let mapping_157 = value.cast::<PyDict>()?;
-        let mut converted_156 = HashMap::new();
+        let mut converted_156 = HashMap::with_capacity(mapping_157.len());
         for (key_158, value_159) in mapping_157.iter() {
             let converted_key_160: String = key_158.extract()?;
             let converted_value_161: String = value_159.extract()?;
@@ -952,7 +954,7 @@ fn domain_name_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_216 = value.cast::<PyDict>()?;
-        let mut converted_215 = HashMap::new();
+        let mut converted_215 = HashMap::with_capacity(mapping_216.len());
         for (key_217, value_218) in mapping_216.iter() {
             let converted_key_219: String = key_217.extract()?;
             let converted_value_220: String = value_218.extract()?;
@@ -1161,7 +1163,7 @@ fn domain_name_access_association_from_py(
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_260 = value.cast::<PyDict>()?;
-        let mut converted_259 = HashMap::new();
+        let mut converted_259 = HashMap::with_capacity(mapping_260.len());
         for (key_261, value_262) in mapping_260.iter() {
             let converted_key_263: String = key_261.extract()?;
             let converted_value_264: String = value_262.extract()?;
@@ -1222,7 +1224,8 @@ fn endpoint_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_apigateway::types::EndpointConfiguration::builder();
     if let Some(value) = dict_value(values, "types")? {
-        let mut converted_274 = Vec::new();
+        let mut converted_274 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_275 in value.try_iter()? {
             let item_276 = item_result_275?;
             let enum_value_278: String = item_276.extract()?;
@@ -1238,7 +1241,8 @@ fn endpoint_configuration_from_py(
         builder = builder.set_ip_address_type(Some(converted_279));
     }
     if let Some(value) = dict_value(values, "vpc_endpoint_ids")? {
-        let mut converted_281 = Vec::new();
+        let mut converted_281 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_282 in value.try_iter()? {
             let item_283 = item_result_282?;
             let converted_item_284: String = item_283.extract()?;
@@ -1302,7 +1306,7 @@ fn gateway_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_parameters")? {
         let mapping_296 = value.cast::<PyDict>()?;
-        let mut converted_295 = HashMap::new();
+        let mut converted_295 = HashMap::with_capacity(mapping_296.len());
         for (key_297, value_298) in mapping_296.iter() {
             let converted_key_299: String = key_297.extract()?;
             let converted_value_300: String = value_298.extract()?;
@@ -1312,7 +1316,7 @@ fn gateway_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_templates")? {
         let mapping_302 = value.cast::<PyDict>()?;
-        let mut converted_301 = HashMap::new();
+        let mut converted_301 = HashMap::with_capacity(mapping_302.len());
         for (key_303, value_304) in mapping_302.iter() {
             let converted_key_305: String = key_303.extract()?;
             let converted_value_306: String = value_304.extract()?;
@@ -1408,7 +1412,7 @@ fn integration_from_py(
     }
     if let Some(value) = dict_value(values, "request_parameters")? {
         let mapping_330 = value.cast::<PyDict>()?;
-        let mut converted_329 = HashMap::new();
+        let mut converted_329 = HashMap::with_capacity(mapping_330.len());
         for (key_331, value_332) in mapping_330.iter() {
             let converted_key_333: String = key_331.extract()?;
             let converted_value_334: String = value_332.extract()?;
@@ -1418,7 +1422,7 @@ fn integration_from_py(
     }
     if let Some(value) = dict_value(values, "request_templates")? {
         let mapping_336 = value.cast::<PyDict>()?;
-        let mut converted_335 = HashMap::new();
+        let mut converted_335 = HashMap::with_capacity(mapping_336.len());
         for (key_337, value_338) in mapping_336.iter() {
             let converted_key_339: String = key_337.extract()?;
             let converted_value_340: String = value_338.extract()?;
@@ -1445,7 +1449,8 @@ fn integration_from_py(
         builder = builder.set_cache_namespace(Some(converted_345));
     }
     if let Some(value) = dict_value(values, "cache_key_parameters")? {
-        let mut converted_346 = Vec::new();
+        let mut converted_346 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_347 in value.try_iter()? {
             let item_348 = item_result_347?;
             let converted_item_349: String = item_348.extract()?;
@@ -1455,7 +1460,7 @@ fn integration_from_py(
     }
     if let Some(value) = dict_value(values, "integration_responses")? {
         let mapping_351 = value.cast::<PyDict>()?;
-        let mut converted_350 = HashMap::new();
+        let mut converted_350 = HashMap::with_capacity(mapping_351.len());
         for (key_352, value_353) in mapping_351.iter() {
             let converted_key_354: String = key_352.extract()?;
             let converted_value_355 = integration_response_from_py(&value_353)?;
@@ -1624,7 +1629,7 @@ fn integration_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_parameters")? {
         let mapping_394 = value.cast::<PyDict>()?;
-        let mut converted_393 = HashMap::new();
+        let mut converted_393 = HashMap::with_capacity(mapping_394.len());
         for (key_395, value_396) in mapping_394.iter() {
             let converted_key_397: String = key_395.extract()?;
             let converted_value_398: String = value_396.extract()?;
@@ -1634,7 +1639,7 @@ fn integration_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_templates")? {
         let mapping_400 = value.cast::<PyDict>()?;
-        let mut converted_399 = HashMap::new();
+        let mut converted_399 = HashMap::with_capacity(mapping_400.len());
         for (key_401, value_402) in mapping_400.iter() {
             let converted_key_403: String = key_401.extract()?;
             let converted_value_404: String = value_402.extract()?;
@@ -1730,7 +1735,7 @@ fn method_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::type
     }
     if let Some(value) = dict_value(values, "request_parameters")? {
         let mapping_427 = value.cast::<PyDict>()?;
-        let mut converted_426 = HashMap::new();
+        let mut converted_426 = HashMap::with_capacity(mapping_427.len());
         for (key_428, value_429) in mapping_427.iter() {
             let converted_key_430: String = key_428.extract()?;
             let converted_value_431: bool = value_429.extract()?;
@@ -1740,7 +1745,7 @@ fn method_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::type
     }
     if let Some(value) = dict_value(values, "request_models")? {
         let mapping_433 = value.cast::<PyDict>()?;
-        let mut converted_432 = HashMap::new();
+        let mut converted_432 = HashMap::with_capacity(mapping_433.len());
         for (key_434, value_435) in mapping_433.iter() {
             let converted_key_436: String = key_434.extract()?;
             let converted_value_437: String = value_435.extract()?;
@@ -1750,7 +1755,7 @@ fn method_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::type
     }
     if let Some(value) = dict_value(values, "method_responses")? {
         let mapping_439 = value.cast::<PyDict>()?;
-        let mut converted_438 = HashMap::new();
+        let mut converted_438 = HashMap::with_capacity(mapping_439.len());
         for (key_440, value_441) in mapping_439.iter() {
             let converted_key_442: String = key_440.extract()?;
             let converted_value_443 = method_response_from_py(&value_441)?;
@@ -1763,7 +1768,8 @@ fn method_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::type
         builder = builder.set_method_integration(Some(converted_444));
     }
     if let Some(value) = dict_value(values, "authorization_scopes")? {
-        let mut converted_445 = Vec::new();
+        let mut converted_445 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_446 in value.try_iter()? {
             let item_447 = item_result_446?;
             let converted_item_448: String = item_447.extract()?;
@@ -1879,7 +1885,7 @@ fn method_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_parameters")? {
         let mapping_476 = value.cast::<PyDict>()?;
-        let mut converted_475 = HashMap::new();
+        let mut converted_475 = HashMap::with_capacity(mapping_476.len());
         for (key_477, value_478) in mapping_476.iter() {
             let converted_key_479: String = key_477.extract()?;
             let converted_value_480: bool = value_478.extract()?;
@@ -1889,7 +1895,7 @@ fn method_response_from_py(
     }
     if let Some(value) = dict_value(values, "response_models")? {
         let mapping_482 = value.cast::<PyDict>()?;
-        let mut converted_481 = HashMap::new();
+        let mut converted_481 = HashMap::with_capacity(mapping_482.len());
         for (key_483, value_484) in mapping_482.iter() {
             let converted_key_485: String = key_483.extract()?;
             let converted_value_486: String = value_484.extract()?;
@@ -2134,7 +2140,8 @@ fn mutual_tls_authentication_from_py(
         builder = builder.set_truststore_version(Some(converted_534));
     }
     if let Some(value) = dict_value(values, "truststore_warnings")? {
-        let mut converted_535 = Vec::new();
+        let mut converted_535 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_536 in value.try_iter()? {
             let item_537 = item_result_536?;
             let converted_item_538: String = item_537.extract()?;
@@ -2380,7 +2387,7 @@ fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
     }
     if let Some(value) = dict_value(values, "resource_methods")? {
         let mapping_577 = value.cast::<PyDict>()?;
-        let mut converted_576 = HashMap::new();
+        let mut converted_576 = HashMap::with_capacity(mapping_577.len());
         for (key_578, value_579) in mapping_577.iter() {
             let converted_key_580: String = key_578.extract()?;
             let converted_value_581 = method_from_py(&value_579)?;
@@ -2464,7 +2471,8 @@ fn rest_api_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
         builder = builder.set_version(Some(converted_596));
     }
     if let Some(value) = dict_value(values, "warnings")? {
-        let mut converted_597 = Vec::new();
+        let mut converted_597 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_598 in value.try_iter()? {
             let item_599 = item_result_598?;
             let converted_item_600: String = item_599.extract()?;
@@ -2473,7 +2481,8 @@ fn rest_api_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
         builder = builder.set_warnings(Some(converted_597));
     }
     if let Some(value) = dict_value(values, "binary_media_types")? {
-        let mut converted_601 = Vec::new();
+        let mut converted_601 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_602 in value.try_iter()? {
             let item_603 = item_result_602?;
             let converted_item_604: String = item_603.extract()?;
@@ -2501,7 +2510,7 @@ fn rest_api_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_611 = value.cast::<PyDict>()?;
-        let mut converted_610 = HashMap::new();
+        let mut converted_610 = HashMap::with_capacity(mapping_611.len());
         for (key_612, value_613) in mapping_611.iter() {
             let converted_key_614: String = key_612.extract()?;
             let converted_value_615: String = value_613.extract()?;
@@ -2749,7 +2758,8 @@ fn sdk_type_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
         builder = builder.set_description(Some(converted_663));
     }
     if let Some(value) = dict_value(values, "configuration_properties")? {
-        let mut converted_664 = Vec::new();
+        let mut converted_664 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_665 in value.try_iter()? {
             let item_666 = item_result_665?;
             let converted_item_667 = sdk_configuration_property_from_py(&item_666)?;
@@ -2834,7 +2844,7 @@ fn stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types
     }
     if let Some(value) = dict_value(values, "method_settings")? {
         let mapping_684 = value.cast::<PyDict>()?;
-        let mut converted_683 = HashMap::new();
+        let mut converted_683 = HashMap::with_capacity(mapping_684.len());
         for (key_685, value_686) in mapping_684.iter() {
             let converted_key_687: String = key_685.extract()?;
             let converted_value_688 = method_setting_from_py(&value_686)?;
@@ -2844,7 +2854,7 @@ fn stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types
     }
     if let Some(value) = dict_value(values, "variables")? {
         let mapping_690 = value.cast::<PyDict>()?;
-        let mut converted_689 = HashMap::new();
+        let mut converted_689 = HashMap::with_capacity(mapping_690.len());
         for (key_691, value_692) in mapping_690.iter() {
             let converted_key_693: String = key_691.extract()?;
             let converted_value_694: String = value_692.extract()?;
@@ -2874,7 +2884,7 @@ fn stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_701 = value.cast::<PyDict>()?;
-        let mut converted_700 = HashMap::new();
+        let mut converted_700 = HashMap::with_capacity(mapping_701.len());
         for (key_702, value_703) in mapping_701.iter() {
             let converted_key_704: String = key_702.extract()?;
             let converted_value_705: String = value_703.extract()?;
@@ -3120,7 +3130,8 @@ fn usage_plan_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::
         builder = builder.set_description(Some(converted_751));
     }
     if let Some(value) = dict_value(values, "api_stages")? {
-        let mut converted_752 = Vec::new();
+        let mut converted_752 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_753 in value.try_iter()? {
             let item_754 = item_result_753?;
             let converted_item_755 = api_stage_from_py(&item_754)?;
@@ -3142,7 +3153,7 @@ fn usage_plan_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_760 = value.cast::<PyDict>()?;
-        let mut converted_759 = HashMap::new();
+        let mut converted_759 = HashMap::with_capacity(mapping_760.len());
         for (key_761, value_762) in mapping_760.iter() {
             let converted_key_763: String = key_761.extract()?;
             let converted_value_764: String = value_762.extract()?;
@@ -3292,7 +3303,8 @@ fn vpc_link_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
         builder = builder.set_description(Some(converted_789));
     }
     if let Some(value) = dict_value(values, "target_arns")? {
-        let mut converted_790 = Vec::new();
+        let mut converted_790 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_791 in value.try_iter()? {
             let item_792 = item_result_791?;
             let converted_item_793: String = item_792.extract()?;
@@ -3311,7 +3323,7 @@ fn vpc_link_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::ty
     }
     if let Some(value) = dict_value(values, "tags")? {
         let mapping_798 = value.cast::<PyDict>()?;
-        let mut converted_797 = HashMap::new();
+        let mut converted_797 = HashMap::with_capacity(mapping_798.len());
         for (key_799, value_800) in mapping_798.iter() {
             let converted_key_801: String = key_799.extract()?;
             let converted_value_802: String = value_800.extract()?;
@@ -19725,7 +19737,8 @@ impl APIGatewayClient {
             None
         };
         let stage_keys_value = if let Some(value) = dict_value(params, "stage_keys")? {
-            let mut converted_821 = Vec::new();
+            let mut converted_821 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_822 in value.try_iter()? {
                 let item_823 = item_result_822?;
                 let converted_item_824 = stage_key_from_py(&item_823)?;
@@ -19743,7 +19756,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_827 = value.cast::<PyDict>()?;
-            let mut converted_826 = HashMap::new();
+            let mut converted_826 = HashMap::with_capacity(mapping_827.len());
             for (key_828, value_829) in mapping_827.iter() {
                 let converted_key_830: String = key_828.extract()?;
                 let converted_value_831: String = value_829.extract()?;
@@ -19769,7 +19782,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateApiKeyOutput { inner: output }))
+            Ok(PyCreateApiKeyOutput { inner: output })
         })
     }
 
@@ -19801,7 +19814,8 @@ impl APIGatewayClient {
             None
         };
         let provider_arns_value = if let Some(value) = dict_value(params, "provider_arns")? {
-            let mut converted_836 = Vec::new();
+            let mut converted_836 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_837 in value.try_iter()? {
                 let item_838 = item_result_837?;
                 let converted_item_839: String = item_838.extract()?;
@@ -19868,7 +19882,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAuthorizer"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateAuthorizerOutput { inner: output }))
+            Ok(PyCreateAuthorizerOutput { inner: output })
         })
     }
 
@@ -19922,7 +19936,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBasePathMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateBasePathMappingOutput { inner: output }))
+            Ok(PyCreateBasePathMappingOutput { inner: output })
         })
     }
 
@@ -19976,7 +19990,7 @@ impl APIGatewayClient {
             };
         let variables_value = if let Some(value) = dict_value(params, "variables")? {
             let mapping_859 = value.cast::<PyDict>()?;
-            let mut converted_858 = HashMap::new();
+            let mut converted_858 = HashMap::with_capacity(mapping_859.len());
             for (key_860, value_861) in mapping_859.iter() {
                 let converted_key_862: String = key_860.extract()?;
                 let converted_value_863: String = value_861.extract()?;
@@ -20015,7 +20029,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeployment"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDeploymentOutput { inner: output }))
+            Ok(PyCreateDeploymentOutput { inner: output })
         })
     }
 
@@ -20055,7 +20069,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationPart"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDocumentationPartOutput { inner: output }))
+            Ok(PyCreateDocumentationPartOutput { inner: output })
         })
     }
 
@@ -20103,7 +20117,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDocumentationVersionOutput { inner: output }))
+            Ok(PyCreateDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -20175,7 +20189,7 @@ impl APIGatewayClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_883 = value.cast::<PyDict>()?;
-            let mut converted_882 = HashMap::new();
+            let mut converted_882 = HashMap::with_capacity(mapping_883.len());
             for (key_884, value_885) in mapping_883.iter() {
                 let converted_key_886: String = key_884.extract()?;
                 let converted_value_887: String = value_885.extract()?;
@@ -20256,7 +20270,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomainName"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDomainNameOutput { inner: output }))
+            Ok(PyCreateDomainNameOutput { inner: output })
         })
     }
 
@@ -20292,7 +20306,7 @@ impl APIGatewayClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_902 = value.cast::<PyDict>()?;
-            let mut converted_901 = HashMap::new();
+            let mut converted_901 = HashMap::with_capacity(mapping_902.len());
             for (key_903, value_904) in mapping_902.iter() {
                 let converted_key_905: String = key_903.extract()?;
                 let converted_value_906: String = value_904.extract()?;
@@ -20316,12 +20330,7 @@ impl APIGatewayClient {
                     sdk_error_to_py(py, &error, "CreateDomainNameAccessAssociation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateDomainNameAccessAssociationOutput { inner: output },
-                )
-            })
+            Ok(PyCreateDomainNameAccessAssociationOutput { inner: output })
         })
     }
 
@@ -20376,7 +20385,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateModel")))?;
-            Python::attach(|py| Py::new(py, PyCreateModelOutput { inner: output }))
+            Ok(PyCreateModelOutput { inner: output })
         })
     }
 
@@ -20425,7 +20434,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRequestValidator"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateRequestValidatorOutput { inner: output }))
+            Ok(PyCreateRequestValidatorOutput { inner: output })
         })
     }
 
@@ -20465,7 +20474,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateResourceOutput { inner: output }))
+            Ok(PyCreateResourceOutput { inner: output })
         })
     }
 
@@ -20502,7 +20511,8 @@ impl APIGatewayClient {
         };
         let binary_media_types_value =
             if let Some(value) = dict_value(params, "binary_media_types")? {
-                let mut converted_923 = Vec::new();
+                let mut converted_923 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_924 in value.try_iter()? {
                     let item_925 = item_result_924?;
                     let converted_item_926: String = item_925.extract()?;
@@ -20542,7 +20552,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_933 = value.cast::<PyDict>()?;
-            let mut converted_932 = HashMap::new();
+            let mut converted_932 = HashMap::with_capacity(mapping_933.len());
             for (key_934, value_935) in mapping_933.iter() {
                 let converted_key_936: String = key_934.extract()?;
                 let converted_value_937: String = value_935.extract()?;
@@ -20597,7 +20607,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRestApi"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateRestApiOutput { inner: output }))
+            Ok(PyCreateRestApiOutput { inner: output })
         })
     }
 
@@ -20650,7 +20660,7 @@ impl APIGatewayClient {
             };
         let variables_value = if let Some(value) = dict_value(params, "variables")? {
             let mapping_951 = value.cast::<PyDict>()?;
-            let mut converted_950 = HashMap::new();
+            let mut converted_950 = HashMap::with_capacity(mapping_951.len());
             for (key_952, value_953) in mapping_951.iter() {
                 let converted_key_954: String = key_952.extract()?;
                 let converted_value_955: String = value_953.extract()?;
@@ -20681,7 +20691,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_960 = value.cast::<PyDict>()?;
-            let mut converted_959 = HashMap::new();
+            let mut converted_959 = HashMap::with_capacity(mapping_960.len());
             for (key_961, value_962) in mapping_960.iter() {
                 let converted_key_963: String = key_961.extract()?;
                 let converted_value_964: String = value_962.extract()?;
@@ -20711,7 +20721,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateStage")))?;
-            Python::attach(|py| Py::new(py, PyCreateStageOutput { inner: output }))
+            Ok(PyCreateStageOutput { inner: output })
         })
     }
 
@@ -20735,7 +20745,8 @@ impl APIGatewayClient {
             None
         };
         let api_stages_value = if let Some(value) = dict_value(params, "api_stages")? {
-            let mut converted_967 = Vec::new();
+            let mut converted_967 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_968 in value.try_iter()? {
                 let item_969 = item_result_968?;
                 let converted_item_970 = api_stage_from_py(&item_969)?;
@@ -20759,7 +20770,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_974 = value.cast::<PyDict>()?;
-            let mut converted_973 = HashMap::new();
+            let mut converted_973 = HashMap::with_capacity(mapping_974.len());
             for (key_975, value_976) in mapping_974.iter() {
                 let converted_key_977: String = key_975.extract()?;
                 let converted_value_978: String = value_976.extract()?;
@@ -20783,7 +20794,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlan"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateUsagePlanOutput { inner: output }))
+            Ok(PyCreateUsagePlanOutput { inner: output })
         })
     }
 
@@ -20823,7 +20834,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlanKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateUsagePlanKeyOutput { inner: output }))
+            Ok(PyCreateUsagePlanKeyOutput { inner: output })
         })
     }
 
@@ -20847,7 +20858,8 @@ impl APIGatewayClient {
             None
         };
         let target_arns_value = if let Some(value) = dict_value(params, "target_arns")? {
-            let mut converted_984 = Vec::new();
+            let mut converted_984 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_985 in value.try_iter()? {
                 let item_986 = item_result_985?;
                 let converted_item_987: String = item_986.extract()?;
@@ -20859,7 +20871,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_989 = value.cast::<PyDict>()?;
-            let mut converted_988 = HashMap::new();
+            let mut converted_988 = HashMap::with_capacity(mapping_989.len());
             for (key_990, value_991) in mapping_989.iter() {
                 let converted_key_992: String = key_990.extract()?;
                 let converted_value_993: String = value_991.extract()?;
@@ -20881,7 +20893,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateVpcLink"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateVpcLinkOutput { inner: output }))
+            Ok(PyCreateVpcLinkOutput { inner: output })
         })
     }
 
@@ -21710,7 +21722,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1046 = value.cast::<PyDict>()?;
-            let mut converted_1045 = HashMap::new();
+            let mut converted_1045 = HashMap::with_capacity(mapping_1046.len());
             for (key_1047, value_1048) in mapping_1046.iter() {
                 let converted_key_1049: String = key_1047.extract()?;
                 let converted_value_1050: String = value_1048.extract()?;
@@ -21730,7 +21742,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateClientCertificate"))
             })?;
-            Python::attach(|py| Py::new(py, PyGenerateClientCertificateOutput { inner: output }))
+            Ok(PyGenerateClientCertificateOutput { inner: output })
         })
     }
 
@@ -21747,7 +21759,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
-            Python::attach(|py| Py::new(py, PyGetAccountOutput { inner: output }))
+            Ok(PyGetAccountOutput { inner: output })
         })
     }
 
@@ -21781,7 +21793,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKey")))?;
-            Python::attach(|py| Py::new(py, PyGetApiKeyOutput { inner: output }))
+            Ok(PyGetApiKeyOutput { inner: output })
         })
     }
 
@@ -21836,7 +21848,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKeys")))?;
-            Python::attach(|py| Py::new(py, PyApiKeys { inner: output }))
+            Ok(PyApiKeys { inner: output })
         })
     }
 
@@ -21869,7 +21881,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizer"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAuthorizerOutput { inner: output }))
+            Ok(PyGetAuthorizerOutput { inner: output })
         })
     }
 
@@ -21909,7 +21921,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizers"))
             })?;
-            Python::attach(|py| Py::new(py, PyAuthorizers { inner: output }))
+            Ok(PyAuthorizers { inner: output })
         })
     }
 
@@ -21949,7 +21961,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetBasePathMappingOutput { inner: output }))
+            Ok(PyGetBasePathMappingOutput { inner: output })
         })
     }
 
@@ -21996,7 +22008,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMappings"))
             })?;
-            Python::attach(|py| Py::new(py, PyBasePathMappings { inner: output }))
+            Ok(PyBasePathMappings { inner: output })
         })
     }
 
@@ -22023,7 +22035,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificate"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetClientCertificateOutput { inner: output }))
+            Ok(PyGetClientCertificateOutput { inner: output })
         })
     }
 
@@ -22056,7 +22068,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificates"))
             })?;
-            Python::attach(|py| Py::new(py, PyClientCertificates { inner: output }))
+            Ok(PyClientCertificates { inner: output })
         })
     }
 
@@ -22080,7 +22092,8 @@ impl APIGatewayClient {
             None
         };
         let embed_value = if let Some(value) = dict_value(params, "embed")? {
-            let mut converted_1075 = Vec::new();
+            let mut converted_1075 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1076 in value.try_iter()? {
                 let item_1077 = item_result_1076?;
                 let converted_item_1078: String = item_1077.extract()?;
@@ -22101,7 +22114,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployment"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDeploymentOutput { inner: output }))
+            Ok(PyGetDeploymentOutput { inner: output })
         })
     }
 
@@ -22141,7 +22154,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployments"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeployments { inner: output }))
+            Ok(PyDeployments { inner: output })
         })
     }
 
@@ -22175,7 +22188,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationPart"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDocumentationPartOutput { inner: output }))
+            Ok(PyGetDocumentationPartOutput { inner: output })
         })
     }
 
@@ -22247,7 +22260,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationParts"))
             })?;
-            Python::attach(|py| Py::new(py, PyDocumentationParts { inner: output }))
+            Ok(PyDocumentationParts { inner: output })
         })
     }
 
@@ -22281,7 +22294,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDocumentationVersionOutput { inner: output }))
+            Ok(PyGetDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -22321,7 +22334,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyDocumentationVersions { inner: output }))
+            Ok(PyDocumentationVersions { inner: output })
         })
     }
 
@@ -22354,7 +22367,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainName"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDomainNameOutput { inner: output }))
+            Ok(PyGetDomainNameOutput { inner: output })
         })
     }
 
@@ -22396,7 +22409,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNameAccessAssociations"))
             })?;
-            Python::attach(|py| Py::new(py, PyDomainNameAccessAssociations { inner: output }))
+            Ok(PyDomainNameAccessAssociations { inner: output })
         })
     }
 
@@ -22438,7 +22451,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNames"))
             })?;
-            Python::attach(|py| Py::new(py, PyDomainNames { inner: output }))
+            Ok(PyDomainNames { inner: output })
         })
     }
 
@@ -22469,7 +22482,7 @@ impl APIGatewayClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_1112 = value.cast::<PyDict>()?;
-            let mut converted_1111 = HashMap::new();
+            let mut converted_1111 = HashMap::with_capacity(mapping_1112.len());
             for (key_1113, value_1114) in mapping_1112.iter() {
                 let converted_key_1115: String = key_1113.extract()?;
                 let converted_value_1116: String = value_1114.extract()?;
@@ -22499,7 +22512,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetExport")))?;
-            Python::attach(|py| Py::new(py, PyExportResponse { inner: output }))
+            Ok(PyExportResponse { inner: output })
         })
     }
 
@@ -22534,7 +22547,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetGatewayResponseOutput { inner: output }))
+            Ok(PyGetGatewayResponseOutput { inner: output })
         })
     }
 
@@ -22574,7 +22587,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponses"))
             })?;
-            Python::attach(|py| Py::new(py, PyGatewayResponses { inner: output }))
+            Ok(PyGatewayResponses { inner: output })
         })
     }
 
@@ -22614,7 +22627,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetIntegrationOutput { inner: output }))
+            Ok(PyGetIntegrationOutput { inner: output })
         })
     }
 
@@ -22661,7 +22674,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegrationResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetIntegrationResponseOutput { inner: output }))
+            Ok(PyGetIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -22702,7 +22715,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMethod")))?;
-            Python::attach(|py| Py::new(py, PyGetMethodOutput { inner: output }))
+            Ok(PyGetMethodOutput { inner: output })
         })
     }
 
@@ -22749,7 +22762,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMethodResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMethodResponseOutput { inner: output }))
+            Ok(PyGetMethodResponseOutput { inner: output })
         })
     }
 
@@ -22790,7 +22803,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModel")))?;
-            Python::attach(|py| Py::new(py, PyGetModelOutput { inner: output }))
+            Ok(PyGetModelOutput { inner: output })
         })
     }
 
@@ -22823,7 +22836,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetModelTemplate"))
             })?;
-            Python::attach(|py| Py::new(py, PyTemplate { inner: output }))
+            Ok(PyTemplate { inner: output })
         })
     }
 
@@ -22864,7 +22877,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModels")))?;
-            Python::attach(|py| Py::new(py, PyModels { inner: output }))
+            Ok(PyModels { inner: output })
         })
     }
 
@@ -22898,7 +22911,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidator"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRequestValidatorOutput { inner: output }))
+            Ok(PyGetRequestValidatorOutput { inner: output })
         })
     }
 
@@ -22938,7 +22951,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidators"))
             })?;
-            Python::attach(|py| Py::new(py, PyRequestValidators { inner: output }))
+            Ok(PyRequestValidators { inner: output })
         })
     }
 
@@ -22962,7 +22975,8 @@ impl APIGatewayClient {
             None
         };
         let embed_value = if let Some(value) = dict_value(params, "embed")? {
-            let mut converted_1153 = Vec::new();
+            let mut converted_1153 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1154 in value.try_iter()? {
                 let item_1155 = item_result_1154?;
                 let converted_item_1156: String = item_1155.extract()?;
@@ -22984,7 +22998,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetResource")))?;
-            Python::attach(|py| Py::new(py, PyGetResourceOutput { inner: output }))
+            Ok(PyGetResourceOutput { inner: output })
         })
     }
 
@@ -23014,7 +23028,8 @@ impl APIGatewayClient {
             None
         };
         let embed_value = if let Some(value) = dict_value(params, "embed")? {
-            let mut converted_1160 = Vec::new();
+            let mut converted_1160 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1161 in value.try_iter()? {
                 let item_1162 = item_result_1161?;
                 let converted_item_1163: String = item_1162.extract()?;
@@ -23036,7 +23051,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResources"))
             })?;
-            Python::attach(|py| Py::new(py, PyResources { inner: output }))
+            Ok(PyResources { inner: output })
         })
     }
 
@@ -23063,7 +23078,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApi")))?;
-            Python::attach(|py| Py::new(py, PyGetRestApiOutput { inner: output }))
+            Ok(PyGetRestApiOutput { inner: output })
         })
     }
 
@@ -23097,7 +23112,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApis")))?;
-            Python::attach(|py| Py::new(py, PyRestApis { inner: output }))
+            Ok(PyRestApis { inner: output })
         })
     }
 
@@ -23128,7 +23143,7 @@ impl APIGatewayClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_1171 = value.cast::<PyDict>()?;
-            let mut converted_1170 = HashMap::new();
+            let mut converted_1170 = HashMap::with_capacity(mapping_1171.len());
             for (key_1172, value_1173) in mapping_1171.iter() {
                 let converted_key_1174: String = key_1172.extract()?;
                 let converted_value_1175: String = value_1173.extract()?;
@@ -23151,7 +23166,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdk")))?;
-            Python::attach(|py| Py::new(py, PySdkResponse { inner: output }))
+            Ok(PySdkResponse { inner: output })
         })
     }
 
@@ -23174,7 +23189,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkType")))?;
-            Python::attach(|py| Py::new(py, PyGetSdkTypeOutput { inner: output }))
+            Ok(PyGetSdkTypeOutput { inner: output })
         })
     }
 
@@ -23208,7 +23223,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkTypes")))?;
-            Python::attach(|py| Py::new(py, PySdkTypes { inner: output }))
+            Ok(PySdkTypes { inner: output })
         })
     }
 
@@ -23242,7 +23257,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStage")))?;
-            Python::attach(|py| Py::new(py, PyGetStageOutput { inner: output }))
+            Ok(PyGetStageOutput { inner: output })
         })
     }
 
@@ -23276,7 +23291,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStages")))?;
-            Python::attach(|py| Py::new(py, PyStages { inner: output }))
+            Ok(PyStages { inner: output })
         })
     }
 
@@ -23317,7 +23332,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTags")))?;
-            Python::attach(|py| Py::new(py, PyTags { inner: output }))
+            Ok(PyTags { inner: output })
         })
     }
 
@@ -23379,7 +23394,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUsage")))?;
-            Python::attach(|py| Py::new(py, PyGetUsageOutput { inner: output }))
+            Ok(PyGetUsageOutput { inner: output })
         })
     }
 
@@ -23405,7 +23420,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlan"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetUsagePlanOutput { inner: output }))
+            Ok(PyGetUsagePlanOutput { inner: output })
         })
     }
 
@@ -23438,7 +23453,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetUsagePlanKeyOutput { inner: output }))
+            Ok(PyGetUsagePlanKeyOutput { inner: output })
         })
     }
 
@@ -23485,7 +23500,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKeys"))
             })?;
-            Python::attach(|py| Py::new(py, PyUsagePlanKeys { inner: output }))
+            Ok(PyUsagePlanKeys { inner: output })
         })
     }
 
@@ -23525,7 +23540,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlans"))
             })?;
-            Python::attach(|py| Py::new(py, PyUsagePlans { inner: output }))
+            Ok(PyUsagePlans { inner: output })
         })
     }
 
@@ -23552,7 +23567,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLink")))?;
-            Python::attach(|py| Py::new(py, PyGetVpcLinkOutput { inner: output }))
+            Ok(PyGetVpcLinkOutput { inner: output })
         })
     }
 
@@ -23586,7 +23601,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLinks")))?;
-            Python::attach(|py| Py::new(py, PyVpcLinks { inner: output }))
+            Ok(PyVpcLinks { inner: output })
         })
     }
 
@@ -23629,7 +23644,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportApiKeys"))
             })?;
-            Python::attach(|py| Py::new(py, PyApiKeyIds { inner: output }))
+            Ok(PyApiKeyIds { inner: output })
         })
     }
 
@@ -23678,7 +23693,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportDocumentationParts"))
             })?;
-            Python::attach(|py| Py::new(py, PyDocumentationPartIds { inner: output }))
+            Ok(PyDocumentationPartIds { inner: output })
         })
     }
 
@@ -23697,7 +23712,7 @@ impl APIGatewayClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_1218 = value.cast::<PyDict>()?;
-            let mut converted_1217 = HashMap::new();
+            let mut converted_1217 = HashMap::with_capacity(mapping_1218.len());
             for (key_1219, value_1220) in mapping_1218.iter() {
                 let converted_key_1221: String = key_1219.extract()?;
                 let converted_value_1222: String = value_1220.extract()?;
@@ -23725,7 +23740,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportRestApi"))
             })?;
-            Python::attach(|py| Py::new(py, PyImportRestApiOutput { inner: output }))
+            Ok(PyImportRestApiOutput { inner: output })
         })
     }
 
@@ -23759,7 +23774,7 @@ impl APIGatewayClient {
         let response_parameters_value =
             if let Some(value) = dict_value(params, "response_parameters")? {
                 let mapping_1230 = value.cast::<PyDict>()?;
-                let mut converted_1229 = HashMap::new();
+                let mut converted_1229 = HashMap::with_capacity(mapping_1230.len());
                 for (key_1231, value_1232) in mapping_1230.iter() {
                     let converted_key_1233: String = key_1231.extract()?;
                     let converted_value_1234: String = value_1232.extract()?;
@@ -23772,7 +23787,7 @@ impl APIGatewayClient {
         let response_templates_value =
             if let Some(value) = dict_value(params, "response_templates")? {
                 let mapping_1236 = value.cast::<PyDict>()?;
-                let mut converted_1235 = HashMap::new();
+                let mut converted_1235 = HashMap::with_capacity(mapping_1236.len());
                 for (key_1237, value_1238) in mapping_1236.iter() {
                     let converted_key_1239: String = key_1237.extract()?;
                     let converted_value_1240: String = value_1238.extract()?;
@@ -23795,7 +23810,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutGatewayResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutGatewayResponseOutput { inner: output }))
+            Ok(PyPutGatewayResponseOutput { inner: output })
         })
     }
 
@@ -23868,7 +23883,7 @@ impl APIGatewayClient {
         let request_parameters_value =
             if let Some(value) = dict_value(params, "request_parameters")? {
                 let mapping_1253 = value.cast::<PyDict>()?;
-                let mut converted_1252 = HashMap::new();
+                let mut converted_1252 = HashMap::with_capacity(mapping_1253.len());
                 for (key_1254, value_1255) in mapping_1253.iter() {
                     let converted_key_1256: String = key_1254.extract()?;
                     let converted_value_1257: String = value_1255.extract()?;
@@ -23881,7 +23896,7 @@ impl APIGatewayClient {
         let request_templates_value = if let Some(value) = dict_value(params, "request_templates")?
         {
             let mapping_1259 = value.cast::<PyDict>()?;
-            let mut converted_1258 = HashMap::new();
+            let mut converted_1258 = HashMap::with_capacity(mapping_1259.len());
             for (key_1260, value_1261) in mapping_1259.iter() {
                 let converted_key_1262: String = key_1260.extract()?;
                 let converted_value_1263: String = value_1261.extract()?;
@@ -23906,7 +23921,8 @@ impl APIGatewayClient {
         };
         let cache_key_parameters_value =
             if let Some(value) = dict_value(params, "cache_key_parameters")? {
-                let mut converted_1266 = Vec::new();
+                let mut converted_1266 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1267 in value.try_iter()? {
                     let item_1268 = item_result_1267?;
                     let converted_item_1269: String = item_1268.extract()?;
@@ -23980,7 +23996,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutIntegrationOutput { inner: output }))
+            Ok(PyPutIntegrationOutput { inner: output })
         })
     }
 
@@ -24025,7 +24041,7 @@ impl APIGatewayClient {
         let response_parameters_value =
             if let Some(value) = dict_value(params, "response_parameters")? {
                 let mapping_1283 = value.cast::<PyDict>()?;
-                let mut converted_1282 = HashMap::new();
+                let mut converted_1282 = HashMap::with_capacity(mapping_1283.len());
                 for (key_1284, value_1285) in mapping_1283.iter() {
                     let converted_key_1286: String = key_1284.extract()?;
                     let converted_value_1287: String = value_1285.extract()?;
@@ -24038,7 +24054,7 @@ impl APIGatewayClient {
         let response_templates_value =
             if let Some(value) = dict_value(params, "response_templates")? {
                 let mapping_1289 = value.cast::<PyDict>()?;
-                let mut converted_1288 = HashMap::new();
+                let mut converted_1288 = HashMap::with_capacity(mapping_1289.len());
                 for (key_1290, value_1291) in mapping_1289.iter() {
                     let converted_key_1292: String = key_1290.extract()?;
                     let converted_value_1293: String = value_1291.extract()?;
@@ -24072,7 +24088,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegrationResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutIntegrationResponseOutput { inner: output }))
+            Ok(PyPutIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -24129,7 +24145,7 @@ impl APIGatewayClient {
         let request_parameters_value =
             if let Some(value) = dict_value(params, "request_parameters")? {
                 let mapping_1304 = value.cast::<PyDict>()?;
-                let mut converted_1303 = HashMap::new();
+                let mut converted_1303 = HashMap::with_capacity(mapping_1304.len());
                 for (key_1305, value_1306) in mapping_1304.iter() {
                     let converted_key_1307: String = key_1305.extract()?;
                     let converted_value_1308: bool = value_1306.extract()?;
@@ -24141,7 +24157,7 @@ impl APIGatewayClient {
             };
         let request_models_value = if let Some(value) = dict_value(params, "request_models")? {
             let mapping_1310 = value.cast::<PyDict>()?;
-            let mut converted_1309 = HashMap::new();
+            let mut converted_1309 = HashMap::with_capacity(mapping_1310.len());
             for (key_1311, value_1312) in mapping_1310.iter() {
                 let converted_key_1313: String = key_1311.extract()?;
                 let converted_value_1314: String = value_1312.extract()?;
@@ -24160,7 +24176,8 @@ impl APIGatewayClient {
             };
         let authorization_scopes_value =
             if let Some(value) = dict_value(params, "authorization_scopes")? {
-                let mut converted_1316 = Vec::new();
+                let mut converted_1316 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1317 in value.try_iter()? {
                     let item_1318 = item_result_1317?;
                     let converted_item_1319: String = item_1318.extract()?;
@@ -24190,7 +24207,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutMethod")))?;
-            Python::attach(|py| Py::new(py, PyPutMethodOutput { inner: output }))
+            Ok(PyPutMethodOutput { inner: output })
         })
     }
 
@@ -24228,7 +24245,7 @@ impl APIGatewayClient {
         let response_parameters_value =
             if let Some(value) = dict_value(params, "response_parameters")? {
                 let mapping_1325 = value.cast::<PyDict>()?;
-                let mut converted_1324 = HashMap::new();
+                let mut converted_1324 = HashMap::with_capacity(mapping_1325.len());
                 for (key_1326, value_1327) in mapping_1325.iter() {
                     let converted_key_1328: String = key_1326.extract()?;
                     let converted_value_1329: bool = value_1327.extract()?;
@@ -24240,7 +24257,7 @@ impl APIGatewayClient {
             };
         let response_models_value = if let Some(value) = dict_value(params, "response_models")? {
             let mapping_1331 = value.cast::<PyDict>()?;
-            let mut converted_1330 = HashMap::new();
+            let mut converted_1330 = HashMap::with_capacity(mapping_1331.len());
             for (key_1332, value_1333) in mapping_1331.iter() {
                 let converted_key_1334: String = key_1332.extract()?;
                 let converted_value_1335: String = value_1333.extract()?;
@@ -24264,7 +24281,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutMethodResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutMethodResponseOutput { inner: output }))
+            Ok(PyPutMethodResponseOutput { inner: output })
         })
     }
 
@@ -24296,7 +24313,7 @@ impl APIGatewayClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_1341 = value.cast::<PyDict>()?;
-            let mut converted_1340 = HashMap::new();
+            let mut converted_1340 = HashMap::with_capacity(mapping_1341.len());
             for (key_1342, value_1343) in mapping_1341.iter() {
                 let converted_key_1344: String = key_1342.extract()?;
                 let converted_value_1345: String = value_1343.extract()?;
@@ -24327,7 +24344,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutRestApi")))?;
-            Python::attach(|py| Py::new(py, PyPutRestApiOutput { inner: output }))
+            Ok(PyPutRestApiOutput { inner: output })
         })
     }
 
@@ -24382,7 +24399,7 @@ impl APIGatewayClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1352 = value.cast::<PyDict>()?;
-            let mut converted_1351 = HashMap::new();
+            let mut converted_1351 = HashMap::with_capacity(mapping_1352.len());
             for (key_1353, value_1354) in mapping_1352.iter() {
                 let converted_key_1355: String = key_1353.extract()?;
                 let converted_value_1356: String = value_1354.extract()?;
@@ -24428,7 +24445,7 @@ impl APIGatewayClient {
         };
         let headers_value = if let Some(value) = dict_value(params, "headers")? {
             let mapping_1360 = value.cast::<PyDict>()?;
-            let mut converted_1359 = HashMap::new();
+            let mut converted_1359 = HashMap::with_capacity(mapping_1360.len());
             for (key_1361, value_1362) in mapping_1360.iter() {
                 let converted_key_1363: String = key_1361.extract()?;
                 let converted_value_1364: String = value_1362.extract()?;
@@ -24438,24 +24455,26 @@ impl APIGatewayClient {
         } else {
             None
         };
-        let multi_value_headers_value =
-            if let Some(value) = dict_value(params, "multi_value_headers")? {
-                let mapping_1366 = value.cast::<PyDict>()?;
-                let mut converted_1365 = HashMap::new();
-                for (key_1367, value_1368) in mapping_1366.iter() {
-                    let converted_key_1369: String = key_1367.extract()?;
-                    let mut converted_value_1370 = Vec::new();
-                    for item_result_1371 in value_1368.try_iter()? {
-                        let item_1372 = item_result_1371?;
-                        let converted_item_1373: String = item_1372.extract()?;
-                        converted_value_1370.push(converted_item_1373);
-                    }
-                    converted_1365.insert(converted_key_1369, converted_value_1370);
+        let multi_value_headers_value = if let Some(value) =
+            dict_value(params, "multi_value_headers")?
+        {
+            let mapping_1366 = value.cast::<PyDict>()?;
+            let mut converted_1365 = HashMap::with_capacity(mapping_1366.len());
+            for (key_1367, value_1368) in mapping_1366.iter() {
+                let converted_key_1369: String = key_1367.extract()?;
+                let mut converted_value_1370 =
+                    Vec::with_capacity(value_1368.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_1371 in value_1368.try_iter()? {
+                    let item_1372 = item_result_1371?;
+                    let converted_item_1373: String = item_1372.extract()?;
+                    converted_value_1370.push(converted_item_1373);
                 }
-                Some(converted_1365)
-            } else {
-                None
-            };
+                converted_1365.insert(converted_key_1369, converted_value_1370);
+            }
+            Some(converted_1365)
+        } else {
+            None
+        };
         let path_with_query_string_value =
             if let Some(value) = dict_value(params, "path_with_query_string")? {
                 let converted_1374: String = value.extract()?;
@@ -24471,7 +24490,7 @@ impl APIGatewayClient {
         };
         let stage_variables_value = if let Some(value) = dict_value(params, "stage_variables")? {
             let mapping_1377 = value.cast::<PyDict>()?;
-            let mut converted_1376 = HashMap::new();
+            let mut converted_1376 = HashMap::with_capacity(mapping_1377.len());
             for (key_1378, value_1379) in mapping_1377.iter() {
                 let converted_key_1380: String = key_1378.extract()?;
                 let converted_value_1381: String = value_1379.extract()?;
@@ -24484,7 +24503,7 @@ impl APIGatewayClient {
         let additional_context_value =
             if let Some(value) = dict_value(params, "additional_context")? {
                 let mapping_1383 = value.cast::<PyDict>()?;
-                let mut converted_1382 = HashMap::new();
+                let mut converted_1382 = HashMap::with_capacity(mapping_1383.len());
                 for (key_1384, value_1385) in mapping_1383.iter() {
                     let converted_key_1386: String = key_1384.extract()?;
                     let converted_value_1387: String = value_1385.extract()?;
@@ -24510,7 +24529,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeAuthorizer"))
             })?;
-            Python::attach(|py| Py::new(py, PyTestInvokeAuthorizerResponse { inner: output }))
+            Ok(PyTestInvokeAuthorizerResponse { inner: output })
         })
     }
 
@@ -24554,7 +24573,7 @@ impl APIGatewayClient {
         };
         let headers_value = if let Some(value) = dict_value(params, "headers")? {
             let mapping_1394 = value.cast::<PyDict>()?;
-            let mut converted_1393 = HashMap::new();
+            let mut converted_1393 = HashMap::with_capacity(mapping_1394.len());
             for (key_1395, value_1396) in mapping_1394.iter() {
                 let converted_key_1397: String = key_1395.extract()?;
                 let converted_value_1398: String = value_1396.extract()?;
@@ -24564,24 +24583,26 @@ impl APIGatewayClient {
         } else {
             None
         };
-        let multi_value_headers_value =
-            if let Some(value) = dict_value(params, "multi_value_headers")? {
-                let mapping_1400 = value.cast::<PyDict>()?;
-                let mut converted_1399 = HashMap::new();
-                for (key_1401, value_1402) in mapping_1400.iter() {
-                    let converted_key_1403: String = key_1401.extract()?;
-                    let mut converted_value_1404 = Vec::new();
-                    for item_result_1405 in value_1402.try_iter()? {
-                        let item_1406 = item_result_1405?;
-                        let converted_item_1407: String = item_1406.extract()?;
-                        converted_value_1404.push(converted_item_1407);
-                    }
-                    converted_1399.insert(converted_key_1403, converted_value_1404);
+        let multi_value_headers_value = if let Some(value) =
+            dict_value(params, "multi_value_headers")?
+        {
+            let mapping_1400 = value.cast::<PyDict>()?;
+            let mut converted_1399 = HashMap::with_capacity(mapping_1400.len());
+            for (key_1401, value_1402) in mapping_1400.iter() {
+                let converted_key_1403: String = key_1401.extract()?;
+                let mut converted_value_1404 =
+                    Vec::with_capacity(value_1402.cast::<PyList>().map_or(0, |items| items.len()));
+                for item_result_1405 in value_1402.try_iter()? {
+                    let item_1406 = item_result_1405?;
+                    let converted_item_1407: String = item_1406.extract()?;
+                    converted_value_1404.push(converted_item_1407);
                 }
-                Some(converted_1399)
-            } else {
-                None
-            };
+                converted_1399.insert(converted_key_1403, converted_value_1404);
+            }
+            Some(converted_1399)
+        } else {
+            None
+        };
         let client_certificate_id_value =
             if let Some(value) = dict_value(params, "client_certificate_id")? {
                 let converted_1408: String = value.extract()?;
@@ -24591,7 +24612,7 @@ impl APIGatewayClient {
             };
         let stage_variables_value = if let Some(value) = dict_value(params, "stage_variables")? {
             let mapping_1410 = value.cast::<PyDict>()?;
-            let mut converted_1409 = HashMap::new();
+            let mut converted_1409 = HashMap::with_capacity(mapping_1410.len());
             for (key_1411, value_1412) in mapping_1410.iter() {
                 let converted_key_1413: String = key_1411.extract()?;
                 let converted_value_1414: String = value_1412.extract()?;
@@ -24618,7 +24639,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeMethod"))
             })?;
-            Python::attach(|py| Py::new(py, PyTestInvokeMethodResponse { inner: output }))
+            Ok(PyTestInvokeMethodResponse { inner: output })
         })
     }
 
@@ -24636,7 +24657,8 @@ impl APIGatewayClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_1416 = Vec::new();
+            let mut converted_1416 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1417 in value.try_iter()? {
                 let item_1418 = item_result_1417?;
                 let converted_item_1419: String = item_1418.extract()?;
@@ -24668,7 +24690,8 @@ impl APIGatewayClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1420 = Vec::new();
+            let mut converted_1420 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1421 in value.try_iter()? {
                 let item_1422 = item_result_1421?;
                 let converted_item_1423 = patch_operation_from_py(&item_1422)?;
@@ -24687,7 +24710,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAccount"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAccountOutput { inner: output }))
+            Ok(PyUpdateAccountOutput { inner: output })
         })
     }
 
@@ -24705,7 +24728,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1425 = Vec::new();
+            let mut converted_1425 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1426 in value.try_iter()? {
                 let item_1427 = item_result_1426?;
                 let converted_item_1428 = patch_operation_from_py(&item_1427)?;
@@ -24725,7 +24749,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiKey"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateApiKeyOutput { inner: output }))
+            Ok(PyUpdateApiKeyOutput { inner: output })
         })
     }
 
@@ -24749,7 +24773,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1431 = Vec::new();
+            let mut converted_1431 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1432 in value.try_iter()? {
                 let item_1433 = item_result_1432?;
                 let converted_item_1434 = patch_operation_from_py(&item_1433)?;
@@ -24770,7 +24795,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAuthorizer"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAuthorizerOutput { inner: output }))
+            Ok(PyUpdateAuthorizerOutput { inner: output })
         })
     }
 
@@ -24800,7 +24825,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1438 = Vec::new();
+            let mut converted_1438 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1439 in value.try_iter()? {
                 let item_1440 = item_result_1439?;
                 let converted_item_1441 = patch_operation_from_py(&item_1440)?;
@@ -24822,7 +24848,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBasePathMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateBasePathMappingOutput { inner: output }))
+            Ok(PyUpdateBasePathMappingOutput { inner: output })
         })
     }
 
@@ -24841,7 +24867,8 @@ impl APIGatewayClient {
                 None
             };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1443 = Vec::new();
+            let mut converted_1443 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1444 in value.try_iter()? {
                 let item_1445 = item_result_1444?;
                 let converted_item_1446 = patch_operation_from_py(&item_1445)?;
@@ -24861,7 +24888,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateClientCertificate"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateClientCertificateOutput { inner: output }))
+            Ok(PyUpdateClientCertificateOutput { inner: output })
         })
     }
 
@@ -24885,7 +24912,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1449 = Vec::new();
+            let mut converted_1449 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1450 in value.try_iter()? {
                 let item_1451 = item_result_1450?;
                 let converted_item_1452 = patch_operation_from_py(&item_1451)?;
@@ -24906,7 +24934,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeployment"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDeploymentOutput { inner: output }))
+            Ok(PyUpdateDeploymentOutput { inner: output })
         })
     }
 
@@ -24931,7 +24959,8 @@ impl APIGatewayClient {
                 None
             };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1455 = Vec::new();
+            let mut converted_1455 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1456 in value.try_iter()? {
                 let item_1457 = item_result_1456?;
                 let converted_item_1458 = patch_operation_from_py(&item_1457)?;
@@ -24952,7 +24981,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationPart"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDocumentationPartOutput { inner: output }))
+            Ok(PyUpdateDocumentationPartOutput { inner: output })
         })
     }
 
@@ -24977,7 +25006,8 @@ impl APIGatewayClient {
                 None
             };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1461 = Vec::new();
+            let mut converted_1461 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1462 in value.try_iter()? {
                 let item_1463 = item_result_1462?;
                 let converted_item_1464 = patch_operation_from_py(&item_1463)?;
@@ -24998,7 +25028,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDocumentationVersionOutput { inner: output }))
+            Ok(PyUpdateDocumentationVersionOutput { inner: output })
         })
     }
 
@@ -25022,7 +25052,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1467 = Vec::new();
+            let mut converted_1467 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1468 in value.try_iter()? {
                 let item_1469 = item_result_1468?;
                 let converted_item_1470 = patch_operation_from_py(&item_1469)?;
@@ -25043,7 +25074,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDomainName"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDomainNameOutput { inner: output }))
+            Ok(PyUpdateDomainNameOutput { inner: output })
         })
     }
 
@@ -25069,7 +25100,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1474 = Vec::new();
+            let mut converted_1474 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1475 in value.try_iter()? {
                 let item_1476 = item_result_1475?;
                 let converted_item_1477 = patch_operation_from_py(&item_1476)?;
@@ -25090,7 +25122,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateGatewayResponseOutput { inner: output }))
+            Ok(PyUpdateGatewayResponseOutput { inner: output })
         })
     }
 
@@ -25120,7 +25152,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1481 = Vec::new();
+            let mut converted_1481 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1482 in value.try_iter()? {
                 let item_1483 = item_result_1482?;
                 let converted_item_1484 = patch_operation_from_py(&item_1483)?;
@@ -25142,7 +25175,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegration"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateIntegrationOutput { inner: output }))
+            Ok(PyUpdateIntegrationOutput { inner: output })
         })
     }
 
@@ -25178,7 +25211,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1489 = Vec::new();
+            let mut converted_1489 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1490 in value.try_iter()? {
                 let item_1491 = item_result_1490?;
                 let converted_item_1492 = patch_operation_from_py(&item_1491)?;
@@ -25201,7 +25235,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegrationResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateIntegrationResponseOutput { inner: output }))
+            Ok(PyUpdateIntegrationResponseOutput { inner: output })
         })
     }
 
@@ -25231,7 +25265,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1496 = Vec::new();
+            let mut converted_1496 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1497 in value.try_iter()? {
                 let item_1498 = item_result_1497?;
                 let converted_item_1499 = patch_operation_from_py(&item_1498)?;
@@ -25253,7 +25288,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethod"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMethodOutput { inner: output }))
+            Ok(PyUpdateMethodOutput { inner: output })
         })
     }
 
@@ -25289,7 +25324,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1504 = Vec::new();
+            let mut converted_1504 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1505 in value.try_iter()? {
                 let item_1506 = item_result_1505?;
                 let converted_item_1507 = patch_operation_from_py(&item_1506)?;
@@ -25312,7 +25348,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethodResponse"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMethodResponseOutput { inner: output }))
+            Ok(PyUpdateMethodResponseOutput { inner: output })
         })
     }
 
@@ -25336,7 +25372,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1510 = Vec::new();
+            let mut converted_1510 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1511 in value.try_iter()? {
                 let item_1512 = item_result_1511?;
                 let converted_item_1513 = patch_operation_from_py(&item_1512)?;
@@ -25358,7 +25395,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateModel")))?;
-            Python::attach(|py| Py::new(py, PyUpdateModelOutput { inner: output }))
+            Ok(PyUpdateModelOutput { inner: output })
         })
     }
 
@@ -25383,7 +25420,8 @@ impl APIGatewayClient {
                 None
             };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1516 = Vec::new();
+            let mut converted_1516 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1517 in value.try_iter()? {
                 let item_1518 = item_result_1517?;
                 let converted_item_1519 = patch_operation_from_py(&item_1518)?;
@@ -25404,7 +25442,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRequestValidator"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateRequestValidatorOutput { inner: output }))
+            Ok(PyUpdateRequestValidatorOutput { inner: output })
         })
     }
 
@@ -25428,7 +25466,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1522 = Vec::new();
+            let mut converted_1522 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1523 in value.try_iter()? {
                 let item_1524 = item_result_1523?;
                 let converted_item_1525 = patch_operation_from_py(&item_1524)?;
@@ -25449,7 +25488,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateResourceOutput { inner: output }))
+            Ok(PyUpdateResourceOutput { inner: output })
         })
     }
 
@@ -25467,7 +25506,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1527 = Vec::new();
+            let mut converted_1527 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1528 in value.try_iter()? {
                 let item_1529 = item_result_1528?;
                 let converted_item_1530 = patch_operation_from_py(&item_1529)?;
@@ -25487,7 +25527,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRestApi"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateRestApiOutput { inner: output }))
+            Ok(PyUpdateRestApiOutput { inner: output })
         })
     }
 
@@ -25511,7 +25551,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1533 = Vec::new();
+            let mut converted_1533 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1534 in value.try_iter()? {
                 let item_1535 = item_result_1534?;
                 let converted_item_1536 = patch_operation_from_py(&item_1535)?;
@@ -25533,7 +25574,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStage")))?;
-            Python::attach(|py| Py::new(py, PyUpdateStageOutput { inner: output }))
+            Ok(PyUpdateStageOutput { inner: output })
         })
     }
 
@@ -25557,7 +25598,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1539 = Vec::new();
+            let mut converted_1539 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1540 in value.try_iter()? {
                 let item_1541 = item_result_1540?;
                 let converted_item_1542 = patch_operation_from_py(&item_1541)?;
@@ -25579,7 +25621,7 @@ impl APIGatewayClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsage")))?;
-            Python::attach(|py| Py::new(py, PyUpdateUsageOutput { inner: output }))
+            Ok(PyUpdateUsageOutput { inner: output })
         })
     }
 
@@ -25597,7 +25639,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1544 = Vec::new();
+            let mut converted_1544 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1545 in value.try_iter()? {
                 let item_1546 = item_result_1545?;
                 let converted_item_1547 = patch_operation_from_py(&item_1546)?;
@@ -25617,7 +25660,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsagePlan"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateUsagePlanOutput { inner: output }))
+            Ok(PyUpdateUsagePlanOutput { inner: output })
         })
     }
 
@@ -25635,7 +25678,8 @@ impl APIGatewayClient {
             None
         };
         let patch_operations_value = if let Some(value) = dict_value(params, "patch_operations")? {
-            let mut converted_1549 = Vec::new();
+            let mut converted_1549 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1550 in value.try_iter()? {
                 let item_1551 = item_result_1550?;
                 let converted_item_1552 = patch_operation_from_py(&item_1551)?;
@@ -25655,7 +25699,7 @@ impl APIGatewayClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateVpcLink"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateVpcLinkOutput { inner: output }))
+            Ok(PyUpdateVpcLinkOutput { inner: output })
         })
     }
 }

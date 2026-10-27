@@ -20,7 +20,8 @@ fn alternative_from_py(
         builder = builder.set_transcript(Some(converted_1));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_2 = Vec::new();
+        let mut converted_2 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3 in value.try_iter()? {
             let item_4 = item_result_3?;
             let converted_item_5 = item_from_py(&item_4)?;
@@ -29,7 +30,8 @@ fn alternative_from_py(
         builder = builder.set_items(Some(converted_2));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_6 = Vec::new();
+        let mut converted_6 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_7 in value.try_iter()? {
             let item_8 = item_result_7?;
             let converted_item_9 = entity_from_py(&item_8)?;
@@ -404,7 +406,8 @@ fn category_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::CategoryEvent::builder();
     if let Some(value) = dict_value(values, "matched_categories")? {
-        let mut converted_60 = Vec::new();
+        let mut converted_60 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_61 in value.try_iter()? {
             let item_62 = item_result_61?;
             let converted_item_63: String = item_62.extract()?;
@@ -414,7 +417,7 @@ fn category_event_from_py(
     }
     if let Some(value) = dict_value(values, "matched_details")? {
         let mapping_65 = value.cast::<PyDict>()?;
-        let mut converted_64 = HashMap::new();
+        let mut converted_64 = HashMap::with_capacity(mapping_65.len());
         for (key_66, value_67) in mapping_65.iter() {
             let converted_key_68: String = key_66.extract()?;
             let converted_value_69 = points_of_interest_from_py(&value_67)?;
@@ -626,7 +629,8 @@ fn configuration_event_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_101 = Vec::new();
+        let mut converted_101 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_102 in value.try_iter()? {
             let item_103 = item_result_102?;
             let converted_item_104 = channel_definition_from_py(&item_103)?;
@@ -890,7 +894,8 @@ fn medical_alternative_from_py(
         builder = builder.set_transcript(Some(converted_146));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_147 = Vec::new();
+        let mut converted_147 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_148 in value.try_iter()? {
             let item_149 = item_result_148?;
             let converted_item_150 = medical_item_from_py(&item_149)?;
@@ -899,7 +904,8 @@ fn medical_alternative_from_py(
         builder = builder.set_items(Some(converted_147));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_151 = Vec::new();
+        let mut converted_151 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_152 in value.try_iter()? {
             let item_153 = item_result_152?;
             let converted_item_154 = medical_entity_from_py(&item_153)?;
@@ -1096,7 +1102,8 @@ fn medical_result_from_py(
         builder = builder.set_is_partial(Some(converted_188));
     }
     if let Some(value) = dict_value(values, "alternatives")? {
-        let mut converted_189 = Vec::new();
+        let mut converted_189 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_190 in value.try_iter()? {
             let item_191 = item_result_190?;
             let converted_item_192 = medical_alternative_from_py(&item_191)?;
@@ -1235,7 +1242,8 @@ fn medical_scribe_configuration_event_from_py(
         builder = builder.set_resource_access_role_arn(Some(converted_214));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_215 = Vec::new();
+        let mut converted_215 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_216 in value.try_iter()? {
             let item_217 = item_result_216?;
             let converted_item_218 = medical_scribe_channel_definition_from_py(&item_217)?;
@@ -1351,7 +1359,7 @@ fn medical_scribe_encryption_settings_from_py(
         aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings::builder();
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
         let mapping_235 = value.cast::<PyDict>()?;
-        let mut converted_234 = HashMap::new();
+        let mut converted_234 = HashMap::with_capacity(mapping_235.len());
         for (key_236, value_237) in mapping_235.iter() {
             let converted_key_238: String = key_236.extract()?;
             let converted_value_239: String = value_237.extract()?;
@@ -1665,7 +1673,8 @@ fn medical_scribe_stream_details_from_py(
         builder = builder.set_resource_access_role_arn(Some(converted_279));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let mut converted_280 = Vec::new();
+        let mut converted_280 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_281 in value.try_iter()? {
             let item_282 = item_result_281?;
             let converted_item_283 = medical_scribe_channel_definition_from_py(&item_282)?;
@@ -1928,7 +1937,8 @@ fn medical_scribe_transcript_segment_from_py(
         builder = builder.set_content(Some(converted_326));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_327 = Vec::new();
+        let mut converted_327 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_328 in value.try_iter()? {
             let item_329 = item_result_328?;
             let converted_item_330 = medical_scribe_transcript_item_from_py(&item_329)?;
@@ -1996,7 +2006,8 @@ fn medical_transcript_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalTranscript::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_342 = Vec::new();
+        let mut converted_342 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_343 in value.try_iter()? {
             let item_344 = item_result_343?;
             let converted_item_345 = medical_result_from_py(&item_344)?;
@@ -2097,7 +2108,8 @@ fn points_of_interest_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::PointsOfInterest::builder();
     if let Some(value) = dict_value(values, "timestamp_ranges")? {
-        let mut converted_353 = Vec::new();
+        let mut converted_353 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_354 in value.try_iter()? {
             let item_355 = item_result_354?;
             let converted_item_356 = timestamp_range_from_py(&item_355)?;
@@ -2202,7 +2214,8 @@ fn result_from_py(
         builder = builder.set_is_partial(Some(converted_372));
     }
     if let Some(value) = dict_value(values, "alternatives")? {
-        let mut converted_373 = Vec::new();
+        let mut converted_373 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_374 in value.try_iter()? {
             let item_375 = item_result_374?;
             let converted_item_376 = alternative_from_py(&item_375)?;
@@ -2221,7 +2234,8 @@ fn result_from_py(
         builder = builder.set_language_code(Some(converted_378));
     }
     if let Some(value) = dict_value(values, "language_identification")? {
-        let mut converted_380 = Vec::new();
+        let mut converted_380 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_381 in value.try_iter()? {
             let item_382 = item_result_381?;
             let converted_item_383 = language_with_score_from_py(&item_382)?;
@@ -2328,7 +2342,8 @@ fn transcript_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_transcribestreaming::types::Transcript::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_400 = Vec::new();
+        let mut converted_400 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_401 in value.try_iter()? {
             let item_402 = item_result_401?;
             let converted_item_403 = result_from_py(&item_402)?;
@@ -2453,7 +2468,8 @@ fn utterance_event_from_py(
         builder = builder.set_transcript(Some(converted_417));
     }
     if let Some(value) = dict_value(values, "items")? {
-        let mut converted_418 = Vec::new();
+        let mut converted_418 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_419 in value.try_iter()? {
             let item_420 = item_result_419?;
             let converted_item_421 = call_analytics_item_from_py(&item_420)?;
@@ -2462,7 +2478,8 @@ fn utterance_event_from_py(
         builder = builder.set_items(Some(converted_418));
     }
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_422 = Vec::new();
+        let mut converted_422 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_423 in value.try_iter()? {
             let item_424 = item_result_423?;
             let converted_item_425 = call_analytics_entity_from_py(&item_424)?;
@@ -2477,7 +2494,8 @@ fn utterance_event_from_py(
         builder = builder.set_sentiment(Some(converted_426));
     }
     if let Some(value) = dict_value(values, "issues_detected")? {
-        let mut converted_428 = Vec::new();
+        let mut converted_428 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_429 in value.try_iter()? {
             let item_430 = item_result_429?;
             let converted_item_431 = issue_detected_from_py(&item_430)?;
@@ -2493,7 +2511,8 @@ fn utterance_event_from_py(
         builder = builder.set_language_code(Some(converted_432));
     }
     if let Some(value) = dict_value(values, "language_identification")? {
-        let mut converted_434 = Vec::new();
+        let mut converted_434 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_435 in value.try_iter()? {
             let item_436 = item_result_435?;
             let converted_item_437 = call_analytics_language_with_score_from_py(&item_436)?;
@@ -3363,7 +3382,7 @@ impl TranscribeStreamingClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeStream"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMedicalScribeStreamResponse { inner: output }))
+            Ok(PyGetMedicalScribeStreamResponse { inner: output })
         })
     }
 

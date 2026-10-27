@@ -44,7 +44,8 @@ fn applied_guardrail_details_from_py(
         builder = builder.set_guardrail_arn(Some(converted_3));
     }
     if let Some(value) = dict_value(values, "guardrail_origin")? {
-        let mut converted_4 = Vec::new();
+        let mut converted_4 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_5 in value.try_iter()? {
             let item_6 = item_result_5?;
             let enum_value_8: String = item_6.extract()?;
@@ -541,7 +542,8 @@ fn citation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime
         builder = builder.set_source(Some(converted_78));
     }
     if let Some(value) = dict_value(values, "source_content")? {
-        let mut converted_79 = Vec::new();
+        let mut converted_79 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_80 in value.try_iter()? {
             let item_81 = item_result_80?;
             let converted_item_82 = citation_source_content_from_py(&item_81)?;
@@ -786,7 +788,8 @@ fn citations_content_block_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::CitationsContentBlock::builder();
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_108 = Vec::new();
+        let mut converted_108 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_109 in value.try_iter()? {
             let item_110 = item_result_109?;
             let converted_item_111 = citation_generated_content_from_py(&item_110)?;
@@ -795,7 +798,8 @@ fn citations_content_block_from_py(
         builder = builder.set_content(Some(converted_108));
     }
     if let Some(value) = dict_value(values, "citations")? {
-        let mut converted_112 = Vec::new();
+        let mut converted_112 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_113 in value.try_iter()? {
             let item_114 = item_result_113?;
             let converted_item_115 = citation_from_py(&item_114)?;
@@ -850,7 +854,8 @@ fn citations_delta_from_py(
         builder = builder.set_source(Some(converted_123));
     }
     if let Some(value) = dict_value(values, "source_content")? {
-        let mut converted_124 = Vec::new();
+        let mut converted_124 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_125 in value.try_iter()? {
             let item_126 = item_result_125?;
             let converted_item_127 = citation_source_content_delta_from_py(&item_126)?;
@@ -1083,7 +1088,8 @@ fn content_block_delta_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "tool_result")? {
-        let mut converted_165 = Vec::new();
+        let mut converted_165 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_166 in value.try_iter()? {
             let item_167 = item_result_166?;
             let converted_item_168 = tool_result_block_delta_from_py(&item_167)?;
@@ -1573,7 +1579,8 @@ fn converse_tokens_request_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ConverseTokensRequest::builder();
     if let Some(value) = dict_value(values, "messages")? {
-        let mut converted_228 = Vec::new();
+        let mut converted_228 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_229 in value.try_iter()? {
             let item_230 = item_result_229?;
             let converted_item_231 = message_from_py(&item_230)?;
@@ -1582,7 +1589,8 @@ fn converse_tokens_request_from_py(
         builder = builder.set_messages(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "system")? {
-        let mut converted_232 = Vec::new();
+        let mut converted_232 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_233 in value.try_iter()? {
             let item_234 = item_result_233?;
             let converted_item_235 = system_content_block_from_py(&item_234)?;
@@ -1984,7 +1992,8 @@ fn document_source_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_289 = Vec::new();
+        let mut converted_289 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_290 in value.try_iter()? {
             let item_291 = item_result_290?;
             let converted_item_292 = document_content_block_from_py(&item_291)?;
@@ -2280,7 +2289,8 @@ fn guardrail_automated_reasoning_impossible_finding_from_py(
         builder = builder.set_translation(Some(converted_331));
     }
     if let Some(value) = dict_value(values, "contradicting_rules")? {
-        let mut converted_332 = Vec::new();
+        let mut converted_332 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_333 in value.try_iter()? {
             let item_334 = item_result_333?;
             let converted_item_335 = guardrail_automated_reasoning_rule_from_py(&item_334)?;
@@ -2364,7 +2374,8 @@ fn guardrail_automated_reasoning_invalid_finding_from_py(
         builder = builder.set_translation(Some(converted_344));
     }
     if let Some(value) = dict_value(values, "contradicting_rules")? {
-        let mut converted_345 = Vec::new();
+        let mut converted_345 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_346 in value.try_iter()? {
             let item_347 = item_result_346?;
             let converted_item_348 = guardrail_automated_reasoning_rule_from_py(&item_347)?;
@@ -2425,7 +2436,8 @@ fn guardrail_automated_reasoning_logic_warning_from_py(
         builder = builder.set_type(Some(converted_355));
     }
     if let Some(value) = dict_value(values, "premises")? {
-        let mut converted_357 = Vec::new();
+        let mut converted_357 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_358 in value.try_iter()? {
             let item_359 = item_result_358?;
             let converted_item_360 = guardrail_automated_reasoning_statement_from_py(&item_359)?;
@@ -2434,7 +2446,8 @@ fn guardrail_automated_reasoning_logic_warning_from_py(
         builder = builder.set_premises(Some(converted_357));
     }
     if let Some(value) = dict_value(values, "claims")? {
-        let mut converted_361 = Vec::new();
+        let mut converted_361 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_362 in value.try_iter()? {
             let item_363 = item_result_362?;
             let converted_item_364 = guardrail_automated_reasoning_statement_from_py(&item_363)?;
@@ -2505,7 +2518,8 @@ fn guardrail_automated_reasoning_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "findings")? {
-        let mut converted_372 = Vec::new();
+        let mut converted_372 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_373 in value.try_iter()? {
             let item_374 = item_result_373?;
             let converted_item_375 = guardrail_automated_reasoning_finding_from_py(&item_374)?;
@@ -2634,7 +2648,8 @@ fn guardrail_automated_reasoning_scenario_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningScenario::builder();
     if let Some(value) = dict_value(values, "statements")? {
-        let mut converted_391 = Vec::new();
+        let mut converted_391 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_392 in value.try_iter()? {
             let item_393 = item_result_392?;
             let converted_item_394 = guardrail_automated_reasoning_statement_from_py(&item_393)?;
@@ -2725,7 +2740,8 @@ fn guardrail_automated_reasoning_translation_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslation::builder();
     if let Some(value) = dict_value(values, "premises")? {
-        let mut converted_402 = Vec::new();
+        let mut converted_402 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_403 in value.try_iter()? {
             let item_404 = item_result_403?;
             let converted_item_405 = guardrail_automated_reasoning_statement_from_py(&item_404)?;
@@ -2734,7 +2750,8 @@ fn guardrail_automated_reasoning_translation_from_py(
         builder = builder.set_premises(Some(converted_402));
     }
     if let Some(value) = dict_value(values, "claims")? {
-        let mut converted_406 = Vec::new();
+        let mut converted_406 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_407 in value.try_iter()? {
             let item_408 = item_result_407?;
             let converted_item_409 = guardrail_automated_reasoning_statement_from_py(&item_408)?;
@@ -2743,7 +2760,8 @@ fn guardrail_automated_reasoning_translation_from_py(
         builder = builder.set_claims(Some(converted_406));
     }
     if let Some(value) = dict_value(values, "untranslated_premises")? {
-        let mut converted_410 = Vec::new();
+        let mut converted_410 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_411 in value.try_iter()? {
             let item_412 = item_result_411?;
             let converted_item_413 =
@@ -2753,7 +2771,8 @@ fn guardrail_automated_reasoning_translation_from_py(
         builder = builder.set_untranslated_premises(Some(converted_410));
     }
     if let Some(value) = dict_value(values, "untranslated_claims")? {
-        let mut converted_414 = Vec::new();
+        let mut converted_414 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_415 in value.try_iter()? {
             let item_416 = item_result_415?;
             let converted_item_417 =
@@ -2836,7 +2855,8 @@ fn guardrail_automated_reasoning_translation_ambiguous_finding_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslationAmbiguousFinding::builder();
     if let Some(value) = dict_value(values, "options")? {
-        let mut converted_432 = Vec::new();
+        let mut converted_432 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_433 in value.try_iter()? {
             let item_434 = item_result_433?;
             let converted_item_435 =
@@ -2846,7 +2866,8 @@ fn guardrail_automated_reasoning_translation_ambiguous_finding_from_py(
         builder = builder.set_options(Some(converted_432));
     }
     if let Some(value) = dict_value(values, "difference_scenarios")? {
-        let mut converted_436 = Vec::new();
+        let mut converted_436 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_437 in value.try_iter()? {
             let item_438 = item_result_437?;
             let converted_item_439 = guardrail_automated_reasoning_scenario_from_py(&item_438)?;
@@ -2895,7 +2916,8 @@ fn guardrail_automated_reasoning_translation_option_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningTranslationOption::builder();
     if let Some(value) = dict_value(values, "translations")? {
-        let mut converted_446 = Vec::new();
+        let mut converted_446 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_447 in value.try_iter()? {
             let item_448 = item_result_447?;
             let converted_item_449 = guardrail_automated_reasoning_translation_from_py(&item_448)?;
@@ -2940,7 +2962,8 @@ fn guardrail_automated_reasoning_valid_finding_from_py(
         builder = builder.set_claims_true_scenario(Some(converted_454));
     }
     if let Some(value) = dict_value(values, "supporting_rules")? {
-        let mut converted_455 = Vec::new();
+        let mut converted_455 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_456 in value.try_iter()? {
             let item_457 = item_result_456?;
             let converted_item_458 = guardrail_automated_reasoning_rule_from_py(&item_457)?;
@@ -3106,7 +3129,8 @@ fn guardrail_checks_content_filter_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterConfig::builder();
     if let Some(value) = dict_value(values, "categories")? {
-        let mut converted_477 = Vec::new();
+        let mut converted_477 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_478 in value.try_iter()? {
             let item_479 = item_result_478?;
             let converted_item_480 =
@@ -3142,7 +3166,8 @@ fn guardrail_checks_content_filter_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_484 = Vec::new();
+        let mut converted_484 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_485 in value.try_iter()? {
             let item_486 = item_result_485?;
             let converted_item_487 =
@@ -3242,7 +3267,8 @@ fn guardrail_checks_message_from_py(
         builder = builder.set_role(Some(converted_498));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_500 = Vec::new();
+        let mut converted_500 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_501 in value.try_iter()? {
             let item_502 = item_result_501?;
             let converted_item_503 = guardrail_checks_content_block_from_py(&item_502)?;
@@ -3307,7 +3333,8 @@ fn guardrail_checks_prompt_attack_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackConfig::builder();
     if let Some(value) = dict_value(values, "categories")? {
-        let mut converted_511 = Vec::new();
+        let mut converted_511 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_512 in value.try_iter()? {
             let item_513 = item_result_512?;
             let converted_item_514 =
@@ -3343,7 +3370,8 @@ fn guardrail_checks_prompt_attack_result_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_518 = Vec::new();
+        let mut converted_518 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_519 in value.try_iter()? {
             let item_520 = item_result_519?;
             let converted_item_521 =
@@ -3484,7 +3512,8 @@ fn guardrail_checks_sensitive_information_config_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationConfig::builder();
     if let Some(value) = dict_value(values, "entities")? {
-        let mut converted_538 = Vec::new();
+        let mut converted_538 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_539 in value.try_iter()? {
             let item_540 = item_result_539?;
             let converted_item_541 =
@@ -3550,7 +3579,8 @@ fn guardrail_checks_sensitive_information_result_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResult::builder();
     if let Some(value) = dict_value(values, "results")? {
-        let mut converted_548 = Vec::new();
+        let mut converted_548 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_549 in value.try_iter()? {
             let item_550 = item_result_549?;
             let converted_item_551 =
@@ -3875,7 +3905,8 @@ fn guardrail_content_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_603 = Vec::new();
+        let mut converted_603 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_604 in value.try_iter()? {
             let item_605 = item_result_604?;
             let converted_item_606 = guardrail_content_filter_from_py(&item_605)?;
@@ -3970,7 +4001,8 @@ fn guardrail_contextual_grounding_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_622 = Vec::new();
+        let mut converted_622 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_623 in value.try_iter()? {
             let item_624 = item_result_623?;
             let converted_item_625 = guardrail_contextual_grounding_filter_from_py(&item_624)?;
@@ -4128,7 +4160,8 @@ fn guardrail_converse_text_block_from_py(
         builder = builder.set_text(Some(converted_641));
     }
     if let Some(value) = dict_value(values, "qualifiers")? {
-        let mut converted_642 = Vec::new();
+        let mut converted_642 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_643 in value.try_iter()? {
             let item_644 = item_result_643?;
             let enum_value_646: String = item_644.extract()?;
@@ -4601,7 +4634,8 @@ fn guardrail_sensitive_information_policy_assessment_from_py(
     let mut builder =
         aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "pii_entities")? {
-        let mut converted_713 = Vec::new();
+        let mut converted_713 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_714 in value.try_iter()? {
             let item_715 = item_result_714?;
             let converted_item_716 = guardrail_pii_entity_filter_from_py(&item_715)?;
@@ -4610,7 +4644,8 @@ fn guardrail_sensitive_information_policy_assessment_from_py(
         builder = builder.set_pii_entities(Some(converted_713));
     }
     if let Some(value) = dict_value(values, "regexes")? {
-        let mut converted_717 = Vec::new();
+        let mut converted_717 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_718 in value.try_iter()? {
             let item_719 = item_result_718?;
             let converted_item_720 = guardrail_regex_filter_from_py(&item_719)?;
@@ -4700,7 +4735,8 @@ fn guardrail_text_block_from_py(
         builder = builder.set_text(Some(converted_737));
     }
     if let Some(value) = dict_value(values, "qualifiers")? {
-        let mut converted_738 = Vec::new();
+        let mut converted_738 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_739 in value.try_iter()? {
             let item_740 = item_result_739?;
             let enum_value_742: String = item_740.extract()?;
@@ -4830,7 +4866,8 @@ fn guardrail_topic_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "topics")? {
-        let mut converted_761 = Vec::new();
+        let mut converted_761 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_762 in value.try_iter()? {
             let item_763 = item_result_762?;
             let converted_item_764 = guardrail_topic_from_py(&item_763)?;
@@ -4864,7 +4901,8 @@ fn guardrail_trace_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailTraceAssessment::builder();
     if let Some(value) = dict_value(values, "model_output")? {
-        let mut converted_768 = Vec::new();
+        let mut converted_768 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_769 in value.try_iter()? {
             let item_770 = item_result_769?;
             let converted_item_771: String = item_770.extract()?;
@@ -4874,7 +4912,7 @@ fn guardrail_trace_assessment_from_py(
     }
     if let Some(value) = dict_value(values, "input_assessment")? {
         let mapping_773 = value.cast::<PyDict>()?;
-        let mut converted_772 = HashMap::new();
+        let mut converted_772 = HashMap::with_capacity(mapping_773.len());
         for (key_774, value_775) in mapping_773.iter() {
             let converted_key_776: String = key_774.extract()?;
             let converted_value_777 = guardrail_assessment_from_py(&value_775)?;
@@ -4884,10 +4922,11 @@ fn guardrail_trace_assessment_from_py(
     }
     if let Some(value) = dict_value(values, "output_assessments")? {
         let mapping_779 = value.cast::<PyDict>()?;
-        let mut converted_778 = HashMap::new();
+        let mut converted_778 = HashMap::with_capacity(mapping_779.len());
         for (key_780, value_781) in mapping_779.iter() {
             let converted_key_782: String = key_780.extract()?;
-            let mut converted_value_783 = Vec::new();
+            let mut converted_value_783 =
+                Vec::with_capacity(value_781.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_784 in value_781.try_iter()? {
                 let item_785 = item_result_784?;
                 let converted_item_786 = guardrail_assessment_from_py(&item_785)?;
@@ -5054,7 +5093,8 @@ fn guardrail_word_policy_assessment_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment::builder();
     if let Some(value) = dict_value(values, "custom_words")? {
-        let mut converted_822 = Vec::new();
+        let mut converted_822 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_823 in value.try_iter()? {
             let item_824 = item_result_823?;
             let converted_item_825 = guardrail_custom_word_from_py(&item_824)?;
@@ -5063,7 +5103,8 @@ fn guardrail_word_policy_assessment_from_py(
         builder = builder.set_custom_words(Some(converted_822));
     }
     if let Some(value) = dict_value(values, "managed_word_lists")? {
-        let mut converted_826 = Vec::new();
+        let mut converted_826 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_827 in value.try_iter()? {
             let item_828 = item_result_827?;
             let converted_item_829 = guardrail_managed_word_from_py(&item_828)?;
@@ -5270,7 +5311,8 @@ fn inference_configuration_from_py(
         builder = builder.set_top_p(Some(converted_857));
     }
     if let Some(value) = dict_value(values, "stop_sequences")? {
-        let mut converted_858 = Vec::new();
+        let mut converted_858 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_859 in value.try_iter()? {
             let item_860 = item_result_859?;
             let converted_item_861: String = item_860.extract()?;
@@ -5471,7 +5513,8 @@ fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockruntime:
         builder = builder.set_role(Some(converted_881));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_883 = Vec::new();
+        let mut converted_883 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_884 in value.try_iter()? {
             let item_885 = item_result_884?;
             let converted_item_886 = content_block_from_py(&item_885)?;
@@ -5999,7 +6042,8 @@ fn search_result_block_from_py(
         builder = builder.set_title(Some(converted_943));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_944 = Vec::new();
+        let mut converted_944 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_945 in value.try_iter()? {
             let item_946 = item_result_945?;
             let converted_item_947 = search_result_content_block_from_py(&item_946)?;
@@ -6287,7 +6331,8 @@ fn token_usage_from_py(
         builder = builder.set_cache_write_input_tokens(Some(converted_984));
     }
     if let Some(value) = dict_value(values, "cache_details")? {
-        let mut converted_985 = Vec::new();
+        let mut converted_985 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_986 in value.try_iter()? {
             let item_987 = item_result_986?;
             let converted_item_988 = cache_detail_from_py(&item_987)?;
@@ -6472,7 +6517,8 @@ fn tool_configuration_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_bedrockruntime::types::ToolConfiguration::builder();
     if let Some(value) = dict_value(values, "tools")? {
-        let mut converted_1011 = Vec::new();
+        let mut converted_1011 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1012 in value.try_iter()? {
             let item_1013 = item_result_1012?;
             let converted_item_1014 = tool_from_py(&item_1013)?;
@@ -6627,7 +6673,8 @@ fn tool_result_block_from_py(
         builder = builder.set_tool_use_id(Some(converted_1030));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1031 = Vec::new();
+        let mut converted_1031 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1032 in value.try_iter()? {
             let item_1033 = item_result_1032?;
             let converted_item_1034 = tool_result_content_block_from_py(&item_1033)?;
@@ -9843,7 +9890,8 @@ impl BedrockRuntimeClient {
             None
         };
         let content_value = if let Some(value) = dict_value(params, "content")? {
-            let mut converted_1111 = Vec::new();
+            let mut converted_1111 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1112 in value.try_iter()? {
                 let item_1113 = item_result_1112?;
                 let converted_item_1114 = guardrail_content_block_from_py(&item_1113)?;
@@ -9874,7 +9922,7 @@ impl BedrockRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ApplyGuardrail"))
             })?;
-            Python::attach(|py| Py::new(py, PyApplyGuardrailResponse { inner: output }))
+            Ok(PyApplyGuardrailResponse { inner: output })
         })
     }
 
@@ -9892,7 +9940,8 @@ impl BedrockRuntimeClient {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1118 = Vec::new();
+            let mut converted_1118 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1119 in value.try_iter()? {
                 let item_1120 = item_result_1119?;
                 let converted_item_1121 = message_from_py(&item_1120)?;
@@ -9903,7 +9952,8 @@ impl BedrockRuntimeClient {
             None
         };
         let system_value = if let Some(value) = dict_value(params, "system")? {
-            let mut converted_1122 = Vec::new();
+            let mut converted_1122 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1123 in value.try_iter()? {
                 let item_1124 = item_result_1123?;
                 let converted_item_1125 = system_content_block_from_py(&item_1124)?;
@@ -9940,7 +9990,7 @@ impl BedrockRuntimeClient {
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
             let mapping_1131 = value.cast::<PyDict>()?;
-            let mut converted_1130 = HashMap::new();
+            let mut converted_1130 = HashMap::with_capacity(mapping_1131.len());
             for (key_1132, value_1133) in mapping_1131.iter() {
                 let converted_key_1134: String = key_1132.extract()?;
                 let converted_value_1135 = prompt_variable_values_from_py(&value_1133)?;
@@ -9952,7 +10002,8 @@ impl BedrockRuntimeClient {
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let mut converted_1136 = Vec::new();
+                let mut converted_1136 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1137 in value.try_iter()? {
                     let item_1138 = item_result_1137?;
                     let converted_item_1139: String = item_1138.extract()?;
@@ -9964,7 +10015,7 @@ impl BedrockRuntimeClient {
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
             let mapping_1141 = value.cast::<PyDict>()?;
-            let mut converted_1140 = HashMap::new();
+            let mut converted_1140 = HashMap::with_capacity(mapping_1141.len());
             for (key_1142, value_1143) in mapping_1141.iter() {
                 let converted_key_1144: String = key_1142.extract()?;
                 let converted_value_1145: String = value_1143.extract()?;
@@ -10017,7 +10068,7 @@ impl BedrockRuntimeClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Converse")))?;
-            Python::attach(|py| Py::new(py, PyConverseResponse { inner: output }))
+            Ok(PyConverseResponse { inner: output })
         })
     }
 
@@ -10035,7 +10086,8 @@ impl BedrockRuntimeClient {
             None
         };
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1150 = Vec::new();
+            let mut converted_1150 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1151 in value.try_iter()? {
                 let item_1152 = item_result_1151?;
                 let converted_item_1153 = message_from_py(&item_1152)?;
@@ -10046,7 +10098,8 @@ impl BedrockRuntimeClient {
             None
         };
         let system_value = if let Some(value) = dict_value(params, "system")? {
-            let mut converted_1154 = Vec::new();
+            let mut converted_1154 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1155 in value.try_iter()? {
                 let item_1156 = item_result_1155?;
                 let converted_item_1157 = system_content_block_from_py(&item_1156)?;
@@ -10083,7 +10136,7 @@ impl BedrockRuntimeClient {
             };
         let prompt_variables_value = if let Some(value) = dict_value(params, "prompt_variables")? {
             let mapping_1163 = value.cast::<PyDict>()?;
-            let mut converted_1162 = HashMap::new();
+            let mut converted_1162 = HashMap::with_capacity(mapping_1163.len());
             for (key_1164, value_1165) in mapping_1163.iter() {
                 let converted_key_1166: String = key_1164.extract()?;
                 let converted_value_1167 = prompt_variable_values_from_py(&value_1165)?;
@@ -10095,7 +10148,8 @@ impl BedrockRuntimeClient {
         };
         let additional_model_response_field_paths_value =
             if let Some(value) = dict_value(params, "additional_model_response_field_paths")? {
-                let mut converted_1168 = Vec::new();
+                let mut converted_1168 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1169 in value.try_iter()? {
                     let item_1170 = item_result_1169?;
                     let converted_item_1171: String = item_1170.extract()?;
@@ -10107,7 +10161,7 @@ impl BedrockRuntimeClient {
             };
         let request_metadata_value = if let Some(value) = dict_value(params, "request_metadata")? {
             let mapping_1173 = value.cast::<PyDict>()?;
-            let mut converted_1172 = HashMap::new();
+            let mut converted_1172 = HashMap::with_capacity(mapping_1173.len());
             for (key_1174, value_1175) in mapping_1173.iter() {
                 let converted_key_1176: String = key_1174.extract()?;
                 let converted_value_1177: String = value_1175.extract()?;
@@ -10201,7 +10255,7 @@ impl BedrockRuntimeClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CountTokens")))?;
-            Python::attach(|py| Py::new(py, PyCountTokensResponse { inner: output }))
+            Ok(PyCountTokensResponse { inner: output })
         })
     }
 
@@ -10227,7 +10281,7 @@ impl BedrockRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAsyncInvoke"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAsyncInvokeResponse { inner: output }))
+            Ok(PyGetAsyncInvokeResponse { inner: output })
         })
     }
 
@@ -10239,7 +10293,8 @@ impl BedrockRuntimeClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
-            let mut converted_1184 = Vec::new();
+            let mut converted_1184 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1185 in value.try_iter()? {
                 let item_1186 = item_result_1185?;
                 let converted_item_1187 = guardrail_checks_message_from_py(&item_1186)?;
@@ -10265,7 +10320,7 @@ impl BedrockRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeGuardrailChecks"))
             })?;
-            Python::attach(|py| Py::new(py, PyInvokeGuardrailChecksResponse { inner: output }))
+            Ok(PyInvokeGuardrailChecksResponse { inner: output })
         })
     }
 
@@ -10366,7 +10421,7 @@ impl BedrockRuntimeClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeModel")))?;
-            Python::attach(|py| Py::new(py, PyInvokeModelResponse { inner: output }))
+            Ok(PyInvokeModelResponse { inner: output })
         })
     }
 
@@ -10624,7 +10679,7 @@ impl BedrockRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAsyncInvokes"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAsyncInvokesResponse { inner: output }))
+            Ok(PyListAsyncInvokesResponse { inner: output })
         })
     }
 
@@ -10662,7 +10717,8 @@ impl BedrockRuntimeClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1238 = Vec::new();
+            let mut converted_1238 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1239 in value.try_iter()? {
                 let item_1240 = item_result_1239?;
                 let converted_item_1241 = tag_from_py(&item_1240)?;
@@ -10685,7 +10741,7 @@ impl BedrockRuntimeClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAsyncInvoke"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartAsyncInvokeResponse { inner: output }))
+            Ok(PyStartAsyncInvokeResponse { inner: output })
         })
     }
 }

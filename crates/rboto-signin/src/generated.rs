@@ -181,14 +181,15 @@ fn permission_statement_summary_from_py(
     }
     if let Some(value) = dict_value(values, "condition")? {
         let mapping_31 = value.cast::<PyDict>()?;
-        let mut converted_30 = HashMap::new();
+        let mut converted_30 = HashMap::with_capacity(mapping_31.len());
         for (key_32, value_33) in mapping_31.iter() {
             let converted_key_34: String = key_32.extract()?;
             let mapping_36 = value_33.cast::<PyDict>()?;
-            let mut converted_value_35 = HashMap::new();
+            let mut converted_value_35 = HashMap::with_capacity(mapping_36.len());
             for (key_37, value_38) in mapping_36.iter() {
                 let converted_key_39: String = key_37.extract()?;
-                let mut converted_value_40 = Vec::new();
+                let mut converted_value_40 =
+                    Vec::with_capacity(value_38.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_41 in value_38.try_iter()? {
                     let item_42 = item_result_41?;
                     let converted_item_43: String = item_42.extract()?;
@@ -249,7 +250,7 @@ fn policy_statement_from_py(
     }
     if let Some(value) = dict_value(values, "principal")? {
         let mapping_58 = value.cast::<PyDict>()?;
-        let mut converted_57 = HashMap::new();
+        let mut converted_57 = HashMap::with_capacity(mapping_58.len());
         for (key_59, value_60) in mapping_58.iter() {
             let converted_key_61: String = key_59.extract()?;
             let converted_value_62: String = value_60.extract()?;
@@ -258,7 +259,8 @@ fn policy_statement_from_py(
         builder = builder.set_principal(Some(converted_57));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let mut converted_63 = Vec::new();
+        let mut converted_63 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_64 in value.try_iter()? {
             let item_65 = item_result_64?;
             let converted_item_66: String = item_65.extract()?;
@@ -272,14 +274,15 @@ fn policy_statement_from_py(
     }
     if let Some(value) = dict_value(values, "condition")? {
         let mapping_69 = value.cast::<PyDict>()?;
-        let mut converted_68 = HashMap::new();
+        let mut converted_68 = HashMap::with_capacity(mapping_69.len());
         for (key_70, value_71) in mapping_69.iter() {
             let converted_key_72: String = key_70.extract()?;
             let mapping_74 = value_71.cast::<PyDict>()?;
-            let mut converted_value_73 = HashMap::new();
+            let mut converted_value_73 = HashMap::with_capacity(mapping_74.len());
             for (key_75, value_76) in mapping_74.iter() {
                 let converted_key_77: String = key_75.extract()?;
-                let mut converted_value_78 = Vec::new();
+                let mut converted_value_78 =
+                    Vec::with_capacity(value_76.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_79 in value_76.try_iter()? {
                     let item_80 = item_result_79?;
                     let converted_item_81: String = item_80.extract()?;
@@ -370,7 +373,8 @@ fn signin_resource_based_policy_from_py(
         builder = builder.set_version(Some(converted_103));
     }
     if let Some(value) = dict_value(values, "statement")? {
-        let mut converted_104 = Vec::new();
+        let mut converted_104 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_105 in value.try_iter()? {
             let item_106 = item_result_105?;
             let converted_item_107 = policy_statement_from_py(&item_106)?;
@@ -1289,7 +1293,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2Token"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateOAuth2TokenResponse { inner: output }))
+            Ok(PyCreateOAuth2TokenResponse { inner: output })
         })
     }
 
@@ -1322,7 +1326,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2TokenWithIAM"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateOAuth2TokenWithIAMResponse { inner: output }))
+            Ok(PyCreateOAuth2TokenWithIAMResponse { inner: output })
         })
     }
 
@@ -1350,12 +1354,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "DeleteConsoleAuthorizationConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteConsoleAuthorizationConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyDeleteConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1390,12 +1389,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "DeleteResourcePermissionStatement")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteResourcePermissionStatementOutput { inner: output },
-                )
-            })
+            Ok(PyDeleteResourcePermissionStatementOutput { inner: output })
         })
     }
 
@@ -1423,12 +1417,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "GetConsoleAuthorizationConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetConsoleAuthorizationConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyGetConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1444,7 +1433,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyOutput { inner: output }))
+            Ok(PyGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -1477,9 +1466,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "IntrospectOAuth2TokenWithIAM"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyIntrospectOAuth2TokenWithIAMResponse { inner: output })
-            })
+            Ok(PyIntrospectOAuth2TokenWithIAMResponse { inner: output })
         })
     }
 
@@ -1512,12 +1499,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourcePermissionStatements"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListResourcePermissionStatementsOutput { inner: output },
-                )
-            })
+            Ok(PyListResourcePermissionStatementsOutput { inner: output })
         })
     }
 
@@ -1545,12 +1527,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "PutConsoleAuthorizationConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutConsoleAuthorizationConfigurationOutput { inner: output },
-                )
-            })
+            Ok(PyPutConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1628,9 +1605,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePermissionStatement"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyPutResourcePermissionStatementOutput { inner: output })
-            })
+            Ok(PyPutResourcePermissionStatementOutput { inner: output })
         })
     }
 
@@ -1656,7 +1631,7 @@ impl SignInClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RevokeOAuth2TokenWithIAM"))
             })?;
-            Python::attach(|py| Py::new(py, PyRevokeOAuth2TokenWithIAMResponse { inner: output }))
+            Ok(PyRevokeOAuth2TokenWithIAMResponse { inner: output })
         })
     }
 }

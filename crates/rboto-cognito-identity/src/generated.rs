@@ -127,7 +127,8 @@ fn identity_description_from_py(
         builder = builder.set_identity_id(Some(converted_16));
     }
     if let Some(value) = dict_value(values, "logins")? {
-        let mut converted_17 = Vec::new();
+        let mut converted_17 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_18 in value.try_iter()? {
             let item_19 = item_result_18?;
             let converted_item_20: String = item_19.extract()?;
@@ -328,7 +329,8 @@ fn rules_configuration_type_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_cognitoidentity::types::RulesConfigurationType::builder();
     if let Some(value) = dict_value(values, "rules")? {
-        let mut converted_52 = Vec::new();
+        let mut converted_52 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_53 in value.try_iter()? {
             let item_54 = item_result_53?;
             let converted_item_55 = mapping_rule_from_py(&item_54)?;
@@ -2312,7 +2314,7 @@ impl CognitoIdentityClient {
         let supported_login_providers_value =
             if let Some(value) = dict_value(params, "supported_login_providers")? {
                 let mapping_68 = value.cast::<PyDict>()?;
-                let mut converted_67 = HashMap::new();
+                let mut converted_67 = HashMap::with_capacity(mapping_68.len());
                 for (key_69, value_70) in mapping_68.iter() {
                     let converted_key_71: String = key_69.extract()?;
                     let converted_value_72: String = value_70.extract()?;
@@ -2331,7 +2333,8 @@ impl CognitoIdentityClient {
             };
         let open_id_connect_provider_arns_value =
             if let Some(value) = dict_value(params, "open_id_connect_provider_arns")? {
-                let mut converted_74 = Vec::new();
+                let mut converted_74 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_75 in value.try_iter()? {
                     let item_76 = item_result_75?;
                     let converted_item_77: String = item_76.extract()?;
@@ -2343,7 +2346,8 @@ impl CognitoIdentityClient {
             };
         let cognito_identity_providers_value =
             if let Some(value) = dict_value(params, "cognito_identity_providers")? {
-                let mut converted_78 = Vec::new();
+                let mut converted_78 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_79 in value.try_iter()? {
                     let item_80 = item_result_79?;
                     let converted_item_81 = cognito_identity_provider_from_py(&item_80)?;
@@ -2355,7 +2359,8 @@ impl CognitoIdentityClient {
             };
         let saml_provider_arns_value =
             if let Some(value) = dict_value(params, "saml_provider_arns")? {
-                let mut converted_82 = Vec::new();
+                let mut converted_82 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_83 in value.try_iter()? {
                     let item_84 = item_result_83?;
                     let converted_item_85: String = item_84.extract()?;
@@ -2368,7 +2373,7 @@ impl CognitoIdentityClient {
         let identity_pool_tags_value =
             if let Some(value) = dict_value(params, "identity_pool_tags")? {
                 let mapping_87 = value.cast::<PyDict>()?;
-                let mut converted_86 = HashMap::new();
+                let mut converted_86 = HashMap::with_capacity(mapping_87.len());
                 for (key_88, value_89) in mapping_87.iter() {
                     let converted_key_90: String = key_88.extract()?;
                     let converted_value_91: String = value_89.extract()?;
@@ -2395,7 +2400,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateIdentityPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateIdentityPoolOutput { inner: output }))
+            Ok(PyCreateIdentityPoolOutput { inner: output })
         })
     }
 
@@ -2408,7 +2413,8 @@ impl CognitoIdentityClient {
         let state = self.state.clone();
         let identity_ids_to_delete_value =
             if let Some(value) = dict_value(params, "identity_ids_to_delete")? {
-                let mut converted_92 = Vec::new();
+                let mut converted_92 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_93 in value.try_iter()? {
                     let item_94 = item_result_93?;
                     let converted_item_95: String = item_94.extract()?;
@@ -2427,7 +2433,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIdentities"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteIdentitiesResponse { inner: output }))
+            Ok(PyDeleteIdentitiesResponse { inner: output })
         })
     }
 
@@ -2479,7 +2485,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeIdentityOutput { inner: output }))
+            Ok(PyDescribeIdentityOutput { inner: output })
         })
     }
 
@@ -2505,7 +2511,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentityPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeIdentityPoolOutput { inner: output }))
+            Ok(PyDescribeIdentityPoolOutput { inner: output })
         })
     }
 
@@ -2524,7 +2530,7 @@ impl CognitoIdentityClient {
         };
         let logins_value = if let Some(value) = dict_value(params, "logins")? {
             let mapping_101 = value.cast::<PyDict>()?;
-            let mut converted_100 = HashMap::new();
+            let mut converted_100 = HashMap::with_capacity(mapping_101.len());
             for (key_102, value_103) in mapping_101.iter() {
                 let converted_key_104: String = key_102.extract()?;
                 let converted_value_105: String = value_103.extract()?;
@@ -2551,7 +2557,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCredentialsForIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCredentialsForIdentityResponse { inner: output }))
+            Ok(PyGetCredentialsForIdentityResponse { inner: output })
         })
     }
 
@@ -2576,7 +2582,7 @@ impl CognitoIdentityClient {
         };
         let logins_value = if let Some(value) = dict_value(params, "logins")? {
             let mapping_110 = value.cast::<PyDict>()?;
-            let mut converted_109 = HashMap::new();
+            let mut converted_109 = HashMap::with_capacity(mapping_110.len());
             for (key_111, value_112) in mapping_110.iter() {
                 let converted_key_113: String = key_111.extract()?;
                 let converted_value_114: String = value_112.extract()?;
@@ -2598,7 +2604,7 @@ impl CognitoIdentityClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetId")))?;
-            Python::attach(|py| Py::new(py, PyGetIdResponse { inner: output }))
+            Ok(PyGetIdResponse { inner: output })
         })
     }
 
@@ -2624,7 +2630,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIdentityPoolRoles"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetIdentityPoolRolesResponse { inner: output }))
+            Ok(PyGetIdentityPoolRolesResponse { inner: output })
         })
     }
 
@@ -2643,7 +2649,7 @@ impl CognitoIdentityClient {
         };
         let logins_value = if let Some(value) = dict_value(params, "logins")? {
             let mapping_118 = value.cast::<PyDict>()?;
-            let mut converted_117 = HashMap::new();
+            let mut converted_117 = HashMap::with_capacity(mapping_118.len());
             for (key_119, value_120) in mapping_118.iter() {
                 let converted_key_121: String = key_119.extract()?;
                 let converted_value_122: String = value_120.extract()?;
@@ -2663,7 +2669,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpenIdToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetOpenIdTokenResponse { inner: output }))
+            Ok(PyGetOpenIdTokenResponse { inner: output })
         })
     }
 
@@ -2688,7 +2694,7 @@ impl CognitoIdentityClient {
         };
         let logins_value = if let Some(value) = dict_value(params, "logins")? {
             let mapping_126 = value.cast::<PyDict>()?;
-            let mut converted_125 = HashMap::new();
+            let mut converted_125 = HashMap::with_capacity(mapping_126.len());
             for (key_127, value_128) in mapping_126.iter() {
                 let converted_key_129: String = key_127.extract()?;
                 let converted_value_130: String = value_128.extract()?;
@@ -2700,7 +2706,7 @@ impl CognitoIdentityClient {
         };
         let principal_tags_value = if let Some(value) = dict_value(params, "principal_tags")? {
             let mapping_132 = value.cast::<PyDict>()?;
-            let mut converted_131 = HashMap::new();
+            let mut converted_131 = HashMap::with_capacity(mapping_132.len());
             for (key_133, value_134) in mapping_132.iter() {
                 let converted_key_135: String = key_133.extract()?;
                 let converted_value_136: String = value_134.extract()?;
@@ -2731,12 +2737,7 @@ impl CognitoIdentityClient {
                     sdk_error_to_py(py, &error, "GetOpenIdTokenForDeveloperIdentity")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetOpenIdTokenForDeveloperIdentityResponse { inner: output },
-                )
-            })
+            Ok(PyGetOpenIdTokenForDeveloperIdentityResponse { inner: output })
         })
     }
 
@@ -2770,9 +2771,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPrincipalTagAttributeMap"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetPrincipalTagAttributeMapResponse { inner: output })
-            })
+            Ok(PyGetPrincipalTagAttributeMapResponse { inner: output })
         })
     }
 
@@ -2819,7 +2818,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentities"))
             })?;
-            Python::attach(|py| Py::new(py, PyListIdentitiesResponse { inner: output }))
+            Ok(PyListIdentitiesResponse { inner: output })
         })
     }
 
@@ -2852,7 +2851,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentityPools"))
             })?;
-            Python::attach(|py| Py::new(py, PyListIdentityPoolsResponse { inner: output }))
+            Ok(PyListIdentityPoolsResponse { inner: output })
         })
     }
 
@@ -2878,7 +2877,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -2933,7 +2932,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LookupDeveloperIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyLookupDeveloperIdentityResponse { inner: output }))
+            Ok(PyLookupDeveloperIdentityResponse { inner: output })
         })
     }
 
@@ -2983,7 +2982,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "MergeDeveloperIdentities"))
             })?;
-            Python::attach(|py| Py::new(py, PyMergeDeveloperIdentitiesResponse { inner: output }))
+            Ok(PyMergeDeveloperIdentitiesResponse { inner: output })
         })
     }
 
@@ -3002,7 +3001,7 @@ impl CognitoIdentityClient {
         };
         let roles_value = if let Some(value) = dict_value(params, "roles")? {
             let mapping_158 = value.cast::<PyDict>()?;
-            let mut converted_157 = HashMap::new();
+            let mut converted_157 = HashMap::with_capacity(mapping_158.len());
             for (key_159, value_160) in mapping_158.iter() {
                 let converted_key_161: String = key_159.extract()?;
                 let converted_value_162: String = value_160.extract()?;
@@ -3014,7 +3013,7 @@ impl CognitoIdentityClient {
         };
         let role_mappings_value = if let Some(value) = dict_value(params, "role_mappings")? {
             let mapping_164 = value.cast::<PyDict>()?;
-            let mut converted_163 = HashMap::new();
+            let mut converted_163 = HashMap::with_capacity(mapping_164.len());
             for (key_165, value_166) in mapping_164.iter() {
                 let converted_key_167: String = key_165.extract()?;
                 let converted_value_168 = role_mapping_from_py(&value_166)?;
@@ -3067,7 +3066,7 @@ impl CognitoIdentityClient {
         };
         let principal_tags_value = if let Some(value) = dict_value(params, "principal_tags")? {
             let mapping_173 = value.cast::<PyDict>()?;
-            let mut converted_172 = HashMap::new();
+            let mut converted_172 = HashMap::with_capacity(mapping_173.len());
             for (key_174, value_175) in mapping_173.iter() {
                 let converted_key_176: String = key_174.extract()?;
                 let converted_value_177: String = value_175.extract()?;
@@ -3089,9 +3088,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SetPrincipalTagAttributeMap"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PySetPrincipalTagAttributeMapResponse { inner: output })
-            })
+            Ok(PySetPrincipalTagAttributeMapResponse { inner: output })
         })
     }
 
@@ -3110,7 +3107,7 @@ impl CognitoIdentityClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_180 = value.cast::<PyDict>()?;
-            let mut converted_179 = HashMap::new();
+            let mut converted_179 = HashMap::with_capacity(mapping_180.len());
             for (key_181, value_182) in mapping_180.iter() {
                 let converted_key_183: String = key_181.extract()?;
                 let converted_value_184: String = value_182.extract()?;
@@ -3131,7 +3128,7 @@ impl CognitoIdentityClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -3199,7 +3196,7 @@ impl CognitoIdentityClient {
         };
         let logins_value = if let Some(value) = dict_value(params, "logins")? {
             let mapping_191 = value.cast::<PyDict>()?;
-            let mut converted_190 = HashMap::new();
+            let mut converted_190 = HashMap::with_capacity(mapping_191.len());
             for (key_192, value_193) in mapping_191.iter() {
                 let converted_key_194: String = key_192.extract()?;
                 let converted_value_195: String = value_193.extract()?;
@@ -3210,7 +3207,8 @@ impl CognitoIdentityClient {
             None
         };
         let logins_to_remove_value = if let Some(value) = dict_value(params, "logins_to_remove")? {
-            let mut converted_196 = Vec::new();
+            let mut converted_196 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_197 in value.try_iter()? {
                 let item_198 = item_result_197?;
                 let converted_item_199: String = item_198.extract()?;
@@ -3249,7 +3247,8 @@ impl CognitoIdentityClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_201 = Vec::new();
+            let mut converted_201 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_202 in value.try_iter()? {
                 let item_203 = item_result_202?;
                 let converted_item_204: String = item_203.extract()?;
@@ -3269,7 +3268,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -3310,7 +3309,7 @@ impl CognitoIdentityClient {
         let supported_login_providers_value =
             if let Some(value) = dict_value(params, "supported_login_providers")? {
                 let mapping_210 = value.cast::<PyDict>()?;
-                let mut converted_209 = HashMap::new();
+                let mut converted_209 = HashMap::with_capacity(mapping_210.len());
                 for (key_211, value_212) in mapping_210.iter() {
                     let converted_key_213: String = key_211.extract()?;
                     let converted_value_214: String = value_212.extract()?;
@@ -3329,7 +3328,8 @@ impl CognitoIdentityClient {
             };
         let open_id_connect_provider_arns_value =
             if let Some(value) = dict_value(params, "open_id_connect_provider_arns")? {
-                let mut converted_216 = Vec::new();
+                let mut converted_216 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_217 in value.try_iter()? {
                     let item_218 = item_result_217?;
                     let converted_item_219: String = item_218.extract()?;
@@ -3341,7 +3341,8 @@ impl CognitoIdentityClient {
             };
         let cognito_identity_providers_value =
             if let Some(value) = dict_value(params, "cognito_identity_providers")? {
-                let mut converted_220 = Vec::new();
+                let mut converted_220 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_221 in value.try_iter()? {
                     let item_222 = item_result_221?;
                     let converted_item_223 = cognito_identity_provider_from_py(&item_222)?;
@@ -3353,7 +3354,8 @@ impl CognitoIdentityClient {
             };
         let saml_provider_arns_value =
             if let Some(value) = dict_value(params, "saml_provider_arns")? {
-                let mut converted_224 = Vec::new();
+                let mut converted_224 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_225 in value.try_iter()? {
                     let item_226 = item_result_225?;
                     let converted_item_227: String = item_226.extract()?;
@@ -3366,7 +3368,7 @@ impl CognitoIdentityClient {
         let identity_pool_tags_value =
             if let Some(value) = dict_value(params, "identity_pool_tags")? {
                 let mapping_229 = value.cast::<PyDict>()?;
-                let mut converted_228 = HashMap::new();
+                let mut converted_228 = HashMap::with_capacity(mapping_229.len());
                 for (key_230, value_231) in mapping_229.iter() {
                     let converted_key_232: String = key_230.extract()?;
                     let converted_value_233: String = value_231.extract()?;
@@ -3394,7 +3396,7 @@ impl CognitoIdentityClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIdentityPool"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateIdentityPoolOutput { inner: output }))
+            Ok(PyUpdateIdentityPoolOutput { inner: output })
         })
     }
 }

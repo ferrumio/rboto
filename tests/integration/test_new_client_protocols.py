@@ -45,6 +45,8 @@ class Peer:
     content_type: str = "application/json"
     duplex: bool = False
     requests: list[tuple[str, bytes]] = field(default_factory=list)
+    request_received: threading.Event = field(default_factory=threading.Event)
+    response_gate: threading.Event | None = None
 
 
 @pytest.fixture
@@ -96,11 +98,19 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
                 self.send_chunk(b"")
                 return
             config.requests.append((self.path, self.read_body()))
+            gate = config.response_gate
+            config.request_received.set()
+            if gate is not None:
+                assert gate.wait(timeout=5)
             self.send_response(config.status)
             self.send_header("Content-Type", config.content_type)
             self.send_header("Content-Length", str(len(config.body)))
             self.end_headers()
-            self.wfile.write(config.body)
+            try:
+                self.wfile.write(config.body)
+            except (BrokenPipeError, ConnectionResetError):
+                # A canceled request may close the connection before the peer replies.
+                pass
 
         do_GET = do_POST
         do_PUT = do_POST
@@ -116,6 +126,108 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_native_outputs_keep_owned_values_and_fresh_mappings(peer: Peer) -> None:
+    from rboto import dynamodb
+
+    peer.body = json.dumps(
+        {
+            "Item": {"pk": {"S": "example"}, "nested": {"L": [{"N": "1"}, {"BOOL": True}]}},
+            "ConsumedCapacity": {"TableName": "example", "CapacityUnits": 1.0},
+        }
+    ).encode()
+    client = dynamodb(region="us-east-1", endpoint_url=peer.endpoint)
+    outputs = await asyncio.gather(
+        *(client.get_item(table_name="example", key={"pk": {"s": "example"}}) for _ in range(8))
+    )
+    del client
+    for output in outputs:
+        assert type(output).__name__ == "GetItemOutput"
+        expected = {"pk": {"s": "example"}, "nested": {"l": [{"n": "1"}, {"bool": True}]}}
+        assert output.item == expected
+        item = output.item
+        assert item is not None
+        item.clear()
+        assert output.item == expected
+        assert output.to_dict()["item"] == expected
+        assert output.consumed_capacity is not None
+        assert output.consumed_capacity.capacity_units == 1.0
+        with pytest.raises(AttributeError):
+            output.item = {}
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_input_containers_preserve_unsized_iterables(peer: Peer) -> None:
+    from rboto import dynamodb
+
+    class Attributes:
+        def __iter__(self) -> Iterator[str]:
+            return iter(["pk", "nested"])
+
+        def __len__(self) -> int:
+            raise AssertionError("input conversion must not require an iterable length")
+
+    peer.body = b'{"Item":{"pk":{"S":"example"}}}'
+    client = dynamodb(region="us-east-1", endpoint_url=peer.endpoint)
+    for attributes in (["pk", "nested"], Attributes()):
+        output = await client._native.get_item(
+            {
+                "table_name": "example",
+                "key": {"pk": {"s": "example"}},
+                "attributes_to_get": attributes,
+                "expression_attribute_names": {f"#field{i}": f"field{i}" for i in range(64)},
+            }
+        )
+        assert output.item == {"pk": {"s": "example"}}
+        request = json.loads(peer.requests[-1][1])
+        assert request["AttributesToGet"] == ["pk", "nested"]
+        assert len(request["ExpressionAttributeNames"]) == 64
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_native_request_cancellation_keeps_client_usable(peer: Peer) -> None:
+    from rboto import dynamodb
+
+    peer.body = b'{"Item":{"pk":{"S":"example"}}}'
+    gate = threading.Event()
+    peer.response_gate = gate
+    client = dynamodb(region="us-east-1", endpoint_url=peer.endpoint)
+    pending = asyncio.create_task(
+        client.get_item(table_name="example", key={"pk": {"s": "example"}})
+    )
+    try:
+        async with asyncio.timeout(10):
+            assert await asyncio.to_thread(peer.request_received.wait, 5)
+            pending.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await pending
+            peer.response_gate = None
+            gate.set()
+            output = await client.get_item(table_name="example", key={"pk": {"s": "example"}})
+            assert output.item == {"pk": {"s": "example"}}
+    finally:
+        gate.set()
+        pending.cancel()
+        await asyncio.gather(pending, return_exceptions=True)
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_native_request_preserves_modeled_errors(peer: Peer) -> None:
+    from rboto import dynamodb
+    from rboto_dynamodb.exceptions import ResourceNotFoundError
+
+    peer.status = 400
+    peer.body = b'{"__type":"ResourceNotFoundException","message":"missing table"}'
+    client = dynamodb(region="us-east-1", endpoint_url=peer.endpoint)
+    with pytest.raises(ResourceNotFoundError, match="missing table") as caught:
+        await client.get_item(table_name="missing", key={"pk": {"s": "example"}})
+    assert caught.value.operation_name == "GetItem"
 
 
 @pytest.mark.asyncio

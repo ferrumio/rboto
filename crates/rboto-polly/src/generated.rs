@@ -375,7 +375,8 @@ fn synthesis_task_from_py(
         builder = builder.set_sns_topic_arn(Some(converted_48));
     }
     if let Some(value) = dict_value(values, "lexicon_names")? {
-        let mut converted_49 = Vec::new();
+        let mut converted_49 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_50 in value.try_iter()? {
             let item_51 = item_result_50?;
             let converted_item_52: String = item_51.extract()?;
@@ -393,7 +394,8 @@ fn synthesis_task_from_py(
         builder = builder.set_sample_rate(Some(converted_55));
     }
     if let Some(value) = dict_value(values, "speech_mark_types")? {
-        let mut converted_56 = Vec::new();
+        let mut converted_56 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_57 in value.try_iter()? {
             let item_58 = item_result_57?;
             let enum_value_60: String = item_58.extract()?;
@@ -661,7 +663,8 @@ fn voice_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Voi
         builder = builder.set_name(Some(converted_108));
     }
     if let Some(value) = dict_value(values, "additional_language_codes")? {
-        let mut converted_109 = Vec::new();
+        let mut converted_109 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_110 in value.try_iter()? {
             let item_111 = item_result_110?;
             let enum_value_113: String = item_111.extract()?;
@@ -672,7 +675,8 @@ fn voice_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Voi
         builder = builder.set_additional_language_codes(Some(converted_109));
     }
     if let Some(value) = dict_value(values, "supported_engines")? {
-        let mut converted_114 = Vec::new();
+        let mut converted_114 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_115 in value.try_iter()? {
             let item_116 = item_result_115?;
             let enum_value_118: String = item_116.extract()?;
@@ -1647,7 +1651,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLexicon"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteLexiconOutput { inner: output }))
+            Ok(PyDeleteLexiconOutput { inner: output })
         })
     }
 
@@ -1697,7 +1701,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeVoices"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeVoicesOutput { inner: output }))
+            Ok(PyDescribeVoicesOutput { inner: output })
         })
     }
 
@@ -1720,7 +1724,7 @@ impl PollyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetLexicon")))?;
-            Python::attach(|py| Py::new(py, PyGetLexiconOutput { inner: output }))
+            Ok(PyGetLexiconOutput { inner: output })
         })
     }
 
@@ -1746,7 +1750,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSpeechSynthesisTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSpeechSynthesisTaskOutput { inner: output }))
+            Ok(PyGetSpeechSynthesisTaskOutput { inner: output })
         })
     }
 
@@ -1772,7 +1776,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLexicons"))
             })?;
-            Python::attach(|py| Py::new(py, PyListLexiconsOutput { inner: output }))
+            Ok(PyListLexiconsOutput { inner: output })
         })
     }
 
@@ -1813,7 +1817,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSpeechSynthesisTasks"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSpeechSynthesisTasksOutput { inner: output }))
+            Ok(PyListSpeechSynthesisTasksOutput { inner: output })
         })
     }
 
@@ -1847,7 +1851,7 @@ impl PollyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutLexicon")))?;
-            Python::attach(|py| Py::new(py, PyPutLexiconOutput { inner: output }))
+            Ok(PyPutLexiconOutput { inner: output })
         })
     }
 
@@ -1873,7 +1877,8 @@ impl PollyClient {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let mut converted_150 = Vec::new();
+            let mut converted_150 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_151 in value.try_iter()? {
                 let item_152 = item_result_151?;
                 let converted_item_153: String = item_152.extract()?;
@@ -1969,7 +1974,8 @@ impl PollyClient {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let mut converted_164 = Vec::new();
+            let mut converted_164 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_165 in value.try_iter()? {
                 let item_166 = item_result_165?;
                 let converted_item_167: String = item_166.extract()?;
@@ -2014,7 +2020,8 @@ impl PollyClient {
         };
         let speech_mark_types_value = if let Some(value) = dict_value(params, "speech_mark_types")?
         {
-            let mut converted_174 = Vec::new();
+            let mut converted_174 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_175 in value.try_iter()? {
                 let item_176 = item_result_175?;
                 let enum_value_178: String = item_176.extract()?;
@@ -2066,7 +2073,7 @@ impl PollyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSpeechSynthesisTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartSpeechSynthesisTaskOutput { inner: output }))
+            Ok(PyStartSpeechSynthesisTaskOutput { inner: output })
         })
     }
 
@@ -2092,7 +2099,8 @@ impl PollyClient {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let mut converted_188 = Vec::new();
+            let mut converted_188 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_189 in value.try_iter()? {
                 let item_190 = item_result_189?;
                 let converted_item_191: String = item_190.extract()?;
@@ -2117,7 +2125,8 @@ impl PollyClient {
         };
         let speech_mark_types_value = if let Some(value) = dict_value(params, "speech_mark_types")?
         {
-            let mut converted_195 = Vec::new();
+            let mut converted_195 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_196 in value.try_iter()? {
                 let item_197 = item_result_196?;
                 let enum_value_199: String = item_197.extract()?;

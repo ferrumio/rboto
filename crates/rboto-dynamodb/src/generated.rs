@@ -114,7 +114,8 @@ fn attribute_value_from_py(
         return Ok(aws_sdk_dynamodb::types::AttributeValue::B(converted_15));
     }
     if let Some(value) = dict_value(values, "ss")? {
-        let mut converted_17 = Vec::new();
+        let mut converted_17 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_18 in value.try_iter()? {
             let item_19 = item_result_18?;
             let converted_item_20: String = item_19.extract()?;
@@ -123,7 +124,8 @@ fn attribute_value_from_py(
         return Ok(aws_sdk_dynamodb::types::AttributeValue::Ss(converted_17));
     }
     if let Some(value) = dict_value(values, "ns")? {
-        let mut converted_21 = Vec::new();
+        let mut converted_21 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_22 in value.try_iter()? {
             let item_23 = item_result_22?;
             let converted_item_24: String = item_23.extract()?;
@@ -132,7 +134,8 @@ fn attribute_value_from_py(
         return Ok(aws_sdk_dynamodb::types::AttributeValue::Ns(converted_21));
     }
     if let Some(value) = dict_value(values, "bs")? {
-        let mut converted_25 = Vec::new();
+        let mut converted_25 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_26 in value.try_iter()? {
             let item_27 = item_result_26?;
             let bytes_29: Vec<u8> = item_27.extract()?;
@@ -143,7 +146,7 @@ fn attribute_value_from_py(
     }
     if let Some(value) = dict_value(values, "m")? {
         let mapping_31 = value.cast::<PyDict>()?;
-        let mut converted_30 = HashMap::new();
+        let mut converted_30 = HashMap::with_capacity(mapping_31.len());
         for (key_32, value_33) in mapping_31.iter() {
             let converted_key_34: String = key_32.extract()?;
             let converted_value_35 = attribute_value_from_py(&value_33)?;
@@ -152,7 +155,8 @@ fn attribute_value_from_py(
         return Ok(aws_sdk_dynamodb::types::AttributeValue::M(converted_30));
     }
     if let Some(value) = dict_value(values, "l")? {
-        let mut converted_36 = Vec::new();
+        let mut converted_36 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_37 in value.try_iter()? {
             let item_38 = item_result_37?;
             let converted_item_39 = attribute_value_from_py(&item_38)?;
@@ -387,7 +391,8 @@ fn auto_scaling_settings_description_from_py(
         builder = builder.set_auto_scaling_role_arn(Some(converted_80));
     }
     if let Some(value) = dict_value(values, "scaling_policies")? {
-        let mut converted_81 = Vec::new();
+        let mut converted_81 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_82 in value.try_iter()? {
             let item_83 = item_result_82?;
             let converted_item_84 = auto_scaling_policy_description_from_py(&item_83)?;
@@ -891,7 +896,7 @@ fn batch_statement_error_from_py(
     }
     if let Some(value) = dict_value(values, "item")? {
         let mapping_170 = value.cast::<PyDict>()?;
-        let mut converted_169 = HashMap::new();
+        let mut converted_169 = HashMap::with_capacity(mapping_170.len());
         for (key_171, value_172) in mapping_170.iter() {
             let converted_key_173: String = key_171.extract()?;
             let converted_value_174 = attribute_value_from_py(&value_172)?;
@@ -944,7 +949,8 @@ fn batch_statement_request_from_py(
         builder = builder.set_statement(Some(converted_182));
     }
     if let Some(value) = dict_value(values, "parameters")? {
-        let mut converted_183 = Vec::new();
+        let mut converted_183 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_184 in value.try_iter()? {
             let item_185 = item_result_184?;
             let converted_item_186 = attribute_value_from_py(&item_185)?;
@@ -1016,7 +1022,7 @@ fn batch_statement_response_from_py(
     }
     if let Some(value) = dict_value(values, "item")? {
         let mapping_199 = value.cast::<PyDict>()?;
-        let mut converted_198 = HashMap::new();
+        let mut converted_198 = HashMap::with_capacity(mapping_199.len());
         for (key_200, value_201) in mapping_199.iter() {
             let converted_key_202: String = key_200.extract()?;
             let converted_value_203 = attribute_value_from_py(&value_201)?;
@@ -1108,7 +1114,7 @@ fn cancellation_reason_from_py(
     let mut builder = aws_sdk_dynamodb::types::CancellationReason::builder();
     if let Some(value) = dict_value(values, "item")? {
         let mapping_218 = value.cast::<PyDict>()?;
-        let mut converted_217 = HashMap::new();
+        let mut converted_217 = HashMap::with_capacity(mapping_218.len());
         for (key_219, value_220) in mapping_218.iter() {
             let converted_key_221: String = key_219.extract()?;
             let converted_value_222 = attribute_value_from_py(&value_220)?;
@@ -1207,7 +1213,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_dynamodb::types::Condition::builder();
     if let Some(value) = dict_value(values, "attribute_value_list")? {
-        let mut converted_238 = Vec::new();
+        let mut converted_238 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_239 in value.try_iter()? {
             let item_240 = item_result_239?;
             let converted_item_241 = attribute_value_from_py(&item_240)?;
@@ -1254,7 +1261,7 @@ fn condition_check_from_py(
     let mut builder = aws_sdk_dynamodb::types::ConditionCheck::builder();
     if let Some(value) = dict_value(values, "key")? {
         let mapping_249 = value.cast::<PyDict>()?;
-        let mut converted_248 = HashMap::new();
+        let mut converted_248 = HashMap::with_capacity(mapping_249.len());
         for (key_250, value_251) in mapping_249.iter() {
             let converted_key_252: String = key_250.extract()?;
             let converted_value_253 = attribute_value_from_py(&value_251)?;
@@ -1272,7 +1279,7 @@ fn condition_check_from_py(
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_257 = value.cast::<PyDict>()?;
-        let mut converted_256 = HashMap::new();
+        let mut converted_256 = HashMap::with_capacity(mapping_257.len());
         for (key_258, value_259) in mapping_257.iter() {
             let converted_key_260: String = key_258.extract()?;
             let converted_value_261: String = value_259.extract()?;
@@ -1282,7 +1289,7 @@ fn condition_check_from_py(
     }
     if let Some(value) = dict_value(values, "expression_attribute_values")? {
         let mapping_263 = value.cast::<PyDict>()?;
-        let mut converted_262 = HashMap::new();
+        let mut converted_262 = HashMap::with_capacity(mapping_263.len());
         for (key_264, value_265) in mapping_263.iter() {
             let converted_key_266: String = key_264.extract()?;
             let converted_value_267 = attribute_value_from_py(&value_265)?;
@@ -1379,7 +1386,7 @@ fn consumed_capacity_from_py(
     }
     if let Some(value) = dict_value(values, "local_secondary_indexes")? {
         let mapping_294 = value.cast::<PyDict>()?;
-        let mut converted_293 = HashMap::new();
+        let mut converted_293 = HashMap::with_capacity(mapping_294.len());
         for (key_295, value_296) in mapping_294.iter() {
             let converted_key_297: String = key_295.extract()?;
             let converted_value_298 = capacity_from_py(&value_296)?;
@@ -1389,7 +1396,7 @@ fn consumed_capacity_from_py(
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
         let mapping_300 = value.cast::<PyDict>()?;
-        let mut converted_299 = HashMap::new();
+        let mut converted_299 = HashMap::with_capacity(mapping_300.len());
         for (key_301, value_302) in mapping_300.iter() {
             let converted_key_303: String = key_301.extract()?;
             let converted_value_304 = capacity_from_py(&value_302)?;
@@ -1399,7 +1406,7 @@ fn consumed_capacity_from_py(
     }
     if let Some(value) = dict_value(values, "vector_indexes")? {
         let mapping_306 = value.cast::<PyDict>()?;
-        let mut converted_305 = HashMap::new();
+        let mut converted_305 = HashMap::with_capacity(mapping_306.len());
         for (key_307, value_308) in mapping_306.iter() {
             let converted_key_309: String = key_307.extract()?;
             let converted_value_310 = vector_capacity_from_py(&value_308)?;
@@ -1592,7 +1599,8 @@ fn create_global_secondary_index_action_from_py(
         builder = builder.set_index_name(Some(converted_346));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_347 = Vec::new();
+        let mut converted_347 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_348 in value.try_iter()? {
             let item_349 = item_result_348?;
             let converted_item_350 = key_schema_element_from_py(&item_349)?;
@@ -1732,7 +1740,8 @@ fn create_replication_group_member_action_from_py(
         builder = builder.set_on_demand_throughput_override(Some(converted_370));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_371 = Vec::new();
+        let mut converted_371 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_372 in value.try_iter()? {
             let item_373 = item_result_372?;
             let converted_item_374 = replica_global_secondary_index_from_py(&item_373)?;
@@ -1809,7 +1818,8 @@ fn create_vector_index_action_from_py(
         builder = builder.set_vector_attribute(Some(converted_386));
     }
     if let Some(value) = dict_value(values, "search_schema")? {
-        let mut converted_387 = Vec::new();
+        let mut converted_387 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_388 in value.try_iter()? {
             let item_389 = item_result_388?;
             let converted_item_390 = search_schema_element_from_py(&item_389)?;
@@ -1881,7 +1891,8 @@ fn csv_options_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::t
         builder = builder.set_delimiter(Some(converted_403));
     }
     if let Some(value) = dict_value(values, "header_list")? {
-        let mut converted_404 = Vec::new();
+        let mut converted_404 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_405 in value.try_iter()? {
             let item_406 = item_result_405?;
             let converted_item_407: String = item_406.extract()?;
@@ -1922,7 +1933,7 @@ fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     let mut builder = aws_sdk_dynamodb::types::Delete::builder();
     if let Some(value) = dict_value(values, "key")? {
         let mapping_413 = value.cast::<PyDict>()?;
-        let mut converted_412 = HashMap::new();
+        let mut converted_412 = HashMap::with_capacity(mapping_413.len());
         for (key_414, value_415) in mapping_413.iter() {
             let converted_key_416: String = key_414.extract()?;
             let converted_value_417 = attribute_value_from_py(&value_415)?;
@@ -1940,7 +1951,7 @@ fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_421 = value.cast::<PyDict>()?;
-        let mut converted_420 = HashMap::new();
+        let mut converted_420 = HashMap::with_capacity(mapping_421.len());
         for (key_422, value_423) in mapping_421.iter() {
             let converted_key_424: String = key_422.extract()?;
             let converted_value_425: String = value_423.extract()?;
@@ -1950,7 +1961,7 @@ fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     }
     if let Some(value) = dict_value(values, "expression_attribute_values")? {
         let mapping_427 = value.cast::<PyDict>()?;
-        let mut converted_426 = HashMap::new();
+        let mut converted_426 = HashMap::with_capacity(mapping_427.len());
         for (key_428, value_429) in mapping_427.iter() {
             let converted_key_430: String = key_428.extract()?;
             let converted_value_431 = attribute_value_from_py(&value_429)?;
@@ -2124,7 +2135,7 @@ fn delete_request_from_py(
     let mut builder = aws_sdk_dynamodb::types::DeleteRequest::builder();
     if let Some(value) = dict_value(values, "key")? {
         let mapping_461 = value.cast::<PyDict>()?;
-        let mut converted_460 = HashMap::new();
+        let mut converted_460 = HashMap::with_capacity(mapping_461.len());
         for (key_462, value_463) in mapping_461.iter() {
             let converted_key_464: String = key_462.extract()?;
             let converted_value_465 = attribute_value_from_py(&value_463)?;
@@ -2288,7 +2299,8 @@ fn expected_attribute_value_from_py(
         builder = builder.set_comparison_operator(Some(converted_487));
     }
     if let Some(value) = dict_value(values, "attribute_value_list")? {
-        let mut converted_489 = Vec::new();
+        let mut converted_489 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_490 in value.try_iter()? {
             let item_491 = item_result_490?;
             let converted_item_492 = attribute_value_from_py(&item_491)?;
@@ -2694,7 +2706,7 @@ fn filter_specification_from_py(
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_566 = value.cast::<PyDict>()?;
-        let mut converted_565 = HashMap::new();
+        let mut converted_565 = HashMap::with_capacity(mapping_566.len());
         for (key_567, value_568) in mapping_566.iter() {
             let converted_key_569: String = key_567.extract()?;
             let converted_value_570: String = value_568.extract()?;
@@ -2704,7 +2716,7 @@ fn filter_specification_from_py(
     }
     if let Some(value) = dict_value(values, "expression_attribute_values")? {
         let mapping_572 = value.cast::<PyDict>()?;
-        let mut converted_571 = HashMap::new();
+        let mut converted_571 = HashMap::with_capacity(mapping_572.len());
         for (key_573, value_574) in mapping_572.iter() {
             let converted_key_575: String = key_573.extract()?;
             let converted_value_576 = attribute_value_from_py(&value_574)?;
@@ -2770,7 +2782,7 @@ fn get_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Ge
     let mut builder = aws_sdk_dynamodb::types::Get::builder();
     if let Some(value) = dict_value(values, "key")? {
         let mapping_591 = value.cast::<PyDict>()?;
-        let mut converted_590 = HashMap::new();
+        let mut converted_590 = HashMap::with_capacity(mapping_591.len());
         for (key_592, value_593) in mapping_591.iter() {
             let converted_key_594: String = key_592.extract()?;
             let converted_value_595 = attribute_value_from_py(&value_593)?;
@@ -2788,7 +2800,7 @@ fn get_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Ge
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_599 = value.cast::<PyDict>()?;
-        let mut converted_598 = HashMap::new();
+        let mut converted_598 = HashMap::with_capacity(mapping_599.len());
         for (key_600, value_601) in mapping_599.iter() {
             let converted_key_602: String = key_600.extract()?;
             let converted_value_603: String = value_601.extract()?;
@@ -2844,7 +2856,8 @@ fn global_secondary_index_from_py(
         builder = builder.set_index_name(Some(converted_616));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_617 = Vec::new();
+        let mut converted_617 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_618 in value.try_iter()? {
             let item_619 = item_result_618?;
             let converted_item_620 = key_schema_element_from_py(&item_619)?;
@@ -2963,7 +2976,8 @@ fn global_secondary_index_description_from_py(
         builder = builder.set_index_name(Some(converted_637));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_638 = Vec::new();
+        let mut converted_638 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_639 in value.try_iter()? {
             let item_640 = item_result_639?;
             let converted_item_641 = key_schema_element_from_py(&item_640)?;
@@ -3100,7 +3114,8 @@ fn global_secondary_index_info_from_py(
         builder = builder.set_index_name(Some(converted_665));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_666 = Vec::new();
+        let mut converted_666 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_667 in value.try_iter()? {
             let item_668 = item_result_667?;
             let converted_item_669 = key_schema_element_from_py(&item_668)?;
@@ -3270,7 +3285,8 @@ fn global_table_from_py(
         builder = builder.set_global_table_name(Some(converted_693));
     }
     if let Some(value) = dict_value(values, "replication_group")? {
-        let mut converted_694 = Vec::new();
+        let mut converted_694 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_695 in value.try_iter()? {
             let item_696 = item_result_695?;
             let converted_item_697 = replica_from_py(&item_696)?;
@@ -3312,7 +3328,8 @@ fn global_table_description_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_dynamodb::types::GlobalTableDescription::builder();
     if let Some(value) = dict_value(values, "replication_group")? {
-        let mut converted_702 = Vec::new();
+        let mut converted_702 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_703 in value.try_iter()? {
             let item_704 = item_result_703?;
             let converted_item_705 = replica_description_from_py(&item_704)?;
@@ -3923,7 +3940,7 @@ fn item_collection_metrics_from_py(
     let mut builder = aws_sdk_dynamodb::types::ItemCollectionMetrics::builder();
     if let Some(value) = dict_value(values, "item_collection_key")? {
         let mapping_809 = value.cast::<PyDict>()?;
-        let mut converted_808 = HashMap::new();
+        let mut converted_808 = HashMap::with_capacity(mapping_809.len());
         for (key_810, value_811) in mapping_809.iter() {
             let converted_key_812: String = key_810.extract()?;
             let converted_value_813 = attribute_value_from_py(&value_811)?;
@@ -3932,7 +3949,8 @@ fn item_collection_metrics_from_py(
         builder = builder.set_item_collection_key(Some(converted_808));
     }
     if let Some(value) = dict_value(values, "size_estimate_range_gb")? {
-        let mut converted_814 = Vec::new();
+        let mut converted_814 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_815 in value.try_iter()? {
             let item_816 = item_result_815?;
             let converted_item_817: f64 = item_816.extract()?;
@@ -3981,7 +3999,7 @@ fn item_response_from_py(
     let mut builder = aws_sdk_dynamodb::types::ItemResponse::builder();
     if let Some(value) = dict_value(values, "item")? {
         let mapping_827 = value.cast::<PyDict>()?;
-        let mut converted_826 = HashMap::new();
+        let mut converted_826 = HashMap::with_capacity(mapping_827.len());
         for (key_828, value_829) in mapping_827.iter() {
             let converted_key_830: String = key_828.extract()?;
             let converted_value_831 = attribute_value_from_py(&value_829)?;
@@ -4049,11 +4067,12 @@ fn keys_and_attributes_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_dynamodb::types::KeysAndAttributes::builder();
     if let Some(value) = dict_value(values, "keys")? {
-        let mut converted_842 = Vec::new();
+        let mut converted_842 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_843 in value.try_iter()? {
             let item_844 = item_result_843?;
             let mapping_846 = item_844.cast::<PyDict>()?;
-            let mut converted_item_845 = HashMap::new();
+            let mut converted_item_845 = HashMap::with_capacity(mapping_846.len());
             for (key_847, value_848) in mapping_846.iter() {
                 let converted_key_849: String = key_847.extract()?;
                 let converted_value_850 = attribute_value_from_py(&value_848)?;
@@ -4064,7 +4083,8 @@ fn keys_and_attributes_from_py(
         builder = builder.set_keys(Some(converted_842));
     }
     if let Some(value) = dict_value(values, "attributes_to_get")? {
-        let mut converted_851 = Vec::new();
+        let mut converted_851 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_852 in value.try_iter()? {
             let item_853 = item_result_852?;
             let converted_item_854: String = item_853.extract()?;
@@ -4082,7 +4102,7 @@ fn keys_and_attributes_from_py(
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_858 = value.cast::<PyDict>()?;
-        let mut converted_857 = HashMap::new();
+        let mut converted_857 = HashMap::with_capacity(mapping_858.len());
         for (key_859, value_860) in mapping_858.iter() {
             let converted_key_861: String = key_859.extract()?;
             let converted_value_862: String = value_860.extract()?;
@@ -4222,7 +4242,8 @@ fn local_secondary_index_from_py(
         builder = builder.set_index_name(Some(converted_890));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_891 = Vec::new();
+        let mut converted_891 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_892 in value.try_iter()? {
             let item_893 = item_result_892?;
             let converted_item_894 = key_schema_element_from_py(&item_893)?;
@@ -4272,7 +4293,8 @@ fn local_secondary_index_description_from_py(
         builder = builder.set_index_name(Some(converted_901));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_902 = Vec::new();
+        let mut converted_902 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_903 in value.try_iter()? {
             let item_904 = item_result_903?;
             let converted_item_905 = key_schema_element_from_py(&item_904)?;
@@ -4358,7 +4380,8 @@ fn local_secondary_index_info_from_py(
         builder = builder.set_index_name(Some(converted_918));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_919 = Vec::new();
+        let mut converted_919 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_920 in value.try_iter()? {
             let item_921 = item_result_920?;
             let converted_item_922 = key_schema_element_from_py(&item_921)?;
@@ -4476,7 +4499,8 @@ fn parameterized_statement_from_py(
         builder = builder.set_statement(Some(converted_935));
     }
     if let Some(value) = dict_value(values, "parameters")? {
-        let mut converted_936 = Vec::new();
+        let mut converted_936 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_937 in value.try_iter()? {
             let item_938 = item_result_937?;
             let converted_item_939 = attribute_value_from_py(&item_938)?;
@@ -4636,7 +4660,8 @@ fn projection_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::ty
         builder = builder.set_projection_type(Some(converted_962));
     }
     if let Some(value) = dict_value(values, "non_key_attributes")? {
-        let mut converted_964 = Vec::new();
+        let mut converted_964 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_965 in value.try_iter()? {
             let item_966 = item_result_965?;
             let converted_item_967: String = item_966.extract()?;
@@ -4809,7 +4834,7 @@ fn put_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Pu
     let mut builder = aws_sdk_dynamodb::types::Put::builder();
     if let Some(value) = dict_value(values, "item")? {
         let mapping_991 = value.cast::<PyDict>()?;
-        let mut converted_990 = HashMap::new();
+        let mut converted_990 = HashMap::with_capacity(mapping_991.len());
         for (key_992, value_993) in mapping_991.iter() {
             let converted_key_994: String = key_992.extract()?;
             let converted_value_995 = attribute_value_from_py(&value_993)?;
@@ -4827,7 +4852,7 @@ fn put_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Pu
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_999 = value.cast::<PyDict>()?;
-        let mut converted_998 = HashMap::new();
+        let mut converted_998 = HashMap::with_capacity(mapping_999.len());
         for (key_1000, value_1001) in mapping_999.iter() {
             let converted_key_1002: String = key_1000.extract()?;
             let converted_value_1003: String = value_1001.extract()?;
@@ -4837,7 +4862,7 @@ fn put_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Pu
     }
     if let Some(value) = dict_value(values, "expression_attribute_values")? {
         let mapping_1005 = value.cast::<PyDict>()?;
-        let mut converted_1004 = HashMap::new();
+        let mut converted_1004 = HashMap::with_capacity(mapping_1005.len());
         for (key_1006, value_1007) in mapping_1005.iter() {
             let converted_key_1008: String = key_1006.extract()?;
             let converted_value_1009 = attribute_value_from_py(&value_1007)?;
@@ -4913,7 +4938,7 @@ fn put_request_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::t
     let mut builder = aws_sdk_dynamodb::types::PutRequest::builder();
     if let Some(value) = dict_value(values, "item")? {
         let mapping_1031 = value.cast::<PyDict>()?;
-        let mut converted_1030 = HashMap::new();
+        let mut converted_1030 = HashMap::with_capacity(mapping_1031.len());
         for (key_1032, value_1033) in mapping_1031.iter() {
             let converted_key_1034: String = key_1032.extract()?;
             let converted_value_1035 = attribute_value_from_py(&value_1033)?;
@@ -4973,7 +4998,8 @@ fn replica_auto_scaling_description_from_py(
         builder = builder.set_region_name(Some(converted_1043));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1044 = Vec::new();
+        let mut converted_1044 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1045 in value.try_iter()? {
             let item_1046 = item_result_1045?;
             let converted_item_1047 =
@@ -5072,7 +5098,8 @@ fn replica_auto_scaling_update_from_py(
         builder = builder.set_region_name(Some(converted_1059));
     }
     if let Some(value) = dict_value(values, "replica_global_secondary_index_updates")? {
-        let mut converted_1060 = Vec::new();
+        let mut converted_1060 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1061 in value.try_iter()? {
             let item_1062 = item_result_1061?;
             let converted_item_1063 =
@@ -5171,7 +5198,8 @@ fn replica_description_from_py(
         builder = builder.set_warm_throughput(Some(converted_1079));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1080 = Vec::new();
+        let mut converted_1080 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1081 in value.try_iter()? {
             let item_1082 = item_result_1081?;
             let converted_item_1083 =
@@ -5686,7 +5714,8 @@ fn replica_settings_description_from_py(
             .set_replica_provisioned_write_capacity_auto_scaling_settings(Some(converted_1157));
     }
     if let Some(value) = dict_value(values, "replica_global_secondary_index_settings")? {
-        let mut converted_1158 = Vec::new();
+        let mut converted_1158 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1159 in value.try_iter()? {
             let item_1160 = item_result_1159?;
             let converted_item_1161 =
@@ -5803,7 +5832,8 @@ fn replica_settings_update_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "replica_global_secondary_index_settings_update")? {
-        let mut converted_1177 = Vec::new();
+        let mut converted_1177 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1178 in value.try_iter()? {
             let item_1179 = item_result_1178?;
             let converted_item_1180 =
@@ -6069,7 +6099,7 @@ fn search_result_item_from_py(
     let mut builder = aws_sdk_dynamodb::types::SearchResultItem::builder();
     if let Some(value) = dict_value(values, "item")? {
         let mapping_1218 = value.cast::<PyDict>()?;
-        let mut converted_1217 = HashMap::new();
+        let mut converted_1217 = HashMap::with_capacity(mapping_1218.len());
         for (key_1219, value_1220) in mapping_1218.iter() {
             let converted_key_1221: String = key_1219.extract()?;
             let converted_value_1222 = attribute_value_from_py(&value_1220)?;
@@ -6162,7 +6192,8 @@ fn source_table_details_from_py(
         builder = builder.set_table_size_bytes(Some(converted_1238));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_1239 = Vec::new();
+        let mut converted_1239 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1240 in value.try_iter()? {
             let item_1241 = item_result_1240?;
             let converted_item_1242 = key_schema_element_from_py(&item_1241)?;
@@ -6266,7 +6297,8 @@ fn source_table_feature_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_dynamodb::types::SourceTableFeatureDetails::builder();
     if let Some(value) = dict_value(values, "local_secondary_indexes")? {
-        let mut converted_1262 = Vec::new();
+        let mut converted_1262 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1263 in value.try_iter()? {
             let item_1264 = item_result_1263?;
             let converted_item_1265 = local_secondary_index_info_from_py(&item_1264)?;
@@ -6275,7 +6307,8 @@ fn source_table_feature_details_from_py(
         builder = builder.set_local_secondary_indexes(Some(converted_1262));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1266 = Vec::new();
+        let mut converted_1266 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1267 in value.try_iter()? {
             let item_1268 = item_result_1267?;
             let converted_item_1269 = global_secondary_index_info_from_py(&item_1268)?;
@@ -6296,7 +6329,8 @@ fn source_table_feature_details_from_py(
         builder = builder.set_sse_description(Some(converted_1272));
     }
     if let Some(value) = dict_value(values, "vector_indexes")? {
-        let mut converted_1273 = Vec::new();
+        let mut converted_1273 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1274 in value.try_iter()? {
             let item_1275 = item_result_1274?;
             let converted_item_1276 = vector_index_info_from_py(&item_1275)?;
@@ -6527,7 +6561,8 @@ fn table_auto_scaling_description_from_py(
         builder = builder.set_table_status(Some(converted_1313));
     }
     if let Some(value) = dict_value(values, "replicas")? {
-        let mut converted_1315 = Vec::new();
+        let mut converted_1315 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1316 in value.try_iter()? {
             let item_1317 = item_result_1316?;
             let converted_item_1318 = replica_auto_scaling_description_from_py(&item_1317)?;
@@ -6621,7 +6656,8 @@ fn table_creation_parameters_from_py(
         builder = builder.set_table_name(Some(converted_1330));
     }
     if let Some(value) = dict_value(values, "attribute_definitions")? {
-        let mut converted_1331 = Vec::new();
+        let mut converted_1331 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1332 in value.try_iter()? {
             let item_1333 = item_result_1332?;
             let converted_item_1334 = attribute_definition_from_py(&item_1333)?;
@@ -6630,7 +6666,8 @@ fn table_creation_parameters_from_py(
         builder = builder.set_attribute_definitions(Some(converted_1331));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_1335 = Vec::new();
+        let mut converted_1335 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1336 in value.try_iter()? {
             let item_1337 = item_result_1336?;
             let converted_item_1338 = key_schema_element_from_py(&item_1337)?;
@@ -6656,7 +6693,8 @@ fn table_creation_parameters_from_py(
         builder = builder.set_sse_specification(Some(converted_1343));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1344 = Vec::new();
+        let mut converted_1344 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1345 in value.try_iter()? {
             let item_1346 = item_result_1345?;
             let converted_item_1347 = global_secondary_index_from_py(&item_1346)?;
@@ -6665,7 +6703,8 @@ fn table_creation_parameters_from_py(
         builder = builder.set_global_secondary_indexes(Some(converted_1344));
     }
     if let Some(value) = dict_value(values, "vector_indexes")? {
-        let mut converted_1348 = Vec::new();
+        let mut converted_1348 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1349 in value.try_iter()? {
             let item_1350 = item_result_1349?;
             let converted_item_1351 = vector_index_from_py(&item_1350)?;
@@ -6754,7 +6793,8 @@ fn table_description_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_dynamodb::types::TableDescription::builder();
     if let Some(value) = dict_value(values, "attribute_definitions")? {
-        let mut converted_1369 = Vec::new();
+        let mut converted_1369 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1370 in value.try_iter()? {
             let item_1371 = item_result_1370?;
             let converted_item_1372 = attribute_definition_from_py(&item_1371)?;
@@ -6767,7 +6807,8 @@ fn table_description_from_py(
         builder = builder.set_table_name(Some(converted_1373));
     }
     if let Some(value) = dict_value(values, "key_schema")? {
-        let mut converted_1374 = Vec::new();
+        let mut converted_1374 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1375 in value.try_iter()? {
             let item_1376 = item_result_1375?;
             let converted_item_1377 = key_schema_element_from_py(&item_1376)?;
@@ -6814,7 +6855,8 @@ fn table_description_from_py(
         builder = builder.set_billing_mode_summary(Some(converted_1387));
     }
     if let Some(value) = dict_value(values, "local_secondary_indexes")? {
-        let mut converted_1388 = Vec::new();
+        let mut converted_1388 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1389 in value.try_iter()? {
             let item_1390 = item_result_1389?;
             let converted_item_1391 = local_secondary_index_description_from_py(&item_1390)?;
@@ -6823,7 +6865,8 @@ fn table_description_from_py(
         builder = builder.set_local_secondary_indexes(Some(converted_1388));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1392 = Vec::new();
+        let mut converted_1392 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1393 in value.try_iter()? {
             let item_1394 = item_result_1393?;
             let converted_item_1395 = global_secondary_index_description_from_py(&item_1394)?;
@@ -6848,7 +6891,8 @@ fn table_description_from_py(
         builder = builder.set_global_table_version(Some(converted_1399));
     }
     if let Some(value) = dict_value(values, "replicas")? {
-        let mut converted_1400 = Vec::new();
+        let mut converted_1400 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1401 in value.try_iter()? {
             let item_1402 = item_result_1401?;
             let converted_item_1403 = replica_description_from_py(&item_1402)?;
@@ -6857,7 +6901,8 @@ fn table_description_from_py(
         builder = builder.set_replicas(Some(converted_1400));
     }
     if let Some(value) = dict_value(values, "global_table_witnesses")? {
-        let mut converted_1404 = Vec::new();
+        let mut converted_1404 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1405 in value.try_iter()? {
             let item_1406 = item_result_1405?;
             let converted_item_1407 = global_table_witness_description_from_py(&item_1406)?;
@@ -6911,7 +6956,8 @@ fn table_description_from_py(
         builder = builder.set_multi_region_consistency(Some(converted_1418));
     }
     if let Some(value) = dict_value(values, "vector_indexes")? {
-        let mut converted_1420 = Vec::new();
+        let mut converted_1420 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1421 in value.try_iter()? {
             let item_1422 = item_result_1421?;
             let converted_item_1423 = vector_index_description_from_py(&item_1422)?;
@@ -7408,7 +7454,7 @@ fn update_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     let mut builder = aws_sdk_dynamodb::types::Update::builder();
     if let Some(value) = dict_value(values, "key")? {
         let mapping_1503 = value.cast::<PyDict>()?;
-        let mut converted_1502 = HashMap::new();
+        let mut converted_1502 = HashMap::with_capacity(mapping_1503.len());
         for (key_1504, value_1505) in mapping_1503.iter() {
             let converted_key_1506: String = key_1504.extract()?;
             let converted_value_1507 = attribute_value_from_py(&value_1505)?;
@@ -7430,7 +7476,7 @@ fn update_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     }
     if let Some(value) = dict_value(values, "expression_attribute_names")? {
         let mapping_1512 = value.cast::<PyDict>()?;
-        let mut converted_1511 = HashMap::new();
+        let mut converted_1511 = HashMap::with_capacity(mapping_1512.len());
         for (key_1513, value_1514) in mapping_1512.iter() {
             let converted_key_1515: String = key_1513.extract()?;
             let converted_value_1516: String = value_1514.extract()?;
@@ -7440,7 +7486,7 @@ fn update_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types:
     }
     if let Some(value) = dict_value(values, "expression_attribute_values")? {
         let mapping_1518 = value.cast::<PyDict>()?;
-        let mut converted_1517 = HashMap::new();
+        let mut converted_1517 = HashMap::with_capacity(mapping_1518.len());
         for (key_1519, value_1520) in mapping_1518.iter() {
             let converted_key_1521: String = key_1519.extract()?;
             let converted_value_1522 = attribute_value_from_py(&value_1520)?;
@@ -7618,7 +7664,8 @@ fn update_replication_group_member_action_from_py(
         builder = builder.set_on_demand_throughput_override(Some(converted_1558));
     }
     if let Some(value) = dict_value(values, "global_secondary_indexes")? {
-        let mut converted_1559 = Vec::new();
+        let mut converted_1559 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1560 in value.try_iter()? {
             let item_1561 = item_result_1560?;
             let converted_item_1562 = replica_global_secondary_index_from_py(&item_1561)?;
@@ -7755,7 +7802,8 @@ fn vector_index_from_py(
         builder = builder.set_vector_attribute(Some(converted_1580));
     }
     if let Some(value) = dict_value(values, "search_schema")? {
-        let mut converted_1581 = Vec::new();
+        let mut converted_1581 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1582 in value.try_iter()? {
             let item_1583 = item_result_1582?;
             let converted_item_1584 = search_schema_element_from_py(&item_1583)?;
@@ -7829,7 +7877,8 @@ fn vector_index_description_from_py(
         builder = builder.set_index_name(Some(converted_1597));
     }
     if let Some(value) = dict_value(values, "search_schema")? {
-        let mut converted_1598 = Vec::new();
+        let mut converted_1598 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1599 in value.try_iter()? {
             let item_1600 = item_result_1599?;
             let converted_item_1601 = search_schema_element_from_py(&item_1600)?;
@@ -7972,7 +8021,8 @@ fn vector_index_info_from_py(
         builder = builder.set_vector_attribute(Some(converted_1627));
     }
     if let Some(value) = dict_value(values, "search_schema")? {
-        let mut converted_1628 = Vec::new();
+        let mut converted_1628 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1629 in value.try_iter()? {
             let item_1630 = item_result_1629?;
             let converted_item_1631 = search_schema_element_from_py(&item_1630)?;
@@ -17089,7 +17139,8 @@ impl DynamoDBClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let statements_value = if let Some(value) = dict_value(params, "statements")? {
-            let mut converted_1656 = Vec::new();
+            let mut converted_1656 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1657 in value.try_iter()? {
                 let item_1658 = item_result_1657?;
                 let converted_item_1659 = batch_statement_request_from_py(&item_1658)?;
@@ -17118,7 +17169,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchExecuteStatement"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchExecuteStatementOutput { inner: output }))
+            Ok(PyBatchExecuteStatementOutput { inner: output })
         })
     }
 
@@ -17131,7 +17182,7 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
             let mapping_1663 = value.cast::<PyDict>()?;
-            let mut converted_1662 = HashMap::new();
+            let mut converted_1662 = HashMap::with_capacity(mapping_1663.len());
             for (key_1664, value_1665) in mapping_1663.iter() {
                 let converted_key_1666: String = key_1664.extract()?;
                 let converted_value_1667 = keys_and_attributes_from_py(&value_1665)?;
@@ -17160,7 +17211,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetItem"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchGetItemOutput { inner: output }))
+            Ok(PyBatchGetItemOutput { inner: output })
         })
     }
 
@@ -17173,10 +17224,11 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
             let mapping_1671 = value.cast::<PyDict>()?;
-            let mut converted_1670 = HashMap::new();
+            let mut converted_1670 = HashMap::with_capacity(mapping_1671.len());
             for (key_1672, value_1673) in mapping_1671.iter() {
                 let converted_key_1674: String = key_1672.extract()?;
-                let mut converted_value_1675 = Vec::new();
+                let mut converted_value_1675 =
+                    Vec::with_capacity(value_1673.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1676 in value_1673.try_iter()? {
                     let item_1677 = item_result_1676?;
                     let converted_item_1678 = write_request_from_py(&item_1677)?;
@@ -17218,7 +17270,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchWriteItem"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchWriteItemOutput { inner: output }))
+            Ok(PyBatchWriteItemOutput { inner: output })
         })
     }
 
@@ -17251,7 +17303,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBackup"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateBackupOutput { inner: output }))
+            Ok(PyCreateBackupOutput { inner: output })
         })
     }
 
@@ -17271,7 +17323,8 @@ impl DynamoDBClient {
         };
         let replication_group_value = if let Some(value) = dict_value(params, "replication_group")?
         {
-            let mut converted_1686 = Vec::new();
+            let mut converted_1686 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1687 in value.try_iter()? {
                 let item_1688 = item_result_1687?;
                 let converted_item_1689 = replica_from_py(&item_1688)?;
@@ -17291,7 +17344,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGlobalTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateGlobalTableOutput { inner: output }))
+            Ok(PyCreateGlobalTableOutput { inner: output })
         })
     }
 
@@ -17304,7 +17357,8 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let attribute_definitions_value =
             if let Some(value) = dict_value(params, "attribute_definitions")? {
-                let mut converted_1690 = Vec::new();
+                let mut converted_1690 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1691 in value.try_iter()? {
                     let item_1692 = item_result_1691?;
                     let converted_item_1693 = attribute_definition_from_py(&item_1692)?;
@@ -17321,7 +17375,8 @@ impl DynamoDBClient {
             None
         };
         let key_schema_value = if let Some(value) = dict_value(params, "key_schema")? {
-            let mut converted_1695 = Vec::new();
+            let mut converted_1695 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1696 in value.try_iter()? {
                 let item_1697 = item_result_1696?;
                 let converted_item_1698 = key_schema_element_from_py(&item_1697)?;
@@ -17333,7 +17388,8 @@ impl DynamoDBClient {
         };
         let local_secondary_indexes_value =
             if let Some(value) = dict_value(params, "local_secondary_indexes")? {
-                let mut converted_1699 = Vec::new();
+                let mut converted_1699 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1700 in value.try_iter()? {
                     let item_1701 = item_result_1700?;
                     let converted_item_1702 = local_secondary_index_from_py(&item_1701)?;
@@ -17345,7 +17401,8 @@ impl DynamoDBClient {
             };
         let global_secondary_indexes_value =
             if let Some(value) = dict_value(params, "global_secondary_indexes")? {
-                let mut converted_1703 = Vec::new();
+                let mut converted_1703 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1704 in value.try_iter()? {
                     let item_1705 = item_result_1704?;
                     let converted_item_1706 = global_secondary_index_from_py(&item_1705)?;
@@ -17385,7 +17442,8 @@ impl DynamoDBClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_1712 = Vec::new();
+            let mut converted_1712 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1713 in value.try_iter()? {
                 let item_1714 = item_result_1713?;
                 let converted_item_1715 = tag_from_py(&item_1714)?;
@@ -17448,7 +17506,8 @@ impl DynamoDBClient {
             None
         };
         let vector_indexes_value = if let Some(value) = dict_value(params, "vector_indexes")? {
-            let mut converted_1725 = Vec::new();
+            let mut converted_1725 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1726 in value.try_iter()? {
                 let item_1727 = item_result_1726?;
                 let converted_item_1728 = vector_index_from_py(&item_1727)?;
@@ -17487,7 +17546,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTable")))?;
-            Python::attach(|py| Py::new(py, PyCreateTableOutput { inner: output }))
+            Ok(PyCreateTableOutput { inner: output })
         })
     }
 
@@ -17513,7 +17572,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBackup"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteBackupOutput { inner: output }))
+            Ok(PyDeleteBackupOutput { inner: output })
         })
     }
 
@@ -17532,7 +17591,7 @@ impl DynamoDBClient {
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
             let mapping_1732 = value.cast::<PyDict>()?;
-            let mut converted_1731 = HashMap::new();
+            let mut converted_1731 = HashMap::with_capacity(mapping_1732.len());
             for (key_1733, value_1734) in mapping_1732.iter() {
                 let converted_key_1735: String = key_1733.extract()?;
                 let converted_value_1736 = attribute_value_from_py(&value_1734)?;
@@ -17544,7 +17603,7 @@ impl DynamoDBClient {
         };
         let expected_value = if let Some(value) = dict_value(params, "expected")? {
             let mapping_1738 = value.cast::<PyDict>()?;
-            let mut converted_1737 = HashMap::new();
+            let mut converted_1737 = HashMap::with_capacity(mapping_1738.len());
             for (key_1739, value_1740) in mapping_1738.iter() {
                 let converted_key_1741: String = key_1739.extract()?;
                 let converted_value_1742 = expected_attribute_value_from_py(&value_1740)?;
@@ -17600,7 +17659,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_1753 = value.cast::<PyDict>()?;
-                let mut converted_1752 = HashMap::new();
+                let mut converted_1752 = HashMap::with_capacity(mapping_1753.len());
                 for (key_1754, value_1755) in mapping_1753.iter() {
                     let converted_key_1756: String = key_1754.extract()?;
                     let converted_value_1757: String = value_1755.extract()?;
@@ -17613,7 +17672,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_1759 = value.cast::<PyDict>()?;
-                let mut converted_1758 = HashMap::new();
+                let mut converted_1758 = HashMap::with_capacity(mapping_1759.len());
                 for (key_1760, value_1761) in mapping_1759.iter() {
                     let converted_key_1762: String = key_1760.extract()?;
                     let converted_value_1763 = attribute_value_from_py(&value_1761)?;
@@ -17656,7 +17715,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteItem")))?;
-            Python::attach(|py| Py::new(py, PyDeleteItemOutput { inner: output }))
+            Ok(PyDeleteItemOutput { inner: output })
         })
     }
 
@@ -17690,7 +17749,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourcePolicyOutput { inner: output }))
+            Ok(PyDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -17717,7 +17776,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTable")))?;
-            Python::attach(|py| Py::new(py, PyDeleteTableOutput { inner: output }))
+            Ok(PyDeleteTableOutput { inner: output })
         })
     }
 
@@ -17743,7 +17802,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeBackup"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeBackupOutput { inner: output }))
+            Ok(PyDescribeBackupOutput { inner: output })
         })
     }
 
@@ -17769,7 +17828,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContinuousBackups"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeContinuousBackupsOutput { inner: output }))
+            Ok(PyDescribeContinuousBackupsOutput { inner: output })
         })
     }
 
@@ -17802,7 +17861,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContributorInsights"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeContributorInsightsOutput { inner: output }))
+            Ok(PyDescribeContributorInsightsOutput { inner: output })
         })
     }
 
@@ -17818,7 +17877,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeEndpointsResponse { inner: output }))
+            Ok(PyDescribeEndpointsResponse { inner: output })
         })
     }
 
@@ -17844,7 +17903,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExport"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeExportOutput { inner: output }))
+            Ok(PyDescribeExportOutput { inner: output })
         })
     }
 
@@ -17871,7 +17930,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeGlobalTableOutput { inner: output }))
+            Ok(PyDescribeGlobalTableOutput { inner: output })
         })
     }
 
@@ -17898,7 +17957,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTableSettings"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeGlobalTableSettingsOutput { inner: output }))
+            Ok(PyDescribeGlobalTableSettingsOutput { inner: output })
         })
     }
 
@@ -17924,7 +17983,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImport"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeImportOutput { inner: output }))
+            Ok(PyDescribeImportOutput { inner: output })
         })
     }
 
@@ -17952,12 +18011,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DescribeKinesisStreamingDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeKinesisStreamingDestinationOutput { inner: output },
-                )
-            })
+            Ok(PyDescribeKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -17973,7 +18027,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLimits"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeLimitsOutput { inner: output }))
+            Ok(PyDescribeLimitsOutput { inner: output })
         })
     }
 
@@ -17999,7 +18053,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeTableOutput { inner: output }))
+            Ok(PyDescribeTableOutput { inner: output })
         })
     }
 
@@ -18025,12 +18079,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTableReplicaAutoScaling"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeTableReplicaAutoScalingOutput { inner: output },
-                )
-            })
+            Ok(PyDescribeTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
@@ -18056,7 +18105,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTimeToLive"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeTimeToLiveOutput { inner: output }))
+            Ok(PyDescribeTimeToLiveOutput { inner: output })
         })
     }
 
@@ -18101,12 +18150,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DisableKinesisStreamingDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisableKinesisStreamingDestinationOutput { inner: output },
-                )
-            })
+            Ok(PyDisableKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -18151,12 +18195,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "EnableKinesisStreamingDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyEnableKinesisStreamingDestinationOutput { inner: output },
-                )
-            })
+            Ok(PyEnableKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -18174,7 +18213,8 @@ impl DynamoDBClient {
             None
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
-            let mut converted_1788 = Vec::new();
+            let mut converted_1788 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1789 in value.try_iter()? {
                 let item_1790 = item_result_1789?;
                 let converted_item_1791 = attribute_value_from_py(&item_1790)?;
@@ -18239,7 +18279,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteStatement"))
             })?;
-            Python::attach(|py| Py::new(py, PyExecuteStatementOutput { inner: output }))
+            Ok(PyExecuteStatementOutput { inner: output })
         })
     }
 
@@ -18252,7 +18292,8 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let transact_statements_value =
             if let Some(value) = dict_value(params, "transact_statements")? {
-                let mut converted_1799 = Vec::new();
+                let mut converted_1799 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1800 in value.try_iter()? {
                     let item_1801 = item_result_1800?;
                     let converted_item_1802 = parameterized_statement_from_py(&item_1801)?;
@@ -18289,7 +18330,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteTransaction"))
             })?;
-            Python::attach(|py| Py::new(py, PyExecuteTransactionOutput { inner: output }))
+            Ok(PyExecuteTransactionOutput { inner: output })
         })
     }
 
@@ -18406,7 +18447,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExportTableToPointInTime"))
             })?;
-            Python::attach(|py| Py::new(py, PyExportTableToPointInTimeOutput { inner: output }))
+            Ok(PyExportTableToPointInTimeOutput { inner: output })
         })
     }
 
@@ -18425,7 +18466,7 @@ impl DynamoDBClient {
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
             let mapping_1824 = value.cast::<PyDict>()?;
-            let mut converted_1823 = HashMap::new();
+            let mut converted_1823 = HashMap::with_capacity(mapping_1824.len());
             for (key_1825, value_1826) in mapping_1824.iter() {
                 let converted_key_1827: String = key_1825.extract()?;
                 let converted_value_1828 = attribute_value_from_py(&value_1826)?;
@@ -18437,7 +18478,8 @@ impl DynamoDBClient {
         };
         let attributes_to_get_value = if let Some(value) = dict_value(params, "attributes_to_get")?
         {
-            let mut converted_1829 = Vec::new();
+            let mut converted_1829 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1830 in value.try_iter()? {
                 let item_1831 = item_result_1830?;
                 let converted_item_1832: String = item_1831.extract()?;
@@ -18472,7 +18514,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_1838 = value.cast::<PyDict>()?;
-                let mut converted_1837 = HashMap::new();
+                let mut converted_1837 = HashMap::with_capacity(mapping_1838.len());
                 for (key_1839, value_1840) in mapping_1838.iter() {
                     let converted_key_1841: String = key_1839.extract()?;
                     let converted_value_1842: String = value_1840.extract()?;
@@ -18498,7 +18540,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetItem")))?;
-            Python::attach(|py| Py::new(py, PyGetItemOutput { inner: output }))
+            Ok(PyGetItemOutput { inner: output })
         })
     }
 
@@ -18524,7 +18566,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyOutput { inner: output }))
+            Ok(PyGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -18593,7 +18635,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ImportTable")))?;
-            Python::attach(|py| Py::new(py, PyImportTableOutput { inner: output }))
+            Ok(PyImportTableOutput { inner: output })
         })
     }
 
@@ -18670,7 +18712,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBackups")))?;
-            Python::attach(|py| Py::new(py, PyListBackupsOutput { inner: output }))
+            Ok(PyListBackupsOutput { inner: output })
         })
     }
 
@@ -18710,7 +18752,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContributorInsights"))
             })?;
-            Python::attach(|py| Py::new(py, PyListContributorInsightsOutput { inner: output }))
+            Ok(PyListContributorInsightsOutput { inner: output })
         })
     }
 
@@ -18751,7 +18793,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListExports")))?;
-            Python::attach(|py| Py::new(py, PyListExportsOutput { inner: output }))
+            Ok(PyListExportsOutput { inner: output })
         })
     }
 
@@ -18792,7 +18834,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGlobalTables"))
             })?;
-            Python::attach(|py| Py::new(py, PyListGlobalTablesOutput { inner: output }))
+            Ok(PyListGlobalTablesOutput { inner: output })
         })
     }
 
@@ -18833,7 +18875,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
-            Python::attach(|py| Py::new(py, PyListImportsOutput { inner: output }))
+            Ok(PyListImportsOutput { inner: output })
         })
     }
 
@@ -18868,7 +18910,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTables")))?;
-            Python::attach(|py| Py::new(py, PyListTablesOutput { inner: output }))
+            Ok(PyListTablesOutput { inner: output })
         })
     }
 
@@ -18901,7 +18943,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsOfResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsOfResourceOutput { inner: output }))
+            Ok(PyListTagsOfResourceOutput { inner: output })
         })
     }
 
@@ -18920,7 +18962,7 @@ impl DynamoDBClient {
         };
         let item_value = if let Some(value) = dict_value(params, "item")? {
             let mapping_1879 = value.cast::<PyDict>()?;
-            let mut converted_1878 = HashMap::new();
+            let mut converted_1878 = HashMap::with_capacity(mapping_1879.len());
             for (key_1880, value_1881) in mapping_1879.iter() {
                 let converted_key_1882: String = key_1880.extract()?;
                 let converted_value_1883 = attribute_value_from_py(&value_1881)?;
@@ -18932,7 +18974,7 @@ impl DynamoDBClient {
         };
         let expected_value = if let Some(value) = dict_value(params, "expected")? {
             let mapping_1885 = value.cast::<PyDict>()?;
-            let mut converted_1884 = HashMap::new();
+            let mut converted_1884 = HashMap::with_capacity(mapping_1885.len());
             for (key_1886, value_1887) in mapping_1885.iter() {
                 let converted_key_1888: String = key_1886.extract()?;
                 let converted_value_1889 = expected_attribute_value_from_py(&value_1887)?;
@@ -18988,7 +19030,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_1900 = value.cast::<PyDict>()?;
-                let mut converted_1899 = HashMap::new();
+                let mut converted_1899 = HashMap::with_capacity(mapping_1900.len());
                 for (key_1901, value_1902) in mapping_1900.iter() {
                     let converted_key_1903: String = key_1901.extract()?;
                     let converted_value_1904: String = value_1902.extract()?;
@@ -19001,7 +19043,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_1906 = value.cast::<PyDict>()?;
-                let mut converted_1905 = HashMap::new();
+                let mut converted_1905 = HashMap::with_capacity(mapping_1906.len());
                 for (key_1907, value_1908) in mapping_1906.iter() {
                     let converted_key_1909: String = key_1907.extract()?;
                     let converted_value_1910 = attribute_value_from_py(&value_1908)?;
@@ -19044,7 +19086,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutItem")))?;
-            Python::attach(|py| Py::new(py, PyPutItemOutput { inner: output }))
+            Ok(PyPutItemOutput { inner: output })
         })
     }
 
@@ -19093,7 +19135,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyOutput { inner: output }))
+            Ok(PyPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -19125,7 +19167,8 @@ impl DynamoDBClient {
         };
         let attributes_to_get_value = if let Some(value) = dict_value(params, "attributes_to_get")?
         {
-            let mut converted_1921 = Vec::new();
+            let mut converted_1921 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1922 in value.try_iter()? {
                 let item_1923 = item_result_1922?;
                 let converted_item_1924: String = item_1923.extract()?;
@@ -19149,7 +19192,7 @@ impl DynamoDBClient {
         };
         let key_conditions_value = if let Some(value) = dict_value(params, "key_conditions")? {
             let mapping_1928 = value.cast::<PyDict>()?;
-            let mut converted_1927 = HashMap::new();
+            let mut converted_1927 = HashMap::with_capacity(mapping_1928.len());
             for (key_1929, value_1930) in mapping_1928.iter() {
                 let converted_key_1931: String = key_1929.extract()?;
                 let converted_value_1932 = condition_from_py(&value_1930)?;
@@ -19161,7 +19204,7 @@ impl DynamoDBClient {
         };
         let query_filter_value = if let Some(value) = dict_value(params, "query_filter")? {
             let mapping_1934 = value.cast::<PyDict>()?;
-            let mut converted_1933 = HashMap::new();
+            let mut converted_1933 = HashMap::with_capacity(mapping_1934.len());
             for (key_1935, value_1936) in mapping_1934.iter() {
                 let converted_key_1937: String = key_1935.extract()?;
                 let converted_value_1938 = condition_from_py(&value_1936)?;
@@ -19190,7 +19233,7 @@ impl DynamoDBClient {
         let exclusive_start_key_value =
             if let Some(value) = dict_value(params, "exclusive_start_key")? {
                 let mapping_1943 = value.cast::<PyDict>()?;
-                let mut converted_1942 = HashMap::new();
+                let mut converted_1942 = HashMap::with_capacity(mapping_1943.len());
                 for (key_1944, value_1945) in mapping_1943.iter() {
                     let converted_key_1946: String = key_1944.extract()?;
                     let converted_value_1947 = attribute_value_from_py(&value_1945)?;
@@ -19233,7 +19276,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_1954 = value.cast::<PyDict>()?;
-                let mut converted_1953 = HashMap::new();
+                let mut converted_1953 = HashMap::with_capacity(mapping_1954.len());
                 for (key_1955, value_1956) in mapping_1954.iter() {
                     let converted_key_1957: String = key_1955.extract()?;
                     let converted_value_1958: String = value_1956.extract()?;
@@ -19246,7 +19289,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_1960 = value.cast::<PyDict>()?;
-                let mut converted_1959 = HashMap::new();
+                let mut converted_1959 = HashMap::with_capacity(mapping_1960.len());
                 for (key_1961, value_1962) in mapping_1960.iter() {
                     let converted_key_1963: String = key_1961.extract()?;
                     let converted_value_1964 = attribute_value_from_py(&value_1962)?;
@@ -19282,7 +19325,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Query")))?;
-            Python::attach(|py| Py::new(py, PyQueryOutput { inner: output }))
+            Ok(PyQueryOutput { inner: output })
         })
     }
 
@@ -19317,7 +19360,8 @@ impl DynamoDBClient {
             };
         let global_secondary_index_override_value =
             if let Some(value) = dict_value(params, "global_secondary_index_override")? {
-                let mut converted_1969 = Vec::new();
+                let mut converted_1969 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1970 in value.try_iter()? {
                     let item_1971 = item_result_1970?;
                     let converted_item_1972 = global_secondary_index_from_py(&item_1971)?;
@@ -19329,7 +19373,8 @@ impl DynamoDBClient {
             };
         let local_secondary_index_override_value =
             if let Some(value) = dict_value(params, "local_secondary_index_override")? {
-                let mut converted_1973 = Vec::new();
+                let mut converted_1973 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1974 in value.try_iter()? {
                     let item_1975 = item_result_1974?;
                     let converted_item_1976 = local_secondary_index_from_py(&item_1975)?;
@@ -19362,7 +19407,8 @@ impl DynamoDBClient {
             };
         let vector_index_override_value =
             if let Some(value) = dict_value(params, "vector_index_override")? {
-                let mut converted_1980 = Vec::new();
+                let mut converted_1980 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1981 in value.try_iter()? {
                     let item_1982 = item_result_1981?;
                     let converted_item_1983 = vector_index_from_py(&item_1982)?;
@@ -19389,7 +19435,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableFromBackup"))
             })?;
-            Python::attach(|py| Py::new(py, PyRestoreTableFromBackupOutput { inner: output }))
+            Ok(PyRestoreTableFromBackupOutput { inner: output })
         })
     }
 
@@ -19450,7 +19496,8 @@ impl DynamoDBClient {
             };
         let global_secondary_index_override_value =
             if let Some(value) = dict_value(params, "global_secondary_index_override")? {
-                let mut converted_1992 = Vec::new();
+                let mut converted_1992 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1993 in value.try_iter()? {
                     let item_1994 = item_result_1993?;
                     let converted_item_1995 = global_secondary_index_from_py(&item_1994)?;
@@ -19462,7 +19509,8 @@ impl DynamoDBClient {
             };
         let local_secondary_index_override_value =
             if let Some(value) = dict_value(params, "local_secondary_index_override")? {
-                let mut converted_1996 = Vec::new();
+                let mut converted_1996 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1997 in value.try_iter()? {
                     let item_1998 = item_result_1997?;
                     let converted_item_1999 = local_secondary_index_from_py(&item_1998)?;
@@ -19495,7 +19543,8 @@ impl DynamoDBClient {
             };
         let vector_index_override_value =
             if let Some(value) = dict_value(params, "vector_index_override")? {
-                let mut converted_2003 = Vec::new();
+                let mut converted_2003 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2004 in value.try_iter()? {
                     let item_2005 = item_result_2004?;
                     let converted_item_2006 = vector_index_from_py(&item_2005)?;
@@ -19525,7 +19574,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableToPointInTime"))
             })?;
-            Python::attach(|py| Py::new(py, PyRestoreTableToPointInTimeOutput { inner: output }))
+            Ok(PyRestoreTableToPointInTimeOutput { inner: output })
         })
     }
 
@@ -19550,7 +19599,8 @@ impl DynamoDBClient {
         };
         let attributes_to_get_value = if let Some(value) = dict_value(params, "attributes_to_get")?
         {
-            let mut converted_2009 = Vec::new();
+            let mut converted_2009 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2010 in value.try_iter()? {
                 let item_2011 = item_result_2010?;
                 let converted_item_2012: String = item_2011.extract()?;
@@ -19575,7 +19625,7 @@ impl DynamoDBClient {
         };
         let scan_filter_value = if let Some(value) = dict_value(params, "scan_filter")? {
             let mapping_2017 = value.cast::<PyDict>()?;
-            let mut converted_2016 = HashMap::new();
+            let mut converted_2016 = HashMap::with_capacity(mapping_2017.len());
             for (key_2018, value_2019) in mapping_2017.iter() {
                 let converted_key_2020: String = key_2018.extract()?;
                 let converted_value_2021 = condition_from_py(&value_2019)?;
@@ -19597,7 +19647,7 @@ impl DynamoDBClient {
         let exclusive_start_key_value =
             if let Some(value) = dict_value(params, "exclusive_start_key")? {
                 let mapping_2025 = value.cast::<PyDict>()?;
-                let mut converted_2024 = HashMap::new();
+                let mut converted_2024 = HashMap::with_capacity(mapping_2025.len());
                 for (key_2026, value_2027) in mapping_2025.iter() {
                     let converted_key_2028: String = key_2026.extract()?;
                     let converted_value_2029 = attribute_value_from_py(&value_2027)?;
@@ -19645,7 +19695,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_2037 = value.cast::<PyDict>()?;
-                let mut converted_2036 = HashMap::new();
+                let mut converted_2036 = HashMap::with_capacity(mapping_2037.len());
                 for (key_2038, value_2039) in mapping_2037.iter() {
                     let converted_key_2040: String = key_2038.extract()?;
                     let converted_value_2041: String = value_2039.extract()?;
@@ -19658,7 +19708,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_2043 = value.cast::<PyDict>()?;
-                let mut converted_2042 = HashMap::new();
+                let mut converted_2042 = HashMap::with_capacity(mapping_2043.len());
                 for (key_2044, value_2045) in mapping_2043.iter() {
                     let converted_key_2046: String = key_2044.extract()?;
                     let converted_value_2047 = attribute_value_from_py(&value_2045)?;
@@ -19699,7 +19749,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
-            Python::attach(|py| Py::new(py, PyScanOutput { inner: output }))
+            Ok(PyScanOutput { inner: output })
         })
     }
 
@@ -19734,7 +19784,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_2054 = value.cast::<PyDict>()?;
-                let mut converted_2053 = HashMap::new();
+                let mut converted_2053 = HashMap::with_capacity(mapping_2054.len());
                 for (key_2055, value_2056) in mapping_2054.iter() {
                     let converted_key_2057: String = key_2055.extract()?;
                     let converted_value_2058: String = value_2056.extract()?;
@@ -19747,7 +19797,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_2060 = value.cast::<PyDict>()?;
-                let mut converted_2059 = HashMap::new();
+                let mut converted_2059 = HashMap::with_capacity(mapping_2060.len());
                 for (key_2061, value_2062) in mapping_2060.iter() {
                     let converted_key_2063: String = key_2061.extract()?;
                     let converted_value_2064 = attribute_value_from_py(&value_2062)?;
@@ -19765,7 +19815,8 @@ impl DynamoDBClient {
                 None
             };
         let search_vector_value = if let Some(value) = dict_value(params, "search_vector")? {
-            let mut converted_2066 = Vec::new();
+            let mut converted_2066 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2067 in value.try_iter()? {
                 let item_2068 = item_result_2067?;
                 let converted_item_2069 = attribute_value_from_py(&item_2068)?;
@@ -19805,7 +19856,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchVectors"))
             })?;
-            Python::attach(|py| Py::new(py, PySearchVectorsOutput { inner: output }))
+            Ok(PySearchVectorsOutput { inner: output })
         })
     }
 
@@ -19823,7 +19874,8 @@ impl DynamoDBClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_2073 = Vec::new();
+            let mut converted_2073 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2074 in value.try_iter()? {
                 let item_2075 = item_result_2074?;
                 let converted_item_2076 = tag_from_py(&item_2075)?;
@@ -19856,7 +19908,8 @@ impl DynamoDBClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
-            let mut converted_2077 = Vec::new();
+            let mut converted_2077 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2078 in value.try_iter()? {
                 let item_2079 = item_result_2078?;
                 let converted_item_2080 = transact_get_item_from_py(&item_2079)?;
@@ -19885,7 +19938,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactGetItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyTransactGetItemsOutput { inner: output }))
+            Ok(PyTransactGetItemsOutput { inner: output })
         })
     }
 
@@ -19897,7 +19950,8 @@ impl DynamoDBClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
-            let mut converted_2083 = Vec::new();
+            let mut converted_2083 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2084 in value.try_iter()? {
                 let item_2085 = item_result_2084?;
                 let converted_item_2086 = transact_write_item_from_py(&item_2085)?;
@@ -19945,7 +19999,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactWriteItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyTransactWriteItemsOutput { inner: output }))
+            Ok(PyTransactWriteItemsOutput { inner: output })
         })
     }
 
@@ -19963,7 +20017,8 @@ impl DynamoDBClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_2093 = Vec::new();
+            let mut converted_2093 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2094 in value.try_iter()? {
                 let item_2095 = item_result_2094?;
                 let converted_item_2096: String = item_2095.extract()?;
@@ -20019,7 +20074,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContinuousBackups"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateContinuousBackupsOutput { inner: output }))
+            Ok(PyUpdateContinuousBackupsOutput { inner: output })
         })
     }
 
@@ -20074,7 +20129,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContributorInsights"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateContributorInsightsOutput { inner: output }))
+            Ok(PyUpdateContributorInsightsOutput { inner: output })
         })
     }
 
@@ -20093,7 +20148,8 @@ impl DynamoDBClient {
             None
         };
         let replica_updates_value = if let Some(value) = dict_value(params, "replica_updates")? {
-            let mut converted_2106 = Vec::new();
+            let mut converted_2106 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2107 in value.try_iter()? {
                 let item_2108 = item_result_2107?;
                 let converted_item_2109 = replica_update_from_py(&item_2108)?;
@@ -20113,7 +20169,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTable"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateGlobalTableOutput { inner: output }))
+            Ok(PyUpdateGlobalTableOutput { inner: output })
         })
     }
 
@@ -20163,7 +20219,8 @@ impl DynamoDBClient {
                 params,
                 "global_table_global_secondary_index_settings_update",
             )? {
-            let mut converted_2115 = Vec::new();
+            let mut converted_2115 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2116 in value.try_iter()? {
                 let item_2117 = item_result_2116?;
                 let converted_item_2118 =
@@ -20176,7 +20233,8 @@ impl DynamoDBClient {
         };
         let replica_settings_update_value =
             if let Some(value) = dict_value(params, "replica_settings_update")? {
-                let mut converted_2119 = Vec::new();
+                let mut converted_2119 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2120 in value.try_iter()? {
                     let item_2121 = item_result_2120?;
                     let converted_item_2122 = replica_settings_update_from_py(&item_2121)?;
@@ -20206,7 +20264,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTableSettings"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateGlobalTableSettingsOutput { inner: output }))
+            Ok(PyUpdateGlobalTableSettingsOutput { inner: output })
         })
     }
 
@@ -20225,7 +20283,7 @@ impl DynamoDBClient {
         };
         let key_value = if let Some(value) = dict_value(params, "key")? {
             let mapping_2125 = value.cast::<PyDict>()?;
-            let mut converted_2124 = HashMap::new();
+            let mut converted_2124 = HashMap::with_capacity(mapping_2125.len());
             for (key_2126, value_2127) in mapping_2125.iter() {
                 let converted_key_2128: String = key_2126.extract()?;
                 let converted_value_2129 = attribute_value_from_py(&value_2127)?;
@@ -20238,7 +20296,7 @@ impl DynamoDBClient {
         let attribute_updates_value = if let Some(value) = dict_value(params, "attribute_updates")?
         {
             let mapping_2131 = value.cast::<PyDict>()?;
-            let mut converted_2130 = HashMap::new();
+            let mut converted_2130 = HashMap::with_capacity(mapping_2131.len());
             for (key_2132, value_2133) in mapping_2131.iter() {
                 let converted_key_2134: String = key_2132.extract()?;
                 let converted_value_2135 = attribute_value_update_from_py(&value_2133)?;
@@ -20250,7 +20308,7 @@ impl DynamoDBClient {
         };
         let expected_value = if let Some(value) = dict_value(params, "expected")? {
             let mapping_2137 = value.cast::<PyDict>()?;
-            let mut converted_2136 = HashMap::new();
+            let mut converted_2136 = HashMap::with_capacity(mapping_2137.len());
             for (key_2138, value_2139) in mapping_2137.iter() {
                 let converted_key_2140: String = key_2138.extract()?;
                 let converted_value_2141 = expected_attribute_value_from_py(&value_2139)?;
@@ -20313,7 +20371,7 @@ impl DynamoDBClient {
         let expression_attribute_names_value =
             if let Some(value) = dict_value(params, "expression_attribute_names")? {
                 let mapping_2153 = value.cast::<PyDict>()?;
-                let mut converted_2152 = HashMap::new();
+                let mut converted_2152 = HashMap::with_capacity(mapping_2153.len());
                 for (key_2154, value_2155) in mapping_2153.iter() {
                     let converted_key_2156: String = key_2154.extract()?;
                     let converted_value_2157: String = value_2155.extract()?;
@@ -20326,7 +20384,7 @@ impl DynamoDBClient {
         let expression_attribute_values_value =
             if let Some(value) = dict_value(params, "expression_attribute_values")? {
                 let mapping_2159 = value.cast::<PyDict>()?;
-                let mut converted_2158 = HashMap::new();
+                let mut converted_2158 = HashMap::with_capacity(mapping_2159.len());
                 for (key_2160, value_2161) in mapping_2159.iter() {
                     let converted_key_2162: String = key_2160.extract()?;
                     let converted_value_2163 = attribute_value_from_py(&value_2161)?;
@@ -20371,7 +20429,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateItem")))?;
-            Python::attach(|py| Py::new(py, PyUpdateItemOutput { inner: output }))
+            Ok(PyUpdateItemOutput { inner: output })
         })
     }
 
@@ -20416,12 +20474,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "UpdateKinesisStreamingDestination")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateKinesisStreamingDestinationOutput { inner: output },
-                )
-            })
+            Ok(PyUpdateKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -20434,7 +20487,8 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let attribute_definitions_value =
             if let Some(value) = dict_value(params, "attribute_definitions")? {
-                let mut converted_2169 = Vec::new();
+                let mut converted_2169 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2170 in value.try_iter()? {
                     let item_2171 = item_result_2170?;
                     let converted_item_2172 = attribute_definition_from_py(&item_2171)?;
@@ -20467,7 +20521,8 @@ impl DynamoDBClient {
             };
         let global_secondary_index_updates_value =
             if let Some(value) = dict_value(params, "global_secondary_index_updates")? {
-                let mut converted_2177 = Vec::new();
+                let mut converted_2177 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2178 in value.try_iter()? {
                     let item_2179 = item_result_2178?;
                     let converted_item_2180 = global_secondary_index_update_from_py(&item_2179)?;
@@ -20492,7 +20547,8 @@ impl DynamoDBClient {
             None
         };
         let replica_updates_value = if let Some(value) = dict_value(params, "replica_updates")? {
-            let mut converted_2183 = Vec::new();
+            let mut converted_2183 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2184 in value.try_iter()? {
                 let item_2185 = item_result_2184?;
                 let converted_item_2186 = replication_group_update_from_py(&item_2185)?;
@@ -20529,7 +20585,8 @@ impl DynamoDBClient {
         let global_table_witness_updates_value = if let Some(value) =
             dict_value(params, "global_table_witness_updates")?
         {
-            let mut converted_2192 = Vec::new();
+            let mut converted_2192 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2193 in value.try_iter()? {
                 let item_2194 = item_result_2193?;
                 let converted_item_2195 = global_table_witness_group_update_from_py(&item_2194)?;
@@ -20572,7 +20629,8 @@ impl DynamoDBClient {
             };
         let vector_index_updates_value =
             if let Some(value) = dict_value(params, "vector_index_updates")? {
-                let mut converted_2201 = Vec::new();
+                let mut converted_2201 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2202 in value.try_iter()? {
                     let item_2203 = item_result_2202?;
                     let converted_item_2204 = vector_index_update_from_py(&item_2203)?;
@@ -20610,7 +20668,7 @@ impl DynamoDBClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTable")))?;
-            Python::attach(|py| Py::new(py, PyUpdateTableOutput { inner: output }))
+            Ok(PyUpdateTableOutput { inner: output })
         })
     }
 
@@ -20623,7 +20681,8 @@ impl DynamoDBClient {
         let state = self.state.clone();
         let global_secondary_index_updates_value =
             if let Some(value) = dict_value(params, "global_secondary_index_updates")? {
-                let mut converted_2205 = Vec::new();
+                let mut converted_2205 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_2206 in value.try_iter()? {
                     let item_2207 = item_result_2206?;
                     let converted_item_2208 =
@@ -20649,7 +20708,8 @@ impl DynamoDBClient {
             None
         };
         let replica_updates_value = if let Some(value) = dict_value(params, "replica_updates")? {
-            let mut converted_2211 = Vec::new();
+            let mut converted_2211 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2212 in value.try_iter()? {
                 let item_2213 = item_result_2212?;
                 let converted_item_2214 = replica_auto_scaling_update_from_py(&item_2213)?;
@@ -20673,9 +20733,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTableReplicaAutoScaling"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateTableReplicaAutoScalingOutput { inner: output })
-            })
+            Ok(PyUpdateTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
@@ -20709,7 +20767,7 @@ impl DynamoDBClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTimeToLive"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateTimeToLiveOutput { inner: output }))
+            Ok(PyUpdateTimeToLiveOutput { inner: output })
         })
     }
 }

@@ -227,7 +227,8 @@ fn account_free_trial_info_from_py(
         builder = builder.set_data_sources(Some(converted_28));
     }
     if let Some(value) = dict_value(values, "features")? {
-        let mut converted_29 = Vec::new();
+        let mut converted_29 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_30 in value.try_iter()? {
             let item_31 = item_result_30?;
             let converted_item_32 = free_trial_feature_configuration_result_from_py(&item_31)?;
@@ -785,14 +786,15 @@ fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::type
     let mut builder = aws_sdk_guardduty::types::Anomaly::builder();
     if let Some(value) = dict_value(values, "profiles")? {
         let mapping_110 = value.cast::<PyDict>()?;
-        let mut converted_109 = HashMap::new();
+        let mut converted_109 = HashMap::with_capacity(mapping_110.len());
         for (key_111, value_112) in mapping_110.iter() {
             let converted_key_113: String = key_111.extract()?;
             let mapping_115 = value_112.cast::<PyDict>()?;
-            let mut converted_value_114 = HashMap::new();
+            let mut converted_value_114 = HashMap::with_capacity(mapping_115.len());
             for (key_116, value_117) in mapping_115.iter() {
                 let converted_key_118: String = key_116.extract()?;
-                let mut converted_value_119 = Vec::new();
+                let mut converted_value_119 =
+                    Vec::with_capacity(value_117.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_120 in value_117.try_iter()? {
                     let item_121 = item_result_120?;
                     let converted_item_122 = anomaly_object_from_py(&item_121)?;
@@ -900,11 +902,11 @@ fn anomaly_unusual_from_py(
     let mut builder = aws_sdk_guardduty::types::AnomalyUnusual::builder();
     if let Some(value) = dict_value(values, "behavior")? {
         let mapping_145 = value.cast::<PyDict>()?;
-        let mut converted_144 = HashMap::new();
+        let mut converted_144 = HashMap::with_capacity(mapping_145.len());
         for (key_146, value_147) in mapping_145.iter() {
             let converted_key_148: String = key_146.extract()?;
             let mapping_150 = value_147.cast::<PyDict>()?;
-            let mut converted_value_149 = HashMap::new();
+            let mut converted_value_149 = HashMap::with_capacity(mapping_150.len());
             for (key_151, value_152) in mapping_150.iter() {
                 let converted_key_153: String = key_151.extract()?;
                 let converted_value_154 = anomaly_object_from_py(&value_152)?;
@@ -1255,7 +1257,8 @@ fn autoscaling_auto_scaling_group_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::AutoscalingAutoScalingGroup::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_214 = Vec::new();
+        let mut converted_214 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_215 in value.try_iter()? {
             let item_216 = item_result_215?;
             let converted_item_217: String = item_216.extract()?;
@@ -1324,7 +1327,7 @@ fn aws_api_call_action_from_py(
     }
     if let Some(value) = dict_value(values, "affected_resources")? {
         let mapping_230 = value.cast::<PyDict>()?;
-        let mut converted_229 = HashMap::new();
+        let mut converted_229 = HashMap::with_capacity(mapping_230.len());
         for (key_231, value_232) in mapping_230.iter() {
             let converted_key_233: String = key_231.extract()?;
             let converted_value_234: String = value_232.extract()?;
@@ -1453,7 +1456,8 @@ fn bedrock_guardrail_details_from_py(
         builder = builder.set_guardrail_version(Some(converted_253));
     }
     if let Some(value) = dict_value(values, "guardrails")? {
-        let mut converted_254 = Vec::new();
+        let mut converted_254 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_255 in value.try_iter()? {
             let item_256 = item_result_255?;
             let converted_item_257 = bedrock_guardrail_from_py(&item_256)?;
@@ -1474,7 +1478,8 @@ fn bedrock_guardrail_details_from_py(
         builder = builder.set_guardrail_source(Some(converted_260));
     }
     if let Some(value) = dict_value(values, "content_policy_filters")? {
-        let mut converted_262 = Vec::new();
+        let mut converted_262 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_263 in value.try_iter()? {
             let item_264 = item_result_263?;
             let converted_item_265 = content_policy_filter_from_py(&item_264)?;
@@ -1829,7 +1834,8 @@ fn cloudformation_stack_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::CloudformationStack::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_314 = Vec::new();
+        let mut converted_314 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_315 in value.try_iter()? {
             let item_316 = item_result_315?;
             let converted_item_317: String = item_316.extract()?;
@@ -1863,7 +1869,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Condition::builder();
     if let Some(value) = dict_value(values, "eq")? {
-        let mut converted_321 = Vec::new();
+        let mut converted_321 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_322 in value.try_iter()? {
             let item_323 = item_result_322?;
             let converted_item_324: String = item_323.extract()?;
@@ -1872,7 +1879,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_eq(Some(converted_321));
     }
     if let Some(value) = dict_value(values, "neq")? {
-        let mut converted_325 = Vec::new();
+        let mut converted_325 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_326 in value.try_iter()? {
             let item_327 = item_result_326?;
             let converted_item_328: String = item_327.extract()?;
@@ -1897,7 +1905,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_lte(Some(converted_332));
     }
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_333 = Vec::new();
+        let mut converted_333 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_334 in value.try_iter()? {
             let item_335 = item_result_334?;
             let converted_item_336: String = item_335.extract()?;
@@ -1906,7 +1915,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_equals(Some(converted_333));
     }
     if let Some(value) = dict_value(values, "not_equals")? {
-        let mut converted_337 = Vec::new();
+        let mut converted_337 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_338 in value.try_iter()? {
             let item_339 = item_result_338?;
             let converted_item_340: String = item_339.extract()?;
@@ -1931,7 +1941,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_less_than_or_equal(Some(converted_344));
     }
     if let Some(value) = dict_value(values, "matches")? {
-        let mut converted_345 = Vec::new();
+        let mut converted_345 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_346 in value.try_iter()? {
             let item_347 = item_result_346?;
             let converted_item_348: String = item_347.extract()?;
@@ -1940,7 +1951,8 @@ fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_matches(Some(converted_345));
     }
     if let Some(value) = dict_value(values, "not_matches")? {
-        let mut converted_349 = Vec::new();
+        let mut converted_349 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_350 in value.try_iter()? {
             let item_351 = item_result_350?;
             let converted_item_352: String = item_351.extract()?;
@@ -2097,7 +2109,8 @@ fn container_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_image_prefix(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "volume_mounts")? {
-        let mut converted_384 = Vec::new();
+        let mut converted_384 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_385 in value.try_iter()? {
             let item_386 = item_result_385?;
             let converted_item_387 = volume_mount_from_py(&item_386)?;
@@ -2552,7 +2565,8 @@ fn coverage_filter_condition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::CoverageFilterCondition::builder();
     if let Some(value) = dict_value(values, "equals")? {
-        let mut converted_453 = Vec::new();
+        let mut converted_453 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_454 in value.try_iter()? {
             let item_455 = item_result_454?;
             let converted_item_456: String = item_455.extract()?;
@@ -2561,7 +2575,8 @@ fn coverage_filter_condition_from_py(
         builder = builder.set_equals(Some(converted_453));
     }
     if let Some(value) = dict_value(values, "not_equals")? {
-        let mut converted_457 = Vec::new();
+        let mut converted_457 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_458 in value.try_iter()? {
             let item_459 = item_result_458?;
             let converted_item_460: String = item_459.extract()?;
@@ -2608,7 +2623,8 @@ fn coverage_filter_criteria_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::CoverageFilterCriteria::builder();
     if let Some(value) = dict_value(values, "filter_criterion")? {
-        let mut converted_467 = Vec::new();
+        let mut converted_467 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_468 in value.try_iter()? {
             let item_469 = item_result_468?;
             let converted_item_470 = coverage_filter_criterion_from_py(&item_469)?;
@@ -2871,7 +2887,7 @@ fn coverage_statistics_from_py(
     let mut builder = aws_sdk_guardduty::types::CoverageStatistics::builder();
     if let Some(value) = dict_value(values, "count_by_resource_type")? {
         let mapping_511 = value.cast::<PyDict>()?;
-        let mut converted_510 = HashMap::new();
+        let mut converted_510 = HashMap::with_capacity(mapping_511.len());
         for (key_512, value_513) in mapping_511.iter() {
             let enum_value_516: String = key_512.extract()?;
             let converted_key_514 =
@@ -2883,7 +2899,7 @@ fn coverage_statistics_from_py(
     }
     if let Some(value) = dict_value(values, "count_by_coverage_status")? {
         let mapping_518 = value.cast::<PyDict>()?;
-        let mut converted_517 = HashMap::new();
+        let mut converted_517 = HashMap::with_capacity(mapping_518.len());
         for (key_519, value_520) in mapping_518.iter() {
             let enum_value_523: String = key_519.extract()?;
             let converted_key_521 =
@@ -2964,7 +2980,8 @@ fn create_s3_bucket_resource_from_py(
         builder = builder.set_bucket_name(Some(converted_536));
     }
     if let Some(value) = dict_value(values, "object_prefixes")? {
-        let mut converted_537 = Vec::new();
+        let mut converted_537 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_538 in value.try_iter()? {
             let item_539 = item_result_538?;
             let converted_item_540: String = item_539.extract()?;
@@ -3546,7 +3563,8 @@ fn detection_rule_filter_from_py(
         builder = builder.set_name(Some(converted_615));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_617 = Vec::new();
+        let mut converted_617 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_618 in value.try_iter()? {
             let item_619 = item_result_618?;
             let converted_item_620: String = item_619.extract()?;
@@ -3621,7 +3639,8 @@ fn detection_rule_org_configuration_from_py(
         builder = builder.set_status_reason(Some(converted_633));
     }
     if let Some(value) = dict_value(values, "include_account_ids")? {
-        let mut converted_634 = Vec::new();
+        let mut converted_634 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_635 in value.try_iter()? {
             let item_636 = item_result_635?;
             let converted_item_637: String = item_636.extract()?;
@@ -3630,7 +3649,8 @@ fn detection_rule_org_configuration_from_py(
         builder = builder.set_include_account_ids(Some(converted_634));
     }
     if let Some(value) = dict_value(values, "exclude_account_ids")? {
-        let mut converted_638 = Vec::new();
+        let mut converted_638 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_639 in value.try_iter()? {
             let item_640 = item_result_639?;
             let converted_item_641: String = item_640.extract()?;
@@ -4039,7 +4059,8 @@ fn detector_feature_configuration_from_py(
         builder = builder.set_status(Some(converted_708));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_710 = Vec::new();
+        let mut converted_710 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_711 in value.try_iter()? {
             let item_712 = item_result_711?;
             let converted_item_713 = detector_additional_configuration_from_py(&item_712)?;
@@ -4107,7 +4128,8 @@ fn detector_feature_configuration_result_from_py(
         builder = builder.set_updated_at(Some(converted_723));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_725 = Vec::new();
+        let mut converted_725 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_726 in value.try_iter()? {
             let item_727 = item_result_726?;
             let converted_item_728 = detector_additional_configuration_result_from_py(&item_727)?;
@@ -4344,7 +4366,8 @@ fn ebs_volume_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::EbsVolumeDetails::builder();
     if let Some(value) = dict_value(values, "scanned_volume_details")? {
-        let mut converted_757 = Vec::new();
+        let mut converted_757 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_758 in value.try_iter()? {
             let item_759 = item_result_758?;
             let converted_item_760 = volume_detail_from_py(&item_759)?;
@@ -4353,7 +4376,8 @@ fn ebs_volume_details_from_py(
         builder = builder.set_scanned_volume_details(Some(converted_757));
     }
     if let Some(value) = dict_value(values, "skipped_volume_details")? {
-        let mut converted_761 = Vec::new();
+        let mut converted_761 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_762 in value.try_iter()? {
             let item_763 = item_result_762?;
             let converted_item_764 = volume_detail_from_py(&item_763)?;
@@ -4426,7 +4450,8 @@ fn ebs_volume_scan_details_from_py(
         builder = builder.set_trigger_finding_id(Some(converted_776));
     }
     if let Some(value) = dict_value(values, "sources")? {
-        let mut converted_777 = Vec::new();
+        let mut converted_777 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_778 in value.try_iter()? {
             let item_779 = item_result_778?;
             let converted_item_780: String = item_779.extract()?;
@@ -4543,7 +4568,8 @@ fn ec2_image_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Ec2Image::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_798 = Vec::new();
+        let mut converted_798 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_799 in value.try_iter()? {
             let item_800 = item_result_799?;
             let converted_item_801: String = item_800.extract()?;
@@ -4633,7 +4659,8 @@ fn ec2_instance_from_py(
         builder = builder.set_platform(Some(converted_813));
     }
     if let Some(value) = dict_value(values, "product_codes")? {
-        let mut converted_814 = Vec::new();
+        let mut converted_814 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_815 in value.try_iter()? {
             let item_816 = item_result_815?;
             let converted_item_817 = product_code_from_py(&item_816)?;
@@ -4642,7 +4669,8 @@ fn ec2_instance_from_py(
         builder = builder.set_product_codes(Some(converted_814));
     }
     if let Some(value) = dict_value(values, "ec2_network_interface_uids")? {
-        let mut converted_818 = Vec::new();
+        let mut converted_818 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_819 in value.try_iter()? {
             let item_820 = item_result_819?;
             let converted_item_821: String = item_820.extract()?;
@@ -4731,7 +4759,8 @@ fn ec2_launch_template_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Ec2LaunchTemplate::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_835 = Vec::new();
+        let mut converted_835 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_836 in value.try_iter()? {
             let item_837 = item_result_836?;
             let converted_item_838: String = item_837.extract()?;
@@ -4777,7 +4806,8 @@ fn ec2_network_interface_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Ec2NetworkInterface::builder();
     if let Some(value) = dict_value(values, "ipv6_addresses")? {
-        let mut converted_844 = Vec::new();
+        let mut converted_844 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_845 in value.try_iter()? {
             let item_846 = item_result_845?;
             let converted_item_847: String = item_846.extract()?;
@@ -4786,7 +4816,8 @@ fn ec2_network_interface_from_py(
         builder = builder.set_ipv6_addresses(Some(converted_844));
     }
     if let Some(value) = dict_value(values, "private_ip_addresses")? {
-        let mut converted_848 = Vec::new();
+        let mut converted_848 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_849 in value.try_iter()? {
             let item_850 = item_result_849?;
             let converted_item_851 = private_ip_address_details_from_py(&item_850)?;
@@ -4799,7 +4830,8 @@ fn ec2_network_interface_from_py(
         builder = builder.set_public_ip(Some(converted_852));
     }
     if let Some(value) = dict_value(values, "security_groups")? {
-        let mut converted_853 = Vec::new();
+        let mut converted_853 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_854 in value.try_iter()? {
             let item_855 = item_result_854?;
             let converted_item_856 = security_group_from_py(&item_855)?;
@@ -4881,7 +4913,8 @@ fn ec2_vpc_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::type
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Ec2Vpc::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_871 = Vec::new();
+        let mut converted_871 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_872 in value.try_iter()? {
             let item_873 = item_result_872?;
             let converted_item_874: String = item_873.extract()?;
@@ -4918,7 +4951,8 @@ fn ecs_cluster_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::
         builder = builder.set_status(Some(converted_878));
     }
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_880 = Vec::new();
+        let mut converted_880 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_881 in value.try_iter()? {
             let item_882 = item_result_881?;
             let converted_item_883: String = item_882.extract()?;
@@ -4984,7 +5018,8 @@ fn ecs_cluster_details_from_py(
         builder = builder.set_running_tasks_count(Some(converted_893));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_894 = Vec::new();
+        let mut converted_894 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_895 in value.try_iter()? {
             let item_896 = item_result_895?;
             let converted_item_897 = tag_from_py(&item_896)?;
@@ -5082,7 +5117,8 @@ fn ecs_task_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_launch_type(Some(converted_912));
     }
     if let Some(value) = dict_value(values, "container_uids")? {
-        let mut converted_914 = Vec::new();
+        let mut converted_914 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_915 in value.try_iter()? {
             let item_916 = item_result_915?;
             let converted_item_917: String = item_916.extract()?;
@@ -5170,7 +5206,8 @@ fn ecs_task_details_from_py(
         builder = builder.set_started_by(Some(converted_931));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_932 = Vec::new();
+        let mut converted_932 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_933 in value.try_iter()? {
             let item_934 = item_result_933?;
             let converted_item_935 = tag_from_py(&item_934)?;
@@ -5179,7 +5216,8 @@ fn ecs_task_details_from_py(
         builder = builder.set_tags(Some(converted_932));
     }
     if let Some(value) = dict_value(values, "volumes")? {
-        let mut converted_936 = Vec::new();
+        let mut converted_936 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_937 in value.try_iter()? {
             let item_938 = item_result_937?;
             let converted_item_939 = volume_from_py(&item_938)?;
@@ -5188,7 +5226,8 @@ fn ecs_task_details_from_py(
         builder = builder.set_volumes(Some(converted_936));
     }
     if let Some(value) = dict_value(values, "containers")? {
-        let mut converted_940 = Vec::new();
+        let mut converted_940 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_941 in value.try_iter()? {
             let item_942 = item_result_941?;
             let converted_item_943 = container_from_py(&item_942)?;
@@ -5322,7 +5361,8 @@ fn eks_cluster_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::
         builder = builder.set_vpc_id(Some(converted_968));
     }
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_969 = Vec::new();
+        let mut converted_969 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_970 in value.try_iter()? {
             let item_971 = item_result_970?;
             let converted_item_972: String = item_971.extract()?;
@@ -5398,7 +5438,8 @@ fn eks_cluster_details_from_py(
         builder = builder.set_status(Some(converted_983));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_984 = Vec::new();
+        let mut converted_984 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_985 in value.try_iter()? {
             let item_986 = item_result_985?;
             let converted_item_987 = tag_from_py(&item_986)?;
@@ -5471,7 +5512,8 @@ fn evidence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Evidence::builder();
     if let Some(value) = dict_value(values, "threat_intelligence_details")? {
-        let mut converted_998 = Vec::new();
+        let mut converted_998 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_999 in value.try_iter()? {
             let item_1000 = item_result_999?;
             let converted_item_1001 = threat_intelligence_detail_from_py(&item_1000)?;
@@ -5507,7 +5549,8 @@ fn fargate_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::FargateDetails::builder();
     if let Some(value) = dict_value(values, "issues")? {
-        let mut converted_1005 = Vec::new();
+        let mut converted_1005 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1006 in value.try_iter()? {
             let item_1007 = item_result_1006?;
             let converted_item_1008: String = item_1007.extract()?;
@@ -5601,7 +5644,8 @@ fn filter_criteria_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::FilterCriteria::builder();
     if let Some(value) = dict_value(values, "filter_criterion")? {
-        let mut converted_1021 = Vec::new();
+        let mut converted_1021 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1022 in value.try_iter()? {
             let item_1023 = item_result_1022?;
             let converted_item_1024 = filter_criterion_from_py(&item_1023)?;
@@ -5856,7 +5900,7 @@ fn finding_criteria_from_py(
     let mut builder = aws_sdk_guardduty::types::FindingCriteria::builder();
     if let Some(value) = dict_value(values, "criterion")? {
         let mapping_1068 = value.cast::<PyDict>()?;
-        let mut converted_1067 = HashMap::new();
+        let mut converted_1067 = HashMap::with_capacity(mapping_1068.len());
         for (key_1069, value_1070) in mapping_1068.iter() {
             let converted_key_1071: String = key_1069.extract()?;
             let converted_value_1072 = condition_from_py(&value_1070)?;
@@ -5894,7 +5938,7 @@ fn finding_statistics_from_py(
     let mut builder = aws_sdk_guardduty::types::FindingStatistics::builder();
     if let Some(value) = dict_value(values, "count_by_severity")? {
         let mapping_1079 = value.cast::<PyDict>()?;
-        let mut converted_1078 = HashMap::new();
+        let mut converted_1078 = HashMap::with_capacity(mapping_1079.len());
         for (key_1080, value_1081) in mapping_1079.iter() {
             let converted_key_1082: String = key_1080.extract()?;
             let converted_value_1083: i32 = value_1081.extract()?;
@@ -5903,7 +5947,8 @@ fn finding_statistics_from_py(
         builder = builder.set_count_by_severity(Some(converted_1078));
     }
     if let Some(value) = dict_value(values, "grouped_by_account")? {
-        let mut converted_1084 = Vec::new();
+        let mut converted_1084 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1085 in value.try_iter()? {
             let item_1086 = item_result_1085?;
             let converted_item_1087 = account_statistics_from_py(&item_1086)?;
@@ -5912,7 +5957,8 @@ fn finding_statistics_from_py(
         builder = builder.set_grouped_by_account(Some(converted_1084));
     }
     if let Some(value) = dict_value(values, "grouped_by_date")? {
-        let mut converted_1088 = Vec::new();
+        let mut converted_1088 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1089 in value.try_iter()? {
             let item_1090 = item_result_1089?;
             let converted_item_1091 = date_statistics_from_py(&item_1090)?;
@@ -5921,7 +5967,8 @@ fn finding_statistics_from_py(
         builder = builder.set_grouped_by_date(Some(converted_1088));
     }
     if let Some(value) = dict_value(values, "grouped_by_finding_type")? {
-        let mut converted_1092 = Vec::new();
+        let mut converted_1092 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1093 in value.try_iter()? {
             let item_1094 = item_result_1093?;
             let converted_item_1095 = finding_type_statistics_from_py(&item_1094)?;
@@ -5930,7 +5977,8 @@ fn finding_statistics_from_py(
         builder = builder.set_grouped_by_finding_type(Some(converted_1092));
     }
     if let Some(value) = dict_value(values, "grouped_by_resource")? {
-        let mut converted_1096 = Vec::new();
+        let mut converted_1096 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1097 in value.try_iter()? {
             let item_1098 = item_result_1097?;
             let converted_item_1099 = resource_statistics_from_py(&item_1098)?;
@@ -5939,7 +5987,8 @@ fn finding_statistics_from_py(
         builder = builder.set_grouped_by_resource(Some(converted_1096));
     }
     if let Some(value) = dict_value(values, "grouped_by_severity")? {
-        let mut converted_1100 = Vec::new();
+        let mut converted_1100 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1101 in value.try_iter()? {
             let item_1102 = item_result_1101?;
             let converted_item_1103 = severity_statistics_from_py(&item_1102)?;
@@ -6214,7 +6263,8 @@ fn get_malware_scan_result_details_from_py(
         builder = builder.set_unique_threat_count(Some(converted_1150));
     }
     if let Some(value) = dict_value(values, "threats")? {
-        let mut converted_1151 = Vec::new();
+        let mut converted_1151 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1152 in value.try_iter()? {
             let item_1153 = item_result_1152?;
             let converted_item_1154 = scan_result_threat_from_py(&item_1153)?;
@@ -6398,7 +6448,8 @@ fn iam_instance_profile_v2_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::IamInstanceProfileV2::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
-        let mut converted_1177 = Vec::new();
+        let mut converted_1177 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1178 in value.try_iter()? {
             let item_1179 = item_result_1178?;
             let converted_item_1180: String = item_1179.extract()?;
@@ -6438,7 +6489,8 @@ fn impersonated_user_from_py(
         builder = builder.set_username(Some(converted_1184));
     }
     if let Some(value) = dict_value(values, "groups")? {
-        let mut converted_1185 = Vec::new();
+        let mut converted_1185 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1186 in value.try_iter()? {
             let item_1187 = item_result_1186?;
             let converted_item_1188: String = item_1187.extract()?;
@@ -6510,7 +6562,8 @@ fn indicator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_key(Some(converted_1195));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1197 = Vec::new();
+        let mut converted_1197 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1198 in value.try_iter()? {
             let item_1199 = item_result_1198?;
             let converted_item_1200: String = item_1199.extract()?;
@@ -6598,7 +6651,8 @@ fn instance_details_from_py(
         builder = builder.set_launch_time(Some(converted_1215));
     }
     if let Some(value) = dict_value(values, "network_interfaces")? {
-        let mut converted_1216 = Vec::new();
+        let mut converted_1216 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1217 in value.try_iter()? {
             let item_1218 = item_result_1217?;
             let converted_item_1219 = network_interface_from_py(&item_1218)?;
@@ -6611,7 +6665,8 @@ fn instance_details_from_py(
         builder = builder.set_platform(Some(converted_1220));
     }
     if let Some(value) = dict_value(values, "product_codes")? {
-        let mut converted_1221 = Vec::new();
+        let mut converted_1221 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1222 in value.try_iter()? {
             let item_1223 = item_result_1222?;
             let converted_item_1224 = product_code_from_py(&item_1223)?;
@@ -6620,7 +6675,8 @@ fn instance_details_from_py(
         builder = builder.set_product_codes(Some(converted_1221));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1225 = Vec::new();
+        let mut converted_1225 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1226 in value.try_iter()? {
             let item_1227 = item_result_1226?;
             let converted_item_1228 = tag_from_py(&item_1227)?;
@@ -7261,7 +7317,8 @@ fn kubernetes_api_call_action_from_py(
         builder = builder.set_resource_name(Some(converted_1337));
     }
     if let Some(value) = dict_value(values, "source_ips")? {
-        let mut converted_1338 = Vec::new();
+        let mut converted_1338 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1339 in value.try_iter()? {
             let item_1340 = item_result_1339?;
             let converted_item_1341: String = item_1340.extract()?;
@@ -7717,7 +7774,8 @@ fn kubernetes_user_details_from_py(
         builder = builder.set_uid(Some(converted_1399));
     }
     if let Some(value) = dict_value(values, "groups")? {
-        let mut converted_1400 = Vec::new();
+        let mut converted_1400 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1401 in value.try_iter()? {
             let item_1402 = item_result_1401?;
             let converted_item_1403: String = item_1402.extract()?;
@@ -7726,7 +7784,8 @@ fn kubernetes_user_details_from_py(
         builder = builder.set_groups(Some(converted_1400));
     }
     if let Some(value) = dict_value(values, "session_name")? {
-        let mut converted_1404 = Vec::new();
+        let mut converted_1404 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1405 in value.try_iter()? {
             let item_1406 = item_result_1405?;
             let converted_item_1407: String = item_1406.extract()?;
@@ -7795,7 +7854,8 @@ fn kubernetes_workload_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::KubernetesWorkload::builder();
     if let Some(value) = dict_value(values, "container_uids")? {
-        let mut converted_1418 = Vec::new();
+        let mut converted_1418 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1419 in value.try_iter()? {
             let item_1420 = item_result_1419?;
             let converted_item_1421: String = item_1420.extract()?;
@@ -7877,7 +7937,8 @@ fn kubernetes_workload_details_from_py(
         builder = builder.set_service_account_name(Some(converted_1435));
     }
     if let Some(value) = dict_value(values, "containers")? {
-        let mut converted_1436 = Vec::new();
+        let mut converted_1436 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1437 in value.try_iter()? {
             let item_1438 = item_result_1437?;
             let converted_item_1439 = container_from_py(&item_1438)?;
@@ -7886,7 +7947,8 @@ fn kubernetes_workload_details_from_py(
         builder = builder.set_containers(Some(converted_1436));
     }
     if let Some(value) = dict_value(values, "volumes")? {
-        let mut converted_1440 = Vec::new();
+        let mut converted_1440 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1441 in value.try_iter()? {
             let item_1442 = item_result_1441?;
             let converted_item_1443 = volume_from_py(&item_1442)?;
@@ -8026,7 +8088,8 @@ fn lambda_details_from_py(
         builder = builder.set_vpc_config(Some(converted_1468));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1469 = Vec::new();
+        let mut converted_1469 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1470 in value.try_iter()? {
             let item_1471 = item_result_1470?;
             let converted_item_1472 = tag_from_py(&item_1471)?;
@@ -8221,7 +8284,8 @@ fn list_malware_scans_filter_criteria_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::ListMalwareScansFilterCriteria::builder();
     if let Some(value) = dict_value(values, "list_malware_scans_filter_criterion")? {
-        let mut converted_1503 = Vec::new();
+        let mut converted_1503 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1504 in value.try_iter()? {
             let item_1505 = item_result_1504?;
             let converted_item_1506 = list_malware_scans_filter_criterion_from_py(&item_1505)?;
@@ -8781,7 +8845,8 @@ fn malware_scan_details_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::MalwareScanDetails::builder();
     if let Some(value) = dict_value(values, "threats")? {
-        let mut converted_1577 = Vec::new();
+        let mut converted_1577 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1578 in value.try_iter()? {
             let item_1579 = item_result_1578?;
             let converted_item_1580 = threat_from_py(&item_1579)?;
@@ -9128,7 +9193,8 @@ fn member_data_source_configuration_from_py(
         builder = builder.set_data_sources(Some(converted_1639));
     }
     if let Some(value) = dict_value(values, "features")? {
-        let mut converted_1640 = Vec::new();
+        let mut converted_1640 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1641 in value.try_iter()? {
             let item_1642 = item_result_1641?;
             let converted_item_1643 = member_features_configuration_result_from_py(&item_1642)?;
@@ -9187,7 +9253,8 @@ fn member_features_configuration_from_py(
         builder = builder.set_status(Some(converted_1651));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_1653 = Vec::new();
+        let mut converted_1653 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1654 in value.try_iter()? {
             let item_1655 = item_result_1654?;
             let converted_item_1656 = member_additional_configuration_from_py(&item_1655)?;
@@ -9255,7 +9322,8 @@ fn member_features_configuration_result_from_py(
         builder = builder.set_updated_at(Some(converted_1666));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_1668 = Vec::new();
+        let mut converted_1668 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1669 in value.try_iter()? {
             let item_1670 = item_result_1669?;
             let converted_item_1671 = member_additional_configuration_result_from_py(&item_1670)?;
@@ -9612,7 +9680,8 @@ fn network_interface_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::NetworkInterface::builder();
     if let Some(value) = dict_value(values, "ipv6_addresses")? {
-        let mut converted_1724 = Vec::new();
+        let mut converted_1724 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1725 in value.try_iter()? {
             let item_1726 = item_result_1725?;
             let converted_item_1727: String = item_1726.extract()?;
@@ -9633,7 +9702,8 @@ fn network_interface_from_py(
         builder = builder.set_private_ip_address(Some(converted_1730));
     }
     if let Some(value) = dict_value(values, "private_ip_addresses")? {
-        let mut converted_1731 = Vec::new();
+        let mut converted_1731 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1732 in value.try_iter()? {
             let item_1733 = item_result_1732?;
             let converted_item_1734 = private_ip_address_details_from_py(&item_1733)?;
@@ -9650,7 +9720,8 @@ fn network_interface_from_py(
         builder = builder.set_public_ip(Some(converted_1736));
     }
     if let Some(value) = dict_value(values, "security_groups")? {
-        let mut converted_1737 = Vec::new();
+        let mut converted_1737 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1738 in value.try_iter()? {
             let item_1739 = item_result_1738?;
             let converted_item_1740 = security_group_from_py(&item_1739)?;
@@ -9758,7 +9829,8 @@ fn observations_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::Observations::builder();
     if let Some(value) = dict_value(values, "text")? {
-        let mut converted_1759 = Vec::new();
+        let mut converted_1759 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1760 in value.try_iter()? {
             let item_1761 = item_result_1760?;
             let converted_item_1762: String = item_1761.extract()?;
@@ -9767,7 +9839,8 @@ fn observations_from_py(
         builder = builder.set_text(Some(converted_1759));
     }
     if let Some(value) = dict_value(values, "number")? {
-        let mut converted_1763 = Vec::new();
+        let mut converted_1763 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1764 in value.try_iter()? {
             let item_1765 = item_result_1764?;
             let converted_item_1766: i64 = item_1765.extract()?;
@@ -10150,7 +10223,8 @@ fn organization_feature_configuration_from_py(
         builder = builder.set_auto_enable(Some(converted_1816));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_1818 = Vec::new();
+        let mut converted_1818 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1819 in value.try_iter()? {
             let item_1820 = item_result_1819?;
             let converted_item_1821 = organization_additional_configuration_from_py(&item_1820)?;
@@ -10209,7 +10283,8 @@ fn organization_feature_configuration_result_from_py(
         builder = builder.set_auto_enable(Some(converted_1829));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_1831 = Vec::new();
+        let mut converted_1831 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1832 in value.try_iter()? {
             let item_1833 = item_result_1832?;
             let converted_item_1834 =
@@ -10268,7 +10343,8 @@ fn organization_feature_statistics_from_py(
         builder = builder.set_enabled_accounts_count(Some(converted_1842));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let mut converted_1843 = Vec::new();
+        let mut converted_1843 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1844 in value.try_iter()? {
             let item_1845 = item_result_1844?;
             let converted_item_1846 =
@@ -10642,7 +10718,8 @@ fn organization_statistics_from_py(
         builder = builder.set_enabled_accounts_count(Some(converted_1880));
     }
     if let Some(value) = dict_value(values, "count_by_feature")? {
-        let mut converted_1881 = Vec::new();
+        let mut converted_1881 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1882 in value.try_iter()? {
             let item_1883 = item_result_1882?;
             let converted_item_1884 = organization_feature_statistics_from_py(&item_1883)?;
@@ -10763,7 +10840,8 @@ fn port_probe_action_from_py(
         builder = builder.set_blocked(Some(converted_1898));
     }
     if let Some(value) = dict_value(values, "port_probe_details")? {
-        let mut converted_1899 = Vec::new();
+        let mut converted_1899 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1900 in value.try_iter()? {
             let item_1901 = item_result_1900?;
             let converted_item_1902 = port_probe_detail_from_py(&item_1901)?;
@@ -10940,7 +11018,8 @@ fn process_details_from_py(
         builder = builder.set_euid(Some(converted_1929));
     }
     if let Some(value) = dict_value(values, "lineage")? {
-        let mut converted_1930 = Vec::new();
+        let mut converted_1930 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1931 in value.try_iter()? {
             let item_1932 = item_result_1931?;
             let converted_item_1933 = lineage_object_from_py(&item_1932)?;
@@ -11239,7 +11318,8 @@ fn rds_db_instance_details_from_py(
         builder = builder.set_dbi_resource_id(Some(converted_1978));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1979 = Vec::new();
+        let mut converted_1979 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1980 in value.try_iter()? {
             let item_1981 = item_result_1980?;
             let converted_item_1982 = tag_from_py(&item_1981)?;
@@ -11401,7 +11481,8 @@ fn rds_limitless_db_details_from_py(
         builder = builder.set_db_cluster_identifier(Some(converted_2007));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_2008 = Vec::new();
+        let mut converted_2008 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2009 in value.try_iter()? {
             let item_2010 = item_result_2009?;
             let converted_item_2011 = tag_from_py(&item_2010)?;
@@ -11477,7 +11558,8 @@ fn rds_login_attempt_action_from_py(
         builder = builder.set_remote_ip_details(Some(converted_2021));
     }
     if let Some(value) = dict_value(values, "login_attributes")? {
-        let mut converted_2022 = Vec::new();
+        let mut converted_2022 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2023 in value.try_iter()? {
             let item_2024 = item_result_2023?;
             let converted_item_2025 = login_attribute_from_py(&item_2024)?;
@@ -11761,7 +11843,8 @@ fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_access_key_details(Some(converted_2062));
     }
     if let Some(value) = dict_value(values, "s3_bucket_details")? {
-        let mut converted_2063 = Vec::new();
+        let mut converted_2063 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2064 in value.try_iter()? {
             let item_2065 = item_result_2064?;
             let converted_item_2066 = s3_bucket_detail_from_py(&item_2065)?;
@@ -11830,7 +11913,8 @@ fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_bedrock_guardrail_details(Some(converted_2081));
     }
     if let Some(value) = dict_value(values, "model_details")? {
-        let mut converted_2082 = Vec::new();
+        let mut converted_2082 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2083 in value.try_iter()? {
             let item_2084 = item_result_2083?;
             let converted_item_2085 = model_detail_from_py(&item_2084)?;
@@ -12284,7 +12368,8 @@ fn resource_v2_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::
         builder = builder.set_cloud_partition(Some(converted_2162));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_2163 = Vec::new();
+        let mut converted_2163 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2164 in value.try_iter()? {
             let item_2165 = item_result_2164?;
             let converted_item_2166 = tag_from_py(&item_2165)?;
@@ -12789,7 +12874,8 @@ fn runtime_context_from_py(
         builder = builder.set_file_system_type(Some(converted_2260));
     }
     if let Some(value) = dict_value(values, "flags")? {
-        let mut converted_2261 = Vec::new();
+        let mut converted_2261 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2262 in value.try_iter()? {
             let item_2263 = item_result_2262?;
             let converted_item_2264: String = item_2263.extract()?;
@@ -12826,7 +12912,8 @@ fn runtime_context_from_py(
         builder = builder.set_iana_protocol_number(Some(converted_2271));
     }
     if let Some(value) = dict_value(values, "memory_regions")? {
-        let mut converted_2272 = Vec::new();
+        let mut converted_2272 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2273 in value.try_iter()? {
             let item_2274 = item_result_2273?;
             let converted_item_2275: String = item_2274.extract()?;
@@ -12863,7 +12950,8 @@ fn runtime_context_from_py(
         builder = builder.set_file_path(Some(converted_2282));
     }
     if let Some(value) = dict_value(values, "related_file_paths")? {
-        let mut converted_2283 = Vec::new();
+        let mut converted_2283 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2284 in value.try_iter()? {
             let item_2285 = item_result_2284?;
             let converted_item_2286: String = item_2285.extract()?;
@@ -13150,7 +13238,8 @@ fn s3_bucket_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::ty
         builder = builder.set_bucket_public_access(Some(converted_2336));
     }
     if let Some(value) = dict_value(values, "s3_object_uids")? {
-        let mut converted_2337 = Vec::new();
+        let mut converted_2337 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2338 in value.try_iter()? {
             let item_2339 = item_result_2338?;
             let converted_item_2340: String = item_2339.extract()?;
@@ -13265,7 +13354,8 @@ fn s3_bucket_detail_from_py(
         builder = builder.set_owner(Some(converted_2358));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_2359 = Vec::new();
+        let mut converted_2359 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2360 in value.try_iter()? {
             let item_2361 = item_result_2360?;
             let converted_item_2362 = tag_from_py(&item_2361)?;
@@ -13282,7 +13372,8 @@ fn s3_bucket_detail_from_py(
         builder = builder.set_public_access(Some(converted_2364));
     }
     if let Some(value) = dict_value(values, "s3_object_details")? {
-        let mut converted_2365 = Vec::new();
+        let mut converted_2365 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2366 in value.try_iter()? {
             let item_2367 = item_result_2366?;
             let converted_item_2368 = s3_object_detail_from_py(&item_2367)?;
@@ -13642,7 +13733,8 @@ fn scan_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::
         builder = builder.set_file_count(Some(converted_2424));
     }
     if let Some(value) = dict_value(values, "attached_volumes")? {
-        let mut converted_2425 = Vec::new();
+        let mut converted_2425 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2426 in value.try_iter()? {
             let item_2427 = item_result_2426?;
             let converted_item_2428 = volume_detail_from_py(&item_2427)?;
@@ -13764,7 +13856,8 @@ fn scan_condition_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::ScanCondition::builder();
     if let Some(value) = dict_value(values, "map_equals")? {
-        let mut converted_2448 = Vec::new();
+        let mut converted_2448 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2449 in value.try_iter()? {
             let item_2450 = item_result_2449?;
             let converted_item_2451 = scan_condition_pair_from_py(&item_2450)?;
@@ -14137,7 +14230,7 @@ fn scan_resource_criteria_from_py(
     let mut builder = aws_sdk_guardduty::types::ScanResourceCriteria::builder();
     if let Some(value) = dict_value(values, "include")? {
         let mapping_2498 = value.cast::<PyDict>()?;
-        let mut converted_2497 = HashMap::new();
+        let mut converted_2497 = HashMap::with_capacity(mapping_2498.len());
         for (key_2499, value_2500) in mapping_2498.iter() {
             let enum_value_2503: String = key_2499.extract()?;
             let converted_key_2501 =
@@ -14149,7 +14242,7 @@ fn scan_resource_criteria_from_py(
     }
     if let Some(value) = dict_value(values, "exclude")? {
         let mapping_2505 = value.cast::<PyDict>()?;
-        let mut converted_2504 = HashMap::new();
+        let mut converted_2504 = HashMap::with_capacity(mapping_2505.len());
         for (key_2506, value_2507) in mapping_2505.iter() {
             let enum_value_2510: String = key_2506.extract()?;
             let converted_key_2508 =
@@ -14245,7 +14338,8 @@ fn scan_result_threat_from_py(
         builder = builder.set_hash(Some(converted_2528));
     }
     if let Some(value) = dict_value(values, "item_details")? {
-        let mut converted_2529 = Vec::new();
+        let mut converted_2529 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2530 in value.try_iter()? {
             let item_2531 = item_result_2530?;
             let converted_item_2532 = item_details_from_py(&item_2531)?;
@@ -14317,7 +14411,8 @@ fn scan_threat_name_from_py(
         builder = builder.set_item_count(Some(converted_2542));
     }
     if let Some(value) = dict_value(values, "file_paths")? {
-        let mut converted_2543 = Vec::new();
+        let mut converted_2543 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2544 in value.try_iter()? {
             let item_2545 = item_result_2544?;
             let converted_item_2546 = scan_file_path_from_py(&item_2545)?;
@@ -14603,7 +14698,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_description(Some(converted_2585));
     }
     if let Some(value) = dict_value(values, "actors")? {
-        let mut converted_2586 = Vec::new();
+        let mut converted_2586 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2587 in value.try_iter()? {
             let item_2588 = item_result_2587?;
             let converted_item_2589 = actor_from_py(&item_2588)?;
@@ -14612,7 +14708,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_actors(Some(converted_2586));
     }
     if let Some(value) = dict_value(values, "resources")? {
-        let mut converted_2590 = Vec::new();
+        let mut converted_2590 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2591 in value.try_iter()? {
             let item_2592 = item_result_2591?;
             let converted_item_2593 = resource_v2_from_py(&item_2592)?;
@@ -14621,7 +14718,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_resources(Some(converted_2590));
     }
     if let Some(value) = dict_value(values, "endpoints")? {
-        let mut converted_2594 = Vec::new();
+        let mut converted_2594 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2595 in value.try_iter()? {
             let item_2596 = item_result_2595?;
             let converted_item_2597 = network_endpoint_from_py(&item_2596)?;
@@ -14630,7 +14728,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_endpoints(Some(converted_2594));
     }
     if let Some(value) = dict_value(values, "signals")? {
-        let mut converted_2598 = Vec::new();
+        let mut converted_2598 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2599 in value.try_iter()? {
             let item_2600 = item_result_2599?;
             let converted_item_2601 = signal_from_py(&item_2600)?;
@@ -14639,7 +14738,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_signals(Some(converted_2598));
     }
     if let Some(value) = dict_value(values, "sequence_indicators")? {
-        let mut converted_2602 = Vec::new();
+        let mut converted_2602 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2603 in value.try_iter()? {
             let item_2604 = item_result_2603?;
             let converted_item_2605 = indicator_from_py(&item_2604)?;
@@ -14648,7 +14748,8 @@ fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::typ
         builder = builder.set_sequence_indicators(Some(converted_2602));
     }
     if let Some(value) = dict_value(values, "additional_sequence_types")? {
-        let mut converted_2606 = Vec::new();
+        let mut converted_2606 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2607 in value.try_iter()? {
             let item_2608 = item_result_2607?;
             let converted_item_2609: String = item_2608.extract()?;
@@ -15125,7 +15226,8 @@ fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_count(Some(converted_2697));
     }
     if let Some(value) = dict_value(values, "resource_uids")? {
-        let mut converted_2698 = Vec::new();
+        let mut converted_2698 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2699 in value.try_iter()? {
             let item_2700 = item_result_2699?;
             let converted_item_2701: String = item_2700.extract()?;
@@ -15134,7 +15236,8 @@ fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_resource_uids(Some(converted_2698));
     }
     if let Some(value) = dict_value(values, "actor_ids")? {
-        let mut converted_2702 = Vec::new();
+        let mut converted_2702 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2703 in value.try_iter()? {
             let item_2704 = item_result_2703?;
             let converted_item_2705: String = item_2704.extract()?;
@@ -15143,7 +15246,8 @@ fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_actor_ids(Some(converted_2702));
     }
     if let Some(value) = dict_value(values, "endpoint_ids")? {
-        let mut converted_2706 = Vec::new();
+        let mut converted_2706 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2707 in value.try_iter()? {
             let item_2708 = item_result_2707?;
             let converted_item_2709: String = item_2708.extract()?;
@@ -15152,7 +15256,8 @@ fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_endpoint_ids(Some(converted_2706));
     }
     if let Some(value) = dict_value(values, "signal_indicators")? {
-        let mut converted_2710 = Vec::new();
+        let mut converted_2710 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2711 in value.try_iter()? {
             let item_2712 = item_result_2711?;
             let converted_item_2713 = indicator_from_py(&item_2712)?;
@@ -15161,7 +15266,8 @@ fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_signal_indicators(Some(converted_2710));
     }
     if let Some(value) = dict_value(values, "activities")? {
-        let mut converted_2714 = Vec::new();
+        let mut converted_2714 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2715 in value.try_iter()? {
             let item_2716 = item_result_2715?;
             let converted_item_2717 = activity_from_py(&item_2716)?;
@@ -15418,7 +15524,8 @@ fn threat_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_source(Some(converted_2759));
     }
     if let Some(value) = dict_value(values, "item_paths")? {
-        let mut converted_2760 = Vec::new();
+        let mut converted_2760 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2761 in value.try_iter()? {
             let item_2762 = item_result_2761?;
             let converted_item_2763 = item_path_from_py(&item_2762)?;
@@ -15435,7 +15542,8 @@ fn threat_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types
         builder = builder.set_hash(Some(converted_2765));
     }
     if let Some(value) = dict_value(values, "item_details")? {
-        let mut converted_2766 = Vec::new();
+        let mut converted_2766 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2767 in value.try_iter()? {
             let item_2768 = item_result_2767?;
             let converted_item_2769 = item_details_from_py(&item_2768)?;
@@ -15515,7 +15623,8 @@ fn threat_detected_by_name_from_py(
         builder = builder.set_shortened(Some(converted_2782));
     }
     if let Some(value) = dict_value(values, "threat_names")? {
-        let mut converted_2783 = Vec::new();
+        let mut converted_2783 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2784 in value.try_iter()? {
             let item_2785 = item_result_2784?;
             let converted_item_2786 = scan_threat_name_from_py(&item_2785)?;
@@ -15573,7 +15682,8 @@ fn threat_intelligence_detail_from_py(
         builder = builder.set_threat_list_name(Some(converted_2793));
     }
     if let Some(value) = dict_value(values, "threat_names")? {
-        let mut converted_2794 = Vec::new();
+        let mut converted_2794 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2795 in value.try_iter()? {
             let item_2796 = item_result_2795?;
             let converted_item_2797: String = item_2796.extract()?;
@@ -15817,7 +15927,8 @@ fn update_s3_bucket_resource_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::UpdateS3BucketResource::builder();
     if let Some(value) = dict_value(values, "object_prefixes")? {
-        let mut converted_2825 = Vec::new();
+        let mut converted_2825 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2826 in value.try_iter()? {
             let item_2827 = item_result_2826?;
             let converted_item_2828: String = item_2827.extract()?;
@@ -15889,7 +16000,8 @@ fn usage_criteria_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::UsageCriteria::builder();
     if let Some(value) = dict_value(values, "account_ids")? {
-        let mut converted_2836 = Vec::new();
+        let mut converted_2836 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2837 in value.try_iter()? {
             let item_2838 = item_result_2837?;
             let converted_item_2839: String = item_2838.extract()?;
@@ -15898,7 +16010,8 @@ fn usage_criteria_from_py(
         builder = builder.set_account_ids(Some(converted_2836));
     }
     if let Some(value) = dict_value(values, "data_sources")? {
-        let mut converted_2840 = Vec::new();
+        let mut converted_2840 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2841 in value.try_iter()? {
             let item_2842 = item_result_2841?;
             let enum_value_2844: String = item_2842.extract()?;
@@ -15909,7 +16022,8 @@ fn usage_criteria_from_py(
         builder = builder.set_data_sources(Some(converted_2840));
     }
     if let Some(value) = dict_value(values, "resources")? {
-        let mut converted_2845 = Vec::new();
+        let mut converted_2845 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2846 in value.try_iter()? {
             let item_2847 = item_result_2846?;
             let converted_item_2848: String = item_2847.extract()?;
@@ -15918,7 +16032,8 @@ fn usage_criteria_from_py(
         builder = builder.set_resources(Some(converted_2845));
     }
     if let Some(value) = dict_value(values, "features")? {
-        let mut converted_2849 = Vec::new();
+        let mut converted_2849 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2850 in value.try_iter()? {
             let item_2851 = item_result_2850?;
             let enum_value_2853: String = item_2851.extract()?;
@@ -16099,7 +16214,8 @@ fn usage_statistics_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::UsageStatistics::builder();
     if let Some(value) = dict_value(values, "sum_by_account")? {
-        let mut converted_2880 = Vec::new();
+        let mut converted_2880 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2881 in value.try_iter()? {
             let item_2882 = item_result_2881?;
             let converted_item_2883 = usage_account_result_from_py(&item_2882)?;
@@ -16108,7 +16224,8 @@ fn usage_statistics_from_py(
         builder = builder.set_sum_by_account(Some(converted_2880));
     }
     if let Some(value) = dict_value(values, "top_accounts_by_feature")? {
-        let mut converted_2884 = Vec::new();
+        let mut converted_2884 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2885 in value.try_iter()? {
             let item_2886 = item_result_2885?;
             let converted_item_2887 = usage_top_accounts_result_from_py(&item_2886)?;
@@ -16117,7 +16234,8 @@ fn usage_statistics_from_py(
         builder = builder.set_top_accounts_by_feature(Some(converted_2884));
     }
     if let Some(value) = dict_value(values, "sum_by_data_source")? {
-        let mut converted_2888 = Vec::new();
+        let mut converted_2888 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2889 in value.try_iter()? {
             let item_2890 = item_result_2889?;
             let converted_item_2891 = usage_data_source_result_from_py(&item_2890)?;
@@ -16126,7 +16244,8 @@ fn usage_statistics_from_py(
         builder = builder.set_sum_by_data_source(Some(converted_2888));
     }
     if let Some(value) = dict_value(values, "sum_by_resource")? {
-        let mut converted_2892 = Vec::new();
+        let mut converted_2892 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2893 in value.try_iter()? {
             let item_2894 = item_result_2893?;
             let converted_item_2895 = usage_resource_result_from_py(&item_2894)?;
@@ -16135,7 +16254,8 @@ fn usage_statistics_from_py(
         builder = builder.set_sum_by_resource(Some(converted_2892));
     }
     if let Some(value) = dict_value(values, "top_resources")? {
-        let mut converted_2896 = Vec::new();
+        let mut converted_2896 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2897 in value.try_iter()? {
             let item_2898 = item_result_2897?;
             let converted_item_2899 = usage_resource_result_from_py(&item_2898)?;
@@ -16144,7 +16264,8 @@ fn usage_statistics_from_py(
         builder = builder.set_top_resources(Some(converted_2896));
     }
     if let Some(value) = dict_value(values, "sum_by_feature")? {
-        let mut converted_2900 = Vec::new();
+        let mut converted_2900 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2901 in value.try_iter()? {
             let item_2902 = item_result_2901?;
             let converted_item_2903 = usage_feature_result_from_py(&item_2902)?;
@@ -16276,7 +16397,8 @@ fn usage_top_accounts_result_from_py(
         builder = builder.set_feature(Some(converted_2926));
     }
     if let Some(value) = dict_value(values, "accounts")? {
-        let mut converted_2928 = Vec::new();
+        let mut converted_2928 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2929 in value.try_iter()? {
             let item_2930 = item_result_2929?;
             let converted_item_2931 = usage_top_account_result_from_py(&item_2930)?;
@@ -16530,7 +16652,8 @@ fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::t
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_guardduty::types::VpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_2968 = Vec::new();
+        let mut converted_2968 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2969 in value.try_iter()? {
             let item_2970 = item_result_2969?;
             let converted_item_2971: String = item_2970.extract()?;
@@ -16543,7 +16666,8 @@ fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::t
         builder = builder.set_vpc_id(Some(converted_2972));
     }
     if let Some(value) = dict_value(values, "security_groups")? {
-        let mut converted_2973 = Vec::new();
+        let mut converted_2973 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2974 in value.try_iter()? {
             let item_2975 = item_result_2974?;
             let converted_item_2976 = security_group_from_py(&item_2975)?;
@@ -36433,12 +36557,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AcceptAdministratorInvitation"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyAcceptAdministratorInvitationResponse { inner: output },
-                )
-            })
+            Ok(PyAcceptAdministratorInvitationResponse { inner: output })
         })
     }
 
@@ -36478,7 +36597,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AcceptInvitation"))
             })?;
-            Python::attach(|py| Py::new(py, PyAcceptInvitationResponse { inner: output }))
+            Ok(PyAcceptInvitationResponse { inner: output })
         })
     }
 
@@ -36496,7 +36615,8 @@ impl GuardDutyClient {
             None
         };
         let finding_ids_value = if let Some(value) = dict_value(params, "finding_ids")? {
-            let mut converted_2991 = Vec::new();
+            let mut converted_2991 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2992 in value.try_iter()? {
                 let item_2993 = item_result_2992?;
                 let converted_item_2994: String = item_2993.extract()?;
@@ -36516,7 +36636,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ArchiveFindings"))
             })?;
-            Python::attach(|py| Py::new(py, PyArchiveFindingsResponse { inner: output }))
+            Ok(PyArchiveFindingsResponse { inner: output })
         })
     }
 
@@ -36549,7 +36669,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3000 = value.cast::<PyDict>()?;
-            let mut converted_2999 = HashMap::new();
+            let mut converted_2999 = HashMap::with_capacity(mapping_3000.len());
             for (key_3001, value_3002) in mapping_3000.iter() {
                 let converted_key_3003: String = key_3001.extract()?;
                 let converted_value_3004: String = value_3002.extract()?;
@@ -36573,12 +36693,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "CreateCustomDetectionRuleAssociation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateCustomDetectionRuleAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyCreateCustomDetectionRuleAssociationResponse { inner: output })
         })
     }
 
@@ -36605,7 +36720,8 @@ impl GuardDutyClient {
         };
         let include_account_ids_value =
             if let Some(value) = dict_value(params, "include_account_ids")? {
-                let mut converted_3008 = Vec::new();
+                let mut converted_3008 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3009 in value.try_iter()? {
                     let item_3010 = item_result_3009?;
                     let converted_item_3011: String = item_3010.extract()?;
@@ -36617,7 +36733,8 @@ impl GuardDutyClient {
             };
         let exclude_account_ids_value =
             if let Some(value) = dict_value(params, "exclude_account_ids")? {
-                let mut converted_3012 = Vec::new();
+                let mut converted_3012 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3013 in value.try_iter()? {
                     let item_3014 = item_result_3013?;
                     let converted_item_3015: String = item_3014.extract()?;
@@ -36648,12 +36765,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "CreateCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCreateCustomDetectionRuleOrgConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyCreateCustomDetectionRuleOrgConfigurationResponse { inner: output })
         })
     }
 
@@ -36694,7 +36806,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3023 = value.cast::<PyDict>()?;
-            let mut converted_3022 = HashMap::new();
+            let mut converted_3022 = HashMap::with_capacity(mapping_3023.len());
             for (key_3024, value_3025) in mapping_3023.iter() {
                 let converted_key_3026: String = key_3024.extract()?;
                 let converted_value_3027: String = value_3025.extract()?;
@@ -36705,7 +36817,8 @@ impl GuardDutyClient {
             None
         };
         let features_value = if let Some(value) = dict_value(params, "features")? {
-            let mut converted_3028 = Vec::new();
+            let mut converted_3028 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3029 in value.try_iter()? {
                 let item_3030 = item_result_3029?;
                 let converted_item_3031 = detector_feature_configuration_from_py(&item_3030)?;
@@ -36729,7 +36842,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDetector"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDetectorResponse { inner: output }))
+            Ok(PyCreateDetectorResponse { inner: output })
         })
     }
 
@@ -36786,7 +36899,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3041 = value.cast::<PyDict>()?;
-            let mut converted_3040 = HashMap::new();
+            let mut converted_3040 = HashMap::with_capacity(mapping_3041.len());
             for (key_3042, value_3043) in mapping_3041.iter() {
                 let converted_key_3044: String = key_3042.extract()?;
                 let converted_value_3045: String = value_3043.extract()?;
@@ -36812,7 +36925,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFilter"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateFilterResponse { inner: output }))
+            Ok(PyCreateFilterResponse { inner: output })
         })
     }
 
@@ -36863,7 +36976,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3054 = value.cast::<PyDict>()?;
-            let mut converted_3053 = HashMap::new();
+            let mut converted_3053 = HashMap::with_capacity(mapping_3054.len());
             for (key_3055, value_3056) in mapping_3054.iter() {
                 let converted_key_3057: String = key_3055.extract()?;
                 let converted_value_3058: String = value_3056.extract()?;
@@ -36897,7 +37010,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIPSet")))?;
-            Python::attach(|py| Py::new(py, PyCreateIPSetResponse { inner: output }))
+            Ok(PyCreateIPSetResponse { inner: output })
         })
     }
 
@@ -36937,7 +37050,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvestigation"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateInvestigationResponse { inner: output }))
+            Ok(PyCreateInvestigationResponse { inner: output })
         })
     }
 
@@ -36975,7 +37088,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3068 = value.cast::<PyDict>()?;
-            let mut converted_3067 = HashMap::new();
+            let mut converted_3067 = HashMap::with_capacity(mapping_3068.len());
             for (key_3069, value_3070) in mapping_3068.iter() {
                 let converted_key_3071: String = key_3069.extract()?;
                 let converted_value_3072: String = value_3070.extract()?;
@@ -36998,9 +37111,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMalwareProtectionPlan"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyCreateMalwareProtectionPlanResponse { inner: output })
-            })
+            Ok(PyCreateMalwareProtectionPlanResponse { inner: output })
         })
     }
 
@@ -37018,7 +37129,8 @@ impl GuardDutyClient {
             None
         };
         let account_details_value = if let Some(value) = dict_value(params, "account_details")? {
-            let mut converted_3074 = Vec::new();
+            let mut converted_3074 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3075 in value.try_iter()? {
                 let item_3076 = item_result_3075?;
                 let converted_item_3077 = account_detail_from_py(&item_3076)?;
@@ -37038,7 +37150,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateMembersResponse { inner: output }))
+            Ok(PyCreateMembersResponse { inner: output })
         })
     }
 
@@ -37078,7 +37190,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3084 = value.cast::<PyDict>()?;
-            let mut converted_3083 = HashMap::new();
+            let mut converted_3083 = HashMap::with_capacity(mapping_3084.len());
             for (key_3085, value_3086) in mapping_3084.iter() {
                 let converted_key_3087: String = key_3085.extract()?;
                 let converted_value_3088: String = value_3086.extract()?;
@@ -37101,9 +37213,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePublishingDestination"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyCreatePublishingDestinationResponse { inner: output })
-            })
+            Ok(PyCreatePublishingDestinationResponse { inner: output })
         })
     }
 
@@ -37121,7 +37231,8 @@ impl GuardDutyClient {
             None
         };
         let finding_types_value = if let Some(value) = dict_value(params, "finding_types")? {
-            let mut converted_3090 = Vec::new();
+            let mut converted_3090 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3091 in value.try_iter()? {
                 let item_3092 = item_result_3091?;
                 let converted_item_3093: String = item_3092.extract()?;
@@ -37141,7 +37252,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSampleFindings"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSampleFindingsResponse { inner: output }))
+            Ok(PyCreateSampleFindingsResponse { inner: output })
         })
     }
 
@@ -37199,7 +37310,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3103 = value.cast::<PyDict>()?;
-            let mut converted_3102 = HashMap::new();
+            let mut converted_3102 = HashMap::with_capacity(mapping_3103.len());
             for (key_3104, value_3105) in mapping_3103.iter() {
                 let converted_key_3106: String = key_3104.extract()?;
                 let converted_value_3107: String = value_3105.extract()?;
@@ -37225,7 +37336,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateThreatEntitySetResponse { inner: output }))
+            Ok(PyCreateThreatEntitySetResponse { inner: output })
         })
     }
 
@@ -37276,7 +37387,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3116 = value.cast::<PyDict>()?;
-            let mut converted_3115 = HashMap::new();
+            let mut converted_3115 = HashMap::with_capacity(mapping_3116.len());
             for (key_3117, value_3118) in mapping_3116.iter() {
                 let converted_key_3119: String = key_3117.extract()?;
                 let converted_value_3120: String = value_3118.extract()?;
@@ -37309,7 +37420,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatIntelSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateThreatIntelSetResponse { inner: output }))
+            Ok(PyCreateThreatIntelSetResponse { inner: output })
         })
     }
 
@@ -37367,7 +37478,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3131 = value.cast::<PyDict>()?;
-            let mut converted_3130 = HashMap::new();
+            let mut converted_3130 = HashMap::with_capacity(mapping_3131.len());
             for (key_3132, value_3133) in mapping_3131.iter() {
                 let converted_key_3134: String = key_3132.extract()?;
                 let converted_value_3135: String = value_3133.extract()?;
@@ -37393,7 +37504,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrustedEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateTrustedEntitySetResponse { inner: output }))
+            Ok(PyCreateTrustedEntitySetResponse { inner: output })
         })
     }
 
@@ -37405,7 +37516,8 @@ impl GuardDutyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3136 = Vec::new();
+            let mut converted_3136 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3137 in value.try_iter()? {
                 let item_3138 = item_result_3137?;
                 let converted_item_3139: String = item_3138.extract()?;
@@ -37424,7 +37536,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeclineInvitations"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeclineInvitationsResponse { inner: output }))
+            Ok(PyDeclineInvitationsResponse { inner: output })
         })
     }
 
@@ -37459,12 +37571,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleAssociation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteCustomDetectionRuleAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteCustomDetectionRuleAssociationResponse { inner: output })
         })
     }
 
@@ -37501,12 +37608,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeleteCustomDetectionRuleOrgConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyDeleteCustomDetectionRuleOrgConfigurationResponse { inner: output })
         })
     }
 
@@ -37532,7 +37634,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDetector"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDetectorResponse { inner: output }))
+            Ok(PyDeleteDetectorResponse { inner: output })
         })
     }
 
@@ -37565,7 +37667,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFilter"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteFilterResponse { inner: output }))
+            Ok(PyDeleteFilterResponse { inner: output })
         })
     }
 
@@ -37599,7 +37701,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIPSet")))?;
-            Python::attach(|py| Py::new(py, PyDeleteIPSetResponse { inner: output }))
+            Ok(PyDeleteIPSetResponse { inner: output })
         })
     }
 
@@ -37611,7 +37713,8 @@ impl GuardDutyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3150 = Vec::new();
+            let mut converted_3150 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3151 in value.try_iter()? {
                 let item_3152 = item_result_3151?;
                 let converted_item_3153: String = item_3152.extract()?;
@@ -37630,7 +37733,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInvitations"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteInvitationsResponse { inner: output }))
+            Ok(PyDeleteInvitationsResponse { inner: output })
         })
     }
 
@@ -37675,7 +37778,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3156 = Vec::new();
+            let mut converted_3156 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3157 in value.try_iter()? {
                 let item_3158 = item_result_3157?;
                 let converted_item_3159: String = item_3158.extract()?;
@@ -37695,7 +37799,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteMembersResponse { inner: output }))
+            Ok(PyDeleteMembersResponse { inner: output })
         })
     }
 
@@ -37728,9 +37832,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePublishingDestination"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDeletePublishingDestinationResponse { inner: output })
-            })
+            Ok(PyDeletePublishingDestinationResponse { inner: output })
         })
     }
 
@@ -37764,7 +37866,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteThreatEntitySetResponse { inner: output }))
+            Ok(PyDeleteThreatEntitySetResponse { inner: output })
         })
     }
 
@@ -37798,7 +37900,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatIntelSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteThreatIntelSetResponse { inner: output }))
+            Ok(PyDeleteThreatIntelSetResponse { inner: output })
         })
     }
 
@@ -37832,7 +37934,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrustedEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteTrustedEntitySetResponse { inner: output }))
+            Ok(PyDeleteTrustedEntitySetResponse { inner: output })
         })
     }
 
@@ -37886,7 +37988,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMalwareScans"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeMalwareScansResponse { inner: output }))
+            Ok(PyDescribeMalwareScansResponse { inner: output })
         })
     }
 
@@ -37928,12 +38030,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DescribeOrganizationConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeOrganizationConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyDescribeOrganizationConfigurationResponse { inner: output })
         })
     }
 
@@ -37966,12 +38063,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePublishingDestination"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribePublishingDestinationResponse { inner: output },
-                )
-            })
+            Ok(PyDescribePublishingDestinationResponse { inner: output })
         })
     }
 
@@ -37997,12 +38089,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisableOrganizationAdminAccount"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisableOrganizationAdminAccountResponse { inner: output },
-                )
-            })
+            Ok(PyDisableOrganizationAdminAccountResponse { inner: output })
         })
     }
 
@@ -38030,12 +38117,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "DisassociateFromAdministratorAccount")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateFromAdministratorAccountResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateFromAdministratorAccountResponse { inner: output })
         })
     }
 
@@ -38061,12 +38143,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateFromMasterAccount"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateFromMasterAccountResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateFromMasterAccountResponse { inner: output })
         })
     }
 
@@ -38084,7 +38161,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3182 = Vec::new();
+            let mut converted_3182 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3183 in value.try_iter()? {
                 let item_3184 = item_result_3183?;
                 let converted_item_3185: String = item_3184.extract()?;
@@ -38104,7 +38182,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyDisassociateMembersResponse { inner: output }))
+            Ok(PyDisassociateMembersResponse { inner: output })
         })
     }
 
@@ -38130,12 +38208,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "EnableOrganizationAdminAccount"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyEnableOrganizationAdminAccountResponse { inner: output },
-                )
-            })
+            Ok(PyEnableOrganizationAdminAccountResponse { inner: output })
         })
     }
 
@@ -38161,7 +38234,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAdministratorAccount"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAdministratorAccountResponse { inner: output }))
+            Ok(PyGetAdministratorAccountResponse { inner: output })
         })
     }
 
@@ -38185,7 +38258,8 @@ impl GuardDutyClient {
             None
         };
         let statistics_type_value = if let Some(value) = dict_value(params, "statistics_type")? {
-            let mut converted_3190 = Vec::new();
+            let mut converted_3190 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3191 in value.try_iter()? {
                 let item_3192 = item_result_3191?;
                 let enum_value_3194: String = item_3192.extract()?;
@@ -38209,7 +38283,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCoverageStatistics"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCoverageStatisticsResponse { inner: output }))
+            Ok(PyGetCoverageStatisticsResponse { inner: output })
         })
     }
 
@@ -38235,7 +38309,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomDetectionRule"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCustomDetectionRuleResponse { inner: output }))
+            Ok(PyGetCustomDetectionRuleResponse { inner: output })
         })
     }
 
@@ -38270,12 +38344,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "GetCustomDetectionRuleAssociation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetCustomDetectionRuleAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyGetCustomDetectionRuleAssociationResponse { inner: output })
         })
     }
 
@@ -38312,12 +38381,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "GetCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetCustomDetectionRuleOrgConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyGetCustomDetectionRuleOrgConfigurationResponse { inner: output })
         })
     }
 
@@ -38344,7 +38408,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDetector")))?;
-            Python::attach(|py| Py::new(py, PyGetDetectorResponse { inner: output }))
+            Ok(PyGetDetectorResponse { inner: output })
         })
     }
 
@@ -38378,7 +38442,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFilter")))?;
-            Python::attach(|py| Py::new(py, PyGetFilterResponse { inner: output }))
+            Ok(PyGetFilterResponse { inner: output })
         })
     }
 
@@ -38396,7 +38460,8 @@ impl GuardDutyClient {
             None
         };
         let finding_ids_value = if let Some(value) = dict_value(params, "finding_ids")? {
-            let mut converted_3205 = Vec::new();
+            let mut converted_3205 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3206 in value.try_iter()? {
                 let item_3207 = item_result_3206?;
                 let converted_item_3208: String = item_3207.extract()?;
@@ -38424,7 +38489,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFindings")))?;
-            Python::attach(|py| Py::new(py, PyGetFindingsResponse { inner: output }))
+            Ok(PyGetFindingsResponse { inner: output })
         })
     }
 
@@ -38444,7 +38509,8 @@ impl GuardDutyClient {
         let finding_statistic_types_value = if let Some(value) =
             dict_value(params, "finding_statistic_types")?
         {
-            let mut converted_3211 = Vec::new();
+            let mut converted_3211 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3212 in value.try_iter()? {
                 let item_3213 = item_result_3212?;
                 let enum_value_3215: String = item_3213.extract()?;
@@ -38497,7 +38563,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFindingsStatistics"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFindingsStatisticsResponse { inner: output }))
+            Ok(PyGetFindingsStatisticsResponse { inner: output })
         })
     }
 
@@ -38531,7 +38597,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIPSet")))?;
-            Python::attach(|py| Py::new(py, PyGetIPSetResponse { inner: output }))
+            Ok(PyGetIPSetResponse { inner: output })
         })
     }
 
@@ -38564,7 +38630,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvestigation"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetInvestigationResponse { inner: output }))
+            Ok(PyGetInvestigationResponse { inner: output })
         })
     }
 
@@ -38580,7 +38646,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvitationsCount"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetInvitationsCountResponse { inner: output }))
+            Ok(PyGetInvitationsCountResponse { inner: output })
         })
     }
 
@@ -38607,7 +38673,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareProtectionPlan"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMalwareProtectionPlanResponse { inner: output }))
+            Ok(PyGetMalwareProtectionPlanResponse { inner: output })
         })
     }
 
@@ -38633,7 +38699,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScan"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMalwareScanResponse { inner: output }))
+            Ok(PyGetMalwareScanResponse { inner: output })
         })
     }
 
@@ -38659,7 +38725,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScanSettings"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMalwareScanSettingsResponse { inner: output }))
+            Ok(PyGetMalwareScanSettingsResponse { inner: output })
         })
     }
 
@@ -38685,7 +38751,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMasterAccount"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMasterAccountResponse { inner: output }))
+            Ok(PyGetMasterAccountResponse { inner: output })
         })
     }
 
@@ -38703,7 +38769,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3231 = Vec::new();
+            let mut converted_3231 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3232 in value.try_iter()? {
                 let item_3233 = item_result_3232?;
                 let converted_item_3234: String = item_3233.extract()?;
@@ -38723,7 +38790,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMemberDetectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMemberDetectorsResponse { inner: output }))
+            Ok(PyGetMemberDetectorsResponse { inner: output })
         })
     }
 
@@ -38741,7 +38808,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3236 = Vec::new();
+            let mut converted_3236 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3237 in value.try_iter()? {
                 let item_3238 = item_result_3237?;
                 let converted_item_3239: String = item_3238.extract()?;
@@ -38762,7 +38830,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMembers")))?;
-            Python::attach(|py| Py::new(py, PyGetMembersResponse { inner: output }))
+            Ok(PyGetMembersResponse { inner: output })
         })
     }
 
@@ -38778,7 +38846,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOrganizationStatistics"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetOrganizationStatisticsResponse { inner: output }))
+            Ok(PyGetOrganizationStatisticsResponse { inner: output })
         })
     }
 
@@ -38796,7 +38864,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3241 = Vec::new();
+            let mut converted_3241 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3242 in value.try_iter()? {
                 let item_3243 = item_result_3242?;
                 let converted_item_3244: String = item_3243.extract()?;
@@ -38816,7 +38885,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRemainingFreeTrialDays"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRemainingFreeTrialDaysResponse { inner: output }))
+            Ok(PyGetRemainingFreeTrialDaysResponse { inner: output })
         })
     }
 
@@ -38850,7 +38919,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetThreatEntitySetResponse { inner: output }))
+            Ok(PyGetThreatEntitySetResponse { inner: output })
         })
     }
 
@@ -38884,7 +38953,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatIntelSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetThreatIntelSetResponse { inner: output }))
+            Ok(PyGetThreatIntelSetResponse { inner: output })
         })
     }
 
@@ -38918,7 +38987,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTrustedEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetTrustedEntitySetResponse { inner: output }))
+            Ok(PyGetTrustedEntitySetResponse { inner: output })
         })
     }
 
@@ -38982,7 +39051,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetUsageStatistics"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetUsageStatisticsResponse { inner: output }))
+            Ok(PyGetUsageStatisticsResponse { inner: output })
         })
     }
 
@@ -39000,7 +39069,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3259 = Vec::new();
+            let mut converted_3259 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3260 in value.try_iter()? {
                 let item_3261 = item_result_3260?;
                 let converted_item_3262: String = item_3261.extract()?;
@@ -39035,7 +39105,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InviteMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyInviteMembersResponse { inner: output }))
+            Ok(PyInviteMembersResponse { inner: output })
         })
     }
 
@@ -39089,7 +39159,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCoverage"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCoverageResponse { inner: output }))
+            Ok(PyListCoverageResponse { inner: output })
         })
     }
 
@@ -39140,12 +39210,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "ListCustomDetectionRuleAssociations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListCustomDetectionRuleAssociationsResponse { inner: output },
-                )
-            })
+            Ok(PyListCustomDetectionRuleAssociationsResponse { inner: output })
         })
     }
 
@@ -39190,12 +39255,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "ListCustomDetectionRuleOrgConfigurations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListCustomDetectionRuleOrgConfigurationsResponse { inner: output },
-                )
-            })
+            Ok(PyListCustomDetectionRuleOrgConfigurationsResponse { inner: output })
         })
     }
 
@@ -39219,7 +39279,8 @@ impl GuardDutyClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3281 = Vec::new();
+            let mut converted_3281 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3282 in value.try_iter()? {
                 let item_3283 = item_result_3282?;
                 let converted_item_3284 = detection_rule_filter_from_py(&item_3283)?;
@@ -39240,7 +39301,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomDetectionRules"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCustomDetectionRulesResponse { inner: output }))
+            Ok(PyListCustomDetectionRulesResponse { inner: output })
         })
     }
 
@@ -39273,7 +39334,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDetectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDetectorsResponse { inner: output }))
+            Ok(PyListDetectorsResponse { inner: output })
         })
     }
 
@@ -39314,7 +39375,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListFilters")))?;
-            Python::attach(|py| Py::new(py, PyListFiltersResponse { inner: output }))
+            Ok(PyListFiltersResponse { inner: output })
         })
     }
 
@@ -39368,7 +39429,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFindings"))
             })?;
-            Python::attach(|py| Py::new(py, PyListFindingsResponse { inner: output }))
+            Ok(PyListFindingsResponse { inner: output })
         })
     }
 
@@ -39409,7 +39470,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIPSets")))?;
-            Python::attach(|py| Py::new(py, PyListIPSetsResponse { inner: output }))
+            Ok(PyListIPSetsResponse { inner: output })
         })
     }
 
@@ -39456,7 +39517,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvestigations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListInvestigationsResponse { inner: output }))
+            Ok(PyListInvestigationsResponse { inner: output })
         })
     }
 
@@ -39489,7 +39550,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvitations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListInvitationsResponse { inner: output }))
+            Ok(PyListInvitationsResponse { inner: output })
         })
     }
 
@@ -39515,7 +39576,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareProtectionPlans"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMalwareProtectionPlansResponse { inner: output }))
+            Ok(PyListMalwareProtectionPlansResponse { inner: output })
         })
     }
 
@@ -39562,7 +39623,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareScans"))
             })?;
-            Python::attach(|py| Py::new(py, PyListMalwareScansResponse { inner: output }))
+            Ok(PyListMalwareScansResponse { inner: output })
         })
     }
 
@@ -39610,7 +39671,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMembers")))?;
-            Python::attach(|py| Py::new(py, PyListMembersResponse { inner: output }))
+            Ok(PyListMembersResponse { inner: output })
         })
     }
 
@@ -39643,12 +39704,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOrganizationAdminAccounts"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListOrganizationAdminAccountsResponse { inner: output },
-                )
-            })
+            Ok(PyListOrganizationAdminAccountsResponse { inner: output })
         })
     }
 
@@ -39688,7 +39744,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPublishingDestinations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListPublishingDestinationsResponse { inner: output }))
+            Ok(PyListPublishingDestinationsResponse { inner: output })
         })
     }
 
@@ -39714,7 +39770,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResponse { inner: output }))
+            Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
@@ -39754,7 +39810,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatEntitySets"))
             })?;
-            Python::attach(|py| Py::new(py, PyListThreatEntitySetsResponse { inner: output }))
+            Ok(PyListThreatEntitySetsResponse { inner: output })
         })
     }
 
@@ -39794,7 +39850,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatIntelSets"))
             })?;
-            Python::attach(|py| Py::new(py, PyListThreatIntelSetsResponse { inner: output }))
+            Ok(PyListThreatIntelSetsResponse { inner: output })
         })
     }
 
@@ -39834,7 +39890,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTrustedEntitySets"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTrustedEntitySetsResponse { inner: output }))
+            Ok(PyListTrustedEntitySetsResponse { inner: output })
         })
     }
 
@@ -39860,7 +39916,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendObjectMalwareScan"))
             })?;
-            Python::attach(|py| Py::new(py, PySendObjectMalwareScanResponse { inner: output }))
+            Ok(PySendObjectMalwareScanResponse { inner: output })
         })
     }
 
@@ -39901,7 +39957,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMalwareScan"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartMalwareScanResponse { inner: output }))
+            Ok(PyStartMalwareScanResponse { inner: output })
         })
     }
 
@@ -39919,7 +39975,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3333 = Vec::new();
+            let mut converted_3333 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3334 in value.try_iter()? {
                 let item_3335 = item_result_3334?;
                 let converted_item_3336: String = item_3335.extract()?;
@@ -39939,7 +39996,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMonitoringMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartMonitoringMembersResponse { inner: output }))
+            Ok(PyStartMonitoringMembersResponse { inner: output })
         })
     }
 
@@ -39957,7 +40014,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3338 = Vec::new();
+            let mut converted_3338 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3339 in value.try_iter()? {
                 let item_3340 = item_result_3339?;
                 let converted_item_3341: String = item_3340.extract()?;
@@ -39977,7 +40035,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopMonitoringMembers"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopMonitoringMembersResponse { inner: output }))
+            Ok(PyStopMonitoringMembersResponse { inner: output })
         })
     }
 
@@ -39996,7 +40054,7 @@ impl GuardDutyClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_3344 = value.cast::<PyDict>()?;
-            let mut converted_3343 = HashMap::new();
+            let mut converted_3343 = HashMap::with_capacity(mapping_3344.len());
             for (key_3345, value_3346) in mapping_3344.iter() {
                 let converted_key_3347: String = key_3345.extract()?;
                 let converted_value_3348: String = value_3346.extract()?;
@@ -40017,7 +40075,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Python::attach(|py| Py::new(py, PyTagResourceResponse { inner: output }))
+            Ok(PyTagResourceResponse { inner: output })
         })
     }
 
@@ -40035,7 +40093,8 @@ impl GuardDutyClient {
             None
         };
         let finding_ids_value = if let Some(value) = dict_value(params, "finding_ids")? {
-            let mut converted_3350 = Vec::new();
+            let mut converted_3350 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3351 in value.try_iter()? {
                 let item_3352 = item_result_3351?;
                 let converted_item_3353: String = item_3352.extract()?;
@@ -40055,7 +40114,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UnarchiveFindings"))
             })?;
-            Python::attach(|py| Py::new(py, PyUnarchiveFindingsResponse { inner: output }))
+            Ok(PyUnarchiveFindingsResponse { inner: output })
         })
     }
 
@@ -40073,7 +40132,8 @@ impl GuardDutyClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_3355 = Vec::new();
+            let mut converted_3355 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3356 in value.try_iter()? {
                 let item_3357 = item_result_3356?;
                 let converted_item_3358: String = item_3357.extract()?;
@@ -40093,7 +40153,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyUntagResourceResponse { inner: output }))
+            Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
@@ -40137,12 +40197,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleAssociation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateCustomDetectionRuleAssociationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateCustomDetectionRuleAssociationResponse { inner: output })
         })
     }
 
@@ -40169,7 +40224,8 @@ impl GuardDutyClient {
         };
         let include_account_ids_value =
             if let Some(value) = dict_value(params, "include_account_ids")? {
-                let mut converted_3366 = Vec::new();
+                let mut converted_3366 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3367 in value.try_iter()? {
                     let item_3368 = item_result_3367?;
                     let converted_item_3369: String = item_3368.extract()?;
@@ -40181,7 +40237,8 @@ impl GuardDutyClient {
             };
         let exclude_account_ids_value =
             if let Some(value) = dict_value(params, "exclude_account_ids")? {
-                let mut converted_3370 = Vec::new();
+                let mut converted_3370 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3371 in value.try_iter()? {
                     let item_3372 = item_result_3371?;
                     let converted_item_3373: String = item_3372.extract()?;
@@ -40205,12 +40262,7 @@ impl GuardDutyClient {
                     sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleOrgConfiguration")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateCustomDetectionRuleOrgConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateCustomDetectionRuleOrgConfigurationResponse { inner: output })
         })
     }
 
@@ -40250,7 +40302,8 @@ impl GuardDutyClient {
             None
         };
         let features_value = if let Some(value) = dict_value(params, "features")? {
-            let mut converted_3379 = Vec::new();
+            let mut converted_3379 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3380 in value.try_iter()? {
                 let item_3381 = item_result_3380?;
                 let converted_item_3382 = detector_feature_configuration_from_py(&item_3381)?;
@@ -40273,7 +40326,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDetector"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDetectorResponse { inner: output }))
+            Ok(PyUpdateDetectorResponse { inner: output })
         })
     }
 
@@ -40336,7 +40389,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFilter"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFilterResponse { inner: output }))
+            Ok(PyUpdateFilterResponse { inner: output })
         })
     }
 
@@ -40354,7 +40407,8 @@ impl GuardDutyClient {
             None
         };
         let finding_ids_value = if let Some(value) = dict_value(params, "finding_ids")? {
-            let mut converted_3391 = Vec::new();
+            let mut converted_3391 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3392 in value.try_iter()? {
                 let item_3393 = item_result_3392?;
                 let converted_item_3394: String = item_3393.extract()?;
@@ -40389,7 +40443,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFindingsFeedback"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFindingsFeedbackResponse { inner: output }))
+            Ok(PyUpdateFindingsFeedbackResponse { inner: output })
         })
     }
 
@@ -40452,7 +40506,7 @@ impl GuardDutyClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIPSet")))?;
-            Python::attach(|py| Py::new(py, PyUpdateIPSetResponse { inner: output }))
+            Ok(PyUpdateIPSetResponse { inner: output })
         })
     }
 
@@ -40546,7 +40600,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMalwareScanSettings"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMalwareScanSettingsResponse { inner: output }))
+            Ok(PyUpdateMalwareScanSettingsResponse { inner: output })
         })
     }
 
@@ -40564,7 +40618,8 @@ impl GuardDutyClient {
             None
         };
         let account_ids_value = if let Some(value) = dict_value(params, "account_ids")? {
-            let mut converted_3413 = Vec::new();
+            let mut converted_3413 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3414 in value.try_iter()? {
                 let item_3415 = item_result_3414?;
                 let converted_item_3416: String = item_3415.extract()?;
@@ -40581,7 +40636,8 @@ impl GuardDutyClient {
             None
         };
         let features_value = if let Some(value) = dict_value(params, "features")? {
-            let mut converted_3418 = Vec::new();
+            let mut converted_3418 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3419 in value.try_iter()? {
                 let item_3420 = item_result_3419?;
                 let converted_item_3421 = member_features_configuration_from_py(&item_3420)?;
@@ -40603,7 +40659,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMemberDetectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMemberDetectorsResponse { inner: output }))
+            Ok(PyUpdateMemberDetectorsResponse { inner: output })
         })
     }
 
@@ -40633,7 +40689,8 @@ impl GuardDutyClient {
             None
         };
         let features_value = if let Some(value) = dict_value(params, "features")? {
-            let mut converted_3425 = Vec::new();
+            let mut converted_3425 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3426 in value.try_iter()? {
                 let item_3427 = item_result_3426?;
                 let converted_item_3428 = organization_feature_configuration_from_py(&item_3427)?;
@@ -40665,12 +40722,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOrganizationConfiguration"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateOrganizationConfigurationResponse { inner: output },
-                )
-            })
+            Ok(PyUpdateOrganizationConfigurationResponse { inner: output })
         })
     }
 
@@ -40711,9 +40763,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePublishingDestination"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdatePublishingDestinationResponse { inner: output })
-            })
+            Ok(PyUpdatePublishingDestinationResponse { inner: output })
         })
     }
 
@@ -40776,7 +40826,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateThreatEntitySetResponse { inner: output }))
+            Ok(PyUpdateThreatEntitySetResponse { inner: output })
         })
     }
 
@@ -40839,7 +40889,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatIntelSet"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateThreatIntelSetResponse { inner: output }))
+            Ok(PyUpdateThreatIntelSetResponse { inner: output })
         })
     }
 
@@ -40902,7 +40952,7 @@ impl GuardDutyClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrustedEntitySet"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateTrustedEntitySetResponse { inner: output }))
+            Ok(PyUpdateTrustedEntitySetResponse { inner: output })
         })
     }
 }

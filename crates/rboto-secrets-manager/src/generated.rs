@@ -102,7 +102,8 @@ fn filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_secretsmanager::
         builder = builder.set_key(Some(converted_11));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_13 = Vec::new();
+        let mut converted_13 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_14 in value.try_iter()? {
             let item_15 = item_result_14?;
             let converted_item_16: String = item_15.extract()?;
@@ -330,7 +331,8 @@ fn secret_list_entry_from_py(
         builder = builder.set_rotation_rules(Some(converted_50));
     }
     if let Some(value) = dict_value(values, "external_secret_rotation_metadata")? {
-        let mut converted_51 = Vec::new();
+        let mut converted_51 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_52 in value.try_iter()? {
             let item_53 = item_result_52?;
             let converted_item_54 = external_secret_rotation_metadata_item_from_py(&item_53)?;
@@ -388,7 +390,8 @@ fn secret_list_entry_from_py(
         builder = builder.set_next_rotation_date(Some(converted_64));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_66 = Vec::new();
+        let mut converted_66 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_67 in value.try_iter()? {
             let item_68 = item_result_67?;
             let converted_item_69 = tag_from_py(&item_68)?;
@@ -398,10 +401,11 @@ fn secret_list_entry_from_py(
     }
     if let Some(value) = dict_value(values, "secret_versions_to_stages")? {
         let mapping_71 = value.cast::<PyDict>()?;
-        let mut converted_70 = HashMap::new();
+        let mut converted_70 = HashMap::with_capacity(mapping_71.len());
         for (key_72, value_73) in mapping_71.iter() {
             let converted_key_74: String = key_72.extract()?;
-            let mut converted_value_75 = Vec::new();
+            let mut converted_value_75 =
+                Vec::with_capacity(value_73.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_76 in value_73.try_iter()? {
                 let item_77 = item_result_76?;
                 let converted_item_78: String = item_77.extract()?;
@@ -607,7 +611,8 @@ fn secret_value_entry_from_py(
         builder = builder.set_secret_string(Some(converted_118));
     }
     if let Some(value) = dict_value(values, "version_stages")? {
-        let mut converted_119 = Vec::new();
+        let mut converted_119 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_120 in value.try_iter()? {
             let item_121 = item_result_120?;
             let converted_item_122: String = item_121.extract()?;
@@ -692,7 +697,8 @@ fn secret_versions_list_entry_from_py(
         builder = builder.set_version_id(Some(converted_134));
     }
     if let Some(value) = dict_value(values, "version_stages")? {
-        let mut converted_135 = Vec::new();
+        let mut converted_135 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_136 in value.try_iter()? {
             let item_137 = item_result_136?;
             let converted_item_138: String = item_137.extract()?;
@@ -719,7 +725,8 @@ fn secret_versions_list_entry_from_py(
         builder = builder.set_created_date(Some(converted_141));
     }
     if let Some(value) = dict_value(values, "kms_key_ids")? {
-        let mut converted_143 = Vec::new();
+        let mut converted_143 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_144 in value.try_iter()? {
             let item_145 = item_result_144?;
             let converted_item_146: String = item_145.extract()?;
@@ -3268,7 +3275,8 @@ impl SecretsManagerClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let secret_id_list_value = if let Some(value) = dict_value(params, "secret_id_list")? {
-            let mut converted_164 = Vec::new();
+            let mut converted_164 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_165 in value.try_iter()? {
                 let item_166 = item_result_165?;
                 let converted_item_167: String = item_166.extract()?;
@@ -3279,7 +3287,8 @@ impl SecretsManagerClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_168 = Vec::new();
+            let mut converted_168 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_169 in value.try_iter()? {
                 let item_170 = item_result_169?;
                 let converted_item_171 = filter_from_py(&item_170)?;
@@ -3313,7 +3322,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetSecretValue"))
             })?;
-            Python::attach(|py| Py::new(py, PyBatchGetSecretValueResponse { inner: output }))
+            Ok(PyBatchGetSecretValueResponse { inner: output })
         })
     }
 
@@ -3339,7 +3348,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelRotateSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelRotateSecretResponse { inner: output }))
+            Ok(PyCancelRotateSecretResponse { inner: output })
         })
     }
 
@@ -3389,7 +3398,8 @@ impl SecretsManagerClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_182 = Vec::new();
+            let mut converted_182 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_183 in value.try_iter()? {
                 let item_184 = item_result_183?;
                 let converted_item_185 = tag_from_py(&item_184)?;
@@ -3401,7 +3411,8 @@ impl SecretsManagerClient {
         };
         let add_replica_regions_value =
             if let Some(value) = dict_value(params, "add_replica_regions")? {
-                let mut converted_186 = Vec::new();
+                let mut converted_186 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_187 in value.try_iter()? {
                     let item_188 = item_result_187?;
                     let converted_item_189 = replica_region_type_from_py(&item_188)?;
@@ -3442,7 +3453,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateSecretResponse { inner: output }))
+            Ok(PyCreateSecretResponse { inner: output })
         })
     }
 
@@ -3468,7 +3479,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourcePolicyResponse { inner: output }))
+            Ok(PyDeleteResourcePolicyResponse { inner: output })
         })
     }
 
@@ -3510,7 +3521,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteSecretResponse { inner: output }))
+            Ok(PyDeleteSecretResponse { inner: output })
         })
     }
 
@@ -3536,7 +3547,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeSecretResponse { inner: output }))
+            Ok(PyDescribeSecretResponse { inner: output })
         })
     }
 
@@ -3616,7 +3627,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRandomPassword"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRandomPasswordResponse { inner: output }))
+            Ok(PyGetRandomPasswordResponse { inner: output })
         })
     }
 
@@ -3642,7 +3653,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyResponse { inner: output }))
+            Ok(PyGetResourcePolicyResponse { inner: output })
         })
     }
 
@@ -3682,7 +3693,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSecretValue"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSecretValueResponse { inner: output }))
+            Ok(PyGetSecretValueResponse { inner: output })
         })
     }
 
@@ -3730,7 +3741,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSecretVersionIds"))
             })?;
-            Python::attach(|py| Py::new(py, PyListSecretVersionIdsResponse { inner: output }))
+            Ok(PyListSecretVersionIdsResponse { inner: output })
         })
     }
 
@@ -3761,7 +3772,8 @@ impl SecretsManagerClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_216 = Vec::new();
+            let mut converted_216 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_217 in value.try_iter()? {
                 let item_218 = item_result_217?;
                 let converted_item_219 = filter_from_py(&item_218)?;
@@ -3802,7 +3814,7 @@ impl SecretsManagerClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListSecrets")))?;
-            Python::attach(|py| Py::new(py, PyListSecretsResponse { inner: output }))
+            Ok(PyListSecretsResponse { inner: output })
         })
     }
 
@@ -3843,7 +3855,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -3881,7 +3893,8 @@ impl SecretsManagerClient {
             None
         };
         let version_stages_value = if let Some(value) = dict_value(params, "version_stages")? {
-            let mut converted_232 = Vec::new();
+            let mut converted_232 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_233 in value.try_iter()? {
                 let item_234 = item_result_233?;
                 let converted_item_235: String = item_234.extract()?;
@@ -3911,7 +3924,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutSecretValue"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutSecretValueResponse { inner: output }))
+            Ok(PyPutSecretValueResponse { inner: output })
         })
     }
 
@@ -3930,7 +3943,8 @@ impl SecretsManagerClient {
         };
         let remove_replica_regions_value =
             if let Some(value) = dict_value(params, "remove_replica_regions")? {
-                let mut converted_238 = Vec::new();
+                let mut converted_238 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_239 in value.try_iter()? {
                     let item_240 = item_result_239?;
                     let converted_item_241: String = item_240.extract()?;
@@ -3950,9 +3964,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RemoveRegionsFromReplication"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyRemoveRegionsFromReplicationResponse { inner: output })
-            })
+            Ok(PyRemoveRegionsFromReplicationResponse { inner: output })
         })
     }
 
@@ -3971,7 +3983,8 @@ impl SecretsManagerClient {
         };
         let add_replica_regions_value =
             if let Some(value) = dict_value(params, "add_replica_regions")? {
-                let mut converted_243 = Vec::new();
+                let mut converted_243 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_244 in value.try_iter()? {
                     let item_245 = item_result_244?;
                     let converted_item_246 = replica_region_type_from_py(&item_245)?;
@@ -3999,7 +4012,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateSecretToRegions"))
             })?;
-            Python::attach(|py| Py::new(py, PyReplicateSecretToRegionsResponse { inner: output }))
+            Ok(PyReplicateSecretToRegionsResponse { inner: output })
         })
     }
 
@@ -4025,7 +4038,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyRestoreSecretResponse { inner: output }))
+            Ok(PyRestoreSecretResponse { inner: output })
         })
     }
 
@@ -4065,7 +4078,8 @@ impl SecretsManagerClient {
         let external_secret_rotation_metadata_value = if let Some(value) =
             dict_value(params, "external_secret_rotation_metadata")?
         {
-            let mut converted_253 = Vec::new();
+            let mut converted_253 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_254 in value.try_iter()? {
                 let item_255 = item_result_254?;
                 let converted_item_256 = external_secret_rotation_metadata_item_from_py(&item_255)?;
@@ -4104,7 +4118,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RotateSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyRotateSecretResponse { inner: output }))
+            Ok(PyRotateSecretResponse { inner: output })
         })
     }
 
@@ -4130,7 +4144,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopReplicationToReplica"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopReplicationToReplicaResponse { inner: output }))
+            Ok(PyStopReplicationToReplicaResponse { inner: output })
         })
     }
 
@@ -4148,7 +4162,8 @@ impl SecretsManagerClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_261 = Vec::new();
+            let mut converted_261 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_262 in value.try_iter()? {
                 let item_263 = item_result_262?;
                 let converted_item_264 = tag_from_py(&item_263)?;
@@ -4187,7 +4202,8 @@ impl SecretsManagerClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_266 = Vec::new();
+            let mut converted_266 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_267 in value.try_iter()? {
                 let item_268 = item_result_267?;
                 let converted_item_269: String = item_268.extract()?;
@@ -4277,7 +4293,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecret"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateSecretResponse { inner: output }))
+            Ok(PyUpdateSecretResponse { inner: output })
         })
     }
 
@@ -4326,7 +4342,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecretVersionStage"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateSecretVersionStageResponse { inner: output }))
+            Ok(PyUpdateSecretVersionStageResponse { inner: output })
         })
     }
 
@@ -4359,7 +4375,7 @@ impl SecretsManagerClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyValidateResourcePolicyResponse { inner: output }))
+            Ok(PyValidateResourcePolicyResponse { inner: output })
         })
     }
 }

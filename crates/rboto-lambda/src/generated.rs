@@ -171,7 +171,7 @@ fn alias_routing_configuration_from_py(
     let mut builder = aws_sdk_lambda::types::AliasRoutingConfiguration::builder();
     if let Some(value) = dict_value(values, "additional_version_weights")? {
         let mapping_28 = value.cast::<PyDict>()?;
-        let mut converted_27 = HashMap::new();
+        let mut converted_27 = HashMap::with_capacity(mapping_28.len());
         for (key_29, value_30) in mapping_28.iter() {
             let converted_key_31: String = key_29.extract()?;
             let converted_value_32: f64 = value_30.extract()?;
@@ -208,7 +208,8 @@ fn allowed_publishers_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::AllowedPublishers::builder();
     if let Some(value) = dict_value(values, "signing_profile_version_arns")? {
-        let mut converted_38 = Vec::new();
+        let mut converted_38 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_39 in value.try_iter()? {
             let item_40 = item_result_39?;
             let converted_item_41: String = item_40.extract()?;
@@ -693,7 +694,8 @@ fn capacity_provider_scaling_config_from_py(
         builder = builder.set_scaling_mode(Some(converted_102));
     }
     if let Some(value) = dict_value(values, "scaling_policies")? {
-        let mut converted_104 = Vec::new();
+        let mut converted_104 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_105 in value.try_iter()? {
             let item_106 = item_result_105?;
             let converted_item_107 = target_tracking_scaling_policy_from_py(&item_106)?;
@@ -767,7 +769,8 @@ fn capacity_provider_vpc_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderVpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_115 = Vec::new();
+        let mut converted_115 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_116 in value.try_iter()? {
             let item_117 = item_result_116?;
             let converted_item_118: String = item_117.extract()?;
@@ -776,7 +779,8 @@ fn capacity_provider_vpc_config_from_py(
         builder = builder.set_subnet_ids(Some(converted_115));
     }
     if let Some(value) = dict_value(values, "security_group_ids")? {
-        let mut converted_119 = Vec::new();
+        let mut converted_119 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_120 in value.try_iter()? {
             let item_121 = item_result_120?;
             let converted_item_122: String = item_121.extract()?;
@@ -1065,7 +1069,8 @@ fn checkpoint_updated_execution_state_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::CheckpointUpdatedExecutionState::builder();
     if let Some(value) = dict_value(values, "operations")? {
-        let mut converted_157 = Vec::new();
+        let mut converted_157 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_158 in value.try_iter()? {
             let item_159 = item_result_158?;
             let converted_item_160 = operation_from_py(&item_159)?;
@@ -1370,7 +1375,8 @@ fn cors_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Cor
         builder = builder.set_allow_credentials(Some(converted_195));
     }
     if let Some(value) = dict_value(values, "allow_headers")? {
-        let mut converted_196 = Vec::new();
+        let mut converted_196 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_197 in value.try_iter()? {
             let item_198 = item_result_197?;
             let converted_item_199: String = item_198.extract()?;
@@ -1379,7 +1385,8 @@ fn cors_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Cor
         builder = builder.set_allow_headers(Some(converted_196));
     }
     if let Some(value) = dict_value(values, "allow_methods")? {
-        let mut converted_200 = Vec::new();
+        let mut converted_200 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_201 in value.try_iter()? {
             let item_202 = item_result_201?;
             let converted_item_203: String = item_202.extract()?;
@@ -1388,7 +1395,8 @@ fn cors_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Cor
         builder = builder.set_allow_methods(Some(converted_200));
     }
     if let Some(value) = dict_value(values, "allow_origins")? {
-        let mut converted_204 = Vec::new();
+        let mut converted_204 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_205 in value.try_iter()? {
             let item_206 = item_result_205?;
             let converted_item_207: String = item_206.extract()?;
@@ -1397,7 +1405,8 @@ fn cors_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Cor
         builder = builder.set_allow_origins(Some(converted_204));
     }
     if let Some(value) = dict_value(values, "expose_headers")? {
-        let mut converted_208 = Vec::new();
+        let mut converted_208 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_209 in value.try_iter()? {
             let item_210 = item_result_209?;
             let converted_item_211: String = item_210.extract()?;
@@ -1633,7 +1642,7 @@ fn environment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::typ
     let mut builder = aws_sdk_lambda::types::Environment::builder();
     if let Some(value) = dict_value(values, "variables")? {
         let mapping_247 = value.cast::<PyDict>()?;
-        let mut converted_246 = HashMap::new();
+        let mut converted_246 = HashMap::with_capacity(mapping_247.len());
         for (key_248, value_249) in mapping_247.iter() {
             let converted_key_250: String = key_248.extract()?;
             let converted_value_251: String = value_249.extract()?;
@@ -1707,7 +1716,7 @@ fn environment_response_from_py(
     let mut builder = aws_sdk_lambda::types::EnvironmentResponse::builder();
     if let Some(value) = dict_value(values, "variables")? {
         let mapping_262 = value.cast::<PyDict>()?;
-        let mut converted_261 = HashMap::new();
+        let mut converted_261 = HashMap::with_capacity(mapping_262.len());
         for (key_263, value_264) in mapping_262.iter() {
             let converted_key_265: String = key_263.extract()?;
             let converted_value_266: String = value_264.extract()?;
@@ -1788,7 +1797,8 @@ fn error_object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::ty
         builder = builder.set_error_data(Some(converted_278));
     }
     if let Some(value) = dict_value(values, "stack_trace")? {
-        let mut converted_279 = Vec::new();
+        let mut converted_279 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_280 in value.try_iter()? {
             let item_281 = item_result_280?;
             let converted_item_282: String = item_281.extract()?;
@@ -2355,7 +2365,8 @@ fn event_source_mapping_configuration_from_py(
         builder = builder.set_destination_config(Some(converted_386));
     }
     if let Some(value) = dict_value(values, "topics")? {
-        let mut converted_387 = Vec::new();
+        let mut converted_387 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_388 in value.try_iter()? {
             let item_389 = item_result_388?;
             let converted_item_390: String = item_389.extract()?;
@@ -2364,7 +2375,8 @@ fn event_source_mapping_configuration_from_py(
         builder = builder.set_topics(Some(converted_387));
     }
     if let Some(value) = dict_value(values, "queues")? {
-        let mut converted_391 = Vec::new();
+        let mut converted_391 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_392 in value.try_iter()? {
             let item_393 = item_result_392?;
             let converted_item_394: String = item_393.extract()?;
@@ -2373,7 +2385,8 @@ fn event_source_mapping_configuration_from_py(
         builder = builder.set_queues(Some(converted_391));
     }
     if let Some(value) = dict_value(values, "source_access_configurations")? {
-        let mut converted_395 = Vec::new();
+        let mut converted_395 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_396 in value.try_iter()? {
             let item_397 = item_result_396?;
             let converted_item_398 = source_access_configuration_from_py(&item_397)?;
@@ -2402,7 +2415,8 @@ fn event_source_mapping_configuration_from_py(
         builder = builder.set_tumbling_window_in_seconds(Some(converted_403));
     }
     if let Some(value) = dict_value(values, "function_response_types")? {
-        let mut converted_404 = Vec::new();
+        let mut converted_404 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_405 in value.try_iter()? {
             let item_406 = item_result_405?;
             let enum_value_408: String = item_406.extract()?;
@@ -2695,7 +2709,8 @@ fn event_source_mapping_metrics_config_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::EventSourceMappingMetricsConfig::builder();
     if let Some(value) = dict_value(values, "metrics")? {
-        let mut converted_458 = Vec::new();
+        let mut converted_458 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_459 in value.try_iter()? {
             let item_460 = item_result_459?;
             let enum_value_462: String = item_460.extract()?;
@@ -3035,7 +3050,8 @@ fn filter_criteria_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::FilterCriteria::builder();
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_505 = Vec::new();
+        let mut converted_505 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_506 in value.try_iter()? {
             let item_507 = item_result_506?;
             let converted_item_508 = filter_from_py(&item_507)?;
@@ -3395,7 +3411,8 @@ fn function_configuration_from_py(
         builder = builder.set_revision_id(Some(converted_569));
     }
     if let Some(value) = dict_value(values, "layers")? {
-        let mut converted_570 = Vec::new();
+        let mut converted_570 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_571 in value.try_iter()? {
             let item_572 = item_result_571?;
             let converted_item_573 = layer_from_py(&item_572)?;
@@ -3433,7 +3450,8 @@ fn function_configuration_from_py(
         builder = builder.set_last_update_status_reason_code(Some(converted_582));
     }
     if let Some(value) = dict_value(values, "file_system_configs")? {
-        let mut converted_584 = Vec::new();
+        let mut converted_584 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_585 in value.try_iter()? {
             let item_586 = item_result_585?;
             let converted_item_587 = file_system_config_from_py(&item_586)?;
@@ -3459,7 +3477,8 @@ fn function_configuration_from_py(
         builder = builder.set_image_config_response(Some(converted_592));
     }
     if let Some(value) = dict_value(values, "architectures")? {
-        let mut converted_593 = Vec::new();
+        let mut converted_593 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_594 in value.try_iter()? {
             let item_595 = item_result_594?;
             let enum_value_597: String = item_595.extract()?;
@@ -3976,7 +3995,8 @@ fn image_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::ty
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::ImageConfig::builder();
     if let Some(value) = dict_value(values, "entry_point")? {
-        let mut converted_688 = Vec::new();
+        let mut converted_688 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_689 in value.try_iter()? {
             let item_690 = item_result_689?;
             let converted_item_691: String = item_690.extract()?;
@@ -3985,7 +4005,8 @@ fn image_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::ty
         builder = builder.set_entry_point(Some(converted_688));
     }
     if let Some(value) = dict_value(values, "command")? {
-        let mut converted_692 = Vec::new();
+        let mut converted_692 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_693 in value.try_iter()? {
             let item_694 = item_result_693?;
             let converted_item_695: String = item_694.extract()?;
@@ -4114,7 +4135,8 @@ fn instance_requirements_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::InstanceRequirements::builder();
     if let Some(value) = dict_value(values, "architectures")? {
-        let mut converted_712 = Vec::new();
+        let mut converted_712 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_713 in value.try_iter()? {
             let item_714 = item_result_713?;
             let enum_value_716: String = item_714.extract()?;
@@ -4125,7 +4147,8 @@ fn instance_requirements_from_py(
         builder = builder.set_architectures(Some(converted_712));
     }
     if let Some(value) = dict_value(values, "allowed_instance_types")? {
-        let mut converted_717 = Vec::new();
+        let mut converted_717 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_718 in value.try_iter()? {
             let item_719 = item_result_718?;
             let converted_item_720: String = item_719.extract()?;
@@ -4134,7 +4157,8 @@ fn instance_requirements_from_py(
         builder = builder.set_allowed_instance_types(Some(converted_717));
     }
     if let Some(value) = dict_value(values, "excluded_instance_types")? {
-        let mut converted_721 = Vec::new();
+        let mut converted_721 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_722 in value.try_iter()? {
             let item_723 = item_result_722?;
             let converted_item_724: String = item_723.extract()?;
@@ -4418,7 +4442,8 @@ fn kafka_schema_registry_config_from_py(
         builder = builder.set_event_record_format(Some(converted_763));
     }
     if let Some(value) = dict_value(values, "access_configs")? {
-        let mut converted_765 = Vec::new();
+        let mut converted_765 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_766 in value.try_iter()? {
             let item_767 = item_result_766?;
             let converted_item_768 = kafka_schema_registry_access_config_from_py(&item_767)?;
@@ -4427,7 +4452,8 @@ fn kafka_schema_registry_config_from_py(
         builder = builder.set_access_configs(Some(converted_765));
     }
     if let Some(value) = dict_value(values, "schema_validation_configs")? {
-        let mut converted_769 = Vec::new();
+        let mut converted_769 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_770 in value.try_iter()? {
             let item_771 = item_result_770?;
             let converted_item_772 = kafka_schema_validation_config_from_py(&item_771)?;
@@ -4763,7 +4789,8 @@ fn layer_versions_list_item_from_py(
         builder = builder.set_created_date(Some(converted_825));
     }
     if let Some(value) = dict_value(values, "compatible_architectures")? {
-        let mut converted_826 = Vec::new();
+        let mut converted_826 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_827 in value.try_iter()? {
             let item_828 = item_result_827?;
             let enum_value_830: String = item_828.extract()?;
@@ -4774,7 +4801,8 @@ fn layer_versions_list_item_from_py(
         builder = builder.set_compatible_architectures(Some(converted_826));
     }
     if let Some(value) = dict_value(values, "compatible_runtimes")? {
-        let mut converted_831 = Vec::new();
+        let mut converted_831 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_832 in value.try_iter()? {
             let item_833 = item_result_832?;
             let enum_value_835: String = item_833.extract()?;
@@ -5302,7 +5330,7 @@ fn propagate_tags_from_py(
     }
     if let Some(value) = dict_value(values, "explicit_tags")? {
         let mapping_932 = value.cast::<PyDict>()?;
-        let mut converted_931 = HashMap::new();
+        let mut converted_931 = HashMap::with_capacity(mapping_932.len());
         for (key_933, value_934) in mapping_932.iter() {
             let converted_key_935: String = key_933.extract()?;
             let converted_value_936: String = value_934.extract()?;
@@ -5683,12 +5711,13 @@ fn self_managed_event_source_from_py(
     let mut builder = aws_sdk_lambda::types::SelfManagedEventSource::builder();
     if let Some(value) = dict_value(values, "endpoints")? {
         let mapping_988 = value.cast::<PyDict>()?;
-        let mut converted_987 = HashMap::new();
+        let mut converted_987 = HashMap::with_capacity(mapping_988.len());
         for (key_989, value_990) in mapping_988.iter() {
             let enum_value_993: String = key_989.extract()?;
             let converted_key_991 =
                 aws_sdk_lambda::types::EndPointType::from(enum_value_993.as_str());
-            let mut converted_value_992 = Vec::new();
+            let mut converted_value_992 =
+                Vec::with_capacity(value_990.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_994 in value_990.try_iter()? {
                 let item_995 = item_result_994?;
                 let converted_item_996: String = item_995.extract()?;
@@ -6202,7 +6231,8 @@ fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::type
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::VpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_1061 = Vec::new();
+        let mut converted_1061 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1062 in value.try_iter()? {
             let item_1063 = item_result_1062?;
             let converted_item_1064: String = item_1063.extract()?;
@@ -6211,7 +6241,8 @@ fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::type
         builder = builder.set_subnet_ids(Some(converted_1061));
     }
     if let Some(value) = dict_value(values, "security_group_ids")? {
-        let mut converted_1065 = Vec::new();
+        let mut converted_1065 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1066 in value.try_iter()? {
             let item_1067 = item_result_1066?;
             let converted_item_1068: String = item_1067.extract()?;
@@ -6268,7 +6299,8 @@ fn vpc_config_response_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_lambda::types::VpcConfigResponse::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
-        let mut converted_1077 = Vec::new();
+        let mut converted_1077 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1078 in value.try_iter()? {
             let item_1079 = item_result_1078?;
             let converted_item_1080: String = item_1079.extract()?;
@@ -6277,7 +6309,8 @@ fn vpc_config_response_from_py(
         builder = builder.set_subnet_ids(Some(converted_1077));
     }
     if let Some(value) = dict_value(values, "security_group_ids")? {
-        let mut converted_1081 = Vec::new();
+        let mut converted_1081 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1082 in value.try_iter()? {
             let item_1083 = item_result_1082?;
             let converted_item_1084: String = item_1083.extract()?;
@@ -23137,7 +23170,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddLayerVersionPermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyAddLayerVersionPermissionResponse { inner: output }))
+            Ok(PyAddLayerVersionPermissionResponse { inner: output })
         })
     }
 
@@ -23245,7 +23278,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddPermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyAddPermissionResponse { inner: output }))
+            Ok(PyAddPermissionResponse { inner: output })
         })
     }
 
@@ -23270,7 +23303,8 @@ impl LambdaClient {
             None
         };
         let updates_value = if let Some(value) = dict_value(params, "updates")? {
-            let mut converted_1131 = Vec::new();
+            let mut converted_1131 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1132 in value.try_iter()? {
                 let item_1133 = item_result_1132?;
                 let converted_item_1134 = operation_update_from_py(&item_1133)?;
@@ -23298,7 +23332,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckpointDurableExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyCheckpointDurableExecutionResponse { inner: output }))
+            Ok(PyCheckpointDurableExecutionResponse { inner: output })
         })
     }
 
@@ -23353,7 +23387,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAlias")))?;
-            Python::attach(|py| Py::new(py, PyCreateAliasOutput { inner: output }))
+            Ok(PyCreateAliasOutput { inner: output })
         })
     }
 
@@ -23406,7 +23440,7 @@ impl LambdaClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1148 = value.cast::<PyDict>()?;
-            let mut converted_1147 = HashMap::new();
+            let mut converted_1147 = HashMap::with_capacity(mapping_1148.len());
             for (key_1149, value_1150) in mapping_1148.iter() {
                 let converted_key_1151: String = key_1149.extract()?;
                 let converted_value_1152: String = value_1150.extract()?;
@@ -23445,7 +23479,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCapacityProvider"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateCapacityProviderResponse { inner: output }))
+            Ok(PyCreateCapacityProviderResponse { inner: output })
         })
     }
 
@@ -23478,7 +23512,7 @@ impl LambdaClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1159 = value.cast::<PyDict>()?;
-            let mut converted_1158 = HashMap::new();
+            let mut converted_1158 = HashMap::with_capacity(mapping_1159.len());
             for (key_1160, value_1161) in mapping_1159.iter() {
                 let converted_key_1162: String = key_1160.extract()?;
                 let converted_value_1163: String = value_1161.extract()?;
@@ -23500,7 +23534,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCodeSigningConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateCodeSigningConfigResponse { inner: output }))
+            Ok(PyCreateCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -23630,7 +23664,7 @@ impl LambdaClient {
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1184 = value.cast::<PyDict>()?;
-            let mut converted_1183 = HashMap::new();
+            let mut converted_1183 = HashMap::with_capacity(mapping_1184.len());
             for (key_1185, value_1186) in mapping_1184.iter() {
                 let converted_key_1187: String = key_1185.extract()?;
                 let converted_value_1188: String = value_1186.extract()?;
@@ -23648,7 +23682,8 @@ impl LambdaClient {
                 None
             };
         let topics_value = if let Some(value) = dict_value(params, "topics")? {
-            let mut converted_1190 = Vec::new();
+            let mut converted_1190 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1191 in value.try_iter()? {
                 let item_1192 = item_result_1191?;
                 let converted_item_1193: String = item_1192.extract()?;
@@ -23659,7 +23694,8 @@ impl LambdaClient {
             None
         };
         let queues_value = if let Some(value) = dict_value(params, "queues")? {
-            let mut converted_1194 = Vec::new();
+            let mut converted_1194 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1195 in value.try_iter()? {
                 let item_1196 = item_result_1195?;
                 let converted_item_1197: String = item_1196.extract()?;
@@ -23671,7 +23707,8 @@ impl LambdaClient {
         };
         let source_access_configurations_value =
             if let Some(value) = dict_value(params, "source_access_configurations")? {
-                let mut converted_1198 = Vec::new();
+                let mut converted_1198 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1199 in value.try_iter()? {
                     let item_1200 = item_result_1199?;
                     let converted_item_1201 = source_access_configuration_from_py(&item_1200)?;
@@ -23690,7 +23727,8 @@ impl LambdaClient {
             };
         let function_response_types_value =
             if let Some(value) = dict_value(params, "function_response_types")? {
-                let mut converted_1203 = Vec::new();
+                let mut converted_1203 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1204 in value.try_iter()? {
                     let item_1205 = item_result_1204?;
                     let enum_value_1207: String = item_1205.extract()?;
@@ -23770,7 +23808,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventSourceMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateEventSourceMappingOutput { inner: output }))
+            Ok(PyCreateEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -23885,7 +23923,7 @@ impl LambdaClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1232 = value.cast::<PyDict>()?;
-            let mut converted_1231 = HashMap::new();
+            let mut converted_1231 = HashMap::with_capacity(mapping_1232.len());
             for (key_1233, value_1234) in mapping_1232.iter() {
                 let converted_key_1235: String = key_1233.extract()?;
                 let converted_value_1236: String = value_1234.extract()?;
@@ -23896,7 +23934,8 @@ impl LambdaClient {
             None
         };
         let layers_value = if let Some(value) = dict_value(params, "layers")? {
-            let mut converted_1237 = Vec::new();
+            let mut converted_1237 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1238 in value.try_iter()? {
                 let item_1239 = item_result_1238?;
                 let converted_item_1240: String = item_1239.extract()?;
@@ -23908,7 +23947,8 @@ impl LambdaClient {
         };
         let file_system_configs_value =
             if let Some(value) = dict_value(params, "file_system_configs")? {
-                let mut converted_1241 = Vec::new();
+                let mut converted_1241 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1242 in value.try_iter()? {
                     let item_1243 = item_result_1242?;
                     let converted_item_1244 = file_system_config_from_py(&item_1243)?;
@@ -23932,7 +23972,8 @@ impl LambdaClient {
             None
         };
         let architectures_value = if let Some(value) = dict_value(params, "architectures")? {
-            let mut converted_1247 = Vec::new();
+            let mut converted_1247 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1248 in value.try_iter()? {
                 let item_1249 = item_result_1248?;
                 let enum_value_1251: String = item_1249.extract()?;
@@ -24018,7 +24059,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunction"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateFunctionOutput { inner: output }))
+            Ok(PyCreateFunctionOutput { inner: output })
         })
     }
 
@@ -24075,7 +24116,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunctionUrlConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateFunctionUrlConfigResponse { inner: output }))
+            Ok(PyCreateFunctionUrlConfigResponse { inner: output })
         })
     }
 
@@ -24136,7 +24177,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCapacityProvider"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteCapacityProviderResponse { inner: output }))
+            Ok(PyDeleteCapacityProviderResponse { inner: output })
         })
     }
 
@@ -24163,7 +24204,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCodeSigningConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteCodeSigningConfigResponse { inner: output }))
+            Ok(PyDeleteCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -24189,7 +24230,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventSourceMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteEventSourceMappingOutput { inner: output }))
+            Ok(PyDeleteEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -24222,7 +24263,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunction"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteFunctionResponse { inner: output }))
+            Ok(PyDeleteFunctionResponse { inner: output })
         })
     }
 
@@ -24457,7 +24498,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccountSettings"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAccountSettingsResponse { inner: output }))
+            Ok(PyGetAccountSettingsResponse { inner: output })
         })
     }
 
@@ -24491,7 +24532,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAlias")))?;
-            Python::attach(|py| Py::new(py, PyGetAliasOutput { inner: output }))
+            Ok(PyGetAliasOutput { inner: output })
         })
     }
 
@@ -24518,7 +24559,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCapacityProvider"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCapacityProviderResponse { inner: output }))
+            Ok(PyGetCapacityProviderResponse { inner: output })
         })
     }
 
@@ -24545,7 +24586,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCodeSigningConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCodeSigningConfigResponse { inner: output }))
+            Ok(PyGetCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -24580,7 +24621,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDurableExecutionResponse { inner: output }))
+            Ok(PyGetDurableExecutionResponse { inner: output })
         })
     }
 
@@ -24636,7 +24677,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionHistory"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDurableExecutionHistoryResponse { inner: output }))
+            Ok(PyGetDurableExecutionHistoryResponse { inner: output })
         })
     }
 
@@ -24684,7 +24725,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionState"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDurableExecutionStateResponse { inner: output }))
+            Ok(PyGetDurableExecutionStateResponse { inner: output })
         })
     }
 
@@ -24710,7 +24751,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSourceMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetEventSourceMappingOutput { inner: output }))
+            Ok(PyGetEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -24744,7 +24785,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFunction")))?;
-            Python::attach(|py| Py::new(py, PyGetFunctionResponse { inner: output }))
+            Ok(PyGetFunctionResponse { inner: output })
         })
     }
 
@@ -24770,9 +24811,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionCodeSigningConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetFunctionCodeSigningConfigResponse { inner: output })
-            })
+            Ok(PyGetFunctionCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -24798,7 +24837,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConcurrency"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionConcurrencyResponse { inner: output }))
+            Ok(PyGetFunctionConcurrencyResponse { inner: output })
         })
     }
 
@@ -24831,7 +24870,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionConfigurationOutput { inner: output }))
+            Ok(PyGetFunctionConfigurationOutput { inner: output })
         })
     }
 
@@ -24864,7 +24903,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionEventInvokeConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionEventInvokeConfigOutput { inner: output }))
+            Ok(PyGetFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -24890,7 +24929,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionRecursionConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionRecursionConfigResponse { inner: output }))
+            Ok(PyGetFunctionRecursionConfigResponse { inner: output })
         })
     }
 
@@ -24923,7 +24962,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionScalingConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionScalingConfigResponse { inner: output }))
+            Ok(PyGetFunctionScalingConfigResponse { inner: output })
         })
     }
 
@@ -24956,7 +24995,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionUrlConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFunctionUrlConfigResponse { inner: output }))
+            Ok(PyGetFunctionUrlConfigResponse { inner: output })
         })
     }
 
@@ -24989,7 +25028,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLayerVersionOutput { inner: output }))
+            Ok(PyGetLayerVersionOutput { inner: output })
         })
     }
 
@@ -25015,7 +25054,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionByArn"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLayerVersionByArnOutput { inner: output }))
+            Ok(PyGetLayerVersionByArnOutput { inner: output })
         })
     }
 
@@ -25048,7 +25087,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionPolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetLayerVersionPolicyResponse { inner: output }))
+            Ok(PyGetLayerVersionPolicyResponse { inner: output })
         })
     }
 
@@ -25082,7 +25121,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
-            Python::attach(|py| Py::new(py, PyGetPolicyResponse { inner: output }))
+            Ok(PyGetPolicyResponse { inner: output })
         })
     }
 
@@ -25115,12 +25154,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetProvisionedConcurrencyConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetProvisionedConcurrencyConfigResponse { inner: output },
-                )
-            })
+            Ok(PyGetProvisionedConcurrencyConfigResponse { inner: output })
         })
     }
 
@@ -25146,7 +25180,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePolicyResponse { inner: output }))
+            Ok(PyGetResourcePolicyResponse { inner: output })
         })
     }
 
@@ -25179,7 +25213,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRuntimeManagementConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetRuntimeManagementConfigResponse { inner: output }))
+            Ok(PyGetRuntimeManagementConfigResponse { inner: output })
         })
     }
 
@@ -25260,7 +25294,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Invoke")))?;
-            Python::attach(|py| Py::new(py, PyInvocationResponse { inner: output }))
+            Ok(PyInvocationResponse { inner: output })
         })
     }
 
@@ -25295,7 +25329,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeAsync")))?;
-            Python::attach(|py| Py::new(py, PyInvokeAsyncResponse { inner: output }))
+            Ok(PyInvokeAsyncResponse { inner: output })
         })
     }
 
@@ -25441,7 +25475,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
-            Python::attach(|py| Py::new(py, PyListAliasesResponse { inner: output }))
+            Ok(PyListAliasesResponse { inner: output })
         })
     }
 
@@ -25483,7 +25517,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCapacityProviders"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCapacityProvidersResponse { inner: output }))
+            Ok(PyListCapacityProvidersResponse { inner: output })
         })
     }
 
@@ -25516,7 +25550,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCodeSigningConfigs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCodeSigningConfigsResponse { inner: output }))
+            Ok(PyListCodeSigningConfigsResponse { inner: output })
         })
     }
 
@@ -25547,7 +25581,8 @@ impl LambdaClient {
                 None
             };
         let statuses_value = if let Some(value) = dict_value(params, "statuses")? {
-            let mut converted_1365 = Vec::new();
+            let mut converted_1365 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1366 in value.try_iter()? {
                 let item_1367 = item_result_1366?;
                 let enum_value_1369: String = item_1367.extract()?;
@@ -25616,12 +25651,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDurableExecutionsByFunction"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListDurableExecutionsByFunctionResponse { inner: output },
-                )
-            })
+            Ok(PyListDurableExecutionsByFunctionResponse { inner: output })
         })
     }
 
@@ -25668,7 +25698,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventSourceMappings"))
             })?;
-            Python::attach(|py| Py::new(py, PyListEventSourceMappingsResponse { inner: output }))
+            Ok(PyListEventSourceMappingsResponse { inner: output })
         })
     }
 
@@ -25708,12 +25738,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionEventInvokeConfigs"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListFunctionEventInvokeConfigsResponse { inner: output },
-                )
-            })
+            Ok(PyListFunctionEventInvokeConfigsResponse { inner: output })
         })
     }
 
@@ -25753,7 +25778,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionUrlConfigs"))
             })?;
-            Python::attach(|py| Py::new(py, PyListFunctionUrlConfigsResponse { inner: output }))
+            Ok(PyListFunctionUrlConfigsResponse { inner: output })
         })
     }
 
@@ -25796,12 +25821,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "ListFunctionVersionsByCapacityProvider")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListFunctionVersionsByCapacityProviderResponse { inner: output },
-                )
-            })
+            Ok(PyListFunctionVersionsByCapacityProviderResponse { inner: output })
         })
     }
 
@@ -25850,7 +25870,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListFunctionsResponse { inner: output }))
+            Ok(PyListFunctionsResponse { inner: output })
         })
     }
 
@@ -25891,12 +25911,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionsByCodeSigningConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListFunctionsByCodeSigningConfigResponse { inner: output },
-                )
-            })
+            Ok(PyListFunctionsByCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -25955,7 +25970,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListLayerVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListLayerVersionsResponse { inner: output }))
+            Ok(PyListLayerVersionsResponse { inner: output })
         })
     }
 
@@ -26008,7 +26023,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListLayers")))?;
-            Python::attach(|py| Py::new(py, PyListLayersResponse { inner: output }))
+            Ok(PyListLayersResponse { inner: output })
         })
     }
 
@@ -26050,12 +26065,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "ListProvisionedConcurrencyConfigs")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListProvisionedConcurrencyConfigsResponse { inner: output },
-                )
-            })
+            Ok(PyListProvisionedConcurrencyConfigsResponse { inner: output })
         })
     }
 
@@ -26082,7 +26092,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
-            Python::attach(|py| Py::new(py, PyListTagsResponse { inner: output }))
+            Ok(PyListTagsResponse { inner: output })
         })
     }
 
@@ -26122,7 +26132,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListVersionsByFunction"))
             })?;
-            Python::attach(|py| Py::new(py, PyListVersionsByFunctionResponse { inner: output }))
+            Ok(PyListVersionsByFunctionResponse { inner: output })
         })
     }
 
@@ -26153,7 +26163,8 @@ impl LambdaClient {
         };
         let compatible_architectures_value =
             if let Some(value) = dict_value(params, "compatible_architectures")? {
-                let mut converted_1421 = Vec::new();
+                let mut converted_1421 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1422 in value.try_iter()? {
                     let item_1423 = item_result_1422?;
                     let enum_value_1425: String = item_1423.extract()?;
@@ -26167,7 +26178,8 @@ impl LambdaClient {
             };
         let compatible_runtimes_value =
             if let Some(value) = dict_value(params, "compatible_runtimes")? {
-                let mut converted_1426 = Vec::new();
+                let mut converted_1426 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1427 in value.try_iter()? {
                     let item_1428 = item_result_1427?;
                     let enum_value_1430: String = item_1428.extract()?;
@@ -26199,7 +26211,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishLayerVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyPublishLayerVersionResponse { inner: output }))
+            Ok(PyPublishLayerVersionResponse { inner: output })
         })
     }
 
@@ -26256,7 +26268,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyPublishVersionOutput { inner: output }))
+            Ok(PyPublishVersionOutput { inner: output })
         })
     }
 
@@ -26290,9 +26302,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionCodeSigningConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyPutFunctionCodeSigningConfigResponse { inner: output })
-            })
+            Ok(PyPutFunctionCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -26326,7 +26336,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionConcurrency"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutFunctionConcurrencyOutput { inner: output }))
+            Ok(PyPutFunctionConcurrencyOutput { inner: output })
         })
     }
 
@@ -26383,7 +26393,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionEventInvokeConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutFunctionEventInvokeConfigOutput { inner: output }))
+            Ok(PyPutFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -26418,7 +26428,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionRecursionConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutFunctionRecursionConfigResponse { inner: output }))
+            Ok(PyPutFunctionRecursionConfigResponse { inner: output })
         })
     }
 
@@ -26459,7 +26469,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionScalingConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutFunctionScalingConfigResponse { inner: output }))
+            Ok(PyPutFunctionScalingConfigResponse { inner: output })
         })
     }
 
@@ -26500,12 +26510,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutProvisionedConcurrencyConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyPutProvisionedConcurrencyConfigResponse { inner: output },
-                )
-            })
+            Ok(PyPutProvisionedConcurrencyConfigResponse { inner: output })
         })
     }
 
@@ -26545,7 +26550,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -26596,7 +26601,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutRuntimeManagementConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutRuntimeManagementConfigResponse { inner: output }))
+            Ok(PyPutRuntimeManagementConfigResponse { inner: output })
         })
     }
 
@@ -26725,12 +26730,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackFailure")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PySendDurableExecutionCallbackFailureResponse { inner: output },
-                )
-            })
+            Ok(PySendDurableExecutionCallbackFailureResponse { inner: output })
         })
     }
 
@@ -26758,12 +26758,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackHeartbeat")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PySendDurableExecutionCallbackHeartbeatResponse { inner: output },
-                )
-            })
+            Ok(PySendDurableExecutionCallbackHeartbeatResponse { inner: output })
         })
     }
 
@@ -26799,12 +26794,7 @@ impl LambdaClient {
                     sdk_error_to_py(py, &error, "SendDurableExecutionCallbackSuccess")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PySendDurableExecutionCallbackSuccessResponse { inner: output },
-                )
-            })
+            Ok(PySendDurableExecutionCallbackSuccessResponse { inner: output })
         })
     }
 
@@ -26838,7 +26828,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopDurableExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopDurableExecutionResponse { inner: output }))
+            Ok(PyStopDurableExecutionResponse { inner: output })
         })
     }
 
@@ -26857,7 +26847,7 @@ impl LambdaClient {
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
             let mapping_1482 = value.cast::<PyDict>()?;
-            let mut converted_1481 = HashMap::new();
+            let mut converted_1481 = HashMap::with_capacity(mapping_1482.len());
             for (key_1483, value_1484) in mapping_1482.iter() {
                 let converted_key_1485: String = key_1483.extract()?;
                 let converted_value_1486: String = value_1484.extract()?;
@@ -26896,7 +26886,8 @@ impl LambdaClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_1488 = Vec::new();
+            let mut converted_1488 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1489 in value.try_iter()? {
                 let item_1490 = item_result_1489?;
                 let converted_item_1491: String = item_1490.extract()?;
@@ -26978,7 +26969,7 @@ impl LambdaClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAlias")))?;
-            Python::attach(|py| Py::new(py, PyUpdateAliasOutput { inner: output }))
+            Ok(PyUpdateAliasOutput { inner: output })
         })
     }
 
@@ -27027,7 +27018,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCapacityProvider"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateCapacityProviderResponse { inner: output }))
+            Ok(PyUpdateCapacityProviderResponse { inner: output })
         })
     }
 
@@ -27077,7 +27068,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCodeSigningConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateCodeSigningConfigResponse { inner: output }))
+            Ok(PyUpdateCodeSigningConfigResponse { inner: output })
         })
     }
 
@@ -27193,7 +27184,8 @@ impl LambdaClient {
             };
         let source_access_configurations_value =
             if let Some(value) = dict_value(params, "source_access_configurations")? {
-                let mut converted_1522 = Vec::new();
+                let mut converted_1522 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1523 in value.try_iter()? {
                     let item_1524 = item_result_1523?;
                     let converted_item_1525 = source_access_configuration_from_py(&item_1524)?;
@@ -27205,7 +27197,8 @@ impl LambdaClient {
             };
         let function_response_types_value =
             if let Some(value) = dict_value(params, "function_response_types")? {
-                let mut converted_1526 = Vec::new();
+                let mut converted_1526 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1527 in value.try_iter()? {
                     let item_1528 = item_result_1527?;
                     let enum_value_1530: String = item_1528.extract()?;
@@ -27279,7 +27272,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventSourceMapping"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateEventSourceMappingOutput { inner: output }))
+            Ok(PyUpdateEventSourceMappingOutput { inner: output })
         })
     }
 
@@ -27338,7 +27331,8 @@ impl LambdaClient {
             None
         };
         let architectures_value = if let Some(value) = dict_value(params, "architectures")? {
-            let mut converted_1544 = Vec::new();
+            let mut converted_1544 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1545 in value.try_iter()? {
                 let item_1546 = item_result_1545?;
                 let enum_value_1548: String = item_1546.extract()?;
@@ -27405,7 +27399,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionCode"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFunctionCodeOutput { inner: output }))
+            Ok(PyUpdateFunctionCodeOutput { inner: output })
         })
     }
 
@@ -27497,7 +27491,8 @@ impl LambdaClient {
             None
         };
         let layers_value = if let Some(value) = dict_value(params, "layers")? {
-            let mut converted_1569 = Vec::new();
+            let mut converted_1569 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1570 in value.try_iter()? {
                 let item_1571 = item_result_1570?;
                 let converted_item_1572: String = item_1571.extract()?;
@@ -27509,7 +27504,8 @@ impl LambdaClient {
         };
         let file_system_configs_value =
             if let Some(value) = dict_value(params, "file_system_configs")? {
-                let mut converted_1573 = Vec::new();
+                let mut converted_1573 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1574 in value.try_iter()? {
                     let item_1575 = item_result_1574?;
                     let converted_item_1576 = file_system_config_from_py(&item_1575)?;
@@ -27586,7 +27582,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionConfiguration"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFunctionConfigurationOutput { inner: output }))
+            Ok(PyUpdateFunctionConfigurationOutput { inner: output })
         })
     }
 
@@ -27643,12 +27639,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionEventInvokeConfig"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyUpdateFunctionEventInvokeConfigOutput { inner: output },
-                )
-            })
+            Ok(PyUpdateFunctionEventInvokeConfigOutput { inner: output })
         })
     }
 
@@ -27705,7 +27696,7 @@ impl LambdaClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionUrlConfig"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateFunctionUrlConfigResponse { inner: output }))
+            Ok(PyUpdateFunctionUrlConfigResponse { inner: output })
         })
     }
 }

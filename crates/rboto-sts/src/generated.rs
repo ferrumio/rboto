@@ -1318,7 +1318,8 @@ impl STSClient {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_30 = Vec::new();
+            let mut converted_30 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_31 in value.try_iter()? {
                 let item_32 = item_result_31?;
                 let converted_item_33 = policy_descriptor_type_from_py(&item_32)?;
@@ -1341,7 +1342,8 @@ impl STSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_36 = Vec::new();
+            let mut converted_36 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_37 in value.try_iter()? {
                 let item_38 = item_result_37?;
                 let converted_item_39 = tag_from_py(&item_38)?;
@@ -1353,7 +1355,8 @@ impl STSClient {
         };
         let transitive_tag_keys_value =
             if let Some(value) = dict_value(params, "transitive_tag_keys")? {
-                let mut converted_40 = Vec::new();
+                let mut converted_40 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_41 in value.try_iter()? {
                     let item_42 = item_result_41?;
                     let converted_item_43: String = item_42.extract()?;
@@ -1389,7 +1392,8 @@ impl STSClient {
         };
         let provided_contexts_value = if let Some(value) = dict_value(params, "provided_contexts")?
         {
-            let mut converted_48 = Vec::new();
+            let mut converted_48 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_49 in value.try_iter()? {
                 let item_50 = item_result_49?;
                 let converted_item_51 = provided_context_from_py(&item_50)?;
@@ -1428,7 +1432,7 @@ impl STSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRole")))?;
-            Python::attach(|py| Py::new(py, PyAssumeRoleResponse { inner: output }))
+            Ok(PyAssumeRoleResponse { inner: output })
         })
     }
 
@@ -1458,7 +1462,8 @@ impl STSClient {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_56 = Vec::new();
+            let mut converted_56 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_57 in value.try_iter()? {
                 let item_58 = item_result_57?;
                 let converted_item_59 = policy_descriptor_type_from_py(&item_58)?;
@@ -1502,7 +1507,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithSAML"))
             })?;
-            Python::attach(|py| Py::new(py, PyAssumeRoleWithSAMLResponse { inner: output }))
+            Ok(PyAssumeRoleWithSAMLResponse { inner: output })
         })
     }
 
@@ -1540,7 +1545,8 @@ impl STSClient {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_67 = Vec::new();
+            let mut converted_67 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_68 in value.try_iter()? {
                 let item_69 = item_result_68?;
                 let converted_item_70 = policy_descriptor_type_from_py(&item_69)?;
@@ -1585,7 +1591,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithWebIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyAssumeRoleWithWebIdentityResponse { inner: output }))
+            Ok(PyAssumeRoleWithWebIdentityResponse { inner: output })
         })
     }
 
@@ -1634,7 +1640,7 @@ impl STSClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoot")))?;
-            Python::attach(|py| Py::new(py, PyAssumeRootResponse { inner: output }))
+            Ok(PyAssumeRootResponse { inner: output })
         })
     }
 
@@ -1660,7 +1666,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DecodeAuthorizationMessage"))
             })?;
-            Python::attach(|py| Py::new(py, PyDecodeAuthorizationMessageResponse { inner: output }))
+            Ok(PyDecodeAuthorizationMessageResponse { inner: output })
         })
     }
 
@@ -1686,7 +1692,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessKeyInfo"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAccessKeyInfoResponse { inner: output }))
+            Ok(PyGetAccessKeyInfoResponse { inner: output })
         })
     }
 
@@ -1702,7 +1708,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCallerIdentity"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCallerIdentityResponse { inner: output }))
+            Ok(PyGetCallerIdentityResponse { inner: output })
         })
     }
 
@@ -1728,7 +1734,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDelegatedAccessToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDelegatedAccessTokenResponse { inner: output }))
+            Ok(PyGetDelegatedAccessTokenResponse { inner: output })
         })
     }
 
@@ -1752,7 +1758,8 @@ impl STSClient {
             None
         };
         let policy_arns_value = if let Some(value) = dict_value(params, "policy_arns")? {
-            let mut converted_83 = Vec::new();
+            let mut converted_83 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_84 in value.try_iter()? {
                 let item_85 = item_result_84?;
                 let converted_item_86 = policy_descriptor_type_from_py(&item_85)?;
@@ -1769,7 +1776,8 @@ impl STSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_88 = Vec::new();
+            let mut converted_88 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_89 in value.try_iter()? {
                 let item_90 = item_result_89?;
                 let converted_item_91 = tag_from_py(&item_90)?;
@@ -1800,7 +1808,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFederationToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetFederationTokenResponse { inner: output }))
+            Ok(PyGetFederationTokenResponse { inner: output })
         })
     }
 
@@ -1848,7 +1856,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSessionToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetSessionTokenResponse { inner: output }))
+            Ok(PyGetSessionTokenResponse { inner: output })
         })
     }
 
@@ -1860,7 +1868,8 @@ impl STSClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let audience_value = if let Some(value) = dict_value(params, "audience")? {
-            let mut converted_97 = Vec::new();
+            let mut converted_97 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_98 in value.try_iter()? {
                 let item_99 = item_result_98?;
                 let converted_item_100: String = item_99.extract()?;
@@ -1884,7 +1893,8 @@ impl STSClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_103 = Vec::new();
+            let mut converted_103 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_104 in value.try_iter()? {
                 let item_105 = item_result_104?;
                 let converted_item_106 = tag_from_py(&item_105)?;
@@ -1906,7 +1916,7 @@ impl STSClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWebIdentityToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetWebIdentityTokenResponse { inner: output }))
+            Ok(PyGetWebIdentityTokenResponse { inner: output })
         })
     }
 }
