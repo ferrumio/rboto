@@ -7,6 +7,7 @@ adapter_crate = "rboto-sfn-native"
 rust_crate = "aws-sdk-sfn"
 rust_module = "aws_sdk_sfn"
 rust_crate_version = "1.123.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/sfn.json"
 model_sha256 = "b4588dd9a96641549257757b318a89b9683cb1e72c4358d13ce84e92d0747108"
 aws_model_hash = "35533efa5aa891e7c07a06dedadeb353b7986b2cdc1b52e72cd821384ade6b0c"

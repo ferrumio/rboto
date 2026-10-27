@@ -7,6 +7,7 @@ adapter_crate = "rboto-dynamodb-native"
 rust_crate = "aws-sdk-dynamodb"
 rust_module = "aws_sdk_dynamodb"
 rust_crate_version = "1.134.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/dynamodb.json"
 model_sha256 = "e043dfb53f6835e2653254726fc4d1d95c547abd0f93a3a09ca0f8ccc511c929"
 aws_model_hash = "084bc202b5cf19e35aad0016d021a879d38ee43a039a929f2befc7e0c70f535c"

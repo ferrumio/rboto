@@ -7,6 +7,7 @@ adapter_crate = "rboto-bedrock-data-automation-native"
 rust_crate = "aws-sdk-bedrockdataautomation"
 rust_module = "aws_sdk_bedrockdataautomation"
 rust_crate_version = "1.74.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/bedrock-data-automation.json"
 model_sha256 = "28917752a057450ccf79e50834d912545adb173283bfe7bd2074a13e17bfda09"
 aws_model_hash = "65f135f5fb2521479bdea96a3dcec550727f1964f92a783d373b34e0e32d4252"

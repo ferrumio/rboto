@@ -7,6 +7,7 @@ adapter_crate = "rboto-sts-native"
 rust_crate = "aws-sdk-sts"
 rust_module = "aws_sdk_sts"
 rust_crate_version = "1.122.0"
+rust_crate_features = ["sigv4a", "default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/sts.json"
 model_sha256 = "3012bfe1c6d44b4348ed03888085fd0b7a506e4da3335250280537b85e834864"
 aws_model_hash = "e312bd3f56d942dbb5894c0465326990ccea0102c39f127949d09d7311b84753"

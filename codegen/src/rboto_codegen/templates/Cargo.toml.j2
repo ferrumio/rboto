@@ -14,12 +14,11 @@ rust-version.workspace = true
 publish = false
 
 [lib]
-name = "_native"
 crate-type = ["cdylib"]
 
 [dependencies]
 aws-config.workspace = true
-{{ rust_crate }} = "={{ rust_crate_version }}"
+{{ rust_crate }} = { version = "={{ rust_crate_version }}", default-features = false, features = {{ rust_crate_features | list | tojson }} }
 aws-smithy-async.workspace = true
 aws-smithy-runtime-api.workspace = true
 aws-smithy-types.workspace = true

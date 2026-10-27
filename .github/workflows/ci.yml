@@ -100,9 +100,12 @@ jobs:
         with:
           maturin-version: "v1.15.0"
           command: build
-          args: --release --locked --out dist -i python3.15
+          args: --release --locked --compression-level 9 --out dist -i python3.15
           working-directory: packages/rboto-${{ matrix.service }}
           sccache: true
+
+      - name: Check wheel contents
+        run: python .github/scripts/check_wheel_contents.py packages/rboto-${{ matrix.service }}/dist/*.whl
 
       - name: Install and import wheel
         shell: bash
@@ -117,7 +120,8 @@ jobs:
           RBOTO_TEST_SERVICES: ${{ matrix.service }}
         run: >-
           .venv/bin/pytest tests/integration/test_generated_client_bridge.py
-          tests/integration/test_new_client_protocols.py -q
+          tests/integration/test_new_client_protocols.py
+          tests/integration/test_tls_credentials.py -q
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

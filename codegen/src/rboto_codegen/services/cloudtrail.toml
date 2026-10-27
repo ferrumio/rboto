@@ -7,6 +7,7 @@ adapter_crate = "rboto-cloudtrail-native"
 rust_crate = "aws-sdk-cloudtrail"
 rust_module = "aws_sdk_cloudtrail"
 rust_crate_version = "1.128.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/cloudtrail.json"
 model_sha256 = "bd8f2aa63bdd108977ad464a6981e1ba1bd96818b67c069b62f1fac2190dfbb1"
 aws_model_hash = "dc8f9d35f8e848232ae5a6e9e3042ec26d00d59db275c0196face0d25d0ea40c"

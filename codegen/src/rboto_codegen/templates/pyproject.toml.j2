@@ -36,3 +36,4 @@ manifest-path = "../../crates/{{ distribution_name }}/Cargo.toml"
 python-source = "python"
 module-name = "{{ python_package }}._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

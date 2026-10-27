@@ -7,6 +7,7 @@ adapter_crate = "rboto-s3-native"
 rust_crate = "aws-sdk-s3"
 rust_module = "aws_sdk_s3"
 rust_crate_version = "1.155.0"
+rust_crate_features = ["sigv4a", "http-1x", "default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/s3.json"
 model_sha256 = "57431518807d8565e103b9bcc8f2610950e725645e28374e746bdf8e300cc37a"
 aws_model_hash = "e4c230adf13e968c640273af055cfdee3a37f9c7302084994d196ec6b6d6cfc9"

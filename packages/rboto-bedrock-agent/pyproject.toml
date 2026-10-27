@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-bedrock-agent/Cargo.toml"
 python-source = "python"
 module-name = "rboto_bedrock_agent._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

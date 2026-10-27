@@ -27,4 +27,9 @@ crate defines concrete module paths, builders, output structs, and ownership con
 Generation must respect both. Do not silence an alignment mismatch without documenting why
 the SDK representation is intentionally different.
 
+Service descriptors explicitly list `rust_crate_features`. Preserve the pinned SDK's
+default capabilities except legacy HTTPS aliases. The crate parser checks this selection
+against upstream defaults, including during automated model updates. Review feature drift
+instead of disabling that check. Manifest bootstrapping must not require crate downloads.
+
 See ADR-0002 and ADR-0003.

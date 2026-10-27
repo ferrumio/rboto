@@ -7,6 +7,7 @@ adapter_crate = "rboto-transcribe-streaming-native"
 rust_crate = "aws-sdk-transcribestreaming"
 rust_module = "aws_sdk_transcribestreaming"
 rust_crate_version = "1.124.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/transcribe-streaming.json"
 model_sha256 = "fa03e4b6fe98bf776155c8ec90ff823a812daedd18c3bacf37f61dab9d69c21c"
 aws_model_hash = "41af535b0e74a778b76c7dfe07f306aa238b76c15e9cdda3632e162133e9a994"

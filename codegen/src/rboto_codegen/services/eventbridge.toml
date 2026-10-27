@@ -7,6 +7,7 @@ adapter_crate = "rboto-eventbridge-native"
 rust_crate = "aws-sdk-eventbridge"
 rust_module = "aws_sdk_eventbridge"
 rust_crate_version = "1.125.0"
+rust_crate_features = ["sigv4a", "default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/eventbridge.json"
 model_sha256 = "55dc4532838b71926afff18b6ce7a11892c6f4aadc81f4036b983eea24c4a449"
 aws_model_hash = "65c54d6f22b719f6c86be82a3481a561661adb4313f3b14f5ec608b574dccb91"

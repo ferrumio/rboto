@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-cloudwatch-logs/Cargo.toml"
 python-source = "python"
 module-name = "rboto_cloudwatch_logs._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

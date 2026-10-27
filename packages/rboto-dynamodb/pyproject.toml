@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-dynamodb/Cargo.toml"
 python-source = "python"
 module-name = "rboto_dynamodb._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

@@ -4,8 +4,9 @@
 
 `.github/workflows/ci.yml` runs Python/codegen quality, Rust quality, and one Linux CPython
 3.15 wheel build per service, discovered from the descriptors. Each wheel job installs its
-wheel and runs its compiled bridge and local protocol tests. Python/codegen checks remain
-on Python 3.12.
+wheel and runs its compiled bridge and local protocol tests, including HTTPS and credential
+providers for SNS. Wheel content validation rejects interpreter caches and missing native
+or typing files. Python/codegen checks remain on Python 3.12.
 `.github/workflows/integration.yml` builds editable debug extensions for S3, SNS, SQS,
 and DynamoDB on Linux CPython 3.12 and runs their LocalStack flows and examples.
 

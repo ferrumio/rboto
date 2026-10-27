@@ -7,6 +7,7 @@ adapter_crate = "rboto-bedrock-native"
 rust_crate = "aws-sdk-bedrock"
 rust_module = "aws_sdk_bedrock"
 rust_crate_version = "1.164.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/bedrock.json"
 model_sha256 = "dc2b307fc905bb100b5430cdbc6d8465f4be72a6ccdff13a1a8ea575875f0ad2"
 aws_model_hash = "6223717cb4891e232851b93da321e13738333c2cc7b7eca469813558db78a225"
