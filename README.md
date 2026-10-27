@@ -3,7 +3,10 @@
 [![CI](https://github.com/ferrumio/rboto/actions/workflows/ci.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/ci.yml)
 [![Integration](https://github.com/ferrumio/rboto/actions/workflows/integration.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/integration.yml)
 [![Documentation](https://github.com/ferrumio/rboto/actions/workflows/docs.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/docs.yml)
-[![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13%20%7C%203.14-blue)](https://www.python.org/)
+[![CodeQL](https://github.com/ferrumio/rboto/actions/workflows/codeql.yml/badge.svg)](https://github.com/ferrumio/rboto/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ferrumio/rboto/badge)](https://scorecard.dev/viewer/?uri=github.com/ferrumio/rboto)
+[![Python](https://img.shields.io/badge/python-3.12%20%7C%203.13%20%7C%203.14%20%7C%203.15-blue)](https://www.python.org/)
+[![Typing](https://img.shields.io/badge/typing-strict-blue)](docs/clients.md)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
@@ -66,7 +69,7 @@ are generated from release-matched Smithy models and pinned AWS Rust SDK crates.
 
 ## Installation
 
-rboto supports CPython 3.12, 3.13, and 3.14 on Linux and macOS.
+rboto supports CPython 3.12, 3.13, 3.14, and 3.15 on Linux and macOS.
 
 Install one service:
 
@@ -238,7 +241,8 @@ patterns, and run the required Python, Rust, bridge, and LocalStack checks.
 
 ## Building from source
 
-Requirements: Python 3.12+, Rust 1.94.1+ with rustfmt, and a C compiler supported by PyO3.
+Requirements: Python 3.12–3.15, Rust 1.94.1+ with rustfmt, maturin 1.15+, and a C compiler
+supported by PyO3.
 
 ```bash
 git clone https://github.com/ferrumio/rboto.git
@@ -246,7 +250,7 @@ cd rboto
 
 python3 -m venv .venv
 source .venv/bin/activate
-.venv/bin/pip install maturin pytest pytest-asyncio mypy pyright ruff
+.venv/bin/pip install "maturin>=1.15,<2" pytest pytest-asyncio mypy pyright ruff
 .venv/bin/pip install -e codegen -e packages/rboto
 
 cargo fetch --locked
@@ -262,6 +266,13 @@ done
 
 See [`.ai/commands.md`](.ai/commands.md) for the complete generation and verification
 workflow.
+
+## Contributing and governance
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development and review requirements,
+[GOVERNANCE.md](GOVERNANCE.md) for maintainer responsibilities and decisions, and
+[SECURITY.md](SECURITY.md) for private vulnerability reporting. Community participation
+follows our [Code of conduct](CODE_OF_CONDUCT.md).
 
 ## License
 

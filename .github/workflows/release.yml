@@ -21,6 +21,8 @@ jobs:
       services: ${{ steps.release.outputs.services }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
@@ -51,11 +53,14 @@ jobs:
       fail-fast: false
       matrix:
         service: ${{ fromJSON(needs.prepare.outputs.services) }}
-        python: ["3.12", "3.13", "3.14"]
+        python: ["3.12", "3.13", "3.14", "3.15"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
+          maturin-version: "v1.15.0"
           target: x86_64
           args: --release --locked --out dist -i python${{ matrix.python }}
           manylinux: "2_17"
@@ -74,11 +79,14 @@ jobs:
       fail-fast: false
       matrix:
         service: ${{ fromJSON(needs.prepare.outputs.services) }}
-        python: ["3.12", "3.13", "3.14"]
+        python: ["3.12", "3.13", "3.14", "3.15"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
+          maturin-version: "v1.15.0"
           target: aarch64
           args: --release --locked --out dist -i python${{ matrix.python }}
           manylinux: "2_17"
@@ -89,27 +97,60 @@ jobs:
           name: service-${{ matrix.service }}-cp${{ matrix.python }}-manylinux-aarch64
           path: packages/rboto-${{ matrix.service }}/dist/*.whl
 
-  macos:
-    name: ${{ matrix.service }} macOS ${{ matrix.target }} cp${{ matrix.python }}
+  macos-x86:
+    name: ${{ matrix.service }} macOS x86_64 cp${{ matrix.python }}
+    needs: prepare
+    runs-on: macos-15-intel
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJSON(needs.prepare.outputs.services) }}
+        python: ["3.12", "3.13", "3.14", "3.15"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+        with:
+          maturin-version: "v1.15.0"
+          target: x86_64-apple-darwin
+          args: --release --locked --out dist -i python${{ matrix.python }}
+          working-directory: packages/rboto-${{ matrix.service }}
+          sccache: true
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: service-${{ matrix.service }}-cp${{ matrix.python }}-macos-x86_64
+          path: packages/rboto-${{ matrix.service }}/dist/*.whl
+
+  macos-arm:
+    name: ${{ matrix.service }} macOS arm64 cp${{ matrix.python }}
     needs: prepare
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         service: ${{ fromJSON(needs.prepare.outputs.services) }}
-        python: ["3.12", "3.13", "3.14"]
-        target: [x86_64-apple-darwin, aarch64-apple-darwin]
+        python: ["3.12", "3.13", "3.14", "3.15"]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
       - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
-          target: ${{ matrix.target }}
+          maturin-version: "v1.15.0"
+          target: aarch64-apple-darwin
           args: --release --locked --out dist -i python${{ matrix.python }}
           working-directory: packages/rboto-${{ matrix.service }}
           sccache: true
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: service-${{ matrix.service }}-cp${{ matrix.python }}-macos-${{ matrix.target }}
+          name: service-${{ matrix.service }}-cp${{ matrix.python }}-macos-arm64
           path: packages/rboto-${{ matrix.service }}/dist/*.whl
 
   service-sdist:
@@ -121,8 +162,11 @@ jobs:
         service: ${{ fromJSON(needs.prepare.outputs.services) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
+          maturin-version: "v1.15.0"
           command: sdist
           args: --out dist
           working-directory: packages/rboto-${{ matrix.service }}
@@ -137,6 +181,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
@@ -147,22 +193,31 @@ jobs:
           path: dist/*
 
   smoke-wheelhouse:
-    name: Smoke test Linux wheelhouse
-    needs: [prepare, linux-x86, core]
-    runs-on: ubuntu-latest
+    name: Smoke test ${{ matrix.platform.artifact }} / Python ${{ matrix.python }}
+    needs: [prepare, linux-x86, linux-arm, macos-x86, macos-arm, core]
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13", "3.14", "3.15"]
+        platform:
+          - { runner: ubuntu-latest, artifact: manylinux-x86_64 }
+          - { runner: ubuntu-24.04-arm, artifact: manylinux-aarch64 }
+          - { runner: macos-15-intel, artifact: macos-x86_64 }
+          - { runner: macos-latest, artifact: macos-arm64 }
     steps:
-      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          pattern: service-*-cp3.12-manylinux-x86_64
+          pattern: service-*-cp${{ matrix.python }}-${{ matrix.platform.artifact }}
           path: dist
           merge-multiple: true
-      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: core
           path: dist
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
       - name: Install all extras from wheelhouse
         run: |
           python -m venv .venv
@@ -171,7 +226,7 @@ jobs:
 
   publish-services:
     name: Publish service distributions
-    needs: [prepare, linux-x86, linux-arm, macos, service-sdist, smoke-wheelhouse]
+    needs: [prepare, linux-x86, linux-arm, macos-x86, macos-arm, service-sdist, smoke-wheelhouse]
     runs-on: ubuntu-latest
     environment:
       name: pypi-services
@@ -179,7 +234,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: service-*
           path: dist
@@ -198,7 +253,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: core
           path: dist
@@ -215,8 +270,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           fetch-depth: 0
-      - uses: actions/download-artifact@3e5f45b2cfb9172054c4087a40e8e0b5a5461e7c # v8.0.1
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           pattern: "*"
           path: dist

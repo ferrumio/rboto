@@ -22,7 +22,7 @@ different approach:
 
 ## Installation
 
-rboto supports CPython 3.12, 3.13, and 3.14 on Linux and macOS.
+rboto supports CPython 3.12, 3.13, 3.14, and 3.15 on Linux and macOS.
 
 === "S3"
     ```bash

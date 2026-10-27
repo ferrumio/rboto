@@ -1,6 +1,6 @@
 # ADR-0007: Separate fast CI validation from release builds
 
-- Status: Accepted
+- Status: Superseded by [ADR-0010](0010-python315-validation-and-release-matrix.md)
 - Date: 2026-08-14
 - Deciders: rboto maintainers
 

@@ -15,17 +15,21 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   smoke:
     environment: aws-smoke
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     env:
       AWS_REGION: ${{ inputs.region }}
       RBOTO_CLEANUP_BUCKET: "1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
         with:
@@ -39,7 +43,7 @@ jobs:
       - name: Build packages
         run: |
           python -m venv .venv
-          .venv/bin/pip install maturin
+          .venv/bin/pip install "maturin>=1.15,<2"
           .venv/bin/pip install -e packages/rboto
           (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --release --locked)
           (cd packages/rboto-sns && ../../.venv/bin/maturin develop --release --locked)
