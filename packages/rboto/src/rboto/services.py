@@ -16,10 +16,12 @@ if TYPE_CHECKING:
     from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
     from rboto_bedrock_runtime import BedrockRuntimeClient
     from rboto_cloudtrail import CloudTrailClient
+    from rboto_cloudwatch_logs import CloudWatchLogsClient
     from rboto_cognito_identity import CognitoIdentityClient
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
     from rboto_guardduty import GuardDutyClient
+    from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
     from rboto_lex_runtime_v2 import LexRuntimeV2Client
     from rboto_polly import PollyClient
@@ -27,9 +29,12 @@ if TYPE_CHECKING:
     from rboto_s3 import S3Client
     from rboto_sagemaker_runtime_http2 import SageMakerRuntimeHTTP2Client
     from rboto_secrets_manager import SecretsManagerClient
+    from rboto_sesv2 import SESv2Client
+    from rboto_sfn import SFNClient
     from rboto_signin import SignInClient
     from rboto_sns import SNSClient
     from rboto_sqs import SQSClient
+    from rboto_ssm import SSMClient
     from rboto_sts import STSClient
     from rboto_transcribe_streaming import TranscribeStreamingClient
 
@@ -287,6 +292,30 @@ def cloudtrail(
     )
 
 
+def cloudwatch_logs(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> CloudWatchLogsClient:
+    try:
+        from rboto_cloudwatch_logs import CloudWatchLogsClient
+    except ImportError as error:
+        raise ImportError(
+            'cloudwatch-logs support is not installed. Install it with: '
+            'pip install "rboto[cloudwatch-logs]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return CloudWatchLogsClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
 def cognito_identity(
     *,
     session: Session | None = None,
@@ -377,6 +406,30 @@ def guardduty(
         session, region, profile, endpoint_url
     )
     return GuardDutyClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def kms(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> KMSClient:
+    try:
+        from rboto_kms import KMSClient
+    except ImportError as error:
+        raise ImportError(
+            'kms support is not installed. Install it with: '
+            'pip install "rboto[kms]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return KMSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
@@ -551,6 +604,54 @@ def secrets_manager(
     )
 
 
+def sesv2(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SESv2Client:
+    try:
+        from rboto_sesv2 import SESv2Client
+    except ImportError as error:
+        raise ImportError(
+            'sesv2 support is not installed. Install it with: '
+            'pip install "rboto[sesv2]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SESv2Client(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def sfn(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SFNClient:
+    try:
+        from rboto_sfn import SFNClient
+    except ImportError as error:
+        raise ImportError(
+            'sfn support is not installed. Install it with: '
+            'pip install "rboto[sfn]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SFNClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
 def signin(
     *,
     session: Session | None = None,
@@ -617,6 +718,30 @@ def sqs(
         session, region, profile, endpoint_url
     )
     return SQSClient(
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+    )
+
+
+def ssm(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+) -> SSMClient:
+    try:
+        from rboto_ssm import SSMClient
+    except ImportError as error:
+        raise ImportError(
+            'ssm support is not installed. Install it with: '
+            'pip install "rboto[ssm]"'
+        ) from error
+    region, profile, endpoint_url = _resolve_config(
+        session, region, profile, endpoint_url
+    )
+    return SSMClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,

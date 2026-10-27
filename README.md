@@ -12,7 +12,7 @@
 Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
 
 > **Early development:** rboto is experimental and its API may change before 1.0.
-> 26 AWS service clients are available as independently installable packages.
+> 31 AWS service clients are available as independently installable packages.
 
 ## Why rboto?
 
@@ -32,8 +32,8 @@ approach:
 
 ## Supported services
 
-The catalog covers all 25 service clients in the AWS SDK for Python repository at
-revision `ba64dd7377013450e12c211149952910f40000f2`, plus S3: **1,309 operations**.
+The catalog provides **31 AWS service clients and 1,786 operations**, including
+CloudWatch Logs, Systems Manager, KMS, Step Functions, and SES v2.
 
 | Service / extra | Factory | Operations |
 |---|---|---:|
@@ -47,10 +47,12 @@ revision `ba64dd7377013450e12c211149952910f40000f2`, plus S3: **1,309 operations
 | `bedrock-data-automation-runtime` | `bedrock_data_automation_runtime()` | 6 |
 | `bedrock-runtime` | `bedrock_runtime()` | 11 |
 | `cloudtrail` | `cloudtrail()` | 60 |
+| `cloudwatch-logs` | `cloudwatch_logs()` | 118 |
 | `cognito-identity` | `cognito_identity()` | 23 |
 | `connecthealth` | `connecthealth()` | 16 |
 | `dynamodb` | `dynamodb()` | 58 |
 | `guardduty` | `guardduty()` | 102 |
+| `kms` | `kms()` | 54 |
 | `lambda` | `lambda_()` | 88 |
 | `lex-runtime-v2` | `lex_runtime_v2()` | 6 |
 | `polly` | `polly()` | 10 |
@@ -58,9 +60,12 @@ revision `ba64dd7377013450e12c211149952910f40000f2`, plus S3: **1,309 operations
 | `s3` | `s3()` | 112 |
 | `sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | 1 |
 | `secrets-manager` | `secrets_manager()` | 23 |
+| `sesv2` | `sesv2()` | 116 |
+| `sfn` | `sfn()` | 37 |
 | `signin` | `signin()` | 11 |
 | `sns` | `sns()` | 42 |
 | `sqs` | `sqs()` | 23 |
+| `ssm` | `ssm()` | 152 |
 | `sts` | `sts()` | 11 |
 | `transcribe-streaming` | `transcribe_streaming()` | 5 |
 
@@ -79,6 +84,7 @@ pip install "rboto[sns]"
 pip install "rboto[sqs]"
 pip install "rboto[dynamodb]"
 pip install "rboto[bedrock-runtime,secrets-manager,sts]"
+pip install "rboto[cloudwatch-logs,ssm,kms,sfn,sesv2]"
 ```
 
 Or install every available client:

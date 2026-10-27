@@ -11,6 +11,20 @@ from rboto_codegen.rust_crate import parse_crate
 ROOT = Path(__file__).parents[2]
 
 
+def test_cloudwatch_live_tail_errors_have_public_exception_classes() -> None:
+    path = ROOT / "packages/rboto-cloudwatch-logs/python/rboto_cloudwatch_logs/exceptions.py"
+    classes = {
+        node.name: node
+        for node in ast.parse(path.read_text()).body
+        if isinstance(node, ast.ClassDef)
+    }
+    for name in ("SessionStreamingError", "SessionTimeoutError", "ResourceNotFoundError"):
+        assert name in classes
+        base = classes[name].bases[0]
+        assert isinstance(base, ast.Name)
+        assert base.id == "CloudWatchLogsError"
+
+
 def test_all_clients_have_installable_extras_and_typecheck_paths() -> None:
     project = tomllib.loads((ROOT / "packages/rboto/pyproject.toml").read_text())["project"]
     extras = project["optional-dependencies"]

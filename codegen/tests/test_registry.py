@@ -10,6 +10,11 @@ def test_service_configs_are_discovered() -> None:
     assert {service.service_id for service in list_services()} == {
         *catalog["services"],
         "s3",
+        "cloudwatch-logs",
+        "kms",
+        "sesv2",
+        "sfn",
+        "ssm",
     }
 
 
