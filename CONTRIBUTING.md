@@ -1,7 +1,8 @@
 # Contributing to rboto
 
 Thanks for your interest in rboto. This guide covers the setup, the rules that make the
-project work, and the checks a change must pass.
+project work, and the checks a change must pass. Project spaces follow our
+[Code of conduct](CODE_OF_CONDUCT.md).
 
 ## Before you start
 

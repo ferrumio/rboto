@@ -30,9 +30,9 @@ matrix before publication. Only the latest release receives fixes while rboto is
 
 ## Community and security
 
-Keep discussions respectful and focused on the work. Explain disagreements with examples
-and evidence. Harassment, discriminatory language, and publishing others' private
-information are not acceptable; the maintainer may moderate or close such interactions.
+Participants follow the [Code of conduct](CODE_OF_CONDUCT.md), including the private
+reporting and moderation process. Keep discussions respectful and focused on the work,
+and explain disagreements with examples and evidence.
 
 Report vulnerabilities through the private channel in [SECURITY.md](SECURITY.md).
 Scorecard and CodeQL results are available from the repository's Actions and Security tabs.

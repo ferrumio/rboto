@@ -271,7 +271,8 @@ workflow.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development and review requirements,
 [GOVERNANCE.md](GOVERNANCE.md) for maintainer responsibilities and decisions, and
-[SECURITY.md](SECURITY.md) for private vulnerability reporting.
+[SECURITY.md](SECURITY.md) for private vulnerability reporting. Community participation
+follows our [Code of conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
