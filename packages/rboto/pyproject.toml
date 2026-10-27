@@ -45,14 +45,17 @@ cloudwatch-logs = ["rboto-cloudwatch-logs==0.1.0"]
 cognito-identity = ["rboto-cognito-identity==0.1.0"]
 connecthealth = ["rboto-connecthealth==0.1.0"]
 dynamodb = ["rboto-dynamodb==0.1.0"]
+eventbridge = ["rboto-eventbridge==0.1.0"]
 guardduty = ["rboto-guardduty==0.1.0"]
 kms = ["rboto-kms==0.1.0"]
 lambda = ["rboto-lambda==0.1.0"]
 lex-runtime-v2 = ["rboto-lex-runtime-v2==0.1.0"]
+pipes = ["rboto-pipes==0.1.0"]
 polly = ["rboto-polly==0.1.0"]
 qbusiness = ["rboto-qbusiness==0.1.0"]
 s3 = ["rboto-s3==0.1.0"]
 sagemaker-runtime-http2 = ["rboto-sagemaker-runtime-http2==0.1.0"]
+scheduler = ["rboto-scheduler==0.1.0"]
 secrets-manager = ["rboto-secrets-manager==0.1.0"]
 sesv2 = ["rboto-sesv2==0.1.0"]
 sfn = ["rboto-sfn==0.1.0"]
@@ -77,14 +80,17 @@ all = [
     "rboto-cognito-identity==0.1.0",
     "rboto-connecthealth==0.1.0",
     "rboto-dynamodb==0.1.0",
+    "rboto-eventbridge==0.1.0",
     "rboto-guardduty==0.1.0",
     "rboto-kms==0.1.0",
     "rboto-lambda==0.1.0",
     "rboto-lex-runtime-v2==0.1.0",
+    "rboto-pipes==0.1.0",
     "rboto-polly==0.1.0",
     "rboto-qbusiness==0.1.0",
     "rboto-s3==0.1.0",
     "rboto-sagemaker-runtime-http2==0.1.0",
+    "rboto-scheduler==0.1.0",
     "rboto-secrets-manager==0.1.0",
     "rboto-sesv2==0.1.0",
     "rboto-sfn==0.1.0",

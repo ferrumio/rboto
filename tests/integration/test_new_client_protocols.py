@@ -686,3 +686,152 @@ async def test_application_service_modeled_errors(
         await getattr(client, method)(**params)
     assert caught.value.error_code == error_code
     assert caught.value.operation_name == operation
+
+
+@pytest.mark.asyncio
+@service("eventbridge")
+async def test_eventbridge_partial_publication_failures(peer: Peer) -> None:
+    from rboto import eventbridge
+
+    peer.body = json.dumps(
+        {
+            "FailedEntryCount": 1,
+            "Entries": [
+                {"EventId": "event-123"},
+                {"ErrorCode": "MalformedDetail", "ErrorMessage": "Detail is not JSON"},
+            ],
+        }
+    ).encode()
+    result = await eventbridge(region="us-east-1", endpoint_url=peer.endpoint).put_events(
+        entries=[
+            {
+                "event_bus_name": "example",
+                "source": "rboto.test",
+                "detail_type": "Example",
+                "detail": '{"value":42}',
+                "time": "2026-10-26T00:00:00Z",
+            },
+            {
+                "event_bus_name": "example",
+                "source": "rboto.test",
+                "detail_type": "Example",
+                "detail": "invalid JSON",
+            },
+        ]
+    )
+    assert result.failed_entry_count == 1
+    assert result.entries is not None
+    assert result.entries[0].event_id == "event-123"
+    assert result.entries[1].error_code == "MalformedDetail"
+    assert result.entries[1].error_message == "Detail is not JSON"
+    with pytest.raises(AttributeError):
+        result.entries[0].event_id = "changed"
+    request = json.loads(peer.requests[0][1])
+    assert request["Entries"][0]["Detail"] == '{"value":42}'
+    assert isinstance(request["Entries"][0]["Time"], (int, float))
+    assert request["Entries"][1]["Detail"] == "invalid JSON"
+
+
+@pytest.mark.asyncio
+@service("scheduler")
+async def test_scheduler_nested_target_and_timezone(peer: Peer) -> None:
+    from rboto import scheduler
+
+    arn = "arn:aws:scheduler:us-east-1:123456789012:schedule/default/example"
+    peer.body = json.dumps({"ScheduleArn": arn}).encode()
+    result = await scheduler(region="us-east-1", endpoint_url=peer.endpoint).create_schedule(
+        name="example",
+        schedule_expression="cron(0 9 * * ? *)",
+        schedule_expression_timezone="America/Sao_Paulo",
+        start_date="2026-10-26T00:00:00Z",
+        flexible_time_window={"mode": "OFF"},
+        target={
+            "arn": "arn:aws:sqs:us-east-1:123456789012:example",
+            "role_arn": "arn:aws:iam::123456789012:role/example",
+            "input": '{"value":"scheduled"}',
+            "retry_policy": {"maximum_retry_attempts": 0},
+        },
+        action_after_completion="DELETE",
+    )
+    assert result.schedule_arn == arn
+    path, body = peer.requests[0]
+    assert path == "/schedules/example"
+    request = json.loads(body)
+    assert request["ScheduleExpressionTimezone"] == "America/Sao_Paulo"
+    assert request["FlexibleTimeWindow"] == {"Mode": "OFF"}
+    assert request["Target"]["RetryPolicy"]["MaximumRetryAttempts"] == 0
+    assert request["Target"]["Input"] == '{"value":"scheduled"}'
+    assert isinstance(request["StartDate"], (int, float))
+    assert request["ActionAfterCompletion"] == "DELETE"
+
+
+@pytest.mark.asyncio
+@service("pipes")
+async def test_pipes_source_filter_and_native_timestamps(peer: Peer) -> None:
+    from rboto import pipes
+
+    peer.body = json.dumps(
+        {
+            "Arn": "arn:aws:pipes:us-east-1:123456789012:pipe/example",
+            "Name": "example",
+            "DesiredState": "RUNNING",
+            "CurrentState": "CREATING",
+            "CreationTime": 1792972800,
+        }
+    ).encode()
+    result = await pipes(region="us-east-1", endpoint_url=peer.endpoint).create_pipe(
+        name="example",
+        source="arn:aws:sqs:us-east-1:123456789012:source",
+        target="arn:aws:sqs:us-east-1:123456789012:target",
+        role_arn="arn:aws:iam::123456789012:role/example",
+        desired_state="RUNNING",
+        source_parameters={
+            "sqs_queue_parameters": {"batch_size": 1, "maximum_batching_window_in_seconds": 0},
+            "filter_criteria": {"filters": [{"pattern": '{"body":{"kind":["example"]}}'}]},
+        },
+        target_parameters={"input_template": '{"kind":"<$.body.kind>"}'},
+        tags={"suite": "bridge"},
+    )
+    assert result.name == "example"
+    assert result.current_state == "CREATING"
+    assert result.desired_state == "RUNNING"
+    assert result.creation_time is not None and result.creation_time.startswith("2026-10-26")
+    assert result.to_dict()["current_state"] == "CREATING"
+    path, body = peer.requests[0]
+    assert path == "/v1/pipes/example"
+    request = json.loads(body)
+    assert request["SourceParameters"]["SqsQueueParameters"]["BatchSize"] == 1
+    assert request["SourceParameters"]["FilterCriteria"]["Filters"] == [
+        {"Pattern": '{"body":{"kind":["example"]}}'}
+    ]
+    assert request["TargetParameters"]["InputTemplate"] == '{"kind":"<$.body.kind>"}'
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "service_name",
+    [
+        pytest.param(name, marks=service(name))
+        for name in ("eventbridge", "scheduler", "pipes")
+    ],
+)
+async def test_event_family_modeled_missing_resources(peer: Peer, service_name: str) -> None:
+    import importlib
+
+    import rboto
+
+    peer.status = 404
+    error_code = "NotFoundException" if service_name == "pipes" else "ResourceNotFoundException"
+    peer.body = json.dumps({"__type": error_code, "message": "missing resource"}).encode()
+    exceptions = importlib.import_module(f"rboto_{service_name}.exceptions")
+    client = getattr(rboto, service_name)(region="us-east-1", endpoint_url=peer.endpoint)
+    operation, operation_name = {
+        "eventbridge": ("describe_event_bus", "DescribeEventBus"),
+        "scheduler": ("get_schedule", "GetSchedule"),
+        "pipes": ("describe_pipe", "DescribePipe"),
+    }[service_name]
+    exception_name = "NotFoundError" if service_name == "pipes" else "ResourceNotFoundError"
+    with pytest.raises(getattr(exceptions, exception_name)) as caught:
+        await getattr(client, operation)(name="missing")
+    assert caught.value.error_code == error_code
+    assert caught.value.operation_name == operation_name

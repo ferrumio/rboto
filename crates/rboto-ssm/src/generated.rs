@@ -96,7 +96,8 @@ fn activation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::
         builder = builder.set_created_date(Some(converted_14));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_16 = Vec::new();
+        let mut converted_16 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_17 in value.try_iter()? {
             let item_18 = item_result_17?;
             let converted_item_19 = tag_from_py(&item_18)?;
@@ -202,7 +203,8 @@ fn alarm_configuration_from_py(
         builder = builder.set_ignore_poll_alarm_failure(Some(converted_34));
     }
     if let Some(value) = dict_value(values, "alarms")? {
-        let mut converted_35 = Vec::new();
+        let mut converted_35 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_36 in value.try_iter()? {
             let item_37 = item_result_36?;
             let converted_item_38 = alarm_from_py(&item_37)?;
@@ -289,7 +291,8 @@ fn association_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types:
         builder = builder.set_document_version(Some(converted_52));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_53 = Vec::new();
+        let mut converted_53 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_54 in value.try_iter()? {
             let item_55 = item_result_54?;
             let converted_item_56 = target_from_py(&item_55)?;
@@ -327,14 +330,16 @@ fn association_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types:
         builder = builder.set_duration(Some(converted_63));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_64 = Vec::new();
+        let mut converted_64 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_65 in value.try_iter()? {
             let item_66 = item_result_65?;
             let mapping_68 = item_66.cast::<PyDict>()?;
-            let mut converted_item_67 = HashMap::new();
+            let mut converted_item_67 = HashMap::with_capacity(mapping_68.len());
             for (key_69, value_70) in mapping_68.iter() {
                 let converted_key_71: String = key_69.extract()?;
-                let mut converted_value_72 = Vec::new();
+                let mut converted_value_72 =
+                    Vec::with_capacity(value_70.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_73 in value_70.try_iter()? {
                     let item_74 = item_result_73?;
                     let converted_item_75: String = item_74.extract()?;
@@ -509,10 +514,11 @@ fn association_description_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_111 = value.cast::<PyDict>()?;
-        let mut converted_110 = HashMap::new();
+        let mut converted_110 = HashMap::with_capacity(mapping_111.len());
         for (key_112, value_113) in mapping_111.iter() {
             let converted_key_114: String = key_112.extract()?;
-            let mut converted_value_115 = Vec::new();
+            let mut converted_value_115 =
+                Vec::with_capacity(value_113.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_116 in value_113.try_iter()? {
                 let item_117 = item_result_116?;
                 let converted_item_118: String = item_117.extract()?;
@@ -527,7 +533,8 @@ fn association_description_from_py(
         builder = builder.set_association_id(Some(converted_119));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_120 = Vec::new();
+        let mut converted_120 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_121 in value.try_iter()? {
             let item_122 = item_result_121?;
             let converted_item_123 = target_from_py(&item_122)?;
@@ -590,7 +597,8 @@ fn association_description_from_py(
         builder = builder.set_apply_only_at_cron_interval(Some(converted_137));
     }
     if let Some(value) = dict_value(values, "calendar_names")? {
-        let mut converted_138 = Vec::new();
+        let mut converted_138 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_139 in value.try_iter()? {
             let item_140 = item_result_139?;
             let converted_item_141: String = item_140.extract()?;
@@ -599,7 +607,8 @@ fn association_description_from_py(
         builder = builder.set_calendar_names(Some(converted_138));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_142 = Vec::new();
+        let mut converted_142 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_143 in value.try_iter()? {
             let item_144 = item_result_143?;
             let converted_item_145 = target_location_from_py(&item_144)?;
@@ -616,14 +625,16 @@ fn association_description_from_py(
         builder = builder.set_duration(Some(converted_147));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_148 = Vec::new();
+        let mut converted_148 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_149 in value.try_iter()? {
             let item_150 = item_result_149?;
             let mapping_152 = item_150.cast::<PyDict>()?;
-            let mut converted_item_151 = HashMap::new();
+            let mut converted_item_151 = HashMap::with_capacity(mapping_152.len());
             for (key_153, value_154) in mapping_152.iter() {
                 let converted_key_155: String = key_153.extract()?;
-                let mut converted_value_156 = Vec::new();
+                let mut converted_value_156 =
+                    Vec::with_capacity(value_154.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_157 in value_154.try_iter()? {
                     let item_158 = item_result_157?;
                     let converted_item_159: String = item_158.extract()?;
@@ -640,7 +651,8 @@ fn association_description_from_py(
         builder = builder.set_alarm_configuration(Some(converted_160));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_161 = Vec::new();
+        let mut converted_161 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_162 in value.try_iter()? {
             let item_163 = item_result_162?;
             let converted_item_164 = alarm_state_information_from_py(&item_163)?;
@@ -940,7 +952,8 @@ fn association_execution_from_py(
         builder = builder.set_alarm_configuration(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_229 = Vec::new();
+        let mut converted_229 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_230 in value.try_iter()? {
             let item_231 = item_result_230?;
             let converted_item_232 = alarm_state_information_from_py(&item_231)?;
@@ -1253,7 +1266,7 @@ fn association_overview_from_py(
     }
     if let Some(value) = dict_value(values, "association_status_aggregated_count")? {
         let mapping_285 = value.cast::<PyDict>()?;
-        let mut converted_284 = HashMap::new();
+        let mut converted_284 = HashMap::with_capacity(mapping_285.len());
         for (key_286, value_287) in mapping_285.iter() {
             let converted_key_288: String = key_286.extract()?;
             let converted_value_289: i32 = value_287.extract()?;
@@ -1381,10 +1394,11 @@ fn association_version_info_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_314 = value.cast::<PyDict>()?;
-        let mut converted_313 = HashMap::new();
+        let mut converted_313 = HashMap::with_capacity(mapping_314.len());
         for (key_315, value_316) in mapping_314.iter() {
             let converted_key_317: String = key_315.extract()?;
-            let mut converted_value_318 = Vec::new();
+            let mut converted_value_318 =
+                Vec::with_capacity(value_316.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_319 in value_316.try_iter()? {
                 let item_320 = item_result_319?;
                 let converted_item_321: String = item_320.extract()?;
@@ -1395,7 +1409,8 @@ fn association_version_info_from_py(
         builder = builder.set_parameters(Some(converted_313));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_322 = Vec::new();
+        let mut converted_322 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_323 in value.try_iter()? {
             let item_324 = item_result_323?;
             let converted_item_325 = target_from_py(&item_324)?;
@@ -1440,7 +1455,8 @@ fn association_version_info_from_py(
         builder = builder.set_apply_only_at_cron_interval(Some(converted_335));
     }
     if let Some(value) = dict_value(values, "calendar_names")? {
-        let mut converted_336 = Vec::new();
+        let mut converted_336 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_337 in value.try_iter()? {
             let item_338 = item_result_337?;
             let converted_item_339: String = item_338.extract()?;
@@ -1449,7 +1465,8 @@ fn association_version_info_from_py(
         builder = builder.set_calendar_names(Some(converted_336));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_340 = Vec::new();
+        let mut converted_340 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_341 in value.try_iter()? {
             let item_342 = item_result_341?;
             let converted_item_343 = target_location_from_py(&item_342)?;
@@ -1466,14 +1483,16 @@ fn association_version_info_from_py(
         builder = builder.set_duration(Some(converted_345));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_346 = Vec::new();
+        let mut converted_346 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_347 in value.try_iter()? {
             let item_348 = item_result_347?;
             let mapping_350 = item_348.cast::<PyDict>()?;
-            let mut converted_item_349 = HashMap::new();
+            let mut converted_item_349 = HashMap::with_capacity(mapping_350.len());
             for (key_351, value_352) in mapping_350.iter() {
                 let converted_key_353: String = key_351.extract()?;
-                let mut converted_value_354 = Vec::new();
+                let mut converted_value_354 =
+                    Vec::with_capacity(value_352.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_355 in value_352.try_iter()? {
                     let item_356 = item_result_355?;
                     let converted_item_357: String = item_356.extract()?;
@@ -1766,7 +1785,8 @@ fn attachments_source_from_py(
         builder = builder.set_key(Some(converted_413));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_415 = Vec::new();
+        let mut converted_415 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_416 in value.try_iter()? {
             let item_417 = item_result_416?;
             let converted_item_418: String = item_417.extract()?;
@@ -1854,7 +1874,8 @@ fn automation_execution_from_py(
         builder = builder.set_automation_execution_status(Some(converted_432));
     }
     if let Some(value) = dict_value(values, "step_executions")? {
-        let mut converted_434 = Vec::new();
+        let mut converted_434 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_435 in value.try_iter()? {
             let item_436 = item_result_435?;
             let converted_item_437 = step_execution_from_py(&item_436)?;
@@ -1868,10 +1889,11 @@ fn automation_execution_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_440 = value.cast::<PyDict>()?;
-        let mut converted_439 = HashMap::new();
+        let mut converted_439 = HashMap::with_capacity(mapping_440.len());
         for (key_441, value_442) in mapping_440.iter() {
             let converted_key_443: String = key_441.extract()?;
-            let mut converted_value_444 = Vec::new();
+            let mut converted_value_444 =
+                Vec::with_capacity(value_442.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_445 in value_442.try_iter()? {
                 let item_446 = item_result_445?;
                 let converted_item_447: String = item_446.extract()?;
@@ -1883,10 +1905,11 @@ fn automation_execution_from_py(
     }
     if let Some(value) = dict_value(values, "outputs")? {
         let mapping_449 = value.cast::<PyDict>()?;
-        let mut converted_448 = HashMap::new();
+        let mut converted_448 = HashMap::with_capacity(mapping_449.len());
         for (key_450, value_451) in mapping_449.iter() {
             let converted_key_452: String = key_450.extract()?;
-            let mut converted_value_453 = Vec::new();
+            let mut converted_value_453 =
+                Vec::with_capacity(value_451.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_454 in value_451.try_iter()? {
                 let item_455 = item_result_454?;
                 let converted_item_456: String = item_455.extract()?;
@@ -1930,7 +1953,8 @@ fn automation_execution_from_py(
         builder = builder.set_target_parameter_name(Some(converted_465));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_466 = Vec::new();
+        let mut converted_466 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_467 in value.try_iter()? {
             let item_468 = item_result_467?;
             let converted_item_469 = target_from_py(&item_468)?;
@@ -1939,14 +1963,16 @@ fn automation_execution_from_py(
         builder = builder.set_targets(Some(converted_466));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_470 = Vec::new();
+        let mut converted_470 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_471 in value.try_iter()? {
             let item_472 = item_result_471?;
             let mapping_474 = item_472.cast::<PyDict>()?;
-            let mut converted_item_473 = HashMap::new();
+            let mut converted_item_473 = HashMap::with_capacity(mapping_474.len());
             for (key_475, value_476) in mapping_474.iter() {
                 let converted_key_477: String = key_475.extract()?;
-                let mut converted_value_478 = Vec::new();
+                let mut converted_value_478 =
+                    Vec::with_capacity(value_476.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_479 in value_476.try_iter()? {
                     let item_480 = item_result_479?;
                     let converted_item_481: String = item_480.extract()?;
@@ -1975,7 +2001,8 @@ fn automation_execution_from_py(
         builder = builder.set_target(Some(converted_485));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_486 = Vec::new();
+        let mut converted_486 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_487 in value.try_iter()? {
             let item_488 = item_result_487?;
             let converted_item_489 = target_location_from_py(&item_488)?;
@@ -1992,7 +2019,8 @@ fn automation_execution_from_py(
         builder = builder.set_alarm_configuration(Some(converted_491));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_492 = Vec::new();
+        let mut converted_492 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_493 in value.try_iter()? {
             let item_494 = item_result_493?;
             let converted_item_495 = alarm_state_information_from_py(&item_494)?;
@@ -2019,7 +2047,8 @@ fn automation_execution_from_py(
         builder = builder.set_scheduled_time(Some(converted_499));
     }
     if let Some(value) = dict_value(values, "runbooks")? {
-        let mut converted_501 = Vec::new();
+        let mut converted_501 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_502 in value.try_iter()? {
             let item_503 = item_result_502?;
             let converted_item_504 = runbook_from_py(&item_503)?;
@@ -2041,10 +2070,11 @@ fn automation_execution_from_py(
     }
     if let Some(value) = dict_value(values, "variables")? {
         let mapping_509 = value.cast::<PyDict>()?;
-        let mut converted_508 = HashMap::new();
+        let mut converted_508 = HashMap::with_capacity(mapping_509.len());
         for (key_510, value_511) in mapping_509.iter() {
             let converted_key_512: String = key_510.extract()?;
-            let mut converted_value_513 = Vec::new();
+            let mut converted_value_513 =
+                Vec::with_capacity(value_511.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_514 in value_511.try_iter()? {
                 let item_515 = item_result_514?;
                 let converted_item_516: String = item_515.extract()?;
@@ -2365,7 +2395,8 @@ fn automation_execution_filter_from_py(
         builder = builder.set_key(Some(converted_589));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_591 = Vec::new();
+        let mut converted_591 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_592 in value.try_iter()? {
             let item_593 = item_result_592?;
             let converted_item_594: String = item_593.extract()?;
@@ -2402,10 +2433,11 @@ fn automation_execution_inputs_from_py(
     let mut builder = aws_sdk_ssm::types::AutomationExecutionInputs::builder();
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_600 = value.cast::<PyDict>()?;
-        let mut converted_599 = HashMap::new();
+        let mut converted_599 = HashMap::with_capacity(mapping_600.len());
         for (key_601, value_602) in mapping_600.iter() {
             let converted_key_603: String = key_601.extract()?;
-            let mut converted_value_604 = Vec::new();
+            let mut converted_value_604 =
+                Vec::with_capacity(value_602.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_605 in value_602.try_iter()? {
                 let item_606 = item_result_605?;
                 let converted_item_607: String = item_606.extract()?;
@@ -2420,7 +2452,8 @@ fn automation_execution_inputs_from_py(
         builder = builder.set_target_parameter_name(Some(converted_608));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_609 = Vec::new();
+        let mut converted_609 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_610 in value.try_iter()? {
             let item_611 = item_result_610?;
             let converted_item_612 = target_from_py(&item_611)?;
@@ -2429,14 +2462,16 @@ fn automation_execution_inputs_from_py(
         builder = builder.set_targets(Some(converted_609));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_613 = Vec::new();
+        let mut converted_613 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_614 in value.try_iter()? {
             let item_615 = item_result_614?;
             let mapping_617 = item_615.cast::<PyDict>()?;
-            let mut converted_item_616 = HashMap::new();
+            let mut converted_item_616 = HashMap::with_capacity(mapping_617.len());
             for (key_618, value_619) in mapping_617.iter() {
                 let converted_key_620: String = key_618.extract()?;
-                let mut converted_value_621 = Vec::new();
+                let mut converted_value_621 =
+                    Vec::with_capacity(value_619.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_622 in value_619.try_iter()? {
                     let item_623 = item_result_622?;
                     let converted_item_624: String = item_623.extract()?;
@@ -2449,7 +2484,8 @@ fn automation_execution_inputs_from_py(
         builder = builder.set_target_maps(Some(converted_613));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_625 = Vec::new();
+        let mut converted_625 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_626 in value.try_iter()? {
             let item_627 = item_result_626?;
             let converted_item_628 = target_location_from_py(&item_627)?;
@@ -2596,10 +2632,11 @@ fn automation_execution_metadata_from_py(
     }
     if let Some(value) = dict_value(values, "outputs")? {
         let mapping_666 = value.cast::<PyDict>()?;
-        let mut converted_665 = HashMap::new();
+        let mut converted_665 = HashMap::with_capacity(mapping_666.len());
         for (key_667, value_668) in mapping_666.iter() {
             let converted_key_669: String = key_667.extract()?;
-            let mut converted_value_670 = Vec::new();
+            let mut converted_value_670 =
+                Vec::with_capacity(value_668.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_671 in value_668.try_iter()? {
                 let item_672 = item_result_671?;
                 let converted_item_673: String = item_672.extract()?;
@@ -2639,7 +2676,8 @@ fn automation_execution_metadata_from_py(
         builder = builder.set_target_parameter_name(Some(converted_681));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_682 = Vec::new();
+        let mut converted_682 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_683 in value.try_iter()? {
             let item_684 = item_result_683?;
             let converted_item_685 = target_from_py(&item_684)?;
@@ -2648,14 +2686,16 @@ fn automation_execution_metadata_from_py(
         builder = builder.set_targets(Some(converted_682));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_686 = Vec::new();
+        let mut converted_686 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_687 in value.try_iter()? {
             let item_688 = item_result_687?;
             let mapping_690 = item_688.cast::<PyDict>()?;
-            let mut converted_item_689 = HashMap::new();
+            let mut converted_item_689 = HashMap::with_capacity(mapping_690.len());
             for (key_691, value_692) in mapping_690.iter() {
                 let converted_key_693: String = key_691.extract()?;
-                let mut converted_value_694 = Vec::new();
+                let mut converted_value_694 =
+                    Vec::with_capacity(value_692.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_695 in value_692.try_iter()? {
                     let item_696 = item_result_695?;
                     let converted_item_697: String = item_696.extract()?;
@@ -2693,7 +2733,8 @@ fn automation_execution_metadata_from_py(
         builder = builder.set_alarm_configuration(Some(converted_704));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_705 = Vec::new();
+        let mut converted_705 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_706 in value.try_iter()? {
             let item_707 = item_result_706?;
             let converted_item_708 = alarm_state_information_from_py(&item_707)?;
@@ -2720,7 +2761,8 @@ fn automation_execution_metadata_from_py(
         builder = builder.set_scheduled_time(Some(converted_712));
     }
     if let Some(value) = dict_value(values, "runbooks")? {
-        let mut converted_714 = Vec::new();
+        let mut converted_714 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_715 in value.try_iter()? {
             let item_716 = item_result_715?;
             let converted_item_717 = runbook_from_py(&item_716)?;
@@ -2992,7 +3034,7 @@ fn automation_execution_preview_from_py(
     let mut builder = aws_sdk_ssm::types::AutomationExecutionPreview::builder();
     if let Some(value) = dict_value(values, "step_previews")? {
         let mapping_774 = value.cast::<PyDict>()?;
-        let mut converted_773 = HashMap::new();
+        let mut converted_773 = HashMap::with_capacity(mapping_774.len());
         for (key_775, value_776) in mapping_774.iter() {
             let enum_value_779: String = key_775.extract()?;
             let converted_key_777 = aws_sdk_ssm::types::ImpactType::from(enum_value_779.as_str());
@@ -3002,7 +3044,8 @@ fn automation_execution_preview_from_py(
         builder = builder.set_step_previews(Some(converted_773));
     }
     if let Some(value) = dict_value(values, "regions")? {
-        let mut converted_780 = Vec::new();
+        let mut converted_780 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_781 in value.try_iter()? {
             let item_782 = item_result_781?;
             let converted_item_783: String = item_782.extract()?;
@@ -3011,7 +3054,8 @@ fn automation_execution_preview_from_py(
         builder = builder.set_regions(Some(converted_780));
     }
     if let Some(value) = dict_value(values, "target_previews")? {
-        let mut converted_784 = Vec::new();
+        let mut converted_784 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_785 in value.try_iter()? {
             let item_786 = item_result_785?;
             let converted_item_787 = target_preview_from_py(&item_786)?;
@@ -3183,7 +3227,8 @@ fn baseline_override_from_py(
         builder = builder.set_approval_rules(Some(converted_818));
     }
     if let Some(value) = dict_value(values, "approved_patches")? {
-        let mut converted_819 = Vec::new();
+        let mut converted_819 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_820 in value.try_iter()? {
             let item_821 = item_result_820?;
             let converted_item_822: String = item_821.extract()?;
@@ -3197,7 +3242,8 @@ fn baseline_override_from_py(
         builder = builder.set_approved_patches_compliance_level(Some(converted_823));
     }
     if let Some(value) = dict_value(values, "rejected_patches")? {
-        let mut converted_825 = Vec::new();
+        let mut converted_825 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_826 in value.try_iter()? {
             let item_827 = item_result_826?;
             let converted_item_828: String = item_827.extract()?;
@@ -3215,7 +3261,8 @@ fn baseline_override_from_py(
         builder = builder.set_approved_patches_enable_non_security(Some(converted_831));
     }
     if let Some(value) = dict_value(values, "sources")? {
-        let mut converted_832 = Vec::new();
+        let mut converted_832 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_833 in value.try_iter()? {
             let item_834 = item_result_833?;
             let converted_item_835 = patch_source_from_py(&item_834)?;
@@ -3363,7 +3410,8 @@ fn cloud_connector_filter_from_py(
         builder = builder.set_filter_key(Some(converted_856));
     }
     if let Some(value) = dict_value(values, "filter_values")? {
-        let mut converted_858 = Vec::new();
+        let mut converted_858 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_859 in value.try_iter()? {
             let item_860 = item_result_859?;
             let converted_item_861: String = item_860.extract()?;
@@ -3549,10 +3597,11 @@ fn command_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Com
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_891 = value.cast::<PyDict>()?;
-        let mut converted_890 = HashMap::new();
+        let mut converted_890 = HashMap::with_capacity(mapping_891.len());
         for (key_892, value_893) in mapping_891.iter() {
             let converted_key_894: String = key_892.extract()?;
-            let mut converted_value_895 = Vec::new();
+            let mut converted_value_895 =
+                Vec::with_capacity(value_893.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_896 in value_893.try_iter()? {
                 let item_897 = item_result_896?;
                 let converted_item_898: String = item_897.extract()?;
@@ -3563,7 +3612,8 @@ fn command_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Com
         builder = builder.set_parameters(Some(converted_890));
     }
     if let Some(value) = dict_value(values, "instance_ids")? {
-        let mut converted_899 = Vec::new();
+        let mut converted_899 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_900 in value.try_iter()? {
             let item_901 = item_result_900?;
             let converted_item_902: String = item_901.extract()?;
@@ -3572,7 +3622,8 @@ fn command_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Com
         builder = builder.set_instance_ids(Some(converted_899));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_903 = Vec::new();
+        let mut converted_903 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_904 in value.try_iter()? {
             let item_905 = item_result_904?;
             let converted_item_906 = target_from_py(&item_905)?;
@@ -3655,7 +3706,8 @@ fn command_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Com
         builder = builder.set_alarm_configuration(Some(converted_925));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_926 = Vec::new();
+        let mut converted_926 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_927 in value.try_iter()? {
             let item_928 = item_result_927?;
             let converted_item_929 = alarm_state_information_from_py(&item_928)?;
@@ -3929,7 +3981,8 @@ fn command_invocation_from_py(
         builder = builder.set_standard_error_url(Some(converted_986));
     }
     if let Some(value) = dict_value(values, "command_plugins")? {
-        let mut converted_987 = Vec::new();
+        let mut converted_987 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_988 in value.try_iter()? {
             let item_989 = item_result_988?;
             let converted_item_990 = command_plugin_from_py(&item_989)?;
@@ -4293,7 +4346,7 @@ fn compliance_item_from_py(
     }
     if let Some(value) = dict_value(values, "details")? {
         let mapping_1057 = value.cast::<PyDict>()?;
-        let mut converted_1056 = HashMap::new();
+        let mut converted_1056 = HashMap::with_capacity(mapping_1057.len());
         for (key_1058, value_1059) in mapping_1057.iter() {
             let converted_key_1060: String = key_1058.extract()?;
             let converted_value_1061: String = value_1059.extract()?;
@@ -4397,7 +4450,7 @@ fn compliance_item_entry_from_py(
     }
     if let Some(value) = dict_value(values, "details")? {
         let mapping_1082 = value.cast::<PyDict>()?;
-        let mut converted_1081 = HashMap::new();
+        let mut converted_1081 = HashMap::with_capacity(mapping_1082.len());
         for (key_1083, value_1084) in mapping_1082.iter() {
             let converted_key_1085: String = key_1083.extract()?;
             let converted_value_1086: String = value_1084.extract()?;
@@ -4456,7 +4509,8 @@ fn compliance_string_filter_from_py(
         builder = builder.set_key(Some(converted_1096));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1097 = Vec::new();
+        let mut converted_1097 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1098 in value.try_iter()? {
             let item_1099 = item_result_1098?;
             let converted_item_1100: String = item_1099.extract()?;
@@ -4590,7 +4644,8 @@ fn configuration_targets_from_py(
         return Err(PyValueError::new_err("union requires exactly one variant"));
     }
     if let Some(value) = dict_value(values, "subscriptions")? {
-        let mut converted_1118 = Vec::new();
+        let mut converted_1118 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1119 in value.try_iter()? {
             let item_1120 = item_result_1119?;
             let converted_item_1121 = azure_subscription_from_py(&item_1120)?;
@@ -4642,10 +4697,11 @@ fn create_association_batch_request_entry_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_1128 = value.cast::<PyDict>()?;
-        let mut converted_1127 = HashMap::new();
+        let mut converted_1127 = HashMap::with_capacity(mapping_1128.len());
         for (key_1129, value_1130) in mapping_1128.iter() {
             let converted_key_1131: String = key_1129.extract()?;
-            let mut converted_value_1132 = Vec::new();
+            let mut converted_value_1132 =
+                Vec::with_capacity(value_1130.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1133 in value_1130.try_iter()? {
                 let item_1134 = item_result_1133?;
                 let converted_item_1135: String = item_1134.extract()?;
@@ -4664,7 +4720,8 @@ fn create_association_batch_request_entry_from_py(
         builder = builder.set_document_version(Some(converted_1137));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_1138 = Vec::new();
+        let mut converted_1138 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1139 in value.try_iter()? {
             let item_1140 = item_result_1139?;
             let converted_item_1141 = target_from_py(&item_1140)?;
@@ -4709,7 +4766,8 @@ fn create_association_batch_request_entry_from_py(
         builder = builder.set_apply_only_at_cron_interval(Some(converted_1151));
     }
     if let Some(value) = dict_value(values, "calendar_names")? {
-        let mut converted_1152 = Vec::new();
+        let mut converted_1152 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1153 in value.try_iter()? {
             let item_1154 = item_result_1153?;
             let converted_item_1155: String = item_1154.extract()?;
@@ -4718,7 +4776,8 @@ fn create_association_batch_request_entry_from_py(
         builder = builder.set_calendar_names(Some(converted_1152));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_1156 = Vec::new();
+        let mut converted_1156 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1157 in value.try_iter()? {
             let item_1158 = item_result_1157?;
             let converted_item_1159 = target_location_from_py(&item_1158)?;
@@ -4735,14 +4794,16 @@ fn create_association_batch_request_entry_from_py(
         builder = builder.set_duration(Some(converted_1161));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_1162 = Vec::new();
+        let mut converted_1162 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1163 in value.try_iter()? {
             let item_1164 = item_result_1163?;
             let mapping_1166 = item_1164.cast::<PyDict>()?;
-            let mut converted_item_1165 = HashMap::new();
+            let mut converted_item_1165 = HashMap::with_capacity(mapping_1166.len());
             for (key_1167, value_1168) in mapping_1166.iter() {
                 let converted_key_1169: String = key_1167.extract()?;
-                let mut converted_value_1170 = Vec::new();
+                let mut converted_value_1170 =
+                    Vec::with_capacity(value_1168.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_1171 in value_1168.try_iter()? {
                     let item_1172 = item_result_1171?;
                     let converted_item_1173: String = item_1172.extract()?;
@@ -4984,7 +5045,8 @@ fn describe_activations_filter_from_py(
         builder = builder.set_filter_key(Some(converted_1224));
     }
     if let Some(value) = dict_value(values, "filter_values")? {
-        let mut converted_1226 = Vec::new();
+        let mut converted_1226 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1227 in value.try_iter()? {
             let item_1228 = item_result_1227?;
             let converted_item_1229: String = item_1228.extract()?;
@@ -5127,7 +5189,8 @@ fn document_description_from_py(
         builder = builder.set_description(Some(converted_1254));
     }
     if let Some(value) = dict_value(values, "parameters")? {
-        let mut converted_1255 = Vec::new();
+        let mut converted_1255 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1256 in value.try_iter()? {
             let item_1257 = item_result_1256?;
             let converted_item_1258 = document_parameter_from_py(&item_1257)?;
@@ -5136,7 +5199,8 @@ fn document_description_from_py(
         builder = builder.set_parameters(Some(converted_1255));
     }
     if let Some(value) = dict_value(values, "platform_types")? {
-        let mut converted_1259 = Vec::new();
+        let mut converted_1259 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1260 in value.try_iter()? {
             let item_1261 = item_result_1260?;
             let enum_value_1263: String = item_1261.extract()?;
@@ -5173,7 +5237,8 @@ fn document_description_from_py(
         builder = builder.set_target_type(Some(converted_1271));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1272 = Vec::new();
+        let mut converted_1272 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1273 in value.try_iter()? {
             let item_1274 = item_result_1273?;
             let converted_item_1275 = tag_from_py(&item_1274)?;
@@ -5182,7 +5247,8 @@ fn document_description_from_py(
         builder = builder.set_tags(Some(converted_1272));
     }
     if let Some(value) = dict_value(values, "attachments_information")? {
-        let mut converted_1276 = Vec::new();
+        let mut converted_1276 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1277 in value.try_iter()? {
             let item_1278 = item_result_1277?;
             let converted_item_1279 = attachment_information_from_py(&item_1278)?;
@@ -5191,7 +5257,8 @@ fn document_description_from_py(
         builder = builder.set_attachments_information(Some(converted_1276));
     }
     if let Some(value) = dict_value(values, "requires")? {
-        let mut converted_1280 = Vec::new();
+        let mut converted_1280 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1281 in value.try_iter()? {
             let item_1282 = item_result_1281?;
             let converted_item_1283 = document_requires_from_py(&item_1282)?;
@@ -5204,7 +5271,8 @@ fn document_description_from_py(
         builder = builder.set_author(Some(converted_1284));
     }
     if let Some(value) = dict_value(values, "review_information")? {
-        let mut converted_1285 = Vec::new();
+        let mut converted_1285 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1286 in value.try_iter()? {
             let item_1287 = item_result_1286?;
             let converted_item_1288 = review_information_from_py(&item_1287)?;
@@ -5226,7 +5294,8 @@ fn document_description_from_py(
         builder = builder.set_review_status(Some(converted_1291));
     }
     if let Some(value) = dict_value(values, "category")? {
-        let mut converted_1293 = Vec::new();
+        let mut converted_1293 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1294 in value.try_iter()? {
             let item_1295 = item_result_1294?;
             let converted_item_1296: String = item_1295.extract()?;
@@ -5235,7 +5304,8 @@ fn document_description_from_py(
         builder = builder.set_category(Some(converted_1293));
     }
     if let Some(value) = dict_value(values, "category_enum")? {
-        let mut converted_1297 = Vec::new();
+        let mut converted_1297 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1298 in value.try_iter()? {
             let item_1299 = item_result_1298?;
             let converted_item_1300: String = item_1299.extract()?;
@@ -5536,7 +5606,8 @@ fn document_identifier_from_py(
         builder = builder.set_version_name(Some(converted_1357));
     }
     if let Some(value) = dict_value(values, "platform_types")? {
-        let mut converted_1358 = Vec::new();
+        let mut converted_1358 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1359 in value.try_iter()? {
             let item_1360 = item_result_1359?;
             let enum_value_1362: String = item_1360.extract()?;
@@ -5569,7 +5640,8 @@ fn document_identifier_from_py(
         builder = builder.set_target_type(Some(converted_1369));
     }
     if let Some(value) = dict_value(values, "tags")? {
-        let mut converted_1370 = Vec::new();
+        let mut converted_1370 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1371 in value.try_iter()? {
             let item_1372 = item_result_1371?;
             let converted_item_1373 = tag_from_py(&item_1372)?;
@@ -5578,7 +5650,8 @@ fn document_identifier_from_py(
         builder = builder.set_tags(Some(converted_1370));
     }
     if let Some(value) = dict_value(values, "requires")? {
-        let mut converted_1374 = Vec::new();
+        let mut converted_1374 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1375 in value.try_iter()? {
             let item_1376 = item_result_1375?;
             let converted_item_1377 = document_requires_from_py(&item_1376)?;
@@ -5721,7 +5794,8 @@ fn document_key_values_filter_from_py(
         builder = builder.set_key(Some(converted_1402));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1403 = Vec::new();
+        let mut converted_1403 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1404 in value.try_iter()? {
             let item_1405 = item_result_1404?;
             let converted_item_1406: String = item_1405.extract()?;
@@ -5763,7 +5837,8 @@ fn document_metadata_response_info_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::DocumentMetadataResponseInfo::builder();
     if let Some(value) = dict_value(values, "reviewer_response")? {
-        let mut converted_1411 = Vec::new();
+        let mut converted_1411 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1412 in value.try_iter()? {
             let item_1413 = item_result_1412?;
             let converted_item_1414 = document_reviewer_response_source_from_py(&item_1413)?;
@@ -5972,7 +6047,8 @@ fn document_reviewer_response_source_from_py(
         builder = builder.set_review_status(Some(converted_1444));
     }
     if let Some(value) = dict_value(values, "comment")? {
-        let mut converted_1446 = Vec::new();
+        let mut converted_1446 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1447 in value.try_iter()? {
             let item_1448 = item_result_1447?;
             let converted_item_1449 = document_review_comment_source_from_py(&item_1448)?;
@@ -6042,7 +6118,8 @@ fn document_reviews_from_py(
         builder = builder.set_action(Some(converted_1458));
     }
     if let Some(value) = dict_value(values, "comment")? {
-        let mut converted_1460 = Vec::new();
+        let mut converted_1460 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1461 in value.try_iter()? {
             let item_1462 = item_result_1461?;
             let converted_item_1463 = document_review_comment_source_from_py(&item_1462)?;
@@ -6364,10 +6441,11 @@ fn failure_details_from_py(
     }
     if let Some(value) = dict_value(values, "details")? {
         let mapping_1510 = value.cast::<PyDict>()?;
-        let mut converted_1509 = HashMap::new();
+        let mut converted_1509 = HashMap::with_capacity(mapping_1510.len());
         for (key_1511, value_1512) in mapping_1510.iter() {
             let converted_key_1513: String = key_1511.extract()?;
-            let mut converted_value_1514 = Vec::new();
+            let mut converted_value_1514 =
+                Vec::with_capacity(value_1512.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_1515 in value_1512.try_iter()? {
                 let item_1516 = item_result_1515?;
                 let converted_item_1517: String = item_1516.extract()?;
@@ -6474,7 +6552,7 @@ fn instance_aggregated_association_overview_from_py(
     }
     if let Some(value) = dict_value(values, "instance_association_status_aggregated_count")? {
         let mapping_1535 = value.cast::<PyDict>()?;
-        let mut converted_1534 = HashMap::new();
+        let mut converted_1534 = HashMap::with_capacity(mapping_1535.len());
         for (key_1536, value_1537) in mapping_1535.iter() {
             let converted_key_1538: String = key_1536.extract()?;
             let converted_value_1539: i32 = value_1537.extract()?;
@@ -7213,7 +7291,8 @@ fn instance_information_filter_from_py(
         builder = builder.set_key(Some(converted_1671));
     }
     if let Some(value) = dict_value(values, "value_set")? {
-        let mut converted_1673 = Vec::new();
+        let mut converted_1673 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1674 in value.try_iter()? {
             let item_1675 = item_result_1674?;
             let converted_item_1676: String = item_1675.extract()?;
@@ -7253,7 +7332,8 @@ fn instance_information_string_filter_from_py(
         builder = builder.set_key(Some(converted_1681));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1682 = Vec::new();
+        let mut converted_1682 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1683 in value.try_iter()? {
             let item_1684 = item_result_1683?;
             let converted_item_1685: String = item_1684.extract()?;
@@ -7514,7 +7594,8 @@ fn instance_patch_state_filter_from_py(
         builder = builder.set_key(Some(converted_1741));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1742 = Vec::new();
+        let mut converted_1742 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1743 in value.try_iter()? {
             let item_1744 = item_result_1743?;
             let converted_item_1745: String = item_1744.extract()?;
@@ -7888,7 +7969,8 @@ fn instance_property_filter_from_py(
         builder = builder.set_key(Some(converted_1817));
     }
     if let Some(value) = dict_value(values, "value_set")? {
-        let mut converted_1819 = Vec::new();
+        let mut converted_1819 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1820 in value.try_iter()? {
             let item_1821 = item_result_1820?;
             let converted_item_1822: String = item_1821.extract()?;
@@ -7928,7 +8010,8 @@ fn instance_property_string_filter_from_py(
         builder = builder.set_key(Some(converted_1827));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1828 = Vec::new();
+        let mut converted_1828 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1829 in value.try_iter()? {
             let item_1830 = item_result_1829?;
             let converted_item_1831: String = item_1830.extract()?;
@@ -7980,7 +8063,8 @@ fn inventory_aggregator_from_py(
         builder = builder.set_expression(Some(converted_1839));
     }
     if let Some(value) = dict_value(values, "aggregators")? {
-        let mut converted_1840 = Vec::new();
+        let mut converted_1840 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1841 in value.try_iter()? {
             let item_1842 = item_result_1841?;
             let converted_item_1843 = inventory_aggregator_from_py(&item_1842)?;
@@ -7989,7 +8073,8 @@ fn inventory_aggregator_from_py(
         builder = builder.set_aggregators(Some(converted_1840));
     }
     if let Some(value) = dict_value(values, "groups")? {
-        let mut converted_1844 = Vec::new();
+        let mut converted_1844 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1845 in value.try_iter()? {
             let item_1846 = item_result_1845?;
             let converted_item_1847 = inventory_group_from_py(&item_1846)?;
@@ -8148,7 +8233,8 @@ fn inventory_deletion_summary_from_py(
         builder = builder.set_remaining_count(Some(converted_1873));
     }
     if let Some(value) = dict_value(values, "summary_items")? {
-        let mut converted_1874 = Vec::new();
+        let mut converted_1874 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1875 in value.try_iter()? {
             let item_1876 = item_result_1875?;
             let converted_item_1877 = inventory_deletion_summary_item_from_py(&item_1876)?;
@@ -8230,7 +8316,8 @@ fn inventory_filter_from_py(
         builder = builder.set_key(Some(converted_1889));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_1890 = Vec::new();
+        let mut converted_1890 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1891 in value.try_iter()? {
             let item_1892 = item_result_1891?;
             let converted_item_1893: String = item_1892.extract()?;
@@ -8282,7 +8369,8 @@ fn inventory_group_from_py(
         builder = builder.set_name(Some(converted_1901));
     }
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_1902 = Vec::new();
+        let mut converted_1902 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1903 in value.try_iter()? {
             let item_1904 = item_result_1903?;
             let converted_item_1905 = inventory_filter_from_py(&item_1904)?;
@@ -8332,11 +8420,12 @@ fn inventory_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_content_hash(Some(converted_1913));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1914 = Vec::new();
+        let mut converted_1914 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1915 in value.try_iter()? {
             let item_1916 = item_result_1915?;
             let mapping_1918 = item_1916.cast::<PyDict>()?;
-            let mut converted_item_1917 = HashMap::new();
+            let mut converted_item_1917 = HashMap::with_capacity(mapping_1918.len());
             for (key_1919, value_1920) in mapping_1918.iter() {
                 let converted_key_1921: String = key_1919.extract()?;
                 let converted_value_1922: String = value_1920.extract()?;
@@ -8348,7 +8437,7 @@ fn inventory_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
     }
     if let Some(value) = dict_value(values, "context")? {
         let mapping_1924 = value.cast::<PyDict>()?;
-        let mut converted_1923 = HashMap::new();
+        let mut converted_1923 = HashMap::with_capacity(mapping_1924.len());
         for (key_1925, value_1926) in mapping_1924.iter() {
             let converted_key_1927: String = key_1925.extract()?;
             let converted_value_1928: String = value_1926.extract()?;
@@ -8456,7 +8545,8 @@ fn inventory_item_schema_from_py(
         builder = builder.set_version(Some(converted_1951));
     }
     if let Some(value) = dict_value(values, "attributes")? {
-        let mut converted_1952 = Vec::new();
+        let mut converted_1952 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1953 in value.try_iter()? {
             let item_1954 = item_result_1953?;
             let converted_item_1955 = inventory_item_attribute_from_py(&item_1954)?;
@@ -8513,7 +8603,7 @@ fn inventory_result_entity_from_py(
     }
     if let Some(value) = dict_value(values, "data")? {
         let mapping_1965 = value.cast::<PyDict>()?;
-        let mut converted_1964 = HashMap::new();
+        let mut converted_1964 = HashMap::with_capacity(mapping_1965.len());
         for (key_1966, value_1967) in mapping_1965.iter() {
             let converted_key_1968: String = key_1966.extract()?;
             let converted_value_1969 = inventory_result_item_from_py(&value_1967)?;
@@ -8572,11 +8662,12 @@ fn inventory_result_item_from_py(
         builder = builder.set_content_hash(Some(converted_1979));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_1980 = Vec::new();
+        let mut converted_1980 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_1981 in value.try_iter()? {
             let item_1982 = item_result_1981?;
             let mapping_1984 = item_1982.cast::<PyDict>()?;
-            let mut converted_item_1983 = HashMap::new();
+            let mut converted_item_1983 = HashMap::with_capacity(mapping_1984.len());
             for (key_1985, value_1986) in mapping_1984.iter() {
                 let converted_key_1987: String = key_1985.extract()?;
                 let converted_value_1988: String = value_1986.extract()?;
@@ -8677,10 +8768,11 @@ fn maintenance_window_automation_parameters_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_2008 = value.cast::<PyDict>()?;
-        let mut converted_2007 = HashMap::new();
+        let mut converted_2007 = HashMap::with_capacity(mapping_2008.len());
         for (key_2009, value_2010) in mapping_2008.iter() {
             let converted_key_2011: String = key_2009.extract()?;
-            let mut converted_value_2012 = Vec::new();
+            let mut converted_value_2012 =
+                Vec::with_capacity(value_2010.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2013 in value_2010.try_iter()? {
                 let item_2014 = item_result_2013?;
                 let converted_item_2015: String = item_2014.extract()?;
@@ -8868,7 +8960,8 @@ fn maintenance_window_execution_task_identity_from_py(
         builder = builder.set_alarm_configuration(Some(converted_2051));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_2052 = Vec::new();
+        let mut converted_2052 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2053 in value.try_iter()? {
             let item_2054 = item_result_2053?;
             let converted_item_2055 = alarm_state_information_from_py(&item_2054)?;
@@ -9113,7 +9206,8 @@ fn maintenance_window_filter_from_py(
         builder = builder.set_key(Some(converted_2096));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2097 = Vec::new();
+        let mut converted_2097 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2098 in value.try_iter()? {
             let item_2099 = item_result_2098?;
             let converted_item_2100: String = item_2099.extract()?;
@@ -9400,10 +9494,11 @@ fn maintenance_window_run_command_parameters_from_py(
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_2150 = value.cast::<PyDict>()?;
-        let mut converted_2149 = HashMap::new();
+        let mut converted_2149 = HashMap::with_capacity(mapping_2150.len());
         for (key_2151, value_2152) in mapping_2150.iter() {
             let converted_key_2153: String = key_2151.extract()?;
-            let mut converted_value_2154 = Vec::new();
+            let mut converted_value_2154 =
+                Vec::with_capacity(value_2152.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_2155 in value_2152.try_iter()? {
                 let item_2156 = item_result_2155?;
                 let converted_item_2157: String = item_2156.extract()?;
@@ -9565,7 +9660,8 @@ fn maintenance_window_target_from_py(
         builder = builder.set_resource_type(Some(converted_2183));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_2185 = Vec::new();
+        let mut converted_2185 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2186 in value.try_iter()? {
             let item_2187 = item_result_2186?;
             let converted_item_2188 = target_from_py(&item_2187)?;
@@ -9667,7 +9763,8 @@ fn maintenance_window_task_from_py(
         builder = builder.set_type(Some(converted_2204));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_2206 = Vec::new();
+        let mut converted_2206 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2207 in value.try_iter()? {
             let item_2208 = item_result_2207?;
             let converted_item_2209 = target_from_py(&item_2208)?;
@@ -9677,7 +9774,7 @@ fn maintenance_window_task_from_py(
     }
     if let Some(value) = dict_value(values, "task_parameters")? {
         let mapping_2211 = value.cast::<PyDict>()?;
-        let mut converted_2210 = HashMap::new();
+        let mut converted_2210 = HashMap::with_capacity(mapping_2211.len());
         for (key_2212, value_2213) in mapping_2211.iter() {
             let converted_key_2214: String = key_2212.extract()?;
             let converted_value_2215 =
@@ -9895,7 +9992,8 @@ fn maintenance_window_task_parameter_value_expression_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowTaskParameterValueExpression::builder();
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2255 = Vec::new();
+        let mut converted_2255 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2256 in value.try_iter()? {
             let item_2257 = item_result_2256?;
             let converted_item_2258: String = item_2257.extract()?;
@@ -10036,7 +10134,8 @@ fn node_aggregator_from_py(
         builder = builder.set_attribute_name(Some(converted_2279));
     }
     if let Some(value) = dict_value(values, "aggregators")? {
-        let mut converted_2281 = Vec::new();
+        let mut converted_2281 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2282 in value.try_iter()? {
             let item_2283 = item_result_2282?;
             let converted_item_2284 = node_aggregator_from_py(&item_2283)?;
@@ -10083,7 +10182,8 @@ fn node_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types:
         builder = builder.set_key(Some(converted_2291));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2293 = Vec::new();
+        let mut converted_2293 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2294 in value.try_iter()? {
             let item_2295 = item_result_2294?;
             let converted_item_2296: String = item_2295.extract()?;
@@ -10241,7 +10341,8 @@ fn notification_config_from_py(
         builder = builder.set_notification_arn(Some(converted_2316));
     }
     if let Some(value) = dict_value(values, "notification_events")? {
-        let mut converted_2317 = Vec::new();
+        let mut converted_2317 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2318 in value.try_iter()? {
             let item_2319 = item_result_2318?;
             let enum_value_2321: String = item_2319.extract()?;
@@ -10307,7 +10408,7 @@ fn ops_aggregator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
     }
     if let Some(value) = dict_value(values, "values")? {
         let mapping_2333 = value.cast::<PyDict>()?;
-        let mut converted_2332 = HashMap::new();
+        let mut converted_2332 = HashMap::with_capacity(mapping_2333.len());
         for (key_2334, value_2335) in mapping_2333.iter() {
             let converted_key_2336: String = key_2334.extract()?;
             let converted_value_2337: String = value_2335.extract()?;
@@ -10316,7 +10417,8 @@ fn ops_aggregator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_values(Some(converted_2332));
     }
     if let Some(value) = dict_value(values, "filters")? {
-        let mut converted_2338 = Vec::new();
+        let mut converted_2338 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2339 in value.try_iter()? {
             let item_2340 = item_result_2339?;
             let converted_item_2341 = ops_filter_from_py(&item_2340)?;
@@ -10325,7 +10427,8 @@ fn ops_aggregator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_filters(Some(converted_2338));
     }
     if let Some(value) = dict_value(values, "aggregators")? {
-        let mut converted_2342 = Vec::new();
+        let mut converted_2342 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2343 in value.try_iter()? {
             let item_2344 = item_result_2343?;
             let converted_item_2345 = ops_aggregator_from_py(&item_2344)?;
@@ -10405,7 +10508,7 @@ fn ops_entity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::
     }
     if let Some(value) = dict_value(values, "data")? {
         let mapping_2362 = value.cast::<PyDict>()?;
-        let mut converted_2361 = HashMap::new();
+        let mut converted_2361 = HashMap::with_capacity(mapping_2362.len());
         for (key_2363, value_2364) in mapping_2362.iter() {
             let converted_key_2365: String = key_2363.extract()?;
             let converted_value_2366 = ops_entity_item_from_py(&value_2364)?;
@@ -10449,11 +10552,12 @@ fn ops_entity_item_from_py(
         builder = builder.set_capture_time(Some(converted_2373));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let mut converted_2374 = Vec::new();
+        let mut converted_2374 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2375 in value.try_iter()? {
             let item_2376 = item_result_2375?;
             let mapping_2378 = item_2376.cast::<PyDict>()?;
-            let mut converted_item_2377 = HashMap::new();
+            let mut converted_item_2377 = HashMap::with_capacity(mapping_2378.len());
             for (key_2379, value_2380) in mapping_2378.iter() {
                 let converted_key_2381: String = key_2379.extract()?;
                 let converted_value_2382: String = value_2380.extract()?;
@@ -10505,7 +10609,8 @@ fn ops_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::
         builder = builder.set_key(Some(converted_2391));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2392 = Vec::new();
+        let mut converted_2392 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2393 in value.try_iter()? {
             let item_2394 = item_result_2393?;
             let converted_item_2395: String = item_2394.extract()?;
@@ -10582,7 +10687,8 @@ fn ops_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Op
         builder = builder.set_last_modified_time(Some(converted_2409));
     }
     if let Some(value) = dict_value(values, "notifications")? {
-        let mut converted_2411 = Vec::new();
+        let mut converted_2411 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2412 in value.try_iter()? {
             let item_2413 = item_result_2412?;
             let converted_item_2414 = ops_item_notification_from_py(&item_2413)?;
@@ -10595,7 +10701,8 @@ fn ops_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Op
         builder = builder.set_priority(Some(converted_2415));
     }
     if let Some(value) = dict_value(values, "related_ops_items")? {
-        let mut converted_2416 = Vec::new();
+        let mut converted_2416 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2417 in value.try_iter()? {
             let item_2418 = item_result_2417?;
             let converted_item_2419 = related_ops_item_from_py(&item_2418)?;
@@ -10626,7 +10733,7 @@ fn ops_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Op
     }
     if let Some(value) = dict_value(values, "operational_data")? {
         let mapping_2427 = value.cast::<PyDict>()?;
-        let mut converted_2426 = HashMap::new();
+        let mut converted_2426 = HashMap::with_capacity(mapping_2427.len());
         for (key_2428, value_2429) in mapping_2427.iter() {
             let converted_key_2430: String = key_2428.extract()?;
             let converted_value_2431 = ops_item_data_value_from_py(&value_2429)?;
@@ -10887,7 +10994,8 @@ fn ops_item_event_filter_from_py(
         builder = builder.set_key(Some(converted_2478));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2480 = Vec::new();
+        let mut converted_2480 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2481 in value.try_iter()? {
             let item_2482 = item_result_2481?;
             let converted_item_2483: String = item_2482.extract()?;
@@ -11027,7 +11135,8 @@ fn ops_item_filter_from_py(
         builder = builder.set_key(Some(converted_2506));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2508 = Vec::new();
+        let mut converted_2508 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2509 in value.try_iter()? {
             let item_2510 = item_result_2509?;
             let converted_item_2511: String = item_2510.extract()?;
@@ -11245,7 +11354,8 @@ fn ops_item_related_items_filter_from_py(
         builder = builder.set_key(Some(converted_2543));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2545 = Vec::new();
+        let mut converted_2545 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2546 in value.try_iter()? {
             let item_2547 = item_result_2546?;
             let converted_item_2548: String = item_2547.extract()?;
@@ -11337,7 +11447,7 @@ fn ops_item_summary_from_py(
     }
     if let Some(value) = dict_value(values, "operational_data")? {
         let mapping_2569 = value.cast::<PyDict>()?;
-        let mut converted_2568 = HashMap::new();
+        let mut converted_2568 = HashMap::with_capacity(mapping_2569.len());
         for (key_2570, value_2571) in mapping_2569.iter() {
             let converted_key_2572: String = key_2570.extract()?;
             let converted_value_2573 = ops_item_data_value_from_py(&value_2571)?;
@@ -11596,7 +11706,8 @@ fn ops_metadata_filter_from_py(
         builder = builder.set_key(Some(converted_2618));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2619 = Vec::new();
+        let mut converted_2619 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2620 in value.try_iter()? {
             let item_2621 = item_result_2620?;
             let converted_item_2622: String = item_2621.extract()?;
@@ -11835,7 +11946,8 @@ fn parameter_history_from_py(
         builder = builder.set_version(Some(converted_2663));
     }
     if let Some(value) = dict_value(values, "labels")? {
-        let mut converted_2664 = Vec::new();
+        let mut converted_2664 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2665 in value.try_iter()? {
             let item_2666 = item_result_2665?;
             let converted_item_2667: String = item_2666.extract()?;
@@ -11849,7 +11961,8 @@ fn parameter_history_from_py(
         builder = builder.set_tier(Some(converted_2668));
     }
     if let Some(value) = dict_value(values, "policies")? {
-        let mut converted_2670 = Vec::new();
+        let mut converted_2670 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2671 in value.try_iter()? {
             let item_2672 = item_result_2671?;
             let converted_item_2673 = parameter_inline_policy_from_py(&item_2672)?;
@@ -12055,7 +12168,8 @@ fn parameter_metadata_from_py(
         builder = builder.set_tier(Some(converted_2709));
     }
     if let Some(value) = dict_value(values, "policies")? {
-        let mut converted_2711 = Vec::new();
+        let mut converted_2711 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2712 in value.try_iter()? {
             let item_2713 = item_result_2712?;
             let converted_item_2714 = parameter_inline_policy_from_py(&item_2713)?;
@@ -12165,7 +12279,8 @@ fn parameter_string_filter_from_py(
         builder = builder.set_option(Some(converted_2731));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2732 = Vec::new();
+        let mut converted_2732 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2733 in value.try_iter()? {
             let item_2734 = item_result_2733?;
             let converted_item_2735: String = item_2734.extract()?;
@@ -12217,7 +12332,8 @@ fn parameters_filter_from_py(
         builder = builder.set_key(Some(converted_2741));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2743 = Vec::new();
+        let mut converted_2743 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2744 in value.try_iter()? {
             let item_2745 = item_result_2744?;
             let converted_item_2746: String = item_2745.extract()?;
@@ -12374,7 +12490,8 @@ fn patch_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Patch
         builder = builder.set_language(Some(converted_2774));
     }
     if let Some(value) = dict_value(values, "advisory_ids")? {
-        let mut converted_2775 = Vec::new();
+        let mut converted_2775 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2776 in value.try_iter()? {
             let item_2777 = item_result_2776?;
             let converted_item_2778: String = item_2777.extract()?;
@@ -12383,7 +12500,8 @@ fn patch_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Patch
         builder = builder.set_advisory_ids(Some(converted_2775));
     }
     if let Some(value) = dict_value(values, "bugzilla_ids")? {
-        let mut converted_2779 = Vec::new();
+        let mut converted_2779 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2780 in value.try_iter()? {
             let item_2781 = item_result_2780?;
             let converted_item_2782: String = item_2781.extract()?;
@@ -12392,7 +12510,8 @@ fn patch_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Patch
         builder = builder.set_bugzilla_ids(Some(converted_2779));
     }
     if let Some(value) = dict_value(values, "cve_ids")? {
-        let mut converted_2783 = Vec::new();
+        let mut converted_2783 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2784 in value.try_iter()? {
             let item_2785 = item_result_2784?;
             let converted_item_2786: String = item_2785.extract()?;
@@ -12728,7 +12847,8 @@ fn patch_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types
         builder = builder.set_key(Some(converted_2850));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2852 = Vec::new();
+        let mut converted_2852 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2853 in value.try_iter()? {
             let item_2854 = item_result_2853?;
             let converted_item_2855: String = item_2854.extract()?;
@@ -12764,7 +12884,8 @@ fn patch_filter_group_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::PatchFilterGroup::builder();
     if let Some(value) = dict_value(values, "patch_filters")? {
-        let mut converted_2860 = Vec::new();
+        let mut converted_2860 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2861 in value.try_iter()? {
             let item_2862 = item_result_2861?;
             let converted_item_2863 = patch_filter_from_py(&item_2862)?;
@@ -12838,7 +12959,8 @@ fn patch_orchestrator_filter_from_py(
         builder = builder.set_key(Some(converted_2871));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_2872 = Vec::new();
+        let mut converted_2872 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2873 in value.try_iter()? {
             let item_2874 = item_result_2873?;
             let converted_item_2875: String = item_2874.extract()?;
@@ -12943,7 +13065,8 @@ fn patch_rule_group_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::PatchRuleGroup::builder();
     if let Some(value) = dict_value(values, "patch_rules")? {
-        let mut converted_2891 = Vec::new();
+        let mut converted_2891 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2892 in value.try_iter()? {
             let item_2893 = item_result_2892?;
             let converted_item_2894 = patch_rule_from_py(&item_2893)?;
@@ -12979,7 +13102,8 @@ fn patch_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types
         builder = builder.set_name(Some(converted_2898));
     }
     if let Some(value) = dict_value(values, "products")? {
-        let mut converted_2899 = Vec::new();
+        let mut converted_2899 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2900 in value.try_iter()? {
             let item_2901 = item_result_2900?;
             let converted_item_2902: String = item_2901.extract()?;
@@ -13174,7 +13298,8 @@ fn resolved_targets_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::ResolvedTargets::builder();
     if let Some(value) = dict_value(values, "parameter_values")? {
-        let mut converted_2934 = Vec::new();
+        let mut converted_2934 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2935 in value.try_iter()? {
             let item_2936 = item_result_2935?;
             let converted_item_2937: String = item_2936.extract()?;
@@ -13318,7 +13443,8 @@ fn resource_data_sync_aws_organizations_source_from_py(
         builder = builder.set_organization_source_type(Some(converted_2961));
     }
     if let Some(value) = dict_value(values, "organizational_units")? {
-        let mut converted_2962 = Vec::new();
+        let mut converted_2962 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_2963 in value.try_iter()? {
             let item_2964 = item_result_2963?;
             let converted_item_2965 = resource_data_sync_organizational_unit_from_py(&item_2964)?;
@@ -13624,7 +13750,8 @@ fn resource_data_sync_source_from_py(
         builder = builder.set_aws_organizations_source(Some(converted_3013));
     }
     if let Some(value) = dict_value(values, "source_regions")? {
-        let mut converted_3014 = Vec::new();
+        let mut converted_3014 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3015 in value.try_iter()? {
             let item_3016 = item_result_3015?;
             let converted_item_3017: String = item_3016.extract()?;
@@ -13688,7 +13815,8 @@ fn resource_data_sync_source_with_state_from_py(
         builder = builder.set_aws_organizations_source(Some(converted_3028));
     }
     if let Some(value) = dict_value(values, "source_regions")? {
-        let mut converted_3029 = Vec::new();
+        let mut converted_3029 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3030 in value.try_iter()? {
             let item_3031 = item_result_3030?;
             let converted_item_3032: String = item_3031.extract()?;
@@ -13843,10 +13971,11 @@ fn runbook_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Run
     }
     if let Some(value) = dict_value(values, "parameters")? {
         let mapping_3057 = value.cast::<PyDict>()?;
-        let mut converted_3056 = HashMap::new();
+        let mut converted_3056 = HashMap::with_capacity(mapping_3057.len());
         for (key_3058, value_3059) in mapping_3057.iter() {
             let converted_key_3060: String = key_3058.extract()?;
-            let mut converted_value_3061 = Vec::new();
+            let mut converted_value_3061 =
+                Vec::with_capacity(value_3059.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3062 in value_3059.try_iter()? {
                 let item_3063 = item_result_3062?;
                 let converted_item_3064: String = item_3063.extract()?;
@@ -13861,7 +13990,8 @@ fn runbook_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Run
         builder = builder.set_target_parameter_name(Some(converted_3065));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_3066 = Vec::new();
+        let mut converted_3066 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3067 in value.try_iter()? {
             let item_3068 = item_result_3067?;
             let converted_item_3069 = target_from_py(&item_3068)?;
@@ -13870,14 +14000,16 @@ fn runbook_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Run
         builder = builder.set_targets(Some(converted_3066));
     }
     if let Some(value) = dict_value(values, "target_maps")? {
-        let mut converted_3070 = Vec::new();
+        let mut converted_3070 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3071 in value.try_iter()? {
             let item_3072 = item_result_3071?;
             let mapping_3074 = item_3072.cast::<PyDict>()?;
-            let mut converted_item_3073 = HashMap::new();
+            let mut converted_item_3073 = HashMap::with_capacity(mapping_3074.len());
             for (key_3075, value_3076) in mapping_3074.iter() {
                 let converted_key_3077: String = key_3075.extract()?;
-                let mut converted_value_3078 = Vec::new();
+                let mut converted_value_3078 =
+                    Vec::with_capacity(value_3076.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3079 in value_3076.try_iter()? {
                     let item_3080 = item_result_3079?;
                     let converted_item_3081: String = item_3080.extract()?;
@@ -13898,7 +14030,8 @@ fn runbook_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Run
         builder = builder.set_max_errors(Some(converted_3083));
     }
     if let Some(value) = dict_value(values, "target_locations")? {
-        let mut converted_3084 = Vec::new();
+        let mut converted_3084 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3085 in value.try_iter()? {
             let item_3086 = item_result_3085?;
             let converted_item_3087 = target_location_from_py(&item_3086)?;
@@ -14513,7 +14646,7 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
     }
     if let Some(value) = dict_value(values, "inputs")? {
         let mapping_3204 = value.cast::<PyDict>()?;
-        let mut converted_3203 = HashMap::new();
+        let mut converted_3203 = HashMap::with_capacity(mapping_3204.len());
         for (key_3205, value_3206) in mapping_3204.iter() {
             let converted_key_3207: String = key_3205.extract()?;
             let converted_value_3208: String = value_3206.extract()?;
@@ -14523,10 +14656,11 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
     }
     if let Some(value) = dict_value(values, "outputs")? {
         let mapping_3210 = value.cast::<PyDict>()?;
-        let mut converted_3209 = HashMap::new();
+        let mut converted_3209 = HashMap::with_capacity(mapping_3210.len());
         for (key_3211, value_3212) in mapping_3210.iter() {
             let converted_key_3213: String = key_3211.extract()?;
-            let mut converted_value_3214 = Vec::new();
+            let mut converted_value_3214 =
+                Vec::with_capacity(value_3212.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3215 in value_3212.try_iter()? {
                 let item_3216 = item_result_3215?;
                 let converted_item_3217: String = item_3216.extract()?;
@@ -14558,10 +14692,11 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
     }
     if let Some(value) = dict_value(values, "overridden_parameters")? {
         let mapping_3224 = value.cast::<PyDict>()?;
-        let mut converted_3223 = HashMap::new();
+        let mut converted_3223 = HashMap::with_capacity(mapping_3224.len());
         for (key_3225, value_3226) in mapping_3224.iter() {
             let converted_key_3227: String = key_3225.extract()?;
-            let mut converted_value_3228 = Vec::new();
+            let mut converted_value_3228 =
+                Vec::with_capacity(value_3226.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3229 in value_3226.try_iter()? {
                 let item_3230 = item_result_3229?;
                 let converted_item_3231: String = item_3230.extract()?;
@@ -14584,7 +14719,8 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_is_critical(Some(converted_3234));
     }
     if let Some(value) = dict_value(values, "valid_next_steps")? {
-        let mut converted_3235 = Vec::new();
+        let mut converted_3235 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3236 in value.try_iter()? {
             let item_3237 = item_result_3236?;
             let converted_item_3238: String = item_3237.extract()?;
@@ -14593,7 +14729,8 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_valid_next_steps(Some(converted_3235));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_3239 = Vec::new();
+        let mut converted_3239 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3240 in value.try_iter()? {
             let item_3241 = item_result_3240?;
             let converted_item_3242 = target_from_py(&item_3241)?;
@@ -14606,7 +14743,8 @@ fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::typ
         builder = builder.set_target_location(Some(converted_3243));
     }
     if let Some(value) = dict_value(values, "triggered_alarms")? {
-        let mut converted_3244 = Vec::new();
+        let mut converted_3244 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3245 in value.try_iter()? {
             let item_3246 = item_result_3245?;
             let converted_item_3247 = alarm_state_information_from_py(&item_3246)?;
@@ -14834,7 +14972,8 @@ fn step_execution_filter_from_py(
         builder = builder.set_key(Some(converted_3296));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_3298 = Vec::new();
+        let mut converted_3298 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3299 in value.try_iter()? {
             let item_3300 = item_result_3299?;
             let converted_item_3301: String = item_3300.extract()?;
@@ -14897,7 +15036,8 @@ fn target_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Targ
         builder = builder.set_key(Some(converted_3310));
     }
     if let Some(value) = dict_value(values, "values")? {
-        let mut converted_3311 = Vec::new();
+        let mut converted_3311 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3312 in value.try_iter()? {
             let item_3313 = item_result_3312?;
             let converted_item_3314: String = item_3313.extract()?;
@@ -14936,7 +15076,8 @@ fn target_location_from_py(
     let values = value.cast::<PyDict>()?;
     let mut builder = aws_sdk_ssm::types::TargetLocation::builder();
     if let Some(value) = dict_value(values, "accounts")? {
-        let mut converted_3319 = Vec::new();
+        let mut converted_3319 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3320 in value.try_iter()? {
             let item_3321 = item_result_3320?;
             let converted_item_3322: String = item_3321.extract()?;
@@ -14945,7 +15086,8 @@ fn target_location_from_py(
         builder = builder.set_accounts(Some(converted_3319));
     }
     if let Some(value) = dict_value(values, "regions")? {
-        let mut converted_3323 = Vec::new();
+        let mut converted_3323 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3324 in value.try_iter()? {
             let item_3325 = item_result_3324?;
             let converted_item_3326: String = item_3325.extract()?;
@@ -14974,7 +15116,8 @@ fn target_location_from_py(
         builder = builder.set_include_child_organization_units(Some(converted_3331));
     }
     if let Some(value) = dict_value(values, "exclude_accounts")? {
-        let mut converted_3332 = Vec::new();
+        let mut converted_3332 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3333 in value.try_iter()? {
             let item_3334 = item_result_3333?;
             let converted_item_3335: String = item_3334.extract()?;
@@ -14983,7 +15126,8 @@ fn target_location_from_py(
         builder = builder.set_exclude_accounts(Some(converted_3332));
     }
     if let Some(value) = dict_value(values, "targets")? {
-        let mut converted_3336 = Vec::new();
+        let mut converted_3336 =
+            Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
         for item_result_3337 in value.try_iter()? {
             let item_3338 = item_result_3337?;
             let converted_item_3339 = target_from_py(&item_3338)?;
@@ -36608,7 +36752,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3385 = Vec::new();
+            let mut converted_3385 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3386 in value.try_iter()? {
                 let item_3387 = item_result_3386?;
                 let converted_item_3388 = tag_from_py(&item_3387)?;
@@ -36629,7 +36774,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddTagsToResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyAddTagsToResourceResult { inner: output }))
+            Ok(PyAddTagsToResourceResult { inner: output })
         })
     }
 
@@ -36676,9 +36821,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociateOpsItemRelatedItem"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyAssociateOpsItemRelatedItemResponse { inner: output })
-            })
+            Ok(PyAssociateOpsItemRelatedItemResponse { inner: output })
         })
     }
 
@@ -36696,7 +36839,8 @@ impl SSMClient {
             None
         };
         let instance_ids_value = if let Some(value) = dict_value(params, "instance_ids")? {
-            let mut converted_3394 = Vec::new();
+            let mut converted_3394 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3395 in value.try_iter()? {
                 let item_3396 = item_result_3395?;
                 let converted_item_3397: String = item_3396.extract()?;
@@ -36716,7 +36860,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelCommand"))
             })?;
-            Python::attach(|py| Py::new(py, PyCancelCommandResult { inner: output }))
+            Ok(PyCancelCommandResult { inner: output })
         })
     }
 
@@ -36743,12 +36887,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelMaintenanceWindowExecution"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyCancelMaintenanceWindowExecutionResult { inner: output },
-                )
-            })
+            Ok(PyCancelMaintenanceWindowExecutionResult { inner: output })
         })
     }
 
@@ -36797,7 +36936,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3405 = Vec::new();
+            let mut converted_3405 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3406 in value.try_iter()? {
                 let item_3407 = item_result_3406?;
                 let converted_item_3408 = tag_from_py(&item_3407)?;
@@ -36809,7 +36949,8 @@ impl SSMClient {
         };
         let registration_metadata_value =
             if let Some(value) = dict_value(params, "registration_metadata")? {
-                let mut converted_3409 = Vec::new();
+                let mut converted_3409 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3410 in value.try_iter()? {
                     let item_3411 = item_result_3410?;
                     let converted_item_3412 = registration_metadata_item_from_py(&item_3411)?;
@@ -36834,7 +36975,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateActivation"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateActivationResult { inner: output }))
+            Ok(PyCreateActivationResult { inner: output })
         })
     }
 
@@ -36865,10 +37006,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_3417 = value.cast::<PyDict>()?;
-            let mut converted_3416 = HashMap::new();
+            let mut converted_3416 = HashMap::with_capacity(mapping_3417.len());
             for (key_3418, value_3419) in mapping_3417.iter() {
                 let converted_key_3420: String = key_3418.extract()?;
-                let mut converted_value_3421 = Vec::new();
+                let mut converted_value_3421 =
+                    Vec::with_capacity(value_3419.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3422 in value_3419.try_iter()? {
                     let item_3423 = item_result_3422?;
                     let converted_item_3424: String = item_3423.extract()?;
@@ -36881,7 +37023,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_3425 = Vec::new();
+            let mut converted_3425 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3426 in value.try_iter()? {
                 let item_3427 = item_result_3426?;
                 let converted_item_3428 = target_from_py(&item_3427)?;
@@ -36955,7 +37098,8 @@ impl SSMClient {
                 None
             };
         let calendar_names_value = if let Some(value) = dict_value(params, "calendar_names")? {
-            let mut converted_3440 = Vec::new();
+            let mut converted_3440 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3441 in value.try_iter()? {
                 let item_3442 = item_result_3441?;
                 let converted_item_3443: String = item_3442.extract()?;
@@ -36966,7 +37110,8 @@ impl SSMClient {
             None
         };
         let target_locations_value = if let Some(value) = dict_value(params, "target_locations")? {
-            let mut converted_3444 = Vec::new();
+            let mut converted_3444 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3445 in value.try_iter()? {
                 let item_3446 = item_result_3445?;
                 let converted_item_3447 = target_location_from_py(&item_3446)?;
@@ -36989,14 +37134,17 @@ impl SSMClient {
             None
         };
         let target_maps_value = if let Some(value) = dict_value(params, "target_maps")? {
-            let mut converted_3450 = Vec::new();
+            let mut converted_3450 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3451 in value.try_iter()? {
                 let item_3452 = item_result_3451?;
                 let mapping_3454 = item_3452.cast::<PyDict>()?;
-                let mut converted_item_3453 = HashMap::new();
+                let mut converted_item_3453 = HashMap::with_capacity(mapping_3454.len());
                 for (key_3455, value_3456) in mapping_3454.iter() {
                     let converted_key_3457: String = key_3455.extract()?;
-                    let mut converted_value_3458 = Vec::new();
+                    let mut converted_value_3458 = Vec::with_capacity(
+                        value_3456.cast::<PyList>().map_or(0, |items| items.len()),
+                    );
                     for item_result_3459 in value_3456.try_iter()? {
                         let item_3460 = item_result_3459?;
                         let converted_item_3461: String = item_3460.extract()?;
@@ -37011,7 +37159,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3462 = Vec::new();
+            let mut converted_3462 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3463 in value.try_iter()? {
                 let item_3464 = item_result_3463?;
                 let converted_item_3465 = tag_from_py(&item_3464)?;
@@ -37065,7 +37214,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociation"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateAssociationResult { inner: output }))
+            Ok(PyCreateAssociationResult { inner: output })
         })
     }
 
@@ -37077,7 +37226,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let entries_value = if let Some(value) = dict_value(params, "entries")? {
-            let mut converted_3468 = Vec::new();
+            let mut converted_3468 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3469 in value.try_iter()? {
                 let item_3470 = item_result_3469?;
                 let converted_item_3471 =
@@ -37105,7 +37255,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociationBatch"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateAssociationBatchResult { inner: output }))
+            Ok(PyCreateAssociationBatchResult { inner: output })
         })
     }
 
@@ -37148,7 +37298,8 @@ impl SSMClient {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3478 = Vec::new();
+            let mut converted_3478 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3479 in value.try_iter()? {
                 let item_3480 = item_result_3479?;
                 let converted_item_3481 = tag_from_py(&item_3480)?;
@@ -37172,7 +37323,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCloudConnector"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateCloudConnectorResult { inner: output }))
+            Ok(PyCreateCloudConnectorResult { inner: output })
         })
     }
 
@@ -37190,7 +37341,8 @@ impl SSMClient {
             None
         };
         let requires_value = if let Some(value) = dict_value(params, "requires")? {
-            let mut converted_3483 = Vec::new();
+            let mut converted_3483 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3484 in value.try_iter()? {
                 let item_3485 = item_result_3484?;
                 let converted_item_3486 = document_requires_from_py(&item_3485)?;
@@ -37201,7 +37353,8 @@ impl SSMClient {
             None
         };
         let attachments_value = if let Some(value) = dict_value(params, "attachments")? {
-            let mut converted_3487 = Vec::new();
+            let mut converted_3487 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3488 in value.try_iter()? {
                 let item_3489 = item_result_3488?;
                 let converted_item_3490 = attachments_source_from_py(&item_3489)?;
@@ -37250,7 +37403,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3499 = Vec::new();
+            let mut converted_3499 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3500 in value.try_iter()? {
                 let item_3501 = item_result_3500?;
                 let converted_item_3502 = tag_from_py(&item_3501)?;
@@ -37278,7 +37432,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateDocumentResult { inner: output }))
+            Ok(PyCreateDocumentResult { inner: output })
         })
     }
 
@@ -37358,7 +37512,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3514 = Vec::new();
+            let mut converted_3514 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3515 in value.try_iter()? {
                 let item_3516 = item_result_3515?;
                 let converted_item_3517 = tag_from_py(&item_3516)?;
@@ -37388,7 +37543,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMaintenanceWindow"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateMaintenanceWindowResult { inner: output }))
+            Ok(PyCreateMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -37413,7 +37568,7 @@ impl SSMClient {
         };
         let operational_data_value = if let Some(value) = dict_value(params, "operational_data")? {
             let mapping_3521 = value.cast::<PyDict>()?;
-            let mut converted_3520 = HashMap::new();
+            let mut converted_3520 = HashMap::with_capacity(mapping_3521.len());
             for (key_3522, value_3523) in mapping_3521.iter() {
                 let converted_key_3524: String = key_3522.extract()?;
                 let converted_value_3525 = ops_item_data_value_from_py(&value_3523)?;
@@ -37424,7 +37579,8 @@ impl SSMClient {
             None
         };
         let notifications_value = if let Some(value) = dict_value(params, "notifications")? {
-            let mut converted_3526 = Vec::new();
+            let mut converted_3526 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3527 in value.try_iter()? {
                 let item_3528 = item_result_3527?;
                 let converted_item_3529 = ops_item_notification_from_py(&item_3528)?;
@@ -37442,7 +37598,8 @@ impl SSMClient {
         };
         let related_ops_items_value = if let Some(value) = dict_value(params, "related_ops_items")?
         {
-            let mut converted_3531 = Vec::new();
+            let mut converted_3531 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3532 in value.try_iter()? {
                 let item_3533 = item_result_3532?;
                 let converted_item_3534 = related_ops_item_from_py(&item_3533)?;
@@ -37465,7 +37622,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3537 = Vec::new();
+            let mut converted_3537 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3538 in value.try_iter()? {
                 let item_3539 = item_result_3538?;
                 let converted_item_3540 = tag_from_py(&item_3539)?;
@@ -37563,7 +37721,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsItem"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateOpsItemResponse { inner: output }))
+            Ok(PyCreateOpsItemResponse { inner: output })
         })
     }
 
@@ -37582,7 +37740,7 @@ impl SSMClient {
         };
         let metadata_value = if let Some(value) = dict_value(params, "metadata")? {
             let mapping_3554 = value.cast::<PyDict>()?;
-            let mut converted_3553 = HashMap::new();
+            let mut converted_3553 = HashMap::with_capacity(mapping_3554.len());
             for (key_3555, value_3556) in mapping_3554.iter() {
                 let converted_key_3557: String = key_3555.extract()?;
                 let converted_value_3558 = metadata_value_from_py(&value_3556)?;
@@ -37593,7 +37751,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3559 = Vec::new();
+            let mut converted_3559 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3560 in value.try_iter()? {
                 let item_3561 = item_result_3560?;
                 let converted_item_3562 = tag_from_py(&item_3561)?;
@@ -37614,7 +37773,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateOpsMetadataResult { inner: output }))
+            Ok(PyCreateOpsMetadataResult { inner: output })
         })
     }
 
@@ -37652,7 +37811,8 @@ impl SSMClient {
             None
         };
         let approved_patches_value = if let Some(value) = dict_value(params, "approved_patches")? {
-            let mut converted_3568 = Vec::new();
+            let mut converted_3568 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3569 in value.try_iter()? {
                 let item_3570 = item_result_3569?;
                 let converted_item_3571: String = item_3570.extract()?;
@@ -37679,7 +37839,8 @@ impl SSMClient {
                 None
             };
         let rejected_patches_value = if let Some(value) = dict_value(params, "rejected_patches")? {
-            let mut converted_3575 = Vec::new();
+            let mut converted_3575 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3576 in value.try_iter()? {
                 let item_3577 = item_result_3576?;
                 let converted_item_3578: String = item_3577.extract()?;
@@ -37705,7 +37866,8 @@ impl SSMClient {
             None
         };
         let sources_value = if let Some(value) = dict_value(params, "sources")? {
-            let mut converted_3582 = Vec::new();
+            let mut converted_3582 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3583 in value.try_iter()? {
                 let item_3584 = item_result_3583?;
                 let converted_item_3585 = patch_source_from_py(&item_3584)?;
@@ -37732,7 +37894,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_3589 = Vec::new();
+            let mut converted_3589 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3590 in value.try_iter()? {
                 let item_3591 = item_result_3590?;
                 let converted_item_3592 = tag_from_py(&item_3591)?;
@@ -37768,7 +37931,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreatePatchBaselineResult { inner: output }))
+            Ok(PyCreatePatchBaselineResult { inner: output })
         })
     }
 
@@ -37815,7 +37978,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateResourceDataSync"))
             })?;
-            Python::attach(|py| Py::new(py, PyCreateResourceDataSyncResult { inner: output }))
+            Ok(PyCreateResourceDataSyncResult { inner: output })
         })
     }
 
@@ -37841,7 +38004,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteActivation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteActivationResult { inner: output }))
+            Ok(PyDeleteActivationResult { inner: output })
         })
     }
 
@@ -37881,7 +38044,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAssociation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteAssociationResult { inner: output }))
+            Ok(PyDeleteAssociationResult { inner: output })
         })
     }
 
@@ -37908,7 +38071,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCloudConnector"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteCloudConnectorResult { inner: output }))
+            Ok(PyDeleteCloudConnectorResult { inner: output })
         })
     }
 
@@ -37955,7 +38118,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteDocumentResult { inner: output }))
+            Ok(PyDeleteDocumentResult { inner: output })
         })
     }
 
@@ -38005,7 +38168,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInventory"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteInventoryResult { inner: output }))
+            Ok(PyDeleteInventoryResult { inner: output })
         })
     }
 
@@ -38031,7 +38194,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMaintenanceWindow"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteMaintenanceWindowResult { inner: output }))
+            Ok(PyDeleteMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -38057,7 +38220,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsItem"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteOpsItemResponse { inner: output }))
+            Ok(PyDeleteOpsItemResponse { inner: output })
         })
     }
 
@@ -38083,7 +38246,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteOpsMetadataResult { inner: output }))
+            Ok(PyDeleteOpsMetadataResult { inner: output })
         })
     }
 
@@ -38105,7 +38268,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameter"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteParameterResult { inner: output }))
+            Ok(PyDeleteParameterResult { inner: output })
         })
     }
 
@@ -38117,7 +38280,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let names_value = if let Some(value) = dict_value(params, "names")? {
-            let mut converted_3615 = Vec::new();
+            let mut converted_3615 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3616 in value.try_iter()? {
                 let item_3617 = item_result_3616?;
                 let converted_item_3618: String = item_3617.extract()?;
@@ -38136,7 +38300,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameters"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteParametersResult { inner: output }))
+            Ok(PyDeleteParametersResult { inner: output })
         })
     }
 
@@ -38162,7 +38326,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeletePatchBaselineResult { inner: output }))
+            Ok(PyDeletePatchBaselineResult { inner: output })
         })
     }
 
@@ -38195,7 +38359,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourceDataSync"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourceDataSyncResult { inner: output }))
+            Ok(PyDeleteResourceDataSyncResult { inner: output })
         })
     }
 
@@ -38243,7 +38407,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeleteResourcePolicyResponse { inner: output }))
+            Ok(PyDeleteResourcePolicyResponse { inner: output })
         })
     }
 
@@ -38269,7 +38433,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeregisterManagedInstance"))
             })?;
-            Python::attach(|py| Py::new(py, PyDeregisterManagedInstanceResult { inner: output }))
+            Ok(PyDeregisterManagedInstanceResult { inner: output })
         })
     }
 
@@ -38304,12 +38468,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterPatchBaselineForPatchGroup")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeregisterPatchBaselineForPatchGroupResult { inner: output },
-                )
-            })
+            Ok(PyDeregisterPatchBaselineForPatchGroupResult { inner: output })
         })
     }
 
@@ -38351,12 +38510,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterTargetFromMaintenanceWindow")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeregisterTargetFromMaintenanceWindowResult { inner: output },
-                )
-            })
+            Ok(PyDeregisterTargetFromMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -38391,12 +38545,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DeregisterTaskFromMaintenanceWindow")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDeregisterTaskFromMaintenanceWindowResult { inner: output },
-                )
-            })
+            Ok(PyDeregisterTaskFromMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -38408,7 +38557,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3635 = Vec::new();
+            let mut converted_3635 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3636 in value.try_iter()? {
                 let item_3637 = item_result_3636?;
                 let converted_item_3638 = describe_activations_filter_from_py(&item_3637)?;
@@ -38441,7 +38591,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivations"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeActivationsResult { inner: output }))
+            Ok(PyDescribeActivationsResult { inner: output })
         })
     }
 
@@ -38489,7 +38639,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeAssociationResult { inner: output }))
+            Ok(PyDescribeAssociationResult { inner: output })
         })
     }
 
@@ -38513,7 +38663,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3647 = Vec::new();
+            let mut converted_3647 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3648 in value.try_iter()? {
                 let item_3649 = item_result_3648?;
                 let converted_item_3650 = association_execution_targets_filter_from_py(&item_3649)?;
@@ -38550,12 +38701,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeAssociationExecutionTargets")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeAssociationExecutionTargetsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeAssociationExecutionTargetsResult { inner: output })
         })
     }
 
@@ -38573,7 +38719,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3654 = Vec::new();
+            let mut converted_3654 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3655 in value.try_iter()? {
                 let item_3656 = item_result_3655?;
                 let converted_item_3657 = association_execution_filter_from_py(&item_3656)?;
@@ -38607,9 +38754,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociationExecutions"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDescribeAssociationExecutionsResult { inner: output })
-            })
+            Ok(PyDescribeAssociationExecutionsResult { inner: output })
         })
     }
 
@@ -38621,7 +38766,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3660 = Vec::new();
+            let mut converted_3660 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3661 in value.try_iter()? {
                 let item_3662 = item_result_3661?;
                 let converted_item_3663 = automation_execution_filter_from_py(&item_3662)?;
@@ -38654,7 +38800,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationExecutions"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeAutomationExecutionsResult { inner: output }))
+            Ok(PyDescribeAutomationExecutionsResult { inner: output })
         })
     }
 
@@ -38673,7 +38819,8 @@ impl SSMClient {
                 None
             };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3667 = Vec::new();
+            let mut converted_3667 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3668 in value.try_iter()? {
                 let item_3669 = item_result_3668?;
                 let converted_item_3670 = step_execution_filter_from_py(&item_3669)?;
@@ -38714,12 +38861,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationStepExecutions"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeAutomationStepExecutionsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeAutomationStepExecutionsResult { inner: output })
         })
     }
 
@@ -38731,7 +38873,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3674 = Vec::new();
+            let mut converted_3674 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3675 in value.try_iter()? {
                 let item_3676 = item_result_3675?;
                 let converted_item_3677 = patch_orchestrator_filter_from_py(&item_3676)?;
@@ -38764,7 +38907,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAvailablePatches"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeAvailablePatchesResult { inner: output }))
+            Ok(PyDescribeAvailablePatchesResult { inner: output })
         })
     }
 
@@ -38804,7 +38947,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeDocumentResult { inner: output }))
+            Ok(PyDescribeDocumentResult { inner: output })
         })
     }
 
@@ -38853,7 +38996,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocumentPermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeDocumentPermissionResponse { inner: output }))
+            Ok(PyDescribeDocumentPermissionResponse { inner: output })
         })
     }
 
@@ -38895,12 +39038,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeEffectiveInstanceAssociations")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeEffectiveInstanceAssociationsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeEffectiveInstanceAssociationsResult { inner: output })
         })
     }
 
@@ -38942,12 +39080,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeEffectivePatchesForPatchBaseline")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeEffectivePatchesForPatchBaselineResult { inner: output },
-                )
-            })
+            Ok(PyDescribeEffectivePatchesForPatchBaselineResult { inner: output })
         })
     }
 
@@ -38989,12 +39122,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeInstanceAssociationsStatus")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeInstanceAssociationsStatusResult { inner: output },
-                )
-            })
+            Ok(PyDescribeInstanceAssociationsStatusResult { inner: output })
         })
     }
 
@@ -39007,7 +39135,8 @@ impl SSMClient {
         let state = self.state.clone();
         let instance_information_filter_list_value =
             if let Some(value) = dict_value(params, "instance_information_filter_list")? {
-                let mut converted_3697 = Vec::new();
+                let mut converted_3697 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3698 in value.try_iter()? {
                     let item_3699 = item_result_3698?;
                     let converted_item_3700 = instance_information_filter_from_py(&item_3699)?;
@@ -39018,7 +39147,8 @@ impl SSMClient {
                 None
             };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3701 = Vec::new();
+            let mut converted_3701 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3702 in value.try_iter()? {
                 let item_3703 = item_result_3702?;
                 let converted_item_3704 = instance_information_string_filter_from_py(&item_3703)?;
@@ -39052,7 +39182,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceInformation"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeInstanceInformationResult { inner: output }))
+            Ok(PyDescribeInstanceInformationResult { inner: output })
         })
     }
 
@@ -39064,7 +39194,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let instance_ids_value = if let Some(value) = dict_value(params, "instance_ids")? {
-            let mut converted_3707 = Vec::new();
+            let mut converted_3707 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3708 in value.try_iter()? {
                 let item_3709 = item_result_3708?;
                 let converted_item_3710: String = item_3709.extract()?;
@@ -39097,7 +39228,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatchStates"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeInstancePatchStatesResult { inner: output }))
+            Ok(PyDescribeInstancePatchStatesResult { inner: output })
         })
     }
 
@@ -39115,7 +39246,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3714 = Vec::new();
+            let mut converted_3714 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3715 in value.try_iter()? {
                 let item_3716 = item_result_3715?;
                 let converted_item_3717 = instance_patch_state_filter_from_py(&item_3716)?;
@@ -39151,12 +39283,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeInstancePatchStatesForPatchGroup")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeInstancePatchStatesForPatchGroupResult { inner: output },
-                )
-            })
+            Ok(PyDescribeInstancePatchStatesForPatchGroupResult { inner: output })
         })
     }
 
@@ -39174,7 +39301,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3721 = Vec::new();
+            let mut converted_3721 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3722 in value.try_iter()? {
                 let item_3723 = item_result_3722?;
                 let converted_item_3724 = patch_orchestrator_filter_from_py(&item_3723)?;
@@ -39208,7 +39336,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatches"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeInstancePatchesResult { inner: output }))
+            Ok(PyDescribeInstancePatchesResult { inner: output })
         })
     }
 
@@ -39221,7 +39349,8 @@ impl SSMClient {
         let state = self.state.clone();
         let instance_property_filter_list_value =
             if let Some(value) = dict_value(params, "instance_property_filter_list")? {
-                let mut converted_3727 = Vec::new();
+                let mut converted_3727 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3728 in value.try_iter()? {
                     let item_3729 = item_result_3728?;
                     let converted_item_3730 = instance_property_filter_from_py(&item_3729)?;
@@ -39233,7 +39362,8 @@ impl SSMClient {
             };
         let filters_with_operator_value =
             if let Some(value) = dict_value(params, "filters_with_operator")? {
-                let mut converted_3731 = Vec::new();
+                let mut converted_3731 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3732 in value.try_iter()? {
                     let item_3733 = item_result_3732?;
                     let converted_item_3734 = instance_property_string_filter_from_py(&item_3733)?;
@@ -39267,7 +39397,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceProperties"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeInstancePropertiesResult { inner: output }))
+            Ok(PyDescribeInstancePropertiesResult { inner: output })
         })
     }
 
@@ -39307,7 +39437,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInventoryDeletions"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeInventoryDeletionsResult { inner: output }))
+            Ok(PyDescribeInventoryDeletionsResult { inner: output })
         })
     }
 
@@ -39332,7 +39462,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3742 = Vec::new();
+            let mut converted_3742 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3743 in value.try_iter()? {
                 let item_3744 = item_result_3743?;
                 let converted_item_3745 = maintenance_window_filter_from_py(&item_3744)?;
@@ -39373,12 +39504,7 @@ impl SSMClient {
                     )
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowExecutionTaskInvocationsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowExecutionTaskInvocationsResult { inner: output })
         })
     }
 
@@ -39397,7 +39523,8 @@ impl SSMClient {
                 None
             };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3749 = Vec::new();
+            let mut converted_3749 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3750 in value.try_iter()? {
                 let item_3751 = item_result_3750?;
                 let converted_item_3752 = maintenance_window_filter_from_py(&item_3751)?;
@@ -39433,12 +39560,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutionTasks")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowExecutionTasksResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowExecutionTasksResult { inner: output })
         })
     }
 
@@ -39456,7 +39578,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3756 = Vec::new();
+            let mut converted_3756 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3757 in value.try_iter()? {
                 let item_3758 = item_result_3757?;
                 let converted_item_3759 = maintenance_window_filter_from_py(&item_3758)?;
@@ -39492,12 +39615,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutions")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowExecutionsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowExecutionsResult { inner: output })
         })
     }
 
@@ -39515,7 +39633,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_3763 = Vec::new();
+            let mut converted_3763 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3764 in value.try_iter()? {
                 let item_3765 = item_result_3764?;
                 let converted_item_3766 = target_from_py(&item_3765)?;
@@ -39534,7 +39653,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3769 = Vec::new();
+            let mut converted_3769 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3770 in value.try_iter()? {
                 let item_3771 = item_result_3770?;
                 let converted_item_3772 = patch_orchestrator_filter_from_py(&item_3771)?;
@@ -39572,12 +39692,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowSchedule")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowScheduleResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowScheduleResult { inner: output })
         })
     }
 
@@ -39595,7 +39710,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3776 = Vec::new();
+            let mut converted_3776 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3777 in value.try_iter()? {
                 let item_3778 = item_result_3777?;
                 let converted_item_3779 = maintenance_window_filter_from_py(&item_3778)?;
@@ -39629,12 +39745,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTargets"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowTargetsResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowTargetsResult { inner: output })
         })
     }
 
@@ -39652,7 +39763,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3783 = Vec::new();
+            let mut converted_3783 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3784 in value.try_iter()? {
                 let item_3785 = item_result_3784?;
                 let converted_item_3786 = maintenance_window_filter_from_py(&item_3785)?;
@@ -39686,9 +39798,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTasks"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyDescribeMaintenanceWindowTasksResult { inner: output })
-            })
+            Ok(PyDescribeMaintenanceWindowTasksResult { inner: output })
         })
     }
 
@@ -39700,7 +39810,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3789 = Vec::new();
+            let mut converted_3789 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3790 in value.try_iter()? {
                 let item_3791 = item_result_3790?;
                 let converted_item_3792 = maintenance_window_filter_from_py(&item_3791)?;
@@ -39733,7 +39844,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindows"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeMaintenanceWindowsResult { inner: output }))
+            Ok(PyDescribeMaintenanceWindowsResult { inner: output })
         })
     }
 
@@ -39745,7 +39856,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_3795 = Vec::new();
+            let mut converted_3795 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3796 in value.try_iter()? {
                 let item_3797 = item_result_3796?;
                 let converted_item_3798 = target_from_py(&item_3797)?;
@@ -39789,12 +39901,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "DescribeMaintenanceWindowsForTarget")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDescribeMaintenanceWindowsForTargetResult { inner: output },
-                )
-            })
+            Ok(PyDescribeMaintenanceWindowsForTargetResult { inner: output })
         })
     }
 
@@ -39806,7 +39913,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let ops_item_filters_value = if let Some(value) = dict_value(params, "ops_item_filters")? {
-            let mut converted_3803 = Vec::new();
+            let mut converted_3803 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3804 in value.try_iter()? {
                 let item_3805 = item_result_3804?;
                 let converted_item_3806 = ops_item_filter_from_py(&item_3805)?;
@@ -39839,7 +39947,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeOpsItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeOpsItemsResponse { inner: output }))
+            Ok(PyDescribeOpsItemsResponse { inner: output })
         })
     }
 
@@ -39851,7 +39959,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3809 = Vec::new();
+            let mut converted_3809 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3810 in value.try_iter()? {
                 let item_3811 = item_result_3810?;
                 let converted_item_3812 = parameters_filter_from_py(&item_3811)?;
@@ -39863,7 +39972,8 @@ impl SSMClient {
         };
         let parameter_filters_value = if let Some(value) = dict_value(params, "parameter_filters")?
         {
-            let mut converted_3813 = Vec::new();
+            let mut converted_3813 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3814 in value.try_iter()? {
                 let item_3815 = item_result_3814?;
                 let converted_item_3816 = parameter_string_filter_from_py(&item_3815)?;
@@ -39904,7 +40014,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeParameters"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeParametersResult { inner: output }))
+            Ok(PyDescribeParametersResult { inner: output })
         })
     }
 
@@ -39916,7 +40026,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3820 = Vec::new();
+            let mut converted_3820 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3821 in value.try_iter()? {
                 let item_3822 = item_result_3821?;
                 let converted_item_3823 = patch_orchestrator_filter_from_py(&item_3822)?;
@@ -39949,7 +40060,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchBaselines"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribePatchBaselinesResult { inner: output }))
+            Ok(PyDescribePatchBaselinesResult { inner: output })
         })
     }
 
@@ -39975,7 +40086,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroupState"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribePatchGroupStateResult { inner: output }))
+            Ok(PyDescribePatchGroupStateResult { inner: output })
         })
     }
 
@@ -39993,7 +40104,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3828 = Vec::new();
+            let mut converted_3828 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3829 in value.try_iter()? {
                 let item_3830 = item_result_3829?;
                 let converted_item_3831 = patch_orchestrator_filter_from_py(&item_3830)?;
@@ -40020,7 +40132,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroups"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribePatchGroupsResult { inner: output }))
+            Ok(PyDescribePatchGroupsResult { inner: output })
         })
     }
 
@@ -40078,7 +40190,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchProperties"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribePatchPropertiesResult { inner: output }))
+            Ok(PyDescribePatchPropertiesResult { inner: output })
         })
     }
 
@@ -40109,7 +40221,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3845 = Vec::new();
+            let mut converted_3845 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3846 in value.try_iter()? {
                 let item_3847 = item_result_3846?;
                 let converted_item_3848 = session_filter_from_py(&item_3847)?;
@@ -40131,7 +40244,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSessions"))
             })?;
-            Python::attach(|py| Py::new(py, PyDescribeSessionsResponse { inner: output }))
+            Ok(PyDescribeSessionsResponse { inner: output })
         })
     }
 
@@ -40164,12 +40277,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateOpsItemRelatedItem"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyDisassociateOpsItemRelatedItemResponse { inner: output },
-                )
-            })
+            Ok(PyDisassociateOpsItemRelatedItemResponse { inner: output })
         })
     }
 
@@ -40196,7 +40304,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessToken"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAccessTokenResponse { inner: output }))
+            Ok(PyGetAccessTokenResponse { inner: output })
         })
     }
 
@@ -40223,7 +40331,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAutomationExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetAutomationExecutionResult { inner: output }))
+            Ok(PyGetAutomationExecutionResult { inner: output })
         })
     }
 
@@ -40235,7 +40343,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let calendar_names_value = if let Some(value) = dict_value(params, "calendar_names")? {
-            let mut converted_3853 = Vec::new();
+            let mut converted_3853 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3854 in value.try_iter()? {
                 let item_3855 = item_result_3854?;
                 let converted_item_3856: String = item_3855.extract()?;
@@ -40261,7 +40370,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCalendarState"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCalendarStateResponse { inner: output }))
+            Ok(PyGetCalendarStateResponse { inner: output })
         })
     }
 
@@ -40288,7 +40397,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCloudConnector"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCloudConnectorResult { inner: output }))
+            Ok(PyGetCloudConnectorResult { inner: output })
         })
     }
 
@@ -40328,7 +40437,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCommandInvocation"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetCommandInvocationResult { inner: output }))
+            Ok(PyGetCommandInvocationResult { inner: output })
         })
     }
 
@@ -40354,7 +40463,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConnectionStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetConnectionStatusResponse { inner: output }))
+            Ok(PyGetConnectionStatusResponse { inner: output })
         })
     }
 
@@ -40382,7 +40491,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDefaultPatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetDefaultPatchBaselineResult { inner: output }))
+            Ok(PyGetDefaultPatchBaselineResult { inner: output })
         })
     }
 
@@ -40433,12 +40542,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetDeployablePatchSnapshotForInstance")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetDeployablePatchSnapshotForInstanceResult { inner: output },
-                )
-            })
+            Ok(PyGetDeployablePatchSnapshotForInstanceResult { inner: output })
         })
     }
 
@@ -40487,7 +40591,7 @@ impl SSMClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDocument")))?;
-            Python::attach(|py| Py::new(py, PyGetDocumentResult { inner: output }))
+            Ok(PyGetDocumentResult { inner: output })
         })
     }
 
@@ -40514,7 +40618,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionPreview"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetExecutionPreviewResponse { inner: output }))
+            Ok(PyGetExecutionPreviewResponse { inner: output })
         })
     }
 
@@ -40526,7 +40630,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3875 = Vec::new();
+            let mut converted_3875 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3876 in value.try_iter()? {
                 let item_3877 = item_result_3876?;
                 let converted_item_3878 = inventory_filter_from_py(&item_3877)?;
@@ -40537,7 +40642,8 @@ impl SSMClient {
             None
         };
         let aggregators_value = if let Some(value) = dict_value(params, "aggregators")? {
-            let mut converted_3879 = Vec::new();
+            let mut converted_3879 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3880 in value.try_iter()? {
                 let item_3881 = item_result_3880?;
                 let converted_item_3882 = inventory_aggregator_from_py(&item_3881)?;
@@ -40549,7 +40655,8 @@ impl SSMClient {
         };
         let result_attributes_value = if let Some(value) = dict_value(params, "result_attributes")?
         {
-            let mut converted_3883 = Vec::new();
+            let mut converted_3883 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3884 in value.try_iter()? {
                 let item_3885 = item_result_3884?;
                 let converted_item_3886 = result_attribute_from_py(&item_3885)?;
@@ -40584,7 +40691,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInventory"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetInventoryResult { inner: output }))
+            Ok(PyGetInventoryResult { inner: output })
         })
     }
 
@@ -40638,7 +40745,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInventorySchema"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetInventorySchemaResult { inner: output }))
+            Ok(PyGetInventorySchemaResult { inner: output })
         })
     }
 
@@ -40664,7 +40771,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindow"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMaintenanceWindowResult { inner: output }))
+            Ok(PyGetMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -40691,9 +40798,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowExecution"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetMaintenanceWindowExecutionResult { inner: output })
-            })
+            Ok(PyGetMaintenanceWindowExecutionResult { inner: output })
         })
     }
 
@@ -40729,12 +40834,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTask")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetMaintenanceWindowExecutionTaskResult { inner: output },
-                )
-            })
+            Ok(PyGetMaintenanceWindowExecutionTaskResult { inner: output })
         })
     }
 
@@ -40777,12 +40877,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTaskInvocation")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyGetMaintenanceWindowExecutionTaskInvocationResult { inner: output },
-                )
-            })
+            Ok(PyGetMaintenanceWindowExecutionTaskInvocationResult { inner: output })
         })
     }
 
@@ -40815,7 +40910,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetMaintenanceWindowTaskResult { inner: output }))
+            Ok(PyGetMaintenanceWindowTaskResult { inner: output })
         })
     }
 
@@ -40849,7 +40944,7 @@ impl SSMClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsItem")))?;
-            Python::attach(|py| Py::new(py, PyGetOpsItemResponse { inner: output }))
+            Ok(PyGetOpsItemResponse { inner: output })
         })
     }
 
@@ -40889,7 +40984,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetOpsMetadataResult { inner: output }))
+            Ok(PyGetOpsMetadataResult { inner: output })
         })
     }
 
@@ -40907,7 +41002,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3909 = Vec::new();
+            let mut converted_3909 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3910 in value.try_iter()? {
                 let item_3911 = item_result_3910?;
                 let converted_item_3912 = ops_filter_from_py(&item_3911)?;
@@ -40918,7 +41014,8 @@ impl SSMClient {
             None
         };
         let aggregators_value = if let Some(value) = dict_value(params, "aggregators")? {
-            let mut converted_3913 = Vec::new();
+            let mut converted_3913 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3914 in value.try_iter()? {
                 let item_3915 = item_result_3914?;
                 let converted_item_3916 = ops_aggregator_from_py(&item_3915)?;
@@ -40930,7 +41027,8 @@ impl SSMClient {
         };
         let result_attributes_value = if let Some(value) = dict_value(params, "result_attributes")?
         {
-            let mut converted_3917 = Vec::new();
+            let mut converted_3917 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3918 in value.try_iter()? {
                 let item_3919 = item_result_3918?;
                 let converted_item_3920 = ops_result_attribute_from_py(&item_3919)?;
@@ -40966,7 +41064,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsSummary"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetOpsSummaryResult { inner: output }))
+            Ok(PyGetOpsSummaryResult { inner: output })
         })
     }
 
@@ -40999,7 +41097,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameter"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetParameterResult { inner: output }))
+            Ok(PyGetParameterResult { inner: output })
         })
     }
 
@@ -41046,7 +41144,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameterHistory"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetParameterHistoryResult { inner: output }))
+            Ok(PyGetParameterHistoryResult { inner: output })
         })
     }
 
@@ -41058,7 +41156,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let names_value = if let Some(value) = dict_value(params, "names")? {
-            let mut converted_3929 = Vec::new();
+            let mut converted_3929 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3930 in value.try_iter()? {
                 let item_3931 = item_result_3930?;
                 let converted_item_3932: String = item_3931.extract()?;
@@ -41084,7 +41183,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParameters"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetParametersResult { inner: output }))
+            Ok(PyGetParametersResult { inner: output })
         })
     }
 
@@ -41109,7 +41208,8 @@ impl SSMClient {
         };
         let parameter_filters_value = if let Some(value) = dict_value(params, "parameter_filters")?
         {
-            let mut converted_3936 = Vec::new();
+            let mut converted_3936 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3937 in value.try_iter()? {
                 let item_3938 = item_result_3937?;
                 let converted_item_3939 = parameter_string_filter_from_py(&item_3938)?;
@@ -41151,7 +41251,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersByPath"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetParametersByPathResult { inner: output }))
+            Ok(PyGetParametersByPathResult { inner: output })
         })
     }
 
@@ -41177,7 +41277,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetPatchBaselineResult { inner: output }))
+            Ok(PyGetPatchBaselineResult { inner: output })
         })
     }
 
@@ -41212,9 +41312,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaselineForPatchGroup"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyGetPatchBaselineForPatchGroupResult { inner: output })
-            })
+            Ok(PyGetPatchBaselineForPatchGroupResult { inner: output })
         })
     }
 
@@ -41254,7 +41352,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicies"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetResourcePoliciesResponse { inner: output }))
+            Ok(PyGetResourcePoliciesResponse { inner: output })
         })
     }
 
@@ -41280,7 +41378,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetServiceSetting"))
             })?;
-            Python::attach(|py| Py::new(py, PyGetServiceSettingResult { inner: output }))
+            Ok(PyGetServiceSettingResult { inner: output })
         })
     }
 
@@ -41305,7 +41403,8 @@ impl SSMClient {
             None
         };
         let labels_value = if let Some(value) = dict_value(params, "labels")? {
-            let mut converted_3953 = Vec::new();
+            let mut converted_3953 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3954 in value.try_iter()? {
                 let item_3955 = item_result_3954?;
                 let converted_item_3956: String = item_3955.extract()?;
@@ -41326,7 +41425,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "LabelParameterVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyLabelParameterVersionResult { inner: output }))
+            Ok(PyLabelParameterVersionResult { inner: output })
         })
     }
 
@@ -41366,7 +41465,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociationVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAssociationVersionsResult { inner: output }))
+            Ok(PyListAssociationVersionsResult { inner: output })
         })
     }
 
@@ -41379,7 +41478,8 @@ impl SSMClient {
         let state = self.state.clone();
         let association_filter_list_value =
             if let Some(value) = dict_value(params, "association_filter_list")? {
-                let mut converted_3960 = Vec::new();
+                let mut converted_3960 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_3961 in value.try_iter()? {
                     let item_3962 = item_result_3961?;
                     let converted_item_3963 = association_filter_from_py(&item_3962)?;
@@ -41412,7 +41512,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListAssociationsResult { inner: output }))
+            Ok(PyListAssociationsResult { inner: output })
         })
     }
 
@@ -41436,7 +41536,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3968 = Vec::new();
+            let mut converted_3968 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3969 in value.try_iter()? {
                 let item_3970 = item_result_3969?;
                 let converted_item_3971 = cloud_connector_filter_from_py(&item_3970)?;
@@ -41457,7 +41558,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCloudConnectors"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCloudConnectorsResult { inner: output }))
+            Ok(PyListCloudConnectorsResult { inner: output })
         })
     }
 
@@ -41493,7 +41594,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3976 = Vec::new();
+            let mut converted_3976 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3977 in value.try_iter()? {
                 let item_3978 = item_result_3977?;
                 let converted_item_3979 = command_filter_from_py(&item_3978)?;
@@ -41523,7 +41625,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCommandInvocations"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCommandInvocationsResult { inner: output }))
+            Ok(PyListCommandInvocationsResult { inner: output })
         })
     }
 
@@ -41559,7 +41661,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3985 = Vec::new();
+            let mut converted_3985 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3986 in value.try_iter()? {
                 let item_3987 = item_result_3986?;
                 let converted_item_3988 = command_filter_from_py(&item_3987)?;
@@ -41582,7 +41685,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCommands"))
             })?;
-            Python::attach(|py| Py::new(py, PyListCommandsResult { inner: output }))
+            Ok(PyListCommandsResult { inner: output })
         })
     }
 
@@ -41594,7 +41697,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_3989 = Vec::new();
+            let mut converted_3989 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3990 in value.try_iter()? {
                 let item_3991 = item_result_3990?;
                 let converted_item_3992 = compliance_string_filter_from_py(&item_3991)?;
@@ -41605,7 +41709,8 @@ impl SSMClient {
             None
         };
         let resource_ids_value = if let Some(value) = dict_value(params, "resource_ids")? {
-            let mut converted_3993 = Vec::new();
+            let mut converted_3993 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3994 in value.try_iter()? {
                 let item_3995 = item_result_3994?;
                 let converted_item_3996: String = item_3995.extract()?;
@@ -41616,7 +41721,8 @@ impl SSMClient {
             None
         };
         let resource_types_value = if let Some(value) = dict_value(params, "resource_types")? {
-            let mut converted_3997 = Vec::new();
+            let mut converted_3997 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_3998 in value.try_iter()? {
                 let item_3999 = item_result_3998?;
                 let converted_item_4000: String = item_3999.extract()?;
@@ -41651,7 +41757,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyListComplianceItemsResult { inner: output }))
+            Ok(PyListComplianceItemsResult { inner: output })
         })
     }
 
@@ -41663,7 +41769,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4003 = Vec::new();
+            let mut converted_4003 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4004 in value.try_iter()? {
                 let item_4005 = item_result_4004?;
                 let converted_item_4006 = compliance_string_filter_from_py(&item_4005)?;
@@ -41696,7 +41803,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceSummaries"))
             })?;
-            Python::attach(|py| Py::new(py, PyListComplianceSummariesResult { inner: output }))
+            Ok(PyListComplianceSummariesResult { inner: output })
         })
     }
 
@@ -41752,9 +41859,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentMetadataHistory"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyListDocumentMetadataHistoryResponse { inner: output })
-            })
+            Ok(PyListDocumentMetadataHistoryResponse { inner: output })
         })
     }
 
@@ -41794,7 +41899,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentVersions"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDocumentVersionsResult { inner: output }))
+            Ok(PyListDocumentVersionsResult { inner: output })
         })
     }
 
@@ -41807,7 +41912,8 @@ impl SSMClient {
         let state = self.state.clone();
         let document_filter_list_value =
             if let Some(value) = dict_value(params, "document_filter_list")? {
-                let mut converted_4018 = Vec::new();
+                let mut converted_4018 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4019 in value.try_iter()? {
                     let item_4020 = item_result_4019?;
                     let converted_item_4021 = document_filter_from_py(&item_4020)?;
@@ -41818,7 +41924,8 @@ impl SSMClient {
                 None
             };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4022 = Vec::new();
+            let mut converted_4022 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4023 in value.try_iter()? {
                 let item_4024 = item_result_4023?;
                 let converted_item_4025 = document_key_values_filter_from_py(&item_4024)?;
@@ -41852,7 +41959,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
             })?;
-            Python::attach(|py| Py::new(py, PyListDocumentsResult { inner: output }))
+            Ok(PyListDocumentsResult { inner: output })
         })
     }
 
@@ -41876,7 +41983,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4030 = Vec::new();
+            let mut converted_4030 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4031 in value.try_iter()? {
                 let item_4032 = item_result_4031?;
                 let converted_item_4033 = inventory_filter_from_py(&item_4032)?;
@@ -41911,7 +42019,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInventoryEntries"))
             })?;
-            Python::attach(|py| Py::new(py, PyListInventoryEntriesResult { inner: output }))
+            Ok(PyListInventoryEntriesResult { inner: output })
         })
     }
 
@@ -41929,7 +42037,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4037 = Vec::new();
+            let mut converted_4037 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4038 in value.try_iter()? {
                 let item_4039 = item_result_4038?;
                 let converted_item_4040 = node_filter_from_py(&item_4039)?;
@@ -41964,7 +42073,7 @@ impl SSMClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListNodes")))?;
-            Python::attach(|py| Py::new(py, PyListNodesResult { inner: output }))
+            Ok(PyListNodesResult { inner: output })
         })
     }
 
@@ -41982,7 +42091,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4044 = Vec::new();
+            let mut converted_4044 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4045 in value.try_iter()? {
                 let item_4046 = item_result_4045?;
                 let converted_item_4047 = node_filter_from_py(&item_4046)?;
@@ -41993,7 +42103,8 @@ impl SSMClient {
             None
         };
         let aggregators_value = if let Some(value) = dict_value(params, "aggregators")? {
-            let mut converted_4048 = Vec::new();
+            let mut converted_4048 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4049 in value.try_iter()? {
                 let item_4050 = item_result_4049?;
                 let converted_item_4051 = node_aggregator_from_py(&item_4050)?;
@@ -42028,7 +42139,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListNodesSummary"))
             })?;
-            Python::attach(|py| Py::new(py, PyListNodesSummaryResult { inner: output }))
+            Ok(PyListNodesSummaryResult { inner: output })
         })
     }
 
@@ -42040,7 +42151,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4054 = Vec::new();
+            let mut converted_4054 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4055 in value.try_iter()? {
                 let item_4056 = item_result_4055?;
                 let converted_item_4057 = ops_item_event_filter_from_py(&item_4056)?;
@@ -42073,7 +42185,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemEvents"))
             })?;
-            Python::attach(|py| Py::new(py, PyListOpsItemEventsResponse { inner: output }))
+            Ok(PyListOpsItemEventsResponse { inner: output })
         })
     }
 
@@ -42091,7 +42203,8 @@ impl SSMClient {
             None
         };
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4061 = Vec::new();
+            let mut converted_4061 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4062 in value.try_iter()? {
                 let item_4063 = item_result_4062?;
                 let converted_item_4064 = ops_item_related_items_filter_from_py(&item_4063)?;
@@ -42125,7 +42238,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemRelatedItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyListOpsItemRelatedItemsResponse { inner: output }))
+            Ok(PyListOpsItemRelatedItemsResponse { inner: output })
         })
     }
 
@@ -42137,7 +42250,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4067 = Vec::new();
+            let mut converted_4067 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4068 in value.try_iter()? {
                 let item_4069 = item_result_4068?;
                 let converted_item_4070 = ops_metadata_filter_from_py(&item_4069)?;
@@ -42170,7 +42284,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyListOpsMetadataResult { inner: output }))
+            Ok(PyListOpsMetadataResult { inner: output })
         })
     }
 
@@ -42182,7 +42296,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let mut converted_4073 = Vec::new();
+            let mut converted_4073 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4074 in value.try_iter()? {
                 let item_4075 = item_result_4074?;
                 let converted_item_4076 = compliance_string_filter_from_py(&item_4075)?;
@@ -42215,12 +42330,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceComplianceSummaries"))
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyListResourceComplianceSummariesResult { inner: output },
-                )
-            })
+            Ok(PyListResourceComplianceSummariesResult { inner: output })
         })
     }
 
@@ -42260,7 +42370,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceDataSync"))
             })?;
-            Python::attach(|py| Py::new(py, PyListResourceDataSyncResult { inner: output }))
+            Ok(PyListResourceDataSyncResult { inner: output })
         })
     }
 
@@ -42295,7 +42405,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyListTagsForResourceResult { inner: output }))
+            Ok(PyListTagsForResourceResult { inner: output })
         })
     }
 
@@ -42322,7 +42432,8 @@ impl SSMClient {
         };
         let account_ids_to_add_value =
             if let Some(value) = dict_value(params, "account_ids_to_add")? {
-                let mut converted_4088 = Vec::new();
+                let mut converted_4088 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4089 in value.try_iter()? {
                     let item_4090 = item_result_4089?;
                     let converted_item_4091: String = item_4090.extract()?;
@@ -42334,7 +42445,8 @@ impl SSMClient {
             };
         let account_ids_to_remove_value =
             if let Some(value) = dict_value(params, "account_ids_to_remove")? {
-                let mut converted_4092 = Vec::new();
+                let mut converted_4092 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4093 in value.try_iter()? {
                     let item_4094 = item_result_4093?;
                     let converted_item_4095: String = item_4094.extract()?;
@@ -42364,7 +42476,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ModifyDocumentPermission"))
             })?;
-            Python::attach(|py| Py::new(py, PyModifyDocumentPermissionResponse { inner: output }))
+            Ok(PyModifyDocumentPermissionResponse { inner: output })
         })
     }
 
@@ -42401,7 +42513,8 @@ impl SSMClient {
             None
         };
         let items_value = if let Some(value) = dict_value(params, "items")? {
-            let mut converted_4101 = Vec::new();
+            let mut converted_4101 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4102 in value.try_iter()? {
                 let item_4103 = item_result_4102?;
                 let converted_item_4104 = compliance_item_entry_from_py(&item_4103)?;
@@ -42441,7 +42554,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutComplianceItems"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutComplianceItemsResult { inner: output }))
+            Ok(PyPutComplianceItemsResult { inner: output })
         })
     }
 
@@ -42459,7 +42572,8 @@ impl SSMClient {
             None
         };
         let items_value = if let Some(value) = dict_value(params, "items")? {
-            let mut converted_4109 = Vec::new();
+            let mut converted_4109 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4110 in value.try_iter()? {
                 let item_4111 = item_result_4110?;
                 let converted_item_4112 = inventory_item_from_py(&item_4111)?;
@@ -42479,7 +42593,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInventory"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutInventoryResult { inner: output }))
+            Ok(PyPutInventoryResult { inner: output })
         })
     }
 
@@ -42534,7 +42648,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_4121 = Vec::new();
+            let mut converted_4121 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4122 in value.try_iter()? {
                 let item_4123 = item_result_4122?;
                 let converted_item_4124 = tag_from_py(&item_4123)?;
@@ -42582,7 +42697,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutParameter"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutParameterResult { inner: output }))
+            Ok(PyPutParameterResult { inner: output })
         })
     }
 
@@ -42629,7 +42744,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Python::attach(|py| Py::new(py, PyPutResourcePolicyResponse { inner: output }))
+            Ok(PyPutResourcePolicyResponse { inner: output })
         })
     }
 
@@ -42655,7 +42770,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RegisterDefaultPatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyRegisterDefaultPatchBaselineResult { inner: output }))
+            Ok(PyRegisterDefaultPatchBaselineResult { inner: output })
         })
     }
 
@@ -42690,12 +42805,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterPatchBaselineForPatchGroup")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyRegisterPatchBaselineForPatchGroupResult { inner: output },
-                )
-            })
+            Ok(PyRegisterPatchBaselineForPatchGroupResult { inner: output })
         })
     }
 
@@ -42721,7 +42831,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4139 = Vec::new();
+            let mut converted_4139 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4140 in value.try_iter()? {
                 let item_4141 = item_result_4140?;
                 let converted_item_4142 = target_from_py(&item_4141)?;
@@ -42773,12 +42884,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterTargetWithMaintenanceWindow")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyRegisterTargetWithMaintenanceWindowResult { inner: output },
-                )
-            })
+            Ok(PyRegisterTargetWithMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -42796,7 +42902,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4148 = Vec::new();
+            let mut converted_4148 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4149 in value.try_iter()? {
                 let item_4150 = item_result_4149?;
                 let converted_item_4151 = target_from_py(&item_4150)?;
@@ -42828,7 +42935,7 @@ impl SSMClient {
         };
         let task_parameters_value = if let Some(value) = dict_value(params, "task_parameters")? {
             let mapping_4157 = value.cast::<PyDict>()?;
-            let mut converted_4156 = HashMap::new();
+            let mut converted_4156 = HashMap::with_capacity(mapping_4157.len());
             for (key_4158, value_4159) in mapping_4157.iter() {
                 let converted_key_4160: String = key_4158.extract()?;
                 let converted_value_4161 =
@@ -42930,12 +43037,7 @@ impl SSMClient {
                     sdk_error_to_py(py, &error, "RegisterTaskWithMaintenanceWindow")
                 })
             })?;
-            Python::attach(|py| {
-                Py::new(
-                    py,
-                    PyRegisterTaskWithMaintenanceWindowResult { inner: output },
-                )
-            })
+            Ok(PyRegisterTaskWithMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -42961,7 +43063,8 @@ impl SSMClient {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let mut converted_4176 = Vec::new();
+            let mut converted_4176 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4177 in value.try_iter()? {
                 let item_4178 = item_result_4177?;
                 let converted_item_4179: String = item_4178.extract()?;
@@ -42982,7 +43085,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTagsFromResource"))
             })?;
-            Python::attach(|py| Py::new(py, PyRemoveTagsFromResourceResult { inner: output }))
+            Ok(PyRemoveTagsFromResourceResult { inner: output })
         })
     }
 
@@ -43008,7 +43111,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ResetServiceSetting"))
             })?;
-            Python::attach(|py| Py::new(py, PyResetServiceSettingResult { inner: output }))
+            Ok(PyResetServiceSettingResult { inner: output })
         })
     }
 
@@ -43034,7 +43137,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ResumeSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyResumeSessionResponse { inner: output }))
+            Ok(PyResumeSessionResponse { inner: output })
         })
     }
 
@@ -43061,10 +43164,11 @@ impl SSMClient {
         };
         let payload_value = if let Some(value) = dict_value(params, "payload")? {
             let mapping_4186 = value.cast::<PyDict>()?;
-            let mut converted_4185 = HashMap::new();
+            let mut converted_4185 = HashMap::with_capacity(mapping_4186.len());
             for (key_4187, value_4188) in mapping_4186.iter() {
                 let converted_key_4189: String = key_4187.extract()?;
-                let mut converted_value_4190 = Vec::new();
+                let mut converted_value_4190 =
+                    Vec::with_capacity(value_4188.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4191 in value_4188.try_iter()? {
                     let item_4192 = item_result_4191?;
                     let converted_item_4193: String = item_4192.extract()?;
@@ -43087,7 +43191,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendAutomationSignal"))
             })?;
-            Python::attach(|py| Py::new(py, PySendAutomationSignalResult { inner: output }))
+            Ok(PySendAutomationSignalResult { inner: output })
         })
     }
 
@@ -43099,7 +43203,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let instance_ids_value = if let Some(value) = dict_value(params, "instance_ids")? {
-            let mut converted_4194 = Vec::new();
+            let mut converted_4194 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4195 in value.try_iter()? {
                 let item_4196 = item_result_4195?;
                 let converted_item_4197: String = item_4196.extract()?;
@@ -43110,7 +43215,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4198 = Vec::new();
+            let mut converted_4198 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4199 in value.try_iter()? {
                 let item_4200 = item_result_4199?;
                 let converted_item_4201 = target_from_py(&item_4200)?;
@@ -43161,10 +43267,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_4210 = value.cast::<PyDict>()?;
-            let mut converted_4209 = HashMap::new();
+            let mut converted_4209 = HashMap::with_capacity(mapping_4210.len());
             for (key_4211, value_4212) in mapping_4210.iter() {
                 let converted_key_4213: String = key_4211.extract()?;
-                let mut converted_value_4214 = Vec::new();
+                let mut converted_value_4214 =
+                    Vec::with_capacity(value_4212.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4215 in value_4212.try_iter()? {
                     let item_4216 = item_result_4215?;
                     let converted_item_4217: String = item_4216.extract()?;
@@ -43262,7 +43369,7 @@ impl SSMClient {
                 .send()
                 .await
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendCommand")))?;
-            Python::attach(|py| Py::new(py, PySendCommandResult { inner: output }))
+            Ok(PySendCommandResult { inner: output })
         })
     }
 
@@ -43280,7 +43387,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4228 = Vec::new();
+            let mut converted_4228 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4229 in value.try_iter()? {
                 let item_4230 = item_result_4229?;
                 let converted_item_4231 = target_from_py(&item_4230)?;
@@ -43291,7 +43399,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_4232 = Vec::new();
+            let mut converted_4232 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4233 in value.try_iter()? {
                 let item_4234 = item_result_4233?;
                 let converted_item_4235 = tag_from_py(&item_4234)?;
@@ -43312,7 +43421,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAccessRequest"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartAccessRequestResponse { inner: output }))
+            Ok(PyStartAccessRequestResponse { inner: output })
         })
     }
 
@@ -43324,7 +43433,8 @@ impl SSMClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let association_ids_value = if let Some(value) = dict_value(params, "association_ids")? {
-            let mut converted_4236 = Vec::new();
+            let mut converted_4236 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4237 in value.try_iter()? {
                 let item_4238 = item_result_4237?;
                 let converted_item_4239: String = item_4238.extract()?;
@@ -43343,7 +43453,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAssociationsOnce"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartAssociationsOnceResult { inner: output }))
+            Ok(PyStartAssociationsOnceResult { inner: output })
         })
     }
 
@@ -43368,10 +43478,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_4243 = value.cast::<PyDict>()?;
-            let mut converted_4242 = HashMap::new();
+            let mut converted_4242 = HashMap::with_capacity(mapping_4243.len());
             for (key_4244, value_4245) in mapping_4243.iter() {
                 let converted_key_4246: String = key_4244.extract()?;
-                let mut converted_value_4247 = Vec::new();
+                let mut converted_value_4247 =
+                    Vec::with_capacity(value_4245.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4248 in value_4245.try_iter()? {
                     let item_4249 = item_result_4248?;
                     let converted_item_4250: String = item_4249.extract()?;
@@ -43404,7 +43515,8 @@ impl SSMClient {
                 None
             };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4255 = Vec::new();
+            let mut converted_4255 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4256 in value.try_iter()? {
                 let item_4257 = item_result_4256?;
                 let converted_item_4258 = target_from_py(&item_4257)?;
@@ -43415,14 +43527,17 @@ impl SSMClient {
             None
         };
         let target_maps_value = if let Some(value) = dict_value(params, "target_maps")? {
-            let mut converted_4259 = Vec::new();
+            let mut converted_4259 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4260 in value.try_iter()? {
                 let item_4261 = item_result_4260?;
                 let mapping_4263 = item_4261.cast::<PyDict>()?;
-                let mut converted_item_4262 = HashMap::new();
+                let mut converted_item_4262 = HashMap::with_capacity(mapping_4263.len());
                 for (key_4264, value_4265) in mapping_4263.iter() {
                     let converted_key_4266: String = key_4264.extract()?;
-                    let mut converted_value_4267 = Vec::new();
+                    let mut converted_value_4267 = Vec::with_capacity(
+                        value_4265.cast::<PyList>().map_or(0, |items| items.len()),
+                    );
                     for item_result_4268 in value_4265.try_iter()? {
                         let item_4269 = item_result_4268?;
                         let converted_item_4270: String = item_4269.extract()?;
@@ -43449,7 +43564,8 @@ impl SSMClient {
             None
         };
         let target_locations_value = if let Some(value) = dict_value(params, "target_locations")? {
-            let mut converted_4273 = Vec::new();
+            let mut converted_4273 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4274 in value.try_iter()? {
                 let item_4275 = item_result_4274?;
                 let converted_item_4276 = target_location_from_py(&item_4275)?;
@@ -43460,7 +43576,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_4277 = Vec::new();
+            let mut converted_4277 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4278 in value.try_iter()? {
                 let item_4279 = item_result_4278?;
                 let converted_item_4280 = tag_from_py(&item_4279)?;
@@ -43506,7 +43623,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartAutomationExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartAutomationExecutionResult { inner: output }))
+            Ok(PyStartAutomationExecutionResult { inner: output })
         })
     }
 
@@ -43542,10 +43659,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_4288 = value.cast::<PyDict>()?;
-            let mut converted_4287 = HashMap::new();
+            let mut converted_4287 = HashMap::with_capacity(mapping_4288.len());
             for (key_4289, value_4290) in mapping_4288.iter() {
                 let converted_key_4291: String = key_4289.extract()?;
-                let mut converted_value_4292 = Vec::new();
+                let mut converted_value_4292 =
+                    Vec::with_capacity(value_4290.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4293 in value_4290.try_iter()? {
                     let item_4294 = item_result_4293?;
                     let converted_item_4295: String = item_4294.extract()?;
@@ -43577,7 +43695,8 @@ impl SSMClient {
             None
         };
         let runbooks_value = if let Some(value) = dict_value(params, "runbooks")? {
-            let mut converted_4299 = Vec::new();
+            let mut converted_4299 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4300 in value.try_iter()? {
                 let item_4301 = item_result_4300?;
                 let converted_item_4302 = runbook_from_py(&item_4301)?;
@@ -43588,7 +43707,8 @@ impl SSMClient {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let mut converted_4303 = Vec::new();
+            let mut converted_4303 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4304 in value.try_iter()? {
                 let item_4305 = item_result_4304?;
                 let converted_item_4306 = tag_from_py(&item_4305)?;
@@ -43635,7 +43755,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartChangeRequestExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartChangeRequestExecutionResult { inner: output }))
+            Ok(PyStartChangeRequestExecutionResult { inner: output })
         })
     }
 
@@ -43675,7 +43795,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartExecutionPreview"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartExecutionPreviewResponse { inner: output }))
+            Ok(PyStartExecutionPreviewResponse { inner: output })
         })
     }
 
@@ -43706,10 +43826,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_4317 = value.cast::<PyDict>()?;
-            let mut converted_4316 = HashMap::new();
+            let mut converted_4316 = HashMap::with_capacity(mapping_4317.len());
             for (key_4318, value_4319) in mapping_4317.iter() {
                 let converted_key_4320: String = key_4318.extract()?;
-                let mut converted_value_4321 = Vec::new();
+                let mut converted_value_4321 =
+                    Vec::with_capacity(value_4319.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4322 in value_4319.try_iter()? {
                     let item_4323 = item_result_4322?;
                     let converted_item_4324: String = item_4323.extract()?;
@@ -43733,7 +43854,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyStartSessionResponse { inner: output }))
+            Ok(PyStartSessionResponse { inner: output })
         })
     }
 
@@ -43768,7 +43889,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopAutomationExecution"))
             })?;
-            Python::attach(|py| Py::new(py, PyStopAutomationExecutionResult { inner: output }))
+            Ok(PyStopAutomationExecutionResult { inner: output })
         })
     }
 
@@ -43794,7 +43915,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TerminateSession"))
             })?;
-            Python::attach(|py| Py::new(py, PyTerminateSessionResponse { inner: output }))
+            Ok(PyTerminateSessionResponse { inner: output })
         })
     }
 
@@ -43819,7 +43940,8 @@ impl SSMClient {
             None
         };
         let labels_value = if let Some(value) = dict_value(params, "labels")? {
-            let mut converted_4331 = Vec::new();
+            let mut converted_4331 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4332 in value.try_iter()? {
                 let item_4333 = item_result_4332?;
                 let converted_item_4334: String = item_4333.extract()?;
@@ -43840,7 +43962,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UnlabelParameterVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyUnlabelParameterVersionResult { inner: output }))
+            Ok(PyUnlabelParameterVersionResult { inner: output })
         })
     }
 
@@ -43859,10 +43981,11 @@ impl SSMClient {
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
             let mapping_4337 = value.cast::<PyDict>()?;
-            let mut converted_4336 = HashMap::new();
+            let mut converted_4336 = HashMap::with_capacity(mapping_4337.len());
             for (key_4338, value_4339) in mapping_4337.iter() {
                 let converted_key_4340: String = key_4338.extract()?;
-                let mut converted_value_4341 = Vec::new();
+                let mut converted_value_4341 =
+                    Vec::with_capacity(value_4339.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4342 in value_4339.try_iter()? {
                     let item_4343 = item_result_4342?;
                     let converted_item_4344: String = item_4343.extract()?;
@@ -43900,7 +44023,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4349 = Vec::new();
+            let mut converted_4349 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4350 in value.try_iter()? {
                 let item_4351 = item_result_4350?;
                 let converted_item_4352 = target_from_py(&item_4351)?;
@@ -43968,7 +44092,8 @@ impl SSMClient {
                 None
             };
         let calendar_names_value = if let Some(value) = dict_value(params, "calendar_names")? {
-            let mut converted_4363 = Vec::new();
+            let mut converted_4363 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4364 in value.try_iter()? {
                 let item_4365 = item_result_4364?;
                 let converted_item_4366: String = item_4365.extract()?;
@@ -43979,7 +44104,8 @@ impl SSMClient {
             None
         };
         let target_locations_value = if let Some(value) = dict_value(params, "target_locations")? {
-            let mut converted_4367 = Vec::new();
+            let mut converted_4367 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4368 in value.try_iter()? {
                 let item_4369 = item_result_4368?;
                 let converted_item_4370 = target_location_from_py(&item_4369)?;
@@ -44002,14 +44128,17 @@ impl SSMClient {
             None
         };
         let target_maps_value = if let Some(value) = dict_value(params, "target_maps")? {
-            let mut converted_4373 = Vec::new();
+            let mut converted_4373 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4374 in value.try_iter()? {
                 let item_4375 = item_result_4374?;
                 let mapping_4377 = item_4375.cast::<PyDict>()?;
-                let mut converted_item_4376 = HashMap::new();
+                let mut converted_item_4376 = HashMap::with_capacity(mapping_4377.len());
                 for (key_4378, value_4379) in mapping_4377.iter() {
                     let converted_key_4380: String = key_4378.extract()?;
-                    let mut converted_value_4381 = Vec::new();
+                    let mut converted_value_4381 = Vec::with_capacity(
+                        value_4379.cast::<PyList>().map_or(0, |items| items.len()),
+                    );
                     for item_result_4382 in value_4379.try_iter()? {
                         let item_4383 = item_result_4382?;
                         let converted_item_4384: String = item_4383.extract()?;
@@ -44067,7 +44196,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociation"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAssociationResult { inner: output }))
+            Ok(PyUpdateAssociationResult { inner: output })
         })
     }
 
@@ -44108,7 +44237,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociationStatus"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateAssociationStatusResult { inner: output }))
+            Ok(PyUpdateAssociationStatusResult { inner: output })
         })
     }
 
@@ -44156,7 +44285,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCloudConnector"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateCloudConnectorResult { inner: output }))
+            Ok(PyUpdateCloudConnectorResult { inner: output })
         })
     }
 
@@ -44174,7 +44303,8 @@ impl SSMClient {
             None
         };
         let attachments_value = if let Some(value) = dict_value(params, "attachments")? {
-            let mut converted_4395 = Vec::new();
+            let mut converted_4395 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4396 in value.try_iter()? {
                 let item_4397 = item_result_4396?;
                 let converted_item_4398 = attachments_source_from_py(&item_4397)?;
@@ -44237,7 +44367,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocument"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDocumentResult { inner: output }))
+            Ok(PyUpdateDocumentResult { inner: output })
         })
     }
 
@@ -44270,7 +44400,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentDefaultVersion"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDocumentDefaultVersionResult { inner: output }))
+            Ok(PyUpdateDocumentDefaultVersionResult { inner: output })
         })
     }
 
@@ -44310,7 +44440,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateDocumentMetadataResponse { inner: output }))
+            Ok(PyUpdateDocumentMetadataResponse { inner: output })
         })
     }
 
@@ -44422,7 +44552,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindow"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMaintenanceWindowResult { inner: output }))
+            Ok(PyUpdateMaintenanceWindowResult { inner: output })
         })
     }
 
@@ -44446,7 +44576,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4426 = Vec::new();
+            let mut converted_4426 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4427 in value.try_iter()? {
                 let item_4428 = item_result_4427?;
                 let converted_item_4429 = target_from_py(&item_4428)?;
@@ -44496,9 +44627,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTarget"))
             })?;
-            Python::attach(|py| {
-                Py::new(py, PyUpdateMaintenanceWindowTargetResult { inner: output })
-            })
+            Ok(PyUpdateMaintenanceWindowTargetResult { inner: output })
         })
     }
 
@@ -44522,7 +44651,8 @@ impl SSMClient {
             None
         };
         let targets_value = if let Some(value) = dict_value(params, "targets")? {
-            let mut converted_4436 = Vec::new();
+            let mut converted_4436 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4437 in value.try_iter()? {
                 let item_4438 = item_result_4437?;
                 let converted_item_4439 = target_from_py(&item_4438)?;
@@ -44546,7 +44676,7 @@ impl SSMClient {
         };
         let task_parameters_value = if let Some(value) = dict_value(params, "task_parameters")? {
             let mapping_4443 = value.cast::<PyDict>()?;
-            let mut converted_4442 = HashMap::new();
+            let mut converted_4442 = HashMap::with_capacity(mapping_4443.len());
             for (key_4444, value_4445) in mapping_4443.iter() {
                 let converted_key_4446: String = key_4444.extract()?;
                 let converted_value_4447 =
@@ -44646,7 +44776,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTask"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateMaintenanceWindowTaskResult { inner: output }))
+            Ok(PyUpdateMaintenanceWindowTaskResult { inner: output })
         })
     }
 
@@ -44679,7 +44809,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateManagedInstanceRole"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateManagedInstanceRoleResult { inner: output }))
+            Ok(PyUpdateManagedInstanceRoleResult { inner: output })
         })
     }
 
@@ -44698,7 +44828,7 @@ impl SSMClient {
         };
         let operational_data_value = if let Some(value) = dict_value(params, "operational_data")? {
             let mapping_4463 = value.cast::<PyDict>()?;
-            let mut converted_4462 = HashMap::new();
+            let mut converted_4462 = HashMap::with_capacity(mapping_4463.len());
             for (key_4464, value_4465) in mapping_4463.iter() {
                 let converted_key_4466: String = key_4464.extract()?;
                 let converted_value_4467 = ops_item_data_value_from_py(&value_4465)?;
@@ -44710,7 +44840,8 @@ impl SSMClient {
         };
         let operational_data_to_delete_value =
             if let Some(value) = dict_value(params, "operational_data_to_delete")? {
-                let mut converted_4468 = Vec::new();
+                let mut converted_4468 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
                 for item_result_4469 in value.try_iter()? {
                     let item_4470 = item_result_4469?;
                     let converted_item_4471: String = item_4470.extract()?;
@@ -44721,7 +44852,8 @@ impl SSMClient {
                 None
             };
         let notifications_value = if let Some(value) = dict_value(params, "notifications")? {
-            let mut converted_4472 = Vec::new();
+            let mut converted_4472 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4473 in value.try_iter()? {
                 let item_4474 = item_result_4473?;
                 let converted_item_4475 = ops_item_notification_from_py(&item_4474)?;
@@ -44739,7 +44871,8 @@ impl SSMClient {
         };
         let related_ops_items_value = if let Some(value) = dict_value(params, "related_ops_items")?
         {
-            let mut converted_4477 = Vec::new();
+            let mut converted_4477 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4478 in value.try_iter()? {
                 let item_4479 = item_result_4478?;
                 let converted_item_4480 = related_ops_item_from_py(&item_4479)?;
@@ -44856,7 +44989,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsItem"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateOpsItemResponse { inner: output }))
+            Ok(PyUpdateOpsItemResponse { inner: output })
         })
     }
 
@@ -44876,7 +45009,7 @@ impl SSMClient {
         let metadata_to_update_value =
             if let Some(value) = dict_value(params, "metadata_to_update")? {
                 let mapping_4498 = value.cast::<PyDict>()?;
-                let mut converted_4497 = HashMap::new();
+                let mut converted_4497 = HashMap::with_capacity(mapping_4498.len());
                 for (key_4499, value_4500) in mapping_4498.iter() {
                     let converted_key_4501: String = key_4499.extract()?;
                     let converted_value_4502 = metadata_value_from_py(&value_4500)?;
@@ -44887,7 +45020,8 @@ impl SSMClient {
                 None
             };
         let keys_to_delete_value = if let Some(value) = dict_value(params, "keys_to_delete")? {
-            let mut converted_4503 = Vec::new();
+            let mut converted_4503 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4504 in value.try_iter()? {
                 let item_4505 = item_result_4504?;
                 let converted_item_4506: String = item_4505.extract()?;
@@ -44908,7 +45042,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsMetadata"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateOpsMetadataResult { inner: output }))
+            Ok(PyUpdateOpsMetadataResult { inner: output })
         })
     }
 
@@ -44944,7 +45078,8 @@ impl SSMClient {
             None
         };
         let approved_patches_value = if let Some(value) = dict_value(params, "approved_patches")? {
-            let mut converted_4511 = Vec::new();
+            let mut converted_4511 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4512 in value.try_iter()? {
                 let item_4513 = item_result_4512?;
                 let converted_item_4514: String = item_4513.extract()?;
@@ -44971,7 +45106,8 @@ impl SSMClient {
                 None
             };
         let rejected_patches_value = if let Some(value) = dict_value(params, "rejected_patches")? {
-            let mut converted_4518 = Vec::new();
+            let mut converted_4518 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4519 in value.try_iter()? {
                 let item_4520 = item_result_4519?;
                 let converted_item_4521: String = item_4520.extract()?;
@@ -44997,7 +45133,8 @@ impl SSMClient {
             None
         };
         let sources_value = if let Some(value) = dict_value(params, "sources")? {
-            let mut converted_4525 = Vec::new();
+            let mut converted_4525 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
             for item_result_4526 in value.try_iter()? {
                 let item_4527 = item_result_4526?;
                 let converted_item_4528 = patch_source_from_py(&item_4527)?;
@@ -45048,7 +45185,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePatchBaseline"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdatePatchBaselineResult { inner: output }))
+            Ok(PyUpdatePatchBaselineResult { inner: output })
         })
     }
 
@@ -45088,7 +45225,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResourceDataSync"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateResourceDataSyncResult { inner: output }))
+            Ok(PyUpdateResourceDataSyncResult { inner: output })
         })
     }
 
@@ -45121,7 +45258,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateServiceSetting"))
             })?;
-            Python::attach(|py| Py::new(py, PyUpdateServiceSettingResult { inner: output }))
+            Ok(PyUpdateServiceSettingResult { inner: output })
         })
     }
 
@@ -45162,7 +45299,7 @@ impl SSMClient {
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateCloudConnector"))
             })?;
-            Python::attach(|py| Py::new(py, PyValidateCloudConnectorResult { inner: output }))
+            Ok(PyValidateCloudConnectorResult { inner: output })
         })
     }
 }

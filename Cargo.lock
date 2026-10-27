@@ -474,6 +474,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "aws-sdk-eventbridge"
+version = "1.125.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8007157ab0aa1d5ade3b803bb1c0579304329daee6ff9d8e3f615112203b91bb"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
 name = "aws-sdk-guardduty"
 version = "1.152.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -573,6 +598,31 @@ dependencies = [
  "fastrand",
  "http 1.5.0",
  "http-body-util",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-pipes"
+version = "1.120.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8c38780c29b1c1f70f4eb96f4de538bac74dff2ea3304a926b423c6a1fc4bc81"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
  "regex-lite",
  "tracing",
 ]
@@ -694,6 +744,31 @@ dependencies = [
  "fastrand",
  "http 1.5.0",
  "http-body-util",
+ "regex-lite",
+ "tracing",
+]
+
+[[package]]
+name = "aws-sdk-scheduler"
+version = "1.117.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a456c745edb2bb354820524581bea9c023616d80178d67efc16f85f7b36fb8ed"
+dependencies = [
+ "arc-swap",
+ "aws-credential-types",
+ "aws-runtime",
+ "aws-smithy-async",
+ "aws-smithy-http",
+ "aws-smithy-json",
+ "aws-smithy-observability",
+ "aws-smithy-runtime",
+ "aws-smithy-runtime-api",
+ "aws-smithy-schema",
+ "aws-smithy-types",
+ "aws-types",
+ "bytes",
+ "fastrand",
+ "http 1.5.0",
  "regex-lite",
  "tracing",
 ]
@@ -2660,6 +2735,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rboto-eventbridge-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-eventbridge",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
 name = "rboto-guardduty-native"
 version = "0.1.0"
 dependencies = [
@@ -2720,6 +2810,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "rboto-pipes-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-pipes",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
 name = "rboto-polly-native"
 version = "0.1.0"
 dependencies = [
@@ -2770,6 +2875,21 @@ version = "0.1.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sagemakerruntimehttp2",
+ "aws-smithy-async",
+ "aws-smithy-runtime-api",
+ "aws-smithy-types",
+ "pyo3",
+ "pyo3-async-runtimes",
+ "rboto-core",
+ "tokio",
+]
+
+[[package]]
+name = "rboto-scheduler-native"
+version = "0.1.0"
+dependencies = [
+ "aws-config",
+ "aws-sdk-scheduler",
  "aws-smithy-async",
  "aws-smithy-runtime-api",
  "aws-smithy-types",
