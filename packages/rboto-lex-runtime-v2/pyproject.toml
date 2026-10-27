@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-lex-runtime-v2/Cargo.toml"
 python-source = "python"
 module-name = "rboto_lex_runtime_v2._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

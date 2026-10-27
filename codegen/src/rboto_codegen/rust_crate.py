@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 import re
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -52,6 +53,22 @@ def find_crate(descriptor: ServiceDescriptor) -> Path:
             if candidate.is_dir():
                 return candidate
     raise FileNotFoundError(f"{expected} is not available in the Cargo registry; run cargo fetch")
+
+
+def validate_crate_features(descriptor: ServiceDescriptor, path: Path) -> None:
+    features = tomllib.loads((path / "Cargo.toml").read_text())["features"]
+    # Preserve the SDK's capabilities while opting out of its legacy HTTPS defaults.
+    expected = set(features["default"]) - {"rustls", "legacy-https-client"}
+    configured = set(descriptor.rust_crate_features)
+    if configured != expected:
+        raise ValueError(
+            f"{descriptor.service_id}: review rust_crate_features after the SDK update; "
+            f"missing={sorted(expected - configured)}, extra={sorted(configured - expected)}"
+        )
+    if not {"default-https-client", "rt-tokio"} <= configured:
+        raise ValueError(f"{descriptor.service_id}: modern HTTPS and Tokio must remain enabled")
+    if configured - features.keys():
+        raise ValueError(f"{descriptor.service_id}: SDK feature definitions are missing")
 
 
 def _join_field_lines(body: str) -> tuple[str, ...]:
@@ -117,6 +134,7 @@ def parse_struct_name(path: Path) -> str | None:
 
 def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
     path = find_crate(descriptor)
+    validate_crate_features(descriptor, path)
     operations: dict[str, RustOperation] = {}
     operation_dir = path / "src" / "operation"
     for candidate in sorted(operation_dir.iterdir()):

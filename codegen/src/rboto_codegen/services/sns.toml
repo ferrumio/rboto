@@ -7,6 +7,7 @@ adapter_crate = "rboto-sns-native"
 rust_crate = "aws-sdk-sns"
 rust_module = "aws_sdk_sns"
 rust_crate_version = "1.119.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/sns.json"
 model_sha256 = "18f6b7a336227cb46df17f20108498357dbe79f255cf3bad759d0d58f6d0bcbf"
 aws_model_hash = "f7f9e56712db741a59a4b43929143311bea8765ee1af56bc13387d66bdb4c899"

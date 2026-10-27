@@ -7,6 +7,7 @@ adapter_crate = "rboto-qbusiness-native"
 rust_crate = "aws-sdk-qbusiness"
 rust_module = "aws_sdk_qbusiness"
 rust_crate_version = "1.134.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/qbusiness.json"
 model_sha256 = "7db160df5480e843d449814d20325d90b0603070ce032ecd737a8589edc0571f"
 aws_model_hash = "63a8c50ed5769cf50f9cf8d15e1706e6a5374727a0e0548b8f065f391a0ce1db"

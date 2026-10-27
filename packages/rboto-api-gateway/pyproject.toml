@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-api-gateway/Cargo.toml"
 python-source = "python"
 module-name = "rboto_api_gateway._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

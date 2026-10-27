@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-qbusiness/Cargo.toml"
 python-source = "python"
 module-name = "rboto_qbusiness._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

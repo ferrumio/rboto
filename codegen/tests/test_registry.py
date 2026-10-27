@@ -45,6 +45,7 @@ adapter_crate = "rboto-right-native"
 rust_crate = "aws-sdk-right"
 rust_module = "aws_sdk_right"
 rust_crate_version = "1.0.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://example.invalid/right.json"
 model_sha256 = "00"
 aws_model_hash = "00"

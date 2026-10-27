@@ -7,6 +7,7 @@ adapter_crate = "rboto-api-gateway-native"
 rust_crate = "aws-sdk-apigateway"
 rust_module = "aws_sdk_apigateway"
 rust_crate_version = "1.123.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/api-gateway.json"
 model_sha256 = "51f7bb0a8c434669394c0887bacefaefdae66994122229fbac87e6d0f1da859a"
 aws_model_hash = "cdbbef8996d608ee79513129fb4b21fe2eb7228ef7c6b42db601190abbef936c"

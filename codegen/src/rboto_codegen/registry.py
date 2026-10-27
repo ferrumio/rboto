@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import tomllib
 from pathlib import Path
 from typing import cast
@@ -34,6 +35,21 @@ def _boolean(data: dict[str, object], name: str) -> bool:
     return value
 
 
+def _features(data: dict[str, object]) -> tuple[str, ...]:
+    value = data.get("rust_crate_features")
+    if not isinstance(value, list) or not value:
+        raise ValueError("rust_crate_features must be a nonempty list of Cargo feature names")
+    items = cast(list[object], value)
+    if not all(
+        isinstance(item, str) and re.fullmatch(r"[a-zA-Z0-9_-]+", item) for item in items
+    ):
+        raise ValueError("rust_crate_features must be a nonempty list of Cargo feature names")
+    features = tuple(cast(list[str], items))
+    if len(set(features)) != len(features):
+        raise ValueError("rust_crate_features must not contain duplicates")
+    return features
+
+
 def load_service(path: Path) -> ServiceDescriptor:
     data = cast(dict[str, object], tomllib.loads(path.read_text()))
     descriptor = ServiceDescriptor(
@@ -46,6 +62,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         rust_crate=_string(data, "rust_crate"),
         rust_module=_string(data, "rust_module"),
         rust_crate_version=_string(data, "rust_crate_version"),
+        rust_crate_features=_features(data),
         model_url=_string(data, "model_url"),
         model_sha256=_string(data, "model_sha256"),
         aws_model_hash=_string(data, "aws_model_hash"),

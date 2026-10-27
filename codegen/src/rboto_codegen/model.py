@@ -12,6 +12,7 @@ class ServiceDescriptor:
     rust_crate: str
     rust_module: str
     rust_crate_version: str
+    rust_crate_features: tuple[str, ...]
     model_url: str
     model_sha256: str
     aws_model_hash: str

@@ -36,3 +36,4 @@ manifest-path = "../../crates/rboto-cognito-identity/Cargo.toml"
 python-source = "python"
 module-name = "rboto_cognito_identity._native"
 features = ["pyo3/extension-module"]
+exclude = ["**/__pycache__/**", "**/*.pyc", "**/*.pyo"]

@@ -7,6 +7,7 @@ adapter_crate = "rboto-signin-native"
 rust_crate = "aws-sdk-signin"
 rust_module = "aws_sdk_signin"
 rust_crate_version = "1.30.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/signin.json"
 model_sha256 = "ea8abefa06fd6324d820285ecdc7591d02c01c143f7d42d59710759f6777bd68"
 aws_model_hash = "3f6f95f211919d50a9f5d1ad83b1f91007cf0d8e9ad7579f7527badcce14b02b"

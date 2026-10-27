@@ -7,6 +7,7 @@ adapter_crate = "rboto-guardduty-native"
 rust_crate = "aws-sdk-guardduty"
 rust_module = "aws_sdk_guardduty"
 rust_crate_version = "1.152.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/guardduty.json"
 model_sha256 = "c5f89e70958cdd89863d69524b086f11d38d9e624dfde18c55d3340e0e86ccf3"
 aws_model_hash = "8eb58441ccb8afa7b2734f393a793833fe9bbdd054b5d5fe99b9d12b1f6ac066"

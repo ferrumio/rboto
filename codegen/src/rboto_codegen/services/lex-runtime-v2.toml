@@ -7,6 +7,7 @@ adapter_crate = "rboto-lex-runtime-v2-native"
 rust_crate = "aws-sdk-lexruntimev2"
 rust_module = "aws_sdk_lexruntimev2"
 rust_crate_version = "1.118.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/lex-runtime-v2.json"
 model_sha256 = "d956338373b464370218a9598ef5d902a4c1a19e0ef133cd497041a871edfa4a"
 aws_model_hash = "3b34f7d14cd445be93ecb4e478f537bf54735d58db8c742221877fb08dfa5bcc"

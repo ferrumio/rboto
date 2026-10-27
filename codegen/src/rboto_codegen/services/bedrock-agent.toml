@@ -7,6 +7,7 @@ adapter_crate = "rboto-bedrock-agent-native"
 rust_crate = "aws-sdk-bedrockagent"
 rust_module = "aws_sdk_bedrockagent"
 rust_crate_version = "1.154.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/bedrock-agent.json"
 model_sha256 = "d14af976335388bb32d1fc5147a37cf057445e8207233dd3e4d9d5f1e7e6a27a"
 aws_model_hash = "01b68cb1d1bdbbe68567f90b7240dc5c081896fd523bd0fa805466e0f8e75d25"

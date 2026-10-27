@@ -8,6 +8,7 @@ from dataclasses import replace
 from pathlib import Path
 from types import ModuleType
 from urllib.error import URLError
+from zipfile import ZipFile
 
 import pytest
 from rboto_codegen.manifests import generate_manifests
@@ -15,6 +16,32 @@ from rboto_codegen.registry import get_service, list_services
 from rboto_codegen.rust_crate import find_crate
 
 ROOT = Path(__file__).parents[2]
+
+
+@pytest.mark.parametrize("problem", [None, "bytecode", "extra-native", "missing-typing"])
+def test_wheel_validation_rejects_cached_interpreters_and_incomplete_packages(
+    tmp_path: Path, problem: str | None
+) -> None:
+    checker = load_script("check_wheel_contents")
+    path = tmp_path / "rboto_sns-0.1.0-cp312-cp312-linux_aarch64.whl"
+    names = [
+        "__init__.py", "client.py", "types.py", "exceptions.py",
+        "_native.pyi", "py.typed", "_native.cpython-312-aarch64-linux-gnu.so",
+    ]
+    if problem == "bytecode":
+        names.append("__pycache__/client.cpython-315.pyc")
+    elif problem == "extra-native":
+        names.append("_native.cpython-315-aarch64-linux-gnu.so")
+    elif problem == "missing-typing":
+        names.remove("py.typed")
+    with ZipFile(path, "w") as wheel:
+        for name in names:
+            wheel.writestr(f"rboto_sns/{name}", b"test fixture")
+    if problem is None:
+        checker.check_wheel(path)
+    else:
+        with pytest.raises(ValueError):
+            checker.check_wheel(path)
 
 
 def test_crate_lookup_uses_the_configured_cargo_cache(
@@ -57,7 +84,10 @@ def test_manifests_bootstrap_a_crate_that_is_not_downloaded(tmp_path: Path) -> N
     seed_repository(tmp_path)
     descriptor = replace(get_service("kms"), rust_crate_version="99.0.0")
     cargo, package = generate_manifests(descriptor, tmp_path)
-    assert tomllib.loads(cargo.read_text())["dependencies"]["aws-sdk-kms"] == "=99.0.0"
+    dependency = tomllib.loads(cargo.read_text())["dependencies"]["aws-sdk-kms"]
+    assert dependency["version"] == "=99.0.0"
+    assert dependency["default-features"] is False
+    assert dependency["features"] == ["default-https-client", "rt-tokio"]
     project = tomllib.loads(package.read_text())["project"]
     assert project["version"] == "0.1.0"
     assert project["dependencies"] == ["rboto==0.1.0"]
@@ -152,7 +182,7 @@ def test_update_can_prepare_new_pins_without_partial_descriptor_writes(
         assert descriptor.model_sha256 == hashlib.sha256(model).hexdigest()
         cargo, _ = generate_manifests(descriptor, tmp_path)
         pin = tomllib.loads(cargo.read_text())["dependencies"][descriptor.rust_crate]
-        assert pin == "=99.0.0"
+        assert pin["version"] == "=99.0.0"
 
 
 @pytest.mark.parametrize("release", ["main", "../main", "release-2026-02-30", "release-2026-1-1"])

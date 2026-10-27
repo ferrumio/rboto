@@ -7,6 +7,7 @@ adapter_crate = "rboto-cloudwatch-logs-native"
 rust_crate = "aws-sdk-cloudwatchlogs"
 rust_module = "aws_sdk_cloudwatchlogs"
 rust_crate_version = "1.160.0"
+rust_crate_features = ["default-https-client", "rt-tokio"]
 model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/cloudwatch-logs.json"
 model_sha256 = "b2858b4ec1d67f2712abbaa317d486feb7d3ecf9502bc02bcfcb8198ad25a969"
 aws_model_hash = "bdd186b98c709a0f500bb0355ca2ac4bfc4f1de958b678d113e9098035bd93cb"
