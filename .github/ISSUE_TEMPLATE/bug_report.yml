@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a reproducible problem with a client, installation, or code generation.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For vulnerabilities, follow SECURITY.md. Remove credentials, account identifiers,
+        private endpoints, and sensitive request or response data from public reports.
+  - type: input
+    id: packages
+    attributes:
+      label: Affected packages and versions
+      placeholder: rboto 0.1.0, rboto-s3 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Python, operating system, and architecture
+      placeholder: CPython 3.15.0, Ubuntu 24.04, aarch64
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include the installation command and a small script that reproduces the problem.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the sanitized traceback or build error.
+    validations:
+      required: true

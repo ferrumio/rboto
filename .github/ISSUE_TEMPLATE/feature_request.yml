@@ -1,0 +1,27 @@
+name: Feature or service request
+description: Suggest a client, API improvement, or project change.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: Describe the task you want to accomplish and the current limitation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: For a new service, include its name and the operations you need.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: example
+    attributes:
+      label: Example usage
+      render: python

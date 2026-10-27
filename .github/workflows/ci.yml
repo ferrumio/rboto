@@ -20,6 +20,8 @@ jobs:
       services: ${{ steps.catalog.outputs.services }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
@@ -63,6 +65,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Rust format
         run: cargo fmt --all -- --check
@@ -74,7 +78,7 @@ jobs:
         run: cargo clippy --workspace --all-targets --locked -- -D warnings
 
   wheel:
-    name: Wheel ${{ matrix.service }} (Linux / cp312)
+    name: Wheel ${{ matrix.service }} (Linux / cp315)
     runs-on: ubuntu-latest
     needs: quality
     strategy:
@@ -83,16 +87,19 @@ jobs:
         service: ${{ fromJSON(needs.quality.outputs.services) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
-          python-version: "3.12"
+          python-version: "3.15"
 
       - name: Build service wheel
         uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
+          maturin-version: "v1.15.0"
           command: build
-          args: --release --locked --out dist
+          args: --release --locked --out dist -i python3.15
           working-directory: packages/rboto-${{ matrix.service }}
           sccache: true
 
@@ -113,6 +120,6 @@ jobs:
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: ci-${{ matrix.service }}-linux-cp312
+          name: ci-${{ matrix.service }}-linux-cp315
           path: packages/rboto-${{ matrix.service }}/dist/*.whl
           retention-days: 1

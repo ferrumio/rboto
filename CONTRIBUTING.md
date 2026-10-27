@@ -28,8 +28,9 @@ The short version:
 
 ## Requirements
 
-- Python 3.12 or newer
+- CPython 3.12–3.15
 - Rust (stable, see `rust-version` in `Cargo.toml`) with `cargo fmt` and `cargo clippy`
+- maturin 1.15 or newer
 - A C compiler supported by PyO3
 - Docker, for LocalStack integration tests
 
@@ -40,7 +41,7 @@ git clone https://github.com/ferrumio/rboto.git
 cd rboto
 
 python3 -m venv .venv
-.venv/bin/pip install maturin pytest mypy pyright ruff
+.venv/bin/pip install "maturin>=1.15,<2" pytest pytest-asyncio mypy pyright ruff
 .venv/bin/pip install -e codegen -e packages/rboto
 ```
 
@@ -121,6 +122,9 @@ explicitly, use unique resource names, clean up in `finally`, test across the
 Python-to-Rust boundary, and do not claim AWS compatibility from LocalStack alone.
 
 ## Pull requests
+
+Maintainer responsibilities and the decision process are described in
+[GOVERNANCE.md](GOVERNANCE.md).
 
 - Use [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`,
   `docs:`, `ci:`, `chore:`, ...). The changelog is generated from commit messages.

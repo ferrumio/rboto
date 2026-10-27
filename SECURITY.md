@@ -4,10 +4,11 @@
 
 | Version | Supported |
 |---------|-----------|
-| 0.x.x   | Yes       |
+| Latest 0.x release | Yes |
+| Earlier releases | No |
 
-Before 1.0, only the latest release of `rboto` and its service packages (`rboto-s3`,
-`rboto-sns`, `rboto-sqs`, `rboto-dynamodb`) receives fixes. All packages are released
+Before 1.0, only the latest release of `rboto` and its `rboto-*` service packages
+receives fixes. All packages are released
 together with the same version number.
 
 ## Reporting a vulnerability
@@ -35,12 +36,16 @@ belong here.
 
 ## Security practices
 
-- Rust and Python dependencies are locked. Dependabot keeps GitHub Actions, Python, and
-  Rust dependencies updated; AWS SDK crates are updated by a dedicated, reviewed workflow.
+- Rust dependencies are locked. Dependabot monitors GitHub Actions, Python, and Rust
+  dependencies; AWS SDK crates are updated by a dedicated, reviewed workflow.
 - GitHub Actions are pinned to full commit SHAs.
-- Release wheels are published to PyPI through Trusted Publishers (OIDC); no long-lived
-  PyPI tokens exist.
+- The release workflow uses PyPI Trusted Publishers (OIDC) instead of long-lived
+  PyPI tokens.
 - The real AWS smoke test assumes an IAM role through GitHub OIDC; no permanent AWS access
   keys are stored.
 - Credentials, private endpoints, and build artifacts are never committed.
-- The OpenSSF Scorecard runs on every push to `main`.
+- The OpenSSF Scorecard runs weekly and on every push to `main`. Results are published
+  to the Scorecard service, GitHub code scanning, and a downloadable SARIF artifact.
+- CodeQL analyzes Python on pull requests, pushes to `main`, and a weekly schedule.
+- Dependency alerts, security updates, secret scanning, and push protection are enabled
+  in the repository settings.

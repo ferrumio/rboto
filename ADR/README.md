@@ -21,6 +21,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0007: Separate fast CI validation from release builds](0007-ci-and-release-matrix.md)
 - [ADR-0008: Share AWS configuration, credentials, and error mapping through an external Rust crate](0008-shared-aws-core-crate.md)
 - [ADR-0009: Cover the AWS SDK for Python service catalog](0009-expanded-service-catalog.md)
+- [ADR-0010: Validate the newest CPython ABI and smoke-test every release target](0010-python315-validation-and-release-matrix.md)
 
 ## Creating an ADR
 
