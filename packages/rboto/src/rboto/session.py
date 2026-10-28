@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from .interceptors import Interceptor, resolve_interceptors
+
 
 @dataclass(frozen=True, slots=True)
 class Session:
@@ -8,6 +10,10 @@ class Session:
     region: str | None = None
     profile: str | None = None
     endpoint_url: str | None = None
+    interceptors: tuple[Interceptor, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "interceptors", resolve_interceptors(self.interceptors))
 
 
 def resolve_config(

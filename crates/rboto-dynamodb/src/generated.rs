@@ -17456,11 +17456,12 @@ impl DynamoDBClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn batch_execute_statement<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let statements_value = if let Some(value) = dict_value(params, "statements")? {
@@ -17485,24 +17486,36 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .batch_execute_statement()
                 .set_statements(statements_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchExecuteStatement"))
             })?;
             Ok(PyBatchExecuteStatementOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn batch_get_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
@@ -17527,24 +17540,36 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .batch_get_item()
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetItem"))
             })?;
             Ok(PyBatchGetItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn batch_write_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let request_items_value = if let Some(value) = dict_value(params, "request_items")? {
@@ -17585,25 +17610,37 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .batch_write_item()
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_return_item_collection_metrics(return_item_collection_metrics_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchWriteItem"))
             })?;
             Ok(PyBatchWriteItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_backup<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -17619,24 +17656,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_backup()
                 .set_table_name(table_name_value)
                 .set_backup_name(backup_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBackup"))
             })?;
             Ok(PyCreateBackupOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_global_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
@@ -17660,24 +17709,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replication_group(replication_group_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGlobalTable"))
             })?;
             Ok(PyCreateGlobalTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let attribute_definitions_value =
@@ -17843,9 +17904,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_table()
                 .set_attribute_definitions(attribute_definitions_value)
                 .set_table_name(table_name_value)
@@ -17867,19 +17927,30 @@ impl DynamoDBClient {
                     global_table_settings_replication_mode_value,
                 )
                 .set_vector_indexes(vector_indexes_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTable")))?;
             Ok(PyCreateTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_backup<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let backup_arn_value = if let Some(value) = dict_value(params, "backup_arn")? {
@@ -17889,23 +17960,33 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .delete_backup()
-                .set_backup_arn(backup_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.delete_backup().set_backup_arn(backup_arn_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBackup"))
             })?;
             Ok(PyDeleteBackupOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18019,9 +18100,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -18036,19 +18116,30 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteItem")))?;
             Ok(PyDeleteItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_resource_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -18065,24 +18156,36 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_expected_revision_id(expected_revision_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
             Ok(PyDeleteResourcePolicyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18092,24 +18195,32 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .delete_table()
-                .set_table_name(table_name_value);
-            let output = request
-                .send()
-                .await
+            let client = state.client().await;
+            let request = client.delete_table().set_table_name(table_name_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTable")))?;
             Ok(PyDeleteTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_backup<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let backup_arn_value = if let Some(value) = dict_value(params, "backup_arn")? {
@@ -18119,23 +18230,33 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .describe_backup()
-                .set_backup_arn(backup_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_backup().set_backup_arn(backup_arn_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeBackup"))
             })?;
             Ok(PyDescribeBackupOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_continuous_backups<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18145,23 +18266,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_continuous_backups()
                 .set_table_name(table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContinuousBackups"))
             })?;
             Ok(PyDescribeContinuousBackupsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_contributor_insights<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18177,40 +18310,66 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContributorInsights"))
             })?;
             Ok(PyDescribeContributorInsightsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_endpoints<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.describe_endpoints();
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_endpoints();
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
             })?;
             Ok(PyDescribeEndpointsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_export<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let export_arn_value = if let Some(value) = dict_value(params, "export_arn")? {
@@ -18220,23 +18379,33 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .describe_export()
-                .set_export_arn(export_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_export().set_export_arn(export_arn_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExport"))
             })?;
             Ok(PyDescribeExportOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_global_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
@@ -18247,23 +18416,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_global_table()
                 .set_global_table_name(global_table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTable"))
             })?;
             Ok(PyDescribeGlobalTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_global_table_settings<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
@@ -18274,23 +18455,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_global_table_settings()
                 .set_global_table_name(global_table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTableSettings"))
             })?;
             Ok(PyDescribeGlobalTableSettingsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_import<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let import_arn_value = if let Some(value) = dict_value(params, "import_arn")? {
@@ -18300,23 +18493,33 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .describe_import()
-                .set_import_arn(import_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_import().set_import_arn(import_arn_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImport"))
             })?;
             Ok(PyDescribeImportOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_kinesis_streaming_destination<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18326,12 +18529,23 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_kinesis_streaming_destination()
                 .set_table_name(table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DescribeKinesisStreamingDestination")
                 })
@@ -18340,27 +18554,42 @@ impl DynamoDBClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_limits<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.describe_limits();
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_limits();
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLimits"))
             })?;
             Ok(PyDescribeLimitsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18370,23 +18599,33 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .describe_table()
-                .set_table_name(table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.describe_table().set_table_name(table_name_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTable"))
             })?;
             Ok(PyDescribeTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_table_replica_auto_scaling<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18396,23 +18635,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_table_replica_auto_scaling()
                 .set_table_name(table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTableReplicaAutoScaling"))
             })?;
             Ok(PyDescribeTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_time_to_live<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18422,23 +18673,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_time_to_live()
                 .set_table_name(table_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTimeToLive"))
             })?;
             Ok(PyDescribeTimeToLiveOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn disable_kinesis_streaming_destination<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18461,16 +18724,27 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .disable_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
                 .set_enable_kinesis_streaming_configuration(
                     enable_kinesis_streaming_configuration_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DisableKinesisStreamingDestination")
                 })
@@ -18479,11 +18753,12 @@ impl DynamoDBClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn enable_kinesis_streaming_destination<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18506,16 +18781,27 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .enable_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
                 .set_enable_kinesis_streaming_configuration(
                     enable_kinesis_streaming_configuration_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "EnableKinesisStreamingDestination")
                 })
@@ -18524,11 +18810,12 @@ impl DynamoDBClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn execute_statement<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let statement_value = if let Some(value) = dict_value(params, "statement")? {
@@ -18588,9 +18875,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .execute_statement()
                 .set_statement(statement_value)
                 .set_parameters(parameters_value)
@@ -18601,18 +18887,31 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteStatement"))
             })?;
             Ok(PyExecuteStatementOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn execute_transaction<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let transact_statements_value =
@@ -18645,25 +18944,37 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .execute_transaction()
                 .set_transact_statements(transact_statements_value)
                 .set_client_request_token(client_request_token_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteTransaction"))
             })?;
             Ok(PyExecuteTransactionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn export_table_to_point_in_time<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
@@ -18753,9 +19064,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .export_table_to_point_in_time()
                 .set_table_arn(table_arn_value)
                 .set_export_time(export_time_value)
@@ -18769,18 +19079,31 @@ impl DynamoDBClient {
                 .set_export_type(export_type_value)
                 .set_incremental_export_specification(incremental_export_specification_value)
                 .set_filter_specification(filter_specification_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExportTableToPointInTime"))
             })?;
             Ok(PyExportTableToPointInTimeOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -18850,9 +19173,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -18861,19 +19183,30 @@ impl DynamoDBClient {
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_projection_expression(projection_expression_value)
                 .set_expression_attribute_names(expression_attribute_names_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetItem")))?;
             Ok(PyGetItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_resource_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -18883,23 +19216,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
             Ok(PyGetResourcePolicyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn import_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
@@ -18946,9 +19291,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .import_table()
                 .set_client_token(client_token_value)
                 .set_s3_bucket_source(s3_bucket_source_value)
@@ -18956,19 +19300,30 @@ impl DynamoDBClient {
                 .set_input_format_options(input_format_options_value)
                 .set_input_compression_type(input_compression_type_value)
                 .set_table_creation_parameters(table_creation_parameters_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ImportTable")))?;
             Ok(PyImportTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_backups<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -19023,9 +19378,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_backups()
                 .set_table_name(table_name_value)
                 .set_limit(limit_value)
@@ -19033,19 +19387,30 @@ impl DynamoDBClient {
                 .set_time_range_upper_bound(time_range_upper_bound_value)
                 .set_exclusive_start_backup_arn(exclusive_start_backup_arn_value)
                 .set_backup_type(backup_type_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBackups")))?;
             Ok(PyListBackupsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_contributor_insights<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -19067,25 +19432,37 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContributorInsights"))
             })?;
             Ok(PyListContributorInsightsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_exports<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
@@ -19107,26 +19484,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_exports()
                 .set_table_arn(table_arn_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListExports")))?;
             Ok(PyListExportsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_global_tables<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let exclusive_start_global_table_name_value =
@@ -19149,25 +19536,37 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_global_tables()
                 .set_exclusive_start_global_table_name(exclusive_start_global_table_name_value)
                 .set_limit(limit_value)
                 .set_region_name(region_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGlobalTables"))
             })?;
             Ok(PyListGlobalTablesOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_imports<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_arn_value = if let Some(value) = dict_value(params, "table_arn")? {
@@ -19189,26 +19588,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_imports()
                 .set_table_arn(table_arn_value)
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
             Ok(PyListImportsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_tables<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let exclusive_start_table_name_value =
@@ -19225,25 +19634,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_tables()
                 .set_exclusive_start_table_name(exclusive_start_table_name_value)
                 .set_limit(limit_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTables")))?;
             Ok(PyListTablesOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_tags_of_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -19259,24 +19678,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_tags_of_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_next_token(next_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsOfResource"))
             })?;
             Ok(PyListTagsOfResourceOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -19390,9 +19821,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_item()
                 .set_table_name(table_name_value)
                 .set_item(item_value)
@@ -19407,19 +19837,30 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutItem")))?;
             Ok(PyPutItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_resource_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -19449,26 +19890,38 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_policy(policy_value)
                 .set_expected_revision_id(expected_revision_id_value)
                 .set_confirm_remove_self_resource_access(confirm_remove_self_resource_access_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
             Ok(PyPutResourcePolicyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn query<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -19625,9 +20078,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .query()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -19646,19 +20098,30 @@ impl DynamoDBClient {
                 .set_key_condition_expression(key_condition_expression_value)
                 .set_expression_attribute_names(expression_attribute_names_value)
                 .set_expression_attribute_values(expression_attribute_values_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Query")))?;
             Ok(PyQueryOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn restore_table_from_backup<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_table_name_value = if let Some(value) = dict_value(params, "target_table_name")?
@@ -19744,9 +20207,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .restore_table_from_backup()
                 .set_target_table_name(target_table_name_value)
                 .set_backup_arn(backup_arn_value)
@@ -19757,18 +20219,31 @@ impl DynamoDBClient {
                 .set_on_demand_throughput_override(on_demand_throughput_override_value)
                 .set_sse_specification_override(sse_specification_override_value)
                 .set_vector_index_override(vector_index_override_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableFromBackup"))
             })?;
             Ok(PyRestoreTableFromBackupOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn restore_table_to_point_in_time<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_table_arn_value = if let Some(value) = dict_value(params, "source_table_arn")? {
@@ -19880,9 +20355,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .restore_table_to_point_in_time()
                 .set_source_table_arn(source_table_arn_value)
                 .set_source_table_name(source_table_name_value)
@@ -19896,18 +20370,31 @@ impl DynamoDBClient {
                 .set_on_demand_throughput_override(on_demand_throughput_override_value)
                 .set_sse_specification_override(sse_specification_override_value)
                 .set_vector_index_override(vector_index_override_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableToPointInTime"))
             })?;
             Ok(PyRestoreTableToPointInTimeOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn scan<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20050,9 +20537,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .scan()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -20070,19 +20556,30 @@ impl DynamoDBClient {
                 .set_expression_attribute_names(expression_attribute_names_value)
                 .set_expression_attribute_values(expression_attribute_values_value)
                 .set_consistent_read(consistent_read_value);
-            let output = request
-                .send()
-                .await
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output =
+                result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
             Ok(PyScanOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn search_vectors<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20165,9 +20662,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .search_vectors()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
@@ -20178,18 +20674,31 @@ impl DynamoDBClient {
                 .set_search_vector(search_vector_value)
                 .set_search_condition_expression(search_condition_expression_value)
                 .set_top_k(top_k_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchVectors"))
             })?;
             Ok(PySearchVectorsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn tag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -20211,25 +20720,35 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn transact_get_items<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
@@ -20254,24 +20773,36 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .transact_get_items()
                 .set_transact_items(transact_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactGetItems"))
             })?;
             Ok(PyTransactGetItemsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn transact_write_items<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let transact_items_value = if let Some(value) = dict_value(params, "transact_items")? {
@@ -20313,26 +20844,38 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .transact_write_items()
                 .set_transact_items(transact_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_return_item_collection_metrics(return_item_collection_metrics_value)
                 .set_client_request_token(client_request_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactWriteItems"))
             })?;
             Ok(PyTransactWriteItemsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn untag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -20354,24 +20897,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_continuous_backups<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20388,26 +20943,38 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_continuous_backups()
                 .set_table_name(table_name_value)
                 .set_point_in_time_recovery_specification(
                     point_in_time_recovery_specification_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContinuousBackups"))
             })?;
             Ok(PyUpdateContinuousBackupsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_contributor_insights<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20443,26 +21010,38 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value)
                 .set_contributor_insights_action(contributor_insights_action_value)
                 .set_contributor_insights_mode(contributor_insights_mode_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContributorInsights"))
             })?;
             Ok(PyUpdateContributorInsightsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_global_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
@@ -20485,24 +21064,36 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replica_updates(replica_updates_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTable"))
             })?;
             Ok(PyUpdateGlobalTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_global_table_settings<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_table_name_value = if let Some(value) = dict_value(params, "global_table_name")?
@@ -20570,9 +21161,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_global_table_settings()
                 .set_global_table_name(global_table_name_value)
                 .set_global_table_billing_mode(global_table_billing_mode_value)
@@ -20586,18 +21176,31 @@ impl DynamoDBClient {
                     global_table_global_secondary_index_settings_update_value,
                 )
                 .set_replica_settings_update(replica_settings_update_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTableSettings"))
             })?;
             Ok(PyUpdateGlobalTableSettingsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_item<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20731,9 +21334,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_item()
                 .set_table_name(table_name_value)
                 .set_key(key_value)
@@ -20750,19 +21352,30 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateItem")))?;
             Ok(PyUpdateItemOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_kinesis_streaming_destination<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -20785,16 +21398,27 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_kinesis_streaming_destination()
                 .set_table_name(table_name_value)
                 .set_stream_arn(stream_arn_value)
                 .set_update_kinesis_streaming_configuration(
                     update_kinesis_streaming_configuration_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "UpdateKinesisStreamingDestination")
                 })
@@ -20803,11 +21427,12 @@ impl DynamoDBClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_table<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let attribute_definitions_value =
@@ -20966,9 +21591,8 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_table()
                 .set_attribute_definitions(attribute_definitions_value)
                 .set_table_name(table_name_value)
@@ -20989,19 +21613,30 @@ impl DynamoDBClient {
                 )
                 .set_disassociation_protection_enabled(disassociation_protection_enabled_value)
                 .set_vector_index_updates(vector_index_updates_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTable")))?;
             Ok(PyUpdateTableOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_table_replica_auto_scaling<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let global_secondary_index_updates_value =
@@ -21045,9 +21680,8 @@ impl DynamoDBClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_table_replica_auto_scaling()
                 .set_global_secondary_index_updates(global_secondary_index_updates_value)
                 .set_table_name(table_name_value)
@@ -21055,18 +21689,31 @@ impl DynamoDBClient {
                     provisioned_write_capacity_auto_scaling_update_value,
                 )
                 .set_replica_updates(replica_updates_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTableReplicaAutoScaling"))
             })?;
             Ok(PyUpdateTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_time_to_live<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
@@ -21083,13 +21730,24 @@ impl DynamoDBClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_time_to_live()
                 .set_table_name(table_name_value)
                 .set_time_to_live_specification(time_to_live_specification_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTimeToLive"))
             })?;
             Ok(PyUpdateTimeToLiveOutput { inner: output })

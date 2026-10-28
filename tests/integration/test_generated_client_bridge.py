@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 import rboto
-from rboto import Session
+from rboto import Next, OperationRequest, OperationResponse, Session
 from rboto_codegen.registry import list_services
 from rboto_codegen.rust_crate import parse_crate
 
@@ -30,7 +30,9 @@ class NativeSpy:
         self.calls: list[tuple[str, dict[str, object]]] = []
 
     def __getattr__(self, name: str) -> Callable[[dict[str, object]], Awaitable[object]]:
-        async def call(params: dict[str, object]) -> object:
+        async def call(
+            params: dict[str, object], observation: dict[str, object] | None = None
+        ) -> object:
             self.calls.append((name, params))
             return self.result
 
@@ -59,13 +61,21 @@ def test_every_python_method_has_a_native_rust_method(
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize("observed", [False, True])
 @pytest.mark.parametrize(("client_class", "_native_class", "_expected_count"), CLIENTS)
 async def test_every_python_method_dispatches_to_its_native_counterpart(
     client_class: type[object],
     _native_class: type[object],
     _expected_count: int,
+    observed: bool,
 ) -> None:
-    client = client_class(region="us-east-1")
+    requests: list[OperationRequest] = []
+
+    async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+        requests.append(request)
+        return await call_next(request)
+
+    client = client_class(region="us-east-1", interceptors=[middleware] if observed else ())
     sentinel = object()
     spy = NativeSpy(sentinel)
     client._native = spy  # type: ignore[attr-defined]
@@ -99,6 +109,11 @@ async def test_every_python_method_dispatches_to_its_native_counterpart(
         assert called_name == name
         assert len(params) == len(supplied)
         assert all(value in params.values() for value in supplied.values())
+        if observed:
+            assert len(requests) == 2
+            assert requests[0].metadata.dispatched and requests[1].metadata.dispatched
+            assert requests[0].context.operation_id != requests[1].context.operation_id
+            requests.clear()
 
 
 @pytest.mark.parametrize(

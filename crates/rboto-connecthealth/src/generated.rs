@@ -3642,11 +3642,12 @@ impl ConnectHealthClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn activate_subscription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3662,24 +3663,36 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .activate_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ActivateSubscription"))
             })?;
             Ok(PyActivateSubscriptionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_domain<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
@@ -3714,26 +3727,38 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_domain()
                 .set_name(name_value)
                 .set_kms_key_arn(kms_key_arn_value)
                 .set_web_app_setup_configuration(web_app_setup_configuration_value)
                 .set_tags(tags_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomain"))
             })?;
             Ok(PyCreateDomainOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_subscription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3743,23 +3768,33 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .create_subscription()
-                .set_domain_id(domain_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.create_subscription().set_domain_id(domain_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
             })?;
             Ok(PyCreateSubscriptionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn deactivate_subscription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3775,24 +3810,36 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .deactivate_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateSubscription"))
             })?;
             Ok(PyDeactivateSubscriptionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_domain<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3802,23 +3849,33 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .delete_domain()
-                .set_domain_id(domain_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.delete_domain().set_domain_id(domain_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDomain"))
             })?;
             Ok(PyDeleteDomainOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_domain<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3828,24 +3885,32 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .get_domain()
-                .set_domain_id(domain_id_value);
-            let output = request
-                .send()
-                .await
+            let client = state.client().await;
+            let request = client.get_domain().set_domain_id(domain_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDomain")))?;
             Ok(PyGetDomainOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_medical_scribe_listening_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -3867,25 +3932,37 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_medical_scribe_listening_session()
                 .set_session_id(session_id_value)
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeListeningSession"))
             })?;
             Ok(PyGetMedicalScribeListeningSessionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_patient_insights_job<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3901,24 +3978,36 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_patient_insights_job()
                 .set_domain_id(domain_id_value)
                 .set_job_id(job_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPatientInsightsJob"))
             })?;
             Ok(PyGetPatientInsightsJobResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_subscription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -3934,24 +4023,36 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscription"))
             })?;
             Ok(PyGetSubscriptionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_domains<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let status_value = if let Some(value) = dict_value(params, "status")? {
@@ -3975,26 +4076,36 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_domains()
                 .set_status(status_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListDomains")))?;
             Ok(PyListDomainsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_subscriptions<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -4016,25 +4127,37 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_subscriptions()
                 .set_domain_id(domain_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
             Ok(PyListSubscriptionsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_tags_for_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -4044,23 +4167,35 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
             Ok(PyListTagsForResourceOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_medical_scribe_listening_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -4121,9 +4256,8 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_medical_scribe_listening_session()
                 .set_session_id(session_id_value)
                 .set_domain_id(domain_id_value)
@@ -4132,7 +4266,19 @@ impl ConnectHealthClient {
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
                 .set_media_encoding(media_encoding_value)
                 .set_input_stream(input_stream_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "StartMedicalScribeListeningSession")
                 })
@@ -4194,11 +4340,12 @@ impl ConnectHealthClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_patient_insights_job<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
@@ -4253,9 +4400,8 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_patient_insights_job()
                 .set_domain_id(domain_id_value)
                 .set_patient_context(patient_context_value)
@@ -4265,18 +4411,31 @@ impl ConnectHealthClient {
                 .set_input_data_config(input_data_config_value)
                 .set_output_data_config(output_data_config_value)
                 .set_client_token(client_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartPatientInsightsJob"))
             })?;
             Ok(PyStartPatientInsightsJobResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn tag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -4298,25 +4457,35 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn untag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -4338,13 +4507,24 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
             Python::attach(|py| Ok(py.None()))

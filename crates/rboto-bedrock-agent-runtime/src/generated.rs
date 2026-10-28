@@ -17991,11 +17991,12 @@ impl BedrockAgentRuntimeClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn agentic_retrieve_stream<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let messages_value = if let Some(value) = dict_value(params, "messages")? {
@@ -18070,9 +18071,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .agentic_retrieve_stream()
                 .set_messages(messages_value)
                 .set_retrievers(retrievers_value)
@@ -18083,7 +18083,19 @@ impl BedrockAgentRuntimeClient {
                 .set_memory_configuration(memory_configuration_value)
                 .set_retrieval_instruction_configuration(retrieval_instruction_configuration_value)
                 .set_generate_response(generate_response_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AgenticRetrieveStream"))
             })?;
             Python::attach(|py| {
@@ -18101,11 +18113,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn check_ingested_document_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
@@ -18134,26 +18147,38 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .check_ingested_document_acl()
                 .set_knowledge_base_id(knowledge_base_id_value)
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value)
                 .set_user_context(user_context_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckIngestedDocumentAcl"))
             })?;
             Ok(PyCheckIngestedDocumentAclResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_invocation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let invocation_id_value = if let Some(value) = dict_value(params, "invocation_id")? {
@@ -18176,25 +18201,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_invocation()
                 .set_invocation_id(invocation_id_value)
                 .set_description(description_value)
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvocation"))
             })?;
             Ok(PyCreateInvocationResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_metadata_value = if let Some(value) = dict_value(params, "session_metadata")? {
@@ -18229,25 +18266,37 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_session()
                 .set_session_metadata(session_metadata_value)
                 .set_encryption_key_arn(encryption_key_arn_value)
                 .set_tags(tags_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
             Ok(PyCreateSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_agent_memory<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let agent_id_value = if let Some(value) = dict_value(params, "agent_id")? {
@@ -18275,26 +18324,38 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_agent_memory()
                 .set_agent_id(agent_id_value)
                 .set_agent_alias_id(agent_alias_id_value)
                 .set_memory_id(memory_id_value)
                 .set_session_id(session_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentMemory"))
             })?;
             Ok(PyDeleteAgentMemoryResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_identifier_value =
@@ -18305,23 +18366,35 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_session()
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
             })?;
             Ok(PyDeleteSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn end_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_identifier_value =
@@ -18332,24 +18405,34 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .end_session()
                 .set_session_identifier(session_identifier_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EndSession")))?;
             Ok(PyEndSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_query<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let query_generation_input_value =
@@ -18367,24 +18450,36 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_query()
                 .set_query_generation_input(query_generation_input_value)
                 .set_transformation_configuration(transformation_configuration_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
             })?;
             Ok(PyGenerateQueryResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_agent_memory<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
@@ -18426,9 +18521,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_agent_memory()
                 .set_next_token(next_token_value)
                 .set_max_items(max_items_value)
@@ -18436,18 +18530,31 @@ impl BedrockAgentRuntimeClient {
                 .set_agent_alias_id(agent_alias_id_value)
                 .set_memory_type(memory_type_value)
                 .set_memory_id(memory_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentMemory"))
             })?;
             Ok(PyGetAgentMemoryResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_document_content<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
@@ -18485,27 +18592,39 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_document_content()
                 .set_knowledge_base_id(knowledge_base_id_value)
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value)
                 .set_output_format(output_format_value)
                 .set_user_context(user_context_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
             })?;
             Ok(PyGetDocumentContentResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_execution_flow_snapshot<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -18529,25 +18648,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_execution_flow_snapshot()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionFlowSnapshot"))
             })?;
             Ok(PyGetExecutionFlowSnapshotResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_flow_execution<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -18571,25 +18702,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_flow_execution()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowExecution"))
             })?;
             Ok(PyGetFlowExecutionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_ingested_document_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
@@ -18612,25 +18755,37 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_ingested_document_acl()
                 .set_knowledge_base_id(knowledge_base_id_value)
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetIngestedDocumentAcl"))
             })?;
             Ok(PyGetIngestedDocumentAclResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_invocation_step<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let invocation_identifier_value =
@@ -18655,25 +18810,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_invocation_step()
                 .set_invocation_identifier(invocation_identifier_value)
                 .set_invocation_step_id(invocation_step_id_value)
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetInvocationStep"))
             })?;
             Ok(PyGetInvocationStepResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_identifier_value =
@@ -18684,24 +18851,34 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_session()
                 .set_session_identifier(session_identifier_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
             Ok(PyGetSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn invoke_agent<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_state_value = if let Some(value) = dict_value(params, "session_state")? {
@@ -18780,9 +18957,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .invoke_agent()
                 .set_session_state(session_state_value)
                 .set_agent_id(agent_id_value)
@@ -18796,9 +18972,19 @@ impl BedrockAgentRuntimeClient {
                 .set_streaming_configurations(streaming_configurations_value)
                 .set_prompt_creation_configurations(prompt_creation_configurations_value)
                 .set_source_arn(source_arn_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeAgent")))?;
             Python::attach(|py| {
                 let result = PyDict::new(py);
@@ -18822,11 +19008,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn invoke_flow<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -18874,9 +19061,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .invoke_flow()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
@@ -18884,9 +19070,19 @@ impl BedrockAgentRuntimeClient {
                 .set_enable_trace(enable_trace_value)
                 .set_model_performance_configuration(model_performance_configuration_value)
                 .set_execution_id(execution_id_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeFlow")))?;
             Python::attach(|py| {
                 let result = PyDict::new(py);
@@ -18906,11 +19102,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn invoke_inline_agent<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let customer_encryption_key_arn_value =
@@ -19088,9 +19285,8 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .invoke_inline_agent()
                 .set_customer_encryption_key_arn(customer_encryption_key_arn_value)
                 .set_foundation_model(foundation_model_value)
@@ -19114,7 +19310,19 @@ impl BedrockAgentRuntimeClient {
                 .set_bedrock_model_configurations(bedrock_model_configurations_value)
                 .set_orchestration_type(orchestration_type_value)
                 .set_custom_orchestration(custom_orchestration_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "InvokeInlineAgent"))
             })?;
             Python::attach(|py| {
@@ -19136,11 +19344,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_flow_execution_events<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -19185,9 +19394,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_flow_execution_events()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
@@ -19195,18 +19403,31 @@ impl BedrockAgentRuntimeClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_event_type(event_type_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutionEvents"))
             })?;
             Ok(PyListFlowExecutionEventsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_flow_executions<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -19235,26 +19456,38 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_flow_executions()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutions"))
             })?;
             Ok(PyListFlowExecutionsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_invocation_steps<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let invocation_identifier_value =
@@ -19284,26 +19517,38 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_invocation_steps()
                 .set_invocation_identifier(invocation_identifier_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocationSteps"))
             })?;
             Ok(PyListInvocationStepsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_invocations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
@@ -19326,25 +19571,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_invocations()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocations"))
             })?;
             Ok(PyListInvocationsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_sessions<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
@@ -19360,24 +19617,36 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_sessions()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSessions"))
             })?;
             Ok(PyListSessionsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_tags_for_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -19387,23 +19656,35 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
             Ok(PyListTagsForResourceResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn optimize_prompt<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let input_value = if let Some(value) = dict_value(params, "input")? {
@@ -19419,13 +19700,24 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .optimize_prompt()
                 .set_input(input_value)
                 .set_target_model_id(target_model_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "OptimizePrompt"))
             })?;
             Python::attach(|py| {
@@ -19440,11 +19732,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_invocation_step<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_identifier_value =
@@ -19487,27 +19780,39 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_invocation_step()
                 .set_session_identifier(session_identifier_value)
                 .set_invocation_identifier(invocation_identifier_value)
                 .set_invocation_step_time(invocation_step_time_value)
                 .set_payload(payload_value)
                 .set_invocation_step_id(invocation_step_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutInvocationStep"))
             })?;
             Ok(PyPutInvocationStepResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn rerank<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let queries_value = if let Some(value) = dict_value(params, "queries")? {
@@ -19548,27 +19853,37 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .rerank()
                 .set_queries(queries_value)
                 .set_sources(sources_value)
                 .set_reranking_configuration(reranking_configuration_value)
                 .set_next_token(next_token_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Rerank")))?;
             Ok(PyRerankResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn retrieve<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let knowledge_base_id_value = if let Some(value) = dict_value(params, "knowledge_base_id")?
@@ -19611,9 +19926,8 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .retrieve()
                 .set_knowledge_base_id(knowledge_base_id_value)
                 .set_retrieval_query(retrieval_query_value)
@@ -19621,19 +19935,30 @@ impl BedrockAgentRuntimeClient {
                 .set_guardrail_configuration(guardrail_configuration_value)
                 .set_next_token(next_token_value)
                 .set_user_context(user_context_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Retrieve")))?;
             Ok(PyRetrieveResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn retrieve_and_generate<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -19669,27 +19994,39 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .retrieve_and_generate()
                 .set_session_id(session_id_value)
                 .set_input(input_value)
                 .set_retrieve_and_generate_configuration(retrieve_and_generate_configuration_value)
                 .set_session_configuration(session_configuration_value)
                 .set_user_context(user_context_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveAndGenerate"))
             })?;
             Ok(PyRetrieveAndGenerateResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn retrieve_and_generate_stream<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -19725,16 +20062,27 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .retrieve_and_generate_stream()
                 .set_session_id(session_id_value)
                 .set_input(input_value)
                 .set_retrieve_and_generate_configuration(retrieve_and_generate_configuration_value)
                 .set_session_configuration(session_configuration_value)
                 .set_user_context(user_context_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveAndGenerateStream"))
             })?;
             Python::attach(|py| {
@@ -19754,11 +20102,12 @@ impl BedrockAgentRuntimeClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_flow_execution<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -19801,27 +20150,39 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_flow_execution()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_flow_execution_name(flow_execution_name_value)
                 .set_inputs(inputs_value)
                 .set_model_performance_configuration(model_performance_configuration_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartFlowExecution"))
             })?;
             Ok(PyStartFlowExecutionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn stop_flow_execution<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let flow_identifier_value = if let Some(value) = dict_value(params, "flow_identifier")? {
@@ -19845,25 +20206,37 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .stop_flow_execution()
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopFlowExecution"))
             })?;
             Ok(PyStopFlowExecutionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn tag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -19885,25 +20258,35 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
             Ok(PyTagResourceResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn untag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
@@ -19925,24 +20308,36 @@ impl BedrockAgentRuntimeClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
             Ok(PyUntagResourceResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_metadata_value = if let Some(value) = dict_value(params, "session_metadata")? {
@@ -19965,13 +20360,24 @@ impl BedrockAgentRuntimeClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_session()
                 .set_session_metadata(session_metadata_value)
                 .set_session_identifier(session_identifier_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSession"))
             })?;
             Ok(PyUpdateSessionResponse { inner: output })

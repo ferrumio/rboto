@@ -21614,11 +21614,12 @@ impl S3Client {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn abort_multipart_upload<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -21666,9 +21667,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .abort_multipart_upload()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -21676,18 +21676,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_if_match_initiated_time(if_match_initiated_time_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AbortMultipartUpload"))
             })?;
             Ok(PyAbortMultipartUploadOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn complete_multipart_upload<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -21837,9 +21850,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .complete_multipart_upload()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -21864,18 +21876,31 @@ impl S3Client {
                 .set_sse_customer_algorithm(sse_customer_algorithm_value)
                 .set_sse_customer_key(sse_customer_key_value)
                 .set_sse_customer_key_md5(sse_customer_key_md5_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CompleteMultipartUpload"))
             })?;
             Ok(PyCompleteMultipartUploadOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn copy_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -22231,9 +22256,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .copy_object()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22286,19 +22310,30 @@ impl S3Client {
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_expected_source_bucket_owner(expected_source_bucket_owner_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CopyObject")))?;
             Ok(PyCopyObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_bucket<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -22374,9 +22409,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_bucket()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22389,18 +22423,31 @@ impl S3Client {
                 .set_object_lock_enabled_for_bucket(object_lock_enabled_for_bucket_value)
                 .set_object_ownership(object_ownership_value)
                 .set_bucket_namespace(bucket_namespace_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBucket"))
             })?;
             Ok(PyCreateBucketOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_bucket_metadata_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -22439,16 +22486,27 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_metadata_configuration(metadata_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "CreateBucketMetadataConfiguration")
                 })
@@ -22457,11 +22515,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_bucket_metadata_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -22500,16 +22559,27 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_metadata_table_configuration(metadata_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "CreateBucketMetadataTableConfiguration")
                 })
@@ -22518,11 +22588,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_multipart_upload<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -22774,9 +22845,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_multipart_upload()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22816,18 +22886,31 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_checksum_type(checksum_type_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultipartUpload"))
             })?;
             Ok(PyCreateMultipartUploadOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_mode_value = if let Some(value) = dict_value(params, "session_mode")? {
@@ -22873,9 +22956,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_session()
                 .set_session_mode(session_mode_value)
                 .set_bucket(bucket_value)
@@ -22883,18 +22965,31 @@ impl S3Client {
                 .set_ssekms_key_id(ssekms_key_id_value)
                 .set_ssekms_encryption_context(ssekms_encryption_context_value)
                 .set_bucket_key_enabled(bucket_key_enabled_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
             Ok(PyCreateSessionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -22911,24 +23006,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucket"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_analytics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -22951,14 +23058,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteBucketAnalyticsConfiguration")
                 })
@@ -22967,11 +23085,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_cors<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -22988,24 +23107,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketCors"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_encryption<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23022,24 +23153,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketEncryption"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_intelligent_tiering_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23062,14 +23205,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteBucketIntelligentTieringConfiguration")
                 })
@@ -23078,11 +23232,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_inventory_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23105,14 +23260,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteBucketInventoryConfiguration")
                 })
@@ -23121,11 +23287,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_lifecycle<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23142,24 +23309,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_lifecycle()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketLifecycle"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_metadata_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23176,13 +23355,24 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteBucketMetadataConfiguration")
                 })
@@ -23191,11 +23381,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_metadata_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23212,13 +23403,24 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteBucketMetadataTableConfiguration")
                 })
@@ -23227,11 +23429,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_metrics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23254,25 +23457,37 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketMetricsConfiguration"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_ownership_controls<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23289,24 +23504,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketOwnershipControls"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23323,24 +23550,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketPolicy"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_replication<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23357,24 +23596,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketReplication"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23391,24 +23642,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketTagging"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_bucket_website<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23425,24 +23688,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketWebsite"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23515,9 +23790,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -23529,18 +23803,31 @@ impl S3Client {
                 .set_if_match(if_match_value)
                 .set_if_match_last_modified_time(if_match_last_modified_time_value)
                 .set_if_match_size(if_match_size_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObject"))
             })?;
             Ok(PyDeleteObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_object_annotation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23588,9 +23875,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -23599,18 +23885,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_object_if_match(object_if_match_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectAnnotation"))
             })?;
             Ok(PyDeleteObjectAnnotationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_object_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23639,26 +23938,38 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectTagging"))
             })?;
             Ok(PyDeleteObjectTaggingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_objects<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23710,9 +24021,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_objects()
                 .set_bucket(bucket_value)
                 .set_delete(delete_value)
@@ -23721,18 +24031,31 @@ impl S3Client {
                 .set_bypass_governance_retention(bypass_governance_retention_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjects"))
             })?;
             Ok(PyDeleteObjectsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_public_access_block<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23749,24 +24072,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePublicAccessBlock"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_abac<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23783,24 +24118,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_abac()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAbac"))
             })?;
             Ok(PyGetBucketAbacOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_accelerate_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23824,25 +24171,37 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAccelerateConfiguration"))
             })?;
             Ok(PyGetBucketAccelerateConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23859,24 +24218,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_acl()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAcl"))
             })?;
             Ok(PyGetBucketAclOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_analytics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23899,25 +24270,37 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAnalyticsConfiguration"))
             })?;
             Ok(PyGetBucketAnalyticsConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_cors<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23934,24 +24317,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketCors"))
             })?;
             Ok(PyGetBucketCorsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_encryption<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -23968,24 +24363,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketEncryption"))
             })?;
             Ok(PyGetBucketEncryptionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_intelligent_tiering_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24008,14 +24415,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "GetBucketIntelligentTieringConfiguration")
                 })
@@ -24024,11 +24442,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_inventory_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24051,25 +24470,37 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketInventoryConfiguration"))
             })?;
             Ok(PyGetBucketInventoryConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_lifecycle_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24086,24 +24517,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLifecycleConfiguration"))
             })?;
             Ok(PyGetBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_location<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24120,24 +24563,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_location()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLocation"))
             })?;
             Ok(PyGetBucketLocationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_logging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24154,24 +24609,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_logging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLogging"))
             })?;
             Ok(PyGetBucketLoggingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_metadata_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24188,24 +24655,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetadataConfiguration"))
             })?;
             Ok(PyGetBucketMetadataConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_metadata_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24222,13 +24701,24 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "GetBucketMetadataTableConfiguration")
                 })
@@ -24237,11 +24727,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_metrics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24264,25 +24755,37 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetricsConfiguration"))
             })?;
             Ok(PyGetBucketMetricsConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_notification_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24299,13 +24802,24 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_notification_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "GetBucketNotificationConfiguration")
                 })
@@ -24314,11 +24828,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_ownership_controls<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24335,24 +24850,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketOwnershipControls"))
             })?;
             Ok(PyGetBucketOwnershipControlsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24369,24 +24896,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicy"))
             })?;
             Ok(PyGetBucketPolicyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_policy_status<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24403,24 +24942,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_policy_status()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicyStatus"))
             })?;
             Ok(PyGetBucketPolicyStatusOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_replication<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24437,24 +24988,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketReplication"))
             })?;
             Ok(PyGetBucketReplicationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_request_payment<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24471,24 +25034,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_request_payment()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketRequestPayment"))
             })?;
             Ok(PyGetBucketRequestPaymentOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24505,24 +25080,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketTagging"))
             })?;
             Ok(PyGetBucketTaggingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_versioning<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24539,24 +25126,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_versioning()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketVersioning"))
             })?;
             Ok(PyGetBucketVersioningOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_bucket_website<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24573,24 +25172,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketWebsite"))
             })?;
             Ok(PyGetBucketWebsiteOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24747,9 +25358,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object()
                 .set_bucket(bucket_value)
                 .set_if_match(if_match_value)
@@ -24772,9 +25382,19 @@ impl S3Client {
                 .set_part_number(part_number_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let mut output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let mut output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetObject")))?;
             Python::attach(|py| {
                 let body = std::mem::take(&mut output.body);
@@ -24790,11 +25410,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24830,27 +25451,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_acl()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAcl"))
             })?;
             Ok(PyGetObjectAclOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_annotation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -24899,9 +25532,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24910,7 +25542,19 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let mut output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let mut output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAnnotation"))
             })?;
             Python::attach(|py| {
@@ -24927,11 +25571,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_attributes<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25015,9 +25660,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_attributes()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -25030,18 +25674,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_object_attributes(object_attributes_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAttributes"))
             })?;
             Ok(PyGetObjectAttributesOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_legal_hold<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25077,27 +25734,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_legal_hold()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLegalHold"))
             })?;
             Ok(PyGetObjectLegalHoldOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_lock_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25114,24 +25783,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_lock_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLockConfiguration"))
             })?;
             Ok(PyGetObjectLockConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_retention<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25167,27 +25848,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_retention()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectRetention"))
             })?;
             Ok(PyGetObjectRetentionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25223,27 +25916,39 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTagging"))
             })?;
             Ok(PyGetObjectTaggingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_object_torrent<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25273,15 +25978,26 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_object_torrent()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let mut output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let mut output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTorrent"))
             })?;
             Python::attach(|py| {
@@ -25298,11 +26014,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_public_access_block<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25319,24 +26036,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicAccessBlock"))
             })?;
             Ok(PyGetPublicAccessBlockOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn head_bucket<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25353,25 +26082,35 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .head_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadBucket")))?;
             Ok(PyHeadBucketOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn head_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25528,9 +26267,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .head_object()
                 .set_bucket(bucket_value)
                 .set_if_match(if_match_value)
@@ -25553,19 +26291,30 @@ impl S3Client {
                 .set_part_number(part_number_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadObject")))?;
             Ok(PyHeadObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_bucket_analytics_configurations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25589,14 +26338,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_bucket_analytics_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "ListBucketAnalyticsConfigurations")
                 })
@@ -25605,11 +26365,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_bucket_intelligent_tiering_configurations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25633,14 +26394,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_bucket_intelligent_tiering_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "ListBucketIntelligentTieringConfigurations")
                 })
@@ -25649,11 +26421,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_bucket_inventory_configurations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25677,14 +26450,25 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_bucket_inventory_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "ListBucketInventoryConfigurations")
                 })
@@ -25693,11 +26477,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_bucket_metrics_configurations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25721,25 +26506,37 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_bucket_metrics_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBucketMetricsConfigurations"))
             })?;
             Ok(PyListBucketMetricsConfigurationsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_buckets<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_buckets_value = if let Some(value) = dict_value(params, "max_buckets")? {
@@ -25768,27 +26565,37 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_buckets()
                 .set_max_buckets(max_buckets_value)
                 .set_continuation_token(continuation_token_value)
                 .set_prefix(prefix_value)
                 .set_bucket_region(bucket_region_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBuckets")))?;
             Ok(PyListBucketsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_directory_buckets<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let continuation_token_value =
@@ -25806,24 +26613,36 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_directory_buckets()
                 .set_continuation_token(continuation_token_value)
                 .set_max_directory_buckets(max_directory_buckets_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDirectoryBuckets"))
             })?;
             Ok(PyListDirectoryBucketsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_multipart_uploads<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25884,9 +26703,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_multipart_uploads()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -25897,18 +26715,31 @@ impl S3Client {
                 .set_upload_id_marker(upload_id_marker_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultipartUploads"))
             })?;
             Ok(PyListMultipartUploadsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_object_annotations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -25965,9 +26796,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_object_annotations()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -25977,18 +26807,31 @@ impl S3Client {
                 .set_continuation_token(continuation_token_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectAnnotations"))
             })?;
             Ok(PyListObjectAnnotationsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_object_versions<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26065,9 +26908,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_object_versions()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -26079,18 +26921,31 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectVersions"))
             })?;
             Ok(PyListObjectVersionsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_objects<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26160,9 +27015,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_objects()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -26173,19 +27027,30 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListObjects")))?;
             Ok(PyListObjectsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_objects_v2<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26268,9 +27133,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_objects_v2()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -26283,18 +27147,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectsV2"))
             })?;
             Ok(PyListObjectsV2Output { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_parts<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26363,9 +27240,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_parts()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -26377,19 +27253,30 @@ impl S3Client {
                 .set_sse_customer_algorithm(sse_customer_algorithm_value)
                 .set_sse_customer_key(sse_customer_key_value)
                 .set_sse_customer_key_md5(sse_customer_key_md5_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListParts")))?;
             Ok(PyListPartsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_abac<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26427,27 +27314,39 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_abac()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_abac_status(abac_status_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAbac"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_accelerate_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26480,26 +27379,38 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
                 .set_accelerate_configuration(accelerate_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAccelerateConfiguration"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -26576,9 +27487,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_acl()
                 .set_acl(acl_value)
                 .set_access_control_policy(access_control_policy_value)
@@ -26591,18 +27501,31 @@ impl S3Client {
                 .set_grant_write(grant_write_value)
                 .set_grant_write_acp(grant_write_acp_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAcl"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_analytics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26632,26 +27555,38 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_analytics_configuration(analytics_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAnalyticsConfiguration"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_cors<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26690,27 +27625,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_cors_configuration(cors_configuration_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketCors"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_encryption<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26749,9 +27696,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -26760,18 +27706,31 @@ impl S3Client {
                     server_side_encryption_configuration_value,
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketEncryption"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_intelligent_tiering_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26801,15 +27760,26 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_intelligent_tiering_configuration(intelligent_tiering_configuration_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "PutBucketIntelligentTieringConfiguration")
                 })
@@ -26818,11 +27788,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_inventory_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26852,26 +27823,38 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_inventory_configuration(inventory_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketInventoryConfiguration"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_lifecycle_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26914,9 +27897,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
@@ -26925,18 +27907,31 @@ impl S3Client {
                 .set_transition_default_minimum_object_size(
                     transition_default_minimum_object_size_value,
                 );
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLifecycleConfiguration"))
             })?;
             Ok(PyPutBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_logging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -26975,27 +27970,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_logging()
                 .set_bucket(bucket_value)
                 .set_bucket_logging_status(bucket_logging_status_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLogging"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_metrics_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27025,26 +28032,38 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_metrics_configuration(metrics_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketMetricsConfiguration"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_notification_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27075,15 +28094,26 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_notification_configuration()
                 .set_bucket(bucket_value)
                 .set_notification_configuration(notification_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_skip_destination_validation(skip_destination_validation_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "PutBucketNotificationConfiguration")
                 })
@@ -27092,11 +28122,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_ownership_controls<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27135,27 +28166,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_ownership_controls(ownership_controls_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketOwnershipControls"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27200,9 +28243,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27210,18 +28252,31 @@ impl S3Client {
                 .set_confirm_remove_self_bucket_access(confirm_remove_self_bucket_access_value)
                 .set_policy(policy_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketPolicy"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_replication<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27266,9 +28321,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27276,18 +28330,31 @@ impl S3Client {
                 .set_replication_configuration(replication_configuration_value)
                 .set_token(token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketReplication"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_request_payment<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27326,27 +28393,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_request_payment()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_request_payment_configuration(request_payment_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketRequestPayment"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27384,27 +28463,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_tagging(tagging_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketTagging"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_versioning<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27449,9 +28540,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_versioning()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27459,18 +28549,31 @@ impl S3Client {
                 .set_mfa(mfa_value)
                 .set_versioning_configuration(versioning_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketVersioning"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_bucket_website<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -27509,27 +28612,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_bucket_website()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_website_configuration(website_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketWebsite"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -27875,9 +28990,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object()
                 .set_acl(acl_value)
                 .set_body(body_value)
@@ -27932,19 +29046,30 @@ impl S3Client {
                     object_lock_event_hold_duration_years_value,
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutObject")))?;
             Ok(PyPutObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_acl<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let acl_value = if let Some(value) = dict_value(params, "acl")? {
@@ -28040,9 +29165,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_acl()
                 .set_acl(acl_value)
                 .set_access_control_policy(access_control_policy_value)
@@ -28058,18 +29182,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAcl"))
             })?;
             Ok(PyPutObjectAclOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_annotation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28203,9 +29340,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28227,18 +29363,31 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAnnotation"))
             })?;
             Ok(PyPutObjectAnnotationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_legal_hold<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28295,9 +29444,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_legal_hold()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28307,18 +29455,31 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLegalHold"))
             })?;
             Ok(PyPutObjectLegalHoldOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_lock_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28370,9 +29531,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_lock_configuration()
                 .set_bucket(bucket_value)
                 .set_object_lock_configuration(object_lock_configuration_value)
@@ -28381,18 +29541,31 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLockConfiguration"))
             })?;
             Ok(PyPutObjectLockConfigurationOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_retention<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28456,9 +29629,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_retention()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28469,18 +29641,31 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectRetention"))
             })?;
             Ok(PyPutObjectRetentionOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_object_tagging<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28537,9 +29722,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28549,18 +29733,31 @@ impl S3Client {
                 .set_tagging(tagging_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectTagging"))
             })?;
             Ok(PyPutObjectTaggingOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_public_access_block<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28599,27 +29796,39 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_public_access_block()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_public_access_block_configuration(public_access_block_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutPublicAccessBlock"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn rename_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28722,9 +29931,8 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .rename_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28738,18 +29946,31 @@ impl S3Client {
                 .set_source_if_modified_since(source_if_modified_since_value)
                 .set_source_if_unmodified_since(source_if_unmodified_since_value)
                 .set_client_token(client_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RenameObject"))
             })?;
             Ok(PyRenameObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn restore_object<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28800,9 +30021,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .restore_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28811,18 +30031,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreObject"))
             })?;
             Ok(PyRestoreObjectOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn select_object_content<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28904,9 +30137,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .select_object_content()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28920,7 +30152,19 @@ impl S3Client {
                 .set_output_serialization(output_serialization_value)
                 .set_scan_range(scan_range_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SelectObjectContent"))
             })?;
             Python::attach(|py| {
@@ -28938,11 +30182,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_bucket_metadata_annotation_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -28981,16 +30226,27 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_bucket_metadata_annotation_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_annotation_table_configuration(annotation_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(
                         py,
@@ -29003,11 +30259,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_bucket_metadata_inventory_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -29046,16 +30303,27 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_bucket_metadata_inventory_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_inventory_table_configuration(inventory_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(
                         py,
@@ -29068,11 +30336,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_bucket_metadata_journal_table_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -29111,16 +30380,27 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_bucket_metadata_journal_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_journal_table_configuration(journal_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "UpdateBucketMetadataJournalTableConfiguration")
                 })
@@ -29129,11 +30409,12 @@ impl S3Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_object_encryption<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -29191,9 +30472,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_object_encryption()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -29203,18 +30483,31 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateObjectEncryption"))
             })?;
             Ok(PyUpdateObjectEncryptionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn upload_part<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let body_value = if let Some(value) = dict_value(params, "body")? {
@@ -29367,9 +30660,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .upload_part()
                 .set_body(body_value)
                 .set_bucket(bucket_value)
@@ -29394,19 +30686,30 @@ impl S3Client {
                 .set_sse_customer_key_md5(sse_customer_key_md5_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UploadPart")))?;
             Ok(PyUploadPartOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn upload_part_copy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bucket_value = if let Some(value) = dict_value(params, "bucket")? {
@@ -29547,9 +30850,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .upload_part_copy()
                 .set_bucket(bucket_value)
                 .set_copy_source(copy_source_value)
@@ -29570,18 +30872,31 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_expected_source_bucket_owner(expected_source_bucket_owner_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UploadPartCopy"))
             })?;
             Ok(PyUploadPartCopyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn write_get_object_response<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let request_route_value = if let Some(value) = dict_value(params, "request_route")? {
@@ -29903,9 +31218,8 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .write_get_object_response()
                 .set_request_route(request_route_value)
                 .set_request_token(request_token_value)
@@ -29953,7 +31267,19 @@ impl S3Client {
                 .set_tag_count(tag_count_value)
                 .set_version_id(version_id_value)
                 .set_bucket_key_enabled(bucket_key_enabled_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "WriteGetObjectResponse"))
             })?;
             Python::attach(|py| Ok(py.None()))

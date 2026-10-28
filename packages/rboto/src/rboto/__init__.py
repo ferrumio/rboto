@@ -2,6 +2,16 @@
 from typing import TYPE_CHECKING
 
 from ._imports import import_service as _import_service
+from .interceptors import (
+    Attempt,
+    Interceptor,
+    Next,
+    OperationContext,
+    OperationMetadata,
+    OperationRequest,
+    OperationResponse,
+    operation_context,
+)
 from .services import (
     api_gateway,
     bedrock,
@@ -78,6 +88,14 @@ if TYPE_CHECKING:
 
 __version__ = "0.1.0"
 __all__ = [
+    "Attempt",
+    "Interceptor",
+    "OperationContext",
+    "Next",
+    "OperationMetadata",
+    "OperationRequest",
+    "OperationResponse",
+    "operation_context",
     "Session",
     "APIGatewayClient",
     "BedrockClient",

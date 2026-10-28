@@ -1327,11 +1327,12 @@ impl SignInClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_o_auth2_token<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let token_input_value = if let Some(value) = dict_value(params, "token_input")? {
@@ -1341,23 +1342,35 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_o_auth2_token()
                 .set_token_input(token_input_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2Token"))
             })?;
             Ok(PyCreateOAuth2TokenResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_o_auth2_token_with_iam<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
@@ -1373,24 +1386,36 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_o_auth2_token_with_iam()
                 .set_grant_type(grant_type_value)
                 .set_resource(resource_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2TokenWithIAM"))
             })?;
             Ok(PyCreateOAuth2TokenWithIAMResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_console_authorization_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
@@ -1400,12 +1425,23 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteConsoleAuthorizationConfiguration")
                 })
@@ -1414,11 +1450,12 @@ impl SignInClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_resource_permission_statement<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let statement_id_value = if let Some(value) = dict_value(params, "statement_id")? {
@@ -1434,13 +1471,24 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_resource_permission_statement()
                 .set_statement_id(statement_id_value)
                 .set_client_token(client_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "DeleteResourcePermissionStatement")
                 })
@@ -1449,11 +1497,12 @@ impl SignInClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_console_authorization_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
@@ -1463,12 +1512,23 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "GetConsoleAuthorizationConfiguration")
                 })
@@ -1477,27 +1537,42 @@ impl SignInClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_resource_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_resource_policy();
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.get_resource_policy();
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
             Ok(PyGetResourcePolicyOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn introspect_o_auth2_token_with_iam<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let token_value = if let Some(value) = dict_value(params, "token")? {
@@ -1513,24 +1588,36 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .introspect_o_auth2_token_with_iam()
                 .set_token(token_value)
                 .set_token_type_hint(token_type_hint_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "IntrospectOAuth2TokenWithIAM"))
             })?;
             Ok(PyIntrospectOAuth2TokenWithIAMResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_resource_permission_statements<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
@@ -1546,24 +1633,36 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_resource_permission_statements()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourcePermissionStatements"))
             })?;
             Ok(PyListResourcePermissionStatementsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_console_authorization_configuration<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
@@ -1573,12 +1672,23 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "PutConsoleAuthorizationConfiguration")
                 })
@@ -1587,11 +1697,12 @@ impl SignInClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_resource_permission_statement<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let source_vpc_value = if let Some(value) = dict_value(params, "source_vpc")? {
@@ -1646,9 +1757,8 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_resource_permission_statement()
                 .set_source_vpc(source_vpc_value)
                 .set_signin_source_vpce(signin_source_vpce_value)
@@ -1658,18 +1768,31 @@ impl SignInClient {
                 .set_requested_region(requested_region_value)
                 .set_excluded_principal(excluded_principal_value)
                 .set_client_token(client_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePermissionStatement"))
             })?;
             Ok(PyPutResourcePermissionStatementOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn revoke_o_auth2_token_with_iam<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let token_value = if let Some(value) = dict_value(params, "token")? {
@@ -1679,12 +1802,23 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .revoke_o_auth2_token_with_iam()
                 .set_token(token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RevokeOAuth2TokenWithIAM"))
             })?;
             Ok(PyRevokeOAuth2TokenWithIAMResponse { inner: output })

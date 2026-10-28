@@ -1329,11 +1329,12 @@ impl STSClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn assume_role<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
@@ -1443,9 +1444,8 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .assume_role()
                 .set_role_arn(role_arn_value)
                 .set_role_session_name(role_session_name_value)
@@ -1460,19 +1460,30 @@ impl STSClient {
                 .set_source_identity(source_identity_value)
                 .set_provided_contexts(provided_contexts_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRole")))?;
             Ok(PyAssumeRoleResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn assume_role_with_saml<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
@@ -1525,9 +1536,8 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .assume_role_with_saml()
                 .set_role_arn(role_arn_value)
                 .set_principal_arn(principal_arn_value)
@@ -1536,18 +1546,31 @@ impl STSClient {
                 .set_policy(policy_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithSAML"))
             })?;
             Ok(PyAssumeRoleWithSAMLResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn assume_role_with_web_identity<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let role_arn_value = if let Some(value) = dict_value(params, "role_arn")? {
@@ -1608,9 +1631,8 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .assume_role_with_web_identity()
                 .set_role_arn(role_arn_value)
                 .set_role_session_name(role_session_name_value)
@@ -1620,18 +1642,31 @@ impl STSClient {
                 .set_policy(policy_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithWebIdentity"))
             })?;
             Ok(PyAssumeRoleWithWebIdentityResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn assume_root<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let target_principal_value = if let Some(value) = dict_value(params, "target_principal")? {
@@ -1660,27 +1695,37 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .assume_root()
                 .set_target_principal(target_principal_value)
                 .set_task_policy_arn(task_policy_arn_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoot")))?;
             Ok(PyAssumeRootResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn decode_authorization_message<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let encoded_message_value = if let Some(value) = dict_value(params, "encoded_message")? {
@@ -1690,23 +1735,35 @@ impl STSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .decode_authorization_message()
                 .set_encoded_message(encoded_message_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DecodeAuthorizationMessage"))
             })?;
             Ok(PyDecodeAuthorizationMessageResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_access_key_info<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let access_key_id_value = if let Some(value) = dict_value(params, "access_key_id")? {
@@ -1716,39 +1773,65 @@ impl STSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_access_key_info()
                 .set_access_key_id(access_key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessKeyInfo"))
             })?;
             Ok(PyGetAccessKeyInfoResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_caller_identity<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_caller_identity();
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.get_caller_identity();
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCallerIdentity"))
             })?;
             Ok(PyGetCallerIdentityResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_delegated_access_token<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let trade_in_token_value = if let Some(value) = dict_value(params, "trade_in_token")? {
@@ -1758,23 +1841,35 @@ impl STSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_delegated_access_token()
                 .set_trade_in_token(trade_in_token_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDelegatedAccessToken"))
             })?;
             Ok(PyGetDelegatedAccessTokenResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_federation_token<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let name_value = if let Some(value) = dict_value(params, "name")? {
@@ -1827,9 +1922,8 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_federation_token()
                 .set_name(name_value)
                 .set_policy(policy_value)
@@ -1837,18 +1931,31 @@ impl STSClient {
                 .set_duration_seconds(duration_seconds_value)
                 .set_tags(tags_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetFederationToken"))
             })?;
             Ok(PyGetFederationTokenResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_session_token<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
@@ -1877,26 +1984,38 @@ impl STSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_session_token()
                 .set_duration_seconds(duration_seconds_value)
                 .set_serial_number(serial_number_value)
                 .set_token_code(token_code_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSessionToken"))
             })?;
             Ok(PyGetSessionTokenResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_web_identity_token<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let audience_value = if let Some(value) = dict_value(params, "audience")? {
@@ -1937,15 +2056,26 @@ impl STSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_web_identity_token()
                 .set_audience(audience_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_tags(tags_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWebIdentityToken"))
             })?;
             Ok(PyGetWebIdentityTokenResponse { inner: output })

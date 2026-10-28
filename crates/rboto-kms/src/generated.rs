@@ -5012,11 +5012,12 @@ impl KMSClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn cancel_key_deletion<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5026,23 +5027,33 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .cancel_key_deletion()
-                .set_key_id(key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.cancel_key_deletion().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelKeyDeletion"))
             })?;
             Ok(PyCancelKeyDeletionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn connect_custom_key_store<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_id_value =
@@ -5053,23 +5064,35 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .connect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ConnectCustomKeyStore"))
             })?;
             Ok(PyConnectCustomKeyStoreResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_alias<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
@@ -5085,25 +5108,35 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAlias")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_custom_key_store<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_name_value =
@@ -5188,9 +5221,8 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_custom_key_store()
                 .set_custom_key_store_name(custom_key_store_name_value)
                 .set_cloud_hsm_cluster_id(cloud_hsm_cluster_id_value)
@@ -5205,18 +5237,31 @@ impl KMSClient {
                 )
                 .set_xks_proxy_authentication_credential(xks_proxy_authentication_credential_value)
                 .set_xks_proxy_connectivity(xks_proxy_connectivity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomKeyStore"))
             })?;
             Ok(PyCreateCustomKeyStoreResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_grant<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5298,9 +5343,8 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_grant()
                 .set_key_id(key_id_value)
                 .set_grantee_principal(grantee_principal_value)
@@ -5312,19 +5356,30 @@ impl KMSClient {
                 .set_dry_run(dry_run_value)
                 .set_grantee_service_principal(grantee_service_principal_value)
                 .set_retiring_service_principal(retiring_service_principal_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateGrant")))?;
             Ok(PyCreateGrantResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn create_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let policy_value = if let Some(value) = dict_value(params, "policy")? {
@@ -5408,9 +5463,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .create_key()
                 .set_policy(policy_value)
                 .set_description(description_value)
@@ -5423,19 +5477,30 @@ impl KMSClient {
                 .set_tags(tags_value)
                 .set_multi_region(multi_region_value)
                 .set_xks_key_id(xks_key_id_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateKey")))?;
             Ok(PyCreateKeyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn decrypt<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
@@ -5513,9 +5578,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .decrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
                 .set_encryption_context(encryption_context_value)
@@ -5525,19 +5589,30 @@ impl KMSClient {
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value)
                 .set_dry_run_modifiers(dry_run_modifiers_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Decrypt")))?;
             Ok(PyDecryptResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_alias<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
@@ -5547,24 +5622,32 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .delete_alias()
-                .set_alias_name(alias_name_value);
-            let output = request
-                .send()
-                .await
+            let client = state.client().await;
+            let request = client.delete_alias().set_alias_name(alias_name_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAlias")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_custom_key_store<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_id_value =
@@ -5575,23 +5658,35 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomKeyStore"))
             })?;
             Ok(PyDeleteCustomKeyStoreResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_imported_key_material<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5607,24 +5702,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_imported_key_material()
                 .set_key_id(key_id_value)
                 .set_key_material_id(key_material_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedKeyMaterial"))
             })?;
             Ok(PyDeleteImportedKeyMaterialResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn derive_shared_secret<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5674,9 +5781,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .derive_shared_secret()
                 .set_key_id(key_id_value)
                 .set_key_agreement_algorithm(key_agreement_algorithm_value)
@@ -5684,18 +5790,31 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value)
                 .set_recipient(recipient_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeriveSharedSecret"))
             })?;
             Ok(PyDeriveSharedSecretResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_custom_key_stores<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_id_value =
@@ -5725,26 +5844,38 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_custom_key_stores()
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_custom_key_store_name(custom_key_store_name_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeCustomKeyStores"))
             })?;
             Ok(PyDescribeCustomKeyStoresResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn describe_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5766,25 +5897,35 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .describe_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DescribeKey")))?;
             Ok(PyDescribeKeyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn disable_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5794,20 +5935,32 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.disable_key().set_key_id(key_id_value);
-            let output = request
-                .send()
-                .await
+            let client = state.client().await;
+            let request = client.disable_key().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DisableKey")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn disable_key_rotation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5817,23 +5970,33 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .disable_key_rotation()
-                .set_key_id(key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.disable_key_rotation().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisableKeyRotation"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn disconnect_custom_key_store<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_id_value =
@@ -5844,23 +6007,35 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .disconnect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisconnectCustomKeyStore"))
             })?;
             Ok(PyDisconnectCustomKeyStoreResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn enable_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5870,20 +6045,32 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.enable_key().set_key_id(key_id_value);
-            let output = request
-                .send()
-                .await
+            let client = state.client().await;
+            let request = client.enable_key().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EnableKey")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn enable_key_rotation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5900,24 +6087,36 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .enable_key_rotation()
                 .set_key_id(key_id_value)
                 .set_rotation_period_in_days(rotation_period_in_days_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "EnableKeyRotation"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn encrypt<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -5974,9 +6173,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .encrypt()
                 .set_key_id(key_id_value)
                 .set_plaintext(plaintext_value)
@@ -5984,19 +6182,30 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_encryption_algorithm(encryption_algorithm_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Encrypt")))?;
             Ok(PyEncryptResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_data_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6056,9 +6265,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_data_key()
                 .set_key_id(key_id_value)
                 .set_encryption_context(encryption_context_value)
@@ -6067,18 +6275,31 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKey"))
             })?;
             Ok(PyGenerateDataKeyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_data_key_pair<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let encryption_context_value =
@@ -6132,9 +6353,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_data_key_pair()
                 .set_encryption_context(encryption_context_value)
                 .set_key_id(key_id_value)
@@ -6142,18 +6362,31 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyPair"))
             })?;
             Ok(PyGenerateDataKeyPairResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_data_key_pair_without_plaintext<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let encryption_context_value =
@@ -6201,16 +6434,27 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_data_key_pair_without_plaintext()
                 .set_encryption_context(encryption_context_value)
                 .set_key_id(key_id_value)
                 .set_key_pair_spec(key_pair_spec_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "GenerateDataKeyPairWithoutPlaintext")
                 })
@@ -6219,11 +6463,12 @@ impl KMSClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_data_key_without_plaintext<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6277,9 +6522,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_data_key_without_plaintext()
                 .set_key_id(key_id_value)
                 .set_encryption_context(encryption_context_value)
@@ -6287,18 +6531,31 @@ impl KMSClient {
                 .set_number_of_bytes(number_of_bytes_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyWithoutPlaintext"))
             })?;
             Ok(PyGenerateDataKeyWithoutPlaintextResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_mac<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let message_value = if let Some(value) = dict_value(params, "message")? {
@@ -6340,28 +6597,38 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_mac()
                 .set_message(message_value)
                 .set_key_id(key_id_value)
                 .set_mac_algorithm(mac_algorithm_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GenerateMac")))?;
             Ok(PyGenerateMacResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn generate_random<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let number_of_bytes_value = if let Some(value) = dict_value(params, "number_of_bytes")? {
@@ -6384,25 +6651,37 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .generate_random()
                 .set_number_of_bytes(number_of_bytes_value)
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_recipient(recipient_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GenerateRandom"))
             })?;
             Ok(PyGenerateRandomResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_key_last_usage<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6412,23 +6691,33 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .get_key_last_usage()
-                .set_key_id(key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.get_key_last_usage().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyLastUsage"))
             })?;
             Ok(PyGetKeyLastUsageResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_key_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6444,24 +6733,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_key_policy()
                 .set_key_id(key_id_value)
                 .set_policy_name(policy_name_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyPolicy"))
             })?;
             Ok(PyGetKeyPolicyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_key_rotation_status<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6471,23 +6772,33 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .get_key_rotation_status()
-                .set_key_id(key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.get_key_rotation_status().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyRotationStatus"))
             })?;
             Ok(PyGetKeyRotationStatusResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_parameters_for_import<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6514,25 +6825,37 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_parameters_for_import()
                 .set_key_id(key_id_value)
                 .set_wrapping_algorithm(wrapping_algorithm_value)
                 .set_wrapping_key_spec(wrapping_key_spec_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersForImport"))
             })?;
             Ok(PyGetParametersForImportResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_public_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6554,24 +6877,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_public_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicKey"))
             })?;
             Ok(PyGetPublicKeyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn import_key_material<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6635,9 +6970,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .import_key_material()
                 .set_key_id(key_id_value)
                 .set_import_token(import_token_value)
@@ -6647,18 +6981,31 @@ impl KMSClient {
                 .set_import_type(import_type_value)
                 .set_key_material_description(key_material_description_value)
                 .set_key_material_id(key_material_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ImportKeyMaterial"))
             })?;
             Ok(PyImportKeyMaterialResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_aliases<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6680,26 +7027,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_aliases()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
             Ok(PyListAliasesResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_grants<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
@@ -6741,9 +7098,8 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_grants()
                 .set_limit(limit_value)
                 .set_marker(marker_value)
@@ -6751,19 +7107,30 @@ impl KMSClient {
                 .set_grant_id(grant_id_value)
                 .set_grantee_principal(grantee_principal_value)
                 .set_grantee_service_principal(grantee_service_principal_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGrants")))?;
             Ok(PyListGrantsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_key_policies<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6785,25 +7152,37 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_key_policies()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyPolicies"))
             })?;
             Ok(PyListKeyPoliciesResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_key_rotations<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6834,26 +7213,38 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_key_rotations()
                 .set_key_id(key_id_value)
                 .set_include_key_material(include_key_material_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyRotations"))
             })?;
             Ok(PyListKeyRotationsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_keys<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
@@ -6869,25 +7260,35 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_keys()
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListKeys")))?;
             Ok(PyListKeysResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_resource_tags<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -6909,25 +7310,37 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_resource_tags()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTags"))
             })?;
             Ok(PyListResourceTagsResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn list_retirable_grants<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let limit_value = if let Some(value) = dict_value(params, "limit")? {
@@ -6957,26 +7370,38 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .list_retirable_grants()
                 .set_limit(limit_value)
                 .set_marker(marker_value)
                 .set_retiring_principal(retiring_principal_value)
                 .set_retiring_service_principal(retiring_service_principal_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetirableGrants"))
             })?;
             Ok(PyListRetirableGrantsOutput { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_key_policy<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7005,26 +7430,38 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_key_policy()
                 .set_key_id(key_id_value)
                 .set_policy_name(policy_name_value)
                 .set_policy(policy_value)
                 .set_bypass_policy_lockout_safety_check(bypass_policy_lockout_safety_check_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutKeyPolicy"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn re_encrypt<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let ciphertext_blob_value = if let Some(value) = dict_value(params, "ciphertext_blob")? {
@@ -7125,9 +7562,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .re_encrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
                 .set_source_encryption_context(source_encryption_context_value)
@@ -7139,19 +7575,30 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value)
                 .set_dry_run_modifiers(dry_run_modifiers_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ReEncrypt")))?;
             Ok(PyReEncryptResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn replicate_key<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7198,9 +7645,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .replicate_key()
                 .set_key_id(key_id_value)
                 .set_replica_region(replica_region_value)
@@ -7208,18 +7654,31 @@ impl KMSClient {
                 .set_bypass_policy_lockout_safety_check(bypass_policy_lockout_safety_check_value)
                 .set_description(description_value)
                 .set_tags(tags_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateKey"))
             })?;
             Ok(PyReplicateKeyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn retire_grant<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let grant_token_value = if let Some(value) = dict_value(params, "grant_token")? {
@@ -7247,27 +7706,37 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .retire_grant()
                 .set_grant_token(grant_token_value)
                 .set_key_id(key_id_value)
                 .set_grant_id(grant_id_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RetireGrant")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn revoke_grant<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7289,26 +7758,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .revoke_grant()
                 .set_key_id(key_id_value)
                 .set_grant_id(grant_id_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RevokeGrant")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn rotate_key_on_demand<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7318,23 +7797,33 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
-                .rotate_key_on_demand()
-                .set_key_id(key_id_value);
-            let output = request.send().await.map_err(|error| {
+            let client = state.client().await;
+            let request = client.rotate_key_on_demand().set_key_id(key_id_value);
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RotateKeyOnDemand"))
             })?;
             Ok(PyRotateKeyOnDemandResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn schedule_key_deletion<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7351,24 +7840,36 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .schedule_key_deletion()
                 .set_key_id(key_id_value)
                 .set_pending_window_in_days(pending_window_in_days_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ScheduleKeyDeletion"))
             })?;
             Ok(PyScheduleKeyDeletionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn sign<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7419,9 +7920,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .sign()
                 .set_key_id(key_id_value)
                 .set_message(message_value)
@@ -7429,19 +7929,30 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Sign")))?;
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output =
+                result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Sign")))?;
             Ok(PySignResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn tag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7463,25 +7974,35 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .tag_resource()
                 .set_key_id(key_id_value)
                 .set_tags(tags_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn untag_resource<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7503,24 +8024,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .untag_resource()
                 .set_key_id(key_id_value)
                 .set_tag_keys(tag_keys_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_alias<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let alias_name_value = if let Some(value) = dict_value(params, "alias_name")? {
@@ -7536,25 +8069,35 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAlias")))?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_custom_key_store<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let custom_key_store_id_value =
@@ -7630,9 +8173,8 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_new_custom_key_store_name(new_custom_key_store_name_value)
@@ -7646,18 +8188,31 @@ impl KMSClient {
                 )
                 .set_xks_proxy_authentication_credential(xks_proxy_authentication_credential_value)
                 .set_xks_proxy_connectivity(xks_proxy_connectivity_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomKeyStore"))
             })?;
             Ok(PyUpdateCustomKeyStoreResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_key_description<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7673,24 +8228,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_key_description()
                 .set_key_id(key_id_value)
                 .set_description(description_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateKeyDescription"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn update_primary_region<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7706,24 +8273,36 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .update_primary_region()
                 .set_key_id(key_id_value)
                 .set_primary_region(primary_region_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePrimaryRegion"))
             })?;
             Python::attach(|py| Ok(py.None()))
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn verify<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let key_id_value = if let Some(value) = dict_value(params, "key_id")? {
@@ -7781,9 +8360,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .verify()
                 .set_key_id(key_id_value)
                 .set_message(message_value)
@@ -7792,19 +8370,30 @@ impl KMSClient {
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Verify")))?;
             Ok(PyVerifyResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn verify_mac<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let message_value = if let Some(value) = dict_value(params, "message")? {
@@ -7853,9 +8442,8 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .verify_mac()
                 .set_message(message_value)
                 .set_key_id(key_id_value)
@@ -7863,9 +8451,19 @@ impl KMSClient {
                 .set_mac(mac_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "VerifyMac")))?;
             Ok(PyVerifyMacResponse { inner: output })
         })

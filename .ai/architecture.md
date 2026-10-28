@@ -43,6 +43,15 @@ exception names; the old client name remains a Python compatibility alias.
 Do not rename native symbols or modeled exception bases as a side effect of
 changing a public client name. See ADR-0013.
 
+## Operation middleware
+
+Configured interceptors form an async `(request, next) -> response` chain in
+`rboto.interceptors`. They may change parameters, block or skip native dispatch,
+and replace a response. Generated methods unwrap the output while preserving
+public signatures and native return contracts. A private metadata sink receives
+bounded retry details from `rboto-core`. Empty configuration keeps direct dispatch.
+See ADR-0014 for continuation lifetime, exceptions, and streaming behavior.
+
 ## Sources of truth
 
 The service TOML, Smithy model, pinned AWS Rust crate, generator, and templates are sources

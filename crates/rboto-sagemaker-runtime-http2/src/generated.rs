@@ -286,11 +286,12 @@ impl SageMakerRuntimeHTTP2Client {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn invoke_endpoint_with_bidirectional_stream<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let endpoint_name_value = if let Some(value) = dict_value(params, "endpoint_name")? {
@@ -329,16 +330,27 @@ impl SageMakerRuntimeHTTP2Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .invoke_endpoint_with_bidirectional_stream()
                 .set_endpoint_name(endpoint_name_value)
                 .set_body(body_value)
                 .set_target_variant(target_variant_value)
                 .set_model_invocation_path(model_invocation_path_value)
                 .set_model_query_string(model_query_string_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "InvokeEndpointWithBidirectionalStream")
                 })

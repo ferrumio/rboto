@@ -3404,11 +3404,12 @@ impl TranscribeStreamingClient {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_medical_scribe_stream<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -3418,23 +3419,35 @@ impl TranscribeStreamingClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_medical_scribe_stream()
                 .set_session_id(session_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeStream"))
             })?;
             Ok(PyGetMedicalScribeStreamResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_call_analytics_stream_transcription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
@@ -3590,9 +3603,8 @@ impl TranscribeStreamingClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_call_analytics_stream_transcription()
                 .set_language_code(language_code_value)
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
@@ -3615,7 +3627,19 @@ impl TranscribeStreamingClient {
                 .set_content_identification_type(content_identification_type_value)
                 .set_content_redaction_type(content_redaction_type_value)
                 .set_pii_entity_types(pii_entity_types_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| {
                     sdk_error_to_py(py, &error, "StartCallAnalyticsStreamTranscription")
                 })
@@ -3743,11 +3767,12 @@ impl TranscribeStreamingClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_medical_scribe_stream<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
@@ -3792,16 +3817,27 @@ impl TranscribeStreamingClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_medical_scribe_stream()
                 .set_session_id(session_id_value)
                 .set_language_code(language_code_value)
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
                 .set_media_encoding(media_encoding_value)
                 .set_input_stream(input_stream_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMedicalScribeStream"))
             })?;
             Python::attach(|py| {
@@ -3849,11 +3885,12 @@ impl TranscribeStreamingClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_medical_stream_transcription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
@@ -3949,9 +3986,8 @@ impl TranscribeStreamingClient {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_medical_stream_transcription()
                 .set_language_code(language_code_value)
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
@@ -3965,7 +4001,19 @@ impl TranscribeStreamingClient {
                 .set_enable_channel_identification(enable_channel_identification_value)
                 .set_number_of_channels(number_of_channels_value)
                 .set_content_identification_type(content_identification_type_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartMedicalStreamTranscription"))
             })?;
             Python::attach(|py| {
@@ -4049,11 +4097,12 @@ impl TranscribeStreamingClient {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_stream_transcription<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
@@ -4250,9 +4299,8 @@ impl TranscribeStreamingClient {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_stream_transcription()
                 .set_language_code(language_code_value)
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
@@ -4281,7 +4329,19 @@ impl TranscribeStreamingClient {
                 .set_vocabulary_filter_names(vocabulary_filter_names_value)
                 .set_session_resume_window(session_resume_window_value)
                 .set_transcript_format(transcript_format_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartStreamTranscription"))
             })?;
             Python::attach(|py| {

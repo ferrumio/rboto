@@ -4,6 +4,14 @@
 )
 {% else %}{{ line }}
 {% endif %}{% endfor %}
+from .interceptors import Attempt as Attempt
+from .interceptors import Interceptor as Interceptor
+from .interceptors import Next as Next
+from .interceptors import OperationContext as OperationContext
+from .interceptors import OperationMetadata as OperationMetadata
+from .interceptors import OperationRequest as OperationRequest
+from .interceptors import OperationResponse as OperationResponse
+from .interceptors import operation_context as operation_context
 {% for service in services %}from .services import {{ service.python_name }} as {{ service.python_name }}
 {% endfor %}from .session import Session as Session
 
