@@ -7,12 +7,12 @@ These are three independent clients:
 
 | Client | Purpose |
 |---|---|
-| `eventbridge()` | Event buses, events, rules, targets, archives, and replays |
-| `scheduler()` | One-time and recurring schedules, time zones, and flexible time windows |
-| `pipes()` | Connect event sources to targets with filtering and optional enrichment |
+| `EventBridgeClient()` | Event buses, events, rules, targets, archives, and replays |
+| `EventBridgeSchedulerClient()` | One-time and recurring schedules, time zones, and flexible time windows |
+| `EventBridgePipesClient()` | Connect event sources to targets with filtering and optional enrichment |
 
-Traditional scheduled rules belong to `eventbridge()`. EventBridge Scheduler has its own
-`scheduler()` client.
+Traditional scheduled rules belong to `EventBridgeClient()`. EventBridge Scheduler has its own
+`EventBridgeSchedulerClient()` client.
 
 Publish a typed event to an existing bus:
 

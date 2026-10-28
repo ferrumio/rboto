@@ -19,9 +19,9 @@ application's call; it does not establish that a service will accept it.
 Pass `endpoint_url` explicitly and configure test credentials in the test process:
 
 ```python
-from rboto import s3
+from rboto import S3Client
 
-client = s3(region="us-east-1", endpoint_url="http://localhost:4566")
+client = S3Client(region="us-east-1", endpoint_url="http://localhost:4566")
 ```
 
 Use unique resource names and clean up in `finally` blocks. Check which operations

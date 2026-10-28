@@ -11,7 +11,7 @@ if Path(sys.prefix).resolve() != PROJECT_VENV.resolve():
         raise RuntimeError("project virtual environment not found: run python3 -m venv .venv")
     os.execv(venv_python, [str(venv_python), *sys.argv])
 
-from rboto import sns
+from rboto import SNSClient
 
 
 def configure_aws() -> str:
@@ -19,7 +19,7 @@ def configure_aws() -> str:
 
 
 async def main() -> None:
-    client = sns(
+    client = SNSClient(
         region=configure_aws(),
         endpoint_url=os.getenv("AWS_ENDPOINT_URL"),
     )

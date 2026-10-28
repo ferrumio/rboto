@@ -6,6 +6,8 @@ from collections.abc import Awaitable, Callable
 from pathlib import Path
 
 import pytest
+import rboto
+from rboto import Session
 from rboto_codegen.registry import list_services
 from rboto_codegen.rust_crate import parse_crate
 
@@ -14,7 +16,7 @@ assert SELECTED_SERVICES <= {service.service_id for service in list_services()}
 CLIENTS = tuple(
     (
         getattr(importlib.import_module(service.python_package), service.client_class),
-        getattr(importlib.import_module(f"{service.python_package}._native"), service.client_class),
+        getattr(importlib.import_module(f"{service.python_package}._native"), service.native_class),
         len(parse_crate(service).operations),
     )
     for service in list_services()
@@ -129,3 +131,29 @@ def test_native_properties_match_the_generated_stubs(service: object) -> None:
                 assert hasattr(native_class, member.name), (
                     f"{package_name}.{node.name}.{member.name}"
                 )
+
+
+@pytest.mark.parametrize(
+    "service",
+    [
+        service
+        for service in list_services()
+        if not SELECTED_SERVICES or service.service_id in SELECTED_SERVICES
+    ],
+    ids=lambda service: service.service_id,
+)
+def test_public_client_is_the_service_class_and_accepts_session(service: object) -> None:
+    package = importlib.import_module(getattr(service, "python_package"))
+    name = getattr(service, "client_class")
+    public_class = getattr(rboto, name)
+    assert public_class is getattr(package, name)
+    assert public_class.__name__ == name
+    session = Session(region="us-east-1")
+    client = public_class(session=session)
+    assert isinstance(client, public_class)
+    factory = getattr(rboto, getattr(service, "python_name"))
+    assert type(factory(session=session)) is public_class
+    if getattr(service, "native_class") != name:
+        assert getattr(package, getattr(service, "native_class")) is public_class
+    with pytest.raises(ValueError, match="session cannot be combined"):
+        public_class(session=session, region="eu-west-1")

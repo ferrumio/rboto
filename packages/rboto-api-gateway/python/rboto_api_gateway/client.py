@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import APIGatewayClient as NativeClient, ApiKeyIds, ApiKeys, Authorizers, BasePathMappings, ClientCertificates, CreateApiKeyOutput, CreateAuthorizerOutput, CreateBasePathMappingOutput, CreateDeploymentOutput, CreateDocumentationPartOutput, CreateDocumentationVersionOutput, CreateDomainNameAccessAssociationOutput, CreateDomainNameOutput, CreateModelOutput, CreateRequestValidatorOutput, CreateResourceOutput, CreateRestApiOutput, CreateStageOutput, CreateUsagePlanKeyOutput, CreateUsagePlanOutput, CreateVpcLinkOutput, Deployments, DocumentationPartIds, DocumentationParts, DocumentationVersions, DomainNameAccessAssociations, DomainNames, ExportResponse, GatewayResponses, GenerateClientCertificateOutput, GetAccountOutput, GetApiKeyOutput, GetAuthorizerOutput, GetBasePathMappingOutput, GetClientCertificateOutput, GetDeploymentOutput, GetDocumentationPartOutput, GetDocumentationVersionOutput, GetDomainNameOutput, GetGatewayResponseOutput, GetIntegrationOutput, GetIntegrationResponseOutput, GetMethodOutput, GetMethodResponseOutput, GetModelOutput, GetRequestValidatorOutput, GetResourceOutput, GetRestApiOutput, GetSdkTypeOutput, GetStageOutput, GetUsageOutput, GetUsagePlanKeyOutput, GetUsagePlanOutput, GetVpcLinkOutput, ImportRestApiOutput, Models, PutGatewayResponseOutput, PutIntegrationOutput, PutIntegrationResponseOutput, PutMethodOutput, PutMethodResponseOutput, PutRestApiOutput, RequestValidators, Resources, RestApis, SdkResponse, SdkTypes, Stages, Tags, Template, TestInvokeAuthorizerResponse, TestInvokeMethodResponse, UpdateAccountOutput, UpdateApiKeyOutput, UpdateAuthorizerOutput, UpdateBasePathMappingOutput, UpdateClientCertificateOutput, UpdateDeploymentOutput, UpdateDocumentationPartOutput, UpdateDocumentationVersionOutput, UpdateDomainNameOutput, UpdateGatewayResponseOutput, UpdateIntegrationOutput, UpdateIntegrationResponseOutput, UpdateMethodOutput, UpdateMethodResponseOutput, UpdateModelOutput, UpdateRequestValidatorOutput, UpdateResourceOutput, UpdateRestApiOutput, UpdateStageOutput, UpdateUsageOutput, UpdateUsagePlanOutput, UpdateVpcLinkOutput, UsagePlanKeys, UsagePlans, VpcLinks
 from .types import (
     AccessAssociationSourceType,
@@ -41,10 +43,12 @@ class APIGatewayClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

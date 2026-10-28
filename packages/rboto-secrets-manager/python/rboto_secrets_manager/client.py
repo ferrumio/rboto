@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import SecretsManagerClient as NativeClient, BatchGetSecretValueResponse, CancelRotateSecretResponse, CreateSecretResponse, DeleteResourcePolicyResponse, DeleteSecretResponse, DescribeSecretResponse, GetRandomPasswordResponse, GetResourcePolicyResponse, GetSecretValueResponse, ListSecretVersionIdsResponse, ListSecretsResponse, PutResourcePolicyResponse, PutSecretValueResponse, RemoveRegionsFromReplicationResponse, ReplicateSecretToRegionsResponse, RestoreSecretResponse, RotateSecretResponse, StopReplicationToReplicaResponse, UpdateSecretResponse, UpdateSecretVersionStageResponse, ValidateResourcePolicyResponse
 from .types import (
     ExternalSecretRotationMetadataItem,
@@ -20,10 +22,12 @@ class SecretsManagerClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

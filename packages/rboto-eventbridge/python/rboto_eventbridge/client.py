@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import EventBridgeClient as NativeClient, CancelReplayResponse, CreateApiDestinationResponse, CreateArchiveResponse, CreateConnectionResponse, CreateEndpointResponse, CreateEventBusResponse, CreatePartnerEventSourceResponse, DeauthorizeConnectionResponse, DeleteApiDestinationResponse, DeleteArchiveResponse, DeleteConnectionResponse, DeleteEndpointResponse, DescribeApiDestinationResponse, DescribeArchiveResponse, DescribeConnectionResponse, DescribeEndpointResponse, DescribeEventBusResponse, DescribeEventSourceResponse, DescribePartnerEventSourceResponse, DescribeReplayResponse, DescribeRuleResponse, ListApiDestinationsResponse, ListArchivesResponse, ListConnectionsResponse, ListEndpointsResponse, ListEventBusesResponse, ListEventSourcesResponse, ListPartnerEventSourceAccountsResponse, ListPartnerEventSourcesResponse, ListReplaysResponse, ListRuleNamesByTargetResponse, ListRulesResponse, ListTagsForResourceResponse, ListTargetsByRuleResponse, PutEventsResponse, PutPartnerEventsResponse, PutRuleResponse, PutTargetsResponse, RemoveTargetsResponse, StartReplayResponse, TagResourceResponse, TestEventPatternResponse, UntagResourceResponse, UpdateApiDestinationResponse, UpdateArchiveResponse, UpdateConnectionResponse, UpdateEndpointResponse, UpdateEventBusResponse
 from .types import (
     ApiDestinationHttpMethod,
@@ -33,10 +35,12 @@ class EventBridgeClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

@@ -5,7 +5,9 @@ from collections.abc import AsyncIterator
 {% if not native_outputs %}from typing import cast
 {% endif %}
 
-from ._native import {{ client_class }} as NativeClient{% for name in native_output_names %}, {{ name }}{% endfor %}
+from rboto.session import Session, resolve_config
+
+from ._native import {{ native_client_class }} as NativeClient{% for name in native_output_names %}, {{ name }}{% endfor %}
 from .types import (
 {% for name in type_names %}    {{ name }},
 {% endfor %})
@@ -15,10 +17,12 @@ class {{ client_class }}:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,
@@ -43,3 +47,8 @@ class {{ client_class }}:
 {% else %}
         return cast({{ method.output }}, _response)
 {% endif %}{% endif %}{% endfor %}
+{% if native_client_class != client_class %}
+
+# Compatibility alias for the original service-package import.
+{{ native_client_class }} = {{ client_class }}
+{% endif %}

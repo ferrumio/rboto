@@ -1,8 +1,8 @@
-from rboto import kms
+from rboto import KMSClient
 
 
 async def encrypt_value(key_id: str, value: bytes) -> bytes:
-    response = await kms(region="us-east-1").encrypt(
+    response = await KMSClient(region="us-east-1").encrypt(
         key_id=key_id,
         plaintext=value,
         encryption_context={"application": "example"},

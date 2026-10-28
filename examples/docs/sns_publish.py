@@ -1,4 +1,4 @@
-from rboto_sns import SNSClient
+from rboto import SNSClient
 
 
 async def publish(client: SNSClient, topic_arn: str, message: str) -> str | None:

@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsResponse, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
 from .types import (
     AttributeDefinition,
@@ -72,10 +74,12 @@ class DynamoDBClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

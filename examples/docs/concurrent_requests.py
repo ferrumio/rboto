@@ -1,6 +1,6 @@
 import asyncio
 
-from rboto_ssm import SSMClient
+from rboto import SSMClient
 
 
 async def read_settings(client: SSMClient) -> None:

@@ -241,7 +241,7 @@ def test_lambda_handler_reuses_client_across_invocations(
     import rboto
 
     # Only redirect client construction; requests use the compiled client and peer.
-    monkeypatch.setattr(rboto, "s3", lambda: client)
+    monkeypatch.setattr(rboto, "S3Client", lambda: client)
     monkeypatch.setenv("DOCUMENT_BUCKET", "documents")
     example = runpy.run_path(str(EXAMPLES / "lambda_function.py"))
     handler = example["lambda_handler"]

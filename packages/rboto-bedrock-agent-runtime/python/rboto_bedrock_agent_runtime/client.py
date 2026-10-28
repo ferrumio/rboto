@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import BedrockAgentRuntimeClient as NativeClient, CheckIngestedDocumentAclResponse, CreateInvocationResponse, CreateSessionResponse, DeleteAgentMemoryResponse, DeleteSessionResponse, EndSessionResponse, GenerateQueryResponse, GetAgentMemoryResponse, GetDocumentContentResponse, GetExecutionFlowSnapshotResponse, GetFlowExecutionResponse, GetIngestedDocumentAclResponse, GetInvocationStepResponse, GetSessionResponse, ListFlowExecutionEventsResponse, ListFlowExecutionsResponse, ListInvocationStepsResponse, ListInvocationsResponse, ListSessionsResponse, ListTagsForResourceResponse, PutInvocationStepResponse, RerankResponse, RetrieveAndGenerateResponse, RetrieveResponse, StartFlowExecutionResponse, StopFlowExecutionResponse, TagResourceResponse, UntagResourceResponse, UpdateSessionResponse
 from .types import (
     AgentActionGroup,
@@ -59,10 +61,12 @@ class BedrockAgentRuntimeClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import SNSClient as NativeClient, CheckIfPhoneNumberIsOptedOutResponse, ConfirmSubscriptionResponse, CreateEndpointResponse, CreatePlatformApplicationResponse, CreateSMSSandboxPhoneNumberResult, CreateTopicResponse, DeleteSMSSandboxPhoneNumberResult, GetDataProtectionPolicyResponse, GetEndpointAttributesResponse, GetPlatformApplicationAttributesResponse, GetSMSAttributesResponse, GetSMSSandboxAccountStatusResult, GetSubscriptionAttributesResponse, GetTopicAttributesResponse, ListEndpointsByPlatformApplicationResponse, ListOriginationNumbersResult, ListPhoneNumbersOptedOutResponse, ListPlatformApplicationsResponse, ListSMSSandboxPhoneNumbersResult, ListSubscriptionsByTopicResponse, ListSubscriptionsResponse, ListTagsForResourceResponse, ListTopicsResponse, OptInPhoneNumberResponse, PublishBatchResponse, PublishResponse, SetSMSAttributesResponse, SubscribeResponse, TagResourceResponse, UntagResourceResponse, VerifySMSSandboxPhoneNumberResult
 from .types import (
     LanguageCodeString,
@@ -17,10 +19,12 @@ class SNSClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

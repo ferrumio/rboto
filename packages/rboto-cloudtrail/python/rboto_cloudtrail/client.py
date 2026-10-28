@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import CloudTrailClient as NativeClient, AddTagsResponse, CancelQueryResponse, CreateChannelResponse, CreateDashboardResponse, CreateEventDataStoreResponse, CreateTrailResponse, DeleteChannelResponse, DeleteDashboardResponse, DeleteEventDataStoreResponse, DeleteResourcePolicyResponse, DeleteTrailResponse, DeregisterOrganizationDelegatedAdminResponse, DescribeQueryResponse, DescribeTrailsResponse, DisableFederationResponse, EnableFederationResponse, GenerateQueryResponse, GetChannelResponse, GetDashboardResponse, GetEventConfigurationResponse, GetEventDataStoreResponse, GetEventSelectorsResponse, GetImportResponse, GetInsightSelectorsResponse, GetQueryResultsResponse, GetResourcePolicyResponse, GetTrailResponse, GetTrailStatusResponse, ListChannelsResponse, ListDashboardsResponse, ListEventDataStoresResponse, ListImportFailuresResponse, ListImportsResponse, ListInsightsDataResponse, ListInsightsMetricDataResponse, ListPublicKeysResponse, ListQueriesResponse, ListTagsResponse, ListTrailsResponse, LookupEventsResponse, PutEventConfigurationResponse, PutEventSelectorsResponse, PutInsightSelectorsResponse, PutResourcePolicyResponse, RegisterOrganizationDelegatedAdminResponse, RemoveTagsResponse, RestoreEventDataStoreResponse, SearchSampleQueriesResponse, StartDashboardRefreshResponse, StartEventDataStoreIngestionResponse, StartImportResponse, StartLoggingResponse, StartQueryResponse, StopEventDataStoreIngestionResponse, StopImportResponse, StopLoggingResponse, UpdateChannelResponse, UpdateDashboardResponse, UpdateEventDataStoreResponse, UpdateTrailResponse
 from .types import (
     AdvancedEventSelector,
@@ -34,10 +36,12 @@ class CloudTrailClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

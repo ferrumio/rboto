@@ -3,13 +3,13 @@
 Install the relevant client packages from the checkout; see [Getting started](../getting-started.md).
 Examples use existing resources and require permission for the requested operation.
 
-| Service | Factory | Examples |
+| Service | Client | Examples |
 |---|---|---|
-| CloudWatch Logs | `cloudwatch_logs()` | Log groups, streams, queries, Live Tail |
-| Systems Manager | `ssm()` | Parameter Store, documents, commands, automation |
-| Key Management Service | `kms()` | Encryption, decryption, signatures, keys |
-| Step Functions | `sfn()` | State machines and workflow executions |
-| Simple Email Service v2 | `sesv2()` | Email content, templates, identities, configuration |
+| CloudWatch Logs | `CloudWatchLogsClient()` | Log groups, streams, queries, Live Tail |
+| Systems Manager | `SSMClient()` | Parameter Store, documents, commands, automation |
+| Key Management Service | `KMSClient()` | Encryption, decryption, signatures, keys |
+| Step Functions | `StepFunctionsClient()` | State machines and workflow executions |
+| Simple Email Service v2 | `SESV2Client()` | Email content, templates, identities, configuration |
 
 ### CloudWatch Logs
 

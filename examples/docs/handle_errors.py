@@ -1,4 +1,4 @@
-from rboto_s3 import S3Client
+from rboto import S3Client
 from rboto_s3.exceptions import NoSuchKeyError, S3Error
 
 

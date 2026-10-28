@@ -1,4 +1,4 @@
-from rboto_sqs import SQSClient
+from rboto import SQSClient
 
 
 async def receive(client: SQSClient, queue_url: str) -> None:

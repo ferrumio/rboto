@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import QBusinessClient as NativeClient, AssociatePermissionResponse, BatchDeleteDocumentResponse, BatchPutDocumentResponse, CancelSubscriptionResponse, ChatSyncOutput, CheckDocumentAccessResponse, CreateAnonymousWebExperienceUrlResponse, CreateApplicationResponse, CreateChatResponseConfigurationResponse, CreateDataAccessorResponse, CreateDataSourceResponse, CreateIndexResponse, CreatePluginResponse, CreateRetrieverResponse, CreateSubscriptionResponse, CreateUserResponse, CreateWebExperienceResponse, DeleteApplicationResponse, DeleteAttachmentResponse, DeleteChatControlsConfigurationResponse, DeleteChatResponseConfigurationResponse, DeleteConversationResponse, DeleteDataAccessorResponse, DeleteDataSourceResponse, DeleteGroupResponse, DeleteIndexResponse, DeletePluginResponse, DeleteRetrieverResponse, DeleteUserResponse, DeleteWebExperienceResponse, DisassociatePermissionResponse, GetApplicationResponse, GetChatControlsConfigurationResponse, GetChatResponseConfigurationResponse, GetDataAccessorResponse, GetDataSourceResponse, GetDocumentContentResponse, GetGroupResponse, GetIndexResponse, GetMediaResponse, GetPluginResponse, GetPolicyResponse, GetRetrieverResponse, GetUserResponse, GetWebExperienceResponse, ListApplicationsResponse, ListAttachmentsResponse, ListChatResponseConfigurationsResponse, ListConversationsResponse, ListDataAccessorsResponse, ListDataSourceSyncJobsResponse, ListDataSourcesResponse, ListDocumentsResponse, ListGroupsResponse, ListIndicesResponse, ListMessagesResponse, ListPluginActionsResponse, ListPluginTypeActionsResponse, ListPluginTypeMetadataResponse, ListPluginsResponse, ListRetrieversResponse, ListSubscriptionsResponse, ListTagsForResourceResponse, ListWebExperiencesResponse, PutGroupResponse, SearchRelevantContentResponse, StartDataSourceSyncJobResponse, StopDataSourceSyncJobResponse, TagResourceResponse, UntagResourceResponse, UpdateApplicationResponse, UpdateChatControlsConfigurationResponse, UpdateChatResponseConfigurationResponse, UpdateDataAccessorResponse, UpdateDataSourceResponse, UpdateIndexResponse, UpdatePluginResponse, UpdateRetrieverResponse, UpdateSubscriptionResponse, UpdateUserResponse, UpdateWebExperienceResponse
 from .types import (
     ActionConfiguration,
@@ -69,10 +71,12 @@ class QBusinessClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

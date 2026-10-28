@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import BedrockRuntimeClient as NativeClient, ApplyGuardrailResponse, ConverseResponse, CountTokensResponse, GetAsyncInvokeResponse, InvokeGuardrailChecksResponse, InvokeModelResponse, ListAsyncInvokesResponse, StartAsyncInvokeResponse
 from .types import (
     AsyncInvokeOutputDataConfig,
@@ -42,10 +44,12 @@ class BedrockRuntimeClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

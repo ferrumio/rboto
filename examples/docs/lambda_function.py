@@ -2,9 +2,9 @@ import asyncio
 import os
 
 from pydantic import BaseModel, ConfigDict, Field
-from rboto import s3
+from rboto import S3Client
 
-client = s3()
+client = S3Client()
 bucket = os.environ["DOCUMENT_BUCKET"]
 
 

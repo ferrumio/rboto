@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import PipesClient as NativeClient, CreatePipeResponse, DeletePipeResponse, DescribePipeResponse, ListPipesResponse, ListTagsForResourceResponse, StartPipeResponse, StopPipeResponse, TagResourceResponse, UntagResourceResponse, UpdatePipeResponse
 from .types import (
     PipeEnrichmentParameters,
@@ -16,14 +18,16 @@ from .types import (
 )
 
 
-class PipesClient:
+class EventBridgePipesClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,
@@ -234,3 +238,8 @@ class PipesClient:
             params["kms_key_identifier"] = kms_key_identifier
         _response = await self._native.update_pipe(params)
         return _response
+
+
+
+# Compatibility alias for the original service-package import.
+PipesClient = EventBridgePipesClient

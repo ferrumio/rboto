@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, Field
-from rboto_s3 import S3Client
+from rboto import S3Client
 
 
 class DocumentInput(BaseModel):

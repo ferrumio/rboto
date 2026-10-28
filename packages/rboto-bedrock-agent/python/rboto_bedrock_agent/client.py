@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import BedrockAgentClient as NativeClient, AssociateAgentCollaboratorResponse, AssociateAgentKnowledgeBaseResponse, CreateAgentActionGroupResponse, CreateAgentAliasResponse, CreateAgentResponse, CreateDataSourceResponse, CreateFlowAliasResponse, CreateFlowResponse, CreateFlowVersionResponse, CreateKnowledgeBaseResponse, CreatePromptResponse, CreatePromptVersionResponse, CreateRetrievalInstructionResponse, CreateRetrievalInstructionVersionResponse, CreateVpcConfigurationResponse, DeleteAgentActionGroupResponse, DeleteAgentAliasResponse, DeleteAgentResponse, DeleteAgentVersionResponse, DeleteDataSourceResponse, DeleteFlowAliasResponse, DeleteFlowResponse, DeleteFlowVersionResponse, DeleteKnowledgeBaseDocumentsResponse, DeleteKnowledgeBaseResponse, DeletePromptResponse, DeleteResourcePolicyResponse, DeleteRetrievalInstructionResponse, DeleteVpcConfigurationResponse, DisassociateAgentCollaboratorResponse, DisassociateAgentKnowledgeBaseResponse, GetAgentActionGroupResponse, GetAgentAliasResponse, GetAgentCollaboratorResponse, GetAgentKnowledgeBaseResponse, GetAgentResponse, GetAgentVersionResponse, GetDataSourceResponse, GetFlowAliasResponse, GetFlowResponse, GetFlowVersionResponse, GetIngestionJobResponse, GetKnowledgeBaseDocumentsResponse, GetKnowledgeBaseResponse, GetPromptResponse, GetResourcePolicyResponse, GetRetrievalInstructionResponse, GetVpcConfigurationResponse, IngestKnowledgeBaseDocumentsResponse, ListAgentActionGroupsResponse, ListAgentAliasesResponse, ListAgentCollaboratorsResponse, ListAgentKnowledgeBasesResponse, ListAgentVersionsResponse, ListAgentsResponse, ListDataSourcesResponse, ListFlowAliasesResponse, ListFlowVersionsResponse, ListFlowsResponse, ListIngestionJobsResponse, ListKnowledgeBaseDocumentsResponse, ListKnowledgeBasesResponse, ListPromptsResponse, ListRetrievalInstructionVersionsResponse, ListRetrievalInstructionsResponse, ListTagsForResourceResponse, ListVpcConfigurationsResponse, PrepareAgentResponse, PrepareFlowResponse, PutResourcePolicyResponse, StartIngestionJobResponse, StopIngestionJobResponse, TagResourceResponse, UntagResourceResponse, UpdateAgentActionGroupResponse, UpdateAgentAliasResponse, UpdateAgentCollaboratorResponse, UpdateAgentKnowledgeBaseResponse, UpdateAgentResponse, UpdateDataSourceResponse, UpdateFlowAliasResponse, UpdateFlowResponse, UpdateKnowledgeBaseResponse, UpdatePromptResponse, UpdateRetrievalInstructionResponse, ValidateFlowDefinitionResponse
 from .types import (
     APISchema,
@@ -49,10 +51,12 @@ class BedrockAgentClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

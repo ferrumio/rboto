@@ -1,4 +1,4 @@
-from rboto_sqs import SQSClient
+from rboto import SQSClient
 from rboto_sqs.types import MessageAttributeValue
 
 

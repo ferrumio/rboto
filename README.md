@@ -18,11 +18,11 @@ The project is under development. Packages are not published on PyPI yet.
 ```python
 import asyncio
 
-from rboto import sts
+from rboto import STSClient
 
 
 async def main() -> None:
-    client = sts(region="us-east-1")
+    client = STSClient(region="us-east-1")
     response = await client.get_caller_identity()
     print(response.account)
     print(response.arn)

@@ -19,3 +19,9 @@ class ServiceDescriptor:
     customization: str | None = None
     force_path_style_for_custom_endpoint: bool = False
     native_outputs: bool = False
+    native_client_class: str | None = None
+
+    @property
+    def native_class(self) -> str:
+        """Keep the native backend and legacy imports stable across public renames."""
+        return self.native_client_class or self.client_class

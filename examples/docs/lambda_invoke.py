@@ -1,6 +1,6 @@
 import json
 
-from rboto_lambda import LambdaClient
+from rboto import LambdaClient
 
 
 async def invoke(client: LambdaClient, function_name: str) -> bytes:
