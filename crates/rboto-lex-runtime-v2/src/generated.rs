@@ -1741,7 +1741,11 @@ fn value_to_py(py: Python<'_>, value: &aws_sdk_lexruntimev2::types::Value) -> Py
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ActiveContext", frozen)]
+#[pyclass(
+    name = "ActiveContext",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyActiveContext {
     inner: aws_sdk_lexruntimev2::types::ActiveContext,
 }
@@ -1787,7 +1791,11 @@ impl PyActiveContext {
     }
 }
 
-#[pyclass(name = "ActiveContextTimeToLive", frozen)]
+#[pyclass(
+    name = "ActiveContextTimeToLive",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyActiveContextTimeToLive {
     inner: aws_sdk_lexruntimev2::types::ActiveContextTimeToLive,
 }
@@ -1813,7 +1821,7 @@ impl PyActiveContextTimeToLive {
     }
 }
 
-#[pyclass(name = "Button", frozen)]
+#[pyclass(name = "Button", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyButton {
     inner: aws_sdk_lexruntimev2::types::Button,
 }
@@ -1837,7 +1845,11 @@ impl PyButton {
     }
 }
 
-#[pyclass(name = "ConfidenceScore", frozen)]
+#[pyclass(
+    name = "ConfidenceScore",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyConfidenceScore {
     inner: aws_sdk_lexruntimev2::types::ConfidenceScore,
 }
@@ -1855,7 +1867,7 @@ impl PyConfidenceScore {
     }
 }
 
-#[pyclass(name = "DialogAction", frozen)]
+#[pyclass(name = "DialogAction", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyDialogAction {
     inner: aws_sdk_lexruntimev2::types::DialogAction,
 }
@@ -1909,7 +1921,11 @@ impl PyDialogAction {
     }
 }
 
-#[pyclass(name = "ElicitSubSlot", frozen)]
+#[pyclass(
+    name = "ElicitSubSlot",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyElicitSubSlot {
     inner: aws_sdk_lexruntimev2::types::ElicitSubSlot,
 }
@@ -1943,7 +1959,11 @@ impl PyElicitSubSlot {
     }
 }
 
-#[pyclass(name = "ImageResponseCard", frozen)]
+#[pyclass(
+    name = "ImageResponseCard",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyImageResponseCard {
     inner: aws_sdk_lexruntimev2::types::ImageResponseCard,
 }
@@ -2002,7 +2022,7 @@ impl PyImageResponseCard {
     }
 }
 
-#[pyclass(name = "Intent", frozen)]
+#[pyclass(name = "Intent", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyIntent {
     inner: aws_sdk_lexruntimev2::types::Intent,
 }
@@ -2062,7 +2082,11 @@ impl PyIntent {
     }
 }
 
-#[pyclass(name = "Interpretation", frozen)]
+#[pyclass(
+    name = "Interpretation",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyInterpretation {
     inner: aws_sdk_lexruntimev2::types::Interpretation,
 }
@@ -2132,7 +2156,7 @@ impl PyInterpretation {
     }
 }
 
-#[pyclass(name = "Message", frozen)]
+#[pyclass(name = "Message", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyMessage {
     inner: aws_sdk_lexruntimev2::types::Message,
 }
@@ -2176,7 +2200,11 @@ impl PyMessage {
     }
 }
 
-#[pyclass(name = "RecognizedBotMember", frozen)]
+#[pyclass(
+    name = "RecognizedBotMember",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyRecognizedBotMember {
     inner: aws_sdk_lexruntimev2::types::RecognizedBotMember,
 }
@@ -2204,7 +2232,11 @@ impl PyRecognizedBotMember {
     }
 }
 
-#[pyclass(name = "RuntimeHintDetails", frozen)]
+#[pyclass(
+    name = "RuntimeHintDetails",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyRuntimeHintDetails {
     inner: aws_sdk_lexruntimev2::types::RuntimeHintDetails,
 }
@@ -2259,7 +2291,11 @@ impl PyRuntimeHintDetails {
     }
 }
 
-#[pyclass(name = "RuntimeHintValue", frozen)]
+#[pyclass(
+    name = "RuntimeHintValue",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyRuntimeHintValue {
     inner: aws_sdk_lexruntimev2::types::RuntimeHintValue,
 }
@@ -2277,7 +2313,7 @@ impl PyRuntimeHintValue {
     }
 }
 
-#[pyclass(name = "RuntimeHints", frozen)]
+#[pyclass(name = "RuntimeHints", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyRuntimeHints {
     inner: aws_sdk_lexruntimev2::types::RuntimeHints,
 }
@@ -2317,7 +2353,11 @@ impl PyRuntimeHints {
     }
 }
 
-#[pyclass(name = "SentimentResponse", frozen)]
+#[pyclass(
+    name = "SentimentResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PySentimentResponse {
     inner: aws_sdk_lexruntimev2::types::SentimentResponse,
 }
@@ -2355,7 +2395,11 @@ impl PySentimentResponse {
     }
 }
 
-#[pyclass(name = "SentimentScore", frozen)]
+#[pyclass(
+    name = "SentimentScore",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PySentimentScore {
     inner: aws_sdk_lexruntimev2::types::SentimentScore,
 }
@@ -2391,7 +2435,7 @@ impl PySentimentScore {
     }
 }
 
-#[pyclass(name = "SessionState", frozen)]
+#[pyclass(name = "SessionState", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PySessionState {
     inner: aws_sdk_lexruntimev2::types::SessionState,
 }
@@ -2498,7 +2542,7 @@ impl PySessionState {
     }
 }
 
-#[pyclass(name = "Slot", frozen)]
+#[pyclass(name = "Slot", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PySlot {
     inner: aws_sdk_lexruntimev2::types::Slot,
 }
@@ -2579,7 +2623,7 @@ impl PySlot {
     }
 }
 
-#[pyclass(name = "Value", frozen)]
+#[pyclass(name = "Value", module = "rboto_lex_runtime_v2._native", frozen)]
 struct PyValue {
     inner: aws_sdk_lexruntimev2::types::Value,
 }
@@ -2622,7 +2666,11 @@ impl PyValue {
     }
 }
 
-#[pyclass(name = "DeleteSessionResponse", frozen)]
+#[pyclass(
+    name = "DeleteSessionResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyDeleteSessionResponse {
     inner: aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionOutput,
 }
@@ -2699,7 +2747,11 @@ impl PyDeleteSessionResponse {
     }
 }
 
-#[pyclass(name = "GetSessionResponse", frozen)]
+#[pyclass(
+    name = "GetSessionResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyGetSessionResponse {
     inner: aws_sdk_lexruntimev2::operation::get_session::GetSessionOutput,
 }
@@ -2814,7 +2866,11 @@ impl PyGetSessionResponse {
     }
 }
 
-#[pyclass(name = "PutSessionResponse", frozen)]
+#[pyclass(
+    name = "PutSessionResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyPutSessionResponse {
     inner: aws_sdk_lexruntimev2::operation::put_session::PutSessionOutput,
     audio_stream: Py<PyByteStream>,
@@ -2914,7 +2970,11 @@ impl PyPutSessionResponse {
     }
 }
 
-#[pyclass(name = "RecognizeTextResponse", frozen)]
+#[pyclass(
+    name = "RecognizeTextResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyRecognizeTextResponse {
     inner: aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextOutput,
 }
@@ -3079,7 +3139,11 @@ impl PyRecognizeTextResponse {
     }
 }
 
-#[pyclass(name = "RecognizeUtteranceResponse", frozen)]
+#[pyclass(
+    name = "RecognizeUtteranceResponse",
+    module = "rboto_lex_runtime_v2._native",
+    frozen
+)]
 struct PyRecognizeUtteranceResponse {
     inner: aws_sdk_lexruntimev2::operation::recognize_utterance::RecognizeUtteranceOutput,
     audio_stream: Py<PyByteStream>,
@@ -3243,7 +3307,10 @@ impl PyRecognizeUtteranceResponse {
     }
 }
 
-#[pyclass(name = "StartConversationResponseEventStreamReceiver")]
+#[pyclass(
+    name = "StartConversationResponseEventStreamReceiver",
+    module = "rboto_lex_runtime_v2._native"
+)]
 struct PyStartConversationResponseEventStreamReceiver {
     inner: Arc<
         Mutex<

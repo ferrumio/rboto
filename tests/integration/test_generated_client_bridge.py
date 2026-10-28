@@ -118,6 +118,9 @@ def test_native_properties_match_the_generated_stubs(service: object) -> None:
         if not isinstance(node, ast.ClassDef):
             continue
         native_class = getattr(native, node.name)
+        assert native_class.__module__ == native.__name__, (
+            f"{package_name}.{node.name} must identify its importable native module"
+        )
         for member in node.body:
             if isinstance(member, ast.FunctionDef) and any(
                 isinstance(decorator, ast.Name) and decorator.id == "property"

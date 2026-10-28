@@ -3314,7 +3314,11 @@ fn validate_state_machine_definition_diagnostic_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ActivityFailedEventDetails", frozen)]
+#[pyclass(
+    name = "ActivityFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivityFailedEventDetails {
     inner: aws_sdk_sfn::types::ActivityFailedEventDetails,
 }
@@ -3346,7 +3350,7 @@ impl PyActivityFailedEventDetails {
     }
 }
 
-#[pyclass(name = "ActivityListItem", frozen)]
+#[pyclass(name = "ActivityListItem", module = "rboto_sfn._native", frozen)]
 struct PyActivityListItem {
     inner: aws_sdk_sfn::types::ActivityListItem,
 }
@@ -3376,7 +3380,11 @@ impl PyActivityListItem {
     }
 }
 
-#[pyclass(name = "ActivityScheduleFailedEventDetails", frozen)]
+#[pyclass(
+    name = "ActivityScheduleFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivityScheduleFailedEventDetails {
     inner: aws_sdk_sfn::types::ActivityScheduleFailedEventDetails,
 }
@@ -3408,7 +3416,11 @@ impl PyActivityScheduleFailedEventDetails {
     }
 }
 
-#[pyclass(name = "ActivityScheduledEventDetails", frozen)]
+#[pyclass(
+    name = "ActivityScheduledEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivityScheduledEventDetails {
     inner: aws_sdk_sfn::types::ActivityScheduledEventDetails,
 }
@@ -3472,7 +3484,11 @@ impl PyActivityScheduledEventDetails {
     }
 }
 
-#[pyclass(name = "ActivityStartedEventDetails", frozen)]
+#[pyclass(
+    name = "ActivityStartedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivityStartedEventDetails {
     inner: aws_sdk_sfn::types::ActivityStartedEventDetails,
 }
@@ -3494,7 +3510,11 @@ impl PyActivityStartedEventDetails {
     }
 }
 
-#[pyclass(name = "ActivitySucceededEventDetails", frozen)]
+#[pyclass(
+    name = "ActivitySucceededEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivitySucceededEventDetails {
     inner: aws_sdk_sfn::types::ActivitySucceededEventDetails,
 }
@@ -3532,7 +3552,11 @@ impl PyActivitySucceededEventDetails {
     }
 }
 
-#[pyclass(name = "ActivityTimedOutEventDetails", frozen)]
+#[pyclass(
+    name = "ActivityTimedOutEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyActivityTimedOutEventDetails {
     inner: aws_sdk_sfn::types::ActivityTimedOutEventDetails,
 }
@@ -3564,7 +3588,11 @@ impl PyActivityTimedOutEventDetails {
     }
 }
 
-#[pyclass(name = "AssignedVariablesDetails", frozen)]
+#[pyclass(
+    name = "AssignedVariablesDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyAssignedVariablesDetails {
     inner: aws_sdk_sfn::types::AssignedVariablesDetails,
 }
@@ -3582,7 +3610,7 @@ impl PyAssignedVariablesDetails {
     }
 }
 
-#[pyclass(name = "BillingDetails", frozen)]
+#[pyclass(name = "BillingDetails", module = "rboto_sfn._native", frozen)]
 struct PyBillingDetails {
     inner: aws_sdk_sfn::types::BillingDetails,
 }
@@ -3610,7 +3638,11 @@ impl PyBillingDetails {
     }
 }
 
-#[pyclass(name = "CloudWatchEventsExecutionDataDetails", frozen)]
+#[pyclass(
+    name = "CloudWatchEventsExecutionDataDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyCloudWatchEventsExecutionDataDetails {
     inner: aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails,
 }
@@ -3628,7 +3660,7 @@ impl PyCloudWatchEventsExecutionDataDetails {
     }
 }
 
-#[pyclass(name = "CloudWatchLogsLogGroup", frozen)]
+#[pyclass(name = "CloudWatchLogsLogGroup", module = "rboto_sfn._native", frozen)]
 struct PyCloudWatchLogsLogGroup {
     inner: aws_sdk_sfn::types::CloudWatchLogsLogGroup,
 }
@@ -3650,7 +3682,7 @@ impl PyCloudWatchLogsLogGroup {
     }
 }
 
-#[pyclass(name = "EncryptionConfiguration", frozen)]
+#[pyclass(name = "EncryptionConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyEncryptionConfiguration {
     inner: aws_sdk_sfn::types::EncryptionConfiguration,
 }
@@ -3688,7 +3720,11 @@ impl PyEncryptionConfiguration {
     }
 }
 
-#[pyclass(name = "EvaluationFailedEventDetails", frozen)]
+#[pyclass(
+    name = "EvaluationFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyEvaluationFailedEventDetails {
     inner: aws_sdk_sfn::types::EvaluationFailedEventDetails,
 }
@@ -3736,7 +3772,11 @@ impl PyEvaluationFailedEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionAbortedEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionAbortedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionAbortedEventDetails {
     inner: aws_sdk_sfn::types::ExecutionAbortedEventDetails,
 }
@@ -3768,7 +3808,11 @@ impl PyExecutionAbortedEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionFailedEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionFailedEventDetails {
     inner: aws_sdk_sfn::types::ExecutionFailedEventDetails,
 }
@@ -3800,7 +3844,7 @@ impl PyExecutionFailedEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionListItem", frozen)]
+#[pyclass(name = "ExecutionListItem", module = "rboto_sfn._native", frozen)]
 struct PyExecutionListItem {
     inner: aws_sdk_sfn::types::ExecutionListItem,
 }
@@ -3912,7 +3956,11 @@ impl PyExecutionListItem {
     }
 }
 
-#[pyclass(name = "ExecutionRedrivenEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionRedrivenEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionRedrivenEventDetails {
     inner: aws_sdk_sfn::types::ExecutionRedrivenEventDetails,
 }
@@ -3934,7 +3982,11 @@ impl PyExecutionRedrivenEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionStartedEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionStartedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionStartedEventDetails {
     inner: aws_sdk_sfn::types::ExecutionStartedEventDetails,
 }
@@ -4002,7 +4054,11 @@ impl PyExecutionStartedEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionSucceededEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionSucceededEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionSucceededEventDetails {
     inner: aws_sdk_sfn::types::ExecutionSucceededEventDetails,
 }
@@ -4040,7 +4096,11 @@ impl PyExecutionSucceededEventDetails {
     }
 }
 
-#[pyclass(name = "ExecutionTimedOutEventDetails", frozen)]
+#[pyclass(
+    name = "ExecutionTimedOutEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyExecutionTimedOutEventDetails {
     inner: aws_sdk_sfn::types::ExecutionTimedOutEventDetails,
 }
@@ -4072,7 +4132,7 @@ impl PyExecutionTimedOutEventDetails {
     }
 }
 
-#[pyclass(name = "HistoryEvent", frozen)]
+#[pyclass(name = "HistoryEvent", module = "rboto_sfn._native", frozen)]
 struct PyHistoryEvent {
     inner: aws_sdk_sfn::types::HistoryEvent,
 }
@@ -4700,7 +4760,11 @@ impl PyHistoryEvent {
     }
 }
 
-#[pyclass(name = "HistoryEventExecutionDataDetails", frozen)]
+#[pyclass(
+    name = "HistoryEventExecutionDataDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyHistoryEventExecutionDataDetails {
     inner: aws_sdk_sfn::types::HistoryEventExecutionDataDetails,
 }
@@ -4718,7 +4782,7 @@ impl PyHistoryEventExecutionDataDetails {
     }
 }
 
-#[pyclass(name = "InspectionData", frozen)]
+#[pyclass(name = "InspectionData", module = "rboto_sfn._native", frozen)]
 struct PyInspectionData {
     inner: aws_sdk_sfn::types::InspectionData,
 }
@@ -4928,7 +4992,7 @@ impl PyInspectionData {
     }
 }
 
-#[pyclass(name = "InspectionDataRequest", frozen)]
+#[pyclass(name = "InspectionDataRequest", module = "rboto_sfn._native", frozen)]
 struct PyInspectionDataRequest {
     inner: aws_sdk_sfn::types::InspectionDataRequest,
 }
@@ -4990,7 +5054,7 @@ impl PyInspectionDataRequest {
     }
 }
 
-#[pyclass(name = "InspectionDataResponse", frozen)]
+#[pyclass(name = "InspectionDataResponse", module = "rboto_sfn._native", frozen)]
 struct PyInspectionDataResponse {
     inner: aws_sdk_sfn::types::InspectionDataResponse,
 }
@@ -5052,7 +5116,7 @@ impl PyInspectionDataResponse {
     }
 }
 
-#[pyclass(name = "InspectionErrorDetails", frozen)]
+#[pyclass(name = "InspectionErrorDetails", module = "rboto_sfn._native", frozen)]
 struct PyInspectionErrorDetails {
     inner: aws_sdk_sfn::types::InspectionErrorDetails,
 }
@@ -5094,7 +5158,11 @@ impl PyInspectionErrorDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionFailedEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionFailedEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionFailedEventDetails,
 }
@@ -5126,7 +5194,11 @@ impl PyLambdaFunctionFailedEventDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionScheduleFailedEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionScheduleFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionScheduleFailedEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails,
 }
@@ -5158,7 +5230,11 @@ impl PyLambdaFunctionScheduleFailedEventDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionScheduledEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionScheduledEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionScheduledEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails,
 }
@@ -5228,7 +5304,11 @@ impl PyLambdaFunctionScheduledEventDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionStartFailedEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionStartFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionStartFailedEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails,
 }
@@ -5260,7 +5340,11 @@ impl PyLambdaFunctionStartFailedEventDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionSucceededEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionSucceededEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionSucceededEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails,
 }
@@ -5298,7 +5382,11 @@ impl PyLambdaFunctionSucceededEventDetails {
     }
 }
 
-#[pyclass(name = "LambdaFunctionTimedOutEventDetails", frozen)]
+#[pyclass(
+    name = "LambdaFunctionTimedOutEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyLambdaFunctionTimedOutEventDetails {
     inner: aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails,
 }
@@ -5330,7 +5418,7 @@ impl PyLambdaFunctionTimedOutEventDetails {
     }
 }
 
-#[pyclass(name = "LogDestination", frozen)]
+#[pyclass(name = "LogDestination", module = "rboto_sfn._native", frozen)]
 struct PyLogDestination {
     inner: aws_sdk_sfn::types::LogDestination,
 }
@@ -5358,7 +5446,7 @@ impl PyLogDestination {
     }
 }
 
-#[pyclass(name = "LoggingConfiguration", frozen)]
+#[pyclass(name = "LoggingConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyLoggingConfiguration {
     inner: aws_sdk_sfn::types::LoggingConfiguration,
 }
@@ -5409,7 +5497,11 @@ impl PyLoggingConfiguration {
     }
 }
 
-#[pyclass(name = "MapIterationEventDetails", frozen)]
+#[pyclass(
+    name = "MapIterationEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyMapIterationEventDetails {
     inner: aws_sdk_sfn::types::MapIterationEventDetails,
 }
@@ -5437,7 +5529,7 @@ impl PyMapIterationEventDetails {
     }
 }
 
-#[pyclass(name = "MapRunExecutionCounts", frozen)]
+#[pyclass(name = "MapRunExecutionCounts", module = "rboto_sfn._native", frozen)]
 struct PyMapRunExecutionCounts {
     inner: aws_sdk_sfn::types::MapRunExecutionCounts,
 }
@@ -5517,7 +5609,11 @@ impl PyMapRunExecutionCounts {
     }
 }
 
-#[pyclass(name = "MapRunFailedEventDetails", frozen)]
+#[pyclass(
+    name = "MapRunFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyMapRunFailedEventDetails {
     inner: aws_sdk_sfn::types::MapRunFailedEventDetails,
 }
@@ -5549,7 +5645,7 @@ impl PyMapRunFailedEventDetails {
     }
 }
 
-#[pyclass(name = "MapRunItemCounts", frozen)]
+#[pyclass(name = "MapRunItemCounts", module = "rboto_sfn._native", frozen)]
 struct PyMapRunItemCounts {
     inner: aws_sdk_sfn::types::MapRunItemCounts,
 }
@@ -5629,7 +5725,7 @@ impl PyMapRunItemCounts {
     }
 }
 
-#[pyclass(name = "MapRunListItem", frozen)]
+#[pyclass(name = "MapRunListItem", module = "rboto_sfn._native", frozen)]
 struct PyMapRunListItem {
     inner: aws_sdk_sfn::types::MapRunListItem,
 }
@@ -5675,7 +5771,11 @@ impl PyMapRunListItem {
     }
 }
 
-#[pyclass(name = "MapRunRedrivenEventDetails", frozen)]
+#[pyclass(
+    name = "MapRunRedrivenEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyMapRunRedrivenEventDetails {
     inner: aws_sdk_sfn::types::MapRunRedrivenEventDetails,
 }
@@ -5707,7 +5807,11 @@ impl PyMapRunRedrivenEventDetails {
     }
 }
 
-#[pyclass(name = "MapRunStartedEventDetails", frozen)]
+#[pyclass(
+    name = "MapRunStartedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyMapRunStartedEventDetails {
     inner: aws_sdk_sfn::types::MapRunStartedEventDetails,
 }
@@ -5729,7 +5833,11 @@ impl PyMapRunStartedEventDetails {
     }
 }
 
-#[pyclass(name = "MapStateStartedEventDetails", frozen)]
+#[pyclass(
+    name = "MapStateStartedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyMapStateStartedEventDetails {
     inner: aws_sdk_sfn::types::MapStateStartedEventDetails,
 }
@@ -5747,7 +5855,11 @@ impl PyMapStateStartedEventDetails {
     }
 }
 
-#[pyclass(name = "RoutingConfigurationListItem", frozen)]
+#[pyclass(
+    name = "RoutingConfigurationListItem",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyRoutingConfigurationListItem {
     inner: aws_sdk_sfn::types::RoutingConfigurationListItem,
 }
@@ -5773,7 +5885,11 @@ impl PyRoutingConfigurationListItem {
     }
 }
 
-#[pyclass(name = "StateEnteredEventDetails", frozen)]
+#[pyclass(
+    name = "StateEnteredEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyStateEnteredEventDetails {
     inner: aws_sdk_sfn::types::StateEnteredEventDetails,
 }
@@ -5817,7 +5933,7 @@ impl PyStateEnteredEventDetails {
     }
 }
 
-#[pyclass(name = "StateExitedEventDetails", frozen)]
+#[pyclass(name = "StateExitedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyStateExitedEventDetails {
     inner: aws_sdk_sfn::types::StateExitedEventDetails,
 }
@@ -5893,7 +6009,11 @@ impl PyStateExitedEventDetails {
     }
 }
 
-#[pyclass(name = "StateMachineAliasListItem", frozen)]
+#[pyclass(
+    name = "StateMachineAliasListItem",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyStateMachineAliasListItem {
     inner: aws_sdk_sfn::types::StateMachineAliasListItem,
 }
@@ -5919,7 +6039,7 @@ impl PyStateMachineAliasListItem {
     }
 }
 
-#[pyclass(name = "StateMachineListItem", frozen)]
+#[pyclass(name = "StateMachineListItem", module = "rboto_sfn._native", frozen)]
 struct PyStateMachineListItem {
     inner: aws_sdk_sfn::types::StateMachineListItem,
 }
@@ -5955,7 +6075,11 @@ impl PyStateMachineListItem {
     }
 }
 
-#[pyclass(name = "StateMachineVersionListItem", frozen)]
+#[pyclass(
+    name = "StateMachineVersionListItem",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyStateMachineVersionListItem {
     inner: aws_sdk_sfn::types::StateMachineVersionListItem,
 }
@@ -5981,7 +6105,7 @@ impl PyStateMachineVersionListItem {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_sfn._native", frozen)]
 struct PyTag {
     inner: aws_sdk_sfn::types::Tag,
 }
@@ -6013,7 +6137,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TaskCredentials", frozen)]
+#[pyclass(name = "TaskCredentials", module = "rboto_sfn._native", frozen)]
 struct PyTaskCredentials {
     inner: aws_sdk_sfn::types::TaskCredentials,
 }
@@ -6035,7 +6159,7 @@ impl PyTaskCredentials {
     }
 }
 
-#[pyclass(name = "TaskFailedEventDetails", frozen)]
+#[pyclass(name = "TaskFailedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyTaskFailedEventDetails {
     inner: aws_sdk_sfn::types::TaskFailedEventDetails,
 }
@@ -6079,7 +6203,11 @@ impl PyTaskFailedEventDetails {
     }
 }
 
-#[pyclass(name = "TaskScheduledEventDetails", frozen)]
+#[pyclass(
+    name = "TaskScheduledEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskScheduledEventDetails {
     inner: aws_sdk_sfn::types::TaskScheduledEventDetails,
 }
@@ -6151,7 +6279,11 @@ impl PyTaskScheduledEventDetails {
     }
 }
 
-#[pyclass(name = "TaskStartFailedEventDetails", frozen)]
+#[pyclass(
+    name = "TaskStartFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskStartFailedEventDetails {
     inner: aws_sdk_sfn::types::TaskStartFailedEventDetails,
 }
@@ -6195,7 +6327,7 @@ impl PyTaskStartFailedEventDetails {
     }
 }
 
-#[pyclass(name = "TaskStartedEventDetails", frozen)]
+#[pyclass(name = "TaskStartedEventDetails", module = "rboto_sfn._native", frozen)]
 struct PyTaskStartedEventDetails {
     inner: aws_sdk_sfn::types::TaskStartedEventDetails,
 }
@@ -6219,7 +6351,11 @@ impl PyTaskStartedEventDetails {
     }
 }
 
-#[pyclass(name = "TaskSubmitFailedEventDetails", frozen)]
+#[pyclass(
+    name = "TaskSubmitFailedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskSubmitFailedEventDetails {
     inner: aws_sdk_sfn::types::TaskSubmitFailedEventDetails,
 }
@@ -6263,7 +6399,11 @@ impl PyTaskSubmitFailedEventDetails {
     }
 }
 
-#[pyclass(name = "TaskSubmittedEventDetails", frozen)]
+#[pyclass(
+    name = "TaskSubmittedEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskSubmittedEventDetails {
     inner: aws_sdk_sfn::types::TaskSubmittedEventDetails,
 }
@@ -6313,7 +6453,11 @@ impl PyTaskSubmittedEventDetails {
     }
 }
 
-#[pyclass(name = "TaskSucceededEventDetails", frozen)]
+#[pyclass(
+    name = "TaskSucceededEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskSucceededEventDetails {
     inner: aws_sdk_sfn::types::TaskSucceededEventDetails,
 }
@@ -6363,7 +6507,11 @@ impl PyTaskSucceededEventDetails {
     }
 }
 
-#[pyclass(name = "TaskTimedOutEventDetails", frozen)]
+#[pyclass(
+    name = "TaskTimedOutEventDetails",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyTaskTimedOutEventDetails {
     inner: aws_sdk_sfn::types::TaskTimedOutEventDetails,
 }
@@ -6407,7 +6555,7 @@ impl PyTaskTimedOutEventDetails {
     }
 }
 
-#[pyclass(name = "TracingConfiguration", frozen)]
+#[pyclass(name = "TracingConfiguration", module = "rboto_sfn._native", frozen)]
 struct PyTracingConfiguration {
     inner: aws_sdk_sfn::types::TracingConfiguration,
 }
@@ -6425,7 +6573,11 @@ impl PyTracingConfiguration {
     }
 }
 
-#[pyclass(name = "ValidateStateMachineDefinitionDiagnostic", frozen)]
+#[pyclass(
+    name = "ValidateStateMachineDefinitionDiagnostic",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyValidateStateMachineDefinitionDiagnostic {
     inner: aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic,
 }
@@ -6465,7 +6617,7 @@ impl PyValidateStateMachineDefinitionDiagnostic {
     }
 }
 
-#[pyclass(name = "CreateActivityOutput", frozen)]
+#[pyclass(name = "CreateActivityOutput", module = "rboto_sfn._native", frozen)]
 struct PyCreateActivityOutput {
     inner: aws_sdk_sfn::operation::create_activity::CreateActivityOutput,
 }
@@ -6494,7 +6646,11 @@ impl PyCreateActivityOutput {
     }
 }
 
-#[pyclass(name = "CreateStateMachineOutput", frozen)]
+#[pyclass(
+    name = "CreateStateMachineOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyCreateStateMachineOutput {
     inner: aws_sdk_sfn::operation::create_state_machine::CreateStateMachineOutput,
 }
@@ -6539,7 +6695,11 @@ impl PyCreateStateMachineOutput {
     }
 }
 
-#[pyclass(name = "CreateStateMachineAliasOutput", frozen)]
+#[pyclass(
+    name = "CreateStateMachineAliasOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyCreateStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::create_state_machine_alias::CreateStateMachineAliasOutput,
 }
@@ -6572,7 +6732,7 @@ impl PyCreateStateMachineAliasOutput {
     }
 }
 
-#[pyclass(name = "DeleteActivityOutput", frozen)]
+#[pyclass(name = "DeleteActivityOutput", module = "rboto_sfn._native", frozen)]
 struct PyDeleteActivityOutput {
     inner: aws_sdk_sfn::operation::delete_activity::DeleteActivityOutput,
 }
@@ -6585,7 +6745,11 @@ impl PyDeleteActivityOutput {
     }
 }
 
-#[pyclass(name = "DeleteStateMachineOutput", frozen)]
+#[pyclass(
+    name = "DeleteStateMachineOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDeleteStateMachineOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine::DeleteStateMachineOutput,
 }
@@ -6598,7 +6762,11 @@ impl PyDeleteStateMachineOutput {
     }
 }
 
-#[pyclass(name = "DeleteStateMachineAliasOutput", frozen)]
+#[pyclass(
+    name = "DeleteStateMachineAliasOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDeleteStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine_alias::DeleteStateMachineAliasOutput,
 }
@@ -6611,7 +6779,11 @@ impl PyDeleteStateMachineAliasOutput {
     }
 }
 
-#[pyclass(name = "DeleteStateMachineVersionOutput", frozen)]
+#[pyclass(
+    name = "DeleteStateMachineVersionOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDeleteStateMachineVersionOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine_version::DeleteStateMachineVersionOutput,
 }
@@ -6624,7 +6796,7 @@ impl PyDeleteStateMachineVersionOutput {
     }
 }
 
-#[pyclass(name = "DescribeActivityOutput", frozen)]
+#[pyclass(name = "DescribeActivityOutput", module = "rboto_sfn._native", frozen)]
 struct PyDescribeActivityOutput {
     inner: aws_sdk_sfn::operation::describe_activity::DescribeActivityOutput,
 }
@@ -6683,7 +6855,7 @@ impl PyDescribeActivityOutput {
     }
 }
 
-#[pyclass(name = "DescribeExecutionOutput", frozen)]
+#[pyclass(name = "DescribeExecutionOutput", module = "rboto_sfn._native", frozen)]
 struct PyDescribeExecutionOutput {
     inner: aws_sdk_sfn::operation::describe_execution::DescribeExecutionOutput,
 }
@@ -6996,7 +7168,7 @@ impl PyDescribeExecutionOutput {
     }
 }
 
-#[pyclass(name = "DescribeMapRunOutput", frozen)]
+#[pyclass(name = "DescribeMapRunOutput", module = "rboto_sfn._native", frozen)]
 struct PyDescribeMapRunOutput {
     inner: aws_sdk_sfn::operation::describe_map_run::DescribeMapRunOutput,
 }
@@ -7165,7 +7337,11 @@ impl PyDescribeMapRunOutput {
     }
 }
 
-#[pyclass(name = "DescribeStateMachineOutput", frozen)]
+#[pyclass(
+    name = "DescribeStateMachineOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDescribeStateMachineOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineOutput,
 }
@@ -7394,7 +7570,11 @@ impl PyDescribeStateMachineOutput {
     }
 }
 
-#[pyclass(name = "DescribeStateMachineAliasOutput", frozen)]
+#[pyclass(
+    name = "DescribeStateMachineAliasOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDescribeStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasOutput,
 }
@@ -7519,7 +7699,11 @@ impl PyDescribeStateMachineAliasOutput {
     }
 }
 
-#[pyclass(name = "DescribeStateMachineForExecutionOutput", frozen)]
+#[pyclass(
+    name = "DescribeStateMachineForExecutionOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyDescribeStateMachineForExecutionOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionOutput,
 }
@@ -7724,7 +7908,7 @@ impl PyDescribeStateMachineForExecutionOutput {
     }
 }
 
-#[pyclass(name = "GetActivityTaskOutput", frozen)]
+#[pyclass(name = "GetActivityTaskOutput", module = "rboto_sfn._native", frozen)]
 struct PyGetActivityTaskOutput {
     inner: aws_sdk_sfn::operation::get_activity_task::GetActivityTaskOutput,
 }
@@ -7769,7 +7953,11 @@ impl PyGetActivityTaskOutput {
     }
 }
 
-#[pyclass(name = "GetExecutionHistoryOutput", frozen)]
+#[pyclass(
+    name = "GetExecutionHistoryOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyGetExecutionHistoryOutput {
     inner: aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryOutput,
 }
@@ -7822,7 +8010,7 @@ impl PyGetExecutionHistoryOutput {
     }
 }
 
-#[pyclass(name = "ListActivitiesOutput", frozen)]
+#[pyclass(name = "ListActivitiesOutput", module = "rboto_sfn._native", frozen)]
 struct PyListActivitiesOutput {
     inner: aws_sdk_sfn::operation::list_activities::ListActivitiesOutput,
 }
@@ -7875,7 +8063,7 @@ impl PyListActivitiesOutput {
     }
 }
 
-#[pyclass(name = "ListExecutionsOutput", frozen)]
+#[pyclass(name = "ListExecutionsOutput", module = "rboto_sfn._native", frozen)]
 struct PyListExecutionsOutput {
     inner: aws_sdk_sfn::operation::list_executions::ListExecutionsOutput,
 }
@@ -7928,7 +8116,7 @@ impl PyListExecutionsOutput {
     }
 }
 
-#[pyclass(name = "ListMapRunsOutput", frozen)]
+#[pyclass(name = "ListMapRunsOutput", module = "rboto_sfn._native", frozen)]
 struct PyListMapRunsOutput {
     inner: aws_sdk_sfn::operation::list_map_runs::ListMapRunsOutput,
 }
@@ -7981,7 +8169,11 @@ impl PyListMapRunsOutput {
     }
 }
 
-#[pyclass(name = "ListStateMachineAliasesOutput", frozen)]
+#[pyclass(
+    name = "ListStateMachineAliasesOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyListStateMachineAliasesOutput {
     inner: aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesOutput,
 }
@@ -8034,7 +8226,11 @@ impl PyListStateMachineAliasesOutput {
     }
 }
 
-#[pyclass(name = "ListStateMachineVersionsOutput", frozen)]
+#[pyclass(
+    name = "ListStateMachineVersionsOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyListStateMachineVersionsOutput {
     inner: aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsOutput,
 }
@@ -8087,7 +8283,7 @@ impl PyListStateMachineVersionsOutput {
     }
 }
 
-#[pyclass(name = "ListStateMachinesOutput", frozen)]
+#[pyclass(name = "ListStateMachinesOutput", module = "rboto_sfn._native", frozen)]
 struct PyListStateMachinesOutput {
     inner: aws_sdk_sfn::operation::list_state_machines::ListStateMachinesOutput,
 }
@@ -8140,7 +8336,11 @@ impl PyListStateMachinesOutput {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceOutput", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyListTagsForResourceOutput {
     inner: aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -8185,7 +8385,11 @@ impl PyListTagsForResourceOutput {
     }
 }
 
-#[pyclass(name = "PublishStateMachineVersionOutput", frozen)]
+#[pyclass(
+    name = "PublishStateMachineVersionOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyPublishStateMachineVersionOutput {
     inner: aws_sdk_sfn::operation::publish_state_machine_version::PublishStateMachineVersionOutput,
 }
@@ -8218,7 +8422,7 @@ impl PyPublishStateMachineVersionOutput {
     }
 }
 
-#[pyclass(name = "RedriveExecutionOutput", frozen)]
+#[pyclass(name = "RedriveExecutionOutput", module = "rboto_sfn._native", frozen)]
 struct PyRedriveExecutionOutput {
     inner: aws_sdk_sfn::operation::redrive_execution::RedriveExecutionOutput,
 }
@@ -8239,7 +8443,7 @@ impl PyRedriveExecutionOutput {
     }
 }
 
-#[pyclass(name = "SendTaskFailureOutput", frozen)]
+#[pyclass(name = "SendTaskFailureOutput", module = "rboto_sfn._native", frozen)]
 struct PySendTaskFailureOutput {
     inner: aws_sdk_sfn::operation::send_task_failure::SendTaskFailureOutput,
 }
@@ -8252,7 +8456,7 @@ impl PySendTaskFailureOutput {
     }
 }
 
-#[pyclass(name = "SendTaskHeartbeatOutput", frozen)]
+#[pyclass(name = "SendTaskHeartbeatOutput", module = "rboto_sfn._native", frozen)]
 struct PySendTaskHeartbeatOutput {
     inner: aws_sdk_sfn::operation::send_task_heartbeat::SendTaskHeartbeatOutput,
 }
@@ -8265,7 +8469,7 @@ impl PySendTaskHeartbeatOutput {
     }
 }
 
-#[pyclass(name = "SendTaskSuccessOutput", frozen)]
+#[pyclass(name = "SendTaskSuccessOutput", module = "rboto_sfn._native", frozen)]
 struct PySendTaskSuccessOutput {
     inner: aws_sdk_sfn::operation::send_task_success::SendTaskSuccessOutput,
 }
@@ -8278,7 +8482,7 @@ impl PySendTaskSuccessOutput {
     }
 }
 
-#[pyclass(name = "StartExecutionOutput", frozen)]
+#[pyclass(name = "StartExecutionOutput", module = "rboto_sfn._native", frozen)]
 struct PyStartExecutionOutput {
     inner: aws_sdk_sfn::operation::start_execution::StartExecutionOutput,
 }
@@ -8307,7 +8511,11 @@ impl PyStartExecutionOutput {
     }
 }
 
-#[pyclass(name = "StartSyncExecutionOutput", frozen)]
+#[pyclass(
+    name = "StartSyncExecutionOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyStartSyncExecutionOutput {
     inner: aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionOutput,
 }
@@ -8530,7 +8738,7 @@ impl PyStartSyncExecutionOutput {
     }
 }
 
-#[pyclass(name = "StopExecutionOutput", frozen)]
+#[pyclass(name = "StopExecutionOutput", module = "rboto_sfn._native", frozen)]
 struct PyStopExecutionOutput {
     inner: aws_sdk_sfn::operation::stop_execution::StopExecutionOutput,
 }
@@ -8551,7 +8759,7 @@ impl PyStopExecutionOutput {
     }
 }
 
-#[pyclass(name = "TagResourceOutput", frozen)]
+#[pyclass(name = "TagResourceOutput", module = "rboto_sfn._native", frozen)]
 struct PyTagResourceOutput {
     inner: aws_sdk_sfn::operation::tag_resource::TagResourceOutput,
 }
@@ -8564,7 +8772,7 @@ impl PyTagResourceOutput {
     }
 }
 
-#[pyclass(name = "TestStateOutput", frozen)]
+#[pyclass(name = "TestStateOutput", module = "rboto_sfn._native", frozen)]
 struct PyTestStateOutput {
     inner: aws_sdk_sfn::operation::test_state::TestStateOutput,
 }
@@ -8679,7 +8887,7 @@ impl PyTestStateOutput {
     }
 }
 
-#[pyclass(name = "UntagResourceOutput", frozen)]
+#[pyclass(name = "UntagResourceOutput", module = "rboto_sfn._native", frozen)]
 struct PyUntagResourceOutput {
     inner: aws_sdk_sfn::operation::untag_resource::UntagResourceOutput,
 }
@@ -8692,7 +8900,7 @@ impl PyUntagResourceOutput {
     }
 }
 
-#[pyclass(name = "UpdateMapRunOutput", frozen)]
+#[pyclass(name = "UpdateMapRunOutput", module = "rboto_sfn._native", frozen)]
 struct PyUpdateMapRunOutput {
     inner: aws_sdk_sfn::operation::update_map_run::UpdateMapRunOutput,
 }
@@ -8705,7 +8913,11 @@ impl PyUpdateMapRunOutput {
     }
 }
 
-#[pyclass(name = "UpdateStateMachineOutput", frozen)]
+#[pyclass(
+    name = "UpdateStateMachineOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyUpdateStateMachineOutput {
     inner: aws_sdk_sfn::operation::update_state_machine::UpdateStateMachineOutput,
 }
@@ -8758,7 +8970,11 @@ impl PyUpdateStateMachineOutput {
     }
 }
 
-#[pyclass(name = "UpdateStateMachineAliasOutput", frozen)]
+#[pyclass(
+    name = "UpdateStateMachineAliasOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyUpdateStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::update_state_machine_alias::UpdateStateMachineAliasOutput,
 }
@@ -8779,7 +8995,11 @@ impl PyUpdateStateMachineAliasOutput {
     }
 }
 
-#[pyclass(name = "ValidateStateMachineDefinitionOutput", frozen)]
+#[pyclass(
+    name = "ValidateStateMachineDefinitionOutput",
+    module = "rboto_sfn._native",
+    frozen
+)]
 struct PyValidateStateMachineDefinitionOutput {
     inner: aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionOutput,
 }

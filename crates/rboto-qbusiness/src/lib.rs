@@ -54,7 +54,7 @@ impl ClientState {
     }
 }
 
-#[pyclass(name = "ByteStream")]
+#[pyclass(name = "ByteStream", module = "rboto_qbusiness._native")]
 struct PyByteStream {
     inner: Arc<Mutex<Option<AwsByteStream>>>,
 }
@@ -112,7 +112,7 @@ impl PyByteStream {
     }
 }
 
-#[pyclass]
+#[pyclass(module = "rboto_qbusiness._native")]
 struct QBusinessClient {
     state: Arc<ClientState>,
 }

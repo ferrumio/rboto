@@ -54,7 +54,7 @@ impl ClientState {
     }
 }
 
-#[pyclass(name = "ByteStream")]
+#[pyclass(name = "ByteStream", module = "rboto_sagemaker_runtime_http2._native")]
 struct PyByteStream {
     inner: Arc<Mutex<Option<AwsByteStream>>>,
 }
@@ -112,7 +112,7 @@ impl PyByteStream {
     }
 }
 
-#[pyclass]
+#[pyclass(module = "rboto_sagemaker_runtime_http2._native")]
 struct SageMakerRuntimeHTTP2Client {
     state: Arc<ClientState>,
 }

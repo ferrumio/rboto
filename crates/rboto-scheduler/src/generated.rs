@@ -1001,7 +1001,11 @@ fn target_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AwsVpcConfiguration", frozen)]
+#[pyclass(
+    name = "AwsVpcConfiguration",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyAwsVpcConfiguration {
     inner: aws_sdk_scheduler::types::AwsVpcConfiguration,
 }
@@ -1049,7 +1053,11 @@ impl PyAwsVpcConfiguration {
     }
 }
 
-#[pyclass(name = "CapacityProviderStrategyItem", frozen)]
+#[pyclass(
+    name = "CapacityProviderStrategyItem",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyCapacityProviderStrategyItem {
     inner: aws_sdk_scheduler::types::CapacityProviderStrategyItem,
 }
@@ -1079,7 +1087,7 @@ impl PyCapacityProviderStrategyItem {
     }
 }
 
-#[pyclass(name = "DeadLetterConfig", frozen)]
+#[pyclass(name = "DeadLetterConfig", module = "rboto_scheduler._native", frozen)]
 struct PyDeadLetterConfig {
     inner: aws_sdk_scheduler::types::DeadLetterConfig,
 }
@@ -1101,7 +1109,7 @@ impl PyDeadLetterConfig {
     }
 }
 
-#[pyclass(name = "EcsParameters", frozen)]
+#[pyclass(name = "EcsParameters", module = "rboto_scheduler._native", frozen)]
 struct PyEcsParameters {
     inner: aws_sdk_scheduler::types::EcsParameters,
 }
@@ -1299,7 +1307,11 @@ impl PyEcsParameters {
     }
 }
 
-#[pyclass(name = "EventBridgeParameters", frozen)]
+#[pyclass(
+    name = "EventBridgeParameters",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyEventBridgeParameters {
     inner: aws_sdk_scheduler::types::EventBridgeParameters,
 }
@@ -1323,7 +1335,11 @@ impl PyEventBridgeParameters {
     }
 }
 
-#[pyclass(name = "FlexibleTimeWindow", frozen)]
+#[pyclass(
+    name = "FlexibleTimeWindow",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyFlexibleTimeWindow {
     inner: aws_sdk_scheduler::types::FlexibleTimeWindow,
 }
@@ -1351,7 +1367,7 @@ impl PyFlexibleTimeWindow {
     }
 }
 
-#[pyclass(name = "KinesisParameters", frozen)]
+#[pyclass(name = "KinesisParameters", module = "rboto_scheduler._native", frozen)]
 struct PyKinesisParameters {
     inner: aws_sdk_scheduler::types::KinesisParameters,
 }
@@ -1369,7 +1385,11 @@ impl PyKinesisParameters {
     }
 }
 
-#[pyclass(name = "NetworkConfiguration", frozen)]
+#[pyclass(
+    name = "NetworkConfiguration",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyNetworkConfiguration {
     inner: aws_sdk_scheduler::types::NetworkConfiguration,
 }
@@ -1397,7 +1417,11 @@ impl PyNetworkConfiguration {
     }
 }
 
-#[pyclass(name = "PlacementConstraint", frozen)]
+#[pyclass(
+    name = "PlacementConstraint",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyPlacementConstraint {
     inner: aws_sdk_scheduler::types::PlacementConstraint,
 }
@@ -1429,7 +1453,7 @@ impl PyPlacementConstraint {
     }
 }
 
-#[pyclass(name = "PlacementStrategy", frozen)]
+#[pyclass(name = "PlacementStrategy", module = "rboto_scheduler._native", frozen)]
 struct PyPlacementStrategy {
     inner: aws_sdk_scheduler::types::PlacementStrategy,
 }
@@ -1461,7 +1485,7 @@ impl PyPlacementStrategy {
     }
 }
 
-#[pyclass(name = "RetryPolicy", frozen)]
+#[pyclass(name = "RetryPolicy", module = "rboto_scheduler._native", frozen)]
 struct PyRetryPolicy {
     inner: aws_sdk_scheduler::types::RetryPolicy,
 }
@@ -1493,7 +1517,11 @@ impl PyRetryPolicy {
     }
 }
 
-#[pyclass(name = "SageMakerPipelineParameter", frozen)]
+#[pyclass(
+    name = "SageMakerPipelineParameter",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PySageMakerPipelineParameter {
     inner: aws_sdk_scheduler::types::SageMakerPipelineParameter,
 }
@@ -1517,7 +1545,11 @@ impl PySageMakerPipelineParameter {
     }
 }
 
-#[pyclass(name = "SageMakerPipelineParameters", frozen)]
+#[pyclass(
+    name = "SageMakerPipelineParameters",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PySageMakerPipelineParameters {
     inner: aws_sdk_scheduler::types::SageMakerPipelineParameters,
 }
@@ -1550,7 +1582,11 @@ impl PySageMakerPipelineParameters {
     }
 }
 
-#[pyclass(name = "ScheduleGroupSummary", frozen)]
+#[pyclass(
+    name = "ScheduleGroupSummary",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyScheduleGroupSummary {
     inner: aws_sdk_scheduler::types::ScheduleGroupSummary,
 }
@@ -1612,7 +1648,7 @@ impl PyScheduleGroupSummary {
     }
 }
 
-#[pyclass(name = "ScheduleSummary", frozen)]
+#[pyclass(name = "ScheduleSummary", module = "rboto_scheduler._native", frozen)]
 struct PyScheduleSummary {
     inner: aws_sdk_scheduler::types::ScheduleSummary,
 }
@@ -1700,7 +1736,7 @@ impl PyScheduleSummary {
     }
 }
 
-#[pyclass(name = "SqsParameters", frozen)]
+#[pyclass(name = "SqsParameters", module = "rboto_scheduler._native", frozen)]
 struct PySqsParameters {
     inner: aws_sdk_scheduler::types::SqsParameters,
 }
@@ -1722,7 +1758,7 @@ impl PySqsParameters {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_scheduler._native", frozen)]
 struct PyTag {
     inner: aws_sdk_scheduler::types::Tag,
 }
@@ -1746,7 +1782,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Target", frozen)]
+#[pyclass(name = "Target", module = "rboto_scheduler._native", frozen)]
 struct PyTarget {
     inner: aws_sdk_scheduler::types::Target,
 }
@@ -1892,7 +1928,7 @@ impl PyTarget {
     }
 }
 
-#[pyclass(name = "TargetSummary", frozen)]
+#[pyclass(name = "TargetSummary", module = "rboto_scheduler._native", frozen)]
 struct PyTargetSummary {
     inner: aws_sdk_scheduler::types::TargetSummary,
 }
@@ -1910,7 +1946,11 @@ impl PyTargetSummary {
     }
 }
 
-#[pyclass(name = "CreateScheduleOutput", frozen)]
+#[pyclass(
+    name = "CreateScheduleOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyCreateScheduleOutput {
     inner: aws_sdk_scheduler::operation::create_schedule::CreateScheduleOutput,
 }
@@ -1931,7 +1971,11 @@ impl PyCreateScheduleOutput {
     }
 }
 
-#[pyclass(name = "CreateScheduleGroupOutput", frozen)]
+#[pyclass(
+    name = "CreateScheduleGroupOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyCreateScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::create_schedule_group::CreateScheduleGroupOutput,
 }
@@ -1952,7 +1996,11 @@ impl PyCreateScheduleGroupOutput {
     }
 }
 
-#[pyclass(name = "DeleteScheduleOutput", frozen)]
+#[pyclass(
+    name = "DeleteScheduleOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyDeleteScheduleOutput {
     inner: aws_sdk_scheduler::operation::delete_schedule::DeleteScheduleOutput,
 }
@@ -1965,7 +2013,11 @@ impl PyDeleteScheduleOutput {
     }
 }
 
-#[pyclass(name = "DeleteScheduleGroupOutput", frozen)]
+#[pyclass(
+    name = "DeleteScheduleGroupOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyDeleteScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::delete_schedule_group::DeleteScheduleGroupOutput,
 }
@@ -1978,7 +2030,7 @@ impl PyDeleteScheduleGroupOutput {
     }
 }
 
-#[pyclass(name = "GetScheduleOutput", frozen)]
+#[pyclass(name = "GetScheduleOutput", module = "rboto_scheduler._native", frozen)]
 struct PyGetScheduleOutput {
     inner: aws_sdk_scheduler::operation::get_schedule::GetScheduleOutput,
 }
@@ -2243,7 +2295,11 @@ impl PyGetScheduleOutput {
     }
 }
 
-#[pyclass(name = "GetScheduleGroupOutput", frozen)]
+#[pyclass(
+    name = "GetScheduleGroupOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyGetScheduleGroupOutput {
     inner: aws_sdk_scheduler::operation::get_schedule_group::GetScheduleGroupOutput,
 }
@@ -2336,7 +2392,11 @@ impl PyGetScheduleGroupOutput {
     }
 }
 
-#[pyclass(name = "ListScheduleGroupsOutput", frozen)]
+#[pyclass(
+    name = "ListScheduleGroupsOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyListScheduleGroupsOutput {
     inner: aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsOutput,
 }
@@ -2389,7 +2449,11 @@ impl PyListScheduleGroupsOutput {
     }
 }
 
-#[pyclass(name = "ListSchedulesOutput", frozen)]
+#[pyclass(
+    name = "ListSchedulesOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyListSchedulesOutput {
     inner: aws_sdk_scheduler::operation::list_schedules::ListSchedulesOutput,
 }
@@ -2442,7 +2506,11 @@ impl PyListSchedulesOutput {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceOutput", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyListTagsForResourceOutput {
     inner: aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -2487,7 +2555,7 @@ impl PyListTagsForResourceOutput {
     }
 }
 
-#[pyclass(name = "TagResourceOutput", frozen)]
+#[pyclass(name = "TagResourceOutput", module = "rboto_scheduler._native", frozen)]
 struct PyTagResourceOutput {
     inner: aws_sdk_scheduler::operation::tag_resource::TagResourceOutput,
 }
@@ -2500,7 +2568,11 @@ impl PyTagResourceOutput {
     }
 }
 
-#[pyclass(name = "UntagResourceOutput", frozen)]
+#[pyclass(
+    name = "UntagResourceOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyUntagResourceOutput {
     inner: aws_sdk_scheduler::operation::untag_resource::UntagResourceOutput,
 }
@@ -2513,7 +2585,11 @@ impl PyUntagResourceOutput {
     }
 }
 
-#[pyclass(name = "UpdateScheduleOutput", frozen)]
+#[pyclass(
+    name = "UpdateScheduleOutput",
+    module = "rboto_scheduler._native",
+    frozen
+)]
 struct PyUpdateScheduleOutput {
     inner: aws_sdk_scheduler::operation::update_schedule::UpdateScheduleOutput,
 }

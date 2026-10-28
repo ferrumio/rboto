@@ -4166,7 +4166,7 @@ fn validation_exception_field_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AwsVpcConfiguration", frozen)]
+#[pyclass(name = "AwsVpcConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyAwsVpcConfiguration {
     inner: aws_sdk_pipes::types::AwsVpcConfiguration,
 }
@@ -4214,7 +4214,7 @@ impl PyAwsVpcConfiguration {
     }
 }
 
-#[pyclass(name = "BatchArrayProperties", frozen)]
+#[pyclass(name = "BatchArrayProperties", module = "rboto_pipes._native", frozen)]
 struct PyBatchArrayProperties {
     inner: aws_sdk_pipes::types::BatchArrayProperties,
 }
@@ -4236,7 +4236,11 @@ impl PyBatchArrayProperties {
     }
 }
 
-#[pyclass(name = "BatchContainerOverrides", frozen)]
+#[pyclass(
+    name = "BatchContainerOverrides",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyBatchContainerOverrides {
     inner: aws_sdk_pipes::types::BatchContainerOverrides,
 }
@@ -4315,7 +4319,11 @@ impl PyBatchContainerOverrides {
     }
 }
 
-#[pyclass(name = "BatchEnvironmentVariable", frozen)]
+#[pyclass(
+    name = "BatchEnvironmentVariable",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyBatchEnvironmentVariable {
     inner: aws_sdk_pipes::types::BatchEnvironmentVariable,
 }
@@ -4347,7 +4355,7 @@ impl PyBatchEnvironmentVariable {
     }
 }
 
-#[pyclass(name = "BatchJobDependency", frozen)]
+#[pyclass(name = "BatchJobDependency", module = "rboto_pipes._native", frozen)]
 struct PyBatchJobDependency {
     inner: aws_sdk_pipes::types::BatchJobDependency,
 }
@@ -4379,7 +4387,11 @@ impl PyBatchJobDependency {
     }
 }
 
-#[pyclass(name = "BatchResourceRequirement", frozen)]
+#[pyclass(
+    name = "BatchResourceRequirement",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyBatchResourceRequirement {
     inner: aws_sdk_pipes::types::BatchResourceRequirement,
 }
@@ -4403,7 +4415,7 @@ impl PyBatchResourceRequirement {
     }
 }
 
-#[pyclass(name = "BatchRetryStrategy", frozen)]
+#[pyclass(name = "BatchRetryStrategy", module = "rboto_pipes._native", frozen)]
 struct PyBatchRetryStrategy {
     inner: aws_sdk_pipes::types::BatchRetryStrategy,
 }
@@ -4425,7 +4437,11 @@ impl PyBatchRetryStrategy {
     }
 }
 
-#[pyclass(name = "CapacityProviderStrategyItem", frozen)]
+#[pyclass(
+    name = "CapacityProviderStrategyItem",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyCapacityProviderStrategyItem {
     inner: aws_sdk_pipes::types::CapacityProviderStrategyItem,
 }
@@ -4455,7 +4471,11 @@ impl PyCapacityProviderStrategyItem {
     }
 }
 
-#[pyclass(name = "CloudwatchLogsLogDestination", frozen)]
+#[pyclass(
+    name = "CloudwatchLogsLogDestination",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyCloudwatchLogsLogDestination {
     inner: aws_sdk_pipes::types::CloudwatchLogsLogDestination,
 }
@@ -4477,7 +4497,7 @@ impl PyCloudwatchLogsLogDestination {
     }
 }
 
-#[pyclass(name = "DeadLetterConfig", frozen)]
+#[pyclass(name = "DeadLetterConfig", module = "rboto_pipes._native", frozen)]
 struct PyDeadLetterConfig {
     inner: aws_sdk_pipes::types::DeadLetterConfig,
 }
@@ -4499,7 +4519,7 @@ impl PyDeadLetterConfig {
     }
 }
 
-#[pyclass(name = "DimensionMapping", frozen)]
+#[pyclass(name = "DimensionMapping", module = "rboto_pipes._native", frozen)]
 struct PyDimensionMapping {
     inner: aws_sdk_pipes::types::DimensionMapping,
 }
@@ -4531,7 +4551,7 @@ impl PyDimensionMapping {
     }
 }
 
-#[pyclass(name = "EcsContainerOverride", frozen)]
+#[pyclass(name = "EcsContainerOverride", module = "rboto_pipes._native", frozen)]
 struct PyEcsContainerOverride {
     inner: aws_sdk_pipes::types::EcsContainerOverride,
 }
@@ -4661,7 +4681,7 @@ impl PyEcsContainerOverride {
     }
 }
 
-#[pyclass(name = "EcsEnvironmentFile", frozen)]
+#[pyclass(name = "EcsEnvironmentFile", module = "rboto_pipes._native", frozen)]
 struct PyEcsEnvironmentFile {
     inner: aws_sdk_pipes::types::EcsEnvironmentFile,
 }
@@ -4685,7 +4705,11 @@ impl PyEcsEnvironmentFile {
     }
 }
 
-#[pyclass(name = "EcsEnvironmentVariable", frozen)]
+#[pyclass(
+    name = "EcsEnvironmentVariable",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyEcsEnvironmentVariable {
     inner: aws_sdk_pipes::types::EcsEnvironmentVariable,
 }
@@ -4717,7 +4741,7 @@ impl PyEcsEnvironmentVariable {
     }
 }
 
-#[pyclass(name = "EcsEphemeralStorage", frozen)]
+#[pyclass(name = "EcsEphemeralStorage", module = "rboto_pipes._native", frozen)]
 struct PyEcsEphemeralStorage {
     inner: aws_sdk_pipes::types::EcsEphemeralStorage,
 }
@@ -4735,7 +4759,11 @@ impl PyEcsEphemeralStorage {
     }
 }
 
-#[pyclass(name = "EcsInferenceAcceleratorOverride", frozen)]
+#[pyclass(
+    name = "EcsInferenceAcceleratorOverride",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyEcsInferenceAcceleratorOverride {
     inner: aws_sdk_pipes::types::EcsInferenceAcceleratorOverride,
 }
@@ -4767,7 +4795,11 @@ impl PyEcsInferenceAcceleratorOverride {
     }
 }
 
-#[pyclass(name = "EcsResourceRequirement", frozen)]
+#[pyclass(
+    name = "EcsResourceRequirement",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyEcsResourceRequirement {
     inner: aws_sdk_pipes::types::EcsResourceRequirement,
 }
@@ -4791,7 +4823,7 @@ impl PyEcsResourceRequirement {
     }
 }
 
-#[pyclass(name = "EcsTaskOverride", frozen)]
+#[pyclass(name = "EcsTaskOverride", module = "rboto_pipes._native", frozen)]
 struct PyEcsTaskOverride {
     inner: aws_sdk_pipes::types::EcsTaskOverride,
 }
@@ -4901,7 +4933,7 @@ impl PyEcsTaskOverride {
     }
 }
 
-#[pyclass(name = "Filter", frozen)]
+#[pyclass(name = "Filter", module = "rboto_pipes._native", frozen)]
 struct PyFilter {
     inner: aws_sdk_pipes::types::Filter,
 }
@@ -4923,7 +4955,7 @@ impl PyFilter {
     }
 }
 
-#[pyclass(name = "FilterCriteria", frozen)]
+#[pyclass(name = "FilterCriteria", module = "rboto_pipes._native", frozen)]
 struct PyFilterCriteria {
     inner: aws_sdk_pipes::types::FilterCriteria,
 }
@@ -4956,7 +4988,11 @@ impl PyFilterCriteria {
     }
 }
 
-#[pyclass(name = "FirehoseLogDestination", frozen)]
+#[pyclass(
+    name = "FirehoseLogDestination",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyFirehoseLogDestination {
     inner: aws_sdk_pipes::types::FirehoseLogDestination,
 }
@@ -4978,7 +5014,11 @@ impl PyFirehoseLogDestination {
     }
 }
 
-#[pyclass(name = "MultiMeasureAttributeMapping", frozen)]
+#[pyclass(
+    name = "MultiMeasureAttributeMapping",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyMultiMeasureAttributeMapping {
     inner: aws_sdk_pipes::types::MultiMeasureAttributeMapping,
 }
@@ -5010,7 +5050,7 @@ impl PyMultiMeasureAttributeMapping {
     }
 }
 
-#[pyclass(name = "MultiMeasureMapping", frozen)]
+#[pyclass(name = "MultiMeasureMapping", module = "rboto_pipes._native", frozen)]
 struct PyMultiMeasureMapping {
     inner: aws_sdk_pipes::types::MultiMeasureMapping,
 }
@@ -5045,7 +5085,7 @@ impl PyMultiMeasureMapping {
     }
 }
 
-#[pyclass(name = "NetworkConfiguration", frozen)]
+#[pyclass(name = "NetworkConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyNetworkConfiguration {
     inner: aws_sdk_pipes::types::NetworkConfiguration,
 }
@@ -5073,7 +5113,7 @@ impl PyNetworkConfiguration {
     }
 }
 
-#[pyclass(name = "Pipe", frozen)]
+#[pyclass(name = "Pipe", module = "rboto_pipes._native", frozen)]
 struct PyPipe {
     inner: aws_sdk_pipes::types::Pipe,
 }
@@ -5185,7 +5225,11 @@ impl PyPipe {
     }
 }
 
-#[pyclass(name = "PipeEnrichmentHttpParameters", frozen)]
+#[pyclass(
+    name = "PipeEnrichmentHttpParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeEnrichmentHttpParameters {
     inner: aws_sdk_pipes::types::PipeEnrichmentHttpParameters,
 }
@@ -5244,7 +5288,11 @@ impl PyPipeEnrichmentHttpParameters {
     }
 }
 
-#[pyclass(name = "PipeEnrichmentParameters", frozen)]
+#[pyclass(
+    name = "PipeEnrichmentParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeEnrichmentParameters {
     inner: aws_sdk_pipes::types::PipeEnrichmentParameters,
 }
@@ -5282,7 +5330,7 @@ impl PyPipeEnrichmentParameters {
     }
 }
 
-#[pyclass(name = "PipeLogConfiguration", frozen)]
+#[pyclass(name = "PipeLogConfiguration", module = "rboto_pipes._native", frozen)]
 struct PyPipeLogConfiguration {
     inner: aws_sdk_pipes::types::PipeLogConfiguration,
 }
@@ -5367,7 +5415,11 @@ impl PyPipeLogConfiguration {
     }
 }
 
-#[pyclass(name = "PipeSourceActiveMqBrokerParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceActiveMqBrokerParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceActiveMqBrokerParameters {
     inner: aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters,
 }
@@ -5415,7 +5467,11 @@ impl PyPipeSourceActiveMqBrokerParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceDynamoDbStreamParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceDynamoDbStreamParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceDynamoDbStreamParameters {
     inner: aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters,
 }
@@ -5509,7 +5565,11 @@ impl PyPipeSourceDynamoDbStreamParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceKinesisStreamParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceKinesisStreamParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceKinesisStreamParameters {
     inner: aws_sdk_pipes::types::PipeSourceKinesisStreamParameters,
 }
@@ -5613,7 +5673,11 @@ impl PyPipeSourceKinesisStreamParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceManagedStreamingKafkaParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceManagedStreamingKafkaParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceManagedStreamingKafkaParameters {
     inner: aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters,
 }
@@ -5681,7 +5745,7 @@ impl PyPipeSourceManagedStreamingKafkaParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceParameters", frozen)]
+#[pyclass(name = "PipeSourceParameters", module = "rboto_pipes._native", frozen)]
 struct PyPipeSourceParameters {
     inner: aws_sdk_pipes::types::PipeSourceParameters,
 }
@@ -5821,7 +5885,11 @@ impl PyPipeSourceParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceRabbitMqBrokerParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceRabbitMqBrokerParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceRabbitMqBrokerParameters {
     inner: aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters,
 }
@@ -5879,7 +5947,11 @@ impl PyPipeSourceRabbitMqBrokerParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceSelfManagedKafkaParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceSelfManagedKafkaParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceSelfManagedKafkaParameters {
     inner: aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters,
 }
@@ -5989,7 +6061,11 @@ impl PyPipeSourceSelfManagedKafkaParameters {
     }
 }
 
-#[pyclass(name = "PipeSourceSqsQueueParameters", frozen)]
+#[pyclass(
+    name = "PipeSourceSqsQueueParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeSourceSqsQueueParameters {
     inner: aws_sdk_pipes::types::PipeSourceSqsQueueParameters,
 }
@@ -6021,7 +6097,11 @@ impl PyPipeSourceSqsQueueParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetBatchJobParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetBatchJobParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetBatchJobParameters {
     inner: aws_sdk_pipes::types::PipeTargetBatchJobParameters,
 }
@@ -6130,7 +6210,11 @@ impl PyPipeTargetBatchJobParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetCloudWatchLogsParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetCloudWatchLogsParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetCloudWatchLogsParameters {
     inner: aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters,
 }
@@ -6162,7 +6246,11 @@ impl PyPipeTargetCloudWatchLogsParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetEcsTaskParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetEcsTaskParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetEcsTaskParameters {
     inner: aws_sdk_pipes::types::PipeTargetEcsTaskParameters,
 }
@@ -6372,7 +6460,11 @@ impl PyPipeTargetEcsTaskParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetEventBridgeEventBusParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetEventBridgeEventBusParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetEventBridgeEventBusParameters {
     inner: aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters,
 }
@@ -6439,7 +6531,11 @@ impl PyPipeTargetEventBridgeEventBusParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetHttpParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetHttpParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetHttpParameters {
     inner: aws_sdk_pipes::types::PipeTargetHttpParameters,
 }
@@ -6498,7 +6594,11 @@ impl PyPipeTargetHttpParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetKinesisStreamParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetKinesisStreamParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetKinesisStreamParameters {
     inner: aws_sdk_pipes::types::PipeTargetKinesisStreamParameters,
 }
@@ -6516,7 +6616,11 @@ impl PyPipeTargetKinesisStreamParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetLambdaFunctionParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetLambdaFunctionParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetLambdaFunctionParameters {
     inner: aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters,
 }
@@ -6538,7 +6642,7 @@ impl PyPipeTargetLambdaFunctionParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetParameters", frozen)]
+#[pyclass(name = "PipeTargetParameters", module = "rboto_pipes._native", frozen)]
 struct PyPipeTargetParameters {
     inner: aws_sdk_pipes::types::PipeTargetParameters,
 }
@@ -6752,7 +6856,11 @@ impl PyPipeTargetParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetRedshiftDataParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetRedshiftDataParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetRedshiftDataParameters {
     inner: aws_sdk_pipes::types::PipeTargetRedshiftDataParameters,
 }
@@ -6817,7 +6925,11 @@ impl PyPipeTargetRedshiftDataParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetSageMakerPipelineParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetSageMakerPipelineParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetSageMakerPipelineParameters {
     inner: aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters,
 }
@@ -6850,7 +6962,11 @@ impl PyPipeTargetSageMakerPipelineParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetSqsQueueParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetSqsQueueParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetSqsQueueParameters {
     inner: aws_sdk_pipes::types::PipeTargetSqsQueueParameters,
 }
@@ -6882,7 +6998,11 @@ impl PyPipeTargetSqsQueueParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetStateMachineParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetStateMachineParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetStateMachineParameters {
     inner: aws_sdk_pipes::types::PipeTargetStateMachineParameters,
 }
@@ -6904,7 +7024,11 @@ impl PyPipeTargetStateMachineParameters {
     }
 }
 
-#[pyclass(name = "PipeTargetTimestreamParameters", frozen)]
+#[pyclass(
+    name = "PipeTargetTimestreamParameters",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyPipeTargetTimestreamParameters {
     inner: aws_sdk_pipes::types::PipeTargetTimestreamParameters,
 }
@@ -7017,7 +7141,7 @@ impl PyPipeTargetTimestreamParameters {
     }
 }
 
-#[pyclass(name = "PlacementConstraint", frozen)]
+#[pyclass(name = "PlacementConstraint", module = "rboto_pipes._native", frozen)]
 struct PyPlacementConstraint {
     inner: aws_sdk_pipes::types::PlacementConstraint,
 }
@@ -7049,7 +7173,7 @@ impl PyPlacementConstraint {
     }
 }
 
-#[pyclass(name = "PlacementStrategy", frozen)]
+#[pyclass(name = "PlacementStrategy", module = "rboto_pipes._native", frozen)]
 struct PyPlacementStrategy {
     inner: aws_sdk_pipes::types::PlacementStrategy,
 }
@@ -7081,7 +7205,7 @@ impl PyPlacementStrategy {
     }
 }
 
-#[pyclass(name = "S3LogDestination", frozen)]
+#[pyclass(name = "S3LogDestination", module = "rboto_pipes._native", frozen)]
 struct PyS3LogDestination {
     inner: aws_sdk_pipes::types::S3LogDestination,
 }
@@ -7133,7 +7257,11 @@ impl PyS3LogDestination {
     }
 }
 
-#[pyclass(name = "SageMakerPipelineParameter", frozen)]
+#[pyclass(
+    name = "SageMakerPipelineParameter",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PySageMakerPipelineParameter {
     inner: aws_sdk_pipes::types::SageMakerPipelineParameter,
 }
@@ -7157,7 +7285,11 @@ impl PySageMakerPipelineParameter {
     }
 }
 
-#[pyclass(name = "SelfManagedKafkaAccessConfigurationVpc", frozen)]
+#[pyclass(
+    name = "SelfManagedKafkaAccessConfigurationVpc",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PySelfManagedKafkaAccessConfigurationVpc {
     inner: aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc,
 }
@@ -7199,7 +7331,7 @@ impl PySelfManagedKafkaAccessConfigurationVpc {
     }
 }
 
-#[pyclass(name = "SingleMeasureMapping", frozen)]
+#[pyclass(name = "SingleMeasureMapping", module = "rboto_pipes._native", frozen)]
 struct PySingleMeasureMapping {
     inner: aws_sdk_pipes::types::SingleMeasureMapping,
 }
@@ -7229,7 +7361,7 @@ impl PySingleMeasureMapping {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_pipes._native", frozen)]
 struct PyTag {
     inner: aws_sdk_pipes::types::Tag,
 }
@@ -7253,7 +7385,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "CreatePipeResponse", frozen)]
+#[pyclass(name = "CreatePipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyCreatePipeResponse {
     inner: aws_sdk_pipes::operation::create_pipe::CreatePipeOutput,
 }
@@ -7362,7 +7494,7 @@ impl PyCreatePipeResponse {
     }
 }
 
-#[pyclass(name = "DeletePipeResponse", frozen)]
+#[pyclass(name = "DeletePipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyDeletePipeResponse {
     inner: aws_sdk_pipes::operation::delete_pipe::DeletePipeOutput,
 }
@@ -7471,7 +7603,7 @@ impl PyDeletePipeResponse {
     }
 }
 
-#[pyclass(name = "DescribePipeResponse", frozen)]
+#[pyclass(name = "DescribePipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyDescribePipeResponse {
     inner: aws_sdk_pipes::operation::describe_pipe::DescribePipeOutput,
 }
@@ -7808,7 +7940,7 @@ impl PyDescribePipeResponse {
     }
 }
 
-#[pyclass(name = "ListPipesResponse", frozen)]
+#[pyclass(name = "ListPipesResponse", module = "rboto_pipes._native", frozen)]
 struct PyListPipesResponse {
     inner: aws_sdk_pipes::operation::list_pipes::ListPipesOutput,
 }
@@ -7869,7 +8001,11 @@ impl PyListPipesResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_pipes._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_pipes::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -7910,7 +8046,7 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "StartPipeResponse", frozen)]
+#[pyclass(name = "StartPipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyStartPipeResponse {
     inner: aws_sdk_pipes::operation::start_pipe::StartPipeOutput,
 }
@@ -8019,7 +8155,7 @@ impl PyStartPipeResponse {
     }
 }
 
-#[pyclass(name = "StopPipeResponse", frozen)]
+#[pyclass(name = "StopPipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyStopPipeResponse {
     inner: aws_sdk_pipes::operation::stop_pipe::StopPipeOutput,
 }
@@ -8128,7 +8264,7 @@ impl PyStopPipeResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(name = "TagResourceResponse", module = "rboto_pipes._native", frozen)]
 struct PyTagResourceResponse {
     inner: aws_sdk_pipes::operation::tag_resource::TagResourceOutput,
 }
@@ -8141,7 +8277,7 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(name = "UntagResourceResponse", module = "rboto_pipes._native", frozen)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_pipes::operation::untag_resource::UntagResourceOutput,
 }
@@ -8154,7 +8290,7 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdatePipeResponse", frozen)]
+#[pyclass(name = "UpdatePipeResponse", module = "rboto_pipes._native", frozen)]
 struct PyUpdatePipeResponse {
     inner: aws_sdk_pipes::operation::update_pipe::UpdatePipeOutput,
 }

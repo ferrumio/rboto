@@ -10,6 +10,9 @@ Run commands from the repository root unless a working directory is shown.
 
 ## Python quality
 
+Install `pydantic>=2,<3` in the development environment to check the optional
+integration examples and run the compiled model interoperability tests.
+
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
 .venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples

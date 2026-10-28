@@ -852,7 +852,11 @@ fn validation_errors_entry_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ApiErrorType", frozen)]
+#[pyclass(
+    name = "ApiErrorType",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyApiErrorType {
     inner: aws_sdk_secretsmanager::types::ApiErrorType,
 }
@@ -894,7 +898,11 @@ impl PyApiErrorType {
     }
 }
 
-#[pyclass(name = "ExternalSecretRotationMetadataItem", frozen)]
+#[pyclass(
+    name = "ExternalSecretRotationMetadataItem",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyExternalSecretRotationMetadataItem {
     inner: aws_sdk_secretsmanager::types::ExternalSecretRotationMetadataItem,
 }
@@ -926,7 +934,11 @@ impl PyExternalSecretRotationMetadataItem {
     }
 }
 
-#[pyclass(name = "ReplicationStatusType", frozen)]
+#[pyclass(
+    name = "ReplicationStatusType",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyReplicationStatusType {
     inner: aws_sdk_secretsmanager::types::ReplicationStatusType,
 }
@@ -988,7 +1000,11 @@ impl PyReplicationStatusType {
     }
 }
 
-#[pyclass(name = "RotationRulesType", frozen)]
+#[pyclass(
+    name = "RotationRulesType",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyRotationRulesType {
     inner: aws_sdk_secretsmanager::types::RotationRulesType,
 }
@@ -1030,7 +1046,11 @@ impl PyRotationRulesType {
     }
 }
 
-#[pyclass(name = "SecretListEntry", frozen)]
+#[pyclass(
+    name = "SecretListEntry",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PySecretListEntry {
     inner: aws_sdk_secretsmanager::types::SecretListEntry,
 }
@@ -1281,7 +1301,11 @@ impl PySecretListEntry {
     }
 }
 
-#[pyclass(name = "SecretValueEntry", frozen)]
+#[pyclass(
+    name = "SecretValueEntry",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PySecretValueEntry {
     inner: aws_sdk_secretsmanager::types::SecretValueEntry,
 }
@@ -1368,7 +1392,11 @@ impl PySecretValueEntry {
     }
 }
 
-#[pyclass(name = "SecretVersionsListEntry", frozen)]
+#[pyclass(
+    name = "SecretVersionsListEntry",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PySecretVersionsListEntry {
     inner: aws_sdk_secretsmanager::types::SecretVersionsListEntry,
 }
@@ -1440,7 +1468,7 @@ impl PySecretVersionsListEntry {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_secrets_manager._native", frozen)]
 struct PyTag {
     inner: aws_sdk_secretsmanager::types::Tag,
 }
@@ -1472,7 +1500,11 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "ValidationErrorsEntry", frozen)]
+#[pyclass(
+    name = "ValidationErrorsEntry",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyValidationErrorsEntry {
     inner: aws_sdk_secretsmanager::types::ValidationErrorsEntry,
 }
@@ -1504,7 +1536,11 @@ impl PyValidationErrorsEntry {
     }
 }
 
-#[pyclass(name = "BatchGetSecretValueResponse", frozen)]
+#[pyclass(
+    name = "BatchGetSecretValueResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyBatchGetSecretValueResponse {
     inner: aws_sdk_secretsmanager::operation::batch_get_secret_value::BatchGetSecretValueOutput,
 }
@@ -1597,7 +1633,11 @@ impl PyBatchGetSecretValueResponse {
     }
 }
 
-#[pyclass(name = "CancelRotateSecretResponse", frozen)]
+#[pyclass(
+    name = "CancelRotateSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyCancelRotateSecretResponse {
     inner: aws_sdk_secretsmanager::operation::cancel_rotate_secret::CancelRotateSecretOutput,
 }
@@ -1658,7 +1698,11 @@ impl PyCancelRotateSecretResponse {
     }
 }
 
-#[pyclass(name = "CreateSecretResponse", frozen)]
+#[pyclass(
+    name = "CreateSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyCreateSecretResponse {
     inner: aws_sdk_secretsmanager::operation::create_secret::CreateSecretOutput,
 }
@@ -1751,7 +1795,11 @@ impl PyCreateSecretResponse {
     }
 }
 
-#[pyclass(name = "DeleteResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteResourcePolicyResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyDeleteResourcePolicyResponse {
     inner: aws_sdk_secretsmanager::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
@@ -1796,7 +1844,11 @@ impl PyDeleteResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "DeleteSecretResponse", frozen)]
+#[pyclass(
+    name = "DeleteSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyDeleteSecretResponse {
     inner: aws_sdk_secretsmanager::operation::delete_secret::DeleteSecretOutput,
 }
@@ -1857,7 +1909,11 @@ impl PyDeleteSecretResponse {
     }
 }
 
-#[pyclass(name = "DescribeSecretResponse", frozen)]
+#[pyclass(
+    name = "DescribeSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyDescribeSecretResponse {
     inner: aws_sdk_secretsmanager::operation::describe_secret::DescribeSecretOutput,
 }
@@ -2283,7 +2339,11 @@ impl PyDescribeSecretResponse {
     }
 }
 
-#[pyclass(name = "GetRandomPasswordResponse", frozen)]
+#[pyclass(
+    name = "GetRandomPasswordResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyGetRandomPasswordResponse {
     inner: aws_sdk_secretsmanager::operation::get_random_password::GetRandomPasswordOutput,
 }
@@ -2312,7 +2372,11 @@ impl PyGetRandomPasswordResponse {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyGetResourcePolicyResponse {
     inner: aws_sdk_secretsmanager::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -2373,7 +2437,11 @@ impl PyGetResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "GetSecretValueResponse", frozen)]
+#[pyclass(
+    name = "GetSecretValueResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyGetSecretValueResponse {
     inner: aws_sdk_secretsmanager::operation::get_secret_value::GetSecretValueOutput,
 }
@@ -2508,7 +2576,11 @@ impl PyGetSecretValueResponse {
     }
 }
 
-#[pyclass(name = "ListSecretVersionIdsResponse", frozen)]
+#[pyclass(
+    name = "ListSecretVersionIdsResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyListSecretVersionIdsResponse {
     inner: aws_sdk_secretsmanager::operation::list_secret_version_ids::ListSecretVersionIdsOutput,
 }
@@ -2601,7 +2673,11 @@ impl PyListSecretVersionIdsResponse {
     }
 }
 
-#[pyclass(name = "ListSecretsResponse", frozen)]
+#[pyclass(
+    name = "ListSecretsResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyListSecretsResponse {
     inner: aws_sdk_secretsmanager::operation::list_secrets::ListSecretsOutput,
 }
@@ -2662,7 +2738,11 @@ impl PyListSecretsResponse {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_secretsmanager::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -2707,7 +2787,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "PutSecretValueResponse", frozen)]
+#[pyclass(
+    name = "PutSecretValueResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyPutSecretValueResponse {
     inner: aws_sdk_secretsmanager::operation::put_secret_value::PutSecretValueOutput,
 }
@@ -2794,7 +2878,11 @@ impl PyPutSecretValueResponse {
     }
 }
 
-#[pyclass(name = "RemoveRegionsFromReplicationResponse", frozen)]
+#[pyclass(
+    name = "RemoveRegionsFromReplicationResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyRemoveRegionsFromReplicationResponse {
     inner: aws_sdk_secretsmanager::operation::remove_regions_from_replication::RemoveRegionsFromReplicationOutput,
 }
@@ -2855,7 +2943,11 @@ impl PyRemoveRegionsFromReplicationResponse {
     }
 }
 
-#[pyclass(name = "ReplicateSecretToRegionsResponse", frozen)]
+#[pyclass(
+    name = "ReplicateSecretToRegionsResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyReplicateSecretToRegionsResponse {
     inner: aws_sdk_secretsmanager::operation::replicate_secret_to_regions::ReplicateSecretToRegionsOutput,
 }
@@ -2916,7 +3008,11 @@ impl PyReplicateSecretToRegionsResponse {
     }
 }
 
-#[pyclass(name = "RestoreSecretResponse", frozen)]
+#[pyclass(
+    name = "RestoreSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyRestoreSecretResponse {
     inner: aws_sdk_secretsmanager::operation::restore_secret::RestoreSecretOutput,
 }
@@ -2961,7 +3057,11 @@ impl PyRestoreSecretResponse {
     }
 }
 
-#[pyclass(name = "RotateSecretResponse", frozen)]
+#[pyclass(
+    name = "RotateSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyRotateSecretResponse {
     inner: aws_sdk_secretsmanager::operation::rotate_secret::RotateSecretOutput,
 }
@@ -3022,7 +3122,11 @@ impl PyRotateSecretResponse {
     }
 }
 
-#[pyclass(name = "StopReplicationToReplicaResponse", frozen)]
+#[pyclass(
+    name = "StopReplicationToReplicaResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyStopReplicationToReplicaResponse {
     inner: aws_sdk_secretsmanager::operation::stop_replication_to_replica::StopReplicationToReplicaOutput,
 }
@@ -3051,7 +3155,11 @@ impl PyStopReplicationToReplicaResponse {
     }
 }
 
-#[pyclass(name = "UpdateSecretResponse", frozen)]
+#[pyclass(
+    name = "UpdateSecretResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyUpdateSecretResponse {
     inner: aws_sdk_secretsmanager::operation::update_secret::UpdateSecretOutput,
 }
@@ -3112,7 +3220,11 @@ impl PyUpdateSecretResponse {
     }
 }
 
-#[pyclass(name = "UpdateSecretVersionStageResponse", frozen)]
+#[pyclass(
+    name = "UpdateSecretVersionStageResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyUpdateSecretVersionStageResponse {
     inner: aws_sdk_secretsmanager::operation::update_secret_version_stage::UpdateSecretVersionStageOutput,
 }
@@ -3157,7 +3269,11 @@ impl PyUpdateSecretVersionStageResponse {
     }
 }
 
-#[pyclass(name = "ValidateResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "ValidateResourcePolicyResponse",
+    module = "rboto_secrets_manager._native",
+    frozen
+)]
 struct PyValidateResourcePolicyResponse {
     inner:
         aws_sdk_secretsmanager::operation::validate_resource_policy::ValidateResourcePolicyOutput,

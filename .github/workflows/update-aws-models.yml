@@ -43,7 +43,7 @@ jobs:
       - name: Install codegen and validation tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e packages/rboto mypy pyright pytest ruff
+          .venv/bin/pip install -e codegen -e packages/rboto mypy pyright pytest ruff "pydantic>=2,<3"
 
       - name: Update locks and regenerate
         id: update

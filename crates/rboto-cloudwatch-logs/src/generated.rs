@@ -7036,7 +7036,11 @@ fn upper_case_string_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccountPolicy", frozen)]
+#[pyclass(
+    name = "AccountPolicy",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyAccountPolicy {
     inner: aws_sdk_cloudwatchlogs::types::AccountPolicy,
 }
@@ -7118,7 +7122,7 @@ impl PyAccountPolicy {
     }
 }
 
-#[pyclass(name = "AddKeyEntry", frozen)]
+#[pyclass(name = "AddKeyEntry", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyAddKeyEntry {
     inner: aws_sdk_cloudwatchlogs::types::AddKeyEntry,
 }
@@ -7150,7 +7154,7 @@ impl PyAddKeyEntry {
     }
 }
 
-#[pyclass(name = "AddKeys", frozen)]
+#[pyclass(name = "AddKeys", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyAddKeys {
     inner: aws_sdk_cloudwatchlogs::types::AddKeys,
 }
@@ -7179,7 +7183,11 @@ impl PyAddKeys {
     }
 }
 
-#[pyclass(name = "AggregateLogGroupSummary", frozen)]
+#[pyclass(
+    name = "AggregateLogGroupSummary",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyAggregateLogGroupSummary {
     inner: aws_sdk_cloudwatchlogs::types::AggregateLogGroupSummary,
 }
@@ -7222,7 +7230,7 @@ impl PyAggregateLogGroupSummary {
     }
 }
 
-#[pyclass(name = "Anomaly", frozen)]
+#[pyclass(name = "Anomaly", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyAnomaly {
     inner: aws_sdk_cloudwatchlogs::types::Anomaly,
 }
@@ -7399,7 +7407,11 @@ impl PyAnomaly {
     }
 }
 
-#[pyclass(name = "AnomalyDetector", frozen)]
+#[pyclass(
+    name = "AnomalyDetector",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyAnomalyDetector {
     inner: aws_sdk_cloudwatchlogs::types::AnomalyDetector,
 }
@@ -7512,7 +7524,11 @@ impl PyAnomalyDetector {
     }
 }
 
-#[pyclass(name = "ConfigurationTemplate", frozen)]
+#[pyclass(
+    name = "ConfigurationTemplate",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyConfigurationTemplate {
     inner: aws_sdk_cloudwatchlogs::types::ConfigurationTemplate,
 }
@@ -7699,7 +7715,11 @@ impl PyConfigurationTemplate {
     }
 }
 
-#[pyclass(name = "ConfigurationTemplateDeliveryConfigValues", frozen)]
+#[pyclass(
+    name = "ConfigurationTemplateDeliveryConfigValues",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyConfigurationTemplateDeliveryConfigValues {
     inner: aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues,
 }
@@ -7752,7 +7772,7 @@ impl PyConfigurationTemplateDeliveryConfigValues {
     }
 }
 
-#[pyclass(name = "CopyValue", frozen)]
+#[pyclass(name = "CopyValue", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyCopyValue {
     inner: aws_sdk_cloudwatchlogs::types::CopyValue,
 }
@@ -7781,7 +7801,11 @@ impl PyCopyValue {
     }
 }
 
-#[pyclass(name = "CopyValueEntry", frozen)]
+#[pyclass(
+    name = "CopyValueEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCopyValueEntry {
     inner: aws_sdk_cloudwatchlogs::types::CopyValueEntry,
 }
@@ -7813,7 +7837,7 @@ impl PyCopyValueEntry {
     }
 }
 
-#[pyclass(name = "Csv", frozen)]
+#[pyclass(name = "Csv", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyCsv {
     inner: aws_sdk_cloudwatchlogs::types::Csv,
 }
@@ -7880,7 +7904,7 @@ impl PyCsv {
     }
 }
 
-#[pyclass(name = "DataSource", frozen)]
+#[pyclass(name = "DataSource", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyDataSource {
     inner: aws_sdk_cloudwatchlogs::types::DataSource,
 }
@@ -7908,7 +7932,11 @@ impl PyDataSource {
     }
 }
 
-#[pyclass(name = "DateTimeConverter", frozen)]
+#[pyclass(
+    name = "DateTimeConverter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDateTimeConverter {
     inner: aws_sdk_cloudwatchlogs::types::DateTimeConverter,
 }
@@ -7983,7 +8011,7 @@ impl PyDateTimeConverter {
     }
 }
 
-#[pyclass(name = "DeleteKeys", frozen)]
+#[pyclass(name = "DeleteKeys", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyDeleteKeys {
     inner: aws_sdk_cloudwatchlogs::types::DeleteKeys,
 }
@@ -8006,7 +8034,7 @@ impl PyDeleteKeys {
     }
 }
 
-#[pyclass(name = "Delivery", frozen)]
+#[pyclass(name = "Delivery", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyDelivery {
     inner: aws_sdk_cloudwatchlogs::types::Delivery,
 }
@@ -8125,7 +8153,11 @@ impl PyDelivery {
     }
 }
 
-#[pyclass(name = "DeliveryDestination", frozen)]
+#[pyclass(
+    name = "DeliveryDestination",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeliveryDestination {
     inner: aws_sdk_cloudwatchlogs::types::DeliveryDestination,
 }
@@ -8219,7 +8251,11 @@ impl PyDeliveryDestination {
     }
 }
 
-#[pyclass(name = "DeliveryDestinationConfiguration", frozen)]
+#[pyclass(
+    name = "DeliveryDestinationConfiguration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeliveryDestinationConfiguration {
     inner: aws_sdk_cloudwatchlogs::types::DeliveryDestinationConfiguration,
 }
@@ -8239,7 +8275,11 @@ impl PyDeliveryDestinationConfiguration {
     }
 }
 
-#[pyclass(name = "DeliverySource", frozen)]
+#[pyclass(
+    name = "DeliverySource",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeliverySource {
     inner: aws_sdk_cloudwatchlogs::types::DeliverySource,
 }
@@ -8358,7 +8398,11 @@ impl PyDeliverySource {
     }
 }
 
-#[pyclass(name = "DeliverySourceConfigurationSchema", frozen)]
+#[pyclass(
+    name = "DeliverySourceConfigurationSchema",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeliverySourceConfigurationSchema {
     inner: aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchema,
 }
@@ -8423,7 +8467,7 @@ impl PyDeliverySourceConfigurationSchema {
     }
 }
 
-#[pyclass(name = "Destination", frozen)]
+#[pyclass(name = "Destination", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyDestination {
     inner: aws_sdk_cloudwatchlogs::types::Destination,
 }
@@ -8495,7 +8539,11 @@ impl PyDestination {
     }
 }
 
-#[pyclass(name = "DestinationConfiguration", frozen)]
+#[pyclass(
+    name = "DestinationConfiguration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDestinationConfiguration {
     inner: aws_sdk_cloudwatchlogs::types::DestinationConfiguration,
 }
@@ -8539,7 +8587,7 @@ impl PyDestinationConfiguration {
     }
 }
 
-#[pyclass(name = "ExportTask", frozen)]
+#[pyclass(name = "ExportTask", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyExportTask {
     inner: aws_sdk_cloudwatchlogs::types::ExportTask,
 }
@@ -8654,7 +8702,11 @@ impl PyExportTask {
     }
 }
 
-#[pyclass(name = "ExportTaskExecutionInfo", frozen)]
+#[pyclass(
+    name = "ExportTaskExecutionInfo",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyExportTaskExecutionInfo {
     inner: aws_sdk_cloudwatchlogs::types::ExportTaskExecutionInfo,
 }
@@ -8686,7 +8738,11 @@ impl PyExportTaskExecutionInfo {
     }
 }
 
-#[pyclass(name = "ExportTaskStatus", frozen)]
+#[pyclass(
+    name = "ExportTaskStatus",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyExportTaskStatus {
     inner: aws_sdk_cloudwatchlogs::types::ExportTaskStatus,
 }
@@ -8718,7 +8774,7 @@ impl PyExportTaskStatus {
     }
 }
 
-#[pyclass(name = "FieldIndex", frozen)]
+#[pyclass(name = "FieldIndex", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyFieldIndex {
     inner: aws_sdk_cloudwatchlogs::types::FieldIndex,
 }
@@ -8800,7 +8856,11 @@ impl PyFieldIndex {
     }
 }
 
-#[pyclass(name = "FilteredLogEvent", frozen)]
+#[pyclass(
+    name = "FilteredLogEvent",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyFilteredLogEvent {
     inner: aws_sdk_cloudwatchlogs::types::FilteredLogEvent,
 }
@@ -8862,7 +8922,7 @@ impl PyFilteredLogEvent {
     }
 }
 
-#[pyclass(name = "Grok", frozen)]
+#[pyclass(name = "Grok", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyGrok {
     inner: aws_sdk_cloudwatchlogs::types::Grok,
 }
@@ -8890,7 +8950,11 @@ impl PyGrok {
     }
 }
 
-#[pyclass(name = "GroupingIdentifier", frozen)]
+#[pyclass(
+    name = "GroupingIdentifier",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGroupingIdentifier {
     inner: aws_sdk_cloudwatchlogs::types::GroupingIdentifier,
 }
@@ -8922,7 +8986,7 @@ impl PyGroupingIdentifier {
     }
 }
 
-#[pyclass(name = "Import", frozen)]
+#[pyclass(name = "Import", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyImport {
     inner: aws_sdk_cloudwatchlogs::types::Import,
 }
@@ -9036,7 +9100,7 @@ impl PyImport {
     }
 }
 
-#[pyclass(name = "ImportBatch", frozen)]
+#[pyclass(name = "ImportBatch", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyImportBatch {
     inner: aws_sdk_cloudwatchlogs::types::ImportBatch,
 }
@@ -9070,7 +9134,11 @@ impl PyImportBatch {
     }
 }
 
-#[pyclass(name = "ImportFilter", frozen)]
+#[pyclass(
+    name = "ImportFilter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyImportFilter {
     inner: aws_sdk_cloudwatchlogs::types::ImportFilter,
 }
@@ -9102,7 +9170,11 @@ impl PyImportFilter {
     }
 }
 
-#[pyclass(name = "ImportStatistics", frozen)]
+#[pyclass(
+    name = "ImportStatistics",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyImportStatistics {
     inner: aws_sdk_cloudwatchlogs::types::ImportStatistics,
 }
@@ -9124,7 +9196,7 @@ impl PyImportStatistics {
     }
 }
 
-#[pyclass(name = "IndexPolicy", frozen)]
+#[pyclass(name = "IndexPolicy", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyIndexPolicy {
     inner: aws_sdk_cloudwatchlogs::types::IndexPolicy,
 }
@@ -9186,7 +9258,11 @@ impl PyIndexPolicy {
     }
 }
 
-#[pyclass(name = "IntegrationSummary", frozen)]
+#[pyclass(
+    name = "IntegrationSummary",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyIntegrationSummary {
     inner: aws_sdk_cloudwatchlogs::types::IntegrationSummary,
 }
@@ -9228,7 +9304,7 @@ impl PyIntegrationSummary {
     }
 }
 
-#[pyclass(name = "ListToMap", frozen)]
+#[pyclass(name = "ListToMap", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyListToMap {
     inner: aws_sdk_cloudwatchlogs::types::ListToMap,
 }
@@ -9288,7 +9364,7 @@ impl PyListToMap {
     }
 }
 
-#[pyclass(name = "LogEvent", frozen)]
+#[pyclass(name = "LogEvent", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyLogEvent {
     inner: aws_sdk_cloudwatchlogs::types::LogEvent,
 }
@@ -9320,7 +9396,11 @@ impl PyLogEvent {
     }
 }
 
-#[pyclass(name = "LogFieldType", frozen)]
+#[pyclass(
+    name = "LogFieldType",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLogFieldType {
     inner: aws_sdk_cloudwatchlogs::types::LogFieldType,
 }
@@ -9379,7 +9459,11 @@ impl PyLogFieldType {
     }
 }
 
-#[pyclass(name = "LogFieldsListItem", frozen)]
+#[pyclass(
+    name = "LogFieldsListItem",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLogFieldsListItem {
     inner: aws_sdk_cloudwatchlogs::types::LogFieldsListItem,
 }
@@ -9417,7 +9501,7 @@ impl PyLogFieldsListItem {
     }
 }
 
-#[pyclass(name = "LogGroup", frozen)]
+#[pyclass(name = "LogGroup", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyLogGroup {
     inner: aws_sdk_cloudwatchlogs::types::LogGroup,
 }
@@ -9564,7 +9648,11 @@ impl PyLogGroup {
     }
 }
 
-#[pyclass(name = "LogGroupField", frozen)]
+#[pyclass(
+    name = "LogGroupField",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLogGroupField {
     inner: aws_sdk_cloudwatchlogs::types::LogGroupField,
 }
@@ -9592,7 +9680,11 @@ impl PyLogGroupField {
     }
 }
 
-#[pyclass(name = "LogGroupSummary", frozen)]
+#[pyclass(
+    name = "LogGroupSummary",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLogGroupSummary {
     inner: aws_sdk_cloudwatchlogs::types::LogGroupSummary,
 }
@@ -9634,7 +9726,7 @@ impl PyLogGroupSummary {
     }
 }
 
-#[pyclass(name = "LogStream", frozen)]
+#[pyclass(name = "LogStream", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyLogStream {
     inner: aws_sdk_cloudwatchlogs::types::LogStream,
 }
@@ -9726,7 +9818,7 @@ impl PyLogStream {
     }
 }
 
-#[pyclass(name = "LookupTable", frozen)]
+#[pyclass(name = "LookupTable", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyLookupTable {
     inner: aws_sdk_cloudwatchlogs::types::LookupTable,
 }
@@ -9823,7 +9915,11 @@ impl PyLookupTable {
     }
 }
 
-#[pyclass(name = "LookupTableConfiguration", frozen)]
+#[pyclass(
+    name = "LookupTableConfiguration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLookupTableConfiguration {
     inner: aws_sdk_cloudwatchlogs::types::LookupTableConfiguration,
 }
@@ -9883,7 +9979,11 @@ impl PyLookupTableConfiguration {
     }
 }
 
-#[pyclass(name = "LowerCaseString", frozen)]
+#[pyclass(
+    name = "LowerCaseString",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyLowerCaseString {
     inner: aws_sdk_cloudwatchlogs::types::LowerCaseString,
 }
@@ -9906,7 +10006,11 @@ impl PyLowerCaseString {
     }
 }
 
-#[pyclass(name = "MetricFilter", frozen)]
+#[pyclass(
+    name = "MetricFilter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyMetricFilter {
     inner: aws_sdk_cloudwatchlogs::types::MetricFilter,
 }
@@ -10012,7 +10116,11 @@ impl PyMetricFilter {
     }
 }
 
-#[pyclass(name = "MetricFilterMatchRecord", frozen)]
+#[pyclass(
+    name = "MetricFilterMatchRecord",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyMetricFilterMatchRecord {
     inner: aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord,
 }
@@ -10056,7 +10164,11 @@ impl PyMetricFilterMatchRecord {
     }
 }
 
-#[pyclass(name = "MetricTransformation", frozen)]
+#[pyclass(
+    name = "MetricTransformation",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyMetricTransformation {
     inner: aws_sdk_cloudwatchlogs::types::MetricTransformation,
 }
@@ -10122,7 +10234,11 @@ impl PyMetricTransformation {
     }
 }
 
-#[pyclass(name = "MoveKeyEntry", frozen)]
+#[pyclass(
+    name = "MoveKeyEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyMoveKeyEntry {
     inner: aws_sdk_cloudwatchlogs::types::MoveKeyEntry,
 }
@@ -10154,7 +10270,7 @@ impl PyMoveKeyEntry {
     }
 }
 
-#[pyclass(name = "MoveKeys", frozen)]
+#[pyclass(name = "MoveKeys", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyMoveKeys {
     inner: aws_sdk_cloudwatchlogs::types::MoveKeys,
 }
@@ -10183,7 +10299,11 @@ impl PyMoveKeys {
     }
 }
 
-#[pyclass(name = "OutputLogEvent", frozen)]
+#[pyclass(
+    name = "OutputLogEvent",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyOutputLogEvent {
     inner: aws_sdk_cloudwatchlogs::types::OutputLogEvent,
 }
@@ -10225,7 +10345,11 @@ impl PyOutputLogEvent {
     }
 }
 
-#[pyclass(name = "ParseCloudfront", frozen)]
+#[pyclass(
+    name = "ParseCloudfront",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyParseCloudfront {
     inner: aws_sdk_cloudwatchlogs::types::ParseCloudfront,
 }
@@ -10247,7 +10371,7 @@ impl PyParseCloudfront {
     }
 }
 
-#[pyclass(name = "ParseJson", frozen)]
+#[pyclass(name = "ParseJson", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyParseJson {
     inner: aws_sdk_cloudwatchlogs::types::ParseJson,
 }
@@ -10279,7 +10403,11 @@ impl PyParseJson {
     }
 }
 
-#[pyclass(name = "ParseKeyValue", frozen)]
+#[pyclass(
+    name = "ParseKeyValue",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyParseKeyValue {
     inner: aws_sdk_cloudwatchlogs::types::ParseKeyValue,
 }
@@ -10359,7 +10487,11 @@ impl PyParseKeyValue {
     }
 }
 
-#[pyclass(name = "ParsePostgres", frozen)]
+#[pyclass(
+    name = "ParsePostgres",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyParsePostgres {
     inner: aws_sdk_cloudwatchlogs::types::ParsePostgres,
 }
@@ -10381,7 +10513,11 @@ impl PyParsePostgres {
     }
 }
 
-#[pyclass(name = "ParseRoute53", frozen)]
+#[pyclass(
+    name = "ParseRoute53",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyParseRoute53 {
     inner: aws_sdk_cloudwatchlogs::types::ParseRoute53,
 }
@@ -10403,7 +10539,7 @@ impl PyParseRoute53 {
     }
 }
 
-#[pyclass(name = "ParseToOcsf", frozen)]
+#[pyclass(name = "ParseToOcsf", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyParseToOcsf {
     inner: aws_sdk_cloudwatchlogs::types::ParseToOcsf,
 }
@@ -10447,7 +10583,7 @@ impl PyParseToOcsf {
     }
 }
 
-#[pyclass(name = "ParseVpc", frozen)]
+#[pyclass(name = "ParseVpc", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyParseVpc {
     inner: aws_sdk_cloudwatchlogs::types::ParseVpc,
 }
@@ -10469,7 +10605,7 @@ impl PyParseVpc {
     }
 }
 
-#[pyclass(name = "ParseWaf", frozen)]
+#[pyclass(name = "ParseWaf", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyParseWaf {
     inner: aws_sdk_cloudwatchlogs::types::ParseWaf,
 }
@@ -10491,7 +10627,11 @@ impl PyParseWaf {
     }
 }
 
-#[pyclass(name = "PatternToken", frozen)]
+#[pyclass(
+    name = "PatternToken",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPatternToken {
     inner: aws_sdk_cloudwatchlogs::types::PatternToken,
 }
@@ -10557,7 +10697,7 @@ impl PyPatternToken {
     }
 }
 
-#[pyclass(name = "Policy", frozen)]
+#[pyclass(name = "Policy", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyPolicy {
     inner: aws_sdk_cloudwatchlogs::types::Policy,
 }
@@ -10579,7 +10719,7 @@ impl PyPolicy {
     }
 }
 
-#[pyclass(name = "Processor", frozen)]
+#[pyclass(name = "Processor", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyProcessor {
     inner: aws_sdk_cloudwatchlogs::types::Processor,
 }
@@ -10959,7 +11099,11 @@ impl PyProcessor {
     }
 }
 
-#[pyclass(name = "QueryDefinition", frozen)]
+#[pyclass(
+    name = "QueryDefinition",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyQueryDefinition {
     inner: aws_sdk_cloudwatchlogs::types::QueryDefinition,
 }
@@ -11057,7 +11201,7 @@ impl PyQueryDefinition {
     }
 }
 
-#[pyclass(name = "QueryInfo", frozen)]
+#[pyclass(name = "QueryInfo", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyQueryInfo {
     inner: aws_sdk_cloudwatchlogs::types::QueryInfo,
 }
@@ -11159,7 +11303,11 @@ impl PyQueryInfo {
     }
 }
 
-#[pyclass(name = "QueryParameter", frozen)]
+#[pyclass(
+    name = "QueryParameter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyQueryParameter {
     inner: aws_sdk_cloudwatchlogs::types::QueryParameter,
 }
@@ -11197,7 +11345,11 @@ impl PyQueryParameter {
     }
 }
 
-#[pyclass(name = "QueryStatistics", frozen)]
+#[pyclass(
+    name = "QueryStatistics",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyQueryStatistics {
     inner: aws_sdk_cloudwatchlogs::types::QueryStatistics,
 }
@@ -11257,7 +11409,7 @@ impl PyQueryStatistics {
     }
 }
 
-#[pyclass(name = "RecordField", frozen)]
+#[pyclass(name = "RecordField", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyRecordField {
     inner: aws_sdk_cloudwatchlogs::types::RecordField,
 }
@@ -11289,7 +11441,11 @@ impl PyRecordField {
     }
 }
 
-#[pyclass(name = "RejectedEntityInfo", frozen)]
+#[pyclass(
+    name = "RejectedEntityInfo",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyRejectedEntityInfo {
     inner: aws_sdk_cloudwatchlogs::types::RejectedEntityInfo,
 }
@@ -11307,7 +11463,11 @@ impl PyRejectedEntityInfo {
     }
 }
 
-#[pyclass(name = "RejectedLogEventsInfo", frozen)]
+#[pyclass(
+    name = "RejectedLogEventsInfo",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyRejectedLogEventsInfo {
     inner: aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo,
 }
@@ -11349,7 +11509,11 @@ impl PyRejectedLogEventsInfo {
     }
 }
 
-#[pyclass(name = "RenameKeyEntry", frozen)]
+#[pyclass(
+    name = "RenameKeyEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyRenameKeyEntry {
     inner: aws_sdk_cloudwatchlogs::types::RenameKeyEntry,
 }
@@ -11381,7 +11545,7 @@ impl PyRenameKeyEntry {
     }
 }
 
-#[pyclass(name = "RenameKeys", frozen)]
+#[pyclass(name = "RenameKeys", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyRenameKeys {
     inner: aws_sdk_cloudwatchlogs::types::RenameKeys,
 }
@@ -11410,7 +11574,11 @@ impl PyRenameKeys {
     }
 }
 
-#[pyclass(name = "ResourcePolicy", frozen)]
+#[pyclass(
+    name = "ResourcePolicy",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyResourcePolicy {
     inner: aws_sdk_cloudwatchlogs::types::ResourcePolicy,
 }
@@ -11482,7 +11650,7 @@ impl PyResourcePolicy {
     }
 }
 
-#[pyclass(name = "ResultField", frozen)]
+#[pyclass(name = "ResultField", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyResultField {
     inner: aws_sdk_cloudwatchlogs::types::ResultField,
 }
@@ -11514,7 +11682,11 @@ impl PyResultField {
     }
 }
 
-#[pyclass(name = "S3Configuration", frozen)]
+#[pyclass(
+    name = "S3Configuration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyS3Configuration {
     inner: aws_sdk_cloudwatchlogs::types::S3Configuration,
 }
@@ -11560,7 +11732,11 @@ impl PyS3Configuration {
     }
 }
 
-#[pyclass(name = "S3DeliveryConfiguration", frozen)]
+#[pyclass(
+    name = "S3DeliveryConfiguration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyS3DeliveryConfiguration {
     inner: aws_sdk_cloudwatchlogs::types::S3DeliveryConfiguration,
 }
@@ -11592,7 +11768,11 @@ impl PyS3DeliveryConfiguration {
     }
 }
 
-#[pyclass(name = "S3TableIntegrationSource", frozen)]
+#[pyclass(
+    name = "S3TableIntegrationSource",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyS3TableIntegrationSource {
     inner: aws_sdk_cloudwatchlogs::types::S3TableIntegrationSource,
 }
@@ -11670,7 +11850,11 @@ impl PyS3TableIntegrationSource {
     }
 }
 
-#[pyclass(name = "S3TablesIntegration", frozen)]
+#[pyclass(
+    name = "S3TablesIntegration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyS3TablesIntegration {
     inner: aws_sdk_cloudwatchlogs::types::S3TablesIntegration,
 }
@@ -11702,7 +11886,11 @@ impl PyS3TablesIntegration {
     }
 }
 
-#[pyclass(name = "ScheduledQueryDestination", frozen)]
+#[pyclass(
+    name = "ScheduledQueryDestination",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyScheduledQueryDestination {
     inner: aws_sdk_cloudwatchlogs::types::ScheduledQueryDestination,
 }
@@ -11764,7 +11952,11 @@ impl PyScheduledQueryDestination {
     }
 }
 
-#[pyclass(name = "ScheduledQuerySummary", frozen)]
+#[pyclass(
+    name = "ScheduledQuerySummary",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyScheduledQuerySummary {
     inner: aws_sdk_cloudwatchlogs::types::ScheduledQuerySummary,
 }
@@ -11892,7 +12084,11 @@ impl PyScheduledQuerySummary {
     }
 }
 
-#[pyclass(name = "SearchedLogStream", frozen)]
+#[pyclass(
+    name = "SearchedLogStream",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySearchedLogStream {
     inner: aws_sdk_cloudwatchlogs::types::SearchedLogStream,
 }
@@ -11924,7 +12120,7 @@ impl PySearchedLogStream {
     }
 }
 
-#[pyclass(name = "SplitString", frozen)]
+#[pyclass(name = "SplitString", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PySplitString {
     inner: aws_sdk_cloudwatchlogs::types::SplitString,
 }
@@ -11953,7 +12149,11 @@ impl PySplitString {
     }
 }
 
-#[pyclass(name = "SplitStringEntry", frozen)]
+#[pyclass(
+    name = "SplitStringEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySplitStringEntry {
     inner: aws_sdk_cloudwatchlogs::types::SplitStringEntry,
 }
@@ -11977,7 +12177,11 @@ impl PySplitStringEntry {
     }
 }
 
-#[pyclass(name = "SubscriptionFilter", frozen)]
+#[pyclass(
+    name = "SubscriptionFilter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySubscriptionFilter {
     inner: aws_sdk_cloudwatchlogs::types::SubscriptionFilter,
 }
@@ -12092,7 +12296,11 @@ impl PySubscriptionFilter {
     }
 }
 
-#[pyclass(name = "SubstituteString", frozen)]
+#[pyclass(
+    name = "SubstituteString",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySubstituteString {
     inner: aws_sdk_cloudwatchlogs::types::SubstituteString,
 }
@@ -12121,7 +12329,11 @@ impl PySubstituteString {
     }
 }
 
-#[pyclass(name = "SubstituteStringEntry", frozen)]
+#[pyclass(
+    name = "SubstituteStringEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySubstituteStringEntry {
     inner: aws_sdk_cloudwatchlogs::types::SubstituteStringEntry,
 }
@@ -12152,7 +12364,11 @@ impl PySubstituteStringEntry {
     }
 }
 
-#[pyclass(name = "SyslogConfiguration", frozen)]
+#[pyclass(
+    name = "SyslogConfiguration",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PySyslogConfiguration {
     inner: aws_sdk_cloudwatchlogs::types::SyslogConfiguration,
 }
@@ -12204,7 +12420,11 @@ impl PySyslogConfiguration {
     }
 }
 
-#[pyclass(name = "TransformedLogRecord", frozen)]
+#[pyclass(
+    name = "TransformedLogRecord",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTransformedLogRecord {
     inner: aws_sdk_cloudwatchlogs::types::TransformedLogRecord,
 }
@@ -12242,7 +12462,11 @@ impl PyTransformedLogRecord {
     }
 }
 
-#[pyclass(name = "TriggerHistoryRecord", frozen)]
+#[pyclass(
+    name = "TriggerHistoryRecord",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTriggerHistoryRecord {
     inner: aws_sdk_cloudwatchlogs::types::TriggerHistoryRecord,
 }
@@ -12315,7 +12539,7 @@ impl PyTriggerHistoryRecord {
     }
 }
 
-#[pyclass(name = "TrimString", frozen)]
+#[pyclass(name = "TrimString", module = "rboto_cloudwatch_logs._native", frozen)]
 struct PyTrimString {
     inner: aws_sdk_cloudwatchlogs::types::TrimString,
 }
@@ -12338,7 +12562,11 @@ impl PyTrimString {
     }
 }
 
-#[pyclass(name = "TypeConverter", frozen)]
+#[pyclass(
+    name = "TypeConverter",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTypeConverter {
     inner: aws_sdk_cloudwatchlogs::types::TypeConverter,
 }
@@ -12367,7 +12595,11 @@ impl PyTypeConverter {
     }
 }
 
-#[pyclass(name = "TypeConverterEntry", frozen)]
+#[pyclass(
+    name = "TypeConverterEntry",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTypeConverterEntry {
     inner: aws_sdk_cloudwatchlogs::types::TypeConverterEntry,
 }
@@ -12391,7 +12623,11 @@ impl PyTypeConverterEntry {
     }
 }
 
-#[pyclass(name = "UpperCaseString", frozen)]
+#[pyclass(
+    name = "UpperCaseString",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyUpperCaseString {
     inner: aws_sdk_cloudwatchlogs::types::UpperCaseString,
 }
@@ -12414,7 +12650,11 @@ impl PyUpperCaseString {
     }
 }
 
-#[pyclass(name = "AssociateSourceToS3TableIntegrationResponse", frozen)]
+#[pyclass(
+    name = "AssociateSourceToS3TableIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyAssociateSourceToS3TableIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationOutput,
 }
@@ -12443,7 +12683,11 @@ impl PyAssociateSourceToS3TableIntegrationResponse {
     }
 }
 
-#[pyclass(name = "CancelImportTaskResponse", frozen)]
+#[pyclass(
+    name = "CancelImportTaskResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCancelImportTaskResponse {
     inner: aws_sdk_cloudwatchlogs::operation::cancel_import_task::CancelImportTaskOutput,
 }
@@ -12542,7 +12786,11 @@ impl PyCancelImportTaskResponse {
     }
 }
 
-#[pyclass(name = "CreateDeliveryResponse", frozen)]
+#[pyclass(
+    name = "CreateDeliveryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateDeliveryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_delivery::CreateDeliveryOutput,
 }
@@ -12577,7 +12825,11 @@ impl PyCreateDeliveryResponse {
     }
 }
 
-#[pyclass(name = "CreateExportTaskResponse", frozen)]
+#[pyclass(
+    name = "CreateExportTaskResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateExportTaskResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_export_task::CreateExportTaskOutput,
 }
@@ -12606,7 +12858,11 @@ impl PyCreateExportTaskResponse {
     }
 }
 
-#[pyclass(name = "CreateImportTaskResponse", frozen)]
+#[pyclass(
+    name = "CreateImportTaskResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateImportTaskResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_import_task::CreateImportTaskOutput,
 }
@@ -12667,7 +12923,11 @@ impl PyCreateImportTaskResponse {
     }
 }
 
-#[pyclass(name = "CreateLogAnomalyDetectorResponse", frozen)]
+#[pyclass(
+    name = "CreateLogAnomalyDetectorResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateLogAnomalyDetectorResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorOutput,
 }
@@ -12696,7 +12956,11 @@ impl PyCreateLogAnomalyDetectorResponse {
     }
 }
 
-#[pyclass(name = "CreateLookupTableResponse", frozen)]
+#[pyclass(
+    name = "CreateLookupTableResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateLookupTableResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_lookup_table::CreateLookupTableOutput,
 }
@@ -12741,7 +13005,11 @@ impl PyCreateLookupTableResponse {
     }
 }
 
-#[pyclass(name = "CreateScheduledQueryResponse", frozen)]
+#[pyclass(
+    name = "CreateScheduledQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyCreateScheduledQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::create_scheduled_query::CreateScheduledQueryOutput,
 }
@@ -12786,7 +13054,11 @@ impl PyCreateScheduledQueryResponse {
     }
 }
 
-#[pyclass(name = "DeleteIndexPolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteIndexPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeleteIndexPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::delete_index_policy::DeleteIndexPolicyOutput,
 }
@@ -12799,7 +13071,11 @@ impl PyDeleteIndexPolicyResponse {
     }
 }
 
-#[pyclass(name = "DeleteIntegrationResponse", frozen)]
+#[pyclass(
+    name = "DeleteIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeleteIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::delete_integration::DeleteIntegrationOutput,
 }
@@ -12812,7 +13088,11 @@ impl PyDeleteIntegrationResponse {
     }
 }
 
-#[pyclass(name = "DeleteQueryDefinitionResponse", frozen)]
+#[pyclass(
+    name = "DeleteQueryDefinitionResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeleteQueryDefinitionResponse {
     inner: aws_sdk_cloudwatchlogs::operation::delete_query_definition::DeleteQueryDefinitionOutput,
 }
@@ -12833,7 +13113,11 @@ impl PyDeleteQueryDefinitionResponse {
     }
 }
 
-#[pyclass(name = "DeleteScheduledQueryResponse", frozen)]
+#[pyclass(
+    name = "DeleteScheduledQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDeleteScheduledQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::delete_scheduled_query::DeleteScheduledQueryOutput,
 }
@@ -12846,7 +13130,11 @@ impl PyDeleteScheduledQueryResponse {
     }
 }
 
-#[pyclass(name = "DescribeAccountPoliciesResponse", frozen)]
+#[pyclass(
+    name = "DescribeAccountPoliciesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeAccountPoliciesResponse {
     inner:
         aws_sdk_cloudwatchlogs::operation::describe_account_policies::DescribeAccountPoliciesOutput,
@@ -12908,7 +13196,11 @@ impl PyDescribeAccountPoliciesResponse {
     }
 }
 
-#[pyclass(name = "DescribeConfigurationTemplatesResponse", frozen)]
+#[pyclass(
+    name = "DescribeConfigurationTemplatesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeConfigurationTemplatesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesOutput,
 }
@@ -12969,7 +13261,11 @@ impl PyDescribeConfigurationTemplatesResponse {
     }
 }
 
-#[pyclass(name = "DescribeDeliveriesResponse", frozen)]
+#[pyclass(
+    name = "DescribeDeliveriesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeDeliveriesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_deliveries::DescribeDeliveriesOutput,
 }
@@ -13030,7 +13326,11 @@ impl PyDescribeDeliveriesResponse {
     }
 }
 
-#[pyclass(name = "DescribeDeliveryDestinationsResponse", frozen)]
+#[pyclass(
+    name = "DescribeDeliveryDestinationsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeDeliveryDestinationsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsOutput,
 }
@@ -13091,7 +13391,11 @@ impl PyDescribeDeliveryDestinationsResponse {
     }
 }
 
-#[pyclass(name = "DescribeDeliverySourcesResponse", frozen)]
+#[pyclass(
+    name = "DescribeDeliverySourcesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeDeliverySourcesResponse {
     inner:
         aws_sdk_cloudwatchlogs::operation::describe_delivery_sources::DescribeDeliverySourcesOutput,
@@ -13153,7 +13457,11 @@ impl PyDescribeDeliverySourcesResponse {
     }
 }
 
-#[pyclass(name = "DescribeDestinationsResponse", frozen)]
+#[pyclass(
+    name = "DescribeDestinationsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeDestinationsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_destinations::DescribeDestinationsOutput,
 }
@@ -13214,7 +13522,11 @@ impl PyDescribeDestinationsResponse {
     }
 }
 
-#[pyclass(name = "DescribeExportTasksResponse", frozen)]
+#[pyclass(
+    name = "DescribeExportTasksResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeExportTasksResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_export_tasks::DescribeExportTasksOutput,
 }
@@ -13275,7 +13587,11 @@ impl PyDescribeExportTasksResponse {
     }
 }
 
-#[pyclass(name = "DescribeFieldIndexesResponse", frozen)]
+#[pyclass(
+    name = "DescribeFieldIndexesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeFieldIndexesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_field_indexes::DescribeFieldIndexesOutput,
 }
@@ -13336,7 +13652,11 @@ impl PyDescribeFieldIndexesResponse {
     }
 }
 
-#[pyclass(name = "DescribeImportTaskBatchesResponse", frozen)]
+#[pyclass(
+    name = "DescribeImportTaskBatchesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeImportTaskBatchesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesOutput,
 }
@@ -13429,7 +13749,11 @@ impl PyDescribeImportTaskBatchesResponse {
     }
 }
 
-#[pyclass(name = "DescribeImportTasksResponse", frozen)]
+#[pyclass(
+    name = "DescribeImportTasksResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeImportTasksResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_import_tasks::DescribeImportTasksOutput,
 }
@@ -13490,7 +13814,11 @@ impl PyDescribeImportTasksResponse {
     }
 }
 
-#[pyclass(name = "DescribeIndexPoliciesResponse", frozen)]
+#[pyclass(
+    name = "DescribeIndexPoliciesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeIndexPoliciesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_index_policies::DescribeIndexPoliciesOutput,
 }
@@ -13551,7 +13879,11 @@ impl PyDescribeIndexPoliciesResponse {
     }
 }
 
-#[pyclass(name = "DescribeLogGroupsResponse", frozen)]
+#[pyclass(
+    name = "DescribeLogGroupsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeLogGroupsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_log_groups::DescribeLogGroupsOutput,
 }
@@ -13612,7 +13944,11 @@ impl PyDescribeLogGroupsResponse {
     }
 }
 
-#[pyclass(name = "DescribeLogStreamsResponse", frozen)]
+#[pyclass(
+    name = "DescribeLogStreamsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeLogStreamsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_log_streams::DescribeLogStreamsOutput,
 }
@@ -13673,7 +14009,11 @@ impl PyDescribeLogStreamsResponse {
     }
 }
 
-#[pyclass(name = "DescribeLookupTablesResponse", frozen)]
+#[pyclass(
+    name = "DescribeLookupTablesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeLookupTablesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_lookup_tables::DescribeLookupTablesOutput,
 }
@@ -13734,7 +14074,11 @@ impl PyDescribeLookupTablesResponse {
     }
 }
 
-#[pyclass(name = "DescribeMetricFiltersResponse", frozen)]
+#[pyclass(
+    name = "DescribeMetricFiltersResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeMetricFiltersResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_metric_filters::DescribeMetricFiltersOutput,
 }
@@ -13795,7 +14139,11 @@ impl PyDescribeMetricFiltersResponse {
     }
 }
 
-#[pyclass(name = "DescribeQueriesResponse", frozen)]
+#[pyclass(
+    name = "DescribeQueriesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeQueriesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_queries::DescribeQueriesOutput,
 }
@@ -13856,7 +14204,11 @@ impl PyDescribeQueriesResponse {
     }
 }
 
-#[pyclass(name = "DescribeQueryDefinitionsResponse", frozen)]
+#[pyclass(
+    name = "DescribeQueryDefinitionsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeQueryDefinitionsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_query_definitions::DescribeQueryDefinitionsOutput,
 }
@@ -13917,7 +14269,11 @@ impl PyDescribeQueryDefinitionsResponse {
     }
 }
 
-#[pyclass(name = "DescribeResourcePoliciesResponse", frozen)]
+#[pyclass(
+    name = "DescribeResourcePoliciesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeResourcePoliciesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_resource_policies::DescribeResourcePoliciesOutput,
 }
@@ -13978,7 +14334,11 @@ impl PyDescribeResourcePoliciesResponse {
     }
 }
 
-#[pyclass(name = "DescribeSubscriptionFiltersResponse", frozen)]
+#[pyclass(
+    name = "DescribeSubscriptionFiltersResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDescribeSubscriptionFiltersResponse {
     inner: aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersOutput,
 }
@@ -14039,7 +14399,11 @@ impl PyDescribeSubscriptionFiltersResponse {
     }
 }
 
-#[pyclass(name = "DisassociateSourceFromS3TableIntegrationResponse", frozen)]
+#[pyclass(
+    name = "DisassociateSourceFromS3TableIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyDisassociateSourceFromS3TableIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationOutput,
 }
@@ -14068,7 +14432,11 @@ impl PyDisassociateSourceFromS3TableIntegrationResponse {
     }
 }
 
-#[pyclass(name = "FilterLogEventsResponse", frozen)]
+#[pyclass(
+    name = "FilterLogEventsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyFilterLogEventsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::filter_log_events::FilterLogEventsOutput,
 }
@@ -14161,7 +14529,11 @@ impl PyFilterLogEventsResponse {
     }
 }
 
-#[pyclass(name = "GetDataProtectionPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetDataProtectionPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetDataProtectionPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_data_protection_policy::GetDataProtectionPolicyOutput,
 }
@@ -14222,7 +14594,11 @@ impl PyGetDataProtectionPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetDeliveryResponse", frozen)]
+#[pyclass(
+    name = "GetDeliveryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetDeliveryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryOutput,
 }
@@ -14257,7 +14633,11 @@ impl PyGetDeliveryResponse {
     }
 }
 
-#[pyclass(name = "GetDeliveryDestinationResponse", frozen)]
+#[pyclass(
+    name = "GetDeliveryDestinationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetDeliveryDestinationResponse {
     inner:
         aws_sdk_cloudwatchlogs::operation::get_delivery_destination::GetDeliveryDestinationOutput,
@@ -14293,7 +14673,11 @@ impl PyGetDeliveryDestinationResponse {
     }
 }
 
-#[pyclass(name = "GetDeliveryDestinationPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetDeliveryDestinationPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetDeliveryDestinationPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyOutput,
 }
@@ -14328,7 +14712,11 @@ impl PyGetDeliveryDestinationPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetDeliverySourceResponse", frozen)]
+#[pyclass(
+    name = "GetDeliverySourceResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetDeliverySourceResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_delivery_source::GetDeliverySourceOutput,
 }
@@ -14363,7 +14751,11 @@ impl PyGetDeliverySourceResponse {
     }
 }
 
-#[pyclass(name = "GetIntegrationResponse", frozen)]
+#[pyclass(
+    name = "GetIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_integration::GetIntegrationOutput,
 }
@@ -14440,7 +14832,11 @@ impl PyGetIntegrationResponse {
     }
 }
 
-#[pyclass(name = "GetLogAnomalyDetectorResponse", frozen)]
+#[pyclass(
+    name = "GetLogAnomalyDetectorResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLogAnomalyDetectorResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_anomaly_detector::GetLogAnomalyDetectorOutput,
 }
@@ -14599,7 +14995,11 @@ impl PyGetLogAnomalyDetectorResponse {
     }
 }
 
-#[pyclass(name = "GetLogEventsResponse", frozen)]
+#[pyclass(
+    name = "GetLogEventsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLogEventsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsOutput,
 }
@@ -14676,7 +15076,11 @@ impl PyGetLogEventsResponse {
     }
 }
 
-#[pyclass(name = "GetLogFieldsResponse", frozen)]
+#[pyclass(
+    name = "GetLogFieldsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLogFieldsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsOutput,
 }
@@ -14721,7 +15125,11 @@ impl PyGetLogFieldsResponse {
     }
 }
 
-#[pyclass(name = "GetLogGroupFieldsResponse", frozen)]
+#[pyclass(
+    name = "GetLogGroupFieldsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLogGroupFieldsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_group_fields::GetLogGroupFieldsOutput,
 }
@@ -14766,7 +15174,11 @@ impl PyGetLogGroupFieldsResponse {
     }
 }
 
-#[pyclass(name = "GetLogRecordResponse", frozen)]
+#[pyclass(
+    name = "GetLogRecordResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLogRecordResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordOutput,
 }
@@ -14807,7 +15219,11 @@ impl PyGetLogRecordResponse {
     }
 }
 
-#[pyclass(name = "GetLookupTableResponse", frozen)]
+#[pyclass(
+    name = "GetLookupTableResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetLookupTableResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_lookup_table::GetLookupTableOutput,
 }
@@ -14932,7 +15348,11 @@ impl PyGetLookupTableResponse {
     }
 }
 
-#[pyclass(name = "GetQueryResultsResponse", frozen)]
+#[pyclass(
+    name = "GetQueryResultsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetQueryResultsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_query_results::GetQueryResultsOutput,
 }
@@ -15073,7 +15493,11 @@ impl PyGetQueryResultsResponse {
     }
 }
 
-#[pyclass(name = "GetScheduledQueryResponse", frozen)]
+#[pyclass(
+    name = "GetScheduledQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetScheduledQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_scheduled_query::GetScheduledQueryOutput,
 }
@@ -15422,7 +15846,11 @@ impl PyGetScheduledQueryResponse {
     }
 }
 
-#[pyclass(name = "GetScheduledQueryHistoryResponse", frozen)]
+#[pyclass(
+    name = "GetScheduledQueryHistoryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetScheduledQueryHistoryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryOutput,
 }
@@ -15515,7 +15943,11 @@ impl PyGetScheduledQueryHistoryResponse {
     }
 }
 
-#[pyclass(name = "GetStorageTierPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetStorageTierPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetStorageTierPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_storage_tier_policy::GetStorageTierPolicyOutput,
 }
@@ -15560,7 +15992,11 @@ impl PyGetStorageTierPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetTransformerResponse", frozen)]
+#[pyclass(
+    name = "GetTransformerResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyGetTransformerResponse {
     inner: aws_sdk_cloudwatchlogs::operation::get_transformer::GetTransformerOutput,
 }
@@ -15653,7 +16089,11 @@ impl PyGetTransformerResponse {
     }
 }
 
-#[pyclass(name = "ListAggregateLogGroupSummariesResponse", frozen)]
+#[pyclass(
+    name = "ListAggregateLogGroupSummariesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListAggregateLogGroupSummariesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesOutput,
 }
@@ -15714,7 +16154,11 @@ impl PyListAggregateLogGroupSummariesResponse {
     }
 }
 
-#[pyclass(name = "ListAnomaliesResponse", frozen)]
+#[pyclass(
+    name = "ListAnomaliesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListAnomaliesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesOutput,
 }
@@ -15775,7 +16219,11 @@ impl PyListAnomaliesResponse {
     }
 }
 
-#[pyclass(name = "ListIntegrationsResponse", frozen)]
+#[pyclass(
+    name = "ListIntegrationsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListIntegrationsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_integrations::ListIntegrationsOutput,
 }
@@ -15820,7 +16268,11 @@ impl PyListIntegrationsResponse {
     }
 }
 
-#[pyclass(name = "ListLogAnomalyDetectorsResponse", frozen)]
+#[pyclass(
+    name = "ListLogAnomalyDetectorsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListLogAnomalyDetectorsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_log_anomaly_detectors::ListLogAnomalyDetectorsOutput,
 }
@@ -15881,7 +16333,11 @@ impl PyListLogAnomalyDetectorsResponse {
     }
 }
 
-#[pyclass(name = "ListLogGroupsResponse", frozen)]
+#[pyclass(
+    name = "ListLogGroupsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListLogGroupsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_log_groups::ListLogGroupsOutput,
 }
@@ -15942,7 +16398,11 @@ impl PyListLogGroupsResponse {
     }
 }
 
-#[pyclass(name = "ListLogGroupsForQueryResponse", frozen)]
+#[pyclass(
+    name = "ListLogGroupsForQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListLogGroupsForQueryResponse {
     inner:
         aws_sdk_cloudwatchlogs::operation::list_log_groups_for_query::ListLogGroupsForQueryOutput,
@@ -15998,7 +16458,11 @@ impl PyListLogGroupsForQueryResponse {
     }
 }
 
-#[pyclass(name = "ListScheduledQueriesResponse", frozen)]
+#[pyclass(
+    name = "ListScheduledQueriesResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListScheduledQueriesResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_scheduled_queries::ListScheduledQueriesOutput,
 }
@@ -16059,7 +16523,11 @@ impl PyListScheduledQueriesResponse {
     }
 }
 
-#[pyclass(name = "ListSourcesForS3TableIntegrationResponse", frozen)]
+#[pyclass(
+    name = "ListSourcesForS3TableIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListSourcesForS3TableIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationOutput,
 }
@@ -16120,7 +16588,11 @@ impl PyListSourcesForS3TableIntegrationResponse {
     }
 }
 
-#[pyclass(name = "ListSyslogConfigurationsResponse", frozen)]
+#[pyclass(
+    name = "ListSyslogConfigurationsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListSyslogConfigurationsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_syslog_configurations::ListSyslogConfigurationsOutput,
 }
@@ -16181,7 +16653,11 @@ impl PyListSyslogConfigurationsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -16222,7 +16698,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListTagsLogGroupResponse", frozen)]
+#[pyclass(
+    name = "ListTagsLogGroupResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyListTagsLogGroupResponse {
     inner: aws_sdk_cloudwatchlogs::operation::list_tags_log_group::ListTagsLogGroupOutput,
 }
@@ -16263,7 +16743,11 @@ impl PyListTagsLogGroupResponse {
     }
 }
 
-#[pyclass(name = "PutAccountPolicyResponse", frozen)]
+#[pyclass(
+    name = "PutAccountPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutAccountPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_account_policy::PutAccountPolicyOutput,
 }
@@ -16298,7 +16782,11 @@ impl PyPutAccountPolicyResponse {
     }
 }
 
-#[pyclass(name = "PutDataProtectionPolicyResponse", frozen)]
+#[pyclass(
+    name = "PutDataProtectionPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutDataProtectionPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_data_protection_policy::PutDataProtectionPolicyOutput,
 }
@@ -16359,7 +16847,11 @@ impl PyPutDataProtectionPolicyResponse {
     }
 }
 
-#[pyclass(name = "PutDeliveryDestinationResponse", frozen)]
+#[pyclass(
+    name = "PutDeliveryDestinationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutDeliveryDestinationResponse {
     inner:
         aws_sdk_cloudwatchlogs::operation::put_delivery_destination::PutDeliveryDestinationOutput,
@@ -16395,7 +16887,11 @@ impl PyPutDeliveryDestinationResponse {
     }
 }
 
-#[pyclass(name = "PutDeliveryDestinationPolicyResponse", frozen)]
+#[pyclass(
+    name = "PutDeliveryDestinationPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutDeliveryDestinationPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyOutput,
 }
@@ -16430,7 +16926,11 @@ impl PyPutDeliveryDestinationPolicyResponse {
     }
 }
 
-#[pyclass(name = "PutDeliverySourceResponse", frozen)]
+#[pyclass(
+    name = "PutDeliverySourceResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutDeliverySourceResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_delivery_source::PutDeliverySourceOutput,
 }
@@ -16465,7 +16965,11 @@ impl PyPutDeliverySourceResponse {
     }
 }
 
-#[pyclass(name = "PutDestinationResponse", frozen)]
+#[pyclass(
+    name = "PutDestinationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutDestinationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_destination::PutDestinationOutput,
 }
@@ -16500,7 +17004,11 @@ impl PyPutDestinationResponse {
     }
 }
 
-#[pyclass(name = "PutIndexPolicyResponse", frozen)]
+#[pyclass(
+    name = "PutIndexPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutIndexPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_index_policy::PutIndexPolicyOutput,
 }
@@ -16535,7 +17043,11 @@ impl PyPutIndexPolicyResponse {
     }
 }
 
-#[pyclass(name = "PutIntegrationResponse", frozen)]
+#[pyclass(
+    name = "PutIntegrationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutIntegrationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_integration::PutIntegrationOutput,
 }
@@ -16580,7 +17092,11 @@ impl PyPutIntegrationResponse {
     }
 }
 
-#[pyclass(name = "PutLogEventsResponse", frozen)]
+#[pyclass(
+    name = "PutLogEventsResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutLogEventsResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_log_events::PutLogEventsOutput,
 }
@@ -16653,7 +17169,11 @@ impl PyPutLogEventsResponse {
     }
 }
 
-#[pyclass(name = "PutQueryDefinitionResponse", frozen)]
+#[pyclass(
+    name = "PutQueryDefinitionResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutQueryDefinitionResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_query_definition::PutQueryDefinitionOutput,
 }
@@ -16682,7 +17202,11 @@ impl PyPutQueryDefinitionResponse {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -16733,7 +17257,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "PutStorageTierPolicyResponse", frozen)]
+#[pyclass(
+    name = "PutStorageTierPolicyResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyPutStorageTierPolicyResponse {
     inner: aws_sdk_cloudwatchlogs::operation::put_storage_tier_policy::PutStorageTierPolicyOutput,
 }
@@ -16778,7 +17306,11 @@ impl PyPutStorageTierPolicyResponse {
     }
 }
 
-#[pyclass(name = "StartQueryResponse", frozen)]
+#[pyclass(
+    name = "StartQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyStartQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::start_query::StartQueryOutput,
 }
@@ -16807,7 +17339,11 @@ impl PyStartQueryResponse {
     }
 }
 
-#[pyclass(name = "StopQueryResponse", frozen)]
+#[pyclass(
+    name = "StopQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyStopQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryOutput,
 }
@@ -16828,7 +17364,11 @@ impl PyStopQueryResponse {
     }
 }
 
-#[pyclass(name = "TestMetricFilterResponse", frozen)]
+#[pyclass(
+    name = "TestMetricFilterResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTestMetricFilterResponse {
     inner: aws_sdk_cloudwatchlogs::operation::test_metric_filter::TestMetricFilterOutput,
 }
@@ -16873,7 +17413,11 @@ impl PyTestMetricFilterResponse {
     }
 }
 
-#[pyclass(name = "TestTransformerResponse", frozen)]
+#[pyclass(
+    name = "TestTransformerResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyTestTransformerResponse {
     inner: aws_sdk_cloudwatchlogs::operation::test_transformer::TestTransformerOutput,
 }
@@ -16918,7 +17462,11 @@ impl PyTestTransformerResponse {
     }
 }
 
-#[pyclass(name = "UpdateDeliveryConfigurationResponse", frozen)]
+#[pyclass(
+    name = "UpdateDeliveryConfigurationResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyUpdateDeliveryConfigurationResponse {
     inner: aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationOutput,
 }
@@ -16931,7 +17479,11 @@ impl PyUpdateDeliveryConfigurationResponse {
     }
 }
 
-#[pyclass(name = "UpdateLookupTableResponse", frozen)]
+#[pyclass(
+    name = "UpdateLookupTableResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyUpdateLookupTableResponse {
     inner: aws_sdk_cloudwatchlogs::operation::update_lookup_table::UpdateLookupTableOutput,
 }
@@ -16976,7 +17528,11 @@ impl PyUpdateLookupTableResponse {
     }
 }
 
-#[pyclass(name = "UpdateScheduledQueryResponse", frozen)]
+#[pyclass(
+    name = "UpdateScheduledQueryResponse",
+    module = "rboto_cloudwatch_logs._native",
+    frozen
+)]
 struct PyUpdateScheduledQueryResponse {
     inner: aws_sdk_cloudwatchlogs::operation::update_scheduled_query::UpdateScheduledQueryOutput,
 }
@@ -17325,7 +17881,10 @@ impl PyUpdateScheduledQueryResponse {
     }
 }
 
-#[pyclass(name = "GetLogObjectResponseStreamReceiver")]
+#[pyclass(
+    name = "GetLogObjectResponseStreamReceiver",
+    module = "rboto_cloudwatch_logs._native"
+)]
 struct PyGetLogObjectResponseStreamReceiver {
     inner: Arc<
         Mutex<
@@ -17393,7 +17952,10 @@ impl PyGetLogObjectResponseStreamReceiver {
     }
 }
 
-#[pyclass(name = "StartLiveTailResponseStreamReceiver")]
+#[pyclass(
+    name = "StartLiveTailResponseStreamReceiver",
+    module = "rboto_cloudwatch_logs._native"
+)]
 struct PyStartLiveTailResponseStreamReceiver {
     inner: Arc<
         Mutex<

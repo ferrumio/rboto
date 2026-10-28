@@ -486,7 +486,11 @@ fn video_segment_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "OutputConfiguration", frozen)]
+#[pyclass(
+    name = "OutputConfiguration",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyOutputConfiguration {
     inner: aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration,
 }
@@ -504,7 +508,11 @@ impl PyOutputConfiguration {
     }
 }
 
-#[pyclass(name = "OutputSegment", frozen)]
+#[pyclass(
+    name = "OutputSegment",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyOutputSegment {
     inner: aws_sdk_bedrockdataautomationruntime::types::OutputSegment,
 }
@@ -546,7 +554,11 @@ impl PyOutputSegment {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(
+    name = "Tag",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyTag {
     inner: aws_sdk_bedrockdataautomationruntime::types::Tag,
 }
@@ -570,7 +582,11 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "GetDataAutomationStatusResponse", frozen)]
+#[pyclass(
+    name = "GetDataAutomationStatusResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyGetDataAutomationStatusResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusOutput,
 }
@@ -701,7 +717,11 @@ impl PyGetDataAutomationStatusResponse {
     }
 }
 
-#[pyclass(name = "InvokeDataAutomationResponse", frozen)]
+#[pyclass(
+    name = "InvokeDataAutomationResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyInvokeDataAutomationResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationOutput,
 }
@@ -768,7 +788,11 @@ impl PyInvokeDataAutomationResponse {
     }
 }
 
-#[pyclass(name = "InvokeDataAutomationAsyncResponse", frozen)]
+#[pyclass(
+    name = "InvokeDataAutomationAsyncResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyInvokeDataAutomationAsyncResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation_async::InvokeDataAutomationAsyncOutput,
 }
@@ -789,7 +813,11 @@ impl PyInvokeDataAutomationAsyncResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -834,7 +862,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::tag_resource::TagResourceOutput,
 }
@@ -847,7 +879,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_bedrock_data_automation_runtime._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_bedrockdataautomationruntime::operation::untag_resource::UntagResourceOutput,
 }

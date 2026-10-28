@@ -49,7 +49,7 @@ jobs:
       - name: Build editable service packages
         run: |
           python -m venv .venv
-          .venv/bin/pip install "maturin>=1.15,<2" pytest pytest-asyncio
+          .venv/bin/pip install "maturin>=1.15,<2" pytest pytest-asyncio "pydantic>=2,<3"
           .venv/bin/pip install -e packages/rboto -e codegen
           (cd packages/rboto-s3 && ../../.venv/bin/maturin develop --locked)
           (cd packages/rboto-sns && ../../.venv/bin/maturin develop --locked)

@@ -1628,7 +1628,11 @@ fn web_app_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ArtifactDetails", frozen)]
+#[pyclass(
+    name = "ArtifactDetails",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyArtifactDetails {
     inner: aws_sdk_connecthealth::types::ArtifactDetails,
 }
@@ -1670,7 +1674,11 @@ impl PyArtifactDetails {
     }
 }
 
-#[pyclass(name = "ClinicalNoteGenerationResult", frozen)]
+#[pyclass(
+    name = "ClinicalNoteGenerationResult",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyClinicalNoteGenerationResult {
     inner: aws_sdk_connecthealth::types::ClinicalNoteGenerationResult,
 }
@@ -1730,7 +1738,11 @@ impl PyClinicalNoteGenerationResult {
     }
 }
 
-#[pyclass(name = "ClinicalNoteGenerationSettingsResponse", frozen)]
+#[pyclass(
+    name = "ClinicalNoteGenerationSettingsResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyClinicalNoteGenerationSettingsResponse {
     inner: aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse,
 }
@@ -1752,7 +1764,7 @@ impl PyClinicalNoteGenerationSettingsResponse {
     }
 }
 
-#[pyclass(name = "DomainSummary", frozen)]
+#[pyclass(name = "DomainSummary", module = "rboto_connecthealth._native", frozen)]
 struct PyDomainSummary {
     inner: aws_sdk_connecthealth::types::DomainSummary,
 }
@@ -1794,7 +1806,11 @@ impl PyDomainSummary {
     }
 }
 
-#[pyclass(name = "EncryptionContext", frozen)]
+#[pyclass(
+    name = "EncryptionContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyEncryptionContext {
     inner: aws_sdk_connecthealth::types::EncryptionContext,
 }
@@ -1822,7 +1838,7 @@ impl PyEncryptionContext {
     }
 }
 
-#[pyclass(name = "FhirServer", frozen)]
+#[pyclass(name = "FhirServer", module = "rboto_connecthealth._native", frozen)]
 struct PyFhirServer {
     inner: aws_sdk_connecthealth::types::FhirServer,
 }
@@ -1850,7 +1866,11 @@ impl PyFhirServer {
     }
 }
 
-#[pyclass(name = "InputDataConfig", frozen)]
+#[pyclass(
+    name = "InputDataConfig",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyInputDataConfig {
     inner: aws_sdk_connecthealth::types::InputDataConfig,
 }
@@ -1899,7 +1919,11 @@ impl PyInputDataConfig {
     }
 }
 
-#[pyclass(name = "InsightsContext", frozen)]
+#[pyclass(
+    name = "InsightsContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyInsightsContext {
     inner: aws_sdk_connecthealth::types::InsightsContext,
 }
@@ -1917,7 +1941,11 @@ impl PyInsightsContext {
     }
 }
 
-#[pyclass(name = "InsightsOutput", frozen)]
+#[pyclass(
+    name = "InsightsOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyInsightsOutput {
     inner: aws_sdk_connecthealth::types::InsightsOutput,
 }
@@ -1935,7 +1963,11 @@ impl PyInsightsOutput {
     }
 }
 
-#[pyclass(name = "MedicalScribeChannelDefinition", frozen)]
+#[pyclass(
+    name = "MedicalScribeChannelDefinition",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyMedicalScribeChannelDefinition {
     inner: aws_sdk_connecthealth::types::MedicalScribeChannelDefinition,
 }
@@ -1959,7 +1991,11 @@ impl PyMedicalScribeChannelDefinition {
     }
 }
 
-#[pyclass(name = "MedicalScribeListeningSessionDetails", frozen)]
+#[pyclass(
+    name = "MedicalScribeListeningSessionDetails",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyMedicalScribeListeningSessionDetails {
     inner: aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails,
 }
@@ -2124,7 +2160,11 @@ impl PyMedicalScribeListeningSessionDetails {
     }
 }
 
-#[pyclass(name = "MedicalScribePostStreamActionSettingsResponse", frozen)]
+#[pyclass(
+    name = "MedicalScribePostStreamActionSettingsResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyMedicalScribePostStreamActionSettingsResponse {
     inner: aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse,
 }
@@ -2158,7 +2198,11 @@ impl PyMedicalScribePostStreamActionSettingsResponse {
     }
 }
 
-#[pyclass(name = "MedicalScribePostStreamActionsResult", frozen)]
+#[pyclass(
+    name = "MedicalScribePostStreamActionsResult",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyMedicalScribePostStreamActionsResult {
     inner: aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult,
 }
@@ -2186,7 +2230,11 @@ impl PyMedicalScribePostStreamActionsResult {
     }
 }
 
-#[pyclass(name = "OutputDataConfig", frozen)]
+#[pyclass(
+    name = "OutputDataConfig",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyOutputDataConfig {
     inner: aws_sdk_connecthealth::types::OutputDataConfig,
 }
@@ -2204,7 +2252,11 @@ impl PyOutputDataConfig {
     }
 }
 
-#[pyclass(name = "PatientInsightsEncounterContext", frozen)]
+#[pyclass(
+    name = "PatientInsightsEncounterContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyPatientInsightsEncounterContext {
     inner: aws_sdk_connecthealth::types::PatientInsightsEncounterContext,
 }
@@ -2222,7 +2274,11 @@ impl PyPatientInsightsEncounterContext {
     }
 }
 
-#[pyclass(name = "PatientInsightsPatientContext", frozen)]
+#[pyclass(
+    name = "PatientInsightsPatientContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyPatientInsightsPatientContext {
     inner: aws_sdk_connecthealth::types::PatientInsightsPatientContext,
 }
@@ -2260,7 +2316,7 @@ impl PyPatientInsightsPatientContext {
     }
 }
 
-#[pyclass(name = "S3Source", frozen)]
+#[pyclass(name = "S3Source", module = "rboto_connecthealth._native", frozen)]
 struct PyS3Source {
     inner: aws_sdk_connecthealth::types::S3Source,
 }
@@ -2278,7 +2334,11 @@ impl PyS3Source {
     }
 }
 
-#[pyclass(name = "SubscriptionDescription", frozen)]
+#[pyclass(
+    name = "SubscriptionDescription",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PySubscriptionDescription {
     inner: aws_sdk_connecthealth::types::SubscriptionDescription,
 }
@@ -2346,7 +2406,7 @@ impl PySubscriptionDescription {
     }
 }
 
-#[pyclass(name = "UserContext", frozen)]
+#[pyclass(name = "UserContext", module = "rboto_connecthealth._native", frozen)]
 struct PyUserContext {
     inner: aws_sdk_connecthealth::types::UserContext,
 }
@@ -2380,7 +2440,11 @@ impl PyUserContext {
     }
 }
 
-#[pyclass(name = "WebAppConfiguration", frozen)]
+#[pyclass(
+    name = "WebAppConfiguration",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyWebAppConfiguration {
     inner: aws_sdk_connecthealth::types::WebAppConfiguration,
 }
@@ -2410,7 +2474,11 @@ impl PyWebAppConfiguration {
     }
 }
 
-#[pyclass(name = "ActivateSubscriptionOutput", frozen)]
+#[pyclass(
+    name = "ActivateSubscriptionOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyActivateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionOutput,
 }
@@ -2445,7 +2513,11 @@ impl PyActivateSubscriptionOutput {
     }
 }
 
-#[pyclass(name = "CreateDomainOutput", frozen)]
+#[pyclass(
+    name = "CreateDomainOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyCreateDomainOutput {
     inner: aws_sdk_connecthealth::operation::create_domain::CreateDomainOutput,
 }
@@ -2574,7 +2646,11 @@ impl PyCreateDomainOutput {
     }
 }
 
-#[pyclass(name = "CreateSubscriptionOutput", frozen)]
+#[pyclass(
+    name = "CreateSubscriptionOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyCreateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::create_subscription::CreateSubscriptionOutput,
 }
@@ -2667,7 +2743,11 @@ impl PyCreateSubscriptionOutput {
     }
 }
 
-#[pyclass(name = "DeactivateSubscriptionOutput", frozen)]
+#[pyclass(
+    name = "DeactivateSubscriptionOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyDeactivateSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionOutput,
 }
@@ -2702,7 +2782,11 @@ impl PyDeactivateSubscriptionOutput {
     }
 }
 
-#[pyclass(name = "DeleteDomainOutput", frozen)]
+#[pyclass(
+    name = "DeleteDomainOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyDeleteDomainOutput {
     inner: aws_sdk_connecthealth::operation::delete_domain::DeleteDomainOutput,
 }
@@ -2739,7 +2823,11 @@ impl PyDeleteDomainOutput {
     }
 }
 
-#[pyclass(name = "GetDomainOutput", frozen)]
+#[pyclass(
+    name = "GetDomainOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyGetDomainOutput {
     inner: aws_sdk_connecthealth::operation::get_domain::GetDomainOutput,
 }
@@ -2896,7 +2984,11 @@ impl PyGetDomainOutput {
     }
 }
 
-#[pyclass(name = "GetMedicalScribeListeningSessionOutput", frozen)]
+#[pyclass(
+    name = "GetMedicalScribeListeningSessionOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyGetMedicalScribeListeningSessionOutput {
     inner: aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionOutput,
 }
@@ -2931,7 +3023,11 @@ impl PyGetMedicalScribeListeningSessionOutput {
     }
 }
 
-#[pyclass(name = "GetPatientInsightsJobResponse", frozen)]
+#[pyclass(
+    name = "GetPatientInsightsJobResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyGetPatientInsightsJobResponse {
     inner: aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobOutput,
 }
@@ -3170,7 +3266,11 @@ impl PyGetPatientInsightsJobResponse {
     }
 }
 
-#[pyclass(name = "GetSubscriptionOutput", frozen)]
+#[pyclass(
+    name = "GetSubscriptionOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyGetSubscriptionOutput {
     inner: aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionOutput,
 }
@@ -3205,7 +3305,11 @@ impl PyGetSubscriptionOutput {
     }
 }
 
-#[pyclass(name = "ListDomainsOutput", frozen)]
+#[pyclass(
+    name = "ListDomainsOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyListDomainsOutput {
     inner: aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput,
 }
@@ -3258,7 +3362,11 @@ impl PyListDomainsOutput {
     }
 }
 
-#[pyclass(name = "ListSubscriptionsOutput", frozen)]
+#[pyclass(
+    name = "ListSubscriptionsOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyListSubscriptionsOutput {
     inner: aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsOutput,
 }
@@ -3311,7 +3419,11 @@ impl PyListSubscriptionsOutput {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceOutput", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyListTagsForResourceOutput {
     inner: aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -3352,7 +3464,11 @@ impl PyListTagsForResourceOutput {
     }
 }
 
-#[pyclass(name = "StartPatientInsightsJobResponse", frozen)]
+#[pyclass(
+    name = "StartPatientInsightsJobResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
 struct PyStartPatientInsightsJobResponse {
     inner:
         aws_sdk_connecthealth::operation::start_patient_insights_job::StartPatientInsightsJobOutput,
@@ -3398,7 +3514,10 @@ impl PyStartPatientInsightsJobResponse {
     }
 }
 
-#[pyclass(name = "MedicalScribeOutputStreamReceiver")]
+#[pyclass(
+    name = "MedicalScribeOutputStreamReceiver",
+    module = "rboto_connecthealth._native"
+)]
 struct PyMedicalScribeOutputStreamReceiver {
     inner: Arc<
         Mutex<

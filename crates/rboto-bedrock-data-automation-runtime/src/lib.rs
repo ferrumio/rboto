@@ -55,7 +55,10 @@ impl ClientState {
     }
 }
 
-#[pyclass(name = "ByteStream")]
+#[pyclass(
+    name = "ByteStream",
+    module = "rboto_bedrock_data_automation_runtime._native"
+)]
 struct PyByteStream {
     inner: Arc<Mutex<Option<AwsByteStream>>>,
 }
@@ -113,7 +116,7 @@ impl PyByteStream {
     }
 }
 
-#[pyclass]
+#[pyclass(module = "rboto_bedrock_data_automation_runtime._native")]
 struct BedrockDataAutomationRuntimeClient {
     state: Arc<ClientState>,
 }

@@ -3524,7 +3524,11 @@ fn vocabulary_entity_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AudioExtractionCategory", frozen)]
+#[pyclass(
+    name = "AudioExtractionCategory",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioExtractionCategory {
     inner: aws_sdk_bedrockdataautomation::types::AudioExtractionCategory,
 }
@@ -3573,7 +3577,11 @@ impl PyAudioExtractionCategory {
     }
 }
 
-#[pyclass(name = "AudioExtractionCategoryTypeConfiguration", frozen)]
+#[pyclass(
+    name = "AudioExtractionCategoryTypeConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioExtractionCategoryTypeConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration,
 }
@@ -3601,7 +3609,11 @@ impl PyAudioExtractionCategoryTypeConfiguration {
     }
 }
 
-#[pyclass(name = "AudioLanguageConfiguration", frozen)]
+#[pyclass(
+    name = "AudioLanguageConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioLanguageConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration,
 }
@@ -3648,7 +3660,11 @@ impl PyAudioLanguageConfiguration {
     }
 }
 
-#[pyclass(name = "AudioOverrideConfiguration", frozen)]
+#[pyclass(
+    name = "AudioOverrideConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioOverrideConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration,
 }
@@ -3708,7 +3724,11 @@ impl PyAudioOverrideConfiguration {
     }
 }
 
-#[pyclass(name = "AudioStandardExtraction", frozen)]
+#[pyclass(
+    name = "AudioStandardExtraction",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioStandardExtraction {
     inner: aws_sdk_bedrockdataautomation::types::AudioStandardExtraction,
 }
@@ -3736,7 +3756,11 @@ impl PyAudioStandardExtraction {
     }
 }
 
-#[pyclass(name = "AudioStandardGenerativeField", frozen)]
+#[pyclass(
+    name = "AudioStandardGenerativeField",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioStandardGenerativeField {
     inner: aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField,
 }
@@ -3769,7 +3793,11 @@ impl PyAudioStandardGenerativeField {
     }
 }
 
-#[pyclass(name = "AudioStandardOutputConfiguration", frozen)]
+#[pyclass(
+    name = "AudioStandardOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyAudioStandardOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration,
 }
@@ -3813,7 +3841,11 @@ impl PyAudioStandardOutputConfiguration {
     }
 }
 
-#[pyclass(name = "Blueprint", frozen)]
+#[pyclass(
+    name = "Blueprint",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyBlueprint {
     inner: aws_sdk_bedrockdataautomation::types::Blueprint,
 }
@@ -3940,7 +3972,11 @@ impl PyBlueprint {
     }
 }
 
-#[pyclass(name = "BlueprintItem", frozen)]
+#[pyclass(
+    name = "BlueprintItem",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyBlueprintItem {
     inner: aws_sdk_bedrockdataautomation::types::BlueprintItem,
 }
@@ -3978,7 +4014,11 @@ impl PyBlueprintItem {
     }
 }
 
-#[pyclass(name = "BlueprintOptimizationOutputConfiguration", frozen)]
+#[pyclass(
+    name = "BlueprintOptimizationOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyBlueprintOptimizationOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration,
 }
@@ -4006,7 +4046,11 @@ impl PyBlueprintOptimizationOutputConfiguration {
     }
 }
 
-#[pyclass(name = "BlueprintOptimizationSample", frozen)]
+#[pyclass(
+    name = "BlueprintOptimizationSample",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyBlueprintOptimizationSample {
     inner: aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample,
 }
@@ -4050,7 +4094,11 @@ impl PyBlueprintOptimizationSample {
     }
 }
 
-#[pyclass(name = "BlueprintSummary", frozen)]
+#[pyclass(
+    name = "BlueprintSummary",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyBlueprintSummary {
     inner: aws_sdk_bedrockdataautomation::types::BlueprintSummary,
 }
@@ -4114,7 +4162,11 @@ impl PyBlueprintSummary {
     }
 }
 
-#[pyclass(name = "ChannelLabelingConfiguration", frozen)]
+#[pyclass(
+    name = "ChannelLabelingConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyChannelLabelingConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration,
 }
@@ -4132,7 +4184,11 @@ impl PyChannelLabelingConfiguration {
     }
 }
 
-#[pyclass(name = "CustomOutputConfiguration", frozen)]
+#[pyclass(
+    name = "CustomOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCustomOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration,
 }
@@ -4181,7 +4237,11 @@ impl PyCustomOutputConfiguration {
     }
 }
 
-#[pyclass(name = "DataAutomationLibrary", frozen)]
+#[pyclass(
+    name = "DataAutomationLibrary",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibrary {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibrary,
 }
@@ -4274,7 +4334,11 @@ impl PyDataAutomationLibrary {
     }
 }
 
-#[pyclass(name = "DataAutomationLibraryConfiguration", frozen)]
+#[pyclass(
+    name = "DataAutomationLibraryConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibraryConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration,
 }
@@ -4307,7 +4371,11 @@ impl PyDataAutomationLibraryConfiguration {
     }
 }
 
-#[pyclass(name = "DataAutomationLibraryIngestionJob", frozen)]
+#[pyclass(
+    name = "DataAutomationLibraryIngestionJob",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibraryIngestionJob {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob,
 }
@@ -4395,7 +4463,11 @@ impl PyDataAutomationLibraryIngestionJob {
     }
 }
 
-#[pyclass(name = "DataAutomationLibraryIngestionJobSummary", frozen)]
+#[pyclass(
+    name = "DataAutomationLibraryIngestionJobSummary",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibraryIngestionJobSummary {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary,
 }
@@ -4447,7 +4519,11 @@ impl PyDataAutomationLibraryIngestionJobSummary {
     }
 }
 
-#[pyclass(name = "DataAutomationLibraryItem", frozen)]
+#[pyclass(
+    name = "DataAutomationLibraryItem",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibraryItem {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem,
 }
@@ -4465,7 +4541,11 @@ impl PyDataAutomationLibraryItem {
     }
 }
 
-#[pyclass(name = "DataAutomationLibrarySummary", frozen)]
+#[pyclass(
+    name = "DataAutomationLibrarySummary",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationLibrarySummary {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary,
 }
@@ -4499,7 +4579,11 @@ impl PyDataAutomationLibrarySummary {
     }
 }
 
-#[pyclass(name = "DataAutomationProject", frozen)]
+#[pyclass(
+    name = "DataAutomationProject",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationProject {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationProject,
 }
@@ -4663,7 +4747,11 @@ impl PyDataAutomationProject {
     }
 }
 
-#[pyclass(name = "DataAutomationProjectSummary", frozen)]
+#[pyclass(
+    name = "DataAutomationProjectSummary",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDataAutomationProjectSummary {
     inner: aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary,
 }
@@ -4717,7 +4805,11 @@ impl PyDataAutomationProjectSummary {
     }
 }
 
-#[pyclass(name = "DocumentBoundingBox", frozen)]
+#[pyclass(
+    name = "DocumentBoundingBox",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentBoundingBox {
     inner: aws_sdk_bedrockdataautomation::types::DocumentBoundingBox,
 }
@@ -4735,7 +4827,11 @@ impl PyDocumentBoundingBox {
     }
 }
 
-#[pyclass(name = "DocumentCustomOutputConfiguration", frozen)]
+#[pyclass(
+    name = "DocumentCustomOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentCustomOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration,
 }
@@ -4768,7 +4864,11 @@ impl PyDocumentCustomOutputConfiguration {
     }
 }
 
-#[pyclass(name = "DocumentExtractionGranularity", frozen)]
+#[pyclass(
+    name = "DocumentExtractionGranularity",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentExtractionGranularity {
     inner: aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity,
 }
@@ -4795,7 +4895,11 @@ impl PyDocumentExtractionGranularity {
     }
 }
 
-#[pyclass(name = "DocumentOutputAdditionalFileFormat", frozen)]
+#[pyclass(
+    name = "DocumentOutputAdditionalFileFormat",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentOutputAdditionalFileFormat {
     inner: aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat,
 }
@@ -4813,7 +4917,11 @@ impl PyDocumentOutputAdditionalFileFormat {
     }
 }
 
-#[pyclass(name = "DocumentOutputFormat", frozen)]
+#[pyclass(
+    name = "DocumentOutputFormat",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentOutputFormat {
     inner: aws_sdk_bedrockdataautomation::types::DocumentOutputFormat,
 }
@@ -4857,7 +4965,11 @@ impl PyDocumentOutputFormat {
     }
 }
 
-#[pyclass(name = "DocumentOutputTextFormat", frozen)]
+#[pyclass(
+    name = "DocumentOutputTextFormat",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentOutputTextFormat {
     inner: aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat,
 }
@@ -4884,7 +4996,11 @@ impl PyDocumentOutputTextFormat {
     }
 }
 
-#[pyclass(name = "DocumentOverrideConfiguration", frozen)]
+#[pyclass(
+    name = "DocumentOverrideConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentOverrideConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration,
 }
@@ -4944,7 +5060,11 @@ impl PyDocumentOverrideConfiguration {
     }
 }
 
-#[pyclass(name = "DocumentStandardExtraction", frozen)]
+#[pyclass(
+    name = "DocumentStandardExtraction",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentStandardExtraction {
     inner: aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction,
 }
@@ -4988,7 +5108,11 @@ impl PyDocumentStandardExtraction {
     }
 }
 
-#[pyclass(name = "DocumentStandardGenerativeField", frozen)]
+#[pyclass(
+    name = "DocumentStandardGenerativeField",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentStandardGenerativeField {
     inner: aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField,
 }
@@ -5006,7 +5130,11 @@ impl PyDocumentStandardGenerativeField {
     }
 }
 
-#[pyclass(name = "DocumentStandardOutputConfiguration", frozen)]
+#[pyclass(
+    name = "DocumentStandardOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDocumentStandardOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration,
 }
@@ -5066,7 +5194,11 @@ impl PyDocumentStandardOutputConfiguration {
     }
 }
 
-#[pyclass(name = "EntityTypeInfo", frozen)]
+#[pyclass(
+    name = "EntityTypeInfo",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyEntityTypeInfo {
     inner: aws_sdk_bedrockdataautomation::types::EntityTypeInfo,
 }
@@ -5094,7 +5226,11 @@ impl PyEntityTypeInfo {
     }
 }
 
-#[pyclass(name = "ImageBoundingBox", frozen)]
+#[pyclass(
+    name = "ImageBoundingBox",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageBoundingBox {
     inner: aws_sdk_bedrockdataautomation::types::ImageBoundingBox,
 }
@@ -5112,7 +5248,11 @@ impl PyImageBoundingBox {
     }
 }
 
-#[pyclass(name = "ImageExtractionCategory", frozen)]
+#[pyclass(
+    name = "ImageExtractionCategory",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageExtractionCategory {
     inner: aws_sdk_bedrockdataautomation::types::ImageExtractionCategory,
 }
@@ -5145,7 +5285,11 @@ impl PyImageExtractionCategory {
     }
 }
 
-#[pyclass(name = "ImageOverrideConfiguration", frozen)]
+#[pyclass(
+    name = "ImageOverrideConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageOverrideConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration,
 }
@@ -5189,7 +5333,11 @@ impl PyImageOverrideConfiguration {
     }
 }
 
-#[pyclass(name = "ImageStandardExtraction", frozen)]
+#[pyclass(
+    name = "ImageStandardExtraction",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageStandardExtraction {
     inner: aws_sdk_bedrockdataautomation::types::ImageStandardExtraction,
 }
@@ -5233,7 +5381,11 @@ impl PyImageStandardExtraction {
     }
 }
 
-#[pyclass(name = "ImageStandardGenerativeField", frozen)]
+#[pyclass(
+    name = "ImageStandardGenerativeField",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageStandardGenerativeField {
     inner: aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField,
 }
@@ -5266,7 +5418,11 @@ impl PyImageStandardGenerativeField {
     }
 }
 
-#[pyclass(name = "ImageStandardOutputConfiguration", frozen)]
+#[pyclass(
+    name = "ImageStandardOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyImageStandardOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration,
 }
@@ -5310,7 +5466,11 @@ impl PyImageStandardOutputConfiguration {
     }
 }
 
-#[pyclass(name = "ModalityProcessingConfiguration", frozen)]
+#[pyclass(
+    name = "ModalityProcessingConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyModalityProcessingConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration,
 }
@@ -5332,7 +5492,11 @@ impl PyModalityProcessingConfiguration {
     }
 }
 
-#[pyclass(name = "ModalityRoutingConfiguration", frozen)]
+#[pyclass(
+    name = "ModalityRoutingConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyModalityRoutingConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration,
 }
@@ -5384,7 +5548,11 @@ impl PyModalityRoutingConfiguration {
     }
 }
 
-#[pyclass(name = "OutputConfiguration", frozen)]
+#[pyclass(
+    name = "OutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::OutputConfiguration,
 }
@@ -5402,7 +5570,11 @@ impl PyOutputConfiguration {
     }
 }
 
-#[pyclass(name = "OverrideConfiguration", frozen)]
+#[pyclass(
+    name = "OverrideConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyOverrideConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::OverrideConfiguration,
 }
@@ -5494,7 +5666,11 @@ impl PyOverrideConfiguration {
     }
 }
 
-#[pyclass(name = "PiiEntitiesConfiguration", frozen)]
+#[pyclass(
+    name = "PiiEntitiesConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyPiiEntitiesConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration,
 }
@@ -5531,7 +5707,11 @@ impl PyPiiEntitiesConfiguration {
     }
 }
 
-#[pyclass(name = "S3Object", frozen)]
+#[pyclass(
+    name = "S3Object",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyS3Object {
     inner: aws_sdk_bedrockdataautomation::types::S3Object,
 }
@@ -5559,7 +5739,11 @@ impl PyS3Object {
     }
 }
 
-#[pyclass(name = "SensitiveDataConfiguration", frozen)]
+#[pyclass(
+    name = "SensitiveDataConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PySensitiveDataConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration,
 }
@@ -5608,7 +5792,11 @@ impl PySensitiveDataConfiguration {
     }
 }
 
-#[pyclass(name = "SpeakerLabelingConfiguration", frozen)]
+#[pyclass(
+    name = "SpeakerLabelingConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PySpeakerLabelingConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration,
 }
@@ -5626,7 +5814,11 @@ impl PySpeakerLabelingConfiguration {
     }
 }
 
-#[pyclass(name = "SplitterConfiguration", frozen)]
+#[pyclass(
+    name = "SplitterConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PySplitterConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::SplitterConfiguration,
 }
@@ -5648,7 +5840,11 @@ impl PySplitterConfiguration {
     }
 }
 
-#[pyclass(name = "StandardOutputConfiguration", frozen)]
+#[pyclass(
+    name = "StandardOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyStandardOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration,
 }
@@ -5724,7 +5920,7 @@ impl PyStandardOutputConfiguration {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_bedrock_data_automation._native", frozen)]
 struct PyTag {
     inner: aws_sdk_bedrockdataautomation::types::Tag,
 }
@@ -5748,7 +5944,11 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TranscriptConfiguration", frozen)]
+#[pyclass(
+    name = "TranscriptConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyTranscriptConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::TranscriptConfiguration,
 }
@@ -5792,7 +5992,11 @@ impl PyTranscriptConfiguration {
     }
 }
 
-#[pyclass(name = "VideoBoundingBox", frozen)]
+#[pyclass(
+    name = "VideoBoundingBox",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoBoundingBox {
     inner: aws_sdk_bedrockdataautomation::types::VideoBoundingBox,
 }
@@ -5810,7 +6014,11 @@ impl PyVideoBoundingBox {
     }
 }
 
-#[pyclass(name = "VideoExtractionCategory", frozen)]
+#[pyclass(
+    name = "VideoExtractionCategory",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoExtractionCategory {
     inner: aws_sdk_bedrockdataautomation::types::VideoExtractionCategory,
 }
@@ -5843,7 +6051,11 @@ impl PyVideoExtractionCategory {
     }
 }
 
-#[pyclass(name = "VideoOverrideConfiguration", frozen)]
+#[pyclass(
+    name = "VideoOverrideConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoOverrideConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration,
 }
@@ -5887,7 +6099,11 @@ impl PyVideoOverrideConfiguration {
     }
 }
 
-#[pyclass(name = "VideoStandardExtraction", frozen)]
+#[pyclass(
+    name = "VideoStandardExtraction",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoStandardExtraction {
     inner: aws_sdk_bedrockdataautomation::types::VideoStandardExtraction,
 }
@@ -5931,7 +6147,11 @@ impl PyVideoStandardExtraction {
     }
 }
 
-#[pyclass(name = "VideoStandardGenerativeField", frozen)]
+#[pyclass(
+    name = "VideoStandardGenerativeField",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoStandardGenerativeField {
     inner: aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField,
 }
@@ -5964,7 +6184,11 @@ impl PyVideoStandardGenerativeField {
     }
 }
 
-#[pyclass(name = "VideoStandardOutputConfiguration", frozen)]
+#[pyclass(
+    name = "VideoStandardOutputConfiguration",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyVideoStandardOutputConfiguration {
     inner: aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration,
 }
@@ -6008,7 +6232,11 @@ impl PyVideoStandardOutputConfiguration {
     }
 }
 
-#[pyclass(name = "CopyBlueprintStageResponse", frozen)]
+#[pyclass(
+    name = "CopyBlueprintStageResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCopyBlueprintStageResponse {
     inner: aws_sdk_bedrockdataautomation::operation::copy_blueprint_stage::CopyBlueprintStageOutput,
 }
@@ -6021,7 +6249,11 @@ impl PyCopyBlueprintStageResponse {
     }
 }
 
-#[pyclass(name = "CreateBlueprintResponse", frozen)]
+#[pyclass(
+    name = "CreateBlueprintResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCreateBlueprintResponse {
     inner: aws_sdk_bedrockdataautomation::operation::create_blueprint::CreateBlueprintOutput,
 }
@@ -6056,7 +6288,11 @@ impl PyCreateBlueprintResponse {
     }
 }
 
-#[pyclass(name = "CreateBlueprintVersionResponse", frozen)]
+#[pyclass(
+    name = "CreateBlueprintVersionResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCreateBlueprintVersionResponse {
     inner: aws_sdk_bedrockdataautomation::operation::create_blueprint_version::CreateBlueprintVersionOutput,
 }
@@ -6091,7 +6327,11 @@ impl PyCreateBlueprintVersionResponse {
     }
 }
 
-#[pyclass(name = "CreateDataAutomationLibraryResponse", frozen)]
+#[pyclass(
+    name = "CreateDataAutomationLibraryResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCreateDataAutomationLibraryResponse {
     inner: aws_sdk_bedrockdataautomation::operation::create_data_automation_library::CreateDataAutomationLibraryOutput,
 }
@@ -6136,7 +6376,11 @@ impl PyCreateDataAutomationLibraryResponse {
     }
 }
 
-#[pyclass(name = "CreateDataAutomationProjectResponse", frozen)]
+#[pyclass(
+    name = "CreateDataAutomationProjectResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyCreateDataAutomationProjectResponse {
     inner: aws_sdk_bedrockdataautomation::operation::create_data_automation_project::CreateDataAutomationProjectOutput,
 }
@@ -6189,7 +6433,11 @@ impl PyCreateDataAutomationProjectResponse {
     }
 }
 
-#[pyclass(name = "DeleteBlueprintResponse", frozen)]
+#[pyclass(
+    name = "DeleteBlueprintResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDeleteBlueprintResponse {
     inner: aws_sdk_bedrockdataautomation::operation::delete_blueprint::DeleteBlueprintOutput,
 }
@@ -6202,7 +6450,11 @@ impl PyDeleteBlueprintResponse {
     }
 }
 
-#[pyclass(name = "DeleteDataAutomationLibraryResponse", frozen)]
+#[pyclass(
+    name = "DeleteDataAutomationLibraryResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDeleteDataAutomationLibraryResponse {
     inner: aws_sdk_bedrockdataautomation::operation::delete_data_automation_library::DeleteDataAutomationLibraryOutput,
 }
@@ -6247,7 +6499,11 @@ impl PyDeleteDataAutomationLibraryResponse {
     }
 }
 
-#[pyclass(name = "DeleteDataAutomationProjectResponse", frozen)]
+#[pyclass(
+    name = "DeleteDataAutomationProjectResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyDeleteDataAutomationProjectResponse {
     inner: aws_sdk_bedrockdataautomation::operation::delete_data_automation_project::DeleteDataAutomationProjectOutput,
 }
@@ -6284,7 +6540,11 @@ impl PyDeleteDataAutomationProjectResponse {
     }
 }
 
-#[pyclass(name = "GetBlueprintResponse", frozen)]
+#[pyclass(
+    name = "GetBlueprintResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetBlueprintResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_blueprint::GetBlueprintOutput,
 }
@@ -6319,7 +6579,11 @@ impl PyGetBlueprintResponse {
     }
 }
 
-#[pyclass(name = "GetBlueprintOptimizationStatusResponse", frozen)]
+#[pyclass(
+    name = "GetBlueprintOptimizationStatusResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetBlueprintOptimizationStatusResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_blueprint_optimization_status::GetBlueprintOptimizationStatusOutput,
 }
@@ -6402,7 +6666,11 @@ impl PyGetBlueprintOptimizationStatusResponse {
     }
 }
 
-#[pyclass(name = "GetDataAutomationLibraryResponse", frozen)]
+#[pyclass(
+    name = "GetDataAutomationLibraryResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetDataAutomationLibraryResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library::GetDataAutomationLibraryOutput,
 }
@@ -6437,7 +6705,11 @@ impl PyGetDataAutomationLibraryResponse {
     }
 }
 
-#[pyclass(name = "GetDataAutomationLibraryEntityResponse", frozen)]
+#[pyclass(
+    name = "GetDataAutomationLibraryEntityResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetDataAutomationLibraryEntityResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_entity::GetDataAutomationLibraryEntityOutput,
 }
@@ -6466,7 +6738,11 @@ impl PyGetDataAutomationLibraryEntityResponse {
     }
 }
 
-#[pyclass(name = "GetDataAutomationLibraryIngestionJobResponse", frozen)]
+#[pyclass(
+    name = "GetDataAutomationLibraryIngestionJobResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetDataAutomationLibraryIngestionJobResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_library_ingestion_job::GetDataAutomationLibraryIngestionJobOutput,
 }
@@ -6501,7 +6777,11 @@ impl PyGetDataAutomationLibraryIngestionJobResponse {
     }
 }
 
-#[pyclass(name = "GetDataAutomationProjectResponse", frozen)]
+#[pyclass(
+    name = "GetDataAutomationProjectResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyGetDataAutomationProjectResponse {
     inner: aws_sdk_bedrockdataautomation::operation::get_data_automation_project::GetDataAutomationProjectOutput,
 }
@@ -6536,7 +6816,11 @@ impl PyGetDataAutomationProjectResponse {
     }
 }
 
-#[pyclass(name = "InvokeBlueprintOptimizationAsyncResponse", frozen)]
+#[pyclass(
+    name = "InvokeBlueprintOptimizationAsyncResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyInvokeBlueprintOptimizationAsyncResponse {
     inner: aws_sdk_bedrockdataautomation::operation::invoke_blueprint_optimization_async::InvokeBlueprintOptimizationAsyncOutput,
 }
@@ -6557,7 +6841,11 @@ impl PyInvokeBlueprintOptimizationAsyncResponse {
     }
 }
 
-#[pyclass(name = "InvokeDataAutomationLibraryIngestionJobResponse", frozen)]
+#[pyclass(
+    name = "InvokeDataAutomationLibraryIngestionJobResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyInvokeDataAutomationLibraryIngestionJobResponse {
     inner: aws_sdk_bedrockdataautomation::operation::invoke_data_automation_library_ingestion_job::InvokeDataAutomationLibraryIngestionJobOutput,
 }
@@ -6586,7 +6874,11 @@ impl PyInvokeDataAutomationLibraryIngestionJobResponse {
     }
 }
 
-#[pyclass(name = "ListBlueprintsResponse", frozen)]
+#[pyclass(
+    name = "ListBlueprintsResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListBlueprintsResponse {
     inner: aws_sdk_bedrockdataautomation::operation::list_blueprints::ListBlueprintsOutput,
 }
@@ -6639,7 +6931,11 @@ impl PyListBlueprintsResponse {
     }
 }
 
-#[pyclass(name = "ListDataAutomationLibrariesResponse", frozen)]
+#[pyclass(
+    name = "ListDataAutomationLibrariesResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListDataAutomationLibrariesResponse {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_libraries::ListDataAutomationLibrariesOutput,
 }
@@ -6700,7 +6996,11 @@ impl PyListDataAutomationLibrariesResponse {
     }
 }
 
-#[pyclass(name = "ListDataAutomationLibraryEntitiesResponse", frozen)]
+#[pyclass(
+    name = "ListDataAutomationLibraryEntitiesResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListDataAutomationLibraryEntitiesResponse {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_entities::ListDataAutomationLibraryEntitiesOutput,
 }
@@ -6757,7 +7057,11 @@ impl PyListDataAutomationLibraryEntitiesResponse {
     }
 }
 
-#[pyclass(name = "ListDataAutomationLibraryIngestionJobsResponse", frozen)]
+#[pyclass(
+    name = "ListDataAutomationLibraryIngestionJobsResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListDataAutomationLibraryIngestionJobsResponse {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_library_ingestion_jobs::ListDataAutomationLibraryIngestionJobsOutput,
 }
@@ -6819,7 +7123,11 @@ impl PyListDataAutomationLibraryIngestionJobsResponse {
     }
 }
 
-#[pyclass(name = "ListDataAutomationProjectsResponse", frozen)]
+#[pyclass(
+    name = "ListDataAutomationProjectsResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListDataAutomationProjectsResponse {
     inner: aws_sdk_bedrockdataautomation::operation::list_data_automation_projects::ListDataAutomationProjectsOutput,
 }
@@ -6872,7 +7180,11 @@ impl PyListDataAutomationProjectsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner:
         aws_sdk_bedrockdataautomation::operation::list_tags_for_resource::ListTagsForResourceOutput,
@@ -6918,7 +7230,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_bedrockdataautomation::operation::tag_resource::TagResourceOutput,
 }
@@ -6931,7 +7247,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_bedrockdataautomation::operation::untag_resource::UntagResourceOutput,
 }
@@ -6944,7 +7264,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateBlueprintResponse", frozen)]
+#[pyclass(
+    name = "UpdateBlueprintResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyUpdateBlueprintResponse {
     inner: aws_sdk_bedrockdataautomation::operation::update_blueprint::UpdateBlueprintOutput,
 }
@@ -6979,7 +7303,11 @@ impl PyUpdateBlueprintResponse {
     }
 }
 
-#[pyclass(name = "UpdateDataAutomationLibraryResponse", frozen)]
+#[pyclass(
+    name = "UpdateDataAutomationLibraryResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyUpdateDataAutomationLibraryResponse {
     inner: aws_sdk_bedrockdataautomation::operation::update_data_automation_library::UpdateDataAutomationLibraryOutput,
 }
@@ -7024,7 +7352,11 @@ impl PyUpdateDataAutomationLibraryResponse {
     }
 }
 
-#[pyclass(name = "UpdateDataAutomationProjectResponse", frozen)]
+#[pyclass(
+    name = "UpdateDataAutomationProjectResponse",
+    module = "rboto_bedrock_data_automation._native",
+    frozen
+)]
 struct PyUpdateDataAutomationProjectResponse {
     inner: aws_sdk_bedrockdataautomation::operation::update_data_automation_project::UpdateDataAutomationProjectOutput,
 }

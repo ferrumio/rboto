@@ -657,7 +657,7 @@ class ServiceGenerator:
         converter = f"{to_snake_case(rust.name)}_to_py"
         return "\n".join(
             [
-                f'#[pyclass(name = "{rust.name}", frozen)]',
+                f'#[pyclass(name = "{rust.name}", module = "{self.descriptor.python_package}._native", frozen)]',
                 f"struct Py{rust.name} {{",
                 f"    inner: {self.rust_module}::types::{rust.name},",
                 "}",
@@ -724,7 +724,7 @@ class ServiceGenerator:
             if self._kind(field.rust_type) == "byte_stream"
         ]
         lines = [
-            f'#[pyclass(name = "{metadata["class_name"]}", frozen)]',
+            f'#[pyclass(name = "{metadata["class_name"]}", module = "{self.descriptor.python_package}._native", frozen)]',
             f"struct {metadata['rust_class']} {{",
             f"    inner: {metadata['rust_type']},",
             *(
@@ -1114,6 +1114,7 @@ class ServiceGenerator:
             native_classes=native_classes,
             methods="\n\n".join(methods),
             client_class=self.descriptor.client_class,
+            python_package=self.descriptor.python_package,
             event_streams=self._event_streams(),
         )
 

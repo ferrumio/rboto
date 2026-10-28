@@ -730,7 +730,7 @@ fn send_message_batch_result_entry_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "BatchResultErrorEntry", frozen)]
+#[pyclass(name = "BatchResultErrorEntry", module = "rboto_sqs._native", frozen)]
 struct PyBatchResultErrorEntry {
     inner: aws_sdk_sqs::types::BatchResultErrorEntry,
 }
@@ -770,7 +770,11 @@ impl PyBatchResultErrorEntry {
     }
 }
 
-#[pyclass(name = "ChangeMessageVisibilityBatchResultEntry", frozen)]
+#[pyclass(
+    name = "ChangeMessageVisibilityBatchResultEntry",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyChangeMessageVisibilityBatchResultEntry {
     inner: aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry,
 }
@@ -788,7 +792,11 @@ impl PyChangeMessageVisibilityBatchResultEntry {
     }
 }
 
-#[pyclass(name = "DeleteMessageBatchResultEntry", frozen)]
+#[pyclass(
+    name = "DeleteMessageBatchResultEntry",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyDeleteMessageBatchResultEntry {
     inner: aws_sdk_sqs::types::DeleteMessageBatchResultEntry,
 }
@@ -806,7 +814,11 @@ impl PyDeleteMessageBatchResultEntry {
     }
 }
 
-#[pyclass(name = "ListMessageMoveTasksResultEntry", frozen)]
+#[pyclass(
+    name = "ListMessageMoveTasksResultEntry",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyListMessageMoveTasksResultEntry {
     inner: aws_sdk_sqs::types::ListMessageMoveTasksResultEntry,
 }
@@ -902,7 +914,7 @@ impl PyListMessageMoveTasksResultEntry {
     }
 }
 
-#[pyclass(name = "Message", frozen)]
+#[pyclass(name = "Message", module = "rboto_sqs._native", frozen)]
 struct PyMessage {
     inner: aws_sdk_sqs::types::Message,
 }
@@ -1002,7 +1014,7 @@ impl PyMessage {
     }
 }
 
-#[pyclass(name = "MessageAttributeValue", frozen)]
+#[pyclass(name = "MessageAttributeValue", module = "rboto_sqs._native", frozen)]
 struct PyMessageAttributeValue {
     inner: aws_sdk_sqs::types::MessageAttributeValue,
 }
@@ -1070,7 +1082,11 @@ impl PyMessageAttributeValue {
     }
 }
 
-#[pyclass(name = "SendMessageBatchResultEntry", frozen)]
+#[pyclass(
+    name = "SendMessageBatchResultEntry",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PySendMessageBatchResultEntry {
     inner: aws_sdk_sqs::types::SendMessageBatchResultEntry,
 }
@@ -1130,7 +1146,11 @@ impl PySendMessageBatchResultEntry {
     }
 }
 
-#[pyclass(name = "CancelMessageMoveTaskResult", frozen)]
+#[pyclass(
+    name = "CancelMessageMoveTaskResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyCancelMessageMoveTaskResult {
     inner: aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskOutput,
 }
@@ -1155,7 +1175,11 @@ impl PyCancelMessageMoveTaskResult {
     }
 }
 
-#[pyclass(name = "ChangeMessageVisibilityBatchResult", frozen)]
+#[pyclass(
+    name = "ChangeMessageVisibilityBatchResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyChangeMessageVisibilityBatchResult {
     inner:
         aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchOutput,
@@ -1218,7 +1242,7 @@ impl PyChangeMessageVisibilityBatchResult {
     }
 }
 
-#[pyclass(name = "CreateQueueResult", frozen)]
+#[pyclass(name = "CreateQueueResult", module = "rboto_sqs._native", frozen)]
 struct PyCreateQueueResult {
     inner: aws_sdk_sqs::operation::create_queue::CreateQueueOutput,
 }
@@ -1247,7 +1271,11 @@ impl PyCreateQueueResult {
     }
 }
 
-#[pyclass(name = "DeleteMessageBatchResult", frozen)]
+#[pyclass(
+    name = "DeleteMessageBatchResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyDeleteMessageBatchResult {
     inner: aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchOutput,
 }
@@ -1308,7 +1336,11 @@ impl PyDeleteMessageBatchResult {
     }
 }
 
-#[pyclass(name = "GetQueueAttributesResult", frozen)]
+#[pyclass(
+    name = "GetQueueAttributesResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyGetQueueAttributesResult {
     inner: aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesOutput,
 }
@@ -1349,7 +1381,7 @@ impl PyGetQueueAttributesResult {
     }
 }
 
-#[pyclass(name = "GetQueueUrlResult", frozen)]
+#[pyclass(name = "GetQueueUrlResult", module = "rboto_sqs._native", frozen)]
 struct PyGetQueueUrlResult {
     inner: aws_sdk_sqs::operation::get_queue_url::GetQueueUrlOutput,
 }
@@ -1378,7 +1410,11 @@ impl PyGetQueueUrlResult {
     }
 }
 
-#[pyclass(name = "ListDeadLetterSourceQueuesResult", frozen)]
+#[pyclass(
+    name = "ListDeadLetterSourceQueuesResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyListDeadLetterSourceQueuesResult {
     inner: aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesOutput,
 }
@@ -1425,7 +1461,11 @@ impl PyListDeadLetterSourceQueuesResult {
     }
 }
 
-#[pyclass(name = "ListMessageMoveTasksResult", frozen)]
+#[pyclass(
+    name = "ListMessageMoveTasksResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyListMessageMoveTasksResult {
     inner: aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksOutput,
 }
@@ -1470,7 +1510,7 @@ impl PyListMessageMoveTasksResult {
     }
 }
 
-#[pyclass(name = "ListQueueTagsResult", frozen)]
+#[pyclass(name = "ListQueueTagsResult", module = "rboto_sqs._native", frozen)]
 struct PyListQueueTagsResult {
     inner: aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsOutput,
 }
@@ -1511,7 +1551,7 @@ impl PyListQueueTagsResult {
     }
 }
 
-#[pyclass(name = "ListQueuesResult", frozen)]
+#[pyclass(name = "ListQueuesResult", module = "rboto_sqs._native", frozen)]
 struct PyListQueuesResult {
     inner: aws_sdk_sqs::operation::list_queues::ListQueuesOutput,
 }
@@ -1566,7 +1606,7 @@ impl PyListQueuesResult {
     }
 }
 
-#[pyclass(name = "ReceiveMessageResult", frozen)]
+#[pyclass(name = "ReceiveMessageResult", module = "rboto_sqs._native", frozen)]
 struct PyReceiveMessageResult {
     inner: aws_sdk_sqs::operation::receive_message::ReceiveMessageOutput,
 }
@@ -1611,7 +1651,7 @@ impl PyReceiveMessageResult {
     }
 }
 
-#[pyclass(name = "SendMessageResult", frozen)]
+#[pyclass(name = "SendMessageResult", module = "rboto_sqs._native", frozen)]
 struct PySendMessageResult {
     inner: aws_sdk_sqs::operation::send_message::SendMessageOutput,
 }
@@ -1704,7 +1744,7 @@ impl PySendMessageResult {
     }
 }
 
-#[pyclass(name = "SendMessageBatchResult", frozen)]
+#[pyclass(name = "SendMessageBatchResult", module = "rboto_sqs._native", frozen)]
 struct PySendMessageBatchResult {
     inner: aws_sdk_sqs::operation::send_message_batch::SendMessageBatchOutput,
 }
@@ -1765,7 +1805,11 @@ impl PySendMessageBatchResult {
     }
 }
 
-#[pyclass(name = "StartMessageMoveTaskResult", frozen)]
+#[pyclass(
+    name = "StartMessageMoveTaskResult",
+    module = "rboto_sqs._native",
+    frozen
+)]
 struct PyStartMessageMoveTaskResult {
     inner: aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskOutput,
 }

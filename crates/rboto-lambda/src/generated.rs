@@ -6513,7 +6513,7 @@ fn wait_succeeded_details_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccountLimit", frozen)]
+#[pyclass(name = "AccountLimit", module = "rboto_lambda._native", frozen)]
 struct PyAccountLimit {
     inner: aws_sdk_lambda::types::AccountLimit,
 }
@@ -6563,7 +6563,7 @@ impl PyAccountLimit {
     }
 }
 
-#[pyclass(name = "AccountUsage", frozen)]
+#[pyclass(name = "AccountUsage", module = "rboto_lambda._native", frozen)]
 struct PyAccountUsage {
     inner: aws_sdk_lambda::types::AccountUsage,
 }
@@ -6587,7 +6587,7 @@ impl PyAccountUsage {
     }
 }
 
-#[pyclass(name = "AliasConfiguration", frozen)]
+#[pyclass(name = "AliasConfiguration", module = "rboto_lambda._native", frozen)]
 struct PyAliasConfiguration {
     inner: aws_sdk_lambda::types::AliasConfiguration,
 }
@@ -6665,7 +6665,11 @@ impl PyAliasConfiguration {
     }
 }
 
-#[pyclass(name = "AliasRoutingConfiguration", frozen)]
+#[pyclass(
+    name = "AliasRoutingConfiguration",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyAliasRoutingConfiguration {
     inner: aws_sdk_lambda::types::AliasRoutingConfiguration,
 }
@@ -6693,7 +6697,7 @@ impl PyAliasRoutingConfiguration {
     }
 }
 
-#[pyclass(name = "AllowedPublishers", frozen)]
+#[pyclass(name = "AllowedPublishers", module = "rboto_lambda._native", frozen)]
 struct PyAllowedPublishers {
     inner: aws_sdk_lambda::types::AllowedPublishers,
 }
@@ -6716,7 +6720,11 @@ impl PyAllowedPublishers {
     }
 }
 
-#[pyclass(name = "AmazonManagedKafkaEventSourceConfig", frozen)]
+#[pyclass(
+    name = "AmazonManagedKafkaEventSourceConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyAmazonManagedKafkaEventSourceConfig {
     inner: aws_sdk_lambda::types::AmazonManagedKafkaEventSourceConfig,
 }
@@ -6754,7 +6762,7 @@ impl PyAmazonManagedKafkaEventSourceConfig {
     }
 }
 
-#[pyclass(name = "CallbackDetails", frozen)]
+#[pyclass(name = "CallbackDetails", module = "rboto_lambda._native", frozen)]
 struct PyCallbackDetails {
     inner: aws_sdk_lambda::types::CallbackDetails,
 }
@@ -6802,7 +6810,11 @@ impl PyCallbackDetails {
     }
 }
 
-#[pyclass(name = "CallbackFailedDetails", frozen)]
+#[pyclass(
+    name = "CallbackFailedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCallbackFailedDetails {
     inner: aws_sdk_lambda::types::CallbackFailedDetails,
 }
@@ -6830,7 +6842,11 @@ impl PyCallbackFailedDetails {
     }
 }
 
-#[pyclass(name = "CallbackStartedDetails", frozen)]
+#[pyclass(
+    name = "CallbackStartedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCallbackStartedDetails {
     inner: aws_sdk_lambda::types::CallbackStartedDetails,
 }
@@ -6868,7 +6884,11 @@ impl PyCallbackStartedDetails {
     }
 }
 
-#[pyclass(name = "CallbackSucceededDetails", frozen)]
+#[pyclass(
+    name = "CallbackSucceededDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCallbackSucceededDetails {
     inner: aws_sdk_lambda::types::CallbackSucceededDetails,
 }
@@ -6896,7 +6916,11 @@ impl PyCallbackSucceededDetails {
     }
 }
 
-#[pyclass(name = "CallbackTimedOutDetails", frozen)]
+#[pyclass(
+    name = "CallbackTimedOutDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCallbackTimedOutDetails {
     inner: aws_sdk_lambda::types::CallbackTimedOutDetails,
 }
@@ -6924,7 +6948,7 @@ impl PyCallbackTimedOutDetails {
     }
 }
 
-#[pyclass(name = "CapacityProvider", frozen)]
+#[pyclass(name = "CapacityProvider", module = "rboto_lambda._native", frozen)]
 struct PyCapacityProvider {
     inner: aws_sdk_lambda::types::CapacityProvider,
 }
@@ -7066,7 +7090,11 @@ impl PyCapacityProvider {
     }
 }
 
-#[pyclass(name = "CapacityProviderConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderConfig {
     inner: aws_sdk_lambda::types::CapacityProviderConfig,
 }
@@ -7097,7 +7125,11 @@ impl PyCapacityProviderConfig {
     }
 }
 
-#[pyclass(name = "CapacityProviderLoggingConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderLoggingConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderLoggingConfig {
     inner: aws_sdk_lambda::types::CapacityProviderLoggingConfig,
 }
@@ -7129,7 +7161,11 @@ impl PyCapacityProviderLoggingConfig {
     }
 }
 
-#[pyclass(name = "CapacityProviderPermissionsConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderPermissionsConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderPermissionsConfig {
     inner: aws_sdk_lambda::types::CapacityProviderPermissionsConfig,
 }
@@ -7149,7 +7185,11 @@ impl PyCapacityProviderPermissionsConfig {
     }
 }
 
-#[pyclass(name = "CapacityProviderScalingConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderScalingConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderScalingConfig {
     inner: aws_sdk_lambda::types::CapacityProviderScalingConfig,
 }
@@ -7202,7 +7242,11 @@ impl PyCapacityProviderScalingConfig {
     }
 }
 
-#[pyclass(name = "CapacityProviderTelemetryConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderTelemetryConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderTelemetryConfig {
     inner: aws_sdk_lambda::types::CapacityProviderTelemetryConfig,
 }
@@ -7230,7 +7274,11 @@ impl PyCapacityProviderTelemetryConfig {
     }
 }
 
-#[pyclass(name = "CapacityProviderVpcConfig", frozen)]
+#[pyclass(
+    name = "CapacityProviderVpcConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCapacityProviderVpcConfig {
     inner: aws_sdk_lambda::types::CapacityProviderVpcConfig,
 }
@@ -7264,7 +7312,7 @@ impl PyCapacityProviderVpcConfig {
     }
 }
 
-#[pyclass(name = "ChainedInvokeDetails", frozen)]
+#[pyclass(name = "ChainedInvokeDetails", module = "rboto_lambda._native", frozen)]
 struct PyChainedInvokeDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeDetails,
 }
@@ -7302,7 +7350,11 @@ impl PyChainedInvokeDetails {
     }
 }
 
-#[pyclass(name = "ChainedInvokeFailedDetails", frozen)]
+#[pyclass(
+    name = "ChainedInvokeFailedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyChainedInvokeFailedDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeFailedDetails,
 }
@@ -7330,7 +7382,11 @@ impl PyChainedInvokeFailedDetails {
     }
 }
 
-#[pyclass(name = "ChainedInvokeStartedDetails", frozen)]
+#[pyclass(
+    name = "ChainedInvokeStartedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyChainedInvokeStartedDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeStartedDetails,
 }
@@ -7394,7 +7450,11 @@ impl PyChainedInvokeStartedDetails {
     }
 }
 
-#[pyclass(name = "ChainedInvokeStoppedDetails", frozen)]
+#[pyclass(
+    name = "ChainedInvokeStoppedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyChainedInvokeStoppedDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeStoppedDetails,
 }
@@ -7422,7 +7482,11 @@ impl PyChainedInvokeStoppedDetails {
     }
 }
 
-#[pyclass(name = "ChainedInvokeSucceededDetails", frozen)]
+#[pyclass(
+    name = "ChainedInvokeSucceededDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyChainedInvokeSucceededDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeSucceededDetails,
 }
@@ -7450,7 +7514,11 @@ impl PyChainedInvokeSucceededDetails {
     }
 }
 
-#[pyclass(name = "ChainedInvokeTimedOutDetails", frozen)]
+#[pyclass(
+    name = "ChainedInvokeTimedOutDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyChainedInvokeTimedOutDetails {
     inner: aws_sdk_lambda::types::ChainedInvokeTimedOutDetails,
 }
@@ -7478,7 +7546,11 @@ impl PyChainedInvokeTimedOutDetails {
     }
 }
 
-#[pyclass(name = "CheckpointUpdatedExecutionState", frozen)]
+#[pyclass(
+    name = "CheckpointUpdatedExecutionState",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCheckpointUpdatedExecutionState {
     inner: aws_sdk_lambda::types::CheckpointUpdatedExecutionState,
 }
@@ -7521,7 +7593,7 @@ impl PyCheckpointUpdatedExecutionState {
     }
 }
 
-#[pyclass(name = "CodeSigningConfig", frozen)]
+#[pyclass(name = "CodeSigningConfig", module = "rboto_lambda._native", frozen)]
 struct PyCodeSigningConfig {
     inner: aws_sdk_lambda::types::CodeSigningConfig,
 }
@@ -7597,7 +7669,7 @@ impl PyCodeSigningConfig {
     }
 }
 
-#[pyclass(name = "CodeSigningPolicies", frozen)]
+#[pyclass(name = "CodeSigningPolicies", module = "rboto_lambda._native", frozen)]
 struct PyCodeSigningPolicies {
     inner: aws_sdk_lambda::types::CodeSigningPolicies,
 }
@@ -7619,7 +7691,7 @@ impl PyCodeSigningPolicies {
     }
 }
 
-#[pyclass(name = "Concurrency", frozen)]
+#[pyclass(name = "Concurrency", module = "rboto_lambda._native", frozen)]
 struct PyConcurrency {
     inner: aws_sdk_lambda::types::Concurrency,
 }
@@ -7641,7 +7713,7 @@ impl PyConcurrency {
     }
 }
 
-#[pyclass(name = "ContextDetails", frozen)]
+#[pyclass(name = "ContextDetails", module = "rboto_lambda._native", frozen)]
 struct PyContextDetails {
     inner: aws_sdk_lambda::types::ContextDetails,
 }
@@ -7689,7 +7761,7 @@ impl PyContextDetails {
     }
 }
 
-#[pyclass(name = "ContextFailedDetails", frozen)]
+#[pyclass(name = "ContextFailedDetails", module = "rboto_lambda._native", frozen)]
 struct PyContextFailedDetails {
     inner: aws_sdk_lambda::types::ContextFailedDetails,
 }
@@ -7717,7 +7789,11 @@ impl PyContextFailedDetails {
     }
 }
 
-#[pyclass(name = "ContextStartedDetails", frozen)]
+#[pyclass(
+    name = "ContextStartedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyContextStartedDetails {
     inner: aws_sdk_lambda::types::ContextStartedDetails,
 }
@@ -7729,7 +7805,11 @@ impl PyContextStartedDetails {
     }
 }
 
-#[pyclass(name = "ContextSucceededDetails", frozen)]
+#[pyclass(
+    name = "ContextSucceededDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyContextSucceededDetails {
     inner: aws_sdk_lambda::types::ContextSucceededDetails,
 }
@@ -7757,7 +7837,7 @@ impl PyContextSucceededDetails {
     }
 }
 
-#[pyclass(name = "Cors", frozen)]
+#[pyclass(name = "Cors", module = "rboto_lambda._native", frozen)]
 struct PyCors {
     inner: aws_sdk_lambda::types::Cors,
 }
@@ -7849,7 +7929,7 @@ impl PyCors {
     }
 }
 
-#[pyclass(name = "DeadLetterConfig", frozen)]
+#[pyclass(name = "DeadLetterConfig", module = "rboto_lambda._native", frozen)]
 struct PyDeadLetterConfig {
     inner: aws_sdk_lambda::types::DeadLetterConfig,
 }
@@ -7871,7 +7951,7 @@ impl PyDeadLetterConfig {
     }
 }
 
-#[pyclass(name = "DestinationConfig", frozen)]
+#[pyclass(name = "DestinationConfig", module = "rboto_lambda._native", frozen)]
 struct PyDestinationConfig {
     inner: aws_sdk_lambda::types::DestinationConfig,
 }
@@ -7915,7 +7995,11 @@ impl PyDestinationConfig {
     }
 }
 
-#[pyclass(name = "DocumentDbEventSourceConfig", frozen)]
+#[pyclass(
+    name = "DocumentDbEventSourceConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyDocumentDbEventSourceConfig {
     inner: aws_sdk_lambda::types::DocumentDbEventSourceConfig,
 }
@@ -7957,7 +8041,7 @@ impl PyDocumentDbEventSourceConfig {
     }
 }
 
-#[pyclass(name = "DurableConfig", frozen)]
+#[pyclass(name = "DurableConfig", module = "rboto_lambda._native", frozen)]
 struct PyDurableConfig {
     inner: aws_sdk_lambda::types::DurableConfig,
 }
@@ -7999,7 +8083,7 @@ impl PyDurableConfig {
     }
 }
 
-#[pyclass(name = "EnvironmentError", frozen)]
+#[pyclass(name = "EnvironmentError", module = "rboto_lambda._native", frozen)]
 struct PyEnvironmentError {
     inner: aws_sdk_lambda::types::EnvironmentError,
 }
@@ -8031,7 +8115,7 @@ impl PyEnvironmentError {
     }
 }
 
-#[pyclass(name = "EnvironmentResponse", frozen)]
+#[pyclass(name = "EnvironmentResponse", module = "rboto_lambda._native", frozen)]
 struct PyEnvironmentResponse {
     inner: aws_sdk_lambda::types::EnvironmentResponse,
 }
@@ -8075,7 +8159,7 @@ impl PyEnvironmentResponse {
     }
 }
 
-#[pyclass(name = "EphemeralStorage", frozen)]
+#[pyclass(name = "EphemeralStorage", module = "rboto_lambda._native", frozen)]
 struct PyEphemeralStorage {
     inner: aws_sdk_lambda::types::EphemeralStorage,
 }
@@ -8093,7 +8177,7 @@ impl PyEphemeralStorage {
     }
 }
 
-#[pyclass(name = "ErrorObject", frozen)]
+#[pyclass(name = "ErrorObject", module = "rboto_lambda._native", frozen)]
 struct PyErrorObject {
     inner: aws_sdk_lambda::types::ErrorObject,
 }
@@ -8150,7 +8234,7 @@ impl PyErrorObject {
     }
 }
 
-#[pyclass(name = "Event", frozen)]
+#[pyclass(name = "Event", module = "rboto_lambda._native", frozen)]
 struct PyEvent {
     inner: aws_sdk_lambda::types::Event,
 }
@@ -8612,7 +8696,7 @@ impl PyEvent {
     }
 }
 
-#[pyclass(name = "EventError", frozen)]
+#[pyclass(name = "EventError", module = "rboto_lambda._native", frozen)]
 struct PyEventError {
     inner: aws_sdk_lambda::types::EventError,
 }
@@ -8650,7 +8734,7 @@ impl PyEventError {
     }
 }
 
-#[pyclass(name = "EventInput", frozen)]
+#[pyclass(name = "EventInput", module = "rboto_lambda._native", frozen)]
 struct PyEventInput {
     inner: aws_sdk_lambda::types::EventInput,
 }
@@ -8682,7 +8766,7 @@ impl PyEventInput {
     }
 }
 
-#[pyclass(name = "EventResult", frozen)]
+#[pyclass(name = "EventResult", module = "rboto_lambda._native", frozen)]
 struct PyEventResult {
     inner: aws_sdk_lambda::types::EventResult,
 }
@@ -8714,7 +8798,11 @@ impl PyEventResult {
     }
 }
 
-#[pyclass(name = "EventSourceMappingConfiguration", frozen)]
+#[pyclass(
+    name = "EventSourceMappingConfiguration",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyEventSourceMappingConfiguration {
     inner: aws_sdk_lambda::types::EventSourceMappingConfiguration,
 }
@@ -9148,7 +9236,11 @@ impl PyEventSourceMappingConfiguration {
     }
 }
 
-#[pyclass(name = "EventSourceMappingLoggingConfig", frozen)]
+#[pyclass(
+    name = "EventSourceMappingLoggingConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyEventSourceMappingLoggingConfig {
     inner: aws_sdk_lambda::types::EventSourceMappingLoggingConfig,
 }
@@ -9170,7 +9262,11 @@ impl PyEventSourceMappingLoggingConfig {
     }
 }
 
-#[pyclass(name = "EventSourceMappingMetricsConfig", frozen)]
+#[pyclass(
+    name = "EventSourceMappingMetricsConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyEventSourceMappingMetricsConfig {
     inner: aws_sdk_lambda::types::EventSourceMappingMetricsConfig,
 }
@@ -9197,7 +9293,7 @@ impl PyEventSourceMappingMetricsConfig {
     }
 }
 
-#[pyclass(name = "Execution", frozen)]
+#[pyclass(name = "Execution", module = "rboto_lambda._native", frozen)]
 struct PyExecution {
     inner: aws_sdk_lambda::types::Execution,
 }
@@ -9263,7 +9359,7 @@ impl PyExecution {
     }
 }
 
-#[pyclass(name = "ExecutionDetails", frozen)]
+#[pyclass(name = "ExecutionDetails", module = "rboto_lambda._native", frozen)]
 struct PyExecutionDetails {
     inner: aws_sdk_lambda::types::ExecutionDetails,
 }
@@ -9285,7 +9381,11 @@ impl PyExecutionDetails {
     }
 }
 
-#[pyclass(name = "ExecutionFailedDetails", frozen)]
+#[pyclass(
+    name = "ExecutionFailedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyExecutionFailedDetails {
     inner: aws_sdk_lambda::types::ExecutionFailedDetails,
 }
@@ -9313,7 +9413,11 @@ impl PyExecutionFailedDetails {
     }
 }
 
-#[pyclass(name = "ExecutionStartedDetails", frozen)]
+#[pyclass(
+    name = "ExecutionStartedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyExecutionStartedDetails {
     inner: aws_sdk_lambda::types::ExecutionStartedDetails,
 }
@@ -9347,7 +9451,11 @@ impl PyExecutionStartedDetails {
     }
 }
 
-#[pyclass(name = "ExecutionStoppedDetails", frozen)]
+#[pyclass(
+    name = "ExecutionStoppedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyExecutionStoppedDetails {
     inner: aws_sdk_lambda::types::ExecutionStoppedDetails,
 }
@@ -9375,7 +9483,11 @@ impl PyExecutionStoppedDetails {
     }
 }
 
-#[pyclass(name = "ExecutionSucceededDetails", frozen)]
+#[pyclass(
+    name = "ExecutionSucceededDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyExecutionSucceededDetails {
     inner: aws_sdk_lambda::types::ExecutionSucceededDetails,
 }
@@ -9403,7 +9515,11 @@ impl PyExecutionSucceededDetails {
     }
 }
 
-#[pyclass(name = "ExecutionTimedOutDetails", frozen)]
+#[pyclass(
+    name = "ExecutionTimedOutDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyExecutionTimedOutDetails {
     inner: aws_sdk_lambda::types::ExecutionTimedOutDetails,
 }
@@ -9431,7 +9547,7 @@ impl PyExecutionTimedOutDetails {
     }
 }
 
-#[pyclass(name = "FileSystemConfig", frozen)]
+#[pyclass(name = "FileSystemConfig", module = "rboto_lambda._native", frozen)]
 struct PyFileSystemConfig {
     inner: aws_sdk_lambda::types::FileSystemConfig,
 }
@@ -9471,7 +9587,7 @@ impl PyFileSystemConfig {
     }
 }
 
-#[pyclass(name = "Filter", frozen)]
+#[pyclass(name = "Filter", module = "rboto_lambda._native", frozen)]
 struct PyFilter {
     inner: aws_sdk_lambda::types::Filter,
 }
@@ -9493,7 +9609,7 @@ impl PyFilter {
     }
 }
 
-#[pyclass(name = "FilterCriteria", frozen)]
+#[pyclass(name = "FilterCriteria", module = "rboto_lambda._native", frozen)]
 struct PyFilterCriteria {
     inner: aws_sdk_lambda::types::FilterCriteria,
 }
@@ -9526,7 +9642,7 @@ impl PyFilterCriteria {
     }
 }
 
-#[pyclass(name = "FilterCriteriaError", frozen)]
+#[pyclass(name = "FilterCriteriaError", module = "rboto_lambda._native", frozen)]
 struct PyFilterCriteriaError {
     inner: aws_sdk_lambda::types::FilterCriteriaError,
 }
@@ -9558,7 +9674,7 @@ impl PyFilterCriteriaError {
     }
 }
 
-#[pyclass(name = "FunctionCodeLocation", frozen)]
+#[pyclass(name = "FunctionCodeLocation", module = "rboto_lambda._native", frozen)]
 struct PyFunctionCodeLocation {
     inner: aws_sdk_lambda::types::FunctionCodeLocation,
 }
@@ -9652,7 +9768,11 @@ impl PyFunctionCodeLocation {
     }
 }
 
-#[pyclass(name = "FunctionCodeLocationError", frozen)]
+#[pyclass(
+    name = "FunctionCodeLocationError",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyFunctionCodeLocationError {
     inner: aws_sdk_lambda::types::FunctionCodeLocationError,
 }
@@ -9684,7 +9804,11 @@ impl PyFunctionCodeLocationError {
     }
 }
 
-#[pyclass(name = "FunctionConfiguration", frozen)]
+#[pyclass(
+    name = "FunctionConfiguration",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyFunctionConfiguration {
     inner: aws_sdk_lambda::types::FunctionConfiguration,
 }
@@ -10191,7 +10315,11 @@ impl PyFunctionConfiguration {
     }
 }
 
-#[pyclass(name = "FunctionEventInvokeConfig", frozen)]
+#[pyclass(
+    name = "FunctionEventInvokeConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyFunctionEventInvokeConfig {
     inner: aws_sdk_lambda::types::FunctionEventInvokeConfig,
 }
@@ -10259,7 +10387,11 @@ impl PyFunctionEventInvokeConfig {
     }
 }
 
-#[pyclass(name = "FunctionScalingConfig", frozen)]
+#[pyclass(
+    name = "FunctionScalingConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyFunctionScalingConfig {
     inner: aws_sdk_lambda::types::FunctionScalingConfig,
 }
@@ -10291,7 +10423,7 @@ impl PyFunctionScalingConfig {
     }
 }
 
-#[pyclass(name = "FunctionUrlConfig", frozen)]
+#[pyclass(name = "FunctionUrlConfig", module = "rboto_lambda._native", frozen)]
 struct PyFunctionUrlConfig {
     inner: aws_sdk_lambda::types::FunctionUrlConfig,
 }
@@ -10359,7 +10491,11 @@ impl PyFunctionUrlConfig {
     }
 }
 
-#[pyclass(name = "FunctionVersionsByCapacityProviderListItem", frozen)]
+#[pyclass(
+    name = "FunctionVersionsByCapacityProviderListItem",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyFunctionVersionsByCapacityProviderListItem {
     inner: aws_sdk_lambda::types::FunctionVersionsByCapacityProviderListItem,
 }
@@ -10383,7 +10519,7 @@ impl PyFunctionVersionsByCapacityProviderListItem {
     }
 }
 
-#[pyclass(name = "ImageConfig", frozen)]
+#[pyclass(name = "ImageConfig", module = "rboto_lambda._native", frozen)]
 struct PyImageConfig {
     inner: aws_sdk_lambda::types::ImageConfig,
 }
@@ -10435,7 +10571,7 @@ impl PyImageConfig {
     }
 }
 
-#[pyclass(name = "ImageConfigError", frozen)]
+#[pyclass(name = "ImageConfigError", module = "rboto_lambda._native", frozen)]
 struct PyImageConfigError {
     inner: aws_sdk_lambda::types::ImageConfigError,
 }
@@ -10467,7 +10603,7 @@ impl PyImageConfigError {
     }
 }
 
-#[pyclass(name = "ImageConfigResponse", frozen)]
+#[pyclass(name = "ImageConfigResponse", module = "rboto_lambda._native", frozen)]
 struct PyImageConfigResponse {
     inner: aws_sdk_lambda::types::ImageConfigResponse,
 }
@@ -10511,7 +10647,7 @@ impl PyImageConfigResponse {
     }
 }
 
-#[pyclass(name = "InstanceRequirements", frozen)]
+#[pyclass(name = "InstanceRequirements", module = "rboto_lambda._native", frozen)]
 struct PyInstanceRequirements {
     inner: aws_sdk_lambda::types::InstanceRequirements,
 }
@@ -10568,7 +10704,11 @@ impl PyInstanceRequirements {
     }
 }
 
-#[pyclass(name = "InvocationCompletedDetails", frozen)]
+#[pyclass(
+    name = "InvocationCompletedDetails",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyInvocationCompletedDetails {
     inner: aws_sdk_lambda::types::InvocationCompletedDetails,
 }
@@ -10614,7 +10754,11 @@ impl PyInvocationCompletedDetails {
     }
 }
 
-#[pyclass(name = "KafkaSchemaRegistryAccessConfig", frozen)]
+#[pyclass(
+    name = "KafkaSchemaRegistryAccessConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyKafkaSchemaRegistryAccessConfig {
     inner: aws_sdk_lambda::types::KafkaSchemaRegistryAccessConfig,
 }
@@ -10646,7 +10790,11 @@ impl PyKafkaSchemaRegistryAccessConfig {
     }
 }
 
-#[pyclass(name = "KafkaSchemaRegistryConfig", frozen)]
+#[pyclass(
+    name = "KafkaSchemaRegistryConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyKafkaSchemaRegistryConfig {
     inner: aws_sdk_lambda::types::KafkaSchemaRegistryConfig,
 }
@@ -10720,7 +10868,11 @@ impl PyKafkaSchemaRegistryConfig {
     }
 }
 
-#[pyclass(name = "KafkaSchemaValidationConfig", frozen)]
+#[pyclass(
+    name = "KafkaSchemaValidationConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyKafkaSchemaValidationConfig {
     inner: aws_sdk_lambda::types::KafkaSchemaValidationConfig,
 }
@@ -10742,7 +10894,11 @@ impl PyKafkaSchemaValidationConfig {
     }
 }
 
-#[pyclass(name = "LambdaManagedInstancesCapacityProviderConfig", frozen)]
+#[pyclass(
+    name = "LambdaManagedInstancesCapacityProviderConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyLambdaManagedInstancesCapacityProviderConfig {
     inner: aws_sdk_lambda::types::LambdaManagedInstancesCapacityProviderConfig,
 }
@@ -10782,7 +10938,7 @@ impl PyLambdaManagedInstancesCapacityProviderConfig {
     }
 }
 
-#[pyclass(name = "Layer", frozen)]
+#[pyclass(name = "Layer", module = "rboto_lambda._native", frozen)]
 struct PyLayer {
     inner: aws_sdk_lambda::types::Layer,
 }
@@ -10830,7 +10986,11 @@ impl PyLayer {
     }
 }
 
-#[pyclass(name = "LayerVersionContentOutput", frozen)]
+#[pyclass(
+    name = "LayerVersionContentOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyLayerVersionContentOutput {
     inner: aws_sdk_lambda::types::LayerVersionContentOutput,
 }
@@ -10904,7 +11064,11 @@ impl PyLayerVersionContentOutput {
     }
 }
 
-#[pyclass(name = "LayerVersionsListItem", frozen)]
+#[pyclass(
+    name = "LayerVersionsListItem",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyLayerVersionsListItem {
     inner: aws_sdk_lambda::types::LayerVersionsListItem,
 }
@@ -10992,7 +11156,7 @@ impl PyLayerVersionsListItem {
     }
 }
 
-#[pyclass(name = "LayersListItem", frozen)]
+#[pyclass(name = "LayersListItem", module = "rboto_lambda._native", frozen)]
 struct PyLayersListItem {
     inner: aws_sdk_lambda::types::LayersListItem,
 }
@@ -11040,7 +11204,7 @@ impl PyLayersListItem {
     }
 }
 
-#[pyclass(name = "LoggingConfig", frozen)]
+#[pyclass(name = "LoggingConfig", module = "rboto_lambda._native", frozen)]
 struct PyLoggingConfig {
     inner: aws_sdk_lambda::types::LoggingConfig,
 }
@@ -11092,7 +11256,7 @@ impl PyLoggingConfig {
     }
 }
 
-#[pyclass(name = "OnFailure", frozen)]
+#[pyclass(name = "OnFailure", module = "rboto_lambda._native", frozen)]
 struct PyOnFailure {
     inner: aws_sdk_lambda::types::OnFailure,
 }
@@ -11114,7 +11278,7 @@ impl PyOnFailure {
     }
 }
 
-#[pyclass(name = "OnSuccess", frozen)]
+#[pyclass(name = "OnSuccess", module = "rboto_lambda._native", frozen)]
 struct PyOnSuccess {
     inner: aws_sdk_lambda::types::OnSuccess,
 }
@@ -11136,7 +11300,7 @@ impl PyOnSuccess {
     }
 }
 
-#[pyclass(name = "Operation", frozen)]
+#[pyclass(name = "Operation", module = "rboto_lambda._native", frozen)]
 struct PyOperation {
     inner: aws_sdk_lambda::types::Operation,
 }
@@ -11308,7 +11472,7 @@ impl PyOperation {
     }
 }
 
-#[pyclass(name = "PropagateTags", frozen)]
+#[pyclass(name = "PropagateTags", module = "rboto_lambda._native", frozen)]
 struct PyPropagateTags {
     inner: aws_sdk_lambda::types::PropagateTags,
 }
@@ -11346,7 +11510,11 @@ impl PyPropagateTags {
     }
 }
 
-#[pyclass(name = "ProvisionedConcurrencyConfigListItem", frozen)]
+#[pyclass(
+    name = "ProvisionedConcurrencyConfigListItem",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyProvisionedConcurrencyConfigListItem {
     inner: aws_sdk_lambda::types::ProvisionedConcurrencyConfigListItem,
 }
@@ -11428,7 +11596,11 @@ impl PyProvisionedConcurrencyConfigListItem {
     }
 }
 
-#[pyclass(name = "ProvisionedPollerConfig", frozen)]
+#[pyclass(
+    name = "ProvisionedPollerConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyProvisionedPollerConfig {
     inner: aws_sdk_lambda::types::ProvisionedPollerConfig,
 }
@@ -11470,7 +11642,7 @@ impl PyProvisionedPollerConfig {
     }
 }
 
-#[pyclass(name = "ResolvedS3Object", frozen)]
+#[pyclass(name = "ResolvedS3Object", module = "rboto_lambda._native", frozen)]
 struct PyResolvedS3Object {
     inner: aws_sdk_lambda::types::ResolvedS3Object,
 }
@@ -11512,7 +11684,7 @@ impl PyResolvedS3Object {
     }
 }
 
-#[pyclass(name = "RetryDetails", frozen)]
+#[pyclass(name = "RetryDetails", module = "rboto_lambda._native", frozen)]
 struct PyRetryDetails {
     inner: aws_sdk_lambda::types::RetryDetails,
 }
@@ -11540,7 +11712,7 @@ impl PyRetryDetails {
     }
 }
 
-#[pyclass(name = "RuntimeVersionConfig", frozen)]
+#[pyclass(name = "RuntimeVersionConfig", module = "rboto_lambda._native", frozen)]
 struct PyRuntimeVersionConfig {
     inner: aws_sdk_lambda::types::RuntimeVersionConfig,
 }
@@ -11578,7 +11750,7 @@ impl PyRuntimeVersionConfig {
     }
 }
 
-#[pyclass(name = "RuntimeVersionError", frozen)]
+#[pyclass(name = "RuntimeVersionError", module = "rboto_lambda._native", frozen)]
 struct PyRuntimeVersionError {
     inner: aws_sdk_lambda::types::RuntimeVersionError,
 }
@@ -11610,7 +11782,7 @@ impl PyRuntimeVersionError {
     }
 }
 
-#[pyclass(name = "S3FilesConfig", frozen)]
+#[pyclass(name = "S3FilesConfig", module = "rboto_lambda._native", frozen)]
 struct PyS3FilesConfig {
     inner: aws_sdk_lambda::types::S3FilesConfig,
 }
@@ -11632,7 +11804,7 @@ impl PyS3FilesConfig {
     }
 }
 
-#[pyclass(name = "ScalingConfig", frozen)]
+#[pyclass(name = "ScalingConfig", module = "rboto_lambda._native", frozen)]
 struct PyScalingConfig {
     inner: aws_sdk_lambda::types::ScalingConfig,
 }
@@ -11654,7 +11826,11 @@ impl PyScalingConfig {
     }
 }
 
-#[pyclass(name = "SelfManagedEventSource", frozen)]
+#[pyclass(
+    name = "SelfManagedEventSource",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySelfManagedEventSource {
     inner: aws_sdk_lambda::types::SelfManagedEventSource,
 }
@@ -11687,7 +11863,11 @@ impl PySelfManagedEventSource {
     }
 }
 
-#[pyclass(name = "SelfManagedKafkaEventSourceConfig", frozen)]
+#[pyclass(
+    name = "SelfManagedKafkaEventSourceConfig",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySelfManagedKafkaEventSourceConfig {
     inner: aws_sdk_lambda::types::SelfManagedKafkaEventSourceConfig,
 }
@@ -11725,7 +11905,7 @@ impl PySelfManagedKafkaEventSourceConfig {
     }
 }
 
-#[pyclass(name = "SnapStartResponse", frozen)]
+#[pyclass(name = "SnapStartResponse", module = "rboto_lambda._native", frozen)]
 struct PySnapStartResponse {
     inner: aws_sdk_lambda::types::SnapStartResponse,
 }
@@ -11757,7 +11937,11 @@ impl PySnapStartResponse {
     }
 }
 
-#[pyclass(name = "SourceAccessConfiguration", frozen)]
+#[pyclass(
+    name = "SourceAccessConfiguration",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySourceAccessConfiguration {
     inner: aws_sdk_lambda::types::SourceAccessConfiguration,
 }
@@ -11789,7 +11973,7 @@ impl PySourceAccessConfiguration {
     }
 }
 
-#[pyclass(name = "StepDetails", frozen)]
+#[pyclass(name = "StepDetails", module = "rboto_lambda._native", frozen)]
 struct PyStepDetails {
     inner: aws_sdk_lambda::types::StepDetails,
 }
@@ -11843,7 +12027,7 @@ impl PyStepDetails {
     }
 }
 
-#[pyclass(name = "StepFailedDetails", frozen)]
+#[pyclass(name = "StepFailedDetails", module = "rboto_lambda._native", frozen)]
 struct PyStepFailedDetails {
     inner: aws_sdk_lambda::types::StepFailedDetails,
 }
@@ -11887,7 +12071,7 @@ impl PyStepFailedDetails {
     }
 }
 
-#[pyclass(name = "StepStartedDetails", frozen)]
+#[pyclass(name = "StepStartedDetails", module = "rboto_lambda._native", frozen)]
 struct PyStepStartedDetails {
     inner: aws_sdk_lambda::types::StepStartedDetails,
 }
@@ -11899,7 +12083,7 @@ impl PyStepStartedDetails {
     }
 }
 
-#[pyclass(name = "StepSucceededDetails", frozen)]
+#[pyclass(name = "StepSucceededDetails", module = "rboto_lambda._native", frozen)]
 struct PyStepSucceededDetails {
     inner: aws_sdk_lambda::types::StepSucceededDetails,
 }
@@ -11943,7 +12127,7 @@ impl PyStepSucceededDetails {
     }
 }
 
-#[pyclass(name = "TagsError", frozen)]
+#[pyclass(name = "TagsError", module = "rboto_lambda._native", frozen)]
 struct PyTagsError {
     inner: aws_sdk_lambda::types::TagsError,
 }
@@ -11967,7 +12151,11 @@ impl PyTagsError {
     }
 }
 
-#[pyclass(name = "TargetTrackingScalingPolicy", frozen)]
+#[pyclass(
+    name = "TargetTrackingScalingPolicy",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyTargetTrackingScalingPolicy {
     inner: aws_sdk_lambda::types::TargetTrackingScalingPolicy,
 }
@@ -11993,7 +12181,7 @@ impl PyTargetTrackingScalingPolicy {
     }
 }
 
-#[pyclass(name = "TenancyConfig", frozen)]
+#[pyclass(name = "TenancyConfig", module = "rboto_lambda._native", frozen)]
 struct PyTenancyConfig {
     inner: aws_sdk_lambda::types::TenancyConfig,
 }
@@ -12013,7 +12201,7 @@ impl PyTenancyConfig {
     }
 }
 
-#[pyclass(name = "TraceHeader", frozen)]
+#[pyclass(name = "TraceHeader", module = "rboto_lambda._native", frozen)]
 struct PyTraceHeader {
     inner: aws_sdk_lambda::types::TraceHeader,
 }
@@ -12035,7 +12223,11 @@ impl PyTraceHeader {
     }
 }
 
-#[pyclass(name = "TracingConfigResponse", frozen)]
+#[pyclass(
+    name = "TracingConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyTracingConfigResponse {
     inner: aws_sdk_lambda::types::TracingConfigResponse,
 }
@@ -12057,7 +12249,7 @@ impl PyTracingConfigResponse {
     }
 }
 
-#[pyclass(name = "VpcConfigResponse", frozen)]
+#[pyclass(name = "VpcConfigResponse", module = "rboto_lambda._native", frozen)]
 struct PyVpcConfigResponse {
     inner: aws_sdk_lambda::types::VpcConfigResponse,
 }
@@ -12119,7 +12311,7 @@ impl PyVpcConfigResponse {
     }
 }
 
-#[pyclass(name = "WaitCancelledDetails", frozen)]
+#[pyclass(name = "WaitCancelledDetails", module = "rboto_lambda._native", frozen)]
 struct PyWaitCancelledDetails {
     inner: aws_sdk_lambda::types::WaitCancelledDetails,
 }
@@ -12147,7 +12339,7 @@ impl PyWaitCancelledDetails {
     }
 }
 
-#[pyclass(name = "WaitDetails", frozen)]
+#[pyclass(name = "WaitDetails", module = "rboto_lambda._native", frozen)]
 struct PyWaitDetails {
     inner: aws_sdk_lambda::types::WaitDetails,
 }
@@ -12169,7 +12361,7 @@ impl PyWaitDetails {
     }
 }
 
-#[pyclass(name = "WaitStartedDetails", frozen)]
+#[pyclass(name = "WaitStartedDetails", module = "rboto_lambda._native", frozen)]
 struct PyWaitStartedDetails {
     inner: aws_sdk_lambda::types::WaitStartedDetails,
 }
@@ -12195,7 +12387,7 @@ impl PyWaitStartedDetails {
     }
 }
 
-#[pyclass(name = "WaitSucceededDetails", frozen)]
+#[pyclass(name = "WaitSucceededDetails", module = "rboto_lambda._native", frozen)]
 struct PyWaitSucceededDetails {
     inner: aws_sdk_lambda::types::WaitSucceededDetails,
 }
@@ -12217,7 +12409,11 @@ impl PyWaitSucceededDetails {
     }
 }
 
-#[pyclass(name = "AddLayerVersionPermissionResponse", frozen)]
+#[pyclass(
+    name = "AddLayerVersionPermissionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyAddLayerVersionPermissionResponse {
     inner: aws_sdk_lambda::operation::add_layer_version_permission::AddLayerVersionPermissionOutput,
 }
@@ -12262,7 +12458,11 @@ impl PyAddLayerVersionPermissionResponse {
     }
 }
 
-#[pyclass(name = "AddPermissionResponse", frozen)]
+#[pyclass(
+    name = "AddPermissionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyAddPermissionResponse {
     inner: aws_sdk_lambda::operation::add_permission::AddPermissionOutput,
 }
@@ -12291,7 +12491,11 @@ impl PyAddPermissionResponse {
     }
 }
 
-#[pyclass(name = "CheckpointDurableExecutionResponse", frozen)]
+#[pyclass(
+    name = "CheckpointDurableExecutionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCheckpointDurableExecutionResponse {
     inner:
         aws_sdk_lambda::operation::checkpoint_durable_execution::CheckpointDurableExecutionOutput,
@@ -12343,7 +12547,7 @@ impl PyCheckpointDurableExecutionResponse {
     }
 }
 
-#[pyclass(name = "CreateAliasOutput", frozen)]
+#[pyclass(name = "CreateAliasOutput", module = "rboto_lambda._native", frozen)]
 struct PyCreateAliasOutput {
     inner: aws_sdk_lambda::operation::create_alias::CreateAliasOutput,
 }
@@ -12458,7 +12662,11 @@ impl PyCreateAliasOutput {
     }
 }
 
-#[pyclass(name = "CreateCapacityProviderResponse", frozen)]
+#[pyclass(
+    name = "CreateCapacityProviderResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCreateCapacityProviderResponse {
     inner: aws_sdk_lambda::operation::create_capacity_provider::CreateCapacityProviderOutput,
 }
@@ -12493,7 +12701,11 @@ impl PyCreateCapacityProviderResponse {
     }
 }
 
-#[pyclass(name = "CreateCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "CreateCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCreateCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::create_code_signing_config::CreateCodeSigningConfigOutput,
 }
@@ -12528,7 +12740,11 @@ impl PyCreateCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "CreateEventSourceMappingOutput", frozen)]
+#[pyclass(
+    name = "CreateEventSourceMappingOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCreateEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::create_event_source_mapping::CreateEventSourceMappingOutput,
 }
@@ -13181,7 +13397,7 @@ impl PyCreateEventSourceMappingOutput {
     }
 }
 
-#[pyclass(name = "CreateFunctionOutput", frozen)]
+#[pyclass(name = "CreateFunctionOutput", module = "rboto_lambda._native", frozen)]
 struct PyCreateFunctionOutput {
     inner: aws_sdk_lambda::operation::create_function::CreateFunctionOutput,
 }
@@ -13940,7 +14156,11 @@ impl PyCreateFunctionOutput {
     }
 }
 
-#[pyclass(name = "CreateFunctionUrlConfigResponse", frozen)]
+#[pyclass(
+    name = "CreateFunctionUrlConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyCreateFunctionUrlConfigResponse {
     inner: aws_sdk_lambda::operation::create_function_url_config::CreateFunctionUrlConfigOutput,
 }
@@ -14023,7 +14243,11 @@ impl PyCreateFunctionUrlConfigResponse {
     }
 }
 
-#[pyclass(name = "DeleteCapacityProviderResponse", frozen)]
+#[pyclass(
+    name = "DeleteCapacityProviderResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyDeleteCapacityProviderResponse {
     inner: aws_sdk_lambda::operation::delete_capacity_provider::DeleteCapacityProviderOutput,
 }
@@ -14058,7 +14282,11 @@ impl PyDeleteCapacityProviderResponse {
     }
 }
 
-#[pyclass(name = "DeleteCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "DeleteCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyDeleteCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::delete_code_signing_config::DeleteCodeSigningConfigOutput,
 }
@@ -14071,7 +14299,11 @@ impl PyDeleteCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "DeleteEventSourceMappingOutput", frozen)]
+#[pyclass(
+    name = "DeleteEventSourceMappingOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyDeleteEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::delete_event_source_mapping::DeleteEventSourceMappingOutput,
 }
@@ -14724,7 +14956,11 @@ impl PyDeleteEventSourceMappingOutput {
     }
 }
 
-#[pyclass(name = "DeleteFunctionResponse", frozen)]
+#[pyclass(
+    name = "DeleteFunctionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyDeleteFunctionResponse {
     inner: aws_sdk_lambda::operation::delete_function::DeleteFunctionOutput,
 }
@@ -14745,7 +14981,11 @@ impl PyDeleteFunctionResponse {
     }
 }
 
-#[pyclass(name = "GetAccountSettingsResponse", frozen)]
+#[pyclass(
+    name = "GetAccountSettingsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetAccountSettingsResponse {
     inner: aws_sdk_lambda::operation::get_account_settings::GetAccountSettingsOutput,
 }
@@ -14802,7 +15042,7 @@ impl PyGetAccountSettingsResponse {
     }
 }
 
-#[pyclass(name = "GetAliasOutput", frozen)]
+#[pyclass(name = "GetAliasOutput", module = "rboto_lambda._native", frozen)]
 struct PyGetAliasOutput {
     inner: aws_sdk_lambda::operation::get_alias::GetAliasOutput,
 }
@@ -14917,7 +15157,11 @@ impl PyGetAliasOutput {
     }
 }
 
-#[pyclass(name = "GetCapacityProviderResponse", frozen)]
+#[pyclass(
+    name = "GetCapacityProviderResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetCapacityProviderResponse {
     inner: aws_sdk_lambda::operation::get_capacity_provider::GetCapacityProviderOutput,
 }
@@ -14952,7 +15196,11 @@ impl PyGetCapacityProviderResponse {
     }
 }
 
-#[pyclass(name = "GetCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "GetCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::get_code_signing_config::GetCodeSigningConfigOutput,
 }
@@ -14987,7 +15235,11 @@ impl PyGetCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "GetDurableExecutionResponse", frozen)]
+#[pyclass(
+    name = "GetDurableExecutionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetDurableExecutionResponse {
     inner: aws_sdk_lambda::operation::get_durable_execution::GetDurableExecutionOutput,
 }
@@ -15194,7 +15446,11 @@ impl PyGetDurableExecutionResponse {
     }
 }
 
-#[pyclass(name = "GetDurableExecutionHistoryResponse", frozen)]
+#[pyclass(
+    name = "GetDurableExecutionHistoryResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetDurableExecutionHistoryResponse {
     inner:
         aws_sdk_lambda::operation::get_durable_execution_history::GetDurableExecutionHistoryOutput,
@@ -15248,7 +15504,11 @@ impl PyGetDurableExecutionHistoryResponse {
     }
 }
 
-#[pyclass(name = "GetDurableExecutionStateResponse", frozen)]
+#[pyclass(
+    name = "GetDurableExecutionStateResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetDurableExecutionStateResponse {
     inner: aws_sdk_lambda::operation::get_durable_execution_state::GetDurableExecutionStateOutput,
 }
@@ -15301,7 +15561,11 @@ impl PyGetDurableExecutionStateResponse {
     }
 }
 
-#[pyclass(name = "GetEventSourceMappingOutput", frozen)]
+#[pyclass(
+    name = "GetEventSourceMappingOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::get_event_source_mapping::GetEventSourceMappingOutput,
 }
@@ -15954,7 +16218,7 @@ impl PyGetEventSourceMappingOutput {
     }
 }
 
-#[pyclass(name = "GetFunctionResponse", frozen)]
+#[pyclass(name = "GetFunctionResponse", module = "rboto_lambda._native", frozen)]
 struct PyGetFunctionResponse {
     inner: aws_sdk_lambda::operation::get_function::GetFunctionOutput,
 }
@@ -16083,7 +16347,11 @@ impl PyGetFunctionResponse {
     }
 }
 
-#[pyclass(name = "GetFunctionCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "GetFunctionCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::get_function_code_signing_config::GetFunctionCodeSigningConfigOutput,
 }
@@ -16116,7 +16384,11 @@ impl PyGetFunctionCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "GetFunctionConcurrencyResponse", frozen)]
+#[pyclass(
+    name = "GetFunctionConcurrencyResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionConcurrencyResponse {
     inner: aws_sdk_lambda::operation::get_function_concurrency::GetFunctionConcurrencyOutput,
 }
@@ -16145,7 +16417,11 @@ impl PyGetFunctionConcurrencyResponse {
     }
 }
 
-#[pyclass(name = "GetFunctionConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetFunctionConfigurationOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionConfigurationOutput {
     inner: aws_sdk_lambda::operation::get_function_configuration::GetFunctionConfigurationOutput,
 }
@@ -16904,7 +17180,11 @@ impl PyGetFunctionConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetFunctionEventInvokeConfigOutput", frozen)]
+#[pyclass(
+    name = "GetFunctionEventInvokeConfigOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::get_function_event_invoke_config::GetFunctionEventInvokeConfigOutput,
 }
@@ -17003,7 +17283,11 @@ impl PyGetFunctionEventInvokeConfigOutput {
     }
 }
 
-#[pyclass(name = "GetFunctionRecursionConfigResponse", frozen)]
+#[pyclass(
+    name = "GetFunctionRecursionConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionRecursionConfigResponse {
     inner:
         aws_sdk_lambda::operation::get_function_recursion_config::GetFunctionRecursionConfigOutput,
@@ -17033,7 +17317,11 @@ impl PyGetFunctionRecursionConfigResponse {
     }
 }
 
-#[pyclass(name = "GetFunctionScalingConfigResponse", frozen)]
+#[pyclass(
+    name = "GetFunctionScalingConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionScalingConfigResponse {
     inner: aws_sdk_lambda::operation::get_function_scaling_config::GetFunctionScalingConfigOutput,
 }
@@ -17106,7 +17394,11 @@ impl PyGetFunctionScalingConfigResponse {
     }
 }
 
-#[pyclass(name = "GetFunctionUrlConfigResponse", frozen)]
+#[pyclass(
+    name = "GetFunctionUrlConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetFunctionUrlConfigResponse {
     inner: aws_sdk_lambda::operation::get_function_url_config::GetFunctionUrlConfigOutput,
 }
@@ -17197,7 +17489,11 @@ impl PyGetFunctionUrlConfigResponse {
     }
 }
 
-#[pyclass(name = "GetLayerVersionOutput", frozen)]
+#[pyclass(
+    name = "GetLayerVersionOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetLayerVersionOutput {
     inner: aws_sdk_lambda::operation::get_layer_version::GetLayerVersionOutput,
 }
@@ -17372,7 +17668,11 @@ impl PyGetLayerVersionOutput {
     }
 }
 
-#[pyclass(name = "GetLayerVersionByArnOutput", frozen)]
+#[pyclass(
+    name = "GetLayerVersionByArnOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetLayerVersionByArnOutput {
     inner: aws_sdk_lambda::operation::get_layer_version_by_arn::GetLayerVersionByArnOutput,
 }
@@ -17547,7 +17847,11 @@ impl PyGetLayerVersionByArnOutput {
     }
 }
 
-#[pyclass(name = "GetLayerVersionPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetLayerVersionPolicyResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetLayerVersionPolicyResponse {
     inner: aws_sdk_lambda::operation::get_layer_version_policy::GetLayerVersionPolicyOutput,
 }
@@ -17592,7 +17896,7 @@ impl PyGetLayerVersionPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetPolicyResponse", frozen)]
+#[pyclass(name = "GetPolicyResponse", module = "rboto_lambda._native", frozen)]
 struct PyGetPolicyResponse {
     inner: aws_sdk_lambda::operation::get_policy::GetPolicyOutput,
 }
@@ -17637,7 +17941,11 @@ impl PyGetPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetProvisionedConcurrencyConfigResponse", frozen)]
+#[pyclass(
+    name = "GetProvisionedConcurrencyConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetProvisionedConcurrencyConfigResponse {
     inner: aws_sdk_lambda::operation::get_provisioned_concurrency_config::GetProvisionedConcurrencyConfigOutput,
 }
@@ -17755,7 +18063,11 @@ impl PyGetProvisionedConcurrencyConfigResponse {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetResourcePolicyResponse {
     inner: aws_sdk_lambda::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -17800,7 +18112,11 @@ impl PyGetResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "GetRuntimeManagementConfigResponse", frozen)]
+#[pyclass(
+    name = "GetRuntimeManagementConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyGetRuntimeManagementConfigResponse {
     inner:
         aws_sdk_lambda::operation::get_runtime_management_config::GetRuntimeManagementConfigOutput,
@@ -17862,7 +18178,7 @@ impl PyGetRuntimeManagementConfigResponse {
     }
 }
 
-#[pyclass(name = "InvocationResponse", frozen)]
+#[pyclass(name = "InvocationResponse", module = "rboto_lambda._native", frozen)]
 struct PyInvocationResponse {
     inner: aws_sdk_lambda::operation::invoke::InvokeOutput,
 }
@@ -17963,7 +18279,7 @@ impl PyInvocationResponse {
     }
 }
 
-#[pyclass(name = "InvokeAsyncResponse", frozen)]
+#[pyclass(name = "InvokeAsyncResponse", module = "rboto_lambda._native", frozen)]
 struct PyInvokeAsyncResponse {
     inner: aws_sdk_lambda::operation::invoke_async::InvokeAsyncOutput,
 }
@@ -17984,7 +18300,7 @@ impl PyInvokeAsyncResponse {
     }
 }
 
-#[pyclass(name = "ListAliasesResponse", frozen)]
+#[pyclass(name = "ListAliasesResponse", module = "rboto_lambda._native", frozen)]
 struct PyListAliasesResponse {
     inner: aws_sdk_lambda::operation::list_aliases::ListAliasesOutput,
 }
@@ -18045,7 +18361,11 @@ impl PyListAliasesResponse {
     }
 }
 
-#[pyclass(name = "ListCapacityProvidersResponse", frozen)]
+#[pyclass(
+    name = "ListCapacityProvidersResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListCapacityProvidersResponse {
     inner: aws_sdk_lambda::operation::list_capacity_providers::ListCapacityProvidersOutput,
 }
@@ -18098,7 +18418,11 @@ impl PyListCapacityProvidersResponse {
     }
 }
 
-#[pyclass(name = "ListCodeSigningConfigsResponse", frozen)]
+#[pyclass(
+    name = "ListCodeSigningConfigsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListCodeSigningConfigsResponse {
     inner: aws_sdk_lambda::operation::list_code_signing_configs::ListCodeSigningConfigsOutput,
 }
@@ -18159,7 +18483,11 @@ impl PyListCodeSigningConfigsResponse {
     }
 }
 
-#[pyclass(name = "ListDurableExecutionsByFunctionResponse", frozen)]
+#[pyclass(
+    name = "ListDurableExecutionsByFunctionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListDurableExecutionsByFunctionResponse {
     inner: aws_sdk_lambda::operation::list_durable_executions_by_function::ListDurableExecutionsByFunctionOutput,
 }
@@ -18220,7 +18548,11 @@ impl PyListDurableExecutionsByFunctionResponse {
     }
 }
 
-#[pyclass(name = "ListEventSourceMappingsResponse", frozen)]
+#[pyclass(
+    name = "ListEventSourceMappingsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListEventSourceMappingsResponse {
     inner: aws_sdk_lambda::operation::list_event_source_mappings::ListEventSourceMappingsOutput,
 }
@@ -18281,7 +18613,11 @@ impl PyListEventSourceMappingsResponse {
     }
 }
 
-#[pyclass(name = "ListFunctionEventInvokeConfigsResponse", frozen)]
+#[pyclass(
+    name = "ListFunctionEventInvokeConfigsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListFunctionEventInvokeConfigsResponse {
     inner: aws_sdk_lambda::operation::list_function_event_invoke_configs::ListFunctionEventInvokeConfigsOutput,
 }
@@ -18342,7 +18678,11 @@ impl PyListFunctionEventInvokeConfigsResponse {
     }
 }
 
-#[pyclass(name = "ListFunctionUrlConfigsResponse", frozen)]
+#[pyclass(
+    name = "ListFunctionUrlConfigsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListFunctionUrlConfigsResponse {
     inner: aws_sdk_lambda::operation::list_function_url_configs::ListFunctionUrlConfigsOutput,
 }
@@ -18395,7 +18735,11 @@ impl PyListFunctionUrlConfigsResponse {
     }
 }
 
-#[pyclass(name = "ListFunctionVersionsByCapacityProviderResponse", frozen)]
+#[pyclass(
+    name = "ListFunctionVersionsByCapacityProviderResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListFunctionVersionsByCapacityProviderResponse {
     inner: aws_sdk_lambda::operation::list_function_versions_by_capacity_provider::ListFunctionVersionsByCapacityProviderOutput,
 }
@@ -18461,7 +18805,11 @@ impl PyListFunctionVersionsByCapacityProviderResponse {
     }
 }
 
-#[pyclass(name = "ListFunctionsResponse", frozen)]
+#[pyclass(
+    name = "ListFunctionsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListFunctionsResponse {
     inner: aws_sdk_lambda::operation::list_functions::ListFunctionsOutput,
 }
@@ -18522,7 +18870,11 @@ impl PyListFunctionsResponse {
     }
 }
 
-#[pyclass(name = "ListFunctionsByCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "ListFunctionsByCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListFunctionsByCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::list_functions_by_code_signing_config::ListFunctionsByCodeSigningConfigOutput,
 }
@@ -18577,7 +18929,11 @@ impl PyListFunctionsByCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "ListLayerVersionsResponse", frozen)]
+#[pyclass(
+    name = "ListLayerVersionsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListLayerVersionsResponse {
     inner: aws_sdk_lambda::operation::list_layer_versions::ListLayerVersionsOutput,
 }
@@ -18638,7 +18994,7 @@ impl PyListLayerVersionsResponse {
     }
 }
 
-#[pyclass(name = "ListLayersResponse", frozen)]
+#[pyclass(name = "ListLayersResponse", module = "rboto_lambda._native", frozen)]
 struct PyListLayersResponse {
     inner: aws_sdk_lambda::operation::list_layers::ListLayersOutput,
 }
@@ -18699,7 +19055,11 @@ impl PyListLayersResponse {
     }
 }
 
-#[pyclass(name = "ListProvisionedConcurrencyConfigsResponse", frozen)]
+#[pyclass(
+    name = "ListProvisionedConcurrencyConfigsResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListProvisionedConcurrencyConfigsResponse {
     inner: aws_sdk_lambda::operation::list_provisioned_concurrency_configs::ListProvisionedConcurrencyConfigsOutput,
 }
@@ -18761,7 +19121,7 @@ impl PyListProvisionedConcurrencyConfigsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsResponse", frozen)]
+#[pyclass(name = "ListTagsResponse", module = "rboto_lambda._native", frozen)]
 struct PyListTagsResponse {
     inner: aws_sdk_lambda::operation::list_tags::ListTagsOutput,
 }
@@ -18802,7 +19162,11 @@ impl PyListTagsResponse {
     }
 }
 
-#[pyclass(name = "ListVersionsByFunctionResponse", frozen)]
+#[pyclass(
+    name = "ListVersionsByFunctionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyListVersionsByFunctionResponse {
     inner: aws_sdk_lambda::operation::list_versions_by_function::ListVersionsByFunctionOutput,
 }
@@ -18863,7 +19227,11 @@ impl PyListVersionsByFunctionResponse {
     }
 }
 
-#[pyclass(name = "PublishLayerVersionResponse", frozen)]
+#[pyclass(
+    name = "PublishLayerVersionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPublishLayerVersionResponse {
     inner: aws_sdk_lambda::operation::publish_layer_version::PublishLayerVersionOutput,
 }
@@ -19038,7 +19406,7 @@ impl PyPublishLayerVersionResponse {
     }
 }
 
-#[pyclass(name = "PublishVersionOutput", frozen)]
+#[pyclass(name = "PublishVersionOutput", module = "rboto_lambda._native", frozen)]
 struct PyPublishVersionOutput {
     inner: aws_sdk_lambda::operation::publish_version::PublishVersionOutput,
 }
@@ -19797,7 +20165,11 @@ impl PyPublishVersionOutput {
     }
 }
 
-#[pyclass(name = "PutFunctionCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "PutFunctionCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutFunctionCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::put_function_code_signing_config::PutFunctionCodeSigningConfigOutput,
 }
@@ -19830,7 +20202,11 @@ impl PyPutFunctionCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "PutFunctionConcurrencyOutput", frozen)]
+#[pyclass(
+    name = "PutFunctionConcurrencyOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutFunctionConcurrencyOutput {
     inner: aws_sdk_lambda::operation::put_function_concurrency::PutFunctionConcurrencyOutput,
 }
@@ -19859,7 +20235,11 @@ impl PyPutFunctionConcurrencyOutput {
     }
 }
 
-#[pyclass(name = "PutFunctionEventInvokeConfigOutput", frozen)]
+#[pyclass(
+    name = "PutFunctionEventInvokeConfigOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::put_function_event_invoke_config::PutFunctionEventInvokeConfigOutput,
 }
@@ -19958,7 +20338,11 @@ impl PyPutFunctionEventInvokeConfigOutput {
     }
 }
 
-#[pyclass(name = "PutFunctionRecursionConfigResponse", frozen)]
+#[pyclass(
+    name = "PutFunctionRecursionConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutFunctionRecursionConfigResponse {
     inner:
         aws_sdk_lambda::operation::put_function_recursion_config::PutFunctionRecursionConfigOutput,
@@ -19988,7 +20372,11 @@ impl PyPutFunctionRecursionConfigResponse {
     }
 }
 
-#[pyclass(name = "PutFunctionScalingConfigResponse", frozen)]
+#[pyclass(
+    name = "PutFunctionScalingConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutFunctionScalingConfigResponse {
     inner: aws_sdk_lambda::operation::put_function_scaling_config::PutFunctionScalingConfigOutput,
 }
@@ -20017,7 +20405,11 @@ impl PyPutFunctionScalingConfigResponse {
     }
 }
 
-#[pyclass(name = "PutProvisionedConcurrencyConfigResponse", frozen)]
+#[pyclass(
+    name = "PutProvisionedConcurrencyConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutProvisionedConcurrencyConfigResponse {
     inner: aws_sdk_lambda::operation::put_provisioned_concurrency_config::PutProvisionedConcurrencyConfigOutput,
 }
@@ -20135,7 +20527,11 @@ impl PyPutProvisionedConcurrencyConfigResponse {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_lambda::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -20180,7 +20576,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "PutRuntimeManagementConfigResponse", frozen)]
+#[pyclass(
+    name = "PutRuntimeManagementConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyPutRuntimeManagementConfigResponse {
     inner:
         aws_sdk_lambda::operation::put_runtime_management_config::PutRuntimeManagementConfigOutput,
@@ -20226,7 +20626,11 @@ impl PyPutRuntimeManagementConfigResponse {
     }
 }
 
-#[pyclass(name = "SendDurableExecutionCallbackFailureResponse", frozen)]
+#[pyclass(
+    name = "SendDurableExecutionCallbackFailureResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySendDurableExecutionCallbackFailureResponse {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_failure::SendDurableExecutionCallbackFailureOutput,
 }
@@ -20239,7 +20643,11 @@ impl PySendDurableExecutionCallbackFailureResponse {
     }
 }
 
-#[pyclass(name = "SendDurableExecutionCallbackHeartbeatResponse", frozen)]
+#[pyclass(
+    name = "SendDurableExecutionCallbackHeartbeatResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySendDurableExecutionCallbackHeartbeatResponse {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_heartbeat::SendDurableExecutionCallbackHeartbeatOutput,
 }
@@ -20252,7 +20660,11 @@ impl PySendDurableExecutionCallbackHeartbeatResponse {
     }
 }
 
-#[pyclass(name = "SendDurableExecutionCallbackSuccessResponse", frozen)]
+#[pyclass(
+    name = "SendDurableExecutionCallbackSuccessResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PySendDurableExecutionCallbackSuccessResponse {
     inner: aws_sdk_lambda::operation::send_durable_execution_callback_success::SendDurableExecutionCallbackSuccessOutput,
 }
@@ -20265,7 +20677,11 @@ impl PySendDurableExecutionCallbackSuccessResponse {
     }
 }
 
-#[pyclass(name = "StopDurableExecutionResponse", frozen)]
+#[pyclass(
+    name = "StopDurableExecutionResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyStopDurableExecutionResponse {
     inner: aws_sdk_lambda::operation::stop_durable_execution::StopDurableExecutionOutput,
 }
@@ -20286,7 +20702,7 @@ impl PyStopDurableExecutionResponse {
     }
 }
 
-#[pyclass(name = "UpdateAliasOutput", frozen)]
+#[pyclass(name = "UpdateAliasOutput", module = "rboto_lambda._native", frozen)]
 struct PyUpdateAliasOutput {
     inner: aws_sdk_lambda::operation::update_alias::UpdateAliasOutput,
 }
@@ -20401,7 +20817,11 @@ impl PyUpdateAliasOutput {
     }
 }
 
-#[pyclass(name = "UpdateCapacityProviderResponse", frozen)]
+#[pyclass(
+    name = "UpdateCapacityProviderResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateCapacityProviderResponse {
     inner: aws_sdk_lambda::operation::update_capacity_provider::UpdateCapacityProviderOutput,
 }
@@ -20436,7 +20856,11 @@ impl PyUpdateCapacityProviderResponse {
     }
 }
 
-#[pyclass(name = "UpdateCodeSigningConfigResponse", frozen)]
+#[pyclass(
+    name = "UpdateCodeSigningConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateCodeSigningConfigResponse {
     inner: aws_sdk_lambda::operation::update_code_signing_config::UpdateCodeSigningConfigOutput,
 }
@@ -20471,7 +20895,11 @@ impl PyUpdateCodeSigningConfigResponse {
     }
 }
 
-#[pyclass(name = "UpdateEventSourceMappingOutput", frozen)]
+#[pyclass(
+    name = "UpdateEventSourceMappingOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateEventSourceMappingOutput {
     inner: aws_sdk_lambda::operation::update_event_source_mapping::UpdateEventSourceMappingOutput,
 }
@@ -21124,7 +21552,11 @@ impl PyUpdateEventSourceMappingOutput {
     }
 }
 
-#[pyclass(name = "UpdateFunctionCodeOutput", frozen)]
+#[pyclass(
+    name = "UpdateFunctionCodeOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateFunctionCodeOutput {
     inner: aws_sdk_lambda::operation::update_function_code::UpdateFunctionCodeOutput,
 }
@@ -21883,7 +22315,11 @@ impl PyUpdateFunctionCodeOutput {
     }
 }
 
-#[pyclass(name = "UpdateFunctionConfigurationOutput", frozen)]
+#[pyclass(
+    name = "UpdateFunctionConfigurationOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateFunctionConfigurationOutput {
     inner:
         aws_sdk_lambda::operation::update_function_configuration::UpdateFunctionConfigurationOutput,
@@ -22643,7 +23079,11 @@ impl PyUpdateFunctionConfigurationOutput {
     }
 }
 
-#[pyclass(name = "UpdateFunctionEventInvokeConfigOutput", frozen)]
+#[pyclass(
+    name = "UpdateFunctionEventInvokeConfigOutput",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateFunctionEventInvokeConfigOutput {
     inner: aws_sdk_lambda::operation::update_function_event_invoke_config::UpdateFunctionEventInvokeConfigOutput,
 }
@@ -22742,7 +23182,11 @@ impl PyUpdateFunctionEventInvokeConfigOutput {
     }
 }
 
-#[pyclass(name = "UpdateFunctionUrlConfigResponse", frozen)]
+#[pyclass(
+    name = "UpdateFunctionUrlConfigResponse",
+    module = "rboto_lambda._native",
+    frozen
+)]
 struct PyUpdateFunctionUrlConfigResponse {
     inner: aws_sdk_lambda::operation::update_function_url_config::UpdateFunctionUrlConfigOutput,
 }
@@ -22833,7 +23277,10 @@ impl PyUpdateFunctionUrlConfigResponse {
     }
 }
 
-#[pyclass(name = "InvokeWithResponseStreamResponseEventReceiver")]
+#[pyclass(
+    name = "InvokeWithResponseStreamResponseEventReceiver",
+    module = "rboto_lambda._native"
+)]
 struct PyInvokeWithResponseStreamResponseEventReceiver {
     inner: Arc<
         Mutex<
