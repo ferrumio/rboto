@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsResponse, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
 from .types import (
@@ -72,6 +73,8 @@ from .types import (
 
 
 class DynamoDBClient:
+    logger_name = "rboto.dynamodb"
+
     def __init__(
         self,
         *,
@@ -104,9 +107,10 @@ class DynamoDBClient:
         }
         if return_consumed_capacity is not None:
             params["return_consumed_capacity"] = return_consumed_capacity
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_execute_statement, params, self._interceptors,
+                self._native.batch_execute_statement, params, _interceptors,
                 "dynamodb", "BatchExecuteStatement", self._region,
                 BatchExecuteStatementOutput,
                 ("statements", "return_consumed_capacity", ),
@@ -128,9 +132,10 @@ class DynamoDBClient:
         }
         if return_consumed_capacity is not None:
             params["return_consumed_capacity"] = return_consumed_capacity
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_get_item, params, self._interceptors,
+                self._native.batch_get_item, params, _interceptors,
                 "dynamodb", "BatchGetItem", self._region,
                 BatchGetItemOutput,
                 ("request_items", "return_consumed_capacity", ),
@@ -155,9 +160,10 @@ class DynamoDBClient:
             params["return_consumed_capacity"] = return_consumed_capacity
         if return_item_collection_metrics is not None:
             params["return_item_collection_metrics"] = return_item_collection_metrics
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_write_item, params, self._interceptors,
+                self._native.batch_write_item, params, _interceptors,
                 "dynamodb", "BatchWriteItem", self._region,
                 BatchWriteItemOutput,
                 ("request_items", "return_consumed_capacity", "return_item_collection_metrics", ),
@@ -178,9 +184,10 @@ class DynamoDBClient:
             "table_name": table_name,
             "backup_name": backup_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_backup, params, self._interceptors,
+                self._native.create_backup, params, _interceptors,
                 "dynamodb", "CreateBackup", self._region,
                 CreateBackupOutput,
                 ("table_name", "backup_name", ),
@@ -201,9 +208,10 @@ class DynamoDBClient:
             "global_table_name": global_table_name,
             "replication_group": replication_group,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_global_table, params, self._interceptors,
+                self._native.create_global_table, params, _interceptors,
                 "dynamodb", "CreateGlobalTable", self._region,
                 CreateGlobalTableOutput,
                 ("global_table_name", "replication_group", ),
@@ -273,9 +281,10 @@ class DynamoDBClient:
             params["global_table_settings_replication_mode"] = global_table_settings_replication_mode
         if vector_indexes is not None:
             params["vector_indexes"] = vector_indexes
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_table, params, self._interceptors,
+                self._native.create_table, params, _interceptors,
                 "dynamodb", "CreateTable", self._region,
                 CreateTableOutput,
                 ("table_name", "attribute_definitions", "key_schema", "local_secondary_indexes", "global_secondary_indexes", "billing_mode", "provisioned_throughput", "stream_specification", "sse_specification", "tags", "table_class", "deletion_protection_enabled", "warm_throughput", "resource_policy", "on_demand_throughput", "global_table_source_arn", "global_table_settings_replication_mode", "vector_indexes", ),
@@ -294,9 +303,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "backup_arn": backup_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_backup, params, self._interceptors,
+                self._native.delete_backup, params, _interceptors,
                 "dynamodb", "DeleteBackup", self._region,
                 DeleteBackupOutput,
                 ("backup_arn", ),
@@ -344,9 +354,10 @@ class DynamoDBClient:
             params["expression_attribute_values"] = expression_attribute_values
         if return_values_on_condition_check_failure is not None:
             params["return_values_on_condition_check_failure"] = return_values_on_condition_check_failure
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_item, params, self._interceptors,
+                self._native.delete_item, params, _interceptors,
                 "dynamodb", "DeleteItem", self._region,
                 DeleteItemOutput,
                 ("table_name", "key", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
@@ -368,9 +379,10 @@ class DynamoDBClient:
         }
         if expected_revision_id is not None:
             params["expected_revision_id"] = expected_revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "dynamodb", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyOutput,
                 ("resource_arn", "expected_revision_id", ),
@@ -389,9 +401,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_table, params, self._interceptors,
+                self._native.delete_table, params, _interceptors,
                 "dynamodb", "DeleteTable", self._region,
                 DeleteTableOutput,
                 ("table_name", ),
@@ -410,9 +423,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "backup_arn": backup_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_backup, params, self._interceptors,
+                self._native.describe_backup, params, _interceptors,
                 "dynamodb", "DescribeBackup", self._region,
                 DescribeBackupOutput,
                 ("backup_arn", ),
@@ -431,9 +445,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_continuous_backups, params, self._interceptors,
+                self._native.describe_continuous_backups, params, _interceptors,
                 "dynamodb", "DescribeContinuousBackups", self._region,
                 DescribeContinuousBackupsOutput,
                 ("table_name", ),
@@ -455,9 +470,10 @@ class DynamoDBClient:
         }
         if index_name is not None:
             params["index_name"] = index_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_contributor_insights, params, self._interceptors,
+                self._native.describe_contributor_insights, params, _interceptors,
                 "dynamodb", "DescribeContributorInsights", self._region,
                 DescribeContributorInsightsOutput,
                 ("table_name", "index_name", ),
@@ -473,9 +489,10 @@ class DynamoDBClient:
     ) -> DescribeEndpointsResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_endpoints, params, self._interceptors,
+                self._native.describe_endpoints, params, _interceptors,
                 "dynamodb", "DescribeEndpoints", self._region,
                 DescribeEndpointsResponse,
                 (),
@@ -494,9 +511,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "export_arn": export_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_export, params, self._interceptors,
+                self._native.describe_export, params, _interceptors,
                 "dynamodb", "DescribeExport", self._region,
                 DescribeExportOutput,
                 ("export_arn", ),
@@ -515,9 +533,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "global_table_name": global_table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_global_table, params, self._interceptors,
+                self._native.describe_global_table, params, _interceptors,
                 "dynamodb", "DescribeGlobalTable", self._region,
                 DescribeGlobalTableOutput,
                 ("global_table_name", ),
@@ -536,9 +555,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "global_table_name": global_table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_global_table_settings, params, self._interceptors,
+                self._native.describe_global_table_settings, params, _interceptors,
                 "dynamodb", "DescribeGlobalTableSettings", self._region,
                 DescribeGlobalTableSettingsOutput,
                 ("global_table_name", ),
@@ -557,9 +577,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "import_arn": import_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_import, params, self._interceptors,
+                self._native.describe_import, params, _interceptors,
                 "dynamodb", "DescribeImport", self._region,
                 DescribeImportOutput,
                 ("import_arn", ),
@@ -578,9 +599,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_kinesis_streaming_destination, params, self._interceptors,
+                self._native.describe_kinesis_streaming_destination, params, _interceptors,
                 "dynamodb", "DescribeKinesisStreamingDestination", self._region,
                 DescribeKinesisStreamingDestinationOutput,
                 ("table_name", ),
@@ -596,9 +618,10 @@ class DynamoDBClient:
     ) -> DescribeLimitsOutput:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_limits, params, self._interceptors,
+                self._native.describe_limits, params, _interceptors,
                 "dynamodb", "DescribeLimits", self._region,
                 DescribeLimitsOutput,
                 (),
@@ -617,9 +640,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_table, params, self._interceptors,
+                self._native.describe_table, params, _interceptors,
                 "dynamodb", "DescribeTable", self._region,
                 DescribeTableOutput,
                 ("table_name", ),
@@ -638,9 +662,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_table_replica_auto_scaling, params, self._interceptors,
+                self._native.describe_table_replica_auto_scaling, params, _interceptors,
                 "dynamodb", "DescribeTableReplicaAutoScaling", self._region,
                 DescribeTableReplicaAutoScalingOutput,
                 ("table_name", ),
@@ -659,9 +684,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "table_name": table_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_time_to_live, params, self._interceptors,
+                self._native.describe_time_to_live, params, _interceptors,
                 "dynamodb", "DescribeTimeToLive", self._region,
                 DescribeTimeToLiveOutput,
                 ("table_name", ),
@@ -685,9 +711,10 @@ class DynamoDBClient:
         }
         if enable_kinesis_streaming_configuration is not None:
             params["enable_kinesis_streaming_configuration"] = enable_kinesis_streaming_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disable_kinesis_streaming_destination, params, self._interceptors,
+                self._native.disable_kinesis_streaming_destination, params, _interceptors,
                 "dynamodb", "DisableKinesisStreamingDestination", self._region,
                 DisableKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
@@ -711,9 +738,10 @@ class DynamoDBClient:
         }
         if enable_kinesis_streaming_configuration is not None:
             params["enable_kinesis_streaming_configuration"] = enable_kinesis_streaming_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.enable_kinesis_streaming_destination, params, self._interceptors,
+                self._native.enable_kinesis_streaming_destination, params, _interceptors,
                 "dynamodb", "EnableKinesisStreamingDestination", self._region,
                 EnableKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
@@ -750,9 +778,10 @@ class DynamoDBClient:
             params["limit"] = limit
         if return_values_on_condition_check_failure is not None:
             params["return_values_on_condition_check_failure"] = return_values_on_condition_check_failure
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.execute_statement, params, self._interceptors,
+                self._native.execute_statement, params, _interceptors,
                 "dynamodb", "ExecuteStatement", self._region,
                 ExecuteStatementOutput,
                 ("statement", "parameters", "consistent_read", "next_token", "return_consumed_capacity", "limit", "return_values_on_condition_check_failure", ),
@@ -777,9 +806,10 @@ class DynamoDBClient:
             params["client_request_token"] = client_request_token
         if return_consumed_capacity is not None:
             params["return_consumed_capacity"] = return_consumed_capacity
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.execute_transaction, params, self._interceptors,
+                self._native.execute_transaction, params, _interceptors,
                 "dynamodb", "ExecuteTransaction", self._region,
                 ExecuteTransactionOutput,
                 ("transact_statements", "client_request_token", "return_consumed_capacity", ),
@@ -830,9 +860,10 @@ class DynamoDBClient:
             params["incremental_export_specification"] = incremental_export_specification
         if filter_specification is not None:
             params["filter_specification"] = filter_specification
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.export_table_to_point_in_time, params, self._interceptors,
+                self._native.export_table_to_point_in_time, params, _interceptors,
                 "dynamodb", "ExportTableToPointInTime", self._region,
                 ExportTableToPointInTimeOutput,
                 ("table_arn", "s3_bucket", "export_time", "client_token", "s3_bucket_owner", "s3_prefix", "s3_sse_algorithm", "s3_sse_kms_key_id", "export_format", "export_type", "incremental_export_specification", "filter_specification", ),
@@ -868,9 +899,10 @@ class DynamoDBClient:
             params["projection_expression"] = projection_expression
         if expression_attribute_names is not None:
             params["expression_attribute_names"] = expression_attribute_names
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_item, params, self._interceptors,
+                self._native.get_item, params, _interceptors,
                 "dynamodb", "GetItem", self._region,
                 GetItemOutput,
                 ("table_name", "key", "attributes_to_get", "consistent_read", "return_consumed_capacity", "projection_expression", "expression_attribute_names", ),
@@ -889,9 +921,10 @@ class DynamoDBClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "dynamodb", "GetResourcePolicy", self._region,
                 GetResourcePolicyOutput,
                 ("resource_arn", ),
@@ -923,9 +956,10 @@ class DynamoDBClient:
             params["input_format_options"] = input_format_options
         if input_compression_type is not None:
             params["input_compression_type"] = input_compression_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.import_table, params, self._interceptors,
+                self._native.import_table, params, _interceptors,
                 "dynamodb", "ImportTable", self._region,
                 ImportTableOutput,
                 ("s3_bucket_source", "input_format", "table_creation_parameters", "client_token", "input_format_options", "input_compression_type", ),
@@ -960,9 +994,10 @@ class DynamoDBClient:
             params["exclusive_start_backup_arn"] = exclusive_start_backup_arn
         if backup_type is not None:
             params["backup_type"] = backup_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_backups, params, self._interceptors,
+                self._native.list_backups, params, _interceptors,
                 "dynamodb", "ListBackups", self._region,
                 ListBackupsOutput,
                 ("table_name", "limit", "time_range_lower_bound", "time_range_upper_bound", "exclusive_start_backup_arn", "backup_type", ),
@@ -988,9 +1023,10 @@ class DynamoDBClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_contributor_insights, params, self._interceptors,
+                self._native.list_contributor_insights, params, _interceptors,
                 "dynamodb", "ListContributorInsights", self._region,
                 ListContributorInsightsOutput,
                 ("table_name", "next_token", "max_results", ),
@@ -1016,9 +1052,10 @@ class DynamoDBClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_exports, params, self._interceptors,
+                self._native.list_exports, params, _interceptors,
                 "dynamodb", "ListExports", self._region,
                 ListExportsOutput,
                 ("table_arn", "max_results", "next_token", ),
@@ -1044,9 +1081,10 @@ class DynamoDBClient:
             params["limit"] = limit
         if region_name is not None:
             params["region_name"] = region_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_global_tables, params, self._interceptors,
+                self._native.list_global_tables, params, _interceptors,
                 "dynamodb", "ListGlobalTables", self._region,
                 ListGlobalTablesOutput,
                 ("exclusive_start_global_table_name", "limit", "region_name", ),
@@ -1072,9 +1110,10 @@ class DynamoDBClient:
             params["page_size"] = page_size
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_imports, params, self._interceptors,
+                self._native.list_imports, params, _interceptors,
                 "dynamodb", "ListImports", self._region,
                 ListImportsOutput,
                 ("table_arn", "page_size", "next_token", ),
@@ -1097,9 +1136,10 @@ class DynamoDBClient:
             params["exclusive_start_table_name"] = exclusive_start_table_name
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tables, params, self._interceptors,
+                self._native.list_tables, params, _interceptors,
                 "dynamodb", "ListTables", self._region,
                 ListTablesOutput,
                 ("exclusive_start_table_name", "limit", ),
@@ -1121,9 +1161,10 @@ class DynamoDBClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_of_resource, params, self._interceptors,
+                self._native.list_tags_of_resource, params, _interceptors,
                 "dynamodb", "ListTagsOfResource", self._region,
                 ListTagsOfResourceOutput,
                 ("resource_arn", "next_token", ),
@@ -1171,9 +1212,10 @@ class DynamoDBClient:
             params["expression_attribute_values"] = expression_attribute_values
         if return_values_on_condition_check_failure is not None:
             params["return_values_on_condition_check_failure"] = return_values_on_condition_check_failure
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_item, params, self._interceptors,
+                self._native.put_item, params, _interceptors,
                 "dynamodb", "PutItem", self._region,
                 PutItemOutput,
                 ("table_name", "item", "expected", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "conditional_operator", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
@@ -1200,9 +1242,10 @@ class DynamoDBClient:
             params["expected_revision_id"] = expected_revision_id
         if confirm_remove_self_resource_access is not None:
             params["confirm_remove_self_resource_access"] = confirm_remove_self_resource_access
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "dynamodb", "PutResourcePolicy", self._region,
                 PutResourcePolicyOutput,
                 ("resource_arn", "policy", "expected_revision_id", "confirm_remove_self_resource_access", ),
@@ -1269,9 +1312,10 @@ class DynamoDBClient:
             params["expression_attribute_names"] = expression_attribute_names
         if expression_attribute_values is not None:
             params["expression_attribute_values"] = expression_attribute_values
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.query, params, self._interceptors,
+                self._native.query, params, _interceptors,
                 "dynamodb", "Query", self._region,
                 QueryOutput,
                 ("table_name", "index_name", "select", "attributes_to_get", "limit", "consistent_read", "key_conditions", "query_filter", "conditional_operator", "scan_index_forward", "exclusive_start_key", "return_consumed_capacity", "projection_expression", "filter_expression", "key_condition_expression", "expression_attribute_names", "expression_attribute_values", ),
@@ -1313,9 +1357,10 @@ class DynamoDBClient:
             params["sse_specification_override"] = sse_specification_override
         if vector_index_override is not None:
             params["vector_index_override"] = vector_index_override
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.restore_table_from_backup, params, self._interceptors,
+                self._native.restore_table_from_backup, params, _interceptors,
                 "dynamodb", "RestoreTableFromBackup", self._region,
                 RestoreTableFromBackupOutput,
                 ("target_table_name", "backup_arn", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
@@ -1367,9 +1412,10 @@ class DynamoDBClient:
             params["sse_specification_override"] = sse_specification_override
         if vector_index_override is not None:
             params["vector_index_override"] = vector_index_override
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.restore_table_to_point_in_time, params, self._interceptors,
+                self._native.restore_table_to_point_in_time, params, _interceptors,
                 "dynamodb", "RestoreTableToPointInTime", self._region,
                 RestoreTableToPointInTimeOutput,
                 ("target_table_name", "source_table_arn", "source_table_name", "use_latest_restorable_time", "restore_date_time", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
@@ -1433,9 +1479,10 @@ class DynamoDBClient:
             params["expression_attribute_values"] = expression_attribute_values
         if consistent_read is not None:
             params["consistent_read"] = consistent_read
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.scan, params, self._interceptors,
+                self._native.scan, params, _interceptors,
                 "dynamodb", "Scan", self._region,
                 ScanOutput,
                 ("table_name", "index_name", "attributes_to_get", "limit", "select", "scan_filter", "conditional_operator", "exclusive_start_key", "return_consumed_capacity", "total_segments", "segment", "projection_expression", "filter_expression", "expression_attribute_names", "expression_attribute_values", "consistent_read", ),
@@ -1475,9 +1522,10 @@ class DynamoDBClient:
             params["projection_expression"] = projection_expression
         if search_condition_expression is not None:
             params["search_condition_expression"] = search_condition_expression
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.search_vectors, params, self._interceptors,
+                self._native.search_vectors, params, _interceptors,
                 "dynamodb", "SearchVectors", self._region,
                 SearchVectorsOutput,
                 ("table_name", "index_name", "search_vector", "top_k", "return_consumed_capacity", "expression_attribute_names", "expression_attribute_values", "projection_expression", "search_condition_expression", ),
@@ -1498,9 +1546,10 @@ class DynamoDBClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "dynamodb", "TagResource", self._region,
                 type(None),
                 ("resource_arn", "tags", ),
@@ -1522,9 +1571,10 @@ class DynamoDBClient:
         }
         if return_consumed_capacity is not None:
             params["return_consumed_capacity"] = return_consumed_capacity
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.transact_get_items, params, self._interceptors,
+                self._native.transact_get_items, params, _interceptors,
                 "dynamodb", "TransactGetItems", self._region,
                 TransactGetItemsOutput,
                 ("transact_items", "return_consumed_capacity", ),
@@ -1552,9 +1602,10 @@ class DynamoDBClient:
             params["return_item_collection_metrics"] = return_item_collection_metrics
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.transact_write_items, params, self._interceptors,
+                self._native.transact_write_items, params, _interceptors,
                 "dynamodb", "TransactWriteItems", self._region,
                 TransactWriteItemsOutput,
                 ("transact_items", "return_consumed_capacity", "return_item_collection_metrics", "client_request_token", ),
@@ -1575,9 +1626,10 @@ class DynamoDBClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "dynamodb", "UntagResource", self._region,
                 type(None),
                 ("resource_arn", "tag_keys", ),
@@ -1598,9 +1650,10 @@ class DynamoDBClient:
             "table_name": table_name,
             "point_in_time_recovery_specification": point_in_time_recovery_specification,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_continuous_backups, params, self._interceptors,
+                self._native.update_continuous_backups, params, _interceptors,
                 "dynamodb", "UpdateContinuousBackups", self._region,
                 UpdateContinuousBackupsOutput,
                 ("table_name", "point_in_time_recovery_specification", ),
@@ -1627,9 +1680,10 @@ class DynamoDBClient:
             params["index_name"] = index_name
         if contributor_insights_mode is not None:
             params["contributor_insights_mode"] = contributor_insights_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_contributor_insights, params, self._interceptors,
+                self._native.update_contributor_insights, params, _interceptors,
                 "dynamodb", "UpdateContributorInsights", self._region,
                 UpdateContributorInsightsOutput,
                 ("table_name", "contributor_insights_action", "index_name", "contributor_insights_mode", ),
@@ -1650,9 +1704,10 @@ class DynamoDBClient:
             "global_table_name": global_table_name,
             "replica_updates": replica_updates,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_global_table, params, self._interceptors,
+                self._native.update_global_table, params, _interceptors,
                 "dynamodb", "UpdateGlobalTable", self._region,
                 UpdateGlobalTableOutput,
                 ("global_table_name", "replica_updates", ),
@@ -1686,9 +1741,10 @@ class DynamoDBClient:
             params["global_table_global_secondary_index_settings_update"] = global_table_global_secondary_index_settings_update
         if replica_settings_update is not None:
             params["replica_settings_update"] = replica_settings_update
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_global_table_settings, params, self._interceptors,
+                self._native.update_global_table_settings, params, _interceptors,
                 "dynamodb", "UpdateGlobalTableSettings", self._region,
                 UpdateGlobalTableSettingsOutput,
                 ("global_table_name", "global_table_billing_mode", "global_table_provisioned_write_capacity_units", "global_table_provisioned_write_capacity_auto_scaling_settings_update", "global_table_global_secondary_index_settings_update", "replica_settings_update", ),
@@ -1742,9 +1798,10 @@ class DynamoDBClient:
             params["expression_attribute_values"] = expression_attribute_values
         if return_values_on_condition_check_failure is not None:
             params["return_values_on_condition_check_failure"] = return_values_on_condition_check_failure
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_item, params, self._interceptors,
+                self._native.update_item, params, _interceptors,
                 "dynamodb", "UpdateItem", self._region,
                 UpdateItemOutput,
                 ("table_name", "key", "attribute_updates", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "update_expression", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
@@ -1768,9 +1825,10 @@ class DynamoDBClient:
         }
         if update_kinesis_streaming_configuration is not None:
             params["update_kinesis_streaming_configuration"] = update_kinesis_streaming_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_kinesis_streaming_destination, params, self._interceptors,
+                self._native.update_kinesis_streaming_destination, params, _interceptors,
                 "dynamodb", "UpdateKinesisStreamingDestination", self._region,
                 UpdateKinesisStreamingDestinationOutput,
                 ("table_name", "stream_arn", "update_kinesis_streaming_configuration", ),
@@ -1837,9 +1895,10 @@ class DynamoDBClient:
             params["disassociation_protection_enabled"] = disassociation_protection_enabled
         if vector_index_updates is not None:
             params["vector_index_updates"] = vector_index_updates
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_table, params, self._interceptors,
+                self._native.update_table, params, _interceptors,
                 "dynamodb", "UpdateTable", self._region,
                 UpdateTableOutput,
                 ("table_name", "attribute_definitions", "billing_mode", "provisioned_throughput", "global_secondary_index_updates", "stream_specification", "sse_specification", "replica_updates", "table_class", "deletion_protection_enabled", "multi_region_consistency", "global_table_witness_updates", "on_demand_throughput", "warm_throughput", "global_table_settings_replication_mode", "disassociation_protection_enabled", "vector_index_updates", ),
@@ -1867,9 +1926,10 @@ class DynamoDBClient:
             params["provisioned_write_capacity_auto_scaling_update"] = provisioned_write_capacity_auto_scaling_update
         if replica_updates is not None:
             params["replica_updates"] = replica_updates
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_table_replica_auto_scaling, params, self._interceptors,
+                self._native.update_table_replica_auto_scaling, params, _interceptors,
                 "dynamodb", "UpdateTableReplicaAutoScaling", self._region,
                 UpdateTableReplicaAutoScalingOutput,
                 ("table_name", "global_secondary_index_updates", "provisioned_write_capacity_auto_scaling_update", "replica_updates", ),
@@ -1890,9 +1950,10 @@ class DynamoDBClient:
             "table_name": table_name,
             "time_to_live_specification": time_to_live_specification,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_time_to_live, params, self._interceptors,
+                self._native.update_time_to_live, params, _interceptors,
                 "dynamodb", "UpdateTimeToLive", self._region,
                 UpdateTimeToLiveOutput,
                 ("table_name", "time_to_live_specification", ),

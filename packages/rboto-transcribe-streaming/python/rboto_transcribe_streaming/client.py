@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import TranscribeStreamingClient as NativeClient, GetMedicalScribeStreamResponse
 from .types import (
@@ -32,6 +33,8 @@ from .types import (
 
 
 class TranscribeStreamingClient:
+    logger_name = "rboto.transcribe-streaming"
+
     def __init__(
         self,
         *,
@@ -61,9 +64,10 @@ class TranscribeStreamingClient:
         params: dict[str, object] = {
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("transcribe-streaming", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_medical_scribe_stream, params, self._interceptors,
+                self._native.get_medical_scribe_stream, params, _interceptors,
                 "transcribe-streaming", "GetMedicalScribeStream", self._region,
                 GetMedicalScribeStreamResponse,
                 ("session_id", ),
@@ -134,9 +138,10 @@ class TranscribeStreamingClient:
             params["content_redaction_type"] = content_redaction_type
         if pii_entity_types is not None:
             params["pii_entity_types"] = pii_entity_types
-        if self._interceptors:
+        _interceptors = operation_interceptors("transcribe-streaming", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_call_analytics_stream_transcription, params, self._interceptors,
+                self._native.start_call_analytics_stream_transcription, params, _interceptors,
                 "transcribe-streaming", "StartCallAnalyticsStreamTranscription", self._region,
                 dict,
                 ("media_sample_rate_hertz", "media_encoding", "audio_stream", "language_code", "vocabulary_name", "session_id", "vocabulary_filter_name", "vocabulary_filter_method", "language_model_name", "identify_language", "language_options", "preferred_language", "vocabulary_names", "vocabulary_filter_names", "enable_partial_results_stabilization", "partial_results_stability", "content_identification_type", "content_redaction_type", "pii_entity_types", ),
@@ -164,9 +169,10 @@ class TranscribeStreamingClient:
         }
         if session_id is not None:
             params["session_id"] = session_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("transcribe-streaming", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_medical_scribe_stream, params, self._interceptors,
+                self._native.start_medical_scribe_stream, params, _interceptors,
                 "transcribe-streaming", "StartMedicalScribeStream", self._region,
                 dict,
                 ("language_code", "media_sample_rate_hertz", "media_encoding", "input_stream", "session_id", ),
@@ -213,9 +219,10 @@ class TranscribeStreamingClient:
             params["number_of_channels"] = number_of_channels
         if content_identification_type is not None:
             params["content_identification_type"] = content_identification_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("transcribe-streaming", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_medical_stream_transcription, params, self._interceptors,
+                self._native.start_medical_stream_transcription, params, _interceptors,
                 "transcribe-streaming", "StartMedicalStreamTranscription", self._region,
                 dict,
                 ("language_code", "media_sample_rate_hertz", "media_encoding", "specialty", "type", "audio_stream", "vocabulary_name", "show_speaker_label", "session_id", "enable_channel_identification", "number_of_channels", "content_identification_type", ),
@@ -304,9 +311,10 @@ class TranscribeStreamingClient:
             params["session_resume_window"] = session_resume_window
         if transcript_format is not None:
             params["transcript_format"] = transcript_format
-        if self._interceptors:
+        _interceptors = operation_interceptors("transcribe-streaming", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_stream_transcription, params, self._interceptors,
+                self._native.start_stream_transcription, params, _interceptors,
                 "transcribe-streaming", "StartStreamTranscription", self._region,
                 dict,
                 ("media_sample_rate_hertz", "media_encoding", "audio_stream", "language_code", "vocabulary_name", "session_id", "vocabulary_filter_name", "vocabulary_filter_method", "show_speaker_label", "enable_channel_identification", "number_of_channels", "enable_partial_results_stabilization", "partial_results_stability", "content_identification_type", "content_redaction_type", "pii_entity_types", "language_model_name", "identify_language", "language_options", "preferred_language", "identify_multiple_languages", "vocabulary_names", "vocabulary_filter_names", "session_resume_window", "transcript_format", ),

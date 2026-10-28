@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockDataAutomationClient as NativeClient, CopyBlueprintStageResponse, CreateBlueprintResponse, CreateBlueprintVersionResponse, CreateDataAutomationLibraryResponse, CreateDataAutomationProjectResponse, DeleteBlueprintResponse, DeleteDataAutomationLibraryResponse, DeleteDataAutomationProjectResponse, GetBlueprintOptimizationStatusResponse, GetBlueprintResponse, GetDataAutomationLibraryEntityResponse, GetDataAutomationLibraryIngestionJobResponse, GetDataAutomationLibraryResponse, GetDataAutomationProjectResponse, InvokeBlueprintOptimizationAsyncResponse, InvokeDataAutomationLibraryIngestionJobResponse, ListBlueprintsResponse, ListDataAutomationLibrariesResponse, ListDataAutomationLibraryEntitiesResponse, ListDataAutomationLibraryIngestionJobsResponse, ListDataAutomationProjectsResponse, ListTagsForResourceResponse, TagResourceResponse, UntagResourceResponse, UpdateBlueprintResponse, UpdateDataAutomationLibraryResponse, UpdateDataAutomationProjectResponse
 from .types import (
@@ -37,6 +38,8 @@ from .types import (
 
 
 class BedrockDataAutomationClient:
+    logger_name = "rboto.bedrock-data-automation"
+
     def __init__(
         self,
         *,
@@ -73,9 +76,10 @@ class BedrockDataAutomationClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.copy_blueprint_stage, params, self._interceptors,
+                self._native.copy_blueprint_stage, params, _interceptors,
                 "bedrock-data-automation", "CopyBlueprintStage", self._region,
                 CopyBlueprintStageResponse,
                 ("blueprint_arn", "source_stage", "target_stage", "client_token", ),
@@ -110,9 +114,10 @@ class BedrockDataAutomationClient:
             params["encryption_configuration"] = encryption_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_blueprint, params, self._interceptors,
+                self._native.create_blueprint, params, _interceptors,
                 "bedrock-data-automation", "CreateBlueprint", self._region,
                 CreateBlueprintResponse,
                 ("blueprint_name", "type", "schema", "blueprint_stage", "client_token", "encryption_configuration", "tags", ),
@@ -134,9 +139,10 @@ class BedrockDataAutomationClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_blueprint_version, params, self._interceptors,
+                self._native.create_blueprint_version, params, _interceptors,
                 "bedrock-data-automation", "CreateBlueprintVersion", self._region,
                 CreateBlueprintVersionResponse,
                 ("blueprint_arn", "client_token", ),
@@ -167,9 +173,10 @@ class BedrockDataAutomationClient:
             params["encryption_configuration"] = encryption_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_data_automation_library, params, self._interceptors,
+                self._native.create_data_automation_library, params, _interceptors,
                 "bedrock-data-automation", "CreateDataAutomationLibrary", self._region,
                 CreateDataAutomationLibraryResponse,
                 ("library_name", "library_description", "client_token", "encryption_configuration", "tags", ),
@@ -217,9 +224,10 @@ class BedrockDataAutomationClient:
             params["encryption_configuration"] = encryption_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_data_automation_project, params, self._interceptors,
+                self._native.create_data_automation_project, params, _interceptors,
                 "bedrock-data-automation", "CreateDataAutomationProject", self._region,
                 CreateDataAutomationProjectResponse,
                 ("project_name", "standard_output_configuration", "project_description", "project_stage", "project_type", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "client_token", "encryption_configuration", "tags", ),
@@ -241,9 +249,10 @@ class BedrockDataAutomationClient:
         }
         if blueprint_version is not None:
             params["blueprint_version"] = blueprint_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_blueprint, params, self._interceptors,
+                self._native.delete_blueprint, params, _interceptors,
                 "bedrock-data-automation", "DeleteBlueprint", self._region,
                 DeleteBlueprintResponse,
                 ("blueprint_arn", "blueprint_version", ),
@@ -262,9 +271,10 @@ class BedrockDataAutomationClient:
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_data_automation_library, params, self._interceptors,
+                self._native.delete_data_automation_library, params, _interceptors,
                 "bedrock-data-automation", "DeleteDataAutomationLibrary", self._region,
                 DeleteDataAutomationLibraryResponse,
                 ("library_arn", ),
@@ -283,9 +293,10 @@ class BedrockDataAutomationClient:
         params: dict[str, object] = {
             "project_arn": project_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_data_automation_project, params, self._interceptors,
+                self._native.delete_data_automation_project, params, _interceptors,
                 "bedrock-data-automation", "DeleteDataAutomationProject", self._region,
                 DeleteDataAutomationProjectResponse,
                 ("project_arn", ),
@@ -310,9 +321,10 @@ class BedrockDataAutomationClient:
             params["blueprint_version"] = blueprint_version
         if blueprint_stage is not None:
             params["blueprint_stage"] = blueprint_stage
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_blueprint, params, self._interceptors,
+                self._native.get_blueprint, params, _interceptors,
                 "bedrock-data-automation", "GetBlueprint", self._region,
                 GetBlueprintResponse,
                 ("blueprint_arn", "blueprint_version", "blueprint_stage", ),
@@ -331,9 +343,10 @@ class BedrockDataAutomationClient:
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_blueprint_optimization_status, params, self._interceptors,
+                self._native.get_blueprint_optimization_status, params, _interceptors,
                 "bedrock-data-automation", "GetBlueprintOptimizationStatus", self._region,
                 GetBlueprintOptimizationStatusResponse,
                 ("invocation_arn", ),
@@ -352,9 +365,10 @@ class BedrockDataAutomationClient:
         params: dict[str, object] = {
             "library_arn": library_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_automation_library, params, self._interceptors,
+                self._native.get_data_automation_library, params, _interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibrary", self._region,
                 GetDataAutomationLibraryResponse,
                 ("library_arn", ),
@@ -377,9 +391,10 @@ class BedrockDataAutomationClient:
             "entity_type": entity_type,
             "entity_id": entity_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_automation_library_entity, params, self._interceptors,
+                self._native.get_data_automation_library_entity, params, _interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibraryEntity", self._region,
                 GetDataAutomationLibraryEntityResponse,
                 ("library_arn", "entity_type", "entity_id", ),
@@ -400,9 +415,10 @@ class BedrockDataAutomationClient:
             "library_arn": library_arn,
             "job_arn": job_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_automation_library_ingestion_job, params, self._interceptors,
+                self._native.get_data_automation_library_ingestion_job, params, _interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibraryIngestionJob", self._region,
                 GetDataAutomationLibraryIngestionJobResponse,
                 ("library_arn", "job_arn", ),
@@ -424,9 +440,10 @@ class BedrockDataAutomationClient:
         }
         if project_stage is not None:
             params["project_stage"] = project_stage
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_automation_project, params, self._interceptors,
+                self._native.get_data_automation_project, params, _interceptors,
                 "bedrock-data-automation", "GetDataAutomationProject", self._region,
                 GetDataAutomationProjectResponse,
                 ("project_arn", "project_stage", ),
@@ -457,9 +474,10 @@ class BedrockDataAutomationClient:
             params["encryption_configuration"] = encryption_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_blueprint_optimization_async, params, self._interceptors,
+                self._native.invoke_blueprint_optimization_async, params, _interceptors,
                 "bedrock-data-automation", "InvokeBlueprintOptimizationAsync", self._region,
                 InvokeBlueprintOptimizationAsyncResponse,
                 ("blueprint", "samples", "output_configuration", "data_automation_profile_arn", "encryption_configuration", "tags", ),
@@ -495,9 +513,10 @@ class BedrockDataAutomationClient:
             params["notification_configuration"] = notification_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_data_automation_library_ingestion_job, params, self._interceptors,
+                self._native.invoke_data_automation_library_ingestion_job, params, _interceptors,
                 "bedrock-data-automation", "InvokeDataAutomationLibraryIngestionJob", self._region,
                 InvokeDataAutomationLibraryIngestionJobResponse,
                 ("library_arn", "input_configuration", "entity_type", "operation_type", "output_configuration", "client_token", "notification_configuration", "tags", ),
@@ -532,9 +551,10 @@ class BedrockDataAutomationClient:
             params["next_token"] = next_token
         if project_filter is not None:
             params["project_filter"] = project_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_blueprints, params, self._interceptors,
+                self._native.list_blueprints, params, _interceptors,
                 "bedrock-data-automation", "ListBlueprints", self._region,
                 ListBlueprintsResponse,
                 ("blueprint_arn", "resource_owner", "blueprint_stage_filter", "max_results", "next_token", "project_filter", ),
@@ -560,9 +580,10 @@ class BedrockDataAutomationClient:
             params["next_token"] = next_token
         if project_filter is not None:
             params["project_filter"] = project_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_automation_libraries, params, self._interceptors,
+                self._native.list_data_automation_libraries, params, _interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraries", self._region,
                 ListDataAutomationLibrariesResponse,
                 ("max_results", "next_token", "project_filter", ),
@@ -589,9 +610,10 @@ class BedrockDataAutomationClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_automation_library_entities, params, self._interceptors,
+                self._native.list_data_automation_library_entities, params, _interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraryEntities", self._region,
                 ListDataAutomationLibraryEntitiesResponse,
                 ("library_arn", "entity_type", "max_results", "next_token", ),
@@ -616,9 +638,10 @@ class BedrockDataAutomationClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_automation_library_ingestion_jobs, params, self._interceptors,
+                self._native.list_data_automation_library_ingestion_jobs, params, _interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraryIngestionJobs", self._region,
                 ListDataAutomationLibraryIngestionJobsResponse,
                 ("library_arn", "max_results", "next_token", ),
@@ -653,9 +676,10 @@ class BedrockDataAutomationClient:
             params["resource_owner"] = resource_owner
         if library_filter is not None:
             params["library_filter"] = library_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_automation_projects, params, self._interceptors,
+                self._native.list_data_automation_projects, params, _interceptors,
                 "bedrock-data-automation", "ListDataAutomationProjects", self._region,
                 ListDataAutomationProjectsResponse,
                 ("max_results", "next_token", "project_stage_filter", "blueprint_filter", "resource_owner", "library_filter", ),
@@ -674,9 +698,10 @@ class BedrockDataAutomationClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock-data-automation", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -697,9 +722,10 @@ class BedrockDataAutomationClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "bedrock-data-automation", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -720,9 +746,10 @@ class BedrockDataAutomationClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "bedrock-data-automation", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -749,9 +776,10 @@ class BedrockDataAutomationClient:
             params["blueprint_stage"] = blueprint_stage
         if encryption_configuration is not None:
             params["encryption_configuration"] = encryption_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_blueprint, params, self._interceptors,
+                self._native.update_blueprint, params, _interceptors,
                 "bedrock-data-automation", "UpdateBlueprint", self._region,
                 UpdateBlueprintResponse,
                 ("blueprint_arn", "schema", "blueprint_stage", "encryption_configuration", ),
@@ -776,9 +804,10 @@ class BedrockDataAutomationClient:
             params["library_description"] = library_description
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_data_automation_library, params, self._interceptors,
+                self._native.update_data_automation_library, params, _interceptors,
                 "bedrock-data-automation", "UpdateDataAutomationLibrary", self._region,
                 UpdateDataAutomationLibraryResponse,
                 ("library_arn", "library_description", "client_token", ),
@@ -817,9 +846,10 @@ class BedrockDataAutomationClient:
             params["data_automation_library_configuration"] = data_automation_library_configuration
         if encryption_configuration is not None:
             params["encryption_configuration"] = encryption_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_data_automation_project, params, self._interceptors,
+                self._native.update_data_automation_project, params, _interceptors,
                 "bedrock-data-automation", "UpdateDataAutomationProject", self._region,
                 UpdateDataAutomationProjectResponse,
                 ("project_arn", "standard_output_configuration", "project_stage", "project_description", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "encryption_configuration", ),

@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput
 from .types import (
@@ -22,6 +23,8 @@ from .types import (
 
 
 class PollyClient:
+    logger_name = "rboto.polly"
+
     def __init__(
         self,
         *,
@@ -51,9 +54,10 @@ class PollyClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_lexicon, params, self._interceptors,
+                self._native.delete_lexicon, params, _interceptors,
                 "polly", "DeleteLexicon", self._region,
                 DeleteLexiconOutput,
                 ("name", ),
@@ -82,9 +86,10 @@ class PollyClient:
             params["include_additional_language_codes"] = include_additional_language_codes
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_voices, params, self._interceptors,
+                self._native.describe_voices, params, _interceptors,
                 "polly", "DescribeVoices", self._region,
                 DescribeVoicesOutput,
                 ("engine", "language_code", "include_additional_language_codes", "next_token", ),
@@ -103,9 +108,10 @@ class PollyClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_lexicon, params, self._interceptors,
+                self._native.get_lexicon, params, _interceptors,
                 "polly", "GetLexicon", self._region,
                 GetLexiconOutput,
                 ("name", ),
@@ -124,9 +130,10 @@ class PollyClient:
         params: dict[str, object] = {
             "task_id": task_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_speech_synthesis_task, params, self._interceptors,
+                self._native.get_speech_synthesis_task, params, _interceptors,
                 "polly", "GetSpeechSynthesisTask", self._region,
                 GetSpeechSynthesisTaskOutput,
                 ("task_id", ),
@@ -146,9 +153,10 @@ class PollyClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_lexicons, params, self._interceptors,
+                self._native.list_lexicons, params, _interceptors,
                 "polly", "ListLexicons", self._region,
                 ListLexiconsOutput,
                 ("next_token", ),
@@ -174,9 +182,10 @@ class PollyClient:
             params["next_token"] = next_token
         if status is not None:
             params["status"] = status
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_speech_synthesis_tasks, params, self._interceptors,
+                self._native.list_speech_synthesis_tasks, params, _interceptors,
                 "polly", "ListSpeechSynthesisTasks", self._region,
                 ListSpeechSynthesisTasksOutput,
                 ("max_results", "next_token", "status", ),
@@ -197,9 +206,10 @@ class PollyClient:
             "name": name,
             "content": content,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_lexicon, params, self._interceptors,
+                self._native.put_lexicon, params, _interceptors,
                 "polly", "PutLexicon", self._region,
                 PutLexiconOutput,
                 ("name", "content", ),
@@ -234,9 +244,10 @@ class PollyClient:
             params["sample_rate"] = sample_rate
         if action_stream is not None:
             params["action_stream"] = action_stream
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_speech_synthesis_stream, params, self._interceptors,
+                self._native.start_speech_synthesis_stream, params, _interceptors,
                 "polly", "StartSpeechSynthesisStream", self._region,
                 dict,
                 ("engine", "output_format", "voice_id", "language_code", "lexicon_names", "sample_rate", "action_stream", ),
@@ -285,9 +296,10 @@ class PollyClient:
             params["speech_mark_types"] = speech_mark_types
         if text_type is not None:
             params["text_type"] = text_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_speech_synthesis_task, params, self._interceptors,
+                self._native.start_speech_synthesis_task, params, _interceptors,
                 "polly", "StartSpeechSynthesisTask", self._region,
                 StartSpeechSynthesisTaskOutput,
                 ("output_format", "output_s3_bucket_name", "text", "voice_id", "engine", "language_code", "lexicon_names", "output_s3_key_prefix", "sample_rate", "sns_topic_arn", "speech_mark_types", "text_type", ),
@@ -328,9 +340,10 @@ class PollyClient:
             params["speech_mark_types"] = speech_mark_types
         if text_type is not None:
             params["text_type"] = text_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.synthesize_speech, params, self._interceptors,
+                self._native.synthesize_speech, params, _interceptors,
                 "polly", "SynthesizeSpeech", self._region,
                 SynthesizeSpeechOutput,
                 ("output_format", "text", "voice_id", "engine", "language_code", "lexicon_names", "sample_rate", "speech_mark_types", "text_type", ),

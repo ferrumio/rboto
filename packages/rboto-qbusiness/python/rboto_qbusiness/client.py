@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import QBusinessClient as NativeClient, AssociatePermissionResponse, BatchDeleteDocumentResponse, BatchPutDocumentResponse, CancelSubscriptionResponse, ChatSyncOutput, CheckDocumentAccessResponse, CreateAnonymousWebExperienceUrlResponse, CreateApplicationResponse, CreateChatResponseConfigurationResponse, CreateDataAccessorResponse, CreateDataSourceResponse, CreateIndexResponse, CreatePluginResponse, CreateRetrieverResponse, CreateSubscriptionResponse, CreateUserResponse, CreateWebExperienceResponse, DeleteApplicationResponse, DeleteAttachmentResponse, DeleteChatControlsConfigurationResponse, DeleteChatResponseConfigurationResponse, DeleteConversationResponse, DeleteDataAccessorResponse, DeleteDataSourceResponse, DeleteGroupResponse, DeleteIndexResponse, DeletePluginResponse, DeleteRetrieverResponse, DeleteUserResponse, DeleteWebExperienceResponse, DisassociatePermissionResponse, GetApplicationResponse, GetChatControlsConfigurationResponse, GetChatResponseConfigurationResponse, GetDataAccessorResponse, GetDataSourceResponse, GetDocumentContentResponse, GetGroupResponse, GetIndexResponse, GetMediaResponse, GetPluginResponse, GetPolicyResponse, GetRetrieverResponse, GetUserResponse, GetWebExperienceResponse, ListApplicationsResponse, ListAttachmentsResponse, ListChatResponseConfigurationsResponse, ListConversationsResponse, ListDataAccessorsResponse, ListDataSourceSyncJobsResponse, ListDataSourcesResponse, ListDocumentsResponse, ListGroupsResponse, ListIndicesResponse, ListMessagesResponse, ListPluginActionsResponse, ListPluginTypeActionsResponse, ListPluginTypeMetadataResponse, ListPluginsResponse, ListRetrieversResponse, ListSubscriptionsResponse, ListTagsForResourceResponse, ListWebExperiencesResponse, PutGroupResponse, SearchRelevantContentResponse, StartDataSourceSyncJobResponse, StopDataSourceSyncJobResponse, TagResourceResponse, UntagResourceResponse, UpdateApplicationResponse, UpdateChatControlsConfigurationResponse, UpdateChatResponseConfigurationResponse, UpdateDataAccessorResponse, UpdateDataSourceResponse, UpdateIndexResponse, UpdatePluginResponse, UpdateRetrieverResponse, UpdateSubscriptionResponse, UpdateUserResponse, UpdateWebExperienceResponse
 from .types import (
@@ -69,6 +70,8 @@ from .types import (
 
 
 class QBusinessClient:
+    logger_name = "rboto.qbusiness"
+
     def __init__(
         self,
         *,
@@ -107,9 +110,10 @@ class QBusinessClient:
         }
         if conditions is not None:
             params["conditions"] = conditions
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.associate_permission, params, self._interceptors,
+                self._native.associate_permission, params, _interceptors,
                 "qbusiness", "AssociatePermission", self._region,
                 AssociatePermissionResponse,
                 ("application_id", "statement_id", "actions", "principal", "conditions", ),
@@ -135,9 +139,10 @@ class QBusinessClient:
         }
         if data_source_sync_id is not None:
             params["data_source_sync_id"] = data_source_sync_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_delete_document, params, self._interceptors,
+                self._native.batch_delete_document, params, _interceptors,
                 "qbusiness", "BatchDeleteDocument", self._region,
                 BatchDeleteDocumentResponse,
                 ("application_id", "index_id", "documents", "data_source_sync_id", ),
@@ -166,9 +171,10 @@ class QBusinessClient:
             params["role_arn"] = role_arn
         if data_source_sync_id is not None:
             params["data_source_sync_id"] = data_source_sync_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_put_document, params, self._interceptors,
+                self._native.batch_put_document, params, _interceptors,
                 "qbusiness", "BatchPutDocument", self._region,
                 BatchPutDocumentResponse,
                 ("application_id", "index_id", "documents", "role_arn", "data_source_sync_id", ),
@@ -189,9 +195,10 @@ class QBusinessClient:
             "application_id": application_id,
             "subscription_id": subscription_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_subscription, params, self._interceptors,
+                self._native.cancel_subscription, params, _interceptors,
                 "qbusiness", "CancelSubscription", self._region,
                 CancelSubscriptionResponse,
                 ("application_id", "subscription_id", ),
@@ -228,9 +235,10 @@ class QBusinessClient:
             params["client_token"] = client_token
         if input_stream is not None:
             params["input_stream"] = input_stream
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.chat, params, self._interceptors,
+                self._native.chat, params, _interceptors,
                 "qbusiness", "Chat", self._region,
                 dict,
                 ("application_id", "user_id", "user_groups", "conversation_id", "parent_message_id", "client_token", "input_stream", ),
@@ -285,9 +293,10 @@ class QBusinessClient:
             params["chat_mode_configuration"] = chat_mode_configuration
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.chat_sync, params, self._interceptors,
+                self._native.chat_sync, params, _interceptors,
                 "qbusiness", "ChatSync", self._region,
                 ChatSyncOutput,
                 ("application_id", "user_id", "user_groups", "user_message", "attachments", "action_execution", "auth_challenge_response", "conversation_id", "parent_message_id", "attribute_filter", "chat_mode", "chat_mode_configuration", "client_token", ),
@@ -315,9 +324,10 @@ class QBusinessClient:
         }
         if data_source_id is not None:
             params["data_source_id"] = data_source_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.check_document_access, params, self._interceptors,
+                self._native.check_document_access, params, _interceptors,
                 "qbusiness", "CheckDocumentAccess", self._region,
                 CheckDocumentAccessResponse,
                 ("application_id", "index_id", "user_id", "document_id", "data_source_id", ),
@@ -341,9 +351,10 @@ class QBusinessClient:
         }
         if session_duration_in_minutes is not None:
             params["session_duration_in_minutes"] = session_duration_in_minutes
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_anonymous_web_experience_url, params, self._interceptors,
+                self._native.create_anonymous_web_experience_url, params, _interceptors,
                 "qbusiness", "CreateAnonymousWebExperienceUrl", self._region,
                 CreateAnonymousWebExperienceUrlResponse,
                 ("application_id", "web_experience_id", "session_duration_in_minutes", ),
@@ -401,9 +412,10 @@ class QBusinessClient:
             params["personalization_configuration"] = personalization_configuration
         if quick_sight_configuration is not None:
             params["quick_sight_configuration"] = quick_sight_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_application, params, self._interceptors,
+                self._native.create_application, params, _interceptors,
                 "qbusiness", "CreateApplication", self._region,
                 CreateApplicationResponse,
                 ("display_name", "role_arn", "identity_type", "iam_identity_provider_arn", "identity_center_instance_arn", "client_ids_for_oidc", "description", "encryption_configuration", "tags", "client_token", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "quick_sight_configuration", ),
@@ -432,9 +444,10 @@ class QBusinessClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_chat_response_configuration, params, self._interceptors,
+                self._native.create_chat_response_configuration, params, _interceptors,
                 "qbusiness", "CreateChatResponseConfiguration", self._region,
                 CreateChatResponseConfigurationResponse,
                 ("application_id", "display_name", "response_configurations", "client_token", "tags", ),
@@ -468,9 +481,10 @@ class QBusinessClient:
             params["authentication_detail"] = authentication_detail
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_data_accessor, params, self._interceptors,
+                self._native.create_data_accessor, params, _interceptors,
                 "qbusiness", "CreateDataAccessor", self._region,
                 CreateDataAccessorResponse,
                 ("application_id", "principal", "action_configurations", "display_name", "client_token", "authentication_detail", "tags", ),
@@ -519,9 +533,10 @@ class QBusinessClient:
             params["document_enrichment_configuration"] = document_enrichment_configuration
         if media_extraction_configuration is not None:
             params["media_extraction_configuration"] = media_extraction_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_data_source, params, self._interceptors,
+                self._native.create_data_source, params, _interceptors,
                 "qbusiness", "CreateDataSource", self._region,
                 CreateDataSourceResponse,
                 ("application_id", "index_id", "display_name", "configuration", "vpc_configuration", "description", "tags", "sync_schedule", "role_arn", "client_token", "document_enrichment_configuration", "media_extraction_configuration", ),
@@ -557,9 +572,10 @@ class QBusinessClient:
             params["capacity_configuration"] = capacity_configuration
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_index, params, self._interceptors,
+                self._native.create_index, params, _interceptors,
                 "qbusiness", "CreateIndex", self._region,
                 CreateIndexResponse,
                 ("application_id", "display_name", "description", "type", "tags", "capacity_configuration", "client_token", ),
@@ -596,9 +612,10 @@ class QBusinessClient:
             params["tags"] = tags
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_plugin, params, self._interceptors,
+                self._native.create_plugin, params, _interceptors,
                 "qbusiness", "CreatePlugin", self._region,
                 CreatePluginResponse,
                 ("application_id", "display_name", "type", "auth_configuration", "server_url", "custom_plugin_configuration", "tags", "client_token", ),
@@ -632,9 +649,10 @@ class QBusinessClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_retriever, params, self._interceptors,
+                self._native.create_retriever, params, _interceptors,
                 "qbusiness", "CreateRetriever", self._region,
                 CreateRetrieverResponse,
                 ("application_id", "type", "display_name", "configuration", "role_arn", "client_token", "tags", ),
@@ -660,9 +678,10 @@ class QBusinessClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_subscription, params, self._interceptors,
+                self._native.create_subscription, params, _interceptors,
                 "qbusiness", "CreateSubscription", self._region,
                 CreateSubscriptionResponse,
                 ("application_id", "principal", "type", "client_token", ),
@@ -689,9 +708,10 @@ class QBusinessClient:
             params["user_aliases"] = user_aliases
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_user, params, self._interceptors,
+                self._native.create_user, params, _interceptors,
                 "qbusiness", "CreateUser", self._region,
                 CreateUserResponse,
                 ("application_id", "user_id", "user_aliases", "client_token", ),
@@ -743,9 +763,10 @@ class QBusinessClient:
             params["browser_extension_configuration"] = browser_extension_configuration
         if customization_configuration is not None:
             params["customization_configuration"] = customization_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_web_experience, params, self._interceptors,
+                self._native.create_web_experience, params, _interceptors,
                 "qbusiness", "CreateWebExperience", self._region,
                 CreateWebExperienceResponse,
                 ("application_id", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "origins", "role_arn", "tags", "client_token", "identity_provider_configuration", "browser_extension_configuration", "customization_configuration", ),
@@ -764,9 +785,10 @@ class QBusinessClient:
         params: dict[str, object] = {
             "application_id": application_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_application, params, self._interceptors,
+                self._native.delete_application, params, _interceptors,
                 "qbusiness", "DeleteApplication", self._region,
                 DeleteApplicationResponse,
                 ("application_id", ),
@@ -792,9 +814,10 @@ class QBusinessClient:
         }
         if user_id is not None:
             params["user_id"] = user_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_attachment, params, self._interceptors,
+                self._native.delete_attachment, params, _interceptors,
                 "qbusiness", "DeleteAttachment", self._region,
                 DeleteAttachmentResponse,
                 ("application_id", "conversation_id", "attachment_id", "user_id", ),
@@ -813,9 +836,10 @@ class QBusinessClient:
         params: dict[str, object] = {
             "application_id": application_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_chat_controls_configuration, params, self._interceptors,
+                self._native.delete_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "DeleteChatControlsConfiguration", self._region,
                 DeleteChatControlsConfigurationResponse,
                 ("application_id", ),
@@ -836,9 +860,10 @@ class QBusinessClient:
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_chat_response_configuration, params, self._interceptors,
+                self._native.delete_chat_response_configuration, params, _interceptors,
                 "qbusiness", "DeleteChatResponseConfiguration", self._region,
                 DeleteChatResponseConfigurationResponse,
                 ("application_id", "chat_response_configuration_id", ),
@@ -862,9 +887,10 @@ class QBusinessClient:
         }
         if user_id is not None:
             params["user_id"] = user_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_conversation, params, self._interceptors,
+                self._native.delete_conversation, params, _interceptors,
                 "qbusiness", "DeleteConversation", self._region,
                 DeleteConversationResponse,
                 ("conversation_id", "application_id", "user_id", ),
@@ -885,9 +911,10 @@ class QBusinessClient:
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_data_accessor, params, self._interceptors,
+                self._native.delete_data_accessor, params, _interceptors,
                 "qbusiness", "DeleteDataAccessor", self._region,
                 DeleteDataAccessorResponse,
                 ("application_id", "data_accessor_id", ),
@@ -910,9 +937,10 @@ class QBusinessClient:
             "index_id": index_id,
             "data_source_id": data_source_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_data_source, params, self._interceptors,
+                self._native.delete_data_source, params, _interceptors,
                 "qbusiness", "DeleteDataSource", self._region,
                 DeleteDataSourceResponse,
                 ("application_id", "index_id", "data_source_id", ),
@@ -938,9 +966,10 @@ class QBusinessClient:
         }
         if data_source_id is not None:
             params["data_source_id"] = data_source_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_group, params, self._interceptors,
+                self._native.delete_group, params, _interceptors,
                 "qbusiness", "DeleteGroup", self._region,
                 DeleteGroupResponse,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
@@ -961,9 +990,10 @@ class QBusinessClient:
             "application_id": application_id,
             "index_id": index_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_index, params, self._interceptors,
+                self._native.delete_index, params, _interceptors,
                 "qbusiness", "DeleteIndex", self._region,
                 DeleteIndexResponse,
                 ("application_id", "index_id", ),
@@ -984,9 +1014,10 @@ class QBusinessClient:
             "application_id": application_id,
             "plugin_id": plugin_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_plugin, params, self._interceptors,
+                self._native.delete_plugin, params, _interceptors,
                 "qbusiness", "DeletePlugin", self._region,
                 DeletePluginResponse,
                 ("application_id", "plugin_id", ),
@@ -1007,9 +1038,10 @@ class QBusinessClient:
             "application_id": application_id,
             "retriever_id": retriever_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_retriever, params, self._interceptors,
+                self._native.delete_retriever, params, _interceptors,
                 "qbusiness", "DeleteRetriever", self._region,
                 DeleteRetrieverResponse,
                 ("application_id", "retriever_id", ),
@@ -1030,9 +1062,10 @@ class QBusinessClient:
             "application_id": application_id,
             "user_id": user_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_user, params, self._interceptors,
+                self._native.delete_user, params, _interceptors,
                 "qbusiness", "DeleteUser", self._region,
                 DeleteUserResponse,
                 ("application_id", "user_id", ),
@@ -1053,9 +1086,10 @@ class QBusinessClient:
             "application_id": application_id,
             "web_experience_id": web_experience_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_web_experience, params, self._interceptors,
+                self._native.delete_web_experience, params, _interceptors,
                 "qbusiness", "DeleteWebExperience", self._region,
                 DeleteWebExperienceResponse,
                 ("application_id", "web_experience_id", ),
@@ -1076,9 +1110,10 @@ class QBusinessClient:
             "application_id": application_id,
             "statement_id": statement_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_permission, params, self._interceptors,
+                self._native.disassociate_permission, params, _interceptors,
                 "qbusiness", "DisassociatePermission", self._region,
                 DisassociatePermissionResponse,
                 ("application_id", "statement_id", ),
@@ -1097,9 +1132,10 @@ class QBusinessClient:
         params: dict[str, object] = {
             "application_id": application_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_application, params, self._interceptors,
+                self._native.get_application, params, _interceptors,
                 "qbusiness", "GetApplication", self._region,
                 GetApplicationResponse,
                 ("application_id", ),
@@ -1124,9 +1160,10 @@ class QBusinessClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_chat_controls_configuration, params, self._interceptors,
+                self._native.get_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "GetChatControlsConfiguration", self._region,
                 GetChatControlsConfigurationResponse,
                 ("application_id", "max_results", "next_token", ),
@@ -1147,9 +1184,10 @@ class QBusinessClient:
             "application_id": application_id,
             "chat_response_configuration_id": chat_response_configuration_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_chat_response_configuration, params, self._interceptors,
+                self._native.get_chat_response_configuration, params, _interceptors,
                 "qbusiness", "GetChatResponseConfiguration", self._region,
                 GetChatResponseConfigurationResponse,
                 ("application_id", "chat_response_configuration_id", ),
@@ -1170,9 +1208,10 @@ class QBusinessClient:
             "application_id": application_id,
             "data_accessor_id": data_accessor_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_accessor, params, self._interceptors,
+                self._native.get_data_accessor, params, _interceptors,
                 "qbusiness", "GetDataAccessor", self._region,
                 GetDataAccessorResponse,
                 ("application_id", "data_accessor_id", ),
@@ -1195,9 +1234,10 @@ class QBusinessClient:
             "index_id": index_id,
             "data_source_id": data_source_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_source, params, self._interceptors,
+                self._native.get_data_source, params, _interceptors,
                 "qbusiness", "GetDataSource", self._region,
                 GetDataSourceResponse,
                 ("application_id", "index_id", "data_source_id", ),
@@ -1226,9 +1266,10 @@ class QBusinessClient:
             params["data_source_id"] = data_source_id
         if output_format is not None:
             params["output_format"] = output_format
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_document_content, params, self._interceptors,
+                self._native.get_document_content, params, _interceptors,
                 "qbusiness", "GetDocumentContent", self._region,
                 GetDocumentContentResponse,
                 ("application_id", "index_id", "document_id", "data_source_id", "output_format", ),
@@ -1254,9 +1295,10 @@ class QBusinessClient:
         }
         if data_source_id is not None:
             params["data_source_id"] = data_source_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_group, params, self._interceptors,
+                self._native.get_group, params, _interceptors,
                 "qbusiness", "GetGroup", self._region,
                 GetGroupResponse,
                 ("application_id", "index_id", "group_name", "data_source_id", ),
@@ -1277,9 +1319,10 @@ class QBusinessClient:
             "application_id": application_id,
             "index_id": index_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_index, params, self._interceptors,
+                self._native.get_index, params, _interceptors,
                 "qbusiness", "GetIndex", self._region,
                 GetIndexResponse,
                 ("application_id", "index_id", ),
@@ -1304,9 +1347,10 @@ class QBusinessClient:
             "message_id": message_id,
             "media_id": media_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_media, params, self._interceptors,
+                self._native.get_media, params, _interceptors,
                 "qbusiness", "GetMedia", self._region,
                 GetMediaResponse,
                 ("application_id", "conversation_id", "message_id", "media_id", ),
@@ -1327,9 +1371,10 @@ class QBusinessClient:
             "application_id": application_id,
             "plugin_id": plugin_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_plugin, params, self._interceptors,
+                self._native.get_plugin, params, _interceptors,
                 "qbusiness", "GetPlugin", self._region,
                 GetPluginResponse,
                 ("application_id", "plugin_id", ),
@@ -1348,9 +1393,10 @@ class QBusinessClient:
         params: dict[str, object] = {
             "application_id": application_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy, params, self._interceptors,
+                self._native.get_policy, params, _interceptors,
                 "qbusiness", "GetPolicy", self._region,
                 GetPolicyResponse,
                 ("application_id", ),
@@ -1371,9 +1417,10 @@ class QBusinessClient:
             "application_id": application_id,
             "retriever_id": retriever_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_retriever, params, self._interceptors,
+                self._native.get_retriever, params, _interceptors,
                 "qbusiness", "GetRetriever", self._region,
                 GetRetrieverResponse,
                 ("application_id", "retriever_id", ),
@@ -1394,9 +1441,10 @@ class QBusinessClient:
             "application_id": application_id,
             "user_id": user_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_user, params, self._interceptors,
+                self._native.get_user, params, _interceptors,
                 "qbusiness", "GetUser", self._region,
                 GetUserResponse,
                 ("application_id", "user_id", ),
@@ -1417,9 +1465,10 @@ class QBusinessClient:
             "application_id": application_id,
             "web_experience_id": web_experience_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_web_experience, params, self._interceptors,
+                self._native.get_web_experience, params, _interceptors,
                 "qbusiness", "GetWebExperience", self._region,
                 GetWebExperienceResponse,
                 ("application_id", "web_experience_id", ),
@@ -1442,9 +1491,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_applications, params, self._interceptors,
+                self._native.list_applications, params, _interceptors,
                 "qbusiness", "ListApplications", self._region,
                 ListApplicationsResponse,
                 ("next_token", "max_results", ),
@@ -1475,9 +1525,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_attachments, params, self._interceptors,
+                self._native.list_attachments, params, _interceptors,
                 "qbusiness", "ListAttachments", self._region,
                 ListAttachmentsResponse,
                 ("application_id", "conversation_id", "user_id", "next_token", "max_results", ),
@@ -1502,9 +1553,10 @@ class QBusinessClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_chat_response_configurations, params, self._interceptors,
+                self._native.list_chat_response_configurations, params, _interceptors,
                 "qbusiness", "ListChatResponseConfigurations", self._region,
                 ListChatResponseConfigurationsResponse,
                 ("application_id", "max_results", "next_token", ),
@@ -1532,9 +1584,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_conversations, params, self._interceptors,
+                self._native.list_conversations, params, _interceptors,
                 "qbusiness", "ListConversations", self._region,
                 ListConversationsResponse,
                 ("application_id", "user_id", "next_token", "max_results", ),
@@ -1559,9 +1612,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_accessors, params, self._interceptors,
+                self._native.list_data_accessors, params, _interceptors,
                 "qbusiness", "ListDataAccessors", self._region,
                 ListDataAccessorsResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1599,9 +1653,10 @@ class QBusinessClient:
             params["end_time"] = end_time
         if status_filter is not None:
             params["status_filter"] = status_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_source_sync_jobs, params, self._interceptors,
+                self._native.list_data_source_sync_jobs, params, _interceptors,
                 "qbusiness", "ListDataSourceSyncJobs", self._region,
                 ListDataSourceSyncJobsResponse,
                 ("data_source_id", "application_id", "index_id", "next_token", "max_results", "start_time", "end_time", "status_filter", ),
@@ -1628,9 +1683,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_data_sources, params, self._interceptors,
+                self._native.list_data_sources, params, _interceptors,
                 "qbusiness", "ListDataSources", self._region,
                 ListDataSourcesResponse,
                 ("application_id", "index_id", "next_token", "max_results", ),
@@ -1660,9 +1716,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_documents, params, self._interceptors,
+                self._native.list_documents, params, _interceptors,
                 "qbusiness", "ListDocuments", self._region,
                 ListDocumentsResponse,
                 ("application_id", "index_id", "data_source_ids", "next_token", "max_results", ),
@@ -1694,9 +1751,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_groups, params, self._interceptors,
+                self._native.list_groups, params, _interceptors,
                 "qbusiness", "ListGroups", self._region,
                 ListGroupsResponse,
                 ("application_id", "index_id", "updated_earlier_than", "data_source_id", "next_token", "max_results", ),
@@ -1721,9 +1779,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_indices, params, self._interceptors,
+                self._native.list_indices, params, _interceptors,
                 "qbusiness", "ListIndices", self._region,
                 ListIndicesResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1753,9 +1812,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_messages, params, self._interceptors,
+                self._native.list_messages, params, _interceptors,
                 "qbusiness", "ListMessages", self._region,
                 ListMessagesResponse,
                 ("conversation_id", "application_id", "user_id", "next_token", "max_results", ),
@@ -1782,9 +1842,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_plugin_actions, params, self._interceptors,
+                self._native.list_plugin_actions, params, _interceptors,
                 "qbusiness", "ListPluginActions", self._region,
                 ListPluginActionsResponse,
                 ("application_id", "plugin_id", "next_token", "max_results", ),
@@ -1809,9 +1870,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_plugin_type_actions, params, self._interceptors,
+                self._native.list_plugin_type_actions, params, _interceptors,
                 "qbusiness", "ListPluginTypeActions", self._region,
                 ListPluginTypeActionsResponse,
                 ("plugin_type", "next_token", "max_results", ),
@@ -1834,9 +1896,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_plugin_type_metadata, params, self._interceptors,
+                self._native.list_plugin_type_metadata, params, _interceptors,
                 "qbusiness", "ListPluginTypeMetadata", self._region,
                 ListPluginTypeMetadataResponse,
                 ("next_token", "max_results", ),
@@ -1861,9 +1924,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_plugins, params, self._interceptors,
+                self._native.list_plugins, params, _interceptors,
                 "qbusiness", "ListPlugins", self._region,
                 ListPluginsResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1888,9 +1952,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_retrievers, params, self._interceptors,
+                self._native.list_retrievers, params, _interceptors,
                 "qbusiness", "ListRetrievers", self._region,
                 ListRetrieversResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1915,9 +1980,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_subscriptions, params, self._interceptors,
+                self._native.list_subscriptions, params, _interceptors,
                 "qbusiness", "ListSubscriptions", self._region,
                 ListSubscriptionsResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1936,9 +2002,10 @@ class QBusinessClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "qbusiness", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -1963,9 +2030,10 @@ class QBusinessClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_web_experiences, params, self._interceptors,
+                self._native.list_web_experiences, params, _interceptors,
                 "qbusiness", "ListWebExperiences", self._region,
                 ListWebExperiencesResponse,
                 ("application_id", "next_token", "max_results", ),
@@ -1997,9 +2065,10 @@ class QBusinessClient:
             params["message_copied_at"] = message_copied_at
         if message_usefulness is not None:
             params["message_usefulness"] = message_usefulness
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_feedback, params, self._interceptors,
+                self._native.put_feedback, params, _interceptors,
                 "qbusiness", "PutFeedback", self._region,
                 type(None),
                 ("application_id", "conversation_id", "message_id", "user_id", "message_copied_at", "message_usefulness", ),
@@ -2032,9 +2101,10 @@ class QBusinessClient:
             params["data_source_id"] = data_source_id
         if role_arn is not None:
             params["role_arn"] = role_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_group, params, self._interceptors,
+                self._native.put_group, params, _interceptors,
                 "qbusiness", "PutGroup", self._region,
                 PutGroupResponse,
                 ("application_id", "index_id", "group_name", "type", "group_members", "data_source_id", "role_arn", ),
@@ -2066,9 +2136,10 @@ class QBusinessClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.search_relevant_content, params, self._interceptors,
+                self._native.search_relevant_content, params, _interceptors,
                 "qbusiness", "SearchRelevantContent", self._region,
                 SearchRelevantContentResponse,
                 ("application_id", "query_text", "content_source", "attribute_filter", "max_results", "next_token", ),
@@ -2091,9 +2162,10 @@ class QBusinessClient:
             "application_id": application_id,
             "index_id": index_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_data_source_sync_job, params, self._interceptors,
+                self._native.start_data_source_sync_job, params, _interceptors,
                 "qbusiness", "StartDataSourceSyncJob", self._region,
                 StartDataSourceSyncJobResponse,
                 ("data_source_id", "application_id", "index_id", ),
@@ -2116,9 +2188,10 @@ class QBusinessClient:
             "application_id": application_id,
             "index_id": index_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_data_source_sync_job, params, self._interceptors,
+                self._native.stop_data_source_sync_job, params, _interceptors,
                 "qbusiness", "StopDataSourceSyncJob", self._region,
                 StopDataSourceSyncJobResponse,
                 ("data_source_id", "application_id", "index_id", ),
@@ -2139,9 +2212,10 @@ class QBusinessClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "qbusiness", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -2162,9 +2236,10 @@ class QBusinessClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "qbusiness", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -2207,9 +2282,10 @@ class QBusinessClient:
             params["personalization_configuration"] = personalization_configuration
         if auto_subscription_configuration is not None:
             params["auto_subscription_configuration"] = auto_subscription_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_application, params, self._interceptors,
+                self._native.update_application, params, _interceptors,
                 "qbusiness", "UpdateApplication", self._region,
                 UpdateApplicationResponse,
                 ("application_id", "identity_center_instance_arn", "display_name", "description", "role_arn", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "auto_subscription_configuration", ),
@@ -2252,9 +2328,10 @@ class QBusinessClient:
             params["creator_mode_configuration"] = creator_mode_configuration
         if hallucination_reduction_configuration is not None:
             params["hallucination_reduction_configuration"] = hallucination_reduction_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_chat_controls_configuration, params, self._interceptors,
+                self._native.update_chat_controls_configuration, params, _interceptors,
                 "qbusiness", "UpdateChatControlsConfiguration", self._region,
                 UpdateChatControlsConfigurationResponse,
                 ("application_id", "client_token", "response_scope", "orchestration_configuration", "blocked_phrases_configuration_update", "topic_configurations_to_create_or_update", "topic_configurations_to_delete", "creator_mode_configuration", "hallucination_reduction_configuration", ),
@@ -2283,9 +2360,10 @@ class QBusinessClient:
             params["display_name"] = display_name
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_chat_response_configuration, params, self._interceptors,
+                self._native.update_chat_response_configuration, params, _interceptors,
                 "qbusiness", "UpdateChatResponseConfiguration", self._region,
                 UpdateChatResponseConfigurationResponse,
                 ("application_id", "chat_response_configuration_id", "response_configurations", "display_name", "client_token", ),
@@ -2314,9 +2392,10 @@ class QBusinessClient:
             params["authentication_detail"] = authentication_detail
         if display_name is not None:
             params["display_name"] = display_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_data_accessor, params, self._interceptors,
+                self._native.update_data_accessor, params, _interceptors,
                 "qbusiness", "UpdateDataAccessor", self._region,
                 UpdateDataAccessorResponse,
                 ("application_id", "data_accessor_id", "action_configurations", "authentication_detail", "display_name", ),
@@ -2363,9 +2442,10 @@ class QBusinessClient:
             params["document_enrichment_configuration"] = document_enrichment_configuration
         if media_extraction_configuration is not None:
             params["media_extraction_configuration"] = media_extraction_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_data_source, params, self._interceptors,
+                self._native.update_data_source, params, _interceptors,
                 "qbusiness", "UpdateDataSource", self._region,
                 UpdateDataSourceResponse,
                 ("application_id", "index_id", "data_source_id", "display_name", "configuration", "vpc_configuration", "description", "sync_schedule", "role_arn", "document_enrichment_configuration", "media_extraction_configuration", ),
@@ -2398,9 +2478,10 @@ class QBusinessClient:
             params["capacity_configuration"] = capacity_configuration
         if document_attribute_configurations is not None:
             params["document_attribute_configurations"] = document_attribute_configurations
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_index, params, self._interceptors,
+                self._native.update_index, params, _interceptors,
                 "qbusiness", "UpdateIndex", self._region,
                 UpdateIndexResponse,
                 ("application_id", "index_id", "display_name", "description", "capacity_configuration", "document_attribute_configurations", ),
@@ -2436,9 +2517,10 @@ class QBusinessClient:
             params["custom_plugin_configuration"] = custom_plugin_configuration
         if auth_configuration is not None:
             params["auth_configuration"] = auth_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_plugin, params, self._interceptors,
+                self._native.update_plugin, params, _interceptors,
                 "qbusiness", "UpdatePlugin", self._region,
                 UpdatePluginResponse,
                 ("application_id", "plugin_id", "display_name", "state", "server_url", "custom_plugin_configuration", "auth_configuration", ),
@@ -2468,9 +2550,10 @@ class QBusinessClient:
             params["display_name"] = display_name
         if role_arn is not None:
             params["role_arn"] = role_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_retriever, params, self._interceptors,
+                self._native.update_retriever, params, _interceptors,
                 "qbusiness", "UpdateRetriever", self._region,
                 UpdateRetrieverResponse,
                 ("application_id", "retriever_id", "configuration", "display_name", "role_arn", ),
@@ -2493,9 +2576,10 @@ class QBusinessClient:
             "subscription_id": subscription_id,
             "type": type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_subscription, params, self._interceptors,
+                self._native.update_subscription, params, _interceptors,
                 "qbusiness", "UpdateSubscription", self._region,
                 UpdateSubscriptionResponse,
                 ("application_id", "subscription_id", "type", ),
@@ -2522,9 +2606,10 @@ class QBusinessClient:
             params["user_aliases_to_update"] = user_aliases_to_update
         if user_aliases_to_delete is not None:
             params["user_aliases_to_delete"] = user_aliases_to_delete
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_user, params, self._interceptors,
+                self._native.update_user, params, _interceptors,
                 "qbusiness", "UpdateUser", self._region,
                 UpdateUserResponse,
                 ("application_id", "user_id", "user_aliases_to_update", "user_aliases_to_delete", ),
@@ -2575,9 +2660,10 @@ class QBusinessClient:
             params["browser_extension_configuration"] = browser_extension_configuration
         if customization_configuration is not None:
             params["customization_configuration"] = customization_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("qbusiness", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_web_experience, params, self._interceptors,
+                self._native.update_web_experience, params, _interceptors,
                 "qbusiness", "UpdateWebExperience", self._region,
                 UpdateWebExperienceResponse,
                 ("application_id", "web_experience_id", "role_arn", "authentication_configuration", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "identity_provider_configuration", "origins", "browser_extension_configuration", "customization_configuration", ),

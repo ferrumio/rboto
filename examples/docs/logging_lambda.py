@@ -1,10 +1,10 @@
 import asyncio
 from typing import Protocol
 
-from rboto import DynamoDBClient, LoggingInterceptor, operation_context
+from rboto import DynamoDBClient, configure_logging, operation_context
 
-# Configure Lambda application logs as JSON at INFO; reuse the runtime's handlers.
-client = DynamoDBClient(interceptors=[LoggingInterceptor()])
+configure_logging()
+client = DynamoDBClient()
 
 
 class LambdaContext(Protocol):

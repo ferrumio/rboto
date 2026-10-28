@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockRuntimeClient as NativeClient, ApplyGuardrailResponse, ConverseResponse, CountTokensResponse, GetAsyncInvokeResponse, InvokeGuardrailChecksResponse, InvokeModelResponse, ListAsyncInvokesResponse, StartAsyncInvokeResponse
 from .types import (
@@ -42,6 +43,8 @@ from .types import (
 
 
 class BedrockRuntimeClient:
+    logger_name = "rboto.bedrock-runtime"
+
     def __init__(
         self,
         *,
@@ -80,9 +83,10 @@ class BedrockRuntimeClient:
         }
         if output_scope is not None:
             params["output_scope"] = output_scope
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.apply_guardrail, params, self._interceptors,
+                self._native.apply_guardrail, params, _interceptors,
                 "bedrock-runtime", "ApplyGuardrail", self._region,
                 ApplyGuardrailResponse,
                 ("guardrail_identifier", "guardrail_version", "source", "content", "output_scope", ),
@@ -137,9 +141,10 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if output_config is not None:
             params["output_config"] = output_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.converse, params, self._interceptors,
+                self._native.converse, params, _interceptors,
                 "bedrock-runtime", "Converse", self._region,
                 ConverseResponse,
                 ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
@@ -194,9 +199,10 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if output_config is not None:
             params["output_config"] = output_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.converse_stream, params, self._interceptors,
+                self._native.converse_stream, params, _interceptors,
                 "bedrock-runtime", "ConverseStream", self._region,
                 dict,
                 ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
@@ -217,9 +223,10 @@ class BedrockRuntimeClient:
             "model_id": model_id,
             "input": input,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.count_tokens, params, self._interceptors,
+                self._native.count_tokens, params, _interceptors,
                 "bedrock-runtime", "CountTokens", self._region,
                 CountTokensResponse,
                 ("model_id", "input", ),
@@ -238,9 +245,10 @@ class BedrockRuntimeClient:
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_async_invoke, params, self._interceptors,
+                self._native.get_async_invoke, params, _interceptors,
                 "bedrock-runtime", "GetAsyncInvoke", self._region,
                 GetAsyncInvokeResponse,
                 ("invocation_arn", ),
@@ -261,9 +269,10 @@ class BedrockRuntimeClient:
             "messages": messages,
             "checks": checks,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_guardrail_checks, params, self._interceptors,
+                self._native.invoke_guardrail_checks, params, _interceptors,
                 "bedrock-runtime", "InvokeGuardrailChecks", self._region,
                 InvokeGuardrailChecksResponse,
                 ("messages", "checks", ),
@@ -309,9 +318,10 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if request_metadata is not None:
             params["request_metadata"] = request_metadata
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_model, params, self._interceptors,
+                self._native.invoke_model, params, _interceptors,
                 "bedrock-runtime", "InvokeModel", self._region,
                 InvokeModelResponse,
                 ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
@@ -332,9 +342,10 @@ class BedrockRuntimeClient:
             "model_id": model_id,
             "body": body,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_model_with_bidirectional_stream, params, self._interceptors,
+                self._native.invoke_model_with_bidirectional_stream, params, _interceptors,
                 "bedrock-runtime", "InvokeModelWithBidirectionalStream", self._region,
                 dict,
                 ("model_id", "body", ),
@@ -380,9 +391,10 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if request_metadata is not None:
             params["request_metadata"] = request_metadata
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_model_with_response_stream, params, self._interceptors,
+                self._native.invoke_model_with_response_stream, params, _interceptors,
                 "bedrock-runtime", "InvokeModelWithResponseStream", self._region,
                 dict,
                 ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
@@ -420,9 +432,10 @@ class BedrockRuntimeClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_async_invokes, params, self._interceptors,
+                self._native.list_async_invokes, params, _interceptors,
                 "bedrock-runtime", "ListAsyncInvokes", self._region,
                 ListAsyncInvokesResponse,
                 ("submit_time_after", "submit_time_before", "status_equals", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -451,9 +464,10 @@ class BedrockRuntimeClient:
             params["client_request_token"] = client_request_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_async_invoke, params, self._interceptors,
+                self._native.start_async_invoke, params, _interceptors,
                 "bedrock-runtime", "StartAsyncInvoke", self._region,
                 StartAsyncInvokeResponse,
                 ("model_id", "model_input", "output_data_config", "client_request_token", "tags", ),

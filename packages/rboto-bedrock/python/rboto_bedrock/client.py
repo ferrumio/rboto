@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockClient as NativeClient, BatchDeleteAdvancedPromptOptimizationJobResponse, BatchDeleteEvaluationJobResponse, CancelAutomatedReasoningPolicyBuildWorkflowResponse, CreateAdvancedPromptOptimizationJobResponse, CreateAutomatedReasoningPolicyResponse, CreateAutomatedReasoningPolicyTestCaseResponse, CreateAutomatedReasoningPolicyVersionResponse, CreateCustomModelDeploymentResponse, CreateCustomModelResponse, CreateEvaluationJobResponse, CreateFoundationModelAgreementResponse, CreateGuardrailResponse, CreateGuardrailVersionResponse, CreateInferenceProfileResponse, CreateMarketplaceModelEndpointResponse, CreateModelCopyJobResponse, CreateModelCustomizationJobResponse, CreateModelImportJobResponse, CreateModelInvocationJobResponse, CreatePromptRouterResponse, CreateProvisionedModelThroughputResponse, DeleteAutomatedReasoningPolicyBuildWorkflowResponse, DeleteAutomatedReasoningPolicyResponse, DeleteAutomatedReasoningPolicyTestCaseResponse, DeleteCustomModelDeploymentResponse, DeleteCustomModelResponse, DeleteEnforcedGuardrailConfigurationResponse, DeleteFoundationModelAgreementResponse, DeleteGuardrailResponse, DeleteImportedModelResponse, DeleteInferenceProfileResponse, DeleteMarketplaceModelEndpointResponse, DeleteModelInvocationLoggingConfigurationResponse, DeletePromptRouterResponse, DeleteProvisionedModelThroughputResponse, DeleteResourcePolicyResponse, DeregisterMarketplaceModelEndpointResponse, ExportAutomatedReasoningPolicyVersionResponse, GetAccountDataRetentionResponse, GetAdvancedPromptOptimizationJobResponse, GetAutomatedReasoningPolicyAnnotationsResponse, GetAutomatedReasoningPolicyBuildWorkflowResponse, GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse, GetAutomatedReasoningPolicyNextScenarioResponse, GetAutomatedReasoningPolicyResponse, GetAutomatedReasoningPolicyTestCaseResponse, GetAutomatedReasoningPolicyTestResultResponse, GetCustomModelDeploymentResponse, GetCustomModelResponse, GetEvaluationJobResponse, GetFoundationModelAvailabilityResponse, GetFoundationModelResponse, GetGuardrailResponse, GetImportedModelResponse, GetInferenceProfileResponse, GetMarketplaceModelEndpointResponse, GetModelCopyJobResponse, GetModelCustomizationJobResponse, GetModelImportJobResponse, GetModelInvocationJobResponse, GetModelInvocationLoggingConfigurationResponse, GetPromptRouterResponse, GetProvisionedModelThroughputResponse, GetResourcePolicyResponse, GetUseCaseForModelAccessResponse, ListAdvancedPromptOptimizationJobsResponse, ListAutomatedReasoningPoliciesResponse, ListAutomatedReasoningPolicyBuildWorkflowsResponse, ListAutomatedReasoningPolicyTestCasesResponse, ListAutomatedReasoningPolicyTestResultsResponse, ListCustomModelDeploymentsResponse, ListCustomModelsResponse, ListEnforcedGuardrailsConfigurationResponse, ListEvaluationJobsResponse, ListFoundationModelAgreementOffersResponse, ListFoundationModelsResponse, ListGuardrailsResponse, ListImportedModelsResponse, ListInferenceProfilesResponse, ListMarketplaceModelEndpointsResponse, ListModelCopyJobsResponse, ListModelCustomizationJobsResponse, ListModelImportJobsResponse, ListModelInvocationJobsResponse, ListPromptRoutersResponse, ListProvisionedModelThroughputsResponse, ListTagsForResourceResponse, PutAccountDataRetentionResponse, PutEnforcedGuardrailConfigurationResponse, PutModelInvocationLoggingConfigurationResponse, PutResourcePolicyResponse, PutUseCaseForModelAccessResponse, RegisterMarketplaceModelEndpointResponse, StartAutomatedReasoningPolicyBuildWorkflowResponse, StartAutomatedReasoningPolicyTestWorkflowResponse, StopAdvancedPromptOptimizationJobResponse, StopEvaluationJobResponse, StopModelCustomizationJobResponse, StopModelInvocationJobResponse, TagResourceResponse, UntagResourceResponse, UpdateAutomatedReasoningPolicyAnnotationsResponse, UpdateAutomatedReasoningPolicyResponse, UpdateAutomatedReasoningPolicyTestCaseResponse, UpdateCustomModelDeploymentResponse, UpdateGuardrailResponse, UpdateMarketplaceModelEndpointResponse, UpdateProvisionedModelThroughputResponse
 from .types import (
@@ -71,6 +72,8 @@ from .types import (
 
 
 class BedrockClient:
+    logger_name = "rboto.bedrock"
+
     def __init__(
         self,
         *,
@@ -100,9 +103,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_delete_advanced_prompt_optimization_job, params, self._interceptors,
+                self._native.batch_delete_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "BatchDeleteAdvancedPromptOptimizationJob", self._region,
                 BatchDeleteAdvancedPromptOptimizationJobResponse,
                 ("job_identifiers", ),
@@ -121,9 +125,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_delete_evaluation_job, params, self._interceptors,
+                self._native.batch_delete_evaluation_job, params, _interceptors,
                 "bedrock", "BatchDeleteEvaluationJob", self._region,
                 BatchDeleteEvaluationJobResponse,
                 ("job_identifiers", ),
@@ -144,9 +149,10 @@ class BedrockClient:
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_automated_reasoning_policy_build_workflow, params, self._interceptors,
+                self._native.cancel_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "CancelAutomatedReasoningPolicyBuildWorkflow", self._region,
                 CancelAutomatedReasoningPolicyBuildWorkflowResponse,
                 ("policy_arn", "build_workflow_id", ),
@@ -183,9 +189,10 @@ class BedrockClient:
             params["encryption_key_arn"] = encryption_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_advanced_prompt_optimization_job, params, self._interceptors,
+                self._native.create_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "CreateAdvancedPromptOptimizationJob", self._region,
                 CreateAdvancedPromptOptimizationJobResponse,
                 ("job_name", "input_config", "output_config", "model_configurations", "job_description", "client_token", "encryption_key_arn", "tags", ),
@@ -219,9 +226,10 @@ class BedrockClient:
             params["kms_key_id"] = kms_key_id
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_automated_reasoning_policy, params, self._interceptors,
+                self._native.create_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicy", self._region,
                 CreateAutomatedReasoningPolicyResponse,
                 ("name", "description", "client_request_token", "policy_definition", "kms_key_id", "tags", ),
@@ -253,9 +261,10 @@ class BedrockClient:
             params["client_request_token"] = client_request_token
         if confidence_threshold is not None:
             params["confidence_threshold"] = confidence_threshold
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_automated_reasoning_policy_test_case, params, self._interceptors,
+                self._native.create_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyTestCase", self._region,
                 CreateAutomatedReasoningPolicyTestCaseResponse,
                 ("policy_arn", "guard_content", "expected_aggregated_findings_result", "query_content", "client_request_token", "confidence_threshold", ),
@@ -282,9 +291,10 @@ class BedrockClient:
             params["client_request_token"] = client_request_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_automated_reasoning_policy_version, params, self._interceptors,
+                self._native.create_automated_reasoning_policy_version, params, _interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyVersion", self._region,
                 CreateAutomatedReasoningPolicyVersionResponse,
                 ("policy_arn", "last_updated_definition_hash", "client_request_token", "tags", ),
@@ -321,9 +331,10 @@ class BedrockClient:
             params["model_tags"] = model_tags
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_model, params, self._interceptors,
+                self._native.create_custom_model, params, _interceptors,
                 "bedrock", "CreateCustomModel", self._region,
                 CreateCustomModelResponse,
                 ("model_name", "model_source_config", "custom_model_data_source", "model_kms_key_arn", "role_arn", "model_tags", "client_request_token", ),
@@ -353,9 +364,10 @@ class BedrockClient:
             params["tags"] = tags
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_model_deployment, params, self._interceptors,
+                self._native.create_custom_model_deployment, params, _interceptors,
                 "bedrock", "CreateCustomModelDeployment", self._region,
                 CreateCustomModelDeploymentResponse,
                 ("model_deployment_name", "model_arn", "description", "tags", "client_request_token", ),
@@ -397,9 +409,10 @@ class BedrockClient:
             params["job_tags"] = job_tags
         if application_type is not None:
             params["application_type"] = application_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_evaluation_job, params, self._interceptors,
+                self._native.create_evaluation_job, params, _interceptors,
                 "bedrock", "CreateEvaluationJob", self._region,
                 CreateEvaluationJobResponse,
                 ("job_name", "role_arn", "evaluation_config", "inference_config", "output_data_config", "job_description", "client_request_token", "customer_encryption_key_id", "job_tags", "application_type", ),
@@ -420,9 +433,10 @@ class BedrockClient:
             "offer_token": offer_token,
             "model_id": model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_foundation_model_agreement, params, self._interceptors,
+                self._native.create_foundation_model_agreement, params, _interceptors,
                 "bedrock", "CreateFoundationModelAgreement", self._region,
                 CreateFoundationModelAgreementResponse,
                 ("offer_token", "model_id", ),
@@ -478,9 +492,10 @@ class BedrockClient:
             params["tags"] = tags
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_guardrail, params, self._interceptors,
+                self._native.create_guardrail, params, _interceptors,
                 "bedrock", "CreateGuardrail", self._region,
                 CreateGuardrailResponse,
                 ("name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", "tags", "client_request_token", ),
@@ -505,9 +520,10 @@ class BedrockClient:
             params["description"] = description
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_guardrail_version, params, self._interceptors,
+                self._native.create_guardrail_version, params, _interceptors,
                 "bedrock", "CreateGuardrailVersion", self._region,
                 CreateGuardrailVersionResponse,
                 ("guardrail_identifier", "description", "client_request_token", ),
@@ -537,9 +553,10 @@ class BedrockClient:
             params["client_request_token"] = client_request_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_inference_profile, params, self._interceptors,
+                self._native.create_inference_profile, params, _interceptors,
                 "bedrock", "CreateInferenceProfile", self._region,
                 CreateInferenceProfileResponse,
                 ("inference_profile_name", "model_source", "description", "client_request_token", "tags", ),
@@ -571,9 +588,10 @@ class BedrockClient:
             params["client_request_token"] = client_request_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_marketplace_model_endpoint, params, self._interceptors,
+                self._native.create_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "CreateMarketplaceModelEndpoint", self._region,
                 CreateMarketplaceModelEndpointResponse,
                 ("model_source_identifier", "endpoint_config", "endpoint_name", "accept_eula", "client_request_token", "tags", ),
@@ -603,9 +621,10 @@ class BedrockClient:
             params["target_model_tags"] = target_model_tags
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_model_copy_job, params, self._interceptors,
+                self._native.create_model_copy_job, params, _interceptors,
                 "bedrock", "CreateModelCopyJob", self._region,
                 CreateModelCopyJobResponse,
                 ("source_model_arn", "target_model_name", "model_kms_key_id", "target_model_tags", "client_request_token", ),
@@ -661,9 +680,10 @@ class BedrockClient:
             params["vpc_config"] = vpc_config
         if customization_config is not None:
             params["customization_config"] = customization_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_model_customization_job, params, self._interceptors,
+                self._native.create_model_customization_job, params, _interceptors,
                 "bedrock", "CreateModelCustomizationJob", self._region,
                 CreateModelCustomizationJobResponse,
                 ("job_name", "custom_model_name", "role_arn", "base_model_identifier", "training_data_config", "output_data_config", "client_request_token", "customization_type", "custom_model_kms_key_id", "job_tags", "custom_model_tags", "validation_data_config", "hyper_parameters", "vpc_config", "customization_config", ),
@@ -703,9 +723,10 @@ class BedrockClient:
             params["vpc_config"] = vpc_config
         if imported_model_kms_key_id is not None:
             params["imported_model_kms_key_id"] = imported_model_kms_key_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_model_import_job, params, self._interceptors,
+                self._native.create_model_import_job, params, _interceptors,
                 "bedrock", "CreateModelImportJob", self._region,
                 CreateModelImportJobResponse,
                 ("job_name", "imported_model_name", "role_arn", "model_data_source", "job_tags", "imported_model_tags", "client_request_token", "vpc_config", "imported_model_kms_key_id", ),
@@ -747,9 +768,10 @@ class BedrockClient:
             params["tags"] = tags
         if model_invocation_type is not None:
             params["model_invocation_type"] = model_invocation_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_model_invocation_job, params, self._interceptors,
+                self._native.create_model_invocation_job, params, _interceptors,
                 "bedrock", "CreateModelInvocationJob", self._region,
                 CreateModelInvocationJobResponse,
                 ("job_name", "role_arn", "model_id", "input_data_config", "output_data_config", "client_request_token", "vpc_config", "timeout_duration_in_hours", "tags", "model_invocation_type", ),
@@ -783,9 +805,10 @@ class BedrockClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_prompt_router, params, self._interceptors,
+                self._native.create_prompt_router, params, _interceptors,
                 "bedrock", "CreatePromptRouter", self._region,
                 CreatePromptRouterResponse,
                 ("prompt_router_name", "models", "routing_criteria", "fallback_model", "client_request_token", "description", "tags", ),
@@ -817,9 +840,10 @@ class BedrockClient:
             params["commitment_duration"] = commitment_duration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_provisioned_model_throughput, params, self._interceptors,
+                self._native.create_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "CreateProvisionedModelThroughput", self._region,
                 CreateProvisionedModelThroughputResponse,
                 ("model_units", "provisioned_model_name", "model_id", "client_request_token", "commitment_duration", "tags", ),
@@ -841,9 +865,10 @@ class BedrockClient:
         }
         if force is not None:
             params["force"] = force
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_automated_reasoning_policy, params, self._interceptors,
+                self._native.delete_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicy", self._region,
                 DeleteAutomatedReasoningPolicyResponse,
                 ("policy_arn", "force", ),
@@ -866,9 +891,10 @@ class BedrockClient:
             "build_workflow_id": build_workflow_id,
             "last_updated_at": last_updated_at,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_automated_reasoning_policy_build_workflow, params, self._interceptors,
+                self._native.delete_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyBuildWorkflow", self._region,
                 DeleteAutomatedReasoningPolicyBuildWorkflowResponse,
                 ("policy_arn", "build_workflow_id", "last_updated_at", ),
@@ -891,9 +917,10 @@ class BedrockClient:
             "test_case_id": test_case_id,
             "last_updated_at": last_updated_at,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_automated_reasoning_policy_test_case, params, self._interceptors,
+                self._native.delete_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyTestCase", self._region,
                 DeleteAutomatedReasoningPolicyTestCaseResponse,
                 ("policy_arn", "test_case_id", "last_updated_at", ),
@@ -912,9 +939,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_model, params, self._interceptors,
+                self._native.delete_custom_model, params, _interceptors,
                 "bedrock", "DeleteCustomModel", self._region,
                 DeleteCustomModelResponse,
                 ("model_identifier", ),
@@ -933,9 +961,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_model_deployment, params, self._interceptors,
+                self._native.delete_custom_model_deployment, params, _interceptors,
                 "bedrock", "DeleteCustomModelDeployment", self._region,
                 DeleteCustomModelDeploymentResponse,
                 ("custom_model_deployment_identifier", ),
@@ -954,9 +983,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "config_id": config_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_enforced_guardrail_configuration, params, self._interceptors,
+                self._native.delete_enforced_guardrail_configuration, params, _interceptors,
                 "bedrock", "DeleteEnforcedGuardrailConfiguration", self._region,
                 DeleteEnforcedGuardrailConfigurationResponse,
                 ("config_id", ),
@@ -975,9 +1005,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_id": model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_foundation_model_agreement, params, self._interceptors,
+                self._native.delete_foundation_model_agreement, params, _interceptors,
                 "bedrock", "DeleteFoundationModelAgreement", self._region,
                 DeleteFoundationModelAgreementResponse,
                 ("model_id", ),
@@ -999,9 +1030,10 @@ class BedrockClient:
         }
         if guardrail_version is not None:
             params["guardrail_version"] = guardrail_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_guardrail, params, self._interceptors,
+                self._native.delete_guardrail, params, _interceptors,
                 "bedrock", "DeleteGuardrail", self._region,
                 DeleteGuardrailResponse,
                 ("guardrail_identifier", "guardrail_version", ),
@@ -1020,9 +1052,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_imported_model, params, self._interceptors,
+                self._native.delete_imported_model, params, _interceptors,
                 "bedrock", "DeleteImportedModel", self._region,
                 DeleteImportedModelResponse,
                 ("model_identifier", ),
@@ -1041,9 +1074,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_inference_profile, params, self._interceptors,
+                self._native.delete_inference_profile, params, _interceptors,
                 "bedrock", "DeleteInferenceProfile", self._region,
                 DeleteInferenceProfileResponse,
                 ("inference_profile_identifier", ),
@@ -1062,9 +1096,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_marketplace_model_endpoint, params, self._interceptors,
+                self._native.delete_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "DeleteMarketplaceModelEndpoint", self._region,
                 DeleteMarketplaceModelEndpointResponse,
                 ("endpoint_arn", ),
@@ -1080,9 +1115,10 @@ class BedrockClient:
     ) -> DeleteModelInvocationLoggingConfigurationResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_model_invocation_logging_configuration, params, self._interceptors,
+                self._native.delete_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "DeleteModelInvocationLoggingConfiguration", self._region,
                 DeleteModelInvocationLoggingConfigurationResponse,
                 (),
@@ -1101,9 +1137,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_prompt_router, params, self._interceptors,
+                self._native.delete_prompt_router, params, _interceptors,
                 "bedrock", "DeletePromptRouter", self._region,
                 DeletePromptRouterResponse,
                 ("prompt_router_arn", ),
@@ -1122,9 +1159,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_provisioned_model_throughput, params, self._interceptors,
+                self._native.delete_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "DeleteProvisionedModelThroughput", self._region,
                 DeleteProvisionedModelThroughputResponse,
                 ("provisioned_model_id", ),
@@ -1143,9 +1181,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "bedrock", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyResponse,
                 ("resource_arn", ),
@@ -1164,9 +1203,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_marketplace_model_endpoint, params, self._interceptors,
+                self._native.deregister_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "DeregisterMarketplaceModelEndpoint", self._region,
                 DeregisterMarketplaceModelEndpointResponse,
                 ("endpoint_arn", ),
@@ -1185,9 +1225,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.export_automated_reasoning_policy_version, params, self._interceptors,
+                self._native.export_automated_reasoning_policy_version, params, _interceptors,
                 "bedrock", "ExportAutomatedReasoningPolicyVersion", self._region,
                 ExportAutomatedReasoningPolicyVersionResponse,
                 ("policy_arn", ),
@@ -1203,9 +1244,10 @@ class BedrockClient:
     ) -> GetAccountDataRetentionResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_account_data_retention, params, self._interceptors,
+                self._native.get_account_data_retention, params, _interceptors,
                 "bedrock", "GetAccountDataRetention", self._region,
                 GetAccountDataRetentionResponse,
                 (),
@@ -1224,9 +1266,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_advanced_prompt_optimization_job, params, self._interceptors,
+                self._native.get_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "GetAdvancedPromptOptimizationJob", self._region,
                 GetAdvancedPromptOptimizationJobResponse,
                 ("job_identifier", ),
@@ -1245,9 +1288,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy, params, self._interceptors,
+                self._native.get_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicy", self._region,
                 GetAutomatedReasoningPolicyResponse,
                 ("policy_arn", ),
@@ -1268,9 +1312,10 @@ class BedrockClient:
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_annotations, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_annotations, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyAnnotations", self._region,
                 GetAutomatedReasoningPolicyAnnotationsResponse,
                 ("policy_arn", "build_workflow_id", ),
@@ -1291,9 +1336,10 @@ class BedrockClient:
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_build_workflow, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflow", self._region,
                 GetAutomatedReasoningPolicyBuildWorkflowResponse,
                 ("policy_arn", "build_workflow_id", ),
@@ -1319,9 +1365,10 @@ class BedrockClient:
         }
         if asset_id is not None:
             params["asset_id"] = asset_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_build_workflow_result_assets, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_build_workflow_result_assets, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflowResultAssets", self._region,
                 GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse,
                 ("policy_arn", "build_workflow_id", "asset_type", "asset_id", ),
@@ -1342,9 +1389,10 @@ class BedrockClient:
             "policy_arn": policy_arn,
             "build_workflow_id": build_workflow_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_next_scenario, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_next_scenario, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyNextScenario", self._region,
                 GetAutomatedReasoningPolicyNextScenarioResponse,
                 ("policy_arn", "build_workflow_id", ),
@@ -1365,9 +1413,10 @@ class BedrockClient:
             "policy_arn": policy_arn,
             "test_case_id": test_case_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_test_case, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestCase", self._region,
                 GetAutomatedReasoningPolicyTestCaseResponse,
                 ("policy_arn", "test_case_id", ),
@@ -1390,9 +1439,10 @@ class BedrockClient:
             "build_workflow_id": build_workflow_id,
             "test_case_id": test_case_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automated_reasoning_policy_test_result, params, self._interceptors,
+                self._native.get_automated_reasoning_policy_test_result, params, _interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestResult", self._region,
                 GetAutomatedReasoningPolicyTestResultResponse,
                 ("policy_arn", "build_workflow_id", "test_case_id", ),
@@ -1411,9 +1461,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_model, params, self._interceptors,
+                self._native.get_custom_model, params, _interceptors,
                 "bedrock", "GetCustomModel", self._region,
                 GetCustomModelResponse,
                 ("model_identifier", ),
@@ -1432,9 +1483,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_model_deployment, params, self._interceptors,
+                self._native.get_custom_model_deployment, params, _interceptors,
                 "bedrock", "GetCustomModelDeployment", self._region,
                 GetCustomModelDeploymentResponse,
                 ("custom_model_deployment_identifier", ),
@@ -1453,9 +1505,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_evaluation_job, params, self._interceptors,
+                self._native.get_evaluation_job, params, _interceptors,
                 "bedrock", "GetEvaluationJob", self._region,
                 GetEvaluationJobResponse,
                 ("job_identifier", ),
@@ -1474,9 +1527,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_foundation_model, params, self._interceptors,
+                self._native.get_foundation_model, params, _interceptors,
                 "bedrock", "GetFoundationModel", self._region,
                 GetFoundationModelResponse,
                 ("model_identifier", ),
@@ -1495,9 +1549,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_id": model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_foundation_model_availability, params, self._interceptors,
+                self._native.get_foundation_model_availability, params, _interceptors,
                 "bedrock", "GetFoundationModelAvailability", self._region,
                 GetFoundationModelAvailabilityResponse,
                 ("model_id", ),
@@ -1519,9 +1574,10 @@ class BedrockClient:
         }
         if guardrail_version is not None:
             params["guardrail_version"] = guardrail_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_guardrail, params, self._interceptors,
+                self._native.get_guardrail, params, _interceptors,
                 "bedrock", "GetGuardrail", self._region,
                 GetGuardrailResponse,
                 ("guardrail_identifier", "guardrail_version", ),
@@ -1540,9 +1596,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "model_identifier": model_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_imported_model, params, self._interceptors,
+                self._native.get_imported_model, params, _interceptors,
                 "bedrock", "GetImportedModel", self._region,
                 GetImportedModelResponse,
                 ("model_identifier", ),
@@ -1561,9 +1618,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "inference_profile_identifier": inference_profile_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_inference_profile, params, self._interceptors,
+                self._native.get_inference_profile, params, _interceptors,
                 "bedrock", "GetInferenceProfile", self._region,
                 GetInferenceProfileResponse,
                 ("inference_profile_identifier", ),
@@ -1582,9 +1640,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_marketplace_model_endpoint, params, self._interceptors,
+                self._native.get_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "GetMarketplaceModelEndpoint", self._region,
                 GetMarketplaceModelEndpointResponse,
                 ("endpoint_arn", ),
@@ -1603,9 +1662,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_arn": job_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_copy_job, params, self._interceptors,
+                self._native.get_model_copy_job, params, _interceptors,
                 "bedrock", "GetModelCopyJob", self._region,
                 GetModelCopyJobResponse,
                 ("job_arn", ),
@@ -1624,9 +1684,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_customization_job, params, self._interceptors,
+                self._native.get_model_customization_job, params, _interceptors,
                 "bedrock", "GetModelCustomizationJob", self._region,
                 GetModelCustomizationJobResponse,
                 ("job_identifier", ),
@@ -1645,9 +1706,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_import_job, params, self._interceptors,
+                self._native.get_model_import_job, params, _interceptors,
                 "bedrock", "GetModelImportJob", self._region,
                 GetModelImportJobResponse,
                 ("job_identifier", ),
@@ -1666,9 +1728,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_invocation_job, params, self._interceptors,
+                self._native.get_model_invocation_job, params, _interceptors,
                 "bedrock", "GetModelInvocationJob", self._region,
                 GetModelInvocationJobResponse,
                 ("job_identifier", ),
@@ -1684,9 +1747,10 @@ class BedrockClient:
     ) -> GetModelInvocationLoggingConfigurationResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_invocation_logging_configuration, params, self._interceptors,
+                self._native.get_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "GetModelInvocationLoggingConfiguration", self._region,
                 GetModelInvocationLoggingConfigurationResponse,
                 (),
@@ -1705,9 +1769,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "prompt_router_arn": prompt_router_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_prompt_router, params, self._interceptors,
+                self._native.get_prompt_router, params, _interceptors,
                 "bedrock", "GetPromptRouter", self._region,
                 GetPromptRouterResponse,
                 ("prompt_router_arn", ),
@@ -1726,9 +1791,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "provisioned_model_id": provisioned_model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_provisioned_model_throughput, params, self._interceptors,
+                self._native.get_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "GetProvisionedModelThroughput", self._region,
                 GetProvisionedModelThroughputResponse,
                 ("provisioned_model_id", ),
@@ -1747,9 +1813,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "bedrock", "GetResourcePolicy", self._region,
                 GetResourcePolicyResponse,
                 ("resource_arn", ),
@@ -1765,9 +1832,10 @@ class BedrockClient:
     ) -> GetUseCaseForModelAccessResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_use_case_for_model_access, params, self._interceptors,
+                self._native.get_use_case_for_model_access, params, _interceptors,
                 "bedrock", "GetUseCaseForModelAccess", self._region,
                 GetUseCaseForModelAccessResponse,
                 (),
@@ -1796,9 +1864,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_advanced_prompt_optimization_jobs, params, self._interceptors,
+                self._native.list_advanced_prompt_optimization_jobs, params, _interceptors,
                 "bedrock", "ListAdvancedPromptOptimizationJobs", self._region,
                 ListAdvancedPromptOptimizationJobsResponse,
                 ("max_results", "next_token", "sort_by", "sort_order", ),
@@ -1824,9 +1893,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_automated_reasoning_policies, params, self._interceptors,
+                self._native.list_automated_reasoning_policies, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicies", self._region,
                 ListAutomatedReasoningPoliciesResponse,
                 ("policy_arn", "next_token", "max_results", ),
@@ -1851,9 +1921,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_automated_reasoning_policy_build_workflows, params, self._interceptors,
+                self._native.list_automated_reasoning_policy_build_workflows, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyBuildWorkflows", self._region,
                 ListAutomatedReasoningPolicyBuildWorkflowsResponse,
                 ("policy_arn", "next_token", "max_results", ),
@@ -1878,9 +1949,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_automated_reasoning_policy_test_cases, params, self._interceptors,
+                self._native.list_automated_reasoning_policy_test_cases, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestCases", self._region,
                 ListAutomatedReasoningPolicyTestCasesResponse,
                 ("policy_arn", "next_token", "max_results", ),
@@ -1907,9 +1979,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_automated_reasoning_policy_test_results, params, self._interceptors,
+                self._native.list_automated_reasoning_policy_test_results, params, _interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestResults", self._region,
                 ListAutomatedReasoningPolicyTestResultsResponse,
                 ("policy_arn", "build_workflow_id", "next_token", "max_results", ),
@@ -1953,9 +2026,10 @@ class BedrockClient:
             params["status_equals"] = status_equals
         if model_arn_equals is not None:
             params["model_arn_equals"] = model_arn_equals
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_model_deployments, params, self._interceptors,
+                self._native.list_custom_model_deployments, params, _interceptors,
                 "bedrock", "ListCustomModelDeployments", self._region,
                 ListCustomModelDeploymentsResponse,
                 ("created_before", "created_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", "status_equals", "model_arn_equals", ),
@@ -2005,9 +2079,10 @@ class BedrockClient:
             params["is_owned"] = is_owned
         if model_status is not None:
             params["model_status"] = model_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_models, params, self._interceptors,
+                self._native.list_custom_models, params, _interceptors,
                 "bedrock", "ListCustomModels", self._region,
                 ListCustomModelsResponse,
                 ("creation_time_before", "creation_time_after", "name_contains", "base_model_arn_equals", "foundation_model_arn_equals", "max_results", "next_token", "sort_by", "sort_order", "is_owned", "model_status", ),
@@ -2027,9 +2102,10 @@ class BedrockClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_enforced_guardrails_configuration, params, self._interceptors,
+                self._native.list_enforced_guardrails_configuration, params, _interceptors,
                 "bedrock", "ListEnforcedGuardrailsConfiguration", self._region,
                 ListEnforcedGuardrailsConfigurationResponse,
                 ("next_token", ),
@@ -2073,9 +2149,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_evaluation_jobs, params, self._interceptors,
+                self._native.list_evaluation_jobs, params, _interceptors,
                 "bedrock", "ListEvaluationJobs", self._region,
                 ListEvaluationJobsResponse,
                 ("creation_time_after", "creation_time_before", "status_equals", "application_type_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2097,9 +2174,10 @@ class BedrockClient:
         }
         if offer_type is not None:
             params["offer_type"] = offer_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_foundation_model_agreement_offers, params, self._interceptors,
+                self._native.list_foundation_model_agreement_offers, params, _interceptors,
                 "bedrock", "ListFoundationModelAgreementOffers", self._region,
                 ListFoundationModelAgreementOffersResponse,
                 ("model_id", "offer_type", ),
@@ -2128,9 +2206,10 @@ class BedrockClient:
             params["by_output_modality"] = by_output_modality
         if by_inference_type is not None:
             params["by_inference_type"] = by_inference_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_foundation_models, params, self._interceptors,
+                self._native.list_foundation_models, params, _interceptors,
                 "bedrock", "ListFoundationModels", self._region,
                 ListFoundationModelsResponse,
                 ("by_provider", "by_customization_type", "by_output_modality", "by_inference_type", ),
@@ -2156,9 +2235,10 @@ class BedrockClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_guardrails, params, self._interceptors,
+                self._native.list_guardrails, params, _interceptors,
                 "bedrock", "ListGuardrails", self._region,
                 ListGuardrailsResponse,
                 ("guardrail_identifier", "max_results", "next_token", ),
@@ -2196,9 +2276,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_imported_models, params, self._interceptors,
+                self._native.list_imported_models, params, _interceptors,
                 "bedrock", "ListImportedModels", self._region,
                 ListImportedModelsResponse,
                 ("creation_time_before", "creation_time_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2224,9 +2305,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if type_equals is not None:
             params["type_equals"] = type_equals
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_inference_profiles, params, self._interceptors,
+                self._native.list_inference_profiles, params, _interceptors,
                 "bedrock", "ListInferenceProfiles", self._region,
                 ListInferenceProfilesResponse,
                 ("max_results", "next_token", "type_equals", ),
@@ -2252,9 +2334,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if model_source_equals is not None:
             params["model_source_equals"] = model_source_equals
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_marketplace_model_endpoints, params, self._interceptors,
+                self._native.list_marketplace_model_endpoints, params, _interceptors,
                 "bedrock", "ListMarketplaceModelEndpoints", self._region,
                 ListMarketplaceModelEndpointsResponse,
                 ("max_results", "next_token", "model_source_equals", ),
@@ -2301,9 +2384,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_model_copy_jobs, params, self._interceptors,
+                self._native.list_model_copy_jobs, params, _interceptors,
                 "bedrock", "ListModelCopyJobs", self._region,
                 ListModelCopyJobsResponse,
                 ("creation_time_after", "creation_time_before", "status_equals", "source_account_equals", "source_model_arn_equals", "target_model_name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2344,9 +2428,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_model_customization_jobs, params, self._interceptors,
+                self._native.list_model_customization_jobs, params, _interceptors,
                 "bedrock", "ListModelCustomizationJobs", self._region,
                 ListModelCustomizationJobsResponse,
                 ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2387,9 +2472,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_model_import_jobs, params, self._interceptors,
+                self._native.list_model_import_jobs, params, _interceptors,
                 "bedrock", "ListModelImportJobs", self._region,
                 ListModelImportJobsResponse,
                 ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2430,9 +2516,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_model_invocation_jobs, params, self._interceptors,
+                self._native.list_model_invocation_jobs, params, _interceptors,
                 "bedrock", "ListModelInvocationJobs", self._region,
                 ListModelInvocationJobsResponse,
                 ("submit_time_after", "submit_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2458,9 +2545,10 @@ class BedrockClient:
             params["next_token"] = next_token
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_prompt_routers, params, self._interceptors,
+                self._native.list_prompt_routers, params, _interceptors,
                 "bedrock", "ListPromptRouters", self._region,
                 ListPromptRoutersResponse,
                 ("max_results", "next_token", "type", ),
@@ -2504,9 +2592,10 @@ class BedrockClient:
             params["sort_by"] = sort_by
         if sort_order is not None:
             params["sort_order"] = sort_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_provisioned_model_throughputs, params, self._interceptors,
+                self._native.list_provisioned_model_throughputs, params, _interceptors,
                 "bedrock", "ListProvisionedModelThroughputs", self._region,
                 ListProvisionedModelThroughputsResponse,
                 ("creation_time_after", "creation_time_before", "status_equals", "model_arn_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
@@ -2525,9 +2614,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -2546,9 +2636,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "mode": mode,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_data_retention, params, self._interceptors,
+                self._native.put_account_data_retention, params, _interceptors,
                 "bedrock", "PutAccountDataRetention", self._region,
                 PutAccountDataRetentionResponse,
                 ("mode", ),
@@ -2570,9 +2661,10 @@ class BedrockClient:
         }
         if config_id is not None:
             params["config_id"] = config_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_enforced_guardrail_configuration, params, self._interceptors,
+                self._native.put_enforced_guardrail_configuration, params, _interceptors,
                 "bedrock", "PutEnforcedGuardrailConfiguration", self._region,
                 PutEnforcedGuardrailConfigurationResponse,
                 ("guardrail_inference_config", "config_id", ),
@@ -2591,9 +2683,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "logging_config": logging_config,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_model_invocation_logging_configuration, params, self._interceptors,
+                self._native.put_model_invocation_logging_configuration, params, _interceptors,
                 "bedrock", "PutModelInvocationLoggingConfiguration", self._region,
                 PutModelInvocationLoggingConfigurationResponse,
                 ("logging_config", ),
@@ -2614,9 +2707,10 @@ class BedrockClient:
             "resource_arn": resource_arn,
             "resource_policy": resource_policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "bedrock", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("resource_arn", "resource_policy", ),
@@ -2635,9 +2729,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "form_data": form_data,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_use_case_for_model_access, params, self._interceptors,
+                self._native.put_use_case_for_model_access, params, _interceptors,
                 "bedrock", "PutUseCaseForModelAccess", self._region,
                 PutUseCaseForModelAccessResponse,
                 ("form_data", ),
@@ -2658,9 +2753,10 @@ class BedrockClient:
             "endpoint_identifier": endpoint_identifier,
             "model_source_identifier": model_source_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_marketplace_model_endpoint, params, self._interceptors,
+                self._native.register_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "RegisterMarketplaceModelEndpoint", self._region,
                 RegisterMarketplaceModelEndpointResponse,
                 ("endpoint_identifier", "model_source_identifier", ),
@@ -2686,9 +2782,10 @@ class BedrockClient:
         }
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_automated_reasoning_policy_build_workflow, params, self._interceptors,
+                self._native.start_automated_reasoning_policy_build_workflow, params, _interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyBuildWorkflow", self._region,
                 StartAutomatedReasoningPolicyBuildWorkflowResponse,
                 ("policy_arn", "build_workflow_type", "source_content", "client_request_token", ),
@@ -2715,9 +2812,10 @@ class BedrockClient:
             params["test_case_ids"] = test_case_ids
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_automated_reasoning_policy_test_workflow, params, self._interceptors,
+                self._native.start_automated_reasoning_policy_test_workflow, params, _interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyTestWorkflow", self._region,
                 StartAutomatedReasoningPolicyTestWorkflowResponse,
                 ("policy_arn", "build_workflow_id", "test_case_ids", "client_request_token", ),
@@ -2736,9 +2834,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_advanced_prompt_optimization_job, params, self._interceptors,
+                self._native.stop_advanced_prompt_optimization_job, params, _interceptors,
                 "bedrock", "StopAdvancedPromptOptimizationJob", self._region,
                 StopAdvancedPromptOptimizationJobResponse,
                 ("job_identifier", ),
@@ -2757,9 +2856,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_evaluation_job, params, self._interceptors,
+                self._native.stop_evaluation_job, params, _interceptors,
                 "bedrock", "StopEvaluationJob", self._region,
                 StopEvaluationJobResponse,
                 ("job_identifier", ),
@@ -2778,9 +2878,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_model_customization_job, params, self._interceptors,
+                self._native.stop_model_customization_job, params, _interceptors,
                 "bedrock", "StopModelCustomizationJob", self._region,
                 StopModelCustomizationJobResponse,
                 ("job_identifier", ),
@@ -2799,9 +2900,10 @@ class BedrockClient:
         params: dict[str, object] = {
             "job_identifier": job_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_model_invocation_job, params, self._interceptors,
+                self._native.stop_model_invocation_job, params, _interceptors,
                 "bedrock", "StopModelInvocationJob", self._region,
                 StopModelInvocationJobResponse,
                 ("job_identifier", ),
@@ -2822,9 +2924,10 @@ class BedrockClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "bedrock", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -2845,9 +2948,10 @@ class BedrockClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "bedrock", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -2874,9 +2978,10 @@ class BedrockClient:
             params["name"] = name
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_automated_reasoning_policy, params, self._interceptors,
+                self._native.update_automated_reasoning_policy, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicy", self._region,
                 UpdateAutomatedReasoningPolicyResponse,
                 ("policy_arn", "policy_definition", "name", "description", ),
@@ -2901,9 +3006,10 @@ class BedrockClient:
             "annotations": annotations,
             "last_updated_annotation_set_hash": last_updated_annotation_set_hash,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_automated_reasoning_policy_annotations, params, self._interceptors,
+                self._native.update_automated_reasoning_policy_annotations, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyAnnotations", self._region,
                 UpdateAutomatedReasoningPolicyAnnotationsResponse,
                 ("policy_arn", "build_workflow_id", "annotations", "last_updated_annotation_set_hash", ),
@@ -2939,9 +3045,10 @@ class BedrockClient:
             params["confidence_threshold"] = confidence_threshold
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_automated_reasoning_policy_test_case, params, self._interceptors,
+                self._native.update_automated_reasoning_policy_test_case, params, _interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyTestCase", self._region,
                 UpdateAutomatedReasoningPolicyTestCaseResponse,
                 ("policy_arn", "test_case_id", "guard_content", "last_updated_at", "expected_aggregated_findings_result", "query_content", "confidence_threshold", "client_request_token", ),
@@ -2962,9 +3069,10 @@ class BedrockClient:
             "model_arn": model_arn,
             "custom_model_deployment_identifier": custom_model_deployment_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_custom_model_deployment, params, self._interceptors,
+                self._native.update_custom_model_deployment, params, _interceptors,
                 "bedrock", "UpdateCustomModelDeployment", self._region,
                 UpdateCustomModelDeploymentResponse,
                 ("model_arn", "custom_model_deployment_identifier", ),
@@ -3016,9 +3124,10 @@ class BedrockClient:
             params["cross_region_config"] = cross_region_config
         if kms_key_id is not None:
             params["kms_key_id"] = kms_key_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_guardrail, params, self._interceptors,
+                self._native.update_guardrail, params, _interceptors,
                 "bedrock", "UpdateGuardrail", self._region,
                 UpdateGuardrailResponse,
                 ("guardrail_identifier", "name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", ),
@@ -3042,9 +3151,10 @@ class BedrockClient:
         }
         if client_request_token is not None:
             params["client_request_token"] = client_request_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_marketplace_model_endpoint, params, self._interceptors,
+                self._native.update_marketplace_model_endpoint, params, _interceptors,
                 "bedrock", "UpdateMarketplaceModelEndpoint", self._region,
                 UpdateMarketplaceModelEndpointResponse,
                 ("endpoint_arn", "endpoint_config", "client_request_token", ),
@@ -3069,9 +3179,10 @@ class BedrockClient:
             params["desired_provisioned_model_name"] = desired_provisioned_model_name
         if desired_model_id is not None:
             params["desired_model_id"] = desired_model_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_provisioned_model_throughput, params, self._interceptors,
+                self._native.update_provisioned_model_throughput, params, _interceptors,
                 "bedrock", "UpdateProvisionedModelThroughput", self._region,
                 UpdateProvisionedModelThroughputResponse,
                 ("provisioned_model_id", "desired_provisioned_model_name", "desired_model_id", ),

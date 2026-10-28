@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SSMClient as NativeClient, AddTagsToResourceResult, AssociateOpsItemRelatedItemResponse, CancelCommandResult, CancelMaintenanceWindowExecutionResult, CreateActivationResult, CreateAssociationBatchResult, CreateAssociationResult, CreateCloudConnectorResult, CreateDocumentResult, CreateMaintenanceWindowResult, CreateOpsItemResponse, CreateOpsMetadataResult, CreatePatchBaselineResult, CreateResourceDataSyncResult, DeleteActivationResult, DeleteAssociationResult, DeleteCloudConnectorResult, DeleteDocumentResult, DeleteInventoryResult, DeleteMaintenanceWindowResult, DeleteOpsItemResponse, DeleteOpsMetadataResult, DeleteParameterResult, DeleteParametersResult, DeletePatchBaselineResult, DeleteResourceDataSyncResult, DeleteResourcePolicyResponse, DeregisterManagedInstanceResult, DeregisterPatchBaselineForPatchGroupResult, DeregisterTargetFromMaintenanceWindowResult, DeregisterTaskFromMaintenanceWindowResult, DescribeActivationsResult, DescribeAssociationExecutionTargetsResult, DescribeAssociationExecutionsResult, DescribeAssociationResult, DescribeAutomationExecutionsResult, DescribeAutomationStepExecutionsResult, DescribeAvailablePatchesResult, DescribeDocumentPermissionResponse, DescribeDocumentResult, DescribeEffectiveInstanceAssociationsResult, DescribeEffectivePatchesForPatchBaselineResult, DescribeInstanceAssociationsStatusResult, DescribeInstanceInformationResult, DescribeInstancePatchStatesForPatchGroupResult, DescribeInstancePatchStatesResult, DescribeInstancePatchesResult, DescribeInstancePropertiesResult, DescribeInventoryDeletionsResult, DescribeMaintenanceWindowExecutionTaskInvocationsResult, DescribeMaintenanceWindowExecutionTasksResult, DescribeMaintenanceWindowExecutionsResult, DescribeMaintenanceWindowScheduleResult, DescribeMaintenanceWindowTargetsResult, DescribeMaintenanceWindowTasksResult, DescribeMaintenanceWindowsForTargetResult, DescribeMaintenanceWindowsResult, DescribeOpsItemsResponse, DescribeParametersResult, DescribePatchBaselinesResult, DescribePatchGroupStateResult, DescribePatchGroupsResult, DescribePatchPropertiesResult, DescribeSessionsResponse, DisassociateOpsItemRelatedItemResponse, GetAccessTokenResponse, GetAutomationExecutionResult, GetCalendarStateResponse, GetCloudConnectorResult, GetCommandInvocationResult, GetConnectionStatusResponse, GetDefaultPatchBaselineResult, GetDeployablePatchSnapshotForInstanceResult, GetDocumentResult, GetExecutionPreviewResponse, GetInventoryResult, GetInventorySchemaResult, GetMaintenanceWindowExecutionResult, GetMaintenanceWindowExecutionTaskInvocationResult, GetMaintenanceWindowExecutionTaskResult, GetMaintenanceWindowResult, GetMaintenanceWindowTaskResult, GetOpsItemResponse, GetOpsMetadataResult, GetOpsSummaryResult, GetParameterHistoryResult, GetParameterResult, GetParametersByPathResult, GetParametersResult, GetPatchBaselineForPatchGroupResult, GetPatchBaselineResult, GetResourcePoliciesResponse, GetServiceSettingResult, LabelParameterVersionResult, ListAssociationVersionsResult, ListAssociationsResult, ListCloudConnectorsResult, ListCommandInvocationsResult, ListCommandsResult, ListComplianceItemsResult, ListComplianceSummariesResult, ListDocumentMetadataHistoryResponse, ListDocumentVersionsResult, ListDocumentsResult, ListInventoryEntriesResult, ListNodesResult, ListNodesSummaryResult, ListOpsItemEventsResponse, ListOpsItemRelatedItemsResponse, ListOpsMetadataResult, ListResourceComplianceSummariesResult, ListResourceDataSyncResult, ListTagsForResourceResult, ModifyDocumentPermissionResponse, PutComplianceItemsResult, PutInventoryResult, PutParameterResult, PutResourcePolicyResponse, RegisterDefaultPatchBaselineResult, RegisterPatchBaselineForPatchGroupResult, RegisterTargetWithMaintenanceWindowResult, RegisterTaskWithMaintenanceWindowResult, RemoveTagsFromResourceResult, ResetServiceSettingResult, ResumeSessionResponse, SendAutomationSignalResult, SendCommandResult, StartAccessRequestResponse, StartAssociationsOnceResult, StartAutomationExecutionResult, StartChangeRequestExecutionResult, StartExecutionPreviewResponse, StartSessionResponse, StopAutomationExecutionResult, TerminateSessionResponse, UnlabelParameterVersionResult, UpdateAssociationResult, UpdateAssociationStatusResult, UpdateCloudConnectorResult, UpdateDocumentDefaultVersionResult, UpdateDocumentMetadataResponse, UpdateDocumentResult, UpdateMaintenanceWindowResult, UpdateMaintenanceWindowTargetResult, UpdateMaintenanceWindowTaskResult, UpdateManagedInstanceRoleResult, UpdateOpsItemResponse, UpdateOpsMetadataResult, UpdatePatchBaselineResult, UpdateResourceDataSyncResult, UpdateServiceSettingResult, ValidateCloudConnectorResult
 from .types import (
@@ -105,6 +106,8 @@ from .types import (
 
 
 class SSMClient:
+    logger_name = "rboto.ssm"
+
     def __init__(
         self,
         *,
@@ -138,9 +141,10 @@ class SSMClient:
             "resource_id": resource_id,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.add_tags_to_resource, params, self._interceptors,
+                self._native.add_tags_to_resource, params, _interceptors,
                 "ssm", "AddTagsToResource", self._region,
                 AddTagsToResourceResult,
                 ("resource_type", "resource_id", "tags", ),
@@ -165,9 +169,10 @@ class SSMClient:
             "resource_type": resource_type,
             "resource_uri": resource_uri,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.associate_ops_item_related_item, params, self._interceptors,
+                self._native.associate_ops_item_related_item, params, _interceptors,
                 "ssm", "AssociateOpsItemRelatedItem", self._region,
                 AssociateOpsItemRelatedItemResponse,
                 ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
@@ -189,9 +194,10 @@ class SSMClient:
         }
         if instance_ids is not None:
             params["instance_ids"] = instance_ids
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_command, params, self._interceptors,
+                self._native.cancel_command, params, _interceptors,
                 "ssm", "CancelCommand", self._region,
                 CancelCommandResult,
                 ("command_id", "instance_ids", ),
@@ -210,9 +216,10 @@ class SSMClient:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_maintenance_window_execution, params, self._interceptors,
+                self._native.cancel_maintenance_window_execution, params, _interceptors,
                 "ssm", "CancelMaintenanceWindowExecution", self._region,
                 CancelMaintenanceWindowExecutionResult,
                 ("window_execution_id", ),
@@ -249,9 +256,10 @@ class SSMClient:
             params["tags"] = tags
         if registration_metadata is not None:
             params["registration_metadata"] = registration_metadata
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_activation, params, self._interceptors,
+                self._native.create_activation, params, _interceptors,
                 "ssm", "CreateActivation", self._region,
                 CreateActivationResult,
                 ("iam_role", "description", "default_instance_name", "registration_limit", "expiration_date", "tags", "registration_metadata", ),
@@ -333,9 +341,10 @@ class SSMClient:
             params["alarm_configuration"] = alarm_configuration
         if association_dispatch_assume_role is not None:
             params["association_dispatch_assume_role"] = association_dispatch_assume_role
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_association, params, self._interceptors,
+                self._native.create_association, params, _interceptors,
                 "ssm", "CreateAssociation", self._region,
                 CreateAssociationResult,
                 ("name", "document_version", "instance_id", "parameters", "targets", "schedule_expression", "output_location", "association_name", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "tags", "alarm_configuration", "association_dispatch_assume_role", ),
@@ -357,9 +366,10 @@ class SSMClient:
         }
         if association_dispatch_assume_role is not None:
             params["association_dispatch_assume_role"] = association_dispatch_assume_role
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_association_batch, params, self._interceptors,
+                self._native.create_association_batch, params, _interceptors,
                 "ssm", "CreateAssociationBatch", self._region,
                 CreateAssociationBatchResult,
                 ("entries", "association_dispatch_assume_role", ),
@@ -390,9 +400,10 @@ class SSMClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_cloud_connector, params, self._interceptors,
+                self._native.create_cloud_connector, params, _interceptors,
                 "ssm", "CreateCloudConnector", self._region,
                 CreateCloudConnectorResult,
                 ("display_name", "role_arn", "configuration", "config_connector_arn", "description", "tags", ),
@@ -437,9 +448,10 @@ class SSMClient:
             params["target_type"] = target_type
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_document, params, self._interceptors,
+                self._native.create_document, params, _interceptors,
                 "ssm", "CreateDocument", self._region,
                 CreateDocumentResult,
                 ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", ),
@@ -487,9 +499,10 @@ class SSMClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_maintenance_window, params, self._interceptors,
+                self._native.create_maintenance_window, params, _interceptors,
                 "ssm", "CreateMaintenanceWindow", self._region,
                 CreateMaintenanceWindowResult,
                 ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", "description", "start_date", "end_date", "schedule_timezone", "schedule_offset", "client_token", "tags", ),
@@ -551,9 +564,10 @@ class SSMClient:
             params["planned_end_time"] = planned_end_time
         if account_id is not None:
             params["account_id"] = account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_ops_item, params, self._interceptors,
+                self._native.create_ops_item, params, _interceptors,
                 "ssm", "CreateOpsItem", self._region,
                 CreateOpsItemResponse,
                 ("description", "source", "title", "ops_item_type", "operational_data", "notifications", "priority", "related_ops_items", "tags", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "account_id", ),
@@ -578,9 +592,10 @@ class SSMClient:
             params["metadata"] = metadata
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_ops_metadata, params, self._interceptors,
+                self._native.create_ops_metadata, params, _interceptors,
                 "ssm", "CreateOpsMetadata", self._region,
                 CreateOpsMetadataResult,
                 ("resource_id", "metadata", "tags", ),
@@ -638,9 +653,10 @@ class SSMClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_patch_baseline, params, self._interceptors,
+                self._native.create_patch_baseline, params, _interceptors,
                 "ssm", "CreatePatchBaseline", self._region,
                 CreatePatchBaselineResult,
                 ("name", "operating_system", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "client_token", "tags", ),
@@ -668,9 +684,10 @@ class SSMClient:
             params["sync_type"] = sync_type
         if sync_source is not None:
             params["sync_source"] = sync_source
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_resource_data_sync, params, self._interceptors,
+                self._native.create_resource_data_sync, params, _interceptors,
                 "ssm", "CreateResourceDataSync", self._region,
                 CreateResourceDataSyncResult,
                 ("sync_name", "s3_destination", "sync_type", "sync_source", ),
@@ -689,9 +706,10 @@ class SSMClient:
         params: dict[str, object] = {
             "activation_id": activation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_activation, params, self._interceptors,
+                self._native.delete_activation, params, _interceptors,
                 "ssm", "DeleteActivation", self._region,
                 DeleteActivationResult,
                 ("activation_id", ),
@@ -717,9 +735,10 @@ class SSMClient:
             params["instance_id"] = instance_id
         if association_id is not None:
             params["association_id"] = association_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_association, params, self._interceptors,
+                self._native.delete_association, params, _interceptors,
                 "ssm", "DeleteAssociation", self._region,
                 DeleteAssociationResult,
                 ("name", "instance_id", "association_id", ),
@@ -738,9 +757,10 @@ class SSMClient:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_cloud_connector, params, self._interceptors,
+                self._native.delete_cloud_connector, params, _interceptors,
                 "ssm", "DeleteCloudConnector", self._region,
                 DeleteCloudConnectorResult,
                 ("cloud_connector_id", ),
@@ -768,9 +788,10 @@ class SSMClient:
             params["version_name"] = version_name
         if force is not None:
             params["force"] = force
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_document, params, self._interceptors,
+                self._native.delete_document, params, _interceptors,
                 "ssm", "DeleteDocument", self._region,
                 DeleteDocumentResult,
                 ("name", "document_version", "version_name", "force", ),
@@ -798,9 +819,10 @@ class SSMClient:
             params["dry_run"] = dry_run
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_inventory, params, self._interceptors,
+                self._native.delete_inventory, params, _interceptors,
                 "ssm", "DeleteInventory", self._region,
                 DeleteInventoryResult,
                 ("type_name", "schema_delete_option", "dry_run", "client_token", ),
@@ -819,9 +841,10 @@ class SSMClient:
         params: dict[str, object] = {
             "window_id": window_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_maintenance_window, params, self._interceptors,
+                self._native.delete_maintenance_window, params, _interceptors,
                 "ssm", "DeleteMaintenanceWindow", self._region,
                 DeleteMaintenanceWindowResult,
                 ("window_id", ),
@@ -840,9 +863,10 @@ class SSMClient:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_ops_item, params, self._interceptors,
+                self._native.delete_ops_item, params, _interceptors,
                 "ssm", "DeleteOpsItem", self._region,
                 DeleteOpsItemResponse,
                 ("ops_item_id", ),
@@ -861,9 +885,10 @@ class SSMClient:
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_ops_metadata, params, self._interceptors,
+                self._native.delete_ops_metadata, params, _interceptors,
                 "ssm", "DeleteOpsMetadata", self._region,
                 DeleteOpsMetadataResult,
                 ("ops_metadata_arn", ),
@@ -882,9 +907,10 @@ class SSMClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_parameter, params, self._interceptors,
+                self._native.delete_parameter, params, _interceptors,
                 "ssm", "DeleteParameter", self._region,
                 DeleteParameterResult,
                 ("name", ),
@@ -903,9 +929,10 @@ class SSMClient:
         params: dict[str, object] = {
             "names": names,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_parameters, params, self._interceptors,
+                self._native.delete_parameters, params, _interceptors,
                 "ssm", "DeleteParameters", self._region,
                 DeleteParametersResult,
                 ("names", ),
@@ -924,9 +951,10 @@ class SSMClient:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_patch_baseline, params, self._interceptors,
+                self._native.delete_patch_baseline, params, _interceptors,
                 "ssm", "DeletePatchBaseline", self._region,
                 DeletePatchBaselineResult,
                 ("baseline_id", ),
@@ -948,9 +976,10 @@ class SSMClient:
         }
         if sync_type is not None:
             params["sync_type"] = sync_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_data_sync, params, self._interceptors,
+                self._native.delete_resource_data_sync, params, _interceptors,
                 "ssm", "DeleteResourceDataSync", self._region,
                 DeleteResourceDataSyncResult,
                 ("sync_name", "sync_type", ),
@@ -976,9 +1005,10 @@ class SSMClient:
         }
         if deletion_mode is not None:
             params["deletion_mode"] = deletion_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "ssm", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyResponse,
                 ("resource_arn", "policy_id", "policy_hash", "deletion_mode", ),
@@ -997,9 +1027,10 @@ class SSMClient:
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_managed_instance, params, self._interceptors,
+                self._native.deregister_managed_instance, params, _interceptors,
                 "ssm", "DeregisterManagedInstance", self._region,
                 DeregisterManagedInstanceResult,
                 ("instance_id", ),
@@ -1020,9 +1051,10 @@ class SSMClient:
             "baseline_id": baseline_id,
             "patch_group": patch_group,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_patch_baseline_for_patch_group, params, self._interceptors,
+                self._native.deregister_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "DeregisterPatchBaselineForPatchGroup", self._region,
                 DeregisterPatchBaselineForPatchGroupResult,
                 ("baseline_id", "patch_group", ),
@@ -1046,9 +1078,10 @@ class SSMClient:
         }
         if safe is not None:
             params["safe"] = safe
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_target_from_maintenance_window, params, self._interceptors,
+                self._native.deregister_target_from_maintenance_window, params, _interceptors,
                 "ssm", "DeregisterTargetFromMaintenanceWindow", self._region,
                 DeregisterTargetFromMaintenanceWindowResult,
                 ("window_id", "window_target_id", "safe", ),
@@ -1069,9 +1102,10 @@ class SSMClient:
             "window_id": window_id,
             "window_task_id": window_task_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_task_from_maintenance_window, params, self._interceptors,
+                self._native.deregister_task_from_maintenance_window, params, _interceptors,
                 "ssm", "DeregisterTaskFromMaintenanceWindow", self._region,
                 DeregisterTaskFromMaintenanceWindowResult,
                 ("window_id", "window_task_id", ),
@@ -1097,9 +1131,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_activations, params, self._interceptors,
+                self._native.describe_activations, params, _interceptors,
                 "ssm", "DescribeActivations", self._region,
                 DescribeActivationsResult,
                 ("filters", "max_results", "next_token", ),
@@ -1128,9 +1163,10 @@ class SSMClient:
             params["association_id"] = association_id
         if association_version is not None:
             params["association_version"] = association_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_association, params, self._interceptors,
+                self._native.describe_association, params, _interceptors,
                 "ssm", "DescribeAssociation", self._region,
                 DescribeAssociationResult,
                 ("name", "instance_id", "association_id", "association_version", ),
@@ -1160,9 +1196,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_association_execution_targets, params, self._interceptors,
+                self._native.describe_association_execution_targets, params, _interceptors,
                 "ssm", "DescribeAssociationExecutionTargets", self._region,
                 DescribeAssociationExecutionTargetsResult,
                 ("association_id", "execution_id", "filters", "max_results", "next_token", ),
@@ -1190,9 +1227,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_association_executions, params, self._interceptors,
+                self._native.describe_association_executions, params, _interceptors,
                 "ssm", "DescribeAssociationExecutions", self._region,
                 DescribeAssociationExecutionsResult,
                 ("association_id", "filters", "max_results", "next_token", ),
@@ -1218,9 +1256,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_automation_executions, params, self._interceptors,
+                self._native.describe_automation_executions, params, _interceptors,
                 "ssm", "DescribeAutomationExecutions", self._region,
                 DescribeAutomationExecutionsResult,
                 ("filters", "max_results", "next_token", ),
@@ -1251,9 +1290,10 @@ class SSMClient:
             params["max_results"] = max_results
         if reverse_order is not None:
             params["reverse_order"] = reverse_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_automation_step_executions, params, self._interceptors,
+                self._native.describe_automation_step_executions, params, _interceptors,
                 "ssm", "DescribeAutomationStepExecutions", self._region,
                 DescribeAutomationStepExecutionsResult,
                 ("automation_execution_id", "filters", "next_token", "max_results", "reverse_order", ),
@@ -1279,9 +1319,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_available_patches, params, self._interceptors,
+                self._native.describe_available_patches, params, _interceptors,
                 "ssm", "DescribeAvailablePatches", self._region,
                 DescribeAvailablePatchesResult,
                 ("filters", "max_results", "next_token", ),
@@ -1306,9 +1347,10 @@ class SSMClient:
             params["document_version"] = document_version
         if version_name is not None:
             params["version_name"] = version_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_document, params, self._interceptors,
+                self._native.describe_document, params, _interceptors,
                 "ssm", "DescribeDocument", self._region,
                 DescribeDocumentResult,
                 ("name", "document_version", "version_name", ),
@@ -1335,9 +1377,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_document_permission, params, self._interceptors,
+                self._native.describe_document_permission, params, _interceptors,
                 "ssm", "DescribeDocumentPermission", self._region,
                 DescribeDocumentPermissionResponse,
                 ("name", "permission_type", "max_results", "next_token", ),
@@ -1362,9 +1405,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_effective_instance_associations, params, self._interceptors,
+                self._native.describe_effective_instance_associations, params, _interceptors,
                 "ssm", "DescribeEffectiveInstanceAssociations", self._region,
                 DescribeEffectiveInstanceAssociationsResult,
                 ("instance_id", "max_results", "next_token", ),
@@ -1389,9 +1433,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_effective_patches_for_patch_baseline, params, self._interceptors,
+                self._native.describe_effective_patches_for_patch_baseline, params, _interceptors,
                 "ssm", "DescribeEffectivePatchesForPatchBaseline", self._region,
                 DescribeEffectivePatchesForPatchBaselineResult,
                 ("baseline_id", "max_results", "next_token", ),
@@ -1416,9 +1461,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_associations_status, params, self._interceptors,
+                self._native.describe_instance_associations_status, params, _interceptors,
                 "ssm", "DescribeInstanceAssociationsStatus", self._region,
                 DescribeInstanceAssociationsStatusResult,
                 ("instance_id", "max_results", "next_token", ),
@@ -1447,9 +1493,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_information, params, self._interceptors,
+                self._native.describe_instance_information, params, _interceptors,
                 "ssm", "DescribeInstanceInformation", self._region,
                 DescribeInstanceInformationResult,
                 ("instance_information_filter_list", "filters", "max_results", "next_token", ),
@@ -1474,9 +1521,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_patch_states, params, self._interceptors,
+                self._native.describe_instance_patch_states, params, _interceptors,
                 "ssm", "DescribeInstancePatchStates", self._region,
                 DescribeInstancePatchStatesResult,
                 ("instance_ids", "next_token", "max_results", ),
@@ -1504,9 +1552,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_patch_states_for_patch_group, params, self._interceptors,
+                self._native.describe_instance_patch_states_for_patch_group, params, _interceptors,
                 "ssm", "DescribeInstancePatchStatesForPatchGroup", self._region,
                 DescribeInstancePatchStatesForPatchGroupResult,
                 ("patch_group", "filters", "next_token", "max_results", ),
@@ -1534,9 +1583,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_patches, params, self._interceptors,
+                self._native.describe_instance_patches, params, _interceptors,
                 "ssm", "DescribeInstancePatches", self._region,
                 DescribeInstancePatchesResult,
                 ("instance_id", "filters", "next_token", "max_results", ),
@@ -1565,9 +1615,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_instance_properties, params, self._interceptors,
+                self._native.describe_instance_properties, params, _interceptors,
                 "ssm", "DescribeInstanceProperties", self._region,
                 DescribeInstancePropertiesResult,
                 ("instance_property_filter_list", "filters_with_operator", "max_results", "next_token", ),
@@ -1593,9 +1644,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_inventory_deletions, params, self._interceptors,
+                self._native.describe_inventory_deletions, params, _interceptors,
                 "ssm", "DescribeInventoryDeletions", self._region,
                 DescribeInventoryDeletionsResult,
                 ("deletion_id", "next_token", "max_results", ),
@@ -1625,9 +1677,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_execution_task_invocations, params, self._interceptors,
+                self._native.describe_maintenance_window_execution_task_invocations, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTaskInvocations", self._region,
                 DescribeMaintenanceWindowExecutionTaskInvocationsResult,
                 ("window_execution_id", "task_id", "filters", "max_results", "next_token", ),
@@ -1655,9 +1708,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_execution_tasks, params, self._interceptors,
+                self._native.describe_maintenance_window_execution_tasks, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTasks", self._region,
                 DescribeMaintenanceWindowExecutionTasksResult,
                 ("window_execution_id", "filters", "max_results", "next_token", ),
@@ -1685,9 +1739,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_executions, params, self._interceptors,
+                self._native.describe_maintenance_window_executions, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutions", self._region,
                 DescribeMaintenanceWindowExecutionsResult,
                 ("window_id", "filters", "max_results", "next_token", ),
@@ -1722,9 +1777,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_schedule, params, self._interceptors,
+                self._native.describe_maintenance_window_schedule, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowSchedule", self._region,
                 DescribeMaintenanceWindowScheduleResult,
                 ("window_id", "targets", "resource_type", "filters", "max_results", "next_token", ),
@@ -1752,9 +1808,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_targets, params, self._interceptors,
+                self._native.describe_maintenance_window_targets, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowTargets", self._region,
                 DescribeMaintenanceWindowTargetsResult,
                 ("window_id", "filters", "max_results", "next_token", ),
@@ -1782,9 +1839,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_window_tasks, params, self._interceptors,
+                self._native.describe_maintenance_window_tasks, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowTasks", self._region,
                 DescribeMaintenanceWindowTasksResult,
                 ("window_id", "filters", "max_results", "next_token", ),
@@ -1810,9 +1868,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_windows, params, self._interceptors,
+                self._native.describe_maintenance_windows, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindows", self._region,
                 DescribeMaintenanceWindowsResult,
                 ("filters", "max_results", "next_token", ),
@@ -1839,9 +1898,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_maintenance_windows_for_target, params, self._interceptors,
+                self._native.describe_maintenance_windows_for_target, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowsForTarget", self._region,
                 DescribeMaintenanceWindowsForTargetResult,
                 ("targets", "resource_type", "max_results", "next_token", ),
@@ -1867,9 +1927,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_ops_items, params, self._interceptors,
+                self._native.describe_ops_items, params, _interceptors,
                 "ssm", "DescribeOpsItems", self._region,
                 DescribeOpsItemsResponse,
                 ("ops_item_filters", "max_results", "next_token", ),
@@ -1901,9 +1962,10 @@ class SSMClient:
             params["next_token"] = next_token
         if shared is not None:
             params["shared"] = shared
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_parameters, params, self._interceptors,
+                self._native.describe_parameters, params, _interceptors,
                 "ssm", "DescribeParameters", self._region,
                 DescribeParametersResult,
                 ("filters", "parameter_filters", "max_results", "next_token", "shared", ),
@@ -1929,9 +1991,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_patch_baselines, params, self._interceptors,
+                self._native.describe_patch_baselines, params, _interceptors,
                 "ssm", "DescribePatchBaselines", self._region,
                 DescribePatchBaselinesResult,
                 ("filters", "max_results", "next_token", ),
@@ -1950,9 +2013,10 @@ class SSMClient:
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_patch_group_state, params, self._interceptors,
+                self._native.describe_patch_group_state, params, _interceptors,
                 "ssm", "DescribePatchGroupState", self._region,
                 DescribePatchGroupStateResult,
                 ("patch_group", ),
@@ -1978,9 +2042,10 @@ class SSMClient:
             params["filters"] = filters
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_patch_groups, params, self._interceptors,
+                self._native.describe_patch_groups, params, _interceptors,
                 "ssm", "DescribePatchGroups", self._region,
                 DescribePatchGroupsResult,
                 ("max_results", "filters", "next_token", ),
@@ -2010,9 +2075,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_patch_properties, params, self._interceptors,
+                self._native.describe_patch_properties, params, _interceptors,
                 "ssm", "DescribePatchProperties", self._region,
                 DescribePatchPropertiesResult,
                 ("operating_system", "property", "patch_set", "max_results", "next_token", ),
@@ -2040,9 +2106,10 @@ class SSMClient:
             params["next_token"] = next_token
         if filters is not None:
             params["filters"] = filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_sessions, params, self._interceptors,
+                self._native.describe_sessions, params, _interceptors,
                 "ssm", "DescribeSessions", self._region,
                 DescribeSessionsResponse,
                 ("state", "max_results", "next_token", "filters", ),
@@ -2063,9 +2130,10 @@ class SSMClient:
             "ops_item_id": ops_item_id,
             "association_id": association_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_ops_item_related_item, params, self._interceptors,
+                self._native.disassociate_ops_item_related_item, params, _interceptors,
                 "ssm", "DisassociateOpsItemRelatedItem", self._region,
                 DisassociateOpsItemRelatedItemResponse,
                 ("ops_item_id", "association_id", ),
@@ -2084,9 +2152,10 @@ class SSMClient:
         params: dict[str, object] = {
             "access_request_id": access_request_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_access_token, params, self._interceptors,
+                self._native.get_access_token, params, _interceptors,
                 "ssm", "GetAccessToken", self._region,
                 GetAccessTokenResponse,
                 ("access_request_id", ),
@@ -2105,9 +2174,10 @@ class SSMClient:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_automation_execution, params, self._interceptors,
+                self._native.get_automation_execution, params, _interceptors,
                 "ssm", "GetAutomationExecution", self._region,
                 GetAutomationExecutionResult,
                 ("automation_execution_id", ),
@@ -2129,9 +2199,10 @@ class SSMClient:
         }
         if at_time is not None:
             params["at_time"] = at_time
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_calendar_state, params, self._interceptors,
+                self._native.get_calendar_state, params, _interceptors,
                 "ssm", "GetCalendarState", self._region,
                 GetCalendarStateResponse,
                 ("calendar_names", "at_time", ),
@@ -2150,9 +2221,10 @@ class SSMClient:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_cloud_connector, params, self._interceptors,
+                self._native.get_cloud_connector, params, _interceptors,
                 "ssm", "GetCloudConnector", self._region,
                 GetCloudConnectorResult,
                 ("cloud_connector_id", ),
@@ -2176,9 +2248,10 @@ class SSMClient:
         }
         if plugin_name is not None:
             params["plugin_name"] = plugin_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_command_invocation, params, self._interceptors,
+                self._native.get_command_invocation, params, _interceptors,
                 "ssm", "GetCommandInvocation", self._region,
                 GetCommandInvocationResult,
                 ("command_id", "instance_id", "plugin_name", ),
@@ -2197,9 +2270,10 @@ class SSMClient:
         params: dict[str, object] = {
             "target": target,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_connection_status, params, self._interceptors,
+                self._native.get_connection_status, params, _interceptors,
                 "ssm", "GetConnectionStatus", self._region,
                 GetConnectionStatusResponse,
                 ("target", ),
@@ -2219,9 +2293,10 @@ class SSMClient:
         }
         if operating_system is not None:
             params["operating_system"] = operating_system
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_default_patch_baseline, params, self._interceptors,
+                self._native.get_default_patch_baseline, params, _interceptors,
                 "ssm", "GetDefaultPatchBaseline", self._region,
                 GetDefaultPatchBaselineResult,
                 ("operating_system", ),
@@ -2248,9 +2323,10 @@ class SSMClient:
             params["baseline_override"] = baseline_override
         if use_s3_dual_stack_endpoint is not None:
             params["use_s3_dual_stack_endpoint"] = use_s3_dual_stack_endpoint
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_deployable_patch_snapshot_for_instance, params, self._interceptors,
+                self._native.get_deployable_patch_snapshot_for_instance, params, _interceptors,
                 "ssm", "GetDeployablePatchSnapshotForInstance", self._region,
                 GetDeployablePatchSnapshotForInstanceResult,
                 ("instance_id", "snapshot_id", "baseline_override", "use_s3_dual_stack_endpoint", ),
@@ -2278,9 +2354,10 @@ class SSMClient:
             params["document_version"] = document_version
         if document_format is not None:
             params["document_format"] = document_format
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_document, params, self._interceptors,
+                self._native.get_document, params, _interceptors,
                 "ssm", "GetDocument", self._region,
                 GetDocumentResult,
                 ("name", "version_name", "document_version", "document_format", ),
@@ -2299,9 +2376,10 @@ class SSMClient:
         params: dict[str, object] = {
             "execution_preview_id": execution_preview_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_execution_preview, params, self._interceptors,
+                self._native.get_execution_preview, params, _interceptors,
                 "ssm", "GetExecutionPreview", self._region,
                 GetExecutionPreviewResponse,
                 ("execution_preview_id", ),
@@ -2333,9 +2411,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_inventory, params, self._interceptors,
+                self._native.get_inventory, params, _interceptors,
                 "ssm", "GetInventory", self._region,
                 GetInventoryResult,
                 ("filters", "aggregators", "result_attributes", "next_token", "max_results", ),
@@ -2367,9 +2446,10 @@ class SSMClient:
             params["aggregator"] = aggregator
         if sub_type is not None:
             params["sub_type"] = sub_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_inventory_schema, params, self._interceptors,
+                self._native.get_inventory_schema, params, _interceptors,
                 "ssm", "GetInventorySchema", self._region,
                 GetInventorySchemaResult,
                 ("type_name", "next_token", "max_results", "aggregator", "sub_type", ),
@@ -2388,9 +2468,10 @@ class SSMClient:
         params: dict[str, object] = {
             "window_id": window_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_maintenance_window, params, self._interceptors,
+                self._native.get_maintenance_window, params, _interceptors,
                 "ssm", "GetMaintenanceWindow", self._region,
                 GetMaintenanceWindowResult,
                 ("window_id", ),
@@ -2409,9 +2490,10 @@ class SSMClient:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_maintenance_window_execution, params, self._interceptors,
+                self._native.get_maintenance_window_execution, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecution", self._region,
                 GetMaintenanceWindowExecutionResult,
                 ("window_execution_id", ),
@@ -2432,9 +2514,10 @@ class SSMClient:
             "window_execution_id": window_execution_id,
             "task_id": task_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_maintenance_window_execution_task, params, self._interceptors,
+                self._native.get_maintenance_window_execution_task, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTask", self._region,
                 GetMaintenanceWindowExecutionTaskResult,
                 ("window_execution_id", "task_id", ),
@@ -2457,9 +2540,10 @@ class SSMClient:
             "task_id": task_id,
             "invocation_id": invocation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_maintenance_window_execution_task_invocation, params, self._interceptors,
+                self._native.get_maintenance_window_execution_task_invocation, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTaskInvocation", self._region,
                 GetMaintenanceWindowExecutionTaskInvocationResult,
                 ("window_execution_id", "task_id", "invocation_id", ),
@@ -2480,9 +2564,10 @@ class SSMClient:
             "window_id": window_id,
             "window_task_id": window_task_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_maintenance_window_task, params, self._interceptors,
+                self._native.get_maintenance_window_task, params, _interceptors,
                 "ssm", "GetMaintenanceWindowTask", self._region,
                 GetMaintenanceWindowTaskResult,
                 ("window_id", "window_task_id", ),
@@ -2504,9 +2589,10 @@ class SSMClient:
         }
         if ops_item_arn is not None:
             params["ops_item_arn"] = ops_item_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ops_item, params, self._interceptors,
+                self._native.get_ops_item, params, _interceptors,
                 "ssm", "GetOpsItem", self._region,
                 GetOpsItemResponse,
                 ("ops_item_id", "ops_item_arn", ),
@@ -2531,9 +2617,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ops_metadata, params, self._interceptors,
+                self._native.get_ops_metadata, params, _interceptors,
                 "ssm", "GetOpsMetadata", self._region,
                 GetOpsMetadataResult,
                 ("ops_metadata_arn", "max_results", "next_token", ),
@@ -2568,9 +2655,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ops_summary, params, self._interceptors,
+                self._native.get_ops_summary, params, _interceptors,
                 "ssm", "GetOpsSummary", self._region,
                 GetOpsSummaryResult,
                 ("sync_name", "filters", "aggregators", "result_attributes", "next_token", "max_results", ),
@@ -2592,9 +2680,10 @@ class SSMClient:
         }
         if with_decryption is not None:
             params["with_decryption"] = with_decryption
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_parameter, params, self._interceptors,
+                self._native.get_parameter, params, _interceptors,
                 "ssm", "GetParameter", self._region,
                 GetParameterResult,
                 ("name", "with_decryption", ),
@@ -2622,9 +2711,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_parameter_history, params, self._interceptors,
+                self._native.get_parameter_history, params, _interceptors,
                 "ssm", "GetParameterHistory", self._region,
                 GetParameterHistoryResult,
                 ("name", "with_decryption", "max_results", "next_token", ),
@@ -2646,9 +2736,10 @@ class SSMClient:
         }
         if with_decryption is not None:
             params["with_decryption"] = with_decryption
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_parameters, params, self._interceptors,
+                self._native.get_parameters, params, _interceptors,
                 "ssm", "GetParameters", self._region,
                 GetParametersResult,
                 ("names", "with_decryption", ),
@@ -2682,9 +2773,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_parameters_by_path, params, self._interceptors,
+                self._native.get_parameters_by_path, params, _interceptors,
                 "ssm", "GetParametersByPath", self._region,
                 GetParametersByPathResult,
                 ("path", "recursive", "parameter_filters", "with_decryption", "max_results", "next_token", ),
@@ -2703,9 +2795,10 @@ class SSMClient:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_patch_baseline, params, self._interceptors,
+                self._native.get_patch_baseline, params, _interceptors,
                 "ssm", "GetPatchBaseline", self._region,
                 GetPatchBaselineResult,
                 ("baseline_id", ),
@@ -2727,9 +2820,10 @@ class SSMClient:
         }
         if operating_system is not None:
             params["operating_system"] = operating_system
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_patch_baseline_for_patch_group, params, self._interceptors,
+                self._native.get_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "GetPatchBaselineForPatchGroup", self._region,
                 GetPatchBaselineForPatchGroupResult,
                 ("patch_group", "operating_system", ),
@@ -2754,9 +2848,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policies, params, self._interceptors,
+                self._native.get_resource_policies, params, _interceptors,
                 "ssm", "GetResourcePolicies", self._region,
                 GetResourcePoliciesResponse,
                 ("resource_arn", "next_token", "max_results", ),
@@ -2775,9 +2870,10 @@ class SSMClient:
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_service_setting, params, self._interceptors,
+                self._native.get_service_setting, params, _interceptors,
                 "ssm", "GetServiceSetting", self._region,
                 GetServiceSettingResult,
                 ("setting_id", ),
@@ -2801,9 +2897,10 @@ class SSMClient:
         }
         if parameter_version is not None:
             params["parameter_version"] = parameter_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.label_parameter_version, params, self._interceptors,
+                self._native.label_parameter_version, params, _interceptors,
                 "ssm", "LabelParameterVersion", self._region,
                 LabelParameterVersionResult,
                 ("name", "labels", "parameter_version", ),
@@ -2828,9 +2925,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_association_versions, params, self._interceptors,
+                self._native.list_association_versions, params, _interceptors,
                 "ssm", "ListAssociationVersions", self._region,
                 ListAssociationVersionsResult,
                 ("association_id", "max_results", "next_token", ),
@@ -2856,9 +2954,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_associations, params, self._interceptors,
+                self._native.list_associations, params, _interceptors,
                 "ssm", "ListAssociations", self._region,
                 ListAssociationsResult,
                 ("association_filter_list", "max_results", "next_token", ),
@@ -2884,9 +2983,10 @@ class SSMClient:
             params["next_token"] = next_token
         if filters is not None:
             params["filters"] = filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_cloud_connectors, params, self._interceptors,
+                self._native.list_cloud_connectors, params, _interceptors,
                 "ssm", "ListCloudConnectors", self._region,
                 ListCloudConnectorsResult,
                 ("max_results", "next_token", "filters", ),
@@ -2921,9 +3021,10 @@ class SSMClient:
             params["filters"] = filters
         if details is not None:
             params["details"] = details
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_command_invocations, params, self._interceptors,
+                self._native.list_command_invocations, params, _interceptors,
                 "ssm", "ListCommandInvocations", self._region,
                 ListCommandInvocationsResult,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", "details", ),
@@ -2955,9 +3056,10 @@ class SSMClient:
             params["next_token"] = next_token
         if filters is not None:
             params["filters"] = filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_commands, params, self._interceptors,
+                self._native.list_commands, params, _interceptors,
                 "ssm", "ListCommands", self._region,
                 ListCommandsResult,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", ),
@@ -2989,9 +3091,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_compliance_items, params, self._interceptors,
+                self._native.list_compliance_items, params, _interceptors,
                 "ssm", "ListComplianceItems", self._region,
                 ListComplianceItemsResult,
                 ("filters", "resource_ids", "resource_types", "next_token", "max_results", ),
@@ -3017,9 +3120,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_compliance_summaries, params, self._interceptors,
+                self._native.list_compliance_summaries, params, _interceptors,
                 "ssm", "ListComplianceSummaries", self._region,
                 ListComplianceSummariesResult,
                 ("filters", "next_token", "max_results", ),
@@ -3049,9 +3153,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_document_metadata_history, params, self._interceptors,
+                self._native.list_document_metadata_history, params, _interceptors,
                 "ssm", "ListDocumentMetadataHistory", self._region,
                 ListDocumentMetadataHistoryResponse,
                 ("name", "metadata", "document_version", "next_token", "max_results", ),
@@ -3076,9 +3181,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_document_versions, params, self._interceptors,
+                self._native.list_document_versions, params, _interceptors,
                 "ssm", "ListDocumentVersions", self._region,
                 ListDocumentVersionsResult,
                 ("name", "max_results", "next_token", ),
@@ -3107,9 +3213,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_documents, params, self._interceptors,
+                self._native.list_documents, params, _interceptors,
                 "ssm", "ListDocuments", self._region,
                 ListDocumentsResult,
                 ("document_filter_list", "filters", "max_results", "next_token", ),
@@ -3139,9 +3246,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_inventory_entries, params, self._interceptors,
+                self._native.list_inventory_entries, params, _interceptors,
                 "ssm", "ListInventoryEntries", self._region,
                 ListInventoryEntriesResult,
                 ("instance_id", "type_name", "filters", "next_token", "max_results", ),
@@ -3170,9 +3278,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_nodes, params, self._interceptors,
+                self._native.list_nodes, params, _interceptors,
                 "ssm", "ListNodes", self._region,
                 ListNodesResult,
                 ("sync_name", "filters", "next_token", "max_results", ),
@@ -3203,9 +3312,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_nodes_summary, params, self._interceptors,
+                self._native.list_nodes_summary, params, _interceptors,
                 "ssm", "ListNodesSummary", self._region,
                 ListNodesSummaryResult,
                 ("aggregators", "sync_name", "filters", "next_token", "max_results", ),
@@ -3231,9 +3341,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_ops_item_events, params, self._interceptors,
+                self._native.list_ops_item_events, params, _interceptors,
                 "ssm", "ListOpsItemEvents", self._region,
                 ListOpsItemEventsResponse,
                 ("filters", "max_results", "next_token", ),
@@ -3262,9 +3373,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_ops_item_related_items, params, self._interceptors,
+                self._native.list_ops_item_related_items, params, _interceptors,
                 "ssm", "ListOpsItemRelatedItems", self._region,
                 ListOpsItemRelatedItemsResponse,
                 ("ops_item_id", "filters", "max_results", "next_token", ),
@@ -3290,9 +3402,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_ops_metadata, params, self._interceptors,
+                self._native.list_ops_metadata, params, _interceptors,
                 "ssm", "ListOpsMetadata", self._region,
                 ListOpsMetadataResult,
                 ("filters", "max_results", "next_token", ),
@@ -3318,9 +3431,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_resource_compliance_summaries, params, self._interceptors,
+                self._native.list_resource_compliance_summaries, params, _interceptors,
                 "ssm", "ListResourceComplianceSummaries", self._region,
                 ListResourceComplianceSummariesResult,
                 ("filters", "next_token", "max_results", ),
@@ -3346,9 +3460,10 @@ class SSMClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_resource_data_sync, params, self._interceptors,
+                self._native.list_resource_data_sync, params, _interceptors,
                 "ssm", "ListResourceDataSync", self._region,
                 ListResourceDataSyncResult,
                 ("sync_type", "next_token", "max_results", ),
@@ -3369,9 +3484,10 @@ class SSMClient:
             "resource_type": resource_type,
             "resource_id": resource_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "ssm", "ListTagsForResource", self._region,
                 ListTagsForResourceResult,
                 ("resource_type", "resource_id", ),
@@ -3401,9 +3517,10 @@ class SSMClient:
             params["account_ids_to_remove"] = account_ids_to_remove
         if shared_document_version is not None:
             params["shared_document_version"] = shared_document_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.modify_document_permission, params, self._interceptors,
+                self._native.modify_document_permission, params, _interceptors,
                 "ssm", "ModifyDocumentPermission", self._region,
                 ModifyDocumentPermissionResponse,
                 ("name", "permission_type", "account_ids_to_add", "account_ids_to_remove", "shared_document_version", ),
@@ -3436,9 +3553,10 @@ class SSMClient:
             params["item_content_hash"] = item_content_hash
         if upload_type is not None:
             params["upload_type"] = upload_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_compliance_items, params, self._interceptors,
+                self._native.put_compliance_items, params, _interceptors,
                 "ssm", "PutComplianceItems", self._region,
                 PutComplianceItemsResult,
                 ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", "item_content_hash", "upload_type", ),
@@ -3459,9 +3577,10 @@ class SSMClient:
             "instance_id": instance_id,
             "items": items,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_inventory, params, self._interceptors,
+                self._native.put_inventory, params, _interceptors,
                 "ssm", "PutInventory", self._region,
                 PutInventoryResult,
                 ("instance_id", "items", ),
@@ -3509,9 +3628,10 @@ class SSMClient:
             params["policies"] = policies
         if data_type is not None:
             params["data_type"] = data_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_parameter, params, self._interceptors,
+                self._native.put_parameter, params, _interceptors,
                 "ssm", "PutParameter", self._region,
                 PutParameterResult,
                 ("name", "value", "description", "type", "key_id", "overwrite", "allowed_pattern", "tags", "tier", "policies", "data_type", ),
@@ -3538,9 +3658,10 @@ class SSMClient:
             params["policy_id"] = policy_id
         if policy_hash is not None:
             params["policy_hash"] = policy_hash
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "ssm", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("resource_arn", "policy", "policy_id", "policy_hash", ),
@@ -3559,9 +3680,10 @@ class SSMClient:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_default_patch_baseline, params, self._interceptors,
+                self._native.register_default_patch_baseline, params, _interceptors,
                 "ssm", "RegisterDefaultPatchBaseline", self._region,
                 RegisterDefaultPatchBaselineResult,
                 ("baseline_id", ),
@@ -3582,9 +3704,10 @@ class SSMClient:
             "baseline_id": baseline_id,
             "patch_group": patch_group,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_patch_baseline_for_patch_group, params, self._interceptors,
+                self._native.register_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "RegisterPatchBaselineForPatchGroup", self._region,
                 RegisterPatchBaselineForPatchGroupResult,
                 ("baseline_id", "patch_group", ),
@@ -3619,9 +3742,10 @@ class SSMClient:
             params["description"] = description
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_target_with_maintenance_window, params, self._interceptors,
+                self._native.register_target_with_maintenance_window, params, _interceptors,
                 "ssm", "RegisterTargetWithMaintenanceWindow", self._region,
                 RegisterTargetWithMaintenanceWindowResult,
                 ("window_id", "resource_type", "targets", "owner_information", "name", "description", "client_token", ),
@@ -3683,9 +3807,10 @@ class SSMClient:
             params["cutoff_behavior"] = cutoff_behavior
         if alarm_configuration is not None:
             params["alarm_configuration"] = alarm_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_task_with_maintenance_window, params, self._interceptors,
+                self._native.register_task_with_maintenance_window, params, _interceptors,
                 "ssm", "RegisterTaskWithMaintenanceWindow", self._region,
                 RegisterTaskWithMaintenanceWindowResult,
                 ("window_id", "task_arn", "task_type", "targets", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "client_token", "cutoff_behavior", "alarm_configuration", ),
@@ -3708,9 +3833,10 @@ class SSMClient:
             "resource_id": resource_id,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.remove_tags_from_resource, params, self._interceptors,
+                self._native.remove_tags_from_resource, params, _interceptors,
                 "ssm", "RemoveTagsFromResource", self._region,
                 RemoveTagsFromResourceResult,
                 ("resource_type", "resource_id", "tag_keys", ),
@@ -3729,9 +3855,10 @@ class SSMClient:
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.reset_service_setting, params, self._interceptors,
+                self._native.reset_service_setting, params, _interceptors,
                 "ssm", "ResetServiceSetting", self._region,
                 ResetServiceSettingResult,
                 ("setting_id", ),
@@ -3750,9 +3877,10 @@ class SSMClient:
         params: dict[str, object] = {
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.resume_session, params, self._interceptors,
+                self._native.resume_session, params, _interceptors,
                 "ssm", "ResumeSession", self._region,
                 ResumeSessionResponse,
                 ("session_id", ),
@@ -3776,9 +3904,10 @@ class SSMClient:
         }
         if payload is not None:
             params["payload"] = payload
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_automation_signal, params, self._interceptors,
+                self._native.send_automation_signal, params, _interceptors,
                 "ssm", "SendAutomationSignal", self._region,
                 SendAutomationSignalResult,
                 ("automation_execution_id", "signal_type", "payload", ),
@@ -3848,9 +3977,10 @@ class SSMClient:
             params["cloud_watch_output_config"] = cloud_watch_output_config
         if alarm_configuration is not None:
             params["alarm_configuration"] = alarm_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_command, params, self._interceptors,
+                self._native.send_command, params, _interceptors,
                 "ssm", "SendCommand", self._region,
                 SendCommandResult,
                 ("document_name", "instance_ids", "targets", "document_version", "document_hash", "document_hash_type", "timeout_seconds", "comment", "parameters", "output_s3_region", "output_s3_bucket_name", "output_s3_key_prefix", "max_concurrency", "max_errors", "service_role_arn", "notification_config", "cloud_watch_output_config", "alarm_configuration", ),
@@ -3874,9 +4004,10 @@ class SSMClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_access_request, params, self._interceptors,
+                self._native.start_access_request, params, _interceptors,
                 "ssm", "StartAccessRequest", self._region,
                 StartAccessRequestResponse,
                 ("reason", "targets", "tags", ),
@@ -3895,9 +4026,10 @@ class SSMClient:
         params: dict[str, object] = {
             "association_ids": association_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_associations_once, params, self._interceptors,
+                self._native.start_associations_once, params, _interceptors,
                 "ssm", "StartAssociationsOnce", self._region,
                 StartAssociationsOnceResult,
                 ("association_ids", ),
@@ -3955,9 +4087,10 @@ class SSMClient:
             params["alarm_configuration"] = alarm_configuration
         if target_locations_url is not None:
             params["target_locations_url"] = target_locations_url
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_automation_execution, params, self._interceptors,
+                self._native.start_automation_execution, params, _interceptors,
                 "ssm", "StartAutomationExecution", self._region,
                 StartAutomationExecutionResult,
                 ("document_name", "document_version", "parameters", "client_token", "mode", "target_parameter_name", "targets", "target_maps", "max_concurrency", "max_errors", "target_locations", "tags", "alarm_configuration", "target_locations_url", ),
@@ -4005,9 +4138,10 @@ class SSMClient:
             params["scheduled_end_time"] = scheduled_end_time
         if change_details is not None:
             params["change_details"] = change_details
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_change_request_execution, params, self._interceptors,
+                self._native.start_change_request_execution, params, _interceptors,
                 "ssm", "StartChangeRequestExecution", self._region,
                 StartChangeRequestExecutionResult,
                 ("document_name", "runbooks", "scheduled_time", "document_version", "parameters", "change_request_name", "client_token", "auto_approve", "tags", "scheduled_end_time", "change_details", ),
@@ -4032,9 +4166,10 @@ class SSMClient:
             params["document_version"] = document_version
         if execution_inputs is not None:
             params["execution_inputs"] = execution_inputs
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_execution_preview, params, self._interceptors,
+                self._native.start_execution_preview, params, _interceptors,
                 "ssm", "StartExecutionPreview", self._region,
                 StartExecutionPreviewResponse,
                 ("document_name", "document_version", "execution_inputs", ),
@@ -4062,9 +4197,10 @@ class SSMClient:
             params["reason"] = reason
         if parameters is not None:
             params["parameters"] = parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_session, params, self._interceptors,
+                self._native.start_session, params, _interceptors,
                 "ssm", "StartSession", self._region,
                 StartSessionResponse,
                 ("target", "document_name", "reason", "parameters", ),
@@ -4086,9 +4222,10 @@ class SSMClient:
         }
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_automation_execution, params, self._interceptors,
+                self._native.stop_automation_execution, params, _interceptors,
                 "ssm", "StopAutomationExecution", self._region,
                 StopAutomationExecutionResult,
                 ("automation_execution_id", "type", ),
@@ -4107,9 +4244,10 @@ class SSMClient:
         params: dict[str, object] = {
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.terminate_session, params, self._interceptors,
+                self._native.terminate_session, params, _interceptors,
                 "ssm", "TerminateSession", self._region,
                 TerminateSessionResponse,
                 ("session_id", ),
@@ -4132,9 +4270,10 @@ class SSMClient:
             "parameter_version": parameter_version,
             "labels": labels,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.unlabel_parameter_version, params, self._interceptors,
+                self._native.unlabel_parameter_version, params, _interceptors,
                 "ssm", "UnlabelParameterVersion", self._region,
                 UnlabelParameterVersionResult,
                 ("name", "parameter_version", "labels", ),
@@ -4216,9 +4355,10 @@ class SSMClient:
             params["alarm_configuration"] = alarm_configuration
         if association_dispatch_assume_role is not None:
             params["association_dispatch_assume_role"] = association_dispatch_assume_role
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_association, params, self._interceptors,
+                self._native.update_association, params, _interceptors,
                 "ssm", "UpdateAssociation", self._region,
                 UpdateAssociationResult,
                 ("association_id", "parameters", "document_version", "schedule_expression", "output_location", "name", "targets", "association_name", "association_version", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "alarm_configuration", "association_dispatch_assume_role", ),
@@ -4241,9 +4381,10 @@ class SSMClient:
             "instance_id": instance_id,
             "association_status": association_status,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_association_status, params, self._interceptors,
+                self._native.update_association_status, params, _interceptors,
                 "ssm", "UpdateAssociationStatus", self._region,
                 UpdateAssociationStatusResult,
                 ("name", "instance_id", "association_status", ),
@@ -4271,9 +4412,10 @@ class SSMClient:
             params["configuration"] = configuration
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_cloud_connector, params, self._interceptors,
+                self._native.update_cloud_connector, params, _interceptors,
                 "ssm", "UpdateCloudConnector", self._region,
                 UpdateCloudConnectorResult,
                 ("cloud_connector_id", "display_name", "configuration", "description", ),
@@ -4312,9 +4454,10 @@ class SSMClient:
             params["document_format"] = document_format
         if target_type is not None:
             params["target_type"] = target_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_document, params, self._interceptors,
+                self._native.update_document, params, _interceptors,
                 "ssm", "UpdateDocument", self._region,
                 UpdateDocumentResult,
                 ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", ),
@@ -4335,9 +4478,10 @@ class SSMClient:
             "name": name,
             "document_version": document_version,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_document_default_version, params, self._interceptors,
+                self._native.update_document_default_version, params, _interceptors,
                 "ssm", "UpdateDocumentDefaultVersion", self._region,
                 UpdateDocumentDefaultVersionResult,
                 ("name", "document_version", ),
@@ -4361,9 +4505,10 @@ class SSMClient:
         }
         if document_version is not None:
             params["document_version"] = document_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_document_metadata, params, self._interceptors,
+                self._native.update_document_metadata, params, _interceptors,
                 "ssm", "UpdateDocumentMetadata", self._region,
                 UpdateDocumentMetadataResponse,
                 ("name", "document_reviews", "document_version", ),
@@ -4418,9 +4563,10 @@ class SSMClient:
             params["enabled"] = enabled
         if replace is not None:
             params["replace"] = replace
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_maintenance_window, params, self._interceptors,
+                self._native.update_maintenance_window, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindow", self._region,
                 UpdateMaintenanceWindowResult,
                 ("window_id", "name", "description", "start_date", "end_date", "schedule", "schedule_timezone", "schedule_offset", "duration", "cutoff", "allow_unassociated_targets", "enabled", "replace", ),
@@ -4456,9 +4602,10 @@ class SSMClient:
             params["description"] = description
         if replace is not None:
             params["replace"] = replace
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_maintenance_window_target, params, self._interceptors,
+                self._native.update_maintenance_window_target, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindowTarget", self._region,
                 UpdateMaintenanceWindowTargetResult,
                 ("window_id", "window_target_id", "targets", "owner_information", "name", "description", "replace", ),
@@ -4521,9 +4668,10 @@ class SSMClient:
             params["cutoff_behavior"] = cutoff_behavior
         if alarm_configuration is not None:
             params["alarm_configuration"] = alarm_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_maintenance_window_task, params, self._interceptors,
+                self._native.update_maintenance_window_task, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindowTask", self._region,
                 UpdateMaintenanceWindowTaskResult,
                 ("window_id", "window_task_id", "targets", "task_arn", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "replace", "cutoff_behavior", "alarm_configuration", ),
@@ -4544,9 +4692,10 @@ class SSMClient:
             "instance_id": instance_id,
             "iam_role": iam_role,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_managed_instance_role, params, self._interceptors,
+                self._native.update_managed_instance_role, params, _interceptors,
                 "ssm", "UpdateManagedInstanceRole", self._region,
                 UpdateManagedInstanceRoleResult,
                 ("instance_id", "iam_role", ),
@@ -4610,9 +4759,10 @@ class SSMClient:
             params["planned_end_time"] = planned_end_time
         if ops_item_arn is not None:
             params["ops_item_arn"] = ops_item_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_ops_item, params, self._interceptors,
+                self._native.update_ops_item, params, _interceptors,
                 "ssm", "UpdateOpsItem", self._region,
                 UpdateOpsItemResponse,
                 ("ops_item_id", "description", "operational_data", "operational_data_to_delete", "notifications", "priority", "related_ops_items", "status", "title", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "ops_item_arn", ),
@@ -4637,9 +4787,10 @@ class SSMClient:
             params["metadata_to_update"] = metadata_to_update
         if keys_to_delete is not None:
             params["keys_to_delete"] = keys_to_delete
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_ops_metadata, params, self._interceptors,
+                self._native.update_ops_metadata, params, _interceptors,
                 "ssm", "UpdateOpsMetadata", self._region,
                 UpdateOpsMetadataResult,
                 ("ops_metadata_arn", "metadata_to_update", "keys_to_delete", ),
@@ -4694,9 +4845,10 @@ class SSMClient:
             params["available_security_updates_compliance_status"] = available_security_updates_compliance_status
         if replace is not None:
             params["replace"] = replace
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_patch_baseline, params, self._interceptors,
+                self._native.update_patch_baseline, params, _interceptors,
                 "ssm", "UpdatePatchBaseline", self._region,
                 UpdatePatchBaselineResult,
                 ("baseline_id", "name", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "replace", ),
@@ -4719,9 +4871,10 @@ class SSMClient:
             "sync_type": sync_type,
             "sync_source": sync_source,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_resource_data_sync, params, self._interceptors,
+                self._native.update_resource_data_sync, params, _interceptors,
                 "ssm", "UpdateResourceDataSync", self._region,
                 UpdateResourceDataSyncResult,
                 ("sync_name", "sync_type", "sync_source", ),
@@ -4742,9 +4895,10 @@ class SSMClient:
             "setting_id": setting_id,
             "setting_value": setting_value,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_service_setting, params, self._interceptors,
+                self._native.update_service_setting, params, _interceptors,
                 "ssm", "UpdateServiceSetting", self._region,
                 UpdateServiceSettingResult,
                 ("setting_id", "setting_value", ),
@@ -4769,9 +4923,10 @@ class SSMClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.validate_cloud_connector, params, self._interceptors,
+                self._native.validate_cloud_connector, params, _interceptors,
                 "ssm", "ValidateCloudConnector", self._region,
                 ValidateCloudConnectorResult,
                 ("cloud_connector_id", "max_results", "next_token", ),

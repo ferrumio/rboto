@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import APIGatewayClient as NativeClient, ApiKeyIds, ApiKeys, Authorizers, BasePathMappings, ClientCertificates, CreateApiKeyOutput, CreateAuthorizerOutput, CreateBasePathMappingOutput, CreateDeploymentOutput, CreateDocumentationPartOutput, CreateDocumentationVersionOutput, CreateDomainNameAccessAssociationOutput, CreateDomainNameOutput, CreateModelOutput, CreateRequestValidatorOutput, CreateResourceOutput, CreateRestApiOutput, CreateStageOutput, CreateUsagePlanKeyOutput, CreateUsagePlanOutput, CreateVpcLinkOutput, Deployments, DocumentationPartIds, DocumentationParts, DocumentationVersions, DomainNameAccessAssociations, DomainNames, ExportResponse, GatewayResponses, GenerateClientCertificateOutput, GetAccountOutput, GetApiKeyOutput, GetAuthorizerOutput, GetBasePathMappingOutput, GetClientCertificateOutput, GetDeploymentOutput, GetDocumentationPartOutput, GetDocumentationVersionOutput, GetDomainNameOutput, GetGatewayResponseOutput, GetIntegrationOutput, GetIntegrationResponseOutput, GetMethodOutput, GetMethodResponseOutput, GetModelOutput, GetRequestValidatorOutput, GetResourceOutput, GetRestApiOutput, GetSdkTypeOutput, GetStageOutput, GetUsageOutput, GetUsagePlanKeyOutput, GetUsagePlanOutput, GetVpcLinkOutput, ImportRestApiOutput, Models, PutGatewayResponseOutput, PutIntegrationOutput, PutIntegrationResponseOutput, PutMethodOutput, PutMethodResponseOutput, PutRestApiOutput, RequestValidators, Resources, RestApis, SdkResponse, SdkTypes, Stages, Tags, Template, TestInvokeAuthorizerResponse, TestInvokeMethodResponse, UpdateAccountOutput, UpdateApiKeyOutput, UpdateAuthorizerOutput, UpdateBasePathMappingOutput, UpdateClientCertificateOutput, UpdateDeploymentOutput, UpdateDocumentationPartOutput, UpdateDocumentationVersionOutput, UpdateDomainNameOutput, UpdateGatewayResponseOutput, UpdateIntegrationOutput, UpdateIntegrationResponseOutput, UpdateMethodOutput, UpdateMethodResponseOutput, UpdateModelOutput, UpdateRequestValidatorOutput, UpdateResourceOutput, UpdateRestApiOutput, UpdateStageOutput, UpdateUsageOutput, UpdateUsagePlanOutput, UpdateVpcLinkOutput, UsagePlanKeys, UsagePlans, VpcLinks
 from .types import (
@@ -41,6 +42,8 @@ from .types import (
 
 
 class APIGatewayClient:
+    logger_name = "rboto.api-gateway"
+
     def __init__(
         self,
         *,
@@ -92,9 +95,10 @@ class APIGatewayClient:
             params["customer_id"] = customer_id
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_api_key, params, self._interceptors,
+                self._native.create_api_key, params, _interceptors,
                 "api-gateway", "CreateApiKey", self._region,
                 CreateApiKeyOutput,
                 ("name", "description", "enabled", "generate_distinct_id", "value", "stage_keys", "customer_id", "tags", ),
@@ -138,9 +142,10 @@ class APIGatewayClient:
             params["identity_validation_expression"] = identity_validation_expression
         if authorizer_result_ttl_in_seconds is not None:
             params["authorizer_result_ttl_in_seconds"] = authorizer_result_ttl_in_seconds
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_authorizer, params, self._interceptors,
+                self._native.create_authorizer, params, _interceptors,
                 "api-gateway", "CreateAuthorizer", self._region,
                 CreateAuthorizerOutput,
                 ("rest_api_id", "name", "type", "provider_arns", "auth_type", "authorizer_uri", "authorizer_credentials", "identity_source", "identity_validation_expression", "authorizer_result_ttl_in_seconds", ),
@@ -170,9 +175,10 @@ class APIGatewayClient:
             params["base_path"] = base_path
         if stage is not None:
             params["stage"] = stage
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_base_path_mapping, params, self._interceptors,
+                self._native.create_base_path_mapping, params, _interceptors,
                 "api-gateway", "CreateBasePathMapping", self._region,
                 CreateBasePathMappingOutput,
                 ("domain_name", "rest_api_id", "domain_name_id", "base_path", "stage", ),
@@ -215,9 +221,10 @@ class APIGatewayClient:
             params["canary_settings"] = canary_settings
         if tracing_enabled is not None:
             params["tracing_enabled"] = tracing_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_deployment, params, self._interceptors,
+                self._native.create_deployment, params, _interceptors,
                 "api-gateway", "CreateDeployment", self._region,
                 CreateDeploymentOutput,
                 ("rest_api_id", "stage_name", "stage_description", "description", "cache_cluster_enabled", "cache_cluster_size", "variables", "canary_settings", "tracing_enabled", ),
@@ -240,9 +247,10 @@ class APIGatewayClient:
             "location": location,
             "properties": properties,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_documentation_part, params, self._interceptors,
+                self._native.create_documentation_part, params, _interceptors,
                 "api-gateway", "CreateDocumentationPart", self._region,
                 CreateDocumentationPartOutput,
                 ("rest_api_id", "location", "properties", ),
@@ -269,9 +277,10 @@ class APIGatewayClient:
             params["stage_name"] = stage_name
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_documentation_version, params, self._interceptors,
+                self._native.create_documentation_version, params, _interceptors,
                 "api-gateway", "CreateDocumentationVersion", self._region,
                 CreateDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", "stage_name", "description", ),
@@ -335,9 +344,10 @@ class APIGatewayClient:
             params["policy"] = policy
         if routing_mode is not None:
             params["routing_mode"] = routing_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_domain_name, params, self._interceptors,
+                self._native.create_domain_name, params, _interceptors,
                 "api-gateway", "CreateDomainName", self._region,
                 CreateDomainNameOutput,
                 ("domain_name", "certificate_name", "certificate_body", "certificate_private_key", "certificate_chain", "certificate_arn", "regional_certificate_name", "regional_certificate_arn", "endpoint_configuration", "tags", "security_policy", "endpoint_access_mode", "mutual_tls_authentication", "ownership_verification_certificate_arn", "policy", "routing_mode", ),
@@ -363,9 +373,10 @@ class APIGatewayClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_domain_name_access_association, params, self._interceptors,
+                self._native.create_domain_name_access_association, params, _interceptors,
                 "api-gateway", "CreateDomainNameAccessAssociation", self._region,
                 CreateDomainNameAccessAssociationOutput,
                 ("domain_name_arn", "access_association_source_type", "access_association_source", "tags", ),
@@ -394,9 +405,10 @@ class APIGatewayClient:
             params["description"] = description
         if schema is not None:
             params["schema"] = schema
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_model, params, self._interceptors,
+                self._native.create_model, params, _interceptors,
                 "api-gateway", "CreateModel", self._region,
                 CreateModelOutput,
                 ("rest_api_id", "name", "content_type", "description", "schema", ),
@@ -424,9 +436,10 @@ class APIGatewayClient:
             params["validate_request_body"] = validate_request_body
         if validate_request_parameters is not None:
             params["validate_request_parameters"] = validate_request_parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_request_validator, params, self._interceptors,
+                self._native.create_request_validator, params, _interceptors,
                 "api-gateway", "CreateRequestValidator", self._region,
                 CreateRequestValidatorOutput,
                 ("rest_api_id", "name", "validate_request_body", "validate_request_parameters", ),
@@ -449,9 +462,10 @@ class APIGatewayClient:
             "parent_id": parent_id,
             "path_part": path_part,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_resource, params, self._interceptors,
+                self._native.create_resource, params, _interceptors,
                 "api-gateway", "CreateResource", self._region,
                 CreateResourceOutput,
                 ("rest_api_id", "parent_id", "path_part", ),
@@ -506,9 +520,10 @@ class APIGatewayClient:
             params["security_policy"] = security_policy
         if endpoint_access_mode is not None:
             params["endpoint_access_mode"] = endpoint_access_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_rest_api, params, self._interceptors,
+                self._native.create_rest_api, params, _interceptors,
                 "api-gateway", "CreateRestApi", self._region,
                 CreateRestApiOutput,
                 ("name", "description", "version", "clone_from", "binary_media_types", "minimum_compression_size", "api_key_source", "endpoint_configuration", "policy", "tags", "disable_execute_api_endpoint", "security_policy", "endpoint_access_mode", ),
@@ -555,9 +570,10 @@ class APIGatewayClient:
             params["tracing_enabled"] = tracing_enabled
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_stage, params, self._interceptors,
+                self._native.create_stage, params, _interceptors,
                 "api-gateway", "CreateStage", self._region,
                 CreateStageOutput,
                 ("rest_api_id", "stage_name", "deployment_id", "description", "cache_cluster_enabled", "cache_cluster_size", "variables", "documentation_version", "canary_settings", "tracing_enabled", "tags", ),
@@ -591,9 +607,10 @@ class APIGatewayClient:
             params["quota"] = quota
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_usage_plan, params, self._interceptors,
+                self._native.create_usage_plan, params, _interceptors,
                 "api-gateway", "CreateUsagePlan", self._region,
                 CreateUsagePlanOutput,
                 ("name", "description", "api_stages", "throttle", "quota", "tags", ),
@@ -616,9 +633,10 @@ class APIGatewayClient:
             "key_id": key_id,
             "key_type": key_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_usage_plan_key, params, self._interceptors,
+                self._native.create_usage_plan_key, params, _interceptors,
                 "api-gateway", "CreateUsagePlanKey", self._region,
                 CreateUsagePlanKeyOutput,
                 ("usage_plan_id", "key_id", "key_type", ),
@@ -645,9 +663,10 @@ class APIGatewayClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_vpc_link, params, self._interceptors,
+                self._native.create_vpc_link, params, _interceptors,
                 "api-gateway", "CreateVpcLink", self._region,
                 CreateVpcLinkOutput,
                 ("name", "target_arns", "description", "tags", ),
@@ -666,9 +685,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "api_key": api_key,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_api_key, params, self._interceptors,
+                self._native.delete_api_key, params, _interceptors,
                 "api-gateway", "DeleteApiKey", self._region,
                 type(None),
                 ("api_key", ),
@@ -689,9 +709,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_authorizer, params, self._interceptors,
+                self._native.delete_authorizer, params, _interceptors,
                 "api-gateway", "DeleteAuthorizer", self._region,
                 type(None),
                 ("rest_api_id", "authorizer_id", ),
@@ -715,9 +736,10 @@ class APIGatewayClient:
         }
         if domain_name_id is not None:
             params["domain_name_id"] = domain_name_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_base_path_mapping, params, self._interceptors,
+                self._native.delete_base_path_mapping, params, _interceptors,
                 "api-gateway", "DeleteBasePathMapping", self._region,
                 type(None),
                 ("domain_name", "base_path", "domain_name_id", ),
@@ -736,9 +758,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_client_certificate, params, self._interceptors,
+                self._native.delete_client_certificate, params, _interceptors,
                 "api-gateway", "DeleteClientCertificate", self._region,
                 type(None),
                 ("client_certificate_id", ),
@@ -759,9 +782,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "deployment_id": deployment_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_deployment, params, self._interceptors,
+                self._native.delete_deployment, params, _interceptors,
                 "api-gateway", "DeleteDeployment", self._region,
                 type(None),
                 ("rest_api_id", "deployment_id", ),
@@ -782,9 +806,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "documentation_part_id": documentation_part_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_documentation_part, params, self._interceptors,
+                self._native.delete_documentation_part, params, _interceptors,
                 "api-gateway", "DeleteDocumentationPart", self._region,
                 type(None),
                 ("rest_api_id", "documentation_part_id", ),
@@ -805,9 +830,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_documentation_version, params, self._interceptors,
+                self._native.delete_documentation_version, params, _interceptors,
                 "api-gateway", "DeleteDocumentationVersion", self._region,
                 type(None),
                 ("rest_api_id", "documentation_version", ),
@@ -829,9 +855,10 @@ class APIGatewayClient:
         }
         if domain_name_id is not None:
             params["domain_name_id"] = domain_name_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_domain_name, params, self._interceptors,
+                self._native.delete_domain_name, params, _interceptors,
                 "api-gateway", "DeleteDomainName", self._region,
                 type(None),
                 ("domain_name", "domain_name_id", ),
@@ -850,9 +877,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "domain_name_access_association_arn": domain_name_access_association_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_domain_name_access_association, params, self._interceptors,
+                self._native.delete_domain_name_access_association, params, _interceptors,
                 "api-gateway", "DeleteDomainNameAccessAssociation", self._region,
                 type(None),
                 ("domain_name_access_association_arn", ),
@@ -873,9 +901,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "response_type": response_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_gateway_response, params, self._interceptors,
+                self._native.delete_gateway_response, params, _interceptors,
                 "api-gateway", "DeleteGatewayResponse", self._region,
                 type(None),
                 ("rest_api_id", "response_type", ),
@@ -898,9 +927,10 @@ class APIGatewayClient:
             "resource_id": resource_id,
             "http_method": http_method,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_integration, params, self._interceptors,
+                self._native.delete_integration, params, _interceptors,
                 "api-gateway", "DeleteIntegration", self._region,
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", ),
@@ -925,9 +955,10 @@ class APIGatewayClient:
             "http_method": http_method,
             "status_code": status_code,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_integration_response, params, self._interceptors,
+                self._native.delete_integration_response, params, _interceptors,
                 "api-gateway", "DeleteIntegrationResponse", self._region,
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
@@ -950,9 +981,10 @@ class APIGatewayClient:
             "resource_id": resource_id,
             "http_method": http_method,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_method, params, self._interceptors,
+                self._native.delete_method, params, _interceptors,
                 "api-gateway", "DeleteMethod", self._region,
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", ),
@@ -977,9 +1009,10 @@ class APIGatewayClient:
             "http_method": http_method,
             "status_code": status_code,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_method_response, params, self._interceptors,
+                self._native.delete_method_response, params, _interceptors,
                 "api-gateway", "DeleteMethodResponse", self._region,
                 type(None),
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
@@ -1000,9 +1033,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "model_name": model_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_model, params, self._interceptors,
+                self._native.delete_model, params, _interceptors,
                 "api-gateway", "DeleteModel", self._region,
                 type(None),
                 ("rest_api_id", "model_name", ),
@@ -1023,9 +1057,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "request_validator_id": request_validator_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_request_validator, params, self._interceptors,
+                self._native.delete_request_validator, params, _interceptors,
                 "api-gateway", "DeleteRequestValidator", self._region,
                 type(None),
                 ("rest_api_id", "request_validator_id", ),
@@ -1046,9 +1081,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_resource, params, self._interceptors,
+                self._native.delete_resource, params, _interceptors,
                 "api-gateway", "DeleteResource", self._region,
                 type(None),
                 ("rest_api_id", "resource_id", ),
@@ -1067,9 +1103,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_rest_api, params, self._interceptors,
+                self._native.delete_rest_api, params, _interceptors,
                 "api-gateway", "DeleteRestApi", self._region,
                 type(None),
                 ("rest_api_id", ),
@@ -1090,9 +1127,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_stage, params, self._interceptors,
+                self._native.delete_stage, params, _interceptors,
                 "api-gateway", "DeleteStage", self._region,
                 type(None),
                 ("rest_api_id", "stage_name", ),
@@ -1111,9 +1149,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_usage_plan, params, self._interceptors,
+                self._native.delete_usage_plan, params, _interceptors,
                 "api-gateway", "DeleteUsagePlan", self._region,
                 type(None),
                 ("usage_plan_id", ),
@@ -1134,9 +1173,10 @@ class APIGatewayClient:
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_usage_plan_key, params, self._interceptors,
+                self._native.delete_usage_plan_key, params, _interceptors,
                 "api-gateway", "DeleteUsagePlanKey", self._region,
                 type(None),
                 ("usage_plan_id", "key_id", ),
@@ -1155,9 +1195,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_vpc_link, params, self._interceptors,
+                self._native.delete_vpc_link, params, _interceptors,
                 "api-gateway", "DeleteVpcLink", self._region,
                 type(None),
                 ("vpc_link_id", ),
@@ -1178,9 +1219,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.flush_stage_authorizers_cache, params, self._interceptors,
+                self._native.flush_stage_authorizers_cache, params, _interceptors,
                 "api-gateway", "FlushStageAuthorizersCache", self._region,
                 type(None),
                 ("rest_api_id", "stage_name", ),
@@ -1201,9 +1243,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.flush_stage_cache, params, self._interceptors,
+                self._native.flush_stage_cache, params, _interceptors,
                 "api-gateway", "FlushStageCache", self._region,
                 type(None),
                 ("rest_api_id", "stage_name", ),
@@ -1226,9 +1269,10 @@ class APIGatewayClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_client_certificate, params, self._interceptors,
+                self._native.generate_client_certificate, params, _interceptors,
                 "api-gateway", "GenerateClientCertificate", self._region,
                 GenerateClientCertificateOutput,
                 ("description", "tags", ),
@@ -1244,9 +1288,10 @@ class APIGatewayClient:
     ) -> GetAccountOutput:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_account, params, self._interceptors,
+                self._native.get_account, params, _interceptors,
                 "api-gateway", "GetAccount", self._region,
                 GetAccountOutput,
                 (),
@@ -1268,9 +1313,10 @@ class APIGatewayClient:
         }
         if include_value is not None:
             params["include_value"] = include_value
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_api_key, params, self._interceptors,
+                self._native.get_api_key, params, _interceptors,
                 "api-gateway", "GetApiKey", self._region,
                 GetApiKeyOutput,
                 ("api_key", "include_value", ),
@@ -1302,9 +1348,10 @@ class APIGatewayClient:
             params["customer_id"] = customer_id
         if include_values is not None:
             params["include_values"] = include_values
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_api_keys, params, self._interceptors,
+                self._native.get_api_keys, params, _interceptors,
                 "api-gateway", "GetApiKeys", self._region,
                 ApiKeys,
                 ("position", "limit", "name_query", "customer_id", "include_values", ),
@@ -1325,9 +1372,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_authorizer, params, self._interceptors,
+                self._native.get_authorizer, params, _interceptors,
                 "api-gateway", "GetAuthorizer", self._region,
                 GetAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", ),
@@ -1352,9 +1400,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_authorizers, params, self._interceptors,
+                self._native.get_authorizers, params, _interceptors,
                 "api-gateway", "GetAuthorizers", self._region,
                 Authorizers,
                 ("rest_api_id", "position", "limit", ),
@@ -1378,9 +1427,10 @@ class APIGatewayClient:
         }
         if domain_name_id is not None:
             params["domain_name_id"] = domain_name_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_base_path_mapping, params, self._interceptors,
+                self._native.get_base_path_mapping, params, _interceptors,
                 "api-gateway", "GetBasePathMapping", self._region,
                 GetBasePathMappingOutput,
                 ("domain_name", "base_path", "domain_name_id", ),
@@ -1408,9 +1458,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_base_path_mappings, params, self._interceptors,
+                self._native.get_base_path_mappings, params, _interceptors,
                 "api-gateway", "GetBasePathMappings", self._region,
                 BasePathMappings,
                 ("domain_name", "domain_name_id", "position", "limit", ),
@@ -1429,9 +1480,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_client_certificate, params, self._interceptors,
+                self._native.get_client_certificate, params, _interceptors,
                 "api-gateway", "GetClientCertificate", self._region,
                 GetClientCertificateOutput,
                 ("client_certificate_id", ),
@@ -1454,9 +1506,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_client_certificates, params, self._interceptors,
+                self._native.get_client_certificates, params, _interceptors,
                 "api-gateway", "GetClientCertificates", self._region,
                 ClientCertificates,
                 ("position", "limit", ),
@@ -1480,9 +1533,10 @@ class APIGatewayClient:
         }
         if embed is not None:
             params["embed"] = embed
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_deployment, params, self._interceptors,
+                self._native.get_deployment, params, _interceptors,
                 "api-gateway", "GetDeployment", self._region,
                 GetDeploymentOutput,
                 ("rest_api_id", "deployment_id", "embed", ),
@@ -1507,9 +1561,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_deployments, params, self._interceptors,
+                self._native.get_deployments, params, _interceptors,
                 "api-gateway", "GetDeployments", self._region,
                 Deployments,
                 ("rest_api_id", "position", "limit", ),
@@ -1530,9 +1585,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "documentation_part_id": documentation_part_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_documentation_part, params, self._interceptors,
+                self._native.get_documentation_part, params, _interceptors,
                 "api-gateway", "GetDocumentationPart", self._region,
                 GetDocumentationPartOutput,
                 ("rest_api_id", "documentation_part_id", ),
@@ -1569,9 +1625,10 @@ class APIGatewayClient:
             params["limit"] = limit
         if location_status is not None:
             params["location_status"] = location_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_documentation_parts, params, self._interceptors,
+                self._native.get_documentation_parts, params, _interceptors,
                 "api-gateway", "GetDocumentationParts", self._region,
                 DocumentationParts,
                 ("rest_api_id", "type", "name_query", "path", "position", "limit", "location_status", ),
@@ -1592,9 +1649,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "documentation_version": documentation_version,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_documentation_version, params, self._interceptors,
+                self._native.get_documentation_version, params, _interceptors,
                 "api-gateway", "GetDocumentationVersion", self._region,
                 GetDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", ),
@@ -1619,9 +1677,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_documentation_versions, params, self._interceptors,
+                self._native.get_documentation_versions, params, _interceptors,
                 "api-gateway", "GetDocumentationVersions", self._region,
                 DocumentationVersions,
                 ("rest_api_id", "position", "limit", ),
@@ -1643,9 +1702,10 @@ class APIGatewayClient:
         }
         if domain_name_id is not None:
             params["domain_name_id"] = domain_name_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain_name, params, self._interceptors,
+                self._native.get_domain_name, params, _interceptors,
                 "api-gateway", "GetDomainName", self._region,
                 GetDomainNameOutput,
                 ("domain_name", "domain_name_id", ),
@@ -1671,9 +1731,10 @@ class APIGatewayClient:
             params["limit"] = limit
         if resource_owner is not None:
             params["resource_owner"] = resource_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain_name_access_associations, params, self._interceptors,
+                self._native.get_domain_name_access_associations, params, _interceptors,
                 "api-gateway", "GetDomainNameAccessAssociations", self._region,
                 DomainNameAccessAssociations,
                 ("position", "limit", "resource_owner", ),
@@ -1699,9 +1760,10 @@ class APIGatewayClient:
             params["limit"] = limit
         if resource_owner is not None:
             params["resource_owner"] = resource_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain_names, params, self._interceptors,
+                self._native.get_domain_names, params, _interceptors,
                 "api-gateway", "GetDomainNames", self._region,
                 DomainNames,
                 ("position", "limit", "resource_owner", ),
@@ -1730,9 +1792,10 @@ class APIGatewayClient:
             params["parameters"] = parameters
         if accepts is not None:
             params["accepts"] = accepts
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_export, params, self._interceptors,
+                self._native.get_export, params, _interceptors,
                 "api-gateway", "GetExport", self._region,
                 ExportResponse,
                 ("rest_api_id", "stage_name", "export_type", "parameters", "accepts", ),
@@ -1753,9 +1816,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "response_type": response_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway_response, params, self._interceptors,
+                self._native.get_gateway_response, params, _interceptors,
                 "api-gateway", "GetGatewayResponse", self._region,
                 GetGatewayResponseOutput,
                 ("rest_api_id", "response_type", ),
@@ -1780,9 +1844,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway_responses, params, self._interceptors,
+                self._native.get_gateway_responses, params, _interceptors,
                 "api-gateway", "GetGatewayResponses", self._region,
                 GatewayResponses,
                 ("rest_api_id", "position", "limit", ),
@@ -1805,9 +1870,10 @@ class APIGatewayClient:
             "resource_id": resource_id,
             "http_method": http_method,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_integration, params, self._interceptors,
+                self._native.get_integration, params, _interceptors,
                 "api-gateway", "GetIntegration", self._region,
                 GetIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", ),
@@ -1832,9 +1898,10 @@ class APIGatewayClient:
             "http_method": http_method,
             "status_code": status_code,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_integration_response, params, self._interceptors,
+                self._native.get_integration_response, params, _interceptors,
                 "api-gateway", "GetIntegrationResponse", self._region,
                 GetIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
@@ -1857,9 +1924,10 @@ class APIGatewayClient:
             "resource_id": resource_id,
             "http_method": http_method,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_method, params, self._interceptors,
+                self._native.get_method, params, _interceptors,
                 "api-gateway", "GetMethod", self._region,
                 GetMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", ),
@@ -1884,9 +1952,10 @@ class APIGatewayClient:
             "http_method": http_method,
             "status_code": status_code,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_method_response, params, self._interceptors,
+                self._native.get_method_response, params, _interceptors,
                 "api-gateway", "GetMethodResponse", self._region,
                 GetMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", ),
@@ -1910,9 +1979,10 @@ class APIGatewayClient:
         }
         if flatten is not None:
             params["flatten"] = flatten
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model, params, self._interceptors,
+                self._native.get_model, params, _interceptors,
                 "api-gateway", "GetModel", self._region,
                 GetModelOutput,
                 ("rest_api_id", "model_name", "flatten", ),
@@ -1933,9 +2003,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "model_name": model_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_model_template, params, self._interceptors,
+                self._native.get_model_template, params, _interceptors,
                 "api-gateway", "GetModelTemplate", self._region,
                 Template,
                 ("rest_api_id", "model_name", ),
@@ -1960,9 +2031,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_models, params, self._interceptors,
+                self._native.get_models, params, _interceptors,
                 "api-gateway", "GetModels", self._region,
                 Models,
                 ("rest_api_id", "position", "limit", ),
@@ -1983,9 +2055,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "request_validator_id": request_validator_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_request_validator, params, self._interceptors,
+                self._native.get_request_validator, params, _interceptors,
                 "api-gateway", "GetRequestValidator", self._region,
                 GetRequestValidatorOutput,
                 ("rest_api_id", "request_validator_id", ),
@@ -2010,9 +2083,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_request_validators, params, self._interceptors,
+                self._native.get_request_validators, params, _interceptors,
                 "api-gateway", "GetRequestValidators", self._region,
                 RequestValidators,
                 ("rest_api_id", "position", "limit", ),
@@ -2036,9 +2110,10 @@ class APIGatewayClient:
         }
         if embed is not None:
             params["embed"] = embed
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource, params, self._interceptors,
+                self._native.get_resource, params, _interceptors,
                 "api-gateway", "GetResource", self._region,
                 GetResourceOutput,
                 ("rest_api_id", "resource_id", "embed", ),
@@ -2066,9 +2141,10 @@ class APIGatewayClient:
             params["limit"] = limit
         if embed is not None:
             params["embed"] = embed
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resources, params, self._interceptors,
+                self._native.get_resources, params, _interceptors,
                 "api-gateway", "GetResources", self._region,
                 Resources,
                 ("rest_api_id", "position", "limit", "embed", ),
@@ -2087,9 +2163,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_rest_api, params, self._interceptors,
+                self._native.get_rest_api, params, _interceptors,
                 "api-gateway", "GetRestApi", self._region,
                 GetRestApiOutput,
                 ("rest_api_id", ),
@@ -2112,9 +2189,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_rest_apis, params, self._interceptors,
+                self._native.get_rest_apis, params, _interceptors,
                 "api-gateway", "GetRestApis", self._region,
                 RestApis,
                 ("position", "limit", ),
@@ -2140,9 +2218,10 @@ class APIGatewayClient:
         }
         if parameters is not None:
             params["parameters"] = parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_sdk, params, self._interceptors,
+                self._native.get_sdk, params, _interceptors,
                 "api-gateway", "GetSdk", self._region,
                 SdkResponse,
                 ("rest_api_id", "stage_name", "sdk_type", "parameters", ),
@@ -2161,9 +2240,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "id": id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_sdk_type, params, self._interceptors,
+                self._native.get_sdk_type, params, _interceptors,
                 "api-gateway", "GetSdkType", self._region,
                 GetSdkTypeOutput,
                 ("id", ),
@@ -2186,9 +2266,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_sdk_types, params, self._interceptors,
+                self._native.get_sdk_types, params, _interceptors,
                 "api-gateway", "GetSdkTypes", self._region,
                 SdkTypes,
                 ("position", "limit", ),
@@ -2209,9 +2290,10 @@ class APIGatewayClient:
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_stage, params, self._interceptors,
+                self._native.get_stage, params, _interceptors,
                 "api-gateway", "GetStage", self._region,
                 GetStageOutput,
                 ("rest_api_id", "stage_name", ),
@@ -2233,9 +2315,10 @@ class APIGatewayClient:
         }
         if deployment_id is not None:
             params["deployment_id"] = deployment_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_stages, params, self._interceptors,
+                self._native.get_stages, params, _interceptors,
                 "api-gateway", "GetStages", self._region,
                 Stages,
                 ("rest_api_id", "deployment_id", ),
@@ -2260,9 +2343,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_tags, params, self._interceptors,
+                self._native.get_tags, params, _interceptors,
                 "api-gateway", "GetTags", self._region,
                 Tags,
                 ("resource_arn", "position", "limit", ),
@@ -2294,9 +2378,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage, params, self._interceptors,
+                self._native.get_usage, params, _interceptors,
                 "api-gateway", "GetUsage", self._region,
                 GetUsageOutput,
                 ("usage_plan_id", "start_date", "end_date", "key_id", "position", "limit", ),
@@ -2315,9 +2400,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage_plan, params, self._interceptors,
+                self._native.get_usage_plan, params, _interceptors,
                 "api-gateway", "GetUsagePlan", self._region,
                 GetUsagePlanOutput,
                 ("usage_plan_id", ),
@@ -2338,9 +2424,10 @@ class APIGatewayClient:
             "usage_plan_id": usage_plan_id,
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage_plan_key, params, self._interceptors,
+                self._native.get_usage_plan_key, params, _interceptors,
                 "api-gateway", "GetUsagePlanKey", self._region,
                 GetUsagePlanKeyOutput,
                 ("usage_plan_id", "key_id", ),
@@ -2368,9 +2455,10 @@ class APIGatewayClient:
             params["limit"] = limit
         if name_query is not None:
             params["name_query"] = name_query
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage_plan_keys, params, self._interceptors,
+                self._native.get_usage_plan_keys, params, _interceptors,
                 "api-gateway", "GetUsagePlanKeys", self._region,
                 UsagePlanKeys,
                 ("usage_plan_id", "position", "limit", "name_query", ),
@@ -2396,9 +2484,10 @@ class APIGatewayClient:
             params["key_id"] = key_id
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage_plans, params, self._interceptors,
+                self._native.get_usage_plans, params, _interceptors,
                 "api-gateway", "GetUsagePlans", self._region,
                 UsagePlans,
                 ("position", "key_id", "limit", ),
@@ -2417,9 +2506,10 @@ class APIGatewayClient:
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_vpc_link, params, self._interceptors,
+                self._native.get_vpc_link, params, _interceptors,
                 "api-gateway", "GetVpcLink", self._region,
                 GetVpcLinkOutput,
                 ("vpc_link_id", ),
@@ -2442,9 +2532,10 @@ class APIGatewayClient:
             params["position"] = position
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_vpc_links, params, self._interceptors,
+                self._native.get_vpc_links, params, _interceptors,
                 "api-gateway", "GetVpcLinks", self._region,
                 VpcLinks,
                 ("position", "limit", ),
@@ -2468,9 +2559,10 @@ class APIGatewayClient:
         }
         if fail_on_warnings is not None:
             params["fail_on_warnings"] = fail_on_warnings
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.import_api_keys, params, self._interceptors,
+                self._native.import_api_keys, params, _interceptors,
                 "api-gateway", "ImportApiKeys", self._region,
                 ApiKeyIds,
                 ("body", "format", "fail_on_warnings", ),
@@ -2497,9 +2589,10 @@ class APIGatewayClient:
             params["mode"] = mode
         if fail_on_warnings is not None:
             params["fail_on_warnings"] = fail_on_warnings
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.import_documentation_parts, params, self._interceptors,
+                self._native.import_documentation_parts, params, _interceptors,
                 "api-gateway", "ImportDocumentationParts", self._region,
                 DocumentationPartIds,
                 ("rest_api_id", "body", "mode", "fail_on_warnings", ),
@@ -2524,9 +2617,10 @@ class APIGatewayClient:
             params["fail_on_warnings"] = fail_on_warnings
         if parameters is not None:
             params["parameters"] = parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.import_rest_api, params, self._interceptors,
+                self._native.import_rest_api, params, _interceptors,
                 "api-gateway", "ImportRestApi", self._region,
                 ImportRestApiOutput,
                 ("body", "fail_on_warnings", "parameters", ),
@@ -2556,9 +2650,10 @@ class APIGatewayClient:
             params["response_parameters"] = response_parameters
         if response_templates is not None:
             params["response_templates"] = response_templates
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_gateway_response, params, self._interceptors,
+                self._native.put_gateway_response, params, _interceptors,
                 "api-gateway", "PutGatewayResponse", self._region,
                 PutGatewayResponseOutput,
                 ("rest_api_id", "response_type", "status_code", "response_parameters", "response_templates", ),
@@ -2628,9 +2723,10 @@ class APIGatewayClient:
             params["response_transfer_mode"] = response_transfer_mode
         if integration_target is not None:
             params["integration_target"] = integration_target
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_integration, params, self._interceptors,
+                self._native.put_integration, params, _interceptors,
                 "api-gateway", "PutIntegration", self._region,
                 PutIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", "type", "integration_http_method", "uri", "connection_type", "connection_id", "credentials", "request_parameters", "request_templates", "passthrough_behavior", "cache_namespace", "cache_key_parameters", "content_handling", "timeout_in_millis", "tls_config", "response_transfer_mode", "integration_target", ),
@@ -2667,9 +2763,10 @@ class APIGatewayClient:
             params["response_templates"] = response_templates
         if content_handling is not None:
             params["content_handling"] = content_handling
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_integration_response, params, self._interceptors,
+                self._native.put_integration_response, params, _interceptors,
                 "api-gateway", "PutIntegrationResponse", self._region,
                 PutIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "selection_pattern", "response_parameters", "response_templates", "content_handling", ),
@@ -2715,9 +2812,10 @@ class APIGatewayClient:
             params["request_validator_id"] = request_validator_id
         if authorization_scopes is not None:
             params["authorization_scopes"] = authorization_scopes
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_method, params, self._interceptors,
+                self._native.put_method, params, _interceptors,
                 "api-gateway", "PutMethod", self._region,
                 PutMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "authorization_type", "authorizer_id", "api_key_required", "operation_name", "request_parameters", "request_models", "request_validator_id", "authorization_scopes", ),
@@ -2748,9 +2846,10 @@ class APIGatewayClient:
             params["response_parameters"] = response_parameters
         if response_models is not None:
             params["response_models"] = response_models
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_method_response, params, self._interceptors,
+                self._native.put_method_response, params, _interceptors,
                 "api-gateway", "PutMethodResponse", self._region,
                 PutMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "response_parameters", "response_models", ),
@@ -2780,9 +2879,10 @@ class APIGatewayClient:
             params["fail_on_warnings"] = fail_on_warnings
         if parameters is not None:
             params["parameters"] = parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_rest_api, params, self._interceptors,
+                self._native.put_rest_api, params, _interceptors,
                 "api-gateway", "PutRestApi", self._region,
                 PutRestApiOutput,
                 ("rest_api_id", "body", "mode", "fail_on_warnings", "parameters", ),
@@ -2803,9 +2903,10 @@ class APIGatewayClient:
             "domain_name_access_association_arn": domain_name_access_association_arn,
             "domain_name_arn": domain_name_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.reject_domain_name_access_association, params, self._interceptors,
+                self._native.reject_domain_name_access_association, params, _interceptors,
                 "api-gateway", "RejectDomainNameAccessAssociation", self._region,
                 type(None),
                 ("domain_name_access_association_arn", "domain_name_arn", ),
@@ -2826,9 +2927,10 @@ class APIGatewayClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "api-gateway", "TagResource", self._region,
                 type(None),
                 ("resource_arn", "tags", ),
@@ -2867,9 +2969,10 @@ class APIGatewayClient:
             params["stage_variables"] = stage_variables
         if additional_context is not None:
             params["additional_context"] = additional_context
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_invoke_authorizer, params, self._interceptors,
+                self._native.test_invoke_authorizer, params, _interceptors,
                 "api-gateway", "TestInvokeAuthorizer", self._region,
                 TestInvokeAuthorizerResponse,
                 ("rest_api_id", "authorizer_id", "headers", "multi_value_headers", "path_with_query_string", "body", "stage_variables", "additional_context", ),
@@ -2910,9 +3013,10 @@ class APIGatewayClient:
             params["client_certificate_id"] = client_certificate_id
         if stage_variables is not None:
             params["stage_variables"] = stage_variables
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_invoke_method, params, self._interceptors,
+                self._native.test_invoke_method, params, _interceptors,
                 "api-gateway", "TestInvokeMethod", self._region,
                 TestInvokeMethodResponse,
                 ("rest_api_id", "resource_id", "http_method", "path_with_query_string", "body", "headers", "multi_value_headers", "client_certificate_id", "stage_variables", ),
@@ -2933,9 +3037,10 @@ class APIGatewayClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "api-gateway", "UntagResource", self._region,
                 type(None),
                 ("resource_arn", "tag_keys", ),
@@ -2955,9 +3060,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_account, params, self._interceptors,
+                self._native.update_account, params, _interceptors,
                 "api-gateway", "UpdateAccount", self._region,
                 UpdateAccountOutput,
                 ("patch_operations", ),
@@ -2979,9 +3085,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_api_key, params, self._interceptors,
+                self._native.update_api_key, params, _interceptors,
                 "api-gateway", "UpdateApiKey", self._region,
                 UpdateApiKeyOutput,
                 ("api_key", "patch_operations", ),
@@ -3005,9 +3112,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_authorizer, params, self._interceptors,
+                self._native.update_authorizer, params, _interceptors,
                 "api-gateway", "UpdateAuthorizer", self._region,
                 UpdateAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", "patch_operations", ),
@@ -3034,9 +3142,10 @@ class APIGatewayClient:
             params["domain_name_id"] = domain_name_id
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_base_path_mapping, params, self._interceptors,
+                self._native.update_base_path_mapping, params, _interceptors,
                 "api-gateway", "UpdateBasePathMapping", self._region,
                 UpdateBasePathMappingOutput,
                 ("domain_name", "base_path", "domain_name_id", "patch_operations", ),
@@ -3058,9 +3167,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_client_certificate, params, self._interceptors,
+                self._native.update_client_certificate, params, _interceptors,
                 "api-gateway", "UpdateClientCertificate", self._region,
                 UpdateClientCertificateOutput,
                 ("client_certificate_id", "patch_operations", ),
@@ -3084,9 +3194,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_deployment, params, self._interceptors,
+                self._native.update_deployment, params, _interceptors,
                 "api-gateway", "UpdateDeployment", self._region,
                 UpdateDeploymentOutput,
                 ("rest_api_id", "deployment_id", "patch_operations", ),
@@ -3110,9 +3221,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_documentation_part, params, self._interceptors,
+                self._native.update_documentation_part, params, _interceptors,
                 "api-gateway", "UpdateDocumentationPart", self._region,
                 UpdateDocumentationPartOutput,
                 ("rest_api_id", "documentation_part_id", "patch_operations", ),
@@ -3136,9 +3248,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_documentation_version, params, self._interceptors,
+                self._native.update_documentation_version, params, _interceptors,
                 "api-gateway", "UpdateDocumentationVersion", self._region,
                 UpdateDocumentationVersionOutput,
                 ("rest_api_id", "documentation_version", "patch_operations", ),
@@ -3163,9 +3276,10 @@ class APIGatewayClient:
             params["domain_name_id"] = domain_name_id
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_domain_name, params, self._interceptors,
+                self._native.update_domain_name, params, _interceptors,
                 "api-gateway", "UpdateDomainName", self._region,
                 UpdateDomainNameOutput,
                 ("domain_name", "domain_name_id", "patch_operations", ),
@@ -3189,9 +3303,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_gateway_response, params, self._interceptors,
+                self._native.update_gateway_response, params, _interceptors,
                 "api-gateway", "UpdateGatewayResponse", self._region,
                 UpdateGatewayResponseOutput,
                 ("rest_api_id", "response_type", "patch_operations", ),
@@ -3217,9 +3332,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_integration, params, self._interceptors,
+                self._native.update_integration, params, _interceptors,
                 "api-gateway", "UpdateIntegration", self._region,
                 UpdateIntegrationOutput,
                 ("rest_api_id", "resource_id", "http_method", "patch_operations", ),
@@ -3247,9 +3363,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_integration_response, params, self._interceptors,
+                self._native.update_integration_response, params, _interceptors,
                 "api-gateway", "UpdateIntegrationResponse", self._region,
                 UpdateIntegrationResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "patch_operations", ),
@@ -3275,9 +3392,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_method, params, self._interceptors,
+                self._native.update_method, params, _interceptors,
                 "api-gateway", "UpdateMethod", self._region,
                 UpdateMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "patch_operations", ),
@@ -3305,9 +3423,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_method_response, params, self._interceptors,
+                self._native.update_method_response, params, _interceptors,
                 "api-gateway", "UpdateMethodResponse", self._region,
                 UpdateMethodResponseOutput,
                 ("rest_api_id", "resource_id", "http_method", "status_code", "patch_operations", ),
@@ -3331,9 +3450,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_model, params, self._interceptors,
+                self._native.update_model, params, _interceptors,
                 "api-gateway", "UpdateModel", self._region,
                 UpdateModelOutput,
                 ("rest_api_id", "model_name", "patch_operations", ),
@@ -3357,9 +3477,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_request_validator, params, self._interceptors,
+                self._native.update_request_validator, params, _interceptors,
                 "api-gateway", "UpdateRequestValidator", self._region,
                 UpdateRequestValidatorOutput,
                 ("rest_api_id", "request_validator_id", "patch_operations", ),
@@ -3383,9 +3504,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_resource, params, self._interceptors,
+                self._native.update_resource, params, _interceptors,
                 "api-gateway", "UpdateResource", self._region,
                 UpdateResourceOutput,
                 ("rest_api_id", "resource_id", "patch_operations", ),
@@ -3407,9 +3529,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_rest_api, params, self._interceptors,
+                self._native.update_rest_api, params, _interceptors,
                 "api-gateway", "UpdateRestApi", self._region,
                 UpdateRestApiOutput,
                 ("rest_api_id", "patch_operations", ),
@@ -3433,9 +3556,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_stage, params, self._interceptors,
+                self._native.update_stage, params, _interceptors,
                 "api-gateway", "UpdateStage", self._region,
                 UpdateStageOutput,
                 ("rest_api_id", "stage_name", "patch_operations", ),
@@ -3459,9 +3583,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_usage, params, self._interceptors,
+                self._native.update_usage, params, _interceptors,
                 "api-gateway", "UpdateUsage", self._region,
                 UpdateUsageOutput,
                 ("usage_plan_id", "key_id", "patch_operations", ),
@@ -3483,9 +3608,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_usage_plan, params, self._interceptors,
+                self._native.update_usage_plan, params, _interceptors,
                 "api-gateway", "UpdateUsagePlan", self._region,
                 UpdateUsagePlanOutput,
                 ("usage_plan_id", "patch_operations", ),
@@ -3507,9 +3633,10 @@ class APIGatewayClient:
         }
         if patch_operations is not None:
             params["patch_operations"] = patch_operations
-        if self._interceptors:
+        _interceptors = operation_interceptors("api-gateway", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_vpc_link, params, self._interceptors,
+                self._native.update_vpc_link, params, _interceptors,
                 "api-gateway", "UpdateVpcLink", self._region,
                 UpdateVpcLinkOutput,
                 ("vpc_link_id", "patch_operations", ),

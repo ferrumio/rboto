@@ -60,8 +60,8 @@ connections. Each invocation in the example gets its own Python event loop.
 Keep per-invocation inputs and results local to the handler.
 
 To log operations with the invocation's request ID, see the
-[logging example for Lambda](logging.md#aws-lambda). It uses the runtime's existing
-handlers and keeps correlation local to each invocation.
+[logging example for Lambda](logging.md#aws-lambda). It uses rboto's built-in
+JSON output and keeps correlation local to each invocation.
 
 The default credential chain uses the temporary credentials provided for the
 function's execution role and the region supplied by Lambda. A local development

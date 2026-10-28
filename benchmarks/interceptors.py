@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import io
 import json
-import logging
 import os
 import resource
 import statistics
@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING
 from rboto import DynamoDBClient
 
 if TYPE_CHECKING:
-    from rboto import Interceptor, Next, OperationRequest, OperationResponse
+    from rboto import Interceptor, LogLevel, Next, OperationRequest, OperationResponse
 
 RESPONSE_BODY = b'{"TableNames":["example"]}'
 RESPONSE = (
@@ -50,17 +50,18 @@ async def middleware(request: OperationRequest, call_next: Next) -> OperationRes
     return await call_next(request)
 
 
-class MemorySink(logging.Handler):
-    """Count records and retain a bounded sample without formatting or I/O."""
+class MemorySink(io.StringIO):
+    """Count JSON lines and retain a bounded sample without external I/O."""
 
     def __init__(self) -> None:
         super().__init__()
-        self.records: deque[logging.LogRecord] = deque(maxlen=256)
+        self.records: deque[str] = deque(maxlen=256)
         self.count = 0
 
-    def emit(self, record: logging.LogRecord) -> None:
-        self.count += 1
-        self.records.append(record)
+    def write(self, value: str) -> int:
+        self.count += value.count("\n")
+        self.records.append(value)
+        return len(value)
 
 
 async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dict[str, object]:
@@ -87,20 +88,13 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
     interceptors: Sequence[Interceptor] = (middleware,) if mode == "middleware" else ()
     sink: MemorySink | None = None
     if mode.startswith("logging-"):
-        from rboto import LoggingInterceptor
+        from rboto import configure_logging
 
-        interceptors = (LoggingInterceptor(),)
         sink = MemorySink()
-        logger = logging.getLogger("rboto")
-        logger.setLevel(
-            {
-                "logging-disabled": logging.CRITICAL,
-                "logging-info": logging.INFO,
-                "logging-debug": logging.DEBUG,
-            }[mode]
+        level: LogLevel = (
+            "OFF" if mode == "logging-disabled" else "INFO" if mode == "logging-info" else "DEBUG"
         )
-        logger.addHandler(sink)
-        logger.propagate = False
+        configure_logging(level=level, stream=sink)
     # Omitting the new keyword allows --mode baseline to run against the parent revision.
     client = (
         DynamoDBClient(region="us-east-1", endpoint_url=f"http://127.0.0.1:{port}")
@@ -150,7 +144,7 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
                 writer.close()
             await asyncio.gather(*(writer.wait_closed() for writer in tuple(connections)))
             if sink is not None:
-                logging.getLogger("rboto").removeHandler(sink)
+                configure_logging(level="OFF")
                 sink.close()
     ordered = sorted(latencies)
     return {

@@ -6,7 +6,6 @@ from contextvars import ContextVar
 import pytest
 from rboto import (
     Interceptor,
-    LoggingInterceptor,
     LogTraceContext,
     Next,
     OperationRequest,
@@ -15,7 +14,7 @@ from rboto import (
 )
 from rboto.exceptions import ClientError
 from rboto.interceptors import invoke
-from rboto.logging import OperationLogFields
+from rboto.logging import OperationLogFields, _LoggingInterceptor
 
 SECRET = "credentials-payload-exception-CANARY"
 
@@ -75,7 +74,7 @@ def fields(record: logging.LogRecord) -> OperationLogFields:
 def test_completion_schema_and_retry_details(caplog: pytest.LogCaptureFixture) -> None:
     caplog.set_level(logging.DEBUG, logger="rboto")
     with operation_context(correlation_id="application-request"):
-        output = asyncio.run(execute(LoggingInterceptor(), retries=2))
+        output = asyncio.run(execute(_LoggingInterceptor(), retries=2))
     assert isinstance(output, Output)
     completion, retry = records(caplog)
     data = fields(completion)
@@ -128,7 +127,7 @@ def test_failure_identity_and_private_fields(
 ) -> None:
     caplog.set_level(logging.DEBUG, logger="rboto")
     with pytest.raises(type(error)) as caught:
-        asyncio.run(execute(LoggingInterceptor(), error=error))
+        asyncio.run(execute(_LoggingInterceptor(), error=error))
     assert caught.value is error
     [record] = records(caplog)
     data = fields(record)
@@ -152,7 +151,7 @@ def test_disabled_logger_skips_clocks_and_trace_lookup(
         pytest.fail("disabled logging prepared metadata")
 
     monkeypatch.setattr(module, "perf_counter", forbidden)
-    asyncio.run(execute(LoggingInterceptor(trace_context=forbidden)))
+    asyncio.run(execute(_LoggingInterceptor(trace_context=forbidden)))
     assert records(caplog) == []
 
 
@@ -168,7 +167,7 @@ def test_suppressed_success_does_not_prepare_fields_or_lookup_trace(
         pytest.fail("suppressed success prepared fields")
 
     monkeypatch.setattr(module, "OperationLogFields", forbidden)
-    asyncio.run(execute(LoggingInterceptor(trace_context=forbidden)))
+    asyncio.run(execute(_LoggingInterceptor(trace_context=forbidden)))
     assert records(caplog) == []
 
 
@@ -178,10 +177,10 @@ def test_registration_is_opt_in_and_does_not_configure_logging(
     caplog.set_level(logging.INFO, logger="rboto")
     logger = logging.getLogger("rboto.logging_test")
     before = (logger.handlers[:], logger.filters[:], logger.level, logger.propagate)
-    LoggingInterceptor()
+    _LoggingInterceptor()
     asyncio.run(execute())
     assert records(caplog) == []
-    asyncio.run(execute(LoggingInterceptor()))
+    asyncio.run(execute(_LoggingInterceptor()))
     assert len(records(caplog)) == 1  # propagated to the root handler exactly once
     assert (logger.handlers, logger.filters, logger.level, logger.propagate) == before
 
@@ -201,17 +200,17 @@ def test_policy_cache_recovery_and_registration_order(caplog: pytest.LogCaptureF
         except ClientError:
             return OperationResponse(Output())
 
-    asyncio.run(execute(LoggingInterceptor(), cached))
+    asyncio.run(execute(_LoggingInterceptor(), cached))
     with pytest.raises(PermissionError):
-        asyncio.run(execute(LoggingInterceptor(), blocked))
+        asyncio.run(execute(_LoggingInterceptor(), blocked))
     asyncio.run(
         execute(
-            LoggingInterceptor(),
+            _LoggingInterceptor(),
             recovered,
             error=ClientError(SECRET, "AccessDenied"),
         )
     )
-    asyncio.run(execute(cached, LoggingInterceptor()))  # cache skips downstream logging
+    asyncio.run(execute(cached, _LoggingInterceptor()))  # cache skips downstream logging
     cache, policy, recovery = [fields(r) for r in records(caplog)]
     assert cache["outcome"] == "success" and not cache["dispatched"]
     assert cache["attempt_count"] == 0 and cache["native_duration_ms"] is None
@@ -227,7 +226,7 @@ def test_trace_and_correlation_are_isolated_across_tasks_and_loops(
 ) -> None:
     caplog.set_level(logging.INFO, logger="rboto")
     trace: ContextVar[LogTraceContext | None] = ContextVar("trace", default=None)
-    middleware = LoggingInterceptor(trace_context=trace.get)
+    middleware = _LoggingInterceptor(trace_context=trace.get)
 
     async def call(number: int) -> None:
         token = trace.set(LogTraceContext(f"trace-{number}", f"span-{number}"))
@@ -267,11 +266,11 @@ def test_broken_handler_does_not_replace_result_or_exception(fails: bool) -> Non
     try:
         if fails:
             with pytest.raises(OSError) as caught:
-                asyncio.run(execute(LoggingInterceptor(), error=error, service="broken_handler"))
+                asyncio.run(execute(_LoggingInterceptor(), error=error, service="broken_handler"))
             assert caught.value is error
         else:
             assert isinstance(
-                asyncio.run(execute(LoggingInterceptor(), service="broken_handler")),
+                asyncio.run(execute(_LoggingInterceptor(), service="broken_handler")),
                 Output,
             )
     finally:
@@ -287,6 +286,6 @@ def test_unavailable_trace_still_logs_completion(
     provider: Callable[[], LogTraceContext | None],
 ) -> None:
     caplog.set_level(logging.INFO, logger="rboto")
-    asyncio.run(execute(LoggingInterceptor(trace_context=provider)))
+    asyncio.run(execute(_LoggingInterceptor(trace_context=provider)))
     [record] = records(caplog)
     assert "trace_id" not in fields(record) and "span_id" not in fields(record)

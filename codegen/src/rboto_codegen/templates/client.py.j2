@@ -7,6 +7,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import {{ native_client_class }} as NativeClient{% for name in native_output_names %}, {{ name }}{% endfor %}
 from .types import (
@@ -15,6 +16,8 @@ from .types import (
 
 
 class {{ client_class }}:
+    logger_name = "rboto.{{ service_id }}"
+
     def __init__(
         self,
         *,
@@ -46,10 +49,11 @@ class {{ client_class }}:
 {% endif %}{% endfor %}        }
 {% for parameter in method.parameters %}{% if not parameter.required %}        if {{ parameter.name }} is not None:
             params["{{ parameter.key }}"] = {{ parameter.name }}
-{% endif %}{% endfor %}        if self._interceptors:
+{% endif %}{% endfor %}        _interceptors = operation_interceptors("{{ service_id }}", self._interceptors)
+        if _interceptors:
 {% if method.output == "None" %}            await invoke(
 {% else %}            _response = await invoke(
-{% endif %}                self._native.{{ method.name }}, params, self._interceptors,
+{% endif %}                self._native.{{ method.name }}, params, _interceptors,
                 "{{ service_id }}", "{{ method.operation_name }}", self._region,
                 {% if method.native_output %}{{ method.output }}{% elif method.output == "None" %}type(None){% else %}dict{% endif %},
                 ({% for parameter in method.parameters %}"{{ parameter.key }}", {% endfor %}),

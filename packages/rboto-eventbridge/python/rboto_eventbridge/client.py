@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import EventBridgeClient as NativeClient, CancelReplayResponse, CreateApiDestinationResponse, CreateArchiveResponse, CreateConnectionResponse, CreateEndpointResponse, CreateEventBusResponse, CreatePartnerEventSourceResponse, DeauthorizeConnectionResponse, DeleteApiDestinationResponse, DeleteArchiveResponse, DeleteConnectionResponse, DeleteEndpointResponse, DescribeApiDestinationResponse, DescribeArchiveResponse, DescribeConnectionResponse, DescribeEndpointResponse, DescribeEventBusResponse, DescribeEventSourceResponse, DescribePartnerEventSourceResponse, DescribeReplayResponse, DescribeRuleResponse, ListApiDestinationsResponse, ListArchivesResponse, ListConnectionsResponse, ListEndpointsResponse, ListEventBusesResponse, ListEventSourcesResponse, ListPartnerEventSourceAccountsResponse, ListPartnerEventSourcesResponse, ListReplaysResponse, ListRuleNamesByTargetResponse, ListRulesResponse, ListTagsForResourceResponse, ListTargetsByRuleResponse, PutEventsResponse, PutPartnerEventsResponse, PutRuleResponse, PutTargetsResponse, RemoveTargetsResponse, StartReplayResponse, TagResourceResponse, TestEventPatternResponse, UntagResourceResponse, UpdateApiDestinationResponse, UpdateArchiveResponse, UpdateConnectionResponse, UpdateEndpointResponse, UpdateEventBusResponse
 from .types import (
@@ -33,6 +34,8 @@ from .types import (
 
 
 class EventBridgeClient:
+    logger_name = "rboto.eventbridge"
+
     def __init__(
         self,
         *,
@@ -62,9 +65,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.activate_event_source, params, self._interceptors,
+                self._native.activate_event_source, params, _interceptors,
                 "eventbridge", "ActivateEventSource", self._region,
                 type(None),
                 ("name", ),
@@ -83,9 +87,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_replay, params, self._interceptors,
+                self._native.cancel_replay, params, _interceptors,
                 "eventbridge", "CancelReplay", self._region,
                 CancelReplayResponse,
                 ("replay_name", ),
@@ -116,9 +121,10 @@ class EventBridgeClient:
             params["description"] = description
         if invocation_rate_limit_per_second is not None:
             params["invocation_rate_limit_per_second"] = invocation_rate_limit_per_second
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_api_destination, params, self._interceptors,
+                self._native.create_api_destination, params, _interceptors,
                 "eventbridge", "CreateApiDestination", self._region,
                 CreateApiDestinationResponse,
                 ("name", "connection_arn", "invocation_endpoint", "http_method", "description", "invocation_rate_limit_per_second", ),
@@ -151,9 +157,10 @@ class EventBridgeClient:
             params["retention_days"] = retention_days
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_archive, params, self._interceptors,
+                self._native.create_archive, params, _interceptors,
                 "eventbridge", "CreateArchive", self._region,
                 CreateArchiveResponse,
                 ("archive_name", "event_source_arn", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
@@ -185,9 +192,10 @@ class EventBridgeClient:
             params["invocation_connectivity_parameters"] = invocation_connectivity_parameters
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_connection, params, self._interceptors,
+                self._native.create_connection, params, _interceptors,
                 "eventbridge", "CreateConnection", self._region,
                 CreateConnectionResponse,
                 ("name", "authorization_type", "auth_parameters", "description", "invocation_connectivity_parameters", "kms_key_identifier", ),
@@ -219,9 +227,10 @@ class EventBridgeClient:
             params["replication_config"] = replication_config
         if role_arn is not None:
             params["role_arn"] = role_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_endpoint, params, self._interceptors,
+                self._native.create_endpoint, params, _interceptors,
                 "eventbridge", "CreateEndpoint", self._region,
                 CreateEndpointResponse,
                 ("name", "routing_config", "event_buses", "description", "replication_config", "role_arn", ),
@@ -258,9 +267,10 @@ class EventBridgeClient:
             params["log_config"] = log_config
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_event_bus, params, self._interceptors,
+                self._native.create_event_bus, params, _interceptors,
                 "eventbridge", "CreateEventBus", self._region,
                 CreateEventBusResponse,
                 ("name", "event_source_name", "description", "kms_key_identifier", "dead_letter_config", "log_config", "tags", ),
@@ -281,9 +291,10 @@ class EventBridgeClient:
             "name": name,
             "account": account,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_partner_event_source, params, self._interceptors,
+                self._native.create_partner_event_source, params, _interceptors,
                 "eventbridge", "CreatePartnerEventSource", self._region,
                 CreatePartnerEventSourceResponse,
                 ("name", "account", ),
@@ -302,9 +313,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.deactivate_event_source, params, self._interceptors,
+                self._native.deactivate_event_source, params, _interceptors,
                 "eventbridge", "DeactivateEventSource", self._region,
                 type(None),
                 ("name", ),
@@ -323,9 +335,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deauthorize_connection, params, self._interceptors,
+                self._native.deauthorize_connection, params, _interceptors,
                 "eventbridge", "DeauthorizeConnection", self._region,
                 DeauthorizeConnectionResponse,
                 ("name", ),
@@ -344,9 +357,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_api_destination, params, self._interceptors,
+                self._native.delete_api_destination, params, _interceptors,
                 "eventbridge", "DeleteApiDestination", self._region,
                 DeleteApiDestinationResponse,
                 ("name", ),
@@ -365,9 +379,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_archive, params, self._interceptors,
+                self._native.delete_archive, params, _interceptors,
                 "eventbridge", "DeleteArchive", self._region,
                 DeleteArchiveResponse,
                 ("archive_name", ),
@@ -386,9 +401,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_connection, params, self._interceptors,
+                self._native.delete_connection, params, _interceptors,
                 "eventbridge", "DeleteConnection", self._region,
                 DeleteConnectionResponse,
                 ("name", ),
@@ -407,9 +423,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_endpoint, params, self._interceptors,
+                self._native.delete_endpoint, params, _interceptors,
                 "eventbridge", "DeleteEndpoint", self._region,
                 DeleteEndpointResponse,
                 ("name", ),
@@ -428,9 +445,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_event_bus, params, self._interceptors,
+                self._native.delete_event_bus, params, _interceptors,
                 "eventbridge", "DeleteEventBus", self._region,
                 type(None),
                 ("name", ),
@@ -451,9 +469,10 @@ class EventBridgeClient:
             "name": name,
             "account": account,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_partner_event_source, params, self._interceptors,
+                self._native.delete_partner_event_source, params, _interceptors,
                 "eventbridge", "DeletePartnerEventSource", self._region,
                 type(None),
                 ("name", "account", ),
@@ -478,9 +497,10 @@ class EventBridgeClient:
             params["event_bus_name"] = event_bus_name
         if force is not None:
             params["force"] = force
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_rule, params, self._interceptors,
+                self._native.delete_rule, params, _interceptors,
                 "eventbridge", "DeleteRule", self._region,
                 type(None),
                 ("name", "event_bus_name", "force", ),
@@ -499,9 +519,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_api_destination, params, self._interceptors,
+                self._native.describe_api_destination, params, _interceptors,
                 "eventbridge", "DescribeApiDestination", self._region,
                 DescribeApiDestinationResponse,
                 ("name", ),
@@ -520,9 +541,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "archive_name": archive_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_archive, params, self._interceptors,
+                self._native.describe_archive, params, _interceptors,
                 "eventbridge", "DescribeArchive", self._region,
                 DescribeArchiveResponse,
                 ("archive_name", ),
@@ -541,9 +563,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_connection, params, self._interceptors,
+                self._native.describe_connection, params, _interceptors,
                 "eventbridge", "DescribeConnection", self._region,
                 DescribeConnectionResponse,
                 ("name", ),
@@ -565,9 +588,10 @@ class EventBridgeClient:
         }
         if home_region is not None:
             params["home_region"] = home_region
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_endpoint, params, self._interceptors,
+                self._native.describe_endpoint, params, _interceptors,
                 "eventbridge", "DescribeEndpoint", self._region,
                 DescribeEndpointResponse,
                 ("name", "home_region", ),
@@ -587,9 +611,10 @@ class EventBridgeClient:
         }
         if name is not None:
             params["name"] = name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_event_bus, params, self._interceptors,
+                self._native.describe_event_bus, params, _interceptors,
                 "eventbridge", "DescribeEventBus", self._region,
                 DescribeEventBusResponse,
                 ("name", ),
@@ -608,9 +633,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_event_source, params, self._interceptors,
+                self._native.describe_event_source, params, _interceptors,
                 "eventbridge", "DescribeEventSource", self._region,
                 DescribeEventSourceResponse,
                 ("name", ),
@@ -629,9 +655,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_partner_event_source, params, self._interceptors,
+                self._native.describe_partner_event_source, params, _interceptors,
                 "eventbridge", "DescribePartnerEventSource", self._region,
                 DescribePartnerEventSourceResponse,
                 ("name", ),
@@ -650,9 +677,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "replay_name": replay_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_replay, params, self._interceptors,
+                self._native.describe_replay, params, _interceptors,
                 "eventbridge", "DescribeReplay", self._region,
                 DescribeReplayResponse,
                 ("replay_name", ),
@@ -674,9 +702,10 @@ class EventBridgeClient:
         }
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_rule, params, self._interceptors,
+                self._native.describe_rule, params, _interceptors,
                 "eventbridge", "DescribeRule", self._region,
                 DescribeRuleResponse,
                 ("name", "event_bus_name", ),
@@ -698,9 +727,10 @@ class EventBridgeClient:
         }
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.disable_rule, params, self._interceptors,
+                self._native.disable_rule, params, _interceptors,
                 "eventbridge", "DisableRule", self._region,
                 type(None),
                 ("name", "event_bus_name", ),
@@ -722,9 +752,10 @@ class EventBridgeClient:
         }
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.enable_rule, params, self._interceptors,
+                self._native.enable_rule, params, _interceptors,
                 "eventbridge", "EnableRule", self._region,
                 type(None),
                 ("name", "event_bus_name", ),
@@ -753,9 +784,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_api_destinations, params, self._interceptors,
+                self._native.list_api_destinations, params, _interceptors,
                 "eventbridge", "ListApiDestinations", self._region,
                 ListApiDestinationsResponse,
                 ("name_prefix", "connection_arn", "next_token", "limit", ),
@@ -787,9 +819,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_archives, params, self._interceptors,
+                self._native.list_archives, params, _interceptors,
                 "eventbridge", "ListArchives", self._region,
                 ListArchivesResponse,
                 ("name_prefix", "event_source_arn", "state", "next_token", "limit", ),
@@ -818,9 +851,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_connections, params, self._interceptors,
+                self._native.list_connections, params, _interceptors,
                 "eventbridge", "ListConnections", self._region,
                 ListConnectionsResponse,
                 ("name_prefix", "connection_state", "next_token", "limit", ),
@@ -849,9 +883,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_endpoints, params, self._interceptors,
+                self._native.list_endpoints, params, _interceptors,
                 "eventbridge", "ListEndpoints", self._region,
                 ListEndpointsResponse,
                 ("name_prefix", "home_region", "next_token", "max_results", ),
@@ -877,9 +912,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_event_buses, params, self._interceptors,
+                self._native.list_event_buses, params, _interceptors,
                 "eventbridge", "ListEventBuses", self._region,
                 ListEventBusesResponse,
                 ("name_prefix", "next_token", "limit", ),
@@ -905,9 +941,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_event_sources, params, self._interceptors,
+                self._native.list_event_sources, params, _interceptors,
                 "eventbridge", "ListEventSources", self._region,
                 ListEventSourcesResponse,
                 ("name_prefix", "next_token", "limit", ),
@@ -932,9 +969,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_partner_event_source_accounts, params, self._interceptors,
+                self._native.list_partner_event_source_accounts, params, _interceptors,
                 "eventbridge", "ListPartnerEventSourceAccounts", self._region,
                 ListPartnerEventSourceAccountsResponse,
                 ("event_source_name", "next_token", "limit", ),
@@ -959,9 +997,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_partner_event_sources, params, self._interceptors,
+                self._native.list_partner_event_sources, params, _interceptors,
                 "eventbridge", "ListPartnerEventSources", self._region,
                 ListPartnerEventSourcesResponse,
                 ("name_prefix", "next_token", "limit", ),
@@ -993,9 +1032,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_replays, params, self._interceptors,
+                self._native.list_replays, params, _interceptors,
                 "eventbridge", "ListReplays", self._region,
                 ListReplaysResponse,
                 ("name_prefix", "state", "event_source_arn", "next_token", "limit", ),
@@ -1023,9 +1063,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_rule_names_by_target, params, self._interceptors,
+                self._native.list_rule_names_by_target, params, _interceptors,
                 "eventbridge", "ListRuleNamesByTarget", self._region,
                 ListRuleNamesByTargetResponse,
                 ("target_arn", "event_bus_name", "next_token", "limit", ),
@@ -1054,9 +1095,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_rules, params, self._interceptors,
+                self._native.list_rules, params, _interceptors,
                 "eventbridge", "ListRules", self._region,
                 ListRulesResponse,
                 ("name_prefix", "event_bus_name", "next_token", "limit", ),
@@ -1075,9 +1117,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "eventbridge", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -1105,9 +1148,10 @@ class EventBridgeClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_targets_by_rule, params, self._interceptors,
+                self._native.list_targets_by_rule, params, _interceptors,
                 "eventbridge", "ListTargetsByRule", self._region,
                 ListTargetsByRuleResponse,
                 ("rule", "event_bus_name", "next_token", "limit", ),
@@ -1129,9 +1173,10 @@ class EventBridgeClient:
         }
         if endpoint_id is not None:
             params["endpoint_id"] = endpoint_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_events, params, self._interceptors,
+                self._native.put_events, params, _interceptors,
                 "eventbridge", "PutEvents", self._region,
                 PutEventsResponse,
                 ("entries", "endpoint_id", ),
@@ -1150,9 +1195,10 @@ class EventBridgeClient:
         params: dict[str, object] = {
             "entries": entries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_partner_events, params, self._interceptors,
+                self._native.put_partner_events, params, _interceptors,
                 "eventbridge", "PutPartnerEvents", self._region,
                 PutPartnerEventsResponse,
                 ("entries", ),
@@ -1187,9 +1233,10 @@ class EventBridgeClient:
             params["condition"] = condition
         if policy is not None:
             params["policy"] = policy
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_permission, params, self._interceptors,
+                self._native.put_permission, params, _interceptors,
                 "eventbridge", "PutPermission", self._region,
                 type(None),
                 ("event_bus_name", "action", "principal", "statement_id", "condition", "policy", ),
@@ -1229,9 +1276,10 @@ class EventBridgeClient:
             params["tags"] = tags
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_rule, params, self._interceptors,
+                self._native.put_rule, params, _interceptors,
                 "eventbridge", "PutRule", self._region,
                 PutRuleResponse,
                 ("name", "schedule_expression", "event_pattern", "state", "description", "role_arn", "tags", "event_bus_name", ),
@@ -1255,9 +1303,10 @@ class EventBridgeClient:
         }
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_targets, params, self._interceptors,
+                self._native.put_targets, params, _interceptors,
                 "eventbridge", "PutTargets", self._region,
                 PutTargetsResponse,
                 ("rule", "targets", "event_bus_name", ),
@@ -1283,9 +1332,10 @@ class EventBridgeClient:
             params["remove_all_permissions"] = remove_all_permissions
         if event_bus_name is not None:
             params["event_bus_name"] = event_bus_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.remove_permission, params, self._interceptors,
+                self._native.remove_permission, params, _interceptors,
                 "eventbridge", "RemovePermission", self._region,
                 type(None),
                 ("statement_id", "remove_all_permissions", "event_bus_name", ),
@@ -1312,9 +1362,10 @@ class EventBridgeClient:
             params["event_bus_name"] = event_bus_name
         if force is not None:
             params["force"] = force
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.remove_targets, params, self._interceptors,
+                self._native.remove_targets, params, _interceptors,
                 "eventbridge", "RemoveTargets", self._region,
                 RemoveTargetsResponse,
                 ("rule", "ids", "event_bus_name", "force", ),
@@ -1344,9 +1395,10 @@ class EventBridgeClient:
         }
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_replay, params, self._interceptors,
+                self._native.start_replay, params, _interceptors,
                 "eventbridge", "StartReplay", self._region,
                 StartReplayResponse,
                 ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", "description", ),
@@ -1367,9 +1419,10 @@ class EventBridgeClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "eventbridge", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -1390,9 +1443,10 @@ class EventBridgeClient:
             "event_pattern": event_pattern,
             "event": event,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_event_pattern, params, self._interceptors,
+                self._native.test_event_pattern, params, _interceptors,
                 "eventbridge", "TestEventPattern", self._region,
                 TestEventPatternResponse,
                 ("event_pattern", "event", ),
@@ -1413,9 +1467,10 @@ class EventBridgeClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "eventbridge", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -1449,9 +1504,10 @@ class EventBridgeClient:
             params["http_method"] = http_method
         if invocation_rate_limit_per_second is not None:
             params["invocation_rate_limit_per_second"] = invocation_rate_limit_per_second
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_api_destination, params, self._interceptors,
+                self._native.update_api_destination, params, _interceptors,
                 "eventbridge", "UpdateApiDestination", self._region,
                 UpdateApiDestinationResponse,
                 ("name", "description", "connection_arn", "invocation_endpoint", "http_method", "invocation_rate_limit_per_second", ),
@@ -1482,9 +1538,10 @@ class EventBridgeClient:
             params["retention_days"] = retention_days
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_archive, params, self._interceptors,
+                self._native.update_archive, params, _interceptors,
                 "eventbridge", "UpdateArchive", self._region,
                 UpdateArchiveResponse,
                 ("archive_name", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
@@ -1518,9 +1575,10 @@ class EventBridgeClient:
             params["invocation_connectivity_parameters"] = invocation_connectivity_parameters
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_connection, params, self._interceptors,
+                self._native.update_connection, params, _interceptors,
                 "eventbridge", "UpdateConnection", self._region,
                 UpdateConnectionResponse,
                 ("name", "description", "authorization_type", "auth_parameters", "invocation_connectivity_parameters", "kms_key_identifier", ),
@@ -1554,9 +1612,10 @@ class EventBridgeClient:
             params["event_buses"] = event_buses
         if role_arn is not None:
             params["role_arn"] = role_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_endpoint, params, self._interceptors,
+                self._native.update_endpoint, params, _interceptors,
                 "eventbridge", "UpdateEndpoint", self._region,
                 UpdateEndpointResponse,
                 ("name", "description", "routing_config", "replication_config", "event_buses", "role_arn", ),
@@ -1588,9 +1647,10 @@ class EventBridgeClient:
             params["dead_letter_config"] = dead_letter_config
         if log_config is not None:
             params["log_config"] = log_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("eventbridge", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_event_bus, params, self._interceptors,
+                self._native.update_event_bus, params, _interceptors,
                 "eventbridge", "UpdateEventBus", self._region,
                 UpdateEventBusResponse,
                 ("name", "kms_key_identifier", "description", "dead_letter_config", "log_config", ),

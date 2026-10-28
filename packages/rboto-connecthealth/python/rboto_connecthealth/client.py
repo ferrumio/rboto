@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDomainOutput, GetDomainOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobResponse, GetSubscriptionOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartPatientInsightsJobResponse
 from .types import (
@@ -25,6 +26,8 @@ from .types import (
 
 
 class ConnectHealthClient:
+    logger_name = "rboto.connecthealth"
+
     def __init__(
         self,
         *,
@@ -56,9 +59,10 @@ class ConnectHealthClient:
             "domain_id": domain_id,
             "subscription_id": subscription_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.activate_subscription, params, self._interceptors,
+                self._native.activate_subscription, params, _interceptors,
                 "connecthealth", "ActivateSubscription", self._region,
                 ActivateSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
@@ -86,9 +90,10 @@ class ConnectHealthClient:
             params["web_app_setup_configuration"] = web_app_setup_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_domain, params, self._interceptors,
+                self._native.create_domain, params, _interceptors,
                 "connecthealth", "CreateDomain", self._region,
                 CreateDomainOutput,
                 ("name", "kms_key_arn", "web_app_setup_configuration", "tags", ),
@@ -107,9 +112,10 @@ class ConnectHealthClient:
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_subscription, params, self._interceptors,
+                self._native.create_subscription, params, _interceptors,
                 "connecthealth", "CreateSubscription", self._region,
                 CreateSubscriptionOutput,
                 ("domain_id", ),
@@ -130,9 +136,10 @@ class ConnectHealthClient:
             "domain_id": domain_id,
             "subscription_id": subscription_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deactivate_subscription, params, self._interceptors,
+                self._native.deactivate_subscription, params, _interceptors,
                 "connecthealth", "DeactivateSubscription", self._region,
                 DeactivateSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
@@ -151,9 +158,10 @@ class ConnectHealthClient:
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_domain, params, self._interceptors,
+                self._native.delete_domain, params, _interceptors,
                 "connecthealth", "DeleteDomain", self._region,
                 DeleteDomainOutput,
                 ("domain_id", ),
@@ -172,9 +180,10 @@ class ConnectHealthClient:
         params: dict[str, object] = {
             "domain_id": domain_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain, params, self._interceptors,
+                self._native.get_domain, params, _interceptors,
                 "connecthealth", "GetDomain", self._region,
                 GetDomainOutput,
                 ("domain_id", ),
@@ -197,9 +206,10 @@ class ConnectHealthClient:
             "domain_id": domain_id,
             "subscription_id": subscription_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_medical_scribe_listening_session, params, self._interceptors,
+                self._native.get_medical_scribe_listening_session, params, _interceptors,
                 "connecthealth", "GetMedicalScribeListeningSession", self._region,
                 GetMedicalScribeListeningSessionOutput,
                 ("session_id", "domain_id", "subscription_id", ),
@@ -220,9 +230,10 @@ class ConnectHealthClient:
             "domain_id": domain_id,
             "job_id": job_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_patient_insights_job, params, self._interceptors,
+                self._native.get_patient_insights_job, params, _interceptors,
                 "connecthealth", "GetPatientInsightsJob", self._region,
                 GetPatientInsightsJobResponse,
                 ("domain_id", "job_id", ),
@@ -243,9 +254,10 @@ class ConnectHealthClient:
             "domain_id": domain_id,
             "subscription_id": subscription_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_subscription, params, self._interceptors,
+                self._native.get_subscription, params, _interceptors,
                 "connecthealth", "GetSubscription", self._region,
                 GetSubscriptionOutput,
                 ("domain_id", "subscription_id", ),
@@ -271,9 +283,10 @@ class ConnectHealthClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_domains, params, self._interceptors,
+                self._native.list_domains, params, _interceptors,
                 "connecthealth", "ListDomains", self._region,
                 ListDomainsOutput,
                 ("status", "max_results", "next_token", ),
@@ -298,9 +311,10 @@ class ConnectHealthClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_subscriptions, params, self._interceptors,
+                self._native.list_subscriptions, params, _interceptors,
                 "connecthealth", "ListSubscriptions", self._region,
                 ListSubscriptionsOutput,
                 ("domain_id", "max_results", "next_token", ),
@@ -319,9 +333,10 @@ class ConnectHealthClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "connecthealth", "ListTagsForResource", self._region,
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
@@ -353,9 +368,10 @@ class ConnectHealthClient:
         }
         if input_stream is not None:
             params["input_stream"] = input_stream
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_medical_scribe_listening_session, params, self._interceptors,
+                self._native.start_medical_scribe_listening_session, params, _interceptors,
                 "connecthealth", "StartMedicalScribeListeningSession", self._region,
                 dict,
                 ("session_id", "domain_id", "subscription_id", "language_code", "media_sample_rate_hertz", "media_encoding", "input_stream", ),
@@ -389,9 +405,10 @@ class ConnectHealthClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_patient_insights_job, params, self._interceptors,
+                self._native.start_patient_insights_job, params, _interceptors,
                 "connecthealth", "StartPatientInsightsJob", self._region,
                 StartPatientInsightsJobResponse,
                 ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", "client_token", ),
@@ -412,9 +429,10 @@ class ConnectHealthClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "connecthealth", "TagResource", self._region,
                 type(None),
                 ("resource_arn", "tags", ),
@@ -435,9 +453,10 @@ class ConnectHealthClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("connecthealth", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "connecthealth", "UntagResource", self._region,
                 type(None),
                 ("resource_arn", "tag_keys", ),

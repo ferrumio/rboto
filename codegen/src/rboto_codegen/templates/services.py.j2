@@ -8,6 +8,10 @@ from ._imports import import_service
 from .interceptors import Interceptor
 from .session import Session
 
+SERVICE_IDS = frozenset((
+{% for service in services %}    "{{ service.service_id }}",
+{% endfor %}))
+
 if TYPE_CHECKING:
 {% for service in services %}    from {{ service.python_package }} import {{ service.client_class }}
 {% endfor %}

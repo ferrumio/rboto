@@ -1,14 +1,14 @@
 import asyncio
-import logging
 from contextvars import ContextVar
 
-from rboto import DynamoDBClient, LoggingInterceptor, LogTraceContext
+from rboto import DynamoDBClient, LogTraceContext, configure_logging
 
 trace_context: ContextVar[LogTraceContext | None] = ContextVar("application_trace", default=None)
+configure_logging(trace_context=trace_context.get)
 
 
 async def main() -> None:
-    client = DynamoDBClient(interceptors=[LoggingInterceptor(trace_context=trace_context.get)])
+    client = DynamoDBClient()
     # In an application, obtain these IDs from the tracer's current span.
     token = trace_context.set(
         LogTraceContext(
@@ -23,7 +23,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter("%(message)s %(rboto)s", defaults={"rboto": {}}))
-    logging.basicConfig(level=logging.INFO, handlers=[handler])
     asyncio.run(main())

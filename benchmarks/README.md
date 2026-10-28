@@ -48,9 +48,10 @@ Repeat with release wheels before using these development measurements to
 estimate production overhead. Remote service latency and exporter or handler
 I/O are not represented here.
 
-## Operation logging
+## Global JSON logging
 
-The same local endpoint measures the built-in logging middleware:
+The same local endpoint measures automatic logging configured through
+`configure_logging()`:
 
 ```bash
 .venv/bin/python benchmarks/interceptors.py --mode disabled --requests 4000
@@ -60,39 +61,38 @@ The same local endpoint measures the built-in logging middleware:
 .venv/bin/python benchmarks/interceptors.py --mode logging-debug --requests 4000
 ```
 
-`disabled` has no middleware. `middleware` has one pass-through interceptor.
-`logging-disabled` installs `LoggingInterceptor` with its logger at `CRITICAL`,
-so the middleware and native metadata collection still run but emit no records.
-The enabled modes use a synchronous in-memory handler that counts every record
-and retains the last 256. It performs no formatting, file writes, or network I/O.
-The measured operation succeeds on its first attempt, so both enabled modes
-emit one completion record per call; `DEBUG` emits no retry summary in this case.
+`disabled` leaves global logging unconfigured. `middleware` adds one pass-through
+application interceptor. `logging-disabled` configures level OFF and bypasses the
+automatic middleware and its native metadata collection. The enabled modes include
+the built-in JSON formatter and handler. Their text stream counts output lines and
+retains the last 256 without external I/O. Each measured request succeeds on its
+first attempt, so DEBUG adds no retry records in this scenario.
 
-Use `--allocations` separately to measure Python traced peaks. Retained log records,
-the local server, and the benchmark's latency samples are part of that peak. This
-does not measure native allocations or the cost of a production log destination.
+Warmup and connection shutdown are outside the measured interval. CPU and RSS
+include the local HTTP peer. Allocation runs include retained JSON strings and
+latency samples; they exclude native allocations and are not per-call counts.
 
-Measured on 2026-10-28 with CPython 3.12.15 on Linux ARM64, using the same
-unoptimized native extensions with debug symbols disabled. Each mode ran five
-times in shuffled order, with 4,000 requests and concurrency 8. The table shows
-medians across runs; all modes use the same revision and native extension.
+Measured on 2026-10-28 with CPython 3.12.15 on Linux ARM64 and unoptimized native
+extensions with debug symbols disabled. Each mode ran five times in shuffled
+order, with 4,000 requests and concurrency 8. Values are medians across runs.
 
 | Mode | p50 (ms) | p95 (ms) | Process CPU per call (µs) | Peak RSS (MiB) |
 | --- | ---: | ---: | ---: | ---: |
-| No middleware | 0.904 | 1.021 | 903.3 | 54.74 |
-| Pass-through middleware | 1.143 | 1.420 | 1005.7 | 55.62 |
-| Logging at CRITICAL | 1.140 | 1.420 | 1005.6 | 55.67 |
-| Logging at INFO | 1.215 | 1.539 | 1019.1 | 55.53 |
-| Logging at DEBUG, no retries | 1.231 | 1.570 | 1021.7 | 55.88 |
+| Logging unconfigured | 0.906 | 1.017 | 903.1 | 54.88 |
+| Pass-through application middleware | 1.132 | 1.407 | 1002.6 | 55.13 |
+| Global logging OFF | 0.910 | 1.030 | 903.8 | 54.78 |
+| Global JSON logging INFO | 1.325 | 1.644 | 1040.4 | 56.16 |
+| Global JSON logging DEBUG, no retries | 1.325 | 1.659 | 1038.8 | 55.72 |
 
-Enabling INFO added 0.075 ms to median latency (6.60%) and 1.34% to process CPU
-relative to the installed but disabled logger. The difference from no middleware
-also includes the chain and native metadata collection. RSS is a process peak
-and varies between runs.
+The INFO path includes automatic middleware, native metadata collection, JSON
+serialization, and a synchronous write to the memory stream. Compared with OFF,
+it added 0.415 ms to median latency (45.65%) and 15.12% to process CPU in this run.
+Compared with pass-through middleware, its median latency was 0.193 ms higher.
+OFF bypassed the metadata collection path and measured close to unconfigured
+logging. Process RSS varies between runs.
 
-Separate 2,000-request allocation runs recorded Python traced peaks of 349,976
-bytes without middleware, 708,666 with pass-through middleware, 707,858 with
-logging disabled, 1,018,484 at INFO, and 1,019,601 at DEBUG. These include the
-handler's bounded sample of 256 records and are not per-operation allocation
-counts. Repeat with release wheels and the intended handler before estimating
-production costs.
+Separate 2,000-request allocation runs recorded traced Python peaks of 367,605
+bytes unconfigured, 709,525 with pass-through middleware, 354,253 with logging OFF,
+893,242 with INFO, and 896,250 with DEBUG. These include the last 256 serialized
+JSON lines. Repeat with release wheels and the intended destination before
+estimating production cost.

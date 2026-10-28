@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SQSClient as NativeClient, CancelMessageMoveTaskResult, ChangeMessageVisibilityBatchResult, CreateQueueResult, DeleteMessageBatchResult, GetQueueAttributesResult, GetQueueUrlResult, ListDeadLetterSourceQueuesResult, ListMessageMoveTasksResult, ListQueueTagsResult, ListQueuesResult, ReceiveMessageResult, SendMessageBatchResult, SendMessageResult, StartMessageMoveTaskResult
 from .types import (
@@ -21,6 +22,8 @@ from .types import (
 
 
 class SQSClient:
+    logger_name = "rboto.sqs"
+
     def __init__(
         self,
         *,
@@ -56,9 +59,10 @@ class SQSClient:
             "aws_account_ids": aws_account_ids,
             "actions": actions,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.add_permission, params, self._interceptors,
+                self._native.add_permission, params, _interceptors,
                 "sqs", "AddPermission", self._region,
                 type(None),
                 ("queue_url", "label", "aws_account_ids", "actions", ),
@@ -77,9 +81,10 @@ class SQSClient:
         params: dict[str, object] = {
             "task_handle": task_handle,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_message_move_task, params, self._interceptors,
+                self._native.cancel_message_move_task, params, _interceptors,
                 "sqs", "CancelMessageMoveTask", self._region,
                 CancelMessageMoveTaskResult,
                 ("task_handle", ),
@@ -102,9 +107,10 @@ class SQSClient:
             "receipt_handle": receipt_handle,
             "visibility_timeout": visibility_timeout,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.change_message_visibility, params, self._interceptors,
+                self._native.change_message_visibility, params, _interceptors,
                 "sqs", "ChangeMessageVisibility", self._region,
                 type(None),
                 ("queue_url", "receipt_handle", "visibility_timeout", ),
@@ -125,9 +131,10 @@ class SQSClient:
             "queue_url": queue_url,
             "entries": entries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.change_message_visibility_batch, params, self._interceptors,
+                self._native.change_message_visibility_batch, params, _interceptors,
                 "sqs", "ChangeMessageVisibilityBatch", self._region,
                 ChangeMessageVisibilityBatchResult,
                 ("queue_url", "entries", ),
@@ -152,9 +159,10 @@ class SQSClient:
             params["attributes"] = attributes
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_queue, params, self._interceptors,
+                self._native.create_queue, params, _interceptors,
                 "sqs", "CreateQueue", self._region,
                 CreateQueueResult,
                 ("queue_name", "attributes", "tags", ),
@@ -175,9 +183,10 @@ class SQSClient:
             "queue_url": queue_url,
             "receipt_handle": receipt_handle,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_message, params, self._interceptors,
+                self._native.delete_message, params, _interceptors,
                 "sqs", "DeleteMessage", self._region,
                 type(None),
                 ("queue_url", "receipt_handle", ),
@@ -198,9 +207,10 @@ class SQSClient:
             "queue_url": queue_url,
             "entries": entries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_message_batch, params, self._interceptors,
+                self._native.delete_message_batch, params, _interceptors,
                 "sqs", "DeleteMessageBatch", self._region,
                 DeleteMessageBatchResult,
                 ("queue_url", "entries", ),
@@ -219,9 +229,10 @@ class SQSClient:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_queue, params, self._interceptors,
+                self._native.delete_queue, params, _interceptors,
                 "sqs", "DeleteQueue", self._region,
                 type(None),
                 ("queue_url", ),
@@ -243,9 +254,10 @@ class SQSClient:
         }
         if attribute_names is not None:
             params["attribute_names"] = attribute_names
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_queue_attributes, params, self._interceptors,
+                self._native.get_queue_attributes, params, _interceptors,
                 "sqs", "GetQueueAttributes", self._region,
                 GetQueueAttributesResult,
                 ("queue_url", "attribute_names", ),
@@ -267,9 +279,10 @@ class SQSClient:
         }
         if queue_owner_aws_account_id is not None:
             params["queue_owner_aws_account_id"] = queue_owner_aws_account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_queue_url, params, self._interceptors,
+                self._native.get_queue_url, params, _interceptors,
                 "sqs", "GetQueueUrl", self._region,
                 GetQueueUrlResult,
                 ("queue_name", "queue_owner_aws_account_id", ),
@@ -294,9 +307,10 @@ class SQSClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_dead_letter_source_queues, params, self._interceptors,
+                self._native.list_dead_letter_source_queues, params, _interceptors,
                 "sqs", "ListDeadLetterSourceQueues", self._region,
                 ListDeadLetterSourceQueuesResult,
                 ("queue_url", "next_token", "max_results", ),
@@ -318,9 +332,10 @@ class SQSClient:
         }
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_message_move_tasks, params, self._interceptors,
+                self._native.list_message_move_tasks, params, _interceptors,
                 "sqs", "ListMessageMoveTasks", self._region,
                 ListMessageMoveTasksResult,
                 ("source_arn", "max_results", ),
@@ -339,9 +354,10 @@ class SQSClient:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_queue_tags, params, self._interceptors,
+                self._native.list_queue_tags, params, _interceptors,
                 "sqs", "ListQueueTags", self._region,
                 ListQueueTagsResult,
                 ("queue_url", ),
@@ -367,9 +383,10 @@ class SQSClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_queues, params, self._interceptors,
+                self._native.list_queues, params, _interceptors,
                 "sqs", "ListQueues", self._region,
                 ListQueuesResult,
                 ("queue_name_prefix", "next_token", "max_results", ),
@@ -388,9 +405,10 @@ class SQSClient:
         params: dict[str, object] = {
             "queue_url": queue_url,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.purge_queue, params, self._interceptors,
+                self._native.purge_queue, params, _interceptors,
                 "sqs", "PurgeQueue", self._region,
                 type(None),
                 ("queue_url", ),
@@ -430,9 +448,10 @@ class SQSClient:
             params["wait_time_seconds"] = wait_time_seconds
         if receive_request_attempt_id is not None:
             params["receive_request_attempt_id"] = receive_request_attempt_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.receive_message, params, self._interceptors,
+                self._native.receive_message, params, _interceptors,
                 "sqs", "ReceiveMessage", self._region,
                 ReceiveMessageResult,
                 ("queue_url", "attribute_names", "message_system_attribute_names", "message_attribute_names", "max_number_of_messages", "visibility_timeout", "wait_time_seconds", "receive_request_attempt_id", ),
@@ -453,9 +472,10 @@ class SQSClient:
             "queue_url": queue_url,
             "label": label,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.remove_permission, params, self._interceptors,
+                self._native.remove_permission, params, _interceptors,
                 "sqs", "RemovePermission", self._region,
                 type(None),
                 ("queue_url", "label", ),
@@ -491,9 +511,10 @@ class SQSClient:
             params["message_deduplication_id"] = message_deduplication_id
         if message_group_id is not None:
             params["message_group_id"] = message_group_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_message, params, self._interceptors,
+                self._native.send_message, params, _interceptors,
                 "sqs", "SendMessage", self._region,
                 SendMessageResult,
                 ("queue_url", "message_body", "delay_seconds", "message_attributes", "message_system_attributes", "message_deduplication_id", "message_group_id", ),
@@ -514,9 +535,10 @@ class SQSClient:
             "queue_url": queue_url,
             "entries": entries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_message_batch, params, self._interceptors,
+                self._native.send_message_batch, params, _interceptors,
                 "sqs", "SendMessageBatch", self._region,
                 SendMessageBatchResult,
                 ("queue_url", "entries", ),
@@ -537,9 +559,10 @@ class SQSClient:
             "queue_url": queue_url,
             "attributes": attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_queue_attributes, params, self._interceptors,
+                self._native.set_queue_attributes, params, _interceptors,
                 "sqs", "SetQueueAttributes", self._region,
                 type(None),
                 ("queue_url", "attributes", ),
@@ -564,9 +587,10 @@ class SQSClient:
             params["destination_arn"] = destination_arn
         if max_number_of_messages_per_second is not None:
             params["max_number_of_messages_per_second"] = max_number_of_messages_per_second
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_message_move_task, params, self._interceptors,
+                self._native.start_message_move_task, params, _interceptors,
                 "sqs", "StartMessageMoveTask", self._region,
                 StartMessageMoveTaskResult,
                 ("source_arn", "destination_arn", "max_number_of_messages_per_second", ),
@@ -587,9 +611,10 @@ class SQSClient:
             "queue_url": queue_url,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_queue, params, self._interceptors,
+                self._native.tag_queue, params, _interceptors,
                 "sqs", "TagQueue", self._region,
                 type(None),
                 ("queue_url", "tags", ),
@@ -610,9 +635,10 @@ class SQSClient:
             "queue_url": queue_url,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sqs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_queue, params, self._interceptors,
+                self._native.untag_queue, params, _interceptors,
                 "sqs", "UntagQueue", self._region,
                 type(None),
                 ("queue_url", "tag_keys", ),

@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateResponse, BatchGetMetricDataResponse, CancelExportJobResponse, CreateConfigurationSetEventDestinationResponse, CreateConfigurationSetResponse, CreateContactListResponse, CreateContactResponse, CreateCustomVerificationEmailTemplateResponse, CreateDedicatedIpPoolResponse, CreateDeliverabilityTestReportResponse, CreateEmailIdentityPolicyResponse, CreateEmailIdentityResponse, CreateEmailTemplateResponse, CreateExportJobResponse, CreateImportJobResponse, CreateMultiRegionEndpointResponse, CreateTenantResourceAssociationResponse, CreateTenantResponse, DeleteConfigurationSetEventDestinationResponse, DeleteConfigurationSetResponse, DeleteContactListResponse, DeleteContactResponse, DeleteCustomVerificationEmailTemplateResponse, DeleteDedicatedIpPoolResponse, DeleteEmailIdentityPolicyResponse, DeleteEmailIdentityResponse, DeleteEmailTemplateResponse, DeleteMultiRegionEndpointResponse, DeleteSuppressedDestinationResponse, DeleteTenantResourceAssociationResponse, DeleteTenantResponse, DisassociateEmailIdentityCertificateResponse, GetAccountResponse, GetBlacklistReportsResponse, GetConfigurationSetEventDestinationsResponse, GetConfigurationSetResponse, GetContactListResponse, GetContactResponse, GetCustomVerificationEmailTemplateResponse, GetDedicatedIpPoolResponse, GetDedicatedIpResponse, GetDedicatedIpsResponse, GetDeliverabilityDashboardOptionsResponse, GetDeliverabilityTestReportResponse, GetDomainDeliverabilityCampaignResponse, GetDomainStatisticsReportResponse, GetEmailAddressInsightsResponse, GetEmailIdentityPoliciesResponse, GetEmailIdentityResponse, GetEmailTemplateResponse, GetExportJobResponse, GetImportJobResponse, GetMessageInsightsResponse, GetMultiRegionEndpointResponse, GetReputationEntityResponse, GetSuppressedDestinationResponse, GetTenantResponse, ListConfigurationSetsResponse, ListContactListsResponse, ListContactsResponse, ListCustomVerificationEmailTemplatesResponse, ListDedicatedIpPoolsResponse, ListDeliverabilityTestReportsResponse, ListDomainDeliverabilityCampaignsResponse, ListEmailIdentitiesResponse, ListEmailIdentityCertificatesResponse, ListEmailTemplatesResponse, ListExportJobsResponse, ListImportJobsResponse, ListMultiRegionEndpointsResponse, ListRecommendationsResponse, ListReputationEntitiesResponse, ListResourceTenantsResponse, ListSuppressedDestinationsResponse, ListTagsForResourceResponse, ListTenantResourcesResponse, ListTenantsResponse, PutAccountDedicatedIpWarmupAttributesResponse, PutAccountDetailsResponse, PutAccountPricingAttributesResponse, PutAccountSendingAttributesResponse, PutAccountSuppressionAttributesResponse, PutAccountVdmAttributesResponse, PutConfigurationSetArchivingOptionsResponse, PutConfigurationSetDeliveryOptionsResponse, PutConfigurationSetReputationOptionsResponse, PutConfigurationSetSendingOptionsResponse, PutConfigurationSetSuppressionOptionsResponse, PutConfigurationSetTrackingOptionsResponse, PutConfigurationSetVdmOptionsResponse, PutDedicatedIpInPoolResponse, PutDedicatedIpPoolScalingAttributesResponse, PutDedicatedIpWarmupAttributesResponse, PutDeliverabilityDashboardOptionResponse, PutEmailIdentityConfigurationSetAttributesResponse, PutEmailIdentityDkimAttributesResponse, PutEmailIdentityDkimSigningAttributesResponse, PutEmailIdentityFeedbackAttributesResponse, PutEmailIdentityMailFromAttributesResponse, PutSuppressedDestinationResponse, PutTenantSuppressionAttributesResponse, SendBulkEmailResponse, SendCustomVerificationEmailResponse, SendEmailResponse, TagResourceResponse, TestRenderEmailTemplateResponse, UntagResourceResponse, UpdateConfigurationSetEventDestinationResponse, UpdateConfigurationSetResponse, UpdateContactListResponse, UpdateContactResponse, UpdateCustomVerificationEmailTemplateResponse, UpdateEmailIdentityPolicyResponse, UpdateEmailTemplateResponse, UpdateReputationEntityCustomerManagedStatusResponse, UpdateReputationEntityPolicyResponse
 from .types import (
@@ -67,6 +68,8 @@ from .types import (
 
 
 class SESV2Client:
+    logger_name = "rboto.sesv2"
+
     def __init__(
         self,
         *,
@@ -101,9 +104,10 @@ class SESV2Client:
         }
         if from_address is not None:
             params["from_address"] = from_address
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.associate_email_identity_certificate, params, self._interceptors,
+                self._native.associate_email_identity_certificate, params, _interceptors,
                 "sesv2", "AssociateEmailIdentityCertificate", self._region,
                 AssociateEmailIdentityCertificateResponse,
                 ("email_identity", "certificate_arn", "from_address", ),
@@ -122,9 +126,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "queries": queries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_get_metric_data, params, self._interceptors,
+                self._native.batch_get_metric_data, params, _interceptors,
                 "sesv2", "BatchGetMetricData", self._region,
                 BatchGetMetricDataResponse,
                 ("queries", ),
@@ -143,9 +148,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "job_id": job_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_export_job, params, self._interceptors,
+                self._native.cancel_export_job, params, _interceptors,
                 "sesv2", "CancelExportJob", self._region,
                 CancelExportJobResponse,
                 ("job_id", ),
@@ -191,9 +197,10 @@ class SESV2Client:
             params["archiving_options"] = archiving_options
         if message_security_options is not None:
             params["message_security_options"] = message_security_options
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_configuration_set, params, self._interceptors,
+                self._native.create_configuration_set, params, _interceptors,
                 "sesv2", "CreateConfigurationSet", self._region,
                 CreateConfigurationSetResponse,
                 ("configuration_set_name", "tracking_options", "delivery_options", "reputation_options", "sending_options", "tags", "suppression_options", "vdm_options", "archiving_options", "message_security_options", ),
@@ -216,9 +223,10 @@ class SESV2Client:
             "event_destination_name": event_destination_name,
             "event_destination": event_destination,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_configuration_set_event_destination, params, self._interceptors,
+                self._native.create_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "CreateConfigurationSetEventDestination", self._region,
                 CreateConfigurationSetEventDestinationResponse,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
@@ -248,9 +256,10 @@ class SESV2Client:
             params["unsubscribe_all"] = unsubscribe_all
         if attributes_data is not None:
             params["attributes_data"] = attributes_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_contact, params, self._interceptors,
+                self._native.create_contact, params, _interceptors,
                 "sesv2", "CreateContact", self._region,
                 CreateContactResponse,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
@@ -278,9 +287,10 @@ class SESV2Client:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_contact_list, params, self._interceptors,
+                self._native.create_contact_list, params, _interceptors,
                 "sesv2", "CreateContactList", self._region,
                 CreateContactListResponse,
                 ("contact_list_name", "topics", "description", "tags", ),
@@ -312,9 +322,10 @@ class SESV2Client:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_verification_email_template, params, self._interceptors,
+                self._native.create_custom_verification_email_template, params, _interceptors,
                 "sesv2", "CreateCustomVerificationEmailTemplate", self._region,
                 CreateCustomVerificationEmailTemplateResponse,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", "tags", ),
@@ -339,9 +350,10 @@ class SESV2Client:
             params["tags"] = tags
         if scaling_mode is not None:
             params["scaling_mode"] = scaling_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_dedicated_ip_pool, params, self._interceptors,
+                self._native.create_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "CreateDedicatedIpPool", self._region,
                 CreateDedicatedIpPoolResponse,
                 ("pool_name", "tags", "scaling_mode", ),
@@ -368,9 +380,10 @@ class SESV2Client:
             params["report_name"] = report_name
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_deliverability_test_report, params, self._interceptors,
+                self._native.create_deliverability_test_report, params, _interceptors,
                 "sesv2", "CreateDeliverabilityTestReport", self._region,
                 CreateDeliverabilityTestReportResponse,
                 ("from_email_address", "content", "report_name", "tags", ),
@@ -398,9 +411,10 @@ class SESV2Client:
             params["dkim_signing_attributes"] = dkim_signing_attributes
         if configuration_set_name is not None:
             params["configuration_set_name"] = configuration_set_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_email_identity, params, self._interceptors,
+                self._native.create_email_identity, params, _interceptors,
                 "sesv2", "CreateEmailIdentity", self._region,
                 CreateEmailIdentityResponse,
                 ("email_identity", "tags", "dkim_signing_attributes", "configuration_set_name", ),
@@ -423,9 +437,10 @@ class SESV2Client:
             "policy_name": policy_name,
             "policy": policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_email_identity_policy, params, self._interceptors,
+                self._native.create_email_identity_policy, params, _interceptors,
                 "sesv2", "CreateEmailIdentityPolicy", self._region,
                 CreateEmailIdentityPolicyResponse,
                 ("email_identity", "policy_name", "policy", ),
@@ -449,9 +464,10 @@ class SESV2Client:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_email_template, params, self._interceptors,
+                self._native.create_email_template, params, _interceptors,
                 "sesv2", "CreateEmailTemplate", self._region,
                 CreateEmailTemplateResponse,
                 ("template_name", "template_content", "tags", ),
@@ -472,9 +488,10 @@ class SESV2Client:
             "export_data_source": export_data_source,
             "export_destination": export_destination,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_export_job, params, self._interceptors,
+                self._native.create_export_job, params, _interceptors,
                 "sesv2", "CreateExportJob", self._region,
                 CreateExportJobResponse,
                 ("export_data_source", "export_destination", ),
@@ -495,9 +512,10 @@ class SESV2Client:
             "import_destination": import_destination,
             "import_data_source": import_data_source,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_import_job, params, self._interceptors,
+                self._native.create_import_job, params, _interceptors,
                 "sesv2", "CreateImportJob", self._region,
                 CreateImportJobResponse,
                 ("import_destination", "import_data_source", ),
@@ -521,9 +539,10 @@ class SESV2Client:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_multi_region_endpoint, params, self._interceptors,
+                self._native.create_multi_region_endpoint, params, _interceptors,
                 "sesv2", "CreateMultiRegionEndpoint", self._region,
                 CreateMultiRegionEndpointResponse,
                 ("endpoint_name", "details", "tags", ),
@@ -548,9 +567,10 @@ class SESV2Client:
             params["tags"] = tags
         if suppression_attributes is not None:
             params["suppression_attributes"] = suppression_attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_tenant, params, self._interceptors,
+                self._native.create_tenant, params, _interceptors,
                 "sesv2", "CreateTenant", self._region,
                 CreateTenantResponse,
                 ("tenant_name", "tags", "suppression_attributes", ),
@@ -571,9 +591,10 @@ class SESV2Client:
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_tenant_resource_association, params, self._interceptors,
+                self._native.create_tenant_resource_association, params, _interceptors,
                 "sesv2", "CreateTenantResourceAssociation", self._region,
                 CreateTenantResourceAssociationResponse,
                 ("tenant_name", "resource_arn", ),
@@ -592,9 +613,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_configuration_set, params, self._interceptors,
+                self._native.delete_configuration_set, params, _interceptors,
                 "sesv2", "DeleteConfigurationSet", self._region,
                 DeleteConfigurationSetResponse,
                 ("configuration_set_name", ),
@@ -615,9 +637,10 @@ class SESV2Client:
             "configuration_set_name": configuration_set_name,
             "event_destination_name": event_destination_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_configuration_set_event_destination, params, self._interceptors,
+                self._native.delete_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "DeleteConfigurationSetEventDestination", self._region,
                 DeleteConfigurationSetEventDestinationResponse,
                 ("configuration_set_name", "event_destination_name", ),
@@ -638,9 +661,10 @@ class SESV2Client:
             "contact_list_name": contact_list_name,
             "email_address": email_address,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_contact, params, self._interceptors,
+                self._native.delete_contact, params, _interceptors,
                 "sesv2", "DeleteContact", self._region,
                 DeleteContactResponse,
                 ("contact_list_name", "email_address", ),
@@ -659,9 +683,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_contact_list, params, self._interceptors,
+                self._native.delete_contact_list, params, _interceptors,
                 "sesv2", "DeleteContactList", self._region,
                 DeleteContactListResponse,
                 ("contact_list_name", ),
@@ -680,9 +705,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "template_name": template_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_verification_email_template, params, self._interceptors,
+                self._native.delete_custom_verification_email_template, params, _interceptors,
                 "sesv2", "DeleteCustomVerificationEmailTemplate", self._region,
                 DeleteCustomVerificationEmailTemplateResponse,
                 ("template_name", ),
@@ -701,9 +727,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_dedicated_ip_pool, params, self._interceptors,
+                self._native.delete_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "DeleteDedicatedIpPool", self._region,
                 DeleteDedicatedIpPoolResponse,
                 ("pool_name", ),
@@ -722,9 +749,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_email_identity, params, self._interceptors,
+                self._native.delete_email_identity, params, _interceptors,
                 "sesv2", "DeleteEmailIdentity", self._region,
                 DeleteEmailIdentityResponse,
                 ("email_identity", ),
@@ -745,9 +773,10 @@ class SESV2Client:
             "email_identity": email_identity,
             "policy_name": policy_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_email_identity_policy, params, self._interceptors,
+                self._native.delete_email_identity_policy, params, _interceptors,
                 "sesv2", "DeleteEmailIdentityPolicy", self._region,
                 DeleteEmailIdentityPolicyResponse,
                 ("email_identity", "policy_name", ),
@@ -766,9 +795,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "template_name": template_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_email_template, params, self._interceptors,
+                self._native.delete_email_template, params, _interceptors,
                 "sesv2", "DeleteEmailTemplate", self._region,
                 DeleteEmailTemplateResponse,
                 ("template_name", ),
@@ -787,9 +817,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_multi_region_endpoint, params, self._interceptors,
+                self._native.delete_multi_region_endpoint, params, _interceptors,
                 "sesv2", "DeleteMultiRegionEndpoint", self._region,
                 DeleteMultiRegionEndpointResponse,
                 ("endpoint_name", ),
@@ -811,9 +842,10 @@ class SESV2Client:
         }
         if tenant_name is not None:
             params["tenant_name"] = tenant_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_suppressed_destination, params, self._interceptors,
+                self._native.delete_suppressed_destination, params, _interceptors,
                 "sesv2", "DeleteSuppressedDestination", self._region,
                 DeleteSuppressedDestinationResponse,
                 ("email_address", "tenant_name", ),
@@ -832,9 +864,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_tenant, params, self._interceptors,
+                self._native.delete_tenant, params, _interceptors,
                 "sesv2", "DeleteTenant", self._region,
                 DeleteTenantResponse,
                 ("tenant_name", ),
@@ -855,9 +888,10 @@ class SESV2Client:
             "tenant_name": tenant_name,
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_tenant_resource_association, params, self._interceptors,
+                self._native.delete_tenant_resource_association, params, _interceptors,
                 "sesv2", "DeleteTenantResourceAssociation", self._region,
                 DeleteTenantResourceAssociationResponse,
                 ("tenant_name", "resource_arn", ),
@@ -879,9 +913,10 @@ class SESV2Client:
         }
         if from_address is not None:
             params["from_address"] = from_address
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_email_identity_certificate, params, self._interceptors,
+                self._native.disassociate_email_identity_certificate, params, _interceptors,
                 "sesv2", "DisassociateEmailIdentityCertificate", self._region,
                 DisassociateEmailIdentityCertificateResponse,
                 ("email_identity", "from_address", ),
@@ -897,9 +932,10 @@ class SESV2Client:
     ) -> GetAccountResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_account, params, self._interceptors,
+                self._native.get_account, params, _interceptors,
                 "sesv2", "GetAccount", self._region,
                 GetAccountResponse,
                 (),
@@ -918,9 +954,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "blacklist_item_names": blacklist_item_names,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_blacklist_reports, params, self._interceptors,
+                self._native.get_blacklist_reports, params, _interceptors,
                 "sesv2", "GetBlacklistReports", self._region,
                 GetBlacklistReportsResponse,
                 ("blacklist_item_names", ),
@@ -939,9 +976,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_configuration_set, params, self._interceptors,
+                self._native.get_configuration_set, params, _interceptors,
                 "sesv2", "GetConfigurationSet", self._region,
                 GetConfigurationSetResponse,
                 ("configuration_set_name", ),
@@ -960,9 +998,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "configuration_set_name": configuration_set_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_configuration_set_event_destinations, params, self._interceptors,
+                self._native.get_configuration_set_event_destinations, params, _interceptors,
                 "sesv2", "GetConfigurationSetEventDestinations", self._region,
                 GetConfigurationSetEventDestinationsResponse,
                 ("configuration_set_name", ),
@@ -983,9 +1022,10 @@ class SESV2Client:
             "contact_list_name": contact_list_name,
             "email_address": email_address,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_contact, params, self._interceptors,
+                self._native.get_contact, params, _interceptors,
                 "sesv2", "GetContact", self._region,
                 GetContactResponse,
                 ("contact_list_name", "email_address", ),
@@ -1004,9 +1044,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_contact_list, params, self._interceptors,
+                self._native.get_contact_list, params, _interceptors,
                 "sesv2", "GetContactList", self._region,
                 GetContactListResponse,
                 ("contact_list_name", ),
@@ -1025,9 +1066,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "template_name": template_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_verification_email_template, params, self._interceptors,
+                self._native.get_custom_verification_email_template, params, _interceptors,
                 "sesv2", "GetCustomVerificationEmailTemplate", self._region,
                 GetCustomVerificationEmailTemplateResponse,
                 ("template_name", ),
@@ -1046,9 +1088,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "ip": ip,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_dedicated_ip, params, self._interceptors,
+                self._native.get_dedicated_ip, params, _interceptors,
                 "sesv2", "GetDedicatedIp", self._region,
                 GetDedicatedIpResponse,
                 ("ip", ),
@@ -1067,9 +1110,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "pool_name": pool_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_dedicated_ip_pool, params, self._interceptors,
+                self._native.get_dedicated_ip_pool, params, _interceptors,
                 "sesv2", "GetDedicatedIpPool", self._region,
                 GetDedicatedIpPoolResponse,
                 ("pool_name", ),
@@ -1095,9 +1139,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_dedicated_ips, params, self._interceptors,
+                self._native.get_dedicated_ips, params, _interceptors,
                 "sesv2", "GetDedicatedIps", self._region,
                 GetDedicatedIpsResponse,
                 ("pool_name", "next_token", "page_size", ),
@@ -1113,9 +1158,10 @@ class SESV2Client:
     ) -> GetDeliverabilityDashboardOptionsResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_deliverability_dashboard_options, params, self._interceptors,
+                self._native.get_deliverability_dashboard_options, params, _interceptors,
                 "sesv2", "GetDeliverabilityDashboardOptions", self._region,
                 GetDeliverabilityDashboardOptionsResponse,
                 (),
@@ -1134,9 +1180,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "report_id": report_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_deliverability_test_report, params, self._interceptors,
+                self._native.get_deliverability_test_report, params, _interceptors,
                 "sesv2", "GetDeliverabilityTestReport", self._region,
                 GetDeliverabilityTestReportResponse,
                 ("report_id", ),
@@ -1155,9 +1202,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "campaign_id": campaign_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain_deliverability_campaign, params, self._interceptors,
+                self._native.get_domain_deliverability_campaign, params, _interceptors,
                 "sesv2", "GetDomainDeliverabilityCampaign", self._region,
                 GetDomainDeliverabilityCampaignResponse,
                 ("campaign_id", ),
@@ -1180,9 +1228,10 @@ class SESV2Client:
             "start_date": start_date,
             "end_date": end_date,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_domain_statistics_report, params, self._interceptors,
+                self._native.get_domain_statistics_report, params, _interceptors,
                 "sesv2", "GetDomainStatisticsReport", self._region,
                 GetDomainStatisticsReportResponse,
                 ("domain", "start_date", "end_date", ),
@@ -1201,9 +1250,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "email_address": email_address,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_email_address_insights, params, self._interceptors,
+                self._native.get_email_address_insights, params, _interceptors,
                 "sesv2", "GetEmailAddressInsights", self._region,
                 GetEmailAddressInsightsResponse,
                 ("email_address", ),
@@ -1222,9 +1272,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_email_identity, params, self._interceptors,
+                self._native.get_email_identity, params, _interceptors,
                 "sesv2", "GetEmailIdentity", self._region,
                 GetEmailIdentityResponse,
                 ("email_identity", ),
@@ -1243,9 +1294,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "email_identity": email_identity,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_email_identity_policies, params, self._interceptors,
+                self._native.get_email_identity_policies, params, _interceptors,
                 "sesv2", "GetEmailIdentityPolicies", self._region,
                 GetEmailIdentityPoliciesResponse,
                 ("email_identity", ),
@@ -1264,9 +1316,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "template_name": template_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_email_template, params, self._interceptors,
+                self._native.get_email_template, params, _interceptors,
                 "sesv2", "GetEmailTemplate", self._region,
                 GetEmailTemplateResponse,
                 ("template_name", ),
@@ -1285,9 +1338,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "job_id": job_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_export_job, params, self._interceptors,
+                self._native.get_export_job, params, _interceptors,
                 "sesv2", "GetExportJob", self._region,
                 GetExportJobResponse,
                 ("job_id", ),
@@ -1306,9 +1360,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "job_id": job_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_import_job, params, self._interceptors,
+                self._native.get_import_job, params, _interceptors,
                 "sesv2", "GetImportJob", self._region,
                 GetImportJobResponse,
                 ("job_id", ),
@@ -1327,9 +1382,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "message_id": message_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_message_insights, params, self._interceptors,
+                self._native.get_message_insights, params, _interceptors,
                 "sesv2", "GetMessageInsights", self._region,
                 GetMessageInsightsResponse,
                 ("message_id", ),
@@ -1348,9 +1404,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_multi_region_endpoint, params, self._interceptors,
+                self._native.get_multi_region_endpoint, params, _interceptors,
                 "sesv2", "GetMultiRegionEndpoint", self._region,
                 GetMultiRegionEndpointResponse,
                 ("endpoint_name", ),
@@ -1371,9 +1428,10 @@ class SESV2Client:
             "reputation_entity_reference": reputation_entity_reference,
             "reputation_entity_type": reputation_entity_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_reputation_entity, params, self._interceptors,
+                self._native.get_reputation_entity, params, _interceptors,
                 "sesv2", "GetReputationEntity", self._region,
                 GetReputationEntityResponse,
                 ("reputation_entity_reference", "reputation_entity_type", ),
@@ -1395,9 +1453,10 @@ class SESV2Client:
         }
         if tenant_name is not None:
             params["tenant_name"] = tenant_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_suppressed_destination, params, self._interceptors,
+                self._native.get_suppressed_destination, params, _interceptors,
                 "sesv2", "GetSuppressedDestination", self._region,
                 GetSuppressedDestinationResponse,
                 ("email_address", "tenant_name", ),
@@ -1416,9 +1475,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "tenant_name": tenant_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_tenant, params, self._interceptors,
+                self._native.get_tenant, params, _interceptors,
                 "sesv2", "GetTenant", self._region,
                 GetTenantResponse,
                 ("tenant_name", ),
@@ -1444,9 +1504,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_configuration_sets, params, self._interceptors,
+                self._native.list_configuration_sets, params, _interceptors,
                 "sesv2", "ListConfigurationSets", self._region,
                 ListConfigurationSetsResponse,
                 ("filter", "next_token", "page_size", ),
@@ -1469,9 +1530,10 @@ class SESV2Client:
             params["page_size"] = page_size
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_contact_lists, params, self._interceptors,
+                self._native.list_contact_lists, params, _interceptors,
                 "sesv2", "ListContactLists", self._region,
                 ListContactListsResponse,
                 ("page_size", "next_token", ),
@@ -1499,9 +1561,10 @@ class SESV2Client:
             params["page_size"] = page_size
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_contacts, params, self._interceptors,
+                self._native.list_contacts, params, _interceptors,
                 "sesv2", "ListContacts", self._region,
                 ListContactsResponse,
                 ("contact_list_name", "filter", "page_size", "next_token", ),
@@ -1524,9 +1587,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_verification_email_templates, params, self._interceptors,
+                self._native.list_custom_verification_email_templates, params, _interceptors,
                 "sesv2", "ListCustomVerificationEmailTemplates", self._region,
                 ListCustomVerificationEmailTemplatesResponse,
                 ("next_token", "page_size", ),
@@ -1549,9 +1613,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_dedicated_ip_pools, params, self._interceptors,
+                self._native.list_dedicated_ip_pools, params, _interceptors,
                 "sesv2", "ListDedicatedIpPools", self._region,
                 ListDedicatedIpPoolsResponse,
                 ("next_token", "page_size", ),
@@ -1574,9 +1639,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_deliverability_test_reports, params, self._interceptors,
+                self._native.list_deliverability_test_reports, params, _interceptors,
                 "sesv2", "ListDeliverabilityTestReports", self._region,
                 ListDeliverabilityTestReportsResponse,
                 ("next_token", "page_size", ),
@@ -1605,9 +1671,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_domain_deliverability_campaigns, params, self._interceptors,
+                self._native.list_domain_deliverability_campaigns, params, _interceptors,
                 "sesv2", "ListDomainDeliverabilityCampaigns", self._region,
                 ListDomainDeliverabilityCampaignsResponse,
                 ("start_date", "end_date", "subscribed_domain", "next_token", "page_size", ),
@@ -1633,9 +1700,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_email_identities, params, self._interceptors,
+                self._native.list_email_identities, params, _interceptors,
                 "sesv2", "ListEmailIdentities", self._region,
                 ListEmailIdentitiesResponse,
                 ("filter", "next_token", "page_size", ),
@@ -1660,9 +1728,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_email_identity_certificates, params, self._interceptors,
+                self._native.list_email_identity_certificates, params, _interceptors,
                 "sesv2", "ListEmailIdentityCertificates", self._region,
                 ListEmailIdentityCertificatesResponse,
                 ("email_identity", "next_token", "page_size", ),
@@ -1685,9 +1754,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_email_templates, params, self._interceptors,
+                self._native.list_email_templates, params, _interceptors,
                 "sesv2", "ListEmailTemplates", self._region,
                 ListEmailTemplatesResponse,
                 ("next_token", "page_size", ),
@@ -1716,9 +1786,10 @@ class SESV2Client:
             params["export_source_type"] = export_source_type
         if job_status is not None:
             params["job_status"] = job_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_export_jobs, params, self._interceptors,
+                self._native.list_export_jobs, params, _interceptors,
                 "sesv2", "ListExportJobs", self._region,
                 ListExportJobsResponse,
                 ("next_token", "page_size", "export_source_type", "job_status", ),
@@ -1744,9 +1815,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_import_jobs, params, self._interceptors,
+                self._native.list_import_jobs, params, _interceptors,
                 "sesv2", "ListImportJobs", self._region,
                 ListImportJobsResponse,
                 ("import_destination_type", "next_token", "page_size", ),
@@ -1769,9 +1841,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_multi_region_endpoints, params, self._interceptors,
+                self._native.list_multi_region_endpoints, params, _interceptors,
                 "sesv2", "ListMultiRegionEndpoints", self._region,
                 ListMultiRegionEndpointsResponse,
                 ("next_token", "page_size", ),
@@ -1797,9 +1870,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_recommendations, params, self._interceptors,
+                self._native.list_recommendations, params, _interceptors,
                 "sesv2", "ListRecommendations", self._region,
                 ListRecommendationsResponse,
                 ("filter", "next_token", "page_size", ),
@@ -1825,9 +1899,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_reputation_entities, params, self._interceptors,
+                self._native.list_reputation_entities, params, _interceptors,
                 "sesv2", "ListReputationEntities", self._region,
                 ListReputationEntitiesResponse,
                 ("filter", "next_token", "page_size", ),
@@ -1852,9 +1927,10 @@ class SESV2Client:
             params["page_size"] = page_size
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_resource_tenants, params, self._interceptors,
+                self._native.list_resource_tenants, params, _interceptors,
                 "sesv2", "ListResourceTenants", self._region,
                 ListResourceTenantsResponse,
                 ("resource_arn", "page_size", "next_token", ),
@@ -1889,9 +1965,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_suppressed_destinations, params, self._interceptors,
+                self._native.list_suppressed_destinations, params, _interceptors,
                 "sesv2", "ListSuppressedDestinations", self._region,
                 ListSuppressedDestinationsResponse,
                 ("tenant_name", "reasons", "start_date", "end_date", "next_token", "page_size", ),
@@ -1910,9 +1987,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "sesv2", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -1940,9 +2018,10 @@ class SESV2Client:
             params["page_size"] = page_size
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tenant_resources, params, self._interceptors,
+                self._native.list_tenant_resources, params, _interceptors,
                 "sesv2", "ListTenantResources", self._region,
                 ListTenantResourcesResponse,
                 ("tenant_name", "filter", "page_size", "next_token", ),
@@ -1968,9 +2047,10 @@ class SESV2Client:
             params["next_token"] = next_token
         if page_size is not None:
             params["page_size"] = page_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tenants, params, self._interceptors,
+                self._native.list_tenants, params, _interceptors,
                 "sesv2", "ListTenants", self._region,
                 ListTenantsResponse,
                 ("filter", "next_token", "page_size", ),
@@ -1990,9 +2070,10 @@ class SESV2Client:
         }
         if auto_warmup_enabled is not None:
             params["auto_warmup_enabled"] = auto_warmup_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_dedicated_ip_warmup_attributes, params, self._interceptors,
+                self._native.put_account_dedicated_ip_warmup_attributes, params, _interceptors,
                 "sesv2", "PutAccountDedicatedIpWarmupAttributes", self._region,
                 PutAccountDedicatedIpWarmupAttributesResponse,
                 ("auto_warmup_enabled", ),
@@ -2025,9 +2106,10 @@ class SESV2Client:
             params["additional_contact_email_addresses"] = additional_contact_email_addresses
         if production_access_enabled is not None:
             params["production_access_enabled"] = production_access_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_details, params, self._interceptors,
+                self._native.put_account_details, params, _interceptors,
                 "sesv2", "PutAccountDetails", self._region,
                 PutAccountDetailsResponse,
                 ("mail_type", "website_url", "contact_language", "use_case_description", "additional_contact_email_addresses", "production_access_enabled", ),
@@ -2046,9 +2128,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "plan": plan,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_pricing_attributes, params, self._interceptors,
+                self._native.put_account_pricing_attributes, params, _interceptors,
                 "sesv2", "PutAccountPricingAttributes", self._region,
                 PutAccountPricingAttributesResponse,
                 ("plan", ),
@@ -2068,9 +2151,10 @@ class SESV2Client:
         }
         if sending_enabled is not None:
             params["sending_enabled"] = sending_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_sending_attributes, params, self._interceptors,
+                self._native.put_account_sending_attributes, params, _interceptors,
                 "sesv2", "PutAccountSendingAttributes", self._region,
                 PutAccountSendingAttributesResponse,
                 ("sending_enabled", ),
@@ -2093,9 +2177,10 @@ class SESV2Client:
             params["suppressed_reasons"] = suppressed_reasons
         if validation_attributes is not None:
             params["validation_attributes"] = validation_attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_suppression_attributes, params, self._interceptors,
+                self._native.put_account_suppression_attributes, params, _interceptors,
                 "sesv2", "PutAccountSuppressionAttributes", self._region,
                 PutAccountSuppressionAttributesResponse,
                 ("suppressed_reasons", "validation_attributes", ),
@@ -2114,9 +2199,10 @@ class SESV2Client:
         params: dict[str, object] = {
             "vdm_attributes": vdm_attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_vdm_attributes, params, self._interceptors,
+                self._native.put_account_vdm_attributes, params, _interceptors,
                 "sesv2", "PutAccountVdmAttributes", self._region,
                 PutAccountVdmAttributesResponse,
                 ("vdm_attributes", ),
@@ -2138,9 +2224,10 @@ class SESV2Client:
         }
         if archive_arn is not None:
             params["archive_arn"] = archive_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_archiving_options, params, self._interceptors,
+                self._native.put_configuration_set_archiving_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetArchivingOptions", self._region,
                 PutConfigurationSetArchivingOptionsResponse,
                 ("configuration_set_name", "archive_arn", ),
@@ -2168,9 +2255,10 @@ class SESV2Client:
             params["sending_pool_name"] = sending_pool_name
         if max_delivery_seconds is not None:
             params["max_delivery_seconds"] = max_delivery_seconds
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_delivery_options, params, self._interceptors,
+                self._native.put_configuration_set_delivery_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetDeliveryOptions", self._region,
                 PutConfigurationSetDeliveryOptionsResponse,
                 ("configuration_set_name", "tls_policy", "sending_pool_name", "max_delivery_seconds", ),
@@ -2192,9 +2280,10 @@ class SESV2Client:
         }
         if reputation_metrics_enabled is not None:
             params["reputation_metrics_enabled"] = reputation_metrics_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_reputation_options, params, self._interceptors,
+                self._native.put_configuration_set_reputation_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetReputationOptions", self._region,
                 PutConfigurationSetReputationOptionsResponse,
                 ("configuration_set_name", "reputation_metrics_enabled", ),
@@ -2216,9 +2305,10 @@ class SESV2Client:
         }
         if sending_enabled is not None:
             params["sending_enabled"] = sending_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_sending_options, params, self._interceptors,
+                self._native.put_configuration_set_sending_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetSendingOptions", self._region,
                 PutConfigurationSetSendingOptionsResponse,
                 ("configuration_set_name", "sending_enabled", ),
@@ -2246,9 +2336,10 @@ class SESV2Client:
             params["suppressed_reasons"] = suppressed_reasons
         if validation_options is not None:
             params["validation_options"] = validation_options
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_suppression_options, params, self._interceptors,
+                self._native.put_configuration_set_suppression_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetSuppressionOptions", self._region,
                 PutConfigurationSetSuppressionOptionsResponse,
                 ("configuration_set_name", "suppression_scope", "suppressed_reasons", "validation_options", ),
@@ -2273,9 +2364,10 @@ class SESV2Client:
             params["custom_redirect_domain"] = custom_redirect_domain
         if https_policy is not None:
             params["https_policy"] = https_policy
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_tracking_options, params, self._interceptors,
+                self._native.put_configuration_set_tracking_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetTrackingOptions", self._region,
                 PutConfigurationSetTrackingOptionsResponse,
                 ("configuration_set_name", "custom_redirect_domain", "https_policy", ),
@@ -2297,9 +2389,10 @@ class SESV2Client:
         }
         if vdm_options is not None:
             params["vdm_options"] = vdm_options
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_configuration_set_vdm_options, params, self._interceptors,
+                self._native.put_configuration_set_vdm_options, params, _interceptors,
                 "sesv2", "PutConfigurationSetVdmOptions", self._region,
                 PutConfigurationSetVdmOptionsResponse,
                 ("configuration_set_name", "vdm_options", ),
@@ -2320,9 +2413,10 @@ class SESV2Client:
             "ip": ip,
             "destination_pool_name": destination_pool_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_dedicated_ip_in_pool, params, self._interceptors,
+                self._native.put_dedicated_ip_in_pool, params, _interceptors,
                 "sesv2", "PutDedicatedIpInPool", self._region,
                 PutDedicatedIpInPoolResponse,
                 ("ip", "destination_pool_name", ),
@@ -2343,9 +2437,10 @@ class SESV2Client:
             "pool_name": pool_name,
             "scaling_mode": scaling_mode,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_dedicated_ip_pool_scaling_attributes, params, self._interceptors,
+                self._native.put_dedicated_ip_pool_scaling_attributes, params, _interceptors,
                 "sesv2", "PutDedicatedIpPoolScalingAttributes", self._region,
                 PutDedicatedIpPoolScalingAttributesResponse,
                 ("pool_name", "scaling_mode", ),
@@ -2366,9 +2461,10 @@ class SESV2Client:
             "ip": ip,
             "warmup_percentage": warmup_percentage,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_dedicated_ip_warmup_attributes, params, self._interceptors,
+                self._native.put_dedicated_ip_warmup_attributes, params, _interceptors,
                 "sesv2", "PutDedicatedIpWarmupAttributes", self._region,
                 PutDedicatedIpWarmupAttributesResponse,
                 ("ip", "warmup_percentage", ),
@@ -2390,9 +2486,10 @@ class SESV2Client:
         }
         if subscribed_domains is not None:
             params["subscribed_domains"] = subscribed_domains
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_deliverability_dashboard_option, params, self._interceptors,
+                self._native.put_deliverability_dashboard_option, params, _interceptors,
                 "sesv2", "PutDeliverabilityDashboardOption", self._region,
                 PutDeliverabilityDashboardOptionResponse,
                 ("dashboard_enabled", "subscribed_domains", ),
@@ -2414,9 +2511,10 @@ class SESV2Client:
         }
         if configuration_set_name is not None:
             params["configuration_set_name"] = configuration_set_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_email_identity_configuration_set_attributes, params, self._interceptors,
+                self._native.put_email_identity_configuration_set_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityConfigurationSetAttributes", self._region,
                 PutEmailIdentityConfigurationSetAttributesResponse,
                 ("email_identity", "configuration_set_name", ),
@@ -2438,9 +2536,10 @@ class SESV2Client:
         }
         if signing_enabled is not None:
             params["signing_enabled"] = signing_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_email_identity_dkim_attributes, params, self._interceptors,
+                self._native.put_email_identity_dkim_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityDkimAttributes", self._region,
                 PutEmailIdentityDkimAttributesResponse,
                 ("email_identity", "signing_enabled", ),
@@ -2464,9 +2563,10 @@ class SESV2Client:
         }
         if signing_attributes is not None:
             params["signing_attributes"] = signing_attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_email_identity_dkim_signing_attributes, params, self._interceptors,
+                self._native.put_email_identity_dkim_signing_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityDkimSigningAttributes", self._region,
                 PutEmailIdentityDkimSigningAttributesResponse,
                 ("email_identity", "signing_attributes_origin", "signing_attributes", ),
@@ -2488,9 +2588,10 @@ class SESV2Client:
         }
         if email_forwarding_enabled is not None:
             params["email_forwarding_enabled"] = email_forwarding_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_email_identity_feedback_attributes, params, self._interceptors,
+                self._native.put_email_identity_feedback_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityFeedbackAttributes", self._region,
                 PutEmailIdentityFeedbackAttributesResponse,
                 ("email_identity", "email_forwarding_enabled", ),
@@ -2515,9 +2616,10 @@ class SESV2Client:
             params["mail_from_domain"] = mail_from_domain
         if behavior_on_mx_failure is not None:
             params["behavior_on_mx_failure"] = behavior_on_mx_failure
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_email_identity_mail_from_attributes, params, self._interceptors,
+                self._native.put_email_identity_mail_from_attributes, params, _interceptors,
                 "sesv2", "PutEmailIdentityMailFromAttributes", self._region,
                 PutEmailIdentityMailFromAttributesResponse,
                 ("email_identity", "mail_from_domain", "behavior_on_mx_failure", ),
@@ -2541,9 +2643,10 @@ class SESV2Client:
         }
         if tenant_name is not None:
             params["tenant_name"] = tenant_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_suppressed_destination, params, self._interceptors,
+                self._native.put_suppressed_destination, params, _interceptors,
                 "sesv2", "PutSuppressedDestination", self._region,
                 PutSuppressedDestinationResponse,
                 ("email_address", "reason", "tenant_name", ),
@@ -2568,9 +2671,10 @@ class SESV2Client:
             params["suppressed_reasons"] = suppressed_reasons
         if suppression_scope is not None:
             params["suppression_scope"] = suppression_scope
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_tenant_suppression_attributes, params, self._interceptors,
+                self._native.put_tenant_suppression_attributes, params, _interceptors,
                 "sesv2", "PutTenantSuppressionAttributes", self._region,
                 PutTenantSuppressionAttributesResponse,
                 ("tenant_name", "suppressed_reasons", "suppression_scope", ),
@@ -2621,9 +2725,10 @@ class SESV2Client:
             params["tenant_name"] = tenant_name
         if configuration_overrides is not None:
             params["configuration_overrides"] = configuration_overrides
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_bulk_email, params, self._interceptors,
+                self._native.send_bulk_email, params, _interceptors,
                 "sesv2", "SendBulkEmail", self._region,
                 SendBulkEmailResponse,
                 ("default_content", "bulk_email_entries", "from_email_address", "from_email_address_identity_arn", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "default_email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "configuration_overrides", ),
@@ -2647,9 +2752,10 @@ class SESV2Client:
         }
         if configuration_set_name is not None:
             params["configuration_set_name"] = configuration_set_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_custom_verification_email, params, self._interceptors,
+                self._native.send_custom_verification_email, params, _interceptors,
                 "sesv2", "SendCustomVerificationEmail", self._region,
                 SendCustomVerificationEmailResponse,
                 ("email_address", "template_name", "configuration_set_name", ),
@@ -2704,9 +2810,10 @@ class SESV2Client:
             params["list_management_options"] = list_management_options
         if configuration_overrides is not None:
             params["configuration_overrides"] = configuration_overrides
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_email, params, self._interceptors,
+                self._native.send_email, params, _interceptors,
                 "sesv2", "SendEmail", self._region,
                 SendEmailResponse,
                 ("content", "from_email_address", "from_email_address_identity_arn", "destination", "reply_to_addresses", "feedback_forwarding_email_address", "feedback_forwarding_email_address_identity_arn", "email_tags", "configuration_set_name", "endpoint_id", "tenant_name", "list_management_options", "configuration_overrides", ),
@@ -2727,9 +2834,10 @@ class SESV2Client:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "sesv2", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -2750,9 +2858,10 @@ class SESV2Client:
             "template_name": template_name,
             "template_data": template_data,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_render_email_template, params, self._interceptors,
+                self._native.test_render_email_template, params, _interceptors,
                 "sesv2", "TestRenderEmailTemplate", self._region,
                 TestRenderEmailTemplateResponse,
                 ("template_name", "template_data", ),
@@ -2773,9 +2882,10 @@ class SESV2Client:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "sesv2", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -2797,9 +2907,10 @@ class SESV2Client:
         }
         if message_security_options is not None:
             params["message_security_options"] = message_security_options
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_configuration_set, params, self._interceptors,
+                self._native.update_configuration_set, params, _interceptors,
                 "sesv2", "UpdateConfigurationSet", self._region,
                 UpdateConfigurationSetResponse,
                 ("configuration_set_name", "message_security_options", ),
@@ -2822,9 +2933,10 @@ class SESV2Client:
             "event_destination_name": event_destination_name,
             "event_destination": event_destination,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_configuration_set_event_destination, params, self._interceptors,
+                self._native.update_configuration_set_event_destination, params, _interceptors,
                 "sesv2", "UpdateConfigurationSetEventDestination", self._region,
                 UpdateConfigurationSetEventDestinationResponse,
                 ("configuration_set_name", "event_destination_name", "event_destination", ),
@@ -2854,9 +2966,10 @@ class SESV2Client:
             params["unsubscribe_all"] = unsubscribe_all
         if attributes_data is not None:
             params["attributes_data"] = attributes_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_contact, params, self._interceptors,
+                self._native.update_contact, params, _interceptors,
                 "sesv2", "UpdateContact", self._region,
                 UpdateContactResponse,
                 ("contact_list_name", "email_address", "topic_preferences", "unsubscribe_all", "attributes_data", ),
@@ -2881,9 +2994,10 @@ class SESV2Client:
             params["topics"] = topics
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_contact_list, params, self._interceptors,
+                self._native.update_contact_list, params, _interceptors,
                 "sesv2", "UpdateContactList", self._region,
                 UpdateContactListResponse,
                 ("contact_list_name", "topics", "description", ),
@@ -2912,9 +3026,10 @@ class SESV2Client:
             "success_redirection_url": success_redirection_url,
             "failure_redirection_url": failure_redirection_url,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_custom_verification_email_template, params, self._interceptors,
+                self._native.update_custom_verification_email_template, params, _interceptors,
                 "sesv2", "UpdateCustomVerificationEmailTemplate", self._region,
                 UpdateCustomVerificationEmailTemplateResponse,
                 ("template_name", "from_email_address", "template_subject", "template_content", "success_redirection_url", "failure_redirection_url", ),
@@ -2937,9 +3052,10 @@ class SESV2Client:
             "policy_name": policy_name,
             "policy": policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_email_identity_policy, params, self._interceptors,
+                self._native.update_email_identity_policy, params, _interceptors,
                 "sesv2", "UpdateEmailIdentityPolicy", self._region,
                 UpdateEmailIdentityPolicyResponse,
                 ("email_identity", "policy_name", "policy", ),
@@ -2960,9 +3076,10 @@ class SESV2Client:
             "template_name": template_name,
             "template_content": template_content,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_email_template, params, self._interceptors,
+                self._native.update_email_template, params, _interceptors,
                 "sesv2", "UpdateEmailTemplate", self._region,
                 UpdateEmailTemplateResponse,
                 ("template_name", "template_content", ),
@@ -2985,9 +3102,10 @@ class SESV2Client:
             "reputation_entity_reference": reputation_entity_reference,
             "sending_status": sending_status,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_reputation_entity_customer_managed_status, params, self._interceptors,
+                self._native.update_reputation_entity_customer_managed_status, params, _interceptors,
                 "sesv2", "UpdateReputationEntityCustomerManagedStatus", self._region,
                 UpdateReputationEntityCustomerManagedStatusResponse,
                 ("reputation_entity_type", "reputation_entity_reference", "sending_status", ),
@@ -3010,9 +3128,10 @@ class SESV2Client:
             "reputation_entity_reference": reputation_entity_reference,
             "reputation_entity_policy": reputation_entity_policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sesv2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_reputation_entity_policy, params, self._interceptors,
+                self._native.update_reputation_entity_policy, params, _interceptors,
                 "sesv2", "UpdateReputationEntityPolicy", self._region,
                 UpdateReputationEntityPolicyResponse,
                 ("reputation_entity_type", "reputation_entity_reference", "reputation_entity_policy", ),

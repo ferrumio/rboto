@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SignInClient as NativeClient, CreateOAuth2TokenResponse, CreateOAuth2TokenWithIAMResponse, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMResponse, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMResponse
 from .types import (
@@ -14,6 +15,8 @@ from .types import (
 
 
 class SignInClient:
+    logger_name = "rboto.signin"
+
     def __init__(
         self,
         *,
@@ -43,9 +46,10 @@ class SignInClient:
         params: dict[str, object] = {
             "token_input": token_input,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_o_auth2_token, params, self._interceptors,
+                self._native.create_o_auth2_token, params, _interceptors,
                 "signin", "CreateOAuth2Token", self._region,
                 CreateOAuth2TokenResponse,
                 ("token_input", ),
@@ -66,9 +70,10 @@ class SignInClient:
             "grant_type": grant_type,
             "resource": resource,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_o_auth2_token_with_iam, params, self._interceptors,
+                self._native.create_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "CreateOAuth2TokenWithIAM", self._region,
                 CreateOAuth2TokenWithIAMResponse,
                 ("grant_type", "resource", ),
@@ -88,9 +93,10 @@ class SignInClient:
         }
         if target_id is not None:
             params["target_id"] = target_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_console_authorization_configuration, params, self._interceptors,
+                self._native.delete_console_authorization_configuration, params, _interceptors,
                 "signin", "DeleteConsoleAuthorizationConfiguration", self._region,
                 DeleteConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
@@ -112,9 +118,10 @@ class SignInClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_permission_statement, params, self._interceptors,
+                self._native.delete_resource_permission_statement, params, _interceptors,
                 "signin", "DeleteResourcePermissionStatement", self._region,
                 DeleteResourcePermissionStatementOutput,
                 ("statement_id", "client_token", ),
@@ -134,9 +141,10 @@ class SignInClient:
         }
         if target_id is not None:
             params["target_id"] = target_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_console_authorization_configuration, params, self._interceptors,
+                self._native.get_console_authorization_configuration, params, _interceptors,
                 "signin", "GetConsoleAuthorizationConfiguration", self._region,
                 GetConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
@@ -152,9 +160,10 @@ class SignInClient:
     ) -> GetResourcePolicyOutput:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "signin", "GetResourcePolicy", self._region,
                 GetResourcePolicyOutput,
                 (),
@@ -176,9 +185,10 @@ class SignInClient:
         }
         if token_type_hint is not None:
             params["token_type_hint"] = token_type_hint
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.introspect_o_auth2_token_with_iam, params, self._interceptors,
+                self._native.introspect_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "IntrospectOAuth2TokenWithIAM", self._region,
                 IntrospectOAuth2TokenWithIAMResponse,
                 ("token", "token_type_hint", ),
@@ -201,9 +211,10 @@ class SignInClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_resource_permission_statements, params, self._interceptors,
+                self._native.list_resource_permission_statements, params, _interceptors,
                 "signin", "ListResourcePermissionStatements", self._region,
                 ListResourcePermissionStatementsOutput,
                 ("max_results", "next_token", ),
@@ -223,9 +234,10 @@ class SignInClient:
         }
         if target_id is not None:
             params["target_id"] = target_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_console_authorization_configuration, params, self._interceptors,
+                self._native.put_console_authorization_configuration, params, _interceptors,
                 "signin", "PutConsoleAuthorizationConfiguration", self._region,
                 PutConsoleAuthorizationConfigurationOutput,
                 ("target_id", ),
@@ -266,9 +278,10 @@ class SignInClient:
             params["excluded_principal"] = excluded_principal
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_permission_statement, params, self._interceptors,
+                self._native.put_resource_permission_statement, params, _interceptors,
                 "signin", "PutResourcePermissionStatement", self._region,
                 PutResourcePermissionStatementOutput,
                 ("source_vpc", "signin_source_vpce", "console_source_vpce", "vpc_source_ip", "source_ip", "requested_region", "excluded_principal", "client_token", ),
@@ -287,9 +300,10 @@ class SignInClient:
         params: dict[str, object] = {
             "token": token,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.revoke_o_auth2_token_with_iam, params, self._interceptors,
+                self._native.revoke_o_auth2_token_with_iam, params, _interceptors,
                 "signin", "RevokeOAuth2TokenWithIAM", self._region,
                 RevokeOAuth2TokenWithIAMResponse,
                 ("token", ),

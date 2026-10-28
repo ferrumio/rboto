@@ -1,153 +1,171 @@
 # Logging
 
-Add `LoggingInterceptor()` to a client or Session to log operation metadata through
-Python's standard `logging` module. It works with every service client and does not
-require another package.
+Call `configure_logging()` once to enable JSON logs for every rboto client.
+No handler, formatter, or interceptor registration is required.
 
 ```python
-from rboto import DynamoDBClient, LoggingInterceptor
+from rboto import S3Client, configure_logging
 
-client = DynamoDBClient(interceptors=[LoggingInterceptor()])
+configure_logging()
+client = S3Client()
+await client.list_buckets()
 ```
 
-rboto does not install handlers, set logger levels, change propagation, or configure
-the root logger. Your application chooses the format and destination.
+Logs go to stdout. Each service has its own logger name: `rboto.s3`,
+`rboto.dynamodb`, `rboto.bedrock-runtime`, and so on. The name is also available
+as `client.logger_name`.
 
-## Enable logs and set service levels
+Every operation log includes a UTC `timestamp`, `level`, `logger`, `service`,
+`operation`, `message`, and operation metadata. JSON is formatted automatically,
+including when stdout is collected by a container or Lambda.
 
-Logger names follow `rboto.<service>`, using the service identifier from the
-client catalog: `rboto.s3`, `rboto.dynamodb`, `rboto.bedrock-runtime`, and so on.
-Configure `rboto` for all clients or a child logger for one service.
+## Set levels and disable services
 
-This example runs two operations concurrently. DynamoDB logs completion and retry
-diagnostics; S3 logs failures and cancellation. Each task has its own correlation ID.
+Use one configuration for the whole application:
+
+```python
+configure_logging(
+    level="INFO",
+    service_levels={"s3": "OFF", "dynamodb": "DEBUG"},
+)
+```
+
+This disables S3 logs, enables DynamoDB retry diagnostics, and uses INFO for the
+other services. Settings apply to existing clients, future clients, Session-based
+clients, and compatibility factories.
+
+Calling `configure_logging()` again replaces the default level and per-service
+overrides. It resets rboto service loggers to that configuration and reuses its
+handler; it does not add duplicate handlers. The application root logger and its
+handlers are unchanged. rboto records do not propagate to the root handler.
+
+To disable all operation logging:
+
+```python
+configure_logging(level="OFF")
+```
+
+To enable only S3:
+
+```python
+configure_logging(level="OFF", service_levels={"s3": "INFO"})
+```
+
+For a change to one logger without reconfiguring the others, use `get_logger()`.
+It returns the standard Python logger with the service's name:
+
+```python
+--8<-- "examples/docs/logging_control.py"
+```
+
+`get_logger("s3")` and `logging.getLogger("rboto.s3")` return the same object.
+Disabling that logger skips automatic logging and its native metadata collection.
+Custom application middleware, if configured, still runs.
+
+No operation logs are produced until `configure_logging()` is called. Without
+logging or application middleware, operations use direct native dispatch.
+
+## What gets logged
+
+| Level | Event | Meaning |
+| --- | --- | --- |
+| `INFO` | `operation.completed` | The operation returns successfully |
+| `ERROR` | `operation.completed` | The operation raises an exception |
+| `WARNING` | `operation.completed` | The operation is cancelled |
+| `DEBUG` | `operation.retry` | Native dispatch made more than one attempt |
+
+There is one completion record per invocation when its level is enabled. A retry
+record summarizes up to 32 completed attempts after native dispatch finishes.
+
+Logging automatically wraps application middleware, so cache hits, policy blocks,
+and error recovery are included. A cache hit has `dispatched=false` and zero native
+attempts. A policy failure is an error even if no request was sent. If middleware
+recovers from a native error, the final outcome is successful while the native error
+fields retain the underlying failure.
+
+For streaming operations, completion means the response is available. Logging does
+not read the stream or measure later consumption; subsequent stream errors remain
+with the code consuming it.
+
+## JSON fields
+
+| Field | Meaning |
+| --- | --- |
+| `timestamp`, `level`, `logger` | UTC time, log level, and service logger name |
+| `message`, `event` | `operation.completed` or `operation.retry` |
+| `schema_version` | `1` |
+| `service`, `operation` | Service identifier and modeled operation name |
+| `operation_id` | Unique ID for this invocation |
+| `correlation_id` | Application ID from `operation_context()` |
+| `region` | Resolved native region when available |
+| `duration_ms` | Total elapsed milliseconds, including application middleware |
+| `outcome` | `success`, `error`, or `cancelled` |
+| `dispatched` | Whether the native adapter was called |
+| `native_duration_ms` | Native call duration, including initialization and retries |
+| `attempt_count`, `retry_count` | Native attempts/retries; zero before dispatch, null when unknown |
+| `status_code`, `request_id` | Last available native HTTP status and request ID |
+| `error_code`, `error_type` | Final exception's modeled code and class name |
+| `native_error_code`, `native_error_type` | Underlying native failure, including recovered failures |
+| `trace_id`, `span_id` | Optional application-supplied trace IDs |
+| `attempts` | Retry records only: number, duration in milliseconds, status and request ID |
+| `attempts_truncated` | Retry records only: whether detailed attempts were omitted |
+
+Unavailable values are null. Trace and retry detail fields are omitted when not
+applicable. Attempt duration excludes retry backoff. Cancellation can prevent the
+native collector from delivering attempt counts, so unknown counts remain null.
+
+Automatic operation logs never inspect parameters, response properties, streams,
+`to_dict()`, exception messages, or tracebacks. Correlation and trace IDs are supplied
+by your application; use IDs appropriate for logs.
+
+## Concurrent calls and correlation
+
+Each task keeps its own operation and correlation IDs:
 
 ```python
 --8<-- "examples/docs/logging_operations.py"
 ```
 
-The `%(rboto)s` formatter field contains the operation metadata. The formatter's
-default empty dictionary also lets it handle records from other libraries.
+## Trace IDs
 
-| Level | Event | When emitted |
-| --- | --- | --- |
-| `INFO` | `operation.completed` | The downstream chain returns successfully |
-| `ERROR` | `operation.completed` | The downstream chain raises an exception |
-| `WARNING` | `operation.completed` | The operation is cancelled |
-| `DEBUG` | `operation.retry` | Native dispatch made more than one attempt |
-
-There is one completion record per invocation when its level is enabled. The
-optional retry record is a summary emitted after dispatch, with up to 32 attempt
-details. It is not a live notification of each retry.
-
-Without the interceptor, no operation logs are produced. A logger level above
-`ERROR`, such as `CRITICAL`, disables all its records and skips timing and field
-preparation. The interceptor chain and native metadata collection still run.
-To remove that overhead too, omit the interceptor or pass `interceptors=()` to
-override Session inheritance.
-
-## Format records as JSON
-
-The standard `LogRecord` carries a dictionary in `record.rboto`. rboto does not
-serialize it or select a JSON logging library:
-
-```python
---8<-- "examples/docs/logging_json.py"
-```
-
-Place a handler at one point in the logger hierarchy, typically the root logger.
-Adding handlers to both `rboto` and the root while propagation is enabled can
-duplicate output. rboto itself does not add handlers.
-
-## Fields
-
-`rboto.logging.OperationLogFields` describes the dictionary for typed formatters.
-Fields are present with `None` when unavailable, except the optional trace and
-retry details listed below.
-
-| Field | Meaning |
-| --- | --- |
-| `schema_version` | `1` |
-| `event` | `operation.completed` or `operation.retry` |
-| `service`, `operation` | Service identifier and modeled operation name |
-| `operation_id` | Unique ID of this client invocation |
-| `correlation_id` | Application ID set by `operation_context()` |
-| `region` | Resolved native region when available |
-| `duration_ms` | Elapsed milliseconds around the downstream chain, including its middleware |
-| `outcome` | `success`, `error`, or `cancelled` |
-| `dispatched` | Whether the native adapter was called |
-| `native_duration_ms` | Native call duration, including initialization and retries |
-| `attempt_count`, `retry_count` | Native attempts and retries; zero before dispatch, `None` when unknown |
-| `status_code`, `request_id` | Last available native HTTP status and request ID |
-| `error_code`, `error_type` | Final exception's modeled code and class name |
-| `native_error_code`, `native_error_type` | Native failure, even if downstream middleware recovered |
-| `trace_id`, `span_id` | Optional application-supplied trace identifiers |
-| `attempts` | Retry record only: attempt number, `duration_ms`, status and request ID |
-| `attempts_truncated` | Retry record only: whether detailed attempts were omitted |
-
-Attempt duration excludes backoff before the next attempt. Cancellation may prevent
-the native collector from returning attempt metadata; unknown counts stay `None`.
-
-The logger never reads parameters, response properties, streams, `to_dict()`,
-exception messages, or tracebacks. Logs exclude credentials, authorization headers,
-resource names, request/response bodies, and unrestricted error text. Correlation
-and trace IDs are supplied by your application: use identifiers appropriate for logs.
-
-## Order with other middleware
-
-Register logging first to include cache hits, policy failures, response replacement,
-and error recovery in its outcome:
-
-```python
-client = DynamoDBClient(interceptors=[LoggingInterceptor(), cache, policy])
-```
-
-If `cache` returns without forwarding, the log reports `success`, `dispatched=False`
-and zero attempts. If `policy` raises before sending, it reports `error` with no
-native dispatch. If middleware catches a native error and returns a fallback, the
-outcome is `success` while `native_error_code` still describes the native failure.
-
-Putting logging after a cache or policy means it sees only calls forwarded to it.
-For [streaming outputs](streaming.md), completion means the operation returned its
-output. It does not measure later stream consumption or log later stream failures.
-
-Ordinary exceptions from application log handlers, filters, or trace lookup do not
-replace an operation result or hide its exception. Failed trace lookup omits the
-trace fields. Failed log delivery is not retried. Use this for diagnostics, not as
-guaranteed audit delivery. Handlers run synchronously; use the standard
-`QueueHandler`/`QueueListener` in your application for slow destinations.
-
-## Attach trace IDs
-
-`LoggingInterceptor(trace_context=...)` accepts a synchronous provider returning
-`LogTraceContext` or `None`. It is called on the operation's task only when a
-record's logger level is enabled. This example uses a `ContextVar` to represent
-application tracing:
+An optional synchronous provider can return `LogTraceContext` or `None`. The
+provider runs on the operation's task when the record's level is enabled. It does
+not require a telemetry dependency:
 
 ```python
 --8<-- "examples/docs/logging_trace.py"
 ```
 
-Adapt the provider to your tracer's current span. Keep that span active while
-logging runs; a tracing middleware normally belongs outside the logging middleware.
-This hook only copies IDs and does not create spans or require OpenTelemetry.
+Use your tracer's active span IDs in the provider. No spans are created by logging.
 
 ## AWS Lambda
 
-Create the client outside the handler and attach the invocation's request ID with
-`operation_context()`. The example uses the runtime's existing logging handlers.
-
-Set the function's application log format to **JSON** and application log level
-to **INFO** in Lambda's logging configuration. Its JSON handler includes the
-`rboto` dictionary passed through `extra`; the default text formatter does not
-display that metadata. See
-[logging extra parameters in Lambda](https://docs.aws.amazon.com/lambda/latest/dg/python-logging.html).
+Configure logging once, outside the handler. Attach the invocation ID with
+`operation_context()` and keep the client available for reuse:
 
 ```python
 --8<-- "examples/docs/logging_lambda.py"
 ```
 
-The handler is synchronous and waits for the async operation. Context is restored
-on exit, including errors, so reused execution environments do not retain the
-previous invocation's correlation ID. See [AWS Lambda](aws-lambda.md) for packaging
-and client reuse.
+The output is already JSON; no runtime formatter is needed. If you enable Lambda
+log-level filtering, choose a level that retains the rboto records you want.
+Context is restored on exit, including failures, so reused environments do not
+retain a previous invocation's correlation ID. See [AWS Lambda](aws-lambda.md) for
+packaging and client reuse.
+
+## Output destination
+
+Stdout is the default. Pass a text stream when the application needs a different
+destination, such as a file it manages:
+
+```python
+with open("operations.jsonl", "a", encoding="utf-8") as output:
+    configure_logging(stream=output)
+    await client.list_buckets()
+    configure_logging(level="OFF")
+```
+
+rboto does not close application-owned streams. Writes are synchronous; a slow
+destination can delay the caller. Ordinary logging failures do not replace the
+operation result or its original exception. Delivery is not retried, so use these
+records for diagnostics rather than guaranteed audit delivery.

@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockAgentCoreControlClient as NativeClient, AddDatasetExamplesResponse, BatchPutGatewayRateLimitsResponse, CreateAgentRuntimeEndpointResponse, CreateAgentRuntimeResponse, CreateApiKeyCredentialProviderResponse, CreateBrowserProfileResponse, CreateBrowserResponse, CreateCapacityProviderOutput, CreateCodeInterpreterResponse, CreateConfigurationBundleResponse, CreateConsentPortalResponse, CreateDatasetResponse, CreateDatasetVersionResponse, CreateEvaluatorResponse, CreateGatewayRateLimitResponse, CreateGatewayResponse, CreateGatewayRuleResponse, CreateGatewayTargetResponse, CreateHarnessEndpointResponse, CreateHarnessResponse, CreateMemoryOutput, CreateOauth2CredentialProviderResponse, CreateOnlineEvaluationConfigResponse, CreatePaymentConnectorResponse, CreatePaymentCredentialProviderResponse, CreatePaymentManagerResponse, CreatePolicyEngineResponse, CreatePolicyResponse, CreateRegistryRecordResponse, CreateRegistryResponse, CreateWorkloadIdentityResponse, DeleteAgentRuntimeEndpointResponse, DeleteAgentRuntimeResponse, DeleteApiKeyCredentialProviderResponse, DeleteBrowserProfileResponse, DeleteBrowserResponse, DeleteCapacityProviderOutput, DeleteCodeInterpreterResponse, DeleteConfigurationBundleResponse, DeleteConsentPortalResponse, DeleteDatasetExamplesResponse, DeleteDatasetResponse, DeleteEvaluatorResponse, DeleteGatewayRateLimitResponse, DeleteGatewayResponse, DeleteGatewayRuleResponse, DeleteGatewayTargetResponse, DeleteHarnessEndpointResponse, DeleteHarnessResponse, DeleteMemoryOutput, DeleteOauth2CredentialProviderResponse, DeleteOnlineEvaluationConfigResponse, DeletePaymentConnectorResponse, DeletePaymentCredentialProviderResponse, DeletePaymentManagerResponse, DeletePolicyEngineResponse, DeletePolicyResponse, DeleteRegistryRecordResponse, DeleteRegistryResponse, DeleteResourcePolicyResponse, DeleteWorkloadIdentityResponse, GetAgentRuntimeEndpointResponse, GetAgentRuntimeResponse, GetApiKeyCredentialProviderResponse, GetBrowserProfileResponse, GetBrowserResponse, GetCapacityProviderOutput, GetCodeInterpreterResponse, GetConfigurationBundleResponse, GetConfigurationBundleVersionResponse, GetConsentPortalResponse, GetDatasetResponse, GetEvaluatorResponse, GetGatewayRateLimitResponse, GetGatewayResponse, GetGatewayRuleResponse, GetGatewayTargetResponse, GetHarnessEndpointResponse, GetHarnessResponse, GetMemoryOutput, GetOauth2CredentialProviderResponse, GetOnlineEvaluationConfigResponse, GetPaymentConnectorResponse, GetPaymentCredentialProviderResponse, GetPaymentManagerResponse, GetPolicyEngineResponse, GetPolicyEngineSummaryResponse, GetPolicyGenerationResponse, GetPolicyGenerationSummaryResponse, GetPolicyResponse, GetPolicySummaryResponse, GetRegistryRecordResponse, GetRegistryResponse, GetResourcePolicyResponse, GetTokenVaultResponse, GetWorkloadIdentityResponse, ListAgentRuntimeEndpointsResponse, ListAgentRuntimeVersionsByCapacityProviderOutput, ListAgentRuntimeVersionsResponse, ListAgentRuntimesResponse, ListApiKeyCredentialProvidersResponse, ListBrowserProfilesResponse, ListBrowsersResponse, ListCapacityProvidersOutput, ListCodeInterpretersResponse, ListConfigurationBundleVersionsResponse, ListConfigurationBundlesResponse, ListConsentPortalsResponse, ListDatasetExamplesResponse, ListDatasetVersionsResponse, ListDatasetsResponse, ListEvaluatorsResponse, ListGatewayRateLimitsResponse, ListGatewayRulesResponse, ListGatewayTargetsResponse, ListGatewaysResponse, ListHarnessEndpointsResponse, ListHarnessVersionsResponse, ListHarnessesResponse, ListMemoriesOutput, ListOauth2CredentialProvidersResponse, ListOnlineEvaluationConfigsResponse, ListPaymentConnectorsResponse, ListPaymentCredentialProvidersResponse, ListPaymentManagersResponse, ListPoliciesResponse, ListPolicyEngineSummariesResponse, ListPolicyEnginesResponse, ListPolicyGenerationAssetsResponse, ListPolicyGenerationSummariesResponse, ListPolicyGenerationsResponse, ListPolicySummariesResponse, ListRegistriesResponse, ListRegistryRecordsResponse, ListTagsForResourceResponse, ListWorkloadIdentitiesResponse, PutResourcePolicyResponse, RotatePaymentConnectorCredentialsResponse, SetTokenVaultCMKResponse, StartPolicyGenerationResponse, SubmitRegistryRecordForApprovalResponse, SynchronizeGatewayTargetsResponse, TagResourceResponse, UntagResourceResponse, UpdateAgentRuntimeEndpointResponse, UpdateAgentRuntimeResponse, UpdateApiKeyCredentialProviderResponse, UpdateCapacityProviderOutput, UpdateConfigurationBundleResponse, UpdateConsentPortalResponse, UpdateDatasetExamplesResponse, UpdateDatasetResponse, UpdateEvaluatorResponse, UpdateGatewayRateLimitResponse, UpdateGatewayResponse, UpdateGatewayRuleResponse, UpdateGatewayTargetResponse, UpdateHarnessEndpointResponse, UpdateHarnessResponse, UpdateMemoryOutput, UpdateOauth2CredentialProviderResponse, UpdateOnlineEvaluationConfigResponse, UpdatePaymentConnectorResponse, UpdatePaymentCredentialProviderResponse, UpdatePaymentManagerResponse, UpdatePolicyEngineResponse, UpdatePolicyResponse, UpdateRegistryRecordResponse, UpdateRegistryRecordStatusResponse, UpdateRegistryResponse, UpdateWorkloadIdentityResponse
 from .types import (
@@ -115,6 +116,8 @@ from .types import (
 
 
 class BedrockAgentCoreControlClient:
+    logger_name = "rboto.bedrock-agentcore-control"
+
     def __init__(
         self,
         *,
@@ -149,9 +152,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.add_dataset_examples, params, self._interceptors,
+                self._native.add_dataset_examples, params, _interceptors,
                 "bedrock-agentcore-control", "AddDatasetExamples", self._region,
                 AddDatasetExamplesResponse,
                 ("dataset_id", "source", "client_token", ),
@@ -175,9 +179,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_put_gateway_rate_limits, params, self._interceptors,
+                self._native.batch_put_gateway_rate_limits, params, _interceptors,
                 "bedrock-agentcore-control", "BatchPutGatewayRateLimits", self._region,
                 BatchPutGatewayRateLimitsResponse,
                 ("gateway_identifier", "rate_limits", "client_token", ),
@@ -236,9 +241,10 @@ class BedrockAgentCoreControlClient:
             params["tags"] = tags
         if platform_version is not None:
             params["platform_version"] = platform_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_agent_runtime, params, self._interceptors,
+                self._native.create_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "CreateAgentRuntime", self._region,
                 CreateAgentRuntimeResponse,
                 ("agent_runtime_name", "agent_runtime_artifact", "role_arn", "network_configuration", "client_token", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "tags", "platform_version", ),
@@ -271,9 +277,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_agent_runtime_endpoint, params, self._interceptors,
+                self._native.create_agent_runtime_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "CreateAgentRuntimeEndpoint", self._region,
                 CreateAgentRuntimeEndpointResponse,
                 ("agent_runtime_id", "name", "agent_runtime_version", "description", "client_token", "tags", ),
@@ -304,9 +311,10 @@ class BedrockAgentCoreControlClient:
             params["api_key_secret_source"] = api_key_secret_source
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_api_key_credential_provider, params, self._interceptors,
+                self._native.create_api_key_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "CreateApiKeyCredentialProvider", self._region,
                 CreateApiKeyCredentialProviderResponse,
                 ("name", "api_key", "api_key_secret_config", "api_key_secret_source", "tags", ),
@@ -354,9 +362,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_browser, params, self._interceptors,
+                self._native.create_browser, params, _interceptors,
                 "bedrock-agentcore-control", "CreateBrowser", self._region,
                 CreateBrowserResponse,
                 ("name", "network_configuration", "description", "execution_role_arn", "recording", "browser_signing", "enterprise_policies", "certificates", "filesystem_configurations", "client_token", "tags", ),
@@ -384,9 +393,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_browser_profile, params, self._interceptors,
+                self._native.create_browser_profile, params, _interceptors,
                 "bedrock-agentcore-control", "CreateBrowserProfile", self._region,
                 CreateBrowserProfileResponse,
                 ("name", "description", "client_token", "tags", ),
@@ -418,9 +428,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_capacity_provider, params, self._interceptors,
+                self._native.create_capacity_provider, params, _interceptors,
                 "bedrock-agentcore-control", "CreateCapacityProvider", self._region,
                 CreateCapacityProviderOutput,
                 ("name", "permissions_configuration", "compute_configuration", "description", "client_token", "tags", ),
@@ -459,9 +470,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_code_interpreter, params, self._interceptors,
+                self._native.create_code_interpreter, params, _interceptors,
                 "bedrock-agentcore-control", "CreateCodeInterpreter", self._region,
                 CreateCodeInterpreterResponse,
                 ("name", "network_configuration", "description", "execution_role_arn", "certificates", "filesystem_configurations", "client_token", "tags", ),
@@ -503,9 +515,10 @@ class BedrockAgentCoreControlClient:
             params["kms_key_arn"] = kms_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_configuration_bundle, params, self._interceptors,
+                self._native.create_configuration_bundle, params, _interceptors,
                 "bedrock-agentcore-control", "CreateConfigurationBundle", self._region,
                 CreateConfigurationBundleResponse,
                 ("bundle_name", "components", "client_token", "description", "branch_name", "commit_message", "created_by", "kms_key_arn", "tags", ),
@@ -536,9 +549,10 @@ class BedrockAgentCoreControlClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_consent_portal, params, self._interceptors,
+                self._native.create_consent_portal, params, _interceptors,
                 "bedrock-agentcore-control", "CreateConsentPortal", self._region,
                 CreateConsentPortalResponse,
                 ("execution_role_arn", "idp_config", "name", "sources", "description", "tags", ),
@@ -573,9 +587,10 @@ class BedrockAgentCoreControlClient:
             params["kms_key_arn"] = kms_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_dataset, params, self._interceptors,
+                self._native.create_dataset, params, _interceptors,
                 "bedrock-agentcore-control", "CreateDataset", self._region,
                 CreateDatasetResponse,
                 ("dataset_name", "source", "schema_type", "client_token", "description", "kms_key_arn", "tags", ),
@@ -597,9 +612,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_dataset_version, params, self._interceptors,
+                self._native.create_dataset_version, params, _interceptors,
                 "bedrock-agentcore-control", "CreateDatasetVersion", self._region,
                 CreateDatasetVersionResponse,
                 ("dataset_id", "client_token", ),
@@ -634,9 +650,10 @@ class BedrockAgentCoreControlClient:
             params["kms_key_arn"] = kms_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_evaluator, params, self._interceptors,
+                self._native.create_evaluator, params, _interceptors,
                 "bedrock-agentcore-control", "CreateEvaluator", self._region,
                 CreateEvaluatorResponse,
                 ("evaluator_name", "evaluator_config", "level", "client_token", "description", "kms_key_arn", "tags", ),
@@ -689,9 +706,10 @@ class BedrockAgentCoreControlClient:
             params["exception_level"] = exception_level
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_gateway, params, self._interceptors,
+                self._native.create_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "CreateGateway", self._region,
                 CreateGatewayResponse,
                 ("name", "role_arn", "authorizer_type", "description", "client_token", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "interceptor_configurations", "policy_engine_configuration", "exception_level", "tags", ),
@@ -723,9 +741,10 @@ class BedrockAgentCoreControlClient:
             params["rate_limit_id"] = rate_limit_id
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_gateway_rate_limit, params, self._interceptors,
+                self._native.create_gateway_rate_limit, params, _interceptors,
                 "bedrock-agentcore-control", "CreateGatewayRateLimit", self._region,
                 CreateGatewayRateLimitResponse,
                 ("gateway_identifier", "dimension_keys", "entries", "client_token", "rate_limit_id", "description", ),
@@ -757,9 +776,10 @@ class BedrockAgentCoreControlClient:
             params["conditions"] = conditions
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_gateway_rule, params, self._interceptors,
+                self._native.create_gateway_rule, params, _interceptors,
                 "bedrock-agentcore-control", "CreateGatewayRule", self._region,
                 CreateGatewayRuleResponse,
                 ("gateway_identifier", "priority", "actions", "client_token", "conditions", "description", ),
@@ -801,9 +821,10 @@ class BedrockAgentCoreControlClient:
             params["private_endpoint"] = private_endpoint
         if certificate_configurations is not None:
             params["certificate_configurations"] = certificate_configurations
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_gateway_target, params, self._interceptors,
+                self._native.create_gateway_target, params, _interceptors,
                 "bedrock-agentcore-control", "CreateGatewayTarget", self._region,
                 CreateGatewayTargetResponse,
                 ("gateway_identifier", "target_configuration", "name", "description", "client_token", "credential_provider_configurations", "metadata_configuration", "private_endpoint", "certificate_configurations", ),
@@ -875,9 +896,10 @@ class BedrockAgentCoreControlClient:
             params["timeout_seconds"] = timeout_seconds
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_harness, params, self._interceptors,
+                self._native.create_harness, params, _interceptors,
                 "bedrock-agentcore-control", "CreateHarness", self._region,
                 CreateHarnessResponse,
                 ("harness_name", "execution_role_arn", "client_token", "environment", "environment_artifact", "environment_variables", "authorizer_configuration", "model", "system_prompt", "tools", "skills", "allowed_tools", "memory", "truncation", "hooks", "max_iterations", "max_tokens", "timeout_seconds", "tags", ),
@@ -910,9 +932,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_harness_endpoint, params, self._interceptors,
+                self._native.create_harness_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "CreateHarnessEndpoint", self._region,
                 CreateHarnessEndpointResponse,
                 ("harness_id", "endpoint_name", "target_version", "description", "client_token", "tags", ),
@@ -960,9 +983,10 @@ class BedrockAgentCoreControlClient:
             params["stream_delivery_resources"] = stream_delivery_resources
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_memory, params, self._interceptors,
+                self._native.create_memory, params, _interceptors,
                 "bedrock-agentcore-control", "CreateMemory", self._region,
                 CreateMemoryOutput,
                 ("name", "event_expiry_duration", "client_token", "description", "encryption_key_arn", "memory_execution_role_arn", "memory_strategies", "indexed_keys", "namespace_keys", "stream_delivery_resources", "tags", ),
@@ -988,9 +1012,10 @@ class BedrockAgentCoreControlClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_oauth2_credential_provider, params, self._interceptors,
+                self._native.create_oauth2_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "CreateOauth2CredentialProvider", self._region,
                 CreateOauth2CredentialProviderResponse,
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", "tags", ),
@@ -1038,9 +1063,10 @@ class BedrockAgentCoreControlClient:
             params["output_config"] = output_config
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_online_evaluation_config, params, self._interceptors,
+                self._native.create_online_evaluation_config, params, _interceptors,
                 "bedrock-agentcore-control", "CreateOnlineEvaluationConfig", self._region,
                 CreateOnlineEvaluationConfigResponse,
                 ("online_evaluation_config_name", "rule", "data_source_config", "evaluation_execution_role_arn", "enable_on_create", "client_token", "description", "evaluators", "insights", "clustering_config", "output_config", "tags", ),
@@ -1074,9 +1100,10 @@ class BedrockAgentCoreControlClient:
             params["provision_mode"] = provision_mode
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_payment_connector, params, self._interceptors,
+                self._native.create_payment_connector, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePaymentConnector", self._region,
                 CreatePaymentConnectorResponse,
                 ("payment_manager_id", "name", "type", "credential_provider_configurations", "description", "provision_mode", "client_token", ),
@@ -1102,9 +1129,10 @@ class BedrockAgentCoreControlClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_payment_credential_provider, params, self._interceptors,
+                self._native.create_payment_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePaymentCredentialProvider", self._region,
                 CreatePaymentCredentialProviderResponse,
                 ("name", "credential_provider_vendor", "provider_configuration_input", "tags", ),
@@ -1142,9 +1170,10 @@ class BedrockAgentCoreControlClient:
             params["tags"] = tags
         if kms_key_arn is not None:
             params["kms_key_arn"] = kms_key_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_payment_manager, params, self._interceptors,
+                self._native.create_payment_manager, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePaymentManager", self._region,
                 CreatePaymentManagerResponse,
                 ("name", "authorizer_type", "role_arn", "description", "authorizer_configuration", "client_token", "tags", "kms_key_arn", ),
@@ -1179,9 +1208,10 @@ class BedrockAgentCoreControlClient:
             params["enforcement_mode"] = enforcement_mode
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_policy, params, self._interceptors,
+                self._native.create_policy, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePolicy", self._region,
                 CreatePolicyResponse,
                 ("name", "definition", "policy_engine_id", "description", "validation_mode", "enforcement_mode", "client_token", ),
@@ -1212,9 +1242,10 @@ class BedrockAgentCoreControlClient:
             params["encryption_key_arn"] = encryption_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_policy_engine, params, self._interceptors,
+                self._native.create_policy_engine, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePolicyEngine", self._region,
                 CreatePolicyEngineResponse,
                 ("name", "description", "client_token", "encryption_key_arn", "tags", ),
@@ -1248,9 +1279,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if approval_configuration is not None:
             params["approval_configuration"] = approval_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_registry, params, self._interceptors,
+                self._native.create_registry, params, _interceptors,
                 "bedrock-agentcore-control", "CreateRegistry", self._region,
                 CreateRegistryResponse,
                 ("name", "description", "authorizer_type", "authorizer_configuration", "client_token", "approval_configuration", ),
@@ -1291,9 +1323,10 @@ class BedrockAgentCoreControlClient:
             params["synchronization_configuration"] = synchronization_configuration
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_registry_record, params, self._interceptors,
+                self._native.create_registry_record, params, _interceptors,
                 "bedrock-agentcore-control", "CreateRegistryRecord", self._region,
                 CreateRegistryRecordResponse,
                 ("registry_id", "name", "descriptor_type", "description", "descriptors", "record_version", "synchronization_type", "synchronization_configuration", "client_token", ),
@@ -1318,9 +1351,10 @@ class BedrockAgentCoreControlClient:
             params["allowed_resource_oauth2_return_urls"] = allowed_resource_oauth2_return_urls
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_workload_identity, params, self._interceptors,
+                self._native.create_workload_identity, params, _interceptors,
                 "bedrock-agentcore-control", "CreateWorkloadIdentity", self._region,
                 CreateWorkloadIdentityResponse,
                 ("name", "allowed_resource_oauth2_return_urls", "tags", ),
@@ -1345,9 +1379,10 @@ class BedrockAgentCoreControlClient:
             params["agent_runtime_version"] = agent_runtime_version
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_agent_runtime, params, self._interceptors,
+                self._native.delete_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteAgentRuntime", self._region,
                 DeleteAgentRuntimeResponse,
                 ("agent_runtime_id", "agent_runtime_version", "client_token", ),
@@ -1371,9 +1406,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_agent_runtime_endpoint, params, self._interceptors,
+                self._native.delete_agent_runtime_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteAgentRuntimeEndpoint", self._region,
                 DeleteAgentRuntimeEndpointResponse,
                 ("agent_runtime_id", "endpoint_name", "client_token", ),
@@ -1392,9 +1428,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_api_key_credential_provider, params, self._interceptors,
+                self._native.delete_api_key_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteApiKeyCredentialProvider", self._region,
                 DeleteApiKeyCredentialProviderResponse,
                 ("name", ),
@@ -1416,9 +1453,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_browser, params, self._interceptors,
+                self._native.delete_browser, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteBrowser", self._region,
                 DeleteBrowserResponse,
                 ("browser_id", "client_token", ),
@@ -1440,9 +1478,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_browser_profile, params, self._interceptors,
+                self._native.delete_browser_profile, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteBrowserProfile", self._region,
                 DeleteBrowserProfileResponse,
                 ("profile_id", "client_token", ),
@@ -1464,9 +1503,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_capacity_provider, params, self._interceptors,
+                self._native.delete_capacity_provider, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteCapacityProvider", self._region,
                 DeleteCapacityProviderOutput,
                 ("capacity_provider_id", "client_token", ),
@@ -1488,9 +1528,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_code_interpreter, params, self._interceptors,
+                self._native.delete_code_interpreter, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteCodeInterpreter", self._region,
                 DeleteCodeInterpreterResponse,
                 ("code_interpreter_id", "client_token", ),
@@ -1509,9 +1550,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "bundle_id": bundle_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_configuration_bundle, params, self._interceptors,
+                self._native.delete_configuration_bundle, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteConfigurationBundle", self._region,
                 DeleteConfigurationBundleResponse,
                 ("bundle_id", ),
@@ -1530,9 +1572,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "consent_portal_identifier": consent_portal_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_consent_portal, params, self._interceptors,
+                self._native.delete_consent_portal, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteConsentPortal", self._region,
                 DeleteConsentPortalResponse,
                 ("consent_portal_identifier", ),
@@ -1554,9 +1597,10 @@ class BedrockAgentCoreControlClient:
         }
         if dataset_version is not None:
             params["dataset_version"] = dataset_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_dataset, params, self._interceptors,
+                self._native.delete_dataset, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteDataset", self._region,
                 DeleteDatasetResponse,
                 ("dataset_id", "dataset_version", ),
@@ -1580,9 +1624,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_dataset_examples, params, self._interceptors,
+                self._native.delete_dataset_examples, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteDatasetExamples", self._region,
                 DeleteDatasetExamplesResponse,
                 ("dataset_id", "example_ids", "client_token", ),
@@ -1601,9 +1646,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_evaluator, params, self._interceptors,
+                self._native.delete_evaluator, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteEvaluator", self._region,
                 DeleteEvaluatorResponse,
                 ("evaluator_id", ),
@@ -1622,9 +1668,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_gateway, params, self._interceptors,
+                self._native.delete_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteGateway", self._region,
                 DeleteGatewayResponse,
                 ("gateway_identifier", ),
@@ -1645,9 +1692,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "rate_limit_id": rate_limit_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_gateway_rate_limit, params, self._interceptors,
+                self._native.delete_gateway_rate_limit, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteGatewayRateLimit", self._region,
                 DeleteGatewayRateLimitResponse,
                 ("gateway_identifier", "rate_limit_id", ),
@@ -1668,9 +1716,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "rule_id": rule_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_gateway_rule, params, self._interceptors,
+                self._native.delete_gateway_rule, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteGatewayRule", self._region,
                 DeleteGatewayRuleResponse,
                 ("gateway_identifier", "rule_id", ),
@@ -1691,9 +1740,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_gateway_target, params, self._interceptors,
+                self._native.delete_gateway_target, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteGatewayTarget", self._region,
                 DeleteGatewayTargetResponse,
                 ("gateway_identifier", "target_id", ),
@@ -1718,9 +1768,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if delete_managed_memory is not None:
             params["delete_managed_memory"] = delete_managed_memory
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_harness, params, self._interceptors,
+                self._native.delete_harness, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteHarness", self._region,
                 DeleteHarnessResponse,
                 ("harness_id", "client_token", "delete_managed_memory", ),
@@ -1744,9 +1795,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_harness_endpoint, params, self._interceptors,
+                self._native.delete_harness_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteHarnessEndpoint", self._region,
                 DeleteHarnessEndpointResponse,
                 ("harness_id", "endpoint_name", "client_token", ),
@@ -1768,9 +1820,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_memory, params, self._interceptors,
+                self._native.delete_memory, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteMemory", self._region,
                 DeleteMemoryOutput,
                 ("memory_id", "client_token", ),
@@ -1789,9 +1842,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_oauth2_credential_provider, params, self._interceptors,
+                self._native.delete_oauth2_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteOauth2CredentialProvider", self._region,
                 DeleteOauth2CredentialProviderResponse,
                 ("name", ),
@@ -1810,9 +1864,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "online_evaluation_config_id": online_evaluation_config_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_online_evaluation_config, params, self._interceptors,
+                self._native.delete_online_evaluation_config, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteOnlineEvaluationConfig", self._region,
                 DeleteOnlineEvaluationConfigResponse,
                 ("online_evaluation_config_id", ),
@@ -1836,9 +1891,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_payment_connector, params, self._interceptors,
+                self._native.delete_payment_connector, params, _interceptors,
                 "bedrock-agentcore-control", "DeletePaymentConnector", self._region,
                 DeletePaymentConnectorResponse,
                 ("payment_manager_id", "payment_connector_id", "client_token", ),
@@ -1857,9 +1913,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_payment_credential_provider, params, self._interceptors,
+                self._native.delete_payment_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "DeletePaymentCredentialProvider", self._region,
                 DeletePaymentCredentialProviderResponse,
                 ("name", ),
@@ -1881,9 +1938,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_payment_manager, params, self._interceptors,
+                self._native.delete_payment_manager, params, _interceptors,
                 "bedrock-agentcore-control", "DeletePaymentManager", self._region,
                 DeletePaymentManagerResponse,
                 ("payment_manager_id", "client_token", ),
@@ -1904,9 +1962,10 @@ class BedrockAgentCoreControlClient:
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_policy, params, self._interceptors,
+                self._native.delete_policy, params, _interceptors,
                 "bedrock-agentcore-control", "DeletePolicy", self._region,
                 DeletePolicyResponse,
                 ("policy_engine_id", "policy_id", ),
@@ -1925,9 +1984,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_policy_engine, params, self._interceptors,
+                self._native.delete_policy_engine, params, _interceptors,
                 "bedrock-agentcore-control", "DeletePolicyEngine", self._region,
                 DeletePolicyEngineResponse,
                 ("policy_engine_id", ),
@@ -1946,9 +2006,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_registry, params, self._interceptors,
+                self._native.delete_registry, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteRegistry", self._region,
                 DeleteRegistryResponse,
                 ("registry_id", ),
@@ -1969,9 +2030,10 @@ class BedrockAgentCoreControlClient:
             "registry_id": registry_id,
             "record_id": record_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_registry_record, params, self._interceptors,
+                self._native.delete_registry_record, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteRegistryRecord", self._region,
                 DeleteRegistryRecordResponse,
                 ("registry_id", "record_id", ),
@@ -1990,9 +2052,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyResponse,
                 ("resource_arn", ),
@@ -2011,9 +2074,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_workload_identity, params, self._interceptors,
+                self._native.delete_workload_identity, params, _interceptors,
                 "bedrock-agentcore-control", "DeleteWorkloadIdentity", self._region,
                 DeleteWorkloadIdentityResponse,
                 ("name", ),
@@ -2035,9 +2099,10 @@ class BedrockAgentCoreControlClient:
         }
         if agent_runtime_version is not None:
             params["agent_runtime_version"] = agent_runtime_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_agent_runtime, params, self._interceptors,
+                self._native.get_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "GetAgentRuntime", self._region,
                 GetAgentRuntimeResponse,
                 ("agent_runtime_id", "agent_runtime_version", ),
@@ -2058,9 +2123,10 @@ class BedrockAgentCoreControlClient:
             "agent_runtime_id": agent_runtime_id,
             "endpoint_name": endpoint_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_agent_runtime_endpoint, params, self._interceptors,
+                self._native.get_agent_runtime_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "GetAgentRuntimeEndpoint", self._region,
                 GetAgentRuntimeEndpointResponse,
                 ("agent_runtime_id", "endpoint_name", ),
@@ -2079,9 +2145,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_api_key_credential_provider, params, self._interceptors,
+                self._native.get_api_key_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "GetApiKeyCredentialProvider", self._region,
                 GetApiKeyCredentialProviderResponse,
                 ("name", ),
@@ -2100,9 +2167,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "browser_id": browser_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_browser, params, self._interceptors,
+                self._native.get_browser, params, _interceptors,
                 "bedrock-agentcore-control", "GetBrowser", self._region,
                 GetBrowserResponse,
                 ("browser_id", ),
@@ -2121,9 +2189,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "profile_id": profile_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_browser_profile, params, self._interceptors,
+                self._native.get_browser_profile, params, _interceptors,
                 "bedrock-agentcore-control", "GetBrowserProfile", self._region,
                 GetBrowserProfileResponse,
                 ("profile_id", ),
@@ -2142,9 +2211,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_capacity_provider, params, self._interceptors,
+                self._native.get_capacity_provider, params, _interceptors,
                 "bedrock-agentcore-control", "GetCapacityProvider", self._region,
                 GetCapacityProviderOutput,
                 ("capacity_provider_id", ),
@@ -2163,9 +2233,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "code_interpreter_id": code_interpreter_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_code_interpreter, params, self._interceptors,
+                self._native.get_code_interpreter, params, _interceptors,
                 "bedrock-agentcore-control", "GetCodeInterpreter", self._region,
                 GetCodeInterpreterResponse,
                 ("code_interpreter_id", ),
@@ -2187,9 +2258,10 @@ class BedrockAgentCoreControlClient:
         }
         if branch_name is not None:
             params["branch_name"] = branch_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_configuration_bundle, params, self._interceptors,
+                self._native.get_configuration_bundle, params, _interceptors,
                 "bedrock-agentcore-control", "GetConfigurationBundle", self._region,
                 GetConfigurationBundleResponse,
                 ("bundle_id", "branch_name", ),
@@ -2210,9 +2282,10 @@ class BedrockAgentCoreControlClient:
             "bundle_id": bundle_id,
             "version_id": version_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_configuration_bundle_version, params, self._interceptors,
+                self._native.get_configuration_bundle_version, params, _interceptors,
                 "bedrock-agentcore-control", "GetConfigurationBundleVersion", self._region,
                 GetConfigurationBundleVersionResponse,
                 ("bundle_id", "version_id", ),
@@ -2231,9 +2304,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "consent_portal_identifier": consent_portal_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_consent_portal, params, self._interceptors,
+                self._native.get_consent_portal, params, _interceptors,
                 "bedrock-agentcore-control", "GetConsentPortal", self._region,
                 GetConsentPortalResponse,
                 ("consent_portal_identifier", ),
@@ -2255,9 +2329,10 @@ class BedrockAgentCoreControlClient:
         }
         if dataset_version is not None:
             params["dataset_version"] = dataset_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_dataset, params, self._interceptors,
+                self._native.get_dataset, params, _interceptors,
                 "bedrock-agentcore-control", "GetDataset", self._region,
                 GetDatasetResponse,
                 ("dataset_id", "dataset_version", ),
@@ -2279,9 +2354,10 @@ class BedrockAgentCoreControlClient:
         }
         if included_data is not None:
             params["included_data"] = included_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_evaluator, params, self._interceptors,
+                self._native.get_evaluator, params, _interceptors,
                 "bedrock-agentcore-control", "GetEvaluator", self._region,
                 GetEvaluatorResponse,
                 ("evaluator_id", "included_data", ),
@@ -2300,9 +2376,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway, params, self._interceptors,
+                self._native.get_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "GetGateway", self._region,
                 GetGatewayResponse,
                 ("gateway_identifier", ),
@@ -2323,9 +2400,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "rate_limit_id": rate_limit_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway_rate_limit, params, self._interceptors,
+                self._native.get_gateway_rate_limit, params, _interceptors,
                 "bedrock-agentcore-control", "GetGatewayRateLimit", self._region,
                 GetGatewayRateLimitResponse,
                 ("gateway_identifier", "rate_limit_id", ),
@@ -2346,9 +2424,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "rule_id": rule_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway_rule, params, self._interceptors,
+                self._native.get_gateway_rule, params, _interceptors,
                 "bedrock-agentcore-control", "GetGatewayRule", self._region,
                 GetGatewayRuleResponse,
                 ("gateway_identifier", "rule_id", ),
@@ -2369,9 +2448,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "target_id": target_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_gateway_target, params, self._interceptors,
+                self._native.get_gateway_target, params, _interceptors,
                 "bedrock-agentcore-control", "GetGatewayTarget", self._region,
                 GetGatewayTargetResponse,
                 ("gateway_identifier", "target_id", ),
@@ -2393,9 +2473,10 @@ class BedrockAgentCoreControlClient:
         }
         if harness_version is not None:
             params["harness_version"] = harness_version
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_harness, params, self._interceptors,
+                self._native.get_harness, params, _interceptors,
                 "bedrock-agentcore-control", "GetHarness", self._region,
                 GetHarnessResponse,
                 ("harness_id", "harness_version", ),
@@ -2416,9 +2497,10 @@ class BedrockAgentCoreControlClient:
             "harness_id": harness_id,
             "endpoint_name": endpoint_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_harness_endpoint, params, self._interceptors,
+                self._native.get_harness_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "GetHarnessEndpoint", self._region,
                 GetHarnessEndpointResponse,
                 ("harness_id", "endpoint_name", ),
@@ -2440,9 +2522,10 @@ class BedrockAgentCoreControlClient:
         }
         if view is not None:
             params["view"] = view
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_memory, params, self._interceptors,
+                self._native.get_memory, params, _interceptors,
                 "bedrock-agentcore-control", "GetMemory", self._region,
                 GetMemoryOutput,
                 ("memory_id", "view", ),
@@ -2461,9 +2544,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_oauth2_credential_provider, params, self._interceptors,
+                self._native.get_oauth2_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "GetOauth2CredentialProvider", self._region,
                 GetOauth2CredentialProviderResponse,
                 ("name", ),
@@ -2482,9 +2566,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "online_evaluation_config_id": online_evaluation_config_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_online_evaluation_config, params, self._interceptors,
+                self._native.get_online_evaluation_config, params, _interceptors,
                 "bedrock-agentcore-control", "GetOnlineEvaluationConfig", self._region,
                 GetOnlineEvaluationConfigResponse,
                 ("online_evaluation_config_id", ),
@@ -2505,9 +2590,10 @@ class BedrockAgentCoreControlClient:
             "payment_manager_id": payment_manager_id,
             "payment_connector_id": payment_connector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_connector, params, self._interceptors,
+                self._native.get_payment_connector, params, _interceptors,
                 "bedrock-agentcore-control", "GetPaymentConnector", self._region,
                 GetPaymentConnectorResponse,
                 ("payment_manager_id", "payment_connector_id", ),
@@ -2526,9 +2612,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_credential_provider, params, self._interceptors,
+                self._native.get_payment_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "GetPaymentCredentialProvider", self._region,
                 GetPaymentCredentialProviderResponse,
                 ("name", ),
@@ -2547,9 +2634,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "payment_manager_id": payment_manager_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_manager, params, self._interceptors,
+                self._native.get_payment_manager, params, _interceptors,
                 "bedrock-agentcore-control", "GetPaymentManager", self._region,
                 GetPaymentManagerResponse,
                 ("payment_manager_id", ),
@@ -2570,9 +2658,10 @@ class BedrockAgentCoreControlClient:
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy, params, self._interceptors,
+                self._native.get_policy, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicy", self._region,
                 GetPolicyResponse,
                 ("policy_engine_id", "policy_id", ),
@@ -2591,9 +2680,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy_engine, params, self._interceptors,
+                self._native.get_policy_engine, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicyEngine", self._region,
                 GetPolicyEngineResponse,
                 ("policy_engine_id", ),
@@ -2612,9 +2702,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "policy_engine_id": policy_engine_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy_engine_summary, params, self._interceptors,
+                self._native.get_policy_engine_summary, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicyEngineSummary", self._region,
                 GetPolicyEngineSummaryResponse,
                 ("policy_engine_id", ),
@@ -2635,9 +2726,10 @@ class BedrockAgentCoreControlClient:
             "policy_generation_id": policy_generation_id,
             "policy_engine_id": policy_engine_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy_generation, params, self._interceptors,
+                self._native.get_policy_generation, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicyGeneration", self._region,
                 GetPolicyGenerationResponse,
                 ("policy_generation_id", "policy_engine_id", ),
@@ -2658,9 +2750,10 @@ class BedrockAgentCoreControlClient:
             "policy_generation_id": policy_generation_id,
             "policy_engine_id": policy_engine_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy_generation_summary, params, self._interceptors,
+                self._native.get_policy_generation_summary, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicyGenerationSummary", self._region,
                 GetPolicyGenerationSummaryResponse,
                 ("policy_generation_id", "policy_engine_id", ),
@@ -2681,9 +2774,10 @@ class BedrockAgentCoreControlClient:
             "policy_engine_id": policy_engine_id,
             "policy_id": policy_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy_summary, params, self._interceptors,
+                self._native.get_policy_summary, params, _interceptors,
                 "bedrock-agentcore-control", "GetPolicySummary", self._region,
                 GetPolicySummaryResponse,
                 ("policy_engine_id", "policy_id", ),
@@ -2702,9 +2796,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "registry_id": registry_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_registry, params, self._interceptors,
+                self._native.get_registry, params, _interceptors,
                 "bedrock-agentcore-control", "GetRegistry", self._region,
                 GetRegistryResponse,
                 ("registry_id", ),
@@ -2725,9 +2820,10 @@ class BedrockAgentCoreControlClient:
             "registry_id": registry_id,
             "record_id": record_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_registry_record, params, self._interceptors,
+                self._native.get_registry_record, params, _interceptors,
                 "bedrock-agentcore-control", "GetRegistryRecord", self._region,
                 GetRegistryRecordResponse,
                 ("registry_id", "record_id", ),
@@ -2746,9 +2842,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "bedrock-agentcore-control", "GetResourcePolicy", self._region,
                 GetResourcePolicyResponse,
                 ("resource_arn", ),
@@ -2768,9 +2865,10 @@ class BedrockAgentCoreControlClient:
         }
         if token_vault_id is not None:
             params["token_vault_id"] = token_vault_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_token_vault, params, self._interceptors,
+                self._native.get_token_vault, params, _interceptors,
                 "bedrock-agentcore-control", "GetTokenVault", self._region,
                 GetTokenVaultResponse,
                 ("token_vault_id", ),
@@ -2789,9 +2887,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_workload_identity, params, self._interceptors,
+                self._native.get_workload_identity, params, _interceptors,
                 "bedrock-agentcore-control", "GetWorkloadIdentity", self._region,
                 GetWorkloadIdentityResponse,
                 ("name", ),
@@ -2816,9 +2915,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_agent_runtime_endpoints, params, self._interceptors,
+                self._native.list_agent_runtime_endpoints, params, _interceptors,
                 "bedrock-agentcore-control", "ListAgentRuntimeEndpoints", self._region,
                 ListAgentRuntimeEndpointsResponse,
                 ("agent_runtime_id", "max_results", "next_token", ),
@@ -2843,9 +2943,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_agent_runtime_versions, params, self._interceptors,
+                self._native.list_agent_runtime_versions, params, _interceptors,
                 "bedrock-agentcore-control", "ListAgentRuntimeVersions", self._region,
                 ListAgentRuntimeVersionsResponse,
                 ("agent_runtime_id", "max_results", "next_token", ),
@@ -2870,9 +2971,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_agent_runtime_versions_by_capacity_provider, params, self._interceptors,
+                self._native.list_agent_runtime_versions_by_capacity_provider, params, _interceptors,
                 "bedrock-agentcore-control", "ListAgentRuntimeVersionsByCapacityProvider", self._region,
                 ListAgentRuntimeVersionsByCapacityProviderOutput,
                 ("capacity_provider_id", "max_results", "next_token", ),
@@ -2895,9 +2997,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_agent_runtimes, params, self._interceptors,
+                self._native.list_agent_runtimes, params, _interceptors,
                 "bedrock-agentcore-control", "ListAgentRuntimes", self._region,
                 ListAgentRuntimesResponse,
                 ("max_results", "next_token", ),
@@ -2920,9 +3023,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_api_key_credential_providers, params, self._interceptors,
+                self._native.list_api_key_credential_providers, params, _interceptors,
                 "bedrock-agentcore-control", "ListApiKeyCredentialProviders", self._region,
                 ListApiKeyCredentialProvidersResponse,
                 ("next_token", "max_results", ),
@@ -2948,9 +3052,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if name is not None:
             params["name"] = name
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_browser_profiles, params, self._interceptors,
+                self._native.list_browser_profiles, params, _interceptors,
                 "bedrock-agentcore-control", "ListBrowserProfiles", self._region,
                 ListBrowserProfilesResponse,
                 ("max_results", "next_token", "name", ),
@@ -2976,9 +3081,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_browsers, params, self._interceptors,
+                self._native.list_browsers, params, _interceptors,
                 "bedrock-agentcore-control", "ListBrowsers", self._region,
                 ListBrowsersResponse,
                 ("max_results", "next_token", "type", ),
@@ -3001,9 +3107,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_capacity_providers, params, self._interceptors,
+                self._native.list_capacity_providers, params, _interceptors,
                 "bedrock-agentcore-control", "ListCapacityProviders", self._region,
                 ListCapacityProvidersOutput,
                 ("max_results", "next_token", ),
@@ -3029,9 +3136,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_code_interpreters, params, self._interceptors,
+                self._native.list_code_interpreters, params, _interceptors,
                 "bedrock-agentcore-control", "ListCodeInterpreters", self._region,
                 ListCodeInterpretersResponse,
                 ("max_results", "next_token", "type", ),
@@ -3059,9 +3167,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if filter is not None:
             params["filter"] = filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_configuration_bundle_versions, params, self._interceptors,
+                self._native.list_configuration_bundle_versions, params, _interceptors,
                 "bedrock-agentcore-control", "ListConfigurationBundleVersions", self._region,
                 ListConfigurationBundleVersionsResponse,
                 ("bundle_id", "next_token", "max_results", "filter", ),
@@ -3084,9 +3193,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_configuration_bundles, params, self._interceptors,
+                self._native.list_configuration_bundles, params, _interceptors,
                 "bedrock-agentcore-control", "ListConfigurationBundles", self._region,
                 ListConfigurationBundlesResponse,
                 ("next_token", "max_results", ),
@@ -3109,9 +3219,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_consent_portals, params, self._interceptors,
+                self._native.list_consent_portals, params, _interceptors,
                 "bedrock-agentcore-control", "ListConsentPortals", self._region,
                 ListConsentPortalsResponse,
                 ("max_results", "next_token", ),
@@ -3139,9 +3250,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_dataset_examples, params, self._interceptors,
+                self._native.list_dataset_examples, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasetExamples", self._region,
                 ListDatasetExamplesResponse,
                 ("dataset_id", "dataset_version", "max_results", "next_token", ),
@@ -3166,9 +3278,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_dataset_versions, params, self._interceptors,
+                self._native.list_dataset_versions, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasetVersions", self._region,
                 ListDatasetVersionsResponse,
                 ("dataset_id", "next_token", "max_results", ),
@@ -3191,9 +3304,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_datasets, params, self._interceptors,
+                self._native.list_datasets, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasets", self._region,
                 ListDatasetsResponse,
                 ("next_token", "max_results", ),
@@ -3216,9 +3330,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_evaluators, params, self._interceptors,
+                self._native.list_evaluators, params, _interceptors,
                 "bedrock-agentcore-control", "ListEvaluators", self._region,
                 ListEvaluatorsResponse,
                 ("next_token", "max_results", ),
@@ -3243,9 +3358,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_gateway_rate_limits, params, self._interceptors,
+                self._native.list_gateway_rate_limits, params, _interceptors,
                 "bedrock-agentcore-control", "ListGatewayRateLimits", self._region,
                 ListGatewayRateLimitsResponse,
                 ("gateway_identifier", "max_results", "next_token", ),
@@ -3270,9 +3386,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_gateway_rules, params, self._interceptors,
+                self._native.list_gateway_rules, params, _interceptors,
                 "bedrock-agentcore-control", "ListGatewayRules", self._region,
                 ListGatewayRulesResponse,
                 ("gateway_identifier", "max_results", "next_token", ),
@@ -3297,9 +3414,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_gateway_targets, params, self._interceptors,
+                self._native.list_gateway_targets, params, _interceptors,
                 "bedrock-agentcore-control", "ListGatewayTargets", self._region,
                 ListGatewayTargetsResponse,
                 ("gateway_identifier", "max_results", "next_token", ),
@@ -3322,9 +3440,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_gateways, params, self._interceptors,
+                self._native.list_gateways, params, _interceptors,
                 "bedrock-agentcore-control", "ListGateways", self._region,
                 ListGatewaysResponse,
                 ("max_results", "next_token", ),
@@ -3349,9 +3468,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_harness_endpoints, params, self._interceptors,
+                self._native.list_harness_endpoints, params, _interceptors,
                 "bedrock-agentcore-control", "ListHarnessEndpoints", self._region,
                 ListHarnessEndpointsResponse,
                 ("harness_id", "max_results", "next_token", ),
@@ -3376,9 +3496,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_harness_versions, params, self._interceptors,
+                self._native.list_harness_versions, params, _interceptors,
                 "bedrock-agentcore-control", "ListHarnessVersions", self._region,
                 ListHarnessVersionsResponse,
                 ("harness_id", "max_results", "next_token", ),
@@ -3401,9 +3522,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_harnesses, params, self._interceptors,
+                self._native.list_harnesses, params, _interceptors,
                 "bedrock-agentcore-control", "ListHarnesses", self._region,
                 ListHarnessesResponse,
                 ("max_results", "next_token", ),
@@ -3426,9 +3548,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_memories, params, self._interceptors,
+                self._native.list_memories, params, _interceptors,
                 "bedrock-agentcore-control", "ListMemories", self._region,
                 ListMemoriesOutput,
                 ("max_results", "next_token", ),
@@ -3451,9 +3574,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_oauth2_credential_providers, params, self._interceptors,
+                self._native.list_oauth2_credential_providers, params, _interceptors,
                 "bedrock-agentcore-control", "ListOauth2CredentialProviders", self._region,
                 ListOauth2CredentialProvidersResponse,
                 ("next_token", "max_results", ),
@@ -3476,9 +3600,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_online_evaluation_configs, params, self._interceptors,
+                self._native.list_online_evaluation_configs, params, _interceptors,
                 "bedrock-agentcore-control", "ListOnlineEvaluationConfigs", self._region,
                 ListOnlineEvaluationConfigsResponse,
                 ("next_token", "max_results", ),
@@ -3503,9 +3628,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_payment_connectors, params, self._interceptors,
+                self._native.list_payment_connectors, params, _interceptors,
                 "bedrock-agentcore-control", "ListPaymentConnectors", self._region,
                 ListPaymentConnectorsResponse,
                 ("payment_manager_id", "max_results", "next_token", ),
@@ -3528,9 +3654,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_payment_credential_providers, params, self._interceptors,
+                self._native.list_payment_credential_providers, params, _interceptors,
                 "bedrock-agentcore-control", "ListPaymentCredentialProviders", self._region,
                 ListPaymentCredentialProvidersResponse,
                 ("next_token", "max_results", ),
@@ -3553,9 +3680,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_payment_managers, params, self._interceptors,
+                self._native.list_payment_managers, params, _interceptors,
                 "bedrock-agentcore-control", "ListPaymentManagers", self._region,
                 ListPaymentManagersResponse,
                 ("max_results", "next_token", ),
@@ -3583,9 +3711,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if target_resource_scope is not None:
             params["target_resource_scope"] = target_resource_scope
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policies, params, self._interceptors,
+                self._native.list_policies, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicies", self._region,
                 ListPoliciesResponse,
                 ("policy_engine_id", "next_token", "max_results", "target_resource_scope", ),
@@ -3608,9 +3737,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_engine_summaries, params, self._interceptors,
+                self._native.list_policy_engine_summaries, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicyEngineSummaries", self._region,
                 ListPolicyEngineSummariesResponse,
                 ("next_token", "max_results", ),
@@ -3633,9 +3763,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_engines, params, self._interceptors,
+                self._native.list_policy_engines, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicyEngines", self._region,
                 ListPolicyEnginesResponse,
                 ("next_token", "max_results", ),
@@ -3662,9 +3793,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_generation_assets, params, self._interceptors,
+                self._native.list_policy_generation_assets, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicyGenerationAssets", self._region,
                 ListPolicyGenerationAssetsResponse,
                 ("policy_generation_id", "policy_engine_id", "next_token", "max_results", ),
@@ -3689,9 +3821,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_generation_summaries, params, self._interceptors,
+                self._native.list_policy_generation_summaries, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicyGenerationSummaries", self._region,
                 ListPolicyGenerationSummariesResponse,
                 ("policy_engine_id", "next_token", "max_results", ),
@@ -3716,9 +3849,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_generations, params, self._interceptors,
+                self._native.list_policy_generations, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicyGenerations", self._region,
                 ListPolicyGenerationsResponse,
                 ("policy_engine_id", "next_token", "max_results", ),
@@ -3746,9 +3880,10 @@ class BedrockAgentCoreControlClient:
             params["max_results"] = max_results
         if target_resource_scope is not None:
             params["target_resource_scope"] = target_resource_scope
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_policy_summaries, params, self._interceptors,
+                self._native.list_policy_summaries, params, _interceptors,
                 "bedrock-agentcore-control", "ListPolicySummaries", self._region,
                 ListPolicySummariesResponse,
                 ("policy_engine_id", "next_token", "max_results", "target_resource_scope", ),
@@ -3777,9 +3912,10 @@ class BedrockAgentCoreControlClient:
             params["status"] = status
         if authorizer_type is not None:
             params["authorizer_type"] = authorizer_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_registries, params, self._interceptors,
+                self._native.list_registries, params, _interceptors,
                 "bedrock-agentcore-control", "ListRegistries", self._region,
                 ListRegistriesResponse,
                 ("max_results", "next_token", "status", "authorizer_type", ),
@@ -3813,9 +3949,10 @@ class BedrockAgentCoreControlClient:
             params["status"] = status
         if descriptor_type is not None:
             params["descriptor_type"] = descriptor_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_registry_records, params, self._interceptors,
+                self._native.list_registry_records, params, _interceptors,
                 "bedrock-agentcore-control", "ListRegistryRecords", self._region,
                 ListRegistryRecordsResponse,
                 ("registry_id", "max_results", "next_token", "name", "status", "descriptor_type", ),
@@ -3834,9 +3971,10 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock-agentcore-control", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -3859,9 +3997,10 @@ class BedrockAgentCoreControlClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_workload_identities, params, self._interceptors,
+                self._native.list_workload_identities, params, _interceptors,
                 "bedrock-agentcore-control", "ListWorkloadIdentities", self._region,
                 ListWorkloadIdentitiesResponse,
                 ("next_token", "max_results", ),
@@ -3882,9 +4021,10 @@ class BedrockAgentCoreControlClient:
             "resource_arn": resource_arn,
             "policy": policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "bedrock-agentcore-control", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("resource_arn", "policy", ),
@@ -3910,9 +4050,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.rotate_payment_connector_credentials, params, self._interceptors,
+                self._native.rotate_payment_connector_credentials, params, _interceptors,
                 "bedrock-agentcore-control", "RotatePaymentConnectorCredentials", self._region,
                 RotatePaymentConnectorCredentialsResponse,
                 ("payment_manager_id", "payment_connector_id", "credentials_to_rotate", "client_token", ),
@@ -3934,9 +4075,10 @@ class BedrockAgentCoreControlClient:
         }
         if token_vault_id is not None:
             params["token_vault_id"] = token_vault_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.set_token_vault_cmk, params, self._interceptors,
+                self._native.set_token_vault_cmk, params, _interceptors,
                 "bedrock-agentcore-control", "SetTokenVaultCMK", self._region,
                 SetTokenVaultCMKResponse,
                 ("kms_configuration", "token_vault_id", ),
@@ -3964,9 +4106,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_policy_generation, params, self._interceptors,
+                self._native.start_policy_generation, params, _interceptors,
                 "bedrock-agentcore-control", "StartPolicyGeneration", self._region,
                 StartPolicyGenerationResponse,
                 ("policy_engine_id", "resource", "content", "name", "client_token", ),
@@ -3987,9 +4130,10 @@ class BedrockAgentCoreControlClient:
             "registry_id": registry_id,
             "record_id": record_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.submit_registry_record_for_approval, params, self._interceptors,
+                self._native.submit_registry_record_for_approval, params, _interceptors,
                 "bedrock-agentcore-control", "SubmitRegistryRecordForApproval", self._region,
                 SubmitRegistryRecordForApprovalResponse,
                 ("registry_id", "record_id", ),
@@ -4010,9 +4154,10 @@ class BedrockAgentCoreControlClient:
             "gateway_identifier": gateway_identifier,
             "target_id_list": target_id_list,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.synchronize_gateway_targets, params, self._interceptors,
+                self._native.synchronize_gateway_targets, params, _interceptors,
                 "bedrock-agentcore-control", "SynchronizeGatewayTargets", self._region,
                 SynchronizeGatewayTargetsResponse,
                 ("gateway_identifier", "target_id_list", ),
@@ -4033,9 +4178,10 @@ class BedrockAgentCoreControlClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "bedrock-agentcore-control", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -4056,9 +4202,10 @@ class BedrockAgentCoreControlClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "bedrock-agentcore-control", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -4117,9 +4264,10 @@ class BedrockAgentCoreControlClient:
             params["platform_version"] = platform_version
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_agent_runtime, params, self._interceptors,
+                self._native.update_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateAgentRuntime", self._region,
                 UpdateAgentRuntimeResponse,
                 ("agent_runtime_id", "agent_runtime_artifact", "role_arn", "network_configuration", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "metadata_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "platform_version", "client_token", ),
@@ -4149,9 +4297,10 @@ class BedrockAgentCoreControlClient:
             params["description"] = description
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_agent_runtime_endpoint, params, self._interceptors,
+                self._native.update_agent_runtime_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateAgentRuntimeEndpoint", self._region,
                 UpdateAgentRuntimeEndpointResponse,
                 ("agent_runtime_id", "endpoint_name", "agent_runtime_version", "description", "client_token", ),
@@ -4179,9 +4328,10 @@ class BedrockAgentCoreControlClient:
             params["api_key_secret_config"] = api_key_secret_config
         if api_key_secret_source is not None:
             params["api_key_secret_source"] = api_key_secret_source
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_api_key_credential_provider, params, self._interceptors,
+                self._native.update_api_key_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateApiKeyCredentialProvider", self._region,
                 UpdateApiKeyCredentialProviderResponse,
                 ("name", "api_key", "api_key_secret_config", "api_key_secret_source", ),
@@ -4206,9 +4356,10 @@ class BedrockAgentCoreControlClient:
             params["description"] = description
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_capacity_provider, params, self._interceptors,
+                self._native.update_capacity_provider, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateCapacityProvider", self._region,
                 UpdateCapacityProviderOutput,
                 ("capacity_provider_id", "description", "client_token", ),
@@ -4252,9 +4403,10 @@ class BedrockAgentCoreControlClient:
             params["created_by"] = created_by
         if kms_key_arn is not None:
             params["kms_key_arn"] = kms_key_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_configuration_bundle, params, self._interceptors,
+                self._native.update_configuration_bundle, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateConfigurationBundle", self._region,
                 UpdateConfigurationBundleResponse,
                 ("bundle_id", "parent_version_ids", "commit_message", "client_token", "bundle_name", "description", "components", "branch_name", "created_by", "kms_key_arn", ),
@@ -4282,9 +4434,10 @@ class BedrockAgentCoreControlClient:
             params["idp_config"] = idp_config
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_consent_portal, params, self._interceptors,
+                self._native.update_consent_portal, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateConsentPortal", self._region,
                 UpdateConsentPortalResponse,
                 ("consent_portal_identifier", "execution_role_arn", "idp_config", "description", ),
@@ -4309,9 +4462,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_dataset, params, self._interceptors,
+                self._native.update_dataset, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateDataset", self._region,
                 UpdateDatasetResponse,
                 ("dataset_id", "client_token", "description", ),
@@ -4335,9 +4489,10 @@ class BedrockAgentCoreControlClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_dataset_examples, params, self._interceptors,
+                self._native.update_dataset_examples, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateDatasetExamples", self._region,
                 UpdateDatasetExamplesResponse,
                 ("dataset_id", "examples", "client_token", ),
@@ -4371,9 +4526,10 @@ class BedrockAgentCoreControlClient:
             params["level"] = level
         if kms_key_arn is not None:
             params["kms_key_arn"] = kms_key_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_evaluator, params, self._interceptors,
+                self._native.update_evaluator, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateEvaluator", self._region,
                 UpdateEvaluatorResponse,
                 ("evaluator_id", "client_token", "description", "evaluator_config", "level", "kms_key_arn", ),
@@ -4428,9 +4584,10 @@ class BedrockAgentCoreControlClient:
             params["exception_level"] = exception_level
         if waf_configuration is not None:
             params["waf_configuration"] = waf_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_gateway, params, self._interceptors,
+                self._native.update_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateGateway", self._region,
                 UpdateGatewayResponse,
                 ("gateway_identifier", "name", "role_arn", "authorizer_type", "description", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "custom_transform_configuration", "interceptor_configurations", "policy_engine_configuration", "exception_level", "waf_configuration", ),
@@ -4456,9 +4613,10 @@ class BedrockAgentCoreControlClient:
         }
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_gateway_rate_limit, params, self._interceptors,
+                self._native.update_gateway_rate_limit, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateGatewayRateLimit", self._region,
                 UpdateGatewayRateLimitResponse,
                 ("gateway_identifier", "rate_limit_id", "entries", "description", ),
@@ -4491,9 +4649,10 @@ class BedrockAgentCoreControlClient:
             params["actions"] = actions
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_gateway_rule, params, self._interceptors,
+                self._native.update_gateway_rule, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateGatewayRule", self._region,
                 UpdateGatewayRuleResponse,
                 ("gateway_identifier", "rule_id", "priority", "conditions", "actions", "description", ),
@@ -4534,9 +4693,10 @@ class BedrockAgentCoreControlClient:
             params["private_endpoint"] = private_endpoint
         if certificate_configurations is not None:
             params["certificate_configurations"] = certificate_configurations
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_gateway_target, params, self._interceptors,
+                self._native.update_gateway_target, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateGatewayTarget", self._region,
                 UpdateGatewayTargetResponse,
                 ("gateway_identifier", "target_id", "target_configuration", "name", "description", "credential_provider_configurations", "metadata_configuration", "private_endpoint", "certificate_configurations", ),
@@ -4606,9 +4766,10 @@ class BedrockAgentCoreControlClient:
             params["max_tokens"] = max_tokens
         if timeout_seconds is not None:
             params["timeout_seconds"] = timeout_seconds
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_harness, params, self._interceptors,
+                self._native.update_harness, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateHarness", self._region,
                 UpdateHarnessResponse,
                 ("harness_id", "client_token", "execution_role_arn", "environment", "environment_artifact", "environment_variables", "authorizer_configuration", "model", "system_prompt", "tools", "skills", "allowed_tools", "memory", "truncation", "hooks", "max_iterations", "max_tokens", "timeout_seconds", ),
@@ -4638,9 +4799,10 @@ class BedrockAgentCoreControlClient:
             params["description"] = description
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_harness_endpoint, params, self._interceptors,
+                self._native.update_harness_endpoint, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateHarnessEndpoint", self._region,
                 UpdateHarnessEndpointResponse,
                 ("harness_id", "endpoint_name", "target_version", "description", "client_token", ),
@@ -4683,9 +4845,10 @@ class BedrockAgentCoreControlClient:
             params["namespace_keys"] = namespace_keys
         if stream_delivery_resources is not None:
             params["stream_delivery_resources"] = stream_delivery_resources
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_memory, params, self._interceptors,
+                self._native.update_memory, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateMemory", self._region,
                 UpdateMemoryOutput,
                 ("memory_id", "client_token", "description", "event_expiry_duration", "memory_execution_role_arn", "memory_strategies", "add_indexed_keys", "namespace_keys", "stream_delivery_resources", ),
@@ -4708,9 +4871,10 @@ class BedrockAgentCoreControlClient:
             "credential_provider_vendor": credential_provider_vendor,
             "oauth2_provider_config_input": oauth2_provider_config_input,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_oauth2_credential_provider, params, self._interceptors,
+                self._native.update_oauth2_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateOauth2CredentialProvider", self._region,
                 UpdateOauth2CredentialProviderResponse,
                 ("name", "credential_provider_vendor", "oauth2_provider_config_input", ),
@@ -4759,9 +4923,10 @@ class BedrockAgentCoreControlClient:
             params["evaluation_execution_role_arn"] = evaluation_execution_role_arn
         if execution_status is not None:
             params["execution_status"] = execution_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_online_evaluation_config, params, self._interceptors,
+                self._native.update_online_evaluation_config, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateOnlineEvaluationConfig", self._region,
                 UpdateOnlineEvaluationConfigResponse,
                 ("online_evaluation_config_id", "client_token", "description", "rule", "data_source_config", "evaluators", "insights", "clustering_config", "output_config", "evaluation_execution_role_arn", "execution_status", ),
@@ -4794,9 +4959,10 @@ class BedrockAgentCoreControlClient:
             params["credential_provider_configurations"] = credential_provider_configurations
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_payment_connector, params, self._interceptors,
+                self._native.update_payment_connector, params, _interceptors,
                 "bedrock-agentcore-control", "UpdatePaymentConnector", self._region,
                 UpdatePaymentConnectorResponse,
                 ("payment_manager_id", "payment_connector_id", "description", "type", "credential_provider_configurations", "client_token", ),
@@ -4819,9 +4985,10 @@ class BedrockAgentCoreControlClient:
             "credential_provider_vendor": credential_provider_vendor,
             "provider_configuration_input": provider_configuration_input,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_payment_credential_provider, params, self._interceptors,
+                self._native.update_payment_credential_provider, params, _interceptors,
                 "bedrock-agentcore-control", "UpdatePaymentCredentialProvider", self._region,
                 UpdatePaymentCredentialProviderResponse,
                 ("name", "credential_provider_vendor", "provider_configuration_input", ),
@@ -4858,9 +5025,10 @@ class BedrockAgentCoreControlClient:
             params["client_token"] = client_token
         if kms_key_arn is not None:
             params["kms_key_arn"] = kms_key_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_payment_manager, params, self._interceptors,
+                self._native.update_payment_manager, params, _interceptors,
                 "bedrock-agentcore-control", "UpdatePaymentManager", self._region,
                 UpdatePaymentManagerResponse,
                 ("payment_manager_id", "description", "authorizer_type", "authorizer_configuration", "role_arn", "client_token", "kms_key_arn", ),
@@ -4893,9 +5061,10 @@ class BedrockAgentCoreControlClient:
             params["validation_mode"] = validation_mode
         if enforcement_mode is not None:
             params["enforcement_mode"] = enforcement_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_policy, params, self._interceptors,
+                self._native.update_policy, params, _interceptors,
                 "bedrock-agentcore-control", "UpdatePolicy", self._region,
                 UpdatePolicyResponse,
                 ("policy_engine_id", "policy_id", "description", "definition", "validation_mode", "enforcement_mode", ),
@@ -4917,9 +5086,10 @@ class BedrockAgentCoreControlClient:
         }
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_policy_engine, params, self._interceptors,
+                self._native.update_policy_engine, params, _interceptors,
                 "bedrock-agentcore-control", "UpdatePolicyEngine", self._region,
                 UpdatePolicyEngineResponse,
                 ("policy_engine_id", "description", ),
@@ -4950,9 +5120,10 @@ class BedrockAgentCoreControlClient:
             params["authorizer_configuration"] = authorizer_configuration
         if approval_configuration is not None:
             params["approval_configuration"] = approval_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_registry, params, self._interceptors,
+                self._native.update_registry, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateRegistry", self._region,
                 UpdateRegistryResponse,
                 ("registry_id", "name", "description", "authorizer_configuration", "approval_configuration", ),
@@ -4997,9 +5168,10 @@ class BedrockAgentCoreControlClient:
             params["synchronization_configuration"] = synchronization_configuration
         if trigger_synchronization is not None:
             params["trigger_synchronization"] = trigger_synchronization
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_registry_record, params, self._interceptors,
+                self._native.update_registry_record, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateRegistryRecord", self._region,
                 UpdateRegistryRecordResponse,
                 ("registry_id", "record_id", "name", "description", "descriptor_type", "descriptors", "record_version", "synchronization_type", "synchronization_configuration", "trigger_synchronization", ),
@@ -5024,9 +5196,10 @@ class BedrockAgentCoreControlClient:
             "status": status,
             "status_reason": status_reason,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_registry_record_status, params, self._interceptors,
+                self._native.update_registry_record_status, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateRegistryRecordStatus", self._region,
                 UpdateRegistryRecordStatusResponse,
                 ("registry_id", "record_id", "status", "status_reason", ),
@@ -5048,9 +5221,10 @@ class BedrockAgentCoreControlClient:
         }
         if allowed_resource_oauth2_return_urls is not None:
             params["allowed_resource_oauth2_return_urls"] = allowed_resource_oauth2_return_urls
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_workload_identity, params, self._interceptors,
+                self._native.update_workload_identity, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateWorkloadIdentity", self._region,
                 UpdateWorkloadIdentityResponse,
                 ("name", "allowed_resource_oauth2_return_urls", ),

@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import KMSClient as NativeClient, CancelKeyDeletionResponse, ConnectCustomKeyStoreResponse, CreateCustomKeyStoreResponse, CreateGrantResponse, CreateKeyResponse, DecryptResponse, DeleteCustomKeyStoreResponse, DeleteImportedKeyMaterialResponse, DeriveSharedSecretResponse, DescribeCustomKeyStoresResponse, DescribeKeyResponse, DisconnectCustomKeyStoreResponse, EncryptResponse, GenerateDataKeyPairResponse, GenerateDataKeyPairWithoutPlaintextResponse, GenerateDataKeyResponse, GenerateDataKeyWithoutPlaintextResponse, GenerateMacResponse, GenerateRandomResponse, GetKeyLastUsageResponse, GetKeyPolicyResponse, GetKeyRotationStatusResponse, GetParametersForImportResponse, GetPublicKeyResponse, ImportKeyMaterialResponse, ListAliasesResponse, ListGrantsOutput, ListKeyPoliciesResponse, ListKeyRotationsResponse, ListKeysResponse, ListResourceTagsResponse, ListRetirableGrantsOutput, ReEncryptResponse, ReplicateKeyResponse, RotateKeyOnDemandResponse, ScheduleKeyDeletionResponse, SignResponse, UpdateCustomKeyStoreResponse, VerifyMacResponse, VerifyResponse
 from .types import (
@@ -37,6 +38,8 @@ from .types import (
 
 
 class KMSClient:
+    logger_name = "rboto.kms"
+
     def __init__(
         self,
         *,
@@ -66,9 +69,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_key_deletion, params, self._interceptors,
+                self._native.cancel_key_deletion, params, _interceptors,
                 "kms", "CancelKeyDeletion", self._region,
                 CancelKeyDeletionResponse,
                 ("key_id", ),
@@ -87,9 +91,10 @@ class KMSClient:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.connect_custom_key_store, params, self._interceptors,
+                self._native.connect_custom_key_store, params, _interceptors,
                 "kms", "ConnectCustomKeyStore", self._region,
                 ConnectCustomKeyStoreResponse,
                 ("custom_key_store_id", ),
@@ -110,9 +115,10 @@ class KMSClient:
             "alias_name": alias_name,
             "target_key_id": target_key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.create_alias, params, self._interceptors,
+                self._native.create_alias, params, _interceptors,
                 "kms", "CreateAlias", self._region,
                 type(None),
                 ("alias_name", "target_key_id", ),
@@ -161,9 +167,10 @@ class KMSClient:
             params["xks_proxy_authentication_credential"] = xks_proxy_authentication_credential
         if xks_proxy_connectivity is not None:
             params["xks_proxy_connectivity"] = xks_proxy_connectivity
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_key_store, params, self._interceptors,
+                self._native.create_custom_key_store, params, _interceptors,
                 "kms", "CreateCustomKeyStore", self._region,
                 CreateCustomKeyStoreResponse,
                 ("custom_key_store_name", "cloud_hsm_cluster_id", "trust_anchor_certificate", "key_store_password", "custom_key_store_type", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
@@ -208,9 +215,10 @@ class KMSClient:
             params["grantee_service_principal"] = grantee_service_principal
         if retiring_service_principal is not None:
             params["retiring_service_principal"] = retiring_service_principal
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_grant, params, self._interceptors,
+                self._native.create_grant, params, _interceptors,
                 "kms", "CreateGrant", self._region,
                 CreateGrantResponse,
                 ("key_id", "operations", "grantee_principal", "retiring_principal", "constraints", "grant_tokens", "name", "dry_run", "grantee_service_principal", "retiring_service_principal", ),
@@ -260,9 +268,10 @@ class KMSClient:
             params["multi_region"] = multi_region
         if xks_key_id is not None:
             params["xks_key_id"] = xks_key_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_key, params, self._interceptors,
+                self._native.create_key, params, _interceptors,
                 "kms", "CreateKey", self._region,
                 CreateKeyResponse,
                 ("policy", "description", "key_usage", "customer_master_key_spec", "key_spec", "origin", "custom_key_store_id", "bypass_policy_lockout_safety_check", "tags", "multi_region", "xks_key_id", ),
@@ -303,9 +312,10 @@ class KMSClient:
             params["dry_run"] = dry_run
         if dry_run_modifiers is not None:
             params["dry_run_modifiers"] = dry_run_modifiers
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.decrypt, params, self._interceptors,
+                self._native.decrypt, params, _interceptors,
                 "kms", "Decrypt", self._region,
                 DecryptResponse,
                 ("ciphertext_blob", "encryption_context", "grant_tokens", "key_id", "encryption_algorithm", "recipient", "dry_run", "dry_run_modifiers", ),
@@ -324,9 +334,10 @@ class KMSClient:
         params: dict[str, object] = {
             "alias_name": alias_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_alias, params, self._interceptors,
+                self._native.delete_alias, params, _interceptors,
                 "kms", "DeleteAlias", self._region,
                 type(None),
                 ("alias_name", ),
@@ -345,9 +356,10 @@ class KMSClient:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_key_store, params, self._interceptors,
+                self._native.delete_custom_key_store, params, _interceptors,
                 "kms", "DeleteCustomKeyStore", self._region,
                 DeleteCustomKeyStoreResponse,
                 ("custom_key_store_id", ),
@@ -369,9 +381,10 @@ class KMSClient:
         }
         if key_material_id is not None:
             params["key_material_id"] = key_material_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_imported_key_material, params, self._interceptors,
+                self._native.delete_imported_key_material, params, _interceptors,
                 "kms", "DeleteImportedKeyMaterial", self._region,
                 DeleteImportedKeyMaterialResponse,
                 ("key_id", "key_material_id", ),
@@ -403,9 +416,10 @@ class KMSClient:
             params["dry_run"] = dry_run
         if recipient is not None:
             params["recipient"] = recipient
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.derive_shared_secret, params, self._interceptors,
+                self._native.derive_shared_secret, params, _interceptors,
                 "kms", "DeriveSharedSecret", self._region,
                 DeriveSharedSecretResponse,
                 ("key_id", "key_agreement_algorithm", "public_key", "grant_tokens", "dry_run", "recipient", ),
@@ -434,9 +448,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_custom_key_stores, params, self._interceptors,
+                self._native.describe_custom_key_stores, params, _interceptors,
                 "kms", "DescribeCustomKeyStores", self._region,
                 DescribeCustomKeyStoresResponse,
                 ("custom_key_store_id", "custom_key_store_name", "limit", "marker", ),
@@ -458,9 +473,10 @@ class KMSClient:
         }
         if grant_tokens is not None:
             params["grant_tokens"] = grant_tokens
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_key, params, self._interceptors,
+                self._native.describe_key, params, _interceptors,
                 "kms", "DescribeKey", self._region,
                 DescribeKeyResponse,
                 ("key_id", "grant_tokens", ),
@@ -479,9 +495,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.disable_key, params, self._interceptors,
+                self._native.disable_key, params, _interceptors,
                 "kms", "DisableKey", self._region,
                 type(None),
                 ("key_id", ),
@@ -500,9 +517,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.disable_key_rotation, params, self._interceptors,
+                self._native.disable_key_rotation, params, _interceptors,
                 "kms", "DisableKeyRotation", self._region,
                 type(None),
                 ("key_id", ),
@@ -521,9 +539,10 @@ class KMSClient:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disconnect_custom_key_store, params, self._interceptors,
+                self._native.disconnect_custom_key_store, params, _interceptors,
                 "kms", "DisconnectCustomKeyStore", self._region,
                 DisconnectCustomKeyStoreResponse,
                 ("custom_key_store_id", ),
@@ -542,9 +561,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.enable_key, params, self._interceptors,
+                self._native.enable_key, params, _interceptors,
                 "kms", "EnableKey", self._region,
                 type(None),
                 ("key_id", ),
@@ -566,9 +586,10 @@ class KMSClient:
         }
         if rotation_period_in_days is not None:
             params["rotation_period_in_days"] = rotation_period_in_days
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.enable_key_rotation, params, self._interceptors,
+                self._native.enable_key_rotation, params, _interceptors,
                 "kms", "EnableKeyRotation", self._region,
                 type(None),
                 ("key_id", "rotation_period_in_days", ),
@@ -601,9 +622,10 @@ class KMSClient:
             params["encryption_algorithm"] = encryption_algorithm
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.encrypt, params, self._interceptors,
+                self._native.encrypt, params, _interceptors,
                 "kms", "Encrypt", self._region,
                 EncryptResponse,
                 ("key_id", "plaintext", "encryption_context", "grant_tokens", "encryption_algorithm", "dry_run", ),
@@ -640,9 +662,10 @@ class KMSClient:
             params["recipient"] = recipient
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_data_key, params, self._interceptors,
+                self._native.generate_data_key, params, _interceptors,
                 "kms", "GenerateDataKey", self._region,
                 GenerateDataKeyResponse,
                 ("key_id", "encryption_context", "number_of_bytes", "key_spec", "grant_tokens", "recipient", "dry_run", ),
@@ -675,9 +698,10 @@ class KMSClient:
             params["recipient"] = recipient
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_data_key_pair, params, self._interceptors,
+                self._native.generate_data_key_pair, params, _interceptors,
                 "kms", "GenerateDataKeyPair", self._region,
                 GenerateDataKeyPairResponse,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "recipient", "dry_run", ),
@@ -707,9 +731,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_data_key_pair_without_plaintext, params, self._interceptors,
+                self._native.generate_data_key_pair_without_plaintext, params, _interceptors,
                 "kms", "GenerateDataKeyPairWithoutPlaintext", self._region,
                 GenerateDataKeyPairWithoutPlaintextResponse,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "dry_run", ),
@@ -743,9 +768,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_data_key_without_plaintext, params, self._interceptors,
+                self._native.generate_data_key_without_plaintext, params, _interceptors,
                 "kms", "GenerateDataKeyWithoutPlaintext", self._region,
                 GenerateDataKeyWithoutPlaintextResponse,
                 ("key_id", "encryption_context", "key_spec", "number_of_bytes", "grant_tokens", "dry_run", ),
@@ -774,9 +800,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_mac, params, self._interceptors,
+                self._native.generate_mac, params, _interceptors,
                 "kms", "GenerateMac", self._region,
                 GenerateMacResponse,
                 ("message", "key_id", "mac_algorithm", "grant_tokens", "dry_run", ),
@@ -802,9 +829,10 @@ class KMSClient:
             params["custom_key_store_id"] = custom_key_store_id
         if recipient is not None:
             params["recipient"] = recipient
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_random, params, self._interceptors,
+                self._native.generate_random, params, _interceptors,
                 "kms", "GenerateRandom", self._region,
                 GenerateRandomResponse,
                 ("number_of_bytes", "custom_key_store_id", "recipient", ),
@@ -823,9 +851,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_key_last_usage, params, self._interceptors,
+                self._native.get_key_last_usage, params, _interceptors,
                 "kms", "GetKeyLastUsage", self._region,
                 GetKeyLastUsageResponse,
                 ("key_id", ),
@@ -847,9 +876,10 @@ class KMSClient:
         }
         if policy_name is not None:
             params["policy_name"] = policy_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_key_policy, params, self._interceptors,
+                self._native.get_key_policy, params, _interceptors,
                 "kms", "GetKeyPolicy", self._region,
                 GetKeyPolicyResponse,
                 ("key_id", "policy_name", ),
@@ -868,9 +898,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_key_rotation_status, params, self._interceptors,
+                self._native.get_key_rotation_status, params, _interceptors,
                 "kms", "GetKeyRotationStatus", self._region,
                 GetKeyRotationStatusResponse,
                 ("key_id", ),
@@ -893,9 +924,10 @@ class KMSClient:
             "wrapping_algorithm": wrapping_algorithm,
             "wrapping_key_spec": wrapping_key_spec,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_parameters_for_import, params, self._interceptors,
+                self._native.get_parameters_for_import, params, _interceptors,
                 "kms", "GetParametersForImport", self._region,
                 GetParametersForImportResponse,
                 ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
@@ -917,9 +949,10 @@ class KMSClient:
         }
         if grant_tokens is not None:
             params["grant_tokens"] = grant_tokens
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_public_key, params, self._interceptors,
+                self._native.get_public_key, params, _interceptors,
                 "kms", "GetPublicKey", self._region,
                 GetPublicKeyResponse,
                 ("key_id", "grant_tokens", ),
@@ -957,9 +990,10 @@ class KMSClient:
             params["key_material_description"] = key_material_description
         if key_material_id is not None:
             params["key_material_id"] = key_material_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.import_key_material, params, self._interceptors,
+                self._native.import_key_material, params, _interceptors,
                 "kms", "ImportKeyMaterial", self._region,
                 ImportKeyMaterialResponse,
                 ("key_id", "import_token", "encrypted_key_material", "valid_to", "expiration_model", "import_type", "key_material_description", "key_material_id", ),
@@ -985,9 +1019,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_aliases, params, self._interceptors,
+                self._native.list_aliases, params, _interceptors,
                 "kms", "ListAliases", self._region,
                 ListAliasesResponse,
                 ("key_id", "limit", "marker", ),
@@ -1021,9 +1056,10 @@ class KMSClient:
             params["grantee_principal"] = grantee_principal
         if grantee_service_principal is not None:
             params["grantee_service_principal"] = grantee_service_principal
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_grants, params, self._interceptors,
+                self._native.list_grants, params, _interceptors,
                 "kms", "ListGrants", self._region,
                 ListGrantsOutput,
                 ("key_id", "limit", "marker", "grant_id", "grantee_principal", "grantee_service_principal", ),
@@ -1048,9 +1084,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_key_policies, params, self._interceptors,
+                self._native.list_key_policies, params, _interceptors,
                 "kms", "ListKeyPolicies", self._region,
                 ListKeyPoliciesResponse,
                 ("key_id", "limit", "marker", ),
@@ -1078,9 +1115,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_key_rotations, params, self._interceptors,
+                self._native.list_key_rotations, params, _interceptors,
                 "kms", "ListKeyRotations", self._region,
                 ListKeyRotationsResponse,
                 ("key_id", "include_key_material", "limit", "marker", ),
@@ -1103,9 +1141,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_keys, params, self._interceptors,
+                self._native.list_keys, params, _interceptors,
                 "kms", "ListKeys", self._region,
                 ListKeysResponse,
                 ("limit", "marker", ),
@@ -1130,9 +1169,10 @@ class KMSClient:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_resource_tags, params, self._interceptors,
+                self._native.list_resource_tags, params, _interceptors,
                 "kms", "ListResourceTags", self._region,
                 ListResourceTagsResponse,
                 ("key_id", "limit", "marker", ),
@@ -1161,9 +1201,10 @@ class KMSClient:
             params["retiring_principal"] = retiring_principal
         if retiring_service_principal is not None:
             params["retiring_service_principal"] = retiring_service_principal
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_retirable_grants, params, self._interceptors,
+                self._native.list_retirable_grants, params, _interceptors,
                 "kms", "ListRetirableGrants", self._region,
                 ListRetirableGrantsOutput,
                 ("limit", "marker", "retiring_principal", "retiring_service_principal", ),
@@ -1190,9 +1231,10 @@ class KMSClient:
             params["policy_name"] = policy_name
         if bypass_policy_lockout_safety_check is not None:
             params["bypass_policy_lockout_safety_check"] = bypass_policy_lockout_safety_check
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_key_policy, params, self._interceptors,
+                self._native.put_key_policy, params, _interceptors,
                 "kms", "PutKeyPolicy", self._region,
                 type(None),
                 ("key_id", "policy", "policy_name", "bypass_policy_lockout_safety_check", ),
@@ -1238,9 +1280,10 @@ class KMSClient:
             params["dry_run"] = dry_run
         if dry_run_modifiers is not None:
             params["dry_run_modifiers"] = dry_run_modifiers
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.re_encrypt, params, self._interceptors,
+                self._native.re_encrypt, params, _interceptors,
                 "kms", "ReEncrypt", self._region,
                 ReEncryptResponse,
                 ("destination_key_id", "ciphertext_blob", "source_encryption_context", "source_key_id", "destination_encryption_context", "source_encryption_algorithm", "destination_encryption_algorithm", "grant_tokens", "dry_run", "dry_run_modifiers", ),
@@ -1273,9 +1316,10 @@ class KMSClient:
             params["description"] = description
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.replicate_key, params, self._interceptors,
+                self._native.replicate_key, params, _interceptors,
                 "kms", "ReplicateKey", self._region,
                 ReplicateKeyResponse,
                 ("key_id", "replica_region", "policy", "bypass_policy_lockout_safety_check", "description", "tags", ),
@@ -1304,9 +1348,10 @@ class KMSClient:
             params["grant_id"] = grant_id
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.retire_grant, params, self._interceptors,
+                self._native.retire_grant, params, _interceptors,
                 "kms", "RetireGrant", self._region,
                 type(None),
                 ("grant_token", "key_id", "grant_id", "dry_run", ),
@@ -1330,9 +1375,10 @@ class KMSClient:
         }
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.revoke_grant, params, self._interceptors,
+                self._native.revoke_grant, params, _interceptors,
                 "kms", "RevokeGrant", self._region,
                 type(None),
                 ("key_id", "grant_id", "dry_run", ),
@@ -1351,9 +1397,10 @@ class KMSClient:
         params: dict[str, object] = {
             "key_id": key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.rotate_key_on_demand, params, self._interceptors,
+                self._native.rotate_key_on_demand, params, _interceptors,
                 "kms", "RotateKeyOnDemand", self._region,
                 RotateKeyOnDemandResponse,
                 ("key_id", ),
@@ -1375,9 +1422,10 @@ class KMSClient:
         }
         if pending_window_in_days is not None:
             params["pending_window_in_days"] = pending_window_in_days
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.schedule_key_deletion, params, self._interceptors,
+                self._native.schedule_key_deletion, params, _interceptors,
                 "kms", "ScheduleKeyDeletion", self._region,
                 ScheduleKeyDeletionResponse,
                 ("key_id", "pending_window_in_days", ),
@@ -1409,9 +1457,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.sign, params, self._interceptors,
+                self._native.sign, params, _interceptors,
                 "kms", "Sign", self._region,
                 SignResponse,
                 ("key_id", "message", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
@@ -1432,9 +1481,10 @@ class KMSClient:
             "key_id": key_id,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "kms", "TagResource", self._region,
                 type(None),
                 ("key_id", "tags", ),
@@ -1455,9 +1505,10 @@ class KMSClient:
             "key_id": key_id,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "kms", "UntagResource", self._region,
                 type(None),
                 ("key_id", "tag_keys", ),
@@ -1478,9 +1529,10 @@ class KMSClient:
             "alias_name": alias_name,
             "target_key_id": target_key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_alias, params, self._interceptors,
+                self._native.update_alias, params, _interceptors,
                 "kms", "UpdateAlias", self._region,
                 type(None),
                 ("alias_name", "target_key_id", ),
@@ -1526,9 +1578,10 @@ class KMSClient:
             params["xks_proxy_authentication_credential"] = xks_proxy_authentication_credential
         if xks_proxy_connectivity is not None:
             params["xks_proxy_connectivity"] = xks_proxy_connectivity
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_custom_key_store, params, self._interceptors,
+                self._native.update_custom_key_store, params, _interceptors,
                 "kms", "UpdateCustomKeyStore", self._region,
                 UpdateCustomKeyStoreResponse,
                 ("custom_key_store_id", "new_custom_key_store_name", "key_store_password", "cloud_hsm_cluster_id", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
@@ -1549,9 +1602,10 @@ class KMSClient:
             "key_id": key_id,
             "description": description,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_key_description, params, self._interceptors,
+                self._native.update_key_description, params, _interceptors,
                 "kms", "UpdateKeyDescription", self._region,
                 type(None),
                 ("key_id", "description", ),
@@ -1572,9 +1626,10 @@ class KMSClient:
             "key_id": key_id,
             "primary_region": primary_region,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_primary_region, params, self._interceptors,
+                self._native.update_primary_region, params, _interceptors,
                 "kms", "UpdatePrimaryRegion", self._region,
                 type(None),
                 ("key_id", "primary_region", ),
@@ -1608,9 +1663,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.verify, params, self._interceptors,
+                self._native.verify, params, _interceptors,
                 "kms", "Verify", self._region,
                 VerifyResponse,
                 ("key_id", "message", "signature", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
@@ -1641,9 +1697,10 @@ class KMSClient:
             params["grant_tokens"] = grant_tokens
         if dry_run is not None:
             params["dry_run"] = dry_run
-        if self._interceptors:
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.verify_mac, params, self._interceptors,
+                self._native.verify_mac, params, _interceptors,
                 "kms", "VerifyMac", self._region,
                 VerifyMacResponse,
                 ("message", "key_id", "mac_algorithm", "mac", "grant_tokens", "dry_run", ),

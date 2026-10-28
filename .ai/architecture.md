@@ -52,9 +52,10 @@ public signatures and native return contracts. A private metadata sink receives
 bounded retry details from `rboto-core`. Empty configuration keeps direct dispatch.
 See ADR-0014 for continuation lifetime, exceptions, and streaming behavior.
 
-`LoggingInterceptor` in `rboto.logging` consumes that contract and emits only
-operational metadata through application-configured Python logging. See ADR-0015
-for level, field, context, and delivery semantics.
+`configure_logging()` in `rboto.logging` enables ready-made JSON logs globally.
+Generated methods resolve the internal logging middleware at invocation time, so
+service levels and disabling affect existing clients. `get_logger()` exposes each
+`rboto.<service>` logger. See ADR-0015 for configuration and delivery semantics.
 
 ## Sources of truth
 

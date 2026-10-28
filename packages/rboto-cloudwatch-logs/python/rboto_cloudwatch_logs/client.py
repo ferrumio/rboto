@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import CloudWatchLogsClient as NativeClient, AssociateSourceToS3TableIntegrationResponse, CancelImportTaskResponse, CreateDeliveryResponse, CreateExportTaskResponse, CreateImportTaskResponse, CreateLogAnomalyDetectorResponse, CreateLookupTableResponse, CreateScheduledQueryResponse, DeleteIndexPolicyResponse, DeleteIntegrationResponse, DeleteQueryDefinitionResponse, DeleteScheduledQueryResponse, DescribeAccountPoliciesResponse, DescribeConfigurationTemplatesResponse, DescribeDeliveriesResponse, DescribeDeliveryDestinationsResponse, DescribeDeliverySourcesResponse, DescribeDestinationsResponse, DescribeExportTasksResponse, DescribeFieldIndexesResponse, DescribeImportTaskBatchesResponse, DescribeImportTasksResponse, DescribeIndexPoliciesResponse, DescribeLogGroupsResponse, DescribeLogStreamsResponse, DescribeLookupTablesResponse, DescribeMetricFiltersResponse, DescribeQueriesResponse, DescribeQueryDefinitionsResponse, DescribeResourcePoliciesResponse, DescribeSubscriptionFiltersResponse, DisassociateSourceFromS3TableIntegrationResponse, FilterLogEventsResponse, GetDataProtectionPolicyResponse, GetDeliveryDestinationPolicyResponse, GetDeliveryDestinationResponse, GetDeliveryResponse, GetDeliverySourceResponse, GetIntegrationResponse, GetLogAnomalyDetectorResponse, GetLogEventsResponse, GetLogFieldsResponse, GetLogGroupFieldsResponse, GetLogRecordResponse, GetLookupTableResponse, GetQueryResultsResponse, GetScheduledQueryHistoryResponse, GetScheduledQueryResponse, GetStorageTierPolicyResponse, GetTransformerResponse, ListAggregateLogGroupSummariesResponse, ListAnomaliesResponse, ListIntegrationsResponse, ListLogAnomalyDetectorsResponse, ListLogGroupsForQueryResponse, ListLogGroupsResponse, ListScheduledQueriesResponse, ListSourcesForS3TableIntegrationResponse, ListSyslogConfigurationsResponse, ListTagsForResourceResponse, ListTagsLogGroupResponse, PutAccountPolicyResponse, PutDataProtectionPolicyResponse, PutDeliveryDestinationPolicyResponse, PutDeliveryDestinationResponse, PutDeliverySourceResponse, PutDestinationResponse, PutIndexPolicyResponse, PutIntegrationResponse, PutLogEventsResponse, PutQueryDefinitionResponse, PutResourcePolicyResponse, PutStorageTierPolicyResponse, StartQueryResponse, StopQueryResponse, TestMetricFilterResponse, TestTransformerResponse, UpdateDeliveryConfigurationResponse, UpdateLookupTableResponse, UpdateScheduledQueryResponse
 from .types import (
@@ -52,6 +53,8 @@ from .types import (
 
 
 class CloudWatchLogsClient:
+    logger_name = "rboto.cloudwatch-logs"
+
     def __init__(
         self,
         *,
@@ -87,9 +90,10 @@ class CloudWatchLogsClient:
             params["log_group_name"] = log_group_name
         if resource_identifier is not None:
             params["resource_identifier"] = resource_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.associate_kms_key, params, self._interceptors,
+                self._native.associate_kms_key, params, _interceptors,
                 "cloudwatch-logs", "AssociateKmsKey", self._region,
                 type(None),
                 ("kms_key_id", "log_group_name", "resource_identifier", ),
@@ -110,9 +114,10 @@ class CloudWatchLogsClient:
             "integration_arn": integration_arn,
             "data_source": data_source,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.associate_source_to_s3_table_integration, params, self._interceptors,
+                self._native.associate_source_to_s3_table_integration, params, _interceptors,
                 "cloudwatch-logs", "AssociateSourceToS3TableIntegration", self._region,
                 AssociateSourceToS3TableIntegrationResponse,
                 ("integration_arn", "data_source", ),
@@ -131,9 +136,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "task_id": task_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.cancel_export_task, params, self._interceptors,
+                self._native.cancel_export_task, params, _interceptors,
                 "cloudwatch-logs", "CancelExportTask", self._region,
                 type(None),
                 ("task_id", ),
@@ -152,9 +158,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "import_id": import_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_import_task, params, self._interceptors,
+                self._native.cancel_import_task, params, _interceptors,
                 "cloudwatch-logs", "CancelImportTask", self._region,
                 CancelImportTaskResponse,
                 ("import_id", ),
@@ -187,9 +194,10 @@ class CloudWatchLogsClient:
             params["s3_delivery_configuration"] = s3_delivery_configuration
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_delivery, params, self._interceptors,
+                self._native.create_delivery, params, _interceptors,
                 "cloudwatch-logs", "CreateDelivery", self._region,
                 CreateDeliveryResponse,
                 ("delivery_source_name", "delivery_destination_arn", "record_fields", "field_delimiter", "s3_delivery_configuration", "tags", ),
@@ -223,9 +231,10 @@ class CloudWatchLogsClient:
             params["log_stream_name_prefix"] = log_stream_name_prefix
         if destination_prefix is not None:
             params["destination_prefix"] = destination_prefix
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_export_task, params, self._interceptors,
+                self._native.create_export_task, params, _interceptors,
                 "cloudwatch-logs", "CreateExportTask", self._region,
                 CreateExportTaskResponse,
                 ("log_group_name", "from", "to", "destination", "task_name", "log_stream_name_prefix", "destination_prefix", ),
@@ -249,9 +258,10 @@ class CloudWatchLogsClient:
         }
         if import_filter is not None:
             params["import_filter"] = import_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_import_task, params, self._interceptors,
+                self._native.create_import_task, params, _interceptors,
                 "cloudwatch-logs", "CreateImportTask", self._region,
                 CreateImportTaskResponse,
                 ("import_source_arn", "import_role_arn", "import_filter", ),
@@ -288,9 +298,10 @@ class CloudWatchLogsClient:
             params["anomaly_visibility_time"] = anomaly_visibility_time
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_log_anomaly_detector, params, self._interceptors,
+                self._native.create_log_anomaly_detector, params, _interceptors,
                 "cloudwatch-logs", "CreateLogAnomalyDetector", self._region,
                 CreateLogAnomalyDetectorResponse,
                 ("log_group_arn_list", "detector_name", "evaluation_frequency", "filter_pattern", "kms_key_id", "anomaly_visibility_time", "tags", ),
@@ -321,9 +332,10 @@ class CloudWatchLogsClient:
             params["log_group_class"] = log_group_class
         if deletion_protection_enabled is not None:
             params["deletion_protection_enabled"] = deletion_protection_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.create_log_group, params, self._interceptors,
+                self._native.create_log_group, params, _interceptors,
                 "cloudwatch-logs", "CreateLogGroup", self._region,
                 type(None),
                 ("log_group_name", "kms_key_id", "tags", "log_group_class", "deletion_protection_enabled", ),
@@ -344,9 +356,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "log_stream_name": log_stream_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.create_log_stream, params, self._interceptors,
+                self._native.create_log_stream, params, _interceptors,
                 "cloudwatch-logs", "CreateLogStream", self._region,
                 type(None),
                 ("log_group_name", "log_stream_name", ),
@@ -380,9 +393,10 @@ class CloudWatchLogsClient:
             params["kms_key_id"] = kms_key_id
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_lookup_table, params, self._interceptors,
+                self._native.create_lookup_table, params, _interceptors,
                 "cloudwatch-logs", "CreateLookupTable", self._region,
                 CreateLookupTableResponse,
                 ("lookup_table_name", "description", "table_body", "query_id", "kms_key_id", "tags", ),
@@ -439,9 +453,10 @@ class CloudWatchLogsClient:
             params["state"] = state
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_scheduled_query, params, self._interceptors,
+                self._native.create_scheduled_query, params, _interceptors,
                 "cloudwatch-logs", "CreateScheduledQuery", self._region,
                 CreateScheduledQueryResponse,
                 ("name", "query_language", "query_string", "schedule_expression", "execution_role_arn", "description", "log_group_identifiers", "timezone", "start_time_offset", "end_time_offset", "destination_configuration", "schedule_start_time", "schedule_end_time", "state", "tags", ),
@@ -462,9 +477,10 @@ class CloudWatchLogsClient:
             "policy_name": policy_name,
             "policy_type": policy_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_account_policy, params, self._interceptors,
+                self._native.delete_account_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteAccountPolicy", self._region,
                 type(None),
                 ("policy_name", "policy_type", ),
@@ -483,9 +499,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_data_protection_policy, params, self._interceptors,
+                self._native.delete_data_protection_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteDataProtectionPolicy", self._region,
                 type(None),
                 ("log_group_identifier", ),
@@ -504,9 +521,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "id": id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_delivery, params, self._interceptors,
+                self._native.delete_delivery, params, _interceptors,
                 "cloudwatch-logs", "DeleteDelivery", self._region,
                 type(None),
                 ("id", ),
@@ -525,9 +543,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_delivery_destination, params, self._interceptors,
+                self._native.delete_delivery_destination, params, _interceptors,
                 "cloudwatch-logs", "DeleteDeliveryDestination", self._region,
                 type(None),
                 ("name", ),
@@ -546,9 +565,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "delivery_destination_name": delivery_destination_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_delivery_destination_policy, params, self._interceptors,
+                self._native.delete_delivery_destination_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteDeliveryDestinationPolicy", self._region,
                 type(None),
                 ("delivery_destination_name", ),
@@ -567,9 +587,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_delivery_source, params, self._interceptors,
+                self._native.delete_delivery_source, params, _interceptors,
                 "cloudwatch-logs", "DeleteDeliverySource", self._region,
                 type(None),
                 ("name", ),
@@ -588,9 +609,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "destination_name": destination_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_destination, params, self._interceptors,
+                self._native.delete_destination, params, _interceptors,
                 "cloudwatch-logs", "DeleteDestination", self._region,
                 type(None),
                 ("destination_name", ),
@@ -609,9 +631,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_index_policy, params, self._interceptors,
+                self._native.delete_index_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteIndexPolicy", self._region,
                 DeleteIndexPolicyResponse,
                 ("log_group_identifier", ),
@@ -633,9 +656,10 @@ class CloudWatchLogsClient:
         }
         if force is not None:
             params["force"] = force
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_integration, params, self._interceptors,
+                self._native.delete_integration, params, _interceptors,
                 "cloudwatch-logs", "DeleteIntegration", self._region,
                 DeleteIntegrationResponse,
                 ("integration_name", "force", ),
@@ -654,9 +678,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_log_anomaly_detector, params, self._interceptors,
+                self._native.delete_log_anomaly_detector, params, _interceptors,
                 "cloudwatch-logs", "DeleteLogAnomalyDetector", self._region,
                 type(None),
                 ("anomaly_detector_arn", ),
@@ -675,9 +700,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_log_group, params, self._interceptors,
+                self._native.delete_log_group, params, _interceptors,
                 "cloudwatch-logs", "DeleteLogGroup", self._region,
                 type(None),
                 ("log_group_name", ),
@@ -698,9 +724,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "log_stream_name": log_stream_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_log_stream, params, self._interceptors,
+                self._native.delete_log_stream, params, _interceptors,
                 "cloudwatch-logs", "DeleteLogStream", self._region,
                 type(None),
                 ("log_group_name", "log_stream_name", ),
@@ -719,9 +746,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "lookup_table_arn": lookup_table_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_lookup_table, params, self._interceptors,
+                self._native.delete_lookup_table, params, _interceptors,
                 "cloudwatch-logs", "DeleteLookupTable", self._region,
                 type(None),
                 ("lookup_table_arn", ),
@@ -742,9 +770,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "filter_name": filter_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_metric_filter, params, self._interceptors,
+                self._native.delete_metric_filter, params, _interceptors,
                 "cloudwatch-logs", "DeleteMetricFilter", self._region,
                 type(None),
                 ("log_group_name", "filter_name", ),
@@ -763,9 +792,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "query_definition_id": query_definition_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_query_definition, params, self._interceptors,
+                self._native.delete_query_definition, params, _interceptors,
                 "cloudwatch-logs", "DeleteQueryDefinition", self._region,
                 DeleteQueryDefinitionResponse,
                 ("query_definition_id", ),
@@ -791,9 +821,10 @@ class CloudWatchLogsClient:
             params["resource_arn"] = resource_arn
         if expected_revision_id is not None:
             params["expected_revision_id"] = expected_revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteResourcePolicy", self._region,
                 type(None),
                 ("policy_name", "resource_arn", "expected_revision_id", ),
@@ -812,9 +843,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_retention_policy, params, self._interceptors,
+                self._native.delete_retention_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteRetentionPolicy", self._region,
                 type(None),
                 ("log_group_name", ),
@@ -833,9 +865,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "identifier": identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_scheduled_query, params, self._interceptors,
+                self._native.delete_scheduled_query, params, _interceptors,
                 "cloudwatch-logs", "DeleteScheduledQuery", self._region,
                 DeleteScheduledQueryResponse,
                 ("identifier", ),
@@ -856,9 +889,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "filter_name": filter_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_subscription_filter, params, self._interceptors,
+                self._native.delete_subscription_filter, params, _interceptors,
                 "cloudwatch-logs", "DeleteSubscriptionFilter", self._region,
                 type(None),
                 ("log_group_name", "filter_name", ),
@@ -880,9 +914,10 @@ class CloudWatchLogsClient:
         }
         if vpc_endpoint_id is not None:
             params["vpc_endpoint_id"] = vpc_endpoint_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_syslog_configuration, params, self._interceptors,
+                self._native.delete_syslog_configuration, params, _interceptors,
                 "cloudwatch-logs", "DeleteSyslogConfiguration", self._region,
                 type(None),
                 ("log_group_identifier", "vpc_endpoint_id", ),
@@ -901,9 +936,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_transformer, params, self._interceptors,
+                self._native.delete_transformer, params, _interceptors,
                 "cloudwatch-logs", "DeleteTransformer", self._region,
                 type(None),
                 ("log_group_identifier", ),
@@ -931,9 +967,10 @@ class CloudWatchLogsClient:
             params["account_identifiers"] = account_identifiers
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_account_policies, params, self._interceptors,
+                self._native.describe_account_policies, params, _interceptors,
                 "cloudwatch-logs", "DescribeAccountPolicies", self._region,
                 DescribeAccountPoliciesResponse,
                 ("policy_type", "policy_name", "account_identifiers", "next_token", ),
@@ -968,9 +1005,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_configuration_templates, params, self._interceptors,
+                self._native.describe_configuration_templates, params, _interceptors,
                 "cloudwatch-logs", "DescribeConfigurationTemplates", self._region,
                 DescribeConfigurationTemplatesResponse,
                 ("service", "log_types", "resource_types", "delivery_destination_types", "next_token", "limit", ),
@@ -996,9 +1034,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if delivery_source_names is not None:
             params["delivery_source_names"] = delivery_source_names
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_deliveries, params, self._interceptors,
+                self._native.describe_deliveries, params, _interceptors,
                 "cloudwatch-logs", "DescribeDeliveries", self._region,
                 DescribeDeliveriesResponse,
                 ("next_token", "limit", "delivery_source_names", ),
@@ -1024,9 +1063,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if names is not None:
             params["names"] = names
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_delivery_destinations, params, self._interceptors,
+                self._native.describe_delivery_destinations, params, _interceptors,
                 "cloudwatch-logs", "DescribeDeliveryDestinations", self._region,
                 DescribeDeliveryDestinationsResponse,
                 ("next_token", "limit", "names", ),
@@ -1052,9 +1092,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if resource_arns is not None:
             params["resource_arns"] = resource_arns
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_delivery_sources, params, self._interceptors,
+                self._native.describe_delivery_sources, params, _interceptors,
                 "cloudwatch-logs", "DescribeDeliverySources", self._region,
                 DescribeDeliverySourcesResponse,
                 ("next_token", "limit", "resource_arns", ),
@@ -1080,9 +1121,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_destinations, params, self._interceptors,
+                self._native.describe_destinations, params, _interceptors,
                 "cloudwatch-logs", "DescribeDestinations", self._region,
                 DescribeDestinationsResponse,
                 ("destination_name_prefix", "next_token", "limit", ),
@@ -1111,9 +1153,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_export_tasks, params, self._interceptors,
+                self._native.describe_export_tasks, params, _interceptors,
                 "cloudwatch-logs", "DescribeExportTasks", self._region,
                 DescribeExportTasksResponse,
                 ("task_id", "status_code", "next_token", "limit", ),
@@ -1138,9 +1181,10 @@ class CloudWatchLogsClient:
             params["index_categories"] = index_categories
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_field_indexes, params, self._interceptors,
+                self._native.describe_field_indexes, params, _interceptors,
                 "cloudwatch-logs", "DescribeFieldIndexes", self._region,
                 DescribeFieldIndexesResponse,
                 ("log_group_identifiers", "index_categories", "next_token", ),
@@ -1168,9 +1212,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_import_task_batches, params, self._interceptors,
+                self._native.describe_import_task_batches, params, _interceptors,
                 "cloudwatch-logs", "DescribeImportTaskBatches", self._region,
                 DescribeImportTaskBatchesResponse,
                 ("import_id", "batch_import_status", "limit", "next_token", ),
@@ -1202,9 +1247,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_import_tasks, params, self._interceptors,
+                self._native.describe_import_tasks, params, _interceptors,
                 "cloudwatch-logs", "DescribeImportTasks", self._region,
                 DescribeImportTasksResponse,
                 ("import_id", "import_status", "import_source_arn", "limit", "next_token", ),
@@ -1226,9 +1272,10 @@ class CloudWatchLogsClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_index_policies, params, self._interceptors,
+                self._native.describe_index_policies, params, _interceptors,
                 "cloudwatch-logs", "DescribeIndexPolicies", self._region,
                 DescribeIndexPoliciesResponse,
                 ("log_group_identifiers", "next_token", ),
@@ -1269,9 +1316,10 @@ class CloudWatchLogsClient:
             params["log_group_class"] = log_group_class
         if log_group_identifiers is not None:
             params["log_group_identifiers"] = log_group_identifiers
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_log_groups, params, self._interceptors,
+                self._native.describe_log_groups, params, _interceptors,
                 "cloudwatch-logs", "DescribeLogGroups", self._region,
                 DescribeLogGroupsResponse,
                 ("account_identifiers", "log_group_name_prefix", "log_group_name_pattern", "next_token", "limit", "include_linked_accounts", "log_group_class", "log_group_identifiers", ),
@@ -1309,9 +1357,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_log_streams, params, self._interceptors,
+                self._native.describe_log_streams, params, _interceptors,
                 "cloudwatch-logs", "DescribeLogStreams", self._region,
                 DescribeLogStreamsResponse,
                 ("log_group_name", "log_group_identifier", "log_stream_name_prefix", "order_by", "descending", "next_token", "limit", ),
@@ -1337,9 +1386,10 @@ class CloudWatchLogsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_lookup_tables, params, self._interceptors,
+                self._native.describe_lookup_tables, params, _interceptors,
                 "cloudwatch-logs", "DescribeLookupTables", self._region,
                 DescribeLookupTablesResponse,
                 ("lookup_table_name_prefix", "max_results", "next_token", ),
@@ -1374,9 +1424,10 @@ class CloudWatchLogsClient:
             params["metric_name"] = metric_name
         if metric_namespace is not None:
             params["metric_namespace"] = metric_namespace
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_metric_filters, params, self._interceptors,
+                self._native.describe_metric_filters, params, _interceptors,
                 "cloudwatch-logs", "DescribeMetricFilters", self._region,
                 DescribeMetricFiltersResponse,
                 ("log_group_name", "filter_name_prefix", "next_token", "limit", "metric_name", "metric_namespace", ),
@@ -1408,9 +1459,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if query_language is not None:
             params["query_language"] = query_language
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_queries, params, self._interceptors,
+                self._native.describe_queries, params, _interceptors,
                 "cloudwatch-logs", "DescribeQueries", self._region,
                 DescribeQueriesResponse,
                 ("log_group_name", "status", "max_results", "next_token", "query_language", ),
@@ -1439,9 +1491,10 @@ class CloudWatchLogsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_query_definitions, params, self._interceptors,
+                self._native.describe_query_definitions, params, _interceptors,
                 "cloudwatch-logs", "DescribeQueryDefinitions", self._region,
                 DescribeQueryDefinitionsResponse,
                 ("query_language", "query_definition_name_prefix", "max_results", "next_token", ),
@@ -1470,9 +1523,10 @@ class CloudWatchLogsClient:
             params["resource_arn"] = resource_arn
         if policy_scope is not None:
             params["policy_scope"] = policy_scope
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_resource_policies, params, self._interceptors,
+                self._native.describe_resource_policies, params, _interceptors,
                 "cloudwatch-logs", "DescribeResourcePolicies", self._region,
                 DescribeResourcePoliciesResponse,
                 ("next_token", "limit", "resource_arn", "policy_scope", ),
@@ -1500,9 +1554,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_subscription_filters, params, self._interceptors,
+                self._native.describe_subscription_filters, params, _interceptors,
                 "cloudwatch-logs", "DescribeSubscriptionFilters", self._region,
                 DescribeSubscriptionFiltersResponse,
                 ("log_group_name", "filter_name_prefix", "next_token", "limit", ),
@@ -1525,9 +1580,10 @@ class CloudWatchLogsClient:
             params["log_group_name"] = log_group_name
         if resource_identifier is not None:
             params["resource_identifier"] = resource_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.disassociate_kms_key, params, self._interceptors,
+                self._native.disassociate_kms_key, params, _interceptors,
                 "cloudwatch-logs", "DisassociateKmsKey", self._region,
                 type(None),
                 ("log_group_name", "resource_identifier", ),
@@ -1546,9 +1602,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "identifier": identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_source_from_s3_table_integration, params, self._interceptors,
+                self._native.disassociate_source_from_s3_table_integration, params, _interceptors,
                 "cloudwatch-logs", "DisassociateSourceFromS3TableIntegration", self._region,
                 DisassociateSourceFromS3TableIntegrationResponse,
                 ("identifier", ),
@@ -1601,9 +1658,10 @@ class CloudWatchLogsClient:
             params["interleaved"] = interleaved
         if unmask is not None:
             params["unmask"] = unmask
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.filter_log_events, params, self._interceptors,
+                self._native.filter_log_events, params, _interceptors,
                 "cloudwatch-logs", "FilterLogEvents", self._region,
                 FilterLogEventsResponse,
                 ("log_group_name", "log_group_identifier", "log_stream_names", "log_stream_name_prefix", "start_time", "end_time", "filter_pattern", "next_token", "limit", "start_from_head", "interleaved", "unmask", ),
@@ -1622,9 +1680,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_protection_policy, params, self._interceptors,
+                self._native.get_data_protection_policy, params, _interceptors,
                 "cloudwatch-logs", "GetDataProtectionPolicy", self._region,
                 GetDataProtectionPolicyResponse,
                 ("log_group_identifier", ),
@@ -1643,9 +1702,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "id": id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_delivery, params, self._interceptors,
+                self._native.get_delivery, params, _interceptors,
                 "cloudwatch-logs", "GetDelivery", self._region,
                 GetDeliveryResponse,
                 ("id", ),
@@ -1664,9 +1724,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_delivery_destination, params, self._interceptors,
+                self._native.get_delivery_destination, params, _interceptors,
                 "cloudwatch-logs", "GetDeliveryDestination", self._region,
                 GetDeliveryDestinationResponse,
                 ("name", ),
@@ -1685,9 +1746,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "delivery_destination_name": delivery_destination_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_delivery_destination_policy, params, self._interceptors,
+                self._native.get_delivery_destination_policy, params, _interceptors,
                 "cloudwatch-logs", "GetDeliveryDestinationPolicy", self._region,
                 GetDeliveryDestinationPolicyResponse,
                 ("delivery_destination_name", ),
@@ -1706,9 +1768,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_delivery_source, params, self._interceptors,
+                self._native.get_delivery_source, params, _interceptors,
                 "cloudwatch-logs", "GetDeliverySource", self._region,
                 GetDeliverySourceResponse,
                 ("name", ),
@@ -1727,9 +1790,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "integration_name": integration_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_integration, params, self._interceptors,
+                self._native.get_integration, params, _interceptors,
                 "cloudwatch-logs", "GetIntegration", self._region,
                 GetIntegrationResponse,
                 ("integration_name", ),
@@ -1748,9 +1812,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "anomaly_detector_arn": anomaly_detector_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_anomaly_detector, params, self._interceptors,
+                self._native.get_log_anomaly_detector, params, _interceptors,
                 "cloudwatch-logs", "GetLogAnomalyDetector", self._region,
                 GetLogAnomalyDetectorResponse,
                 ("anomaly_detector_arn", ),
@@ -1793,9 +1858,10 @@ class CloudWatchLogsClient:
             params["start_from_head"] = start_from_head
         if unmask is not None:
             params["unmask"] = unmask
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_events, params, self._interceptors,
+                self._native.get_log_events, params, _interceptors,
                 "cloudwatch-logs", "GetLogEvents", self._region,
                 GetLogEventsResponse,
                 ("log_stream_name", "log_group_name", "log_group_identifier", "start_time", "end_time", "next_token", "limit", "start_from_head", "unmask", ),
@@ -1816,9 +1882,10 @@ class CloudWatchLogsClient:
             "data_source_name": data_source_name,
             "data_source_type": data_source_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_fields, params, self._interceptors,
+                self._native.get_log_fields, params, _interceptors,
                 "cloudwatch-logs", "GetLogFields", self._region,
                 GetLogFieldsResponse,
                 ("data_source_name", "data_source_type", ),
@@ -1844,9 +1911,10 @@ class CloudWatchLogsClient:
             params["time"] = time
         if log_group_identifier is not None:
             params["log_group_identifier"] = log_group_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_group_fields, params, self._interceptors,
+                self._native.get_log_group_fields, params, _interceptors,
                 "cloudwatch-logs", "GetLogGroupFields", self._region,
                 GetLogGroupFieldsResponse,
                 ("log_group_name", "time", "log_group_identifier", ),
@@ -1868,9 +1936,10 @@ class CloudWatchLogsClient:
         }
         if unmask is not None:
             params["unmask"] = unmask
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_object, params, self._interceptors,
+                self._native.get_log_object, params, _interceptors,
                 "cloudwatch-logs", "GetLogObject", self._region,
                 dict,
                 ("log_object_pointer", "unmask", ),
@@ -1892,9 +1961,10 @@ class CloudWatchLogsClient:
         }
         if unmask is not None:
             params["unmask"] = unmask
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_log_record, params, self._interceptors,
+                self._native.get_log_record, params, _interceptors,
                 "cloudwatch-logs", "GetLogRecord", self._region,
                 GetLogRecordResponse,
                 ("log_record_pointer", "unmask", ),
@@ -1913,9 +1983,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "lookup_table_arn": lookup_table_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_lookup_table, params, self._interceptors,
+                self._native.get_lookup_table, params, _interceptors,
                 "cloudwatch-logs", "GetLookupTable", self._region,
                 GetLookupTableResponse,
                 ("lookup_table_arn", ),
@@ -1940,9 +2011,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_query_results, params, self._interceptors,
+                self._native.get_query_results, params, _interceptors,
                 "cloudwatch-logs", "GetQueryResults", self._region,
                 GetQueryResultsResponse,
                 ("query_id", "next_token", "max_items", ),
@@ -1961,9 +2033,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "identifier": identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_scheduled_query, params, self._interceptors,
+                self._native.get_scheduled_query, params, _interceptors,
                 "cloudwatch-logs", "GetScheduledQuery", self._region,
                 GetScheduledQueryResponse,
                 ("identifier", ),
@@ -1995,9 +2068,10 @@ class CloudWatchLogsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_scheduled_query_history, params, self._interceptors,
+                self._native.get_scheduled_query_history, params, _interceptors,
                 "cloudwatch-logs", "GetScheduledQueryHistory", self._region,
                 GetScheduledQueryHistoryResponse,
                 ("identifier", "start_time", "end_time", "execution_statuses", "max_results", "next_token", ),
@@ -2013,9 +2087,10 @@ class CloudWatchLogsClient:
     ) -> GetStorageTierPolicyResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_storage_tier_policy, params, self._interceptors,
+                self._native.get_storage_tier_policy, params, _interceptors,
                 "cloudwatch-logs", "GetStorageTierPolicy", self._region,
                 GetStorageTierPolicyResponse,
                 (),
@@ -2034,9 +2109,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_transformer, params, self._interceptors,
+                self._native.get_transformer, params, _interceptors,
                 "cloudwatch-logs", "GetTransformer", self._region,
                 GetTransformerResponse,
                 ("log_group_identifier", ),
@@ -2076,9 +2152,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_aggregate_log_group_summaries, params, self._interceptors,
+                self._native.list_aggregate_log_group_summaries, params, _interceptors,
                 "cloudwatch-logs", "ListAggregateLogGroupSummaries", self._region,
                 ListAggregateLogGroupSummariesResponse,
                 ("group_by", "account_identifiers", "include_linked_accounts", "log_group_class", "log_group_name_pattern", "data_sources", "next_token", "limit", ),
@@ -2107,9 +2184,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_anomalies, params, self._interceptors,
+                self._native.list_anomalies, params, _interceptors,
                 "cloudwatch-logs", "ListAnomalies", self._region,
                 ListAnomaliesResponse,
                 ("anomaly_detector_arn", "suppression_state", "limit", "next_token", ),
@@ -2135,9 +2213,10 @@ class CloudWatchLogsClient:
             params["integration_type"] = integration_type
         if integration_status is not None:
             params["integration_status"] = integration_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_integrations, params, self._interceptors,
+                self._native.list_integrations, params, _interceptors,
                 "cloudwatch-logs", "ListIntegrations", self._region,
                 ListIntegrationsResponse,
                 ("integration_name_prefix", "integration_type", "integration_status", ),
@@ -2163,9 +2242,10 @@ class CloudWatchLogsClient:
             params["limit"] = limit
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_log_anomaly_detectors, params, self._interceptors,
+                self._native.list_log_anomaly_detectors, params, _interceptors,
                 "cloudwatch-logs", "ListLogAnomalyDetectors", self._region,
                 ListLogAnomalyDetectorsResponse,
                 ("filter_log_group_arn", "limit", "next_token", ),
@@ -2209,9 +2289,10 @@ class CloudWatchLogsClient:
             params["field_index_names"] = field_index_names
         if log_group_tags is not None:
             params["log_group_tags"] = log_group_tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_log_groups, params, self._interceptors,
+                self._native.list_log_groups, params, _interceptors,
                 "cloudwatch-logs", "ListLogGroups", self._region,
                 ListLogGroupsResponse,
                 ("log_group_name_pattern", "log_group_class", "include_linked_accounts", "account_identifiers", "next_token", "limit", "data_sources", "field_index_names", "log_group_tags", ),
@@ -2236,9 +2317,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_log_groups_for_query, params, self._interceptors,
+                self._native.list_log_groups_for_query, params, _interceptors,
                 "cloudwatch-logs", "ListLogGroupsForQuery", self._region,
                 ListLogGroupsForQueryResponse,
                 ("query_id", "next_token", "max_results", ),
@@ -2267,9 +2349,10 @@ class CloudWatchLogsClient:
             params["state"] = state
         if schedule_type is not None:
             params["schedule_type"] = schedule_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_scheduled_queries, params, self._interceptors,
+                self._native.list_scheduled_queries, params, _interceptors,
                 "cloudwatch-logs", "ListScheduledQueries", self._region,
                 ListScheduledQueriesResponse,
                 ("max_results", "next_token", "state", "schedule_type", ),
@@ -2294,9 +2377,10 @@ class CloudWatchLogsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_sources_for_s3_table_integration, params, self._interceptors,
+                self._native.list_sources_for_s3_table_integration, params, _interceptors,
                 "cloudwatch-logs", "ListSourcesForS3TableIntegration", self._region,
                 ListSourcesForS3TableIntegrationResponse,
                 ("integration_arn", "max_results", "next_token", ),
@@ -2325,9 +2409,10 @@ class CloudWatchLogsClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_syslog_configurations, params, self._interceptors,
+                self._native.list_syslog_configurations, params, _interceptors,
                 "cloudwatch-logs", "ListSyslogConfigurations", self._region,
                 ListSyslogConfigurationsResponse,
                 ("log_group_identifier", "vpc_endpoint_id", "next_token", "max_results", ),
@@ -2346,9 +2431,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "cloudwatch-logs", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -2367,9 +2453,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_log_group, params, self._interceptors,
+                self._native.list_tags_log_group, params, _interceptors,
                 "cloudwatch-logs", "ListTagsLogGroup", self._region,
                 ListTagsLogGroupResponse,
                 ("log_group_name", ),
@@ -2398,9 +2485,10 @@ class CloudWatchLogsClient:
             params["scope"] = scope
         if selection_criteria is not None:
             params["selection_criteria"] = selection_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_account_policy, params, self._interceptors,
+                self._native.put_account_policy, params, _interceptors,
                 "cloudwatch-logs", "PutAccountPolicy", self._region,
                 PutAccountPolicyResponse,
                 ("policy_name", "policy_document", "policy_type", "scope", "selection_criteria", ),
@@ -2421,9 +2509,10 @@ class CloudWatchLogsClient:
             "log_group_identifier": log_group_identifier,
             "bearer_token_authentication_enabled": bearer_token_authentication_enabled,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_bearer_token_authentication, params, self._interceptors,
+                self._native.put_bearer_token_authentication, params, _interceptors,
                 "cloudwatch-logs", "PutBearerTokenAuthentication", self._region,
                 type(None),
                 ("log_group_identifier", "bearer_token_authentication_enabled", ),
@@ -2444,9 +2533,10 @@ class CloudWatchLogsClient:
             "log_group_identifier": log_group_identifier,
             "policy_document": policy_document,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_data_protection_policy, params, self._interceptors,
+                self._native.put_data_protection_policy, params, _interceptors,
                 "cloudwatch-logs", "PutDataProtectionPolicy", self._region,
                 PutDataProtectionPolicyResponse,
                 ("log_group_identifier", "policy_document", ),
@@ -2480,9 +2570,10 @@ class CloudWatchLogsClient:
             params["role_arn"] = role_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_delivery_destination, params, self._interceptors,
+                self._native.put_delivery_destination, params, _interceptors,
                 "cloudwatch-logs", "PutDeliveryDestination", self._region,
                 PutDeliveryDestinationResponse,
                 ("name", "output_format", "delivery_destination_configuration", "delivery_destination_type", "role_arn", "tags", ),
@@ -2503,9 +2594,10 @@ class CloudWatchLogsClient:
             "delivery_destination_name": delivery_destination_name,
             "delivery_destination_policy": delivery_destination_policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_delivery_destination_policy, params, self._interceptors,
+                self._native.put_delivery_destination_policy, params, _interceptors,
                 "cloudwatch-logs", "PutDeliveryDestinationPolicy", self._region,
                 PutDeliveryDestinationPolicyResponse,
                 ("delivery_destination_name", "delivery_destination_policy", ),
@@ -2534,9 +2626,10 @@ class CloudWatchLogsClient:
             params["tags"] = tags
         if delivery_source_configuration is not None:
             params["delivery_source_configuration"] = delivery_source_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_delivery_source, params, self._interceptors,
+                self._native.put_delivery_source, params, _interceptors,
                 "cloudwatch-logs", "PutDeliverySource", self._region,
                 PutDeliverySourceResponse,
                 ("name", "resource_arn", "log_type", "tags", "delivery_source_configuration", ),
@@ -2562,9 +2655,10 @@ class CloudWatchLogsClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_destination, params, self._interceptors,
+                self._native.put_destination, params, _interceptors,
                 "cloudwatch-logs", "PutDestination", self._region,
                 PutDestinationResponse,
                 ("destination_name", "target_arn", "role_arn", "tags", ),
@@ -2588,9 +2682,10 @@ class CloudWatchLogsClient:
         }
         if force_update is not None:
             params["force_update"] = force_update
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_destination_policy, params, self._interceptors,
+                self._native.put_destination_policy, params, _interceptors,
                 "cloudwatch-logs", "PutDestinationPolicy", self._region,
                 type(None),
                 ("destination_name", "access_policy", "force_update", ),
@@ -2611,9 +2706,10 @@ class CloudWatchLogsClient:
             "log_group_identifier": log_group_identifier,
             "policy_document": policy_document,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_index_policy, params, self._interceptors,
+                self._native.put_index_policy, params, _interceptors,
                 "cloudwatch-logs", "PutIndexPolicy", self._region,
                 PutIndexPolicyResponse,
                 ("log_group_identifier", "policy_document", ),
@@ -2636,9 +2732,10 @@ class CloudWatchLogsClient:
             "resource_config": resource_config,
             "integration_type": integration_type,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_integration, params, self._interceptors,
+                self._native.put_integration, params, _interceptors,
                 "cloudwatch-logs", "PutIntegration", self._region,
                 PutIntegrationResponse,
                 ("integration_name", "resource_config", "integration_type", ),
@@ -2667,9 +2764,10 @@ class CloudWatchLogsClient:
             params["sequence_token"] = sequence_token
         if entity is not None:
             params["entity"] = entity
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_log_events, params, self._interceptors,
+                self._native.put_log_events, params, _interceptors,
                 "cloudwatch-logs", "PutLogEvents", self._region,
                 PutLogEventsResponse,
                 ("log_group_name", "log_stream_name", "log_events", "sequence_token", "entity", ),
@@ -2690,9 +2788,10 @@ class CloudWatchLogsClient:
             "log_group_identifier": log_group_identifier,
             "deletion_protection_enabled": deletion_protection_enabled,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_log_group_deletion_protection, params, self._interceptors,
+                self._native.put_log_group_deletion_protection, params, _interceptors,
                 "cloudwatch-logs", "PutLogGroupDeletionProtection", self._region,
                 type(None),
                 ("log_group_identifier", "deletion_protection_enabled", ),
@@ -2726,9 +2825,10 @@ class CloudWatchLogsClient:
             params["field_selection_criteria"] = field_selection_criteria
         if emit_system_field_dimensions is not None:
             params["emit_system_field_dimensions"] = emit_system_field_dimensions
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_metric_filter, params, self._interceptors,
+                self._native.put_metric_filter, params, _interceptors,
                 "cloudwatch-logs", "PutMetricFilter", self._region,
                 type(None),
                 ("log_group_name", "filter_name", "filter_pattern", "metric_transformations", "apply_on_transformed_logs", "field_selection_criteria", "emit_system_field_dimensions", ),
@@ -2764,9 +2864,10 @@ class CloudWatchLogsClient:
             params["client_token"] = client_token
         if parameters is not None:
             params["parameters"] = parameters
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_query_definition, params, self._interceptors,
+                self._native.put_query_definition, params, _interceptors,
                 "cloudwatch-logs", "PutQueryDefinition", self._region,
                 PutQueryDefinitionResponse,
                 ("name", "query_string", "query_language", "query_definition_id", "log_group_names", "client_token", "parameters", ),
@@ -2795,9 +2896,10 @@ class CloudWatchLogsClient:
             params["resource_arn"] = resource_arn
         if expected_revision_id is not None:
             params["expected_revision_id"] = expected_revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "cloudwatch-logs", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("policy_name", "policy_document", "resource_arn", "expected_revision_id", ),
@@ -2818,9 +2920,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "retention_in_days": retention_in_days,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_retention_policy, params, self._interceptors,
+                self._native.put_retention_policy, params, _interceptors,
                 "cloudwatch-logs", "PutRetentionPolicy", self._region,
                 type(None),
                 ("log_group_name", "retention_in_days", ),
@@ -2839,9 +2942,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "storage_tier": storage_tier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_storage_tier_policy, params, self._interceptors,
+                self._native.put_storage_tier_policy, params, _interceptors,
                 "cloudwatch-logs", "PutStorageTierPolicy", self._region,
                 PutStorageTierPolicyResponse,
                 ("storage_tier", ),
@@ -2881,9 +2985,10 @@ class CloudWatchLogsClient:
             params["field_selection_criteria"] = field_selection_criteria
         if emit_system_fields is not None:
             params["emit_system_fields"] = emit_system_fields
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_subscription_filter, params, self._interceptors,
+                self._native.put_subscription_filter, params, _interceptors,
                 "cloudwatch-logs", "PutSubscriptionFilter", self._region,
                 type(None),
                 ("log_group_name", "filter_name", "filter_pattern", "destination_arn", "role_arn", "distribution", "apply_on_transformed_logs", "field_selection_criteria", "emit_system_fields", ),
@@ -2905,9 +3010,10 @@ class CloudWatchLogsClient:
         }
         if vpc_endpoint_id is not None:
             params["vpc_endpoint_id"] = vpc_endpoint_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_syslog_configuration, params, self._interceptors,
+                self._native.put_syslog_configuration, params, _interceptors,
                 "cloudwatch-logs", "PutSyslogConfiguration", self._region,
                 type(None),
                 ("log_group_identifier", "vpc_endpoint_id", ),
@@ -2928,9 +3034,10 @@ class CloudWatchLogsClient:
             "log_group_identifier": log_group_identifier,
             "transformer_config": transformer_config,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_transformer, params, self._interceptors,
+                self._native.put_transformer, params, _interceptors,
                 "cloudwatch-logs", "PutTransformer", self._region,
                 type(None),
                 ("log_group_identifier", "transformer_config", ),
@@ -2958,9 +3065,10 @@ class CloudWatchLogsClient:
             params["log_stream_name_prefixes"] = log_stream_name_prefixes
         if log_event_filter_pattern is not None:
             params["log_event_filter_pattern"] = log_event_filter_pattern
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_live_tail, params, self._interceptors,
+                self._native.start_live_tail, params, _interceptors,
                 "cloudwatch-logs", "StartLiveTail", self._region,
                 dict,
                 ("log_group_identifiers", "log_stream_names", "log_stream_name_prefixes", "log_event_filter_pattern", ),
@@ -2998,9 +3106,10 @@ class CloudWatchLogsClient:
             params["log_group_identifiers"] = log_group_identifiers
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_query, params, self._interceptors,
+                self._native.start_query, params, _interceptors,
                 "cloudwatch-logs", "StartQuery", self._region,
                 StartQueryResponse,
                 ("start_time", "end_time", "query_string", "query_language", "log_group_name", "log_group_names", "log_group_identifiers", "limit", ),
@@ -3019,9 +3128,10 @@ class CloudWatchLogsClient:
         params: dict[str, object] = {
             "query_id": query_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_query, params, self._interceptors,
+                self._native.stop_query, params, _interceptors,
                 "cloudwatch-logs", "StopQuery", self._region,
                 StopQueryResponse,
                 ("query_id", ),
@@ -3042,9 +3152,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_log_group, params, self._interceptors,
+                self._native.tag_log_group, params, _interceptors,
                 "cloudwatch-logs", "TagLogGroup", self._region,
                 type(None),
                 ("log_group_name", "tags", ),
@@ -3065,9 +3176,10 @@ class CloudWatchLogsClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "cloudwatch-logs", "TagResource", self._region,
                 type(None),
                 ("resource_arn", "tags", ),
@@ -3088,9 +3200,10 @@ class CloudWatchLogsClient:
             "filter_pattern": filter_pattern,
             "log_event_messages": log_event_messages,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_metric_filter, params, self._interceptors,
+                self._native.test_metric_filter, params, _interceptors,
                 "cloudwatch-logs", "TestMetricFilter", self._region,
                 TestMetricFilterResponse,
                 ("filter_pattern", "log_event_messages", ),
@@ -3111,9 +3224,10 @@ class CloudWatchLogsClient:
             "transformer_config": transformer_config,
             "log_event_messages": log_event_messages,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_transformer, params, self._interceptors,
+                self._native.test_transformer, params, _interceptors,
                 "cloudwatch-logs", "TestTransformer", self._region,
                 TestTransformerResponse,
                 ("transformer_config", "log_event_messages", ),
@@ -3134,9 +3248,10 @@ class CloudWatchLogsClient:
             "log_group_name": log_group_name,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_log_group, params, self._interceptors,
+                self._native.untag_log_group, params, _interceptors,
                 "cloudwatch-logs", "UntagLogGroup", self._region,
                 type(None),
                 ("log_group_name", "tags", ),
@@ -3157,9 +3272,10 @@ class CloudWatchLogsClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "cloudwatch-logs", "UntagResource", self._region,
                 type(None),
                 ("resource_arn", "tag_keys", ),
@@ -3193,9 +3309,10 @@ class CloudWatchLogsClient:
             params["suppression_period"] = suppression_period
         if baseline is not None:
             params["baseline"] = baseline
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_anomaly, params, self._interceptors,
+                self._native.update_anomaly, params, _interceptors,
                 "cloudwatch-logs", "UpdateAnomaly", self._region,
                 type(None),
                 ("anomaly_detector_arn", "anomaly_id", "pattern_id", "suppression_type", "suppression_period", "baseline", ),
@@ -3223,9 +3340,10 @@ class CloudWatchLogsClient:
             params["field_delimiter"] = field_delimiter
         if s3_delivery_configuration is not None:
             params["s3_delivery_configuration"] = s3_delivery_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_delivery_configuration, params, self._interceptors,
+                self._native.update_delivery_configuration, params, _interceptors,
                 "cloudwatch-logs", "UpdateDeliveryConfiguration", self._region,
                 UpdateDeliveryConfigurationResponse,
                 ("id", "record_fields", "field_delimiter", "s3_delivery_configuration", ),
@@ -3255,9 +3373,10 @@ class CloudWatchLogsClient:
             params["filter_pattern"] = filter_pattern
         if anomaly_visibility_time is not None:
             params["anomaly_visibility_time"] = anomaly_visibility_time
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_log_anomaly_detector, params, self._interceptors,
+                self._native.update_log_anomaly_detector, params, _interceptors,
                 "cloudwatch-logs", "UpdateLogAnomalyDetector", self._region,
                 type(None),
                 ("anomaly_detector_arn", "enabled", "evaluation_frequency", "filter_pattern", "anomaly_visibility_time", ),
@@ -3288,9 +3407,10 @@ class CloudWatchLogsClient:
             params["query_id"] = query_id
         if kms_key_id is not None:
             params["kms_key_id"] = kms_key_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_lookup_table, params, self._interceptors,
+                self._native.update_lookup_table, params, _interceptors,
                 "cloudwatch-logs", "UpdateLookupTable", self._region,
                 UpdateLookupTableResponse,
                 ("lookup_table_arn", "description", "table_body", "query_id", "kms_key_id", ),
@@ -3344,9 +3464,10 @@ class CloudWatchLogsClient:
             params["schedule_end_time"] = schedule_end_time
         if state is not None:
             params["state"] = state
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_scheduled_query, params, self._interceptors,
+                self._native.update_scheduled_query, params, _interceptors,
                 "cloudwatch-logs", "UpdateScheduledQuery", self._region,
                 UpdateScheduledQueryResponse,
                 ("identifier", "query_language", "query_string", "schedule_expression", "execution_role_arn", "description", "log_group_identifiers", "timezone", "start_time_offset", "end_time_offset", "destination_configuration", "schedule_start_time", "schedule_end_time", "state", ),

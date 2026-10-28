@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import PipesClient as NativeClient, CreatePipeResponse, DeletePipeResponse, DescribePipeResponse, ListPipesResponse, ListTagsForResourceResponse, StartPipeResponse, StopPipeResponse, TagResourceResponse, UntagResourceResponse, UpdatePipeResponse
 from .types import (
@@ -20,6 +21,8 @@ from .types import (
 
 
 class EventBridgePipesClient:
+    logger_name = "rboto.pipes"
+
     def __init__(
         self,
         *,
@@ -82,9 +85,10 @@ class EventBridgePipesClient:
             params["log_configuration"] = log_configuration
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_pipe, params, self._interceptors,
+                self._native.create_pipe, params, _interceptors,
                 "pipes", "CreatePipe", self._region,
                 CreatePipeResponse,
                 ("name", "source", "target", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target_parameters", "tags", "log_configuration", "kms_key_identifier", ),
@@ -103,9 +107,10 @@ class EventBridgePipesClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_pipe, params, self._interceptors,
+                self._native.delete_pipe, params, _interceptors,
                 "pipes", "DeletePipe", self._region,
                 DeletePipeResponse,
                 ("name", ),
@@ -124,9 +129,10 @@ class EventBridgePipesClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_pipe, params, self._interceptors,
+                self._native.describe_pipe, params, _interceptors,
                 "pipes", "DescribePipe", self._region,
                 DescribePipeResponse,
                 ("name", ),
@@ -164,9 +170,10 @@ class EventBridgePipesClient:
             params["next_token"] = next_token
         if limit is not None:
             params["limit"] = limit
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_pipes, params, self._interceptors,
+                self._native.list_pipes, params, _interceptors,
                 "pipes", "ListPipes", self._region,
                 ListPipesResponse,
                 ("name_prefix", "desired_state", "current_state", "source_prefix", "target_prefix", "next_token", "limit", ),
@@ -185,9 +192,10 @@ class EventBridgePipesClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "pipes", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -206,9 +214,10 @@ class EventBridgePipesClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_pipe, params, self._interceptors,
+                self._native.start_pipe, params, _interceptors,
                 "pipes", "StartPipe", self._region,
                 StartPipeResponse,
                 ("name", ),
@@ -227,9 +236,10 @@ class EventBridgePipesClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_pipe, params, self._interceptors,
+                self._native.stop_pipe, params, _interceptors,
                 "pipes", "StopPipe", self._region,
                 StopPipeResponse,
                 ("name", ),
@@ -250,9 +260,10 @@ class EventBridgePipesClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "pipes", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -273,9 +284,10 @@ class EventBridgePipesClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "pipes", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -323,9 +335,10 @@ class EventBridgePipesClient:
             params["log_configuration"] = log_configuration
         if kms_key_identifier is not None:
             params["kms_key_identifier"] = kms_key_identifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("pipes", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_pipe, params, self._interceptors,
+                self._native.update_pipe, params, _interceptors,
                 "pipes", "UpdatePipe", self._region,
                 UpdatePipeResponse,
                 ("name", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target", "target_parameters", "log_configuration", "kms_key_identifier", ),

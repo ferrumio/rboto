@@ -1,16 +1,30 @@
-"""Opt-in operation metadata through Python's standard logging module."""
+"""Configure ready-to-use JSON logs for every service client."""
 
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
-from collections.abc import Callable
+import sys
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
+from datetime import datetime, timezone
+from threading import RLock
 from time import perf_counter
-from typing import Literal, NotRequired, TypedDict
+from typing import Literal, NotRequired, TextIO, TypedDict, cast
 
 from .exceptions import ClientError
-from .interceptors import Next, OperationRequest, OperationResponse
+from .interceptors import Interceptor, Next, OperationRequest, OperationResponse
+
+LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL", "OFF"]
+_LEVELS: dict[str, int] = {
+    "DEBUG": logging.DEBUG,
+    "INFO": logging.INFO,
+    "WARNING": logging.WARNING,
+    "ERROR": logging.ERROR,
+    "CRITICAL": logging.CRITICAL,
+    "OFF": logging.CRITICAL + 1,
+}
 
 
 @dataclass(frozen=True, slots=True)
@@ -55,13 +69,8 @@ class OperationLogFields(TypedDict):
 
 
 @dataclass(frozen=True, slots=True)
-class LoggingInterceptor:
-    """Log one completion and optional retry diagnostics without changing the result.
-
-    Register first to include downstream cache hits, policy failures, and
-    postprocessing. Handlers, formatters, levels, and propagation belong to the
-    application. A trace provider is optional and has no telemetry dependency.
-    """
+class _LoggingInterceptor:
+    """Internal operation logging, automatically outside application middleware."""
 
     trace_context: Callable[[], LogTraceContext | None] | None = None
 
@@ -164,3 +173,104 @@ class LoggingInterceptor:
             ]
             retry_fields["attempts_truncated"] = metadata.attempts_truncated
             logger.debug("operation.retry", extra={"rboto": retry_fields})
+
+
+class _JsonFormatter(logging.Formatter):
+    def format(self, record: logging.LogRecord) -> str:
+        document: dict[str, object] = {
+            "timestamp": datetime.fromtimestamp(record.created, timezone.utc).isoformat(
+                timespec="milliseconds"
+            ),
+            "level": record.levelname,
+            "logger": record.name,
+            "service": record.name.removeprefix("rboto."),
+            "message": record.getMessage(),
+        }
+        metadata: object = record.__dict__.get("rboto")
+        if isinstance(metadata, dict):
+            document.update(cast("dict[str, object]", metadata))
+        return json.dumps(document, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
+
+
+class _JsonHandler(logging.Handler):
+    def __init__(self, stream: TextIO) -> None:
+        super().__init__()
+        self.stream = stream
+        self.setFormatter(_JsonFormatter())
+
+    def emit(self, record: logging.LogRecord) -> None:
+        self.stream.write(self.format(record) + "\n")
+        self.stream.flush()
+
+
+_configuration_lock = RLock()
+_configured = False
+_handler: _JsonHandler | None = None
+_operation_logging = _LoggingInterceptor()
+
+
+def get_logger(service: str) -> logging.Logger:
+    """Return the named logger for a service, for example get_logger("s3")."""
+    from .services import SERVICE_IDS
+
+    if service not in SERVICE_IDS:
+        raise ValueError(f"unknown service: {service!r}")
+    return logging.getLogger(f"rboto.{service}")
+
+
+def configure_logging(
+    *,
+    level: LogLevel = "INFO",
+    service_levels: Mapping[str, LogLevel] | None = None,
+    stream: TextIO | None = None,
+    trace_context: Callable[[], LogTraceContext | None] | None = None,
+) -> None:
+    """Enable JSON operation logs globally, including already-created clients.
+
+    Reconfiguration replaces the default level and service overrides without
+    adding duplicate handlers. OFF disables records. The default output is
+    stdout. The application root logger and its handlers are left untouched.
+    """
+    from .services import SERVICE_IDS
+
+    global _configured, _handler, _operation_logging
+    if level not in _LEVELS:
+        raise ValueError(f"invalid log level: {level!r}")
+    overrides = dict(service_levels or {})
+    for service, service_level in overrides.items():
+        if service_level not in _LEVELS:
+            raise ValueError(f"invalid log level for {service}: {service_level!r}")
+        get_logger(service)
+    destination = sys.stdout if stream is None else stream
+    with _configuration_lock:
+        parent = logging.getLogger("rboto")
+        if _handler is None:
+            _handler = _JsonHandler(destination)
+        else:
+            _handler.acquire()
+            try:
+                _handler.stream = destination
+            finally:
+                _handler.release()
+        if _handler not in parent.handlers:
+            parent.addHandler(_handler)
+        parent.setLevel(_LEVELS[level])
+        parent.disabled = False
+        parent.propagate = False
+        for service in SERVICE_IDS:
+            logger = get_logger(service)
+            logger.setLevel(_LEVELS[overrides[service]] if service in overrides else logging.NOTSET)
+            logger.disabled = False
+            logger.propagate = True
+        _operation_logging = _LoggingInterceptor(trace_context=trace_context)
+        _configured = True
+
+
+def operation_interceptors(
+    service: str,
+    interceptors: tuple[Interceptor, ...],
+) -> tuple[Interceptor, ...]:
+    """Resolve logging at invocation time so global settings affect existing clients."""
+    if not _configured or not logging.getLogger(f"rboto.{service}").isEnabledFor(logging.ERROR):
+        return interceptors
+    return (_operation_logging, *interceptors)

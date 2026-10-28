@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockDataAutomationRuntimeClient as NativeClient, GetDataAutomationStatusResponse, InvokeDataAutomationAsyncResponse, InvokeDataAutomationResponse, ListTagsForResourceResponse, TagResourceResponse, UntagResourceResponse
 from .types import (
@@ -21,6 +22,8 @@ from .types import (
 
 
 class BedrockDataAutomationRuntimeClient:
+    logger_name = "rboto.bedrock-data-automation-runtime"
+
     def __init__(
         self,
         *,
@@ -50,9 +53,10 @@ class BedrockDataAutomationRuntimeClient:
         params: dict[str, object] = {
             "invocation_arn": invocation_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_automation_status, params, self._interceptors,
+                self._native.get_data_automation_status, params, _interceptors,
                 "bedrock-data-automation-runtime", "GetDataAutomationStatus", self._region,
                 GetDataAutomationStatusResponse,
                 ("invocation_arn", ),
@@ -85,9 +89,10 @@ class BedrockDataAutomationRuntimeClient:
             params["encryption_configuration"] = encryption_configuration
         if output_configuration is not None:
             params["output_configuration"] = output_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_data_automation, params, self._interceptors,
+                self._native.invoke_data_automation, params, _interceptors,
                 "bedrock-data-automation-runtime", "InvokeDataAutomation", self._region,
                 InvokeDataAutomationResponse,
                 ("input_configuration", "data_automation_profile_arn", "data_automation_configuration", "blueprints", "encryption_configuration", "output_configuration", ),
@@ -128,9 +133,10 @@ class BedrockDataAutomationRuntimeClient:
             params["blueprints"] = blueprints
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_data_automation_async, params, self._interceptors,
+                self._native.invoke_data_automation_async, params, _interceptors,
                 "bedrock-data-automation-runtime", "InvokeDataAutomationAsync", self._region,
                 InvokeDataAutomationAsyncResponse,
                 ("input_configuration", "output_configuration", "data_automation_profile_arn", "client_token", "data_automation_configuration", "encryption_configuration", "notification_configuration", "blueprints", "tags", ),
@@ -149,9 +155,10 @@ class BedrockDataAutomationRuntimeClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock-data-automation-runtime", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -172,9 +179,10 @@ class BedrockDataAutomationRuntimeClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "bedrock-data-automation-runtime", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -195,9 +203,10 @@ class BedrockDataAutomationRuntimeClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-data-automation-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "bedrock-data-automation-runtime", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),

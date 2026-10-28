@@ -12,7 +12,7 @@ from .interceptors import (
     OperationResponse,
     operation_context,
 )
-from .logging import LoggingInterceptor, LogTraceContext
+from .logging import LogLevel, LogTraceContext, configure_logging, get_logger
 from .services import (
     api_gateway,
     bedrock,
@@ -91,8 +91,10 @@ __version__ = "0.1.0"
 __all__ = [
     "Attempt",
     "Interceptor",
-    "LoggingInterceptor",
+    "LogLevel",
     "LogTraceContext",
+    "configure_logging",
+    "get_logger",
     "OperationContext",
     "Next",
     "OperationMetadata",

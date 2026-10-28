@@ -1,13 +1,14 @@
 import asyncio
-import logging
 
-from rboto import DynamoDBClient, LoggingInterceptor, S3Client, Session, operation_context
+from rboto import DynamoDBClient, S3Client, configure_logging, operation_context
+
+# One configuration for every client: JSON to stdout, no formatter required.
+configure_logging(level="INFO", service_levels={"dynamodb": "DEBUG", "s3": "OFF"})
 
 
 async def main() -> None:
-    session = Session(interceptors=(LoggingInterceptor(),))
-    dynamo = DynamoDBClient(session=session)
-    storage = S3Client(session=session)
+    dynamo = DynamoDBClient()
+    storage = S3Client()
 
     async def tables() -> None:
         with operation_context(correlation_id="list-tables"):
@@ -23,14 +24,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    handler = logging.StreamHandler()
-    handler.setFormatter(
-        logging.Formatter(
-            "%(levelname)s %(name)s %(message)s %(rboto)s",
-            defaults={"rboto": {}},
-        )
-    )
-    logging.basicConfig(level=logging.INFO, handlers=[handler])
-    logging.getLogger("rboto.dynamodb").setLevel(logging.DEBUG)
-    logging.getLogger("rboto.s3").setLevel(logging.WARNING)
     asyncio.run(main())

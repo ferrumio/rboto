@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SNSClient as NativeClient, CheckIfPhoneNumberIsOptedOutResponse, ConfirmSubscriptionResponse, CreateEndpointResponse, CreatePlatformApplicationResponse, CreateSMSSandboxPhoneNumberResult, CreateTopicResponse, DeleteSMSSandboxPhoneNumberResult, GetDataProtectionPolicyResponse, GetEndpointAttributesResponse, GetPlatformApplicationAttributesResponse, GetSMSAttributesResponse, GetSMSSandboxAccountStatusResult, GetSubscriptionAttributesResponse, GetTopicAttributesResponse, ListEndpointsByPlatformApplicationResponse, ListOriginationNumbersResult, ListPhoneNumbersOptedOutResponse, ListPlatformApplicationsResponse, ListSMSSandboxPhoneNumbersResult, ListSubscriptionsByTopicResponse, ListSubscriptionsResponse, ListTagsForResourceResponse, ListTopicsResponse, OptInPhoneNumberResponse, PublishBatchResponse, PublishResponse, SetSMSAttributesResponse, SubscribeResponse, TagResourceResponse, UntagResourceResponse, VerifySMSSandboxPhoneNumberResult
 from .types import (
@@ -17,6 +18,8 @@ from .types import (
 
 
 class SNSClient:
+    logger_name = "rboto.sns"
+
     def __init__(
         self,
         *,
@@ -52,9 +55,10 @@ class SNSClient:
             "aws_account_id": aws_account_id,
             "action_name": action_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.add_permission, params, self._interceptors,
+                self._native.add_permission, params, _interceptors,
                 "sns", "AddPermission", self._region,
                 type(None),
                 ("topic_arn", "label", "aws_account_id", "action_name", ),
@@ -73,9 +77,10 @@ class SNSClient:
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.check_if_phone_number_is_opted_out, params, self._interceptors,
+                self._native.check_if_phone_number_is_opted_out, params, _interceptors,
                 "sns", "CheckIfPhoneNumberIsOptedOut", self._region,
                 CheckIfPhoneNumberIsOptedOutResponse,
                 ("phone_number", ),
@@ -99,9 +104,10 @@ class SNSClient:
         }
         if authenticate_on_unsubscribe is not None:
             params["authenticate_on_unsubscribe"] = authenticate_on_unsubscribe
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.confirm_subscription, params, self._interceptors,
+                self._native.confirm_subscription, params, _interceptors,
                 "sns", "ConfirmSubscription", self._region,
                 ConfirmSubscriptionResponse,
                 ("topic_arn", "token", "authenticate_on_unsubscribe", ),
@@ -124,9 +130,10 @@ class SNSClient:
             "platform": platform,
             "attributes": attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_platform_application, params, self._interceptors,
+                self._native.create_platform_application, params, _interceptors,
                 "sns", "CreatePlatformApplication", self._region,
                 CreatePlatformApplicationResponse,
                 ("name", "platform", "attributes", ),
@@ -153,9 +160,10 @@ class SNSClient:
             params["custom_user_data"] = custom_user_data
         if attributes is not None:
             params["attributes"] = attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_platform_endpoint, params, self._interceptors,
+                self._native.create_platform_endpoint, params, _interceptors,
                 "sns", "CreatePlatformEndpoint", self._region,
                 CreateEndpointResponse,
                 ("platform_application_arn", "token", "custom_user_data", "attributes", ),
@@ -177,9 +185,10 @@ class SNSClient:
         }
         if language_code is not None:
             params["language_code"] = language_code
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_sms_sandbox_phone_number, params, self._interceptors,
+                self._native.create_sms_sandbox_phone_number, params, _interceptors,
                 "sns", "CreateSMSSandboxPhoneNumber", self._region,
                 CreateSMSSandboxPhoneNumberResult,
                 ("phone_number", "language_code", ),
@@ -207,9 +216,10 @@ class SNSClient:
             params["tags"] = tags
         if data_protection_policy is not None:
             params["data_protection_policy"] = data_protection_policy
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_topic, params, self._interceptors,
+                self._native.create_topic, params, _interceptors,
                 "sns", "CreateTopic", self._region,
                 CreateTopicResponse,
                 ("name", "attributes", "tags", "data_protection_policy", ),
@@ -228,9 +238,10 @@ class SNSClient:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_endpoint, params, self._interceptors,
+                self._native.delete_endpoint, params, _interceptors,
                 "sns", "DeleteEndpoint", self._region,
                 type(None),
                 ("endpoint_arn", ),
@@ -249,9 +260,10 @@ class SNSClient:
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_platform_application, params, self._interceptors,
+                self._native.delete_platform_application, params, _interceptors,
                 "sns", "DeletePlatformApplication", self._region,
                 type(None),
                 ("platform_application_arn", ),
@@ -270,9 +282,10 @@ class SNSClient:
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_sms_sandbox_phone_number, params, self._interceptors,
+                self._native.delete_sms_sandbox_phone_number, params, _interceptors,
                 "sns", "DeleteSMSSandboxPhoneNumber", self._region,
                 DeleteSMSSandboxPhoneNumberResult,
                 ("phone_number", ),
@@ -291,9 +304,10 @@ class SNSClient:
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_topic, params, self._interceptors,
+                self._native.delete_topic, params, _interceptors,
                 "sns", "DeleteTopic", self._region,
                 type(None),
                 ("topic_arn", ),
@@ -312,9 +326,10 @@ class SNSClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_data_protection_policy, params, self._interceptors,
+                self._native.get_data_protection_policy, params, _interceptors,
                 "sns", "GetDataProtectionPolicy", self._region,
                 GetDataProtectionPolicyResponse,
                 ("resource_arn", ),
@@ -333,9 +348,10 @@ class SNSClient:
         params: dict[str, object] = {
             "endpoint_arn": endpoint_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_endpoint_attributes, params, self._interceptors,
+                self._native.get_endpoint_attributes, params, _interceptors,
                 "sns", "GetEndpointAttributes", self._region,
                 GetEndpointAttributesResponse,
                 ("endpoint_arn", ),
@@ -354,9 +370,10 @@ class SNSClient:
         params: dict[str, object] = {
             "platform_application_arn": platform_application_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_platform_application_attributes, params, self._interceptors,
+                self._native.get_platform_application_attributes, params, _interceptors,
                 "sns", "GetPlatformApplicationAttributes", self._region,
                 GetPlatformApplicationAttributesResponse,
                 ("platform_application_arn", ),
@@ -376,9 +393,10 @@ class SNSClient:
         }
         if attributes is not None:
             params["attributes"] = attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_sms_attributes, params, self._interceptors,
+                self._native.get_sms_attributes, params, _interceptors,
                 "sns", "GetSMSAttributes", self._region,
                 GetSMSAttributesResponse,
                 ("attributes", ),
@@ -394,9 +412,10 @@ class SNSClient:
     ) -> GetSMSSandboxAccountStatusResult:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_sms_sandbox_account_status, params, self._interceptors,
+                self._native.get_sms_sandbox_account_status, params, _interceptors,
                 "sns", "GetSMSSandboxAccountStatus", self._region,
                 GetSMSSandboxAccountStatusResult,
                 (),
@@ -415,9 +434,10 @@ class SNSClient:
         params: dict[str, object] = {
             "subscription_arn": subscription_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_subscription_attributes, params, self._interceptors,
+                self._native.get_subscription_attributes, params, _interceptors,
                 "sns", "GetSubscriptionAttributes", self._region,
                 GetSubscriptionAttributesResponse,
                 ("subscription_arn", ),
@@ -436,9 +456,10 @@ class SNSClient:
         params: dict[str, object] = {
             "topic_arn": topic_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_topic_attributes, params, self._interceptors,
+                self._native.get_topic_attributes, params, _interceptors,
                 "sns", "GetTopicAttributes", self._region,
                 GetTopicAttributesResponse,
                 ("topic_arn", ),
@@ -460,9 +481,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_endpoints_by_platform_application, params, self._interceptors,
+                self._native.list_endpoints_by_platform_application, params, _interceptors,
                 "sns", "ListEndpointsByPlatformApplication", self._region,
                 ListEndpointsByPlatformApplicationResponse,
                 ("platform_application_arn", "next_token", ),
@@ -485,9 +507,10 @@ class SNSClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_origination_numbers, params, self._interceptors,
+                self._native.list_origination_numbers, params, _interceptors,
                 "sns", "ListOriginationNumbers", self._region,
                 ListOriginationNumbersResult,
                 ("next_token", "max_results", ),
@@ -507,9 +530,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_phone_numbers_opted_out, params, self._interceptors,
+                self._native.list_phone_numbers_opted_out, params, _interceptors,
                 "sns", "ListPhoneNumbersOptedOut", self._region,
                 ListPhoneNumbersOptedOutResponse,
                 ("next_token", ),
@@ -529,9 +553,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_platform_applications, params, self._interceptors,
+                self._native.list_platform_applications, params, _interceptors,
                 "sns", "ListPlatformApplications", self._region,
                 ListPlatformApplicationsResponse,
                 ("next_token", ),
@@ -554,9 +579,10 @@ class SNSClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_sms_sandbox_phone_numbers, params, self._interceptors,
+                self._native.list_sms_sandbox_phone_numbers, params, _interceptors,
                 "sns", "ListSMSSandboxPhoneNumbers", self._region,
                 ListSMSSandboxPhoneNumbersResult,
                 ("next_token", "max_results", ),
@@ -576,9 +602,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_subscriptions, params, self._interceptors,
+                self._native.list_subscriptions, params, _interceptors,
                 "sns", "ListSubscriptions", self._region,
                 ListSubscriptionsResponse,
                 ("next_token", ),
@@ -600,9 +627,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_subscriptions_by_topic, params, self._interceptors,
+                self._native.list_subscriptions_by_topic, params, _interceptors,
                 "sns", "ListSubscriptionsByTopic", self._region,
                 ListSubscriptionsByTopicResponse,
                 ("topic_arn", "next_token", ),
@@ -621,9 +649,10 @@ class SNSClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "sns", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -643,9 +672,10 @@ class SNSClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_topics, params, self._interceptors,
+                self._native.list_topics, params, _interceptors,
                 "sns", "ListTopics", self._region,
                 ListTopicsResponse,
                 ("next_token", ),
@@ -664,9 +694,10 @@ class SNSClient:
         params: dict[str, object] = {
             "phone_number": phone_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.opt_in_phone_number, params, self._interceptors,
+                self._native.opt_in_phone_number, params, _interceptors,
                 "sns", "OptInPhoneNumber", self._region,
                 OptInPhoneNumberResponse,
                 ("phone_number", ),
@@ -709,9 +740,10 @@ class SNSClient:
             params["message_deduplication_id"] = message_deduplication_id
         if message_group_id is not None:
             params["message_group_id"] = message_group_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.publish, params, self._interceptors,
+                self._native.publish, params, _interceptors,
                 "sns", "Publish", self._region,
                 PublishResponse,
                 ("message", "topic_arn", "target_arn", "phone_number", "subject", "message_structure", "message_attributes", "message_deduplication_id", "message_group_id", ),
@@ -732,9 +764,10 @@ class SNSClient:
             "topic_arn": topic_arn,
             "publish_batch_request_entries": publish_batch_request_entries,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.publish_batch, params, self._interceptors,
+                self._native.publish_batch, params, _interceptors,
                 "sns", "PublishBatch", self._region,
                 PublishBatchResponse,
                 ("topic_arn", "publish_batch_request_entries", ),
@@ -755,9 +788,10 @@ class SNSClient:
             "resource_arn": resource_arn,
             "data_protection_policy": data_protection_policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.put_data_protection_policy, params, self._interceptors,
+                self._native.put_data_protection_policy, params, _interceptors,
                 "sns", "PutDataProtectionPolicy", self._region,
                 type(None),
                 ("resource_arn", "data_protection_policy", ),
@@ -778,9 +812,10 @@ class SNSClient:
             "topic_arn": topic_arn,
             "label": label,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.remove_permission, params, self._interceptors,
+                self._native.remove_permission, params, _interceptors,
                 "sns", "RemovePermission", self._region,
                 type(None),
                 ("topic_arn", "label", ),
@@ -801,9 +836,10 @@ class SNSClient:
             "endpoint_arn": endpoint_arn,
             "attributes": attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_endpoint_attributes, params, self._interceptors,
+                self._native.set_endpoint_attributes, params, _interceptors,
                 "sns", "SetEndpointAttributes", self._region,
                 type(None),
                 ("endpoint_arn", "attributes", ),
@@ -824,9 +860,10 @@ class SNSClient:
             "platform_application_arn": platform_application_arn,
             "attributes": attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_platform_application_attributes, params, self._interceptors,
+                self._native.set_platform_application_attributes, params, _interceptors,
                 "sns", "SetPlatformApplicationAttributes", self._region,
                 type(None),
                 ("platform_application_arn", "attributes", ),
@@ -845,9 +882,10 @@ class SNSClient:
         params: dict[str, object] = {
             "attributes": attributes,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.set_sms_attributes, params, self._interceptors,
+                self._native.set_sms_attributes, params, _interceptors,
                 "sns", "SetSMSAttributes", self._region,
                 SetSMSAttributesResponse,
                 ("attributes", ),
@@ -871,9 +909,10 @@ class SNSClient:
         }
         if attribute_value is not None:
             params["attribute_value"] = attribute_value
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_subscription_attributes, params, self._interceptors,
+                self._native.set_subscription_attributes, params, _interceptors,
                 "sns", "SetSubscriptionAttributes", self._region,
                 type(None),
                 ("subscription_arn", "attribute_name", "attribute_value", ),
@@ -897,9 +936,10 @@ class SNSClient:
         }
         if attribute_value is not None:
             params["attribute_value"] = attribute_value
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_topic_attributes, params, self._interceptors,
+                self._native.set_topic_attributes, params, _interceptors,
                 "sns", "SetTopicAttributes", self._region,
                 type(None),
                 ("topic_arn", "attribute_name", "attribute_value", ),
@@ -929,9 +969,10 @@ class SNSClient:
             params["attributes"] = attributes
         if return_subscription_arn is not None:
             params["return_subscription_arn"] = return_subscription_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.subscribe, params, self._interceptors,
+                self._native.subscribe, params, _interceptors,
                 "sns", "Subscribe", self._region,
                 SubscribeResponse,
                 ("topic_arn", "protocol", "endpoint", "attributes", "return_subscription_arn", ),
@@ -952,9 +993,10 @@ class SNSClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "sns", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -973,9 +1015,10 @@ class SNSClient:
         params: dict[str, object] = {
             "subscription_arn": subscription_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.unsubscribe, params, self._interceptors,
+                self._native.unsubscribe, params, _interceptors,
                 "sns", "Unsubscribe", self._region,
                 type(None),
                 ("subscription_arn", ),
@@ -996,9 +1039,10 @@ class SNSClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "sns", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -1019,9 +1063,10 @@ class SNSClient:
             "phone_number": phone_number,
             "one_time_password": one_time_password,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sns", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.verify_sms_sandbox_phone_number, params, self._interceptors,
+                self._native.verify_sms_sandbox_phone_number, params, _interceptors,
                 "sns", "VerifySMSSandboxPhoneNumber", self._region,
                 VerifySMSSandboxPhoneNumberResult,
                 ("phone_number", "one_time_password", ),
