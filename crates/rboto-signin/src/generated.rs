@@ -1257,18 +1257,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SignInClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -1287,7 +1298,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_o_auth2_token()
                 .set_token_input(token_input_value);
             let output = request.send().await.map_err(|error| {
@@ -1319,7 +1330,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_o_auth2_token_with_iam()
                 .set_grant_type(grant_type_value)
                 .set_resource(resource_value);
@@ -1346,7 +1357,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_console_authorization_configuration()
                 .set_target_id(target_id_value);
             let output = request.send().await.map_err(|error| {
@@ -1380,7 +1391,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_resource_permission_statement()
                 .set_statement_id(statement_id_value)
                 .set_client_token(client_token_value);
@@ -1409,7 +1420,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_console_authorization_configuration()
                 .set_target_id(target_id_value);
             let output = request.send().await.map_err(|error| {
@@ -1429,7 +1440,7 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let request = state.client().await.get_resource_policy();
+            let request = state.client().await?.get_resource_policy();
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
@@ -1459,7 +1470,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .introspect_o_auth2_token_with_iam()
                 .set_token(token_value)
                 .set_token_type_hint(token_type_hint_value);
@@ -1492,7 +1503,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_resource_permission_statements()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -1519,7 +1530,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_console_authorization_configuration()
                 .set_target_id(target_id_value);
             let output = request.send().await.map_err(|error| {
@@ -1592,7 +1603,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_resource_permission_statement()
                 .set_source_vpc(source_vpc_value)
                 .set_signin_source_vpce(signin_source_vpce_value)
@@ -1625,7 +1636,7 @@ impl SignInClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .revoke_o_auth2_token_with_iam()
                 .set_token(token_value);
             let output = request.send().await.map_err(|error| {

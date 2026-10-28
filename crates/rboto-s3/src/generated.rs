@@ -21361,18 +21361,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl S3Client {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -21429,7 +21440,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .abort_multipart_upload()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -21600,7 +21611,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .complete_multipart_upload()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -21994,7 +22005,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .copy_object()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22137,7 +22148,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_bucket()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22202,7 +22213,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -22263,7 +22274,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -22537,7 +22548,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_multipart_upload()
                 .set_acl(acl_value)
                 .set_bucket(bucket_value)
@@ -22636,7 +22647,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_session()
                 .set_session_mode(session_mode_value)
                 .set_bucket(bucket_value)
@@ -22674,7 +22685,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -22714,7 +22725,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -22751,7 +22762,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -22785,7 +22796,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -22825,7 +22836,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -22868,7 +22879,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -22905,7 +22916,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_lifecycle()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -22939,7 +22950,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -22975,7 +22986,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23017,7 +23028,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -23052,7 +23063,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23086,7 +23097,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23120,7 +23131,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23154,7 +23165,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23188,7 +23199,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23278,7 +23289,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -23351,7 +23362,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -23402,7 +23413,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -23473,7 +23484,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_objects()
                 .set_bucket(bucket_value)
                 .set_delete(delete_value)
@@ -23512,7 +23523,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23546,7 +23557,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_abac()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23587,7 +23598,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
@@ -23622,7 +23633,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_acl()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23662,7 +23673,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -23697,7 +23708,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23731,7 +23742,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23771,7 +23782,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -23814,7 +23825,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -23849,7 +23860,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23883,7 +23894,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_location()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23917,7 +23928,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_logging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23951,7 +23962,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -23985,7 +23996,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24027,7 +24038,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -24062,7 +24073,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_notification_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24098,7 +24109,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24132,7 +24143,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24166,7 +24177,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_policy_status()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24200,7 +24211,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24234,7 +24245,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_request_payment()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24268,7 +24279,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24302,7 +24313,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_versioning()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24336,7 +24347,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24510,7 +24521,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object()
                 .set_bucket(bucket_value)
                 .set_if_match(if_match_value)
@@ -24593,7 +24604,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_acl()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24662,7 +24673,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24778,7 +24789,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_attributes()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24840,7 +24851,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_legal_hold()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24877,7 +24888,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_lock_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -24930,7 +24941,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_retention()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -24986,7 +24997,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -25036,7 +25047,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_object_torrent()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -25082,7 +25093,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -25116,7 +25127,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .head_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
@@ -25291,7 +25302,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .head_object()
                 .set_bucket(bucket_value)
                 .set_if_match(if_match_value)
@@ -25352,7 +25363,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_bucket_analytics_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
@@ -25396,7 +25407,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_bucket_intelligent_tiering_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
@@ -25440,7 +25451,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_bucket_inventory_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
@@ -25484,7 +25495,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_bucket_metrics_configurations()
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
@@ -25531,7 +25542,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_buckets()
                 .set_max_buckets(max_buckets_value)
                 .set_continuation_token(continuation_token_value)
@@ -25569,7 +25580,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_directory_buckets()
                 .set_continuation_token(continuation_token_value)
                 .set_max_directory_buckets(max_directory_buckets_value);
@@ -25647,7 +25658,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_multipart_uploads()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -25728,7 +25739,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_object_annotations()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -25828,7 +25839,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_object_versions()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -25923,7 +25934,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_objects()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -26031,7 +26042,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_objects_v2()
                 .set_bucket(bucket_value)
                 .set_delimiter(delimiter_value)
@@ -26126,7 +26137,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_parts()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -26190,7 +26201,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_abac()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -26243,7 +26254,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
                 .set_accelerate_configuration(accelerate_configuration_value)
@@ -26339,7 +26350,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_acl()
                 .set_acl(acl_value)
                 .set_access_control_policy(access_control_policy_value)
@@ -26395,7 +26406,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -26453,7 +26464,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_cors_configuration(cors_configuration_value)
@@ -26512,7 +26523,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -26564,7 +26575,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -26615,7 +26626,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -26677,7 +26688,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
@@ -26738,7 +26749,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_logging()
                 .set_bucket(bucket_value)
                 .set_bucket_logging_status(bucket_logging_status_value)
@@ -26788,7 +26799,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
                 .set_id(id_value)
@@ -26838,7 +26849,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_notification_configuration()
                 .set_bucket(bucket_value)
                 .set_notification_configuration(notification_configuration_value)
@@ -26898,7 +26909,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -26963,7 +26974,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27029,7 +27040,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27089,7 +27100,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_request_payment()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27147,7 +27158,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27212,7 +27223,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_versioning()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27272,7 +27283,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_bucket_website()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -27638,7 +27649,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object()
                 .set_acl(acl_value)
                 .set_body(body_value)
@@ -27803,7 +27814,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_acl()
                 .set_acl(acl_value)
                 .set_access_control_policy(access_control_policy_value)
@@ -27966,7 +27977,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_annotation()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28058,7 +28069,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_legal_hold()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28133,7 +28144,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_lock_configuration()
                 .set_bucket(bucket_value)
                 .set_object_lock_configuration(object_lock_configuration_value)
@@ -28219,7 +28230,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_retention()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28300,7 +28311,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_object_tagging()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28362,7 +28373,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_public_access_block()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -28485,7 +28496,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .rename_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28563,7 +28574,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .restore_object()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28667,7 +28678,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .select_object_content()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -28744,7 +28755,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_bucket_metadata_annotation_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -28809,7 +28820,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_bucket_metadata_inventory_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -28874,7 +28885,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_bucket_metadata_journal_table_configuration()
                 .set_bucket(bucket_value)
                 .set_content_md5(content_md5_value)
@@ -28954,7 +28965,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_object_encryption()
                 .set_bucket(bucket_value)
                 .set_key(key_value)
@@ -29130,7 +29141,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .upload_part()
                 .set_body(body_value)
                 .set_bucket(bucket_value)
@@ -29310,7 +29321,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .upload_part_copy()
                 .set_bucket(bucket_value)
                 .set_copy_source(copy_source_value)
@@ -29666,7 +29677,7 @@ impl S3Client {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .write_get_object_response()
                 .set_request_route(request_route_value)
                 .set_request_token(request_token_value)

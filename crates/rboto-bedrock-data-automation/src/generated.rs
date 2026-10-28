@@ -7169,18 +7169,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl BedrockDataAutomationClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -7221,7 +7232,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .copy_blueprint_stage()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_source_stage(source_stage_value)
@@ -7297,7 +7308,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_blueprint()
                 .set_blueprint_name(blueprint_name_value)
                 .set_type(type_value)
@@ -7335,7 +7346,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_blueprint_version()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_client_token(client_token_value);
@@ -7394,7 +7405,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_data_automation_library()
                 .set_library_name(library_name_value)
                 .set_library_description(library_description_value)
@@ -7504,7 +7515,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_data_automation_project()
                 .set_project_name(project_name_value)
                 .set_project_description(project_description_value)
@@ -7549,7 +7560,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_blueprint()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_blueprint_version(blueprint_version_value);
@@ -7576,7 +7587,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_data_automation_library()
                 .set_library_arn(library_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -7602,7 +7613,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_data_automation_project()
                 .set_project_arn(project_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -7643,7 +7654,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_blueprint()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_blueprint_version(blueprint_version_value)
@@ -7671,7 +7682,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_blueprint_optimization_status()
                 .set_invocation_arn(invocation_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -7697,7 +7708,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_automation_library()
                 .set_library_arn(library_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -7737,7 +7748,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_automation_library_entity()
                 .set_library_arn(library_arn_value)
                 .set_entity_type(entity_type_value)
@@ -7771,7 +7782,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_automation_library_ingestion_job()
                 .set_library_arn(library_arn_value)
                 .set_job_arn(job_arn_value);
@@ -7810,7 +7821,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_data_automation_project()
                 .set_project_arn(project_arn_value)
                 .set_project_stage(project_stage_value);
@@ -7882,7 +7893,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_blueprint_optimization_async()
                 .set_blueprint(blueprint_value)
                 .set_samples(samples_value)
@@ -7970,7 +7981,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .invoke_data_automation_library_ingestion_job()
                 .set_library_arn(library_arn_value)
                 .set_client_token(client_token_value)
@@ -8042,7 +8053,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_blueprints()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_resource_owner(resource_owner_value)
@@ -8085,7 +8096,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_automation_libraries()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -8133,7 +8144,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_automation_library_entities()
                 .set_library_arn(library_arn_value)
                 .set_entity_type(entity_type_value)
@@ -8176,7 +8187,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_automation_library_ingestion_jobs()
                 .set_library_arn(library_arn_value)
                 .set_max_results(max_results_value)
@@ -8243,7 +8254,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_data_automation_projects()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
@@ -8274,7 +8285,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -8312,7 +8323,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -8352,7 +8363,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -8400,7 +8411,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_blueprint()
                 .set_blueprint_arn(blueprint_arn_value)
                 .set_schema(schema_value)
@@ -8442,7 +8453,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_data_automation_library()
                 .set_library_arn(library_arn_value)
                 .set_library_description(library_description_value)
@@ -8522,7 +8533,7 @@ impl BedrockDataAutomationClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_data_automation_project()
                 .set_project_arn(project_arn_value)
                 .set_project_stage(project_stage_value)

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from .config import ClientConfig
 from .session import Session
 
 if TYPE_CHECKING:
@@ -14,12 +15,13 @@ def _resolve_config(
     region: str | None,
     profile: str | None,
     endpoint_url: str | None,
-) -> tuple[str | None, str | None, str | None]:
+    config: ClientConfig | None,
+) -> tuple[str | None, str | None, str | None, ClientConfig | None]:
     if session is None:
-        return region, profile, endpoint_url
-    if any(value is not None for value in (region, profile, endpoint_url)):
+        return region, profile, endpoint_url, config
+    if any(value is not None for value in (region, profile, endpoint_url, config)):
         raise ValueError("session cannot be combined with explicit service configuration")
-    return session.region, session.profile, session.endpoint_url
+    return session.region, session.profile, session.endpoint_url, session.config
 
 {% for service in services %}
 def {{ service.python_name }}(
@@ -28,6 +30,7 @@ def {{ service.python_name }}(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> {{ service.client_class }}:
     try:
         from {{ service.python_package }} import {{ service.client_class }}
@@ -36,13 +39,14 @@ def {{ service.python_name }}(
             '{{ service.service_id }} support is not installed. Install it with: '
             'pip install "rboto[{{ service.service_id }}]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return {{ service.client_class }}(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 {% endfor %}

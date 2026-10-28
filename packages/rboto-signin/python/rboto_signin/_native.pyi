@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import AsyncIterator, Awaitable
 from typing import final
+from rboto.config import ClientConfig
 from . import types as _types
 from .types import JSONValue
 
@@ -184,6 +185,7 @@ class SignInClient:
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
+        config: ClientConfig | None = None,
     ) -> None: ...
 
     def create_o_auth2_token(self, params: dict[str, object]) -> Awaitable[CreateOAuth2TokenResponse]: ...

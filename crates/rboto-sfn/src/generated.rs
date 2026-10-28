@@ -8946,18 +8946,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SFNClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -8995,7 +9006,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_activity()
                 .set_name(name_value)
                 .set_tags(tags_value)
@@ -9088,7 +9099,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_state_machine()
                 .set_name(name_value)
                 .set_definition(definition_value)
@@ -9142,7 +9153,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_state_machine_alias()
                 .set_description(description_value)
                 .set_name(name_value)
@@ -9170,7 +9181,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_activity()
                 .set_activity_arn(activity_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9197,7 +9208,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_state_machine()
                 .set_state_machine_arn(state_machine_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9224,7 +9235,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_state_machine_alias()
                 .set_state_machine_alias_arn(state_machine_alias_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9251,7 +9262,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_state_machine_version()
                 .set_state_machine_version_arn(state_machine_version_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9277,7 +9288,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_activity()
                 .set_activity_arn(activity_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9310,7 +9321,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_execution()
                 .set_execution_arn(execution_arn_value)
                 .set_included_data(included_data_value);
@@ -9337,7 +9348,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_map_run()
                 .set_map_run_arn(map_run_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9371,7 +9382,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_state_machine()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_included_data(included_data_value);
@@ -9399,7 +9410,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_state_machine_alias()
                 .set_state_machine_alias_arn(state_machine_alias_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9432,7 +9443,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_state_machine_for_execution()
                 .set_execution_arn(execution_arn_value)
                 .set_included_data(included_data_value);
@@ -9465,7 +9476,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_activity_task()
                 .set_activity_arn(activity_arn_value)
                 .set_worker_name(worker_name_value);
@@ -9517,7 +9528,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_execution_history()
                 .set_execution_arn(execution_arn_value)
                 .set_max_results(max_results_value)
@@ -9553,7 +9564,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_activities()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -9614,7 +9625,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_executions()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_status_filter(status_filter_value)
@@ -9657,7 +9668,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_map_runs()
                 .set_execution_arn(execution_arn_value)
                 .set_max_results(max_results_value)
@@ -9699,7 +9710,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_state_machine_aliases()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_next_token(next_token_value)
@@ -9740,7 +9751,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_state_machine_versions()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_next_token(next_token_value)
@@ -9774,7 +9785,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_state_machines()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -9801,7 +9812,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -9840,7 +9851,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .publish_state_machine_version()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_revision_id(revision_id_value)
@@ -9874,7 +9885,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .redrive_execution()
                 .set_execution_arn(execution_arn_value)
                 .set_client_token(client_token_value);
@@ -9913,7 +9924,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_task_failure()
                 .set_task_token(task_token_value)
                 .set_error(error_value)
@@ -9941,7 +9952,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_task_heartbeat()
                 .set_task_token(task_token_value);
             let output = request.send().await.map_err(|error| {
@@ -9973,7 +9984,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_task_success()
                 .set_task_token(task_token_value)
                 .set_output(output_value);
@@ -10019,7 +10030,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_execution()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_name(name_value)
@@ -10074,7 +10085,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_sync_execution()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_name(name_value)
@@ -10116,7 +10127,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_execution()
                 .set_execution_arn(execution_arn_value)
                 .set_error(error_value)
@@ -10156,7 +10167,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
@@ -10240,7 +10251,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .test_state()
                 .set_definition(definition_value)
                 .set_role_arn(role_arn_value)
@@ -10288,7 +10299,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
@@ -10335,7 +10346,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_map_run()
                 .set_map_run_arn(map_run_arn_value)
                 .set_max_concurrency(max_concurrency_value)
@@ -10411,7 +10422,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_state_machine()
                 .set_state_machine_arn(state_machine_arn_value)
                 .set_definition(definition_value)
@@ -10464,7 +10475,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_state_machine_alias()
                 .set_state_machine_alias_arn(state_machine_alias_arn_value)
                 .set_description(description_value)
@@ -10514,7 +10525,7 @@ impl SFNClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .validate_state_machine_definition()
                 .set_definition(definition_value)
                 .set_type(type_value)

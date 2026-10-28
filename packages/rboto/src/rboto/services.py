@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from .config import ClientConfig
 from .session import Session
 
 if TYPE_CHECKING:
@@ -47,12 +48,13 @@ def _resolve_config(
     region: str | None,
     profile: str | None,
     endpoint_url: str | None,
-) -> tuple[str | None, str | None, str | None]:
+    config: ClientConfig | None,
+) -> tuple[str | None, str | None, str | None, ClientConfig | None]:
     if session is None:
-        return region, profile, endpoint_url
-    if any(value is not None for value in (region, profile, endpoint_url)):
+        return region, profile, endpoint_url, config
+    if any(value is not None for value in (region, profile, endpoint_url, config)):
         raise ValueError("session cannot be combined with explicit service configuration")
-    return session.region, session.profile, session.endpoint_url
+    return session.region, session.profile, session.endpoint_url, session.config
 
 
 def api_gateway(
@@ -61,6 +63,7 @@ def api_gateway(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> APIGatewayClient:
     try:
         from rboto_api_gateway import APIGatewayClient
@@ -69,13 +72,14 @@ def api_gateway(
             'api-gateway support is not installed. Install it with: '
             'pip install "rboto[api-gateway]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return APIGatewayClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -85,6 +89,7 @@ def bedrock(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockClient:
     try:
         from rboto_bedrock import BedrockClient
@@ -93,13 +98,14 @@ def bedrock(
             'bedrock support is not installed. Install it with: '
             'pip install "rboto[bedrock]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -109,6 +115,7 @@ def bedrock_agent(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockAgentClient:
     try:
         from rboto_bedrock_agent import BedrockAgentClient
@@ -117,13 +124,14 @@ def bedrock_agent(
             'bedrock-agent support is not installed. Install it with: '
             'pip install "rboto[bedrock-agent]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockAgentClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -133,6 +141,7 @@ def bedrock_agent_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockAgentRuntimeClient:
     try:
         from rboto_bedrock_agent_runtime import BedrockAgentRuntimeClient
@@ -141,13 +150,14 @@ def bedrock_agent_runtime(
             'bedrock-agent-runtime support is not installed. Install it with: '
             'pip install "rboto[bedrock-agent-runtime]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockAgentRuntimeClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -157,6 +167,7 @@ def bedrock_agentcore(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockAgentCoreClient:
     try:
         from rboto_bedrock_agentcore import BedrockAgentCoreClient
@@ -165,13 +176,14 @@ def bedrock_agentcore(
             'bedrock-agentcore support is not installed. Install it with: '
             'pip install "rboto[bedrock-agentcore]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockAgentCoreClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -181,6 +193,7 @@ def bedrock_agentcore_control(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockAgentCoreControlClient:
     try:
         from rboto_bedrock_agentcore_control import BedrockAgentCoreControlClient
@@ -189,13 +202,14 @@ def bedrock_agentcore_control(
             'bedrock-agentcore-control support is not installed. Install it with: '
             'pip install "rboto[bedrock-agentcore-control]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockAgentCoreControlClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -205,6 +219,7 @@ def bedrock_data_automation(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockDataAutomationClient:
     try:
         from rboto_bedrock_data_automation import BedrockDataAutomationClient
@@ -213,13 +228,14 @@ def bedrock_data_automation(
             'bedrock-data-automation support is not installed. Install it with: '
             'pip install "rboto[bedrock-data-automation]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockDataAutomationClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -229,6 +245,7 @@ def bedrock_data_automation_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockDataAutomationRuntimeClient:
     try:
         from rboto_bedrock_data_automation_runtime import BedrockDataAutomationRuntimeClient
@@ -237,13 +254,14 @@ def bedrock_data_automation_runtime(
             'bedrock-data-automation-runtime support is not installed. Install it with: '
             'pip install "rboto[bedrock-data-automation-runtime]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockDataAutomationRuntimeClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -253,6 +271,7 @@ def bedrock_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> BedrockRuntimeClient:
     try:
         from rboto_bedrock_runtime import BedrockRuntimeClient
@@ -261,13 +280,14 @@ def bedrock_runtime(
             'bedrock-runtime support is not installed. Install it with: '
             'pip install "rboto[bedrock-runtime]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return BedrockRuntimeClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -277,6 +297,7 @@ def cloudtrail(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> CloudTrailClient:
     try:
         from rboto_cloudtrail import CloudTrailClient
@@ -285,13 +306,14 @@ def cloudtrail(
             'cloudtrail support is not installed. Install it with: '
             'pip install "rboto[cloudtrail]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return CloudTrailClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -301,6 +323,7 @@ def cloudwatch_logs(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> CloudWatchLogsClient:
     try:
         from rboto_cloudwatch_logs import CloudWatchLogsClient
@@ -309,13 +332,14 @@ def cloudwatch_logs(
             'cloudwatch-logs support is not installed. Install it with: '
             'pip install "rboto[cloudwatch-logs]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return CloudWatchLogsClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -325,6 +349,7 @@ def cognito_identity(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> CognitoIdentityClient:
     try:
         from rboto_cognito_identity import CognitoIdentityClient
@@ -333,13 +358,14 @@ def cognito_identity(
             'cognito-identity support is not installed. Install it with: '
             'pip install "rboto[cognito-identity]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return CognitoIdentityClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -349,6 +375,7 @@ def connecthealth(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> ConnectHealthClient:
     try:
         from rboto_connecthealth import ConnectHealthClient
@@ -357,13 +384,14 @@ def connecthealth(
             'connecthealth support is not installed. Install it with: '
             'pip install "rboto[connecthealth]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return ConnectHealthClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -373,6 +401,7 @@ def dynamodb(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> DynamoDBClient:
     try:
         from rboto_dynamodb import DynamoDBClient
@@ -381,13 +410,14 @@ def dynamodb(
             'dynamodb support is not installed. Install it with: '
             'pip install "rboto[dynamodb]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return DynamoDBClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -397,6 +427,7 @@ def eventbridge(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> EventBridgeClient:
     try:
         from rboto_eventbridge import EventBridgeClient
@@ -405,13 +436,14 @@ def eventbridge(
             'eventbridge support is not installed. Install it with: '
             'pip install "rboto[eventbridge]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return EventBridgeClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -421,6 +453,7 @@ def guardduty(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> GuardDutyClient:
     try:
         from rboto_guardduty import GuardDutyClient
@@ -429,13 +462,14 @@ def guardduty(
             'guardduty support is not installed. Install it with: '
             'pip install "rboto[guardduty]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return GuardDutyClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -445,6 +479,7 @@ def kms(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> KMSClient:
     try:
         from rboto_kms import KMSClient
@@ -453,13 +488,14 @@ def kms(
             'kms support is not installed. Install it with: '
             'pip install "rboto[kms]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return KMSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -469,6 +505,7 @@ def lambda_(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> LambdaClient:
     try:
         from rboto_lambda import LambdaClient
@@ -477,13 +514,14 @@ def lambda_(
             'lambda support is not installed. Install it with: '
             'pip install "rboto[lambda]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return LambdaClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -493,6 +531,7 @@ def lex_runtime_v2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> LexRuntimeV2Client:
     try:
         from rboto_lex_runtime_v2 import LexRuntimeV2Client
@@ -501,13 +540,14 @@ def lex_runtime_v2(
             'lex-runtime-v2 support is not installed. Install it with: '
             'pip install "rboto[lex-runtime-v2]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return LexRuntimeV2Client(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -517,6 +557,7 @@ def pipes(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> PipesClient:
     try:
         from rboto_pipes import PipesClient
@@ -525,13 +566,14 @@ def pipes(
             'pipes support is not installed. Install it with: '
             'pip install "rboto[pipes]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return PipesClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -541,6 +583,7 @@ def polly(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> PollyClient:
     try:
         from rboto_polly import PollyClient
@@ -549,13 +592,14 @@ def polly(
             'polly support is not installed. Install it with: '
             'pip install "rboto[polly]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return PollyClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -565,6 +609,7 @@ def qbusiness(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> QBusinessClient:
     try:
         from rboto_qbusiness import QBusinessClient
@@ -573,13 +618,14 @@ def qbusiness(
             'qbusiness support is not installed. Install it with: '
             'pip install "rboto[qbusiness]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return QBusinessClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -589,6 +635,7 @@ def s3(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> S3Client:
     try:
         from rboto_s3 import S3Client
@@ -597,13 +644,14 @@ def s3(
             's3 support is not installed. Install it with: '
             'pip install "rboto[s3]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return S3Client(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -613,6 +661,7 @@ def sagemaker_runtime_http2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SageMakerRuntimeHTTP2Client:
     try:
         from rboto_sagemaker_runtime_http2 import SageMakerRuntimeHTTP2Client
@@ -621,13 +670,14 @@ def sagemaker_runtime_http2(
             'sagemaker-runtime-http2 support is not installed. Install it with: '
             'pip install "rboto[sagemaker-runtime-http2]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SageMakerRuntimeHTTP2Client(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -637,6 +687,7 @@ def scheduler(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SchedulerClient:
     try:
         from rboto_scheduler import SchedulerClient
@@ -645,13 +696,14 @@ def scheduler(
             'scheduler support is not installed. Install it with: '
             'pip install "rboto[scheduler]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SchedulerClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -661,6 +713,7 @@ def secrets_manager(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SecretsManagerClient:
     try:
         from rboto_secrets_manager import SecretsManagerClient
@@ -669,13 +722,14 @@ def secrets_manager(
             'secrets-manager support is not installed. Install it with: '
             'pip install "rboto[secrets-manager]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SecretsManagerClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -685,6 +739,7 @@ def sesv2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SESv2Client:
     try:
         from rboto_sesv2 import SESv2Client
@@ -693,13 +748,14 @@ def sesv2(
             'sesv2 support is not installed. Install it with: '
             'pip install "rboto[sesv2]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SESv2Client(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -709,6 +765,7 @@ def sfn(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SFNClient:
     try:
         from rboto_sfn import SFNClient
@@ -717,13 +774,14 @@ def sfn(
             'sfn support is not installed. Install it with: '
             'pip install "rboto[sfn]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SFNClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -733,6 +791,7 @@ def signin(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SignInClient:
     try:
         from rboto_signin import SignInClient
@@ -741,13 +800,14 @@ def signin(
             'signin support is not installed. Install it with: '
             'pip install "rboto[signin]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SignInClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -757,6 +817,7 @@ def sns(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SNSClient:
     try:
         from rboto_sns import SNSClient
@@ -765,13 +826,14 @@ def sns(
             'sns support is not installed. Install it with: '
             'pip install "rboto[sns]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SNSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -781,6 +843,7 @@ def sqs(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SQSClient:
     try:
         from rboto_sqs import SQSClient
@@ -789,13 +852,14 @@ def sqs(
             'sqs support is not installed. Install it with: '
             'pip install "rboto[sqs]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SQSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -805,6 +869,7 @@ def ssm(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> SSMClient:
     try:
         from rboto_ssm import SSMClient
@@ -813,13 +878,14 @@ def ssm(
             'ssm support is not installed. Install it with: '
             'pip install "rboto[ssm]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return SSMClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -829,6 +895,7 @@ def sts(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> STSClient:
     try:
         from rboto_sts import STSClient
@@ -837,13 +904,14 @@ def sts(
             'sts support is not installed. Install it with: '
             'pip install "rboto[sts]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return STSClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 
@@ -853,6 +921,7 @@ def transcribe_streaming(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
 ) -> TranscribeStreamingClient:
     try:
         from rboto_transcribe_streaming import TranscribeStreamingClient
@@ -861,13 +930,14 @@ def transcribe_streaming(
             'transcribe-streaming support is not installed. Install it with: '
             'pip install "rboto[transcribe-streaming]"'
         ) from error
-    region, profile, endpoint_url = _resolve_config(
-        session, region, profile, endpoint_url
+    region, profile, endpoint_url, config = _resolve_config(
+        session, region, profile, endpoint_url, config
     )
     return TranscribeStreamingClient(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
     )
 
 

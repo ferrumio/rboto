@@ -3,10 +3,10 @@ mod generated;
 
 #[allow(unused_imports)]
 use std::collections::HashMap;
+use std::error::Error;
 use std::fmt::Debug;
 use std::sync::Arc;
 
-use aws_config::BehaviorVersion;
 use aws_sdk_guardduty::Client;
 use aws_smithy_runtime_api::client::result::SdkError;
 use aws_smithy_types::byte_stream::ByteStream as AwsByteStream;
@@ -17,7 +17,7 @@ use pyo3::prelude::*;
 #[allow(unused_imports)]
 use pyo3::types::{PyBytes, PyDict, PyList};
 use pyo3_async_runtimes::tokio::future_into_py;
-use rboto_core::raise_service_error;
+use rboto_core::RequestConfig;
 use tokio::sync::{Mutex, OnceCell};
 
 #[derive(Clone)]
@@ -25,6 +25,7 @@ struct ClientConfig {
     region: Option<String>,
     profile: Option<String>,
     endpoint_url: Option<String>,
+    options: RequestConfig,
 }
 
 struct ClientState {
@@ -33,22 +34,22 @@ struct ClientState {
 }
 
 impl ClientState {
-    async fn client(&self) -> &Client {
+    async fn client(&self) -> PyResult<&Client> {
         self.client
-            .get_or_init(|| async {
-                let mut loader = aws_config::defaults(BehaviorVersion::latest());
-                if let Some(region) = &self.config.region {
-                    loader = loader.region(aws_config::Region::new(region.clone()));
-                }
-                if let Some(profile) = &self.config.profile {
-                    loader = loader.profile_name(profile);
-                }
-                let shared = loader.load().await;
+            .get_or_try_init(|| async {
+                let shared = self
+                    .config
+                    .options
+                    .load(
+                        self.config.region.as_deref(),
+                        self.config.profile.as_deref(),
+                    )
+                    .await?;
                 let mut service = aws_sdk_guardduty::config::Builder::from(&shared);
                 if let Some(endpoint) = &self.config.endpoint_url {
                     service = service.endpoint_url(endpoint);
                 }
-                Client::from_conf(service.build())
+                Ok(Client::from_conf(service.build()))
             })
             .await
     }
@@ -121,14 +122,32 @@ fn dict_value<'py>(values: &Bound<'py, PyDict>, name: &str) -> PyResult<Option<B
     Ok(values.get_item(name)?.filter(|value| !value.is_none()))
 }
 
-fn sdk_error_to_py<E, R>(py: Python<'_>, error: &SdkError<E, R>, operation: &str) -> PyErr
+fn sdk_error_to_py<E>(
+    py: Python<'_>,
+    error: &SdkError<E, aws_smithy_runtime_api::client::orchestrator::HttpResponse>,
+    operation: &str,
+) -> PyErr
 where
-    E: ProvideErrorMetadata + Debug,
-    R: Debug,
+    E: ProvideErrorMetadata + Error + 'static,
 {
-    sdk_error_to_py_with_code(py, error, operation, None)
+    let request_id = error.raw_response().and_then(|response| {
+        response
+            .headers()
+            .get("x-amzn-requestid")
+            .or_else(|| response.headers().get("x-amz-request-id"))
+    });
+    rboto_core::sdk_error_to_py(
+        py,
+        error,
+        operation,
+        "rboto_guardduty.exceptions",
+        "GuardDutyError",
+        None,
+        request_id,
+    )
 }
 
+#[allow(dead_code)]
 fn sdk_error_to_py_with_code<E, R>(
     py: Python<'_>,
     error: &SdkError<E, R>,
@@ -136,25 +155,16 @@ fn sdk_error_to_py_with_code<E, R>(
     fallback_code: Option<&str>,
 ) -> PyErr
 where
-    E: ProvideErrorMetadata + Debug,
-    R: Debug,
+    E: ProvideErrorMetadata + Error + 'static,
+    R: Debug + 'static,
 {
-    let service_error = error.as_service_error();
-    let code = service_error
-        .and_then(ProvideErrorMetadata::code)
-        .or(fallback_code)
-        .unwrap_or("UnknownError");
-    let message = service_error
-        .and_then(ProvideErrorMetadata::message)
-        .map(str::to_owned)
-        .unwrap_or_else(|| format!("{error:?}"));
-    raise_service_error(
+    rboto_core::sdk_error_to_py(
         py,
+        error,
+        operation,
         "rboto_guardduty.exceptions",
         "GuardDutyError",
-        code,
-        &message,
-        operation,
+        fallback_code,
         None,
     )
 }

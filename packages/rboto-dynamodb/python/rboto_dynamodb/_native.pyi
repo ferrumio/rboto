@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import AsyncIterator, Awaitable
 from typing import final
+from rboto.config import ClientConfig
 from . import types as _types
 from .types import JSONValue
 
@@ -1536,6 +1537,7 @@ class DynamoDBClient:
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
+        config: ClientConfig | None = None,
     ) -> None: ...
 
     def batch_execute_statement(self, params: dict[str, object]) -> Awaitable[BatchExecuteStatementOutput]: ...

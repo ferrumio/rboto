@@ -9639,18 +9639,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl CloudTrailClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -9681,7 +9692,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .add_tags()
                 .set_resource_id(resource_id_value)
                 .set_tags_list(tags_list_value);
@@ -9722,7 +9733,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .cancel_query()
                 .set_event_data_store(event_data_store_value)
                 .set_query_id(query_id_value)
@@ -9781,7 +9792,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_channel()
                 .set_name(name_value)
                 .set_source(source_value)
@@ -9847,7 +9858,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_dashboard()
                 .set_name(name_value)
                 .set_refresh_schedule(refresh_schedule_value)
@@ -9949,7 +9960,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_event_data_store()
                 .set_name(name_value)
                 .set_advanced_event_selectors(advanced_event_selectors_value)
@@ -10069,7 +10080,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_trail()
                 .set_name(name_value)
                 .set_s3_bucket_name(s3_bucket_name_value)
@@ -10108,7 +10119,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_channel()
                 .set_channel(channel_value);
             let output = request.send().await.map_err(|error| {
@@ -10134,7 +10145,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_dashboard()
                 .set_dashboard_id(dashboard_id_value);
             let output = request.send().await.map_err(|error| {
@@ -10160,7 +10171,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_event_data_store()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -10186,7 +10197,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -10210,7 +10221,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.delete_trail().set_name(name_value);
+            let request = state.client().await?.delete_trail().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -10236,7 +10247,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .deregister_organization_delegated_admin()
                 .set_delegated_admin_account_id(delegated_admin_account_id_value);
             let output = request.send().await.map_err(|error| {
@@ -10289,7 +10300,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_query()
                 .set_event_data_store(event_data_store_value)
                 .set_query_id(query_id_value)
@@ -10332,7 +10343,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_trails()
                 .set_trail_name_list(trail_name_list_value)
                 .set_include_shadow_trails(include_shadow_trails_value);
@@ -10359,7 +10370,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disable_federation()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -10392,7 +10403,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .enable_federation()
                 .set_event_data_store(event_data_store_value)
                 .set_federation_role_arn(federation_role_arn_value);
@@ -10432,7 +10443,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_query()
                 .set_event_data_stores(event_data_stores_value)
                 .set_prompt(prompt_value);
@@ -10459,7 +10470,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_channel()
                 .set_channel(channel_value);
             let output = request
@@ -10486,7 +10497,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_dashboard()
                 .set_dashboard_id(dashboard_id_value);
             let output = request.send().await.map_err(|error| {
@@ -10518,7 +10529,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_event_configuration()
                 .set_trail_name(trail_name_value)
                 .set_event_data_store(event_data_store_value);
@@ -10545,7 +10556,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_event_data_store()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -10571,7 +10582,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_event_selectors()
                 .set_trail_name(trail_name_value);
             let output = request.send().await.map_err(|error| {
@@ -10597,7 +10608,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_import()
                 .set_import_id(import_id_value);
             let output = request
@@ -10630,7 +10641,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_insight_selectors()
                 .set_trail_name(trail_name_value)
                 .set_event_data_store(event_data_store_value);
@@ -10683,7 +10694,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_query_results()
                 .set_event_data_store(event_data_store_value)
                 .set_query_id(query_id_value)
@@ -10713,7 +10724,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
             let output = request.send().await.map_err(|error| {
@@ -10737,7 +10748,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.get_trail().set_name(name_value);
+            let request = state.client().await?.get_trail().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -10760,7 +10771,11 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.get_trail_status().set_name(name_value);
+            let request = state
+                .client()
+                .await?
+                .get_trail_status()
+                .set_name(name_value);
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTrailStatus"))
             })?;
@@ -10790,7 +10805,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_channels()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
@@ -10837,7 +10852,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_dashboards()
                 .set_name_prefix(name_prefix_value)
                 .set_type(type_value)
@@ -10872,7 +10887,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_event_data_stores()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
@@ -10911,7 +10926,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_import_failures()
                 .set_import_id(import_id_value)
                 .set_max_results(max_results_value)
@@ -10959,7 +10974,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_imports()
                 .set_max_results(max_results_value)
                 .set_destination(destination_value)
@@ -11047,7 +11062,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_insights_data()
                 .set_insight_source(insight_source_value)
                 .set_data_type(data_type_value)
@@ -11153,7 +11168,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_insights_metric_data()
                 .set_trail_name(trail_name_value)
                 .set_event_source(event_source_value)
@@ -11211,7 +11226,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_public_keys()
                 .set_start_time(start_time_value)
                 .set_end_time(end_time_value)
@@ -11281,7 +11296,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_queries()
                 .set_event_data_store(event_data_store_value)
                 .set_next_token(next_token_value)
@@ -11325,7 +11340,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_tags()
                 .set_resource_id_list(resource_id_list_value)
                 .set_next_token(next_token_value);
@@ -11353,7 +11368,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_trails()
                 .set_next_token(next_token_value);
             let output = request
@@ -11429,7 +11444,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .lookup_events()
                 .set_lookup_attributes(lookup_attributes_value)
                 .set_start_time(start_time_value)
@@ -11500,7 +11515,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_event_configuration()
                 .set_trail_name(trail_name_value)
                 .set_event_data_store(event_data_store_value)
@@ -11555,7 +11570,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_event_selectors()
                 .set_trail_name(trail_name_value)
                 .set_event_selectors(event_selectors_value)
@@ -11609,7 +11624,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_insight_selectors()
                 .set_trail_name(trail_name_value)
                 .set_insight_selectors(insight_selectors_value)
@@ -11644,7 +11659,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_resource_policy(resource_policy_value);
@@ -11672,7 +11687,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .register_organization_delegated_admin()
                 .set_member_account_id(member_account_id_value);
             let output = request.send().await.map_err(|error| {
@@ -11712,7 +11727,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .remove_tags()
                 .set_resource_id(resource_id_value)
                 .set_tags_list(tags_list_value);
@@ -11740,7 +11755,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .restore_event_data_store()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -11778,7 +11793,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .search_sample_queries()
                 .set_search_phrase(search_phrase_value)
                 .set_max_results(max_results_value)
@@ -11819,7 +11834,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_dashboard_refresh()
                 .set_dashboard_id(dashboard_id_value)
                 .set_query_parameter_values(query_parameter_values_value);
@@ -11846,7 +11861,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -11912,7 +11927,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_import()
                 .set_destinations(destinations_value)
                 .set_import_source(import_source_value)
@@ -11941,7 +11956,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.start_logging().set_name(name_value);
+            let request = state.client().await?.start_logging().set_name(name_value);
             let output = request.send().await.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartLogging"))
             })?;
@@ -11996,7 +12011,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_query()
                 .set_query_statement(query_statement_value)
                 .set_delivery_s3_uri(delivery_s3_uri_value)
@@ -12027,7 +12042,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
             let output = request.send().await.map_err(|error| {
@@ -12053,7 +12068,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .stop_import()
                 .set_import_id(import_id_value);
             let output = request
@@ -12078,7 +12093,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.stop_logging().set_name(name_value);
+            let request = state.client().await?.stop_logging().set_name(name_value);
             let output = request
                 .send()
                 .await
@@ -12121,7 +12136,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_channel()
                 .set_channel(channel_value)
                 .set_destinations(destinations_value)
@@ -12174,7 +12189,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_dashboard()
                 .set_dashboard_id(dashboard_id_value)
                 .set_widgets(widgets_value)
@@ -12263,7 +12278,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_event_data_store()
                 .set_event_data_store(event_data_store_value)
                 .set_name(name_value)
@@ -12370,7 +12385,7 @@ impl CloudTrailClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_trail()
                 .set_name(name_value)
                 .set_s3_bucket_name(s3_bucket_name_value)

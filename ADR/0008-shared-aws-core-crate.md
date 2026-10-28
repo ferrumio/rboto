@@ -1,6 +1,6 @@
 # ADR-0008: Share AWS configuration, credentials, and error mapping through an external Rust crate
 
-- Status: Proposed
+- Status: Superseded by [ADR-0012](0012-client-configuration-and-errors.md)
 - Date: 2026-10-16
 - Deciders: rboto maintainers
 

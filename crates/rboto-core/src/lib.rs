@@ -1,10 +1,14 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
+mod config;
 mod document;
+mod error;
 mod event_stream;
 
+pub use config::RequestConfig;
 pub use document::{document_from_py, document_to_py};
+pub use error::{raise_core_error, sdk_error_to_py};
 pub use event_stream::python_event_stream;
 
 pub fn raise_service_error(

@@ -1823,18 +1823,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SQSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -1883,7 +1894,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .add_permission()
                 .set_queue_url(queue_url_value)
                 .set_label(label_value)
@@ -1912,7 +1923,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .cancel_message_move_task()
                 .set_task_handle(task_handle_value);
             let output = request.send().await.map_err(|error| {
@@ -1951,7 +1962,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .change_message_visibility()
                 .set_queue_url(queue_url_value)
                 .set_receipt_handle(receipt_handle_value)
@@ -1992,7 +2003,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .change_message_visibility_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
@@ -2045,7 +2056,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_queue()
                 .set_queue_name(queue_name_value)
                 .set_attributes(attributes_value)
@@ -2080,7 +2091,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_message()
                 .set_queue_url(queue_url_value)
                 .set_receipt_handle(receipt_handle_value);
@@ -2119,7 +2130,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_message_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
@@ -2146,7 +2157,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_queue()
                 .set_queue_url(queue_url_value);
             let output = request
@@ -2187,7 +2198,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_queue_attributes()
                 .set_queue_url(queue_url_value)
                 .set_attribute_names(attribute_names_value);
@@ -2221,7 +2232,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_queue_url()
                 .set_queue_name(queue_name_value)
                 .set_queue_owner_aws_account_id(queue_owner_aws_account_id_value);
@@ -2261,7 +2272,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_dead_letter_source_queues()
                 .set_queue_url(queue_url_value)
                 .set_next_token(next_token_value)
@@ -2295,7 +2306,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_message_move_tasks()
                 .set_source_arn(source_arn_value)
                 .set_max_results(max_results_value);
@@ -2322,7 +2333,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_queue_tags()
                 .set_queue_url(queue_url_value);
             let output = request.send().await.map_err(|error| {
@@ -2361,7 +2372,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_queues()
                 .set_queue_name_prefix(queue_name_prefix_value)
                 .set_next_token(next_token_value)
@@ -2390,7 +2401,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .purge_queue()
                 .set_queue_url(queue_url_value);
             let output = request
@@ -2488,7 +2499,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .receive_message()
                 .set_queue_url(queue_url_value)
                 .set_attribute_names(attribute_names_value)
@@ -2527,7 +2538,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .remove_permission()
                 .set_queue_url(queue_url_value)
                 .set_label(label_value);
@@ -2609,7 +2620,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_message()
                 .set_queue_url(queue_url_value)
                 .set_message_body(message_body_value)
@@ -2654,7 +2665,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .send_message_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
@@ -2695,7 +2706,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .set_queue_attributes()
                 .set_queue_url(queue_url_value)
                 .set_attributes(attributes_value);
@@ -2735,7 +2746,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .start_message_move_task()
                 .set_source_arn(source_arn_value)
                 .set_destination_arn(destination_arn_value)
@@ -2775,7 +2786,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_queue()
                 .set_queue_url(queue_url_value)
                 .set_tags(tags_value);
@@ -2815,7 +2826,7 @@ impl SQSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_queue()
                 .set_queue_url(queue_url_value)
                 .set_tag_keys(tag_keys_value);

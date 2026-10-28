@@ -4906,18 +4906,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl KMSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params))]
@@ -4936,7 +4947,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .cancel_key_deletion()
                 .set_key_id(key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -4963,7 +4974,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .connect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
             let output = request.send().await.map_err(|error| {
@@ -4995,7 +5006,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
@@ -5098,7 +5109,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_custom_key_store()
                 .set_custom_key_store_name(custom_key_store_name_value)
                 .set_cloud_hsm_cluster_id(cloud_hsm_cluster_id_value)
@@ -5208,7 +5219,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_grant()
                 .set_key_id(key_id_value)
                 .set_grantee_principal(grantee_principal_value)
@@ -5318,7 +5329,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .create_key()
                 .set_policy(policy_value)
                 .set_description(description_value)
@@ -5423,7 +5434,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .decrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
                 .set_encryption_context(encryption_context_value)
@@ -5457,7 +5468,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_alias()
                 .set_alias_name(alias_name_value);
             let output = request
@@ -5485,7 +5496,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
             let output = request.send().await.map_err(|error| {
@@ -5517,7 +5528,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .delete_imported_key_material()
                 .set_key_id(key_id_value)
                 .set_key_material_id(key_material_id_value);
@@ -5584,7 +5595,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .derive_shared_secret()
                 .set_key_id(key_id_value)
                 .set_key_agreement_algorithm(key_agreement_algorithm_value)
@@ -5635,7 +5646,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_custom_key_stores()
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_custom_key_store_name(custom_key_store_name_value)
@@ -5676,7 +5687,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .describe_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
@@ -5702,7 +5713,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.disable_key().set_key_id(key_id_value);
+            let request = state.client().await?.disable_key().set_key_id(key_id_value);
             let output = request
                 .send()
                 .await
@@ -5727,7 +5738,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disable_key_rotation()
                 .set_key_id(key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -5754,7 +5765,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .disconnect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
             let output = request.send().await.map_err(|error| {
@@ -5778,7 +5789,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let request = state.client().await.enable_key().set_key_id(key_id_value);
+            let request = state.client().await?.enable_key().set_key_id(key_id_value);
             let output = request
                 .send()
                 .await
@@ -5810,7 +5821,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .enable_key_rotation()
                 .set_key_id(key_id_value)
                 .set_rotation_period_in_days(rotation_period_in_days_value);
@@ -5884,7 +5895,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .encrypt()
                 .set_key_id(key_id_value)
                 .set_plaintext(plaintext_value)
@@ -5966,7 +5977,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_data_key()
                 .set_key_id(key_id_value)
                 .set_encryption_context(encryption_context_value)
@@ -6042,7 +6053,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_data_key_pair()
                 .set_encryption_context(encryption_context_value)
                 .set_key_id(key_id_value)
@@ -6111,7 +6122,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_data_key_pair_without_plaintext()
                 .set_encryption_context(encryption_context_value)
                 .set_key_id(key_id_value)
@@ -6187,7 +6198,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_data_key_without_plaintext()
                 .set_key_id(key_id_value)
                 .set_encryption_context(encryption_context_value)
@@ -6250,7 +6261,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_mac()
                 .set_message(message_value)
                 .set_key_id(key_id_value)
@@ -6294,7 +6305,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .generate_random()
                 .set_number_of_bytes(number_of_bytes_value)
                 .set_custom_key_store_id(custom_key_store_id_value)
@@ -6322,7 +6333,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_key_last_usage()
                 .set_key_id(key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -6354,7 +6365,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_key_policy()
                 .set_key_id(key_id_value)
                 .set_policy_name(policy_name_value);
@@ -6381,7 +6392,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_key_rotation_status()
                 .set_key_id(key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -6424,7 +6435,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_parameters_for_import()
                 .set_key_id(key_id_value)
                 .set_wrapping_algorithm(wrapping_algorithm_value)
@@ -6464,7 +6475,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .get_public_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
@@ -6545,7 +6556,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .import_key_material()
                 .set_key_id(key_id_value)
                 .set_import_token(import_token_value)
@@ -6590,7 +6601,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_aliases()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
@@ -6651,7 +6662,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_grants()
                 .set_limit(limit_value)
                 .set_marker(marker_value)
@@ -6695,7 +6706,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_key_policies()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
@@ -6744,7 +6755,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_key_rotations()
                 .set_key_id(key_id_value)
                 .set_include_key_material(include_key_material_value)
@@ -6779,7 +6790,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_keys()
                 .set_limit(limit_value)
                 .set_marker(marker_value);
@@ -6819,7 +6830,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_resource_tags()
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
@@ -6867,7 +6878,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .list_retirable_grants()
                 .set_limit(limit_value)
                 .set_marker(marker_value)
@@ -6915,7 +6926,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .put_key_policy()
                 .set_key_id(key_id_value)
                 .set_policy_name(policy_name_value)
@@ -7035,7 +7046,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .re_encrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
                 .set_source_encryption_context(source_encryption_context_value)
@@ -7108,7 +7119,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .replicate_key()
                 .set_key_id(key_id_value)
                 .set_replica_region(replica_region_value)
@@ -7157,7 +7168,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .retire_grant()
                 .set_grant_token(grant_token_value)
                 .set_key_id(key_id_value)
@@ -7199,7 +7210,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .revoke_grant()
                 .set_key_id(key_id_value)
                 .set_grant_id(grant_id_value)
@@ -7228,7 +7239,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .rotate_key_on_demand()
                 .set_key_id(key_id_value);
             let output = request.send().await.map_err(|error| {
@@ -7261,7 +7272,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .schedule_key_deletion()
                 .set_key_id(key_id_value)
                 .set_pending_window_in_days(pending_window_in_days_value);
@@ -7329,7 +7340,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .sign()
                 .set_key_id(key_id_value)
                 .set_message(message_value)
@@ -7373,7 +7384,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .tag_resource()
                 .set_key_id(key_id_value)
                 .set_tags(tags_value);
@@ -7413,7 +7424,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .untag_resource()
                 .set_key_id(key_id_value)
                 .set_tag_keys(tag_keys_value);
@@ -7446,7 +7457,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
@@ -7540,7 +7551,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_new_custom_key_store_name(new_custom_key_store_name_value)
@@ -7583,7 +7594,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_key_description()
                 .set_key_id(key_id_value)
                 .set_description(description_value);
@@ -7616,7 +7627,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .update_primary_region()
                 .set_key_id(key_id_value)
                 .set_primary_region(primary_region_value);
@@ -7691,7 +7702,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .verify()
                 .set_key_id(key_id_value)
                 .set_message(message_value)
@@ -7763,7 +7774,7 @@ impl KMSClient {
         future_into_py(py, async move {
             let request = state
                 .client()
-                .await
+                .await?
                 .verify_mac()
                 .set_message(message_value)
                 .set_key_id(key_id_value)
