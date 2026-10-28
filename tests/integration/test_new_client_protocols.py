@@ -12,6 +12,7 @@ from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import pytest
+from rboto import OperationEvent
 
 SELECTED = set(filter(None, os.environ.get("RBOTO_TEST_SERVICES", "").split(",")))
 
@@ -287,7 +288,10 @@ async def test_invalid_documents_and_multivariant_unions_fail_before_io(peer: Pe
 
 @pytest.mark.asyncio
 @service("bedrock-runtime")
-async def test_input_and_output_event_streams_advance_concurrently(peer: Peer) -> None:
+@pytest.mark.parametrize("observed", [False, True])
+async def test_input_and_output_event_streams_advance_concurrently(
+    peer: Peer, observed: bool
+) -> None:
     from rboto import bedrock_runtime
     from rboto_bedrock_runtime.types import InvokeModelWithBidirectionalStreamInput
 
@@ -299,7 +303,12 @@ async def test_input_and_output_event_streams_advance_concurrently(peer: Peer) -
         await released.wait()
         yield {"chunk": {"bytes": b"second"}}
 
-    client = bedrock_runtime(region="us-east-1", endpoint_url=peer.endpoint)
+    observations: list[OperationEvent] = []
+    client = bedrock_runtime(
+        region="us-east-1",
+        endpoint_url=peer.endpoint,
+        interceptors=[observations.append] if observed else (),
+    )
     async with asyncio.timeout(15):
         response = await client.invoke_model_with_bidirectional_stream(
             model_id="example", body=events()
@@ -315,22 +324,33 @@ async def test_input_and_output_event_streams_advance_concurrently(peer: Peer) -
         assert [event async for event in stream] == [{"chunk": {"bytes": b"done"}}]
     assert base64.b64encode(b"first") in peer.requests[0][1]
     assert base64.b64encode(b"second") in peer.requests[0][1]
+    if observed:
+        assert [event.phase for event in observations] == ["start", "success"]
+        assert observations[-1].attempt_count == 1
 
 
 @pytest.mark.asyncio
 @service("bedrock-runtime")
-async def test_modeled_event_stream_errors_are_catchable(peer: Peer) -> None:
+@pytest.mark.parametrize("observed", [False, True])
+async def test_modeled_event_stream_errors_are_catchable(peer: Peer, observed: bool) -> None:
     from rboto import bedrock_runtime
     from rboto_bedrock_runtime.exceptions import ValidationError
 
     peer.content_type = "application/vnd.amazon.eventstream"
     peer.body = event_frame("validationException", {"message": "invalid stream"}, exception=True)
-    client = bedrock_runtime(region="us-east-1", endpoint_url=peer.endpoint)
+    observations: list[OperationEvent] = []
+    client = bedrock_runtime(
+        region="us-east-1",
+        endpoint_url=peer.endpoint,
+        interceptors=[observations.append] if observed else (),
+    )
     response = await client.invoke_model_with_response_stream(model_id="example", body=b"{}")
     with pytest.raises(ValidationError, match="invalid stream"):
         await anext(response["body"])
     with pytest.raises(StopAsyncIteration):
         await anext(response["body"])
+    if observed:
+        assert [event.phase for event in observations] == ["start", "success"]
 
 
 @pytest.mark.asyncio
@@ -636,30 +656,48 @@ async def test_sesv2_structured_content_and_binary_attachment(peer: Peer) -> Non
     ("service_name", "method", "params", "error_code", "exception_name", "operation"),
     [
         pytest.param(
-            "cloudwatch-logs", "get_log_events",
+            "cloudwatch-logs",
+            "get_log_events",
             {"log_group_name": "missing", "log_stream_name": "missing"},
-            "ResourceNotFoundException", "ResourceNotFoundError", "GetLogEvents",
+            "ResourceNotFoundException",
+            "ResourceNotFoundError",
+            "GetLogEvents",
             marks=service("cloudwatch-logs"),
         ),
         pytest.param(
-            "ssm", "get_parameter", {"name": "/missing"},
-            "ParameterNotFound", "ParameterNotFoundError", "GetParameter",
+            "ssm",
+            "get_parameter",
+            {"name": "/missing"},
+            "ParameterNotFound",
+            "ParameterNotFoundError",
+            "GetParameter",
             marks=service("ssm"),
         ),
         pytest.param(
-            "kms", "decrypt", {"ciphertext_blob": b"invalid"},
-            "InvalidCiphertextException", "InvalidCiphertextError", "Decrypt",
+            "kms",
+            "decrypt",
+            {"ciphertext_blob": b"invalid"},
+            "InvalidCiphertextException",
+            "InvalidCiphertextError",
+            "Decrypt",
             marks=service("kms"),
         ),
         pytest.param(
-            "sfn", "describe_state_machine",
+            "sfn",
+            "describe_state_machine",
             {"state_machine_arn": "arn:aws:states:us-east-1:123456789012:stateMachine:missing"},
-            "StateMachineDoesNotExist", "StateMachineDoesNotExistError", "DescribeStateMachine",
+            "StateMachineDoesNotExist",
+            "StateMachineDoesNotExistError",
+            "DescribeStateMachine",
             marks=service("sfn"),
         ),
         pytest.param(
-            "sesv2", "send_email", {"content": {"raw": {"data": b"invalid"}}},
-            "MessageRejected", "MessageRejectedError", "SendEmail",
+            "sesv2",
+            "send_email",
+            {"content": {"raw": {"data": b"invalid"}}},
+            "MessageRejected",
+            "MessageRejectedError",
+            "SendEmail",
             marks=service("sesv2"),
         ),
     ],
@@ -810,10 +848,7 @@ async def test_pipes_source_filter_and_native_timestamps(peer: Peer) -> None:
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "service_name",
-    [
-        pytest.param(name, marks=service(name))
-        for name in ("eventbridge", "scheduler", "pipes")
-    ],
+    [pytest.param(name, marks=service(name)) for name in ("eventbridge", "scheduler", "pipes")],
 )
 async def test_event_family_modeled_missing_resources(peer: Peer, service_name: str) -> None:
     import importlib

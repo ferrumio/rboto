@@ -3432,11 +3432,12 @@ impl LexRuntimeV2Client {
         }
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn delete_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3464,26 +3465,38 @@ impl LexRuntimeV2Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .delete_session()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
                 .set_locale_id(locale_id_value)
                 .set_session_id(session_id_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
             })?;
             Ok(PyDeleteSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn get_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3511,27 +3524,37 @@ impl LexRuntimeV2Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .get_session()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
                 .set_locale_id(locale_id_value)
                 .set_session_id(session_id_value);
-            let output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
             Ok(PyGetSessionResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn put_session<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3597,9 +3620,8 @@ impl LexRuntimeV2Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .put_session()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
@@ -3609,9 +3631,19 @@ impl LexRuntimeV2Client {
                 .set_session_state(session_state_value)
                 .set_request_attributes(request_attributes_value)
                 .set_response_content_type(response_content_type_value);
-            let mut output = request
-                .send()
-                .await
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let mut output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutSession")))?;
             Python::attach(|py| {
                 let audio_stream = std::mem::take(&mut output.audio_stream);
@@ -3627,11 +3659,12 @@ impl LexRuntimeV2Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn recognize_text<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3684,9 +3717,8 @@ impl LexRuntimeV2Client {
                 None
             };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .recognize_text()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
@@ -3695,18 +3727,31 @@ impl LexRuntimeV2Client {
                 .set_text(text_value)
                 .set_session_state(session_state_value)
                 .set_request_attributes(request_attributes_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeText"))
             })?;
             Ok(PyRecognizeTextResponse { inner: output })
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn recognize_utterance<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3768,9 +3813,8 @@ impl LexRuntimeV2Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .recognize_utterance()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
@@ -3781,7 +3825,19 @@ impl LexRuntimeV2Client {
                 .set_request_content_type(request_content_type_value)
                 .set_response_content_type(response_content_type_value)
                 .set_input_stream(input_stream_value);
-            let mut output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let mut output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeUtterance"))
             })?;
             Python::attach(|py| {
@@ -3798,11 +3854,12 @@ impl LexRuntimeV2Client {
         })
     }
 
-    #[pyo3(signature = (params))]
+    #[pyo3(signature = (params, observation=None))]
     fn start_conversation<'py>(
         &self,
         py: Python<'py>,
         params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         let bot_id_value = if let Some(value) = dict_value(params, "bot_id")? {
@@ -3850,9 +3907,8 @@ impl LexRuntimeV2Client {
             None
         };
         future_into_py(py, async move {
-            let request = state
-                .client()
-                .await
+            let client = state.client().await;
+            let request = client
                 .start_conversation()
                 .set_bot_id(bot_id_value)
                 .set_bot_alias_id(bot_alias_id_value)
@@ -3860,7 +3916,19 @@ impl LexRuntimeV2Client {
                 .set_session_id(session_id_value)
                 .set_conversation_mode(conversation_mode_value)
                 .set_request_event_stream(request_event_stream_value);
-            let output = request.send().await.map_err(|error| {
+            let result = if let Some(sink) = observation {
+                let observer = rboto_core::OperationObservation::default();
+                let result = request
+                    .customize()
+                    .interceptor(observer.clone())
+                    .send()
+                    .await;
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+                result
+            } else {
+                request.send().await
+            };
+            let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartConversation"))
             })?;
             Python::attach(|py| {

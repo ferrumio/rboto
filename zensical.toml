@@ -16,6 +16,7 @@ nav = [
         { "AWS Lambda" = "guides/aws-lambda.md" },
         { "Streaming" = "guides/streaming.md" },
         { "Errors" = "guides/errors.md" },
+        { "Interceptors" = "guides/interceptors.md" },
         { "Testing" = "guides/testing.md" },
     ] },
     { "Service guides" = [

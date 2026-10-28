@@ -956,8 +956,8 @@ class ServiceGenerator:
             self._kind(field.rust_type) == "byte_stream" for field in operation.output_fields
         )
         lines = [
-            "    #[pyo3(signature = (params))]",
-            f"    fn {operation_name}<'py>(&self, py: Python<'py>, params: &Bound<'py, PyDict>) -> PyResult<Bound<'py, PyAny>> {{",
+            "    #[pyo3(signature = (params, observation=None))]",
+            f"    fn {operation_name}<'py>(&self, py: Python<'py>, params: &Bound<'py, PyDict>, observation: Option<Py<PyDict>>) -> PyResult<Bound<'py, PyAny>> {{",
             "        let state = self.state.clone();",
         ]
         converted_fields: list[tuple[RustField, str]] = []
@@ -975,7 +975,8 @@ class ServiceGenerator:
         lines.extend(
             [
                 "        future_into_py(py, async move {",
-                f"            let request = state.client().await.{operation_name}()",
+                "            let client = state.client().await;",
+                f"            let request = client.{operation_name}()",
             ]
         )
         for field, converted in converted_fields:
@@ -983,7 +984,15 @@ class ServiceGenerator:
         lines[-1] += ";"
         lines.extend(
             [
-                f"            let {'mut ' if has_native_stream else ''}output = request.send().await.map_err(|error| {{",
+                "            let result = if let Some(sink) = observation {",
+                "                let observer = rboto_core::OperationObservation::default();",
+                "                let result = request.customize().interceptor(observer.clone()).send().await;",
+                "                observer.publish(sink, client.config().region().map(|region| region.as_ref()));",
+                "                result",
+                "            } else {",
+                "                request.send().await",
+                "            };",
+                f"            let {'mut ' if has_native_stream else ''}output = result.map_err(|error| {{",
                 f'                Python::attach(|py| sdk_error_to_py(py, &error, "{smithy.name}"))',
                 "            })?;",
             ]
@@ -1428,6 +1437,7 @@ class ServiceGenerator:
             output = short_name(smithy.output_target)
         return {
             "name": operation_name,
+            "operation_name": smithy.name,
             "parameters": parameters,
             "output": output,
             "native_output": native_output,
@@ -1470,6 +1480,7 @@ class ServiceGenerator:
                 native_outputs=self.descriptor.native_outputs,
                 client_class=self.descriptor.client_class,
                 native_client_class=self.descriptor.native_class,
+                service_id=self.descriptor.service_id,
             )
             .rstrip()
             + "\n"
