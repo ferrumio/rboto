@@ -30,6 +30,9 @@ operation directly. Do not call `asyncio.run()` inside an already running loop.
 Create clients during application setup and pass them to code that needs them.
 The current clients do not implement context managers or a `close()` method.
 
+For a synchronous Lambda entry point that calls async code, see
+[AWS Lambda](aws-lambda.md).
+
 ## Concurrent requests
 
 Use `asyncio.gather()` for a small, known set of independent operations:

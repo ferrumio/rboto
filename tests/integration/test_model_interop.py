@@ -233,3 +233,27 @@ def test_documented_dataclass_schema_and_argument_validation() -> None:
     for arguments in ('{"key": ""}', '{"key": 12}'):
         with pytest.raises(ValidationError):
             example["parse_arguments"](arguments)
+
+
+def test_lambda_handler_reuses_client_across_invocations(
+    client: "S3Client", peer: Peer, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import rboto
+
+    # Only redirect client construction; requests use the compiled client and peer.
+    monkeypatch.setattr(rboto, "s3", lambda: client)
+    monkeypatch.setenv("DOCUMENT_BUCKET", "documents")
+    example = runpy.run_path(str(EXAMPLES / "lambda_function.py"))
+    handler = example["lambda_handler"]
+
+    first = handler({"key": "first.txt"}, None)
+    with pytest.raises(ValidationError):
+        handler({"key": 123}, None)
+    second = handler({"key": "second.txt"}, None)
+
+    assert first == second == {
+        "content_length": len(peer.body),
+        "content_type": "text/plain",
+    }
+    assert json.loads(json.dumps(second)) == second
+    assert peer.requests == ["/documents/first.txt", "/documents/second.txt"]

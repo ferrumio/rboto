@@ -87,6 +87,9 @@ For native responses, construct the dataclass explicitly as above, or validate a
 dictionary with an adapter. Attribute validation for `BaseModel` is a separate
 path from dataclass validation.
 
+For a complete handler that validates an event and returns JSON-compatible data,
+see [AWS Lambda](aws-lambda.md).
+
 ## Structured model responses
 
 For an agent using Bedrock, extract the JSON text produced by the model and pass

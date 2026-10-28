@@ -3,6 +3,8 @@
 These clients invoke existing functions and models. Install their service packages
 as described in [Getting started](../getting-started.md).
 
+To run rboto inside a function, see [AWS Lambda](aws-lambda.md).
+
 ## Invoke Lambda
 
 Use `rboto.lambda_()`; the underscore avoids Python's `lambda` keyword.
