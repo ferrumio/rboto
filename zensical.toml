@@ -6,7 +6,24 @@ repo_name = "ferrumio/rboto"
 
 nav = [
     { "Home" = "index.md" },
+    { "Getting started" = "getting-started.md" },
+    { "Async-only" = "guides/async-only.md" },
     { "Clients" = "clients.md" },
+    { "Using rboto" = [
+        { "Configuration and credentials" = "guides/configuration.md" },
+        { "Types and responses" = "guides/types.md" },
+        { "Streaming" = "guides/streaming.md" },
+        { "Errors" = "guides/errors.md" },
+        { "Testing" = "guides/testing.md" },
+    ] },
+    { "Service guides" = [
+        { "S3" = "guides/s3.md" },
+        { "DynamoDB" = "guides/dynamodb.md" },
+        { "SNS and SQS" = "guides/messaging.md" },
+        { "Lambda and Bedrock" = "guides/inference.md" },
+        { "Events and schedules" = "guides/events.md" },
+        { "Application services" = "guides/application-services.md" },
+    ] },
 ]
 
 [theme]
@@ -39,3 +56,8 @@ anchor_linenums = true
 
 [markdown_extensions."pymdownx.tabbed"]
 alternate_style = true
+
+
+[markdown_extensions."pymdownx.snippets"]
+base_path = "."
+check_paths = true

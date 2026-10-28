@@ -1,106 +1,48 @@
 # rboto
 
-Async, strictly typed AWS clients for Python, powered by the official AWS SDK for Rust.
-
-!!! info "Early development"
-    rboto is currently an experimental project. S3, SNS, SQS, and DynamoDB are available
-    as independently installable clients.
-
-## Why rboto?
-
-Python's AWS ecosystem is mature, but native async support often requires additional
-packages and responses are commonly represented by untyped dictionaries. rboto takes a
-different approach:
-
-- **Async-only** - every AWS operation is awaitable.
-- **Strictly typed** - generated method signatures cover every modeled parameter.
-- **Official AWS runtime** - authentication, signing, retries, endpoints, and HTTP are
-  handled by the AWS SDK for Rust.
-- **Service packages** - install only the clients your application needs.
-- **Native streaming** - S3 bodies remain incremental Rust streams exposed as Python
-  async iterators.
-
-## Installation
-
-rboto supports CPython 3.12, 3.13, 3.14, and 3.15 on Linux and macOS.
-
-=== "S3"
-    ```bash
-    pip install "rboto[s3]"
-    ```
-
-=== "SQS"
-    ```bash
-    pip install "rboto[sqs]"
-    ```
-
-=== "SNS"
-    ```bash
-    pip install "rboto[sns]"
-    ```
-
-=== "DynamoDB"
-    ```bash
-    pip install "rboto[dynamodb]"
-    ```
-
-=== "All clients"
-    ```bash
-    pip install "rboto[all]"
-    ```
-
-## Credentials
-
-rboto uses the standard AWS credential chain. Environment variables work without any
-rboto-specific configuration:
-
-```bash
-export AWS_ACCESS_KEY_ID="..."
-export AWS_SECRET_ACCESS_KEY="..."
-export AWS_REGION="us-east-1"
-```
-
-Temporary credentials can also provide `AWS_SESSION_TOKEN`.
-
-## First request
+rboto provides typed, async-only Python clients for AWS services. Create a client,
+await an operation, and read the response through typed attributes.
 
 ```python
-import asyncio
-
-from rboto import s3
-
-
-async def main() -> None:
-    client = s3(region="us-east-1")
-    response = await client.list_buckets()
-
-    for bucket in response.buckets or []:
-        print(bucket.name)
-
-
-asyncio.run(main())
+--8<-- "examples/docs/first_request.py"
 ```
 
-Client construction performs no network I/O. AWS configuration and credentials are
-loaded lazily by the Rust SDK when the first operation is awaited.
+This request prints the account and principal used by your application. It needs
+configured credentials and does not create resources.
 
-## Architecture
+rboto is under development. Packages have not yet been published to PyPI.
+Follow [Getting started](getting-started.md) to install a client from source.
 
-```text
-Strict Python API
-       |
-       v
-Generated PyO3 adapter
-       |
-       v
-Official aws-sdk-* crate
-       |
-       v
-AWS authentication, retries, HTTP, and protocols
-```
+## Choose your clients
 
-The Python and Rust adapters are generated from release-matched Smithy models and AWS
-SDK crates. Generated sources are checked into the repository, reviewed through pull
-requests, and compiled without downloading models during wheel builds.
+Each service has its own package. An application using S3 and DynamoDB needs those
+two clients and the small `rboto` facade.
 
-Continue to [Clients](clients.md) for S3, SNS, SQS, and DynamoDB examples.
+| Task | Clients | Guide |
+|---|---|---|
+| Upload or download objects | `s3()` | [S3](guides/s3.md) |
+| Read and write items | `dynamodb()` | [DynamoDB](guides/dynamodb.md) |
+| Publish notifications or process queue messages | `sns()`, `sqs()` | [Messaging](guides/messaging.md) |
+| Invoke functions or models | `lambda_()`, `bedrock_runtime()` | [Lambda and Bedrock](guides/inference.md) |
+| Route events or schedule work | `eventbridge()`, `scheduler()`, `pipes()` | [Events and schedules](guides/events.md) |
+| Read configuration, encrypt values, start workflows, send email | `ssm()`, `kms()`, `sfn()`, `sesv2()` | [Application services](guides/application-services.md) |
+
+The [client catalog](clients.md) lists every service, its package, and its factory.
+
+## Using the API
+
+**Every service operation requires `await`.** In a script, start the event loop
+once with `asyncio.run()`. In an async application, use the existing loop.
+See [Async-only](guides/async-only.md).
+
+**Inputs use keyword arguments and typed dictionaries.** Regular responses expose
+read-only attributes such as `response.account`. See [Types and responses](guides/types.md).
+
+**Clients are reusable.** Configuration loads on first use. Keep clients around
+for later requests. See [Configuration and credentials](guides/configuration.md).
+
+**Streams are consumed as you read them.** Use `async for` for chunks or events,
+and `.read()` for byte streams that fit in memory. See [Streaming](guides/streaming.md).
+
+Signing, credential providers, retries, and HTTP requests use the AWS SDK for Rust.
+The guides describe the Python API and the settings rboto currently exposes.
