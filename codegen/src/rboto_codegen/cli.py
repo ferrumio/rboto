@@ -105,6 +105,7 @@ def main() -> None:
             for path in (
                 generated.facade,
                 generated.core_init,
+                generated.core_stub,
                 generated.cargo,
                 generated.pyproject,
                 generated.package_init,

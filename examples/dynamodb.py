@@ -11,8 +11,7 @@ if Path(sys.prefix).resolve() != PROJECT_VENV.resolve():
         raise RuntimeError("project virtual environment not found: run python3 -m venv .venv")
     os.execv(venv_python, [str(venv_python), *sys.argv])
 
-from rboto import dynamodb
-from rboto_dynamodb import DynamoDBClient
+from rboto import DynamoDBClient
 from rboto_dynamodb.types import AttributeValue
 
 
@@ -32,7 +31,7 @@ async def wait_until_active(client: DynamoDBClient, table_name: str) -> None:
 
 async def main() -> None:
     region = configure_aws()
-    client = dynamodb(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
+    client = DynamoDBClient(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     table_name = f"rboto-example-{uuid.uuid4().hex[:12]}"
     table_created = False
 

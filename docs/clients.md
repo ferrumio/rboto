@@ -1,64 +1,112 @@
 # Clients
 
-The catalog contains 34 services and 1,865 operations. Install the packages your
-application uses; [Getting started](getting-started.md) covers source installation.
-
-## Imports and factories
-
-Factories live in `rboto`. Classes live in the corresponding service package:
+Import client classes directly from `rboto`:
 
 ```python
-from rboto import s3
-from rboto_s3 import S3Client
+from rboto import DynamoDBClient, S3Client
 
-first = s3(region="us-east-1")
-second = S3Client(region="us-east-1")
+objects = S3Client(region="us-east-1")
+items = DynamoDBClient(region="us-east-1")
 ```
 
-Both create the same kind of client. Hyphens become underscores in Python imports.
-Lambda's factory is `lambda_()`. Operations are async and use keyword arguments.
+The same class is used for construction and type annotations. Operations are
+async and use keyword arguments. Importing a class loads only its service
+package; constructing it does not send a network request.
 
-## Service catalog
+## Install the services you use
 
-| Package | Factory in `rboto` | Client class | Operations |
-|---|---|---|---:|
-| `rboto-api-gateway` | `api_gateway()` | `rboto_api_gateway.APIGatewayClient` | 124 |
-| `rboto-bedrock-agent-runtime` | `bedrock_agent_runtime()` | `rboto_bedrock_agent_runtime.BedrockAgentRuntimeClient` | 35 |
-| `rboto-bedrock-agent` | `bedrock_agent()` | `rboto_bedrock_agent.BedrockAgentClient` | 86 |
-| `rboto-bedrock-agentcore-control` | `bedrock_agentcore_control()` | `rboto_bedrock_agentcore_control.BedrockAgentCoreControlClient` | 171 |
-| `rboto-bedrock-agentcore` | `bedrock_agentcore()` | `rboto_bedrock_agentcore.BedrockAgentCoreClient` | 67 |
-| `rboto-bedrock-data-automation-runtime` | `bedrock_data_automation_runtime()` | `rboto_bedrock_data_automation_runtime.BedrockDataAutomationRuntimeClient` | 6 |
-| `rboto-bedrock-data-automation` | `bedrock_data_automation()` | `rboto_bedrock_data_automation.BedrockDataAutomationClient` | 27 |
-| `rboto-bedrock-runtime` | `bedrock_runtime()` | `rboto_bedrock_runtime.BedrockRuntimeClient` | 11 |
-| `rboto-bedrock` | `bedrock()` | `rboto_bedrock.BedrockClient` | 108 |
-| `rboto-cloudtrail` | `cloudtrail()` | `rboto_cloudtrail.CloudTrailClient` | 60 |
-| `rboto-cloudwatch-logs` | `cloudwatch_logs()` | `rboto_cloudwatch_logs.CloudWatchLogsClient` | 118 |
-| `rboto-cognito-identity` | `cognito_identity()` | `rboto_cognito_identity.CognitoIdentityClient` | 23 |
-| `rboto-connecthealth` | `connecthealth()` | `rboto_connecthealth.ConnectHealthClient` | 16 |
-| `rboto-dynamodb` | `dynamodb()` | `rboto_dynamodb.DynamoDBClient` | 58 |
-| `rboto-eventbridge` | `eventbridge()` | `rboto_eventbridge.EventBridgeClient` | 57 |
-| `rboto-guardduty` | `guardduty()` | `rboto_guardduty.GuardDutyClient` | 102 |
-| `rboto-kms` | `kms()` | `rboto_kms.KMSClient` | 54 |
-| `rboto-lambda` | `lambda_()` | `rboto_lambda.LambdaClient` | 88 |
-| `rboto-lex-runtime-v2` | `lex_runtime_v2()` | `rboto_lex_runtime_v2.LexRuntimeV2Client` | 6 |
-| `rboto-pipes` | `pipes()` | `rboto_pipes.PipesClient` | 10 |
-| `rboto-polly` | `polly()` | `rboto_polly.PollyClient` | 10 |
-| `rboto-qbusiness` | `qbusiness()` | `rboto_qbusiness.QBusinessClient` | 83 |
-| `rboto-s3` | `s3()` | `rboto_s3.S3Client` | 112 |
-| `rboto-sagemaker-runtime-http2` | `sagemaker_runtime_http2()` | `rboto_sagemaker_runtime_http2.SageMakerRuntimeHTTP2Client` | 1 |
-| `rboto-scheduler` | `scheduler()` | `rboto_scheduler.SchedulerClient` | 12 |
-| `rboto-secrets-manager` | `secrets_manager()` | `rboto_secrets_manager.SecretsManagerClient` | 23 |
-| `rboto-sesv2` | `sesv2()` | `rboto_sesv2.SESv2Client` | 116 |
-| `rboto-sfn` | `sfn()` | `rboto_sfn.SFNClient` | 37 |
-| `rboto-signin` | `signin()` | `rboto_signin.SignInClient` | 11 |
-| `rboto-sns` | `sns()` | `rboto_sns.SNSClient` | 42 |
-| `rboto-sqs` | `sqs()` | `rboto_sqs.SQSClient` | 23 |
-| `rboto-ssm` | `ssm()` | `rboto_ssm.SSMClient` | 152 |
-| `rboto-sts` | `sts()` | `rboto_sts.STSClient` | 11 |
-| `rboto-transcribe-streaming` | `transcribe_streaming()` | `rboto_transcribe_streaming.TranscribeStreamingClient` | 5 |
+The catalog contains 34 services and 1,865 operations. Each service has its own
+package. `rboto[s3]` selects the matching `rboto-s3` dependency once packages are
+published. [Getting started](getting-started.md) covers source installation.
+
+`import rboto` works without service packages. `from rboto import S3Client`
+requires `rboto-s3` and raises an `ImportError` with installation guidance if
+that package is missing. A broken native extension or another missing dependency
+keeps its original import error.
+
+Use explicit imports. `from rboto import *` requests every exported client and
+therefore requires all service packages.
+
+## Client catalog
+
+All classes in this table are available from `rboto`:
+
+| Client class | Service package | Operations |
+|---|---|---:|
+| `APIGatewayClient` | `rboto-api-gateway` | 124 |
+| `BedrockAgentClient` | `rboto-bedrock-agent` | 86 |
+| `BedrockAgentCoreClient` | `rboto-bedrock-agentcore` | 67 |
+| `BedrockAgentCoreControlClient` | `rboto-bedrock-agentcore-control` | 171 |
+| `BedrockAgentRuntimeClient` | `rboto-bedrock-agent-runtime` | 35 |
+| `BedrockClient` | `rboto-bedrock` | 108 |
+| `BedrockDataAutomationClient` | `rboto-bedrock-data-automation` | 27 |
+| `BedrockDataAutomationRuntimeClient` | `rboto-bedrock-data-automation-runtime` | 6 |
+| `BedrockRuntimeClient` | `rboto-bedrock-runtime` | 11 |
+| `CloudTrailClient` | `rboto-cloudtrail` | 60 |
+| `CloudWatchLogsClient` | `rboto-cloudwatch-logs` | 118 |
+| `CognitoIdentityClient` | `rboto-cognito-identity` | 23 |
+| `ConnectHealthClient` | `rboto-connecthealth` | 16 |
+| `DynamoDBClient` | `rboto-dynamodb` | 58 |
+| `EventBridgeClient` | `rboto-eventbridge` | 57 |
+| `EventBridgePipesClient` | `rboto-pipes` | 10 |
+| `EventBridgeSchedulerClient` | `rboto-scheduler` | 12 |
+| `GuardDutyClient` | `rboto-guardduty` | 102 |
+| `KMSClient` | `rboto-kms` | 54 |
+| `LambdaClient` | `rboto-lambda` | 88 |
+| `LexRuntimeV2Client` | `rboto-lex-runtime-v2` | 6 |
+| `PollyClient` | `rboto-polly` | 10 |
+| `QBusinessClient` | `rboto-qbusiness` | 83 |
+| `S3Client` | `rboto-s3` | 112 |
+| `SESV2Client` | `rboto-sesv2` | 116 |
+| `SNSClient` | `rboto-sns` | 42 |
+| `SQSClient` | `rboto-sqs` | 23 |
+| `SSMClient` | `rboto-ssm` | 152 |
+| `STSClient` | `rboto-sts` | 11 |
+| `SageMakerRuntimeHTTP2Client` | `rboto-sagemaker-runtime-http2` | 1 |
+| `SecretsManagerClient` | `rboto-secrets-manager` | 23 |
+| `SignInClient` | `rboto-signin` | 11 |
+| `StepFunctionsClient` | `rboto-sfn` | 37 |
+| `TranscribeStreamingClient` | `rboto-transcribe-streaming` | 5 |
 
 Counts describe the models included in this checkout. Region availability,
 permissions, and service restrictions still apply.
 
-See [Configuration](guides/configuration.md), [Types and responses](guides/types.md),
-[Async-only](guides/async-only.md), and [Errors](guides/errors.md) for shared behavior.
+## Share configuration
+
+Classes accept the same `Session` settings as the compatibility factories:
+
+```python
+from rboto import S3Client, Session, SQSClient
+
+session = Session(region="us-east-1", profile="development")
+objects = S3Client(session=session)
+messages = SQSClient(session=session)
+```
+
+Use either `session` or explicit constructor settings. Combining them raises
+`ValueError`. See [Configuration](guides/configuration.md).
+
+## Existing imports
+
+Service-package imports continue to work. `from rboto_s3 import S3Client` and
+`from rboto import S3Client` refer to the same class.
+
+These older names remain aliases in their service packages:
+
+| Existing import | Preferred import |
+|---|---|
+| `from rboto_sfn import SFNClient` | `from rboto import StepFunctionsClient` |
+| `from rboto_sesv2 import SESv2Client` | `from rboto import SESV2Client` |
+| `from rboto_pipes import PipesClient` | `from rboto import EventBridgePipesClient` |
+| `from rboto_scheduler import SchedulerClient` | `from rboto import EventBridgeSchedulerClient` |
+
+Factories such as `rboto.s3()`, `rboto.sfn()` and `rboto.lambda_()` also remain
+available. They construct the same classes and accept the same settings.
+Package names and extras are unchanged.
+
+Input types, response classes, and modeled exceptions stay in the service
+packages, for example `rboto_s3.GetObjectOutput` and
+`rboto_s3.exceptions.NoSuchKeyError`.
+
+See [Types and responses](guides/types.md), [Async-only](guides/async-only.md),
+and [Errors](guides/errors.md) for shared behavior.

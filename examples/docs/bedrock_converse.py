@@ -1,4 +1,4 @@
-from rboto_bedrock_runtime import BedrockRuntimeClient
+from rboto import BedrockRuntimeClient
 from rboto_bedrock_runtime.types import Message
 
 

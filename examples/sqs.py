@@ -11,7 +11,7 @@ if Path(sys.prefix).resolve() != PROJECT_VENV.resolve():
         raise RuntimeError("project virtual environment not found: run python3 -m venv .venv")
     os.execv(venv_python, [str(venv_python), *sys.argv])
 
-from rboto import sqs
+from rboto import SQSClient
 
 
 def configure_aws() -> str:
@@ -20,7 +20,7 @@ def configure_aws() -> str:
 
 async def main() -> None:
     region = configure_aws()
-    client = sqs(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
+    client = SQSClient(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     queue_name = f"rboto-example-{uuid.uuid4().hex[:12]}"
     queue_url: str | None = None
 

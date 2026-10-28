@@ -1,6 +1,6 @@
 from collections.abc import AsyncIterator
 
-from rboto_bedrock_runtime import BedrockRuntimeClient
+from rboto import BedrockRuntimeClient
 from rboto_bedrock_runtime.types import InvokeModelWithBidirectionalStreamInput
 
 

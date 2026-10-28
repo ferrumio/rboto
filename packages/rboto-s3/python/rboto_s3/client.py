@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import S3Client as NativeClient, AbortMultipartUploadOutput, CompleteMultipartUploadOutput, CopyObjectOutput, CreateBucketOutput, CreateMultipartUploadOutput, CreateSessionOutput, DeleteObjectAnnotationOutput, DeleteObjectOutput, DeleteObjectTaggingOutput, DeleteObjectsOutput, GetBucketAbacOutput, GetBucketAccelerateConfigurationOutput, GetBucketAclOutput, GetBucketAnalyticsConfigurationOutput, GetBucketCorsOutput, GetBucketEncryptionOutput, GetBucketIntelligentTieringConfigurationOutput, GetBucketInventoryConfigurationOutput, GetBucketLifecycleConfigurationOutput, GetBucketLocationOutput, GetBucketLoggingOutput, GetBucketMetadataConfigurationOutput, GetBucketMetadataTableConfigurationOutput, GetBucketMetricsConfigurationOutput, GetBucketNotificationConfigurationOutput, GetBucketOwnershipControlsOutput, GetBucketPolicyOutput, GetBucketPolicyStatusOutput, GetBucketReplicationOutput, GetBucketRequestPaymentOutput, GetBucketTaggingOutput, GetBucketVersioningOutput, GetBucketWebsiteOutput, GetObjectAclOutput, GetObjectAnnotationOutput, GetObjectAttributesOutput, GetObjectLegalHoldOutput, GetObjectLockConfigurationOutput, GetObjectOutput, GetObjectRetentionOutput, GetObjectTaggingOutput, GetObjectTorrentOutput, GetPublicAccessBlockOutput, HeadBucketOutput, HeadObjectOutput, ListBucketAnalyticsConfigurationsOutput, ListBucketIntelligentTieringConfigurationsOutput, ListBucketInventoryConfigurationsOutput, ListBucketMetricsConfigurationsOutput, ListBucketsOutput, ListDirectoryBucketsOutput, ListMultipartUploadsOutput, ListObjectAnnotationsOutput, ListObjectVersionsOutput, ListObjectsOutput, ListObjectsV2Output, ListPartsOutput, PutBucketLifecycleConfigurationOutput, PutObjectAclOutput, PutObjectAnnotationOutput, PutObjectLegalHoldOutput, PutObjectLockConfigurationOutput, PutObjectOutput, PutObjectRetentionOutput, PutObjectTaggingOutput, RenameObjectOutput, RestoreObjectOutput, UpdateObjectEncryptionResponse, UploadPartCopyOutput, UploadPartOutput
 from .types import (
     AbacStatus,
@@ -74,10 +76,12 @@ class S3Client:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

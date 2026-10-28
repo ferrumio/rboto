@@ -1,4 +1,4 @@
-from rboto_sts import STSClient
+from rboto import STSClient
 
 
 async def identity_dict(client: STSClient) -> dict[str, object]:

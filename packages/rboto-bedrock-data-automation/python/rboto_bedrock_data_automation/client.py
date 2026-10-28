@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import BedrockDataAutomationClient as NativeClient, CopyBlueprintStageResponse, CreateBlueprintResponse, CreateBlueprintVersionResponse, CreateDataAutomationLibraryResponse, CreateDataAutomationProjectResponse, DeleteBlueprintResponse, DeleteDataAutomationLibraryResponse, DeleteDataAutomationProjectResponse, GetBlueprintOptimizationStatusResponse, GetBlueprintResponse, GetDataAutomationLibraryEntityResponse, GetDataAutomationLibraryIngestionJobResponse, GetDataAutomationLibraryResponse, GetDataAutomationProjectResponse, InvokeBlueprintOptimizationAsyncResponse, InvokeDataAutomationLibraryIngestionJobResponse, ListBlueprintsResponse, ListDataAutomationLibrariesResponse, ListDataAutomationLibraryEntitiesResponse, ListDataAutomationLibraryIngestionJobsResponse, ListDataAutomationProjectsResponse, ListTagsForResourceResponse, TagResourceResponse, UntagResourceResponse, UpdateBlueprintResponse, UpdateDataAutomationLibraryResponse, UpdateDataAutomationProjectResponse
 from .types import (
     BlueprintFilter,
@@ -37,10 +39,12 @@ class BedrockDataAutomationClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

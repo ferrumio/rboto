@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import KMSClient as NativeClient, CancelKeyDeletionResponse, ConnectCustomKeyStoreResponse, CreateCustomKeyStoreResponse, CreateGrantResponse, CreateKeyResponse, DecryptResponse, DeleteCustomKeyStoreResponse, DeleteImportedKeyMaterialResponse, DeriveSharedSecretResponse, DescribeCustomKeyStoresResponse, DescribeKeyResponse, DisconnectCustomKeyStoreResponse, EncryptResponse, GenerateDataKeyPairResponse, GenerateDataKeyPairWithoutPlaintextResponse, GenerateDataKeyResponse, GenerateDataKeyWithoutPlaintextResponse, GenerateMacResponse, GenerateRandomResponse, GetKeyLastUsageResponse, GetKeyPolicyResponse, GetKeyRotationStatusResponse, GetParametersForImportResponse, GetPublicKeyResponse, ImportKeyMaterialResponse, ListAliasesResponse, ListGrantsOutput, ListKeyPoliciesResponse, ListKeyRotationsResponse, ListKeysResponse, ListResourceTagsResponse, ListRetirableGrantsOutput, ReEncryptResponse, ReplicateKeyResponse, RotateKeyOnDemandResponse, ScheduleKeyDeletionResponse, SignResponse, UpdateCustomKeyStoreResponse, VerifyMacResponse, VerifyResponse
 from .types import (
     AlgorithmSpec,
@@ -37,10 +39,12 @@ class KMSClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

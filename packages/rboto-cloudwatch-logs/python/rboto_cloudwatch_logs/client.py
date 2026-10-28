@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import CloudWatchLogsClient as NativeClient, AssociateSourceToS3TableIntegrationResponse, CancelImportTaskResponse, CreateDeliveryResponse, CreateExportTaskResponse, CreateImportTaskResponse, CreateLogAnomalyDetectorResponse, CreateLookupTableResponse, CreateScheduledQueryResponse, DeleteIndexPolicyResponse, DeleteIntegrationResponse, DeleteQueryDefinitionResponse, DeleteScheduledQueryResponse, DescribeAccountPoliciesResponse, DescribeConfigurationTemplatesResponse, DescribeDeliveriesResponse, DescribeDeliveryDestinationsResponse, DescribeDeliverySourcesResponse, DescribeDestinationsResponse, DescribeExportTasksResponse, DescribeFieldIndexesResponse, DescribeImportTaskBatchesResponse, DescribeImportTasksResponse, DescribeIndexPoliciesResponse, DescribeLogGroupsResponse, DescribeLogStreamsResponse, DescribeLookupTablesResponse, DescribeMetricFiltersResponse, DescribeQueriesResponse, DescribeQueryDefinitionsResponse, DescribeResourcePoliciesResponse, DescribeSubscriptionFiltersResponse, DisassociateSourceFromS3TableIntegrationResponse, FilterLogEventsResponse, GetDataProtectionPolicyResponse, GetDeliveryDestinationPolicyResponse, GetDeliveryDestinationResponse, GetDeliveryResponse, GetDeliverySourceResponse, GetIntegrationResponse, GetLogAnomalyDetectorResponse, GetLogEventsResponse, GetLogFieldsResponse, GetLogGroupFieldsResponse, GetLogRecordResponse, GetLookupTableResponse, GetQueryResultsResponse, GetScheduledQueryHistoryResponse, GetScheduledQueryResponse, GetStorageTierPolicyResponse, GetTransformerResponse, ListAggregateLogGroupSummariesResponse, ListAnomaliesResponse, ListIntegrationsResponse, ListLogAnomalyDetectorsResponse, ListLogGroupsForQueryResponse, ListLogGroupsResponse, ListScheduledQueriesResponse, ListSourcesForS3TableIntegrationResponse, ListSyslogConfigurationsResponse, ListTagsForResourceResponse, ListTagsLogGroupResponse, PutAccountPolicyResponse, PutDataProtectionPolicyResponse, PutDeliveryDestinationPolicyResponse, PutDeliveryDestinationResponse, PutDeliverySourceResponse, PutDestinationResponse, PutIndexPolicyResponse, PutIntegrationResponse, PutLogEventsResponse, PutQueryDefinitionResponse, PutResourcePolicyResponse, PutStorageTierPolicyResponse, StartQueryResponse, StopQueryResponse, TestMetricFilterResponse, TestTransformerResponse, UpdateDeliveryConfigurationResponse, UpdateLookupTableResponse, UpdateScheduledQueryResponse
 from .types import (
     DataSource,
@@ -52,10 +54,12 @@ class CloudWatchLogsClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

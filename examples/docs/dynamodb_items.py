@@ -1,4 +1,4 @@
-from rboto_dynamodb import DynamoDBClient
+from rboto import DynamoDBClient
 from rboto_dynamodb.types import AttributeValue
 
 

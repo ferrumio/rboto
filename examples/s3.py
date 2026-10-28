@@ -14,8 +14,8 @@ if Path(sys.prefix).resolve() != PROJECT_VENV.resolve():
         raise RuntimeError("project virtual environment not found: run python3 -m venv .venv")
     os.execv(venv_python, [str(venv_python), *sys.argv])
 
-from rboto import s3
-from rboto_s3 import ByteStream, S3Client
+from rboto import S3Client
+from rboto_s3 import ByteStream
 from rboto_s3.types import BucketLocationConstraint, CreateBucketConfiguration
 
 
@@ -105,7 +105,7 @@ async def download_concurrently(
 
 async def main() -> None:
     region = configure_aws()
-    client = s3(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
+    client = S3Client(region=region, endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
     bucket = f"rboto-example-{uuid.uuid4().hex[:12]}"
     payloads = {
         f"stream-{index}.bin": make_payload(index)

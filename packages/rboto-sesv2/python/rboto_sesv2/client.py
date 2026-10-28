@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import SESv2Client as NativeClient, AssociateEmailIdentityCertificateResponse, BatchGetMetricDataResponse, CancelExportJobResponse, CreateConfigurationSetEventDestinationResponse, CreateConfigurationSetResponse, CreateContactListResponse, CreateContactResponse, CreateCustomVerificationEmailTemplateResponse, CreateDedicatedIpPoolResponse, CreateDeliverabilityTestReportResponse, CreateEmailIdentityPolicyResponse, CreateEmailIdentityResponse, CreateEmailTemplateResponse, CreateExportJobResponse, CreateImportJobResponse, CreateMultiRegionEndpointResponse, CreateTenantResourceAssociationResponse, CreateTenantResponse, DeleteConfigurationSetEventDestinationResponse, DeleteConfigurationSetResponse, DeleteContactListResponse, DeleteContactResponse, DeleteCustomVerificationEmailTemplateResponse, DeleteDedicatedIpPoolResponse, DeleteEmailIdentityPolicyResponse, DeleteEmailIdentityResponse, DeleteEmailTemplateResponse, DeleteMultiRegionEndpointResponse, DeleteSuppressedDestinationResponse, DeleteTenantResourceAssociationResponse, DeleteTenantResponse, DisassociateEmailIdentityCertificateResponse, GetAccountResponse, GetBlacklistReportsResponse, GetConfigurationSetEventDestinationsResponse, GetConfigurationSetResponse, GetContactListResponse, GetContactResponse, GetCustomVerificationEmailTemplateResponse, GetDedicatedIpPoolResponse, GetDedicatedIpResponse, GetDedicatedIpsResponse, GetDeliverabilityDashboardOptionsResponse, GetDeliverabilityTestReportResponse, GetDomainDeliverabilityCampaignResponse, GetDomainStatisticsReportResponse, GetEmailAddressInsightsResponse, GetEmailIdentityPoliciesResponse, GetEmailIdentityResponse, GetEmailTemplateResponse, GetExportJobResponse, GetImportJobResponse, GetMessageInsightsResponse, GetMultiRegionEndpointResponse, GetReputationEntityResponse, GetSuppressedDestinationResponse, GetTenantResponse, ListConfigurationSetsResponse, ListContactListsResponse, ListContactsResponse, ListCustomVerificationEmailTemplatesResponse, ListDedicatedIpPoolsResponse, ListDeliverabilityTestReportsResponse, ListDomainDeliverabilityCampaignsResponse, ListEmailIdentitiesResponse, ListEmailIdentityCertificatesResponse, ListEmailTemplatesResponse, ListExportJobsResponse, ListImportJobsResponse, ListMultiRegionEndpointsResponse, ListRecommendationsResponse, ListReputationEntitiesResponse, ListResourceTenantsResponse, ListSuppressedDestinationsResponse, ListTagsForResourceResponse, ListTenantResourcesResponse, ListTenantsResponse, PutAccountDedicatedIpWarmupAttributesResponse, PutAccountDetailsResponse, PutAccountPricingAttributesResponse, PutAccountSendingAttributesResponse, PutAccountSuppressionAttributesResponse, PutAccountVdmAttributesResponse, PutConfigurationSetArchivingOptionsResponse, PutConfigurationSetDeliveryOptionsResponse, PutConfigurationSetReputationOptionsResponse, PutConfigurationSetSendingOptionsResponse, PutConfigurationSetSuppressionOptionsResponse, PutConfigurationSetTrackingOptionsResponse, PutConfigurationSetVdmOptionsResponse, PutDedicatedIpInPoolResponse, PutDedicatedIpPoolScalingAttributesResponse, PutDedicatedIpWarmupAttributesResponse, PutDeliverabilityDashboardOptionResponse, PutEmailIdentityConfigurationSetAttributesResponse, PutEmailIdentityDkimAttributesResponse, PutEmailIdentityDkimSigningAttributesResponse, PutEmailIdentityFeedbackAttributesResponse, PutEmailIdentityMailFromAttributesResponse, PutSuppressedDestinationResponse, PutTenantSuppressionAttributesResponse, SendBulkEmailResponse, SendCustomVerificationEmailResponse, SendEmailResponse, TagResourceResponse, TestRenderEmailTemplateResponse, UntagResourceResponse, UpdateConfigurationSetEventDestinationResponse, UpdateConfigurationSetResponse, UpdateContactListResponse, UpdateContactResponse, UpdateCustomVerificationEmailTemplateResponse, UpdateEmailIdentityPolicyResponse, UpdateEmailTemplateResponse, UpdateReputationEntityCustomerManagedStatusResponse, UpdateReputationEntityPolicyResponse
 from .types import (
     ArchivingOptions,
@@ -63,14 +65,16 @@ from .types import (
 )
 
 
-class SESv2Client:
+class SESV2Client:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,
@@ -1967,3 +1971,8 @@ class SESv2Client:
         }
         _response = await self._native.update_reputation_entity_policy(params)
         return _response
+
+
+
+# Compatibility alias for the original service-package import.
+SESv2Client = SESV2Client

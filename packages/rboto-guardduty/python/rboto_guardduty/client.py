@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationResponse, AcceptInvitationResponse, ArchiveFindingsResponse, CreateCustomDetectionRuleAssociationResponse, CreateCustomDetectionRuleOrgConfigurationResponse, CreateDetectorResponse, CreateFilterResponse, CreateIPSetResponse, CreateInvestigationResponse, CreateMalwareProtectionPlanResponse, CreateMembersResponse, CreatePublishingDestinationResponse, CreateSampleFindingsResponse, CreateThreatEntitySetResponse, CreateThreatIntelSetResponse, CreateTrustedEntitySetResponse, DeclineInvitationsResponse, DeleteCustomDetectionRuleAssociationResponse, DeleteCustomDetectionRuleOrgConfigurationResponse, DeleteDetectorResponse, DeleteFilterResponse, DeleteIPSetResponse, DeleteInvitationsResponse, DeleteMembersResponse, DeletePublishingDestinationResponse, DeleteThreatEntitySetResponse, DeleteThreatIntelSetResponse, DeleteTrustedEntitySetResponse, DescribeMalwareScansResponse, DescribeOrganizationConfigurationResponse, DescribePublishingDestinationResponse, DisableOrganizationAdminAccountResponse, DisassociateFromAdministratorAccountResponse, DisassociateFromMasterAccountResponse, DisassociateMembersResponse, EnableOrganizationAdminAccountResponse, GetAdministratorAccountResponse, GetCoverageStatisticsResponse, GetCustomDetectionRuleAssociationResponse, GetCustomDetectionRuleOrgConfigurationResponse, GetCustomDetectionRuleResponse, GetDetectorResponse, GetFilterResponse, GetFindingsResponse, GetFindingsStatisticsResponse, GetIPSetResponse, GetInvestigationResponse, GetInvitationsCountResponse, GetMalwareProtectionPlanResponse, GetMalwareScanResponse, GetMalwareScanSettingsResponse, GetMasterAccountResponse, GetMemberDetectorsResponse, GetMembersResponse, GetOrganizationStatisticsResponse, GetRemainingFreeTrialDaysResponse, GetThreatEntitySetResponse, GetThreatIntelSetResponse, GetTrustedEntitySetResponse, GetUsageStatisticsResponse, InviteMembersResponse, ListCoverageResponse, ListCustomDetectionRuleAssociationsResponse, ListCustomDetectionRuleOrgConfigurationsResponse, ListCustomDetectionRulesResponse, ListDetectorsResponse, ListFiltersResponse, ListFindingsResponse, ListIPSetsResponse, ListInvestigationsResponse, ListInvitationsResponse, ListMalwareProtectionPlansResponse, ListMalwareScansResponse, ListMembersResponse, ListOrganizationAdminAccountsResponse, ListPublishingDestinationsResponse, ListTagsForResourceResponse, ListThreatEntitySetsResponse, ListThreatIntelSetsResponse, ListTrustedEntitySetsResponse, SendObjectMalwareScanResponse, StartMalwareScanResponse, StartMonitoringMembersResponse, StopMonitoringMembersResponse, TagResourceResponse, UnarchiveFindingsResponse, UntagResourceResponse, UpdateCustomDetectionRuleAssociationResponse, UpdateCustomDetectionRuleOrgConfigurationResponse, UpdateDetectorResponse, UpdateFilterResponse, UpdateFindingsFeedbackResponse, UpdateIPSetResponse, UpdateMalwareScanSettingsResponse, UpdateMemberDetectorsResponse, UpdateOrganizationConfigurationResponse, UpdatePublishingDestinationResponse, UpdateThreatEntitySetResponse, UpdateThreatIntelSetResponse, UpdateTrustedEntitySetResponse
 from .types import (
     AccountDetail,
@@ -52,10 +54,12 @@ class GuardDutyClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

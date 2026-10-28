@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthResponse, CreateABTestResponse, CreateEventOutput, CreatePaymentInstrumentResponse, CreatePaymentSessionResponse, DeleteABTestResponse, DeleteBatchEvaluationResponse, DeleteCapacityProviderSessionResponse, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentResponse, DeletePaymentSessionResponse, DeleteRecommendationResponse, EvaluateResponse, GetABTestResponse, GetAgentCardResponse, GetBatchEvaluationResponse, GetBrowserSessionResponse, GetCodeInterpreterSessionResponse, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceResponse, GetPaymentInstrumentResponse, GetPaymentSessionResponse, GetRecommendationResponse, GetResourceApiKeyResponse, GetResourceOauth2TokenResponse, GetResourcePaymentTokenResponse, GetWorkloadAccessTokenForJWTResponse, GetWorkloadAccessTokenForUserIdResponse, GetWorkloadAccessTokenResponse, IngestDataOutput, InvokeAgentRuntimeResponse, InvokeBrowserResponse, ListABTestsResponse, ListActorsOutput, ListBatchEvaluationsResponse, ListBrowserSessionsResponse, ListCodeInterpreterSessionsResponse, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsResponse, ListPaymentSessionsResponse, ListRecommendationsResponse, ListSessionsOutput, ProcessPaymentResponse, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileResponse, SearchRegistryRecordsResponse, StartBatchEvaluationResponse, StartBrowserSessionResponse, StartCodeInterpreterSessionResponse, StartMemoryExtractionJobOutput, StartRecommendationResponse, StopBatchEvaluationResponse, StopBrowserSessionResponse, StopCodeInterpreterSessionResponse, StopRuntimeSessionResponse, UpdateABTestResponse, UpdateBrowserStreamResponse
 from .types import (
     ABTestEvaluationConfig,
@@ -77,10 +79,12 @@ class BedrockAgentCoreClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

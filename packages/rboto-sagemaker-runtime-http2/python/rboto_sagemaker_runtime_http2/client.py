@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import SageMakerRuntimeHTTP2Client as NativeClient
 from .types import (
     InvokeEndpointWithBidirectionalStreamOutput,
@@ -15,10 +17,12 @@ class SageMakerRuntimeHTTP2Client:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

@@ -3,9 +3,9 @@
 Create a client with the region and profile you need, then reuse it:
 
 ```python
-from rboto import s3
+from rboto import S3Client
 
-client = s3(region="us-east-1", profile="development")
+client = S3Client(region="us-east-1", profile="development")
 ```
 
 Each client initializes its native service client on first use and keeps it for
@@ -13,7 +13,7 @@ subsequent operations.
 
 ## Constructor settings
 
-| Factory argument | Purpose |
+| Constructor argument | Purpose |
 |---|---|
 | `region` | Explicit service region |
 | `profile` | Named shared configuration/credential profile |
@@ -55,17 +55,17 @@ Refreshable providers handle credential renewal through the SDK.
 ## Share settings with a Session
 
 ```python
-from rboto import Session, s3, sqs
+from rboto import Session, S3Client, SQSClient
 
 session = Session(region="us-east-1", profile="development")
-objects = s3(session=session)
-messages = sqs(session=session)
+objects = S3Client(session=session)
+messages = SQSClient(session=session)
 ```
 
 `Session` is an immutable collection of settings. Each client initializes its own
 SDK configuration; the session does not share a credential cache or connection
-pool across services. Combining `session` with explicit factory settings raises
-`ValueError`.
+pool across services. Combining `session` with explicit constructor settings raises
+`ValueError`. Factories such as `rboto.s3()` accept the same settings for compatibility.
 
 ## Retries and timeouts
 
@@ -83,9 +83,9 @@ The current constructors do not expose connection/read timeouts. An
 ## Local endpoints
 
 ```python
-from rboto import dynamodb
+from rboto import DynamoDBClient
 
-client = dynamodb(region="us-east-1", endpoint_url="http://localhost:4566")
+client = DynamoDBClient(region="us-east-1", endpoint_url="http://localhost:4566")
 ```
 
 Endpoint overrides still use the credential chain. Supply test credentials in

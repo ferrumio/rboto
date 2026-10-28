@@ -30,6 +30,19 @@ AWS or LocalStack
 - `ADR`: internal architecture decisions.
 - `docs`: public user documentation only.
 
+## Public client imports
+
+Client classes are the primary public API: `from rboto import S3Client`.
+The generated facade lazily imports the selected service and has an explicit
+generated stub for static tooling. Constructors and compatibility factories
+share `Session` resolution.
+
+Descriptors use `client_class` for the public Python name. An optional
+`native_client_class` preserves the native backend name and original service
+exception names; the old client name remains a Python compatibility alias.
+Do not rename native symbols or modeled exception bases as a side effect of
+changing a public client name. See ADR-0013.
+
 ## Sources of truth
 
 The service TOML, Smithy model, pinned AWS Rust crate, generator, and templates are sources

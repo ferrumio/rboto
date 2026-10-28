@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import SchedulerClient as NativeClient, CreateScheduleGroupOutput, CreateScheduleOutput, DeleteScheduleGroupOutput, DeleteScheduleOutput, GetScheduleGroupOutput, GetScheduleOutput, ListScheduleGroupsOutput, ListSchedulesOutput, ListTagsForResourceOutput, TagResourceOutput, UntagResourceOutput, UpdateScheduleOutput
 from .types import (
     ActionAfterCompletion,
@@ -14,14 +16,16 @@ from .types import (
 )
 
 
-class SchedulerClient:
+class EventBridgeSchedulerClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,
@@ -279,3 +283,8 @@ class SchedulerClient:
             params["action_after_completion"] = action_after_completion
         _response = await self._native.update_schedule(params)
         return _response
+
+
+
+# Compatibility alias for the original service-package import.
+SchedulerClient = EventBridgeSchedulerClient

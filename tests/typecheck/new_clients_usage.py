@@ -1,20 +1,20 @@
 from collections.abc import AsyncIterator
 
-from rboto import bedrock_runtime, lambda_, secrets_manager, sts
+from rboto import BedrockRuntimeClient, LambdaClient, SecretsManagerClient, STSClient
 from rboto_bedrock_runtime.types import InvokeModelWithBidirectionalStreamInput, JSONValue
 
 
 async def identity_and_secrets() -> str | None:
-    identity = await sts(region="us-east-1").get_caller_identity()
+    identity = await STSClient(region="us-east-1").get_caller_identity()
     account: str | None = identity.account
-    secret = await secrets_manager().get_secret_value(secret_id="example")
+    secret = await SecretsManagerClient().get_secret_value(secret_id="example")
     value: str | None = secret.secret_string
-    await lambda_().invoke(function_name="example", payload=b"{}")
+    await LambdaClient().invoke(function_name="example", payload=b"{}")
     return value or account
 
 
 async def converse() -> JSONValue:
-    response = await bedrock_runtime().converse(
+    response = await BedrockRuntimeClient().converse(
         model_id="example",
         messages=[{"role": "user", "content": [{"text": "Hello"}]}],
         additional_model_request_fields={"temperature": 0.5, "enabled": True},
@@ -28,7 +28,7 @@ async def converse() -> JSONValue:
 async def duplex(
     events: AsyncIterator[InvokeModelWithBidirectionalStreamInput],
 ) -> None:
-    response = await bedrock_runtime().invoke_model_with_bidirectional_stream(
+    response = await BedrockRuntimeClient().invoke_model_with_bidirectional_stream(
         model_id="example", body=events
     )
     async for event in response["body"]:

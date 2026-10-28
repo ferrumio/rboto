@@ -1,6 +1,6 @@
 # SNS and SQS
 
-Use `sns()` to publish notifications and `sqs()` to send, receive, and delete queue
+Use `SNSClient()` to publish notifications and `SQSClient()` to send, receive, and delete queue
 messages. Install their service packages from the checkout.
 
 ## Publish to an existing topic

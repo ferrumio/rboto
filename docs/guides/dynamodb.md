@@ -1,6 +1,6 @@
 # DynamoDB
 
-Use `rboto.dynamodb()` or `rboto_dynamodb.DynamoDBClient`. Install the service package
+Import `DynamoDBClient` from `rboto`. Install the service package
 following [Getting started](../getting-started.md).
 
 ## Put and get an item

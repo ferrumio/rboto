@@ -1,4 +1,4 @@
-from rboto_cloudwatch_logs import CloudWatchLogsClient
+from rboto import CloudWatchLogsClient
 
 
 async def tail_logs(client: CloudWatchLogsClient, group_arn: str) -> None:

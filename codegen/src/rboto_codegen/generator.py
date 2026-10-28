@@ -29,6 +29,7 @@ class GenerationError(RuntimeError):
 class GeneratedPaths:
     facade: Path
     core_init: Path
+    core_stub: Path
     cargo: Path
     pyproject: Path
     package_init: Path
@@ -133,6 +134,7 @@ class ServiceGenerator:
         paths = GeneratedPaths(
             facade=self.repository_root / "packages/rboto/src/rboto/services.py",
             core_init=self.repository_root / "packages/rboto/src/rboto/__init__.py",
+            core_stub=self.repository_root / "packages/rboto/src/rboto/__init__.pyi",
             cargo=self.repository_root / f"crates/{self.descriptor.distribution_name}/Cargo.toml",
             pyproject=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/pyproject.toml",
@@ -160,6 +162,7 @@ class ServiceGenerator:
             paths.rust,
             paths.facade,
             paths.core_init,
+            paths.core_stub,
             paths.cargo,
             paths.pyproject,
             paths.package_init,
@@ -174,6 +177,10 @@ class ServiceGenerator:
 
         _write_generated(paths.facade, self._render_facade())
         _write_generated(paths.core_init, self._render_core_init())
+        _write_generated(
+            paths.core_stub,
+            self.templates.get_template("core_init.pyi.j2").render(services=list_services()),
+        )
         _write_generated(paths.cargo, self._render_cargo())
         _write_generated(paths.pyproject, self._render_pyproject())
         _write_generated(paths.package_init, self._render_package_init())
@@ -1113,7 +1120,7 @@ class ServiceGenerator:
             native_class_code="\n\n".join(native_class_code),
             native_classes=native_classes,
             methods="\n\n".join(methods),
-            client_class=self.descriptor.client_class,
+            client_class=self.descriptor.native_class,
             python_package=self.descriptor.python_package,
             event_streams=self._event_streams(),
         )
@@ -1121,9 +1128,9 @@ class ServiceGenerator:
     def _render_rust_runtime(self) -> str:
         return self.templates.get_template("lib.rs.j2").render(
             rust_module=self.rust_module,
-            client_class=self.descriptor.client_class,
+            client_class=self.descriptor.native_class,
             python_package=self.descriptor.python_package,
-            service_error_class=(self.descriptor.client_class.removesuffix("Client") + "Error"),
+            service_error_class=(self.descriptor.native_class.removesuffix("Client") + "Error"),
             force_path_style=self.descriptor.force_path_style_for_custom_endpoint,
         )
 
@@ -1136,6 +1143,7 @@ class ServiceGenerator:
     def _render_package_init(self) -> str:
         return self.templates.get_template("package_init.py.j2").render(
             client_class=self.descriptor.client_class,
+            native_client_class=self.descriptor.native_class,
             event_streams=self._event_streams(),
             native_output_names=[
                 metadata["class_name"] for metadata in self._native_output_operations()
@@ -1461,6 +1469,7 @@ class ServiceGenerator:
                 native_output_names=sorted(native_output_names),
                 native_outputs=self.descriptor.native_outputs,
                 client_class=self.descriptor.client_class,
+                native_client_class=self.descriptor.native_class,
             )
             .rstrip()
             + "\n"
@@ -1479,7 +1488,7 @@ class ServiceGenerator:
             self.templates.get_template("native.pyi.j2")
             .render(
                 methods=methods,
-                client_class=self.descriptor.client_class,
+                client_class=self.descriptor.native_class,
                 event_streams=self._event_streams(),
                 native_classes=self._native_stub_classes(),
                 native_outputs=self.descriptor.native_outputs,
@@ -1499,7 +1508,7 @@ class ServiceGenerator:
             "from rboto.exceptions import ServiceError as BaseServiceError",
             "",
             "",
-            f"class {self.descriptor.client_class.removesuffix('Client')}Error(BaseServiceError):",
+            f"class {self.descriptor.native_class.removesuffix('Client')}Error(BaseServiceError):",
             f'    """Base exception for errors returned by {self.descriptor.service_id}."""',
             "",
         ]
@@ -1508,7 +1517,7 @@ class ServiceGenerator:
             lines.extend(
                 [
                     "",
-                    f"class {stem}Error({self.descriptor.client_class.removesuffix('Client')}Error):",
+                    f"class {stem}Error({self.descriptor.native_class.removesuffix('Client')}Error):",
                     f'    """Modeled {self.descriptor.service_id} error: {error}."""',
                     "",
                 ]

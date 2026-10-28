@@ -1,4 +1,4 @@
-from rboto_ssm import SSMClient
+from rboto import SSMClient
 
 
 async def read_parameter(client: SSMClient, name: str) -> str | None:

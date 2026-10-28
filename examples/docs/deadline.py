@@ -1,6 +1,6 @@
 import asyncio
 
-from rboto_sts import STSClient
+from rboto import STSClient
 
 
 async def identify(client: STSClient) -> str | None:

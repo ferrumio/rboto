@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from rboto_s3 import S3Client
+from rboto import S3Client
 
 
 @dataclass(frozen=True, slots=True)

@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionResponse, AddPermissionResponse, CheckpointDurableExecutionResponse, CreateAliasOutput, CreateCapacityProviderResponse, CreateCodeSigningConfigResponse, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigResponse, DeleteCapacityProviderResponse, DeleteCodeSigningConfigResponse, DeleteEventSourceMappingOutput, DeleteFunctionResponse, GetAccountSettingsResponse, GetAliasOutput, GetCapacityProviderResponse, GetCodeSigningConfigResponse, GetDurableExecutionHistoryResponse, GetDurableExecutionResponse, GetDurableExecutionStateResponse, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigResponse, GetFunctionConcurrencyResponse, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionRecursionConfigResponse, GetFunctionResponse, GetFunctionScalingConfigResponse, GetFunctionUrlConfigResponse, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyResponse, GetPolicyResponse, GetProvisionedConcurrencyConfigResponse, GetResourcePolicyResponse, GetRuntimeManagementConfigResponse, InvocationResponse, InvokeAsyncResponse, ListAliasesResponse, ListCapacityProvidersResponse, ListCodeSigningConfigsResponse, ListDurableExecutionsByFunctionResponse, ListEventSourceMappingsResponse, ListFunctionEventInvokeConfigsResponse, ListFunctionUrlConfigsResponse, ListFunctionVersionsByCapacityProviderResponse, ListFunctionsByCodeSigningConfigResponse, ListFunctionsResponse, ListLayerVersionsResponse, ListLayersResponse, ListProvisionedConcurrencyConfigsResponse, ListTagsResponse, ListVersionsByFunctionResponse, PublishLayerVersionResponse, PublishVersionOutput, PutFunctionCodeSigningConfigResponse, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigResponse, PutFunctionScalingConfigResponse, PutProvisionedConcurrencyConfigResponse, PutResourcePolicyResponse, PutRuntimeManagementConfigResponse, SendDurableExecutionCallbackFailureResponse, SendDurableExecutionCallbackHeartbeatResponse, SendDurableExecutionCallbackSuccessResponse, StopDurableExecutionResponse, UpdateAliasOutput, UpdateCapacityProviderResponse, UpdateCodeSigningConfigResponse, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigResponse
 from .types import (
     AliasRoutingConfiguration,
@@ -69,10 +71,12 @@ class LambdaClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

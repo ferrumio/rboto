@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput
 from .types import (
     Engine,
@@ -22,10 +24,12 @@ class PollyClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,

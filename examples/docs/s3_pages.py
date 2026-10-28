@@ -1,6 +1,6 @@
 from collections.abc import AsyncIterator
 
-from rboto_s3 import S3Client
+from rboto import S3Client
 
 
 async def list_keys(client: S3Client, bucket: str) -> AsyncIterator[str]:

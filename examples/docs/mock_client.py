@@ -1,7 +1,7 @@
 from unittest.mock import AsyncMock, create_autospec
 
 import pytest
-from rboto_sts import STSClient
+from rboto import STSClient
 
 
 async def check_identity(client: STSClient) -> None:

@@ -20,12 +20,12 @@ two clients and the small `rboto` facade.
 
 | Task | Clients | Guide |
 |---|---|---|
-| Upload or download objects | `s3()` | [S3](guides/s3.md) |
-| Read and write items | `dynamodb()` | [DynamoDB](guides/dynamodb.md) |
-| Publish notifications or process queue messages | `sns()`, `sqs()` | [Messaging](guides/messaging.md) |
-| Invoke functions or models | `lambda_()`, `bedrock_runtime()` | [Lambda and Bedrock](guides/inference.md) |
-| Route events or schedule work | `eventbridge()`, `scheduler()`, `pipes()` | [Events and schedules](guides/events.md) |
-| Read configuration, encrypt values, start workflows, send email | `ssm()`, `kms()`, `sfn()`, `sesv2()` | [Application services](guides/application-services.md) |
+| Upload or download objects | `S3Client()` | [S3](guides/s3.md) |
+| Read and write items | `DynamoDBClient()` | [DynamoDB](guides/dynamodb.md) |
+| Publish notifications or process queue messages | `SNSClient()`, `SQSClient()` | [Messaging](guides/messaging.md) |
+| Invoke functions or models | `LambdaClient()`, `BedrockRuntimeClient()` | [Lambda and Bedrock](guides/inference.md) |
+| Route events or schedule work | `EventBridgeClient()`, `EventBridgeSchedulerClient()`, `EventBridgePipesClient()` | [Events and schedules](guides/events.md) |
+| Read configuration, encrypt values, start workflows, send email | `SSMClient()`, `KMSClient()`, `StepFunctionsClient()`, `SESV2Client()` | [Application services](guides/application-services.md) |
 
 The [client catalog](clients.md) lists every service, its package, and its factory.
 

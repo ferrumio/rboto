@@ -1,8 +1,8 @@
-from rboto import ssm
+from rboto import SSMClient
 
 
 async def read_parameter(name: str) -> str | None:
-    response = await ssm(region="us-east-1").get_parameter(
+    response = await SSMClient(region="us-east-1").get_parameter(
         name=name,
         with_decryption=True,
     )

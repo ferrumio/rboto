@@ -1,7 +1,7 @@
 import asyncio
 from pathlib import Path
 
-from rboto_s3 import S3Client
+from rboto import S3Client
 
 
 async def download(client: S3Client, bucket: str, key: str, destination: Path) -> None:

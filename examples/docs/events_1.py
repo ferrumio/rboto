@@ -1,6 +1,6 @@
 import json
 
-from rboto import eventbridge
+from rboto import EventBridgeClient
 from rboto_eventbridge.types import PutEventsRequestEntry
 
 
@@ -11,7 +11,7 @@ async def publish_order(bus_name: str, order_id: str) -> list[str]:
         "detail_type": "OrderCreated",
         "detail": json.dumps({"order_id": order_id}),
     }
-    response = await eventbridge(region="us-east-1").put_events(entries=[entry])
+    response = await EventBridgeClient(region="us-east-1").put_events(entries=[entry])
     entries = response.entries or []
     if response.failed_entry_count:
         failures = [

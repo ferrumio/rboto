@@ -1,4 +1,4 @@
-from rboto_s3 import S3Client
+from rboto import S3Client
 
 
 async def list_buckets(client: S3Client) -> None:

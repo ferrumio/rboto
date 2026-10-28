@@ -4,6 +4,8 @@ from collections.abc import AsyncIterator
 
 
 
+from rboto.session import Session, resolve_config
+
 from ._native import STSClient as NativeClient, AssumeRoleResponse, AssumeRoleWithSAMLResponse, AssumeRoleWithWebIdentityResponse, AssumeRootResponse, DecodeAuthorizationMessageResponse, GetAccessKeyInfoResponse, GetCallerIdentityResponse, GetDelegatedAccessTokenResponse, GetFederationTokenResponse, GetSessionTokenResponse, GetWebIdentityTokenResponse
 from .types import (
     PolicyDescriptorType,
@@ -16,10 +18,12 @@ class STSClient:
     def __init__(
         self,
         *,
+        session: Session | None = None,
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
     ) -> None:
+        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
         self._native = NativeClient(
             region=region,
             profile=profile,
