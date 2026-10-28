@@ -12,6 +12,7 @@ nav = [
     { "Using rboto" = [
         { "Configuration and credentials" = "guides/configuration.md" },
         { "Types and responses" = "guides/types.md" },
+        { "Pydantic and dataclasses" = "guides/models.md" },
         { "Streaming" = "guides/streaming.md" },
         { "Errors" = "guides/errors.md" },
         { "Testing" = "guides/testing.md" },

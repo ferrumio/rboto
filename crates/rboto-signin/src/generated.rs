@@ -410,7 +410,7 @@ fn signin_resource_based_policy_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccessToken", frozen)]
+#[pyclass(name = "AccessToken", module = "rboto_signin._native", frozen)]
 struct PyAccessToken {
     inner: aws_sdk_signin::types::AccessToken,
 }
@@ -440,7 +440,11 @@ impl PyAccessToken {
     }
 }
 
-#[pyclass(name = "CreateOAuth2TokenResponseBody", frozen)]
+#[pyclass(
+    name = "CreateOAuth2TokenResponseBody",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyCreateOAuth2TokenResponseBody {
     inner: aws_sdk_signin::types::CreateOAuth2TokenResponseBody,
 }
@@ -496,7 +500,11 @@ impl PyCreateOAuth2TokenResponseBody {
     }
 }
 
-#[pyclass(name = "PermissionStatementSummary", frozen)]
+#[pyclass(
+    name = "PermissionStatementSummary",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyPermissionStatementSummary {
     inner: aws_sdk_signin::types::PermissionStatementSummary,
 }
@@ -541,7 +549,7 @@ impl PyPermissionStatementSummary {
     }
 }
 
-#[pyclass(name = "PolicyStatement", frozen)]
+#[pyclass(name = "PolicyStatement", module = "rboto_signin._native", frozen)]
 struct PyPolicyStatement {
     inner: aws_sdk_signin::types::PolicyStatement,
 }
@@ -631,7 +639,11 @@ impl PyPolicyStatement {
     }
 }
 
-#[pyclass(name = "SigninResourceBasedPolicy", frozen)]
+#[pyclass(
+    name = "SigninResourceBasedPolicy",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PySigninResourceBasedPolicy {
     inner: aws_sdk_signin::types::SigninResourceBasedPolicy,
 }
@@ -674,7 +686,11 @@ impl PySigninResourceBasedPolicy {
     }
 }
 
-#[pyclass(name = "CreateOAuth2TokenResponse", frozen)]
+#[pyclass(
+    name = "CreateOAuth2TokenResponse",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyCreateOAuth2TokenResponse {
     inner: aws_sdk_signin::operation::create_o_auth2_token::CreateOAuth2TokenOutput,
 }
@@ -709,7 +725,11 @@ impl PyCreateOAuth2TokenResponse {
     }
 }
 
-#[pyclass(name = "CreateOAuth2TokenWithIAMResponse", frozen)]
+#[pyclass(
+    name = "CreateOAuth2TokenWithIAMResponse",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyCreateOAuth2TokenWithIAMResponse {
     inner: aws_sdk_signin::operation::create_o_auth2_token_with_iam::CreateOAuth2TokenWithIamOutput,
 }
@@ -746,7 +766,11 @@ impl PyCreateOAuth2TokenWithIAMResponse {
     }
 }
 
-#[pyclass(name = "DeleteConsoleAuthorizationConfigurationOutput", frozen)]
+#[pyclass(
+    name = "DeleteConsoleAuthorizationConfigurationOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyDeleteConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::delete_console_authorization_configuration::DeleteConsoleAuthorizationConfigurationOutput,
 }
@@ -787,7 +811,11 @@ impl PyDeleteConsoleAuthorizationConfigurationOutput {
     }
 }
 
-#[pyclass(name = "DeleteResourcePermissionStatementOutput", frozen)]
+#[pyclass(
+    name = "DeleteResourcePermissionStatementOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyDeleteResourcePermissionStatementOutput {
     inner: aws_sdk_signin::operation::delete_resource_permission_statement::DeleteResourcePermissionStatementOutput,
 }
@@ -800,7 +828,11 @@ impl PyDeleteResourcePermissionStatementOutput {
     }
 }
 
-#[pyclass(name = "GetConsoleAuthorizationConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetConsoleAuthorizationConfigurationOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyGetConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::get_console_authorization_configuration::GetConsoleAuthorizationConfigurationOutput,
 }
@@ -841,7 +873,11 @@ impl PyGetConsoleAuthorizationConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyOutput", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyGetResourcePolicyOutput {
     inner: aws_sdk_signin::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -876,7 +912,11 @@ impl PyGetResourcePolicyOutput {
     }
 }
 
-#[pyclass(name = "IntrospectOAuth2TokenWithIAMResponse", frozen)]
+#[pyclass(
+    name = "IntrospectOAuth2TokenWithIAMResponse",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyIntrospectOAuth2TokenWithIAMResponse {
     inner: aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIamOutput,
 }
@@ -1105,7 +1145,11 @@ impl PyIntrospectOAuth2TokenWithIAMResponse {
     }
 }
 
-#[pyclass(name = "ListResourcePermissionStatementsOutput", frozen)]
+#[pyclass(
+    name = "ListResourcePermissionStatementsOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyListResourcePermissionStatementsOutput {
     inner: aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput,
 }
@@ -1158,7 +1202,11 @@ impl PyListResourcePermissionStatementsOutput {
     }
 }
 
-#[pyclass(name = "PutConsoleAuthorizationConfigurationOutput", frozen)]
+#[pyclass(
+    name = "PutConsoleAuthorizationConfigurationOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyPutConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::put_console_authorization_configuration::PutConsoleAuthorizationConfigurationOutput,
 }
@@ -1199,7 +1247,11 @@ impl PyPutConsoleAuthorizationConfigurationOutput {
     }
 }
 
-#[pyclass(name = "PutResourcePermissionStatementOutput", frozen)]
+#[pyclass(
+    name = "PutResourcePermissionStatementOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyPutResourcePermissionStatementOutput {
     inner: aws_sdk_signin::operation::put_resource_permission_statement::PutResourcePermissionStatementOutput,
 }
@@ -1220,7 +1272,11 @@ impl PyPutResourcePermissionStatementOutput {
     }
 }
 
-#[pyclass(name = "RevokeOAuth2TokenWithIAMResponse", frozen)]
+#[pyclass(
+    name = "RevokeOAuth2TokenWithIAMResponse",
+    module = "rboto_signin._native",
+    frozen
+)]
 struct PyRevokeOAuth2TokenWithIAMResponse {
     inner: aws_sdk_signin::operation::revoke_o_auth2_token_with_iam::RevokeOAuth2TokenWithIamOutput,
 }

@@ -8,7 +8,7 @@ use super::*;
 {{ native_class_code }}
 
 {% for stream in event_streams %}
-#[pyclass(name = "{{ stream.receiver_class }}")]
+#[pyclass(name = "{{ stream.receiver_class }}", module = "{{ python_package }}._native")]
 struct {{ stream.rust_class }} {
     inner: Arc<Mutex<Option<{{ stream.rust_type }}>>>,
     operation: &'static str,

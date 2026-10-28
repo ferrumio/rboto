@@ -7505,7 +7505,11 @@ fn web_experience_auth_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ActionConfiguration", frozen)]
+#[pyclass(
+    name = "ActionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyActionConfiguration {
     inner: aws_sdk_qbusiness::types::ActionConfiguration,
 }
@@ -7539,7 +7543,7 @@ impl PyActionConfiguration {
     }
 }
 
-#[pyclass(name = "ActionExecution", frozen)]
+#[pyclass(name = "ActionExecution", module = "rboto_qbusiness._native", frozen)]
 struct PyActionExecution {
     inner: aws_sdk_qbusiness::types::ActionExecution,
 }
@@ -7583,7 +7587,11 @@ impl PyActionExecution {
     }
 }
 
-#[pyclass(name = "ActionExecutionPayloadField", frozen)]
+#[pyclass(
+    name = "ActionExecutionPayloadField",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyActionExecutionPayloadField {
     inner: aws_sdk_qbusiness::types::ActionExecutionPayloadField,
 }
@@ -7601,7 +7609,11 @@ impl PyActionExecutionPayloadField {
     }
 }
 
-#[pyclass(name = "ActionFilterConfiguration", frozen)]
+#[pyclass(
+    name = "ActionFilterConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyActionFilterConfiguration {
     inner: aws_sdk_qbusiness::types::ActionFilterConfiguration,
 }
@@ -7629,7 +7641,7 @@ impl PyActionFilterConfiguration {
     }
 }
 
-#[pyclass(name = "ActionReview", frozen)]
+#[pyclass(name = "ActionReview", module = "rboto_qbusiness._native", frozen)]
 struct PyActionReview {
     inner: aws_sdk_qbusiness::types::ActionReview,
 }
@@ -7693,7 +7705,11 @@ impl PyActionReview {
     }
 }
 
-#[pyclass(name = "ActionReviewPayloadField", frozen)]
+#[pyclass(
+    name = "ActionReviewPayloadField",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyActionReviewPayloadField {
     inner: aws_sdk_qbusiness::types::ActionReviewPayloadField,
 }
@@ -7806,7 +7822,11 @@ impl PyActionReviewPayloadField {
     }
 }
 
-#[pyclass(name = "ActionReviewPayloadFieldAllowedValue", frozen)]
+#[pyclass(
+    name = "ActionReviewPayloadFieldAllowedValue",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyActionReviewPayloadFieldAllowedValue {
     inner: aws_sdk_qbusiness::types::ActionReviewPayloadFieldAllowedValue,
 }
@@ -7838,7 +7858,7 @@ impl PyActionReviewPayloadFieldAllowedValue {
     }
 }
 
-#[pyclass(name = "ActionSummary", frozen)]
+#[pyclass(name = "ActionSummary", module = "rboto_qbusiness._native", frozen)]
 struct PyActionSummary {
     inner: aws_sdk_qbusiness::types::ActionSummary,
 }
@@ -7890,7 +7910,7 @@ impl PyActionSummary {
     }
 }
 
-#[pyclass(name = "Application", frozen)]
+#[pyclass(name = "Application", module = "rboto_qbusiness._native", frozen)]
 struct PyApplication {
     inner: aws_sdk_qbusiness::types::Application,
 }
@@ -7978,7 +7998,11 @@ impl PyApplication {
     }
 }
 
-#[pyclass(name = "AppliedAttachmentsConfiguration", frozen)]
+#[pyclass(
+    name = "AppliedAttachmentsConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAppliedAttachmentsConfiguration {
     inner: aws_sdk_qbusiness::types::AppliedAttachmentsConfiguration,
 }
@@ -8000,7 +8024,11 @@ impl PyAppliedAttachmentsConfiguration {
     }
 }
 
-#[pyclass(name = "AppliedCreatorModeConfiguration", frozen)]
+#[pyclass(
+    name = "AppliedCreatorModeConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAppliedCreatorModeConfiguration {
     inner: aws_sdk_qbusiness::types::AppliedCreatorModeConfiguration,
 }
@@ -8020,7 +8048,11 @@ impl PyAppliedCreatorModeConfiguration {
     }
 }
 
-#[pyclass(name = "AppliedOrchestrationConfiguration", frozen)]
+#[pyclass(
+    name = "AppliedOrchestrationConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAppliedOrchestrationConfiguration {
     inner: aws_sdk_qbusiness::types::AppliedOrchestrationConfiguration,
 }
@@ -8038,7 +8070,7 @@ impl PyAppliedOrchestrationConfiguration {
     }
 }
 
-#[pyclass(name = "AssociatedGroup", frozen)]
+#[pyclass(name = "AssociatedGroup", module = "rboto_qbusiness._native", frozen)]
 struct PyAssociatedGroup {
     inner: aws_sdk_qbusiness::types::AssociatedGroup,
 }
@@ -8070,7 +8102,7 @@ impl PyAssociatedGroup {
     }
 }
 
-#[pyclass(name = "AssociatedUser", frozen)]
+#[pyclass(name = "AssociatedUser", module = "rboto_qbusiness._native", frozen)]
 struct PyAssociatedUser {
     inner: aws_sdk_qbusiness::types::AssociatedUser,
 }
@@ -8102,7 +8134,7 @@ impl PyAssociatedUser {
     }
 }
 
-#[pyclass(name = "Attachment", frozen)]
+#[pyclass(name = "Attachment", module = "rboto_qbusiness._native", frozen)]
 struct PyAttachment {
     inner: aws_sdk_qbusiness::types::Attachment,
 }
@@ -8220,7 +8252,7 @@ impl PyAttachment {
     }
 }
 
-#[pyclass(name = "AttachmentOutput", frozen)]
+#[pyclass(name = "AttachmentOutput", module = "rboto_qbusiness._native", frozen)]
 struct PyAttachmentOutput {
     inner: aws_sdk_qbusiness::types::AttachmentOutput,
 }
@@ -8288,7 +8320,7 @@ impl PyAttachmentOutput {
     }
 }
 
-#[pyclass(name = "AttributeFilter", frozen)]
+#[pyclass(name = "AttributeFilter", module = "rboto_qbusiness._native", frozen)]
 struct PyAttributeFilter {
     inner: aws_sdk_qbusiness::types::AttributeFilter,
 }
@@ -8470,7 +8502,11 @@ impl PyAttributeFilter {
     }
 }
 
-#[pyclass(name = "AudioExtractionConfiguration", frozen)]
+#[pyclass(
+    name = "AudioExtractionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAudioExtractionConfiguration {
     inner: aws_sdk_qbusiness::types::AudioExtractionConfiguration,
 }
@@ -8490,7 +8526,11 @@ impl PyAudioExtractionConfiguration {
     }
 }
 
-#[pyclass(name = "AuthChallengeRequest", frozen)]
+#[pyclass(
+    name = "AuthChallengeRequest",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAuthChallengeRequest {
     inner: aws_sdk_qbusiness::types::AuthChallengeRequest,
 }
@@ -8508,7 +8548,11 @@ impl PyAuthChallengeRequest {
     }
 }
 
-#[pyclass(name = "AutoSubscriptionConfiguration", frozen)]
+#[pyclass(
+    name = "AutoSubscriptionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAutoSubscriptionConfiguration {
     inner: aws_sdk_qbusiness::types::AutoSubscriptionConfiguration,
 }
@@ -8536,7 +8580,11 @@ impl PyAutoSubscriptionConfiguration {
     }
 }
 
-#[pyclass(name = "BlockedPhrasesConfiguration", frozen)]
+#[pyclass(
+    name = "BlockedPhrasesConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyBlockedPhrasesConfiguration {
     inner: aws_sdk_qbusiness::types::BlockedPhrasesConfiguration,
 }
@@ -8573,7 +8621,11 @@ impl PyBlockedPhrasesConfiguration {
     }
 }
 
-#[pyclass(name = "BrowserExtensionConfiguration", frozen)]
+#[pyclass(
+    name = "BrowserExtensionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyBrowserExtensionConfiguration {
     inner: aws_sdk_qbusiness::types::BrowserExtensionConfiguration,
 }
@@ -8596,7 +8648,11 @@ impl PyBrowserExtensionConfiguration {
     }
 }
 
-#[pyclass(name = "ChatResponseConfiguration", frozen)]
+#[pyclass(
+    name = "ChatResponseConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyChatResponseConfiguration {
     inner: aws_sdk_qbusiness::types::ChatResponseConfiguration,
 }
@@ -8666,7 +8722,11 @@ impl PyChatResponseConfiguration {
     }
 }
 
-#[pyclass(name = "ChatResponseConfigurationDetail", frozen)]
+#[pyclass(
+    name = "ChatResponseConfigurationDetail",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyChatResponseConfigurationDetail {
     inner: aws_sdk_qbusiness::types::ChatResponseConfigurationDetail,
 }
@@ -8746,7 +8806,7 @@ impl PyChatResponseConfigurationDetail {
     }
 }
 
-#[pyclass(name = "Conversation", frozen)]
+#[pyclass(name = "Conversation", module = "rboto_qbusiness._native", frozen)]
 struct PyConversation {
     inner: aws_sdk_qbusiness::types::Conversation,
 }
@@ -8788,7 +8848,11 @@ impl PyConversation {
     }
 }
 
-#[pyclass(name = "CustomPluginConfiguration", frozen)]
+#[pyclass(
+    name = "CustomPluginConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCustomPluginConfiguration {
     inner: aws_sdk_qbusiness::types::CustomPluginConfiguration,
 }
@@ -8822,7 +8886,11 @@ impl PyCustomPluginConfiguration {
     }
 }
 
-#[pyclass(name = "CustomizationConfiguration", frozen)]
+#[pyclass(
+    name = "CustomizationConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCustomizationConfiguration {
     inner: aws_sdk_qbusiness::types::CustomizationConfiguration,
 }
@@ -8874,7 +8942,7 @@ impl PyCustomizationConfiguration {
     }
 }
 
-#[pyclass(name = "DataAccessor", frozen)]
+#[pyclass(name = "DataAccessor", module = "rboto_qbusiness._native", frozen)]
 struct PyDataAccessor {
     inner: aws_sdk_qbusiness::types::DataAccessor,
 }
@@ -8972,7 +9040,11 @@ impl PyDataAccessor {
     }
 }
 
-#[pyclass(name = "DataAccessorAuthenticationDetail", frozen)]
+#[pyclass(
+    name = "DataAccessorAuthenticationDetail",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDataAccessorAuthenticationDetail {
     inner: aws_sdk_qbusiness::types::DataAccessorAuthenticationDetail,
 }
@@ -9015,7 +9087,7 @@ impl PyDataAccessorAuthenticationDetail {
     }
 }
 
-#[pyclass(name = "DataSource", frozen)]
+#[pyclass(name = "DataSource", module = "rboto_qbusiness._native", frozen)]
 struct PyDataSource {
     inner: aws_sdk_qbusiness::types::DataSource,
 }
@@ -9087,7 +9159,7 @@ impl PyDataSource {
     }
 }
 
-#[pyclass(name = "DataSourceSyncJob", frozen)]
+#[pyclass(name = "DataSourceSyncJob", module = "rboto_qbusiness._native", frozen)]
 struct PyDataSourceSyncJob {
     inner: aws_sdk_qbusiness::types::DataSourceSyncJob,
 }
@@ -9181,7 +9253,11 @@ impl PyDataSourceSyncJob {
     }
 }
 
-#[pyclass(name = "DataSourceSyncJobMetrics", frozen)]
+#[pyclass(
+    name = "DataSourceSyncJobMetrics",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDataSourceSyncJobMetrics {
     inner: aws_sdk_qbusiness::types::DataSourceSyncJobMetrics,
 }
@@ -9243,7 +9319,11 @@ impl PyDataSourceSyncJobMetrics {
     }
 }
 
-#[pyclass(name = "DataSourceVpcConfiguration", frozen)]
+#[pyclass(
+    name = "DataSourceVpcConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDataSourceVpcConfiguration {
     inner: aws_sdk_qbusiness::types::DataSourceVpcConfiguration,
 }
@@ -9277,7 +9357,7 @@ impl PyDataSourceVpcConfiguration {
     }
 }
 
-#[pyclass(name = "DocumentAcl", frozen)]
+#[pyclass(name = "DocumentAcl", module = "rboto_qbusiness._native", frozen)]
 struct PyDocumentAcl {
     inner: aws_sdk_qbusiness::types::DocumentAcl,
 }
@@ -9321,7 +9401,11 @@ impl PyDocumentAcl {
     }
 }
 
-#[pyclass(name = "DocumentAclCondition", frozen)]
+#[pyclass(
+    name = "DocumentAclCondition",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentAclCondition {
     inner: aws_sdk_qbusiness::types::DocumentAclCondition,
 }
@@ -9385,7 +9469,7 @@ impl PyDocumentAclCondition {
     }
 }
 
-#[pyclass(name = "DocumentAclGroup", frozen)]
+#[pyclass(name = "DocumentAclGroup", module = "rboto_qbusiness._native", frozen)]
 struct PyDocumentAclGroup {
     inner: aws_sdk_qbusiness::types::DocumentAclGroup,
 }
@@ -9417,7 +9501,11 @@ impl PyDocumentAclGroup {
     }
 }
 
-#[pyclass(name = "DocumentAclMembership", frozen)]
+#[pyclass(
+    name = "DocumentAclMembership",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentAclMembership {
     inner: aws_sdk_qbusiness::types::DocumentAclMembership,
 }
@@ -9460,7 +9548,7 @@ impl PyDocumentAclMembership {
     }
 }
 
-#[pyclass(name = "DocumentAclUser", frozen)]
+#[pyclass(name = "DocumentAclUser", module = "rboto_qbusiness._native", frozen)]
 struct PyDocumentAclUser {
     inner: aws_sdk_qbusiness::types::DocumentAclUser,
 }
@@ -9492,7 +9580,7 @@ impl PyDocumentAclUser {
     }
 }
 
-#[pyclass(name = "DocumentAttribute", frozen)]
+#[pyclass(name = "DocumentAttribute", module = "rboto_qbusiness._native", frozen)]
 struct PyDocumentAttribute {
     inner: aws_sdk_qbusiness::types::DocumentAttribute,
 }
@@ -9520,7 +9608,11 @@ impl PyDocumentAttribute {
     }
 }
 
-#[pyclass(name = "DocumentAttributeCondition", frozen)]
+#[pyclass(
+    name = "DocumentAttributeCondition",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentAttributeCondition {
     inner: aws_sdk_qbusiness::types::DocumentAttributeCondition,
 }
@@ -9554,7 +9646,11 @@ impl PyDocumentAttributeCondition {
     }
 }
 
-#[pyclass(name = "DocumentAttributeConfiguration", frozen)]
+#[pyclass(
+    name = "DocumentAttributeConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentAttributeConfiguration {
     inner: aws_sdk_qbusiness::types::DocumentAttributeConfiguration,
 }
@@ -9596,7 +9692,11 @@ impl PyDocumentAttributeConfiguration {
     }
 }
 
-#[pyclass(name = "DocumentAttributeTarget", frozen)]
+#[pyclass(
+    name = "DocumentAttributeTarget",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentAttributeTarget {
     inner: aws_sdk_qbusiness::types::DocumentAttributeTarget,
 }
@@ -9634,7 +9734,7 @@ impl PyDocumentAttributeTarget {
     }
 }
 
-#[pyclass(name = "DocumentDetails", frozen)]
+#[pyclass(name = "DocumentDetails", module = "rboto_qbusiness._native", frozen)]
 struct PyDocumentDetails {
     inner: aws_sdk_qbusiness::types::DocumentDetails,
 }
@@ -9702,7 +9802,11 @@ impl PyDocumentDetails {
     }
 }
 
-#[pyclass(name = "DocumentEnrichmentConfiguration", frozen)]
+#[pyclass(
+    name = "DocumentEnrichmentConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDocumentEnrichmentConfiguration {
     inner: aws_sdk_qbusiness::types::DocumentEnrichmentConfiguration,
 }
@@ -9767,7 +9871,11 @@ impl PyDocumentEnrichmentConfiguration {
     }
 }
 
-#[pyclass(name = "EncryptionConfiguration", frozen)]
+#[pyclass(
+    name = "EncryptionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyEncryptionConfiguration {
     inner: aws_sdk_qbusiness::types::EncryptionConfiguration,
 }
@@ -9789,7 +9897,7 @@ impl PyEncryptionConfiguration {
     }
 }
 
-#[pyclass(name = "ErrorDetail", frozen)]
+#[pyclass(name = "ErrorDetail", module = "rboto_qbusiness._native", frozen)]
 struct PyErrorDetail {
     inner: aws_sdk_qbusiness::types::ErrorDetail,
 }
@@ -9821,7 +9929,7 @@ impl PyErrorDetail {
     }
 }
 
-#[pyclass(name = "FailedDocument", frozen)]
+#[pyclass(name = "FailedDocument", module = "rboto_qbusiness._native", frozen)]
 struct PyFailedDocument {
     inner: aws_sdk_qbusiness::types::FailedDocument,
 }
@@ -9869,7 +9977,7 @@ impl PyFailedDocument {
     }
 }
 
-#[pyclass(name = "GroupStatusDetail", frozen)]
+#[pyclass(name = "GroupStatusDetail", module = "rboto_qbusiness._native", frozen)]
 struct PyGroupStatusDetail {
     inner: aws_sdk_qbusiness::types::GroupStatusDetail,
 }
@@ -9917,7 +10025,7 @@ impl PyGroupStatusDetail {
     }
 }
 
-#[pyclass(name = "GroupSummary", frozen)]
+#[pyclass(name = "GroupSummary", module = "rboto_qbusiness._native", frozen)]
 struct PyGroupSummary {
     inner: aws_sdk_qbusiness::types::GroupSummary,
 }
@@ -9939,7 +10047,11 @@ impl PyGroupSummary {
     }
 }
 
-#[pyclass(name = "HallucinationReductionConfiguration", frozen)]
+#[pyclass(
+    name = "HallucinationReductionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyHallucinationReductionConfiguration {
     inner: aws_sdk_qbusiness::types::HallucinationReductionConfiguration,
 }
@@ -9961,7 +10073,7 @@ impl PyHallucinationReductionConfiguration {
     }
 }
 
-#[pyclass(name = "HookConfiguration", frozen)]
+#[pyclass(name = "HookConfiguration", module = "rboto_qbusiness._native", frozen)]
 struct PyHookConfiguration {
     inner: aws_sdk_qbusiness::types::HookConfiguration,
 }
@@ -10019,7 +10131,11 @@ impl PyHookConfiguration {
     }
 }
 
-#[pyclass(name = "ImageExtractionConfiguration", frozen)]
+#[pyclass(
+    name = "ImageExtractionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyImageExtractionConfiguration {
     inner: aws_sdk_qbusiness::types::ImageExtractionConfiguration,
 }
@@ -10039,7 +10155,7 @@ impl PyImageExtractionConfiguration {
     }
 }
 
-#[pyclass(name = "Index", frozen)]
+#[pyclass(name = "Index", module = "rboto_qbusiness._native", frozen)]
 struct PyIndex {
     inner: aws_sdk_qbusiness::types::Index,
 }
@@ -10101,7 +10217,11 @@ impl PyIndex {
     }
 }
 
-#[pyclass(name = "IndexCapacityConfiguration", frozen)]
+#[pyclass(
+    name = "IndexCapacityConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyIndexCapacityConfiguration {
     inner: aws_sdk_qbusiness::types::IndexCapacityConfiguration,
 }
@@ -10123,7 +10243,7 @@ impl PyIndexCapacityConfiguration {
     }
 }
 
-#[pyclass(name = "IndexStatistics", frozen)]
+#[pyclass(name = "IndexStatistics", module = "rboto_qbusiness._native", frozen)]
 struct PyIndexStatistics {
     inner: aws_sdk_qbusiness::types::IndexStatistics,
 }
@@ -10151,7 +10271,11 @@ impl PyIndexStatistics {
     }
 }
 
-#[pyclass(name = "InlineDocumentEnrichmentConfiguration", frozen)]
+#[pyclass(
+    name = "InlineDocumentEnrichmentConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyInlineDocumentEnrichmentConfiguration {
     inner: aws_sdk_qbusiness::types::InlineDocumentEnrichmentConfiguration,
 }
@@ -10205,7 +10329,11 @@ impl PyInlineDocumentEnrichmentConfiguration {
     }
 }
 
-#[pyclass(name = "InstructionCollection", frozen)]
+#[pyclass(
+    name = "InstructionCollection",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyInstructionCollection {
     inner: aws_sdk_qbusiness::types::InstructionCollection,
 }
@@ -10297,7 +10425,11 @@ impl PyInstructionCollection {
     }
 }
 
-#[pyclass(name = "MediaExtractionConfiguration", frozen)]
+#[pyclass(
+    name = "MediaExtractionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyMediaExtractionConfiguration {
     inner: aws_sdk_qbusiness::types::MediaExtractionConfiguration,
 }
@@ -10357,7 +10489,7 @@ impl PyMediaExtractionConfiguration {
     }
 }
 
-#[pyclass(name = "Message", frozen)]
+#[pyclass(name = "Message", module = "rboto_qbusiness._native", frozen)]
 struct PyMessage {
     inner: aws_sdk_qbusiness::types::Message,
 }
@@ -10488,7 +10620,11 @@ impl PyMessage {
     }
 }
 
-#[pyclass(name = "PersonalizationConfiguration", frozen)]
+#[pyclass(
+    name = "PersonalizationConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyPersonalizationConfiguration {
     inner: aws_sdk_qbusiness::types::PersonalizationConfiguration,
 }
@@ -10508,7 +10644,7 @@ impl PyPersonalizationConfiguration {
     }
 }
 
-#[pyclass(name = "Plugin", frozen)]
+#[pyclass(name = "Plugin", module = "rboto_qbusiness._native", frozen)]
 struct PyPlugin {
     inner: aws_sdk_qbusiness::types::Plugin,
 }
@@ -10600,7 +10736,11 @@ impl PyPlugin {
     }
 }
 
-#[pyclass(name = "PluginTypeMetadataSummary", frozen)]
+#[pyclass(
+    name = "PluginTypeMetadataSummary",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyPluginTypeMetadataSummary {
     inner: aws_sdk_qbusiness::types::PluginTypeMetadataSummary,
 }
@@ -10642,7 +10782,11 @@ impl PyPluginTypeMetadataSummary {
     }
 }
 
-#[pyclass(name = "QAppsConfiguration", frozen)]
+#[pyclass(
+    name = "QAppsConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyQAppsConfiguration {
     inner: aws_sdk_qbusiness::types::QAppsConfiguration,
 }
@@ -10660,7 +10804,11 @@ impl PyQAppsConfiguration {
     }
 }
 
-#[pyclass(name = "QuickSightConfiguration", frozen)]
+#[pyclass(
+    name = "QuickSightConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyQuickSightConfiguration {
     inner: aws_sdk_qbusiness::types::QuickSightConfiguration,
 }
@@ -10678,7 +10826,7 @@ impl PyQuickSightConfiguration {
     }
 }
 
-#[pyclass(name = "RelevantContent", frozen)]
+#[pyclass(name = "RelevantContent", module = "rboto_qbusiness._native", frozen)]
 struct PyRelevantContent {
     inner: aws_sdk_qbusiness::types::RelevantContent,
 }
@@ -10767,7 +10915,11 @@ impl PyRelevantContent {
     }
 }
 
-#[pyclass(name = "ResponseConfiguration", frozen)]
+#[pyclass(
+    name = "ResponseConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyResponseConfiguration {
     inner: aws_sdk_qbusiness::types::ResponseConfiguration,
 }
@@ -10795,7 +10947,7 @@ impl PyResponseConfiguration {
     }
 }
 
-#[pyclass(name = "Retriever", frozen)]
+#[pyclass(name = "Retriever", module = "rboto_qbusiness._native", frozen)]
 struct PyRetriever {
     inner: aws_sdk_qbusiness::types::Retriever,
 }
@@ -10857,7 +11009,7 @@ impl PyRetriever {
     }
 }
 
-#[pyclass(name = "Rule", frozen)]
+#[pyclass(name = "Rule", module = "rboto_qbusiness._native", frozen)]
 struct PyRule {
     inner: aws_sdk_qbusiness::types::Rule,
 }
@@ -10917,7 +11069,7 @@ impl PyRule {
     }
 }
 
-#[pyclass(name = "ScoreAttributes", frozen)]
+#[pyclass(name = "ScoreAttributes", module = "rboto_qbusiness._native", frozen)]
 struct PyScoreAttributes {
     inner: aws_sdk_qbusiness::types::ScoreAttributes,
 }
@@ -10939,7 +11091,7 @@ impl PyScoreAttributes {
     }
 }
 
-#[pyclass(name = "SnippetExcerpt", frozen)]
+#[pyclass(name = "SnippetExcerpt", module = "rboto_qbusiness._native", frozen)]
 struct PySnippetExcerpt {
     inner: aws_sdk_qbusiness::types::SnippetExcerpt,
 }
@@ -10961,7 +11113,7 @@ impl PySnippetExcerpt {
     }
 }
 
-#[pyclass(name = "SourceAttribution", frozen)]
+#[pyclass(name = "SourceAttribution", module = "rboto_qbusiness._native", frozen)]
 struct PySourceAttribution {
     inner: aws_sdk_qbusiness::types::SourceAttribution,
 }
@@ -11074,7 +11226,7 @@ impl PySourceAttribution {
     }
 }
 
-#[pyclass(name = "Subscription", frozen)]
+#[pyclass(name = "Subscription", module = "rboto_qbusiness._native", frozen)]
 struct PySubscription {
     inner: aws_sdk_qbusiness::types::Subscription,
 }
@@ -11148,7 +11300,11 @@ impl PySubscription {
     }
 }
 
-#[pyclass(name = "SubscriptionDetails", frozen)]
+#[pyclass(
+    name = "SubscriptionDetails",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PySubscriptionDetails {
     inner: aws_sdk_qbusiness::types::SubscriptionDetails,
 }
@@ -11170,7 +11326,7 @@ impl PySubscriptionDetails {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_qbusiness._native", frozen)]
 struct PyTag {
     inner: aws_sdk_qbusiness::types::Tag,
 }
@@ -11194,7 +11350,11 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TextDocumentStatistics", frozen)]
+#[pyclass(
+    name = "TextDocumentStatistics",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyTextDocumentStatistics {
     inner: aws_sdk_qbusiness::types::TextDocumentStatistics,
 }
@@ -11226,7 +11386,7 @@ impl PyTextDocumentStatistics {
     }
 }
 
-#[pyclass(name = "TextSegment", frozen)]
+#[pyclass(name = "TextSegment", module = "rboto_qbusiness._native", frozen)]
 struct PyTextSegment {
     inner: aws_sdk_qbusiness::types::TextSegment,
 }
@@ -11304,7 +11464,11 @@ impl PyTextSegment {
     }
 }
 
-#[pyclass(name = "TopicConfiguration", frozen)]
+#[pyclass(
+    name = "TopicConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyTopicConfiguration {
     inner: aws_sdk_qbusiness::types::TopicConfiguration,
 }
@@ -11364,7 +11528,7 @@ impl PyTopicConfiguration {
     }
 }
 
-#[pyclass(name = "UserAlias", frozen)]
+#[pyclass(name = "UserAlias", module = "rboto_qbusiness._native", frozen)]
 struct PyUserAlias {
     inner: aws_sdk_qbusiness::types::UserAlias,
 }
@@ -11402,7 +11566,7 @@ impl PyUserAlias {
     }
 }
 
-#[pyclass(name = "UsersAndGroups", frozen)]
+#[pyclass(name = "UsersAndGroups", module = "rboto_qbusiness._native", frozen)]
 struct PyUsersAndGroups {
     inner: aws_sdk_qbusiness::types::UsersAndGroups,
 }
@@ -11444,7 +11608,11 @@ impl PyUsersAndGroups {
     }
 }
 
-#[pyclass(name = "VideoExtractionConfiguration", frozen)]
+#[pyclass(
+    name = "VideoExtractionConfiguration",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyVideoExtractionConfiguration {
     inner: aws_sdk_qbusiness::types::VideoExtractionConfiguration,
 }
@@ -11464,7 +11632,7 @@ impl PyVideoExtractionConfiguration {
     }
 }
 
-#[pyclass(name = "WebExperience", frozen)]
+#[pyclass(name = "WebExperience", module = "rboto_qbusiness._native", frozen)]
 struct PyWebExperience {
     inner: aws_sdk_qbusiness::types::WebExperience,
 }
@@ -11526,7 +11694,11 @@ impl PyWebExperience {
     }
 }
 
-#[pyclass(name = "AssociatePermissionResponse", frozen)]
+#[pyclass(
+    name = "AssociatePermissionResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyAssociatePermissionResponse {
     inner: aws_sdk_qbusiness::operation::associate_permission::AssociatePermissionOutput,
 }
@@ -11555,7 +11727,11 @@ impl PyAssociatePermissionResponse {
     }
 }
 
-#[pyclass(name = "BatchDeleteDocumentResponse", frozen)]
+#[pyclass(
+    name = "BatchDeleteDocumentResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyBatchDeleteDocumentResponse {
     inner: aws_sdk_qbusiness::operation::batch_delete_document::BatchDeleteDocumentOutput,
 }
@@ -11600,7 +11776,11 @@ impl PyBatchDeleteDocumentResponse {
     }
 }
 
-#[pyclass(name = "BatchPutDocumentResponse", frozen)]
+#[pyclass(
+    name = "BatchPutDocumentResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyBatchPutDocumentResponse {
     inner: aws_sdk_qbusiness::operation::batch_put_document::BatchPutDocumentOutput,
 }
@@ -11645,7 +11825,11 @@ impl PyBatchPutDocumentResponse {
     }
 }
 
-#[pyclass(name = "CancelSubscriptionResponse", frozen)]
+#[pyclass(
+    name = "CancelSubscriptionResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCancelSubscriptionResponse {
     inner: aws_sdk_qbusiness::operation::cancel_subscription::CancelSubscriptionOutput,
 }
@@ -11718,7 +11902,7 @@ impl PyCancelSubscriptionResponse {
     }
 }
 
-#[pyclass(name = "ChatSyncOutput", frozen)]
+#[pyclass(name = "ChatSyncOutput", module = "rboto_qbusiness._native", frozen)]
 struct PyChatSyncOutput {
     inner: aws_sdk_qbusiness::operation::chat_sync::ChatSyncOutput,
 }
@@ -11913,7 +12097,11 @@ impl PyChatSyncOutput {
     }
 }
 
-#[pyclass(name = "CheckDocumentAccessResponse", frozen)]
+#[pyclass(
+    name = "CheckDocumentAccessResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCheckDocumentAccessResponse {
     inner: aws_sdk_qbusiness::operation::check_document_access::CheckDocumentAccessOutput,
 }
@@ -12028,7 +12216,11 @@ impl PyCheckDocumentAccessResponse {
     }
 }
 
-#[pyclass(name = "CreateAnonymousWebExperienceUrlResponse", frozen)]
+#[pyclass(
+    name = "CreateAnonymousWebExperienceUrlResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateAnonymousWebExperienceUrlResponse {
     inner: aws_sdk_qbusiness::operation::create_anonymous_web_experience_url::CreateAnonymousWebExperienceUrlOutput,
 }
@@ -12057,7 +12249,11 @@ impl PyCreateAnonymousWebExperienceUrlResponse {
     }
 }
 
-#[pyclass(name = "CreateApplicationResponse", frozen)]
+#[pyclass(
+    name = "CreateApplicationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateApplicationResponse {
     inner: aws_sdk_qbusiness::operation::create_application::CreateApplicationOutput,
 }
@@ -12102,7 +12298,11 @@ impl PyCreateApplicationResponse {
     }
 }
 
-#[pyclass(name = "CreateChatResponseConfigurationResponse", frozen)]
+#[pyclass(
+    name = "CreateChatResponseConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateChatResponseConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::create_chat_response_configuration::CreateChatResponseConfigurationOutput,
 }
@@ -12139,7 +12339,11 @@ impl PyCreateChatResponseConfigurationResponse {
     }
 }
 
-#[pyclass(name = "CreateDataAccessorResponse", frozen)]
+#[pyclass(
+    name = "CreateDataAccessorResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateDataAccessorResponse {
     inner: aws_sdk_qbusiness::operation::create_data_accessor::CreateDataAccessorOutput,
 }
@@ -12176,7 +12380,11 @@ impl PyCreateDataAccessorResponse {
     }
 }
 
-#[pyclass(name = "CreateDataSourceResponse", frozen)]
+#[pyclass(
+    name = "CreateDataSourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateDataSourceResponse {
     inner: aws_sdk_qbusiness::operation::create_data_source::CreateDataSourceOutput,
 }
@@ -12221,7 +12429,11 @@ impl PyCreateDataSourceResponse {
     }
 }
 
-#[pyclass(name = "CreateIndexResponse", frozen)]
+#[pyclass(
+    name = "CreateIndexResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateIndexResponse {
     inner: aws_sdk_qbusiness::operation::create_index::CreateIndexOutput,
 }
@@ -12266,7 +12478,11 @@ impl PyCreateIndexResponse {
     }
 }
 
-#[pyclass(name = "CreatePluginResponse", frozen)]
+#[pyclass(
+    name = "CreatePluginResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreatePluginResponse {
     inner: aws_sdk_qbusiness::operation::create_plugin::CreatePluginOutput,
 }
@@ -12327,7 +12543,11 @@ impl PyCreatePluginResponse {
     }
 }
 
-#[pyclass(name = "CreateRetrieverResponse", frozen)]
+#[pyclass(
+    name = "CreateRetrieverResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateRetrieverResponse {
     inner: aws_sdk_qbusiness::operation::create_retriever::CreateRetrieverOutput,
 }
@@ -12372,7 +12592,11 @@ impl PyCreateRetrieverResponse {
     }
 }
 
-#[pyclass(name = "CreateSubscriptionResponse", frozen)]
+#[pyclass(
+    name = "CreateSubscriptionResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateSubscriptionResponse {
     inner: aws_sdk_qbusiness::operation::create_subscription::CreateSubscriptionOutput,
 }
@@ -12461,7 +12685,11 @@ impl PyCreateSubscriptionResponse {
     }
 }
 
-#[pyclass(name = "CreateUserResponse", frozen)]
+#[pyclass(
+    name = "CreateUserResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateUserResponse {
     inner: aws_sdk_qbusiness::operation::create_user::CreateUserOutput,
 }
@@ -12474,7 +12702,11 @@ impl PyCreateUserResponse {
     }
 }
 
-#[pyclass(name = "CreateWebExperienceResponse", frozen)]
+#[pyclass(
+    name = "CreateWebExperienceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyCreateWebExperienceResponse {
     inner: aws_sdk_qbusiness::operation::create_web_experience::CreateWebExperienceOutput,
 }
@@ -12519,7 +12751,11 @@ impl PyCreateWebExperienceResponse {
     }
 }
 
-#[pyclass(name = "DeleteApplicationResponse", frozen)]
+#[pyclass(
+    name = "DeleteApplicationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteApplicationResponse {
     inner: aws_sdk_qbusiness::operation::delete_application::DeleteApplicationOutput,
 }
@@ -12532,7 +12768,11 @@ impl PyDeleteApplicationResponse {
     }
 }
 
-#[pyclass(name = "DeleteAttachmentResponse", frozen)]
+#[pyclass(
+    name = "DeleteAttachmentResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteAttachmentResponse {
     inner: aws_sdk_qbusiness::operation::delete_attachment::DeleteAttachmentOutput,
 }
@@ -12545,7 +12785,11 @@ impl PyDeleteAttachmentResponse {
     }
 }
 
-#[pyclass(name = "DeleteChatControlsConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DeleteChatControlsConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteChatControlsConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::delete_chat_controls_configuration::DeleteChatControlsConfigurationOutput,
 }
@@ -12558,7 +12802,11 @@ impl PyDeleteChatControlsConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DeleteChatResponseConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DeleteChatResponseConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteChatResponseConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::delete_chat_response_configuration::DeleteChatResponseConfigurationOutput,
 }
@@ -12571,7 +12819,11 @@ impl PyDeleteChatResponseConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DeleteConversationResponse", frozen)]
+#[pyclass(
+    name = "DeleteConversationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteConversationResponse {
     inner: aws_sdk_qbusiness::operation::delete_conversation::DeleteConversationOutput,
 }
@@ -12584,7 +12836,11 @@ impl PyDeleteConversationResponse {
     }
 }
 
-#[pyclass(name = "DeleteDataAccessorResponse", frozen)]
+#[pyclass(
+    name = "DeleteDataAccessorResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteDataAccessorResponse {
     inner: aws_sdk_qbusiness::operation::delete_data_accessor::DeleteDataAccessorOutput,
 }
@@ -12597,7 +12853,11 @@ impl PyDeleteDataAccessorResponse {
     }
 }
 
-#[pyclass(name = "DeleteDataSourceResponse", frozen)]
+#[pyclass(
+    name = "DeleteDataSourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteDataSourceResponse {
     inner: aws_sdk_qbusiness::operation::delete_data_source::DeleteDataSourceOutput,
 }
@@ -12610,7 +12870,11 @@ impl PyDeleteDataSourceResponse {
     }
 }
 
-#[pyclass(name = "DeleteGroupResponse", frozen)]
+#[pyclass(
+    name = "DeleteGroupResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteGroupResponse {
     inner: aws_sdk_qbusiness::operation::delete_group::DeleteGroupOutput,
 }
@@ -12623,7 +12887,11 @@ impl PyDeleteGroupResponse {
     }
 }
 
-#[pyclass(name = "DeleteIndexResponse", frozen)]
+#[pyclass(
+    name = "DeleteIndexResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteIndexResponse {
     inner: aws_sdk_qbusiness::operation::delete_index::DeleteIndexOutput,
 }
@@ -12636,7 +12904,11 @@ impl PyDeleteIndexResponse {
     }
 }
 
-#[pyclass(name = "DeletePluginResponse", frozen)]
+#[pyclass(
+    name = "DeletePluginResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeletePluginResponse {
     inner: aws_sdk_qbusiness::operation::delete_plugin::DeletePluginOutput,
 }
@@ -12649,7 +12921,11 @@ impl PyDeletePluginResponse {
     }
 }
 
-#[pyclass(name = "DeleteRetrieverResponse", frozen)]
+#[pyclass(
+    name = "DeleteRetrieverResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteRetrieverResponse {
     inner: aws_sdk_qbusiness::operation::delete_retriever::DeleteRetrieverOutput,
 }
@@ -12662,7 +12938,11 @@ impl PyDeleteRetrieverResponse {
     }
 }
 
-#[pyclass(name = "DeleteUserResponse", frozen)]
+#[pyclass(
+    name = "DeleteUserResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteUserResponse {
     inner: aws_sdk_qbusiness::operation::delete_user::DeleteUserOutput,
 }
@@ -12675,7 +12955,11 @@ impl PyDeleteUserResponse {
     }
 }
 
-#[pyclass(name = "DeleteWebExperienceResponse", frozen)]
+#[pyclass(
+    name = "DeleteWebExperienceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDeleteWebExperienceResponse {
     inner: aws_sdk_qbusiness::operation::delete_web_experience::DeleteWebExperienceOutput,
 }
@@ -12688,7 +12972,11 @@ impl PyDeleteWebExperienceResponse {
     }
 }
 
-#[pyclass(name = "DisassociatePermissionResponse", frozen)]
+#[pyclass(
+    name = "DisassociatePermissionResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyDisassociatePermissionResponse {
     inner: aws_sdk_qbusiness::operation::disassociate_permission::DisassociatePermissionOutput,
 }
@@ -12701,7 +12989,11 @@ impl PyDisassociatePermissionResponse {
     }
 }
 
-#[pyclass(name = "GetApplicationResponse", frozen)]
+#[pyclass(
+    name = "GetApplicationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetApplicationResponse {
     inner: aws_sdk_qbusiness::operation::get_application::GetApplicationOutput,
 }
@@ -13070,7 +13362,11 @@ impl PyGetApplicationResponse {
     }
 }
 
-#[pyclass(name = "GetChatControlsConfigurationResponse", frozen)]
+#[pyclass(
+    name = "GetChatControlsConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetChatControlsConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::get_chat_controls_configuration::GetChatControlsConfigurationOutput,
 }
@@ -13235,7 +13531,11 @@ impl PyGetChatControlsConfigurationResponse {
     }
 }
 
-#[pyclass(name = "GetChatResponseConfigurationResponse", frozen)]
+#[pyclass(
+    name = "GetChatResponseConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetChatResponseConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::get_chat_response_configuration::GetChatResponseConfigurationOutput,
 }
@@ -13356,7 +13656,11 @@ impl PyGetChatResponseConfigurationResponse {
     }
 }
 
-#[pyclass(name = "GetDataAccessorResponse", frozen)]
+#[pyclass(
+    name = "GetDataAccessorResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetDataAccessorResponse {
     inner: aws_sdk_qbusiness::operation::get_data_accessor::GetDataAccessorOutput,
 }
@@ -13551,7 +13855,11 @@ impl PyGetDataAccessorResponse {
     }
 }
 
-#[pyclass(name = "GetDataSourceResponse", frozen)]
+#[pyclass(
+    name = "GetDataSourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetDataSourceResponse {
     inner: aws_sdk_qbusiness::operation::get_data_source::GetDataSourceOutput,
 }
@@ -13860,7 +14168,11 @@ impl PyGetDataSourceResponse {
     }
 }
 
-#[pyclass(name = "GetDocumentContentResponse", frozen)]
+#[pyclass(
+    name = "GetDocumentContentResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetDocumentContentResponse {
     inner: aws_sdk_qbusiness::operation::get_document_content::GetDocumentContentOutput,
 }
@@ -13889,7 +14201,7 @@ impl PyGetDocumentContentResponse {
     }
 }
 
-#[pyclass(name = "GetGroupResponse", frozen)]
+#[pyclass(name = "GetGroupResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetGroupResponse {
     inner: aws_sdk_qbusiness::operation::get_group::GetGroupOutput,
 }
@@ -13956,7 +14268,7 @@ impl PyGetGroupResponse {
     }
 }
 
-#[pyclass(name = "GetIndexResponse", frozen)]
+#[pyclass(name = "GetIndexResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetIndexResponse {
     inner: aws_sdk_qbusiness::operation::get_index::GetIndexOutput,
 }
@@ -14211,7 +14523,7 @@ impl PyGetIndexResponse {
     }
 }
 
-#[pyclass(name = "GetMediaResponse", frozen)]
+#[pyclass(name = "GetMediaResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetMediaResponse {
     inner: aws_sdk_qbusiness::operation::get_media::GetMediaOutput,
 }
@@ -14256,7 +14568,7 @@ impl PyGetMediaResponse {
     }
 }
 
-#[pyclass(name = "GetPluginResponse", frozen)]
+#[pyclass(name = "GetPluginResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetPluginResponse {
     inner: aws_sdk_qbusiness::operation::get_plugin::GetPluginOutput,
 }
@@ -14467,7 +14779,7 @@ impl PyGetPluginResponse {
     }
 }
 
-#[pyclass(name = "GetPolicyResponse", frozen)]
+#[pyclass(name = "GetPolicyResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetPolicyResponse {
     inner: aws_sdk_qbusiness::operation::get_policy::GetPolicyOutput,
 }
@@ -14496,7 +14808,11 @@ impl PyGetPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetRetrieverResponse", frozen)]
+#[pyclass(
+    name = "GetRetrieverResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetRetrieverResponse {
     inner: aws_sdk_qbusiness::operation::get_retriever::GetRetrieverOutput,
 }
@@ -14669,7 +14985,7 @@ impl PyGetRetrieverResponse {
     }
 }
 
-#[pyclass(name = "GetUserResponse", frozen)]
+#[pyclass(name = "GetUserResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyGetUserResponse {
     inner: aws_sdk_qbusiness::operation::get_user::GetUserOutput,
 }
@@ -14714,7 +15030,11 @@ impl PyGetUserResponse {
     }
 }
 
-#[pyclass(name = "GetWebExperienceResponse", frozen)]
+#[pyclass(
+    name = "GetWebExperienceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyGetWebExperienceResponse {
     inner: aws_sdk_qbusiness::operation::get_web_experience::GetWebExperienceOutput,
 }
@@ -15043,7 +15363,11 @@ impl PyGetWebExperienceResponse {
     }
 }
 
-#[pyclass(name = "ListApplicationsResponse", frozen)]
+#[pyclass(
+    name = "ListApplicationsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListApplicationsResponse {
     inner: aws_sdk_qbusiness::operation::list_applications::ListApplicationsOutput,
 }
@@ -15104,7 +15428,11 @@ impl PyListApplicationsResponse {
     }
 }
 
-#[pyclass(name = "ListAttachmentsResponse", frozen)]
+#[pyclass(
+    name = "ListAttachmentsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListAttachmentsResponse {
     inner: aws_sdk_qbusiness::operation::list_attachments::ListAttachmentsOutput,
 }
@@ -15165,7 +15493,11 @@ impl PyListAttachmentsResponse {
     }
 }
 
-#[pyclass(name = "ListChatResponseConfigurationsResponse", frozen)]
+#[pyclass(
+    name = "ListChatResponseConfigurationsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListChatResponseConfigurationsResponse {
     inner: aws_sdk_qbusiness::operation::list_chat_response_configurations::ListChatResponseConfigurationsOutput,
 }
@@ -15226,7 +15558,11 @@ impl PyListChatResponseConfigurationsResponse {
     }
 }
 
-#[pyclass(name = "ListConversationsResponse", frozen)]
+#[pyclass(
+    name = "ListConversationsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListConversationsResponse {
     inner: aws_sdk_qbusiness::operation::list_conversations::ListConversationsOutput,
 }
@@ -15287,7 +15623,11 @@ impl PyListConversationsResponse {
     }
 }
 
-#[pyclass(name = "ListDataAccessorsResponse", frozen)]
+#[pyclass(
+    name = "ListDataAccessorsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListDataAccessorsResponse {
     inner: aws_sdk_qbusiness::operation::list_data_accessors::ListDataAccessorsOutput,
 }
@@ -15348,7 +15688,11 @@ impl PyListDataAccessorsResponse {
     }
 }
 
-#[pyclass(name = "ListDataSourceSyncJobsResponse", frozen)]
+#[pyclass(
+    name = "ListDataSourceSyncJobsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListDataSourceSyncJobsResponse {
     inner: aws_sdk_qbusiness::operation::list_data_source_sync_jobs::ListDataSourceSyncJobsOutput,
 }
@@ -15409,7 +15753,11 @@ impl PyListDataSourceSyncJobsResponse {
     }
 }
 
-#[pyclass(name = "ListDataSourcesResponse", frozen)]
+#[pyclass(
+    name = "ListDataSourcesResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListDataSourcesResponse {
     inner: aws_sdk_qbusiness::operation::list_data_sources::ListDataSourcesOutput,
 }
@@ -15470,7 +15818,11 @@ impl PyListDataSourcesResponse {
     }
 }
 
-#[pyclass(name = "ListDocumentsResponse", frozen)]
+#[pyclass(
+    name = "ListDocumentsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListDocumentsResponse {
     inner: aws_sdk_qbusiness::operation::list_documents::ListDocumentsOutput,
 }
@@ -15531,7 +15883,11 @@ impl PyListDocumentsResponse {
     }
 }
 
-#[pyclass(name = "ListGroupsResponse", frozen)]
+#[pyclass(
+    name = "ListGroupsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListGroupsResponse {
     inner: aws_sdk_qbusiness::operation::list_groups::ListGroupsOutput,
 }
@@ -15592,7 +15948,11 @@ impl PyListGroupsResponse {
     }
 }
 
-#[pyclass(name = "ListIndicesResponse", frozen)]
+#[pyclass(
+    name = "ListIndicesResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListIndicesResponse {
     inner: aws_sdk_qbusiness::operation::list_indices::ListIndicesOutput,
 }
@@ -15653,7 +16013,11 @@ impl PyListIndicesResponse {
     }
 }
 
-#[pyclass(name = "ListMessagesResponse", frozen)]
+#[pyclass(
+    name = "ListMessagesResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListMessagesResponse {
     inner: aws_sdk_qbusiness::operation::list_messages::ListMessagesOutput,
 }
@@ -15714,7 +16078,11 @@ impl PyListMessagesResponse {
     }
 }
 
-#[pyclass(name = "ListPluginActionsResponse", frozen)]
+#[pyclass(
+    name = "ListPluginActionsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListPluginActionsResponse {
     inner: aws_sdk_qbusiness::operation::list_plugin_actions::ListPluginActionsOutput,
 }
@@ -15775,7 +16143,11 @@ impl PyListPluginActionsResponse {
     }
 }
 
-#[pyclass(name = "ListPluginTypeActionsResponse", frozen)]
+#[pyclass(
+    name = "ListPluginTypeActionsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListPluginTypeActionsResponse {
     inner: aws_sdk_qbusiness::operation::list_plugin_type_actions::ListPluginTypeActionsOutput,
 }
@@ -15836,7 +16208,11 @@ impl PyListPluginTypeActionsResponse {
     }
 }
 
-#[pyclass(name = "ListPluginTypeMetadataResponse", frozen)]
+#[pyclass(
+    name = "ListPluginTypeMetadataResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListPluginTypeMetadataResponse {
     inner: aws_sdk_qbusiness::operation::list_plugin_type_metadata::ListPluginTypeMetadataOutput,
 }
@@ -15897,7 +16273,11 @@ impl PyListPluginTypeMetadataResponse {
     }
 }
 
-#[pyclass(name = "ListPluginsResponse", frozen)]
+#[pyclass(
+    name = "ListPluginsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListPluginsResponse {
     inner: aws_sdk_qbusiness::operation::list_plugins::ListPluginsOutput,
 }
@@ -15958,7 +16338,11 @@ impl PyListPluginsResponse {
     }
 }
 
-#[pyclass(name = "ListRetrieversResponse", frozen)]
+#[pyclass(
+    name = "ListRetrieversResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListRetrieversResponse {
     inner: aws_sdk_qbusiness::operation::list_retrievers::ListRetrieversOutput,
 }
@@ -16019,7 +16403,11 @@ impl PyListRetrieversResponse {
     }
 }
 
-#[pyclass(name = "ListSubscriptionsResponse", frozen)]
+#[pyclass(
+    name = "ListSubscriptionsResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListSubscriptionsResponse {
     inner: aws_sdk_qbusiness::operation::list_subscriptions::ListSubscriptionsOutput,
 }
@@ -16080,7 +16468,11 @@ impl PyListSubscriptionsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_qbusiness::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -16125,7 +16517,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListWebExperiencesResponse", frozen)]
+#[pyclass(
+    name = "ListWebExperiencesResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyListWebExperiencesResponse {
     inner: aws_sdk_qbusiness::operation::list_web_experiences::ListWebExperiencesOutput,
 }
@@ -16186,7 +16582,7 @@ impl PyListWebExperiencesResponse {
     }
 }
 
-#[pyclass(name = "PutGroupResponse", frozen)]
+#[pyclass(name = "PutGroupResponse", module = "rboto_qbusiness._native", frozen)]
 struct PyPutGroupResponse {
     inner: aws_sdk_qbusiness::operation::put_group::PutGroupOutput,
 }
@@ -16199,7 +16595,11 @@ impl PyPutGroupResponse {
     }
 }
 
-#[pyclass(name = "SearchRelevantContentResponse", frozen)]
+#[pyclass(
+    name = "SearchRelevantContentResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PySearchRelevantContentResponse {
     inner: aws_sdk_qbusiness::operation::search_relevant_content::SearchRelevantContentOutput,
 }
@@ -16260,7 +16660,11 @@ impl PySearchRelevantContentResponse {
     }
 }
 
-#[pyclass(name = "StartDataSourceSyncJobResponse", frozen)]
+#[pyclass(
+    name = "StartDataSourceSyncJobResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyStartDataSourceSyncJobResponse {
     inner: aws_sdk_qbusiness::operation::start_data_source_sync_job::StartDataSourceSyncJobOutput,
 }
@@ -16289,7 +16693,11 @@ impl PyStartDataSourceSyncJobResponse {
     }
 }
 
-#[pyclass(name = "StopDataSourceSyncJobResponse", frozen)]
+#[pyclass(
+    name = "StopDataSourceSyncJobResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyStopDataSourceSyncJobResponse {
     inner: aws_sdk_qbusiness::operation::stop_data_source_sync_job::StopDataSourceSyncJobOutput,
 }
@@ -16302,7 +16710,11 @@ impl PyStopDataSourceSyncJobResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_qbusiness::operation::tag_resource::TagResourceOutput,
 }
@@ -16315,7 +16727,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_qbusiness::operation::untag_resource::UntagResourceOutput,
 }
@@ -16328,7 +16744,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateApplicationResponse", frozen)]
+#[pyclass(
+    name = "UpdateApplicationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateApplicationResponse {
     inner: aws_sdk_qbusiness::operation::update_application::UpdateApplicationOutput,
 }
@@ -16341,7 +16761,11 @@ impl PyUpdateApplicationResponse {
     }
 }
 
-#[pyclass(name = "UpdateChatControlsConfigurationResponse", frozen)]
+#[pyclass(
+    name = "UpdateChatControlsConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateChatControlsConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::update_chat_controls_configuration::UpdateChatControlsConfigurationOutput,
 }
@@ -16354,7 +16778,11 @@ impl PyUpdateChatControlsConfigurationResponse {
     }
 }
 
-#[pyclass(name = "UpdateChatResponseConfigurationResponse", frozen)]
+#[pyclass(
+    name = "UpdateChatResponseConfigurationResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateChatResponseConfigurationResponse {
     inner: aws_sdk_qbusiness::operation::update_chat_response_configuration::UpdateChatResponseConfigurationOutput,
 }
@@ -16367,7 +16795,11 @@ impl PyUpdateChatResponseConfigurationResponse {
     }
 }
 
-#[pyclass(name = "UpdateDataAccessorResponse", frozen)]
+#[pyclass(
+    name = "UpdateDataAccessorResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateDataAccessorResponse {
     inner: aws_sdk_qbusiness::operation::update_data_accessor::UpdateDataAccessorOutput,
 }
@@ -16380,7 +16812,11 @@ impl PyUpdateDataAccessorResponse {
     }
 }
 
-#[pyclass(name = "UpdateDataSourceResponse", frozen)]
+#[pyclass(
+    name = "UpdateDataSourceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateDataSourceResponse {
     inner: aws_sdk_qbusiness::operation::update_data_source::UpdateDataSourceOutput,
 }
@@ -16393,7 +16829,11 @@ impl PyUpdateDataSourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateIndexResponse", frozen)]
+#[pyclass(
+    name = "UpdateIndexResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateIndexResponse {
     inner: aws_sdk_qbusiness::operation::update_index::UpdateIndexOutput,
 }
@@ -16406,7 +16846,11 @@ impl PyUpdateIndexResponse {
     }
 }
 
-#[pyclass(name = "UpdatePluginResponse", frozen)]
+#[pyclass(
+    name = "UpdatePluginResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdatePluginResponse {
     inner: aws_sdk_qbusiness::operation::update_plugin::UpdatePluginOutput,
 }
@@ -16419,7 +16863,11 @@ impl PyUpdatePluginResponse {
     }
 }
 
-#[pyclass(name = "UpdateRetrieverResponse", frozen)]
+#[pyclass(
+    name = "UpdateRetrieverResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateRetrieverResponse {
     inner: aws_sdk_qbusiness::operation::update_retriever::UpdateRetrieverOutput,
 }
@@ -16432,7 +16880,11 @@ impl PyUpdateRetrieverResponse {
     }
 }
 
-#[pyclass(name = "UpdateSubscriptionResponse", frozen)]
+#[pyclass(
+    name = "UpdateSubscriptionResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateSubscriptionResponse {
     inner: aws_sdk_qbusiness::operation::update_subscription::UpdateSubscriptionOutput,
 }
@@ -16505,7 +16957,11 @@ impl PyUpdateSubscriptionResponse {
     }
 }
 
-#[pyclass(name = "UpdateUserResponse", frozen)]
+#[pyclass(
+    name = "UpdateUserResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateUserResponse {
     inner: aws_sdk_qbusiness::operation::update_user::UpdateUserOutput,
 }
@@ -16614,7 +17070,11 @@ impl PyUpdateUserResponse {
     }
 }
 
-#[pyclass(name = "UpdateWebExperienceResponse", frozen)]
+#[pyclass(
+    name = "UpdateWebExperienceResponse",
+    module = "rboto_qbusiness._native",
+    frozen
+)]
 struct PyUpdateWebExperienceResponse {
     inner: aws_sdk_qbusiness::operation::update_web_experience::UpdateWebExperienceOutput,
 }
@@ -16627,7 +17087,7 @@ impl PyUpdateWebExperienceResponse {
     }
 }
 
-#[pyclass(name = "ChatOutputStreamReceiver")]
+#[pyclass(name = "ChatOutputStreamReceiver", module = "rboto_qbusiness._native")]
 struct PyChatOutputStreamReceiver {
     inner: Arc<
         Mutex<

@@ -2619,7 +2619,11 @@ fn utterance_event_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ClinicalNoteGenerationResult", frozen)]
+#[pyclass(
+    name = "ClinicalNoteGenerationResult",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyClinicalNoteGenerationResult {
     inner: aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult,
 }
@@ -2671,7 +2675,11 @@ impl PyClinicalNoteGenerationResult {
     }
 }
 
-#[pyclass(name = "ClinicalNoteGenerationSettings", frozen)]
+#[pyclass(
+    name = "ClinicalNoteGenerationSettings",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyClinicalNoteGenerationSettings {
     inner: aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings,
 }
@@ -2699,7 +2707,11 @@ impl PyClinicalNoteGenerationSettings {
     }
 }
 
-#[pyclass(name = "MedicalScribeChannelDefinition", frozen)]
+#[pyclass(
+    name = "MedicalScribeChannelDefinition",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyMedicalScribeChannelDefinition {
     inner: aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition,
 }
@@ -2723,7 +2735,11 @@ impl PyMedicalScribeChannelDefinition {
     }
 }
 
-#[pyclass(name = "MedicalScribeEncryptionSettings", frozen)]
+#[pyclass(
+    name = "MedicalScribeEncryptionSettings",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyMedicalScribeEncryptionSettings {
     inner: aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings,
 }
@@ -2757,7 +2773,11 @@ impl PyMedicalScribeEncryptionSettings {
     }
 }
 
-#[pyclass(name = "MedicalScribePostStreamAnalyticsResult", frozen)]
+#[pyclass(
+    name = "MedicalScribePostStreamAnalyticsResult",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyMedicalScribePostStreamAnalyticsResult {
     inner: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult,
 }
@@ -2785,7 +2805,11 @@ impl PyMedicalScribePostStreamAnalyticsResult {
     }
 }
 
-#[pyclass(name = "MedicalScribePostStreamAnalyticsSettings", frozen)]
+#[pyclass(
+    name = "MedicalScribePostStreamAnalyticsSettings",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyMedicalScribePostStreamAnalyticsSettings {
     inner: aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings,
 }
@@ -2813,7 +2837,11 @@ impl PyMedicalScribePostStreamAnalyticsSettings {
     }
 }
 
-#[pyclass(name = "MedicalScribeStreamDetails", frozen)]
+#[pyclass(
+    name = "MedicalScribeStreamDetails",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyMedicalScribeStreamDetails {
     inner: aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails,
 }
@@ -3014,7 +3042,11 @@ impl PyMedicalScribeStreamDetails {
     }
 }
 
-#[pyclass(name = "GetMedicalScribeStreamResponse", frozen)]
+#[pyclass(
+    name = "GetMedicalScribeStreamResponse",
+    module = "rboto_transcribe_streaming._native",
+    frozen
+)]
 struct PyGetMedicalScribeStreamResponse {
     inner: aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamOutput,
 }
@@ -3049,7 +3081,10 @@ impl PyGetMedicalScribeStreamResponse {
     }
 }
 
-#[pyclass(name = "CallAnalyticsTranscriptResultStreamReceiver")]
+#[pyclass(
+    name = "CallAnalyticsTranscriptResultStreamReceiver",
+    module = "rboto_transcribe_streaming._native"
+)]
 struct PyCallAnalyticsTranscriptResultStreamReceiver {
     inner: Arc<Mutex<Option<aws_sdk_transcribestreaming::primitives::event_stream::EventReceiver< aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream, aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError, >>>>,
     operation: &'static str,
@@ -3112,7 +3147,10 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
     }
 }
 
-#[pyclass(name = "MedicalScribeResultStreamReceiver")]
+#[pyclass(
+    name = "MedicalScribeResultStreamReceiver",
+    module = "rboto_transcribe_streaming._native"
+)]
 struct PyMedicalScribeResultStreamReceiver {
     inner: Arc<
         Mutex<
@@ -3184,7 +3222,10 @@ impl PyMedicalScribeResultStreamReceiver {
     }
 }
 
-#[pyclass(name = "MedicalTranscriptResultStreamReceiver")]
+#[pyclass(
+    name = "MedicalTranscriptResultStreamReceiver",
+    module = "rboto_transcribe_streaming._native"
+)]
 struct PyMedicalTranscriptResultStreamReceiver {
     inner: Arc<
         Mutex<
@@ -3256,7 +3297,10 @@ impl PyMedicalTranscriptResultStreamReceiver {
     }
 }
 
-#[pyclass(name = "TranscriptResultStreamReceiver")]
+#[pyclass(
+    name = "TranscriptResultStreamReceiver",
+    module = "rboto_transcribe_streaming._native"
+)]
 struct PyTranscriptResultStreamReceiver {
     inner: Arc<
         Mutex<

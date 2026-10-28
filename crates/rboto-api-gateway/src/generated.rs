@@ -3395,7 +3395,11 @@ fn vpc_link_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccessLogSettings", frozen)]
+#[pyclass(
+    name = "AccessLogSettings",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyAccessLogSettings {
     inner: aws_sdk_apigateway::types::AccessLogSettings,
 }
@@ -3427,7 +3431,7 @@ impl PyAccessLogSettings {
     }
 }
 
-#[pyclass(name = "ApiKey", frozen)]
+#[pyclass(name = "ApiKey", module = "rboto_api_gateway._native", frozen)]
 struct PyApiKey {
     inner: aws_sdk_apigateway::types::ApiKey,
 }
@@ -3546,7 +3550,7 @@ impl PyApiKey {
     }
 }
 
-#[pyclass(name = "ApiStage", frozen)]
+#[pyclass(name = "ApiStage", module = "rboto_api_gateway._native", frozen)]
 struct PyApiStage {
     inner: aws_sdk_apigateway::types::ApiStage,
 }
@@ -3600,7 +3604,7 @@ impl PyApiStage {
     }
 }
 
-#[pyclass(name = "Authorizer", frozen)]
+#[pyclass(name = "Authorizer", module = "rboto_api_gateway._native", frozen)]
 struct PyAuthorizer {
     inner: aws_sdk_apigateway::types::Authorizer,
 }
@@ -3717,7 +3721,7 @@ impl PyAuthorizer {
     }
 }
 
-#[pyclass(name = "BasePathMapping", frozen)]
+#[pyclass(name = "BasePathMapping", module = "rboto_api_gateway._native", frozen)]
 struct PyBasePathMapping {
     inner: aws_sdk_apigateway::types::BasePathMapping,
 }
@@ -3759,7 +3763,7 @@ impl PyBasePathMapping {
     }
 }
 
-#[pyclass(name = "CanarySettings", frozen)]
+#[pyclass(name = "CanarySettings", module = "rboto_api_gateway._native", frozen)]
 struct PyCanarySettings {
     inner: aws_sdk_apigateway::types::CanarySettings,
 }
@@ -3809,7 +3813,11 @@ impl PyCanarySettings {
     }
 }
 
-#[pyclass(name = "ClientCertificate", frozen)]
+#[pyclass(
+    name = "ClientCertificate",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyClientCertificate {
     inner: aws_sdk_apigateway::types::ClientCertificate,
 }
@@ -3887,7 +3895,7 @@ impl PyClientCertificate {
     }
 }
 
-#[pyclass(name = "Deployment", frozen)]
+#[pyclass(name = "Deployment", module = "rboto_api_gateway._native", frozen)]
 struct PyDeployment {
     inner: aws_sdk_apigateway::types::Deployment,
 }
@@ -3957,7 +3965,11 @@ impl PyDeployment {
     }
 }
 
-#[pyclass(name = "DocumentationPart", frozen)]
+#[pyclass(
+    name = "DocumentationPart",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationPart {
     inner: aws_sdk_apigateway::types::DocumentationPart,
 }
@@ -4005,7 +4017,11 @@ impl PyDocumentationPart {
     }
 }
 
-#[pyclass(name = "DocumentationPartLocation", frozen)]
+#[pyclass(
+    name = "DocumentationPartLocation",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationPartLocation {
     inner: aws_sdk_apigateway::types::DocumentationPartLocation,
 }
@@ -4063,7 +4079,11 @@ impl PyDocumentationPartLocation {
     }
 }
 
-#[pyclass(name = "DocumentationVersion", frozen)]
+#[pyclass(
+    name = "DocumentationVersion",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationVersion {
     inner: aws_sdk_apigateway::types::DocumentationVersion,
 }
@@ -4105,7 +4125,7 @@ impl PyDocumentationVersion {
     }
 }
 
-#[pyclass(name = "DomainName", frozen)]
+#[pyclass(name = "DomainName", module = "rboto_api_gateway._native", frozen)]
 struct PyDomainName {
     inner: aws_sdk_apigateway::types::DomainName,
 }
@@ -4365,7 +4385,11 @@ impl PyDomainName {
     }
 }
 
-#[pyclass(name = "DomainNameAccessAssociation", frozen)]
+#[pyclass(
+    name = "DomainNameAccessAssociation",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDomainNameAccessAssociation {
     inner: aws_sdk_apigateway::types::DomainNameAccessAssociation,
 }
@@ -4433,7 +4457,11 @@ impl PyDomainNameAccessAssociation {
     }
 }
 
-#[pyclass(name = "EndpointConfiguration", frozen)]
+#[pyclass(
+    name = "EndpointConfiguration",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyEndpointConfiguration {
     inner: aws_sdk_apigateway::types::EndpointConfiguration,
 }
@@ -4485,7 +4513,7 @@ impl PyEndpointConfiguration {
     }
 }
 
-#[pyclass(name = "GatewayResponse", frozen)]
+#[pyclass(name = "GatewayResponse", module = "rboto_api_gateway._native", frozen)]
 struct PyGatewayResponse {
     inner: aws_sdk_apigateway::types::GatewayResponse,
 }
@@ -4555,7 +4583,7 @@ impl PyGatewayResponse {
     }
 }
 
-#[pyclass(name = "Integration", frozen)]
+#[pyclass(name = "Integration", module = "rboto_api_gateway._native", frozen)]
 struct PyIntegration {
     inner: aws_sdk_apigateway::types::Integration,
 }
@@ -4768,7 +4796,11 @@ impl PyIntegration {
     }
 }
 
-#[pyclass(name = "IntegrationResponse", frozen)]
+#[pyclass(
+    name = "IntegrationResponse",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyIntegrationResponse {
     inner: aws_sdk_apigateway::types::IntegrationResponse,
 }
@@ -4842,7 +4874,7 @@ impl PyIntegrationResponse {
     }
 }
 
-#[pyclass(name = "Method", frozen)]
+#[pyclass(name = "Method", module = "rboto_api_gateway._native", frozen)]
 struct PyMethod {
     inner: aws_sdk_apigateway::types::Method,
 }
@@ -4999,7 +5031,7 @@ impl PyMethod {
     }
 }
 
-#[pyclass(name = "MethodResponse", frozen)]
+#[pyclass(name = "MethodResponse", module = "rboto_api_gateway._native", frozen)]
 struct PyMethodResponse {
     inner: aws_sdk_apigateway::types::MethodResponse,
 }
@@ -5053,7 +5085,7 @@ impl PyMethodResponse {
     }
 }
 
-#[pyclass(name = "MethodSetting", frozen)]
+#[pyclass(name = "MethodSetting", module = "rboto_api_gateway._native", frozen)]
 struct PyMethodSetting {
     inner: aws_sdk_apigateway::types::MethodSetting,
 }
@@ -5145,7 +5177,7 @@ impl PyMethodSetting {
     }
 }
 
-#[pyclass(name = "MethodSnapshot", frozen)]
+#[pyclass(name = "MethodSnapshot", module = "rboto_api_gateway._native", frozen)]
 struct PyMethodSnapshot {
     inner: aws_sdk_apigateway::types::MethodSnapshot,
 }
@@ -5173,7 +5205,7 @@ impl PyMethodSnapshot {
     }
 }
 
-#[pyclass(name = "Model", frozen)]
+#[pyclass(name = "Model", module = "rboto_api_gateway._native", frozen)]
 struct PyModel {
     inner: aws_sdk_apigateway::types::Model,
 }
@@ -5235,7 +5267,11 @@ impl PyModel {
     }
 }
 
-#[pyclass(name = "MutualTlsAuthentication", frozen)]
+#[pyclass(
+    name = "MutualTlsAuthentication",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyMutualTlsAuthentication {
     inner: aws_sdk_apigateway::types::MutualTlsAuthentication,
 }
@@ -5282,7 +5318,7 @@ impl PyMutualTlsAuthentication {
     }
 }
 
-#[pyclass(name = "QuotaSettings", frozen)]
+#[pyclass(name = "QuotaSettings", module = "rboto_api_gateway._native", frozen)]
 struct PyQuotaSettings {
     inner: aws_sdk_apigateway::types::QuotaSettings,
 }
@@ -5316,7 +5352,11 @@ impl PyQuotaSettings {
     }
 }
 
-#[pyclass(name = "RequestValidator", frozen)]
+#[pyclass(
+    name = "RequestValidator",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyRequestValidator {
     inner: aws_sdk_apigateway::types::RequestValidator,
 }
@@ -5364,7 +5404,7 @@ impl PyRequestValidator {
     }
 }
 
-#[pyclass(name = "Resource", frozen)]
+#[pyclass(name = "Resource", module = "rboto_api_gateway._native", frozen)]
 struct PyResource {
     inner: aws_sdk_apigateway::types::Resource,
 }
@@ -5438,7 +5478,7 @@ impl PyResource {
     }
 }
 
-#[pyclass(name = "RestApi", frozen)]
+#[pyclass(name = "RestApi", module = "rboto_api_gateway._native", frozen)]
 struct PyRestApi {
     inner: aws_sdk_apigateway::types::RestApi,
 }
@@ -5650,7 +5690,11 @@ impl PyRestApi {
     }
 }
 
-#[pyclass(name = "SdkConfigurationProperty", frozen)]
+#[pyclass(
+    name = "SdkConfigurationProperty",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PySdkConfigurationProperty {
     inner: aws_sdk_apigateway::types::SdkConfigurationProperty,
 }
@@ -5708,7 +5752,7 @@ impl PySdkConfigurationProperty {
     }
 }
 
-#[pyclass(name = "SdkType", frozen)]
+#[pyclass(name = "SdkType", module = "rboto_api_gateway._native", frozen)]
 struct PySdkType {
     inner: aws_sdk_apigateway::types::SdkType,
 }
@@ -5771,7 +5815,7 @@ impl PySdkType {
     }
 }
 
-#[pyclass(name = "Stage", frozen)]
+#[pyclass(name = "Stage", module = "rboto_api_gateway._native", frozen)]
 struct PyStage {
     inner: aws_sdk_apigateway::types::Stage,
 }
@@ -5983,7 +6027,11 @@ impl PyStage {
     }
 }
 
-#[pyclass(name = "ThrottleSettings", frozen)]
+#[pyclass(
+    name = "ThrottleSettings",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyThrottleSettings {
     inner: aws_sdk_apigateway::types::ThrottleSettings,
 }
@@ -6007,7 +6055,7 @@ impl PyThrottleSettings {
     }
 }
 
-#[pyclass(name = "TlsConfig", frozen)]
+#[pyclass(name = "TlsConfig", module = "rboto_api_gateway._native", frozen)]
 struct PyTlsConfig {
     inner: aws_sdk_apigateway::types::TlsConfig,
 }
@@ -6027,7 +6075,7 @@ impl PyTlsConfig {
     }
 }
 
-#[pyclass(name = "UsagePlan", frozen)]
+#[pyclass(name = "UsagePlan", module = "rboto_api_gateway._native", frozen)]
 struct PyUsagePlan {
     inner: aws_sdk_apigateway::types::UsagePlan,
 }
@@ -6148,7 +6196,7 @@ impl PyUsagePlan {
     }
 }
 
-#[pyclass(name = "UsagePlanKey", frozen)]
+#[pyclass(name = "UsagePlanKey", module = "rboto_api_gateway._native", frozen)]
 struct PyUsagePlanKey {
     inner: aws_sdk_apigateway::types::UsagePlanKey,
 }
@@ -6200,7 +6248,7 @@ impl PyUsagePlanKey {
     }
 }
 
-#[pyclass(name = "VpcLink", frozen)]
+#[pyclass(name = "VpcLink", module = "rboto_api_gateway._native", frozen)]
 struct PyVpcLink {
     inner: aws_sdk_apigateway::types::VpcLink,
 }
@@ -6293,7 +6341,11 @@ impl PyVpcLink {
     }
 }
 
-#[pyclass(name = "CreateApiKeyOutput", frozen)]
+#[pyclass(
+    name = "CreateApiKeyOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateApiKeyOutput {
     inner: aws_sdk_apigateway::operation::create_api_key::CreateApiKeyOutput,
 }
@@ -6480,7 +6532,11 @@ impl PyCreateApiKeyOutput {
     }
 }
 
-#[pyclass(name = "CreateAuthorizerOutput", frozen)]
+#[pyclass(
+    name = "CreateAuthorizerOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::create_authorizer::CreateAuthorizerOutput,
 }
@@ -6663,7 +6719,11 @@ impl PyCreateAuthorizerOutput {
     }
 }
 
-#[pyclass(name = "CreateBasePathMappingOutput", frozen)]
+#[pyclass(
+    name = "CreateBasePathMappingOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::create_base_path_mapping::CreateBasePathMappingOutput,
 }
@@ -6724,7 +6784,11 @@ impl PyCreateBasePathMappingOutput {
     }
 }
 
-#[pyclass(name = "CreateDeploymentOutput", frozen)]
+#[pyclass(
+    name = "CreateDeploymentOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateDeploymentOutput {
     inner: aws_sdk_apigateway::operation::create_deployment::CreateDeploymentOutput,
 }
@@ -6831,7 +6895,11 @@ impl PyCreateDeploymentOutput {
     }
 }
 
-#[pyclass(name = "CreateDocumentationPartOutput", frozen)]
+#[pyclass(
+    name = "CreateDocumentationPartOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::create_documentation_part::CreateDocumentationPartOutput,
 }
@@ -6898,7 +6966,11 @@ impl PyCreateDocumentationPartOutput {
     }
 }
 
-#[pyclass(name = "CreateDocumentationVersionOutput", frozen)]
+#[pyclass(
+    name = "CreateDocumentationVersionOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::create_documentation_version::CreateDocumentationVersionOutput,
 }
@@ -6959,7 +7031,11 @@ impl PyCreateDocumentationVersionOutput {
     }
 }
 
-#[pyclass(name = "CreateDomainNameOutput", frozen)]
+#[pyclass(
+    name = "CreateDomainNameOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateDomainNameOutput {
     inner: aws_sdk_apigateway::operation::create_domain_name::CreateDomainNameOutput,
 }
@@ -7364,7 +7440,11 @@ impl PyCreateDomainNameOutput {
     }
 }
 
-#[pyclass(name = "CreateDomainNameAccessAssociationOutput", frozen)]
+#[pyclass(
+    name = "CreateDomainNameAccessAssociationOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateDomainNameAccessAssociationOutput {
     inner: aws_sdk_apigateway::operation::create_domain_name_access_association::CreateDomainNameAccessAssociationOutput,
 }
@@ -7469,7 +7549,11 @@ impl PyCreateDomainNameAccessAssociationOutput {
     }
 }
 
-#[pyclass(name = "CreateModelOutput", frozen)]
+#[pyclass(
+    name = "CreateModelOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateModelOutput {
     inner: aws_sdk_apigateway::operation::create_model::CreateModelOutput,
 }
@@ -7562,7 +7646,11 @@ impl PyCreateModelOutput {
     }
 }
 
-#[pyclass(name = "CreateRequestValidatorOutput", frozen)]
+#[pyclass(
+    name = "CreateRequestValidatorOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::create_request_validator::CreateRequestValidatorOutput,
 }
@@ -7631,7 +7719,11 @@ impl PyCreateRequestValidatorOutput {
     }
 }
 
-#[pyclass(name = "CreateResourceOutput", frozen)]
+#[pyclass(
+    name = "CreateResourceOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateResourceOutput {
     inner: aws_sdk_apigateway::operation::create_resource::CreateResourceOutput,
 }
@@ -7742,7 +7834,11 @@ impl PyCreateResourceOutput {
     }
 }
 
-#[pyclass(name = "CreateRestApiOutput", frozen)]
+#[pyclass(
+    name = "CreateRestApiOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateRestApiOutput {
     inner: aws_sdk_apigateway::operation::create_rest_api::CreateRestApiOutput,
 }
@@ -8077,7 +8173,11 @@ impl PyCreateRestApiOutput {
     }
 }
 
-#[pyclass(name = "CreateStageOutput", frozen)]
+#[pyclass(
+    name = "CreateStageOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateStageOutput {
     inner: aws_sdk_apigateway::operation::create_stage::CreateStageOutput,
 }
@@ -8404,7 +8504,11 @@ impl PyCreateStageOutput {
     }
 }
 
-#[pyclass(name = "CreateUsagePlanOutput", frozen)]
+#[pyclass(
+    name = "CreateUsagePlanOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::create_usage_plan::CreateUsagePlanOutput,
 }
@@ -8585,7 +8689,11 @@ impl PyCreateUsagePlanOutput {
     }
 }
 
-#[pyclass(name = "CreateUsagePlanKeyOutput", frozen)]
+#[pyclass(
+    name = "CreateUsagePlanKeyOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateUsagePlanKeyOutput {
     inner: aws_sdk_apigateway::operation::create_usage_plan_key::CreateUsagePlanKeyOutput,
 }
@@ -8662,7 +8770,11 @@ impl PyCreateUsagePlanKeyOutput {
     }
 }
 
-#[pyclass(name = "CreateVpcLinkOutput", frozen)]
+#[pyclass(
+    name = "CreateVpcLinkOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyCreateVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::create_vpc_link::CreateVpcLinkOutput,
 }
@@ -8809,7 +8921,11 @@ impl PyCreateVpcLinkOutput {
     }
 }
 
-#[pyclass(name = "GenerateClientCertificateOutput", frozen)]
+#[pyclass(
+    name = "GenerateClientCertificateOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGenerateClientCertificateOutput {
     inner:
         aws_sdk_apigateway::operation::generate_client_certificate::GenerateClientCertificateOutput,
@@ -8931,7 +9047,11 @@ impl PyGenerateClientCertificateOutput {
     }
 }
 
-#[pyclass(name = "GetAccountOutput", frozen)]
+#[pyclass(
+    name = "GetAccountOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetAccountOutput {
     inner: aws_sdk_apigateway::operation::get_account::GetAccountOutput,
 }
@@ -9024,7 +9144,7 @@ impl PyGetAccountOutput {
     }
 }
 
-#[pyclass(name = "GetApiKeyOutput", frozen)]
+#[pyclass(name = "GetApiKeyOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyGetApiKeyOutput {
     inner: aws_sdk_apigateway::operation::get_api_key::GetApiKeyOutput,
 }
@@ -9211,7 +9331,7 @@ impl PyGetApiKeyOutput {
     }
 }
 
-#[pyclass(name = "ApiKeys", frozen)]
+#[pyclass(name = "ApiKeys", module = "rboto_api_gateway._native", frozen)]
 struct PyApiKeys {
     inner: aws_sdk_apigateway::operation::get_api_keys::GetApiKeysOutput,
 }
@@ -9298,7 +9418,11 @@ impl PyApiKeys {
     }
 }
 
-#[pyclass(name = "GetAuthorizerOutput", frozen)]
+#[pyclass(
+    name = "GetAuthorizerOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::get_authorizer::GetAuthorizerOutput,
 }
@@ -9481,7 +9605,7 @@ impl PyGetAuthorizerOutput {
     }
 }
 
-#[pyclass(name = "Authorizers", frozen)]
+#[pyclass(name = "Authorizers", module = "rboto_api_gateway._native", frozen)]
 struct PyAuthorizers {
     inner: aws_sdk_apigateway::operation::get_authorizers::GetAuthorizersOutput,
 }
@@ -9542,7 +9666,11 @@ impl PyAuthorizers {
     }
 }
 
-#[pyclass(name = "GetBasePathMappingOutput", frozen)]
+#[pyclass(
+    name = "GetBasePathMappingOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::get_base_path_mapping::GetBasePathMappingOutput,
 }
@@ -9603,7 +9731,11 @@ impl PyGetBasePathMappingOutput {
     }
 }
 
-#[pyclass(name = "BasePathMappings", frozen)]
+#[pyclass(
+    name = "BasePathMappings",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyBasePathMappings {
     inner: aws_sdk_apigateway::operation::get_base_path_mappings::GetBasePathMappingsOutput,
 }
@@ -9664,7 +9796,11 @@ impl PyBasePathMappings {
     }
 }
 
-#[pyclass(name = "GetClientCertificateOutput", frozen)]
+#[pyclass(
+    name = "GetClientCertificateOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetClientCertificateOutput {
     inner: aws_sdk_apigateway::operation::get_client_certificate::GetClientCertificateOutput,
 }
@@ -9785,7 +9921,11 @@ impl PyGetClientCertificateOutput {
     }
 }
 
-#[pyclass(name = "ClientCertificates", frozen)]
+#[pyclass(
+    name = "ClientCertificates",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyClientCertificates {
     inner: aws_sdk_apigateway::operation::get_client_certificates::GetClientCertificatesOutput,
 }
@@ -9846,7 +9986,11 @@ impl PyClientCertificates {
     }
 }
 
-#[pyclass(name = "GetDeploymentOutput", frozen)]
+#[pyclass(
+    name = "GetDeploymentOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetDeploymentOutput {
     inner: aws_sdk_apigateway::operation::get_deployment::GetDeploymentOutput,
 }
@@ -9953,7 +10097,7 @@ impl PyGetDeploymentOutput {
     }
 }
 
-#[pyclass(name = "Deployments", frozen)]
+#[pyclass(name = "Deployments", module = "rboto_api_gateway._native", frozen)]
 struct PyDeployments {
     inner: aws_sdk_apigateway::operation::get_deployments::GetDeploymentsOutput,
 }
@@ -10014,7 +10158,11 @@ impl PyDeployments {
     }
 }
 
-#[pyclass(name = "GetDocumentationPartOutput", frozen)]
+#[pyclass(
+    name = "GetDocumentationPartOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::get_documentation_part::GetDocumentationPartOutput,
 }
@@ -10081,7 +10229,11 @@ impl PyGetDocumentationPartOutput {
     }
 }
 
-#[pyclass(name = "DocumentationParts", frozen)]
+#[pyclass(
+    name = "DocumentationParts",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationParts {
     inner: aws_sdk_apigateway::operation::get_documentation_parts::GetDocumentationPartsOutput,
 }
@@ -10142,7 +10294,11 @@ impl PyDocumentationParts {
     }
 }
 
-#[pyclass(name = "GetDocumentationVersionOutput", frozen)]
+#[pyclass(
+    name = "GetDocumentationVersionOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::get_documentation_version::GetDocumentationVersionOutput,
 }
@@ -10203,7 +10359,11 @@ impl PyGetDocumentationVersionOutput {
     }
 }
 
-#[pyclass(name = "DocumentationVersions", frozen)]
+#[pyclass(
+    name = "DocumentationVersions",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationVersions {
     inner:
         aws_sdk_apigateway::operation::get_documentation_versions::GetDocumentationVersionsOutput,
@@ -10265,7 +10425,11 @@ impl PyDocumentationVersions {
     }
 }
 
-#[pyclass(name = "GetDomainNameOutput", frozen)]
+#[pyclass(
+    name = "GetDomainNameOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetDomainNameOutput {
     inner: aws_sdk_apigateway::operation::get_domain_name::GetDomainNameOutput,
 }
@@ -10670,7 +10834,11 @@ impl PyGetDomainNameOutput {
     }
 }
 
-#[pyclass(name = "DomainNameAccessAssociations", frozen)]
+#[pyclass(
+    name = "DomainNameAccessAssociations",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDomainNameAccessAssociations {
     inner: aws_sdk_apigateway::operation::get_domain_name_access_associations::GetDomainNameAccessAssociationsOutput,
 }
@@ -10731,7 +10899,7 @@ impl PyDomainNameAccessAssociations {
     }
 }
 
-#[pyclass(name = "DomainNames", frozen)]
+#[pyclass(name = "DomainNames", module = "rboto_api_gateway._native", frozen)]
 struct PyDomainNames {
     inner: aws_sdk_apigateway::operation::get_domain_names::GetDomainNamesOutput,
 }
@@ -10792,7 +10960,7 @@ impl PyDomainNames {
     }
 }
 
-#[pyclass(name = "ExportResponse", frozen)]
+#[pyclass(name = "ExportResponse", module = "rboto_api_gateway._native", frozen)]
 struct PyExportResponse {
     inner: aws_sdk_apigateway::operation::get_export::GetExportOutput,
 }
@@ -10853,7 +11021,11 @@ impl PyExportResponse {
     }
 }
 
-#[pyclass(name = "GetGatewayResponseOutput", frozen)]
+#[pyclass(
+    name = "GetGatewayResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::get_gateway_response::GetGatewayResponseOutput,
 }
@@ -10962,7 +11134,11 @@ impl PyGetGatewayResponseOutput {
     }
 }
 
-#[pyclass(name = "GatewayResponses", frozen)]
+#[pyclass(
+    name = "GatewayResponses",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGatewayResponses {
     inner: aws_sdk_apigateway::operation::get_gateway_responses::GetGatewayResponsesOutput,
 }
@@ -11023,7 +11199,11 @@ impl PyGatewayResponses {
     }
 }
 
-#[pyclass(name = "GetIntegrationOutput", frozen)]
+#[pyclass(
+    name = "GetIntegrationOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetIntegrationOutput {
     inner: aws_sdk_apigateway::operation::get_integration::GetIntegrationOutput,
 }
@@ -11358,7 +11538,11 @@ impl PyGetIntegrationOutput {
     }
 }
 
-#[pyclass(name = "GetIntegrationResponseOutput", frozen)]
+#[pyclass(
+    name = "GetIntegrationResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetIntegrationResponseOutput {
     inner: aws_sdk_apigateway::operation::get_integration_response::GetIntegrationResponseOutput,
 }
@@ -11475,7 +11659,7 @@ impl PyGetIntegrationResponseOutput {
     }
 }
 
-#[pyclass(name = "GetMethodOutput", frozen)]
+#[pyclass(name = "GetMethodOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyGetMethodOutput {
     inner: aws_sdk_apigateway::operation::get_method::GetMethodOutput,
 }
@@ -11722,7 +11906,11 @@ impl PyGetMethodOutput {
     }
 }
 
-#[pyclass(name = "GetMethodResponseOutput", frozen)]
+#[pyclass(
+    name = "GetMethodResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::get_method_response::GetMethodResponseOutput,
 }
@@ -11807,7 +11995,7 @@ impl PyGetMethodResponseOutput {
     }
 }
 
-#[pyclass(name = "GetModelOutput", frozen)]
+#[pyclass(name = "GetModelOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyGetModelOutput {
     inner: aws_sdk_apigateway::operation::get_model::GetModelOutput,
 }
@@ -11900,7 +12088,7 @@ impl PyGetModelOutput {
     }
 }
 
-#[pyclass(name = "Template", frozen)]
+#[pyclass(name = "Template", module = "rboto_api_gateway._native", frozen)]
 struct PyTemplate {
     inner: aws_sdk_apigateway::operation::get_model_template::GetModelTemplateOutput,
 }
@@ -11929,7 +12117,7 @@ impl PyTemplate {
     }
 }
 
-#[pyclass(name = "Models", frozen)]
+#[pyclass(name = "Models", module = "rboto_api_gateway._native", frozen)]
 struct PyModels {
     inner: aws_sdk_apigateway::operation::get_models::GetModelsOutput,
 }
@@ -11990,7 +12178,11 @@ impl PyModels {
     }
 }
 
-#[pyclass(name = "GetRequestValidatorOutput", frozen)]
+#[pyclass(
+    name = "GetRequestValidatorOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::get_request_validator::GetRequestValidatorOutput,
 }
@@ -12059,7 +12251,11 @@ impl PyGetRequestValidatorOutput {
     }
 }
 
-#[pyclass(name = "RequestValidators", frozen)]
+#[pyclass(
+    name = "RequestValidators",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyRequestValidators {
     inner: aws_sdk_apigateway::operation::get_request_validators::GetRequestValidatorsOutput,
 }
@@ -12120,7 +12316,11 @@ impl PyRequestValidators {
     }
 }
 
-#[pyclass(name = "GetResourceOutput", frozen)]
+#[pyclass(
+    name = "GetResourceOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetResourceOutput {
     inner: aws_sdk_apigateway::operation::get_resource::GetResourceOutput,
 }
@@ -12231,7 +12431,7 @@ impl PyGetResourceOutput {
     }
 }
 
-#[pyclass(name = "Resources", frozen)]
+#[pyclass(name = "Resources", module = "rboto_api_gateway._native", frozen)]
 struct PyResources {
     inner: aws_sdk_apigateway::operation::get_resources::GetResourcesOutput,
 }
@@ -12292,7 +12492,11 @@ impl PyResources {
     }
 }
 
-#[pyclass(name = "GetRestApiOutput", frozen)]
+#[pyclass(
+    name = "GetRestApiOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetRestApiOutput {
     inner: aws_sdk_apigateway::operation::get_rest_api::GetRestApiOutput,
 }
@@ -12627,7 +12831,7 @@ impl PyGetRestApiOutput {
     }
 }
 
-#[pyclass(name = "RestApis", frozen)]
+#[pyclass(name = "RestApis", module = "rboto_api_gateway._native", frozen)]
 struct PyRestApis {
     inner: aws_sdk_apigateway::operation::get_rest_apis::GetRestApisOutput,
 }
@@ -12688,7 +12892,7 @@ impl PyRestApis {
     }
 }
 
-#[pyclass(name = "SdkResponse", frozen)]
+#[pyclass(name = "SdkResponse", module = "rboto_api_gateway._native", frozen)]
 struct PySdkResponse {
     inner: aws_sdk_apigateway::operation::get_sdk::GetSdkOutput,
 }
@@ -12749,7 +12953,11 @@ impl PySdkResponse {
     }
 }
 
-#[pyclass(name = "GetSdkTypeOutput", frozen)]
+#[pyclass(
+    name = "GetSdkTypeOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetSdkTypeOutput {
     inner: aws_sdk_apigateway::operation::get_sdk_type::GetSdkTypeOutput,
 }
@@ -12842,7 +13050,7 @@ impl PyGetSdkTypeOutput {
     }
 }
 
-#[pyclass(name = "SdkTypes", frozen)]
+#[pyclass(name = "SdkTypes", module = "rboto_api_gateway._native", frozen)]
 struct PySdkTypes {
     inner: aws_sdk_apigateway::operation::get_sdk_types::GetSdkTypesOutput,
 }
@@ -12887,7 +13095,7 @@ impl PySdkTypes {
     }
 }
 
-#[pyclass(name = "GetStageOutput", frozen)]
+#[pyclass(name = "GetStageOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyGetStageOutput {
     inner: aws_sdk_apigateway::operation::get_stage::GetStageOutput,
 }
@@ -13214,7 +13422,7 @@ impl PyGetStageOutput {
     }
 }
 
-#[pyclass(name = "Stages", frozen)]
+#[pyclass(name = "Stages", module = "rboto_api_gateway._native", frozen)]
 struct PyStages {
     inner: aws_sdk_apigateway::operation::get_stages::GetStagesOutput,
 }
@@ -13259,7 +13467,7 @@ impl PyStages {
     }
 }
 
-#[pyclass(name = "Tags", frozen)]
+#[pyclass(name = "Tags", module = "rboto_api_gateway._native", frozen)]
 struct PyTags {
     inner: aws_sdk_apigateway::operation::get_tags::GetTagsOutput,
 }
@@ -13300,7 +13508,7 @@ impl PyTags {
     }
 }
 
-#[pyclass(name = "GetUsageOutput", frozen)]
+#[pyclass(name = "GetUsageOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyGetUsageOutput {
     inner: aws_sdk_apigateway::operation::get_usage::GetUsageOutput,
 }
@@ -13425,7 +13633,11 @@ impl PyGetUsageOutput {
     }
 }
 
-#[pyclass(name = "GetUsagePlanOutput", frozen)]
+#[pyclass(
+    name = "GetUsagePlanOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plan::GetUsagePlanOutput,
 }
@@ -13606,7 +13818,11 @@ impl PyGetUsagePlanOutput {
     }
 }
 
-#[pyclass(name = "GetUsagePlanKeyOutput", frozen)]
+#[pyclass(
+    name = "GetUsagePlanKeyOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetUsagePlanKeyOutput {
     inner: aws_sdk_apigateway::operation::get_usage_plan_key::GetUsagePlanKeyOutput,
 }
@@ -13683,7 +13899,7 @@ impl PyGetUsagePlanKeyOutput {
     }
 }
 
-#[pyclass(name = "UsagePlanKeys", frozen)]
+#[pyclass(name = "UsagePlanKeys", module = "rboto_api_gateway._native", frozen)]
 struct PyUsagePlanKeys {
     inner: aws_sdk_apigateway::operation::get_usage_plan_keys::GetUsagePlanKeysOutput,
 }
@@ -13744,7 +13960,7 @@ impl PyUsagePlanKeys {
     }
 }
 
-#[pyclass(name = "UsagePlans", frozen)]
+#[pyclass(name = "UsagePlans", module = "rboto_api_gateway._native", frozen)]
 struct PyUsagePlans {
     inner: aws_sdk_apigateway::operation::get_usage_plans::GetUsagePlansOutput,
 }
@@ -13805,7 +14021,11 @@ impl PyUsagePlans {
     }
 }
 
-#[pyclass(name = "GetVpcLinkOutput", frozen)]
+#[pyclass(
+    name = "GetVpcLinkOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyGetVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::get_vpc_link::GetVpcLinkOutput,
 }
@@ -13952,7 +14172,7 @@ impl PyGetVpcLinkOutput {
     }
 }
 
-#[pyclass(name = "VpcLinks", frozen)]
+#[pyclass(name = "VpcLinks", module = "rboto_api_gateway._native", frozen)]
 struct PyVpcLinks {
     inner: aws_sdk_apigateway::operation::get_vpc_links::GetVpcLinksOutput,
 }
@@ -14013,7 +14233,7 @@ impl PyVpcLinks {
     }
 }
 
-#[pyclass(name = "ApiKeyIds", frozen)]
+#[pyclass(name = "ApiKeyIds", module = "rboto_api_gateway._native", frozen)]
 struct PyApiKeyIds {
     inner: aws_sdk_apigateway::operation::import_api_keys::ImportApiKeysOutput,
 }
@@ -14078,7 +14298,11 @@ impl PyApiKeyIds {
     }
 }
 
-#[pyclass(name = "DocumentationPartIds", frozen)]
+#[pyclass(
+    name = "DocumentationPartIds",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyDocumentationPartIds {
     inner:
         aws_sdk_apigateway::operation::import_documentation_parts::ImportDocumentationPartsOutput,
@@ -14144,7 +14368,11 @@ impl PyDocumentationPartIds {
     }
 }
 
-#[pyclass(name = "ImportRestApiOutput", frozen)]
+#[pyclass(
+    name = "ImportRestApiOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyImportRestApiOutput {
     inner: aws_sdk_apigateway::operation::import_rest_api::ImportRestApiOutput,
 }
@@ -14479,7 +14707,11 @@ impl PyImportRestApiOutput {
     }
 }
 
-#[pyclass(name = "PutGatewayResponseOutput", frozen)]
+#[pyclass(
+    name = "PutGatewayResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyPutGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::put_gateway_response::PutGatewayResponseOutput,
 }
@@ -14588,7 +14820,11 @@ impl PyPutGatewayResponseOutput {
     }
 }
 
-#[pyclass(name = "PutIntegrationOutput", frozen)]
+#[pyclass(
+    name = "PutIntegrationOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyPutIntegrationOutput {
     inner: aws_sdk_apigateway::operation::put_integration::PutIntegrationOutput,
 }
@@ -14923,7 +15159,11 @@ impl PyPutIntegrationOutput {
     }
 }
 
-#[pyclass(name = "PutIntegrationResponseOutput", frozen)]
+#[pyclass(
+    name = "PutIntegrationResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyPutIntegrationResponseOutput {
     inner: aws_sdk_apigateway::operation::put_integration_response::PutIntegrationResponseOutput,
 }
@@ -15040,7 +15280,7 @@ impl PyPutIntegrationResponseOutput {
     }
 }
 
-#[pyclass(name = "PutMethodOutput", frozen)]
+#[pyclass(name = "PutMethodOutput", module = "rboto_api_gateway._native", frozen)]
 struct PyPutMethodOutput {
     inner: aws_sdk_apigateway::operation::put_method::PutMethodOutput,
 }
@@ -15287,7 +15527,11 @@ impl PyPutMethodOutput {
     }
 }
 
-#[pyclass(name = "PutMethodResponseOutput", frozen)]
+#[pyclass(
+    name = "PutMethodResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyPutMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::put_method_response::PutMethodResponseOutput,
 }
@@ -15372,7 +15616,11 @@ impl PyPutMethodResponseOutput {
     }
 }
 
-#[pyclass(name = "PutRestApiOutput", frozen)]
+#[pyclass(
+    name = "PutRestApiOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyPutRestApiOutput {
     inner: aws_sdk_apigateway::operation::put_rest_api::PutRestApiOutput,
 }
@@ -15707,7 +15955,11 @@ impl PyPutRestApiOutput {
     }
 }
 
-#[pyclass(name = "TestInvokeAuthorizerResponse", frozen)]
+#[pyclass(
+    name = "TestInvokeAuthorizerResponse",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyTestInvokeAuthorizerResponse {
     inner: aws_sdk_apigateway::operation::test_invoke_authorizer::TestInvokeAuthorizerOutput,
 }
@@ -15850,7 +16102,11 @@ impl PyTestInvokeAuthorizerResponse {
     }
 }
 
-#[pyclass(name = "TestInvokeMethodResponse", frozen)]
+#[pyclass(
+    name = "TestInvokeMethodResponse",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyTestInvokeMethodResponse {
     inner: aws_sdk_apigateway::operation::test_invoke_method::TestInvokeMethodOutput,
 }
@@ -15977,7 +16233,11 @@ impl PyTestInvokeMethodResponse {
     }
 }
 
-#[pyclass(name = "UpdateAccountOutput", frozen)]
+#[pyclass(
+    name = "UpdateAccountOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateAccountOutput {
     inner: aws_sdk_apigateway::operation::update_account::UpdateAccountOutput,
 }
@@ -16070,7 +16330,11 @@ impl PyUpdateAccountOutput {
     }
 }
 
-#[pyclass(name = "UpdateApiKeyOutput", frozen)]
+#[pyclass(
+    name = "UpdateApiKeyOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateApiKeyOutput {
     inner: aws_sdk_apigateway::operation::update_api_key::UpdateApiKeyOutput,
 }
@@ -16257,7 +16521,11 @@ impl PyUpdateApiKeyOutput {
     }
 }
 
-#[pyclass(name = "UpdateAuthorizerOutput", frozen)]
+#[pyclass(
+    name = "UpdateAuthorizerOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateAuthorizerOutput {
     inner: aws_sdk_apigateway::operation::update_authorizer::UpdateAuthorizerOutput,
 }
@@ -16440,7 +16708,11 @@ impl PyUpdateAuthorizerOutput {
     }
 }
 
-#[pyclass(name = "UpdateBasePathMappingOutput", frozen)]
+#[pyclass(
+    name = "UpdateBasePathMappingOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateBasePathMappingOutput {
     inner: aws_sdk_apigateway::operation::update_base_path_mapping::UpdateBasePathMappingOutput,
 }
@@ -16501,7 +16773,11 @@ impl PyUpdateBasePathMappingOutput {
     }
 }
 
-#[pyclass(name = "UpdateClientCertificateOutput", frozen)]
+#[pyclass(
+    name = "UpdateClientCertificateOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateClientCertificateOutput {
     inner: aws_sdk_apigateway::operation::update_client_certificate::UpdateClientCertificateOutput,
 }
@@ -16622,7 +16898,11 @@ impl PyUpdateClientCertificateOutput {
     }
 }
 
-#[pyclass(name = "UpdateDeploymentOutput", frozen)]
+#[pyclass(
+    name = "UpdateDeploymentOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateDeploymentOutput {
     inner: aws_sdk_apigateway::operation::update_deployment::UpdateDeploymentOutput,
 }
@@ -16729,7 +17009,11 @@ impl PyUpdateDeploymentOutput {
     }
 }
 
-#[pyclass(name = "UpdateDocumentationPartOutput", frozen)]
+#[pyclass(
+    name = "UpdateDocumentationPartOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateDocumentationPartOutput {
     inner: aws_sdk_apigateway::operation::update_documentation_part::UpdateDocumentationPartOutput,
 }
@@ -16796,7 +17080,11 @@ impl PyUpdateDocumentationPartOutput {
     }
 }
 
-#[pyclass(name = "UpdateDocumentationVersionOutput", frozen)]
+#[pyclass(
+    name = "UpdateDocumentationVersionOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateDocumentationVersionOutput {
     inner: aws_sdk_apigateway::operation::update_documentation_version::UpdateDocumentationVersionOutput,
 }
@@ -16857,7 +17145,11 @@ impl PyUpdateDocumentationVersionOutput {
     }
 }
 
-#[pyclass(name = "UpdateDomainNameOutput", frozen)]
+#[pyclass(
+    name = "UpdateDomainNameOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateDomainNameOutput {
     inner: aws_sdk_apigateway::operation::update_domain_name::UpdateDomainNameOutput,
 }
@@ -17262,7 +17554,11 @@ impl PyUpdateDomainNameOutput {
     }
 }
 
-#[pyclass(name = "UpdateGatewayResponseOutput", frozen)]
+#[pyclass(
+    name = "UpdateGatewayResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateGatewayResponseOutput {
     inner: aws_sdk_apigateway::operation::update_gateway_response::UpdateGatewayResponseOutput,
 }
@@ -17371,7 +17667,11 @@ impl PyUpdateGatewayResponseOutput {
     }
 }
 
-#[pyclass(name = "UpdateIntegrationOutput", frozen)]
+#[pyclass(
+    name = "UpdateIntegrationOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateIntegrationOutput {
     inner: aws_sdk_apigateway::operation::update_integration::UpdateIntegrationOutput,
 }
@@ -17706,7 +18006,11 @@ impl PyUpdateIntegrationOutput {
     }
 }
 
-#[pyclass(name = "UpdateIntegrationResponseOutput", frozen)]
+#[pyclass(
+    name = "UpdateIntegrationResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateIntegrationResponseOutput {
     inner:
         aws_sdk_apigateway::operation::update_integration_response::UpdateIntegrationResponseOutput,
@@ -17824,7 +18128,11 @@ impl PyUpdateIntegrationResponseOutput {
     }
 }
 
-#[pyclass(name = "UpdateMethodOutput", frozen)]
+#[pyclass(
+    name = "UpdateMethodOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateMethodOutput {
     inner: aws_sdk_apigateway::operation::update_method::UpdateMethodOutput,
 }
@@ -18071,7 +18379,11 @@ impl PyUpdateMethodOutput {
     }
 }
 
-#[pyclass(name = "UpdateMethodResponseOutput", frozen)]
+#[pyclass(
+    name = "UpdateMethodResponseOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateMethodResponseOutput {
     inner: aws_sdk_apigateway::operation::update_method_response::UpdateMethodResponseOutput,
 }
@@ -18156,7 +18468,11 @@ impl PyUpdateMethodResponseOutput {
     }
 }
 
-#[pyclass(name = "UpdateModelOutput", frozen)]
+#[pyclass(
+    name = "UpdateModelOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateModelOutput {
     inner: aws_sdk_apigateway::operation::update_model::UpdateModelOutput,
 }
@@ -18249,7 +18565,11 @@ impl PyUpdateModelOutput {
     }
 }
 
-#[pyclass(name = "UpdateRequestValidatorOutput", frozen)]
+#[pyclass(
+    name = "UpdateRequestValidatorOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateRequestValidatorOutput {
     inner: aws_sdk_apigateway::operation::update_request_validator::UpdateRequestValidatorOutput,
 }
@@ -18318,7 +18638,11 @@ impl PyUpdateRequestValidatorOutput {
     }
 }
 
-#[pyclass(name = "UpdateResourceOutput", frozen)]
+#[pyclass(
+    name = "UpdateResourceOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateResourceOutput {
     inner: aws_sdk_apigateway::operation::update_resource::UpdateResourceOutput,
 }
@@ -18429,7 +18753,11 @@ impl PyUpdateResourceOutput {
     }
 }
 
-#[pyclass(name = "UpdateRestApiOutput", frozen)]
+#[pyclass(
+    name = "UpdateRestApiOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateRestApiOutput {
     inner: aws_sdk_apigateway::operation::update_rest_api::UpdateRestApiOutput,
 }
@@ -18764,7 +19092,11 @@ impl PyUpdateRestApiOutput {
     }
 }
 
-#[pyclass(name = "UpdateStageOutput", frozen)]
+#[pyclass(
+    name = "UpdateStageOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateStageOutput {
     inner: aws_sdk_apigateway::operation::update_stage::UpdateStageOutput,
 }
@@ -19091,7 +19423,11 @@ impl PyUpdateStageOutput {
     }
 }
 
-#[pyclass(name = "UpdateUsageOutput", frozen)]
+#[pyclass(
+    name = "UpdateUsageOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateUsageOutput {
     inner: aws_sdk_apigateway::operation::update_usage::UpdateUsageOutput,
 }
@@ -19216,7 +19552,11 @@ impl PyUpdateUsageOutput {
     }
 }
 
-#[pyclass(name = "UpdateUsagePlanOutput", frozen)]
+#[pyclass(
+    name = "UpdateUsagePlanOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateUsagePlanOutput {
     inner: aws_sdk_apigateway::operation::update_usage_plan::UpdateUsagePlanOutput,
 }
@@ -19397,7 +19737,11 @@ impl PyUpdateUsagePlanOutput {
     }
 }
 
-#[pyclass(name = "UpdateVpcLinkOutput", frozen)]
+#[pyclass(
+    name = "UpdateVpcLinkOutput",
+    module = "rboto_api_gateway._native",
+    frozen
+)]
 struct PyUpdateVpcLinkOutput {
     inner: aws_sdk_apigateway::operation::update_vpc_link::UpdateVpcLinkOutput,
 }

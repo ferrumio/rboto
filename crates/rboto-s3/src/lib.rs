@@ -55,7 +55,7 @@ impl ClientState {
     }
 }
 
-#[pyclass(name = "ByteStream")]
+#[pyclass(name = "ByteStream", module = "rboto_s3._native")]
 struct PyByteStream {
     inner: Arc<Mutex<Option<AwsByteStream>>>,
 }
@@ -113,7 +113,7 @@ impl PyByteStream {
     }
 }
 
-#[pyclass]
+#[pyclass(module = "rboto_s3._native")]
 struct S3Client {
     state: Arc<ClientState>,
 }

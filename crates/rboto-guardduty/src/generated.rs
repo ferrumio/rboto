@@ -16714,7 +16714,7 @@ fn vpc_config_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccessControlList", frozen)]
+#[pyclass(name = "AccessControlList", module = "rboto_guardduty._native", frozen)]
 struct PyAccessControlList {
     inner: aws_sdk_guardduty::types::AccessControlList,
 }
@@ -16746,7 +16746,7 @@ impl PyAccessControlList {
     }
 }
 
-#[pyclass(name = "AccessKey", frozen)]
+#[pyclass(name = "AccessKey", module = "rboto_guardduty._native", frozen)]
 struct PyAccessKey {
     inner: aws_sdk_guardduty::types::AccessKey,
 }
@@ -16788,7 +16788,7 @@ impl PyAccessKey {
     }
 }
 
-#[pyclass(name = "AccessKeyDetails", frozen)]
+#[pyclass(name = "AccessKeyDetails", module = "rboto_guardduty._native", frozen)]
 struct PyAccessKeyDetails {
     inner: aws_sdk_guardduty::types::AccessKeyDetails,
 }
@@ -16840,7 +16840,7 @@ impl PyAccessKeyDetails {
     }
 }
 
-#[pyclass(name = "Account", frozen)]
+#[pyclass(name = "Account", module = "rboto_guardduty._native", frozen)]
 struct PyAccount {
     inner: aws_sdk_guardduty::types::Account,
 }
@@ -16872,7 +16872,11 @@ impl PyAccount {
     }
 }
 
-#[pyclass(name = "AccountFreeTrialInfo", frozen)]
+#[pyclass(
+    name = "AccountFreeTrialInfo",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAccountFreeTrialInfo {
     inner: aws_sdk_guardduty::types::AccountFreeTrialInfo,
 }
@@ -16931,7 +16935,11 @@ impl PyAccountFreeTrialInfo {
     }
 }
 
-#[pyclass(name = "AccountLevelPermissions", frozen)]
+#[pyclass(
+    name = "AccountLevelPermissions",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAccountLevelPermissions {
     inner: aws_sdk_guardduty::types::AccountLevelPermissions,
 }
@@ -16959,7 +16967,7 @@ impl PyAccountLevelPermissions {
     }
 }
 
-#[pyclass(name = "AccountStatistics", frozen)]
+#[pyclass(name = "AccountStatistics", module = "rboto_guardduty._native", frozen)]
 struct PyAccountStatistics {
     inner: aws_sdk_guardduty::types::AccountStatistics,
 }
@@ -17001,7 +17009,7 @@ impl PyAccountStatistics {
     }
 }
 
-#[pyclass(name = "Action", frozen)]
+#[pyclass(name = "Action", module = "rboto_guardduty._native", frozen)]
 struct PyAction {
     inner: aws_sdk_guardduty::types::Action,
 }
@@ -17167,7 +17175,7 @@ impl PyAction {
     }
 }
 
-#[pyclass(name = "Activity", frozen)]
+#[pyclass(name = "Activity", module = "rboto_guardduty._native", frozen)]
 struct PyActivity {
     inner: aws_sdk_guardduty::types::Activity,
 }
@@ -17205,7 +17213,7 @@ impl PyActivity {
     }
 }
 
-#[pyclass(name = "Actor", frozen)]
+#[pyclass(name = "Actor", module = "rboto_guardduty._native", frozen)]
 struct PyActor {
     inner: aws_sdk_guardduty::types::Actor,
 }
@@ -17275,7 +17283,7 @@ impl PyActor {
     }
 }
 
-#[pyclass(name = "ActorProcess", frozen)]
+#[pyclass(name = "ActorProcess", module = "rboto_guardduty._native", frozen)]
 struct PyActorProcess {
     inner: aws_sdk_guardduty::types::ActorProcess,
 }
@@ -17317,7 +17325,7 @@ impl PyActorProcess {
     }
 }
 
-#[pyclass(name = "AdditionalInfo", frozen)]
+#[pyclass(name = "AdditionalInfo", module = "rboto_guardduty._native", frozen)]
 struct PyAdditionalInfo {
     inner: aws_sdk_guardduty::types::AdditionalInfo,
 }
@@ -17349,7 +17357,7 @@ impl PyAdditionalInfo {
     }
 }
 
-#[pyclass(name = "AddonDetails", frozen)]
+#[pyclass(name = "AddonDetails", module = "rboto_guardduty._native", frozen)]
 struct PyAddonDetails {
     inner: aws_sdk_guardduty::types::AddonDetails,
 }
@@ -17381,7 +17389,7 @@ impl PyAddonDetails {
     }
 }
 
-#[pyclass(name = "AdminAccount", frozen)]
+#[pyclass(name = "AdminAccount", module = "rboto_guardduty._native", frozen)]
 struct PyAdminAccount {
     inner: aws_sdk_guardduty::types::AdminAccount,
 }
@@ -17413,7 +17421,7 @@ impl PyAdminAccount {
     }
 }
 
-#[pyclass(name = "Administrator", frozen)]
+#[pyclass(name = "Administrator", module = "rboto_guardduty._native", frozen)]
 struct PyAdministrator {
     inner: aws_sdk_guardduty::types::Administrator,
 }
@@ -17465,7 +17473,7 @@ impl PyAdministrator {
     }
 }
 
-#[pyclass(name = "AgentDetails", frozen)]
+#[pyclass(name = "AgentDetails", module = "rboto_guardduty._native", frozen)]
 struct PyAgentDetails {
     inner: aws_sdk_guardduty::types::AgentDetails,
 }
@@ -17487,7 +17495,7 @@ impl PyAgentDetails {
     }
 }
 
-#[pyclass(name = "Anomaly", frozen)]
+#[pyclass(name = "Anomaly", module = "rboto_guardduty._native", frozen)]
 struct PyAnomaly {
     inner: aws_sdk_guardduty::types::Anomaly,
 }
@@ -17548,7 +17556,7 @@ impl PyAnomaly {
     }
 }
 
-#[pyclass(name = "AnomalyObject", frozen)]
+#[pyclass(name = "AnomalyObject", module = "rboto_guardduty._native", frozen)]
 struct PyAnomalyObject {
     inner: aws_sdk_guardduty::types::AnomalyObject,
 }
@@ -17596,7 +17604,7 @@ impl PyAnomalyObject {
     }
 }
 
-#[pyclass(name = "AnomalyUnusual", frozen)]
+#[pyclass(name = "AnomalyUnusual", module = "rboto_guardduty._native", frozen)]
 struct PyAnomalyUnusual {
     inner: aws_sdk_guardduty::types::AnomalyUnusual,
 }
@@ -17636,7 +17644,7 @@ impl PyAnomalyUnusual {
     }
 }
 
-#[pyclass(name = "ApiCall", frozen)]
+#[pyclass(name = "ApiCall", module = "rboto_guardduty._native", frozen)]
 struct PyApiCall {
     inner: aws_sdk_guardduty::types::ApiCall,
 }
@@ -17688,7 +17696,7 @@ impl PyApiCall {
     }
 }
 
-#[pyclass(name = "AssociationDetail", frozen)]
+#[pyclass(name = "AssociationDetail", module = "rboto_guardduty._native", frozen)]
 struct PyAssociationDetail {
     inner: aws_sdk_guardduty::types::AssociationDetail,
 }
@@ -17780,7 +17788,11 @@ impl PyAssociationDetail {
     }
 }
 
-#[pyclass(name = "AssociationSummary", frozen)]
+#[pyclass(
+    name = "AssociationSummary",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAssociationSummary {
     inner: aws_sdk_guardduty::types::AssociationSummary,
 }
@@ -17862,7 +17874,7 @@ impl PyAssociationSummary {
     }
 }
 
-#[pyclass(name = "AutonomousSystem", frozen)]
+#[pyclass(name = "AutonomousSystem", module = "rboto_guardduty._native", frozen)]
 struct PyAutonomousSystem {
     inner: aws_sdk_guardduty::types::AutonomousSystem,
 }
@@ -17894,7 +17906,11 @@ impl PyAutonomousSystem {
     }
 }
 
-#[pyclass(name = "AutoscalingAutoScalingGroup", frozen)]
+#[pyclass(
+    name = "AutoscalingAutoScalingGroup",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAutoscalingAutoScalingGroup {
     inner: aws_sdk_guardduty::types::AutoscalingAutoScalingGroup,
 }
@@ -17921,7 +17937,7 @@ impl PyAutoscalingAutoScalingGroup {
     }
 }
 
-#[pyclass(name = "AwsApiCallAction", frozen)]
+#[pyclass(name = "AwsApiCallAction", module = "rboto_guardduty._native", frozen)]
 struct PyAwsApiCallAction {
     inner: aws_sdk_guardduty::types::AwsApiCallAction,
 }
@@ -18047,7 +18063,7 @@ impl PyAwsApiCallAction {
     }
 }
 
-#[pyclass(name = "BedrockGuardrail", frozen)]
+#[pyclass(name = "BedrockGuardrail", module = "rboto_guardduty._native", frozen)]
 struct PyBedrockGuardrail {
     inner: aws_sdk_guardduty::types::BedrockGuardrail,
 }
@@ -18079,7 +18095,11 @@ impl PyBedrockGuardrail {
     }
 }
 
-#[pyclass(name = "BedrockGuardrailDetails", frozen)]
+#[pyclass(
+    name = "BedrockGuardrailDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyBedrockGuardrailDetails {
     inner: aws_sdk_guardduty::types::BedrockGuardrailDetails,
 }
@@ -18173,7 +18193,11 @@ impl PyBedrockGuardrailDetails {
     }
 }
 
-#[pyclass(name = "BedrockGuardrailResource", frozen)]
+#[pyclass(
+    name = "BedrockGuardrailResource",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyBedrockGuardrailResource {
     inner: aws_sdk_guardduty::types::BedrockGuardrailResource,
 }
@@ -18215,7 +18239,7 @@ impl PyBedrockGuardrailResource {
     }
 }
 
-#[pyclass(name = "BlockPublicAccess", frozen)]
+#[pyclass(name = "BlockPublicAccess", module = "rboto_guardduty._native", frozen)]
 struct PyBlockPublicAccess {
     inner: aws_sdk_guardduty::types::BlockPublicAccess,
 }
@@ -18267,7 +18291,11 @@ impl PyBlockPublicAccess {
     }
 }
 
-#[pyclass(name = "BucketLevelPermissions", frozen)]
+#[pyclass(
+    name = "BucketLevelPermissions",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyBucketLevelPermissions {
     inner: aws_sdk_guardduty::types::BucketLevelPermissions,
 }
@@ -18327,7 +18355,7 @@ impl PyBucketLevelPermissions {
     }
 }
 
-#[pyclass(name = "BucketPolicy", frozen)]
+#[pyclass(name = "BucketPolicy", module = "rboto_guardduty._native", frozen)]
 struct PyBucketPolicy {
     inner: aws_sdk_guardduty::types::BucketPolicy,
 }
@@ -18359,7 +18387,7 @@ impl PyBucketPolicy {
     }
 }
 
-#[pyclass(name = "City", frozen)]
+#[pyclass(name = "City", module = "rboto_guardduty._native", frozen)]
 struct PyCity {
     inner: aws_sdk_guardduty::types::City,
 }
@@ -18381,7 +18409,7 @@ impl PyCity {
     }
 }
 
-#[pyclass(name = "CloudDetails", frozen)]
+#[pyclass(name = "CloudDetails", module = "rboto_guardduty._native", frozen)]
 struct PyCloudDetails {
     inner: aws_sdk_guardduty::types::CloudDetails,
 }
@@ -18423,7 +18451,11 @@ impl PyCloudDetails {
     }
 }
 
-#[pyclass(name = "CloudTrailConfigurationResult", frozen)]
+#[pyclass(
+    name = "CloudTrailConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCloudTrailConfigurationResult {
     inner: aws_sdk_guardduty::types::CloudTrailConfigurationResult,
 }
@@ -18445,7 +18477,11 @@ impl PyCloudTrailConfigurationResult {
     }
 }
 
-#[pyclass(name = "CloudformationStack", frozen)]
+#[pyclass(
+    name = "CloudformationStack",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCloudformationStack {
     inner: aws_sdk_guardduty::types::CloudformationStack,
 }
@@ -18472,7 +18508,7 @@ impl PyCloudformationStack {
     }
 }
 
-#[pyclass(name = "Condition", frozen)]
+#[pyclass(name = "Condition", module = "rboto_guardduty._native", frozen)]
 struct PyCondition {
     inner: aws_sdk_guardduty::types::Condition,
 }
@@ -18654,7 +18690,7 @@ impl PyCondition {
     }
 }
 
-#[pyclass(name = "Container", frozen)]
+#[pyclass(name = "Container", module = "rboto_guardduty._native", frozen)]
 struct PyContainer {
     inner: aws_sdk_guardduty::types::Container,
 }
@@ -18753,7 +18789,11 @@ impl PyContainer {
     }
 }
 
-#[pyclass(name = "ContainerFindingResource", frozen)]
+#[pyclass(
+    name = "ContainerFindingResource",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyContainerFindingResource {
     inner: aws_sdk_guardduty::types::ContainerFindingResource,
 }
@@ -18785,7 +18825,11 @@ impl PyContainerFindingResource {
     }
 }
 
-#[pyclass(name = "ContainerInstanceDetails", frozen)]
+#[pyclass(
+    name = "ContainerInstanceDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyContainerInstanceDetails {
     inner: aws_sdk_guardduty::types::ContainerInstanceDetails,
 }
@@ -18817,7 +18861,11 @@ impl PyContainerInstanceDetails {
     }
 }
 
-#[pyclass(name = "ContentPolicyFilter", frozen)]
+#[pyclass(
+    name = "ContentPolicyFilter",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyContentPolicyFilter {
     inner: aws_sdk_guardduty::types::ContentPolicyFilter,
 }
@@ -18859,7 +18907,7 @@ impl PyContentPolicyFilter {
     }
 }
 
-#[pyclass(name = "Country", frozen)]
+#[pyclass(name = "Country", module = "rboto_guardduty._native", frozen)]
 struct PyCountry {
     inner: aws_sdk_guardduty::types::Country,
 }
@@ -18891,7 +18939,11 @@ impl PyCountry {
     }
 }
 
-#[pyclass(name = "CoverageEc2InstanceDetails", frozen)]
+#[pyclass(
+    name = "CoverageEc2InstanceDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCoverageEc2InstanceDetails {
     inner: aws_sdk_guardduty::types::CoverageEc2InstanceDetails,
 }
@@ -18959,7 +19011,11 @@ impl PyCoverageEc2InstanceDetails {
     }
 }
 
-#[pyclass(name = "CoverageEcsClusterDetails", frozen)]
+#[pyclass(
+    name = "CoverageEcsClusterDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCoverageEcsClusterDetails {
     inner: aws_sdk_guardduty::types::CoverageEcsClusterDetails,
 }
@@ -19013,7 +19069,11 @@ impl PyCoverageEcsClusterDetails {
     }
 }
 
-#[pyclass(name = "CoverageEksClusterDetails", frozen)]
+#[pyclass(
+    name = "CoverageEksClusterDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCoverageEksClusterDetails {
     inner: aws_sdk_guardduty::types::CoverageEksClusterDetails,
 }
@@ -19081,7 +19141,7 @@ impl PyCoverageEksClusterDetails {
     }
 }
 
-#[pyclass(name = "CoverageResource", frozen)]
+#[pyclass(name = "CoverageResource", module = "rboto_guardduty._native", frozen)]
 struct PyCoverageResource {
     inner: aws_sdk_guardduty::types::CoverageResource,
 }
@@ -19169,7 +19229,11 @@ impl PyCoverageResource {
     }
 }
 
-#[pyclass(name = "CoverageResourceDetails", frozen)]
+#[pyclass(
+    name = "CoverageResourceDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCoverageResourceDetails {
     inner: aws_sdk_guardduty::types::CoverageResourceDetails,
 }
@@ -19239,7 +19303,11 @@ impl PyCoverageResourceDetails {
     }
 }
 
-#[pyclass(name = "CoverageStatistics", frozen)]
+#[pyclass(
+    name = "CoverageStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCoverageStatistics {
     inner: aws_sdk_guardduty::types::CoverageStatistics,
 }
@@ -19283,7 +19351,11 @@ impl PyCoverageStatistics {
     }
 }
 
-#[pyclass(name = "CreateProtectedResource", frozen)]
+#[pyclass(
+    name = "CreateProtectedResource",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateProtectedResource {
     inner: aws_sdk_guardduty::types::CreateProtectedResource,
 }
@@ -19311,7 +19383,11 @@ impl PyCreateProtectedResource {
     }
 }
 
-#[pyclass(name = "CreateS3BucketResource", frozen)]
+#[pyclass(
+    name = "CreateS3BucketResource",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateS3BucketResource {
     inner: aws_sdk_guardduty::types::CreateS3BucketResource,
 }
@@ -19348,7 +19424,11 @@ impl PyCreateS3BucketResource {
     }
 }
 
-#[pyclass(name = "DataSourceConfigurationsResult", frozen)]
+#[pyclass(
+    name = "DataSourceConfigurationsResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDataSourceConfigurationsResult {
     inner: aws_sdk_guardduty::types::DataSourceConfigurationsResult,
 }
@@ -19456,7 +19536,11 @@ impl PyDataSourceConfigurationsResult {
     }
 }
 
-#[pyclass(name = "DataSourceFreeTrial", frozen)]
+#[pyclass(
+    name = "DataSourceFreeTrial",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDataSourceFreeTrial {
     inner: aws_sdk_guardduty::types::DataSourceFreeTrial,
 }
@@ -19478,7 +19562,11 @@ impl PyDataSourceFreeTrial {
     }
 }
 
-#[pyclass(name = "DataSourcesFreeTrial", frozen)]
+#[pyclass(
+    name = "DataSourcesFreeTrial",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDataSourcesFreeTrial {
     inner: aws_sdk_guardduty::types::DataSourcesFreeTrial,
 }
@@ -19586,7 +19674,7 @@ impl PyDataSourcesFreeTrial {
     }
 }
 
-#[pyclass(name = "DateStatistics", frozen)]
+#[pyclass(name = "DateStatistics", module = "rboto_guardduty._native", frozen)]
 struct PyDateStatistics {
     inner: aws_sdk_guardduty::types::DateStatistics,
 }
@@ -19638,7 +19726,11 @@ impl PyDateStatistics {
     }
 }
 
-#[pyclass(name = "DefaultServerSideEncryption", frozen)]
+#[pyclass(
+    name = "DefaultServerSideEncryption",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDefaultServerSideEncryption {
     inner: aws_sdk_guardduty::types::DefaultServerSideEncryption,
 }
@@ -19670,7 +19762,7 @@ impl PyDefaultServerSideEncryption {
     }
 }
 
-#[pyclass(name = "Destination", frozen)]
+#[pyclass(name = "Destination", module = "rboto_guardduty._native", frozen)]
 struct PyDestination {
     inner: aws_sdk_guardduty::types::Destination,
 }
@@ -19712,7 +19804,11 @@ impl PyDestination {
     }
 }
 
-#[pyclass(name = "DestinationProperties", frozen)]
+#[pyclass(
+    name = "DestinationProperties",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDestinationProperties {
     inner: aws_sdk_guardduty::types::DestinationProperties,
 }
@@ -19754,7 +19850,7 @@ impl PyDestinationProperties {
     }
 }
 
-#[pyclass(name = "Detection", frozen)]
+#[pyclass(name = "Detection", module = "rboto_guardduty._native", frozen)]
 struct PyDetection {
     inner: aws_sdk_guardduty::types::Detection,
 }
@@ -19798,7 +19894,11 @@ impl PyDetection {
     }
 }
 
-#[pyclass(name = "DetectionRuleEc2Requirements", frozen)]
+#[pyclass(
+    name = "DetectionRuleEc2Requirements",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleEc2Requirements {
     inner: aws_sdk_guardduty::types::DetectionRuleEc2Requirements,
 }
@@ -19820,7 +19920,11 @@ impl PyDetectionRuleEc2Requirements {
     }
 }
 
-#[pyclass(name = "DetectionRuleEcsFargateRequirements", frozen)]
+#[pyclass(
+    name = "DetectionRuleEcsFargateRequirements",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleEcsFargateRequirements {
     inner: aws_sdk_guardduty::types::DetectionRuleEcsFargateRequirements,
 }
@@ -19842,7 +19946,11 @@ impl PyDetectionRuleEcsFargateRequirements {
     }
 }
 
-#[pyclass(name = "DetectionRuleEksRequirements", frozen)]
+#[pyclass(
+    name = "DetectionRuleEksRequirements",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleEksRequirements {
     inner: aws_sdk_guardduty::types::DetectionRuleEksRequirements,
 }
@@ -19864,7 +19972,11 @@ impl PyDetectionRuleEksRequirements {
     }
 }
 
-#[pyclass(name = "DetectionRuleOrgConfiguration", frozen)]
+#[pyclass(
+    name = "DetectionRuleOrgConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleOrgConfiguration {
     inner: aws_sdk_guardduty::types::DetectionRuleOrgConfiguration,
 }
@@ -19976,7 +20088,11 @@ impl PyDetectionRuleOrgConfiguration {
     }
 }
 
-#[pyclass(name = "DetectionRuleOrgConfigurationSummary", frozen)]
+#[pyclass(
+    name = "DetectionRuleOrgConfigurationSummary",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleOrgConfigurationSummary {
     inner: aws_sdk_guardduty::types::DetectionRuleOrgConfigurationSummary,
 }
@@ -20058,7 +20174,11 @@ impl PyDetectionRuleOrgConfigurationSummary {
     }
 }
 
-#[pyclass(name = "DetectionRuleRuntimeMonitoringDetails", frozen)]
+#[pyclass(
+    name = "DetectionRuleRuntimeMonitoringDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleRuntimeMonitoringDetails {
     inner: aws_sdk_guardduty::types::DetectionRuleRuntimeMonitoringDetails,
 }
@@ -20086,7 +20206,11 @@ impl PyDetectionRuleRuntimeMonitoringDetails {
     }
 }
 
-#[pyclass(name = "DetectionRuleRuntimePlatforms", frozen)]
+#[pyclass(
+    name = "DetectionRuleRuntimePlatforms",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectionRuleRuntimePlatforms {
     inner: aws_sdk_guardduty::types::DetectionRuleRuntimePlatforms,
 }
@@ -20146,7 +20270,11 @@ impl PyDetectionRuleRuntimePlatforms {
     }
 }
 
-#[pyclass(name = "DetectorAdditionalConfigurationResult", frozen)]
+#[pyclass(
+    name = "DetectorAdditionalConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectorAdditionalConfigurationResult {
     inner: aws_sdk_guardduty::types::DetectorAdditionalConfigurationResult,
 }
@@ -20198,7 +20326,11 @@ impl PyDetectorAdditionalConfigurationResult {
     }
 }
 
-#[pyclass(name = "DetectorFeatureConfigurationResult", frozen)]
+#[pyclass(
+    name = "DetectorFeatureConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDetectorFeatureConfigurationResult {
     inner: aws_sdk_guardduty::types::DetectorFeatureConfigurationResult,
 }
@@ -20271,7 +20403,11 @@ impl PyDetectorFeatureConfigurationResult {
     }
 }
 
-#[pyclass(name = "DnsLogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "DnsLogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDnsLogsConfigurationResult {
     inner: aws_sdk_guardduty::types::DnsLogsConfigurationResult,
 }
@@ -20293,7 +20429,7 @@ impl PyDnsLogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "DnsRequestAction", frozen)]
+#[pyclass(name = "DnsRequestAction", module = "rboto_guardduty._native", frozen)]
 struct PyDnsRequestAction {
     inner: aws_sdk_guardduty::types::DnsRequestAction,
 }
@@ -20355,7 +20491,7 @@ impl PyDnsRequestAction {
     }
 }
 
-#[pyclass(name = "DomainDetails", frozen)]
+#[pyclass(name = "DomainDetails", module = "rboto_guardduty._native", frozen)]
 struct PyDomainDetails {
     inner: aws_sdk_guardduty::types::DomainDetails,
 }
@@ -20377,7 +20513,7 @@ impl PyDomainDetails {
     }
 }
 
-#[pyclass(name = "EbsSnapshot", frozen)]
+#[pyclass(name = "EbsSnapshot", module = "rboto_guardduty._native", frozen)]
 struct PyEbsSnapshot {
     inner: aws_sdk_guardduty::types::EbsSnapshot,
 }
@@ -20399,7 +20535,11 @@ impl PyEbsSnapshot {
     }
 }
 
-#[pyclass(name = "EbsSnapshotDetails", frozen)]
+#[pyclass(
+    name = "EbsSnapshotDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyEbsSnapshotDetails {
     inner: aws_sdk_guardduty::types::EbsSnapshotDetails,
 }
@@ -20421,7 +20561,7 @@ impl PyEbsSnapshotDetails {
     }
 }
 
-#[pyclass(name = "EbsVolumeDetails", frozen)]
+#[pyclass(name = "EbsVolumeDetails", module = "rboto_guardduty._native", frozen)]
 struct PyEbsVolumeDetails {
     inner: aws_sdk_guardduty::types::EbsVolumeDetails,
 }
@@ -20475,7 +20615,11 @@ impl PyEbsVolumeDetails {
     }
 }
 
-#[pyclass(name = "EbsVolumeScanDetails", frozen)]
+#[pyclass(
+    name = "EbsVolumeScanDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyEbsVolumeScanDetails {
     inner: aws_sdk_guardduty::types::EbsVolumeScanDetails,
 }
@@ -20568,7 +20712,7 @@ impl PyEbsVolumeScanDetails {
     }
 }
 
-#[pyclass(name = "EbsVolumesResult", frozen)]
+#[pyclass(name = "EbsVolumesResult", module = "rboto_guardduty._native", frozen)]
 struct PyEbsVolumesResult {
     inner: aws_sdk_guardduty::types::EbsVolumesResult,
 }
@@ -20600,7 +20744,7 @@ impl PyEbsVolumesResult {
     }
 }
 
-#[pyclass(name = "Ec2Image", frozen)]
+#[pyclass(name = "Ec2Image", module = "rboto_guardduty._native", frozen)]
 struct PyEc2Image {
     inner: aws_sdk_guardduty::types::Ec2Image,
 }
@@ -20627,7 +20771,7 @@ impl PyEc2Image {
     }
 }
 
-#[pyclass(name = "Ec2ImageDetails", frozen)]
+#[pyclass(name = "Ec2ImageDetails", module = "rboto_guardduty._native", frozen)]
 struct PyEc2ImageDetails {
     inner: aws_sdk_guardduty::types::Ec2ImageDetails,
 }
@@ -20649,7 +20793,7 @@ impl PyEc2ImageDetails {
     }
 }
 
-#[pyclass(name = "Ec2Instance", frozen)]
+#[pyclass(name = "Ec2Instance", module = "rboto_guardduty._native", frozen)]
 struct PyEc2Instance {
     inner: aws_sdk_guardduty::types::Ec2Instance,
 }
@@ -20773,7 +20917,7 @@ impl PyEc2Instance {
     }
 }
 
-#[pyclass(name = "Ec2LaunchTemplate", frozen)]
+#[pyclass(name = "Ec2LaunchTemplate", module = "rboto_guardduty._native", frozen)]
 struct PyEc2LaunchTemplate {
     inner: aws_sdk_guardduty::types::Ec2LaunchTemplate,
 }
@@ -20810,7 +20954,11 @@ impl PyEc2LaunchTemplate {
     }
 }
 
-#[pyclass(name = "Ec2NetworkInterface", frozen)]
+#[pyclass(
+    name = "Ec2NetworkInterface",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyEc2NetworkInterface {
     inner: aws_sdk_guardduty::types::Ec2NetworkInterface,
 }
@@ -20909,7 +21057,7 @@ impl PyEc2NetworkInterface {
     }
 }
 
-#[pyclass(name = "Ec2Vpc", frozen)]
+#[pyclass(name = "Ec2Vpc", module = "rboto_guardduty._native", frozen)]
 struct PyEc2Vpc {
     inner: aws_sdk_guardduty::types::Ec2Vpc,
 }
@@ -20936,7 +21084,7 @@ impl PyEc2Vpc {
     }
 }
 
-#[pyclass(name = "EcsCluster", frozen)]
+#[pyclass(name = "EcsCluster", module = "rboto_guardduty._native", frozen)]
 struct PyEcsCluster {
     inner: aws_sdk_guardduty::types::EcsCluster,
 }
@@ -20973,7 +21121,7 @@ impl PyEcsCluster {
     }
 }
 
-#[pyclass(name = "EcsClusterDetails", frozen)]
+#[pyclass(name = "EcsClusterDetails", module = "rboto_guardduty._native", frozen)]
 struct PyEcsClusterDetails {
     inner: aws_sdk_guardduty::types::EcsClusterDetails,
 }
@@ -21082,7 +21230,7 @@ impl PyEcsClusterDetails {
     }
 }
 
-#[pyclass(name = "EcsTask", frozen)]
+#[pyclass(name = "EcsTask", module = "rboto_guardduty._native", frozen)]
 struct PyEcsTask {
     inner: aws_sdk_guardduty::types::EcsTask,
 }
@@ -21139,7 +21287,7 @@ impl PyEcsTask {
     }
 }
 
-#[pyclass(name = "EcsTaskDetails", frozen)]
+#[pyclass(name = "EcsTaskDetails", module = "rboto_guardduty._native", frozen)]
 struct PyEcsTaskDetails {
     inner: aws_sdk_guardduty::types::EcsTaskDetails,
 }
@@ -21294,7 +21442,7 @@ impl PyEcsTaskDetails {
     }
 }
 
-#[pyclass(name = "EksCluster", frozen)]
+#[pyclass(name = "EksCluster", module = "rboto_guardduty._native", frozen)]
 struct PyEksCluster {
     inner: aws_sdk_guardduty::types::EksCluster,
 }
@@ -21361,7 +21509,7 @@ impl PyEksCluster {
     }
 }
 
-#[pyclass(name = "EksClusterDetails", frozen)]
+#[pyclass(name = "EksClusterDetails", module = "rboto_guardduty._native", frozen)]
 struct PyEksClusterDetails {
     inner: aws_sdk_guardduty::types::EksClusterDetails,
 }
@@ -21444,7 +21592,7 @@ impl PyEksClusterDetails {
     }
 }
 
-#[pyclass(name = "Evidence", frozen)]
+#[pyclass(name = "Evidence", module = "rboto_guardduty._native", frozen)]
 struct PyEvidence {
     inner: aws_sdk_guardduty::types::Evidence,
 }
@@ -21477,7 +21625,7 @@ impl PyEvidence {
     }
 }
 
-#[pyclass(name = "FargateDetails", frozen)]
+#[pyclass(name = "FargateDetails", module = "rboto_guardduty._native", frozen)]
 struct PyFargateDetails {
     inner: aws_sdk_guardduty::types::FargateDetails,
 }
@@ -21514,7 +21662,7 @@ impl PyFargateDetails {
     }
 }
 
-#[pyclass(name = "Finding", frozen)]
+#[pyclass(name = "Finding", module = "rboto_guardduty._native", frozen)]
 struct PyFinding {
     inner: aws_sdk_guardduty::types::Finding,
 }
@@ -21708,7 +21856,7 @@ impl PyFinding {
     }
 }
 
-#[pyclass(name = "FindingCriteria", frozen)]
+#[pyclass(name = "FindingCriteria", module = "rboto_guardduty._native", frozen)]
 struct PyFindingCriteria {
     inner: aws_sdk_guardduty::types::FindingCriteria,
 }
@@ -21742,7 +21890,7 @@ impl PyFindingCriteria {
     }
 }
 
-#[pyclass(name = "FindingStatistics", frozen)]
+#[pyclass(name = "FindingStatistics", module = "rboto_guardduty._native", frozen)]
 struct PyFindingStatistics {
     inner: aws_sdk_guardduty::types::FindingStatistics,
 }
@@ -21875,7 +22023,11 @@ impl PyFindingStatistics {
     }
 }
 
-#[pyclass(name = "FindingTypeStatistics", frozen)]
+#[pyclass(
+    name = "FindingTypeStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyFindingTypeStatistics {
     inner: aws_sdk_guardduty::types::FindingTypeStatistics,
 }
@@ -21917,7 +22069,11 @@ impl PyFindingTypeStatistics {
     }
 }
 
-#[pyclass(name = "FlowLogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "FlowLogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyFlowLogsConfigurationResult {
     inner: aws_sdk_guardduty::types::FlowLogsConfigurationResult,
 }
@@ -21939,7 +22095,11 @@ impl PyFlowLogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "FreeTrialFeatureConfigurationResult", frozen)]
+#[pyclass(
+    name = "FreeTrialFeatureConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyFreeTrialFeatureConfigurationResult {
     inner: aws_sdk_guardduty::types::FreeTrialFeatureConfigurationResult,
 }
@@ -21971,7 +22131,7 @@ impl PyFreeTrialFeatureConfigurationResult {
     }
 }
 
-#[pyclass(name = "GeoLocation", frozen)]
+#[pyclass(name = "GeoLocation", module = "rboto_guardduty._native", frozen)]
 struct PyGeoLocation {
     inner: aws_sdk_guardduty::types::GeoLocation,
 }
@@ -22003,7 +22163,11 @@ impl PyGeoLocation {
     }
 }
 
-#[pyclass(name = "GetMalwareScanResultDetails", frozen)]
+#[pyclass(
+    name = "GetMalwareScanResultDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMalwareScanResultDetails {
     inner: aws_sdk_guardduty::types::GetMalwareScanResultDetails,
 }
@@ -22106,7 +22270,11 @@ impl PyGetMalwareScanResultDetails {
     }
 }
 
-#[pyclass(name = "HighestSeverityThreatDetails", frozen)]
+#[pyclass(
+    name = "HighestSeverityThreatDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyHighestSeverityThreatDetails {
     inner: aws_sdk_guardduty::types::HighestSeverityThreatDetails,
 }
@@ -22148,7 +22316,7 @@ impl PyHighestSeverityThreatDetails {
     }
 }
 
-#[pyclass(name = "HostPath", frozen)]
+#[pyclass(name = "HostPath", module = "rboto_guardduty._native", frozen)]
 struct PyHostPath {
     inner: aws_sdk_guardduty::types::HostPath,
 }
@@ -22170,7 +22338,11 @@ impl PyHostPath {
     }
 }
 
-#[pyclass(name = "IamInstanceProfile", frozen)]
+#[pyclass(
+    name = "IamInstanceProfile",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyIamInstanceProfile {
     inner: aws_sdk_guardduty::types::IamInstanceProfile,
 }
@@ -22202,7 +22374,11 @@ impl PyIamInstanceProfile {
     }
 }
 
-#[pyclass(name = "IamInstanceProfileV2", frozen)]
+#[pyclass(
+    name = "IamInstanceProfileV2",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyIamInstanceProfileV2 {
     inner: aws_sdk_guardduty::types::IamInstanceProfileV2,
 }
@@ -22229,7 +22405,7 @@ impl PyIamInstanceProfileV2 {
     }
 }
 
-#[pyclass(name = "ImpersonatedUser", frozen)]
+#[pyclass(name = "ImpersonatedUser", module = "rboto_guardduty._native", frozen)]
 struct PyImpersonatedUser {
     inner: aws_sdk_guardduty::types::ImpersonatedUser,
 }
@@ -22266,7 +22442,11 @@ impl PyImpersonatedUser {
     }
 }
 
-#[pyclass(name = "IncrementalScanDetails", frozen)]
+#[pyclass(
+    name = "IncrementalScanDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyIncrementalScanDetails {
     inner: aws_sdk_guardduty::types::IncrementalScanDetails,
 }
@@ -22288,7 +22468,7 @@ impl PyIncrementalScanDetails {
     }
 }
 
-#[pyclass(name = "Indicator", frozen)]
+#[pyclass(name = "Indicator", module = "rboto_guardduty._native", frozen)]
 struct PyIndicator {
     inner: aws_sdk_guardduty::types::Indicator,
 }
@@ -22335,7 +22515,7 @@ impl PyIndicator {
     }
 }
 
-#[pyclass(name = "InstanceDetails", frozen)]
+#[pyclass(name = "InstanceDetails", module = "rboto_guardduty._native", frozen)]
 struct PyInstanceDetails {
     inner: aws_sdk_guardduty::types::InstanceDetails,
 }
@@ -22516,7 +22696,7 @@ impl PyInstanceDetails {
     }
 }
 
-#[pyclass(name = "Investigation", frozen)]
+#[pyclass(name = "Investigation", module = "rboto_guardduty._native", frozen)]
 struct PyInvestigation {
     inner: aws_sdk_guardduty::types::Investigation,
 }
@@ -22670,7 +22850,11 @@ impl PyInvestigation {
     }
 }
 
-#[pyclass(name = "InvestigationMetadata", frozen)]
+#[pyclass(
+    name = "InvestigationMetadata",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyInvestigationMetadata {
     inner: aws_sdk_guardduty::types::InvestigationMetadata,
 }
@@ -22708,7 +22892,11 @@ impl PyInvestigationMetadata {
     }
 }
 
-#[pyclass(name = "InvestigationSummary", frozen)]
+#[pyclass(
+    name = "InvestigationSummary",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyInvestigationSummary {
     inner: aws_sdk_guardduty::types::InvestigationSummary,
 }
@@ -22810,7 +22998,7 @@ impl PyInvestigationSummary {
     }
 }
 
-#[pyclass(name = "Invitation", frozen)]
+#[pyclass(name = "Invitation", module = "rboto_guardduty._native", frozen)]
 struct PyInvitation {
     inner: aws_sdk_guardduty::types::Invitation,
 }
@@ -22862,7 +23050,7 @@ impl PyInvitation {
     }
 }
 
-#[pyclass(name = "ItemDetails", frozen)]
+#[pyclass(name = "ItemDetails", module = "rboto_guardduty._native", frozen)]
 struct PyItemDetails {
     inner: aws_sdk_guardduty::types::ItemDetails,
 }
@@ -22920,7 +23108,7 @@ impl PyItemDetails {
     }
 }
 
-#[pyclass(name = "ItemPath", frozen)]
+#[pyclass(name = "ItemPath", module = "rboto_guardduty._native", frozen)]
 struct PyItemPath {
     inner: aws_sdk_guardduty::types::ItemPath,
 }
@@ -22952,7 +23140,11 @@ impl PyItemPath {
     }
 }
 
-#[pyclass(name = "KubernetesApiCallAction", frozen)]
+#[pyclass(
+    name = "KubernetesApiCallAction",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesApiCallAction {
     inner: aws_sdk_guardduty::types::KubernetesApiCallAction,
 }
@@ -23085,7 +23277,11 @@ impl PyKubernetesApiCallAction {
     }
 }
 
-#[pyclass(name = "KubernetesAuditLogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "KubernetesAuditLogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesAuditLogsConfigurationResult {
     inner: aws_sdk_guardduty::types::KubernetesAuditLogsConfigurationResult,
 }
@@ -23107,7 +23303,11 @@ impl PyKubernetesAuditLogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "KubernetesConfigurationResult", frozen)]
+#[pyclass(
+    name = "KubernetesConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesConfigurationResult {
     inner: aws_sdk_guardduty::types::KubernetesConfigurationResult,
 }
@@ -23135,7 +23335,11 @@ impl PyKubernetesConfigurationResult {
     }
 }
 
-#[pyclass(name = "KubernetesDataSourceFreeTrial", frozen)]
+#[pyclass(
+    name = "KubernetesDataSourceFreeTrial",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesDataSourceFreeTrial {
     inner: aws_sdk_guardduty::types::KubernetesDataSourceFreeTrial,
 }
@@ -23163,7 +23367,7 @@ impl PyKubernetesDataSourceFreeTrial {
     }
 }
 
-#[pyclass(name = "KubernetesDetails", frozen)]
+#[pyclass(name = "KubernetesDetails", module = "rboto_guardduty._native", frozen)]
 struct PyKubernetesDetails {
     inner: aws_sdk_guardduty::types::KubernetesDetails,
 }
@@ -23207,7 +23411,11 @@ impl PyKubernetesDetails {
     }
 }
 
-#[pyclass(name = "KubernetesPermissionCheckedDetails", frozen)]
+#[pyclass(
+    name = "KubernetesPermissionCheckedDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesPermissionCheckedDetails {
     inner: aws_sdk_guardduty::types::KubernetesPermissionCheckedDetails,
 }
@@ -23259,7 +23467,11 @@ impl PyKubernetesPermissionCheckedDetails {
     }
 }
 
-#[pyclass(name = "KubernetesRoleBindingDetails", frozen)]
+#[pyclass(
+    name = "KubernetesRoleBindingDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesRoleBindingDetails {
     inner: aws_sdk_guardduty::types::KubernetesRoleBindingDetails,
 }
@@ -23321,7 +23533,11 @@ impl PyKubernetesRoleBindingDetails {
     }
 }
 
-#[pyclass(name = "KubernetesRoleDetails", frozen)]
+#[pyclass(
+    name = "KubernetesRoleDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesRoleDetails {
     inner: aws_sdk_guardduty::types::KubernetesRoleDetails,
 }
@@ -23363,7 +23579,11 @@ impl PyKubernetesRoleDetails {
     }
 }
 
-#[pyclass(name = "KubernetesUserDetails", frozen)]
+#[pyclass(
+    name = "KubernetesUserDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesUserDetails {
     inner: aws_sdk_guardduty::types::KubernetesUserDetails,
 }
@@ -23441,7 +23661,11 @@ impl PyKubernetesUserDetails {
     }
 }
 
-#[pyclass(name = "KubernetesWorkload", frozen)]
+#[pyclass(
+    name = "KubernetesWorkload",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesWorkload {
     inner: aws_sdk_guardduty::types::KubernetesWorkload,
 }
@@ -23488,7 +23712,11 @@ impl PyKubernetesWorkload {
     }
 }
 
-#[pyclass(name = "KubernetesWorkloadDetails", frozen)]
+#[pyclass(
+    name = "KubernetesWorkloadDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyKubernetesWorkloadDetails {
     inner: aws_sdk_guardduty::types::KubernetesWorkloadDetails,
 }
@@ -23622,7 +23850,7 @@ impl PyKubernetesWorkloadDetails {
     }
 }
 
-#[pyclass(name = "LambdaDetails", frozen)]
+#[pyclass(name = "LambdaDetails", module = "rboto_guardduty._native", frozen)]
 struct PyLambdaDetails {
     inner: aws_sdk_guardduty::types::LambdaDetails,
 }
@@ -23741,7 +23969,7 @@ impl PyLambdaDetails {
     }
 }
 
-#[pyclass(name = "LineageObject", frozen)]
+#[pyclass(name = "LineageObject", module = "rboto_guardduty._native", frozen)]
 struct PyLineageObject {
     inner: aws_sdk_guardduty::types::LineageObject,
 }
@@ -23843,7 +24071,7 @@ impl PyLineageObject {
     }
 }
 
-#[pyclass(name = "LocalIpDetails", frozen)]
+#[pyclass(name = "LocalIpDetails", module = "rboto_guardduty._native", frozen)]
 struct PyLocalIpDetails {
     inner: aws_sdk_guardduty::types::LocalIpDetails,
 }
@@ -23875,7 +24103,7 @@ impl PyLocalIpDetails {
     }
 }
 
-#[pyclass(name = "LocalPortDetails", frozen)]
+#[pyclass(name = "LocalPortDetails", module = "rboto_guardduty._native", frozen)]
 struct PyLocalPortDetails {
     inner: aws_sdk_guardduty::types::LocalPortDetails,
 }
@@ -23907,7 +24135,7 @@ impl PyLocalPortDetails {
     }
 }
 
-#[pyclass(name = "LoginAttribute", frozen)]
+#[pyclass(name = "LoginAttribute", module = "rboto_guardduty._native", frozen)]
 struct PyLoginAttribute {
     inner: aws_sdk_guardduty::types::LoginAttribute,
 }
@@ -23959,7 +24187,11 @@ impl PyLoginAttribute {
     }
 }
 
-#[pyclass(name = "MalwareProtectionConfigurationResult", frozen)]
+#[pyclass(
+    name = "MalwareProtectionConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionConfigurationResult {
     inner: aws_sdk_guardduty::types::MalwareProtectionConfigurationResult,
 }
@@ -23997,7 +24229,11 @@ impl PyMalwareProtectionConfigurationResult {
     }
 }
 
-#[pyclass(name = "MalwareProtectionDataSourceFreeTrial", frozen)]
+#[pyclass(
+    name = "MalwareProtectionDataSourceFreeTrial",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionDataSourceFreeTrial {
     inner: aws_sdk_guardduty::types::MalwareProtectionDataSourceFreeTrial,
 }
@@ -24025,7 +24261,11 @@ impl PyMalwareProtectionDataSourceFreeTrial {
     }
 }
 
-#[pyclass(name = "MalwareProtectionFindingsScanConfiguration", frozen)]
+#[pyclass(
+    name = "MalwareProtectionFindingsScanConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionFindingsScanConfiguration {
     inner: aws_sdk_guardduty::types::MalwareProtectionFindingsScanConfiguration,
 }
@@ -24063,7 +24303,11 @@ impl PyMalwareProtectionFindingsScanConfiguration {
     }
 }
 
-#[pyclass(name = "MalwareProtectionPlanActions", frozen)]
+#[pyclass(
+    name = "MalwareProtectionPlanActions",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionPlanActions {
     inner: aws_sdk_guardduty::types::MalwareProtectionPlanActions,
 }
@@ -24091,7 +24335,11 @@ impl PyMalwareProtectionPlanActions {
     }
 }
 
-#[pyclass(name = "MalwareProtectionPlanStatusReason", frozen)]
+#[pyclass(
+    name = "MalwareProtectionPlanStatusReason",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionPlanStatusReason {
     inner: aws_sdk_guardduty::types::MalwareProtectionPlanStatusReason,
 }
@@ -24123,7 +24371,11 @@ impl PyMalwareProtectionPlanStatusReason {
     }
 }
 
-#[pyclass(name = "MalwareProtectionPlanSummary", frozen)]
+#[pyclass(
+    name = "MalwareProtectionPlanSummary",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionPlanSummary {
     inner: aws_sdk_guardduty::types::MalwareProtectionPlanSummary,
 }
@@ -24145,7 +24397,11 @@ impl PyMalwareProtectionPlanSummary {
     }
 }
 
-#[pyclass(name = "MalwareProtectionPlanTaggingAction", frozen)]
+#[pyclass(
+    name = "MalwareProtectionPlanTaggingAction",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareProtectionPlanTaggingAction {
     inner: aws_sdk_guardduty::types::MalwareProtectionPlanTaggingAction,
 }
@@ -24167,7 +24423,7 @@ impl PyMalwareProtectionPlanTaggingAction {
     }
 }
 
-#[pyclass(name = "MalwareScan", frozen)]
+#[pyclass(name = "MalwareScan", module = "rboto_guardduty._native", frozen)]
 struct PyMalwareScan {
     inner: aws_sdk_guardduty::types::MalwareScan,
 }
@@ -24259,7 +24515,11 @@ impl PyMalwareScan {
     }
 }
 
-#[pyclass(name = "MalwareScanDetails", frozen)]
+#[pyclass(
+    name = "MalwareScanDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMalwareScanDetails {
     inner: aws_sdk_guardduty::types::MalwareScanDetails,
 }
@@ -24348,7 +24608,7 @@ impl PyMalwareScanDetails {
     }
 }
 
-#[pyclass(name = "Master", frozen)]
+#[pyclass(name = "Master", module = "rboto_guardduty._native", frozen)]
 struct PyMaster {
     inner: aws_sdk_guardduty::types::Master,
 }
@@ -24400,7 +24660,7 @@ impl PyMaster {
     }
 }
 
-#[pyclass(name = "Member", frozen)]
+#[pyclass(name = "Member", module = "rboto_guardduty._native", frozen)]
 struct PyMember {
     inner: aws_sdk_guardduty::types::Member,
 }
@@ -24492,7 +24752,11 @@ impl PyMember {
     }
 }
 
-#[pyclass(name = "MemberAdditionalConfigurationResult", frozen)]
+#[pyclass(
+    name = "MemberAdditionalConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMemberAdditionalConfigurationResult {
     inner: aws_sdk_guardduty::types::MemberAdditionalConfigurationResult,
 }
@@ -24544,7 +24808,11 @@ impl PyMemberAdditionalConfigurationResult {
     }
 }
 
-#[pyclass(name = "MemberDataSourceConfiguration", frozen)]
+#[pyclass(
+    name = "MemberDataSourceConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMemberDataSourceConfiguration {
     inner: aws_sdk_guardduty::types::MemberDataSourceConfiguration,
 }
@@ -24603,7 +24871,11 @@ impl PyMemberDataSourceConfiguration {
     }
 }
 
-#[pyclass(name = "MemberFeaturesConfigurationResult", frozen)]
+#[pyclass(
+    name = "MemberFeaturesConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyMemberFeaturesConfigurationResult {
     inner: aws_sdk_guardduty::types::MemberFeaturesConfigurationResult,
 }
@@ -24676,7 +24948,7 @@ impl PyMemberFeaturesConfigurationResult {
     }
 }
 
-#[pyclass(name = "ModelDetail", frozen)]
+#[pyclass(name = "ModelDetail", module = "rboto_guardduty._native", frozen)]
 struct PyModelDetail {
     inner: aws_sdk_guardduty::types::ModelDetail,
 }
@@ -24698,7 +24970,7 @@ impl PyModelDetail {
     }
 }
 
-#[pyclass(name = "NetworkConnection", frozen)]
+#[pyclass(name = "NetworkConnection", module = "rboto_guardduty._native", frozen)]
 struct PyNetworkConnection {
     inner: aws_sdk_guardduty::types::NetworkConnection,
 }
@@ -24720,7 +24992,11 @@ impl PyNetworkConnection {
     }
 }
 
-#[pyclass(name = "NetworkConnectionAction", frozen)]
+#[pyclass(
+    name = "NetworkConnectionAction",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyNetworkConnectionAction {
     inner: aws_sdk_guardduty::types::NetworkConnectionAction,
 }
@@ -24836,7 +25112,7 @@ impl PyNetworkConnectionAction {
     }
 }
 
-#[pyclass(name = "NetworkEndpoint", frozen)]
+#[pyclass(name = "NetworkEndpoint", module = "rboto_guardduty._native", frozen)]
 struct PyNetworkEndpoint {
     inner: aws_sdk_guardduty::types::NetworkEndpoint,
 }
@@ -24936,7 +25212,11 @@ impl PyNetworkEndpoint {
     }
 }
 
-#[pyclass(name = "NetworkGeoLocation", frozen)]
+#[pyclass(
+    name = "NetworkGeoLocation",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyNetworkGeoLocation {
     inner: aws_sdk_guardduty::types::NetworkGeoLocation,
 }
@@ -24988,7 +25268,7 @@ impl PyNetworkGeoLocation {
     }
 }
 
-#[pyclass(name = "NetworkInterface", frozen)]
+#[pyclass(name = "NetworkInterface", module = "rboto_guardduty._native", frozen)]
 struct PyNetworkInterface {
     inner: aws_sdk_guardduty::types::NetworkInterface,
 }
@@ -25127,7 +25407,7 @@ impl PyNetworkInterface {
     }
 }
 
-#[pyclass(name = "Observations", frozen)]
+#[pyclass(name = "Observations", module = "rboto_guardduty._native", frozen)]
 struct PyObservations {
     inner: aws_sdk_guardduty::types::Observations,
 }
@@ -25169,7 +25449,7 @@ impl PyObservations {
     }
 }
 
-#[pyclass(name = "Organization", frozen)]
+#[pyclass(name = "Organization", module = "rboto_guardduty._native", frozen)]
 struct PyOrganization {
     inner: aws_sdk_guardduty::types::Organization,
 }
@@ -25221,7 +25501,11 @@ impl PyOrganization {
     }
 }
 
-#[pyclass(name = "OrganizationAdditionalConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationAdditionalConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationAdditionalConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationAdditionalConfigurationResult,
 }
@@ -25253,7 +25537,11 @@ impl PyOrganizationAdditionalConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationDataSourceConfigurationsResult", frozen)]
+#[pyclass(
+    name = "OrganizationDataSourceConfigurationsResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationDataSourceConfigurationsResult {
     inner: aws_sdk_guardduty::types::OrganizationDataSourceConfigurationsResult,
 }
@@ -25313,7 +25601,11 @@ impl PyOrganizationDataSourceConfigurationsResult {
     }
 }
 
-#[pyclass(name = "OrganizationDetails", frozen)]
+#[pyclass(
+    name = "OrganizationDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationDetails {
     inner: aws_sdk_guardduty::types::OrganizationDetails,
 }
@@ -25351,7 +25643,11 @@ impl PyOrganizationDetails {
     }
 }
 
-#[pyclass(name = "OrganizationEbsVolumesResult", frozen)]
+#[pyclass(
+    name = "OrganizationEbsVolumesResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationEbsVolumesResult {
     inner: aws_sdk_guardduty::types::OrganizationEbsVolumesResult,
 }
@@ -25373,7 +25669,11 @@ impl PyOrganizationEbsVolumesResult {
     }
 }
 
-#[pyclass(name = "OrganizationFeatureConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationFeatureConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationFeatureConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationFeatureConfigurationResult,
 }
@@ -25426,7 +25726,11 @@ impl PyOrganizationFeatureConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationFeatureStatistics", frozen)]
+#[pyclass(
+    name = "OrganizationFeatureStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationFeatureStatistics {
     inner: aws_sdk_guardduty::types::OrganizationFeatureStatistics,
 }
@@ -25479,7 +25783,11 @@ impl PyOrganizationFeatureStatistics {
     }
 }
 
-#[pyclass(name = "OrganizationFeatureStatisticsAdditionalConfiguration", frozen)]
+#[pyclass(
+    name = "OrganizationFeatureStatisticsAdditionalConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationFeatureStatisticsAdditionalConfiguration {
     inner: aws_sdk_guardduty::types::OrganizationFeatureStatisticsAdditionalConfiguration,
 }
@@ -25511,7 +25819,11 @@ impl PyOrganizationFeatureStatisticsAdditionalConfiguration {
     }
 }
 
-#[pyclass(name = "OrganizationKubernetesAuditLogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationKubernetesAuditLogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationKubernetesAuditLogsConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfigurationResult,
 }
@@ -25533,7 +25845,11 @@ impl PyOrganizationKubernetesAuditLogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationKubernetesConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationKubernetesConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationKubernetesConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationKubernetesConfigurationResult,
 }
@@ -25561,7 +25877,11 @@ impl PyOrganizationKubernetesConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationMalwareProtectionConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationMalwareProtectionConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationMalwareProtectionConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationMalwareProtectionConfigurationResult,
 }
@@ -25589,7 +25909,11 @@ impl PyOrganizationMalwareProtectionConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationS3LogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "OrganizationS3LogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationS3LogsConfigurationResult {
     inner: aws_sdk_guardduty::types::OrganizationS3LogsConfigurationResult,
 }
@@ -25611,7 +25935,11 @@ impl PyOrganizationS3LogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "OrganizationScanEc2InstanceWithFindingsResult", frozen)]
+#[pyclass(
+    name = "OrganizationScanEc2InstanceWithFindingsResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationScanEc2InstanceWithFindingsResult {
     inner: aws_sdk_guardduty::types::OrganizationScanEc2InstanceWithFindingsResult,
 }
@@ -25639,7 +25967,11 @@ impl PyOrganizationScanEc2InstanceWithFindingsResult {
     }
 }
 
-#[pyclass(name = "OrganizationStatistics", frozen)]
+#[pyclass(
+    name = "OrganizationStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyOrganizationStatistics {
     inner: aws_sdk_guardduty::types::OrganizationStatistics,
 }
@@ -25712,7 +26044,7 @@ impl PyOrganizationStatistics {
     }
 }
 
-#[pyclass(name = "Owner", frozen)]
+#[pyclass(name = "Owner", module = "rboto_guardduty._native", frozen)]
 struct PyOwner {
     inner: aws_sdk_guardduty::types::Owner,
 }
@@ -25734,7 +26066,11 @@ impl PyOwner {
     }
 }
 
-#[pyclass(name = "PermissionConfiguration", frozen)]
+#[pyclass(
+    name = "PermissionConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyPermissionConfiguration {
     inner: aws_sdk_guardduty::types::PermissionConfiguration,
 }
@@ -25778,7 +26114,7 @@ impl PyPermissionConfiguration {
     }
 }
 
-#[pyclass(name = "PortProbeAction", frozen)]
+#[pyclass(name = "PortProbeAction", module = "rboto_guardduty._native", frozen)]
 struct PyPortProbeAction {
     inner: aws_sdk_guardduty::types::PortProbeAction,
 }
@@ -25821,7 +26157,7 @@ impl PyPortProbeAction {
     }
 }
 
-#[pyclass(name = "PortProbeDetail", frozen)]
+#[pyclass(name = "PortProbeDetail", module = "rboto_guardduty._native", frozen)]
 struct PyPortProbeDetail {
     inner: aws_sdk_guardduty::types::PortProbeDetail,
 }
@@ -25881,7 +26217,11 @@ impl PyPortProbeDetail {
     }
 }
 
-#[pyclass(name = "PrivateIpAddressDetails", frozen)]
+#[pyclass(
+    name = "PrivateIpAddressDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyPrivateIpAddressDetails {
     inner: aws_sdk_guardduty::types::PrivateIpAddressDetails,
 }
@@ -25913,7 +26253,7 @@ impl PyPrivateIpAddressDetails {
     }
 }
 
-#[pyclass(name = "ProcessDetails", frozen)]
+#[pyclass(name = "ProcessDetails", module = "rboto_guardduty._native", frozen)]
 struct PyProcessDetails {
     inner: aws_sdk_guardduty::types::ProcessDetails,
 }
@@ -26066,7 +26406,7 @@ impl PyProcessDetails {
     }
 }
 
-#[pyclass(name = "Product", frozen)]
+#[pyclass(name = "Product", module = "rboto_guardduty._native", frozen)]
 struct PyProduct {
     inner: aws_sdk_guardduty::types::Product,
 }
@@ -26098,7 +26438,7 @@ impl PyProduct {
     }
 }
 
-#[pyclass(name = "ProductCode", frozen)]
+#[pyclass(name = "ProductCode", module = "rboto_guardduty._native", frozen)]
 struct PyProductCode {
     inner: aws_sdk_guardduty::types::ProductCode,
 }
@@ -26130,7 +26470,7 @@ impl PyProductCode {
     }
 }
 
-#[pyclass(name = "PublicAccess", frozen)]
+#[pyclass(name = "PublicAccess", module = "rboto_guardduty._native", frozen)]
 struct PyPublicAccess {
     inner: aws_sdk_guardduty::types::PublicAccess,
 }
@@ -26168,7 +26508,11 @@ impl PyPublicAccess {
     }
 }
 
-#[pyclass(name = "PublicAccessConfiguration", frozen)]
+#[pyclass(
+    name = "PublicAccessConfiguration",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyPublicAccessConfiguration {
     inner: aws_sdk_guardduty::types::PublicAccessConfiguration,
 }
@@ -26220,7 +26564,11 @@ impl PyPublicAccessConfiguration {
     }
 }
 
-#[pyclass(name = "RdsDbInstanceDetails", frozen)]
+#[pyclass(
+    name = "RdsDbInstanceDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyRdsDbInstanceDetails {
     inner: aws_sdk_guardduty::types::RdsDbInstanceDetails,
 }
@@ -26313,7 +26661,7 @@ impl PyRdsDbInstanceDetails {
     }
 }
 
-#[pyclass(name = "RdsDbUserDetails", frozen)]
+#[pyclass(name = "RdsDbUserDetails", module = "rboto_guardduty._native", frozen)]
 struct PyRdsDbUserDetails {
     inner: aws_sdk_guardduty::types::RdsDbUserDetails,
 }
@@ -26375,7 +26723,11 @@ impl PyRdsDbUserDetails {
     }
 }
 
-#[pyclass(name = "RdsLimitlessDbDetails", frozen)]
+#[pyclass(
+    name = "RdsLimitlessDbDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyRdsLimitlessDbDetails {
     inner: aws_sdk_guardduty::types::RdsLimitlessDbDetails,
 }
@@ -26468,7 +26820,11 @@ impl PyRdsLimitlessDbDetails {
     }
 }
 
-#[pyclass(name = "RdsLoginAttemptAction", frozen)]
+#[pyclass(
+    name = "RdsLoginAttemptAction",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyRdsLoginAttemptAction {
     inner: aws_sdk_guardduty::types::RdsLoginAttemptAction,
 }
@@ -26517,7 +26873,11 @@ impl PyRdsLoginAttemptAction {
     }
 }
 
-#[pyclass(name = "RecoveryPointDetails", frozen)]
+#[pyclass(
+    name = "RecoveryPointDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyRecoveryPointDetails {
     inner: aws_sdk_guardduty::types::RecoveryPointDetails,
 }
@@ -26565,7 +26925,11 @@ impl PyRecoveryPointDetails {
     }
 }
 
-#[pyclass(name = "RemoteAccountDetails", frozen)]
+#[pyclass(
+    name = "RemoteAccountDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyRemoteAccountDetails {
     inner: aws_sdk_guardduty::types::RemoteAccountDetails,
 }
@@ -26607,7 +26971,7 @@ impl PyRemoteAccountDetails {
     }
 }
 
-#[pyclass(name = "RemoteIpDetails", frozen)]
+#[pyclass(name = "RemoteIpDetails", module = "rboto_guardduty._native", frozen)]
 struct PyRemoteIpDetails {
     inner: aws_sdk_guardduty::types::RemoteIpDetails,
 }
@@ -26703,7 +27067,7 @@ impl PyRemoteIpDetails {
     }
 }
 
-#[pyclass(name = "RemotePortDetails", frozen)]
+#[pyclass(name = "RemotePortDetails", module = "rboto_guardduty._native", frozen)]
 struct PyRemotePortDetails {
     inner: aws_sdk_guardduty::types::RemotePortDetails,
 }
@@ -26735,7 +27099,7 @@ impl PyRemotePortDetails {
     }
 }
 
-#[pyclass(name = "Resource", frozen)]
+#[pyclass(name = "Resource", module = "rboto_guardduty._native", frozen)]
 struct PyResource {
     inner: aws_sdk_guardduty::types::Resource,
 }
@@ -27039,7 +27403,7 @@ impl PyResource {
     }
 }
 
-#[pyclass(name = "ResourceData", frozen)]
+#[pyclass(name = "ResourceData", module = "rboto_guardduty._native", frozen)]
 struct PyResourceData {
     inner: aws_sdk_guardduty::types::ResourceData,
 }
@@ -27323,7 +27687,7 @@ impl PyResourceData {
     }
 }
 
-#[pyclass(name = "ResourceDetails", frozen)]
+#[pyclass(name = "ResourceDetails", module = "rboto_guardduty._native", frozen)]
 struct PyResourceDetails {
     inner: aws_sdk_guardduty::types::ResourceDetails,
 }
@@ -27345,7 +27709,11 @@ impl PyResourceDetails {
     }
 }
 
-#[pyclass(name = "ResourceStatistics", frozen)]
+#[pyclass(
+    name = "ResourceStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyResourceStatistics {
     inner: aws_sdk_guardduty::types::ResourceStatistics,
 }
@@ -27407,7 +27775,7 @@ impl PyResourceStatistics {
     }
 }
 
-#[pyclass(name = "ResourceV2", frozen)]
+#[pyclass(name = "ResourceV2", module = "rboto_guardduty._native", frozen)]
 struct PyResourceV2 {
     inner: aws_sdk_guardduty::types::ResourceV2,
 }
@@ -27526,7 +27894,7 @@ impl PyResourceV2 {
     }
 }
 
-#[pyclass(name = "RuleDefinition", frozen)]
+#[pyclass(name = "RuleDefinition", module = "rboto_guardduty._native", frozen)]
 struct PyRuleDefinition {
     inner: aws_sdk_guardduty::types::RuleDefinition,
 }
@@ -27548,7 +27916,7 @@ impl PyRuleDefinition {
     }
 }
 
-#[pyclass(name = "RuleDetail", frozen)]
+#[pyclass(name = "RuleDetail", module = "rboto_guardduty._native", frozen)]
 struct PyRuleDetail {
     inner: aws_sdk_guardduty::types::RuleDetail,
 }
@@ -27722,7 +28090,7 @@ impl PyRuleDetail {
     }
 }
 
-#[pyclass(name = "RuleSummary", frozen)]
+#[pyclass(name = "RuleSummary", module = "rboto_guardduty._native", frozen)]
 struct PyRuleSummary {
     inner: aws_sdk_guardduty::types::RuleSummary,
 }
@@ -27864,7 +28232,7 @@ impl PyRuleSummary {
     }
 }
 
-#[pyclass(name = "RuntimeContext", frozen)]
+#[pyclass(name = "RuntimeContext", module = "rboto_guardduty._native", frozen)]
 struct PyRuntimeContext {
     inner: aws_sdk_guardduty::types::RuntimeContext,
 }
@@ -28183,7 +28551,7 @@ impl PyRuntimeContext {
     }
 }
 
-#[pyclass(name = "RuntimeDetails", frozen)]
+#[pyclass(name = "RuntimeDetails", module = "rboto_guardduty._native", frozen)]
 struct PyRuntimeDetails {
     inner: aws_sdk_guardduty::types::RuntimeDetails,
 }
@@ -28227,7 +28595,7 @@ impl PyRuntimeDetails {
     }
 }
 
-#[pyclass(name = "S3Bucket", frozen)]
+#[pyclass(name = "S3Bucket", module = "rboto_guardduty._native", frozen)]
 struct PyS3Bucket {
     inner: aws_sdk_guardduty::types::S3Bucket,
 }
@@ -28356,7 +28724,7 @@ impl PyS3Bucket {
     }
 }
 
-#[pyclass(name = "S3BucketDetail", frozen)]
+#[pyclass(name = "S3BucketDetail", module = "rboto_guardduty._native", frozen)]
 struct PyS3BucketDetail {
     inner: aws_sdk_guardduty::types::S3BucketDetail,
 }
@@ -28498,7 +28866,11 @@ impl PyS3BucketDetail {
     }
 }
 
-#[pyclass(name = "S3LogsConfigurationResult", frozen)]
+#[pyclass(
+    name = "S3LogsConfigurationResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyS3LogsConfigurationResult {
     inner: aws_sdk_guardduty::types::S3LogsConfigurationResult,
 }
@@ -28520,7 +28892,7 @@ impl PyS3LogsConfigurationResult {
     }
 }
 
-#[pyclass(name = "S3Object", frozen)]
+#[pyclass(name = "S3Object", module = "rboto_guardduty._native", frozen)]
 struct PyS3Object {
     inner: aws_sdk_guardduty::types::S3Object,
 }
@@ -28562,7 +28934,7 @@ impl PyS3Object {
     }
 }
 
-#[pyclass(name = "S3ObjectDetail", frozen)]
+#[pyclass(name = "S3ObjectDetail", module = "rboto_guardduty._native", frozen)]
 struct PyS3ObjectDetail {
     inner: aws_sdk_guardduty::types::S3ObjectDetail,
 }
@@ -28624,7 +28996,7 @@ impl PyS3ObjectDetail {
     }
 }
 
-#[pyclass(name = "Scan", frozen)]
+#[pyclass(name = "Scan", module = "rboto_guardduty._native", frozen)]
 struct PyScan {
     inner: aws_sdk_guardduty::types::Scan,
 }
@@ -28815,7 +29187,7 @@ impl PyScan {
     }
 }
 
-#[pyclass(name = "ScanCondition", frozen)]
+#[pyclass(name = "ScanCondition", module = "rboto_guardduty._native", frozen)]
 struct PyScanCondition {
     inner: aws_sdk_guardduty::types::ScanCondition,
 }
@@ -28848,7 +29220,7 @@ impl PyScanCondition {
     }
 }
 
-#[pyclass(name = "ScanConditionPair", frozen)]
+#[pyclass(name = "ScanConditionPair", module = "rboto_guardduty._native", frozen)]
 struct PyScanConditionPair {
     inner: aws_sdk_guardduty::types::ScanConditionPair,
 }
@@ -28880,7 +29252,7 @@ impl PyScanConditionPair {
     }
 }
 
-#[pyclass(name = "ScanConfiguration", frozen)]
+#[pyclass(name = "ScanConfiguration", module = "rboto_guardduty._native", frozen)]
 struct PyScanConfiguration {
     inner: aws_sdk_guardduty::types::ScanConfiguration,
 }
@@ -28950,7 +29322,11 @@ impl PyScanConfiguration {
     }
 }
 
-#[pyclass(name = "ScanConfigurationContinuousScanDetails", frozen)]
+#[pyclass(
+    name = "ScanConfigurationContinuousScanDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyScanConfigurationContinuousScanDetails {
     inner: aws_sdk_guardduty::types::ScanConfigurationContinuousScanDetails,
 }
@@ -28978,7 +29354,11 @@ impl PyScanConfigurationContinuousScanDetails {
     }
 }
 
-#[pyclass(name = "ScanConfigurationRecoveryPoint", frozen)]
+#[pyclass(
+    name = "ScanConfigurationRecoveryPoint",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyScanConfigurationRecoveryPoint {
     inner: aws_sdk_guardduty::types::ScanConfigurationRecoveryPoint,
 }
@@ -29016,7 +29396,7 @@ impl PyScanConfigurationRecoveryPoint {
     }
 }
 
-#[pyclass(name = "ScanDetections", frozen)]
+#[pyclass(name = "ScanDetections", module = "rboto_guardduty._native", frozen)]
 struct PyScanDetections {
     inner: aws_sdk_guardduty::types::ScanDetections,
 }
@@ -29092,7 +29472,11 @@ impl PyScanDetections {
     }
 }
 
-#[pyclass(name = "ScanEc2InstanceWithFindingsResult", frozen)]
+#[pyclass(
+    name = "ScanEc2InstanceWithFindingsResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyScanEc2InstanceWithFindingsResult {
     inner: aws_sdk_guardduty::types::ScanEc2InstanceWithFindingsResult,
 }
@@ -29120,7 +29504,7 @@ impl PyScanEc2InstanceWithFindingsResult {
     }
 }
 
-#[pyclass(name = "ScanFilePath", frozen)]
+#[pyclass(name = "ScanFilePath", module = "rboto_guardduty._native", frozen)]
 struct PyScanFilePath {
     inner: aws_sdk_guardduty::types::ScanFilePath,
 }
@@ -29172,7 +29556,11 @@ impl PyScanFilePath {
     }
 }
 
-#[pyclass(name = "ScanResourceCriteria", frozen)]
+#[pyclass(
+    name = "ScanResourceCriteria",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyScanResourceCriteria {
     inner: aws_sdk_guardduty::types::ScanResourceCriteria,
 }
@@ -29228,7 +29616,7 @@ impl PyScanResourceCriteria {
     }
 }
 
-#[pyclass(name = "ScanResultDetails", frozen)]
+#[pyclass(name = "ScanResultDetails", module = "rboto_guardduty._native", frozen)]
 struct PyScanResultDetails {
     inner: aws_sdk_guardduty::types::ScanResultDetails,
 }
@@ -29250,7 +29638,7 @@ impl PyScanResultDetails {
     }
 }
 
-#[pyclass(name = "ScanResultThreat", frozen)]
+#[pyclass(name = "ScanResultThreat", module = "rboto_guardduty._native", frozen)]
 struct PyScanResultThreat {
     inner: aws_sdk_guardduty::types::ScanResultThreat,
 }
@@ -29323,7 +29711,7 @@ impl PyScanResultThreat {
     }
 }
 
-#[pyclass(name = "ScanThreatName", frozen)]
+#[pyclass(name = "ScanThreatName", module = "rboto_guardduty._native", frozen)]
 struct PyScanThreatName {
     inner: aws_sdk_guardduty::types::ScanThreatName,
 }
@@ -29386,7 +29774,7 @@ impl PyScanThreatName {
     }
 }
 
-#[pyclass(name = "ScannedItemCount", frozen)]
+#[pyclass(name = "ScannedItemCount", module = "rboto_guardduty._native", frozen)]
 struct PyScannedItemCount {
     inner: aws_sdk_guardduty::types::ScannedItemCount,
 }
@@ -29428,7 +29816,7 @@ impl PyScannedItemCount {
     }
 }
 
-#[pyclass(name = "ScannedResource", frozen)]
+#[pyclass(name = "ScannedResource", module = "rboto_guardduty._native", frozen)]
 struct PyScannedResource {
     inner: aws_sdk_guardduty::types::ScannedResource,
 }
@@ -29496,7 +29884,11 @@ impl PyScannedResource {
     }
 }
 
-#[pyclass(name = "ScannedResourceDetails", frozen)]
+#[pyclass(
+    name = "ScannedResourceDetails",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyScannedResourceDetails {
     inner: aws_sdk_guardduty::types::ScannedResourceDetails,
 }
@@ -29540,7 +29932,7 @@ impl PyScannedResourceDetails {
     }
 }
 
-#[pyclass(name = "SecurityContext", frozen)]
+#[pyclass(name = "SecurityContext", module = "rboto_guardduty._native", frozen)]
 struct PySecurityContext {
     inner: aws_sdk_guardduty::types::SecurityContext,
 }
@@ -29572,7 +29964,7 @@ impl PySecurityContext {
     }
 }
 
-#[pyclass(name = "SecurityGroup", frozen)]
+#[pyclass(name = "SecurityGroup", module = "rboto_guardduty._native", frozen)]
 struct PySecurityGroup {
     inner: aws_sdk_guardduty::types::SecurityGroup,
 }
@@ -29604,7 +29996,7 @@ impl PySecurityGroup {
     }
 }
 
-#[pyclass(name = "Sequence", frozen)]
+#[pyclass(name = "Sequence", module = "rboto_guardduty._native", frozen)]
 struct PySequence {
     inner: aws_sdk_guardduty::types::Sequence,
 }
@@ -29756,7 +30148,7 @@ impl PySequence {
     }
 }
 
-#[pyclass(name = "Service", frozen)]
+#[pyclass(name = "Service", module = "rboto_guardduty._native", frozen)]
 struct PyService {
     inner: aws_sdk_guardduty::types::Service,
 }
@@ -29970,7 +30362,11 @@ impl PyService {
     }
 }
 
-#[pyclass(name = "ServiceAdditionalInfo", frozen)]
+#[pyclass(
+    name = "ServiceAdditionalInfo",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyServiceAdditionalInfo {
     inner: aws_sdk_guardduty::types::ServiceAdditionalInfo,
 }
@@ -30002,7 +30398,7 @@ impl PyServiceAdditionalInfo {
     }
 }
 
-#[pyclass(name = "Session", frozen)]
+#[pyclass(name = "Session", module = "rboto_guardduty._native", frozen)]
 struct PySession {
     inner: aws_sdk_guardduty::types::Session,
 }
@@ -30054,7 +30450,11 @@ impl PySession {
     }
 }
 
-#[pyclass(name = "SeverityStatistics", frozen)]
+#[pyclass(
+    name = "SeverityStatistics",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PySeverityStatistics {
     inner: aws_sdk_guardduty::types::SeverityStatistics,
 }
@@ -30096,7 +30496,7 @@ impl PySeverityStatistics {
     }
 }
 
-#[pyclass(name = "Signal", frozen)]
+#[pyclass(name = "Signal", module = "rboto_guardduty._native", frozen)]
 struct PySignal {
     inner: aws_sdk_guardduty::types::Signal,
 }
@@ -30295,7 +30695,7 @@ impl PySignal {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_guardduty._native", frozen)]
 struct PyTag {
     inner: aws_sdk_guardduty::types::Tag,
 }
@@ -30327,7 +30727,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Threat", frozen)]
+#[pyclass(name = "Threat", module = "rboto_guardduty._native", frozen)]
 struct PyThreat {
     inner: aws_sdk_guardduty::types::Threat,
 }
@@ -30421,7 +30821,11 @@ impl PyThreat {
     }
 }
 
-#[pyclass(name = "ThreatDetectedByName", frozen)]
+#[pyclass(
+    name = "ThreatDetectedByName",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyThreatDetectedByName {
     inner: aws_sdk_guardduty::types::ThreatDetectedByName,
 }
@@ -30484,7 +30888,11 @@ impl PyThreatDetectedByName {
     }
 }
 
-#[pyclass(name = "ThreatIntelligenceDetail", frozen)]
+#[pyclass(
+    name = "ThreatIntelligenceDetail",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyThreatIntelligenceDetail {
     inner: aws_sdk_guardduty::types::ThreatIntelligenceDetail,
 }
@@ -30531,7 +30939,11 @@ impl PyThreatIntelligenceDetail {
     }
 }
 
-#[pyclass(name = "ThreatsDetectedItemCount", frozen)]
+#[pyclass(
+    name = "ThreatsDetectedItemCount",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyThreatsDetectedItemCount {
     inner: aws_sdk_guardduty::types::ThreatsDetectedItemCount,
 }
@@ -30553,7 +30965,7 @@ impl PyThreatsDetectedItemCount {
     }
 }
 
-#[pyclass(name = "Total", frozen)]
+#[pyclass(name = "Total", module = "rboto_guardduty._native", frozen)]
 struct PyTotal {
     inner: aws_sdk_guardduty::types::Total,
 }
@@ -30585,7 +30997,7 @@ impl PyTotal {
     }
 }
 
-#[pyclass(name = "TriggerDetails", frozen)]
+#[pyclass(name = "TriggerDetails", module = "rboto_guardduty._native", frozen)]
 struct PyTriggerDetails {
     inner: aws_sdk_guardduty::types::TriggerDetails,
 }
@@ -30627,7 +31039,11 @@ impl PyTriggerDetails {
     }
 }
 
-#[pyclass(name = "UnprocessedAccount", frozen)]
+#[pyclass(
+    name = "UnprocessedAccount",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUnprocessedAccount {
     inner: aws_sdk_guardduty::types::UnprocessedAccount,
 }
@@ -30659,7 +31075,11 @@ impl PyUnprocessedAccount {
     }
 }
 
-#[pyclass(name = "UnprocessedDataSourcesResult", frozen)]
+#[pyclass(
+    name = "UnprocessedDataSourcesResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUnprocessedDataSourcesResult {
     inner: aws_sdk_guardduty::types::UnprocessedDataSourcesResult,
 }
@@ -30687,7 +31107,11 @@ impl PyUnprocessedDataSourcesResult {
     }
 }
 
-#[pyclass(name = "UsageAccountResult", frozen)]
+#[pyclass(
+    name = "UsageAccountResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageAccountResult {
     inner: aws_sdk_guardduty::types::UsageAccountResult,
 }
@@ -30725,7 +31149,11 @@ impl PyUsageAccountResult {
     }
 }
 
-#[pyclass(name = "UsageDataSourceResult", frozen)]
+#[pyclass(
+    name = "UsageDataSourceResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageDataSourceResult {
     inner: aws_sdk_guardduty::types::UsageDataSourceResult,
 }
@@ -30763,7 +31191,11 @@ impl PyUsageDataSourceResult {
     }
 }
 
-#[pyclass(name = "UsageFeatureResult", frozen)]
+#[pyclass(
+    name = "UsageFeatureResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageFeatureResult {
     inner: aws_sdk_guardduty::types::UsageFeatureResult,
 }
@@ -30801,7 +31233,11 @@ impl PyUsageFeatureResult {
     }
 }
 
-#[pyclass(name = "UsageResourceResult", frozen)]
+#[pyclass(
+    name = "UsageResourceResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageResourceResult {
     inner: aws_sdk_guardduty::types::UsageResourceResult,
 }
@@ -30839,7 +31275,7 @@ impl PyUsageResourceResult {
     }
 }
 
-#[pyclass(name = "UsageStatistics", frozen)]
+#[pyclass(name = "UsageStatistics", module = "rboto_guardduty._native", frozen)]
 struct PyUsageStatistics {
     inner: aws_sdk_guardduty::types::UsageStatistics,
 }
@@ -30977,7 +31413,11 @@ impl PyUsageStatistics {
     }
 }
 
-#[pyclass(name = "UsageTopAccountResult", frozen)]
+#[pyclass(
+    name = "UsageTopAccountResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageTopAccountResult {
     inner: aws_sdk_guardduty::types::UsageTopAccountResult,
 }
@@ -31015,7 +31455,11 @@ impl PyUsageTopAccountResult {
     }
 }
 
-#[pyclass(name = "UsageTopAccountsResult", frozen)]
+#[pyclass(
+    name = "UsageTopAccountsResult",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUsageTopAccountsResult {
     inner: aws_sdk_guardduty::types::UsageTopAccountsResult,
 }
@@ -31058,7 +31502,7 @@ impl PyUsageTopAccountsResult {
     }
 }
 
-#[pyclass(name = "User", frozen)]
+#[pyclass(name = "User", module = "rboto_guardduty._native", frozen)]
 struct PyUser {
     inner: aws_sdk_guardduty::types::User,
 }
@@ -31126,7 +31570,7 @@ impl PyUser {
     }
 }
 
-#[pyclass(name = "Volume", frozen)]
+#[pyclass(name = "Volume", module = "rboto_guardduty._native", frozen)]
 struct PyVolume {
     inner: aws_sdk_guardduty::types::Volume,
 }
@@ -31164,7 +31608,7 @@ impl PyVolume {
     }
 }
 
-#[pyclass(name = "VolumeDetail", frozen)]
+#[pyclass(name = "VolumeDetail", module = "rboto_guardduty._native", frozen)]
 struct PyVolumeDetail {
     inner: aws_sdk_guardduty::types::VolumeDetail,
 }
@@ -31246,7 +31690,7 @@ impl PyVolumeDetail {
     }
 }
 
-#[pyclass(name = "VolumeMount", frozen)]
+#[pyclass(name = "VolumeMount", module = "rboto_guardduty._native", frozen)]
 struct PyVolumeMount {
     inner: aws_sdk_guardduty::types::VolumeMount,
 }
@@ -31278,7 +31722,7 @@ impl PyVolumeMount {
     }
 }
 
-#[pyclass(name = "VpcConfig", frozen)]
+#[pyclass(name = "VpcConfig", module = "rboto_guardduty._native", frozen)]
 struct PyVpcConfig {
     inner: aws_sdk_guardduty::types::VpcConfig,
 }
@@ -31336,7 +31780,11 @@ impl PyVpcConfig {
     }
 }
 
-#[pyclass(name = "AcceptAdministratorInvitationResponse", frozen)]
+#[pyclass(
+    name = "AcceptAdministratorInvitationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAcceptAdministratorInvitationResponse {
     inner: aws_sdk_guardduty::operation::accept_administrator_invitation::AcceptAdministratorInvitationOutput,
 }
@@ -31349,7 +31797,11 @@ impl PyAcceptAdministratorInvitationResponse {
     }
 }
 
-#[pyclass(name = "AcceptInvitationResponse", frozen)]
+#[pyclass(
+    name = "AcceptInvitationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyAcceptInvitationResponse {
     inner: aws_sdk_guardduty::operation::accept_invitation::AcceptInvitationOutput,
 }
@@ -31362,7 +31814,11 @@ impl PyAcceptInvitationResponse {
     }
 }
 
-#[pyclass(name = "ArchiveFindingsResponse", frozen)]
+#[pyclass(
+    name = "ArchiveFindingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyArchiveFindingsResponse {
     inner: aws_sdk_guardduty::operation::archive_findings::ArchiveFindingsOutput,
 }
@@ -31375,7 +31831,11 @@ impl PyArchiveFindingsResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomDetectionRuleAssociationResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomDetectionRuleAssociationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateCustomDetectionRuleAssociationResponse {
     inner: aws_sdk_guardduty::operation::create_custom_detection_rule_association::CreateCustomDetectionRuleAssociationOutput,
 }
@@ -31410,7 +31870,11 @@ impl PyCreateCustomDetectionRuleAssociationResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomDetectionRuleOrgConfigurationResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomDetectionRuleOrgConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateCustomDetectionRuleOrgConfigurationResponse {
     inner: aws_sdk_guardduty::operation::create_custom_detection_rule_org_configuration::CreateCustomDetectionRuleOrgConfigurationOutput,
 }
@@ -31423,7 +31887,11 @@ impl PyCreateCustomDetectionRuleOrgConfigurationResponse {
     }
 }
 
-#[pyclass(name = "CreateDetectorResponse", frozen)]
+#[pyclass(
+    name = "CreateDetectorResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateDetectorResponse {
     inner: aws_sdk_guardduty::operation::create_detector::CreateDetectorOutput,
 }
@@ -31474,7 +31942,11 @@ impl PyCreateDetectorResponse {
     }
 }
 
-#[pyclass(name = "CreateFilterResponse", frozen)]
+#[pyclass(
+    name = "CreateFilterResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateFilterResponse {
     inner: aws_sdk_guardduty::operation::create_filter::CreateFilterOutput,
 }
@@ -31503,7 +31975,11 @@ impl PyCreateFilterResponse {
     }
 }
 
-#[pyclass(name = "CreateIPSetResponse", frozen)]
+#[pyclass(
+    name = "CreateIPSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateIPSetResponse {
     inner: aws_sdk_guardduty::operation::create_ip_set::CreateIpSetOutput,
 }
@@ -31532,7 +32008,11 @@ impl PyCreateIPSetResponse {
     }
 }
 
-#[pyclass(name = "CreateInvestigationResponse", frozen)]
+#[pyclass(
+    name = "CreateInvestigationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateInvestigationResponse {
     inner: aws_sdk_guardduty::operation::create_investigation::CreateInvestigationOutput,
 }
@@ -31561,7 +32041,11 @@ impl PyCreateInvestigationResponse {
     }
 }
 
-#[pyclass(name = "CreateMalwareProtectionPlanResponse", frozen)]
+#[pyclass(
+    name = "CreateMalwareProtectionPlanResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateMalwareProtectionPlanResponse {
     inner: aws_sdk_guardduty::operation::create_malware_protection_plan::CreateMalwareProtectionPlanOutput,
 }
@@ -31590,7 +32074,11 @@ impl PyCreateMalwareProtectionPlanResponse {
     }
 }
 
-#[pyclass(name = "CreateMembersResponse", frozen)]
+#[pyclass(
+    name = "CreateMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateMembersResponse {
     inner: aws_sdk_guardduty::operation::create_members::CreateMembersOutput,
 }
@@ -31635,7 +32123,11 @@ impl PyCreateMembersResponse {
     }
 }
 
-#[pyclass(name = "CreatePublishingDestinationResponse", frozen)]
+#[pyclass(
+    name = "CreatePublishingDestinationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreatePublishingDestinationResponse {
     inner: aws_sdk_guardduty::operation::create_publishing_destination::CreatePublishingDestinationOutput,
 }
@@ -31664,7 +32156,11 @@ impl PyCreatePublishingDestinationResponse {
     }
 }
 
-#[pyclass(name = "CreateSampleFindingsResponse", frozen)]
+#[pyclass(
+    name = "CreateSampleFindingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateSampleFindingsResponse {
     inner: aws_sdk_guardduty::operation::create_sample_findings::CreateSampleFindingsOutput,
 }
@@ -31677,7 +32173,11 @@ impl PyCreateSampleFindingsResponse {
     }
 }
 
-#[pyclass(name = "CreateThreatEntitySetResponse", frozen)]
+#[pyclass(
+    name = "CreateThreatEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateThreatEntitySetResponse {
     inner: aws_sdk_guardduty::operation::create_threat_entity_set::CreateThreatEntitySetOutput,
 }
@@ -31706,7 +32206,11 @@ impl PyCreateThreatEntitySetResponse {
     }
 }
 
-#[pyclass(name = "CreateThreatIntelSetResponse", frozen)]
+#[pyclass(
+    name = "CreateThreatIntelSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateThreatIntelSetResponse {
     inner: aws_sdk_guardduty::operation::create_threat_intel_set::CreateThreatIntelSetOutput,
 }
@@ -31735,7 +32239,11 @@ impl PyCreateThreatIntelSetResponse {
     }
 }
 
-#[pyclass(name = "CreateTrustedEntitySetResponse", frozen)]
+#[pyclass(
+    name = "CreateTrustedEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyCreateTrustedEntitySetResponse {
     inner: aws_sdk_guardduty::operation::create_trusted_entity_set::CreateTrustedEntitySetOutput,
 }
@@ -31764,7 +32272,11 @@ impl PyCreateTrustedEntitySetResponse {
     }
 }
 
-#[pyclass(name = "DeclineInvitationsResponse", frozen)]
+#[pyclass(
+    name = "DeclineInvitationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeclineInvitationsResponse {
     inner: aws_sdk_guardduty::operation::decline_invitations::DeclineInvitationsOutput,
 }
@@ -31809,7 +32321,11 @@ impl PyDeclineInvitationsResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomDetectionRuleAssociationResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomDetectionRuleAssociationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteCustomDetectionRuleAssociationResponse {
     inner: aws_sdk_guardduty::operation::delete_custom_detection_rule_association::DeleteCustomDetectionRuleAssociationOutput,
 }
@@ -31822,7 +32338,11 @@ impl PyDeleteCustomDetectionRuleAssociationResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomDetectionRuleOrgConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomDetectionRuleOrgConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteCustomDetectionRuleOrgConfigurationResponse {
     inner: aws_sdk_guardduty::operation::delete_custom_detection_rule_org_configuration::DeleteCustomDetectionRuleOrgConfigurationOutput,
 }
@@ -31835,7 +32355,11 @@ impl PyDeleteCustomDetectionRuleOrgConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DeleteDetectorResponse", frozen)]
+#[pyclass(
+    name = "DeleteDetectorResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteDetectorResponse {
     inner: aws_sdk_guardduty::operation::delete_detector::DeleteDetectorOutput,
 }
@@ -31848,7 +32372,11 @@ impl PyDeleteDetectorResponse {
     }
 }
 
-#[pyclass(name = "DeleteFilterResponse", frozen)]
+#[pyclass(
+    name = "DeleteFilterResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteFilterResponse {
     inner: aws_sdk_guardduty::operation::delete_filter::DeleteFilterOutput,
 }
@@ -31861,7 +32389,11 @@ impl PyDeleteFilterResponse {
     }
 }
 
-#[pyclass(name = "DeleteIPSetResponse", frozen)]
+#[pyclass(
+    name = "DeleteIPSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteIPSetResponse {
     inner: aws_sdk_guardduty::operation::delete_ip_set::DeleteIpSetOutput,
 }
@@ -31874,7 +32406,11 @@ impl PyDeleteIPSetResponse {
     }
 }
 
-#[pyclass(name = "DeleteInvitationsResponse", frozen)]
+#[pyclass(
+    name = "DeleteInvitationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteInvitationsResponse {
     inner: aws_sdk_guardduty::operation::delete_invitations::DeleteInvitationsOutput,
 }
@@ -31919,7 +32455,11 @@ impl PyDeleteInvitationsResponse {
     }
 }
 
-#[pyclass(name = "DeleteMembersResponse", frozen)]
+#[pyclass(
+    name = "DeleteMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteMembersResponse {
     inner: aws_sdk_guardduty::operation::delete_members::DeleteMembersOutput,
 }
@@ -31964,7 +32504,11 @@ impl PyDeleteMembersResponse {
     }
 }
 
-#[pyclass(name = "DeletePublishingDestinationResponse", frozen)]
+#[pyclass(
+    name = "DeletePublishingDestinationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeletePublishingDestinationResponse {
     inner: aws_sdk_guardduty::operation::delete_publishing_destination::DeletePublishingDestinationOutput,
 }
@@ -31977,7 +32521,11 @@ impl PyDeletePublishingDestinationResponse {
     }
 }
 
-#[pyclass(name = "DeleteThreatEntitySetResponse", frozen)]
+#[pyclass(
+    name = "DeleteThreatEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteThreatEntitySetResponse {
     inner: aws_sdk_guardduty::operation::delete_threat_entity_set::DeleteThreatEntitySetOutput,
 }
@@ -31990,7 +32538,11 @@ impl PyDeleteThreatEntitySetResponse {
     }
 }
 
-#[pyclass(name = "DeleteThreatIntelSetResponse", frozen)]
+#[pyclass(
+    name = "DeleteThreatIntelSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteThreatIntelSetResponse {
     inner: aws_sdk_guardduty::operation::delete_threat_intel_set::DeleteThreatIntelSetOutput,
 }
@@ -32003,7 +32555,11 @@ impl PyDeleteThreatIntelSetResponse {
     }
 }
 
-#[pyclass(name = "DeleteTrustedEntitySetResponse", frozen)]
+#[pyclass(
+    name = "DeleteTrustedEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDeleteTrustedEntitySetResponse {
     inner: aws_sdk_guardduty::operation::delete_trusted_entity_set::DeleteTrustedEntitySetOutput,
 }
@@ -32016,7 +32572,11 @@ impl PyDeleteTrustedEntitySetResponse {
     }
 }
 
-#[pyclass(name = "DescribeMalwareScansResponse", frozen)]
+#[pyclass(
+    name = "DescribeMalwareScansResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDescribeMalwareScansResponse {
     inner: aws_sdk_guardduty::operation::describe_malware_scans::DescribeMalwareScansOutput,
 }
@@ -32077,7 +32637,11 @@ impl PyDescribeMalwareScansResponse {
     }
 }
 
-#[pyclass(name = "DescribeOrganizationConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DescribeOrganizationConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDescribeOrganizationConfigurationResponse {
     inner: aws_sdk_guardduty::operation::describe_organization_configuration::DescribeOrganizationConfigurationOutput,
 }
@@ -32209,7 +32773,11 @@ impl PyDescribeOrganizationConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DescribePublishingDestinationResponse", frozen)]
+#[pyclass(
+    name = "DescribePublishingDestinationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDescribePublishingDestinationResponse {
     inner: aws_sdk_guardduty::operation::describe_publishing_destination::DescribePublishingDestinationOutput,
 }
@@ -32336,7 +32904,11 @@ impl PyDescribePublishingDestinationResponse {
     }
 }
 
-#[pyclass(name = "DisableOrganizationAdminAccountResponse", frozen)]
+#[pyclass(
+    name = "DisableOrganizationAdminAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDisableOrganizationAdminAccountResponse {
     inner: aws_sdk_guardduty::operation::disable_organization_admin_account::DisableOrganizationAdminAccountOutput,
 }
@@ -32349,7 +32921,11 @@ impl PyDisableOrganizationAdminAccountResponse {
     }
 }
 
-#[pyclass(name = "DisassociateFromAdministratorAccountResponse", frozen)]
+#[pyclass(
+    name = "DisassociateFromAdministratorAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDisassociateFromAdministratorAccountResponse {
     inner: aws_sdk_guardduty::operation::disassociate_from_administrator_account::DisassociateFromAdministratorAccountOutput,
 }
@@ -32362,7 +32938,11 @@ impl PyDisassociateFromAdministratorAccountResponse {
     }
 }
 
-#[pyclass(name = "DisassociateFromMasterAccountResponse", frozen)]
+#[pyclass(
+    name = "DisassociateFromMasterAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDisassociateFromMasterAccountResponse {
     inner: aws_sdk_guardduty::operation::disassociate_from_master_account::DisassociateFromMasterAccountOutput,
 }
@@ -32375,7 +32955,11 @@ impl PyDisassociateFromMasterAccountResponse {
     }
 }
 
-#[pyclass(name = "DisassociateMembersResponse", frozen)]
+#[pyclass(
+    name = "DisassociateMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyDisassociateMembersResponse {
     inner: aws_sdk_guardduty::operation::disassociate_members::DisassociateMembersOutput,
 }
@@ -32420,7 +33004,11 @@ impl PyDisassociateMembersResponse {
     }
 }
 
-#[pyclass(name = "EnableOrganizationAdminAccountResponse", frozen)]
+#[pyclass(
+    name = "EnableOrganizationAdminAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyEnableOrganizationAdminAccountResponse {
     inner: aws_sdk_guardduty::operation::enable_organization_admin_account::EnableOrganizationAdminAccountOutput,
 }
@@ -32433,7 +33021,11 @@ impl PyEnableOrganizationAdminAccountResponse {
     }
 }
 
-#[pyclass(name = "GetAdministratorAccountResponse", frozen)]
+#[pyclass(
+    name = "GetAdministratorAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetAdministratorAccountResponse {
     inner: aws_sdk_guardduty::operation::get_administrator_account::GetAdministratorAccountOutput,
 }
@@ -32468,7 +33060,11 @@ impl PyGetAdministratorAccountResponse {
     }
 }
 
-#[pyclass(name = "GetCoverageStatisticsResponse", frozen)]
+#[pyclass(
+    name = "GetCoverageStatisticsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetCoverageStatisticsResponse {
     inner: aws_sdk_guardduty::operation::get_coverage_statistics::GetCoverageStatisticsOutput,
 }
@@ -32503,7 +33099,11 @@ impl PyGetCoverageStatisticsResponse {
     }
 }
 
-#[pyclass(name = "GetCustomDetectionRuleResponse", frozen)]
+#[pyclass(
+    name = "GetCustomDetectionRuleResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetCustomDetectionRuleResponse {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule::GetCustomDetectionRuleOutput,
 }
@@ -32538,7 +33138,11 @@ impl PyGetCustomDetectionRuleResponse {
     }
 }
 
-#[pyclass(name = "GetCustomDetectionRuleAssociationResponse", frozen)]
+#[pyclass(
+    name = "GetCustomDetectionRuleAssociationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetCustomDetectionRuleAssociationResponse {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule_association::GetCustomDetectionRuleAssociationOutput,
 }
@@ -32601,7 +33205,11 @@ impl PyGetCustomDetectionRuleAssociationResponse {
     }
 }
 
-#[pyclass(name = "GetCustomDetectionRuleOrgConfigurationResponse", frozen)]
+#[pyclass(
+    name = "GetCustomDetectionRuleOrgConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetCustomDetectionRuleOrgConfigurationResponse {
     inner: aws_sdk_guardduty::operation::get_custom_detection_rule_org_configuration::GetCustomDetectionRuleOrgConfigurationOutput,
 }
@@ -32636,7 +33244,11 @@ impl PyGetCustomDetectionRuleOrgConfigurationResponse {
     }
 }
 
-#[pyclass(name = "GetDetectorResponse", frozen)]
+#[pyclass(
+    name = "GetDetectorResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetDetectorResponse {
     inner: aws_sdk_guardduty::operation::get_detector::GetDetectorOutput,
 }
@@ -32812,7 +33424,7 @@ impl PyGetDetectorResponse {
     }
 }
 
-#[pyclass(name = "GetFilterResponse", frozen)]
+#[pyclass(name = "GetFilterResponse", module = "rboto_guardduty._native", frozen)]
 struct PyGetFilterResponse {
     inner: aws_sdk_guardduty::operation::get_filter::GetFilterOutput,
 }
@@ -32987,7 +33599,11 @@ impl PyGetFilterResponse {
     }
 }
 
-#[pyclass(name = "GetFindingsResponse", frozen)]
+#[pyclass(
+    name = "GetFindingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetFindingsResponse {
     inner: aws_sdk_guardduty::operation::get_findings::GetFindingsOutput,
 }
@@ -33032,7 +33648,11 @@ impl PyGetFindingsResponse {
     }
 }
 
-#[pyclass(name = "GetFindingsStatisticsResponse", frozen)]
+#[pyclass(
+    name = "GetFindingsStatisticsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetFindingsStatisticsResponse {
     inner: aws_sdk_guardduty::operation::get_findings_statistics::GetFindingsStatisticsOutput,
 }
@@ -33083,7 +33703,7 @@ impl PyGetFindingsStatisticsResponse {
     }
 }
 
-#[pyclass(name = "GetIPSetResponse", frozen)]
+#[pyclass(name = "GetIPSetResponse", module = "rboto_guardduty._native", frozen)]
 struct PyGetIPSetResponse {
     inner: aws_sdk_guardduty::operation::get_ip_set::GetIpSetOutput,
 }
@@ -33204,7 +33824,11 @@ impl PyGetIPSetResponse {
     }
 }
 
-#[pyclass(name = "GetInvestigationResponse", frozen)]
+#[pyclass(
+    name = "GetInvestigationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetInvestigationResponse {
     inner: aws_sdk_guardduty::operation::get_investigation::GetInvestigationOutput,
 }
@@ -33239,7 +33863,11 @@ impl PyGetInvestigationResponse {
     }
 }
 
-#[pyclass(name = "GetInvitationsCountResponse", frozen)]
+#[pyclass(
+    name = "GetInvitationsCountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetInvitationsCountResponse {
     inner: aws_sdk_guardduty::operation::get_invitations_count::GetInvitationsCountOutput,
 }
@@ -33268,7 +33896,11 @@ impl PyGetInvitationsCountResponse {
     }
 }
 
-#[pyclass(name = "GetMalwareProtectionPlanResponse", frozen)]
+#[pyclass(
+    name = "GetMalwareProtectionPlanResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMalwareProtectionPlanResponse {
     inner:
         aws_sdk_guardduty::operation::get_malware_protection_plan::GetMalwareProtectionPlanOutput,
@@ -33451,7 +34083,11 @@ impl PyGetMalwareProtectionPlanResponse {
     }
 }
 
-#[pyclass(name = "GetMalwareScanResponse", frozen)]
+#[pyclass(
+    name = "GetMalwareScanResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMalwareScanResponse {
     inner: aws_sdk_guardduty::operation::get_malware_scan::GetMalwareScanOutput,
 }
@@ -33764,7 +34400,11 @@ impl PyGetMalwareScanResponse {
     }
 }
 
-#[pyclass(name = "GetMalwareScanSettingsResponse", frozen)]
+#[pyclass(
+    name = "GetMalwareScanSettingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMalwareScanSettingsResponse {
     inner: aws_sdk_guardduty::operation::get_malware_scan_settings::GetMalwareScanSettingsOutput,
 }
@@ -33815,7 +34455,11 @@ impl PyGetMalwareScanSettingsResponse {
     }
 }
 
-#[pyclass(name = "GetMasterAccountResponse", frozen)]
+#[pyclass(
+    name = "GetMasterAccountResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMasterAccountResponse {
     inner: aws_sdk_guardduty::operation::get_master_account::GetMasterAccountOutput,
 }
@@ -33850,7 +34494,11 @@ impl PyGetMasterAccountResponse {
     }
 }
 
-#[pyclass(name = "GetMemberDetectorsResponse", frozen)]
+#[pyclass(
+    name = "GetMemberDetectorsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMemberDetectorsResponse {
     inner: aws_sdk_guardduty::operation::get_member_detectors::GetMemberDetectorsOutput,
 }
@@ -33927,7 +34575,11 @@ impl PyGetMemberDetectorsResponse {
     }
 }
 
-#[pyclass(name = "GetMembersResponse", frozen)]
+#[pyclass(
+    name = "GetMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetMembersResponse {
     inner: aws_sdk_guardduty::operation::get_members::GetMembersOutput,
 }
@@ -34004,7 +34656,11 @@ impl PyGetMembersResponse {
     }
 }
 
-#[pyclass(name = "GetOrganizationStatisticsResponse", frozen)]
+#[pyclass(
+    name = "GetOrganizationStatisticsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetOrganizationStatisticsResponse {
     inner:
         aws_sdk_guardduty::operation::get_organization_statistics::GetOrganizationStatisticsOutput,
@@ -34040,7 +34696,11 @@ impl PyGetOrganizationStatisticsResponse {
     }
 }
 
-#[pyclass(name = "GetRemainingFreeTrialDaysResponse", frozen)]
+#[pyclass(
+    name = "GetRemainingFreeTrialDaysResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetRemainingFreeTrialDaysResponse {
     inner: aws_sdk_guardduty::operation::get_remaining_free_trial_days::GetRemainingFreeTrialDaysOutput,
 }
@@ -34117,7 +34777,11 @@ impl PyGetRemainingFreeTrialDaysResponse {
     }
 }
 
-#[pyclass(name = "GetThreatEntitySetResponse", frozen)]
+#[pyclass(
+    name = "GetThreatEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetThreatEntitySetResponse {
     inner: aws_sdk_guardduty::operation::get_threat_entity_set::GetThreatEntitySetOutput,
 }
@@ -34286,7 +34950,11 @@ impl PyGetThreatEntitySetResponse {
     }
 }
 
-#[pyclass(name = "GetThreatIntelSetResponse", frozen)]
+#[pyclass(
+    name = "GetThreatIntelSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetThreatIntelSetResponse {
     inner: aws_sdk_guardduty::operation::get_threat_intel_set::GetThreatIntelSetOutput,
 }
@@ -34407,7 +35075,11 @@ impl PyGetThreatIntelSetResponse {
     }
 }
 
-#[pyclass(name = "GetTrustedEntitySetResponse", frozen)]
+#[pyclass(
+    name = "GetTrustedEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetTrustedEntitySetResponse {
     inner: aws_sdk_guardduty::operation::get_trusted_entity_set::GetTrustedEntitySetOutput,
 }
@@ -34576,7 +35248,11 @@ impl PyGetTrustedEntitySetResponse {
     }
 }
 
-#[pyclass(name = "GetUsageStatisticsResponse", frozen)]
+#[pyclass(
+    name = "GetUsageStatisticsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyGetUsageStatisticsResponse {
     inner: aws_sdk_guardduty::operation::get_usage_statistics::GetUsageStatisticsOutput,
 }
@@ -34627,7 +35303,11 @@ impl PyGetUsageStatisticsResponse {
     }
 }
 
-#[pyclass(name = "InviteMembersResponse", frozen)]
+#[pyclass(
+    name = "InviteMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyInviteMembersResponse {
     inner: aws_sdk_guardduty::operation::invite_members::InviteMembersOutput,
 }
@@ -34672,7 +35352,11 @@ impl PyInviteMembersResponse {
     }
 }
 
-#[pyclass(name = "ListCoverageResponse", frozen)]
+#[pyclass(
+    name = "ListCoverageResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListCoverageResponse {
     inner: aws_sdk_guardduty::operation::list_coverage::ListCoverageOutput,
 }
@@ -34733,7 +35417,11 @@ impl PyListCoverageResponse {
     }
 }
 
-#[pyclass(name = "ListCustomDetectionRuleAssociationsResponse", frozen)]
+#[pyclass(
+    name = "ListCustomDetectionRuleAssociationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListCustomDetectionRuleAssociationsResponse {
     inner: aws_sdk_guardduty::operation::list_custom_detection_rule_associations::ListCustomDetectionRuleAssociationsOutput,
 }
@@ -34794,7 +35482,11 @@ impl PyListCustomDetectionRuleAssociationsResponse {
     }
 }
 
-#[pyclass(name = "ListCustomDetectionRuleOrgConfigurationsResponse", frozen)]
+#[pyclass(
+    name = "ListCustomDetectionRuleOrgConfigurationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListCustomDetectionRuleOrgConfigurationsResponse {
     inner: aws_sdk_guardduty::operation::list_custom_detection_rule_org_configurations::ListCustomDetectionRuleOrgConfigurationsOutput,
 }
@@ -34856,7 +35548,11 @@ impl PyListCustomDetectionRuleOrgConfigurationsResponse {
     }
 }
 
-#[pyclass(name = "ListCustomDetectionRulesResponse", frozen)]
+#[pyclass(
+    name = "ListCustomDetectionRulesResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListCustomDetectionRulesResponse {
     inner:
         aws_sdk_guardduty::operation::list_custom_detection_rules::ListCustomDetectionRulesOutput,
@@ -34918,7 +35614,11 @@ impl PyListCustomDetectionRulesResponse {
     }
 }
 
-#[pyclass(name = "ListDetectorsResponse", frozen)]
+#[pyclass(
+    name = "ListDetectorsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListDetectorsResponse {
     inner: aws_sdk_guardduty::operation::list_detectors::ListDetectorsOutput,
 }
@@ -34973,7 +35673,11 @@ impl PyListDetectorsResponse {
     }
 }
 
-#[pyclass(name = "ListFiltersResponse", frozen)]
+#[pyclass(
+    name = "ListFiltersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListFiltersResponse {
     inner: aws_sdk_guardduty::operation::list_filters::ListFiltersOutput,
 }
@@ -35028,7 +35732,11 @@ impl PyListFiltersResponse {
     }
 }
 
-#[pyclass(name = "ListFindingsResponse", frozen)]
+#[pyclass(
+    name = "ListFindingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListFindingsResponse {
     inner: aws_sdk_guardduty::operation::list_findings::ListFindingsOutput,
 }
@@ -35083,7 +35791,11 @@ impl PyListFindingsResponse {
     }
 }
 
-#[pyclass(name = "ListIPSetsResponse", frozen)]
+#[pyclass(
+    name = "ListIPSetsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListIPSetsResponse {
     inner: aws_sdk_guardduty::operation::list_ip_sets::ListIpSetsOutput,
 }
@@ -35138,7 +35850,11 @@ impl PyListIPSetsResponse {
     }
 }
 
-#[pyclass(name = "ListInvestigationsResponse", frozen)]
+#[pyclass(
+    name = "ListInvestigationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListInvestigationsResponse {
     inner: aws_sdk_guardduty::operation::list_investigations::ListInvestigationsOutput,
 }
@@ -35199,7 +35915,11 @@ impl PyListInvestigationsResponse {
     }
 }
 
-#[pyclass(name = "ListInvitationsResponse", frozen)]
+#[pyclass(
+    name = "ListInvitationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListInvitationsResponse {
     inner: aws_sdk_guardduty::operation::list_invitations::ListInvitationsOutput,
 }
@@ -35260,7 +35980,11 @@ impl PyListInvitationsResponse {
     }
 }
 
-#[pyclass(name = "ListMalwareProtectionPlansResponse", frozen)]
+#[pyclass(
+    name = "ListMalwareProtectionPlansResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListMalwareProtectionPlansResponse {
     inner: aws_sdk_guardduty::operation::list_malware_protection_plans::ListMalwareProtectionPlansOutput,
 }
@@ -35321,7 +36045,11 @@ impl PyListMalwareProtectionPlansResponse {
     }
 }
 
-#[pyclass(name = "ListMalwareScansResponse", frozen)]
+#[pyclass(
+    name = "ListMalwareScansResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListMalwareScansResponse {
     inner: aws_sdk_guardduty::operation::list_malware_scans::ListMalwareScansOutput,
 }
@@ -35382,7 +36110,11 @@ impl PyListMalwareScansResponse {
     }
 }
 
-#[pyclass(name = "ListMembersResponse", frozen)]
+#[pyclass(
+    name = "ListMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListMembersResponse {
     inner: aws_sdk_guardduty::operation::list_members::ListMembersOutput,
 }
@@ -35443,7 +36175,11 @@ impl PyListMembersResponse {
     }
 }
 
-#[pyclass(name = "ListOrganizationAdminAccountsResponse", frozen)]
+#[pyclass(
+    name = "ListOrganizationAdminAccountsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListOrganizationAdminAccountsResponse {
     inner: aws_sdk_guardduty::operation::list_organization_admin_accounts::ListOrganizationAdminAccountsOutput,
 }
@@ -35504,7 +36240,11 @@ impl PyListOrganizationAdminAccountsResponse {
     }
 }
 
-#[pyclass(name = "ListPublishingDestinationsResponse", frozen)]
+#[pyclass(
+    name = "ListPublishingDestinationsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListPublishingDestinationsResponse {
     inner: aws_sdk_guardduty::operation::list_publishing_destinations::ListPublishingDestinationsOutput,
 }
@@ -35565,7 +36305,11 @@ impl PyListPublishingDestinationsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_guardduty::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -35606,7 +36350,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListThreatEntitySetsResponse", frozen)]
+#[pyclass(
+    name = "ListThreatEntitySetsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListThreatEntitySetsResponse {
     inner: aws_sdk_guardduty::operation::list_threat_entity_sets::ListThreatEntitySetsOutput,
 }
@@ -35661,7 +36409,11 @@ impl PyListThreatEntitySetsResponse {
     }
 }
 
-#[pyclass(name = "ListThreatIntelSetsResponse", frozen)]
+#[pyclass(
+    name = "ListThreatIntelSetsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListThreatIntelSetsResponse {
     inner: aws_sdk_guardduty::operation::list_threat_intel_sets::ListThreatIntelSetsOutput,
 }
@@ -35716,7 +36468,11 @@ impl PyListThreatIntelSetsResponse {
     }
 }
 
-#[pyclass(name = "ListTrustedEntitySetsResponse", frozen)]
+#[pyclass(
+    name = "ListTrustedEntitySetsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyListTrustedEntitySetsResponse {
     inner: aws_sdk_guardduty::operation::list_trusted_entity_sets::ListTrustedEntitySetsOutput,
 }
@@ -35771,7 +36527,11 @@ impl PyListTrustedEntitySetsResponse {
     }
 }
 
-#[pyclass(name = "SendObjectMalwareScanResponse", frozen)]
+#[pyclass(
+    name = "SendObjectMalwareScanResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PySendObjectMalwareScanResponse {
     inner: aws_sdk_guardduty::operation::send_object_malware_scan::SendObjectMalwareScanOutput,
 }
@@ -35784,7 +36544,11 @@ impl PySendObjectMalwareScanResponse {
     }
 }
 
-#[pyclass(name = "StartMalwareScanResponse", frozen)]
+#[pyclass(
+    name = "StartMalwareScanResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyStartMalwareScanResponse {
     inner: aws_sdk_guardduty::operation::start_malware_scan::StartMalwareScanOutput,
 }
@@ -35813,7 +36577,11 @@ impl PyStartMalwareScanResponse {
     }
 }
 
-#[pyclass(name = "StartMonitoringMembersResponse", frozen)]
+#[pyclass(
+    name = "StartMonitoringMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyStartMonitoringMembersResponse {
     inner: aws_sdk_guardduty::operation::start_monitoring_members::StartMonitoringMembersOutput,
 }
@@ -35858,7 +36626,11 @@ impl PyStartMonitoringMembersResponse {
     }
 }
 
-#[pyclass(name = "StopMonitoringMembersResponse", frozen)]
+#[pyclass(
+    name = "StopMonitoringMembersResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyStopMonitoringMembersResponse {
     inner: aws_sdk_guardduty::operation::stop_monitoring_members::StopMonitoringMembersOutput,
 }
@@ -35903,7 +36675,11 @@ impl PyStopMonitoringMembersResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_guardduty::operation::tag_resource::TagResourceOutput,
 }
@@ -35916,7 +36692,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UnarchiveFindingsResponse", frozen)]
+#[pyclass(
+    name = "UnarchiveFindingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUnarchiveFindingsResponse {
     inner: aws_sdk_guardduty::operation::unarchive_findings::UnarchiveFindingsOutput,
 }
@@ -35929,7 +36709,11 @@ impl PyUnarchiveFindingsResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_guardduty::operation::untag_resource::UntagResourceOutput,
 }
@@ -35942,7 +36726,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateCustomDetectionRuleAssociationResponse", frozen)]
+#[pyclass(
+    name = "UpdateCustomDetectionRuleAssociationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateCustomDetectionRuleAssociationResponse {
     inner: aws_sdk_guardduty::operation::update_custom_detection_rule_association::UpdateCustomDetectionRuleAssociationOutput,
 }
@@ -35955,7 +36743,11 @@ impl PyUpdateCustomDetectionRuleAssociationResponse {
     }
 }
 
-#[pyclass(name = "UpdateCustomDetectionRuleOrgConfigurationResponse", frozen)]
+#[pyclass(
+    name = "UpdateCustomDetectionRuleOrgConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateCustomDetectionRuleOrgConfigurationResponse {
     inner: aws_sdk_guardduty::operation::update_custom_detection_rule_org_configuration::UpdateCustomDetectionRuleOrgConfigurationOutput,
 }
@@ -35968,7 +36760,11 @@ impl PyUpdateCustomDetectionRuleOrgConfigurationResponse {
     }
 }
 
-#[pyclass(name = "UpdateDetectorResponse", frozen)]
+#[pyclass(
+    name = "UpdateDetectorResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateDetectorResponse {
     inner: aws_sdk_guardduty::operation::update_detector::UpdateDetectorOutput,
 }
@@ -35981,7 +36777,11 @@ impl PyUpdateDetectorResponse {
     }
 }
 
-#[pyclass(name = "UpdateFilterResponse", frozen)]
+#[pyclass(
+    name = "UpdateFilterResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateFilterResponse {
     inner: aws_sdk_guardduty::operation::update_filter::UpdateFilterOutput,
 }
@@ -36010,7 +36810,11 @@ impl PyUpdateFilterResponse {
     }
 }
 
-#[pyclass(name = "UpdateFindingsFeedbackResponse", frozen)]
+#[pyclass(
+    name = "UpdateFindingsFeedbackResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateFindingsFeedbackResponse {
     inner: aws_sdk_guardduty::operation::update_findings_feedback::UpdateFindingsFeedbackOutput,
 }
@@ -36023,7 +36827,11 @@ impl PyUpdateFindingsFeedbackResponse {
     }
 }
 
-#[pyclass(name = "UpdateIPSetResponse", frozen)]
+#[pyclass(
+    name = "UpdateIPSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateIPSetResponse {
     inner: aws_sdk_guardduty::operation::update_ip_set::UpdateIpSetOutput,
 }
@@ -36036,7 +36844,11 @@ impl PyUpdateIPSetResponse {
     }
 }
 
-#[pyclass(name = "UpdateMalwareScanSettingsResponse", frozen)]
+#[pyclass(
+    name = "UpdateMalwareScanSettingsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateMalwareScanSettingsResponse {
     inner:
         aws_sdk_guardduty::operation::update_malware_scan_settings::UpdateMalwareScanSettingsOutput,
@@ -36050,7 +36862,11 @@ impl PyUpdateMalwareScanSettingsResponse {
     }
 }
 
-#[pyclass(name = "UpdateMemberDetectorsResponse", frozen)]
+#[pyclass(
+    name = "UpdateMemberDetectorsResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateMemberDetectorsResponse {
     inner: aws_sdk_guardduty::operation::update_member_detectors::UpdateMemberDetectorsOutput,
 }
@@ -36095,7 +36911,11 @@ impl PyUpdateMemberDetectorsResponse {
     }
 }
 
-#[pyclass(name = "UpdateOrganizationConfigurationResponse", frozen)]
+#[pyclass(
+    name = "UpdateOrganizationConfigurationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateOrganizationConfigurationResponse {
     inner: aws_sdk_guardduty::operation::update_organization_configuration::UpdateOrganizationConfigurationOutput,
 }
@@ -36108,7 +36928,11 @@ impl PyUpdateOrganizationConfigurationResponse {
     }
 }
 
-#[pyclass(name = "UpdatePublishingDestinationResponse", frozen)]
+#[pyclass(
+    name = "UpdatePublishingDestinationResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdatePublishingDestinationResponse {
     inner: aws_sdk_guardduty::operation::update_publishing_destination::UpdatePublishingDestinationOutput,
 }
@@ -36121,7 +36945,11 @@ impl PyUpdatePublishingDestinationResponse {
     }
 }
 
-#[pyclass(name = "UpdateThreatEntitySetResponse", frozen)]
+#[pyclass(
+    name = "UpdateThreatEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateThreatEntitySetResponse {
     inner: aws_sdk_guardduty::operation::update_threat_entity_set::UpdateThreatEntitySetOutput,
 }
@@ -36134,7 +36962,11 @@ impl PyUpdateThreatEntitySetResponse {
     }
 }
 
-#[pyclass(name = "UpdateThreatIntelSetResponse", frozen)]
+#[pyclass(
+    name = "UpdateThreatIntelSetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateThreatIntelSetResponse {
     inner: aws_sdk_guardduty::operation::update_threat_intel_set::UpdateThreatIntelSetOutput,
 }
@@ -36147,7 +36979,11 @@ impl PyUpdateThreatIntelSetResponse {
     }
 }
 
-#[pyclass(name = "UpdateTrustedEntitySetResponse", frozen)]
+#[pyclass(
+    name = "UpdateTrustedEntitySetResponse",
+    module = "rboto_guardduty._native",
+    frozen
+)]
 struct PyUpdateTrustedEntitySetResponse {
     inner: aws_sdk_guardduty::operation::update_trusted_entity_set::UpdateTrustedEntitySetOutput,
 }

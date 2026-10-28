@@ -200,7 +200,7 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_sts::types::Tag) -> PyResult<Py<PyA
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AssumedRoleUser", frozen)]
+#[pyclass(name = "AssumedRoleUser", module = "rboto_sts._native", frozen)]
 struct PyAssumedRoleUser {
     inner: aws_sdk_sts::types::AssumedRoleUser,
 }
@@ -224,7 +224,7 @@ impl PyAssumedRoleUser {
     }
 }
 
-#[pyclass(name = "Credentials", frozen)]
+#[pyclass(name = "Credentials", module = "rboto_sts._native", frozen)]
 struct PyCredentials {
     inner: aws_sdk_sts::types::Credentials,
 }
@@ -260,7 +260,7 @@ impl PyCredentials {
     }
 }
 
-#[pyclass(name = "FederatedUser", frozen)]
+#[pyclass(name = "FederatedUser", module = "rboto_sts._native", frozen)]
 struct PyFederatedUser {
     inner: aws_sdk_sts::types::FederatedUser,
 }
@@ -284,7 +284,7 @@ impl PyFederatedUser {
     }
 }
 
-#[pyclass(name = "AssumeRoleResponse", frozen)]
+#[pyclass(name = "AssumeRoleResponse", module = "rboto_sts._native", frozen)]
 struct PyAssumeRoleResponse {
     inner: aws_sdk_sts::operation::assume_role::AssumeRoleOutput,
 }
@@ -405,7 +405,11 @@ impl PyAssumeRoleResponse {
     }
 }
 
-#[pyclass(name = "AssumeRoleWithSAMLResponse", frozen)]
+#[pyclass(
+    name = "AssumeRoleWithSAMLResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyAssumeRoleWithSAMLResponse {
     inner: aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSamlOutput,
 }
@@ -606,7 +610,11 @@ impl PyAssumeRoleWithSAMLResponse {
     }
 }
 
-#[pyclass(name = "AssumeRoleWithWebIdentityResponse", frozen)]
+#[pyclass(
+    name = "AssumeRoleWithWebIdentityResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyAssumeRoleWithWebIdentityResponse {
     inner: aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityOutput,
 }
@@ -775,7 +783,7 @@ impl PyAssumeRoleWithWebIdentityResponse {
     }
 }
 
-#[pyclass(name = "AssumeRootResponse", frozen)]
+#[pyclass(name = "AssumeRootResponse", module = "rboto_sts._native", frozen)]
 struct PyAssumeRootResponse {
     inner: aws_sdk_sts::operation::assume_root::AssumeRootOutput,
 }
@@ -858,7 +866,11 @@ impl PyAssumeRootResponse {
     }
 }
 
-#[pyclass(name = "DecodeAuthorizationMessageResponse", frozen)]
+#[pyclass(
+    name = "DecodeAuthorizationMessageResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyDecodeAuthorizationMessageResponse {
     inner: aws_sdk_sts::operation::decode_authorization_message::DecodeAuthorizationMessageOutput,
 }
@@ -887,7 +899,11 @@ impl PyDecodeAuthorizationMessageResponse {
     }
 }
 
-#[pyclass(name = "GetAccessKeyInfoResponse", frozen)]
+#[pyclass(
+    name = "GetAccessKeyInfoResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyGetAccessKeyInfoResponse {
     inner: aws_sdk_sts::operation::get_access_key_info::GetAccessKeyInfoOutput,
 }
@@ -916,7 +932,11 @@ impl PyGetAccessKeyInfoResponse {
     }
 }
 
-#[pyclass(name = "GetCallerIdentityResponse", frozen)]
+#[pyclass(
+    name = "GetCallerIdentityResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyGetCallerIdentityResponse {
     inner: aws_sdk_sts::operation::get_caller_identity::GetCallerIdentityOutput,
 }
@@ -977,7 +997,11 @@ impl PyGetCallerIdentityResponse {
     }
 }
 
-#[pyclass(name = "GetDelegatedAccessTokenResponse", frozen)]
+#[pyclass(
+    name = "GetDelegatedAccessTokenResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyGetDelegatedAccessTokenResponse {
     inner: aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenOutput,
 }
@@ -1044,7 +1068,11 @@ impl PyGetDelegatedAccessTokenResponse {
     }
 }
 
-#[pyclass(name = "GetFederationTokenResponse", frozen)]
+#[pyclass(
+    name = "GetFederationTokenResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyGetFederationTokenResponse {
     inner: aws_sdk_sts::operation::get_federation_token::GetFederationTokenOutput,
 }
@@ -1149,7 +1177,7 @@ impl PyGetFederationTokenResponse {
     }
 }
 
-#[pyclass(name = "GetSessionTokenResponse", frozen)]
+#[pyclass(name = "GetSessionTokenResponse", module = "rboto_sts._native", frozen)]
 struct PyGetSessionTokenResponse {
     inner: aws_sdk_sts::operation::get_session_token::GetSessionTokenOutput,
 }
@@ -1216,7 +1244,11 @@ impl PyGetSessionTokenResponse {
     }
 }
 
-#[pyclass(name = "GetWebIdentityTokenResponse", frozen)]
+#[pyclass(
+    name = "GetWebIdentityTokenResponse",
+    module = "rboto_sts._native",
+    frozen
+)]
 struct PyGetWebIdentityTokenResponse {
     inner: aws_sdk_sts::operation::get_web_identity_token::GetWebIdentityTokenOutput,
 }

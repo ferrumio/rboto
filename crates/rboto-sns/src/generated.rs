@@ -574,7 +574,7 @@ fn topic_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Topic) -> PyResult<Py
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "BatchResultErrorEntry", frozen)]
+#[pyclass(name = "BatchResultErrorEntry", module = "rboto_sns._native", frozen)]
 struct PyBatchResultErrorEntry {
     inner: aws_sdk_sns::types::BatchResultErrorEntry,
 }
@@ -614,7 +614,7 @@ impl PyBatchResultErrorEntry {
     }
 }
 
-#[pyclass(name = "Endpoint", frozen)]
+#[pyclass(name = "Endpoint", module = "rboto_sns._native", frozen)]
 struct PyEndpoint {
     inner: aws_sdk_sns::types::Endpoint,
 }
@@ -652,7 +652,7 @@ impl PyEndpoint {
     }
 }
 
-#[pyclass(name = "PhoneNumberInformation", frozen)]
+#[pyclass(name = "PhoneNumberInformation", module = "rboto_sns._native", frozen)]
 struct PyPhoneNumberInformation {
     inner: aws_sdk_sns::types::PhoneNumberInformation,
 }
@@ -729,7 +729,7 @@ impl PyPhoneNumberInformation {
     }
 }
 
-#[pyclass(name = "PlatformApplication", frozen)]
+#[pyclass(name = "PlatformApplication", module = "rboto_sns._native", frozen)]
 struct PyPlatformApplication {
     inner: aws_sdk_sns::types::PlatformApplication,
 }
@@ -767,7 +767,7 @@ impl PyPlatformApplication {
     }
 }
 
-#[pyclass(name = "PublishBatchResultEntry", frozen)]
+#[pyclass(name = "PublishBatchResultEntry", module = "rboto_sns._native", frozen)]
 struct PyPublishBatchResultEntry {
     inner: aws_sdk_sns::types::PublishBatchResultEntry,
 }
@@ -809,7 +809,7 @@ impl PyPublishBatchResultEntry {
     }
 }
 
-#[pyclass(name = "SmsSandboxPhoneNumber", frozen)]
+#[pyclass(name = "SmsSandboxPhoneNumber", module = "rboto_sns._native", frozen)]
 struct PySmsSandboxPhoneNumber {
     inner: aws_sdk_sns::types::SmsSandboxPhoneNumber,
 }
@@ -841,7 +841,7 @@ impl PySmsSandboxPhoneNumber {
     }
 }
 
-#[pyclass(name = "Subscription", frozen)]
+#[pyclass(name = "Subscription", module = "rboto_sns._native", frozen)]
 struct PySubscription {
     inner: aws_sdk_sns::types::Subscription,
 }
@@ -903,7 +903,7 @@ impl PySubscription {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_sns._native", frozen)]
 struct PyTag {
     inner: aws_sdk_sns::types::Tag,
 }
@@ -927,7 +927,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Topic", frozen)]
+#[pyclass(name = "Topic", module = "rboto_sns._native", frozen)]
 struct PyTopic {
     inner: aws_sdk_sns::types::Topic,
 }
@@ -949,7 +949,11 @@ impl PyTopic {
     }
 }
 
-#[pyclass(name = "CheckIfPhoneNumberIsOptedOutResponse", frozen)]
+#[pyclass(
+    name = "CheckIfPhoneNumberIsOptedOutResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyCheckIfPhoneNumberIsOptedOutResponse {
     inner: aws_sdk_sns::operation::check_if_phone_number_is_opted_out::CheckIfPhoneNumberIsOptedOutOutput,
 }
@@ -970,7 +974,11 @@ impl PyCheckIfPhoneNumberIsOptedOutResponse {
     }
 }
 
-#[pyclass(name = "ConfirmSubscriptionResponse", frozen)]
+#[pyclass(
+    name = "ConfirmSubscriptionResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyConfirmSubscriptionResponse {
     inner: aws_sdk_sns::operation::confirm_subscription::ConfirmSubscriptionOutput,
 }
@@ -999,7 +1007,11 @@ impl PyConfirmSubscriptionResponse {
     }
 }
 
-#[pyclass(name = "CreatePlatformApplicationResponse", frozen)]
+#[pyclass(
+    name = "CreatePlatformApplicationResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyCreatePlatformApplicationResponse {
     inner: aws_sdk_sns::operation::create_platform_application::CreatePlatformApplicationOutput,
 }
@@ -1028,7 +1040,7 @@ impl PyCreatePlatformApplicationResponse {
     }
 }
 
-#[pyclass(name = "CreateEndpointResponse", frozen)]
+#[pyclass(name = "CreateEndpointResponse", module = "rboto_sns._native", frozen)]
 struct PyCreateEndpointResponse {
     inner: aws_sdk_sns::operation::create_platform_endpoint::CreatePlatformEndpointOutput,
 }
@@ -1057,7 +1069,11 @@ impl PyCreateEndpointResponse {
     }
 }
 
-#[pyclass(name = "CreateSMSSandboxPhoneNumberResult", frozen)]
+#[pyclass(
+    name = "CreateSMSSandboxPhoneNumberResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyCreateSMSSandboxPhoneNumberResult {
     inner:
         aws_sdk_sns::operation::create_sms_sandbox_phone_number::CreateSmsSandboxPhoneNumberOutput,
@@ -1071,7 +1087,7 @@ impl PyCreateSMSSandboxPhoneNumberResult {
     }
 }
 
-#[pyclass(name = "CreateTopicResponse", frozen)]
+#[pyclass(name = "CreateTopicResponse", module = "rboto_sns._native", frozen)]
 struct PyCreateTopicResponse {
     inner: aws_sdk_sns::operation::create_topic::CreateTopicOutput,
 }
@@ -1100,7 +1116,11 @@ impl PyCreateTopicResponse {
     }
 }
 
-#[pyclass(name = "DeleteSMSSandboxPhoneNumberResult", frozen)]
+#[pyclass(
+    name = "DeleteSMSSandboxPhoneNumberResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyDeleteSMSSandboxPhoneNumberResult {
     inner:
         aws_sdk_sns::operation::delete_sms_sandbox_phone_number::DeleteSmsSandboxPhoneNumberOutput,
@@ -1114,7 +1134,11 @@ impl PyDeleteSMSSandboxPhoneNumberResult {
     }
 }
 
-#[pyclass(name = "GetDataProtectionPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetDataProtectionPolicyResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetDataProtectionPolicyResponse {
     inner: aws_sdk_sns::operation::get_data_protection_policy::GetDataProtectionPolicyOutput,
 }
@@ -1143,7 +1167,11 @@ impl PyGetDataProtectionPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetEndpointAttributesResponse", frozen)]
+#[pyclass(
+    name = "GetEndpointAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetEndpointAttributesResponse {
     inner: aws_sdk_sns::operation::get_endpoint_attributes::GetEndpointAttributesOutput,
 }
@@ -1184,7 +1212,11 @@ impl PyGetEndpointAttributesResponse {
     }
 }
 
-#[pyclass(name = "GetPlatformApplicationAttributesResponse", frozen)]
+#[pyclass(
+    name = "GetPlatformApplicationAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetPlatformApplicationAttributesResponse {
     inner: aws_sdk_sns::operation::get_platform_application_attributes::GetPlatformApplicationAttributesOutput,
 }
@@ -1225,7 +1257,11 @@ impl PyGetPlatformApplicationAttributesResponse {
     }
 }
 
-#[pyclass(name = "GetSMSAttributesResponse", frozen)]
+#[pyclass(
+    name = "GetSMSAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetSMSAttributesResponse {
     inner: aws_sdk_sns::operation::get_sms_attributes::GetSmsAttributesOutput,
 }
@@ -1266,7 +1302,11 @@ impl PyGetSMSAttributesResponse {
     }
 }
 
-#[pyclass(name = "GetSMSSandboxAccountStatusResult", frozen)]
+#[pyclass(
+    name = "GetSMSSandboxAccountStatusResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetSMSSandboxAccountStatusResult {
     inner: aws_sdk_sns::operation::get_sms_sandbox_account_status::GetSmsSandboxAccountStatusOutput,
 }
@@ -1287,7 +1327,11 @@ impl PyGetSMSSandboxAccountStatusResult {
     }
 }
 
-#[pyclass(name = "GetSubscriptionAttributesResponse", frozen)]
+#[pyclass(
+    name = "GetSubscriptionAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetSubscriptionAttributesResponse {
     inner: aws_sdk_sns::operation::get_subscription_attributes::GetSubscriptionAttributesOutput,
 }
@@ -1328,7 +1372,11 @@ impl PyGetSubscriptionAttributesResponse {
     }
 }
 
-#[pyclass(name = "GetTopicAttributesResponse", frozen)]
+#[pyclass(
+    name = "GetTopicAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyGetTopicAttributesResponse {
     inner: aws_sdk_sns::operation::get_topic_attributes::GetTopicAttributesOutput,
 }
@@ -1369,7 +1417,11 @@ impl PyGetTopicAttributesResponse {
     }
 }
 
-#[pyclass(name = "ListEndpointsByPlatformApplicationResponse", frozen)]
+#[pyclass(
+    name = "ListEndpointsByPlatformApplicationResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListEndpointsByPlatformApplicationResponse {
     inner: aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput,
 }
@@ -1430,7 +1482,11 @@ impl PyListEndpointsByPlatformApplicationResponse {
     }
 }
 
-#[pyclass(name = "ListOriginationNumbersResult", frozen)]
+#[pyclass(
+    name = "ListOriginationNumbersResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListOriginationNumbersResult {
     inner: aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersOutput,
 }
@@ -1491,7 +1547,11 @@ impl PyListOriginationNumbersResult {
     }
 }
 
-#[pyclass(name = "ListPhoneNumbersOptedOutResponse", frozen)]
+#[pyclass(
+    name = "ListPhoneNumbersOptedOutResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListPhoneNumbersOptedOutResponse {
     inner: aws_sdk_sns::operation::list_phone_numbers_opted_out::ListPhoneNumbersOptedOutOutput,
 }
@@ -1546,7 +1606,11 @@ impl PyListPhoneNumbersOptedOutResponse {
     }
 }
 
-#[pyclass(name = "ListPlatformApplicationsResponse", frozen)]
+#[pyclass(
+    name = "ListPlatformApplicationsResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListPlatformApplicationsResponse {
     inner: aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsOutput,
 }
@@ -1607,7 +1671,11 @@ impl PyListPlatformApplicationsResponse {
     }
 }
 
-#[pyclass(name = "ListSMSSandboxPhoneNumbersResult", frozen)]
+#[pyclass(
+    name = "ListSMSSandboxPhoneNumbersResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListSMSSandboxPhoneNumbersResult {
     inner: aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandboxPhoneNumbersOutput,
 }
@@ -1660,7 +1728,11 @@ impl PyListSMSSandboxPhoneNumbersResult {
     }
 }
 
-#[pyclass(name = "ListSubscriptionsResponse", frozen)]
+#[pyclass(
+    name = "ListSubscriptionsResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListSubscriptionsResponse {
     inner: aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput,
 }
@@ -1721,7 +1793,11 @@ impl PyListSubscriptionsResponse {
     }
 }
 
-#[pyclass(name = "ListSubscriptionsByTopicResponse", frozen)]
+#[pyclass(
+    name = "ListSubscriptionsByTopicResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListSubscriptionsByTopicResponse {
     inner: aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicOutput,
 }
@@ -1782,7 +1858,11 @@ impl PyListSubscriptionsByTopicResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -1827,7 +1907,7 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListTopicsResponse", frozen)]
+#[pyclass(name = "ListTopicsResponse", module = "rboto_sns._native", frozen)]
 struct PyListTopicsResponse {
     inner: aws_sdk_sns::operation::list_topics::ListTopicsOutput,
 }
@@ -1888,7 +1968,11 @@ impl PyListTopicsResponse {
     }
 }
 
-#[pyclass(name = "OptInPhoneNumberResponse", frozen)]
+#[pyclass(
+    name = "OptInPhoneNumberResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyOptInPhoneNumberResponse {
     inner: aws_sdk_sns::operation::opt_in_phone_number::OptInPhoneNumberOutput,
 }
@@ -1901,7 +1985,7 @@ impl PyOptInPhoneNumberResponse {
     }
 }
 
-#[pyclass(name = "PublishResponse", frozen)]
+#[pyclass(name = "PublishResponse", module = "rboto_sns._native", frozen)]
 struct PyPublishResponse {
     inner: aws_sdk_sns::operation::publish::PublishOutput,
 }
@@ -1946,7 +2030,7 @@ impl PyPublishResponse {
     }
 }
 
-#[pyclass(name = "PublishBatchResponse", frozen)]
+#[pyclass(name = "PublishBatchResponse", module = "rboto_sns._native", frozen)]
 struct PyPublishBatchResponse {
     inner: aws_sdk_sns::operation::publish_batch::PublishBatchOutput,
 }
@@ -2023,7 +2107,11 @@ impl PyPublishBatchResponse {
     }
 }
 
-#[pyclass(name = "SetSMSAttributesResponse", frozen)]
+#[pyclass(
+    name = "SetSMSAttributesResponse",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PySetSMSAttributesResponse {
     inner: aws_sdk_sns::operation::set_sms_attributes::SetSmsAttributesOutput,
 }
@@ -2036,7 +2124,7 @@ impl PySetSMSAttributesResponse {
     }
 }
 
-#[pyclass(name = "SubscribeResponse", frozen)]
+#[pyclass(name = "SubscribeResponse", module = "rboto_sns._native", frozen)]
 struct PySubscribeResponse {
     inner: aws_sdk_sns::operation::subscribe::SubscribeOutput,
 }
@@ -2065,7 +2153,7 @@ impl PySubscribeResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(name = "TagResourceResponse", module = "rboto_sns._native", frozen)]
 struct PyTagResourceResponse {
     inner: aws_sdk_sns::operation::tag_resource::TagResourceOutput,
 }
@@ -2078,7 +2166,7 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(name = "UntagResourceResponse", module = "rboto_sns._native", frozen)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_sns::operation::untag_resource::UntagResourceOutput,
 }
@@ -2091,7 +2179,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "VerifySMSSandboxPhoneNumberResult", frozen)]
+#[pyclass(
+    name = "VerifySMSSandboxPhoneNumberResult",
+    module = "rboto_sns._native",
+    frozen
+)]
 struct PyVerifySMSSandboxPhoneNumberResult {
     inner:
         aws_sdk_sns::operation::verify_sms_sandbox_phone_number::VerifySmsSandboxPhoneNumberOutput,

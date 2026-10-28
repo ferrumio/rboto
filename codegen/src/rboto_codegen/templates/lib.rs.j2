@@ -55,7 +55,7 @@ impl ClientState {
     }
 }
 
-#[pyclass(name = "ByteStream")]
+#[pyclass(name = "ByteStream", module = "{{ python_package }}._native")]
 struct PyByteStream {
     inner: Arc<Mutex<Option<AwsByteStream>>>,
 }
@@ -107,7 +107,7 @@ impl PyByteStream {
     }
 }
 
-#[pyclass]
+#[pyclass(module = "{{ python_package }}._native")]
 struct {{ client_class }} {
     state: Arc<ClientState>,
 }

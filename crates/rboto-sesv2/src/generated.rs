@@ -6032,7 +6032,7 @@ fn volume_statistics_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccountDetails", frozen)]
+#[pyclass(name = "AccountDetails", module = "rboto_sesv2._native", frozen)]
 struct PyAccountDetails {
     inner: aws_sdk_sesv2::types::AccountDetails,
 }
@@ -6115,7 +6115,7 @@ impl PyAccountDetails {
     }
 }
 
-#[pyclass(name = "ArchivingOptions", frozen)]
+#[pyclass(name = "ArchivingOptions", module = "rboto_sesv2._native", frozen)]
 struct PyArchivingOptions {
     inner: aws_sdk_sesv2::types::ArchivingOptions,
 }
@@ -6137,7 +6137,7 @@ impl PyArchivingOptions {
     }
 }
 
-#[pyclass(name = "BlacklistEntry", frozen)]
+#[pyclass(name = "BlacklistEntry", module = "rboto_sesv2._native", frozen)]
 struct PyBlacklistEntry {
     inner: aws_sdk_sesv2::types::BlacklistEntry,
 }
@@ -6179,7 +6179,7 @@ impl PyBlacklistEntry {
     }
 }
 
-#[pyclass(name = "Bounce", frozen)]
+#[pyclass(name = "Bounce", module = "rboto_sesv2._native", frozen)]
 struct PyBounce {
     inner: aws_sdk_sesv2::types::Bounce,
 }
@@ -6221,7 +6221,7 @@ impl PyBounce {
     }
 }
 
-#[pyclass(name = "BulkEmailEntryResult", frozen)]
+#[pyclass(name = "BulkEmailEntryResult", module = "rboto_sesv2._native", frozen)]
 struct PyBulkEmailEntryResult {
     inner: aws_sdk_sesv2::types::BulkEmailEntryResult,
 }
@@ -6263,7 +6263,7 @@ impl PyBulkEmailEntryResult {
     }
 }
 
-#[pyclass(name = "CloudWatchDestination", frozen)]
+#[pyclass(name = "CloudWatchDestination", module = "rboto_sesv2._native", frozen)]
 struct PyCloudWatchDestination {
     inner: aws_sdk_sesv2::types::CloudWatchDestination,
 }
@@ -6292,7 +6292,11 @@ impl PyCloudWatchDestination {
     }
 }
 
-#[pyclass(name = "CloudWatchDimensionConfiguration", frozen)]
+#[pyclass(
+    name = "CloudWatchDimensionConfiguration",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCloudWatchDimensionConfiguration {
     inner: aws_sdk_sesv2::types::CloudWatchDimensionConfiguration,
 }
@@ -6326,7 +6330,7 @@ impl PyCloudWatchDimensionConfiguration {
     }
 }
 
-#[pyclass(name = "Complaint", frozen)]
+#[pyclass(name = "Complaint", module = "rboto_sesv2._native", frozen)]
 struct PyComplaint {
     inner: aws_sdk_sesv2::types::Complaint,
 }
@@ -6358,7 +6362,7 @@ impl PyComplaint {
     }
 }
 
-#[pyclass(name = "Contact", frozen)]
+#[pyclass(name = "Contact", module = "rboto_sesv2._native", frozen)]
 struct PyContact {
     inner: aws_sdk_sesv2::types::Contact,
 }
@@ -6438,7 +6442,7 @@ impl PyContact {
     }
 }
 
-#[pyclass(name = "ContactList", frozen)]
+#[pyclass(name = "ContactList", module = "rboto_sesv2._native", frozen)]
 struct PyContactList {
     inner: aws_sdk_sesv2::types::ContactList,
 }
@@ -6470,7 +6474,11 @@ impl PyContactList {
     }
 }
 
-#[pyclass(name = "ContactListDestination", frozen)]
+#[pyclass(
+    name = "ContactListDestination",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyContactListDestination {
     inner: aws_sdk_sesv2::types::ContactListDestination,
 }
@@ -6496,7 +6504,11 @@ impl PyContactListDestination {
     }
 }
 
-#[pyclass(name = "CustomVerificationEmailTemplateMetadata", frozen)]
+#[pyclass(
+    name = "CustomVerificationEmailTemplateMetadata",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCustomVerificationEmailTemplateMetadata {
     inner: aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata,
 }
@@ -6559,7 +6571,7 @@ impl PyCustomVerificationEmailTemplateMetadata {
     }
 }
 
-#[pyclass(name = "DailyVolume", frozen)]
+#[pyclass(name = "DailyVolume", module = "rboto_sesv2._native", frozen)]
 struct PyDailyVolume {
     inner: aws_sdk_sesv2::types::DailyVolume,
 }
@@ -6618,7 +6630,7 @@ impl PyDailyVolume {
     }
 }
 
-#[pyclass(name = "DashboardAttributes", frozen)]
+#[pyclass(name = "DashboardAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyDashboardAttributes {
     inner: aws_sdk_sesv2::types::DashboardAttributes,
 }
@@ -6640,7 +6652,7 @@ impl PyDashboardAttributes {
     }
 }
 
-#[pyclass(name = "DashboardOptions", frozen)]
+#[pyclass(name = "DashboardOptions", module = "rboto_sesv2._native", frozen)]
 struct PyDashboardOptions {
     inner: aws_sdk_sesv2::types::DashboardOptions,
 }
@@ -6662,7 +6674,7 @@ impl PyDashboardOptions {
     }
 }
 
-#[pyclass(name = "DedicatedIp", frozen)]
+#[pyclass(name = "DedicatedIp", module = "rboto_sesv2._native", frozen)]
 struct PyDedicatedIp {
     inner: aws_sdk_sesv2::types::DedicatedIp,
 }
@@ -6702,7 +6714,7 @@ impl PyDedicatedIp {
     }
 }
 
-#[pyclass(name = "DedicatedIpPool", frozen)]
+#[pyclass(name = "DedicatedIpPool", module = "rboto_sesv2._native", frozen)]
 struct PyDedicatedIpPool {
     inner: aws_sdk_sesv2::types::DedicatedIpPool,
 }
@@ -6726,7 +6738,11 @@ impl PyDedicatedIpPool {
     }
 }
 
-#[pyclass(name = "DeliverabilityTestReport", frozen)]
+#[pyclass(
+    name = "DeliverabilityTestReport",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeliverabilityTestReport {
     inner: aws_sdk_sesv2::types::DeliverabilityTestReport,
 }
@@ -6799,7 +6815,7 @@ impl PyDeliverabilityTestReport {
     }
 }
 
-#[pyclass(name = "DeliveryOptions", frozen)]
+#[pyclass(name = "DeliveryOptions", module = "rboto_sesv2._native", frozen)]
 struct PyDeliveryOptions {
     inner: aws_sdk_sesv2::types::DeliveryOptions,
 }
@@ -6841,7 +6857,7 @@ impl PyDeliveryOptions {
     }
 }
 
-#[pyclass(name = "DkimAttributes", frozen)]
+#[pyclass(name = "DkimAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyDkimAttributes {
     inner: aws_sdk_sesv2::types::DkimAttributes,
 }
@@ -6934,7 +6950,11 @@ impl PyDkimAttributes {
     }
 }
 
-#[pyclass(name = "DomainDeliverabilityCampaign", frozen)]
+#[pyclass(
+    name = "DomainDeliverabilityCampaign",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDomainDeliverabilityCampaign {
     inner: aws_sdk_sesv2::types::DomainDeliverabilityCampaign,
 }
@@ -7097,7 +7117,11 @@ impl PyDomainDeliverabilityCampaign {
     }
 }
 
-#[pyclass(name = "DomainDeliverabilityTrackingOption", frozen)]
+#[pyclass(
+    name = "DomainDeliverabilityTrackingOption",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDomainDeliverabilityTrackingOption {
     inner: aws_sdk_sesv2::types::DomainDeliverabilityTrackingOption,
 }
@@ -7145,7 +7169,7 @@ impl PyDomainDeliverabilityTrackingOption {
     }
 }
 
-#[pyclass(name = "DomainIspPlacement", frozen)]
+#[pyclass(name = "DomainIspPlacement", module = "rboto_sesv2._native", frozen)]
 struct PyDomainIspPlacement {
     inner: aws_sdk_sesv2::types::DomainIspPlacement,
 }
@@ -7207,7 +7231,11 @@ impl PyDomainIspPlacement {
     }
 }
 
-#[pyclass(name = "EmailAddressInsightsMailboxEvaluations", frozen)]
+#[pyclass(
+    name = "EmailAddressInsightsMailboxEvaluations",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyEmailAddressInsightsMailboxEvaluations {
     inner: aws_sdk_sesv2::types::EmailAddressInsightsMailboxEvaluations,
 }
@@ -7315,7 +7343,11 @@ impl PyEmailAddressInsightsMailboxEvaluations {
     }
 }
 
-#[pyclass(name = "EmailAddressInsightsVerdict", frozen)]
+#[pyclass(
+    name = "EmailAddressInsightsVerdict",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyEmailAddressInsightsVerdict {
     inner: aws_sdk_sesv2::types::EmailAddressInsightsVerdict,
 }
@@ -7337,7 +7369,7 @@ impl PyEmailAddressInsightsVerdict {
     }
 }
 
-#[pyclass(name = "EmailInsights", frozen)]
+#[pyclass(name = "EmailInsights", module = "rboto_sesv2._native", frozen)]
 struct PyEmailInsights {
     inner: aws_sdk_sesv2::types::EmailInsights,
 }
@@ -7390,7 +7422,7 @@ impl PyEmailInsights {
     }
 }
 
-#[pyclass(name = "EmailTemplateContent", frozen)]
+#[pyclass(name = "EmailTemplateContent", module = "rboto_sesv2._native", frozen)]
 struct PyEmailTemplateContent {
     inner: aws_sdk_sesv2::types::EmailTemplateContent,
 }
@@ -7432,7 +7464,7 @@ impl PyEmailTemplateContent {
     }
 }
 
-#[pyclass(name = "EmailTemplateMetadata", frozen)]
+#[pyclass(name = "EmailTemplateMetadata", module = "rboto_sesv2._native", frozen)]
 struct PyEmailTemplateMetadata {
     inner: aws_sdk_sesv2::types::EmailTemplateMetadata,
 }
@@ -7464,7 +7496,11 @@ impl PyEmailTemplateMetadata {
     }
 }
 
-#[pyclass(name = "EventBridgeDestination", frozen)]
+#[pyclass(
+    name = "EventBridgeDestination",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyEventBridgeDestination {
     inner: aws_sdk_sesv2::types::EventBridgeDestination,
 }
@@ -7482,7 +7518,7 @@ impl PyEventBridgeDestination {
     }
 }
 
-#[pyclass(name = "EventDestination", frozen)]
+#[pyclass(name = "EventDestination", module = "rboto_sesv2._native", frozen)]
 struct PyEventDestination {
     inner: aws_sdk_sesv2::types::EventDestination,
 }
@@ -7597,7 +7633,7 @@ impl PyEventDestination {
     }
 }
 
-#[pyclass(name = "EventDetails", frozen)]
+#[pyclass(name = "EventDetails", module = "rboto_sesv2._native", frozen)]
 struct PyEventDetails {
     inner: aws_sdk_sesv2::types::EventDetails,
 }
@@ -7641,7 +7677,7 @@ impl PyEventDetails {
     }
 }
 
-#[pyclass(name = "ExportDataSource", frozen)]
+#[pyclass(name = "ExportDataSource", module = "rboto_sesv2._native", frozen)]
 struct PyExportDataSource {
     inner: aws_sdk_sesv2::types::ExportDataSource,
 }
@@ -7685,7 +7721,7 @@ impl PyExportDataSource {
     }
 }
 
-#[pyclass(name = "ExportDestination", frozen)]
+#[pyclass(name = "ExportDestination", module = "rboto_sesv2._native", frozen)]
 struct PyExportDestination {
     inner: aws_sdk_sesv2::types::ExportDestination,
 }
@@ -7713,7 +7749,7 @@ impl PyExportDestination {
     }
 }
 
-#[pyclass(name = "ExportJobSummary", frozen)]
+#[pyclass(name = "ExportJobSummary", module = "rboto_sesv2._native", frozen)]
 struct PyExportJobSummary {
     inner: aws_sdk_sesv2::types::ExportJobSummary,
 }
@@ -7775,7 +7811,7 @@ impl PyExportJobSummary {
     }
 }
 
-#[pyclass(name = "ExportMetric", frozen)]
+#[pyclass(name = "ExportMetric", module = "rboto_sesv2._native", frozen)]
 struct PyExportMetric {
     inner: aws_sdk_sesv2::types::ExportMetric,
 }
@@ -7807,7 +7843,7 @@ impl PyExportMetric {
     }
 }
 
-#[pyclass(name = "ExportStatistics", frozen)]
+#[pyclass(name = "ExportStatistics", module = "rboto_sesv2._native", frozen)]
 struct PyExportStatistics {
     inner: aws_sdk_sesv2::types::ExportStatistics,
 }
@@ -7839,7 +7875,7 @@ impl PyExportStatistics {
     }
 }
 
-#[pyclass(name = "FailureInfo", frozen)]
+#[pyclass(name = "FailureInfo", module = "rboto_sesv2._native", frozen)]
 struct PyFailureInfo {
     inner: aws_sdk_sesv2::types::FailureInfo,
 }
@@ -7871,7 +7907,7 @@ impl PyFailureInfo {
     }
 }
 
-#[pyclass(name = "GuardianAttributes", frozen)]
+#[pyclass(name = "GuardianAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyGuardianAttributes {
     inner: aws_sdk_sesv2::types::GuardianAttributes,
 }
@@ -7893,7 +7929,7 @@ impl PyGuardianAttributes {
     }
 }
 
-#[pyclass(name = "GuardianOptions", frozen)]
+#[pyclass(name = "GuardianOptions", module = "rboto_sesv2._native", frozen)]
 struct PyGuardianOptions {
     inner: aws_sdk_sesv2::types::GuardianOptions,
 }
@@ -7915,7 +7951,7 @@ impl PyGuardianOptions {
     }
 }
 
-#[pyclass(name = "IdentityCertificate", frozen)]
+#[pyclass(name = "IdentityCertificate", module = "rboto_sesv2._native", frozen)]
 struct PyIdentityCertificate {
     inner: aws_sdk_sesv2::types::IdentityCertificate,
 }
@@ -7968,7 +8004,7 @@ impl PyIdentityCertificate {
     }
 }
 
-#[pyclass(name = "IdentityInfo", frozen)]
+#[pyclass(name = "IdentityInfo", module = "rboto_sesv2._native", frozen)]
 struct PyIdentityInfo {
     inner: aws_sdk_sesv2::types::IdentityInfo,
 }
@@ -8016,7 +8052,7 @@ impl PyIdentityInfo {
     }
 }
 
-#[pyclass(name = "ImportDataSource", frozen)]
+#[pyclass(name = "ImportDataSource", module = "rboto_sesv2._native", frozen)]
 struct PyImportDataSource {
     inner: aws_sdk_sesv2::types::ImportDataSource,
 }
@@ -8040,7 +8076,7 @@ impl PyImportDataSource {
     }
 }
 
-#[pyclass(name = "ImportDestination", frozen)]
+#[pyclass(name = "ImportDestination", module = "rboto_sesv2._native", frozen)]
 struct PyImportDestination {
     inner: aws_sdk_sesv2::types::ImportDestination,
 }
@@ -8084,7 +8120,7 @@ impl PyImportDestination {
     }
 }
 
-#[pyclass(name = "ImportJobSummary", frozen)]
+#[pyclass(name = "ImportJobSummary", module = "rboto_sesv2._native", frozen)]
 struct PyImportJobSummary {
     inner: aws_sdk_sesv2::types::ImportJobSummary,
 }
@@ -8162,7 +8198,11 @@ impl PyImportJobSummary {
     }
 }
 
-#[pyclass(name = "InboxPlacementTrackingOption", frozen)]
+#[pyclass(
+    name = "InboxPlacementTrackingOption",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyInboxPlacementTrackingOption {
     inner: aws_sdk_sesv2::types::InboxPlacementTrackingOption,
 }
@@ -8195,7 +8235,7 @@ impl PyInboxPlacementTrackingOption {
     }
 }
 
-#[pyclass(name = "InsightsEvent", frozen)]
+#[pyclass(name = "InsightsEvent", module = "rboto_sesv2._native", frozen)]
 struct PyInsightsEvent {
     inner: aws_sdk_sesv2::types::InsightsEvent,
 }
@@ -8243,7 +8283,7 @@ impl PyInsightsEvent {
     }
 }
 
-#[pyclass(name = "IspPlacement", frozen)]
+#[pyclass(name = "IspPlacement", module = "rboto_sesv2._native", frozen)]
 struct PyIspPlacement {
     inner: aws_sdk_sesv2::types::IspPlacement,
 }
@@ -8281,7 +8321,11 @@ impl PyIspPlacement {
     }
 }
 
-#[pyclass(name = "KinesisFirehoseDestination", frozen)]
+#[pyclass(
+    name = "KinesisFirehoseDestination",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyKinesisFirehoseDestination {
     inner: aws_sdk_sesv2::types::KinesisFirehoseDestination,
 }
@@ -8305,7 +8349,7 @@ impl PyKinesisFirehoseDestination {
     }
 }
 
-#[pyclass(name = "MailFromAttributes", frozen)]
+#[pyclass(name = "MailFromAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyMailFromAttributes {
     inner: aws_sdk_sesv2::types::MailFromAttributes,
 }
@@ -8339,7 +8383,7 @@ impl PyMailFromAttributes {
     }
 }
 
-#[pyclass(name = "MailboxValidation", frozen)]
+#[pyclass(name = "MailboxValidation", module = "rboto_sesv2._native", frozen)]
 struct PyMailboxValidation {
     inner: aws_sdk_sesv2::types::MailboxValidation,
 }
@@ -8383,7 +8427,11 @@ impl PyMailboxValidation {
     }
 }
 
-#[pyclass(name = "MessageInsightsDataSource", frozen)]
+#[pyclass(
+    name = "MessageInsightsDataSource",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyMessageInsightsDataSource {
     inner: aws_sdk_sesv2::types::MessageInsightsDataSource,
 }
@@ -8449,7 +8497,11 @@ impl PyMessageInsightsDataSource {
     }
 }
 
-#[pyclass(name = "MessageInsightsFilters", frozen)]
+#[pyclass(
+    name = "MessageInsightsFilters",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyMessageInsightsFilters {
     inner: aws_sdk_sesv2::types::MessageInsightsFilters,
 }
@@ -8567,7 +8619,11 @@ impl PyMessageInsightsFilters {
     }
 }
 
-#[pyclass(name = "MessageSecurityOptions", frozen)]
+#[pyclass(
+    name = "MessageSecurityOptions",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyMessageSecurityOptions {
     inner: aws_sdk_sesv2::types::MessageSecurityOptions,
 }
@@ -8589,7 +8645,7 @@ impl PyMessageSecurityOptions {
     }
 }
 
-#[pyclass(name = "MessageTag", frozen)]
+#[pyclass(name = "MessageTag", module = "rboto_sesv2._native", frozen)]
 struct PyMessageTag {
     inner: aws_sdk_sesv2::types::MessageTag,
 }
@@ -8613,7 +8669,7 @@ impl PyMessageTag {
     }
 }
 
-#[pyclass(name = "MetricDataError", frozen)]
+#[pyclass(name = "MetricDataError", module = "rboto_sesv2._native", frozen)]
 struct PyMetricDataError {
     inner: aws_sdk_sesv2::types::MetricDataError,
 }
@@ -8655,7 +8711,7 @@ impl PyMetricDataError {
     }
 }
 
-#[pyclass(name = "MetricDataResult", frozen)]
+#[pyclass(name = "MetricDataResult", module = "rboto_sesv2._native", frozen)]
 struct PyMetricDataResult {
     inner: aws_sdk_sesv2::types::MetricDataResult,
 }
@@ -8707,7 +8763,7 @@ impl PyMetricDataResult {
     }
 }
 
-#[pyclass(name = "MetricsDataSource", frozen)]
+#[pyclass(name = "MetricsDataSource", module = "rboto_sesv2._native", frozen)]
 struct PyMetricsDataSource {
     inner: aws_sdk_sesv2::types::MetricsDataSource,
 }
@@ -8771,7 +8827,7 @@ impl PyMetricsDataSource {
     }
 }
 
-#[pyclass(name = "MultiRegionEndpoint", frozen)]
+#[pyclass(name = "MultiRegionEndpoint", module = "rboto_sesv2._native", frozen)]
 struct PyMultiRegionEndpoint {
     inner: aws_sdk_sesv2::types::MultiRegionEndpoint,
 }
@@ -8848,7 +8904,7 @@ impl PyMultiRegionEndpoint {
     }
 }
 
-#[pyclass(name = "OverallVolume", frozen)]
+#[pyclass(name = "OverallVolume", module = "rboto_sesv2._native", frozen)]
 struct PyOverallVolume {
     inner: aws_sdk_sesv2::types::OverallVolume,
 }
@@ -8907,7 +8963,7 @@ impl PyOverallVolume {
     }
 }
 
-#[pyclass(name = "PinpointDestination", frozen)]
+#[pyclass(name = "PinpointDestination", module = "rboto_sesv2._native", frozen)]
 struct PyPinpointDestination {
     inner: aws_sdk_sesv2::types::PinpointDestination,
 }
@@ -8929,7 +8985,7 @@ impl PyPinpointDestination {
     }
 }
 
-#[pyclass(name = "PlacementStatistics", frozen)]
+#[pyclass(name = "PlacementStatistics", module = "rboto_sesv2._native", frozen)]
 struct PyPlacementStatistics {
     inner: aws_sdk_sesv2::types::PlacementStatistics,
 }
@@ -8991,7 +9047,7 @@ impl PyPlacementStatistics {
     }
 }
 
-#[pyclass(name = "PricingAttributes", frozen)]
+#[pyclass(name = "PricingAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyPricingAttributes {
     inner: aws_sdk_sesv2::types::PricingAttributes,
 }
@@ -9023,7 +9079,7 @@ impl PyPricingAttributes {
     }
 }
 
-#[pyclass(name = "Recommendation", frozen)]
+#[pyclass(name = "Recommendation", module = "rboto_sesv2._native", frozen)]
 struct PyRecommendation {
     inner: aws_sdk_sesv2::types::Recommendation,
 }
@@ -9105,7 +9161,7 @@ impl PyRecommendation {
     }
 }
 
-#[pyclass(name = "ReputationEntity", frozen)]
+#[pyclass(name = "ReputationEntity", module = "rboto_sesv2._native", frozen)]
 struct PyReputationEntity {
     inner: aws_sdk_sesv2::types::ReputationEntity,
 }
@@ -9199,7 +9255,7 @@ impl PyReputationEntity {
     }
 }
 
-#[pyclass(name = "ReputationOptions", frozen)]
+#[pyclass(name = "ReputationOptions", module = "rboto_sesv2._native", frozen)]
 struct PyReputationOptions {
     inner: aws_sdk_sesv2::types::ReputationOptions,
 }
@@ -9229,7 +9285,11 @@ impl PyReputationOptions {
     }
 }
 
-#[pyclass(name = "ResourceTenantMetadata", frozen)]
+#[pyclass(
+    name = "ResourceTenantMetadata",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyResourceTenantMetadata {
     inner: aws_sdk_sesv2::types::ResourceTenantMetadata,
 }
@@ -9281,7 +9341,7 @@ impl PyResourceTenantMetadata {
     }
 }
 
-#[pyclass(name = "ReviewDetails", frozen)]
+#[pyclass(name = "ReviewDetails", module = "rboto_sesv2._native", frozen)]
 struct PyReviewDetails {
     inner: aws_sdk_sesv2::types::ReviewDetails,
 }
@@ -9313,7 +9373,7 @@ impl PyReviewDetails {
     }
 }
 
-#[pyclass(name = "Route", frozen)]
+#[pyclass(name = "Route", module = "rboto_sesv2._native", frozen)]
 struct PyRoute {
     inner: aws_sdk_sesv2::types::Route,
 }
@@ -9331,7 +9391,7 @@ impl PyRoute {
     }
 }
 
-#[pyclass(name = "SendQuota", frozen)]
+#[pyclass(name = "SendQuota", module = "rboto_sesv2._native", frozen)]
 struct PySendQuota {
     inner: aws_sdk_sesv2::types::SendQuota,
 }
@@ -9361,7 +9421,7 @@ impl PySendQuota {
     }
 }
 
-#[pyclass(name = "SendingOptions", frozen)]
+#[pyclass(name = "SendingOptions", module = "rboto_sesv2._native", frozen)]
 struct PySendingOptions {
     inner: aws_sdk_sesv2::types::SendingOptions,
 }
@@ -9379,7 +9439,7 @@ impl PySendingOptions {
     }
 }
 
-#[pyclass(name = "SnsDestination", frozen)]
+#[pyclass(name = "SnsDestination", module = "rboto_sesv2._native", frozen)]
 struct PySnsDestination {
     inner: aws_sdk_sesv2::types::SnsDestination,
 }
@@ -9397,7 +9457,7 @@ impl PySnsDestination {
     }
 }
 
-#[pyclass(name = "SoaRecord", frozen)]
+#[pyclass(name = "SoaRecord", module = "rboto_sesv2._native", frozen)]
 struct PySoaRecord {
     inner: aws_sdk_sesv2::types::SoaRecord,
 }
@@ -9435,7 +9495,7 @@ impl PySoaRecord {
     }
 }
 
-#[pyclass(name = "StatusRecord", frozen)]
+#[pyclass(name = "StatusRecord", module = "rboto_sesv2._native", frozen)]
 struct PyStatusRecord {
     inner: aws_sdk_sesv2::types::StatusRecord,
 }
@@ -9477,7 +9537,7 @@ impl PyStatusRecord {
     }
 }
 
-#[pyclass(name = "SuppressedDestination", frozen)]
+#[pyclass(name = "SuppressedDestination", module = "rboto_sesv2._native", frozen)]
 struct PySuppressedDestination {
     inner: aws_sdk_sesv2::types::SuppressedDestination,
 }
@@ -9533,7 +9593,11 @@ impl PySuppressedDestination {
     }
 }
 
-#[pyclass(name = "SuppressedDestinationAttributes", frozen)]
+#[pyclass(
+    name = "SuppressedDestinationAttributes",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressedDestinationAttributes {
     inner: aws_sdk_sesv2::types::SuppressedDestinationAttributes,
 }
@@ -9565,7 +9629,11 @@ impl PySuppressedDestinationAttributes {
     }
 }
 
-#[pyclass(name = "SuppressedDestinationSummary", frozen)]
+#[pyclass(
+    name = "SuppressedDestinationSummary",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressedDestinationSummary {
     inner: aws_sdk_sesv2::types::SuppressedDestinationSummary,
 }
@@ -9595,7 +9663,7 @@ impl PySuppressedDestinationSummary {
     }
 }
 
-#[pyclass(name = "SuppressionAttributes", frozen)]
+#[pyclass(name = "SuppressionAttributes", module = "rboto_sesv2._native", frozen)]
 struct PySuppressionAttributes {
     inner: aws_sdk_sesv2::types::SuppressionAttributes,
 }
@@ -9638,7 +9706,11 @@ impl PySuppressionAttributes {
     }
 }
 
-#[pyclass(name = "SuppressionConditionThreshold", frozen)]
+#[pyclass(
+    name = "SuppressionConditionThreshold",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressionConditionThreshold {
     inner: aws_sdk_sesv2::types::SuppressionConditionThreshold,
 }
@@ -9674,7 +9746,11 @@ impl PySuppressionConditionThreshold {
     }
 }
 
-#[pyclass(name = "SuppressionConfidenceThreshold", frozen)]
+#[pyclass(
+    name = "SuppressionConfidenceThreshold",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressionConfidenceThreshold {
     inner: aws_sdk_sesv2::types::SuppressionConfidenceThreshold,
 }
@@ -9694,7 +9770,11 @@ impl PySuppressionConfidenceThreshold {
     }
 }
 
-#[pyclass(name = "SuppressionListDestination", frozen)]
+#[pyclass(
+    name = "SuppressionListDestination",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressionListDestination {
     inner: aws_sdk_sesv2::types::SuppressionListDestination,
 }
@@ -9714,7 +9794,7 @@ impl PySuppressionListDestination {
     }
 }
 
-#[pyclass(name = "SuppressionOptions", frozen)]
+#[pyclass(name = "SuppressionOptions", module = "rboto_sesv2._native", frozen)]
 struct PySuppressionOptions {
     inner: aws_sdk_sesv2::types::SuppressionOptions,
 }
@@ -9767,7 +9847,11 @@ impl PySuppressionOptions {
     }
 }
 
-#[pyclass(name = "SuppressionValidationAttributes", frozen)]
+#[pyclass(
+    name = "SuppressionValidationAttributes",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressionValidationAttributes {
     inner: aws_sdk_sesv2::types::SuppressionValidationAttributes,
 }
@@ -9795,7 +9879,11 @@ impl PySuppressionValidationAttributes {
     }
 }
 
-#[pyclass(name = "SuppressionValidationOptions", frozen)]
+#[pyclass(
+    name = "SuppressionValidationOptions",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySuppressionValidationOptions {
     inner: aws_sdk_sesv2::types::SuppressionValidationOptions,
 }
@@ -9823,7 +9911,7 @@ impl PySuppressionValidationOptions {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_sesv2._native", frozen)]
 struct PyTag {
     inner: aws_sdk_sesv2::types::Tag,
 }
@@ -9847,7 +9935,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Tenant", frozen)]
+#[pyclass(name = "Tenant", module = "rboto_sesv2._native", frozen)]
 struct PyTenant {
     inner: aws_sdk_sesv2::types::Tenant,
 }
@@ -9946,7 +10034,7 @@ impl PyTenant {
     }
 }
 
-#[pyclass(name = "TenantInfo", frozen)]
+#[pyclass(name = "TenantInfo", module = "rboto_sesv2._native", frozen)]
 struct PyTenantInfo {
     inner: aws_sdk_sesv2::types::TenantInfo,
 }
@@ -10008,7 +10096,7 @@ impl PyTenantInfo {
     }
 }
 
-#[pyclass(name = "TenantResource", frozen)]
+#[pyclass(name = "TenantResource", module = "rboto_sesv2._native", frozen)]
 struct PyTenantResource {
     inner: aws_sdk_sesv2::types::TenantResource,
 }
@@ -10040,7 +10128,11 @@ impl PyTenantResource {
     }
 }
 
-#[pyclass(name = "TenantSuppressionAttributes", frozen)]
+#[pyclass(
+    name = "TenantSuppressionAttributes",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyTenantSuppressionAttributes {
     inner: aws_sdk_sesv2::types::TenantSuppressionAttributes,
 }
@@ -10077,7 +10169,7 @@ impl PyTenantSuppressionAttributes {
     }
 }
 
-#[pyclass(name = "Topic", frozen)]
+#[pyclass(name = "Topic", module = "rboto_sesv2._native", frozen)]
 struct PyTopic {
     inner: aws_sdk_sesv2::types::Topic,
 }
@@ -10119,7 +10211,7 @@ impl PyTopic {
     }
 }
 
-#[pyclass(name = "TopicPreference", frozen)]
+#[pyclass(name = "TopicPreference", module = "rboto_sesv2._native", frozen)]
 struct PyTopicPreference {
     inner: aws_sdk_sesv2::types::TopicPreference,
 }
@@ -10143,7 +10235,7 @@ impl PyTopicPreference {
     }
 }
 
-#[pyclass(name = "TrackingOptions", frozen)]
+#[pyclass(name = "TrackingOptions", module = "rboto_sesv2._native", frozen)]
 struct PyTrackingOptions {
     inner: aws_sdk_sesv2::types::TrackingOptions,
 }
@@ -10173,7 +10265,7 @@ impl PyTrackingOptions {
     }
 }
 
-#[pyclass(name = "VdmAttributes", frozen)]
+#[pyclass(name = "VdmAttributes", module = "rboto_sesv2._native", frozen)]
 struct PyVdmAttributes {
     inner: aws_sdk_sesv2::types::VdmAttributes,
 }
@@ -10223,7 +10315,7 @@ impl PyVdmAttributes {
     }
 }
 
-#[pyclass(name = "VdmOptions", frozen)]
+#[pyclass(name = "VdmOptions", module = "rboto_sesv2._native", frozen)]
 struct PyVdmOptions {
     inner: aws_sdk_sesv2::types::VdmOptions,
 }
@@ -10267,7 +10359,7 @@ impl PyVdmOptions {
     }
 }
 
-#[pyclass(name = "VerificationInfo", frozen)]
+#[pyclass(name = "VerificationInfo", module = "rboto_sesv2._native", frozen)]
 struct PyVerificationInfo {
     inner: aws_sdk_sesv2::types::VerificationInfo,
 }
@@ -10325,7 +10417,7 @@ impl PyVerificationInfo {
     }
 }
 
-#[pyclass(name = "VolumeStatistics", frozen)]
+#[pyclass(name = "VolumeStatistics", module = "rboto_sesv2._native", frozen)]
 struct PyVolumeStatistics {
     inner: aws_sdk_sesv2::types::VolumeStatistics,
 }
@@ -10377,7 +10469,11 @@ impl PyVolumeStatistics {
     }
 }
 
-#[pyclass(name = "AssociateEmailIdentityCertificateResponse", frozen)]
+#[pyclass(
+    name = "AssociateEmailIdentityCertificateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyAssociateEmailIdentityCertificateResponse {
     inner: aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateOutput,
 }
@@ -10390,7 +10486,11 @@ impl PyAssociateEmailIdentityCertificateResponse {
     }
 }
 
-#[pyclass(name = "BatchGetMetricDataResponse", frozen)]
+#[pyclass(
+    name = "BatchGetMetricDataResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyBatchGetMetricDataResponse {
     inner: aws_sdk_sesv2::operation::batch_get_metric_data::BatchGetMetricDataOutput,
 }
@@ -10467,7 +10567,11 @@ impl PyBatchGetMetricDataResponse {
     }
 }
 
-#[pyclass(name = "CancelExportJobResponse", frozen)]
+#[pyclass(
+    name = "CancelExportJobResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCancelExportJobResponse {
     inner: aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobOutput,
 }
@@ -10480,7 +10584,11 @@ impl PyCancelExportJobResponse {
     }
 }
 
-#[pyclass(name = "CreateConfigurationSetResponse", frozen)]
+#[pyclass(
+    name = "CreateConfigurationSetResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateConfigurationSetResponse {
     inner: aws_sdk_sesv2::operation::create_configuration_set::CreateConfigurationSetOutput,
 }
@@ -10493,7 +10601,11 @@ impl PyCreateConfigurationSetResponse {
     }
 }
 
-#[pyclass(name = "CreateConfigurationSetEventDestinationResponse", frozen)]
+#[pyclass(
+    name = "CreateConfigurationSetEventDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateConfigurationSetEventDestinationResponse {
     inner: aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationOutput,
 }
@@ -10506,7 +10618,7 @@ impl PyCreateConfigurationSetEventDestinationResponse {
     }
 }
 
-#[pyclass(name = "CreateContactResponse", frozen)]
+#[pyclass(name = "CreateContactResponse", module = "rboto_sesv2._native", frozen)]
 struct PyCreateContactResponse {
     inner: aws_sdk_sesv2::operation::create_contact::CreateContactOutput,
 }
@@ -10519,7 +10631,11 @@ impl PyCreateContactResponse {
     }
 }
 
-#[pyclass(name = "CreateContactListResponse", frozen)]
+#[pyclass(
+    name = "CreateContactListResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateContactListResponse {
     inner: aws_sdk_sesv2::operation::create_contact_list::CreateContactListOutput,
 }
@@ -10532,7 +10648,11 @@ impl PyCreateContactListResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomVerificationEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomVerificationEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateCustomVerificationEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateOutput,
 }
@@ -10545,7 +10665,11 @@ impl PyCreateCustomVerificationEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "CreateDedicatedIpPoolResponse", frozen)]
+#[pyclass(
+    name = "CreateDedicatedIpPoolResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateDedicatedIpPoolResponse {
     inner: aws_sdk_sesv2::operation::create_dedicated_ip_pool::CreateDedicatedIpPoolOutput,
 }
@@ -10558,7 +10682,11 @@ impl PyCreateDedicatedIpPoolResponse {
     }
 }
 
-#[pyclass(name = "CreateDeliverabilityTestReportResponse", frozen)]
+#[pyclass(
+    name = "CreateDeliverabilityTestReportResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateDeliverabilityTestReportResponse {
     inner: aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportOutput,
 }
@@ -10591,7 +10719,11 @@ impl PyCreateDeliverabilityTestReportResponse {
     }
 }
 
-#[pyclass(name = "CreateEmailIdentityResponse", frozen)]
+#[pyclass(
+    name = "CreateEmailIdentityResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateEmailIdentityResponse {
     inner: aws_sdk_sesv2::operation::create_email_identity::CreateEmailIdentityOutput,
 }
@@ -10654,7 +10786,11 @@ impl PyCreateEmailIdentityResponse {
     }
 }
 
-#[pyclass(name = "CreateEmailIdentityPolicyResponse", frozen)]
+#[pyclass(
+    name = "CreateEmailIdentityPolicyResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateEmailIdentityPolicyResponse {
     inner: aws_sdk_sesv2::operation::create_email_identity_policy::CreateEmailIdentityPolicyOutput,
 }
@@ -10667,7 +10803,11 @@ impl PyCreateEmailIdentityPolicyResponse {
     }
 }
 
-#[pyclass(name = "CreateEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "CreateEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::create_email_template::CreateEmailTemplateOutput,
 }
@@ -10680,7 +10820,11 @@ impl PyCreateEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "CreateExportJobResponse", frozen)]
+#[pyclass(
+    name = "CreateExportJobResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateExportJobResponse {
     inner: aws_sdk_sesv2::operation::create_export_job::CreateExportJobOutput,
 }
@@ -10709,7 +10853,11 @@ impl PyCreateExportJobResponse {
     }
 }
 
-#[pyclass(name = "CreateImportJobResponse", frozen)]
+#[pyclass(
+    name = "CreateImportJobResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateImportJobResponse {
     inner: aws_sdk_sesv2::operation::create_import_job::CreateImportJobOutput,
 }
@@ -10738,7 +10886,11 @@ impl PyCreateImportJobResponse {
     }
 }
 
-#[pyclass(name = "CreateMultiRegionEndpointResponse", frozen)]
+#[pyclass(
+    name = "CreateMultiRegionEndpointResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateMultiRegionEndpointResponse {
     inner: aws_sdk_sesv2::operation::create_multi_region_endpoint::CreateMultiRegionEndpointOutput,
 }
@@ -10783,7 +10935,7 @@ impl PyCreateMultiRegionEndpointResponse {
     }
 }
 
-#[pyclass(name = "CreateTenantResponse", frozen)]
+#[pyclass(name = "CreateTenantResponse", module = "rboto_sesv2._native", frozen)]
 struct PyCreateTenantResponse {
     inner: aws_sdk_sesv2::operation::create_tenant::CreateTenantOutput,
 }
@@ -10930,7 +11082,11 @@ impl PyCreateTenantResponse {
     }
 }
 
-#[pyclass(name = "CreateTenantResourceAssociationResponse", frozen)]
+#[pyclass(
+    name = "CreateTenantResourceAssociationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyCreateTenantResourceAssociationResponse {
     inner: aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationOutput,
 }
@@ -10943,7 +11099,11 @@ impl PyCreateTenantResourceAssociationResponse {
     }
 }
 
-#[pyclass(name = "DeleteConfigurationSetResponse", frozen)]
+#[pyclass(
+    name = "DeleteConfigurationSetResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteConfigurationSetResponse {
     inner: aws_sdk_sesv2::operation::delete_configuration_set::DeleteConfigurationSetOutput,
 }
@@ -10956,7 +11116,11 @@ impl PyDeleteConfigurationSetResponse {
     }
 }
 
-#[pyclass(name = "DeleteConfigurationSetEventDestinationResponse", frozen)]
+#[pyclass(
+    name = "DeleteConfigurationSetEventDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteConfigurationSetEventDestinationResponse {
     inner: aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationOutput,
 }
@@ -10969,7 +11133,7 @@ impl PyDeleteConfigurationSetEventDestinationResponse {
     }
 }
 
-#[pyclass(name = "DeleteContactResponse", frozen)]
+#[pyclass(name = "DeleteContactResponse", module = "rboto_sesv2._native", frozen)]
 struct PyDeleteContactResponse {
     inner: aws_sdk_sesv2::operation::delete_contact::DeleteContactOutput,
 }
@@ -10982,7 +11146,11 @@ impl PyDeleteContactResponse {
     }
 }
 
-#[pyclass(name = "DeleteContactListResponse", frozen)]
+#[pyclass(
+    name = "DeleteContactListResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteContactListResponse {
     inner: aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListOutput,
 }
@@ -10995,7 +11163,11 @@ impl PyDeleteContactListResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomVerificationEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomVerificationEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteCustomVerificationEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateOutput,
 }
@@ -11008,7 +11180,11 @@ impl PyDeleteCustomVerificationEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "DeleteDedicatedIpPoolResponse", frozen)]
+#[pyclass(
+    name = "DeleteDedicatedIpPoolResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteDedicatedIpPoolResponse {
     inner: aws_sdk_sesv2::operation::delete_dedicated_ip_pool::DeleteDedicatedIpPoolOutput,
 }
@@ -11021,7 +11197,11 @@ impl PyDeleteDedicatedIpPoolResponse {
     }
 }
 
-#[pyclass(name = "DeleteEmailIdentityResponse", frozen)]
+#[pyclass(
+    name = "DeleteEmailIdentityResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteEmailIdentityResponse {
     inner: aws_sdk_sesv2::operation::delete_email_identity::DeleteEmailIdentityOutput,
 }
@@ -11034,7 +11214,11 @@ impl PyDeleteEmailIdentityResponse {
     }
 }
 
-#[pyclass(name = "DeleteEmailIdentityPolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteEmailIdentityPolicyResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteEmailIdentityPolicyResponse {
     inner: aws_sdk_sesv2::operation::delete_email_identity_policy::DeleteEmailIdentityPolicyOutput,
 }
@@ -11047,7 +11231,11 @@ impl PyDeleteEmailIdentityPolicyResponse {
     }
 }
 
-#[pyclass(name = "DeleteEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "DeleteEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::delete_email_template::DeleteEmailTemplateOutput,
 }
@@ -11060,7 +11248,11 @@ impl PyDeleteEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "DeleteMultiRegionEndpointResponse", frozen)]
+#[pyclass(
+    name = "DeleteMultiRegionEndpointResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteMultiRegionEndpointResponse {
     inner: aws_sdk_sesv2::operation::delete_multi_region_endpoint::DeleteMultiRegionEndpointOutput,
 }
@@ -11089,7 +11281,11 @@ impl PyDeleteMultiRegionEndpointResponse {
     }
 }
 
-#[pyclass(name = "DeleteSuppressedDestinationResponse", frozen)]
+#[pyclass(
+    name = "DeleteSuppressedDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteSuppressedDestinationResponse {
     inner:
         aws_sdk_sesv2::operation::delete_suppressed_destination::DeleteSuppressedDestinationOutput,
@@ -11103,7 +11299,7 @@ impl PyDeleteSuppressedDestinationResponse {
     }
 }
 
-#[pyclass(name = "DeleteTenantResponse", frozen)]
+#[pyclass(name = "DeleteTenantResponse", module = "rboto_sesv2._native", frozen)]
 struct PyDeleteTenantResponse {
     inner: aws_sdk_sesv2::operation::delete_tenant::DeleteTenantOutput,
 }
@@ -11116,7 +11312,11 @@ impl PyDeleteTenantResponse {
     }
 }
 
-#[pyclass(name = "DeleteTenantResourceAssociationResponse", frozen)]
+#[pyclass(
+    name = "DeleteTenantResourceAssociationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDeleteTenantResourceAssociationResponse {
     inner: aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationOutput,
 }
@@ -11129,7 +11329,11 @@ impl PyDeleteTenantResourceAssociationResponse {
     }
 }
 
-#[pyclass(name = "DisassociateEmailIdentityCertificateResponse", frozen)]
+#[pyclass(
+    name = "DisassociateEmailIdentityCertificateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyDisassociateEmailIdentityCertificateResponse {
     inner: aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateOutput,
 }
@@ -11142,7 +11346,7 @@ impl PyDisassociateEmailIdentityCertificateResponse {
     }
 }
 
-#[pyclass(name = "GetAccountResponse", frozen)]
+#[pyclass(name = "GetAccountResponse", module = "rboto_sesv2._native", frozen)]
 struct PyGetAccountResponse {
     inner: aws_sdk_sesv2::operation::get_account::GetAccountOutput,
 }
@@ -11313,7 +11517,11 @@ impl PyGetAccountResponse {
     }
 }
 
-#[pyclass(name = "GetBlacklistReportsResponse", frozen)]
+#[pyclass(
+    name = "GetBlacklistReportsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetBlacklistReportsResponse {
     inner: aws_sdk_sesv2::operation::get_blacklist_reports::GetBlacklistReportsOutput,
 }
@@ -11362,7 +11570,11 @@ impl PyGetBlacklistReportsResponse {
     }
 }
 
-#[pyclass(name = "GetConfigurationSetResponse", frozen)]
+#[pyclass(
+    name = "GetConfigurationSetResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetConfigurationSetResponse {
     inner: aws_sdk_sesv2::operation::get_configuration_set::GetConfigurationSetOutput,
 }
@@ -11599,7 +11811,11 @@ impl PyGetConfigurationSetResponse {
     }
 }
 
-#[pyclass(name = "GetConfigurationSetEventDestinationsResponse", frozen)]
+#[pyclass(
+    name = "GetConfigurationSetEventDestinationsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetConfigurationSetEventDestinationsResponse {
     inner: aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsOutput,
 }
@@ -11644,7 +11860,7 @@ impl PyGetConfigurationSetEventDestinationsResponse {
     }
 }
 
-#[pyclass(name = "GetContactResponse", frozen)]
+#[pyclass(name = "GetContactResponse", module = "rboto_sesv2._native", frozen)]
 struct PyGetContactResponse {
     inner: aws_sdk_sesv2::operation::get_contact::GetContactOutput,
 }
@@ -11809,7 +12025,11 @@ impl PyGetContactResponse {
     }
 }
 
-#[pyclass(name = "GetContactListResponse", frozen)]
+#[pyclass(
+    name = "GetContactListResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetContactListResponse {
     inner: aws_sdk_sesv2::operation::get_contact_list::GetContactListOutput,
 }
@@ -11950,7 +12170,11 @@ impl PyGetContactListResponse {
     }
 }
 
-#[pyclass(name = "GetCustomVerificationEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "GetCustomVerificationEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetCustomVerificationEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateOutput,
 }
@@ -12092,7 +12316,11 @@ impl PyGetCustomVerificationEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "GetDedicatedIpResponse", frozen)]
+#[pyclass(
+    name = "GetDedicatedIpResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDedicatedIpResponse {
     inner: aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpOutput,
 }
@@ -12127,7 +12355,11 @@ impl PyGetDedicatedIpResponse {
     }
 }
 
-#[pyclass(name = "GetDedicatedIpPoolResponse", frozen)]
+#[pyclass(
+    name = "GetDedicatedIpPoolResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDedicatedIpPoolResponse {
     inner: aws_sdk_sesv2::operation::get_dedicated_ip_pool::GetDedicatedIpPoolOutput,
 }
@@ -12162,7 +12394,11 @@ impl PyGetDedicatedIpPoolResponse {
     }
 }
 
-#[pyclass(name = "GetDedicatedIpsResponse", frozen)]
+#[pyclass(
+    name = "GetDedicatedIpsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDedicatedIpsResponse {
     inner: aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsOutput,
 }
@@ -12223,7 +12459,11 @@ impl PyGetDedicatedIpsResponse {
     }
 }
 
-#[pyclass(name = "GetDeliverabilityDashboardOptionsResponse", frozen)]
+#[pyclass(
+    name = "GetDeliverabilityDashboardOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDeliverabilityDashboardOptionsResponse {
     inner: aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsOutput,
 }
@@ -12342,7 +12582,11 @@ impl PyGetDeliverabilityDashboardOptionsResponse {
     }
 }
 
-#[pyclass(name = "GetDeliverabilityTestReportResponse", frozen)]
+#[pyclass(
+    name = "GetDeliverabilityTestReportResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDeliverabilityTestReportResponse {
     inner:
         aws_sdk_sesv2::operation::get_deliverability_test_report::GetDeliverabilityTestReportOutput,
@@ -12472,7 +12716,11 @@ impl PyGetDeliverabilityTestReportResponse {
     }
 }
 
-#[pyclass(name = "GetDomainDeliverabilityCampaignResponse", frozen)]
+#[pyclass(
+    name = "GetDomainDeliverabilityCampaignResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDomainDeliverabilityCampaignResponse {
     inner: aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignOutput,
 }
@@ -12507,7 +12755,11 @@ impl PyGetDomainDeliverabilityCampaignResponse {
     }
 }
 
-#[pyclass(name = "GetDomainStatisticsReportResponse", frozen)]
+#[pyclass(
+    name = "GetDomainStatisticsReportResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetDomainStatisticsReportResponse {
     inner: aws_sdk_sesv2::operation::get_domain_statistics_report::GetDomainStatisticsReportOutput,
 }
@@ -12566,7 +12818,11 @@ impl PyGetDomainStatisticsReportResponse {
     }
 }
 
-#[pyclass(name = "GetEmailAddressInsightsResponse", frozen)]
+#[pyclass(
+    name = "GetEmailAddressInsightsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetEmailAddressInsightsResponse {
     inner: aws_sdk_sesv2::operation::get_email_address_insights::GetEmailAddressInsightsOutput,
 }
@@ -12601,7 +12857,11 @@ impl PyGetEmailAddressInsightsResponse {
     }
 }
 
-#[pyclass(name = "GetEmailIdentityResponse", frozen)]
+#[pyclass(
+    name = "GetEmailIdentityResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetEmailIdentityResponse {
     inner: aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityOutput,
 }
@@ -12812,7 +13072,11 @@ impl PyGetEmailIdentityResponse {
     }
 }
 
-#[pyclass(name = "GetEmailIdentityPoliciesResponse", frozen)]
+#[pyclass(
+    name = "GetEmailIdentityPoliciesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetEmailIdentityPoliciesResponse {
     inner: aws_sdk_sesv2::operation::get_email_identity_policies::GetEmailIdentityPoliciesOutput,
 }
@@ -12853,7 +13117,11 @@ impl PyGetEmailIdentityPoliciesResponse {
     }
 }
 
-#[pyclass(name = "GetEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "GetEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateOutput,
 }
@@ -12928,7 +13196,7 @@ impl PyGetEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "GetExportJobResponse", frozen)]
+#[pyclass(name = "GetExportJobResponse", module = "rboto_sesv2._native", frozen)]
 struct PyGetExportJobResponse {
     inner: aws_sdk_sesv2::operation::get_export_job::GetExportJobOutput,
 }
@@ -13109,7 +13377,7 @@ impl PyGetExportJobResponse {
     }
 }
 
-#[pyclass(name = "GetImportJobResponse", frozen)]
+#[pyclass(name = "GetImportJobResponse", module = "rboto_sesv2._native", frozen)]
 struct PyGetImportJobResponse {
     inner: aws_sdk_sesv2::operation::get_import_job::GetImportJobOutput,
 }
@@ -13284,7 +13552,11 @@ impl PyGetImportJobResponse {
     }
 }
 
-#[pyclass(name = "GetMessageInsightsResponse", frozen)]
+#[pyclass(
+    name = "GetMessageInsightsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetMessageInsightsResponse {
     inner: aws_sdk_sesv2::operation::get_message_insights::GetMessageInsightsOutput,
 }
@@ -13410,7 +13682,11 @@ impl PyGetMessageInsightsResponse {
     }
 }
 
-#[pyclass(name = "GetMultiRegionEndpointResponse", frozen)]
+#[pyclass(
+    name = "GetMultiRegionEndpointResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetMultiRegionEndpointResponse {
     inner: aws_sdk_sesv2::operation::get_multi_region_endpoint::GetMultiRegionEndpointOutput,
 }
@@ -13535,7 +13811,11 @@ impl PyGetMultiRegionEndpointResponse {
     }
 }
 
-#[pyclass(name = "GetReputationEntityResponse", frozen)]
+#[pyclass(
+    name = "GetReputationEntityResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetReputationEntityResponse {
     inner: aws_sdk_sesv2::operation::get_reputation_entity::GetReputationEntityOutput,
 }
@@ -13570,7 +13850,11 @@ impl PyGetReputationEntityResponse {
     }
 }
 
-#[pyclass(name = "GetSuppressedDestinationResponse", frozen)]
+#[pyclass(
+    name = "GetSuppressedDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyGetSuppressedDestinationResponse {
     inner: aws_sdk_sesv2::operation::get_suppressed_destination::GetSuppressedDestinationOutput,
 }
@@ -13605,7 +13889,7 @@ impl PyGetSuppressedDestinationResponse {
     }
 }
 
-#[pyclass(name = "GetTenantResponse", frozen)]
+#[pyclass(name = "GetTenantResponse", module = "rboto_sesv2._native", frozen)]
 struct PyGetTenantResponse {
     inner: aws_sdk_sesv2::operation::get_tenant::GetTenantOutput,
 }
@@ -13640,7 +13924,11 @@ impl PyGetTenantResponse {
     }
 }
 
-#[pyclass(name = "ListConfigurationSetsResponse", frozen)]
+#[pyclass(
+    name = "ListConfigurationSetsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListConfigurationSetsResponse {
     inner: aws_sdk_sesv2::operation::list_configuration_sets::ListConfigurationSetsOutput,
 }
@@ -13695,7 +13983,11 @@ impl PyListConfigurationSetsResponse {
     }
 }
 
-#[pyclass(name = "ListContactListsResponse", frozen)]
+#[pyclass(
+    name = "ListContactListsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListContactListsResponse {
     inner: aws_sdk_sesv2::operation::list_contact_lists::ListContactListsOutput,
 }
@@ -13756,7 +14048,7 @@ impl PyListContactListsResponse {
     }
 }
 
-#[pyclass(name = "ListContactsResponse", frozen)]
+#[pyclass(name = "ListContactsResponse", module = "rboto_sesv2._native", frozen)]
 struct PyListContactsResponse {
     inner: aws_sdk_sesv2::operation::list_contacts::ListContactsOutput,
 }
@@ -13817,7 +14109,11 @@ impl PyListContactsResponse {
     }
 }
 
-#[pyclass(name = "ListCustomVerificationEmailTemplatesResponse", frozen)]
+#[pyclass(
+    name = "ListCustomVerificationEmailTemplatesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListCustomVerificationEmailTemplatesResponse {
     inner: aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesOutput,
 }
@@ -13879,7 +14175,11 @@ impl PyListCustomVerificationEmailTemplatesResponse {
     }
 }
 
-#[pyclass(name = "ListDedicatedIpPoolsResponse", frozen)]
+#[pyclass(
+    name = "ListDedicatedIpPoolsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListDedicatedIpPoolsResponse {
     inner: aws_sdk_sesv2::operation::list_dedicated_ip_pools::ListDedicatedIpPoolsOutput,
 }
@@ -13934,7 +14234,11 @@ impl PyListDedicatedIpPoolsResponse {
     }
 }
 
-#[pyclass(name = "ListDeliverabilityTestReportsResponse", frozen)]
+#[pyclass(
+    name = "ListDeliverabilityTestReportsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListDeliverabilityTestReportsResponse {
     inner: aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsOutput,
 }
@@ -13987,7 +14291,11 @@ impl PyListDeliverabilityTestReportsResponse {
     }
 }
 
-#[pyclass(name = "ListDomainDeliverabilityCampaignsResponse", frozen)]
+#[pyclass(
+    name = "ListDomainDeliverabilityCampaignsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListDomainDeliverabilityCampaignsResponse {
     inner: aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsOutput,
 }
@@ -14040,7 +14348,11 @@ impl PyListDomainDeliverabilityCampaignsResponse {
     }
 }
 
-#[pyclass(name = "ListEmailIdentitiesResponse", frozen)]
+#[pyclass(
+    name = "ListEmailIdentitiesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListEmailIdentitiesResponse {
     inner: aws_sdk_sesv2::operation::list_email_identities::ListEmailIdentitiesOutput,
 }
@@ -14101,7 +14413,11 @@ impl PyListEmailIdentitiesResponse {
     }
 }
 
-#[pyclass(name = "ListEmailIdentityCertificatesResponse", frozen)]
+#[pyclass(
+    name = "ListEmailIdentityCertificatesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListEmailIdentityCertificatesResponse {
     inner: aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesOutput,
 }
@@ -14162,7 +14478,11 @@ impl PyListEmailIdentityCertificatesResponse {
     }
 }
 
-#[pyclass(name = "ListEmailTemplatesResponse", frozen)]
+#[pyclass(
+    name = "ListEmailTemplatesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListEmailTemplatesResponse {
     inner: aws_sdk_sesv2::operation::list_email_templates::ListEmailTemplatesOutput,
 }
@@ -14223,7 +14543,11 @@ impl PyListEmailTemplatesResponse {
     }
 }
 
-#[pyclass(name = "ListExportJobsResponse", frozen)]
+#[pyclass(
+    name = "ListExportJobsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListExportJobsResponse {
     inner: aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsOutput,
 }
@@ -14284,7 +14608,11 @@ impl PyListExportJobsResponse {
     }
 }
 
-#[pyclass(name = "ListImportJobsResponse", frozen)]
+#[pyclass(
+    name = "ListImportJobsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListImportJobsResponse {
     inner: aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsOutput,
 }
@@ -14345,7 +14673,11 @@ impl PyListImportJobsResponse {
     }
 }
 
-#[pyclass(name = "ListMultiRegionEndpointsResponse", frozen)]
+#[pyclass(
+    name = "ListMultiRegionEndpointsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListMultiRegionEndpointsResponse {
     inner: aws_sdk_sesv2::operation::list_multi_region_endpoints::ListMultiRegionEndpointsOutput,
 }
@@ -14406,7 +14738,11 @@ impl PyListMultiRegionEndpointsResponse {
     }
 }
 
-#[pyclass(name = "ListRecommendationsResponse", frozen)]
+#[pyclass(
+    name = "ListRecommendationsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListRecommendationsResponse {
     inner: aws_sdk_sesv2::operation::list_recommendations::ListRecommendationsOutput,
 }
@@ -14467,7 +14803,11 @@ impl PyListRecommendationsResponse {
     }
 }
 
-#[pyclass(name = "ListReputationEntitiesResponse", frozen)]
+#[pyclass(
+    name = "ListReputationEntitiesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListReputationEntitiesResponse {
     inner: aws_sdk_sesv2::operation::list_reputation_entities::ListReputationEntitiesOutput,
 }
@@ -14528,7 +14868,11 @@ impl PyListReputationEntitiesResponse {
     }
 }
 
-#[pyclass(name = "ListResourceTenantsResponse", frozen)]
+#[pyclass(
+    name = "ListResourceTenantsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListResourceTenantsResponse {
     inner: aws_sdk_sesv2::operation::list_resource_tenants::ListResourceTenantsOutput,
 }
@@ -14589,7 +14933,11 @@ impl PyListResourceTenantsResponse {
     }
 }
 
-#[pyclass(name = "ListSuppressedDestinationsResponse", frozen)]
+#[pyclass(
+    name = "ListSuppressedDestinationsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListSuppressedDestinationsResponse {
     inner: aws_sdk_sesv2::operation::list_suppressed_destinations::ListSuppressedDestinationsOutput,
 }
@@ -14650,7 +14998,11 @@ impl PyListSuppressedDestinationsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_sesv2::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -14687,7 +15039,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListTenantResourcesResponse", frozen)]
+#[pyclass(
+    name = "ListTenantResourcesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyListTenantResourcesResponse {
     inner: aws_sdk_sesv2::operation::list_tenant_resources::ListTenantResourcesOutput,
 }
@@ -14748,7 +15104,7 @@ impl PyListTenantResourcesResponse {
     }
 }
 
-#[pyclass(name = "ListTenantsResponse", frozen)]
+#[pyclass(name = "ListTenantsResponse", module = "rboto_sesv2._native", frozen)]
 struct PyListTenantsResponse {
     inner: aws_sdk_sesv2::operation::list_tenants::ListTenantsOutput,
 }
@@ -14809,7 +15165,11 @@ impl PyListTenantsResponse {
     }
 }
 
-#[pyclass(name = "PutAccountDedicatedIpWarmupAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutAccountDedicatedIpWarmupAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountDedicatedIpWarmupAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesOutput,
 }
@@ -14822,7 +15182,11 @@ impl PyPutAccountDedicatedIpWarmupAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutAccountDetailsResponse", frozen)]
+#[pyclass(
+    name = "PutAccountDetailsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountDetailsResponse {
     inner: aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsOutput,
 }
@@ -14835,7 +15199,11 @@ impl PyPutAccountDetailsResponse {
     }
 }
 
-#[pyclass(name = "PutAccountPricingAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutAccountPricingAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountPricingAttributesResponse {
     inner:
         aws_sdk_sesv2::operation::put_account_pricing_attributes::PutAccountPricingAttributesOutput,
@@ -14849,7 +15217,11 @@ impl PyPutAccountPricingAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutAccountSendingAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutAccountSendingAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountSendingAttributesResponse {
     inner:
         aws_sdk_sesv2::operation::put_account_sending_attributes::PutAccountSendingAttributesOutput,
@@ -14863,7 +15235,11 @@ impl PyPutAccountSendingAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutAccountSuppressionAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutAccountSuppressionAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountSuppressionAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesOutput,
 }
@@ -14876,7 +15252,11 @@ impl PyPutAccountSuppressionAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutAccountVdmAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutAccountVdmAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutAccountVdmAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_account_vdm_attributes::PutAccountVdmAttributesOutput,
 }
@@ -14889,7 +15269,11 @@ impl PyPutAccountVdmAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetArchivingOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetArchivingOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetArchivingOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsOutput,
 }
@@ -14902,7 +15286,11 @@ impl PyPutConfigurationSetArchivingOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetDeliveryOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetDeliveryOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetDeliveryOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsOutput,
 }
@@ -14915,7 +15303,11 @@ impl PyPutConfigurationSetDeliveryOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetReputationOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetReputationOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetReputationOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsOutput,
 }
@@ -14928,7 +15320,11 @@ impl PyPutConfigurationSetReputationOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetSendingOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetSendingOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetSendingOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsOutput,
 }
@@ -14941,7 +15337,11 @@ impl PyPutConfigurationSetSendingOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetSuppressionOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetSuppressionOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetSuppressionOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsOutput,
 }
@@ -14954,7 +15354,11 @@ impl PyPutConfigurationSetSuppressionOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetTrackingOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetTrackingOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetTrackingOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsOutput,
 }
@@ -14967,7 +15371,11 @@ impl PyPutConfigurationSetTrackingOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutConfigurationSetVdmOptionsResponse", frozen)]
+#[pyclass(
+    name = "PutConfigurationSetVdmOptionsResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutConfigurationSetVdmOptionsResponse {
     inner: aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsOutput,
 }
@@ -14980,7 +15388,11 @@ impl PyPutConfigurationSetVdmOptionsResponse {
     }
 }
 
-#[pyclass(name = "PutDedicatedIpInPoolResponse", frozen)]
+#[pyclass(
+    name = "PutDedicatedIpInPoolResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutDedicatedIpInPoolResponse {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_in_pool::PutDedicatedIpInPoolOutput,
 }
@@ -14993,7 +15405,11 @@ impl PyPutDedicatedIpInPoolResponse {
     }
 }
 
-#[pyclass(name = "PutDedicatedIpPoolScalingAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutDedicatedIpPoolScalingAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutDedicatedIpPoolScalingAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesOutput,
 }
@@ -15006,7 +15422,11 @@ impl PyPutDedicatedIpPoolScalingAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutDedicatedIpWarmupAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutDedicatedIpWarmupAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutDedicatedIpWarmupAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesOutput,
 }
@@ -15019,7 +15439,11 @@ impl PyPutDedicatedIpWarmupAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutDeliverabilityDashboardOptionResponse", frozen)]
+#[pyclass(
+    name = "PutDeliverabilityDashboardOptionResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutDeliverabilityDashboardOptionResponse {
     inner: aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionOutput,
 }
@@ -15032,7 +15456,11 @@ impl PyPutDeliverabilityDashboardOptionResponse {
     }
 }
 
-#[pyclass(name = "PutEmailIdentityConfigurationSetAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutEmailIdentityConfigurationSetAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutEmailIdentityConfigurationSetAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesOutput,
 }
@@ -15045,7 +15473,11 @@ impl PyPutEmailIdentityConfigurationSetAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutEmailIdentityDkimAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutEmailIdentityDkimAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutEmailIdentityDkimAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesOutput,
 }
@@ -15058,7 +15490,11 @@ impl PyPutEmailIdentityDkimAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutEmailIdentityDkimSigningAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutEmailIdentityDkimSigningAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutEmailIdentityDkimSigningAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesOutput,
 }
@@ -15129,7 +15565,11 @@ impl PyPutEmailIdentityDkimSigningAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutEmailIdentityFeedbackAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutEmailIdentityFeedbackAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutEmailIdentityFeedbackAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesOutput,
 }
@@ -15142,7 +15582,11 @@ impl PyPutEmailIdentityFeedbackAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutEmailIdentityMailFromAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutEmailIdentityMailFromAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutEmailIdentityMailFromAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesOutput,
 }
@@ -15155,7 +15599,11 @@ impl PyPutEmailIdentityMailFromAttributesResponse {
     }
 }
 
-#[pyclass(name = "PutSuppressedDestinationResponse", frozen)]
+#[pyclass(
+    name = "PutSuppressedDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutSuppressedDestinationResponse {
     inner: aws_sdk_sesv2::operation::put_suppressed_destination::PutSuppressedDestinationOutput,
 }
@@ -15168,7 +15616,11 @@ impl PyPutSuppressedDestinationResponse {
     }
 }
 
-#[pyclass(name = "PutTenantSuppressionAttributesResponse", frozen)]
+#[pyclass(
+    name = "PutTenantSuppressionAttributesResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyPutTenantSuppressionAttributesResponse {
     inner: aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesOutput,
 }
@@ -15181,7 +15633,7 @@ impl PyPutTenantSuppressionAttributesResponse {
     }
 }
 
-#[pyclass(name = "SendBulkEmailResponse", frozen)]
+#[pyclass(name = "SendBulkEmailResponse", module = "rboto_sesv2._native", frozen)]
 struct PySendBulkEmailResponse {
     inner: aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailOutput,
 }
@@ -15218,7 +15670,11 @@ impl PySendBulkEmailResponse {
     }
 }
 
-#[pyclass(name = "SendCustomVerificationEmailResponse", frozen)]
+#[pyclass(
+    name = "SendCustomVerificationEmailResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PySendCustomVerificationEmailResponse {
     inner:
         aws_sdk_sesv2::operation::send_custom_verification_email::SendCustomVerificationEmailOutput,
@@ -15248,7 +15704,7 @@ impl PySendCustomVerificationEmailResponse {
     }
 }
 
-#[pyclass(name = "SendEmailResponse", frozen)]
+#[pyclass(name = "SendEmailResponse", module = "rboto_sesv2._native", frozen)]
 struct PySendEmailResponse {
     inner: aws_sdk_sesv2::operation::send_email::SendEmailOutput,
 }
@@ -15277,7 +15733,7 @@ impl PySendEmailResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(name = "TagResourceResponse", module = "rboto_sesv2._native", frozen)]
 struct PyTagResourceResponse {
     inner: aws_sdk_sesv2::operation::tag_resource::TagResourceOutput,
 }
@@ -15290,7 +15746,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "TestRenderEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "TestRenderEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyTestRenderEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::test_render_email_template::TestRenderEmailTemplateOutput,
 }
@@ -15311,7 +15771,7 @@ impl PyTestRenderEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(name = "UntagResourceResponse", module = "rboto_sesv2._native", frozen)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_sesv2::operation::untag_resource::UntagResourceOutput,
 }
@@ -15324,7 +15784,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateConfigurationSetResponse", frozen)]
+#[pyclass(
+    name = "UpdateConfigurationSetResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateConfigurationSetResponse {
     inner: aws_sdk_sesv2::operation::update_configuration_set::UpdateConfigurationSetOutput,
 }
@@ -15337,7 +15801,11 @@ impl PyUpdateConfigurationSetResponse {
     }
 }
 
-#[pyclass(name = "UpdateConfigurationSetEventDestinationResponse", frozen)]
+#[pyclass(
+    name = "UpdateConfigurationSetEventDestinationResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateConfigurationSetEventDestinationResponse {
     inner: aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationOutput,
 }
@@ -15350,7 +15818,7 @@ impl PyUpdateConfigurationSetEventDestinationResponse {
     }
 }
 
-#[pyclass(name = "UpdateContactResponse", frozen)]
+#[pyclass(name = "UpdateContactResponse", module = "rboto_sesv2._native", frozen)]
 struct PyUpdateContactResponse {
     inner: aws_sdk_sesv2::operation::update_contact::UpdateContactOutput,
 }
@@ -15363,7 +15831,11 @@ impl PyUpdateContactResponse {
     }
 }
 
-#[pyclass(name = "UpdateContactListResponse", frozen)]
+#[pyclass(
+    name = "UpdateContactListResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateContactListResponse {
     inner: aws_sdk_sesv2::operation::update_contact_list::UpdateContactListOutput,
 }
@@ -15376,7 +15848,11 @@ impl PyUpdateContactListResponse {
     }
 }
 
-#[pyclass(name = "UpdateCustomVerificationEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "UpdateCustomVerificationEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateCustomVerificationEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateOutput,
 }
@@ -15389,7 +15865,11 @@ impl PyUpdateCustomVerificationEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "UpdateEmailIdentityPolicyResponse", frozen)]
+#[pyclass(
+    name = "UpdateEmailIdentityPolicyResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateEmailIdentityPolicyResponse {
     inner: aws_sdk_sesv2::operation::update_email_identity_policy::UpdateEmailIdentityPolicyOutput,
 }
@@ -15402,7 +15882,11 @@ impl PyUpdateEmailIdentityPolicyResponse {
     }
 }
 
-#[pyclass(name = "UpdateEmailTemplateResponse", frozen)]
+#[pyclass(
+    name = "UpdateEmailTemplateResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateEmailTemplateResponse {
     inner: aws_sdk_sesv2::operation::update_email_template::UpdateEmailTemplateOutput,
 }
@@ -15415,7 +15899,11 @@ impl PyUpdateEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "UpdateReputationEntityCustomerManagedStatusResponse", frozen)]
+#[pyclass(
+    name = "UpdateReputationEntityCustomerManagedStatusResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateReputationEntityCustomerManagedStatusResponse {
     inner: aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusOutput,
 }
@@ -15428,7 +15916,11 @@ impl PyUpdateReputationEntityCustomerManagedStatusResponse {
     }
 }
 
-#[pyclass(name = "UpdateReputationEntityPolicyResponse", frozen)]
+#[pyclass(
+    name = "UpdateReputationEntityPolicyResponse",
+    module = "rboto_sesv2._native",
+    frozen
+)]
 struct PyUpdateReputationEntityPolicyResponse {
     inner: aws_sdk_sesv2::operation::update_reputation_entity_policy::UpdateReputationEntityPolicyOutput,
 }

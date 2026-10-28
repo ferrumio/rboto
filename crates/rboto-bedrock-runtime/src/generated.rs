@@ -7182,7 +7182,11 @@ fn web_location_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AppliedGuardrailDetails", frozen)]
+#[pyclass(
+    name = "AppliedGuardrailDetails",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyAppliedGuardrailDetails {
     inner: aws_sdk_bedrockruntime::types::AppliedGuardrailDetails,
 }
@@ -7249,7 +7253,11 @@ impl PyAppliedGuardrailDetails {
     }
 }
 
-#[pyclass(name = "AsyncInvokeSummary", frozen)]
+#[pyclass(
+    name = "AsyncInvokeSummary",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyAsyncInvokeSummary {
     inner: aws_sdk_bedrockruntime::types::AsyncInvokeSummary,
 }
@@ -7339,7 +7347,7 @@ impl PyAsyncInvokeSummary {
     }
 }
 
-#[pyclass(name = "CacheDetail", frozen)]
+#[pyclass(name = "CacheDetail", module = "rboto_bedrock_runtime._native", frozen)]
 struct PyCacheDetail {
     inner: aws_sdk_bedrockruntime::types::CacheDetail,
 }
@@ -7363,7 +7371,11 @@ impl PyCacheDetail {
     }
 }
 
-#[pyclass(name = "ConverseMetrics", frozen)]
+#[pyclass(
+    name = "ConverseMetrics",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyConverseMetrics {
     inner: aws_sdk_bedrockruntime::types::ConverseMetrics,
 }
@@ -7381,7 +7393,11 @@ impl PyConverseMetrics {
     }
 }
 
-#[pyclass(name = "ConverseTrace", frozen)]
+#[pyclass(
+    name = "ConverseTrace",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyConverseTrace {
     inner: aws_sdk_bedrockruntime::types::ConverseTrace,
 }
@@ -7425,7 +7441,11 @@ impl PyConverseTrace {
     }
 }
 
-#[pyclass(name = "GuardrailAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailAssessment,
 }
@@ -7565,7 +7585,11 @@ impl PyGuardrailAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailAutomatedReasoningPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailAutomatedReasoningPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailAutomatedReasoningPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailAutomatedReasoningPolicyAssessment,
 }
@@ -7593,7 +7617,11 @@ impl PyGuardrailAutomatedReasoningPolicyAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailChecksContentFilterResult", frozen)]
+#[pyclass(
+    name = "GuardrailChecksContentFilterResult",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksContentFilterResult {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResult,
 }
@@ -7622,7 +7650,11 @@ impl PyGuardrailChecksContentFilterResult {
     }
 }
 
-#[pyclass(name = "GuardrailChecksContentFilterResultEntry", frozen)]
+#[pyclass(
+    name = "GuardrailChecksContentFilterResultEntry",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksContentFilterResultEntry {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterResultEntry,
 }
@@ -7646,7 +7678,11 @@ impl PyGuardrailChecksContentFilterResultEntry {
     }
 }
 
-#[pyclass(name = "GuardrailChecksContentFilterUsage", frozen)]
+#[pyclass(
+    name = "GuardrailChecksContentFilterUsage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksContentFilterUsage {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksContentFilterUsage,
 }
@@ -7664,7 +7700,11 @@ impl PyGuardrailChecksContentFilterUsage {
     }
 }
 
-#[pyclass(name = "GuardrailChecksPromptAttackResult", frozen)]
+#[pyclass(
+    name = "GuardrailChecksPromptAttackResult",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksPromptAttackResult {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResult,
 }
@@ -7693,7 +7733,11 @@ impl PyGuardrailChecksPromptAttackResult {
     }
 }
 
-#[pyclass(name = "GuardrailChecksPromptAttackResultEntry", frozen)]
+#[pyclass(
+    name = "GuardrailChecksPromptAttackResultEntry",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksPromptAttackResultEntry {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackResultEntry,
 }
@@ -7717,7 +7761,11 @@ impl PyGuardrailChecksPromptAttackResultEntry {
     }
 }
 
-#[pyclass(name = "GuardrailChecksPromptAttackUsage", frozen)]
+#[pyclass(
+    name = "GuardrailChecksPromptAttackUsage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksPromptAttackUsage {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksPromptAttackUsage,
 }
@@ -7735,7 +7783,11 @@ impl PyGuardrailChecksPromptAttackUsage {
     }
 }
 
-#[pyclass(name = "GuardrailChecksResults", frozen)]
+#[pyclass(
+    name = "GuardrailChecksResults",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksResults {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksResults,
 }
@@ -7795,7 +7847,11 @@ impl PyGuardrailChecksResults {
     }
 }
 
-#[pyclass(name = "GuardrailChecksSensitiveInformationResult", frozen)]
+#[pyclass(
+    name = "GuardrailChecksSensitiveInformationResult",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksSensitiveInformationResult {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResult,
 }
@@ -7834,7 +7890,11 @@ impl PyGuardrailChecksSensitiveInformationResult {
     }
 }
 
-#[pyclass(name = "GuardrailChecksSensitiveInformationResultEntry", frozen)]
+#[pyclass(
+    name = "GuardrailChecksSensitiveInformationResultEntry",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksSensitiveInformationResultEntry {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationResultEntry,
 }
@@ -7882,7 +7942,11 @@ impl PyGuardrailChecksSensitiveInformationResultEntry {
     }
 }
 
-#[pyclass(name = "GuardrailChecksSensitiveInformationUsage", frozen)]
+#[pyclass(
+    name = "GuardrailChecksSensitiveInformationUsage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksSensitiveInformationUsage {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksSensitiveInformationUsage,
 }
@@ -7900,7 +7964,11 @@ impl PyGuardrailChecksSensitiveInformationUsage {
     }
 }
 
-#[pyclass(name = "GuardrailChecksUsageResults", frozen)]
+#[pyclass(
+    name = "GuardrailChecksUsageResults",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailChecksUsageResults {
     inner: aws_sdk_bedrockruntime::types::GuardrailChecksUsageResults,
 }
@@ -7960,7 +8028,11 @@ impl PyGuardrailChecksUsageResults {
     }
 }
 
-#[pyclass(name = "GuardrailContentFilter", frozen)]
+#[pyclass(
+    name = "GuardrailContentFilter",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailContentFilter {
     inner: aws_sdk_bedrockruntime::types::GuardrailContentFilter,
 }
@@ -8010,7 +8082,11 @@ impl PyGuardrailContentFilter {
     }
 }
 
-#[pyclass(name = "GuardrailContentPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailContentPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailContentPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailContentPolicyAssessment,
 }
@@ -8039,7 +8115,11 @@ impl PyGuardrailContentPolicyAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailContextualGroundingFilter", frozen)]
+#[pyclass(
+    name = "GuardrailContextualGroundingFilter",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailContextualGroundingFilter {
     inner: aws_sdk_bedrockruntime::types::GuardrailContextualGroundingFilter,
 }
@@ -8085,7 +8165,11 @@ impl PyGuardrailContextualGroundingFilter {
     }
 }
 
-#[pyclass(name = "GuardrailContextualGroundingPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailContextualGroundingPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailContextualGroundingPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailContextualGroundingPolicyAssessment,
 }
@@ -8118,7 +8202,11 @@ impl PyGuardrailContextualGroundingPolicyAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailCoverage", frozen)]
+#[pyclass(
+    name = "GuardrailCoverage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailCoverage {
     inner: aws_sdk_bedrockruntime::types::GuardrailCoverage,
 }
@@ -8162,7 +8250,11 @@ impl PyGuardrailCoverage {
     }
 }
 
-#[pyclass(name = "GuardrailCustomWord", frozen)]
+#[pyclass(
+    name = "GuardrailCustomWord",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailCustomWord {
     inner: aws_sdk_bedrockruntime::types::GuardrailCustomWord,
 }
@@ -8196,7 +8288,11 @@ impl PyGuardrailCustomWord {
     }
 }
 
-#[pyclass(name = "GuardrailImageCoverage", frozen)]
+#[pyclass(
+    name = "GuardrailImageCoverage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailImageCoverage {
     inner: aws_sdk_bedrockruntime::types::GuardrailImageCoverage,
 }
@@ -8228,7 +8324,11 @@ impl PyGuardrailImageCoverage {
     }
 }
 
-#[pyclass(name = "GuardrailInvocationMetrics", frozen)]
+#[pyclass(
+    name = "GuardrailInvocationMetrics",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailInvocationMetrics {
     inner: aws_sdk_bedrockruntime::types::GuardrailInvocationMetrics,
 }
@@ -8282,7 +8382,11 @@ impl PyGuardrailInvocationMetrics {
     }
 }
 
-#[pyclass(name = "GuardrailManagedWord", frozen)]
+#[pyclass(
+    name = "GuardrailManagedWord",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailManagedWord {
     inner: aws_sdk_bedrockruntime::types::GuardrailManagedWord,
 }
@@ -8322,7 +8426,11 @@ impl PyGuardrailManagedWord {
     }
 }
 
-#[pyclass(name = "GuardrailOutputContent", frozen)]
+#[pyclass(
+    name = "GuardrailOutputContent",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailOutputContent {
     inner: aws_sdk_bedrockruntime::types::GuardrailOutputContent,
 }
@@ -8344,7 +8452,11 @@ impl PyGuardrailOutputContent {
     }
 }
 
-#[pyclass(name = "GuardrailPiiEntityFilter", frozen)]
+#[pyclass(
+    name = "GuardrailPiiEntityFilter",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailPiiEntityFilter {
     inner: aws_sdk_bedrockruntime::types::GuardrailPiiEntityFilter,
 }
@@ -8384,7 +8496,11 @@ impl PyGuardrailPiiEntityFilter {
     }
 }
 
-#[pyclass(name = "GuardrailRegexFilter", frozen)]
+#[pyclass(
+    name = "GuardrailRegexFilter",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailRegexFilter {
     inner: aws_sdk_bedrockruntime::types::GuardrailRegexFilter,
 }
@@ -8442,7 +8558,11 @@ impl PyGuardrailRegexFilter {
     }
 }
 
-#[pyclass(name = "GuardrailSensitiveInformationPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailSensitiveInformationPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailSensitiveInformationPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailSensitiveInformationPolicyAssessment,
 }
@@ -8488,7 +8608,11 @@ impl PyGuardrailSensitiveInformationPolicyAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailTextCharactersCoverage", frozen)]
+#[pyclass(
+    name = "GuardrailTextCharactersCoverage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailTextCharactersCoverage {
     inner: aws_sdk_bedrockruntime::types::GuardrailTextCharactersCoverage,
 }
@@ -8520,7 +8644,11 @@ impl PyGuardrailTextCharactersCoverage {
     }
 }
 
-#[pyclass(name = "GuardrailTopic", frozen)]
+#[pyclass(
+    name = "GuardrailTopic",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailTopic {
     inner: aws_sdk_bedrockruntime::types::GuardrailTopic,
 }
@@ -8560,7 +8688,11 @@ impl PyGuardrailTopic {
     }
 }
 
-#[pyclass(name = "GuardrailTopicPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailTopicPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailTopicPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailTopicPolicyAssessment,
 }
@@ -8589,7 +8721,11 @@ impl PyGuardrailTopicPolicyAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailTraceAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailTraceAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailTraceAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailTraceAssessment,
 }
@@ -8675,7 +8811,11 @@ impl PyGuardrailTraceAssessment {
     }
 }
 
-#[pyclass(name = "GuardrailUsage", frozen)]
+#[pyclass(
+    name = "GuardrailUsage",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailUsage {
     inner: aws_sdk_bedrockruntime::types::GuardrailUsage,
 }
@@ -8763,7 +8903,11 @@ impl PyGuardrailUsage {
     }
 }
 
-#[pyclass(name = "GuardrailWordPolicyAssessment", frozen)]
+#[pyclass(
+    name = "GuardrailWordPolicyAssessment",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGuardrailWordPolicyAssessment {
     inner: aws_sdk_bedrockruntime::types::GuardrailWordPolicyAssessment,
 }
@@ -8809,7 +8953,11 @@ impl PyGuardrailWordPolicyAssessment {
     }
 }
 
-#[pyclass(name = "PerformanceConfiguration", frozen)]
+#[pyclass(
+    name = "PerformanceConfiguration",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyPerformanceConfiguration {
     inner: aws_sdk_bedrockruntime::types::PerformanceConfiguration,
 }
@@ -8827,7 +8975,11 @@ impl PyPerformanceConfiguration {
     }
 }
 
-#[pyclass(name = "PromptRouterTrace", frozen)]
+#[pyclass(
+    name = "PromptRouterTrace",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyPromptRouterTrace {
     inner: aws_sdk_bedrockruntime::types::PromptRouterTrace,
 }
@@ -8849,7 +9001,7 @@ impl PyPromptRouterTrace {
     }
 }
 
-#[pyclass(name = "ServiceTier", frozen)]
+#[pyclass(name = "ServiceTier", module = "rboto_bedrock_runtime._native", frozen)]
 struct PyServiceTier {
     inner: aws_sdk_bedrockruntime::types::ServiceTier,
 }
@@ -8867,7 +9019,7 @@ impl PyServiceTier {
     }
 }
 
-#[pyclass(name = "TokenUsage", frozen)]
+#[pyclass(name = "TokenUsage", module = "rboto_bedrock_runtime._native", frozen)]
 struct PyTokenUsage {
     inner: aws_sdk_bedrockruntime::types::TokenUsage,
 }
@@ -8938,7 +9090,11 @@ impl PyTokenUsage {
     }
 }
 
-#[pyclass(name = "ApplyGuardrailResponse", frozen)]
+#[pyclass(
+    name = "ApplyGuardrailResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyApplyGuardrailResponse {
     inner: aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailOutput,
 }
@@ -9067,7 +9223,11 @@ impl PyApplyGuardrailResponse {
     }
 }
 
-#[pyclass(name = "ConverseResponse", frozen)]
+#[pyclass(
+    name = "ConverseResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyConverseResponse {
     inner: aws_sdk_bedrockruntime::operation::converse::ConverseOutput,
 }
@@ -9230,7 +9390,11 @@ impl PyConverseResponse {
     }
 }
 
-#[pyclass(name = "CountTokensResponse", frozen)]
+#[pyclass(
+    name = "CountTokensResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyCountTokensResponse {
     inner: aws_sdk_bedrockruntime::operation::count_tokens::CountTokensOutput,
 }
@@ -9251,7 +9415,11 @@ impl PyCountTokensResponse {
     }
 }
 
-#[pyclass(name = "GetAsyncInvokeResponse", frozen)]
+#[pyclass(
+    name = "GetAsyncInvokeResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyGetAsyncInvokeResponse {
     inner: aws_sdk_bedrockruntime::operation::get_async_invoke::GetAsyncInvokeOutput,
 }
@@ -9376,7 +9544,11 @@ impl PyGetAsyncInvokeResponse {
     }
 }
 
-#[pyclass(name = "InvokeGuardrailChecksResponse", frozen)]
+#[pyclass(
+    name = "InvokeGuardrailChecksResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyInvokeGuardrailChecksResponse {
     inner: aws_sdk_bedrockruntime::operation::invoke_guardrail_checks::InvokeGuardrailChecksOutput,
 }
@@ -9433,7 +9605,11 @@ impl PyInvokeGuardrailChecksResponse {
     }
 }
 
-#[pyclass(name = "InvokeModelResponse", frozen)]
+#[pyclass(
+    name = "InvokeModelResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyInvokeModelResponse {
     inner: aws_sdk_bedrockruntime::operation::invoke_model::InvokeModelOutput,
 }
@@ -9498,7 +9674,11 @@ impl PyInvokeModelResponse {
     }
 }
 
-#[pyclass(name = "ListAsyncInvokesResponse", frozen)]
+#[pyclass(
+    name = "ListAsyncInvokesResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyListAsyncInvokesResponse {
     inner: aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvokesOutput,
 }
@@ -9559,7 +9739,11 @@ impl PyListAsyncInvokesResponse {
     }
 }
 
-#[pyclass(name = "StartAsyncInvokeResponse", frozen)]
+#[pyclass(
+    name = "StartAsyncInvokeResponse",
+    module = "rboto_bedrock_runtime._native",
+    frozen
+)]
 struct PyStartAsyncInvokeResponse {
     inner: aws_sdk_bedrockruntime::operation::start_async_invoke::StartAsyncInvokeOutput,
 }
@@ -9580,7 +9764,10 @@ impl PyStartAsyncInvokeResponse {
     }
 }
 
-#[pyclass(name = "ConverseStreamOutputReceiver")]
+#[pyclass(
+    name = "ConverseStreamOutputReceiver",
+    module = "rboto_bedrock_runtime._native"
+)]
 struct PyConverseStreamOutputReceiver {
     inner: Arc<
         Mutex<
@@ -9650,7 +9837,10 @@ impl PyConverseStreamOutputReceiver {
     }
 }
 
-#[pyclass(name = "InvokeModelWithBidirectionalStreamOutputReceiver")]
+#[pyclass(
+    name = "InvokeModelWithBidirectionalStreamOutputReceiver",
+    module = "rboto_bedrock_runtime._native"
+)]
 struct PyInvokeModelWithBidirectionalStreamOutputReceiver {
     inner: Arc<Mutex<Option<aws_sdk_bedrockruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError, >>>>,
     operation: &'static str,
@@ -9714,7 +9904,10 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
     }
 }
 
-#[pyclass(name = "ResponseStreamReceiver")]
+#[pyclass(
+    name = "ResponseStreamReceiver",
+    module = "rboto_bedrock_runtime._native"
+)]
 struct PyResponseStreamReceiver {
     inner: Arc<
         Mutex<

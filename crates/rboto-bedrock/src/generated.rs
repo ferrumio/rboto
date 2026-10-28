@@ -13605,7 +13605,11 @@ fn vpc_config_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccountEnforcedGuardrailOutputConfiguration", frozen)]
+#[pyclass(
+    name = "AccountEnforcedGuardrailOutputConfiguration",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAccountEnforcedGuardrailOutputConfiguration {
     inner: aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration,
 }
@@ -13749,7 +13753,11 @@ impl PyAccountEnforcedGuardrailOutputConfiguration {
     }
 }
 
-#[pyclass(name = "AdvancedPromptOptimizationInputConfig", frozen)]
+#[pyclass(
+    name = "AdvancedPromptOptimizationInputConfig",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAdvancedPromptOptimizationInputConfig {
     inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig,
 }
@@ -13767,7 +13775,11 @@ impl PyAdvancedPromptOptimizationInputConfig {
     }
 }
 
-#[pyclass(name = "AdvancedPromptOptimizationJobSummary", frozen)]
+#[pyclass(
+    name = "AdvancedPromptOptimizationJobSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAdvancedPromptOptimizationJobSummary {
     inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary,
 }
@@ -13813,7 +13825,11 @@ impl PyAdvancedPromptOptimizationJobSummary {
     }
 }
 
-#[pyclass(name = "AdvancedPromptOptimizationOutputConfig", frozen)]
+#[pyclass(
+    name = "AdvancedPromptOptimizationOutputConfig",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAdvancedPromptOptimizationOutputConfig {
     inner: aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig,
 }
@@ -13831,7 +13847,11 @@ impl PyAdvancedPromptOptimizationOutputConfig {
     }
 }
 
-#[pyclass(name = "AgreementAvailability", frozen)]
+#[pyclass(
+    name = "AgreementAvailability",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAgreementAvailability {
     inner: aws_sdk_bedrock::types::AgreementAvailability,
 }
@@ -13859,7 +13879,11 @@ impl PyAgreementAvailability {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyBuildWorkflowSummary", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyBuildWorkflowSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyBuildWorkflowSummary {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary,
 }
@@ -13907,7 +13931,11 @@ impl PyAutomatedReasoningPolicyBuildWorkflowSummary {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyDefinition", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyDefinition",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyDefinition {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition,
 }
@@ -13988,7 +14016,11 @@ impl PyAutomatedReasoningPolicyDefinition {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyDefinitionRule", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyDefinitionRule",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyDefinitionRule {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule,
 }
@@ -14022,7 +14054,11 @@ impl PyAutomatedReasoningPolicyDefinitionRule {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyDefinitionType", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyDefinitionType",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyDefinitionType {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType,
 }
@@ -14067,7 +14103,11 @@ impl PyAutomatedReasoningPolicyDefinitionType {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyDefinitionTypeValue", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyDefinitionTypeValue",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyDefinitionTypeValue {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue,
 }
@@ -14095,7 +14135,11 @@ impl PyAutomatedReasoningPolicyDefinitionTypeValue {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyDefinitionVariable", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyDefinitionVariable",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyDefinitionVariable {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable,
 }
@@ -14125,7 +14169,11 @@ impl PyAutomatedReasoningPolicyDefinitionVariable {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyScenario", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyScenario",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyScenario {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario,
 }
@@ -14168,7 +14216,11 @@ impl PyAutomatedReasoningPolicyScenario {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicySummary", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicySummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicySummary {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicySummary,
 }
@@ -14226,7 +14278,11 @@ impl PyAutomatedReasoningPolicySummary {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyTestCase", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyTestCase",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyTestCase {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase,
 }
@@ -14292,7 +14348,11 @@ impl PyAutomatedReasoningPolicyTestCase {
     }
 }
 
-#[pyclass(name = "AutomatedReasoningPolicyTestResult", frozen)]
+#[pyclass(
+    name = "AutomatedReasoningPolicyTestResult",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyAutomatedReasoningPolicyTestResult {
     inner: aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult,
 }
@@ -14373,7 +14433,11 @@ impl PyAutomatedReasoningPolicyTestResult {
     }
 }
 
-#[pyclass(name = "BatchDeleteAdvancedPromptOptimizationJobError", frozen)]
+#[pyclass(
+    name = "BatchDeleteAdvancedPromptOptimizationJobError",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteAdvancedPromptOptimizationJobError {
     inner: aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError,
 }
@@ -14407,7 +14471,11 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobError {
     }
 }
 
-#[pyclass(name = "BatchDeleteAdvancedPromptOptimizationJobItem", frozen)]
+#[pyclass(
+    name = "BatchDeleteAdvancedPromptOptimizationJobItem",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteAdvancedPromptOptimizationJobItem {
     inner: aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem,
 }
@@ -14431,7 +14499,11 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobItem {
     }
 }
 
-#[pyclass(name = "BatchDeleteEvaluationJobError", frozen)]
+#[pyclass(
+    name = "BatchDeleteEvaluationJobError",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteEvaluationJobError {
     inner: aws_sdk_bedrock::types::BatchDeleteEvaluationJobError,
 }
@@ -14465,7 +14537,11 @@ impl PyBatchDeleteEvaluationJobError {
     }
 }
 
-#[pyclass(name = "BatchDeleteEvaluationJobItem", frozen)]
+#[pyclass(
+    name = "BatchDeleteEvaluationJobItem",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteEvaluationJobItem {
     inner: aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem,
 }
@@ -14489,7 +14565,7 @@ impl PyBatchDeleteEvaluationJobItem {
     }
 }
 
-#[pyclass(name = "CloudWatchConfig", frozen)]
+#[pyclass(name = "CloudWatchConfig", module = "rboto_bedrock._native", frozen)]
 struct PyCloudWatchConfig {
     inner: aws_sdk_bedrock::types::CloudWatchConfig,
 }
@@ -14529,7 +14605,11 @@ impl PyCloudWatchConfig {
     }
 }
 
-#[pyclass(name = "CustomModelDeploymentSummary", frozen)]
+#[pyclass(
+    name = "CustomModelDeploymentSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCustomModelDeploymentSummary {
     inner: aws_sdk_bedrock::types::CustomModelDeploymentSummary,
 }
@@ -14595,7 +14675,11 @@ impl PyCustomModelDeploymentSummary {
     }
 }
 
-#[pyclass(name = "CustomModelDeploymentUpdateDetails", frozen)]
+#[pyclass(
+    name = "CustomModelDeploymentUpdateDetails",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCustomModelDeploymentUpdateDetails {
     inner: aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails,
 }
@@ -14619,7 +14703,7 @@ impl PyCustomModelDeploymentUpdateDetails {
     }
 }
 
-#[pyclass(name = "CustomModelSummary", frozen)]
+#[pyclass(name = "CustomModelSummary", module = "rboto_bedrock._native", frozen)]
 struct PyCustomModelSummary {
     inner: aws_sdk_bedrock::types::CustomModelSummary,
 }
@@ -14691,7 +14775,7 @@ impl PyCustomModelSummary {
     }
 }
 
-#[pyclass(name = "CustomModelUnits", frozen)]
+#[pyclass(name = "CustomModelUnits", module = "rboto_bedrock._native", frozen)]
 struct PyCustomModelUnits {
     inner: aws_sdk_bedrock::types::CustomModelUnits,
 }
@@ -14723,7 +14807,11 @@ impl PyCustomModelUnits {
     }
 }
 
-#[pyclass(name = "DataProcessingDetails", frozen)]
+#[pyclass(
+    name = "DataProcessingDetails",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDataProcessingDetails {
     inner: aws_sdk_bedrock::types::DataProcessingDetails,
 }
@@ -14765,7 +14853,11 @@ impl PyDataProcessingDetails {
     }
 }
 
-#[pyclass(name = "DimensionalPriceRate", frozen)]
+#[pyclass(
+    name = "DimensionalPriceRate",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDimensionalPriceRate {
     inner: aws_sdk_bedrock::types::DimensionalPriceRate,
 }
@@ -14817,7 +14909,11 @@ impl PyDimensionalPriceRate {
     }
 }
 
-#[pyclass(name = "EvaluationInferenceConfigSummary", frozen)]
+#[pyclass(
+    name = "EvaluationInferenceConfigSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyEvaluationInferenceConfigSummary {
     inner: aws_sdk_bedrock::types::EvaluationInferenceConfigSummary,
 }
@@ -14861,7 +14957,11 @@ impl PyEvaluationInferenceConfigSummary {
     }
 }
 
-#[pyclass(name = "EvaluationModelConfigSummary", frozen)]
+#[pyclass(
+    name = "EvaluationModelConfigSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyEvaluationModelConfigSummary {
     inner: aws_sdk_bedrock::types::EvaluationModelConfigSummary,
 }
@@ -14903,7 +15003,11 @@ impl PyEvaluationModelConfigSummary {
     }
 }
 
-#[pyclass(name = "EvaluationOutputDataConfig", frozen)]
+#[pyclass(
+    name = "EvaluationOutputDataConfig",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyEvaluationOutputDataConfig {
     inner: aws_sdk_bedrock::types::EvaluationOutputDataConfig,
 }
@@ -14921,7 +15025,11 @@ impl PyEvaluationOutputDataConfig {
     }
 }
 
-#[pyclass(name = "EvaluationRagConfigSummary", frozen)]
+#[pyclass(
+    name = "EvaluationRagConfigSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyEvaluationRagConfigSummary {
     inner: aws_sdk_bedrock::types::EvaluationRagConfigSummary,
 }
@@ -14963,7 +15071,7 @@ impl PyEvaluationRagConfigSummary {
     }
 }
 
-#[pyclass(name = "EvaluationSummary", frozen)]
+#[pyclass(name = "EvaluationSummary", module = "rboto_bedrock._native", frozen)]
 struct PyEvaluationSummary {
     inner: aws_sdk_bedrock::types::EvaluationSummary,
 }
@@ -15098,7 +15206,11 @@ impl PyEvaluationSummary {
     }
 }
 
-#[pyclass(name = "FoundationModelDetails", frozen)]
+#[pyclass(
+    name = "FoundationModelDetails",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyFoundationModelDetails {
     inner: aws_sdk_bedrock::types::FoundationModelDetails,
 }
@@ -15228,7 +15340,11 @@ impl PyFoundationModelDetails {
     }
 }
 
-#[pyclass(name = "FoundationModelLifecycle", frozen)]
+#[pyclass(
+    name = "FoundationModelLifecycle",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyFoundationModelLifecycle {
     inner: aws_sdk_bedrock::types::FoundationModelLifecycle,
 }
@@ -15286,7 +15402,11 @@ impl PyFoundationModelLifecycle {
     }
 }
 
-#[pyclass(name = "FoundationModelSummary", frozen)]
+#[pyclass(
+    name = "FoundationModelSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyFoundationModelSummary {
     inner: aws_sdk_bedrock::types::FoundationModelSummary,
 }
@@ -15416,7 +15536,11 @@ impl PyFoundationModelSummary {
     }
 }
 
-#[pyclass(name = "GuardrailAutomatedReasoningPolicy", frozen)]
+#[pyclass(
+    name = "GuardrailAutomatedReasoningPolicy",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailAutomatedReasoningPolicy {
     inner: aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy,
 }
@@ -15449,7 +15573,11 @@ impl PyGuardrailAutomatedReasoningPolicy {
     }
 }
 
-#[pyclass(name = "GuardrailContentFilter", frozen)]
+#[pyclass(
+    name = "GuardrailContentFilter",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContentFilter {
     inner: aws_sdk_bedrock::types::GuardrailContentFilter,
 }
@@ -15549,7 +15677,11 @@ impl PyGuardrailContentFilter {
     }
 }
 
-#[pyclass(name = "GuardrailContentFiltersTier", frozen)]
+#[pyclass(
+    name = "GuardrailContentFiltersTier",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContentFiltersTier {
     inner: aws_sdk_bedrock::types::GuardrailContentFiltersTier,
 }
@@ -15567,7 +15699,11 @@ impl PyGuardrailContentFiltersTier {
     }
 }
 
-#[pyclass(name = "GuardrailContentPolicy", frozen)]
+#[pyclass(
+    name = "GuardrailContentPolicy",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContentPolicy {
     inner: aws_sdk_bedrock::types::GuardrailContentPolicy,
 }
@@ -15616,7 +15752,11 @@ impl PyGuardrailContentPolicy {
     }
 }
 
-#[pyclass(name = "GuardrailContextualGroundingFilter", frozen)]
+#[pyclass(
+    name = "GuardrailContextualGroundingFilter",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContextualGroundingFilter {
     inner: aws_sdk_bedrock::types::GuardrailContextualGroundingFilter,
 }
@@ -15660,7 +15800,11 @@ impl PyGuardrailContextualGroundingFilter {
     }
 }
 
-#[pyclass(name = "GuardrailContextualGroundingPolicy", frozen)]
+#[pyclass(
+    name = "GuardrailContextualGroundingPolicy",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContextualGroundingPolicy {
     inner: aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy,
 }
@@ -15705,7 +15849,11 @@ impl PyGuardrailContextualGroundingPolicy {
     }
 }
 
-#[pyclass(name = "GuardrailContextualGroundingTier", frozen)]
+#[pyclass(
+    name = "GuardrailContextualGroundingTier",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailContextualGroundingTier {
     inner: aws_sdk_bedrock::types::GuardrailContextualGroundingTier,
 }
@@ -15723,7 +15871,11 @@ impl PyGuardrailContextualGroundingTier {
     }
 }
 
-#[pyclass(name = "GuardrailCrossRegionDetails", frozen)]
+#[pyclass(
+    name = "GuardrailCrossRegionDetails",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailCrossRegionDetails {
     inner: aws_sdk_bedrock::types::GuardrailCrossRegionDetails,
 }
@@ -15755,7 +15907,11 @@ impl PyGuardrailCrossRegionDetails {
     }
 }
 
-#[pyclass(name = "GuardrailManagedWords", frozen)]
+#[pyclass(
+    name = "GuardrailManagedWords",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailManagedWords {
     inner: aws_sdk_bedrock::types::GuardrailManagedWords,
 }
@@ -15813,7 +15969,7 @@ impl PyGuardrailManagedWords {
     }
 }
 
-#[pyclass(name = "GuardrailPiiEntity", frozen)]
+#[pyclass(name = "GuardrailPiiEntity", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailPiiEntity {
     inner: aws_sdk_bedrock::types::GuardrailPiiEntity,
 }
@@ -15877,7 +16033,7 @@ impl PyGuardrailPiiEntity {
     }
 }
 
-#[pyclass(name = "GuardrailRegex", frozen)]
+#[pyclass(name = "GuardrailRegex", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailRegex {
     inner: aws_sdk_bedrock::types::GuardrailRegex,
 }
@@ -15957,7 +16113,11 @@ impl PyGuardrailRegex {
     }
 }
 
-#[pyclass(name = "GuardrailSensitiveInformationPolicy", frozen)]
+#[pyclass(
+    name = "GuardrailSensitiveInformationPolicy",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailSensitiveInformationPolicy {
     inner: aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy,
 }
@@ -16011,7 +16171,7 @@ impl PyGuardrailSensitiveInformationPolicy {
     }
 }
 
-#[pyclass(name = "GuardrailSummary", frozen)]
+#[pyclass(name = "GuardrailSummary", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailSummary {
     inner: aws_sdk_bedrock::types::GuardrailSummary,
 }
@@ -16091,7 +16251,7 @@ impl PyGuardrailSummary {
     }
 }
 
-#[pyclass(name = "GuardrailTopic", frozen)]
+#[pyclass(name = "GuardrailTopic", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailTopic {
     inner: aws_sdk_bedrock::types::GuardrailTopic,
 }
@@ -16180,7 +16340,11 @@ impl PyGuardrailTopic {
     }
 }
 
-#[pyclass(name = "GuardrailTopicPolicy", frozen)]
+#[pyclass(
+    name = "GuardrailTopicPolicy",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGuardrailTopicPolicy {
     inner: aws_sdk_bedrock::types::GuardrailTopicPolicy,
 }
@@ -16225,7 +16389,7 @@ impl PyGuardrailTopicPolicy {
     }
 }
 
-#[pyclass(name = "GuardrailTopicsTier", frozen)]
+#[pyclass(name = "GuardrailTopicsTier", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailTopicsTier {
     inner: aws_sdk_bedrock::types::GuardrailTopicsTier,
 }
@@ -16243,7 +16407,7 @@ impl PyGuardrailTopicsTier {
     }
 }
 
-#[pyclass(name = "GuardrailWord", frozen)]
+#[pyclass(name = "GuardrailWord", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailWord {
     inner: aws_sdk_bedrock::types::GuardrailWord,
 }
@@ -16301,7 +16465,7 @@ impl PyGuardrailWord {
     }
 }
 
-#[pyclass(name = "GuardrailWordPolicy", frozen)]
+#[pyclass(name = "GuardrailWordPolicy", module = "rboto_bedrock._native", frozen)]
 struct PyGuardrailWordPolicy {
     inner: aws_sdk_bedrock::types::GuardrailWordPolicy,
 }
@@ -16355,7 +16519,11 @@ impl PyGuardrailWordPolicy {
     }
 }
 
-#[pyclass(name = "ImportedModelSummary", frozen)]
+#[pyclass(
+    name = "ImportedModelSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyImportedModelSummary {
     inner: aws_sdk_bedrock::types::ImportedModelSummary,
 }
@@ -16405,7 +16573,11 @@ impl PyImportedModelSummary {
     }
 }
 
-#[pyclass(name = "InferenceConfiguration", frozen)]
+#[pyclass(
+    name = "InferenceConfiguration",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyInferenceConfiguration {
     inner: aws_sdk_bedrock::types::InferenceConfiguration,
 }
@@ -16462,7 +16634,11 @@ impl PyInferenceConfiguration {
     }
 }
 
-#[pyclass(name = "InferenceProfileModel", frozen)]
+#[pyclass(
+    name = "InferenceProfileModel",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyInferenceProfileModel {
     inner: aws_sdk_bedrock::types::InferenceProfileModel,
 }
@@ -16484,7 +16660,11 @@ impl PyInferenceProfileModel {
     }
 }
 
-#[pyclass(name = "InferenceProfileSummary", frozen)]
+#[pyclass(
+    name = "InferenceProfileSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyInferenceProfileSummary {
     inner: aws_sdk_bedrock::types::InferenceProfileSummary,
 }
@@ -16579,7 +16759,11 @@ impl PyInferenceProfileSummary {
     }
 }
 
-#[pyclass(name = "InvocationLogsConfig", frozen)]
+#[pyclass(
+    name = "InvocationLogsConfig",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyInvocationLogsConfig {
     inner: aws_sdk_bedrock::types::InvocationLogsConfig,
 }
@@ -16619,7 +16803,7 @@ impl PyInvocationLogsConfig {
     }
 }
 
-#[pyclass(name = "LegalTerm", frozen)]
+#[pyclass(name = "LegalTerm", module = "rboto_bedrock._native", frozen)]
 struct PyLegalTerm {
     inner: aws_sdk_bedrock::types::LegalTerm,
 }
@@ -16641,7 +16825,7 @@ impl PyLegalTerm {
     }
 }
 
-#[pyclass(name = "LoggingConfig", frozen)]
+#[pyclass(name = "LoggingConfig", module = "rboto_bedrock._native", frozen)]
 struct PyLoggingConfig {
     inner: aws_sdk_bedrock::types::LoggingConfig,
 }
@@ -16735,7 +16919,11 @@ impl PyLoggingConfig {
     }
 }
 
-#[pyclass(name = "MarketplaceModelEndpoint", frozen)]
+#[pyclass(
+    name = "MarketplaceModelEndpoint",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyMarketplaceModelEndpoint {
     inner: aws_sdk_bedrock::types::MarketplaceModelEndpoint,
 }
@@ -16819,7 +17007,11 @@ impl PyMarketplaceModelEndpoint {
     }
 }
 
-#[pyclass(name = "MarketplaceModelEndpointSummary", frozen)]
+#[pyclass(
+    name = "MarketplaceModelEndpointSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyMarketplaceModelEndpointSummary {
     inner: aws_sdk_bedrock::types::MarketplaceModelEndpointSummary,
 }
@@ -16877,7 +17069,7 @@ impl PyMarketplaceModelEndpointSummary {
     }
 }
 
-#[pyclass(name = "ModelConfiguration", frozen)]
+#[pyclass(name = "ModelConfiguration", module = "rboto_bedrock._native", frozen)]
 struct PyModelConfiguration {
     inner: aws_sdk_bedrock::types::ModelConfiguration,
 }
@@ -16927,7 +17119,7 @@ impl PyModelConfiguration {
     }
 }
 
-#[pyclass(name = "ModelCopyJobSummary", frozen)]
+#[pyclass(name = "ModelCopyJobSummary", module = "rboto_bedrock._native", frozen)]
 struct PyModelCopyJobSummary {
     inner: aws_sdk_bedrock::types::ModelCopyJobSummary,
 }
@@ -17036,7 +17228,11 @@ impl PyModelCopyJobSummary {
     }
 }
 
-#[pyclass(name = "ModelCustomizationJobSummary", frozen)]
+#[pyclass(
+    name = "ModelCustomizationJobSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyModelCustomizationJobSummary {
     inner: aws_sdk_bedrock::types::ModelCustomizationJobSummary,
 }
@@ -17144,7 +17340,7 @@ impl PyModelCustomizationJobSummary {
     }
 }
 
-#[pyclass(name = "ModelEnforcement", frozen)]
+#[pyclass(name = "ModelEnforcement", module = "rboto_bedrock._native", frozen)]
 struct PyModelEnforcement {
     inner: aws_sdk_bedrock::types::ModelEnforcement,
 }
@@ -17178,7 +17374,11 @@ impl PyModelEnforcement {
     }
 }
 
-#[pyclass(name = "ModelImportJobSummary", frozen)]
+#[pyclass(
+    name = "ModelImportJobSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyModelImportJobSummary {
     inner: aws_sdk_bedrock::types::ModelImportJobSummary,
 }
@@ -17254,7 +17454,11 @@ impl PyModelImportJobSummary {
     }
 }
 
-#[pyclass(name = "ModelInvocationJobSummary", frozen)]
+#[pyclass(
+    name = "ModelInvocationJobSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyModelInvocationJobSummary {
     inner: aws_sdk_bedrock::types::ModelInvocationJobSummary,
 }
@@ -17452,7 +17656,7 @@ impl PyModelInvocationJobSummary {
     }
 }
 
-#[pyclass(name = "Offer", frozen)]
+#[pyclass(name = "Offer", module = "rboto_bedrock._native", frozen)]
 struct PyOffer {
     inner: aws_sdk_bedrock::types::Offer,
 }
@@ -17496,7 +17700,7 @@ impl PyOffer {
     }
 }
 
-#[pyclass(name = "OutputDataConfig", frozen)]
+#[pyclass(name = "OutputDataConfig", module = "rboto_bedrock._native", frozen)]
 struct PyOutputDataConfig {
     inner: aws_sdk_bedrock::types::OutputDataConfig,
 }
@@ -17514,7 +17718,7 @@ impl PyOutputDataConfig {
     }
 }
 
-#[pyclass(name = "PricingTerm", frozen)]
+#[pyclass(name = "PricingTerm", module = "rboto_bedrock._native", frozen)]
 struct PyPricingTerm {
     inner: aws_sdk_bedrock::types::PricingTerm,
 }
@@ -17543,7 +17747,7 @@ impl PyPricingTerm {
     }
 }
 
-#[pyclass(name = "PromptRouterSummary", frozen)]
+#[pyclass(name = "PromptRouterSummary", module = "rboto_bedrock._native", frozen)]
 struct PyPromptRouterSummary {
     inner: aws_sdk_bedrock::types::PromptRouterSummary,
 }
@@ -17658,7 +17862,11 @@ impl PyPromptRouterSummary {
     }
 }
 
-#[pyclass(name = "PromptRouterTargetModel", frozen)]
+#[pyclass(
+    name = "PromptRouterTargetModel",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPromptRouterTargetModel {
     inner: aws_sdk_bedrock::types::PromptRouterTargetModel,
 }
@@ -17680,7 +17888,11 @@ impl PyPromptRouterTargetModel {
     }
 }
 
-#[pyclass(name = "ProvisionedModelSummary", frozen)]
+#[pyclass(
+    name = "ProvisionedModelSummary",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyProvisionedModelSummary {
     inner: aws_sdk_bedrock::types::ProvisionedModelSummary,
 }
@@ -17782,7 +17994,7 @@ impl PyProvisionedModelSummary {
     }
 }
 
-#[pyclass(name = "RoutingCriteria", frozen)]
+#[pyclass(name = "RoutingCriteria", module = "rboto_bedrock._native", frozen)]
 struct PyRoutingCriteria {
     inner: aws_sdk_bedrock::types::RoutingCriteria,
 }
@@ -17802,7 +18014,7 @@ impl PyRoutingCriteria {
     }
 }
 
-#[pyclass(name = "S3Config", frozen)]
+#[pyclass(name = "S3Config", module = "rboto_bedrock._native", frozen)]
 struct PyS3Config {
     inner: aws_sdk_bedrock::types::S3Config,
 }
@@ -17830,7 +18042,11 @@ impl PyS3Config {
     }
 }
 
-#[pyclass(name = "SelectiveContentGuarding", frozen)]
+#[pyclass(
+    name = "SelectiveContentGuarding",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PySelectiveContentGuarding {
     inner: aws_sdk_bedrock::types::SelectiveContentGuarding,
 }
@@ -17862,7 +18078,7 @@ impl PySelectiveContentGuarding {
     }
 }
 
-#[pyclass(name = "StatusDetails", frozen)]
+#[pyclass(name = "StatusDetails", module = "rboto_bedrock._native", frozen)]
 struct PyStatusDetails {
     inner: aws_sdk_bedrock::types::StatusDetails,
 }
@@ -17922,7 +18138,7 @@ impl PyStatusDetails {
     }
 }
 
-#[pyclass(name = "SupportTerm", frozen)]
+#[pyclass(name = "SupportTerm", module = "rboto_bedrock._native", frozen)]
 struct PySupportTerm {
     inner: aws_sdk_bedrock::types::SupportTerm,
 }
@@ -17944,7 +18160,7 @@ impl PySupportTerm {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_bedrock._native", frozen)]
 struct PyTag {
     inner: aws_sdk_bedrock::types::Tag,
 }
@@ -17968,7 +18184,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TermDetails", frozen)]
+#[pyclass(name = "TermDetails", module = "rboto_bedrock._native", frozen)]
 struct PyTermDetails {
     inner: aws_sdk_bedrock::types::TermDetails,
 }
@@ -18044,7 +18260,7 @@ impl PyTermDetails {
     }
 }
 
-#[pyclass(name = "TrainingDataConfig", frozen)]
+#[pyclass(name = "TrainingDataConfig", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingDataConfig {
     inner: aws_sdk_bedrock::types::TrainingDataConfig,
 }
@@ -18082,7 +18298,7 @@ impl PyTrainingDataConfig {
     }
 }
 
-#[pyclass(name = "TrainingDetails", frozen)]
+#[pyclass(name = "TrainingDetails", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingDetails {
     inner: aws_sdk_bedrock::types::TrainingDetails,
 }
@@ -18124,7 +18340,7 @@ impl PyTrainingDetails {
     }
 }
 
-#[pyclass(name = "TrainingMetrics", frozen)]
+#[pyclass(name = "TrainingMetrics", module = "rboto_bedrock._native", frozen)]
 struct PyTrainingMetrics {
     inner: aws_sdk_bedrock::types::TrainingMetrics,
 }
@@ -18146,7 +18362,11 @@ impl PyTrainingMetrics {
     }
 }
 
-#[pyclass(name = "ValidationDataConfig", frozen)]
+#[pyclass(
+    name = "ValidationDataConfig",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyValidationDataConfig {
     inner: aws_sdk_bedrock::types::ValidationDataConfig,
 }
@@ -18175,7 +18395,7 @@ impl PyValidationDataConfig {
     }
 }
 
-#[pyclass(name = "ValidationDetails", frozen)]
+#[pyclass(name = "ValidationDetails", module = "rboto_bedrock._native", frozen)]
 struct PyValidationDetails {
     inner: aws_sdk_bedrock::types::ValidationDetails,
 }
@@ -18217,7 +18437,7 @@ impl PyValidationDetails {
     }
 }
 
-#[pyclass(name = "Validator", frozen)]
+#[pyclass(name = "Validator", module = "rboto_bedrock._native", frozen)]
 struct PyValidator {
     inner: aws_sdk_bedrock::types::Validator,
 }
@@ -18235,7 +18455,7 @@ impl PyValidator {
     }
 }
 
-#[pyclass(name = "ValidatorMetric", frozen)]
+#[pyclass(name = "ValidatorMetric", module = "rboto_bedrock._native", frozen)]
 struct PyValidatorMetric {
     inner: aws_sdk_bedrock::types::ValidatorMetric,
 }
@@ -18257,7 +18477,7 @@ impl PyValidatorMetric {
     }
 }
 
-#[pyclass(name = "ValidityTerm", frozen)]
+#[pyclass(name = "ValidityTerm", module = "rboto_bedrock._native", frozen)]
 struct PyValidityTerm {
     inner: aws_sdk_bedrock::types::ValidityTerm,
 }
@@ -18279,7 +18499,7 @@ impl PyValidityTerm {
     }
 }
 
-#[pyclass(name = "VpcConfig", frozen)]
+#[pyclass(name = "VpcConfig", module = "rboto_bedrock._native", frozen)]
 struct PyVpcConfig {
     inner: aws_sdk_bedrock::types::VpcConfig,
 }
@@ -18313,7 +18533,11 @@ impl PyVpcConfig {
     }
 }
 
-#[pyclass(name = "BatchDeleteAdvancedPromptOptimizationJobResponse", frozen)]
+#[pyclass(
+    name = "BatchDeleteAdvancedPromptOptimizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteAdvancedPromptOptimizationJobResponse {
     inner: aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobOutput,
 }
@@ -18376,7 +18600,11 @@ impl PyBatchDeleteAdvancedPromptOptimizationJobResponse {
     }
 }
 
-#[pyclass(name = "BatchDeleteEvaluationJobResponse", frozen)]
+#[pyclass(
+    name = "BatchDeleteEvaluationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyBatchDeleteEvaluationJobResponse {
     inner: aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobOutput,
 }
@@ -18437,7 +18665,11 @@ impl PyBatchDeleteEvaluationJobResponse {
     }
 }
 
-#[pyclass(name = "CancelAutomatedReasoningPolicyBuildWorkflowResponse", frozen)]
+#[pyclass(
+    name = "CancelAutomatedReasoningPolicyBuildWorkflowResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCancelAutomatedReasoningPolicyBuildWorkflowResponse {
     inner: aws_sdk_bedrock::operation::cancel_automated_reasoning_policy_build_workflow::CancelAutomatedReasoningPolicyBuildWorkflowOutput,
 }
@@ -18450,7 +18682,11 @@ impl PyCancelAutomatedReasoningPolicyBuildWorkflowResponse {
     }
 }
 
-#[pyclass(name = "CreateAdvancedPromptOptimizationJobResponse", frozen)]
+#[pyclass(
+    name = "CreateAdvancedPromptOptimizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateAdvancedPromptOptimizationJobResponse {
     inner: aws_sdk_bedrock::operation::create_advanced_prompt_optimization_job::CreateAdvancedPromptOptimizationJobOutput,
 }
@@ -18471,7 +18707,11 @@ impl PyCreateAdvancedPromptOptimizationJobResponse {
     }
 }
 
-#[pyclass(name = "CreateAutomatedReasoningPolicyResponse", frozen)]
+#[pyclass(
+    name = "CreateAutomatedReasoningPolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateAutomatedReasoningPolicyResponse {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy::CreateAutomatedReasoningPolicyOutput,
 }
@@ -18556,7 +18796,11 @@ impl PyCreateAutomatedReasoningPolicyResponse {
     }
 }
 
-#[pyclass(name = "CreateAutomatedReasoningPolicyTestCaseResponse", frozen)]
+#[pyclass(
+    name = "CreateAutomatedReasoningPolicyTestCaseResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateAutomatedReasoningPolicyTestCaseResponse {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy_test_case::CreateAutomatedReasoningPolicyTestCaseOutput,
 }
@@ -18585,7 +18829,11 @@ impl PyCreateAutomatedReasoningPolicyTestCaseResponse {
     }
 }
 
-#[pyclass(name = "CreateAutomatedReasoningPolicyVersionResponse", frozen)]
+#[pyclass(
+    name = "CreateAutomatedReasoningPolicyVersionResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateAutomatedReasoningPolicyVersionResponse {
     inner: aws_sdk_bedrock::operation::create_automated_reasoning_policy_version::CreateAutomatedReasoningPolicyVersionOutput,
 }
@@ -18654,7 +18902,11 @@ impl PyCreateAutomatedReasoningPolicyVersionResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomModelResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateCustomModelResponse {
     inner: aws_sdk_bedrock::operation::create_custom_model::CreateCustomModelOutput,
 }
@@ -18675,7 +18927,11 @@ impl PyCreateCustomModelResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomModelDeploymentResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomModelDeploymentResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateCustomModelDeploymentResponse {
     inner: aws_sdk_bedrock::operation::create_custom_model_deployment::CreateCustomModelDeploymentOutput,
 }
@@ -18700,7 +18956,11 @@ impl PyCreateCustomModelDeploymentResponse {
     }
 }
 
-#[pyclass(name = "CreateEvaluationJobResponse", frozen)]
+#[pyclass(
+    name = "CreateEvaluationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateEvaluationJobResponse {
     inner: aws_sdk_bedrock::operation::create_evaluation_job::CreateEvaluationJobOutput,
 }
@@ -18721,7 +18981,11 @@ impl PyCreateEvaluationJobResponse {
     }
 }
 
-#[pyclass(name = "CreateFoundationModelAgreementResponse", frozen)]
+#[pyclass(
+    name = "CreateFoundationModelAgreementResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateFoundationModelAgreementResponse {
     inner: aws_sdk_bedrock::operation::create_foundation_model_agreement::CreateFoundationModelAgreementOutput,
 }
@@ -18742,7 +19006,11 @@ impl PyCreateFoundationModelAgreementResponse {
     }
 }
 
-#[pyclass(name = "CreateGuardrailResponse", frozen)]
+#[pyclass(
+    name = "CreateGuardrailResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateGuardrailResponse {
     inner: aws_sdk_bedrock::operation::create_guardrail::CreateGuardrailOutput,
 }
@@ -18787,7 +19055,11 @@ impl PyCreateGuardrailResponse {
     }
 }
 
-#[pyclass(name = "CreateGuardrailVersionResponse", frozen)]
+#[pyclass(
+    name = "CreateGuardrailVersionResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateGuardrailVersionResponse {
     inner: aws_sdk_bedrock::operation::create_guardrail_version::CreateGuardrailVersionOutput,
 }
@@ -18816,7 +19088,11 @@ impl PyCreateGuardrailVersionResponse {
     }
 }
 
-#[pyclass(name = "CreateInferenceProfileResponse", frozen)]
+#[pyclass(
+    name = "CreateInferenceProfileResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateInferenceProfileResponse {
     inner: aws_sdk_bedrock::operation::create_inference_profile::CreateInferenceProfileOutput,
 }
@@ -18857,7 +19133,11 @@ impl PyCreateInferenceProfileResponse {
     }
 }
 
-#[pyclass(name = "CreateMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "CreateMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointOutput,
 }
@@ -18892,7 +19172,11 @@ impl PyCreateMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "CreateModelCopyJobResponse", frozen)]
+#[pyclass(
+    name = "CreateModelCopyJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateModelCopyJobResponse {
     inner: aws_sdk_bedrock::operation::create_model_copy_job::CreateModelCopyJobOutput,
 }
@@ -18913,7 +19197,11 @@ impl PyCreateModelCopyJobResponse {
     }
 }
 
-#[pyclass(name = "CreateModelCustomizationJobResponse", frozen)]
+#[pyclass(
+    name = "CreateModelCustomizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateModelCustomizationJobResponse {
     inner: aws_sdk_bedrock::operation::create_model_customization_job::CreateModelCustomizationJobOutput,
 }
@@ -18934,7 +19222,11 @@ impl PyCreateModelCustomizationJobResponse {
     }
 }
 
-#[pyclass(name = "CreateModelImportJobResponse", frozen)]
+#[pyclass(
+    name = "CreateModelImportJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateModelImportJobResponse {
     inner: aws_sdk_bedrock::operation::create_model_import_job::CreateModelImportJobOutput,
 }
@@ -18955,7 +19247,11 @@ impl PyCreateModelImportJobResponse {
     }
 }
 
-#[pyclass(name = "CreateModelInvocationJobResponse", frozen)]
+#[pyclass(
+    name = "CreateModelInvocationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateModelInvocationJobResponse {
     inner: aws_sdk_bedrock::operation::create_model_invocation_job::CreateModelInvocationJobOutput,
 }
@@ -18976,7 +19272,11 @@ impl PyCreateModelInvocationJobResponse {
     }
 }
 
-#[pyclass(name = "CreatePromptRouterResponse", frozen)]
+#[pyclass(
+    name = "CreatePromptRouterResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreatePromptRouterResponse {
     inner: aws_sdk_bedrock::operation::create_prompt_router::CreatePromptRouterOutput,
 }
@@ -19005,7 +19305,11 @@ impl PyCreatePromptRouterResponse {
     }
 }
 
-#[pyclass(name = "CreateProvisionedModelThroughputResponse", frozen)]
+#[pyclass(
+    name = "CreateProvisionedModelThroughputResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyCreateProvisionedModelThroughputResponse {
     inner: aws_sdk_bedrock::operation::create_provisioned_model_throughput::CreateProvisionedModelThroughputOutput,
 }
@@ -19030,7 +19334,11 @@ impl PyCreateProvisionedModelThroughputResponse {
     }
 }
 
-#[pyclass(name = "DeleteAutomatedReasoningPolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteAutomatedReasoningPolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteAutomatedReasoningPolicyResponse {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy::DeleteAutomatedReasoningPolicyOutput,
 }
@@ -19043,7 +19351,11 @@ impl PyDeleteAutomatedReasoningPolicyResponse {
     }
 }
 
-#[pyclass(name = "DeleteAutomatedReasoningPolicyBuildWorkflowResponse", frozen)]
+#[pyclass(
+    name = "DeleteAutomatedReasoningPolicyBuildWorkflowResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy_build_workflow::DeleteAutomatedReasoningPolicyBuildWorkflowOutput,
 }
@@ -19056,7 +19368,11 @@ impl PyDeleteAutomatedReasoningPolicyBuildWorkflowResponse {
     }
 }
 
-#[pyclass(name = "DeleteAutomatedReasoningPolicyTestCaseResponse", frozen)]
+#[pyclass(
+    name = "DeleteAutomatedReasoningPolicyTestCaseResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteAutomatedReasoningPolicyTestCaseResponse {
     inner: aws_sdk_bedrock::operation::delete_automated_reasoning_policy_test_case::DeleteAutomatedReasoningPolicyTestCaseOutput,
 }
@@ -19069,7 +19385,11 @@ impl PyDeleteAutomatedReasoningPolicyTestCaseResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomModelResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteCustomModelResponse {
     inner: aws_sdk_bedrock::operation::delete_custom_model::DeleteCustomModelOutput,
 }
@@ -19082,7 +19402,11 @@ impl PyDeleteCustomModelResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomModelDeploymentResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomModelDeploymentResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteCustomModelDeploymentResponse {
     inner: aws_sdk_bedrock::operation::delete_custom_model_deployment::DeleteCustomModelDeploymentOutput,
 }
@@ -19095,7 +19419,11 @@ impl PyDeleteCustomModelDeploymentResponse {
     }
 }
 
-#[pyclass(name = "DeleteEnforcedGuardrailConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DeleteEnforcedGuardrailConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteEnforcedGuardrailConfigurationResponse {
     inner: aws_sdk_bedrock::operation::delete_enforced_guardrail_configuration::DeleteEnforcedGuardrailConfigurationOutput,
 }
@@ -19108,7 +19436,11 @@ impl PyDeleteEnforcedGuardrailConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DeleteFoundationModelAgreementResponse", frozen)]
+#[pyclass(
+    name = "DeleteFoundationModelAgreementResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteFoundationModelAgreementResponse {
     inner: aws_sdk_bedrock::operation::delete_foundation_model_agreement::DeleteFoundationModelAgreementOutput,
 }
@@ -19121,7 +19453,11 @@ impl PyDeleteFoundationModelAgreementResponse {
     }
 }
 
-#[pyclass(name = "DeleteGuardrailResponse", frozen)]
+#[pyclass(
+    name = "DeleteGuardrailResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteGuardrailResponse {
     inner: aws_sdk_bedrock::operation::delete_guardrail::DeleteGuardrailOutput,
 }
@@ -19134,7 +19470,11 @@ impl PyDeleteGuardrailResponse {
     }
 }
 
-#[pyclass(name = "DeleteImportedModelResponse", frozen)]
+#[pyclass(
+    name = "DeleteImportedModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteImportedModelResponse {
     inner: aws_sdk_bedrock::operation::delete_imported_model::DeleteImportedModelOutput,
 }
@@ -19147,7 +19487,11 @@ impl PyDeleteImportedModelResponse {
     }
 }
 
-#[pyclass(name = "DeleteInferenceProfileResponse", frozen)]
+#[pyclass(
+    name = "DeleteInferenceProfileResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteInferenceProfileResponse {
     inner: aws_sdk_bedrock::operation::delete_inference_profile::DeleteInferenceProfileOutput,
 }
@@ -19160,7 +19504,11 @@ impl PyDeleteInferenceProfileResponse {
     }
 }
 
-#[pyclass(name = "DeleteMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "DeleteMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::delete_marketplace_model_endpoint::DeleteMarketplaceModelEndpointOutput,
 }
@@ -19173,7 +19521,11 @@ impl PyDeleteMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "DeleteModelInvocationLoggingConfigurationResponse", frozen)]
+#[pyclass(
+    name = "DeleteModelInvocationLoggingConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteModelInvocationLoggingConfigurationResponse {
     inner: aws_sdk_bedrock::operation::delete_model_invocation_logging_configuration::DeleteModelInvocationLoggingConfigurationOutput,
 }
@@ -19186,7 +19538,11 @@ impl PyDeleteModelInvocationLoggingConfigurationResponse {
     }
 }
 
-#[pyclass(name = "DeletePromptRouterResponse", frozen)]
+#[pyclass(
+    name = "DeletePromptRouterResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeletePromptRouterResponse {
     inner: aws_sdk_bedrock::operation::delete_prompt_router::DeletePromptRouterOutput,
 }
@@ -19199,7 +19555,11 @@ impl PyDeletePromptRouterResponse {
     }
 }
 
-#[pyclass(name = "DeleteProvisionedModelThroughputResponse", frozen)]
+#[pyclass(
+    name = "DeleteProvisionedModelThroughputResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteProvisionedModelThroughputResponse {
     inner: aws_sdk_bedrock::operation::delete_provisioned_model_throughput::DeleteProvisionedModelThroughputOutput,
 }
@@ -19212,7 +19572,11 @@ impl PyDeleteProvisionedModelThroughputResponse {
     }
 }
 
-#[pyclass(name = "DeleteResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteResourcePolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeleteResourcePolicyResponse {
     inner: aws_sdk_bedrock::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
@@ -19225,7 +19589,11 @@ impl PyDeleteResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "DeregisterMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "DeregisterMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyDeregisterMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::deregister_marketplace_model_endpoint::DeregisterMarketplaceModelEndpointOutput,
 }
@@ -19238,7 +19606,11 @@ impl PyDeregisterMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "ExportAutomatedReasoningPolicyVersionResponse", frozen)]
+#[pyclass(
+    name = "ExportAutomatedReasoningPolicyVersionResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyExportAutomatedReasoningPolicyVersionResponse {
     inner: aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionOutput,
 }
@@ -19273,7 +19645,11 @@ impl PyExportAutomatedReasoningPolicyVersionResponse {
     }
 }
 
-#[pyclass(name = "GetAccountDataRetentionResponse", frozen)]
+#[pyclass(
+    name = "GetAccountDataRetentionResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAccountDataRetentionResponse {
     inner: aws_sdk_bedrock::operation::get_account_data_retention::GetAccountDataRetentionOutput,
 }
@@ -19310,7 +19686,11 @@ impl PyGetAccountDataRetentionResponse {
     }
 }
 
-#[pyclass(name = "GetAdvancedPromptOptimizationJobResponse", frozen)]
+#[pyclass(
+    name = "GetAdvancedPromptOptimizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAdvancedPromptOptimizationJobResponse {
     inner: aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobOutput,
 }
@@ -19487,7 +19867,11 @@ impl PyGetAdvancedPromptOptimizationJobResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy::GetAutomatedReasoningPolicyOutput,
 }
@@ -19596,7 +19980,11 @@ impl PyGetAutomatedReasoningPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyAnnotationsResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyAnnotationsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyAnnotationsResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_annotations::GetAutomatedReasoningPolicyAnnotationsOutput,
 }
@@ -19667,7 +20055,11 @@ impl PyGetAutomatedReasoningPolicyAnnotationsResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyBuildWorkflowResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyBuildWorkflowResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyBuildWorkflowResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow::GetAutomatedReasoningPolicyBuildWorkflowOutput,
 }
@@ -19778,6 +20170,7 @@ impl PyGetAutomatedReasoningPolicyBuildWorkflowResponse {
 
 #[pyclass(
     name = "GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse",
+    module = "rboto_bedrock._native",
     frozen
 )]
 struct PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse {
@@ -19824,7 +20217,11 @@ impl PyGetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyNextScenarioResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyNextScenarioResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyNextScenarioResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioOutput,
 }
@@ -19867,7 +20264,11 @@ impl PyGetAutomatedReasoningPolicyNextScenarioResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyTestCaseResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyTestCaseResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyTestCaseResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseOutput,
 }
@@ -19910,7 +20311,11 @@ impl PyGetAutomatedReasoningPolicyTestCaseResponse {
     }
 }
 
-#[pyclass(name = "GetAutomatedReasoningPolicyTestResultResponse", frozen)]
+#[pyclass(
+    name = "GetAutomatedReasoningPolicyTestResultResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetAutomatedReasoningPolicyTestResultResponse {
     inner: aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultOutput,
 }
@@ -19945,7 +20350,11 @@ impl PyGetAutomatedReasoningPolicyTestResultResponse {
     }
 }
 
-#[pyclass(name = "GetCustomModelResponse", frozen)]
+#[pyclass(
+    name = "GetCustomModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetCustomModelResponse {
     inner: aws_sdk_bedrock::operation::get_custom_model::GetCustomModelOutput,
 }
@@ -20258,7 +20667,11 @@ impl PyGetCustomModelResponse {
     }
 }
 
-#[pyclass(name = "GetCustomModelDeploymentResponse", frozen)]
+#[pyclass(
+    name = "GetCustomModelDeploymentResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetCustomModelDeploymentResponse {
     inner: aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentOutput,
 }
@@ -20389,7 +20802,11 @@ impl PyGetCustomModelDeploymentResponse {
     }
 }
 
-#[pyclass(name = "GetEvaluationJobResponse", frozen)]
+#[pyclass(
+    name = "GetEvaluationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetEvaluationJobResponse {
     inner: aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobOutput,
 }
@@ -20594,7 +21011,11 @@ impl PyGetEvaluationJobResponse {
     }
 }
 
-#[pyclass(name = "GetFoundationModelResponse", frozen)]
+#[pyclass(
+    name = "GetFoundationModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetFoundationModelResponse {
     inner: aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelOutput,
 }
@@ -20629,7 +21050,11 @@ impl PyGetFoundationModelResponse {
     }
 }
 
-#[pyclass(name = "GetFoundationModelAvailabilityResponse", frozen)]
+#[pyclass(
+    name = "GetFoundationModelAvailabilityResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetFoundationModelAvailabilityResponse {
     inner: aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityOutput,
 }
@@ -20704,7 +21129,11 @@ impl PyGetFoundationModelAvailabilityResponse {
     }
 }
 
-#[pyclass(name = "GetGuardrailResponse", frozen)]
+#[pyclass(
+    name = "GetGuardrailResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetGuardrailResponse {
     inner: aws_sdk_bedrock::operation::get_guardrail::GetGuardrailOutput,
 }
@@ -21035,7 +21464,11 @@ impl PyGetGuardrailResponse {
     }
 }
 
-#[pyclass(name = "GetImportedModelResponse", frozen)]
+#[pyclass(
+    name = "GetImportedModelResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetImportedModelResponse {
     inner: aws_sdk_bedrock::operation::get_imported_model::GetImportedModelOutput,
 }
@@ -21214,7 +21647,11 @@ impl PyGetImportedModelResponse {
     }
 }
 
-#[pyclass(name = "GetInferenceProfileResponse", frozen)]
+#[pyclass(
+    name = "GetInferenceProfileResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetInferenceProfileResponse {
     inner: aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileOutput,
 }
@@ -21351,7 +21788,11 @@ impl PyGetInferenceProfileResponse {
     }
 }
 
-#[pyclass(name = "GetMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "GetMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointOutput,
 }
@@ -21386,7 +21827,11 @@ impl PyGetMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "GetModelCopyJobResponse", frozen)]
+#[pyclass(
+    name = "GetModelCopyJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetModelCopyJobResponse {
     inner: aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobOutput,
 }
@@ -21543,7 +21988,11 @@ impl PyGetModelCopyJobResponse {
     }
 }
 
-#[pyclass(name = "GetModelCustomizationJobResponse", frozen)]
+#[pyclass(
+    name = "GetModelCustomizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetModelCustomizationJobResponse {
     inner: aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobOutput,
 }
@@ -21940,7 +22389,11 @@ impl PyGetModelCustomizationJobResponse {
     }
 }
 
-#[pyclass(name = "GetModelImportJobResponse", frozen)]
+#[pyclass(
+    name = "GetModelImportJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetModelImportJobResponse {
     inner: aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobOutput,
 }
@@ -22167,7 +22620,11 @@ impl PyGetModelImportJobResponse {
     }
 }
 
-#[pyclass(name = "GetModelInvocationJobResponse", frozen)]
+#[pyclass(
+    name = "GetModelInvocationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetModelInvocationJobResponse {
     inner: aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobOutput,
 }
@@ -22474,7 +22931,11 @@ impl PyGetModelInvocationJobResponse {
     }
 }
 
-#[pyclass(name = "GetModelInvocationLoggingConfigurationResponse", frozen)]
+#[pyclass(
+    name = "GetModelInvocationLoggingConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetModelInvocationLoggingConfigurationResponse {
     inner: aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationOutput,
 }
@@ -22509,7 +22970,11 @@ impl PyGetModelInvocationLoggingConfigurationResponse {
     }
 }
 
-#[pyclass(name = "GetPromptRouterResponse", frozen)]
+#[pyclass(
+    name = "GetPromptRouterResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetPromptRouterResponse {
     inner: aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterOutput,
 }
@@ -22670,7 +23135,11 @@ impl PyGetPromptRouterResponse {
     }
 }
 
-#[pyclass(name = "GetProvisionedModelThroughputResponse", frozen)]
+#[pyclass(
+    name = "GetProvisionedModelThroughputResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetProvisionedModelThroughputResponse {
     inner: aws_sdk_bedrock::operation::get_provisioned_model_throughput::GetProvisionedModelThroughputOutput,
 }
@@ -22831,7 +23300,11 @@ impl PyGetProvisionedModelThroughputResponse {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetResourcePolicyResponse {
     inner: aws_sdk_bedrock::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -22860,7 +23333,11 @@ impl PyGetResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "GetUseCaseForModelAccessResponse", frozen)]
+#[pyclass(
+    name = "GetUseCaseForModelAccessResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyGetUseCaseForModelAccessResponse {
     inner:
         aws_sdk_bedrock::operation::get_use_case_for_model_access::GetUseCaseForModelAccessOutput,
@@ -22886,7 +23363,11 @@ impl PyGetUseCaseForModelAccessResponse {
     }
 }
 
-#[pyclass(name = "ListAdvancedPromptOptimizationJobsResponse", frozen)]
+#[pyclass(
+    name = "ListAdvancedPromptOptimizationJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListAdvancedPromptOptimizationJobsResponse {
     inner: aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsOutput,
 }
@@ -22948,7 +23429,11 @@ impl PyListAdvancedPromptOptimizationJobsResponse {
     }
 }
 
-#[pyclass(name = "ListAutomatedReasoningPoliciesResponse", frozen)]
+#[pyclass(
+    name = "ListAutomatedReasoningPoliciesResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListAutomatedReasoningPoliciesResponse {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesOutput,
 }
@@ -23001,7 +23486,11 @@ impl PyListAutomatedReasoningPoliciesResponse {
     }
 }
 
-#[pyclass(name = "ListAutomatedReasoningPolicyBuildWorkflowsResponse", frozen)]
+#[pyclass(
+    name = "ListAutomatedReasoningPolicyBuildWorkflowsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListAutomatedReasoningPolicyBuildWorkflowsResponse {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsOutput,
 }
@@ -23067,7 +23556,11 @@ impl PyListAutomatedReasoningPolicyBuildWorkflowsResponse {
     }
 }
 
-#[pyclass(name = "ListAutomatedReasoningPolicyTestCasesResponse", frozen)]
+#[pyclass(
+    name = "ListAutomatedReasoningPolicyTestCasesResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListAutomatedReasoningPolicyTestCasesResponse {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesOutput,
 }
@@ -23120,7 +23613,11 @@ impl PyListAutomatedReasoningPolicyTestCasesResponse {
     }
 }
 
-#[pyclass(name = "ListAutomatedReasoningPolicyTestResultsResponse", frozen)]
+#[pyclass(
+    name = "ListAutomatedReasoningPolicyTestResultsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListAutomatedReasoningPolicyTestResultsResponse {
     inner: aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsOutput,
 }
@@ -23173,7 +23670,11 @@ impl PyListAutomatedReasoningPolicyTestResultsResponse {
     }
 }
 
-#[pyclass(name = "ListCustomModelDeploymentsResponse", frozen)]
+#[pyclass(
+    name = "ListCustomModelDeploymentsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListCustomModelDeploymentsResponse {
     inner:
         aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsOutput,
@@ -23235,7 +23736,11 @@ impl PyListCustomModelDeploymentsResponse {
     }
 }
 
-#[pyclass(name = "ListCustomModelsResponse", frozen)]
+#[pyclass(
+    name = "ListCustomModelsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListCustomModelsResponse {
     inner: aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsOutput,
 }
@@ -23296,7 +23801,11 @@ impl PyListCustomModelsResponse {
     }
 }
 
-#[pyclass(name = "ListEnforcedGuardrailsConfigurationResponse", frozen)]
+#[pyclass(
+    name = "ListEnforcedGuardrailsConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListEnforcedGuardrailsConfigurationResponse {
     inner: aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationOutput,
 }
@@ -23350,7 +23859,11 @@ impl PyListEnforcedGuardrailsConfigurationResponse {
     }
 }
 
-#[pyclass(name = "ListEvaluationJobsResponse", frozen)]
+#[pyclass(
+    name = "ListEvaluationJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListEvaluationJobsResponse {
     inner: aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsOutput,
 }
@@ -23411,7 +23924,11 @@ impl PyListEvaluationJobsResponse {
     }
 }
 
-#[pyclass(name = "ListFoundationModelAgreementOffersResponse", frozen)]
+#[pyclass(
+    name = "ListFoundationModelAgreementOffersResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListFoundationModelAgreementOffersResponse {
     inner: aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersOutput,
 }
@@ -23456,7 +23973,11 @@ impl PyListFoundationModelAgreementOffersResponse {
     }
 }
 
-#[pyclass(name = "ListFoundationModelsResponse", frozen)]
+#[pyclass(
+    name = "ListFoundationModelsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListFoundationModelsResponse {
     inner: aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsOutput,
 }
@@ -23501,7 +24022,11 @@ impl PyListFoundationModelsResponse {
     }
 }
 
-#[pyclass(name = "ListGuardrailsResponse", frozen)]
+#[pyclass(
+    name = "ListGuardrailsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListGuardrailsResponse {
     inner: aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsOutput,
 }
@@ -23554,7 +24079,11 @@ impl PyListGuardrailsResponse {
     }
 }
 
-#[pyclass(name = "ListImportedModelsResponse", frozen)]
+#[pyclass(
+    name = "ListImportedModelsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListImportedModelsResponse {
     inner: aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsOutput,
 }
@@ -23615,7 +24144,11 @@ impl PyListImportedModelsResponse {
     }
 }
 
-#[pyclass(name = "ListInferenceProfilesResponse", frozen)]
+#[pyclass(
+    name = "ListInferenceProfilesResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListInferenceProfilesResponse {
     inner: aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesOutput,
 }
@@ -23676,7 +24209,11 @@ impl PyListInferenceProfilesResponse {
     }
 }
 
-#[pyclass(name = "ListMarketplaceModelEndpointsResponse", frozen)]
+#[pyclass(
+    name = "ListMarketplaceModelEndpointsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListMarketplaceModelEndpointsResponse {
     inner: aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsOutput,
 }
@@ -23737,7 +24274,11 @@ impl PyListMarketplaceModelEndpointsResponse {
     }
 }
 
-#[pyclass(name = "ListModelCopyJobsResponse", frozen)]
+#[pyclass(
+    name = "ListModelCopyJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListModelCopyJobsResponse {
     inner: aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsOutput,
 }
@@ -23798,7 +24339,11 @@ impl PyListModelCopyJobsResponse {
     }
 }
 
-#[pyclass(name = "ListModelCustomizationJobsResponse", frozen)]
+#[pyclass(
+    name = "ListModelCustomizationJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListModelCustomizationJobsResponse {
     inner:
         aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsOutput,
@@ -23860,7 +24405,11 @@ impl PyListModelCustomizationJobsResponse {
     }
 }
 
-#[pyclass(name = "ListModelImportJobsResponse", frozen)]
+#[pyclass(
+    name = "ListModelImportJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListModelImportJobsResponse {
     inner: aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsOutput,
 }
@@ -23921,7 +24470,11 @@ impl PyListModelImportJobsResponse {
     }
 }
 
-#[pyclass(name = "ListModelInvocationJobsResponse", frozen)]
+#[pyclass(
+    name = "ListModelInvocationJobsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListModelInvocationJobsResponse {
     inner: aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsOutput,
 }
@@ -23982,7 +24535,11 @@ impl PyListModelInvocationJobsResponse {
     }
 }
 
-#[pyclass(name = "ListPromptRoutersResponse", frozen)]
+#[pyclass(
+    name = "ListPromptRoutersResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListPromptRoutersResponse {
     inner: aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersOutput,
 }
@@ -24043,7 +24600,11 @@ impl PyListPromptRoutersResponse {
     }
 }
 
-#[pyclass(name = "ListProvisionedModelThroughputsResponse", frozen)]
+#[pyclass(
+    name = "ListProvisionedModelThroughputsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListProvisionedModelThroughputsResponse {
     inner: aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsOutput,
 }
@@ -24104,7 +24665,11 @@ impl PyListProvisionedModelThroughputsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -24149,7 +24714,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "PutAccountDataRetentionResponse", frozen)]
+#[pyclass(
+    name = "PutAccountDataRetentionResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPutAccountDataRetentionResponse {
     inner: aws_sdk_bedrock::operation::put_account_data_retention::PutAccountDataRetentionOutput,
 }
@@ -24186,7 +24755,11 @@ impl PyPutAccountDataRetentionResponse {
     }
 }
 
-#[pyclass(name = "PutEnforcedGuardrailConfigurationResponse", frozen)]
+#[pyclass(
+    name = "PutEnforcedGuardrailConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPutEnforcedGuardrailConfigurationResponse {
     inner: aws_sdk_bedrock::operation::put_enforced_guardrail_configuration::PutEnforcedGuardrailConfigurationOutput,
 }
@@ -24247,7 +24820,11 @@ impl PyPutEnforcedGuardrailConfigurationResponse {
     }
 }
 
-#[pyclass(name = "PutModelInvocationLoggingConfigurationResponse", frozen)]
+#[pyclass(
+    name = "PutModelInvocationLoggingConfigurationResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPutModelInvocationLoggingConfigurationResponse {
     inner: aws_sdk_bedrock::operation::put_model_invocation_logging_configuration::PutModelInvocationLoggingConfigurationOutput,
 }
@@ -24260,7 +24837,11 @@ impl PyPutModelInvocationLoggingConfigurationResponse {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_bedrock::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -24289,7 +24870,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "PutUseCaseForModelAccessResponse", frozen)]
+#[pyclass(
+    name = "PutUseCaseForModelAccessResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyPutUseCaseForModelAccessResponse {
     inner:
         aws_sdk_bedrock::operation::put_use_case_for_model_access::PutUseCaseForModelAccessOutput,
@@ -24303,7 +24888,11 @@ impl PyPutUseCaseForModelAccessResponse {
     }
 }
 
-#[pyclass(name = "RegisterMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "RegisterMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyRegisterMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointOutput,
 }
@@ -24338,7 +24927,11 @@ impl PyRegisterMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "StartAutomatedReasoningPolicyBuildWorkflowResponse", frozen)]
+#[pyclass(
+    name = "StartAutomatedReasoningPolicyBuildWorkflowResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStartAutomatedReasoningPolicyBuildWorkflowResponse {
     inner: aws_sdk_bedrock::operation::start_automated_reasoning_policy_build_workflow::StartAutomatedReasoningPolicyBuildWorkflowOutput,
 }
@@ -24367,7 +24960,11 @@ impl PyStartAutomatedReasoningPolicyBuildWorkflowResponse {
     }
 }
 
-#[pyclass(name = "StartAutomatedReasoningPolicyTestWorkflowResponse", frozen)]
+#[pyclass(
+    name = "StartAutomatedReasoningPolicyTestWorkflowResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStartAutomatedReasoningPolicyTestWorkflowResponse {
     inner: aws_sdk_bedrock::operation::start_automated_reasoning_policy_test_workflow::StartAutomatedReasoningPolicyTestWorkflowOutput,
 }
@@ -24388,7 +24985,11 @@ impl PyStartAutomatedReasoningPolicyTestWorkflowResponse {
     }
 }
 
-#[pyclass(name = "StopAdvancedPromptOptimizationJobResponse", frozen)]
+#[pyclass(
+    name = "StopAdvancedPromptOptimizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStopAdvancedPromptOptimizationJobResponse {
     inner: aws_sdk_bedrock::operation::stop_advanced_prompt_optimization_job::StopAdvancedPromptOptimizationJobOutput,
 }
@@ -24401,7 +25002,11 @@ impl PyStopAdvancedPromptOptimizationJobResponse {
     }
 }
 
-#[pyclass(name = "StopEvaluationJobResponse", frozen)]
+#[pyclass(
+    name = "StopEvaluationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStopEvaluationJobResponse {
     inner: aws_sdk_bedrock::operation::stop_evaluation_job::StopEvaluationJobOutput,
 }
@@ -24414,7 +25019,11 @@ impl PyStopEvaluationJobResponse {
     }
 }
 
-#[pyclass(name = "StopModelCustomizationJobResponse", frozen)]
+#[pyclass(
+    name = "StopModelCustomizationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStopModelCustomizationJobResponse {
     inner:
         aws_sdk_bedrock::operation::stop_model_customization_job::StopModelCustomizationJobOutput,
@@ -24428,7 +25037,11 @@ impl PyStopModelCustomizationJobResponse {
     }
 }
 
-#[pyclass(name = "StopModelInvocationJobResponse", frozen)]
+#[pyclass(
+    name = "StopModelInvocationJobResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyStopModelInvocationJobResponse {
     inner: aws_sdk_bedrock::operation::stop_model_invocation_job::StopModelInvocationJobOutput,
 }
@@ -24441,7 +25054,7 @@ impl PyStopModelInvocationJobResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(name = "TagResourceResponse", module = "rboto_bedrock._native", frozen)]
 struct PyTagResourceResponse {
     inner: aws_sdk_bedrock::operation::tag_resource::TagResourceOutput,
 }
@@ -24454,7 +25067,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_bedrock::operation::untag_resource::UntagResourceOutput,
 }
@@ -24467,7 +25084,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateAutomatedReasoningPolicyResponse", frozen)]
+#[pyclass(
+    name = "UpdateAutomatedReasoningPolicyResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateAutomatedReasoningPolicyResponse {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy::UpdateAutomatedReasoningPolicyOutput,
 }
@@ -24512,7 +25133,11 @@ impl PyUpdateAutomatedReasoningPolicyResponse {
     }
 }
 
-#[pyclass(name = "UpdateAutomatedReasoningPolicyAnnotationsResponse", frozen)]
+#[pyclass(
+    name = "UpdateAutomatedReasoningPolicyAnnotationsResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateAutomatedReasoningPolicyAnnotationsResponse {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy_annotations::UpdateAutomatedReasoningPolicyAnnotationsOutput,
 }
@@ -24557,7 +25182,11 @@ impl PyUpdateAutomatedReasoningPolicyAnnotationsResponse {
     }
 }
 
-#[pyclass(name = "UpdateAutomatedReasoningPolicyTestCaseResponse", frozen)]
+#[pyclass(
+    name = "UpdateAutomatedReasoningPolicyTestCaseResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateAutomatedReasoningPolicyTestCaseResponse {
     inner: aws_sdk_bedrock::operation::update_automated_reasoning_policy_test_case::UpdateAutomatedReasoningPolicyTestCaseOutput,
 }
@@ -24586,7 +25215,11 @@ impl PyUpdateAutomatedReasoningPolicyTestCaseResponse {
     }
 }
 
-#[pyclass(name = "UpdateCustomModelDeploymentResponse", frozen)]
+#[pyclass(
+    name = "UpdateCustomModelDeploymentResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateCustomModelDeploymentResponse {
     inner: aws_sdk_bedrock::operation::update_custom_model_deployment::UpdateCustomModelDeploymentOutput,
 }
@@ -24611,7 +25244,11 @@ impl PyUpdateCustomModelDeploymentResponse {
     }
 }
 
-#[pyclass(name = "UpdateGuardrailResponse", frozen)]
+#[pyclass(
+    name = "UpdateGuardrailResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateGuardrailResponse {
     inner: aws_sdk_bedrock::operation::update_guardrail::UpdateGuardrailOutput,
 }
@@ -24656,7 +25293,11 @@ impl PyUpdateGuardrailResponse {
     }
 }
 
-#[pyclass(name = "UpdateMarketplaceModelEndpointResponse", frozen)]
+#[pyclass(
+    name = "UpdateMarketplaceModelEndpointResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateMarketplaceModelEndpointResponse {
     inner: aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointOutput,
 }
@@ -24691,7 +25332,11 @@ impl PyUpdateMarketplaceModelEndpointResponse {
     }
 }
 
-#[pyclass(name = "UpdateProvisionedModelThroughputResponse", frozen)]
+#[pyclass(
+    name = "UpdateProvisionedModelThroughputResponse",
+    module = "rboto_bedrock._native",
+    frozen
+)]
 struct PyUpdateProvisionedModelThroughputResponse {
     inner: aws_sdk_bedrock::operation::update_provisioned_model_throughput::UpdateProvisionedModelThroughputOutput,
 }

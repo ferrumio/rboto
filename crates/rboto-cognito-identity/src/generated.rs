@@ -395,7 +395,11 @@ fn unprocessed_identity_id_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "CognitoIdentityProvider", frozen)]
+#[pyclass(
+    name = "CognitoIdentityProvider",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyCognitoIdentityProvider {
     inner: aws_sdk_cognitoidentity::types::CognitoIdentityProvider,
 }
@@ -437,7 +441,11 @@ impl PyCognitoIdentityProvider {
     }
 }
 
-#[pyclass(name = "Credentials", frozen)]
+#[pyclass(
+    name = "Credentials",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyCredentials {
     inner: aws_sdk_cognitoidentity::types::Credentials,
 }
@@ -489,7 +497,11 @@ impl PyCredentials {
     }
 }
 
-#[pyclass(name = "IdentityDescription", frozen)]
+#[pyclass(
+    name = "IdentityDescription",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyIdentityDescription {
     inner: aws_sdk_cognitoidentity::types::IdentityDescription,
 }
@@ -546,7 +558,11 @@ impl PyIdentityDescription {
     }
 }
 
-#[pyclass(name = "IdentityPoolShortDescription", frozen)]
+#[pyclass(
+    name = "IdentityPoolShortDescription",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyIdentityPoolShortDescription {
     inner: aws_sdk_cognitoidentity::types::IdentityPoolShortDescription,
 }
@@ -578,7 +594,11 @@ impl PyIdentityPoolShortDescription {
     }
 }
 
-#[pyclass(name = "MappingRule", frozen)]
+#[pyclass(
+    name = "MappingRule",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyMappingRule {
     inner: aws_sdk_cognitoidentity::types::MappingRule,
 }
@@ -614,7 +634,11 @@ impl PyMappingRule {
     }
 }
 
-#[pyclass(name = "RoleMapping", frozen)]
+#[pyclass(
+    name = "RoleMapping",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyRoleMapping {
     inner: aws_sdk_cognitoidentity::types::RoleMapping,
 }
@@ -658,7 +682,11 @@ impl PyRoleMapping {
     }
 }
 
-#[pyclass(name = "RulesConfigurationType", frozen)]
+#[pyclass(
+    name = "RulesConfigurationType",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyRulesConfigurationType {
     inner: aws_sdk_cognitoidentity::types::RulesConfigurationType,
 }
@@ -687,7 +715,11 @@ impl PyRulesConfigurationType {
     }
 }
 
-#[pyclass(name = "UnprocessedIdentityId", frozen)]
+#[pyclass(
+    name = "UnprocessedIdentityId",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyUnprocessedIdentityId {
     inner: aws_sdk_cognitoidentity::types::UnprocessedIdentityId,
 }
@@ -719,7 +751,11 @@ impl PyUnprocessedIdentityId {
     }
 }
 
-#[pyclass(name = "CreateIdentityPoolOutput", frozen)]
+#[pyclass(
+    name = "CreateIdentityPoolOutput",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyCreateIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolOutput,
 }
@@ -932,7 +968,11 @@ impl PyCreateIdentityPoolOutput {
     }
 }
 
-#[pyclass(name = "DeleteIdentitiesResponse", frozen)]
+#[pyclass(
+    name = "DeleteIdentitiesResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyDeleteIdentitiesResponse {
     inner: aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesOutput,
 }
@@ -977,7 +1017,11 @@ impl PyDeleteIdentitiesResponse {
     }
 }
 
-#[pyclass(name = "DescribeIdentityOutput", frozen)]
+#[pyclass(
+    name = "DescribeIdentityOutput",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyDescribeIdentityOutput {
     inner: aws_sdk_cognitoidentity::operation::describe_identity::DescribeIdentityOutput,
 }
@@ -1064,7 +1108,11 @@ impl PyDescribeIdentityOutput {
     }
 }
 
-#[pyclass(name = "DescribeIdentityPoolOutput", frozen)]
+#[pyclass(
+    name = "DescribeIdentityPoolOutput",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyDescribeIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolOutput,
 }
@@ -1277,7 +1325,11 @@ impl PyDescribeIdentityPoolOutput {
     }
 }
 
-#[pyclass(name = "GetCredentialsForIdentityResponse", frozen)]
+#[pyclass(
+    name = "GetCredentialsForIdentityResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetCredentialsForIdentityResponse {
     inner: aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityOutput,
 }
@@ -1328,7 +1380,11 @@ impl PyGetCredentialsForIdentityResponse {
     }
 }
 
-#[pyclass(name = "GetIdResponse", frozen)]
+#[pyclass(
+    name = "GetIdResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetIdResponse {
     inner: aws_sdk_cognitoidentity::operation::get_id::GetIdOutput,
 }
@@ -1357,7 +1413,11 @@ impl PyGetIdResponse {
     }
 }
 
-#[pyclass(name = "GetIdentityPoolRolesResponse", frozen)]
+#[pyclass(
+    name = "GetIdentityPoolRolesResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetIdentityPoolRolesResponse {
     inner: aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesOutput,
 }
@@ -1448,7 +1508,11 @@ impl PyGetIdentityPoolRolesResponse {
     }
 }
 
-#[pyclass(name = "GetOpenIdTokenResponse", frozen)]
+#[pyclass(
+    name = "GetOpenIdTokenResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetOpenIdTokenResponse {
     inner: aws_sdk_cognitoidentity::operation::get_open_id_token::GetOpenIdTokenOutput,
 }
@@ -1493,7 +1557,11 @@ impl PyGetOpenIdTokenResponse {
     }
 }
 
-#[pyclass(name = "GetOpenIdTokenForDeveloperIdentityResponse", frozen)]
+#[pyclass(
+    name = "GetOpenIdTokenForDeveloperIdentityResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetOpenIdTokenForDeveloperIdentityResponse {
     inner: aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityOutput,
 }
@@ -1538,7 +1606,11 @@ impl PyGetOpenIdTokenForDeveloperIdentityResponse {
     }
 }
 
-#[pyclass(name = "GetPrincipalTagAttributeMapResponse", frozen)]
+#[pyclass(
+    name = "GetPrincipalTagAttributeMapResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyGetPrincipalTagAttributeMapResponse {
     inner: aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapOutput,
 }
@@ -1627,7 +1699,11 @@ impl PyGetPrincipalTagAttributeMapResponse {
     }
 }
 
-#[pyclass(name = "ListIdentitiesResponse", frozen)]
+#[pyclass(
+    name = "ListIdentitiesResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyListIdentitiesResponse {
     inner: aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesOutput,
 }
@@ -1704,7 +1780,11 @@ impl PyListIdentitiesResponse {
     }
 }
 
-#[pyclass(name = "ListIdentityPoolsResponse", frozen)]
+#[pyclass(
+    name = "ListIdentityPoolsResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyListIdentityPoolsResponse {
     inner: aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsOutput,
 }
@@ -1765,7 +1845,11 @@ impl PyListIdentityPoolsResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_cognitoidentity::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -1806,7 +1890,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "LookupDeveloperIdentityResponse", frozen)]
+#[pyclass(
+    name = "LookupDeveloperIdentityResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyLookupDeveloperIdentityResponse {
     inner: aws_sdk_cognitoidentity::operation::lookup_developer_identity::LookupDeveloperIdentityOutput,
 }
@@ -1877,7 +1965,11 @@ impl PyLookupDeveloperIdentityResponse {
     }
 }
 
-#[pyclass(name = "MergeDeveloperIdentitiesResponse", frozen)]
+#[pyclass(
+    name = "MergeDeveloperIdentitiesResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyMergeDeveloperIdentitiesResponse {
     inner: aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesOutput,
 }
@@ -1906,7 +1998,11 @@ impl PyMergeDeveloperIdentitiesResponse {
     }
 }
 
-#[pyclass(name = "SetPrincipalTagAttributeMapResponse", frozen)]
+#[pyclass(
+    name = "SetPrincipalTagAttributeMapResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PySetPrincipalTagAttributeMapResponse {
     inner: aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapOutput,
 }
@@ -1995,7 +2091,11 @@ impl PySetPrincipalTagAttributeMapResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_cognitoidentity::operation::tag_resource::TagResourceOutput,
 }
@@ -2008,7 +2108,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_cognitoidentity::operation::untag_resource::UntagResourceOutput,
 }
@@ -2021,7 +2125,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateIdentityPoolOutput", frozen)]
+#[pyclass(
+    name = "UpdateIdentityPoolOutput",
+    module = "rboto_cognito_identity._native",
+    frozen
+)]
 struct PyUpdateIdentityPoolOutput {
     inner: aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolOutput,
 }

@@ -15376,7 +15376,7 @@ fn validation_finding_scope_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AccountSharingInfo", frozen)]
+#[pyclass(name = "AccountSharingInfo", module = "rboto_ssm._native", frozen)]
 struct PyAccountSharingInfo {
     inner: aws_sdk_ssm::types::AccountSharingInfo,
 }
@@ -15408,7 +15408,7 @@ impl PyAccountSharingInfo {
     }
 }
 
-#[pyclass(name = "Activation", frozen)]
+#[pyclass(name = "Activation", module = "rboto_ssm._native", frozen)]
 struct PyActivation {
     inner: aws_sdk_ssm::types::Activation,
 }
@@ -15527,7 +15527,7 @@ impl PyActivation {
     }
 }
 
-#[pyclass(name = "Alarm", frozen)]
+#[pyclass(name = "Alarm", module = "rboto_ssm._native", frozen)]
 struct PyAlarm {
     inner: aws_sdk_ssm::types::Alarm,
 }
@@ -15545,7 +15545,7 @@ impl PyAlarm {
     }
 }
 
-#[pyclass(name = "AlarmConfiguration", frozen)]
+#[pyclass(name = "AlarmConfiguration", module = "rboto_ssm._native", frozen)]
 struct PyAlarmConfiguration {
     inner: aws_sdk_ssm::types::AlarmConfiguration,
 }
@@ -15582,7 +15582,7 @@ impl PyAlarmConfiguration {
     }
 }
 
-#[pyclass(name = "AlarmStateInformation", frozen)]
+#[pyclass(name = "AlarmStateInformation", module = "rboto_ssm._native", frozen)]
 struct PyAlarmStateInformation {
     inner: aws_sdk_ssm::types::AlarmStateInformation,
 }
@@ -15606,7 +15606,7 @@ impl PyAlarmStateInformation {
     }
 }
 
-#[pyclass(name = "Association", frozen)]
+#[pyclass(name = "Association", module = "rboto_ssm._native", frozen)]
 struct PyAssociation {
     inner: aws_sdk_ssm::types::Association,
 }
@@ -15781,7 +15781,7 @@ impl PyAssociation {
     }
 }
 
-#[pyclass(name = "AssociationDescription", frozen)]
+#[pyclass(name = "AssociationDescription", module = "rboto_ssm._native", frozen)]
 struct PyAssociationDescription {
     inner: aws_sdk_ssm::types::AssociationDescription,
 }
@@ -16180,7 +16180,7 @@ impl PyAssociationDescription {
     }
 }
 
-#[pyclass(name = "AssociationExecution", frozen)]
+#[pyclass(name = "AssociationExecution", module = "rboto_ssm._native", frozen)]
 struct PyAssociationExecution {
     inner: aws_sdk_ssm::types::AssociationExecution,
 }
@@ -16309,7 +16309,11 @@ impl PyAssociationExecution {
     }
 }
 
-#[pyclass(name = "AssociationExecutionTarget", frozen)]
+#[pyclass(
+    name = "AssociationExecutionTarget",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyAssociationExecutionTarget {
     inner: aws_sdk_ssm::types::AssociationExecutionTarget,
 }
@@ -16417,7 +16421,7 @@ impl PyAssociationExecutionTarget {
     }
 }
 
-#[pyclass(name = "AssociationOverview", frozen)]
+#[pyclass(name = "AssociationOverview", module = "rboto_ssm._native", frozen)]
 struct PyAssociationOverview {
     inner: aws_sdk_ssm::types::AssociationOverview,
 }
@@ -16465,7 +16469,7 @@ impl PyAssociationOverview {
     }
 }
 
-#[pyclass(name = "AssociationStatus", frozen)]
+#[pyclass(name = "AssociationStatus", module = "rboto_ssm._native", frozen)]
 struct PyAssociationStatus {
     inner: aws_sdk_ssm::types::AssociationStatus,
 }
@@ -16505,7 +16509,7 @@ impl PyAssociationStatus {
     }
 }
 
-#[pyclass(name = "AssociationVersionInfo", frozen)]
+#[pyclass(name = "AssociationVersionInfo", module = "rboto_ssm._native", frozen)]
 struct PyAssociationVersionInfo {
     inner: aws_sdk_ssm::types::AssociationVersionInfo,
 }
@@ -16785,7 +16789,7 @@ impl PyAssociationVersionInfo {
     }
 }
 
-#[pyclass(name = "AttachmentContent", frozen)]
+#[pyclass(name = "AttachmentContent", module = "rboto_ssm._native", frozen)]
 struct PyAttachmentContent {
     inner: aws_sdk_ssm::types::AttachmentContent,
 }
@@ -16843,7 +16847,7 @@ impl PyAttachmentContent {
     }
 }
 
-#[pyclass(name = "AttachmentInformation", frozen)]
+#[pyclass(name = "AttachmentInformation", module = "rboto_ssm._native", frozen)]
 struct PyAttachmentInformation {
     inner: aws_sdk_ssm::types::AttachmentInformation,
 }
@@ -16865,7 +16869,7 @@ impl PyAttachmentInformation {
     }
 }
 
-#[pyclass(name = "AutomationExecution", frozen)]
+#[pyclass(name = "AutomationExecution", module = "rboto_ssm._native", frozen)]
 struct PyAutomationExecution {
     inner: aws_sdk_ssm::types::AutomationExecution,
 }
@@ -17357,7 +17361,11 @@ impl PyAutomationExecution {
     }
 }
 
-#[pyclass(name = "AutomationExecutionMetadata", frozen)]
+#[pyclass(
+    name = "AutomationExecutionMetadata",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyAutomationExecutionMetadata {
     inner: aws_sdk_ssm::types::AutomationExecutionMetadata,
 }
@@ -17761,7 +17769,7 @@ impl PyAutomationExecutionMetadata {
     }
 }
 
-#[pyclass(name = "CloudConnectorSummary", frozen)]
+#[pyclass(name = "CloudConnectorSummary", module = "rboto_ssm._native", frozen)]
 struct PyCloudConnectorSummary {
     inner: aws_sdk_ssm::types::CloudConnectorSummary,
 }
@@ -17833,7 +17841,7 @@ impl PyCloudConnectorSummary {
     }
 }
 
-#[pyclass(name = "CloudWatchOutputConfig", frozen)]
+#[pyclass(name = "CloudWatchOutputConfig", module = "rboto_ssm._native", frozen)]
 struct PyCloudWatchOutputConfig {
     inner: aws_sdk_ssm::types::CloudWatchOutputConfig,
 }
@@ -17863,7 +17871,7 @@ impl PyCloudWatchOutputConfig {
     }
 }
 
-#[pyclass(name = "Command", frozen)]
+#[pyclass(name = "Command", module = "rboto_ssm._native", frozen)]
 struct PyCommand {
     inner: aws_sdk_ssm::types::Command,
 }
@@ -18177,7 +18185,7 @@ impl PyCommand {
     }
 }
 
-#[pyclass(name = "CommandInvocation", frozen)]
+#[pyclass(name = "CommandInvocation", module = "rboto_ssm._native", frozen)]
 struct PyCommandInvocation {
     inner: aws_sdk_ssm::types::CommandInvocation,
 }
@@ -18372,7 +18380,7 @@ impl PyCommandInvocation {
     }
 }
 
-#[pyclass(name = "CommandPlugin", frozen)]
+#[pyclass(name = "CommandPlugin", module = "rboto_ssm._native", frozen)]
 struct PyCommandPlugin {
     inner: aws_sdk_ssm::types::CommandPlugin,
 }
@@ -18500,7 +18508,11 @@ impl PyCommandPlugin {
     }
 }
 
-#[pyclass(name = "ComplianceExecutionSummary", frozen)]
+#[pyclass(
+    name = "ComplianceExecutionSummary",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyComplianceExecutionSummary {
     inner: aws_sdk_ssm::types::ComplianceExecutionSummary,
 }
@@ -18538,7 +18550,7 @@ impl PyComplianceExecutionSummary {
     }
 }
 
-#[pyclass(name = "ComplianceItem", frozen)]
+#[pyclass(name = "ComplianceItem", module = "rboto_ssm._native", frozen)]
 struct PyComplianceItem {
     inner: aws_sdk_ssm::types::ComplianceItem,
 }
@@ -18652,7 +18664,7 @@ impl PyComplianceItem {
     }
 }
 
-#[pyclass(name = "ComplianceSummaryItem", frozen)]
+#[pyclass(name = "ComplianceSummaryItem", module = "rboto_ssm._native", frozen)]
 struct PyComplianceSummaryItem {
     inner: aws_sdk_ssm::types::ComplianceSummaryItem,
 }
@@ -18706,7 +18718,7 @@ impl PyComplianceSummaryItem {
     }
 }
 
-#[pyclass(name = "CompliantSummary", frozen)]
+#[pyclass(name = "CompliantSummary", module = "rboto_ssm._native", frozen)]
 struct PyCompliantSummary {
     inner: aws_sdk_ssm::types::CompliantSummary,
 }
@@ -18740,7 +18752,11 @@ impl PyCompliantSummary {
     }
 }
 
-#[pyclass(name = "CreateAssociationBatchRequestEntry", frozen)]
+#[pyclass(
+    name = "CreateAssociationBatchRequestEntry",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreateAssociationBatchRequestEntry {
     inner: aws_sdk_ssm::types::CreateAssociationBatchRequestEntry,
 }
@@ -19012,7 +19028,7 @@ impl PyCreateAssociationBatchRequestEntry {
     }
 }
 
-#[pyclass(name = "Credentials", frozen)]
+#[pyclass(name = "Credentials", module = "rboto_ssm._native", frozen)]
 struct PyCredentials {
     inner: aws_sdk_ssm::types::Credentials,
 }
@@ -19048,7 +19064,11 @@ impl PyCredentials {
     }
 }
 
-#[pyclass(name = "DocumentDefaultVersionDescription", frozen)]
+#[pyclass(
+    name = "DocumentDefaultVersionDescription",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDocumentDefaultVersionDescription {
     inner: aws_sdk_ssm::types::DocumentDefaultVersionDescription,
 }
@@ -19090,7 +19110,7 @@ impl PyDocumentDefaultVersionDescription {
     }
 }
 
-#[pyclass(name = "DocumentDescription", frozen)]
+#[pyclass(name = "DocumentDescription", module = "rboto_ssm._native", frozen)]
 struct PyDocumentDescription {
     inner: aws_sdk_ssm::types::DocumentDescription,
 }
@@ -19472,7 +19492,7 @@ impl PyDocumentDescription {
     }
 }
 
-#[pyclass(name = "DocumentIdentifier", frozen)]
+#[pyclass(name = "DocumentIdentifier", module = "rboto_ssm._native", frozen)]
 struct PyDocumentIdentifier {
     inner: aws_sdk_ssm::types::DocumentIdentifier,
 }
@@ -19661,7 +19681,11 @@ impl PyDocumentIdentifier {
     }
 }
 
-#[pyclass(name = "DocumentMetadataResponseInfo", frozen)]
+#[pyclass(
+    name = "DocumentMetadataResponseInfo",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDocumentMetadataResponseInfo {
     inner: aws_sdk_ssm::types::DocumentMetadataResponseInfo,
 }
@@ -19694,7 +19718,7 @@ impl PyDocumentMetadataResponseInfo {
     }
 }
 
-#[pyclass(name = "DocumentParameter", frozen)]
+#[pyclass(name = "DocumentParameter", module = "rboto_ssm._native", frozen)]
 struct PyDocumentParameter {
     inner: aws_sdk_ssm::types::DocumentParameter,
 }
@@ -19746,7 +19770,7 @@ impl PyDocumentParameter {
     }
 }
 
-#[pyclass(name = "DocumentRequires", frozen)]
+#[pyclass(name = "DocumentRequires", module = "rboto_ssm._native", frozen)]
 struct PyDocumentRequires {
     inner: aws_sdk_ssm::types::DocumentRequires,
 }
@@ -19794,7 +19818,11 @@ impl PyDocumentRequires {
     }
 }
 
-#[pyclass(name = "DocumentReviewCommentSource", frozen)]
+#[pyclass(
+    name = "DocumentReviewCommentSource",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDocumentReviewCommentSource {
     inner: aws_sdk_ssm::types::DocumentReviewCommentSource,
 }
@@ -19826,7 +19854,11 @@ impl PyDocumentReviewCommentSource {
     }
 }
 
-#[pyclass(name = "DocumentReviewerResponseSource", frozen)]
+#[pyclass(
+    name = "DocumentReviewerResponseSource",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDocumentReviewerResponseSource {
     inner: aws_sdk_ssm::types::DocumentReviewerResponseSource,
 }
@@ -19899,7 +19931,7 @@ impl PyDocumentReviewerResponseSource {
     }
 }
 
-#[pyclass(name = "DocumentVersionInfo", frozen)]
+#[pyclass(name = "DocumentVersionInfo", module = "rboto_ssm._native", frozen)]
 struct PyDocumentVersionInfo {
     inner: aws_sdk_ssm::types::DocumentVersionInfo,
 }
@@ -20009,7 +20041,7 @@ impl PyDocumentVersionInfo {
     }
 }
 
-#[pyclass(name = "EffectivePatch", frozen)]
+#[pyclass(name = "EffectivePatch", module = "rboto_ssm._native", frozen)]
 struct PyEffectivePatch {
     inner: aws_sdk_ssm::types::EffectivePatch,
 }
@@ -20053,7 +20085,7 @@ impl PyEffectivePatch {
     }
 }
 
-#[pyclass(name = "FailedCreateAssociation", frozen)]
+#[pyclass(name = "FailedCreateAssociation", module = "rboto_ssm._native", frozen)]
 struct PyFailedCreateAssociation {
     inner: aws_sdk_ssm::types::FailedCreateAssociation,
 }
@@ -20101,7 +20133,7 @@ impl PyFailedCreateAssociation {
     }
 }
 
-#[pyclass(name = "FailureDetails", frozen)]
+#[pyclass(name = "FailureDetails", module = "rboto_ssm._native", frozen)]
 struct PyFailureDetails {
     inner: aws_sdk_ssm::types::FailureDetails,
 }
@@ -20154,7 +20186,11 @@ impl PyFailureDetails {
     }
 }
 
-#[pyclass(name = "GetResourcePoliciesResponseEntry", frozen)]
+#[pyclass(
+    name = "GetResourcePoliciesResponseEntry",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetResourcePoliciesResponseEntry {
     inner: aws_sdk_ssm::types::GetResourcePoliciesResponseEntry,
 }
@@ -20196,7 +20232,11 @@ impl PyGetResourcePoliciesResponseEntry {
     }
 }
 
-#[pyclass(name = "InstanceAggregatedAssociationOverview", frozen)]
+#[pyclass(
+    name = "InstanceAggregatedAssociationOverview",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInstanceAggregatedAssociationOverview {
     inner: aws_sdk_ssm::types::InstanceAggregatedAssociationOverview,
 }
@@ -20234,7 +20274,7 @@ impl PyInstanceAggregatedAssociationOverview {
     }
 }
 
-#[pyclass(name = "InstanceAssociation", frozen)]
+#[pyclass(name = "InstanceAssociation", module = "rboto_ssm._native", frozen)]
 struct PyInstanceAssociation {
     inner: aws_sdk_ssm::types::InstanceAssociation,
 }
@@ -20286,7 +20326,11 @@ impl PyInstanceAssociation {
     }
 }
 
-#[pyclass(name = "InstanceAssociationOutputLocation", frozen)]
+#[pyclass(
+    name = "InstanceAssociationOutputLocation",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInstanceAssociationOutputLocation {
     inner: aws_sdk_ssm::types::InstanceAssociationOutputLocation,
 }
@@ -20314,7 +20358,11 @@ impl PyInstanceAssociationOutputLocation {
     }
 }
 
-#[pyclass(name = "InstanceAssociationOutputUrl", frozen)]
+#[pyclass(
+    name = "InstanceAssociationOutputUrl",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInstanceAssociationOutputUrl {
     inner: aws_sdk_ssm::types::InstanceAssociationOutputUrl,
 }
@@ -20342,7 +20390,11 @@ impl PyInstanceAssociationOutputUrl {
     }
 }
 
-#[pyclass(name = "InstanceAssociationStatusInfo", frozen)]
+#[pyclass(
+    name = "InstanceAssociationStatusInfo",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInstanceAssociationStatusInfo {
     inner: aws_sdk_ssm::types::InstanceAssociationStatusInfo,
 }
@@ -20480,7 +20532,7 @@ impl PyInstanceAssociationStatusInfo {
     }
 }
 
-#[pyclass(name = "InstanceInformation", frozen)]
+#[pyclass(name = "InstanceInformation", module = "rboto_ssm._native", frozen)]
 struct PyInstanceInformation {
     inner: aws_sdk_ssm::types::InstanceInformation,
 }
@@ -20718,7 +20770,7 @@ impl PyInstanceInformation {
     }
 }
 
-#[pyclass(name = "InstancePatchState", frozen)]
+#[pyclass(name = "InstancePatchState", module = "rboto_ssm._native", frozen)]
 struct PyInstancePatchState {
     inner: aws_sdk_ssm::types::InstancePatchState,
 }
@@ -20924,7 +20976,7 @@ impl PyInstancePatchState {
     }
 }
 
-#[pyclass(name = "InstanceProperty", frozen)]
+#[pyclass(name = "InstanceProperty", module = "rboto_ssm._native", frozen)]
 struct PyInstanceProperty {
     inner: aws_sdk_ssm::types::InstanceProperty,
 }
@@ -21222,7 +21274,11 @@ impl PyInstanceProperty {
     }
 }
 
-#[pyclass(name = "InventoryDeletionStatusItem", frozen)]
+#[pyclass(
+    name = "InventoryDeletionStatusItem",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInventoryDeletionStatusItem {
     inner: aws_sdk_ssm::types::InventoryDeletionStatusItem,
 }
@@ -21310,7 +21366,11 @@ impl PyInventoryDeletionStatusItem {
     }
 }
 
-#[pyclass(name = "InventoryDeletionSummary", frozen)]
+#[pyclass(
+    name = "InventoryDeletionSummary",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInventoryDeletionSummary {
     inner: aws_sdk_ssm::types::InventoryDeletionSummary,
 }
@@ -21355,7 +21415,11 @@ impl PyInventoryDeletionSummary {
     }
 }
 
-#[pyclass(name = "InventoryDeletionSummaryItem", frozen)]
+#[pyclass(
+    name = "InventoryDeletionSummaryItem",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyInventoryDeletionSummaryItem {
     inner: aws_sdk_ssm::types::InventoryDeletionSummaryItem,
 }
@@ -21389,7 +21453,7 @@ impl PyInventoryDeletionSummaryItem {
     }
 }
 
-#[pyclass(name = "InventoryItemAttribute", frozen)]
+#[pyclass(name = "InventoryItemAttribute", module = "rboto_ssm._native", frozen)]
 struct PyInventoryItemAttribute {
     inner: aws_sdk_ssm::types::InventoryItemAttribute,
 }
@@ -21413,7 +21477,7 @@ impl PyInventoryItemAttribute {
     }
 }
 
-#[pyclass(name = "InventoryItemSchema", frozen)]
+#[pyclass(name = "InventoryItemSchema", module = "rboto_ssm._native", frozen)]
 struct PyInventoryItemSchema {
     inner: aws_sdk_ssm::types::InventoryItemSchema,
 }
@@ -21468,7 +21532,7 @@ impl PyInventoryItemSchema {
     }
 }
 
-#[pyclass(name = "InventoryResultEntity", frozen)]
+#[pyclass(name = "InventoryResultEntity", module = "rboto_ssm._native", frozen)]
 struct PyInventoryResultEntity {
     inner: aws_sdk_ssm::types::InventoryResultEntity,
 }
@@ -21512,7 +21576,7 @@ impl PyInventoryResultEntity {
     }
 }
 
-#[pyclass(name = "InventoryResultItem", frozen)]
+#[pyclass(name = "InventoryResultItem", module = "rboto_ssm._native", frozen)]
 struct PyInventoryResultItem {
     inner: aws_sdk_ssm::types::InventoryResultItem,
 }
@@ -21573,7 +21637,7 @@ impl PyInventoryResultItem {
     }
 }
 
-#[pyclass(name = "LoggingInfo", frozen)]
+#[pyclass(name = "LoggingInfo", module = "rboto_ssm._native", frozen)]
 struct PyLoggingInfo {
     inner: aws_sdk_ssm::types::LoggingInfo,
 }
@@ -21607,7 +21671,11 @@ impl PyLoggingInfo {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowAutomationParameters", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowAutomationParameters",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowAutomationParameters {
     inner: aws_sdk_ssm::types::MaintenanceWindowAutomationParameters,
 }
@@ -21650,7 +21718,11 @@ impl PyMaintenanceWindowAutomationParameters {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowExecution", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowExecution",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowExecution {
     inner: aws_sdk_ssm::types::MaintenanceWindowExecution,
 }
@@ -21722,7 +21794,11 @@ impl PyMaintenanceWindowExecution {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowExecutionTaskIdentity", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowExecutionTaskIdentity",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowExecutionTaskIdentity {
     inner: aws_sdk_ssm::types::MaintenanceWindowExecutionTaskIdentity,
 }
@@ -21851,7 +21927,11 @@ impl PyMaintenanceWindowExecutionTaskIdentity {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowExecutionTaskInvocationIdentity", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowExecutionTaskInvocationIdentity",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowExecutionTaskInvocationIdentity {
     inner: aws_sdk_ssm::types::MaintenanceWindowExecutionTaskInvocationIdentity,
 }
@@ -21983,7 +22063,11 @@ impl PyMaintenanceWindowExecutionTaskInvocationIdentity {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowIdentity", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowIdentity",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowIdentity {
     inner: aws_sdk_ssm::types::MaintenanceWindowIdentity,
 }
@@ -22107,7 +22191,11 @@ impl PyMaintenanceWindowIdentity {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowIdentityForTarget", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowIdentityForTarget",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowIdentityForTarget {
     inner: aws_sdk_ssm::types::MaintenanceWindowIdentityForTarget,
 }
@@ -22139,7 +22227,11 @@ impl PyMaintenanceWindowIdentityForTarget {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowLambdaParameters", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowLambdaParameters",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowLambdaParameters {
     inner: aws_sdk_ssm::types::MaintenanceWindowLambdaParameters,
 }
@@ -22181,7 +22273,11 @@ impl PyMaintenanceWindowLambdaParameters {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowRunCommandParameters", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowRunCommandParameters",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowRunCommandParameters {
     inner: aws_sdk_ssm::types::MaintenanceWindowRunCommandParameters,
 }
@@ -22326,7 +22422,11 @@ impl PyMaintenanceWindowRunCommandParameters {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowStepFunctionsParameters", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowStepFunctionsParameters",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowStepFunctionsParameters {
     inner: aws_sdk_ssm::types::MaintenanceWindowStepFunctionsParameters,
 }
@@ -22358,7 +22458,7 @@ impl PyMaintenanceWindowStepFunctionsParameters {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowTarget", frozen)]
+#[pyclass(name = "MaintenanceWindowTarget", module = "rboto_ssm._native", frozen)]
 struct PyMaintenanceWindowTarget {
     inner: aws_sdk_ssm::types::MaintenanceWindowTarget,
 }
@@ -22451,7 +22551,7 @@ impl PyMaintenanceWindowTarget {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowTask", frozen)]
+#[pyclass(name = "MaintenanceWindowTask", module = "rboto_ssm._native", frozen)]
 struct PyMaintenanceWindowTask {
     inner: aws_sdk_ssm::types::MaintenanceWindowTask,
 }
@@ -22644,7 +22744,11 @@ impl PyMaintenanceWindowTask {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowTaskInvocationParameters", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowTaskInvocationParameters",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowTaskInvocationParameters {
     inner: aws_sdk_ssm::types::MaintenanceWindowTaskInvocationParameters,
 }
@@ -22720,7 +22824,11 @@ impl PyMaintenanceWindowTaskInvocationParameters {
     }
 }
 
-#[pyclass(name = "MaintenanceWindowTaskParameterValueExpression", frozen)]
+#[pyclass(
+    name = "MaintenanceWindowTaskParameterValueExpression",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyMaintenanceWindowTaskParameterValueExpression {
     inner: aws_sdk_ssm::types::MaintenanceWindowTaskParameterValueExpression,
 }
@@ -22747,7 +22855,7 @@ impl PyMaintenanceWindowTaskParameterValueExpression {
     }
 }
 
-#[pyclass(name = "MetadataValue", frozen)]
+#[pyclass(name = "MetadataValue", module = "rboto_ssm._native", frozen)]
 struct PyMetadataValue {
     inner: aws_sdk_ssm::types::MetadataValue,
 }
@@ -22769,7 +22877,7 @@ impl PyMetadataValue {
     }
 }
 
-#[pyclass(name = "Node", frozen)]
+#[pyclass(name = "Node", module = "rboto_ssm._native", frozen)]
 struct PyNode {
     inner: aws_sdk_ssm::types::Node,
 }
@@ -22837,7 +22945,7 @@ impl PyNode {
     }
 }
 
-#[pyclass(name = "NodeOwnerInfo", frozen)]
+#[pyclass(name = "NodeOwnerInfo", module = "rboto_ssm._native", frozen)]
 struct PyNodeOwnerInfo {
     inner: aws_sdk_ssm::types::NodeOwnerInfo,
 }
@@ -22879,7 +22987,7 @@ impl PyNodeOwnerInfo {
     }
 }
 
-#[pyclass(name = "NonCompliantSummary", frozen)]
+#[pyclass(name = "NonCompliantSummary", module = "rboto_ssm._native", frozen)]
 struct PyNonCompliantSummary {
     inner: aws_sdk_ssm::types::NonCompliantSummary,
 }
@@ -22915,7 +23023,7 @@ impl PyNonCompliantSummary {
     }
 }
 
-#[pyclass(name = "NotificationConfig", frozen)]
+#[pyclass(name = "NotificationConfig", module = "rboto_ssm._native", frozen)]
 struct PyNotificationConfig {
     inner: aws_sdk_ssm::types::NotificationConfig,
 }
@@ -22962,7 +23070,7 @@ impl PyNotificationConfig {
     }
 }
 
-#[pyclass(name = "OpsEntity", frozen)]
+#[pyclass(name = "OpsEntity", module = "rboto_ssm._native", frozen)]
 struct PyOpsEntity {
     inner: aws_sdk_ssm::types::OpsEntity,
 }
@@ -23006,7 +23114,7 @@ impl PyOpsEntity {
     }
 }
 
-#[pyclass(name = "OpsEntityItem", frozen)]
+#[pyclass(name = "OpsEntityItem", module = "rboto_ssm._native", frozen)]
 struct PyOpsEntityItem {
     inner: aws_sdk_ssm::types::OpsEntityItem,
 }
@@ -23049,7 +23157,7 @@ impl PyOpsEntityItem {
     }
 }
 
-#[pyclass(name = "OpsItem", frozen)]
+#[pyclass(name = "OpsItem", module = "rboto_ssm._native", frozen)]
 struct PyOpsItem {
     inner: aws_sdk_ssm::types::OpsItem,
 }
@@ -23315,7 +23423,7 @@ impl PyOpsItem {
     }
 }
 
-#[pyclass(name = "OpsItemDataValue", frozen)]
+#[pyclass(name = "OpsItemDataValue", module = "rboto_ssm._native", frozen)]
 struct PyOpsItemDataValue {
     inner: aws_sdk_ssm::types::OpsItemDataValue,
 }
@@ -23347,7 +23455,7 @@ impl PyOpsItemDataValue {
     }
 }
 
-#[pyclass(name = "OpsItemEventSummary", frozen)]
+#[pyclass(name = "OpsItemEventSummary", module = "rboto_ssm._native", frozen)]
 struct PyOpsItemEventSummary {
     inner: aws_sdk_ssm::types::OpsItemEventSummary,
 }
@@ -23435,7 +23543,7 @@ impl PyOpsItemEventSummary {
     }
 }
 
-#[pyclass(name = "OpsItemIdentity", frozen)]
+#[pyclass(name = "OpsItemIdentity", module = "rboto_ssm._native", frozen)]
 struct PyOpsItemIdentity {
     inner: aws_sdk_ssm::types::OpsItemIdentity,
 }
@@ -23457,7 +23565,7 @@ impl PyOpsItemIdentity {
     }
 }
 
-#[pyclass(name = "OpsItemNotification", frozen)]
+#[pyclass(name = "OpsItemNotification", module = "rboto_ssm._native", frozen)]
 struct PyOpsItemNotification {
     inner: aws_sdk_ssm::types::OpsItemNotification,
 }
@@ -23479,7 +23587,11 @@ impl PyOpsItemNotification {
     }
 }
 
-#[pyclass(name = "OpsItemRelatedItemSummary", frozen)]
+#[pyclass(
+    name = "OpsItemRelatedItemSummary",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyOpsItemRelatedItemSummary {
     inner: aws_sdk_ssm::types::OpsItemRelatedItemSummary,
 }
@@ -23593,7 +23705,7 @@ impl PyOpsItemRelatedItemSummary {
     }
 }
 
-#[pyclass(name = "OpsItemSummary", frozen)]
+#[pyclass(name = "OpsItemSummary", module = "rboto_ssm._native", frozen)]
 struct PyOpsItemSummary {
     inner: aws_sdk_ssm::types::OpsItemSummary,
 }
@@ -23787,7 +23899,7 @@ impl PyOpsItemSummary {
     }
 }
 
-#[pyclass(name = "OpsMetadata", frozen)]
+#[pyclass(name = "OpsMetadata", module = "rboto_ssm._native", frozen)]
 struct PyOpsMetadata {
     inner: aws_sdk_ssm::types::OpsMetadata,
 }
@@ -23849,7 +23961,7 @@ impl PyOpsMetadata {
     }
 }
 
-#[pyclass(name = "OutputSource", frozen)]
+#[pyclass(name = "OutputSource", module = "rboto_ssm._native", frozen)]
 struct PyOutputSource {
     inner: aws_sdk_ssm::types::OutputSource,
 }
@@ -23881,7 +23993,7 @@ impl PyOutputSource {
     }
 }
 
-#[pyclass(name = "Parameter", frozen)]
+#[pyclass(name = "Parameter", module = "rboto_ssm._native", frozen)]
 struct PyParameter {
     inner: aws_sdk_ssm::types::Parameter,
 }
@@ -23979,7 +24091,7 @@ impl PyParameter {
     }
 }
 
-#[pyclass(name = "ParameterHistory", frozen)]
+#[pyclass(name = "ParameterHistory", module = "rboto_ssm._native", frozen)]
 struct PyParameterHistory {
     inner: aws_sdk_ssm::types::ParameterHistory,
 }
@@ -24133,7 +24245,7 @@ impl PyParameterHistory {
     }
 }
 
-#[pyclass(name = "ParameterInlinePolicy", frozen)]
+#[pyclass(name = "ParameterInlinePolicy", module = "rboto_ssm._native", frozen)]
 struct PyParameterInlinePolicy {
     inner: aws_sdk_ssm::types::ParameterInlinePolicy,
 }
@@ -24175,7 +24287,7 @@ impl PyParameterInlinePolicy {
     }
 }
 
-#[pyclass(name = "ParameterMetadata", frozen)]
+#[pyclass(name = "ParameterMetadata", module = "rboto_ssm._native", frozen)]
 struct PyParameterMetadata {
     inner: aws_sdk_ssm::types::ParameterMetadata,
 }
@@ -24314,7 +24426,7 @@ impl PyParameterMetadata {
     }
 }
 
-#[pyclass(name = "ParentStepDetails", frozen)]
+#[pyclass(name = "ParentStepDetails", module = "rboto_ssm._native", frozen)]
 struct PyParentStepDetails {
     inner: aws_sdk_ssm::types::ParentStepDetails,
 }
@@ -24376,7 +24488,7 @@ impl PyParentStepDetails {
     }
 }
 
-#[pyclass(name = "Patch", frozen)]
+#[pyclass(name = "Patch", module = "rboto_ssm._native", frozen)]
 struct PyPatch {
     inner: aws_sdk_ssm::types::Patch,
 }
@@ -24629,7 +24741,7 @@ impl PyPatch {
     }
 }
 
-#[pyclass(name = "PatchBaselineIdentity", frozen)]
+#[pyclass(name = "PatchBaselineIdentity", module = "rboto_ssm._native", frozen)]
 struct PyPatchBaselineIdentity {
     inner: aws_sdk_ssm::types::PatchBaselineIdentity,
 }
@@ -24687,7 +24799,7 @@ impl PyPatchBaselineIdentity {
     }
 }
 
-#[pyclass(name = "PatchComplianceData", frozen)]
+#[pyclass(name = "PatchComplianceData", module = "rboto_ssm._native", frozen)]
 struct PyPatchComplianceData {
     inner: aws_sdk_ssm::types::PatchComplianceData,
 }
@@ -24745,7 +24857,7 @@ impl PyPatchComplianceData {
     }
 }
 
-#[pyclass(name = "PatchFilter", frozen)]
+#[pyclass(name = "PatchFilter", module = "rboto_ssm._native", frozen)]
 struct PyPatchFilter {
     inner: aws_sdk_ssm::types::PatchFilter,
 }
@@ -24774,7 +24886,7 @@ impl PyPatchFilter {
     }
 }
 
-#[pyclass(name = "PatchFilterGroup", frozen)]
+#[pyclass(name = "PatchFilterGroup", module = "rboto_ssm._native", frozen)]
 struct PyPatchFilterGroup {
     inner: aws_sdk_ssm::types::PatchFilterGroup,
 }
@@ -24803,7 +24915,11 @@ impl PyPatchFilterGroup {
     }
 }
 
-#[pyclass(name = "PatchGroupPatchBaselineMapping", frozen)]
+#[pyclass(
+    name = "PatchGroupPatchBaselineMapping",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyPatchGroupPatchBaselineMapping {
     inner: aws_sdk_ssm::types::PatchGroupPatchBaselineMapping,
 }
@@ -24841,7 +24957,7 @@ impl PyPatchGroupPatchBaselineMapping {
     }
 }
 
-#[pyclass(name = "PatchRule", frozen)]
+#[pyclass(name = "PatchRule", module = "rboto_ssm._native", frozen)]
 struct PyPatchRule {
     inner: aws_sdk_ssm::types::PatchRule,
 }
@@ -24909,7 +25025,7 @@ impl PyPatchRule {
     }
 }
 
-#[pyclass(name = "PatchRuleGroup", frozen)]
+#[pyclass(name = "PatchRuleGroup", module = "rboto_ssm._native", frozen)]
 struct PyPatchRuleGroup {
     inner: aws_sdk_ssm::types::PatchRuleGroup,
 }
@@ -24938,7 +25054,7 @@ impl PyPatchRuleGroup {
     }
 }
 
-#[pyclass(name = "PatchSource", frozen)]
+#[pyclass(name = "PatchSource", module = "rboto_ssm._native", frozen)]
 struct PyPatchSource {
     inner: aws_sdk_ssm::types::PatchSource,
 }
@@ -24973,7 +25089,7 @@ impl PyPatchSource {
     }
 }
 
-#[pyclass(name = "PatchStatus", frozen)]
+#[pyclass(name = "PatchStatus", module = "rboto_ssm._native", frozen)]
 struct PyPatchStatus {
     inner: aws_sdk_ssm::types::PatchStatus,
 }
@@ -25015,7 +25131,7 @@ impl PyPatchStatus {
     }
 }
 
-#[pyclass(name = "ProgressCounters", frozen)]
+#[pyclass(name = "ProgressCounters", module = "rboto_ssm._native", frozen)]
 struct PyProgressCounters {
     inner: aws_sdk_ssm::types::ProgressCounters,
 }
@@ -25057,7 +25173,7 @@ impl PyProgressCounters {
     }
 }
 
-#[pyclass(name = "RelatedOpsItem", frozen)]
+#[pyclass(name = "RelatedOpsItem", module = "rboto_ssm._native", frozen)]
 struct PyRelatedOpsItem {
     inner: aws_sdk_ssm::types::RelatedOpsItem,
 }
@@ -25075,7 +25191,7 @@ impl PyRelatedOpsItem {
     }
 }
 
-#[pyclass(name = "ResolvedTargets", frozen)]
+#[pyclass(name = "ResolvedTargets", module = "rboto_ssm._native", frozen)]
 struct PyResolvedTargets {
     inner: aws_sdk_ssm::types::ResolvedTargets,
 }
@@ -25108,7 +25224,11 @@ impl PyResolvedTargets {
     }
 }
 
-#[pyclass(name = "ResourceComplianceSummaryItem", frozen)]
+#[pyclass(
+    name = "ResourceComplianceSummaryItem",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceComplianceSummaryItem {
     inner: aws_sdk_ssm::types::ResourceComplianceSummaryItem,
 }
@@ -25218,7 +25338,11 @@ impl PyResourceComplianceSummaryItem {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncAwsOrganizationsSource", frozen)]
+#[pyclass(
+    name = "ResourceDataSyncAwsOrganizationsSource",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceDataSyncAwsOrganizationsSource {
     inner: aws_sdk_ssm::types::ResourceDataSyncAwsOrganizationsSource,
 }
@@ -25259,7 +25383,11 @@ impl PyResourceDataSyncAwsOrganizationsSource {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncDestinationDataSharing", frozen)]
+#[pyclass(
+    name = "ResourceDataSyncDestinationDataSharing",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceDataSyncDestinationDataSharing {
     inner: aws_sdk_ssm::types::ResourceDataSyncDestinationDataSharing,
 }
@@ -25281,7 +25409,7 @@ impl PyResourceDataSyncDestinationDataSharing {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncItem", frozen)]
+#[pyclass(name = "ResourceDataSyncItem", module = "rboto_ssm._native", frozen)]
 struct PyResourceDataSyncItem {
     inner: aws_sdk_ssm::types::ResourceDataSyncItem,
 }
@@ -25405,7 +25533,11 @@ impl PyResourceDataSyncItem {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncOrganizationalUnit", frozen)]
+#[pyclass(
+    name = "ResourceDataSyncOrganizationalUnit",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceDataSyncOrganizationalUnit {
     inner: aws_sdk_ssm::types::ResourceDataSyncOrganizationalUnit,
 }
@@ -25427,7 +25559,11 @@ impl PyResourceDataSyncOrganizationalUnit {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncS3Destination", frozen)]
+#[pyclass(
+    name = "ResourceDataSyncS3Destination",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceDataSyncS3Destination {
     inner: aws_sdk_ssm::types::ResourceDataSyncS3Destination,
 }
@@ -25493,7 +25629,11 @@ impl PyResourceDataSyncS3Destination {
     }
 }
 
-#[pyclass(name = "ResourceDataSyncSourceWithState", frozen)]
+#[pyclass(
+    name = "ResourceDataSyncSourceWithState",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResourceDataSyncSourceWithState {
     inner: aws_sdk_ssm::types::ResourceDataSyncSourceWithState,
 }
@@ -25572,7 +25712,7 @@ impl PyResourceDataSyncSourceWithState {
     }
 }
 
-#[pyclass(name = "ReviewInformation", frozen)]
+#[pyclass(name = "ReviewInformation", module = "rboto_ssm._native", frozen)]
 struct PyReviewInformation {
     inner: aws_sdk_ssm::types::ReviewInformation,
 }
@@ -25614,7 +25754,7 @@ impl PyReviewInformation {
     }
 }
 
-#[pyclass(name = "Runbook", frozen)]
+#[pyclass(name = "Runbook", module = "rboto_ssm._native", frozen)]
 struct PyRunbook {
     inner: aws_sdk_ssm::types::Runbook,
 }
@@ -25761,7 +25901,7 @@ impl PyRunbook {
     }
 }
 
-#[pyclass(name = "S3OutputLocation", frozen)]
+#[pyclass(name = "S3OutputLocation", module = "rboto_ssm._native", frozen)]
 struct PyS3OutputLocation {
     inner: aws_sdk_ssm::types::S3OutputLocation,
 }
@@ -25803,7 +25943,7 @@ impl PyS3OutputLocation {
     }
 }
 
-#[pyclass(name = "S3OutputUrl", frozen)]
+#[pyclass(name = "S3OutputUrl", module = "rboto_ssm._native", frozen)]
 struct PyS3OutputUrl {
     inner: aws_sdk_ssm::types::S3OutputUrl,
 }
@@ -25825,7 +25965,11 @@ impl PyS3OutputUrl {
     }
 }
 
-#[pyclass(name = "ScheduledWindowExecution", frozen)]
+#[pyclass(
+    name = "ScheduledWindowExecution",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyScheduledWindowExecution {
     inner: aws_sdk_ssm::types::ScheduledWindowExecution,
 }
@@ -25867,7 +26011,7 @@ impl PyScheduledWindowExecution {
     }
 }
 
-#[pyclass(name = "ServiceSetting", frozen)]
+#[pyclass(name = "ServiceSetting", module = "rboto_ssm._native", frozen)]
 struct PyServiceSetting {
     inner: aws_sdk_ssm::types::ServiceSetting,
 }
@@ -25939,7 +26083,7 @@ impl PyServiceSetting {
     }
 }
 
-#[pyclass(name = "Session", frozen)]
+#[pyclass(name = "Session", module = "rboto_ssm._native", frozen)]
 struct PySession {
     inner: aws_sdk_ssm::types::Session,
 }
@@ -26077,7 +26221,7 @@ impl PySession {
     }
 }
 
-#[pyclass(name = "SessionManagerOutputUrl", frozen)]
+#[pyclass(name = "SessionManagerOutputUrl", module = "rboto_ssm._native", frozen)]
 struct PySessionManagerOutputUrl {
     inner: aws_sdk_ssm::types::SessionManagerOutputUrl,
 }
@@ -26109,7 +26253,7 @@ impl PySessionManagerOutputUrl {
     }
 }
 
-#[pyclass(name = "SeveritySummary", frozen)]
+#[pyclass(name = "SeveritySummary", module = "rboto_ssm._native", frozen)]
 struct PySeveritySummary {
     inner: aws_sdk_ssm::types::SeveritySummary,
 }
@@ -26159,7 +26303,7 @@ impl PySeveritySummary {
     }
 }
 
-#[pyclass(name = "StepExecution", frozen)]
+#[pyclass(name = "StepExecution", module = "rboto_ssm._native", frozen)]
 struct PyStepExecution {
     inner: aws_sdk_ssm::types::StepExecution,
 }
@@ -26494,7 +26638,7 @@ impl PyStepExecution {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_ssm._native", frozen)]
 struct PyTag {
     inner: aws_sdk_ssm::types::Tag,
 }
@@ -26518,7 +26662,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Target", frozen)]
+#[pyclass(name = "Target", module = "rboto_ssm._native", frozen)]
 struct PyTarget {
     inner: aws_sdk_ssm::types::Target,
 }
@@ -26555,7 +26699,7 @@ impl PyTarget {
     }
 }
 
-#[pyclass(name = "TargetLocation", frozen)]
+#[pyclass(name = "TargetLocation", module = "rboto_ssm._native", frozen)]
 struct PyTargetLocation {
     inner: aws_sdk_ssm::types::TargetLocation,
 }
@@ -26707,7 +26851,7 @@ impl PyTargetLocation {
     }
 }
 
-#[pyclass(name = "ValidationFinding", frozen)]
+#[pyclass(name = "ValidationFinding", module = "rboto_ssm._native", frozen)]
 struct PyValidationFinding {
     inner: aws_sdk_ssm::types::ValidationFinding,
 }
@@ -26775,7 +26919,7 @@ impl PyValidationFinding {
     }
 }
 
-#[pyclass(name = "ValidationFindingScope", frozen)]
+#[pyclass(name = "ValidationFindingScope", module = "rboto_ssm._native", frozen)]
 struct PyValidationFindingScope {
     inner: aws_sdk_ssm::types::ValidationFindingScope,
 }
@@ -26807,7 +26951,7 @@ impl PyValidationFindingScope {
     }
 }
 
-#[pyclass(name = "AddTagsToResourceResult", frozen)]
+#[pyclass(name = "AddTagsToResourceResult", module = "rboto_ssm._native", frozen)]
 struct PyAddTagsToResourceResult {
     inner: aws_sdk_ssm::operation::add_tags_to_resource::AddTagsToResourceOutput,
 }
@@ -26820,7 +26964,11 @@ impl PyAddTagsToResourceResult {
     }
 }
 
-#[pyclass(name = "AssociateOpsItemRelatedItemResponse", frozen)]
+#[pyclass(
+    name = "AssociateOpsItemRelatedItemResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyAssociateOpsItemRelatedItemResponse {
     inner:
         aws_sdk_ssm::operation::associate_ops_item_related_item::AssociateOpsItemRelatedItemOutput,
@@ -26850,7 +26998,7 @@ impl PyAssociateOpsItemRelatedItemResponse {
     }
 }
 
-#[pyclass(name = "CancelCommandResult", frozen)]
+#[pyclass(name = "CancelCommandResult", module = "rboto_ssm._native", frozen)]
 struct PyCancelCommandResult {
     inner: aws_sdk_ssm::operation::cancel_command::CancelCommandOutput,
 }
@@ -26863,7 +27011,11 @@ impl PyCancelCommandResult {
     }
 }
 
-#[pyclass(name = "CancelMaintenanceWindowExecutionResult", frozen)]
+#[pyclass(
+    name = "CancelMaintenanceWindowExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCancelMaintenanceWindowExecutionResult {
     inner: aws_sdk_ssm::operation::cancel_maintenance_window_execution::CancelMaintenanceWindowExecutionOutput,
 }
@@ -26892,7 +27044,7 @@ impl PyCancelMaintenanceWindowExecutionResult {
     }
 }
 
-#[pyclass(name = "CreateActivationResult", frozen)]
+#[pyclass(name = "CreateActivationResult", module = "rboto_ssm._native", frozen)]
 struct PyCreateActivationResult {
     inner: aws_sdk_ssm::operation::create_activation::CreateActivationOutput,
 }
@@ -26937,7 +27089,7 @@ impl PyCreateActivationResult {
     }
 }
 
-#[pyclass(name = "CreateAssociationResult", frozen)]
+#[pyclass(name = "CreateAssociationResult", module = "rboto_ssm._native", frozen)]
 struct PyCreateAssociationResult {
     inner: aws_sdk_ssm::operation::create_association::CreateAssociationOutput,
 }
@@ -26972,7 +27124,11 @@ impl PyCreateAssociationResult {
     }
 }
 
-#[pyclass(name = "CreateAssociationBatchResult", frozen)]
+#[pyclass(
+    name = "CreateAssociationBatchResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreateAssociationBatchResult {
     inner: aws_sdk_ssm::operation::create_association_batch::CreateAssociationBatchOutput,
 }
@@ -27049,7 +27205,11 @@ impl PyCreateAssociationBatchResult {
     }
 }
 
-#[pyclass(name = "CreateCloudConnectorResult", frozen)]
+#[pyclass(
+    name = "CreateCloudConnectorResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreateCloudConnectorResult {
     inner: aws_sdk_ssm::operation::create_cloud_connector::CreateCloudConnectorOutput,
 }
@@ -27078,7 +27238,7 @@ impl PyCreateCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "CreateDocumentResult", frozen)]
+#[pyclass(name = "CreateDocumentResult", module = "rboto_ssm._native", frozen)]
 struct PyCreateDocumentResult {
     inner: aws_sdk_ssm::operation::create_document::CreateDocumentOutput,
 }
@@ -27113,7 +27273,11 @@ impl PyCreateDocumentResult {
     }
 }
 
-#[pyclass(name = "CreateMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "CreateMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreateMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::create_maintenance_window::CreateMaintenanceWindowOutput,
 }
@@ -27142,7 +27306,7 @@ impl PyCreateMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "CreateOpsItemResponse", frozen)]
+#[pyclass(name = "CreateOpsItemResponse", module = "rboto_ssm._native", frozen)]
 struct PyCreateOpsItemResponse {
     inner: aws_sdk_ssm::operation::create_ops_item::CreateOpsItemOutput,
 }
@@ -27187,7 +27351,7 @@ impl PyCreateOpsItemResponse {
     }
 }
 
-#[pyclass(name = "CreateOpsMetadataResult", frozen)]
+#[pyclass(name = "CreateOpsMetadataResult", module = "rboto_ssm._native", frozen)]
 struct PyCreateOpsMetadataResult {
     inner: aws_sdk_ssm::operation::create_ops_metadata::CreateOpsMetadataOutput,
 }
@@ -27216,7 +27380,11 @@ impl PyCreateOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "CreatePatchBaselineResult", frozen)]
+#[pyclass(
+    name = "CreatePatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreatePatchBaselineResult {
     inner: aws_sdk_ssm::operation::create_patch_baseline::CreatePatchBaselineOutput,
 }
@@ -27245,7 +27413,11 @@ impl PyCreatePatchBaselineResult {
     }
 }
 
-#[pyclass(name = "CreateResourceDataSyncResult", frozen)]
+#[pyclass(
+    name = "CreateResourceDataSyncResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyCreateResourceDataSyncResult {
     inner: aws_sdk_ssm::operation::create_resource_data_sync::CreateResourceDataSyncOutput,
 }
@@ -27258,7 +27430,7 @@ impl PyCreateResourceDataSyncResult {
     }
 }
 
-#[pyclass(name = "DeleteActivationResult", frozen)]
+#[pyclass(name = "DeleteActivationResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteActivationResult {
     inner: aws_sdk_ssm::operation::delete_activation::DeleteActivationOutput,
 }
@@ -27271,7 +27443,7 @@ impl PyDeleteActivationResult {
     }
 }
 
-#[pyclass(name = "DeleteAssociationResult", frozen)]
+#[pyclass(name = "DeleteAssociationResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteAssociationResult {
     inner: aws_sdk_ssm::operation::delete_association::DeleteAssociationOutput,
 }
@@ -27284,7 +27456,11 @@ impl PyDeleteAssociationResult {
     }
 }
 
-#[pyclass(name = "DeleteCloudConnectorResult", frozen)]
+#[pyclass(
+    name = "DeleteCloudConnectorResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeleteCloudConnectorResult {
     inner: aws_sdk_ssm::operation::delete_cloud_connector::DeleteCloudConnectorOutput,
 }
@@ -27313,7 +27489,7 @@ impl PyDeleteCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "DeleteDocumentResult", frozen)]
+#[pyclass(name = "DeleteDocumentResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteDocumentResult {
     inner: aws_sdk_ssm::operation::delete_document::DeleteDocumentOutput,
 }
@@ -27326,7 +27502,7 @@ impl PyDeleteDocumentResult {
     }
 }
 
-#[pyclass(name = "DeleteInventoryResult", frozen)]
+#[pyclass(name = "DeleteInventoryResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteInventoryResult {
     inner: aws_sdk_ssm::operation::delete_inventory::DeleteInventoryOutput,
 }
@@ -27393,7 +27569,11 @@ impl PyDeleteInventoryResult {
     }
 }
 
-#[pyclass(name = "DeleteMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "DeleteMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeleteMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::delete_maintenance_window::DeleteMaintenanceWindowOutput,
 }
@@ -27422,7 +27602,7 @@ impl PyDeleteMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "DeleteOpsItemResponse", frozen)]
+#[pyclass(name = "DeleteOpsItemResponse", module = "rboto_ssm._native", frozen)]
 struct PyDeleteOpsItemResponse {
     inner: aws_sdk_ssm::operation::delete_ops_item::DeleteOpsItemOutput,
 }
@@ -27435,7 +27615,7 @@ impl PyDeleteOpsItemResponse {
     }
 }
 
-#[pyclass(name = "DeleteOpsMetadataResult", frozen)]
+#[pyclass(name = "DeleteOpsMetadataResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteOpsMetadataResult {
     inner: aws_sdk_ssm::operation::delete_ops_metadata::DeleteOpsMetadataOutput,
 }
@@ -27448,7 +27628,7 @@ impl PyDeleteOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "DeleteParameterResult", frozen)]
+#[pyclass(name = "DeleteParameterResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteParameterResult {
     inner: aws_sdk_ssm::operation::delete_parameter::DeleteParameterOutput,
 }
@@ -27461,7 +27641,7 @@ impl PyDeleteParameterResult {
     }
 }
 
-#[pyclass(name = "DeleteParametersResult", frozen)]
+#[pyclass(name = "DeleteParametersResult", module = "rboto_ssm._native", frozen)]
 struct PyDeleteParametersResult {
     inner: aws_sdk_ssm::operation::delete_parameters::DeleteParametersOutput,
 }
@@ -27526,7 +27706,11 @@ impl PyDeleteParametersResult {
     }
 }
 
-#[pyclass(name = "DeletePatchBaselineResult", frozen)]
+#[pyclass(
+    name = "DeletePatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeletePatchBaselineResult {
     inner: aws_sdk_ssm::operation::delete_patch_baseline::DeletePatchBaselineOutput,
 }
@@ -27555,7 +27739,11 @@ impl PyDeletePatchBaselineResult {
     }
 }
 
-#[pyclass(name = "DeleteResourceDataSyncResult", frozen)]
+#[pyclass(
+    name = "DeleteResourceDataSyncResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeleteResourceDataSyncResult {
     inner: aws_sdk_ssm::operation::delete_resource_data_sync::DeleteResourceDataSyncOutput,
 }
@@ -27568,7 +27756,11 @@ impl PyDeleteResourceDataSyncResult {
     }
 }
 
-#[pyclass(name = "DeleteResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteResourcePolicyResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeleteResourcePolicyResponse {
     inner: aws_sdk_ssm::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
@@ -27581,7 +27773,11 @@ impl PyDeleteResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "DeregisterManagedInstanceResult", frozen)]
+#[pyclass(
+    name = "DeregisterManagedInstanceResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeregisterManagedInstanceResult {
     inner: aws_sdk_ssm::operation::deregister_managed_instance::DeregisterManagedInstanceOutput,
 }
@@ -27594,7 +27790,11 @@ impl PyDeregisterManagedInstanceResult {
     }
 }
 
-#[pyclass(name = "DeregisterPatchBaselineForPatchGroupResult", frozen)]
+#[pyclass(
+    name = "DeregisterPatchBaselineForPatchGroupResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeregisterPatchBaselineForPatchGroupResult {
     inner: aws_sdk_ssm::operation::deregister_patch_baseline_for_patch_group::DeregisterPatchBaselineForPatchGroupOutput,
 }
@@ -27639,7 +27839,11 @@ impl PyDeregisterPatchBaselineForPatchGroupResult {
     }
 }
 
-#[pyclass(name = "DeregisterTargetFromMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "DeregisterTargetFromMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeregisterTargetFromMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::deregister_target_from_maintenance_window::DeregisterTargetFromMaintenanceWindowOutput,
 }
@@ -27684,7 +27888,11 @@ impl PyDeregisterTargetFromMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "DeregisterTaskFromMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "DeregisterTaskFromMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDeregisterTaskFromMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::deregister_task_from_maintenance_window::DeregisterTaskFromMaintenanceWindowOutput,
 }
@@ -27729,7 +27937,11 @@ impl PyDeregisterTaskFromMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "DescribeActivationsResult", frozen)]
+#[pyclass(
+    name = "DescribeActivationsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeActivationsResult {
     inner: aws_sdk_ssm::operation::describe_activations::DescribeActivationsOutput,
 }
@@ -27790,7 +28002,11 @@ impl PyDescribeActivationsResult {
     }
 }
 
-#[pyclass(name = "DescribeAssociationResult", frozen)]
+#[pyclass(
+    name = "DescribeAssociationResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAssociationResult {
     inner: aws_sdk_ssm::operation::describe_association::DescribeAssociationOutput,
 }
@@ -27825,7 +28041,11 @@ impl PyDescribeAssociationResult {
     }
 }
 
-#[pyclass(name = "DescribeAssociationExecutionTargetsResult", frozen)]
+#[pyclass(
+    name = "DescribeAssociationExecutionTargetsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAssociationExecutionTargetsResult {
     inner: aws_sdk_ssm::operation::describe_association_execution_targets::DescribeAssociationExecutionTargetsOutput,
 }
@@ -27886,7 +28106,11 @@ impl PyDescribeAssociationExecutionTargetsResult {
     }
 }
 
-#[pyclass(name = "DescribeAssociationExecutionsResult", frozen)]
+#[pyclass(
+    name = "DescribeAssociationExecutionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAssociationExecutionsResult {
     inner: aws_sdk_ssm::operation::describe_association_executions::DescribeAssociationExecutionsOutput,
 }
@@ -27947,7 +28171,11 @@ impl PyDescribeAssociationExecutionsResult {
     }
 }
 
-#[pyclass(name = "DescribeAutomationExecutionsResult", frozen)]
+#[pyclass(
+    name = "DescribeAutomationExecutionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAutomationExecutionsResult {
     inner:
         aws_sdk_ssm::operation::describe_automation_executions::DescribeAutomationExecutionsOutput,
@@ -28009,7 +28237,11 @@ impl PyDescribeAutomationExecutionsResult {
     }
 }
 
-#[pyclass(name = "DescribeAutomationStepExecutionsResult", frozen)]
+#[pyclass(
+    name = "DescribeAutomationStepExecutionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAutomationStepExecutionsResult {
     inner: aws_sdk_ssm::operation::describe_automation_step_executions::DescribeAutomationStepExecutionsOutput,
 }
@@ -28070,7 +28302,11 @@ impl PyDescribeAutomationStepExecutionsResult {
     }
 }
 
-#[pyclass(name = "DescribeAvailablePatchesResult", frozen)]
+#[pyclass(
+    name = "DescribeAvailablePatchesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeAvailablePatchesResult {
     inner: aws_sdk_ssm::operation::describe_available_patches::DescribeAvailablePatchesOutput,
 }
@@ -28131,7 +28367,7 @@ impl PyDescribeAvailablePatchesResult {
     }
 }
 
-#[pyclass(name = "DescribeDocumentResult", frozen)]
+#[pyclass(name = "DescribeDocumentResult", module = "rboto_ssm._native", frozen)]
 struct PyDescribeDocumentResult {
     inner: aws_sdk_ssm::operation::describe_document::DescribeDocumentOutput,
 }
@@ -28166,7 +28402,11 @@ impl PyDescribeDocumentResult {
     }
 }
 
-#[pyclass(name = "DescribeDocumentPermissionResponse", frozen)]
+#[pyclass(
+    name = "DescribeDocumentPermissionResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeDocumentPermissionResponse {
     inner: aws_sdk_ssm::operation::describe_document_permission::DescribeDocumentPermissionOutput,
 }
@@ -28253,7 +28493,11 @@ impl PyDescribeDocumentPermissionResponse {
     }
 }
 
-#[pyclass(name = "DescribeEffectiveInstanceAssociationsResult", frozen)]
+#[pyclass(
+    name = "DescribeEffectiveInstanceAssociationsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeEffectiveInstanceAssociationsResult {
     inner: aws_sdk_ssm::operation::describe_effective_instance_associations::DescribeEffectiveInstanceAssociationsOutput,
 }
@@ -28314,7 +28558,11 @@ impl PyDescribeEffectiveInstanceAssociationsResult {
     }
 }
 
-#[pyclass(name = "DescribeEffectivePatchesForPatchBaselineResult", frozen)]
+#[pyclass(
+    name = "DescribeEffectivePatchesForPatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeEffectivePatchesForPatchBaselineResult {
     inner: aws_sdk_ssm::operation::describe_effective_patches_for_patch_baseline::DescribeEffectivePatchesForPatchBaselineOutput,
 }
@@ -28375,7 +28623,11 @@ impl PyDescribeEffectivePatchesForPatchBaselineResult {
     }
 }
 
-#[pyclass(name = "DescribeInstanceAssociationsStatusResult", frozen)]
+#[pyclass(
+    name = "DescribeInstanceAssociationsStatusResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstanceAssociationsStatusResult {
     inner: aws_sdk_ssm::operation::describe_instance_associations_status::DescribeInstanceAssociationsStatusOutput,
 }
@@ -28436,7 +28688,11 @@ impl PyDescribeInstanceAssociationsStatusResult {
     }
 }
 
-#[pyclass(name = "DescribeInstanceInformationResult", frozen)]
+#[pyclass(
+    name = "DescribeInstanceInformationResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstanceInformationResult {
     inner: aws_sdk_ssm::operation::describe_instance_information::DescribeInstanceInformationOutput,
 }
@@ -28497,7 +28753,11 @@ impl PyDescribeInstanceInformationResult {
     }
 }
 
-#[pyclass(name = "DescribeInstancePatchStatesResult", frozen)]
+#[pyclass(
+    name = "DescribeInstancePatchStatesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstancePatchStatesResult {
     inner:
         aws_sdk_ssm::operation::describe_instance_patch_states::DescribeInstancePatchStatesOutput,
@@ -28559,7 +28819,11 @@ impl PyDescribeInstancePatchStatesResult {
     }
 }
 
-#[pyclass(name = "DescribeInstancePatchStatesForPatchGroupResult", frozen)]
+#[pyclass(
+    name = "DescribeInstancePatchStatesForPatchGroupResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstancePatchStatesForPatchGroupResult {
     inner: aws_sdk_ssm::operation::describe_instance_patch_states_for_patch_group::DescribeInstancePatchStatesForPatchGroupOutput,
 }
@@ -28620,7 +28884,11 @@ impl PyDescribeInstancePatchStatesForPatchGroupResult {
     }
 }
 
-#[pyclass(name = "DescribeInstancePatchesResult", frozen)]
+#[pyclass(
+    name = "DescribeInstancePatchesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstancePatchesResult {
     inner: aws_sdk_ssm::operation::describe_instance_patches::DescribeInstancePatchesOutput,
 }
@@ -28681,7 +28949,11 @@ impl PyDescribeInstancePatchesResult {
     }
 }
 
-#[pyclass(name = "DescribeInstancePropertiesResult", frozen)]
+#[pyclass(
+    name = "DescribeInstancePropertiesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInstancePropertiesResult {
     inner: aws_sdk_ssm::operation::describe_instance_properties::DescribeInstancePropertiesOutput,
 }
@@ -28742,7 +29014,11 @@ impl PyDescribeInstancePropertiesResult {
     }
 }
 
-#[pyclass(name = "DescribeInventoryDeletionsResult", frozen)]
+#[pyclass(
+    name = "DescribeInventoryDeletionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeInventoryDeletionsResult {
     inner: aws_sdk_ssm::operation::describe_inventory_deletions::DescribeInventoryDeletionsOutput,
 }
@@ -28805,6 +29081,7 @@ impl PyDescribeInventoryDeletionsResult {
 
 #[pyclass(
     name = "DescribeMaintenanceWindowExecutionTaskInvocationsResult",
+    module = "rboto_ssm._native",
     frozen
 )]
 struct PyDescribeMaintenanceWindowExecutionTaskInvocationsResult {
@@ -28871,7 +29148,11 @@ impl PyDescribeMaintenanceWindowExecutionTaskInvocationsResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowExecutionTasksResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowExecutionTasksResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowExecutionTasksResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_execution_tasks::DescribeMaintenanceWindowExecutionTasksOutput,
 }
@@ -28933,7 +29214,11 @@ impl PyDescribeMaintenanceWindowExecutionTasksResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowExecutionsResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowExecutionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowExecutionsResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_executions::DescribeMaintenanceWindowExecutionsOutput,
 }
@@ -28994,7 +29279,11 @@ impl PyDescribeMaintenanceWindowExecutionsResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowScheduleResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowScheduleResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowScheduleResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_schedule::DescribeMaintenanceWindowScheduleOutput,
 }
@@ -29055,7 +29344,11 @@ impl PyDescribeMaintenanceWindowScheduleResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowTargetsResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowTargetsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowTargetsResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_targets::DescribeMaintenanceWindowTargetsOutput,
 }
@@ -29116,7 +29409,11 @@ impl PyDescribeMaintenanceWindowTargetsResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowTasksResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowTasksResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowTasksResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_window_tasks::DescribeMaintenanceWindowTasksOutput,
 }
@@ -29177,7 +29474,11 @@ impl PyDescribeMaintenanceWindowTasksResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowsResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowsResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_windows::DescribeMaintenanceWindowsOutput,
 }
@@ -29238,7 +29539,11 @@ impl PyDescribeMaintenanceWindowsResult {
     }
 }
 
-#[pyclass(name = "DescribeMaintenanceWindowsForTargetResult", frozen)]
+#[pyclass(
+    name = "DescribeMaintenanceWindowsForTargetResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeMaintenanceWindowsForTargetResult {
     inner: aws_sdk_ssm::operation::describe_maintenance_windows_for_target::DescribeMaintenanceWindowsForTargetOutput,
 }
@@ -29300,7 +29605,11 @@ impl PyDescribeMaintenanceWindowsForTargetResult {
     }
 }
 
-#[pyclass(name = "DescribeOpsItemsResponse", frozen)]
+#[pyclass(
+    name = "DescribeOpsItemsResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeOpsItemsResponse {
     inner: aws_sdk_ssm::operation::describe_ops_items::DescribeOpsItemsOutput,
 }
@@ -29361,7 +29670,11 @@ impl PyDescribeOpsItemsResponse {
     }
 }
 
-#[pyclass(name = "DescribeParametersResult", frozen)]
+#[pyclass(
+    name = "DescribeParametersResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeParametersResult {
     inner: aws_sdk_ssm::operation::describe_parameters::DescribeParametersOutput,
 }
@@ -29422,7 +29735,11 @@ impl PyDescribeParametersResult {
     }
 }
 
-#[pyclass(name = "DescribePatchBaselinesResult", frozen)]
+#[pyclass(
+    name = "DescribePatchBaselinesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribePatchBaselinesResult {
     inner: aws_sdk_ssm::operation::describe_patch_baselines::DescribePatchBaselinesOutput,
 }
@@ -29483,7 +29800,11 @@ impl PyDescribePatchBaselinesResult {
     }
 }
 
-#[pyclass(name = "DescribePatchGroupStateResult", frozen)]
+#[pyclass(
+    name = "DescribePatchGroupStateResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribePatchGroupStateResult {
     inner: aws_sdk_ssm::operation::describe_patch_group_state::DescribePatchGroupStateOutput,
 }
@@ -29697,7 +30018,11 @@ impl PyDescribePatchGroupStateResult {
     }
 }
 
-#[pyclass(name = "DescribePatchGroupsResult", frozen)]
+#[pyclass(
+    name = "DescribePatchGroupsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribePatchGroupsResult {
     inner: aws_sdk_ssm::operation::describe_patch_groups::DescribePatchGroupsOutput,
 }
@@ -29758,7 +30083,11 @@ impl PyDescribePatchGroupsResult {
     }
 }
 
-#[pyclass(name = "DescribePatchPropertiesResult", frozen)]
+#[pyclass(
+    name = "DescribePatchPropertiesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribePatchPropertiesResult {
     inner: aws_sdk_ssm::operation::describe_patch_properties::DescribePatchPropertiesOutput,
 }
@@ -29825,7 +30154,11 @@ impl PyDescribePatchPropertiesResult {
     }
 }
 
-#[pyclass(name = "DescribeSessionsResponse", frozen)]
+#[pyclass(
+    name = "DescribeSessionsResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDescribeSessionsResponse {
     inner: aws_sdk_ssm::operation::describe_sessions::DescribeSessionsOutput,
 }
@@ -29886,7 +30219,11 @@ impl PyDescribeSessionsResponse {
     }
 }
 
-#[pyclass(name = "DisassociateOpsItemRelatedItemResponse", frozen)]
+#[pyclass(
+    name = "DisassociateOpsItemRelatedItemResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyDisassociateOpsItemRelatedItemResponse {
     inner: aws_sdk_ssm::operation::disassociate_ops_item_related_item::DisassociateOpsItemRelatedItemOutput,
 }
@@ -29899,7 +30236,7 @@ impl PyDisassociateOpsItemRelatedItemResponse {
     }
 }
 
-#[pyclass(name = "GetAccessTokenResponse", frozen)]
+#[pyclass(name = "GetAccessTokenResponse", module = "rboto_ssm._native", frozen)]
 struct PyGetAccessTokenResponse {
     inner: aws_sdk_ssm::operation::get_access_token::GetAccessTokenOutput,
 }
@@ -29950,7 +30287,11 @@ impl PyGetAccessTokenResponse {
     }
 }
 
-#[pyclass(name = "GetAutomationExecutionResult", frozen)]
+#[pyclass(
+    name = "GetAutomationExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetAutomationExecutionResult {
     inner: aws_sdk_ssm::operation::get_automation_execution::GetAutomationExecutionOutput,
 }
@@ -29985,7 +30326,11 @@ impl PyGetAutomationExecutionResult {
     }
 }
 
-#[pyclass(name = "GetCalendarStateResponse", frozen)]
+#[pyclass(
+    name = "GetCalendarStateResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetCalendarStateResponse {
     inner: aws_sdk_ssm::operation::get_calendar_state::GetCalendarStateOutput,
 }
@@ -30046,7 +30391,7 @@ impl PyGetCalendarStateResponse {
     }
 }
 
-#[pyclass(name = "GetCloudConnectorResult", frozen)]
+#[pyclass(name = "GetCloudConnectorResult", module = "rboto_ssm._native", frozen)]
 struct PyGetCloudConnectorResult {
     inner: aws_sdk_ssm::operation::get_cloud_connector::GetCloudConnectorOutput,
 }
@@ -30187,7 +30532,11 @@ impl PyGetCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "GetCommandInvocationResult", frozen)]
+#[pyclass(
+    name = "GetCommandInvocationResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetCommandInvocationResult {
     inner: aws_sdk_ssm::operation::get_command_invocation::GetCommandInvocationOutput,
 }
@@ -30470,7 +30819,11 @@ impl PyGetCommandInvocationResult {
     }
 }
 
-#[pyclass(name = "GetConnectionStatusResponse", frozen)]
+#[pyclass(
+    name = "GetConnectionStatusResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetConnectionStatusResponse {
     inner: aws_sdk_ssm::operation::get_connection_status::GetConnectionStatusOutput,
 }
@@ -30515,7 +30868,11 @@ impl PyGetConnectionStatusResponse {
     }
 }
 
-#[pyclass(name = "GetDefaultPatchBaselineResult", frozen)]
+#[pyclass(
+    name = "GetDefaultPatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetDefaultPatchBaselineResult {
     inner: aws_sdk_ssm::operation::get_default_patch_baseline::GetDefaultPatchBaselineOutput,
 }
@@ -30560,7 +30917,11 @@ impl PyGetDefaultPatchBaselineResult {
     }
 }
 
-#[pyclass(name = "GetDeployablePatchSnapshotForInstanceResult", frozen)]
+#[pyclass(
+    name = "GetDeployablePatchSnapshotForInstanceResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetDeployablePatchSnapshotForInstanceResult {
     inner: aws_sdk_ssm::operation::get_deployable_patch_snapshot_for_instance::GetDeployablePatchSnapshotForInstanceOutput,
 }
@@ -30637,7 +30998,7 @@ impl PyGetDeployablePatchSnapshotForInstanceResult {
     }
 }
 
-#[pyclass(name = "GetDocumentResult", frozen)]
+#[pyclass(name = "GetDocumentResult", module = "rboto_ssm._native", frozen)]
 struct PyGetDocumentResult {
     inner: aws_sdk_ssm::operation::get_document::GetDocumentOutput,
 }
@@ -30890,7 +31251,11 @@ impl PyGetDocumentResult {
     }
 }
 
-#[pyclass(name = "GetExecutionPreviewResponse", frozen)]
+#[pyclass(
+    name = "GetExecutionPreviewResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetExecutionPreviewResponse {
     inner: aws_sdk_ssm::operation::get_execution_preview::GetExecutionPreviewOutput,
 }
@@ -30983,7 +31348,7 @@ impl PyGetExecutionPreviewResponse {
     }
 }
 
-#[pyclass(name = "GetInventoryResult", frozen)]
+#[pyclass(name = "GetInventoryResult", module = "rboto_ssm._native", frozen)]
 struct PyGetInventoryResult {
     inner: aws_sdk_ssm::operation::get_inventory::GetInventoryOutput,
 }
@@ -31044,7 +31409,11 @@ impl PyGetInventoryResult {
     }
 }
 
-#[pyclass(name = "GetInventorySchemaResult", frozen)]
+#[pyclass(
+    name = "GetInventorySchemaResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetInventorySchemaResult {
     inner: aws_sdk_ssm::operation::get_inventory_schema::GetInventorySchemaOutput,
 }
@@ -31105,7 +31474,11 @@ impl PyGetInventorySchemaResult {
     }
 }
 
-#[pyclass(name = "GetMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "GetMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::get_maintenance_window::GetMaintenanceWindowOutput,
 }
@@ -31338,7 +31711,11 @@ impl PyGetMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "GetMaintenanceWindowExecutionResult", frozen)]
+#[pyclass(
+    name = "GetMaintenanceWindowExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetMaintenanceWindowExecutionResult {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution::GetMaintenanceWindowExecutionOutput,
 }
@@ -31457,7 +31834,11 @@ impl PyGetMaintenanceWindowExecutionResult {
     }
 }
 
-#[pyclass(name = "GetMaintenanceWindowExecutionTaskResult", frozen)]
+#[pyclass(
+    name = "GetMaintenanceWindowExecutionTaskResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetMaintenanceWindowExecutionTaskResult {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution_task::GetMaintenanceWindowExecutionTaskOutput,
 }
@@ -31753,7 +32134,11 @@ impl PyGetMaintenanceWindowExecutionTaskResult {
     }
 }
 
-#[pyclass(name = "GetMaintenanceWindowExecutionTaskInvocationResult", frozen)]
+#[pyclass(
+    name = "GetMaintenanceWindowExecutionTaskInvocationResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetMaintenanceWindowExecutionTaskInvocationResult {
     inner: aws_sdk_ssm::operation::get_maintenance_window_execution_task_invocation::GetMaintenanceWindowExecutionTaskInvocationOutput,
 }
@@ -31958,7 +32343,11 @@ impl PyGetMaintenanceWindowExecutionTaskInvocationResult {
     }
 }
 
-#[pyclass(name = "GetMaintenanceWindowTaskResult", frozen)]
+#[pyclass(
+    name = "GetMaintenanceWindowTaskResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetMaintenanceWindowTaskResult {
     inner: aws_sdk_ssm::operation::get_maintenance_window_task::GetMaintenanceWindowTaskOutput,
 }
@@ -32272,7 +32661,7 @@ impl PyGetMaintenanceWindowTaskResult {
     }
 }
 
-#[pyclass(name = "GetOpsItemResponse", frozen)]
+#[pyclass(name = "GetOpsItemResponse", module = "rboto_ssm._native", frozen)]
 struct PyGetOpsItemResponse {
     inner: aws_sdk_ssm::operation::get_ops_item::GetOpsItemOutput,
 }
@@ -32307,7 +32696,7 @@ impl PyGetOpsItemResponse {
     }
 }
 
-#[pyclass(name = "GetOpsMetadataResult", frozen)]
+#[pyclass(name = "GetOpsMetadataResult", module = "rboto_ssm._native", frozen)]
 struct PyGetOpsMetadataResult {
     inner: aws_sdk_ssm::operation::get_ops_metadata::GetOpsMetadataOutput,
 }
@@ -32386,7 +32775,7 @@ impl PyGetOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "GetOpsSummaryResult", frozen)]
+#[pyclass(name = "GetOpsSummaryResult", module = "rboto_ssm._native", frozen)]
 struct PyGetOpsSummaryResult {
     inner: aws_sdk_ssm::operation::get_ops_summary::GetOpsSummaryOutput,
 }
@@ -32447,7 +32836,7 @@ impl PyGetOpsSummaryResult {
     }
 }
 
-#[pyclass(name = "GetParameterResult", frozen)]
+#[pyclass(name = "GetParameterResult", module = "rboto_ssm._native", frozen)]
 struct PyGetParameterResult {
     inner: aws_sdk_ssm::operation::get_parameter::GetParameterOutput,
 }
@@ -32482,7 +32871,11 @@ impl PyGetParameterResult {
     }
 }
 
-#[pyclass(name = "GetParameterHistoryResult", frozen)]
+#[pyclass(
+    name = "GetParameterHistoryResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetParameterHistoryResult {
     inner: aws_sdk_ssm::operation::get_parameter_history::GetParameterHistoryOutput,
 }
@@ -32543,7 +32936,7 @@ impl PyGetParameterHistoryResult {
     }
 }
 
-#[pyclass(name = "GetParametersResult", frozen)]
+#[pyclass(name = "GetParametersResult", module = "rboto_ssm._native", frozen)]
 struct PyGetParametersResult {
     inner: aws_sdk_ssm::operation::get_parameters::GetParametersOutput,
 }
@@ -32614,7 +33007,11 @@ impl PyGetParametersResult {
     }
 }
 
-#[pyclass(name = "GetParametersByPathResult", frozen)]
+#[pyclass(
+    name = "GetParametersByPathResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetParametersByPathResult {
     inner: aws_sdk_ssm::operation::get_parameters_by_path::GetParametersByPathOutput,
 }
@@ -32675,7 +33072,7 @@ impl PyGetParametersByPathResult {
     }
 }
 
-#[pyclass(name = "GetPatchBaselineResult", frozen)]
+#[pyclass(name = "GetPatchBaselineResult", module = "rboto_ssm._native", frozen)]
 struct PyGetPatchBaselineResult {
     inner: aws_sdk_ssm::operation::get_patch_baseline::GetPatchBaselineOutput,
 }
@@ -33005,7 +33402,11 @@ impl PyGetPatchBaselineResult {
     }
 }
 
-#[pyclass(name = "GetPatchBaselineForPatchGroupResult", frozen)]
+#[pyclass(
+    name = "GetPatchBaselineForPatchGroupResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetPatchBaselineForPatchGroupResult {
     inner: aws_sdk_ssm::operation::get_patch_baseline_for_patch_group::GetPatchBaselineForPatchGroupOutput,
 }
@@ -33066,7 +33467,11 @@ impl PyGetPatchBaselineForPatchGroupResult {
     }
 }
 
-#[pyclass(name = "GetResourcePoliciesResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePoliciesResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyGetResourcePoliciesResponse {
     inner: aws_sdk_ssm::operation::get_resource_policies::GetResourcePoliciesOutput,
 }
@@ -33128,7 +33533,7 @@ impl PyGetResourcePoliciesResponse {
     }
 }
 
-#[pyclass(name = "GetServiceSettingResult", frozen)]
+#[pyclass(name = "GetServiceSettingResult", module = "rboto_ssm._native", frozen)]
 struct PyGetServiceSettingResult {
     inner: aws_sdk_ssm::operation::get_service_setting::GetServiceSettingOutput,
 }
@@ -33163,7 +33568,11 @@ impl PyGetServiceSettingResult {
     }
 }
 
-#[pyclass(name = "LabelParameterVersionResult", frozen)]
+#[pyclass(
+    name = "LabelParameterVersionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyLabelParameterVersionResult {
     inner: aws_sdk_ssm::operation::label_parameter_version::LabelParameterVersionOutput,
 }
@@ -33210,7 +33619,11 @@ impl PyLabelParameterVersionResult {
     }
 }
 
-#[pyclass(name = "ListAssociationVersionsResult", frozen)]
+#[pyclass(
+    name = "ListAssociationVersionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListAssociationVersionsResult {
     inner: aws_sdk_ssm::operation::list_association_versions::ListAssociationVersionsOutput,
 }
@@ -33271,7 +33684,7 @@ impl PyListAssociationVersionsResult {
     }
 }
 
-#[pyclass(name = "ListAssociationsResult", frozen)]
+#[pyclass(name = "ListAssociationsResult", module = "rboto_ssm._native", frozen)]
 struct PyListAssociationsResult {
     inner: aws_sdk_ssm::operation::list_associations::ListAssociationsOutput,
 }
@@ -33332,7 +33745,11 @@ impl PyListAssociationsResult {
     }
 }
 
-#[pyclass(name = "ListCloudConnectorsResult", frozen)]
+#[pyclass(
+    name = "ListCloudConnectorsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListCloudConnectorsResult {
     inner: aws_sdk_ssm::operation::list_cloud_connectors::ListCloudConnectorsOutput,
 }
@@ -33393,7 +33810,11 @@ impl PyListCloudConnectorsResult {
     }
 }
 
-#[pyclass(name = "ListCommandInvocationsResult", frozen)]
+#[pyclass(
+    name = "ListCommandInvocationsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListCommandInvocationsResult {
     inner: aws_sdk_ssm::operation::list_command_invocations::ListCommandInvocationsOutput,
 }
@@ -33454,7 +33875,7 @@ impl PyListCommandInvocationsResult {
     }
 }
 
-#[pyclass(name = "ListCommandsResult", frozen)]
+#[pyclass(name = "ListCommandsResult", module = "rboto_ssm._native", frozen)]
 struct PyListCommandsResult {
     inner: aws_sdk_ssm::operation::list_commands::ListCommandsOutput,
 }
@@ -33515,7 +33936,11 @@ impl PyListCommandsResult {
     }
 }
 
-#[pyclass(name = "ListComplianceItemsResult", frozen)]
+#[pyclass(
+    name = "ListComplianceItemsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListComplianceItemsResult {
     inner: aws_sdk_ssm::operation::list_compliance_items::ListComplianceItemsOutput,
 }
@@ -33576,7 +34001,11 @@ impl PyListComplianceItemsResult {
     }
 }
 
-#[pyclass(name = "ListComplianceSummariesResult", frozen)]
+#[pyclass(
+    name = "ListComplianceSummariesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListComplianceSummariesResult {
     inner: aws_sdk_ssm::operation::list_compliance_summaries::ListComplianceSummariesOutput,
 }
@@ -33637,7 +34066,11 @@ impl PyListComplianceSummariesResult {
     }
 }
 
-#[pyclass(name = "ListDocumentMetadataHistoryResponse", frozen)]
+#[pyclass(
+    name = "ListDocumentMetadataHistoryResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListDocumentMetadataHistoryResponse {
     inner:
         aws_sdk_ssm::operation::list_document_metadata_history::ListDocumentMetadataHistoryOutput,
@@ -33737,7 +34170,11 @@ impl PyListDocumentMetadataHistoryResponse {
     }
 }
 
-#[pyclass(name = "ListDocumentVersionsResult", frozen)]
+#[pyclass(
+    name = "ListDocumentVersionsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListDocumentVersionsResult {
     inner: aws_sdk_ssm::operation::list_document_versions::ListDocumentVersionsOutput,
 }
@@ -33798,7 +34235,7 @@ impl PyListDocumentVersionsResult {
     }
 }
 
-#[pyclass(name = "ListDocumentsResult", frozen)]
+#[pyclass(name = "ListDocumentsResult", module = "rboto_ssm._native", frozen)]
 struct PyListDocumentsResult {
     inner: aws_sdk_ssm::operation::list_documents::ListDocumentsOutput,
 }
@@ -33859,7 +34296,11 @@ impl PyListDocumentsResult {
     }
 }
 
-#[pyclass(name = "ListInventoryEntriesResult", frozen)]
+#[pyclass(
+    name = "ListInventoryEntriesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListInventoryEntriesResult {
     inner: aws_sdk_ssm::operation::list_inventory_entries::ListInventoryEntriesOutput,
 }
@@ -33990,7 +34431,7 @@ impl PyListInventoryEntriesResult {
     }
 }
 
-#[pyclass(name = "ListNodesResult", frozen)]
+#[pyclass(name = "ListNodesResult", module = "rboto_ssm._native", frozen)]
 struct PyListNodesResult {
     inner: aws_sdk_ssm::operation::list_nodes::ListNodesOutput,
 }
@@ -34051,7 +34492,7 @@ impl PyListNodesResult {
     }
 }
 
-#[pyclass(name = "ListNodesSummaryResult", frozen)]
+#[pyclass(name = "ListNodesSummaryResult", module = "rboto_ssm._native", frozen)]
 struct PyListNodesSummaryResult {
     inner: aws_sdk_ssm::operation::list_nodes_summary::ListNodesSummaryOutput,
 }
@@ -34118,7 +34559,11 @@ impl PyListNodesSummaryResult {
     }
 }
 
-#[pyclass(name = "ListOpsItemEventsResponse", frozen)]
+#[pyclass(
+    name = "ListOpsItemEventsResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListOpsItemEventsResponse {
     inner: aws_sdk_ssm::operation::list_ops_item_events::ListOpsItemEventsOutput,
 }
@@ -34179,7 +34624,11 @@ impl PyListOpsItemEventsResponse {
     }
 }
 
-#[pyclass(name = "ListOpsItemRelatedItemsResponse", frozen)]
+#[pyclass(
+    name = "ListOpsItemRelatedItemsResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListOpsItemRelatedItemsResponse {
     inner: aws_sdk_ssm::operation::list_ops_item_related_items::ListOpsItemRelatedItemsOutput,
 }
@@ -34240,7 +34689,7 @@ impl PyListOpsItemRelatedItemsResponse {
     }
 }
 
-#[pyclass(name = "ListOpsMetadataResult", frozen)]
+#[pyclass(name = "ListOpsMetadataResult", module = "rboto_ssm._native", frozen)]
 struct PyListOpsMetadataResult {
     inner: aws_sdk_ssm::operation::list_ops_metadata::ListOpsMetadataOutput,
 }
@@ -34301,7 +34750,11 @@ impl PyListOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "ListResourceComplianceSummariesResult", frozen)]
+#[pyclass(
+    name = "ListResourceComplianceSummariesResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListResourceComplianceSummariesResult {
     inner: aws_sdk_ssm::operation::list_resource_compliance_summaries::ListResourceComplianceSummariesOutput,
 }
@@ -34362,7 +34815,11 @@ impl PyListResourceComplianceSummariesResult {
     }
 }
 
-#[pyclass(name = "ListResourceDataSyncResult", frozen)]
+#[pyclass(
+    name = "ListResourceDataSyncResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListResourceDataSyncResult {
     inner: aws_sdk_ssm::operation::list_resource_data_sync::ListResourceDataSyncOutput,
 }
@@ -34423,7 +34880,11 @@ impl PyListResourceDataSyncResult {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResult", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyListTagsForResourceResult {
     inner: aws_sdk_ssm::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -34468,7 +34929,11 @@ impl PyListTagsForResourceResult {
     }
 }
 
-#[pyclass(name = "ModifyDocumentPermissionResponse", frozen)]
+#[pyclass(
+    name = "ModifyDocumentPermissionResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyModifyDocumentPermissionResponse {
     inner: aws_sdk_ssm::operation::modify_document_permission::ModifyDocumentPermissionOutput,
 }
@@ -34481,7 +34946,11 @@ impl PyModifyDocumentPermissionResponse {
     }
 }
 
-#[pyclass(name = "PutComplianceItemsResult", frozen)]
+#[pyclass(
+    name = "PutComplianceItemsResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyPutComplianceItemsResult {
     inner: aws_sdk_ssm::operation::put_compliance_items::PutComplianceItemsOutput,
 }
@@ -34494,7 +34963,7 @@ impl PyPutComplianceItemsResult {
     }
 }
 
-#[pyclass(name = "PutInventoryResult", frozen)]
+#[pyclass(name = "PutInventoryResult", module = "rboto_ssm._native", frozen)]
 struct PyPutInventoryResult {
     inner: aws_sdk_ssm::operation::put_inventory::PutInventoryOutput,
 }
@@ -34523,7 +34992,7 @@ impl PyPutInventoryResult {
     }
 }
 
-#[pyclass(name = "PutParameterResult", frozen)]
+#[pyclass(name = "PutParameterResult", module = "rboto_ssm._native", frozen)]
 struct PyPutParameterResult {
     inner: aws_sdk_ssm::operation::put_parameter::PutParameterOutput,
 }
@@ -34560,7 +35029,11 @@ impl PyPutParameterResult {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_ssm::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -34605,7 +35078,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "RegisterDefaultPatchBaselineResult", frozen)]
+#[pyclass(
+    name = "RegisterDefaultPatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyRegisterDefaultPatchBaselineResult {
     inner:
         aws_sdk_ssm::operation::register_default_patch_baseline::RegisterDefaultPatchBaselineOutput,
@@ -34635,7 +35112,11 @@ impl PyRegisterDefaultPatchBaselineResult {
     }
 }
 
-#[pyclass(name = "RegisterPatchBaselineForPatchGroupResult", frozen)]
+#[pyclass(
+    name = "RegisterPatchBaselineForPatchGroupResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyRegisterPatchBaselineForPatchGroupResult {
     inner: aws_sdk_ssm::operation::register_patch_baseline_for_patch_group::RegisterPatchBaselineForPatchGroupOutput,
 }
@@ -34680,7 +35161,11 @@ impl PyRegisterPatchBaselineForPatchGroupResult {
     }
 }
 
-#[pyclass(name = "RegisterTargetWithMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "RegisterTargetWithMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyRegisterTargetWithMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::register_target_with_maintenance_window::RegisterTargetWithMaintenanceWindowOutput,
 }
@@ -34709,7 +35194,11 @@ impl PyRegisterTargetWithMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "RegisterTaskWithMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "RegisterTaskWithMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyRegisterTaskWithMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::register_task_with_maintenance_window::RegisterTaskWithMaintenanceWindowOutput,
 }
@@ -34738,7 +35227,11 @@ impl PyRegisterTaskWithMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "RemoveTagsFromResourceResult", frozen)]
+#[pyclass(
+    name = "RemoveTagsFromResourceResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyRemoveTagsFromResourceResult {
     inner: aws_sdk_ssm::operation::remove_tags_from_resource::RemoveTagsFromResourceOutput,
 }
@@ -34751,7 +35244,11 @@ impl PyRemoveTagsFromResourceResult {
     }
 }
 
-#[pyclass(name = "ResetServiceSettingResult", frozen)]
+#[pyclass(
+    name = "ResetServiceSettingResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyResetServiceSettingResult {
     inner: aws_sdk_ssm::operation::reset_service_setting::ResetServiceSettingOutput,
 }
@@ -34786,7 +35283,7 @@ impl PyResetServiceSettingResult {
     }
 }
 
-#[pyclass(name = "ResumeSessionResponse", frozen)]
+#[pyclass(name = "ResumeSessionResponse", module = "rboto_ssm._native", frozen)]
 struct PyResumeSessionResponse {
     inner: aws_sdk_ssm::operation::resume_session::ResumeSessionOutput,
 }
@@ -34847,7 +35344,11 @@ impl PyResumeSessionResponse {
     }
 }
 
-#[pyclass(name = "SendAutomationSignalResult", frozen)]
+#[pyclass(
+    name = "SendAutomationSignalResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PySendAutomationSignalResult {
     inner: aws_sdk_ssm::operation::send_automation_signal::SendAutomationSignalOutput,
 }
@@ -34860,7 +35361,7 @@ impl PySendAutomationSignalResult {
     }
 }
 
-#[pyclass(name = "SendCommandResult", frozen)]
+#[pyclass(name = "SendCommandResult", module = "rboto_ssm._native", frozen)]
 struct PySendCommandResult {
     inner: aws_sdk_ssm::operation::send_command::SendCommandOutput,
 }
@@ -34895,7 +35396,11 @@ impl PySendCommandResult {
     }
 }
 
-#[pyclass(name = "StartAccessRequestResponse", frozen)]
+#[pyclass(
+    name = "StartAccessRequestResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStartAccessRequestResponse {
     inner: aws_sdk_ssm::operation::start_access_request::StartAccessRequestOutput,
 }
@@ -34924,7 +35429,11 @@ impl PyStartAccessRequestResponse {
     }
 }
 
-#[pyclass(name = "StartAssociationsOnceResult", frozen)]
+#[pyclass(
+    name = "StartAssociationsOnceResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStartAssociationsOnceResult {
     inner: aws_sdk_ssm::operation::start_associations_once::StartAssociationsOnceOutput,
 }
@@ -34937,7 +35446,11 @@ impl PyStartAssociationsOnceResult {
     }
 }
 
-#[pyclass(name = "StartAutomationExecutionResult", frozen)]
+#[pyclass(
+    name = "StartAutomationExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStartAutomationExecutionResult {
     inner: aws_sdk_ssm::operation::start_automation_execution::StartAutomationExecutionOutput,
 }
@@ -34966,7 +35479,11 @@ impl PyStartAutomationExecutionResult {
     }
 }
 
-#[pyclass(name = "StartChangeRequestExecutionResult", frozen)]
+#[pyclass(
+    name = "StartChangeRequestExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStartChangeRequestExecutionResult {
     inner:
         aws_sdk_ssm::operation::start_change_request_execution::StartChangeRequestExecutionOutput,
@@ -34996,7 +35513,11 @@ impl PyStartChangeRequestExecutionResult {
     }
 }
 
-#[pyclass(name = "StartExecutionPreviewResponse", frozen)]
+#[pyclass(
+    name = "StartExecutionPreviewResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStartExecutionPreviewResponse {
     inner: aws_sdk_ssm::operation::start_execution_preview::StartExecutionPreviewOutput,
 }
@@ -35025,7 +35546,7 @@ impl PyStartExecutionPreviewResponse {
     }
 }
 
-#[pyclass(name = "StartSessionResponse", frozen)]
+#[pyclass(name = "StartSessionResponse", module = "rboto_ssm._native", frozen)]
 struct PyStartSessionResponse {
     inner: aws_sdk_ssm::operation::start_session::StartSessionOutput,
 }
@@ -35086,7 +35607,11 @@ impl PyStartSessionResponse {
     }
 }
 
-#[pyclass(name = "StopAutomationExecutionResult", frozen)]
+#[pyclass(
+    name = "StopAutomationExecutionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyStopAutomationExecutionResult {
     inner: aws_sdk_ssm::operation::stop_automation_execution::StopAutomationExecutionOutput,
 }
@@ -35099,7 +35624,11 @@ impl PyStopAutomationExecutionResult {
     }
 }
 
-#[pyclass(name = "TerminateSessionResponse", frozen)]
+#[pyclass(
+    name = "TerminateSessionResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyTerminateSessionResponse {
     inner: aws_sdk_ssm::operation::terminate_session::TerminateSessionOutput,
 }
@@ -35128,7 +35657,11 @@ impl PyTerminateSessionResponse {
     }
 }
 
-#[pyclass(name = "UnlabelParameterVersionResult", frozen)]
+#[pyclass(
+    name = "UnlabelParameterVersionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUnlabelParameterVersionResult {
     inner: aws_sdk_ssm::operation::unlabel_parameter_version::UnlabelParameterVersionOutput,
 }
@@ -35193,7 +35726,7 @@ impl PyUnlabelParameterVersionResult {
     }
 }
 
-#[pyclass(name = "UpdateAssociationResult", frozen)]
+#[pyclass(name = "UpdateAssociationResult", module = "rboto_ssm._native", frozen)]
 struct PyUpdateAssociationResult {
     inner: aws_sdk_ssm::operation::update_association::UpdateAssociationOutput,
 }
@@ -35228,7 +35761,11 @@ impl PyUpdateAssociationResult {
     }
 }
 
-#[pyclass(name = "UpdateAssociationStatusResult", frozen)]
+#[pyclass(
+    name = "UpdateAssociationStatusResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateAssociationStatusResult {
     inner: aws_sdk_ssm::operation::update_association_status::UpdateAssociationStatusOutput,
 }
@@ -35263,7 +35800,11 @@ impl PyUpdateAssociationStatusResult {
     }
 }
 
-#[pyclass(name = "UpdateCloudConnectorResult", frozen)]
+#[pyclass(
+    name = "UpdateCloudConnectorResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateCloudConnectorResult {
     inner: aws_sdk_ssm::operation::update_cloud_connector::UpdateCloudConnectorOutput,
 }
@@ -35292,7 +35833,7 @@ impl PyUpdateCloudConnectorResult {
     }
 }
 
-#[pyclass(name = "UpdateDocumentResult", frozen)]
+#[pyclass(name = "UpdateDocumentResult", module = "rboto_ssm._native", frozen)]
 struct PyUpdateDocumentResult {
     inner: aws_sdk_ssm::operation::update_document::UpdateDocumentOutput,
 }
@@ -35327,7 +35868,11 @@ impl PyUpdateDocumentResult {
     }
 }
 
-#[pyclass(name = "UpdateDocumentDefaultVersionResult", frozen)]
+#[pyclass(
+    name = "UpdateDocumentDefaultVersionResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateDocumentDefaultVersionResult {
     inner:
         aws_sdk_ssm::operation::update_document_default_version::UpdateDocumentDefaultVersionOutput,
@@ -35363,7 +35908,11 @@ impl PyUpdateDocumentDefaultVersionResult {
     }
 }
 
-#[pyclass(name = "UpdateDocumentMetadataResponse", frozen)]
+#[pyclass(
+    name = "UpdateDocumentMetadataResponse",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateDocumentMetadataResponse {
     inner: aws_sdk_ssm::operation::update_document_metadata::UpdateDocumentMetadataOutput,
 }
@@ -35376,7 +35925,11 @@ impl PyUpdateDocumentMetadataResponse {
     }
 }
 
-#[pyclass(name = "UpdateMaintenanceWindowResult", frozen)]
+#[pyclass(
+    name = "UpdateMaintenanceWindowResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateMaintenanceWindowResult {
     inner: aws_sdk_ssm::operation::update_maintenance_window::UpdateMaintenanceWindowOutput,
 }
@@ -35561,7 +36114,11 @@ impl PyUpdateMaintenanceWindowResult {
     }
 }
 
-#[pyclass(name = "UpdateMaintenanceWindowTargetResult", frozen)]
+#[pyclass(
+    name = "UpdateMaintenanceWindowTargetResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateMaintenanceWindowTargetResult {
     inner: aws_sdk_ssm::operation::update_maintenance_window_target::UpdateMaintenanceWindowTargetOutput,
 }
@@ -35686,7 +36243,11 @@ impl PyUpdateMaintenanceWindowTargetResult {
     }
 }
 
-#[pyclass(name = "UpdateMaintenanceWindowTaskResult", frozen)]
+#[pyclass(
+    name = "UpdateMaintenanceWindowTaskResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateMaintenanceWindowTaskResult {
     inner:
         aws_sdk_ssm::operation::update_maintenance_window_task::UpdateMaintenanceWindowTaskOutput,
@@ -35985,7 +36546,11 @@ impl PyUpdateMaintenanceWindowTaskResult {
     }
 }
 
-#[pyclass(name = "UpdateManagedInstanceRoleResult", frozen)]
+#[pyclass(
+    name = "UpdateManagedInstanceRoleResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateManagedInstanceRoleResult {
     inner: aws_sdk_ssm::operation::update_managed_instance_role::UpdateManagedInstanceRoleOutput,
 }
@@ -35998,7 +36563,7 @@ impl PyUpdateManagedInstanceRoleResult {
     }
 }
 
-#[pyclass(name = "UpdateOpsItemResponse", frozen)]
+#[pyclass(name = "UpdateOpsItemResponse", module = "rboto_ssm._native", frozen)]
 struct PyUpdateOpsItemResponse {
     inner: aws_sdk_ssm::operation::update_ops_item::UpdateOpsItemOutput,
 }
@@ -36011,7 +36576,7 @@ impl PyUpdateOpsItemResponse {
     }
 }
 
-#[pyclass(name = "UpdateOpsMetadataResult", frozen)]
+#[pyclass(name = "UpdateOpsMetadataResult", module = "rboto_ssm._native", frozen)]
 struct PyUpdateOpsMetadataResult {
     inner: aws_sdk_ssm::operation::update_ops_metadata::UpdateOpsMetadataOutput,
 }
@@ -36040,7 +36605,11 @@ impl PyUpdateOpsMetadataResult {
     }
 }
 
-#[pyclass(name = "UpdatePatchBaselineResult", frozen)]
+#[pyclass(
+    name = "UpdatePatchBaselineResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdatePatchBaselineResult {
     inner: aws_sdk_ssm::operation::update_patch_baseline::UpdatePatchBaselineOutput,
 }
@@ -36344,7 +36913,11 @@ impl PyUpdatePatchBaselineResult {
     }
 }
 
-#[pyclass(name = "UpdateResourceDataSyncResult", frozen)]
+#[pyclass(
+    name = "UpdateResourceDataSyncResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateResourceDataSyncResult {
     inner: aws_sdk_ssm::operation::update_resource_data_sync::UpdateResourceDataSyncOutput,
 }
@@ -36357,7 +36930,11 @@ impl PyUpdateResourceDataSyncResult {
     }
 }
 
-#[pyclass(name = "UpdateServiceSettingResult", frozen)]
+#[pyclass(
+    name = "UpdateServiceSettingResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyUpdateServiceSettingResult {
     inner: aws_sdk_ssm::operation::update_service_setting::UpdateServiceSettingOutput,
 }
@@ -36370,7 +36947,11 @@ impl PyUpdateServiceSettingResult {
     }
 }
 
-#[pyclass(name = "ValidateCloudConnectorResult", frozen)]
+#[pyclass(
+    name = "ValidateCloudConnectorResult",
+    module = "rboto_ssm._native",
+    frozen
+)]
 struct PyValidateCloudConnectorResult {
     inner: aws_sdk_ssm::operation::validate_cloud_connector::ValidateCloudConnectorOutput,
 }

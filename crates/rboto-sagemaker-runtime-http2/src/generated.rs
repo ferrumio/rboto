@@ -194,7 +194,10 @@ fn response_stream_event_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ResponseStreamEventReceiver")]
+#[pyclass(
+    name = "ResponseStreamEventReceiver",
+    module = "rboto_sagemaker_runtime_http2._native"
+)]
 struct PyResponseStreamEventReceiver {
     inner: Arc<
         Mutex<

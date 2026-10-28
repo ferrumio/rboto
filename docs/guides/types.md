@@ -40,6 +40,10 @@ Use it to interoperate with code expecting a dictionary. The result is
 values remain bytes, so this is not JSON serialization. Consume streaming bodies
 explicitly with their stream methods.
 
+For application-defined inputs and outputs, see
+[Pydantic and dataclasses](models.md). Pydantic can validate selected response
+attributes without calling `to_dict()`.
+
 ## Unions and documents
 
 Tagged unions select exactly one variant. DynamoDB `AttributeValue` uses

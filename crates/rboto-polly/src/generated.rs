@@ -745,7 +745,7 @@ fn voice_to_py(py: Python<'_>, value: &aws_sdk_polly::types::Voice) -> PyResult<
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "Lexicon", frozen)]
+#[pyclass(name = "Lexicon", module = "rboto_polly._native", frozen)]
 struct PyLexicon {
     inner: aws_sdk_polly::types::Lexicon,
 }
@@ -777,7 +777,7 @@ impl PyLexicon {
     }
 }
 
-#[pyclass(name = "LexiconAttributes", frozen)]
+#[pyclass(name = "LexiconAttributes", module = "rboto_polly._native", frozen)]
 struct PyLexiconAttributes {
     inner: aws_sdk_polly::types::LexiconAttributes,
 }
@@ -841,7 +841,7 @@ impl PyLexiconAttributes {
     }
 }
 
-#[pyclass(name = "LexiconDescription", frozen)]
+#[pyclass(name = "LexiconDescription", module = "rboto_polly._native", frozen)]
 struct PyLexiconDescription {
     inner: aws_sdk_polly::types::LexiconDescription,
 }
@@ -879,7 +879,7 @@ impl PyLexiconDescription {
     }
 }
 
-#[pyclass(name = "SynthesisTask", frozen)]
+#[pyclass(name = "SynthesisTask", module = "rboto_polly._native", frozen)]
 struct PySynthesisTask {
     inner: aws_sdk_polly::types::SynthesisTask,
 }
@@ -1049,7 +1049,7 @@ impl PySynthesisTask {
     }
 }
 
-#[pyclass(name = "Voice", frozen)]
+#[pyclass(name = "Voice", module = "rboto_polly._native", frozen)]
 struct PyVoice {
     inner: aws_sdk_polly::types::Voice,
 }
@@ -1141,7 +1141,7 @@ impl PyVoice {
     }
 }
 
-#[pyclass(name = "DeleteLexiconOutput", frozen)]
+#[pyclass(name = "DeleteLexiconOutput", module = "rboto_polly._native", frozen)]
 struct PyDeleteLexiconOutput {
     inner: aws_sdk_polly::operation::delete_lexicon::DeleteLexiconOutput,
 }
@@ -1154,7 +1154,7 @@ impl PyDeleteLexiconOutput {
     }
 }
 
-#[pyclass(name = "DescribeVoicesOutput", frozen)]
+#[pyclass(name = "DescribeVoicesOutput", module = "rboto_polly._native", frozen)]
 struct PyDescribeVoicesOutput {
     inner: aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput,
 }
@@ -1215,7 +1215,7 @@ impl PyDescribeVoicesOutput {
     }
 }
 
-#[pyclass(name = "GetLexiconOutput", frozen)]
+#[pyclass(name = "GetLexiconOutput", module = "rboto_polly._native", frozen)]
 struct PyGetLexiconOutput {
     inner: aws_sdk_polly::operation::get_lexicon::GetLexiconOutput,
 }
@@ -1272,7 +1272,11 @@ impl PyGetLexiconOutput {
     }
 }
 
-#[pyclass(name = "GetSpeechSynthesisTaskOutput", frozen)]
+#[pyclass(
+    name = "GetSpeechSynthesisTaskOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
 struct PyGetSpeechSynthesisTaskOutput {
     inner: aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskOutput,
 }
@@ -1307,7 +1311,7 @@ impl PyGetSpeechSynthesisTaskOutput {
     }
 }
 
-#[pyclass(name = "ListLexiconsOutput", frozen)]
+#[pyclass(name = "ListLexiconsOutput", module = "rboto_polly._native", frozen)]
 struct PyListLexiconsOutput {
     inner: aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput,
 }
@@ -1368,7 +1372,11 @@ impl PyListLexiconsOutput {
     }
 }
 
-#[pyclass(name = "ListSpeechSynthesisTasksOutput", frozen)]
+#[pyclass(
+    name = "ListSpeechSynthesisTasksOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
 struct PyListSpeechSynthesisTasksOutput {
     inner: aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksOutput,
 }
@@ -1429,7 +1437,7 @@ impl PyListSpeechSynthesisTasksOutput {
     }
 }
 
-#[pyclass(name = "PutLexiconOutput", frozen)]
+#[pyclass(name = "PutLexiconOutput", module = "rboto_polly._native", frozen)]
 struct PyPutLexiconOutput {
     inner: aws_sdk_polly::operation::put_lexicon::PutLexiconOutput,
 }
@@ -1442,7 +1450,11 @@ impl PyPutLexiconOutput {
     }
 }
 
-#[pyclass(name = "StartSpeechSynthesisTaskOutput", frozen)]
+#[pyclass(
+    name = "StartSpeechSynthesisTaskOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
 struct PyStartSpeechSynthesisTaskOutput {
     inner: aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskOutput,
 }
@@ -1477,7 +1489,11 @@ impl PyStartSpeechSynthesisTaskOutput {
     }
 }
 
-#[pyclass(name = "SynthesizeSpeechOutput", frozen)]
+#[pyclass(
+    name = "SynthesizeSpeechOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
 struct PySynthesizeSpeechOutput {
     inner: aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechOutput,
     audio_stream: Py<PyByteStream>,
@@ -1525,7 +1541,10 @@ impl PySynthesizeSpeechOutput {
     }
 }
 
-#[pyclass(name = "StartSpeechSynthesisStreamEventStreamReceiver")]
+#[pyclass(
+    name = "StartSpeechSynthesisStreamEventStreamReceiver",
+    module = "rboto_polly._native"
+)]
 struct PyStartSpeechSynthesisStreamEventStreamReceiver {
     inner: Arc<
         Mutex<

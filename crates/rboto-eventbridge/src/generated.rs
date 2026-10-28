@@ -3819,7 +3819,7 @@ fn update_connection_o_auth_request_parameters_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ApiDestination", frozen)]
+#[pyclass(name = "ApiDestination", module = "rboto_eventbridge._native", frozen)]
 struct PyApiDestination {
     inner: aws_sdk_eventbridge::types::ApiDestination,
 }
@@ -3921,7 +3921,11 @@ impl PyApiDestination {
     }
 }
 
-#[pyclass(name = "AppSyncParameters", frozen)]
+#[pyclass(
+    name = "AppSyncParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyAppSyncParameters {
     inner: aws_sdk_eventbridge::types::AppSyncParameters,
 }
@@ -3943,7 +3947,7 @@ impl PyAppSyncParameters {
     }
 }
 
-#[pyclass(name = "Archive", frozen)]
+#[pyclass(name = "Archive", module = "rboto_eventbridge._native", frozen)]
 struct PyArchive {
     inner: aws_sdk_eventbridge::types::Archive,
 }
@@ -4027,7 +4031,11 @@ impl PyArchive {
     }
 }
 
-#[pyclass(name = "AwsVpcConfiguration", frozen)]
+#[pyclass(
+    name = "AwsVpcConfiguration",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyAwsVpcConfiguration {
     inner: aws_sdk_eventbridge::types::AwsVpcConfiguration,
 }
@@ -4075,7 +4083,11 @@ impl PyAwsVpcConfiguration {
     }
 }
 
-#[pyclass(name = "BatchArrayProperties", frozen)]
+#[pyclass(
+    name = "BatchArrayProperties",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyBatchArrayProperties {
     inner: aws_sdk_eventbridge::types::BatchArrayProperties,
 }
@@ -4093,7 +4105,7 @@ impl PyBatchArrayProperties {
     }
 }
 
-#[pyclass(name = "BatchParameters", frozen)]
+#[pyclass(name = "BatchParameters", module = "rboto_eventbridge._native", frozen)]
 struct PyBatchParameters {
     inner: aws_sdk_eventbridge::types::BatchParameters,
 }
@@ -4149,7 +4161,11 @@ impl PyBatchParameters {
     }
 }
 
-#[pyclass(name = "BatchRetryStrategy", frozen)]
+#[pyclass(
+    name = "BatchRetryStrategy",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyBatchRetryStrategy {
     inner: aws_sdk_eventbridge::types::BatchRetryStrategy,
 }
@@ -4167,7 +4183,11 @@ impl PyBatchRetryStrategy {
     }
 }
 
-#[pyclass(name = "CapacityProviderStrategyItem", frozen)]
+#[pyclass(
+    name = "CapacityProviderStrategyItem",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCapacityProviderStrategyItem {
     inner: aws_sdk_eventbridge::types::CapacityProviderStrategyItem,
 }
@@ -4197,7 +4217,7 @@ impl PyCapacityProviderStrategyItem {
     }
 }
 
-#[pyclass(name = "Connection", frozen)]
+#[pyclass(name = "Connection", module = "rboto_eventbridge._native", frozen)]
 struct PyConnection {
     inner: aws_sdk_eventbridge::types::Connection,
 }
@@ -4289,7 +4309,11 @@ impl PyConnection {
     }
 }
 
-#[pyclass(name = "ConnectionApiKeyAuthResponseParameters", frozen)]
+#[pyclass(
+    name = "ConnectionApiKeyAuthResponseParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionApiKeyAuthResponseParameters {
     inner: aws_sdk_eventbridge::types::ConnectionApiKeyAuthResponseParameters,
 }
@@ -4311,7 +4335,11 @@ impl PyConnectionApiKeyAuthResponseParameters {
     }
 }
 
-#[pyclass(name = "ConnectionAuthResponseParameters", frozen)]
+#[pyclass(
+    name = "ConnectionAuthResponseParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionAuthResponseParameters {
     inner: aws_sdk_eventbridge::types::ConnectionAuthResponseParameters,
 }
@@ -4403,7 +4431,11 @@ impl PyConnectionAuthResponseParameters {
     }
 }
 
-#[pyclass(name = "ConnectionBasicAuthResponseParameters", frozen)]
+#[pyclass(
+    name = "ConnectionBasicAuthResponseParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionBasicAuthResponseParameters {
     inner: aws_sdk_eventbridge::types::ConnectionBasicAuthResponseParameters,
 }
@@ -4425,7 +4457,11 @@ impl PyConnectionBasicAuthResponseParameters {
     }
 }
 
-#[pyclass(name = "ConnectionBodyParameter", frozen)]
+#[pyclass(
+    name = "ConnectionBodyParameter",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionBodyParameter {
     inner: aws_sdk_eventbridge::types::ConnectionBodyParameter,
 }
@@ -4463,7 +4499,11 @@ impl PyConnectionBodyParameter {
     }
 }
 
-#[pyclass(name = "ConnectionHeaderParameter", frozen)]
+#[pyclass(
+    name = "ConnectionHeaderParameter",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionHeaderParameter {
     inner: aws_sdk_eventbridge::types::ConnectionHeaderParameter,
 }
@@ -4501,7 +4541,11 @@ impl PyConnectionHeaderParameter {
     }
 }
 
-#[pyclass(name = "ConnectionHttpParameters", frozen)]
+#[pyclass(
+    name = "ConnectionHttpParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionHttpParameters {
     inner: aws_sdk_eventbridge::types::ConnectionHttpParameters,
 }
@@ -4576,7 +4620,11 @@ impl PyConnectionHttpParameters {
     }
 }
 
-#[pyclass(name = "ConnectionOAuthClientResponseParameters", frozen)]
+#[pyclass(
+    name = "ConnectionOAuthClientResponseParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionOAuthClientResponseParameters {
     inner: aws_sdk_eventbridge::types::ConnectionOAuthClientResponseParameters,
 }
@@ -4598,7 +4646,11 @@ impl PyConnectionOAuthClientResponseParameters {
     }
 }
 
-#[pyclass(name = "ConnectionOAuthResponseParameters", frozen)]
+#[pyclass(
+    name = "ConnectionOAuthResponseParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionOAuthResponseParameters {
     inner: aws_sdk_eventbridge::types::ConnectionOAuthResponseParameters,
 }
@@ -4662,7 +4714,11 @@ impl PyConnectionOAuthResponseParameters {
     }
 }
 
-#[pyclass(name = "ConnectionQueryStringParameter", frozen)]
+#[pyclass(
+    name = "ConnectionQueryStringParameter",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyConnectionQueryStringParameter {
     inner: aws_sdk_eventbridge::types::ConnectionQueryStringParameter,
 }
@@ -4700,7 +4756,11 @@ impl PyConnectionQueryStringParameter {
     }
 }
 
-#[pyclass(name = "DeadLetterConfig", frozen)]
+#[pyclass(
+    name = "DeadLetterConfig",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeadLetterConfig {
     inner: aws_sdk_eventbridge::types::DeadLetterConfig,
 }
@@ -4722,7 +4782,11 @@ impl PyDeadLetterConfig {
     }
 }
 
-#[pyclass(name = "DescribeConnectionConnectivityParameters", frozen)]
+#[pyclass(
+    name = "DescribeConnectionConnectivityParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeConnectionConnectivityParameters {
     inner: aws_sdk_eventbridge::types::DescribeConnectionConnectivityParameters,
 }
@@ -4750,7 +4814,11 @@ impl PyDescribeConnectionConnectivityParameters {
     }
 }
 
-#[pyclass(name = "DescribeConnectionResourceParameters", frozen)]
+#[pyclass(
+    name = "DescribeConnectionResourceParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeConnectionResourceParameters {
     inner: aws_sdk_eventbridge::types::DescribeConnectionResourceParameters,
 }
@@ -4778,7 +4846,7 @@ impl PyDescribeConnectionResourceParameters {
     }
 }
 
-#[pyclass(name = "EcsParameters", frozen)]
+#[pyclass(name = "EcsParameters", module = "rboto_eventbridge._native", frozen)]
 struct PyEcsParameters {
     inner: aws_sdk_eventbridge::types::EcsParameters,
 }
@@ -4972,7 +5040,7 @@ impl PyEcsParameters {
     }
 }
 
-#[pyclass(name = "Endpoint", frozen)]
+#[pyclass(name = "Endpoint", module = "rboto_eventbridge._native", frozen)]
 struct PyEndpoint {
     inner: aws_sdk_eventbridge::types::Endpoint,
 }
@@ -5137,7 +5205,11 @@ impl PyEndpoint {
     }
 }
 
-#[pyclass(name = "EndpointEventBus", frozen)]
+#[pyclass(
+    name = "EndpointEventBus",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyEndpointEventBus {
     inner: aws_sdk_eventbridge::types::EndpointEventBus,
 }
@@ -5155,7 +5227,7 @@ impl PyEndpointEventBus {
     }
 }
 
-#[pyclass(name = "EventBus", frozen)]
+#[pyclass(name = "EventBus", module = "rboto_eventbridge._native", frozen)]
 struct PyEventBus {
     inner: aws_sdk_eventbridge::types::EventBus,
 }
@@ -5237,7 +5309,7 @@ impl PyEventBus {
     }
 }
 
-#[pyclass(name = "EventSource", frozen)]
+#[pyclass(name = "EventSource", module = "rboto_eventbridge._native", frozen)]
 struct PyEventSource {
     inner: aws_sdk_eventbridge::types::EventSource,
 }
@@ -5309,7 +5381,7 @@ impl PyEventSource {
     }
 }
 
-#[pyclass(name = "FailoverConfig", frozen)]
+#[pyclass(name = "FailoverConfig", module = "rboto_eventbridge._native", frozen)]
 struct PyFailoverConfig {
     inner: aws_sdk_eventbridge::types::FailoverConfig,
 }
@@ -5353,7 +5425,7 @@ impl PyFailoverConfig {
     }
 }
 
-#[pyclass(name = "HttpParameters", frozen)]
+#[pyclass(name = "HttpParameters", module = "rboto_eventbridge._native", frozen)]
 struct PyHttpParameters {
     inner: aws_sdk_eventbridge::types::HttpParameters,
 }
@@ -5412,7 +5484,11 @@ impl PyHttpParameters {
     }
 }
 
-#[pyclass(name = "InputTransformer", frozen)]
+#[pyclass(
+    name = "InputTransformer",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyInputTransformer {
     inner: aws_sdk_eventbridge::types::InputTransformer,
 }
@@ -5446,7 +5522,11 @@ impl PyInputTransformer {
     }
 }
 
-#[pyclass(name = "KinesisParameters", frozen)]
+#[pyclass(
+    name = "KinesisParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyKinesisParameters {
     inner: aws_sdk_eventbridge::types::KinesisParameters,
 }
@@ -5464,7 +5544,7 @@ impl PyKinesisParameters {
     }
 }
 
-#[pyclass(name = "LogConfig", frozen)]
+#[pyclass(name = "LogConfig", module = "rboto_eventbridge._native", frozen)]
 struct PyLogConfig {
     inner: aws_sdk_eventbridge::types::LogConfig,
 }
@@ -5496,7 +5576,11 @@ impl PyLogConfig {
     }
 }
 
-#[pyclass(name = "NetworkConfiguration", frozen)]
+#[pyclass(
+    name = "NetworkConfiguration",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyNetworkConfiguration {
     inner: aws_sdk_eventbridge::types::NetworkConfiguration,
 }
@@ -5524,7 +5608,11 @@ impl PyNetworkConfiguration {
     }
 }
 
-#[pyclass(name = "PartnerEventSource", frozen)]
+#[pyclass(
+    name = "PartnerEventSource",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPartnerEventSource {
     inner: aws_sdk_eventbridge::types::PartnerEventSource,
 }
@@ -5556,7 +5644,11 @@ impl PyPartnerEventSource {
     }
 }
 
-#[pyclass(name = "PartnerEventSourceAccount", frozen)]
+#[pyclass(
+    name = "PartnerEventSourceAccount",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPartnerEventSourceAccount {
     inner: aws_sdk_eventbridge::types::PartnerEventSourceAccount,
 }
@@ -5608,7 +5700,11 @@ impl PyPartnerEventSourceAccount {
     }
 }
 
-#[pyclass(name = "PlacementConstraint", frozen)]
+#[pyclass(
+    name = "PlacementConstraint",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPlacementConstraint {
     inner: aws_sdk_eventbridge::types::PlacementConstraint,
 }
@@ -5640,7 +5736,11 @@ impl PyPlacementConstraint {
     }
 }
 
-#[pyclass(name = "PlacementStrategy", frozen)]
+#[pyclass(
+    name = "PlacementStrategy",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPlacementStrategy {
     inner: aws_sdk_eventbridge::types::PlacementStrategy,
 }
@@ -5672,7 +5772,7 @@ impl PyPlacementStrategy {
     }
 }
 
-#[pyclass(name = "Primary", frozen)]
+#[pyclass(name = "Primary", module = "rboto_eventbridge._native", frozen)]
 struct PyPrimary {
     inner: aws_sdk_eventbridge::types::Primary,
 }
@@ -5690,7 +5790,11 @@ impl PyPrimary {
     }
 }
 
-#[pyclass(name = "PutEventsResultEntry", frozen)]
+#[pyclass(
+    name = "PutEventsResultEntry",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutEventsResultEntry {
     inner: aws_sdk_eventbridge::types::PutEventsResultEntry,
 }
@@ -5732,7 +5836,11 @@ impl PyPutEventsResultEntry {
     }
 }
 
-#[pyclass(name = "PutPartnerEventsResultEntry", frozen)]
+#[pyclass(
+    name = "PutPartnerEventsResultEntry",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutPartnerEventsResultEntry {
     inner: aws_sdk_eventbridge::types::PutPartnerEventsResultEntry,
 }
@@ -5774,7 +5882,11 @@ impl PyPutPartnerEventsResultEntry {
     }
 }
 
-#[pyclass(name = "PutTargetsResultEntry", frozen)]
+#[pyclass(
+    name = "PutTargetsResultEntry",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutTargetsResultEntry {
     inner: aws_sdk_eventbridge::types::PutTargetsResultEntry,
 }
@@ -5816,7 +5928,11 @@ impl PyPutTargetsResultEntry {
     }
 }
 
-#[pyclass(name = "RedshiftDataParameters", frozen)]
+#[pyclass(
+    name = "RedshiftDataParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyRedshiftDataParameters {
     inner: aws_sdk_eventbridge::types::RedshiftDataParameters,
 }
@@ -5895,7 +6011,11 @@ impl PyRedshiftDataParameters {
     }
 }
 
-#[pyclass(name = "RemoveTargetsResultEntry", frozen)]
+#[pyclass(
+    name = "RemoveTargetsResultEntry",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyRemoveTargetsResultEntry {
     inner: aws_sdk_eventbridge::types::RemoveTargetsResultEntry,
 }
@@ -5937,7 +6057,7 @@ impl PyRemoveTargetsResultEntry {
     }
 }
 
-#[pyclass(name = "Replay", frozen)]
+#[pyclass(name = "Replay", module = "rboto_eventbridge._native", frozen)]
 struct PyReplay {
     inner: aws_sdk_eventbridge::types::Replay,
 }
@@ -6039,7 +6159,11 @@ impl PyReplay {
     }
 }
 
-#[pyclass(name = "ReplayDestination", frozen)]
+#[pyclass(
+    name = "ReplayDestination",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyReplayDestination {
     inner: aws_sdk_eventbridge::types::ReplayDestination,
 }
@@ -6072,7 +6196,11 @@ impl PyReplayDestination {
     }
 }
 
-#[pyclass(name = "ReplicationConfig", frozen)]
+#[pyclass(
+    name = "ReplicationConfig",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyReplicationConfig {
     inner: aws_sdk_eventbridge::types::ReplicationConfig,
 }
@@ -6094,7 +6222,7 @@ impl PyReplicationConfig {
     }
 }
 
-#[pyclass(name = "RetryPolicy", frozen)]
+#[pyclass(name = "RetryPolicy", module = "rboto_eventbridge._native", frozen)]
 struct PyRetryPolicy {
     inner: aws_sdk_eventbridge::types::RetryPolicy,
 }
@@ -6126,7 +6254,7 @@ impl PyRetryPolicy {
     }
 }
 
-#[pyclass(name = "RoutingConfig", frozen)]
+#[pyclass(name = "RoutingConfig", module = "rboto_eventbridge._native", frozen)]
 struct PyRoutingConfig {
     inner: aws_sdk_eventbridge::types::RoutingConfig,
 }
@@ -6154,7 +6282,7 @@ impl PyRoutingConfig {
     }
 }
 
-#[pyclass(name = "Rule", frozen)]
+#[pyclass(name = "Rule", module = "rboto_eventbridge._native", frozen)]
 struct PyRule {
     inner: aws_sdk_eventbridge::types::Rule,
 }
@@ -6256,7 +6384,11 @@ impl PyRule {
     }
 }
 
-#[pyclass(name = "RunCommandParameters", frozen)]
+#[pyclass(
+    name = "RunCommandParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyRunCommandParameters {
     inner: aws_sdk_eventbridge::types::RunCommandParameters,
 }
@@ -6285,7 +6417,11 @@ impl PyRunCommandParameters {
     }
 }
 
-#[pyclass(name = "RunCommandTarget", frozen)]
+#[pyclass(
+    name = "RunCommandTarget",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyRunCommandTarget {
     inner: aws_sdk_eventbridge::types::RunCommandTarget,
 }
@@ -6314,7 +6450,11 @@ impl PyRunCommandTarget {
     }
 }
 
-#[pyclass(name = "SageMakerPipelineParameter", frozen)]
+#[pyclass(
+    name = "SageMakerPipelineParameter",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PySageMakerPipelineParameter {
     inner: aws_sdk_eventbridge::types::SageMakerPipelineParameter,
 }
@@ -6338,7 +6478,11 @@ impl PySageMakerPipelineParameter {
     }
 }
 
-#[pyclass(name = "SageMakerPipelineParameters", frozen)]
+#[pyclass(
+    name = "SageMakerPipelineParameters",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PySageMakerPipelineParameters {
     inner: aws_sdk_eventbridge::types::SageMakerPipelineParameters,
 }
@@ -6371,7 +6515,7 @@ impl PySageMakerPipelineParameters {
     }
 }
 
-#[pyclass(name = "Secondary", frozen)]
+#[pyclass(name = "Secondary", module = "rboto_eventbridge._native", frozen)]
 struct PySecondary {
     inner: aws_sdk_eventbridge::types::Secondary,
 }
@@ -6389,7 +6533,7 @@ impl PySecondary {
     }
 }
 
-#[pyclass(name = "SqsParameters", frozen)]
+#[pyclass(name = "SqsParameters", module = "rboto_eventbridge._native", frozen)]
 struct PySqsParameters {
     inner: aws_sdk_eventbridge::types::SqsParameters,
 }
@@ -6411,7 +6555,7 @@ impl PySqsParameters {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_eventbridge._native", frozen)]
 struct PyTag {
     inner: aws_sdk_eventbridge::types::Tag,
 }
@@ -6435,7 +6579,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Target", frozen)]
+#[pyclass(name = "Target", module = "rboto_eventbridge._native", frozen)]
 struct PyTarget {
     inner: aws_sdk_eventbridge::types::Target,
 }
@@ -6681,7 +6825,11 @@ impl PyTarget {
     }
 }
 
-#[pyclass(name = "CancelReplayResponse", frozen)]
+#[pyclass(
+    name = "CancelReplayResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCancelReplayResponse {
     inner: aws_sdk_eventbridge::operation::cancel_replay::CancelReplayOutput,
 }
@@ -6742,7 +6890,11 @@ impl PyCancelReplayResponse {
     }
 }
 
-#[pyclass(name = "CreateApiDestinationResponse", frozen)]
+#[pyclass(
+    name = "CreateApiDestinationResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreateApiDestinationResponse {
     inner: aws_sdk_eventbridge::operation::create_api_destination::CreateApiDestinationOutput,
 }
@@ -6819,7 +6971,11 @@ impl PyCreateApiDestinationResponse {
     }
 }
 
-#[pyclass(name = "CreateArchiveResponse", frozen)]
+#[pyclass(
+    name = "CreateArchiveResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreateArchiveResponse {
     inner: aws_sdk_eventbridge::operation::create_archive::CreateArchiveOutput,
 }
@@ -6896,7 +7052,11 @@ impl PyCreateArchiveResponse {
     }
 }
 
-#[pyclass(name = "CreateConnectionResponse", frozen)]
+#[pyclass(
+    name = "CreateConnectionResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreateConnectionResponse {
     inner: aws_sdk_eventbridge::operation::create_connection::CreateConnectionOutput,
 }
@@ -6973,7 +7133,11 @@ impl PyCreateConnectionResponse {
     }
 }
 
-#[pyclass(name = "CreateEndpointResponse", frozen)]
+#[pyclass(
+    name = "CreateEndpointResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreateEndpointResponse {
     inner: aws_sdk_eventbridge::operation::create_endpoint::CreateEndpointOutput,
 }
@@ -7126,7 +7290,11 @@ impl PyCreateEndpointResponse {
     }
 }
 
-#[pyclass(name = "CreateEventBusResponse", frozen)]
+#[pyclass(
+    name = "CreateEventBusResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreateEventBusResponse {
     inner: aws_sdk_eventbridge::operation::create_event_bus::CreateEventBusOutput,
 }
@@ -7231,7 +7399,11 @@ impl PyCreateEventBusResponse {
     }
 }
 
-#[pyclass(name = "CreatePartnerEventSourceResponse", frozen)]
+#[pyclass(
+    name = "CreatePartnerEventSourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyCreatePartnerEventSourceResponse {
     inner:
         aws_sdk_eventbridge::operation::create_partner_event_source::CreatePartnerEventSourceOutput,
@@ -7261,7 +7433,11 @@ impl PyCreatePartnerEventSourceResponse {
     }
 }
 
-#[pyclass(name = "DeauthorizeConnectionResponse", frozen)]
+#[pyclass(
+    name = "DeauthorizeConnectionResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeauthorizeConnectionResponse {
     inner: aws_sdk_eventbridge::operation::deauthorize_connection::DeauthorizeConnectionOutput,
 }
@@ -7354,7 +7530,11 @@ impl PyDeauthorizeConnectionResponse {
     }
 }
 
-#[pyclass(name = "DeleteApiDestinationResponse", frozen)]
+#[pyclass(
+    name = "DeleteApiDestinationResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeleteApiDestinationResponse {
     inner: aws_sdk_eventbridge::operation::delete_api_destination::DeleteApiDestinationOutput,
 }
@@ -7367,7 +7547,11 @@ impl PyDeleteApiDestinationResponse {
     }
 }
 
-#[pyclass(name = "DeleteArchiveResponse", frozen)]
+#[pyclass(
+    name = "DeleteArchiveResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeleteArchiveResponse {
     inner: aws_sdk_eventbridge::operation::delete_archive::DeleteArchiveOutput,
 }
@@ -7380,7 +7564,11 @@ impl PyDeleteArchiveResponse {
     }
 }
 
-#[pyclass(name = "DeleteConnectionResponse", frozen)]
+#[pyclass(
+    name = "DeleteConnectionResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeleteConnectionResponse {
     inner: aws_sdk_eventbridge::operation::delete_connection::DeleteConnectionOutput,
 }
@@ -7473,7 +7661,11 @@ impl PyDeleteConnectionResponse {
     }
 }
 
-#[pyclass(name = "DeleteEndpointResponse", frozen)]
+#[pyclass(
+    name = "DeleteEndpointResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDeleteEndpointResponse {
     inner: aws_sdk_eventbridge::operation::delete_endpoint::DeleteEndpointOutput,
 }
@@ -7486,7 +7678,11 @@ impl PyDeleteEndpointResponse {
     }
 }
 
-#[pyclass(name = "DescribeApiDestinationResponse", frozen)]
+#[pyclass(
+    name = "DescribeApiDestinationResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeApiDestinationResponse {
     inner: aws_sdk_eventbridge::operation::describe_api_destination::DescribeApiDestinationOutput,
 }
@@ -7659,7 +7855,11 @@ impl PyDescribeApiDestinationResponse {
     }
 }
 
-#[pyclass(name = "DescribeArchiveResponse", frozen)]
+#[pyclass(
+    name = "DescribeArchiveResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeArchiveResponse {
     inner: aws_sdk_eventbridge::operation::describe_archive::DescribeArchiveOutput,
 }
@@ -7848,7 +8048,11 @@ impl PyDescribeArchiveResponse {
     }
 }
 
-#[pyclass(name = "DescribeConnectionResponse", frozen)]
+#[pyclass(
+    name = "DescribeConnectionResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeConnectionResponse {
     inner: aws_sdk_eventbridge::operation::describe_connection::DescribeConnectionOutput,
 }
@@ -8081,7 +8285,11 @@ impl PyDescribeConnectionResponse {
     }
 }
 
-#[pyclass(name = "DescribeEndpointResponse", frozen)]
+#[pyclass(
+    name = "DescribeEndpointResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeEndpointResponse {
     inner: aws_sdk_eventbridge::operation::describe_endpoint::DescribeEndpointOutput,
 }
@@ -8330,7 +8538,11 @@ impl PyDescribeEndpointResponse {
     }
 }
 
-#[pyclass(name = "DescribeEventBusResponse", frozen)]
+#[pyclass(
+    name = "DescribeEventBusResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeEventBusResponse {
     inner: aws_sdk_eventbridge::operation::describe_event_bus::DescribeEventBusOutput,
 }
@@ -8515,7 +8727,11 @@ impl PyDescribeEventBusResponse {
     }
 }
 
-#[pyclass(name = "DescribeEventSourceResponse", frozen)]
+#[pyclass(
+    name = "DescribeEventSourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeEventSourceResponse {
     inner: aws_sdk_eventbridge::operation::describe_event_source::DescribeEventSourceOutput,
 }
@@ -8624,7 +8840,11 @@ impl PyDescribeEventSourceResponse {
     }
 }
 
-#[pyclass(name = "DescribePartnerEventSourceResponse", frozen)]
+#[pyclass(
+    name = "DescribePartnerEventSourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribePartnerEventSourceResponse {
     inner: aws_sdk_eventbridge::operation::describe_partner_event_source::DescribePartnerEventSourceOutput,
 }
@@ -8669,7 +8889,11 @@ impl PyDescribePartnerEventSourceResponse {
     }
 }
 
-#[pyclass(name = "DescribeReplayResponse", frozen)]
+#[pyclass(
+    name = "DescribeReplayResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeReplayResponse {
     inner: aws_sdk_eventbridge::operation::describe_replay::DescribeReplayOutput,
 }
@@ -8880,7 +9104,11 @@ impl PyDescribeReplayResponse {
     }
 }
 
-#[pyclass(name = "DescribeRuleResponse", frozen)]
+#[pyclass(
+    name = "DescribeRuleResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyDescribeRuleResponse {
     inner: aws_sdk_eventbridge::operation::describe_rule::DescribeRuleOutput,
 }
@@ -9053,7 +9281,11 @@ impl PyDescribeRuleResponse {
     }
 }
 
-#[pyclass(name = "ListApiDestinationsResponse", frozen)]
+#[pyclass(
+    name = "ListApiDestinationsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListApiDestinationsResponse {
     inner: aws_sdk_eventbridge::operation::list_api_destinations::ListApiDestinationsOutput,
 }
@@ -9114,7 +9346,11 @@ impl PyListApiDestinationsResponse {
     }
 }
 
-#[pyclass(name = "ListArchivesResponse", frozen)]
+#[pyclass(
+    name = "ListArchivesResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListArchivesResponse {
     inner: aws_sdk_eventbridge::operation::list_archives::ListArchivesOutput,
 }
@@ -9175,7 +9411,11 @@ impl PyListArchivesResponse {
     }
 }
 
-#[pyclass(name = "ListConnectionsResponse", frozen)]
+#[pyclass(
+    name = "ListConnectionsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListConnectionsResponse {
     inner: aws_sdk_eventbridge::operation::list_connections::ListConnectionsOutput,
 }
@@ -9236,7 +9476,11 @@ impl PyListConnectionsResponse {
     }
 }
 
-#[pyclass(name = "ListEndpointsResponse", frozen)]
+#[pyclass(
+    name = "ListEndpointsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListEndpointsResponse {
     inner: aws_sdk_eventbridge::operation::list_endpoints::ListEndpointsOutput,
 }
@@ -9297,7 +9541,11 @@ impl PyListEndpointsResponse {
     }
 }
 
-#[pyclass(name = "ListEventBusesResponse", frozen)]
+#[pyclass(
+    name = "ListEventBusesResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListEventBusesResponse {
     inner: aws_sdk_eventbridge::operation::list_event_buses::ListEventBusesOutput,
 }
@@ -9358,7 +9606,11 @@ impl PyListEventBusesResponse {
     }
 }
 
-#[pyclass(name = "ListEventSourcesResponse", frozen)]
+#[pyclass(
+    name = "ListEventSourcesResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListEventSourcesResponse {
     inner: aws_sdk_eventbridge::operation::list_event_sources::ListEventSourcesOutput,
 }
@@ -9419,7 +9671,11 @@ impl PyListEventSourcesResponse {
     }
 }
 
-#[pyclass(name = "ListPartnerEventSourceAccountsResponse", frozen)]
+#[pyclass(
+    name = "ListPartnerEventSourceAccountsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListPartnerEventSourceAccountsResponse {
     inner: aws_sdk_eventbridge::operation::list_partner_event_source_accounts::ListPartnerEventSourceAccountsOutput,
 }
@@ -9480,7 +9736,11 @@ impl PyListPartnerEventSourceAccountsResponse {
     }
 }
 
-#[pyclass(name = "ListPartnerEventSourcesResponse", frozen)]
+#[pyclass(
+    name = "ListPartnerEventSourcesResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListPartnerEventSourcesResponse {
     inner:
         aws_sdk_eventbridge::operation::list_partner_event_sources::ListPartnerEventSourcesOutput,
@@ -9542,7 +9802,11 @@ impl PyListPartnerEventSourcesResponse {
     }
 }
 
-#[pyclass(name = "ListReplaysResponse", frozen)]
+#[pyclass(
+    name = "ListReplaysResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListReplaysResponse {
     inner: aws_sdk_eventbridge::operation::list_replays::ListReplaysOutput,
 }
@@ -9603,7 +9867,11 @@ impl PyListReplaysResponse {
     }
 }
 
-#[pyclass(name = "ListRuleNamesByTargetResponse", frozen)]
+#[pyclass(
+    name = "ListRuleNamesByTargetResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListRuleNamesByTargetResponse {
     inner: aws_sdk_eventbridge::operation::list_rule_names_by_target::ListRuleNamesByTargetOutput,
 }
@@ -9658,7 +9926,11 @@ impl PyListRuleNamesByTargetResponse {
     }
 }
 
-#[pyclass(name = "ListRulesResponse", frozen)]
+#[pyclass(
+    name = "ListRulesResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListRulesResponse {
     inner: aws_sdk_eventbridge::operation::list_rules::ListRulesOutput,
 }
@@ -9719,7 +9991,11 @@ impl PyListRulesResponse {
     }
 }
 
-#[pyclass(name = "ListTagsForResourceResponse", frozen)]
+#[pyclass(
+    name = "ListTagsForResourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListTagsForResourceResponse {
     inner: aws_sdk_eventbridge::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
@@ -9764,7 +10040,11 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListTargetsByRuleResponse", frozen)]
+#[pyclass(
+    name = "ListTargetsByRuleResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyListTargetsByRuleResponse {
     inner: aws_sdk_eventbridge::operation::list_targets_by_rule::ListTargetsByRuleOutput,
 }
@@ -9825,7 +10105,11 @@ impl PyListTargetsByRuleResponse {
     }
 }
 
-#[pyclass(name = "PutEventsResponse", frozen)]
+#[pyclass(
+    name = "PutEventsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutEventsResponse {
     inner: aws_sdk_eventbridge::operation::put_events::PutEventsOutput,
 }
@@ -9882,7 +10166,11 @@ impl PyPutEventsResponse {
     }
 }
 
-#[pyclass(name = "PutPartnerEventsResponse", frozen)]
+#[pyclass(
+    name = "PutPartnerEventsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutPartnerEventsResponse {
     inner: aws_sdk_eventbridge::operation::put_partner_events::PutPartnerEventsOutput,
 }
@@ -9939,7 +10227,7 @@ impl PyPutPartnerEventsResponse {
     }
 }
 
-#[pyclass(name = "PutRuleResponse", frozen)]
+#[pyclass(name = "PutRuleResponse", module = "rboto_eventbridge._native", frozen)]
 struct PyPutRuleResponse {
     inner: aws_sdk_eventbridge::operation::put_rule::PutRuleOutput,
 }
@@ -9968,7 +10256,11 @@ impl PyPutRuleResponse {
     }
 }
 
-#[pyclass(name = "PutTargetsResponse", frozen)]
+#[pyclass(
+    name = "PutTargetsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyPutTargetsResponse {
     inner: aws_sdk_eventbridge::operation::put_targets::PutTargetsOutput,
 }
@@ -10025,7 +10317,11 @@ impl PyPutTargetsResponse {
     }
 }
 
-#[pyclass(name = "RemoveTargetsResponse", frozen)]
+#[pyclass(
+    name = "RemoveTargetsResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyRemoveTargetsResponse {
     inner: aws_sdk_eventbridge::operation::remove_targets::RemoveTargetsOutput,
 }
@@ -10082,7 +10378,11 @@ impl PyRemoveTargetsResponse {
     }
 }
 
-#[pyclass(name = "StartReplayResponse", frozen)]
+#[pyclass(
+    name = "StartReplayResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyStartReplayResponse {
     inner: aws_sdk_eventbridge::operation::start_replay::StartReplayOutput,
 }
@@ -10159,7 +10459,11 @@ impl PyStartReplayResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", frozen)]
+#[pyclass(
+    name = "TagResourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyTagResourceResponse {
     inner: aws_sdk_eventbridge::operation::tag_resource::TagResourceOutput,
 }
@@ -10172,7 +10476,11 @@ impl PyTagResourceResponse {
     }
 }
 
-#[pyclass(name = "TestEventPatternResponse", frozen)]
+#[pyclass(
+    name = "TestEventPatternResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyTestEventPatternResponse {
     inner: aws_sdk_eventbridge::operation::test_event_pattern::TestEventPatternOutput,
 }
@@ -10193,7 +10501,11 @@ impl PyTestEventPatternResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", frozen)]
+#[pyclass(
+    name = "UntagResourceResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUntagResourceResponse {
     inner: aws_sdk_eventbridge::operation::untag_resource::UntagResourceOutput,
 }
@@ -10206,7 +10518,11 @@ impl PyUntagResourceResponse {
     }
 }
 
-#[pyclass(name = "UpdateApiDestinationResponse", frozen)]
+#[pyclass(
+    name = "UpdateApiDestinationResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUpdateApiDestinationResponse {
     inner: aws_sdk_eventbridge::operation::update_api_destination::UpdateApiDestinationOutput,
 }
@@ -10283,7 +10599,11 @@ impl PyUpdateApiDestinationResponse {
     }
 }
 
-#[pyclass(name = "UpdateArchiveResponse", frozen)]
+#[pyclass(
+    name = "UpdateArchiveResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUpdateArchiveResponse {
     inner: aws_sdk_eventbridge::operation::update_archive::UpdateArchiveOutput,
 }
@@ -10360,7 +10680,11 @@ impl PyUpdateArchiveResponse {
     }
 }
 
-#[pyclass(name = "UpdateConnectionResponse", frozen)]
+#[pyclass(
+    name = "UpdateConnectionResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUpdateConnectionResponse {
     inner: aws_sdk_eventbridge::operation::update_connection::UpdateConnectionOutput,
 }
@@ -10453,7 +10777,11 @@ impl PyUpdateConnectionResponse {
     }
 }
 
-#[pyclass(name = "UpdateEndpointResponse", frozen)]
+#[pyclass(
+    name = "UpdateEndpointResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUpdateEndpointResponse {
     inner: aws_sdk_eventbridge::operation::update_endpoint::UpdateEndpointOutput,
 }
@@ -10638,7 +10966,11 @@ impl PyUpdateEndpointResponse {
     }
 }
 
-#[pyclass(name = "UpdateEventBusResponse", frozen)]
+#[pyclass(
+    name = "UpdateEventBusResponse",
+    module = "rboto_eventbridge._native",
+    frozen
+)]
 struct PyUpdateEventBusResponse {
     inner: aws_sdk_eventbridge::operation::update_event_bus::UpdateEventBusOutput,
 }

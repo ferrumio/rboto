@@ -12837,7 +12837,11 @@ fn view_port_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "A2aDescriptor", frozen)]
+#[pyclass(
+    name = "A2aDescriptor",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyA2aDescriptor {
     inner: aws_sdk_bedrockagentcore::types::A2aDescriptor,
 }
@@ -12865,7 +12869,11 @@ impl PyA2aDescriptor {
     }
 }
 
-#[pyclass(name = "AbTestResults", frozen)]
+#[pyclass(
+    name = "AbTestResults",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAbTestResults {
     inner: aws_sdk_bedrockagentcore::types::AbTestResults,
 }
@@ -12904,7 +12912,11 @@ impl PyAbTestResults {
     }
 }
 
-#[pyclass(name = "AbTestSummary", frozen)]
+#[pyclass(
+    name = "AbTestSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAbTestSummary {
     inner: aws_sdk_bedrockagentcore::types::AbTestSummary,
 }
@@ -12978,7 +12990,11 @@ impl PyAbTestSummary {
     }
 }
 
-#[pyclass(name = "ActorSummary", frozen)]
+#[pyclass(
+    name = "ActorSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyActorSummary {
     inner: aws_sdk_bedrockagentcore::types::ActorSummary,
 }
@@ -12996,7 +13012,11 @@ impl PyActorSummary {
     }
 }
 
-#[pyclass(name = "AffectedSession", frozen)]
+#[pyclass(
+    name = "AffectedSession",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAffectedSession {
     inner: aws_sdk_bedrockagentcore::types::AffectedSession,
 }
@@ -13049,7 +13069,11 @@ impl PyAffectedSession {
     }
 }
 
-#[pyclass(name = "AgentCardDefinition", frozen)]
+#[pyclass(
+    name = "AgentCardDefinition",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAgentCardDefinition {
     inner: aws_sdk_bedrockagentcore::types::AgentCardDefinition,
 }
@@ -13081,7 +13105,11 @@ impl PyAgentCardDefinition {
     }
 }
 
-#[pyclass(name = "AgentSkillsDescriptor", frozen)]
+#[pyclass(
+    name = "AgentSkillsDescriptor",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAgentSkillsDescriptor {
     inner: aws_sdk_bedrockagentcore::types::AgentSkillsDescriptor,
 }
@@ -13125,7 +13153,7 @@ impl PyAgentSkillsDescriptor {
     }
 }
 
-#[pyclass(name = "Amount", frozen)]
+#[pyclass(name = "Amount", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyAmount {
     inner: aws_sdk_bedrockagentcore::types::Amount,
 }
@@ -13149,7 +13177,11 @@ impl PyAmount {
     }
 }
 
-#[pyclass(name = "AutomationStream", frozen)]
+#[pyclass(
+    name = "AutomationStream",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAutomationStream {
     inner: aws_sdk_bedrockagentcore::types::AutomationStream,
 }
@@ -13173,7 +13205,11 @@ impl PyAutomationStream {
     }
 }
 
-#[pyclass(name = "AvailableLimits", frozen)]
+#[pyclass(
+    name = "AvailableLimits",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyAvailableLimits {
     inner: aws_sdk_bedrockagentcore::types::AvailableLimits,
 }
@@ -13211,7 +13247,11 @@ impl PyAvailableLimits {
     }
 }
 
-#[pyclass(name = "BatchEvaluationSummary", frozen)]
+#[pyclass(
+    name = "BatchEvaluationSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBatchEvaluationSummary {
     inner: aws_sdk_bedrockagentcore::types::BatchEvaluationSummary,
 }
@@ -13360,7 +13400,7 @@ impl PyBatchEvaluationSummary {
     }
 }
 
-#[pyclass(name = "Branch", frozen)]
+#[pyclass(name = "Branch", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyBranch {
     inner: aws_sdk_bedrockagentcore::types::Branch,
 }
@@ -13388,7 +13428,11 @@ impl PyBranch {
     }
 }
 
-#[pyclass(name = "BrowserEnterprisePolicy", frozen)]
+#[pyclass(
+    name = "BrowserEnterprisePolicy",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBrowserEnterprisePolicy {
     inner: aws_sdk_bedrockagentcore::types::BrowserEnterprisePolicy,
 }
@@ -13420,7 +13464,11 @@ impl PyBrowserEnterprisePolicy {
     }
 }
 
-#[pyclass(name = "BrowserExtension", frozen)]
+#[pyclass(
+    name = "BrowserExtension",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBrowserExtension {
     inner: aws_sdk_bedrockagentcore::types::BrowserExtension,
 }
@@ -13442,7 +13490,11 @@ impl PyBrowserExtension {
     }
 }
 
-#[pyclass(name = "BrowserProfileConfiguration", frozen)]
+#[pyclass(
+    name = "BrowserProfileConfiguration",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBrowserProfileConfiguration {
     inner: aws_sdk_bedrockagentcore::types::BrowserProfileConfiguration,
 }
@@ -13460,7 +13512,11 @@ impl PyBrowserProfileConfiguration {
     }
 }
 
-#[pyclass(name = "BrowserSessionStream", frozen)]
+#[pyclass(
+    name = "BrowserSessionStream",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBrowserSessionStream {
     inner: aws_sdk_bedrockagentcore::types::BrowserSessionStream,
 }
@@ -13504,7 +13560,11 @@ impl PyBrowserSessionStream {
     }
 }
 
-#[pyclass(name = "BrowserSessionSummary", frozen)]
+#[pyclass(
+    name = "BrowserSessionSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBrowserSessionSummary {
     inner: aws_sdk_bedrockagentcore::types::BrowserSessionSummary,
 }
@@ -13560,7 +13620,11 @@ impl PyBrowserSessionSummary {
     }
 }
 
-#[pyclass(name = "Certificate", frozen)]
+#[pyclass(
+    name = "Certificate",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCertificate {
     inner: aws_sdk_bedrockagentcore::types::Certificate,
 }
@@ -13582,7 +13646,11 @@ impl PyCertificate {
     }
 }
 
-#[pyclass(name = "CodeInterpreterSessionSummary", frozen)]
+#[pyclass(
+    name = "CodeInterpreterSessionSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCodeInterpreterSessionSummary {
     inner: aws_sdk_bedrockagentcore::types::CodeInterpreterSessionSummary,
 }
@@ -13640,7 +13708,11 @@ impl PyCodeInterpreterSessionSummary {
     }
 }
 
-#[pyclass(name = "ConfidenceInterval", frozen)]
+#[pyclass(
+    name = "ConfidenceInterval",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyConfidenceInterval {
     inner: aws_sdk_bedrockagentcore::types::ConfidenceInterval,
 }
@@ -13672,7 +13744,11 @@ impl PyConfidenceInterval {
     }
 }
 
-#[pyclass(name = "ConfigurationBundleRef", frozen)]
+#[pyclass(
+    name = "ConfigurationBundleRef",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyConfigurationBundleRef {
     inner: aws_sdk_bedrockagentcore::types::ConfigurationBundleRef,
 }
@@ -13696,7 +13772,11 @@ impl PyConfigurationBundleRef {
     }
 }
 
-#[pyclass(name = "ControlStats", frozen)]
+#[pyclass(
+    name = "ControlStats",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyControlStats {
     inner: aws_sdk_bedrockagentcore::types::ControlStats,
 }
@@ -13726,7 +13806,11 @@ impl PyControlStats {
     }
 }
 
-#[pyclass(name = "CustomDescriptor", frozen)]
+#[pyclass(
+    name = "CustomDescriptor",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCustomDescriptor {
     inner: aws_sdk_bedrockagentcore::types::CustomDescriptor,
 }
@@ -13748,7 +13832,11 @@ impl PyCustomDescriptor {
     }
 }
 
-#[pyclass(name = "Descriptors", frozen)]
+#[pyclass(
+    name = "Descriptors",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDescriptors {
     inner: aws_sdk_bedrockagentcore::types::Descriptors,
 }
@@ -13824,7 +13912,11 @@ impl PyDescriptors {
     }
 }
 
-#[pyclass(name = "EvaluationJobResults", frozen)]
+#[pyclass(
+    name = "EvaluationJobResults",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluationJobResults {
     inner: aws_sdk_bedrockagentcore::types::EvaluationJobResults,
 }
@@ -13907,7 +13999,11 @@ impl PyEvaluationJobResults {
     }
 }
 
-#[pyclass(name = "EvaluationResultContent", frozen)]
+#[pyclass(
+    name = "EvaluationResultContent",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluationResultContent {
     inner: aws_sdk_bedrockagentcore::types::EvaluationResultContent,
 }
@@ -14038,7 +14134,7 @@ impl PyEvaluationResultContent {
     }
 }
 
-#[pyclass(name = "Evaluator", frozen)]
+#[pyclass(name = "Evaluator", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyEvaluator {
     inner: aws_sdk_bedrockagentcore::types::Evaluator,
 }
@@ -14056,7 +14152,11 @@ impl PyEvaluator {
     }
 }
 
-#[pyclass(name = "EvaluatorMetric", frozen)]
+#[pyclass(
+    name = "EvaluatorMetric",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluatorMetric {
     inner: aws_sdk_bedrockagentcore::types::EvaluatorMetric,
 }
@@ -14107,7 +14207,11 @@ impl PyEvaluatorMetric {
     }
 }
 
-#[pyclass(name = "EvaluatorStatistics", frozen)]
+#[pyclass(
+    name = "EvaluatorStatistics",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluatorStatistics {
     inner: aws_sdk_bedrockagentcore::types::EvaluatorStatistics,
 }
@@ -14129,7 +14233,11 @@ impl PyEvaluatorStatistics {
     }
 }
 
-#[pyclass(name = "EvaluatorSummary", frozen)]
+#[pyclass(
+    name = "EvaluatorSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluatorSummary {
     inner: aws_sdk_bedrockagentcore::types::EvaluatorSummary,
 }
@@ -14197,7 +14305,7 @@ impl PyEvaluatorSummary {
     }
 }
 
-#[pyclass(name = "Event", frozen)]
+#[pyclass(name = "Event", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyEvent {
     inner: aws_sdk_bedrockagentcore::types::Event,
 }
@@ -14282,7 +14390,11 @@ impl PyEvent {
     }
 }
 
-#[pyclass(name = "ExecutionSummaryAffectedSession", frozen)]
+#[pyclass(
+    name = "ExecutionSummaryAffectedSession",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyExecutionSummaryAffectedSession {
     inner: aws_sdk_bedrockagentcore::types::ExecutionSummaryAffectedSession,
 }
@@ -14312,7 +14424,11 @@ impl PyExecutionSummaryAffectedSession {
     }
 }
 
-#[pyclass(name = "ExecutionSummaryCluster", frozen)]
+#[pyclass(
+    name = "ExecutionSummaryCluster",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyExecutionSummaryCluster {
     inner: aws_sdk_bedrockagentcore::types::ExecutionSummaryCluster,
 }
@@ -14367,7 +14483,11 @@ impl PyExecutionSummaryCluster {
     }
 }
 
-#[pyclass(name = "ExecutionSummaryClusteringResultContent", frozen)]
+#[pyclass(
+    name = "ExecutionSummaryClusteringResultContent",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyExecutionSummaryClusteringResultContent {
     inner: aws_sdk_bedrockagentcore::types::ExecutionSummaryClusteringResultContent,
 }
@@ -14396,7 +14516,11 @@ impl PyExecutionSummaryClusteringResultContent {
     }
 }
 
-#[pyclass(name = "ExtractionJobMetadata", frozen)]
+#[pyclass(
+    name = "ExtractionJobMetadata",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyExtractionJobMetadata {
     inner: aws_sdk_bedrockagentcore::types::ExtractionJobMetadata,
 }
@@ -14474,7 +14598,11 @@ impl PyExtractionJobMetadata {
     }
 }
 
-#[pyclass(name = "FailureAnalysisResultContent", frozen)]
+#[pyclass(
+    name = "FailureAnalysisResultContent",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyFailureAnalysisResultContent {
     inner: aws_sdk_bedrockagentcore::types::FailureAnalysisResultContent,
 }
@@ -14503,7 +14631,11 @@ impl PyFailureAnalysisResultContent {
     }
 }
 
-#[pyclass(name = "FailureCategoryCluster", frozen)]
+#[pyclass(
+    name = "FailureCategoryCluster",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyFailureCategoryCluster {
     inner: aws_sdk_bedrockagentcore::types::FailureCategoryCluster,
 }
@@ -14558,7 +14690,11 @@ impl PyFailureCategoryCluster {
     }
 }
 
-#[pyclass(name = "FailureSpanDetail", frozen)]
+#[pyclass(
+    name = "FailureSpanDetail",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyFailureSpanDetail {
     inner: aws_sdk_bedrockagentcore::types::FailureSpanDetail,
 }
@@ -14599,7 +14735,11 @@ impl PyFailureSpanDetail {
     }
 }
 
-#[pyclass(name = "FailureSubCategoryCluster", frozen)]
+#[pyclass(
+    name = "FailureSubCategoryCluster",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyFailureSubCategoryCluster {
     inner: aws_sdk_bedrockagentcore::types::FailureSubCategoryCluster,
 }
@@ -14654,7 +14794,11 @@ impl PyFailureSubCategoryCluster {
     }
 }
 
-#[pyclass(name = "GatewayFilter", frozen)]
+#[pyclass(
+    name = "GatewayFilter",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGatewayFilter {
     inner: aws_sdk_bedrockagentcore::types::GatewayFilter,
 }
@@ -14681,7 +14825,7 @@ impl PyGatewayFilter {
     }
 }
 
-#[pyclass(name = "Insight", frozen)]
+#[pyclass(name = "Insight", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyInsight {
     inner: aws_sdk_bedrockagentcore::types::Insight,
 }
@@ -14699,7 +14843,11 @@ impl PyInsight {
     }
 }
 
-#[pyclass(name = "InsightResult", frozen)]
+#[pyclass(
+    name = "InsightResult",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyInsightResult {
     inner: aws_sdk_bedrockagentcore::types::InsightResult,
 }
@@ -14787,7 +14935,11 @@ impl PyInsightResult {
     }
 }
 
-#[pyclass(name = "InsightRootCause", frozen)]
+#[pyclass(
+    name = "InsightRootCause",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyInsightRootCause {
     inner: aws_sdk_bedrockagentcore::types::InsightRootCause,
 }
@@ -14852,7 +15004,11 @@ impl PyInsightRootCause {
     }
 }
 
-#[pyclass(name = "InsightsFailureSignal", frozen)]
+#[pyclass(
+    name = "InsightsFailureSignal",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyInsightsFailureSignal {
     inner: aws_sdk_bedrockagentcore::types::InsightsFailureSignal,
 }
@@ -14882,7 +15038,11 @@ impl PyInsightsFailureSignal {
     }
 }
 
-#[pyclass(name = "LiveViewStream", frozen)]
+#[pyclass(
+    name = "LiveViewStream",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyLiveViewStream {
     inner: aws_sdk_bedrockagentcore::types::LiveViewStream,
 }
@@ -14904,7 +15064,11 @@ impl PyLiveViewStream {
     }
 }
 
-#[pyclass(name = "McpDescriptor", frozen)]
+#[pyclass(
+    name = "McpDescriptor",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyMcpDescriptor {
     inner: aws_sdk_bedrockagentcore::types::McpDescriptor,
 }
@@ -14948,7 +15112,11 @@ impl PyMcpDescriptor {
     }
 }
 
-#[pyclass(name = "MemoryRecord", frozen)]
+#[pyclass(
+    name = "MemoryRecord",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyMemoryRecord {
     inner: aws_sdk_bedrockagentcore::types::MemoryRecord,
 }
@@ -15035,7 +15203,11 @@ impl PyMemoryRecord {
     }
 }
 
-#[pyclass(name = "MemoryRecordOutput", frozen)]
+#[pyclass(
+    name = "MemoryRecordOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyMemoryRecordOutput {
     inner: aws_sdk_bedrockagentcore::types::MemoryRecordOutput,
 }
@@ -15089,7 +15261,11 @@ impl PyMemoryRecordOutput {
     }
 }
 
-#[pyclass(name = "MemoryRecordSummary", frozen)]
+#[pyclass(
+    name = "MemoryRecordSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyMemoryRecordSummary {
     inner: aws_sdk_bedrockagentcore::types::MemoryRecordSummary,
 }
@@ -15176,7 +15352,11 @@ impl PyMemoryRecordSummary {
     }
 }
 
-#[pyclass(name = "PaymentInstrument", frozen)]
+#[pyclass(
+    name = "PaymentInstrument",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyPaymentInstrument {
     inner: aws_sdk_bedrockagentcore::types::PaymentInstrument,
 }
@@ -15252,7 +15432,11 @@ impl PyPaymentInstrument {
     }
 }
 
-#[pyclass(name = "PaymentInstrumentSummary", frozen)]
+#[pyclass(
+    name = "PaymentInstrumentSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyPaymentInstrumentSummary {
     inner: aws_sdk_bedrockagentcore::types::PaymentInstrumentSummary,
 }
@@ -15318,7 +15502,11 @@ impl PyPaymentInstrumentSummary {
     }
 }
 
-#[pyclass(name = "PaymentSession", frozen)]
+#[pyclass(
+    name = "PaymentSession",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyPaymentSession {
     inner: aws_sdk_bedrockagentcore::types::PaymentSession,
 }
@@ -15400,7 +15588,11 @@ impl PyPaymentSession {
     }
 }
 
-#[pyclass(name = "PaymentSessionSummary", frozen)]
+#[pyclass(
+    name = "PaymentSessionSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyPaymentSessionSummary {
     inner: aws_sdk_bedrockagentcore::types::PaymentSessionSummary,
 }
@@ -15450,7 +15642,11 @@ impl PyPaymentSessionSummary {
     }
 }
 
-#[pyclass(name = "ProxyBypass", frozen)]
+#[pyclass(
+    name = "ProxyBypass",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyProxyBypass {
     inner: aws_sdk_bedrockagentcore::types::ProxyBypass,
 }
@@ -15477,7 +15673,11 @@ impl PyProxyBypass {
     }
 }
 
-#[pyclass(name = "ProxyConfiguration", frozen)]
+#[pyclass(
+    name = "ProxyConfiguration",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyProxyConfiguration {
     inner: aws_sdk_bedrockagentcore::types::ProxyConfiguration,
 }
@@ -15516,7 +15716,11 @@ impl PyProxyConfiguration {
     }
 }
 
-#[pyclass(name = "RecommendationSummary", frozen)]
+#[pyclass(
+    name = "RecommendationSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyRecommendationSummary {
     inner: aws_sdk_bedrockagentcore::types::RecommendationSummary,
 }
@@ -15580,7 +15784,11 @@ impl PyRecommendationSummary {
     }
 }
 
-#[pyclass(name = "RegistryRecordSummary", frozen)]
+#[pyclass(
+    name = "RegistryRecordSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyRegistryRecordSummary {
     inner: aws_sdk_bedrockagentcore::types::RegistryRecordSummary,
 }
@@ -15672,7 +15880,11 @@ impl PyRegistryRecordSummary {
     }
 }
 
-#[pyclass(name = "RootCauseCluster", frozen)]
+#[pyclass(
+    name = "RootCauseCluster",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyRootCauseCluster {
     inner: aws_sdk_bedrockagentcore::types::RootCauseCluster,
 }
@@ -15733,7 +15945,11 @@ impl PyRootCauseCluster {
     }
 }
 
-#[pyclass(name = "SampleSession", frozen)]
+#[pyclass(
+    name = "SampleSession",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySampleSession {
     inner: aws_sdk_bedrockagentcore::types::SampleSession,
 }
@@ -15782,7 +15998,11 @@ impl PySampleSession {
     }
 }
 
-#[pyclass(name = "ServerDefinition", frozen)]
+#[pyclass(
+    name = "ServerDefinition",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyServerDefinition {
     inner: aws_sdk_bedrockagentcore::types::ServerDefinition,
 }
@@ -15814,7 +16034,11 @@ impl PyServerDefinition {
     }
 }
 
-#[pyclass(name = "SessionFinding", frozen)]
+#[pyclass(
+    name = "SessionFinding",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySessionFinding {
     inner: aws_sdk_bedrockagentcore::types::SessionFinding,
 }
@@ -15872,7 +16096,11 @@ impl PySessionFinding {
     }
 }
 
-#[pyclass(name = "SessionLimits", frozen)]
+#[pyclass(
+    name = "SessionLimits",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySessionLimits {
     inner: aws_sdk_bedrockagentcore::types::SessionLimits,
 }
@@ -15900,7 +16128,11 @@ impl PySessionLimits {
     }
 }
 
-#[pyclass(name = "SessionSummary", frozen)]
+#[pyclass(
+    name = "SessionSummary",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySessionSummary {
     inner: aws_sdk_bedrockagentcore::types::SessionSummary,
 }
@@ -15930,7 +16162,11 @@ impl PySessionSummary {
     }
 }
 
-#[pyclass(name = "SkillDefinition", frozen)]
+#[pyclass(
+    name = "SkillDefinition",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySkillDefinition {
     inner: aws_sdk_bedrockagentcore::types::SkillDefinition,
 }
@@ -15962,7 +16198,11 @@ impl PySkillDefinition {
     }
 }
 
-#[pyclass(name = "SkillMdDefinition", frozen)]
+#[pyclass(
+    name = "SkillMdDefinition",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySkillMdDefinition {
     inner: aws_sdk_bedrockagentcore::types::SkillMdDefinition,
 }
@@ -15984,7 +16224,7 @@ impl PySkillMdDefinition {
     }
 }
 
-#[pyclass(name = "TargetRef", frozen)]
+#[pyclass(name = "TargetRef", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyTargetRef {
     inner: aws_sdk_bedrockagentcore::types::TargetRef,
 }
@@ -16002,7 +16242,11 @@ impl PyTargetRef {
     }
 }
 
-#[pyclass(name = "TokenBalance", frozen)]
+#[pyclass(
+    name = "TokenBalance",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyTokenBalance {
     inner: aws_sdk_bedrockagentcore::types::TokenBalance,
 }
@@ -16044,7 +16288,11 @@ impl PyTokenBalance {
     }
 }
 
-#[pyclass(name = "TokenUsage", frozen)]
+#[pyclass(
+    name = "TokenUsage",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyTokenUsage {
     inner: aws_sdk_bedrockagentcore::types::TokenUsage,
 }
@@ -16086,7 +16334,11 @@ impl PyTokenUsage {
     }
 }
 
-#[pyclass(name = "ToolsDefinition", frozen)]
+#[pyclass(
+    name = "ToolsDefinition",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyToolsDefinition {
     inner: aws_sdk_bedrockagentcore::types::ToolsDefinition,
 }
@@ -16118,7 +16370,11 @@ impl PyToolsDefinition {
     }
 }
 
-#[pyclass(name = "UserIntentAffectedSession", frozen)]
+#[pyclass(
+    name = "UserIntentAffectedSession",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyUserIntentAffectedSession {
     inner: aws_sdk_bedrockagentcore::types::UserIntentAffectedSession,
 }
@@ -16147,7 +16403,11 @@ impl PyUserIntentAffectedSession {
     }
 }
 
-#[pyclass(name = "UserIntentCluster", frozen)]
+#[pyclass(
+    name = "UserIntentCluster",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyUserIntentCluster {
     inner: aws_sdk_bedrockagentcore::types::UserIntentCluster,
 }
@@ -16202,7 +16462,11 @@ impl PyUserIntentCluster {
     }
 }
 
-#[pyclass(name = "UserIntentClusteringResultContent", frozen)]
+#[pyclass(
+    name = "UserIntentClusteringResultContent",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyUserIntentClusteringResultContent {
     inner: aws_sdk_bedrockagentcore::types::UserIntentClusteringResultContent,
 }
@@ -16231,7 +16495,7 @@ impl PyUserIntentClusteringResultContent {
     }
 }
 
-#[pyclass(name = "Variant", frozen)]
+#[pyclass(name = "Variant", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyVariant {
     inner: aws_sdk_bedrockagentcore::types::Variant,
 }
@@ -16271,7 +16535,11 @@ impl PyVariant {
     }
 }
 
-#[pyclass(name = "VariantConfiguration", frozen)]
+#[pyclass(
+    name = "VariantConfiguration",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyVariantConfiguration {
     inner: aws_sdk_bedrockagentcore::types::VariantConfiguration,
 }
@@ -16315,7 +16583,11 @@ impl PyVariantConfiguration {
     }
 }
 
-#[pyclass(name = "VariantResult", frozen)]
+#[pyclass(
+    name = "VariantResult",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyVariantResult {
     inner: aws_sdk_bedrockagentcore::types::VariantResult,
 }
@@ -16397,7 +16669,7 @@ impl PyVariantResult {
     }
 }
 
-#[pyclass(name = "ViewPort", frozen)]
+#[pyclass(name = "ViewPort", module = "rboto_bedrock_agentcore._native", frozen)]
 struct PyViewPort {
     inner: aws_sdk_bedrockagentcore::types::ViewPort,
 }
@@ -16421,7 +16693,11 @@ impl PyViewPort {
     }
 }
 
-#[pyclass(name = "BatchCreateMemoryRecordsOutput", frozen)]
+#[pyclass(
+    name = "BatchCreateMemoryRecordsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBatchCreateMemoryRecordsOutput {
     inner: aws_sdk_bedrockagentcore::operation::batch_create_memory_records::BatchCreateMemoryRecordsOutput,
 }
@@ -16482,7 +16758,11 @@ impl PyBatchCreateMemoryRecordsOutput {
     }
 }
 
-#[pyclass(name = "BatchDeleteMemoryRecordsOutput", frozen)]
+#[pyclass(
+    name = "BatchDeleteMemoryRecordsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBatchDeleteMemoryRecordsOutput {
     inner: aws_sdk_bedrockagentcore::operation::batch_delete_memory_records::BatchDeleteMemoryRecordsOutput,
 }
@@ -16543,7 +16823,11 @@ impl PyBatchDeleteMemoryRecordsOutput {
     }
 }
 
-#[pyclass(name = "BatchUpdateMemoryRecordsOutput", frozen)]
+#[pyclass(
+    name = "BatchUpdateMemoryRecordsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyBatchUpdateMemoryRecordsOutput {
     inner: aws_sdk_bedrockagentcore::operation::batch_update_memory_records::BatchUpdateMemoryRecordsOutput,
 }
@@ -16604,7 +16888,11 @@ impl PyBatchUpdateMemoryRecordsOutput {
     }
 }
 
-#[pyclass(name = "CompleteResourceTokenAuthResponse", frozen)]
+#[pyclass(
+    name = "CompleteResourceTokenAuthResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCompleteResourceTokenAuthResponse {
     inner: aws_sdk_bedrockagentcore::operation::complete_resource_token_auth::CompleteResourceTokenAuthOutput,
 }
@@ -16617,7 +16905,11 @@ impl PyCompleteResourceTokenAuthResponse {
     }
 }
 
-#[pyclass(name = "CreateABTestResponse", frozen)]
+#[pyclass(
+    name = "CreateABTestResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCreateABTestResponse {
     inner: aws_sdk_bedrockagentcore::operation::create_ab_test::CreateAbTestOutput,
 }
@@ -16686,7 +16978,11 @@ impl PyCreateABTestResponse {
     }
 }
 
-#[pyclass(name = "CreateEventOutput", frozen)]
+#[pyclass(
+    name = "CreateEventOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCreateEventOutput {
     inner: aws_sdk_bedrockagentcore::operation::create_event::CreateEventOutput,
 }
@@ -16721,7 +17017,11 @@ impl PyCreateEventOutput {
     }
 }
 
-#[pyclass(name = "CreatePaymentInstrumentResponse", frozen)]
+#[pyclass(
+    name = "CreatePaymentInstrumentResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCreatePaymentInstrumentResponse {
     inner: aws_sdk_bedrockagentcore::operation::create_payment_instrument::CreatePaymentInstrumentOutput,
 }
@@ -16756,7 +17056,11 @@ impl PyCreatePaymentInstrumentResponse {
     }
 }
 
-#[pyclass(name = "CreatePaymentSessionResponse", frozen)]
+#[pyclass(
+    name = "CreatePaymentSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyCreatePaymentSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::create_payment_session::CreatePaymentSessionOutput,
 }
@@ -16791,7 +17095,11 @@ impl PyCreatePaymentSessionResponse {
     }
 }
 
-#[pyclass(name = "DeleteABTestResponse", frozen)]
+#[pyclass(
+    name = "DeleteABTestResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteABTestResponse {
     inner: aws_sdk_bedrockagentcore::operation::delete_ab_test::DeleteAbTestOutput,
 }
@@ -16828,7 +17136,11 @@ impl PyDeleteABTestResponse {
     }
 }
 
-#[pyclass(name = "DeleteBatchEvaluationResponse", frozen)]
+#[pyclass(
+    name = "DeleteBatchEvaluationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteBatchEvaluationResponse {
     inner:
         aws_sdk_bedrockagentcore::operation::delete_batch_evaluation::DeleteBatchEvaluationOutput,
@@ -16870,7 +17182,11 @@ impl PyDeleteBatchEvaluationResponse {
     }
 }
 
-#[pyclass(name = "DeleteCapacityProviderSessionResponse", frozen)]
+#[pyclass(
+    name = "DeleteCapacityProviderSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteCapacityProviderSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::delete_capacity_provider_session::DeleteCapacityProviderSessionOutput,
 }
@@ -16911,7 +17227,11 @@ impl PyDeleteCapacityProviderSessionResponse {
     }
 }
 
-#[pyclass(name = "DeleteEventOutput", frozen)]
+#[pyclass(
+    name = "DeleteEventOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteEventOutput {
     inner: aws_sdk_bedrockagentcore::operation::delete_event::DeleteEventOutput,
 }
@@ -16932,7 +17252,11 @@ impl PyDeleteEventOutput {
     }
 }
 
-#[pyclass(name = "DeleteMemoryRecordOutput", frozen)]
+#[pyclass(
+    name = "DeleteMemoryRecordOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteMemoryRecordOutput {
     inner: aws_sdk_bedrockagentcore::operation::delete_memory_record::DeleteMemoryRecordOutput,
 }
@@ -16953,7 +17277,11 @@ impl PyDeleteMemoryRecordOutput {
     }
 }
 
-#[pyclass(name = "DeletePaymentInstrumentResponse", frozen)]
+#[pyclass(
+    name = "DeletePaymentInstrumentResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeletePaymentInstrumentResponse {
     inner: aws_sdk_bedrockagentcore::operation::delete_payment_instrument::DeletePaymentInstrumentOutput,
 }
@@ -16974,7 +17302,11 @@ impl PyDeletePaymentInstrumentResponse {
     }
 }
 
-#[pyclass(name = "DeletePaymentSessionResponse", frozen)]
+#[pyclass(
+    name = "DeletePaymentSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeletePaymentSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::delete_payment_session::DeletePaymentSessionOutput,
 }
@@ -16995,7 +17327,11 @@ impl PyDeletePaymentSessionResponse {
     }
 }
 
-#[pyclass(name = "DeleteRecommendationResponse", frozen)]
+#[pyclass(
+    name = "DeleteRecommendationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyDeleteRecommendationResponse {
     inner: aws_sdk_bedrockagentcore::operation::delete_recommendation::DeleteRecommendationOutput,
 }
@@ -17024,7 +17360,11 @@ impl PyDeleteRecommendationResponse {
     }
 }
 
-#[pyclass(name = "EvaluateResponse", frozen)]
+#[pyclass(
+    name = "EvaluateResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyEvaluateResponse {
     inner: aws_sdk_bedrockagentcore::operation::evaluate::EvaluateOutput,
 }
@@ -17061,7 +17401,11 @@ impl PyEvaluateResponse {
     }
 }
 
-#[pyclass(name = "GetABTestResponse", frozen)]
+#[pyclass(
+    name = "GetABTestResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetABTestResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_ab_test::GetAbTestOutput,
 }
@@ -17344,7 +17688,11 @@ impl PyGetABTestResponse {
     }
 }
 
-#[pyclass(name = "GetAgentCardResponse", frozen)]
+#[pyclass(
+    name = "GetAgentCardResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetAgentCardResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_agent_card::GetAgentCardOutput,
 }
@@ -17397,7 +17745,11 @@ impl PyGetAgentCardResponse {
     }
 }
 
-#[pyclass(name = "GetBatchEvaluationResponse", frozen)]
+#[pyclass(
+    name = "GetBatchEvaluationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetBatchEvaluationResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_batch_evaluation::GetBatchEvaluationOutput,
 }
@@ -17748,7 +18100,11 @@ impl PyGetBatchEvaluationResponse {
     }
 }
 
-#[pyclass(name = "GetBrowserSessionResponse", frozen)]
+#[pyclass(
+    name = "GetBrowserSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetBrowserSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_browser_session::GetBrowserSessionOutput,
 }
@@ -18075,7 +18431,11 @@ impl PyGetBrowserSessionResponse {
     }
 }
 
-#[pyclass(name = "GetCodeInterpreterSessionResponse", frozen)]
+#[pyclass(
+    name = "GetCodeInterpreterSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetCodeInterpreterSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_code_interpreter_session::GetCodeInterpreterSessionOutput,
 }
@@ -18222,7 +18582,11 @@ impl PyGetCodeInterpreterSessionResponse {
     }
 }
 
-#[pyclass(name = "GetEventOutput", frozen)]
+#[pyclass(
+    name = "GetEventOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetEventOutput {
     inner: aws_sdk_bedrockagentcore::operation::get_event::GetEventOutput,
 }
@@ -18257,7 +18621,11 @@ impl PyGetEventOutput {
     }
 }
 
-#[pyclass(name = "GetMemoryRecordOutput", frozen)]
+#[pyclass(
+    name = "GetMemoryRecordOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetMemoryRecordOutput {
     inner: aws_sdk_bedrockagentcore::operation::get_memory_record::GetMemoryRecordOutput,
 }
@@ -18292,7 +18660,11 @@ impl PyGetMemoryRecordOutput {
     }
 }
 
-#[pyclass(name = "GetPaymentInstrumentResponse", frozen)]
+#[pyclass(
+    name = "GetPaymentInstrumentResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetPaymentInstrumentResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_payment_instrument::GetPaymentInstrumentOutput,
 }
@@ -18327,7 +18699,11 @@ impl PyGetPaymentInstrumentResponse {
     }
 }
 
-#[pyclass(name = "GetPaymentInstrumentBalanceResponse", frozen)]
+#[pyclass(
+    name = "GetPaymentInstrumentBalanceResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetPaymentInstrumentBalanceResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_payment_instrument_balance::GetPaymentInstrumentBalanceOutput,
 }
@@ -18374,7 +18750,11 @@ impl PyGetPaymentInstrumentBalanceResponse {
     }
 }
 
-#[pyclass(name = "GetPaymentSessionResponse", frozen)]
+#[pyclass(
+    name = "GetPaymentSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetPaymentSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_payment_session::GetPaymentSessionOutput,
 }
@@ -18409,7 +18789,11 @@ impl PyGetPaymentSessionResponse {
     }
 }
 
-#[pyclass(name = "GetRecommendationResponse", frozen)]
+#[pyclass(
+    name = "GetRecommendationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetRecommendationResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_recommendation::GetRecommendationOutput,
 }
@@ -18542,7 +18926,11 @@ impl PyGetRecommendationResponse {
     }
 }
 
-#[pyclass(name = "GetResourceApiKeyResponse", frozen)]
+#[pyclass(
+    name = "GetResourceApiKeyResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetResourceApiKeyResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_resource_api_key::GetResourceApiKeyOutput,
 }
@@ -18563,7 +18951,11 @@ impl PyGetResourceApiKeyResponse {
     }
 }
 
-#[pyclass(name = "GetResourceOauth2TokenResponse", frozen)]
+#[pyclass(
+    name = "GetResourceOauth2TokenResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetResourceOauth2TokenResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_resource_oauth2_token::GetResourceOauth2TokenOutput,
 }
@@ -18640,7 +19032,11 @@ impl PyGetResourceOauth2TokenResponse {
     }
 }
 
-#[pyclass(name = "GetResourcePaymentTokenResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePaymentTokenResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetResourcePaymentTokenResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_resource_payment_token::GetResourcePaymentTokenOutput,
 }
@@ -18669,7 +19065,11 @@ impl PyGetResourcePaymentTokenResponse {
     }
 }
 
-#[pyclass(name = "GetWorkloadAccessTokenResponse", frozen)]
+#[pyclass(
+    name = "GetWorkloadAccessTokenResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetWorkloadAccessTokenResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_workload_access_token::GetWorkloadAccessTokenOutput,
 }
@@ -18694,7 +19094,11 @@ impl PyGetWorkloadAccessTokenResponse {
     }
 }
 
-#[pyclass(name = "GetWorkloadAccessTokenForJWTResponse", frozen)]
+#[pyclass(
+    name = "GetWorkloadAccessTokenForJWTResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetWorkloadAccessTokenForJWTResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_workload_access_token_for_jwt::GetWorkloadAccessTokenForJwtOutput,
 }
@@ -18719,7 +19123,11 @@ impl PyGetWorkloadAccessTokenForJWTResponse {
     }
 }
 
-#[pyclass(name = "GetWorkloadAccessTokenForUserIdResponse", frozen)]
+#[pyclass(
+    name = "GetWorkloadAccessTokenForUserIdResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyGetWorkloadAccessTokenForUserIdResponse {
     inner: aws_sdk_bedrockagentcore::operation::get_workload_access_token_for_user_id::GetWorkloadAccessTokenForUserIdOutput,
 }
@@ -18744,7 +19152,11 @@ impl PyGetWorkloadAccessTokenForUserIdResponse {
     }
 }
 
-#[pyclass(name = "IngestDataOutput", frozen)]
+#[pyclass(
+    name = "IngestDataOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyIngestDataOutput {
     inner: aws_sdk_bedrockagentcore::operation::ingest_data::IngestDataOutput,
 }
@@ -18765,7 +19177,11 @@ impl PyIngestDataOutput {
     }
 }
 
-#[pyclass(name = "InvokeAgentRuntimeResponse", frozen)]
+#[pyclass(
+    name = "InvokeAgentRuntimeResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyInvokeAgentRuntimeResponse {
     inner: aws_sdk_bedrockagentcore::operation::invoke_agent_runtime::InvokeAgentRuntimeOutput,
     response: Py<PyByteStream>,
@@ -18921,7 +19337,11 @@ impl PyInvokeAgentRuntimeResponse {
     }
 }
 
-#[pyclass(name = "InvokeBrowserResponse", frozen)]
+#[pyclass(
+    name = "InvokeBrowserResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyInvokeBrowserResponse {
     inner: aws_sdk_bedrockagentcore::operation::invoke_browser::InvokeBrowserOutput,
 }
@@ -18958,7 +19378,11 @@ impl PyInvokeBrowserResponse {
     }
 }
 
-#[pyclass(name = "ListABTestsResponse", frozen)]
+#[pyclass(
+    name = "ListABTestsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListABTestsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_ab_tests::ListAbTestsOutput,
 }
@@ -19011,7 +19435,11 @@ impl PyListABTestsResponse {
     }
 }
 
-#[pyclass(name = "ListActorsOutput", frozen)]
+#[pyclass(
+    name = "ListActorsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListActorsOutput {
     inner: aws_sdk_bedrockagentcore::operation::list_actors::ListActorsOutput,
 }
@@ -19064,7 +19492,11 @@ impl PyListActorsOutput {
     }
 }
 
-#[pyclass(name = "ListBatchEvaluationsResponse", frozen)]
+#[pyclass(
+    name = "ListBatchEvaluationsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListBatchEvaluationsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_batch_evaluations::ListBatchEvaluationsOutput,
 }
@@ -19117,7 +19549,11 @@ impl PyListBatchEvaluationsResponse {
     }
 }
 
-#[pyclass(name = "ListBrowserSessionsResponse", frozen)]
+#[pyclass(
+    name = "ListBrowserSessionsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListBrowserSessionsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_browser_sessions::ListBrowserSessionsOutput,
 }
@@ -19170,7 +19606,11 @@ impl PyListBrowserSessionsResponse {
     }
 }
 
-#[pyclass(name = "ListCodeInterpreterSessionsResponse", frozen)]
+#[pyclass(
+    name = "ListCodeInterpreterSessionsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListCodeInterpreterSessionsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_code_interpreter_sessions::ListCodeInterpreterSessionsOutput,
 }
@@ -19223,7 +19663,11 @@ impl PyListCodeInterpreterSessionsResponse {
     }
 }
 
-#[pyclass(name = "ListEventsOutput", frozen)]
+#[pyclass(
+    name = "ListEventsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListEventsOutput {
     inner: aws_sdk_bedrockagentcore::operation::list_events::ListEventsOutput,
 }
@@ -19276,7 +19720,11 @@ impl PyListEventsOutput {
     }
 }
 
-#[pyclass(name = "ListMemoryExtractionJobsOutput", frozen)]
+#[pyclass(
+    name = "ListMemoryExtractionJobsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListMemoryExtractionJobsOutput {
     inner: aws_sdk_bedrockagentcore::operation::list_memory_extraction_jobs::ListMemoryExtractionJobsOutput,
 }
@@ -19329,7 +19777,11 @@ impl PyListMemoryExtractionJobsOutput {
     }
 }
 
-#[pyclass(name = "ListMemoryRecordsOutput", frozen)]
+#[pyclass(
+    name = "ListMemoryRecordsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListMemoryRecordsOutput {
     inner: aws_sdk_bedrockagentcore::operation::list_memory_records::ListMemoryRecordsOutput,
 }
@@ -19382,7 +19834,11 @@ impl PyListMemoryRecordsOutput {
     }
 }
 
-#[pyclass(name = "ListPaymentInstrumentsResponse", frozen)]
+#[pyclass(
+    name = "ListPaymentInstrumentsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListPaymentInstrumentsResponse {
     inner:
         aws_sdk_bedrockagentcore::operation::list_payment_instruments::ListPaymentInstrumentsOutput,
@@ -19436,7 +19892,11 @@ impl PyListPaymentInstrumentsResponse {
     }
 }
 
-#[pyclass(name = "ListPaymentSessionsResponse", frozen)]
+#[pyclass(
+    name = "ListPaymentSessionsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListPaymentSessionsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_payment_sessions::ListPaymentSessionsOutput,
 }
@@ -19489,7 +19949,11 @@ impl PyListPaymentSessionsResponse {
     }
 }
 
-#[pyclass(name = "ListRecommendationsResponse", frozen)]
+#[pyclass(
+    name = "ListRecommendationsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListRecommendationsResponse {
     inner: aws_sdk_bedrockagentcore::operation::list_recommendations::ListRecommendationsOutput,
 }
@@ -19542,7 +20006,11 @@ impl PyListRecommendationsResponse {
     }
 }
 
-#[pyclass(name = "ListSessionsOutput", frozen)]
+#[pyclass(
+    name = "ListSessionsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyListSessionsOutput {
     inner: aws_sdk_bedrockagentcore::operation::list_sessions::ListSessionsOutput,
 }
@@ -19595,7 +20063,11 @@ impl PyListSessionsOutput {
     }
 }
 
-#[pyclass(name = "ProcessPaymentResponse", frozen)]
+#[pyclass(
+    name = "ProcessPaymentResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyProcessPaymentResponse {
     inner: aws_sdk_bedrockagentcore::operation::process_payment::ProcessPaymentOutput,
 }
@@ -19692,7 +20164,11 @@ impl PyProcessPaymentResponse {
     }
 }
 
-#[pyclass(name = "RetrieveMemoryRecordsOutput", frozen)]
+#[pyclass(
+    name = "RetrieveMemoryRecordsOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyRetrieveMemoryRecordsOutput {
     inner:
         aws_sdk_bedrockagentcore::operation::retrieve_memory_records::RetrieveMemoryRecordsOutput,
@@ -19746,7 +20222,11 @@ impl PyRetrieveMemoryRecordsOutput {
     }
 }
 
-#[pyclass(name = "SaveBrowserSessionProfileResponse", frozen)]
+#[pyclass(
+    name = "SaveBrowserSessionProfileResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySaveBrowserSessionProfileResponse {
     inner: aws_sdk_bedrockagentcore::operation::save_browser_session_profile::SaveBrowserSessionProfileOutput,
 }
@@ -19791,7 +20271,11 @@ impl PySaveBrowserSessionProfileResponse {
     }
 }
 
-#[pyclass(name = "SearchRegistryRecordsResponse", frozen)]
+#[pyclass(
+    name = "SearchRegistryRecordsResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PySearchRegistryRecordsResponse {
     inner:
         aws_sdk_bedrockagentcore::operation::search_registry_records::SearchRegistryRecordsOutput,
@@ -19829,7 +20313,11 @@ impl PySearchRegistryRecordsResponse {
     }
 }
 
-#[pyclass(name = "StartBatchEvaluationResponse", frozen)]
+#[pyclass(
+    name = "StartBatchEvaluationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStartBatchEvaluationResponse {
     inner: aws_sdk_bedrockagentcore::operation::start_batch_evaluation::StartBatchEvaluationOutput,
 }
@@ -20030,7 +20518,11 @@ impl PyStartBatchEvaluationResponse {
     }
 }
 
-#[pyclass(name = "StartBrowserSessionResponse", frozen)]
+#[pyclass(
+    name = "StartBrowserSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStartBrowserSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::start_browser_session::StartBrowserSessionOutput,
 }
@@ -20089,7 +20581,11 @@ impl PyStartBrowserSessionResponse {
     }
 }
 
-#[pyclass(name = "StartCodeInterpreterSessionResponse", frozen)]
+#[pyclass(
+    name = "StartCodeInterpreterSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStartCodeInterpreterSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::start_code_interpreter_session::StartCodeInterpreterSessionOutput,
 }
@@ -20130,7 +20626,11 @@ impl PyStartCodeInterpreterSessionResponse {
     }
 }
 
-#[pyclass(name = "StartMemoryExtractionJobOutput", frozen)]
+#[pyclass(
+    name = "StartMemoryExtractionJobOutput",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStartMemoryExtractionJobOutput {
     inner: aws_sdk_bedrockagentcore::operation::start_memory_extraction_job::StartMemoryExtractionJobOutput,
 }
@@ -20151,7 +20651,11 @@ impl PyStartMemoryExtractionJobOutput {
     }
 }
 
-#[pyclass(name = "StartRecommendationResponse", frozen)]
+#[pyclass(
+    name = "StartRecommendationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStartRecommendationResponse {
     inner: aws_sdk_bedrockagentcore::operation::start_recommendation::StartRecommendationOutput,
 }
@@ -20252,7 +20756,11 @@ impl PyStartRecommendationResponse {
     }
 }
 
-#[pyclass(name = "StopBatchEvaluationResponse", frozen)]
+#[pyclass(
+    name = "StopBatchEvaluationResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStopBatchEvaluationResponse {
     inner: aws_sdk_bedrockagentcore::operation::stop_batch_evaluation::StopBatchEvaluationOutput,
 }
@@ -20309,7 +20817,11 @@ impl PyStopBatchEvaluationResponse {
     }
 }
 
-#[pyclass(name = "StopBrowserSessionResponse", frozen)]
+#[pyclass(
+    name = "StopBrowserSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStopBrowserSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::stop_browser_session::StopBrowserSessionOutput,
 }
@@ -20346,7 +20858,11 @@ impl PyStopBrowserSessionResponse {
     }
 }
 
-#[pyclass(name = "StopCodeInterpreterSessionResponse", frozen)]
+#[pyclass(
+    name = "StopCodeInterpreterSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStopCodeInterpreterSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::stop_code_interpreter_session::StopCodeInterpreterSessionOutput,
 }
@@ -20387,7 +20903,11 @@ impl PyStopCodeInterpreterSessionResponse {
     }
 }
 
-#[pyclass(name = "StopRuntimeSessionResponse", frozen)]
+#[pyclass(
+    name = "StopRuntimeSessionResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyStopRuntimeSessionResponse {
     inner: aws_sdk_bedrockagentcore::operation::stop_runtime_session::StopRuntimeSessionOutput,
 }
@@ -20432,7 +20952,11 @@ impl PyStopRuntimeSessionResponse {
     }
 }
 
-#[pyclass(name = "UpdateABTestResponse", frozen)]
+#[pyclass(
+    name = "UpdateABTestResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyUpdateABTestResponse {
     inner: aws_sdk_bedrockagentcore::operation::update_ab_test::UpdateAbTestOutput,
 }
@@ -20485,7 +21009,11 @@ impl PyUpdateABTestResponse {
     }
 }
 
-#[pyclass(name = "UpdateBrowserStreamResponse", frozen)]
+#[pyclass(
+    name = "UpdateBrowserStreamResponse",
+    module = "rboto_bedrock_agentcore._native",
+    frozen
+)]
 struct PyUpdateBrowserStreamResponse {
     inner: aws_sdk_bedrockagentcore::operation::update_browser_stream::UpdateBrowserStreamOutput,
 }
@@ -20544,7 +21072,10 @@ impl PyUpdateBrowserStreamResponse {
     }
 }
 
-#[pyclass(name = "CodeInterpreterStreamOutputReceiver")]
+#[pyclass(
+    name = "CodeInterpreterStreamOutputReceiver",
+    module = "rboto_bedrock_agentcore._native"
+)]
 struct PyCodeInterpreterStreamOutputReceiver {
     inner: Arc<
         Mutex<
@@ -20618,7 +21149,10 @@ impl PyCodeInterpreterStreamOutputReceiver {
     }
 }
 
-#[pyclass(name = "InvokeAgentRuntimeCommandStreamOutputReceiver")]
+#[pyclass(
+    name = "InvokeAgentRuntimeCommandStreamOutputReceiver",
+    module = "rboto_bedrock_agentcore._native"
+)]
 struct PyInvokeAgentRuntimeCommandStreamOutputReceiver {
     inner: Arc<Mutex<Option<aws_sdk_bedrockagentcore::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentcore::types::InvokeAgentRuntimeCommandStreamOutput, aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError, >>>>,
     operation: &'static str,
@@ -20683,7 +21217,10 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
     }
 }
 
-#[pyclass(name = "InvokeHarnessStreamOutputReceiver")]
+#[pyclass(
+    name = "InvokeHarnessStreamOutputReceiver",
+    module = "rboto_bedrock_agentcore._native"
+)]
 struct PyInvokeHarnessStreamOutputReceiver {
     inner: Arc<
         Mutex<

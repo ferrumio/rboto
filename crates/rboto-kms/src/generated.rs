@@ -1265,7 +1265,7 @@ fn xks_proxy_configuration_type_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AliasListEntry", frozen)]
+#[pyclass(name = "AliasListEntry", module = "rboto_kms._native", frozen)]
 struct PyAliasListEntry {
     inner: aws_sdk_kms::types::AliasListEntry,
 }
@@ -1327,7 +1327,11 @@ impl PyAliasListEntry {
     }
 }
 
-#[pyclass(name = "CustomKeyStoresListEntry", frozen)]
+#[pyclass(
+    name = "CustomKeyStoresListEntry",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyCustomKeyStoresListEntry {
     inner: aws_sdk_kms::types::CustomKeyStoresListEntry,
 }
@@ -1435,7 +1439,7 @@ impl PyCustomKeyStoresListEntry {
     }
 }
 
-#[pyclass(name = "GrantConstraints", frozen)]
+#[pyclass(name = "GrantConstraints", module = "rboto_kms._native", frozen)]
 struct PyGrantConstraints {
     inner: aws_sdk_kms::types::GrantConstraints,
 }
@@ -1489,7 +1493,7 @@ impl PyGrantConstraints {
     }
 }
 
-#[pyclass(name = "GrantListEntry", frozen)]
+#[pyclass(name = "GrantListEntry", module = "rboto_kms._native", frozen)]
 struct PyGrantListEntry {
     inner: aws_sdk_kms::types::GrantListEntry,
 }
@@ -1622,7 +1626,7 @@ impl PyGrantListEntry {
     }
 }
 
-#[pyclass(name = "KeyLastUsageData", frozen)]
+#[pyclass(name = "KeyLastUsageData", module = "rboto_kms._native", frozen)]
 struct PyKeyLastUsageData {
     inner: aws_sdk_kms::types::KeyLastUsageData,
 }
@@ -1674,7 +1678,7 @@ impl PyKeyLastUsageData {
     }
 }
 
-#[pyclass(name = "KeyListEntry", frozen)]
+#[pyclass(name = "KeyListEntry", module = "rboto_kms._native", frozen)]
 struct PyKeyListEntry {
     inner: aws_sdk_kms::types::KeyListEntry,
 }
@@ -1706,7 +1710,7 @@ impl PyKeyListEntry {
     }
 }
 
-#[pyclass(name = "KeyMetadata", frozen)]
+#[pyclass(name = "KeyMetadata", module = "rboto_kms._native", frozen)]
 struct PyKeyMetadata {
     inner: aws_sdk_kms::types::KeyMetadata,
 }
@@ -2002,7 +2006,11 @@ impl PyKeyMetadata {
     }
 }
 
-#[pyclass(name = "MultiRegionConfiguration", frozen)]
+#[pyclass(
+    name = "MultiRegionConfiguration",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyMultiRegionConfiguration {
     inner: aws_sdk_kms::types::MultiRegionConfiguration,
 }
@@ -2061,7 +2069,7 @@ impl PyMultiRegionConfiguration {
     }
 }
 
-#[pyclass(name = "MultiRegionKey", frozen)]
+#[pyclass(name = "MultiRegionKey", module = "rboto_kms._native", frozen)]
 struct PyMultiRegionKey {
     inner: aws_sdk_kms::types::MultiRegionKey,
 }
@@ -2093,7 +2101,7 @@ impl PyMultiRegionKey {
     }
 }
 
-#[pyclass(name = "RotationsListEntry", frozen)]
+#[pyclass(name = "RotationsListEntry", module = "rboto_kms._native", frozen)]
 struct PyRotationsListEntry {
     inner: aws_sdk_kms::types::RotationsListEntry,
 }
@@ -2195,7 +2203,7 @@ impl PyRotationsListEntry {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_kms._native", frozen)]
 struct PyTag {
     inner: aws_sdk_kms::types::Tag,
 }
@@ -2219,7 +2227,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "XksKeyConfigurationType", frozen)]
+#[pyclass(name = "XksKeyConfigurationType", module = "rboto_kms._native", frozen)]
 struct PyXksKeyConfigurationType {
     inner: aws_sdk_kms::types::XksKeyConfigurationType,
 }
@@ -2241,7 +2249,11 @@ impl PyXksKeyConfigurationType {
     }
 }
 
-#[pyclass(name = "XksProxyConfigurationType", frozen)]
+#[pyclass(
+    name = "XksProxyConfigurationType",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyXksProxyConfigurationType {
     inner: aws_sdk_kms::types::XksProxyConfigurationType,
 }
@@ -2313,7 +2325,11 @@ impl PyXksProxyConfigurationType {
     }
 }
 
-#[pyclass(name = "CancelKeyDeletionResponse", frozen)]
+#[pyclass(
+    name = "CancelKeyDeletionResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyCancelKeyDeletionResponse {
     inner: aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionOutput,
 }
@@ -2342,7 +2358,11 @@ impl PyCancelKeyDeletionResponse {
     }
 }
 
-#[pyclass(name = "ConnectCustomKeyStoreResponse", frozen)]
+#[pyclass(
+    name = "ConnectCustomKeyStoreResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyConnectCustomKeyStoreResponse {
     inner: aws_sdk_kms::operation::connect_custom_key_store::ConnectCustomKeyStoreOutput,
 }
@@ -2355,7 +2375,11 @@ impl PyConnectCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "CreateCustomKeyStoreResponse", frozen)]
+#[pyclass(
+    name = "CreateCustomKeyStoreResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyCreateCustomKeyStoreResponse {
     inner: aws_sdk_kms::operation::create_custom_key_store::CreateCustomKeyStoreOutput,
 }
@@ -2384,7 +2408,7 @@ impl PyCreateCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "CreateGrantResponse", frozen)]
+#[pyclass(name = "CreateGrantResponse", module = "rboto_kms._native", frozen)]
 struct PyCreateGrantResponse {
     inner: aws_sdk_kms::operation::create_grant::CreateGrantOutput,
 }
@@ -2429,7 +2453,7 @@ impl PyCreateGrantResponse {
     }
 }
 
-#[pyclass(name = "CreateKeyResponse", frozen)]
+#[pyclass(name = "CreateKeyResponse", module = "rboto_kms._native", frozen)]
 struct PyCreateKeyResponse {
     inner: aws_sdk_kms::operation::create_key::CreateKeyOutput,
 }
@@ -2464,7 +2488,7 @@ impl PyCreateKeyResponse {
     }
 }
 
-#[pyclass(name = "DecryptResponse", frozen)]
+#[pyclass(name = "DecryptResponse", module = "rboto_kms._native", frozen)]
 struct PyDecryptResponse {
     inner: aws_sdk_kms::operation::decrypt::DecryptOutput,
 }
@@ -2557,7 +2581,11 @@ impl PyDecryptResponse {
     }
 }
 
-#[pyclass(name = "DeleteCustomKeyStoreResponse", frozen)]
+#[pyclass(
+    name = "DeleteCustomKeyStoreResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyDeleteCustomKeyStoreResponse {
     inner: aws_sdk_kms::operation::delete_custom_key_store::DeleteCustomKeyStoreOutput,
 }
@@ -2570,7 +2598,11 @@ impl PyDeleteCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "DeleteImportedKeyMaterialResponse", frozen)]
+#[pyclass(
+    name = "DeleteImportedKeyMaterialResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyDeleteImportedKeyMaterialResponse {
     inner: aws_sdk_kms::operation::delete_imported_key_material::DeleteImportedKeyMaterialOutput,
 }
@@ -2615,7 +2647,11 @@ impl PyDeleteImportedKeyMaterialResponse {
     }
 }
 
-#[pyclass(name = "DeriveSharedSecretResponse", frozen)]
+#[pyclass(
+    name = "DeriveSharedSecretResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyDeriveSharedSecretResponse {
     inner: aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretOutput,
 }
@@ -2708,7 +2744,11 @@ impl PyDeriveSharedSecretResponse {
     }
 }
 
-#[pyclass(name = "DescribeCustomKeyStoresResponse", frozen)]
+#[pyclass(
+    name = "DescribeCustomKeyStoresResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyDescribeCustomKeyStoresResponse {
     inner: aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyStoresOutput,
 }
@@ -2777,7 +2817,7 @@ impl PyDescribeCustomKeyStoresResponse {
     }
 }
 
-#[pyclass(name = "DescribeKeyResponse", frozen)]
+#[pyclass(name = "DescribeKeyResponse", module = "rboto_kms._native", frozen)]
 struct PyDescribeKeyResponse {
     inner: aws_sdk_kms::operation::describe_key::DescribeKeyOutput,
 }
@@ -2812,7 +2852,11 @@ impl PyDescribeKeyResponse {
     }
 }
 
-#[pyclass(name = "DisconnectCustomKeyStoreResponse", frozen)]
+#[pyclass(
+    name = "DisconnectCustomKeyStoreResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyDisconnectCustomKeyStoreResponse {
     inner: aws_sdk_kms::operation::disconnect_custom_key_store::DisconnectCustomKeyStoreOutput,
 }
@@ -2825,7 +2869,7 @@ impl PyDisconnectCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "EncryptResponse", frozen)]
+#[pyclass(name = "EncryptResponse", module = "rboto_kms._native", frozen)]
 struct PyEncryptResponse {
     inner: aws_sdk_kms::operation::encrypt::EncryptOutput,
 }
@@ -2886,7 +2930,7 @@ impl PyEncryptResponse {
     }
 }
 
-#[pyclass(name = "GenerateDataKeyResponse", frozen)]
+#[pyclass(name = "GenerateDataKeyResponse", module = "rboto_kms._native", frozen)]
 struct PyGenerateDataKeyResponse {
     inner: aws_sdk_kms::operation::generate_data_key::GenerateDataKeyOutput,
 }
@@ -2979,7 +3023,11 @@ impl PyGenerateDataKeyResponse {
     }
 }
 
-#[pyclass(name = "GenerateDataKeyPairResponse", frozen)]
+#[pyclass(
+    name = "GenerateDataKeyPairResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyGenerateDataKeyPairResponse {
     inner: aws_sdk_kms::operation::generate_data_key_pair::GenerateDataKeyPairOutput,
 }
@@ -3104,7 +3152,11 @@ impl PyGenerateDataKeyPairResponse {
     }
 }
 
-#[pyclass(name = "GenerateDataKeyPairWithoutPlaintextResponse", frozen)]
+#[pyclass(
+    name = "GenerateDataKeyPairWithoutPlaintextResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyGenerateDataKeyPairWithoutPlaintextResponse {
     inner: aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextOutput,
 }
@@ -3197,7 +3249,11 @@ impl PyGenerateDataKeyPairWithoutPlaintextResponse {
     }
 }
 
-#[pyclass(name = "GenerateDataKeyWithoutPlaintextResponse", frozen)]
+#[pyclass(
+    name = "GenerateDataKeyWithoutPlaintextResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyGenerateDataKeyWithoutPlaintextResponse {
     inner: aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextOutput,
 }
@@ -3258,7 +3314,7 @@ impl PyGenerateDataKeyWithoutPlaintextResponse {
     }
 }
 
-#[pyclass(name = "GenerateMacResponse", frozen)]
+#[pyclass(name = "GenerateMacResponse", module = "rboto_kms._native", frozen)]
 struct PyGenerateMacResponse {
     inner: aws_sdk_kms::operation::generate_mac::GenerateMacOutput,
 }
@@ -3319,7 +3375,7 @@ impl PyGenerateMacResponse {
     }
 }
 
-#[pyclass(name = "GenerateRandomResponse", frozen)]
+#[pyclass(name = "GenerateRandomResponse", module = "rboto_kms._native", frozen)]
 struct PyGenerateRandomResponse {
     inner: aws_sdk_kms::operation::generate_random::GenerateRandomOutput,
 }
@@ -3364,7 +3420,7 @@ impl PyGenerateRandomResponse {
     }
 }
 
-#[pyclass(name = "GetKeyLastUsageResponse", frozen)]
+#[pyclass(name = "GetKeyLastUsageResponse", module = "rboto_kms._native", frozen)]
 struct PyGetKeyLastUsageResponse {
     inner: aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageOutput,
 }
@@ -3447,7 +3503,7 @@ impl PyGetKeyLastUsageResponse {
     }
 }
 
-#[pyclass(name = "GetKeyPolicyResponse", frozen)]
+#[pyclass(name = "GetKeyPolicyResponse", module = "rboto_kms._native", frozen)]
 struct PyGetKeyPolicyResponse {
     inner: aws_sdk_kms::operation::get_key_policy::GetKeyPolicyOutput,
 }
@@ -3492,7 +3548,11 @@ impl PyGetKeyPolicyResponse {
     }
 }
 
-#[pyclass(name = "GetKeyRotationStatusResponse", frozen)]
+#[pyclass(
+    name = "GetKeyRotationStatusResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyGetKeyRotationStatusResponse {
     inner: aws_sdk_kms::operation::get_key_rotation_status::GetKeyRotationStatusOutput,
 }
@@ -3581,7 +3641,11 @@ impl PyGetKeyRotationStatusResponse {
     }
 }
 
-#[pyclass(name = "GetParametersForImportResponse", frozen)]
+#[pyclass(
+    name = "GetParametersForImportResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyGetParametersForImportResponse {
     inner: aws_sdk_kms::operation::get_parameters_for_import::GetParametersForImportOutput,
 }
@@ -3658,7 +3722,7 @@ impl PyGetParametersForImportResponse {
     }
 }
 
-#[pyclass(name = "GetPublicKeyResponse", frozen)]
+#[pyclass(name = "GetPublicKeyResponse", module = "rboto_kms._native", frozen)]
 struct PyGetPublicKeyResponse {
     inner: aws_sdk_kms::operation::get_public_key::GetPublicKeyOutput,
 }
@@ -3829,7 +3893,11 @@ impl PyGetPublicKeyResponse {
     }
 }
 
-#[pyclass(name = "ImportKeyMaterialResponse", frozen)]
+#[pyclass(
+    name = "ImportKeyMaterialResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyImportKeyMaterialResponse {
     inner: aws_sdk_kms::operation::import_key_material::ImportKeyMaterialOutput,
 }
@@ -3874,7 +3942,7 @@ impl PyImportKeyMaterialResponse {
     }
 }
 
-#[pyclass(name = "ListAliasesResponse", frozen)]
+#[pyclass(name = "ListAliasesResponse", module = "rboto_kms._native", frozen)]
 struct PyListAliasesResponse {
     inner: aws_sdk_kms::operation::list_aliases::ListAliasesOutput,
 }
@@ -3943,7 +4011,7 @@ impl PyListAliasesResponse {
     }
 }
 
-#[pyclass(name = "ListGrantsOutput", frozen)]
+#[pyclass(name = "ListGrantsOutput", module = "rboto_kms._native", frozen)]
 struct PyListGrantsOutput {
     inner: aws_sdk_kms::operation::list_grants::ListGrantsOutput,
 }
@@ -4012,7 +4080,7 @@ impl PyListGrantsOutput {
     }
 }
 
-#[pyclass(name = "ListKeyPoliciesResponse", frozen)]
+#[pyclass(name = "ListKeyPoliciesResponse", module = "rboto_kms._native", frozen)]
 struct PyListKeyPoliciesResponse {
     inner: aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesOutput,
 }
@@ -4075,7 +4143,11 @@ impl PyListKeyPoliciesResponse {
     }
 }
 
-#[pyclass(name = "ListKeyRotationsResponse", frozen)]
+#[pyclass(
+    name = "ListKeyRotationsResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyListKeyRotationsResponse {
     inner: aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsOutput,
 }
@@ -4144,7 +4216,7 @@ impl PyListKeyRotationsResponse {
     }
 }
 
-#[pyclass(name = "ListKeysResponse", frozen)]
+#[pyclass(name = "ListKeysResponse", module = "rboto_kms._native", frozen)]
 struct PyListKeysResponse {
     inner: aws_sdk_kms::operation::list_keys::ListKeysOutput,
 }
@@ -4213,7 +4285,11 @@ impl PyListKeysResponse {
     }
 }
 
-#[pyclass(name = "ListResourceTagsResponse", frozen)]
+#[pyclass(
+    name = "ListResourceTagsResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyListResourceTagsResponse {
     inner: aws_sdk_kms::operation::list_resource_tags::ListResourceTagsOutput,
 }
@@ -4282,7 +4358,11 @@ impl PyListResourceTagsResponse {
     }
 }
 
-#[pyclass(name = "ListRetirableGrantsOutput", frozen)]
+#[pyclass(
+    name = "ListRetirableGrantsOutput",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyListRetirableGrantsOutput {
     inner: aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsOutput,
 }
@@ -4351,7 +4431,7 @@ impl PyListRetirableGrantsOutput {
     }
 }
 
-#[pyclass(name = "ReEncryptResponse", frozen)]
+#[pyclass(name = "ReEncryptResponse", module = "rboto_kms._native", frozen)]
 struct PyReEncryptResponse {
     inner: aws_sdk_kms::operation::re_encrypt::ReEncryptOutput,
 }
@@ -4476,7 +4556,7 @@ impl PyReEncryptResponse {
     }
 }
 
-#[pyclass(name = "ReplicateKeyResponse", frozen)]
+#[pyclass(name = "ReplicateKeyResponse", module = "rboto_kms._native", frozen)]
 struct PyReplicateKeyResponse {
     inner: aws_sdk_kms::operation::replicate_key::ReplicateKeyOutput,
 }
@@ -4559,7 +4639,11 @@ impl PyReplicateKeyResponse {
     }
 }
 
-#[pyclass(name = "RotateKeyOnDemandResponse", frozen)]
+#[pyclass(
+    name = "RotateKeyOnDemandResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyRotateKeyOnDemandResponse {
     inner: aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandOutput,
 }
@@ -4588,7 +4672,11 @@ impl PyRotateKeyOnDemandResponse {
     }
 }
 
-#[pyclass(name = "ScheduleKeyDeletionResponse", frozen)]
+#[pyclass(
+    name = "ScheduleKeyDeletionResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyScheduleKeyDeletionResponse {
     inner: aws_sdk_kms::operation::schedule_key_deletion::ScheduleKeyDeletionOutput,
 }
@@ -4665,7 +4753,7 @@ impl PyScheduleKeyDeletionResponse {
     }
 }
 
-#[pyclass(name = "SignResponse", frozen)]
+#[pyclass(name = "SignResponse", module = "rboto_kms._native", frozen)]
 struct PySignResponse {
     inner: aws_sdk_kms::operation::sign::SignOutput,
 }
@@ -4726,7 +4814,11 @@ impl PySignResponse {
     }
 }
 
-#[pyclass(name = "UpdateCustomKeyStoreResponse", frozen)]
+#[pyclass(
+    name = "UpdateCustomKeyStoreResponse",
+    module = "rboto_kms._native",
+    frozen
+)]
 struct PyUpdateCustomKeyStoreResponse {
     inner: aws_sdk_kms::operation::update_custom_key_store::UpdateCustomKeyStoreOutput,
 }
@@ -4739,7 +4831,7 @@ impl PyUpdateCustomKeyStoreResponse {
     }
 }
 
-#[pyclass(name = "VerifyResponse", frozen)]
+#[pyclass(name = "VerifyResponse", module = "rboto_kms._native", frozen)]
 struct PyVerifyResponse {
     inner: aws_sdk_kms::operation::verify::VerifyOutput,
 }
@@ -4792,7 +4884,7 @@ impl PyVerifyResponse {
     }
 }
 
-#[pyclass(name = "VerifyMacResponse", frozen)]
+#[pyclass(name = "VerifyMacResponse", module = "rboto_kms._native", frozen)]
 struct PyVerifyMacResponse {
     inner: aws_sdk_kms::operation::verify_mac::VerifyMacOutput,
 }

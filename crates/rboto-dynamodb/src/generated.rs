@@ -8204,7 +8204,7 @@ fn write_request_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "ArchivalSummary", frozen)]
+#[pyclass(name = "ArchivalSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyArchivalSummary {
     inner: aws_sdk_dynamodb::types::ArchivalSummary,
 }
@@ -8246,7 +8246,11 @@ impl PyArchivalSummary {
     }
 }
 
-#[pyclass(name = "AttributeDefinition", frozen)]
+#[pyclass(
+    name = "AttributeDefinition",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyAttributeDefinition {
     inner: aws_sdk_dynamodb::types::AttributeDefinition,
 }
@@ -8270,7 +8274,11 @@ impl PyAttributeDefinition {
     }
 }
 
-#[pyclass(name = "AutoScalingPolicyDescription", frozen)]
+#[pyclass(
+    name = "AutoScalingPolicyDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyAutoScalingPolicyDescription {
     inner: aws_sdk_dynamodb::types::AutoScalingPolicyDescription,
 }
@@ -8308,7 +8316,11 @@ impl PyAutoScalingPolicyDescription {
     }
 }
 
-#[pyclass(name = "AutoScalingSettingsDescription", frozen)]
+#[pyclass(
+    name = "AutoScalingSettingsDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyAutoScalingSettingsDescription {
     inner: aws_sdk_dynamodb::types::AutoScalingSettingsDescription,
 }
@@ -8383,6 +8395,7 @@ impl PyAutoScalingSettingsDescription {
 
 #[pyclass(
     name = "AutoScalingTargetTrackingScalingPolicyConfigurationDescription",
+    module = "rboto_dynamodb._native",
     frozen
 )]
 struct PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
@@ -8432,7 +8445,7 @@ impl PyAutoScalingTargetTrackingScalingPolicyConfigurationDescription {
     }
 }
 
-#[pyclass(name = "BackupDescription", frozen)]
+#[pyclass(name = "BackupDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupDescription {
     inner: aws_sdk_dynamodb::types::BackupDescription,
 }
@@ -8492,7 +8505,7 @@ impl PyBackupDescription {
     }
 }
 
-#[pyclass(name = "BackupDetails", frozen)]
+#[pyclass(name = "BackupDetails", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupDetails {
     inner: aws_sdk_dynamodb::types::BackupDetails,
 }
@@ -8556,7 +8569,7 @@ impl PyBackupDetails {
     }
 }
 
-#[pyclass(name = "BackupSummary", frozen)]
+#[pyclass(name = "BackupSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyBackupSummary {
     inner: aws_sdk_dynamodb::types::BackupSummary,
 }
@@ -8668,7 +8681,11 @@ impl PyBackupSummary {
     }
 }
 
-#[pyclass(name = "BatchStatementError", frozen)]
+#[pyclass(
+    name = "BatchStatementError",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyBatchStatementError {
     inner: aws_sdk_dynamodb::types::BatchStatementError,
 }
@@ -8716,7 +8733,11 @@ impl PyBatchStatementError {
     }
 }
 
-#[pyclass(name = "BatchStatementResponse", frozen)]
+#[pyclass(
+    name = "BatchStatementResponse",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyBatchStatementResponse {
     inner: aws_sdk_dynamodb::types::BatchStatementResponse,
 }
@@ -8770,7 +8791,7 @@ impl PyBatchStatementResponse {
     }
 }
 
-#[pyclass(name = "BillingModeSummary", frozen)]
+#[pyclass(name = "BillingModeSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyBillingModeSummary {
     inner: aws_sdk_dynamodb::types::BillingModeSummary,
 }
@@ -8802,7 +8823,7 @@ impl PyBillingModeSummary {
     }
 }
 
-#[pyclass(name = "Capacity", frozen)]
+#[pyclass(name = "Capacity", module = "rboto_dynamodb._native", frozen)]
 struct PyCapacity {
     inner: aws_sdk_dynamodb::types::Capacity,
 }
@@ -8844,7 +8865,7 @@ impl PyCapacity {
     }
 }
 
-#[pyclass(name = "ConsumedCapacity", frozen)]
+#[pyclass(name = "ConsumedCapacity", module = "rboto_dynamodb._native", frozen)]
 struct PyConsumedCapacity {
     inner: aws_sdk_dynamodb::types::ConsumedCapacity,
 }
@@ -8978,7 +8999,11 @@ impl PyConsumedCapacity {
     }
 }
 
-#[pyclass(name = "ContinuousBackupsDescription", frozen)]
+#[pyclass(
+    name = "ContinuousBackupsDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyContinuousBackupsDescription {
     inner: aws_sdk_dynamodb::types::ContinuousBackupsDescription,
 }
@@ -9014,7 +9039,11 @@ impl PyContinuousBackupsDescription {
     }
 }
 
-#[pyclass(name = "ContributorInsightsSummary", frozen)]
+#[pyclass(
+    name = "ContributorInsightsSummary",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyContributorInsightsSummary {
     inner: aws_sdk_dynamodb::types::ContributorInsightsSummary,
 }
@@ -9066,7 +9095,7 @@ impl PyContributorInsightsSummary {
     }
 }
 
-#[pyclass(name = "CsvOptions", frozen)]
+#[pyclass(name = "CsvOptions", module = "rboto_dynamodb._native", frozen)]
 struct PyCsvOptions {
     inner: aws_sdk_dynamodb::types::CsvOptions,
 }
@@ -9103,7 +9132,7 @@ impl PyCsvOptions {
     }
 }
 
-#[pyclass(name = "DeleteRequest", frozen)]
+#[pyclass(name = "DeleteRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyDeleteRequest {
     inner: aws_sdk_dynamodb::types::DeleteRequest,
 }
@@ -9127,7 +9156,11 @@ impl PyDeleteRequest {
     }
 }
 
-#[pyclass(name = "EnableKinesisStreamingConfiguration", frozen)]
+#[pyclass(
+    name = "EnableKinesisStreamingConfiguration",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyEnableKinesisStreamingConfiguration {
     inner: aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration,
 }
@@ -9149,7 +9182,7 @@ impl PyEnableKinesisStreamingConfiguration {
     }
 }
 
-#[pyclass(name = "Endpoint", frozen)]
+#[pyclass(name = "Endpoint", module = "rboto_dynamodb._native", frozen)]
 struct PyEndpoint {
     inner: aws_sdk_dynamodb::types::Endpoint,
 }
@@ -9175,7 +9208,7 @@ impl PyEndpoint {
     }
 }
 
-#[pyclass(name = "ExportDescription", frozen)]
+#[pyclass(name = "ExportDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyExportDescription {
     inner: aws_sdk_dynamodb::types::ExportDescription,
 }
@@ -9419,7 +9452,7 @@ impl PyExportDescription {
     }
 }
 
-#[pyclass(name = "ExportSummary", frozen)]
+#[pyclass(name = "ExportSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyExportSummary {
     inner: aws_sdk_dynamodb::types::ExportSummary,
 }
@@ -9461,7 +9494,7 @@ impl PyExportSummary {
     }
 }
 
-#[pyclass(name = "FailureException", frozen)]
+#[pyclass(name = "FailureException", module = "rboto_dynamodb._native", frozen)]
 struct PyFailureException {
     inner: aws_sdk_dynamodb::types::FailureException,
 }
@@ -9493,7 +9526,11 @@ impl PyFailureException {
     }
 }
 
-#[pyclass(name = "FilterSpecification", frozen)]
+#[pyclass(
+    name = "FilterSpecification",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyFilterSpecification {
     inner: aws_sdk_dynamodb::types::FilterSpecification,
 }
@@ -9567,7 +9604,11 @@ impl PyFilterSpecification {
     }
 }
 
-#[pyclass(name = "GlobalSecondaryIndex", frozen)]
+#[pyclass(
+    name = "GlobalSecondaryIndex",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalSecondaryIndex {
     inner: aws_sdk_dynamodb::types::GlobalSecondaryIndex,
 }
@@ -9666,7 +9707,11 @@ impl PyGlobalSecondaryIndex {
     }
 }
 
-#[pyclass(name = "GlobalSecondaryIndexDescription", frozen)]
+#[pyclass(
+    name = "GlobalSecondaryIndexDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalSecondaryIndexDescription {
     inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription,
 }
@@ -9823,7 +9868,11 @@ impl PyGlobalSecondaryIndexDescription {
     }
 }
 
-#[pyclass(name = "GlobalSecondaryIndexInfo", frozen)]
+#[pyclass(
+    name = "GlobalSecondaryIndexInfo",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalSecondaryIndexInfo {
     inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo,
 }
@@ -9914,7 +9963,11 @@ impl PyGlobalSecondaryIndexInfo {
     }
 }
 
-#[pyclass(name = "GlobalSecondaryIndexWarmThroughputDescription", frozen)]
+#[pyclass(
+    name = "GlobalSecondaryIndexWarmThroughputDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalSecondaryIndexWarmThroughputDescription {
     inner: aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription,
 }
@@ -9956,7 +10009,7 @@ impl PyGlobalSecondaryIndexWarmThroughputDescription {
     }
 }
 
-#[pyclass(name = "GlobalTable", frozen)]
+#[pyclass(name = "GlobalTable", module = "rboto_dynamodb._native", frozen)]
 struct PyGlobalTable {
     inner: aws_sdk_dynamodb::types::GlobalTable,
 }
@@ -9999,7 +10052,11 @@ impl PyGlobalTable {
     }
 }
 
-#[pyclass(name = "GlobalTableDescription", frozen)]
+#[pyclass(
+    name = "GlobalTableDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalTableDescription {
     inner: aws_sdk_dynamodb::types::GlobalTableDescription,
 }
@@ -10072,7 +10129,11 @@ impl PyGlobalTableDescription {
     }
 }
 
-#[pyclass(name = "GlobalTableWitnessDescription", frozen)]
+#[pyclass(
+    name = "GlobalTableWitnessDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGlobalTableWitnessDescription {
     inner: aws_sdk_dynamodb::types::GlobalTableWitnessDescription,
 }
@@ -10104,7 +10165,7 @@ impl PyGlobalTableWitnessDescription {
     }
 }
 
-#[pyclass(name = "ImportSummary", frozen)]
+#[pyclass(name = "ImportSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyImportSummary {
     inner: aws_sdk_dynamodb::types::ImportSummary,
 }
@@ -10202,7 +10263,11 @@ impl PyImportSummary {
     }
 }
 
-#[pyclass(name = "ImportTableDescription", frozen)]
+#[pyclass(
+    name = "ImportTableDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyImportTableDescription {
     inner: aws_sdk_dynamodb::types::ImportTableDescription,
 }
@@ -10414,7 +10479,11 @@ impl PyImportTableDescription {
     }
 }
 
-#[pyclass(name = "IncrementalExportSpecification", frozen)]
+#[pyclass(
+    name = "IncrementalExportSpecification",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyIncrementalExportSpecification {
     inner: aws_sdk_dynamodb::types::IncrementalExportSpecification,
 }
@@ -10456,7 +10525,7 @@ impl PyIncrementalExportSpecification {
     }
 }
 
-#[pyclass(name = "InputFormatOptions", frozen)]
+#[pyclass(name = "InputFormatOptions", module = "rboto_dynamodb._native", frozen)]
 struct PyInputFormatOptions {
     inner: aws_sdk_dynamodb::types::InputFormatOptions,
 }
@@ -10484,7 +10553,11 @@ impl PyInputFormatOptions {
     }
 }
 
-#[pyclass(name = "ItemCollectionMetrics", frozen)]
+#[pyclass(
+    name = "ItemCollectionMetrics",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyItemCollectionMetrics {
     inner: aws_sdk_dynamodb::types::ItemCollectionMetrics,
 }
@@ -10527,7 +10600,7 @@ impl PyItemCollectionMetrics {
     }
 }
 
-#[pyclass(name = "ItemResponse", frozen)]
+#[pyclass(name = "ItemResponse", module = "rboto_dynamodb._native", frozen)]
 struct PyItemResponse {
     inner: aws_sdk_dynamodb::types::ItemResponse,
 }
@@ -10555,7 +10628,7 @@ impl PyItemResponse {
     }
 }
 
-#[pyclass(name = "KeySchemaElement", frozen)]
+#[pyclass(name = "KeySchemaElement", module = "rboto_dynamodb._native", frozen)]
 struct PyKeySchemaElement {
     inner: aws_sdk_dynamodb::types::KeySchemaElement,
 }
@@ -10579,7 +10652,7 @@ impl PyKeySchemaElement {
     }
 }
 
-#[pyclass(name = "KeysAndAttributes", frozen)]
+#[pyclass(name = "KeysAndAttributes", module = "rboto_dynamodb._native", frozen)]
 struct PyKeysAndAttributes {
     inner: aws_sdk_dynamodb::types::KeysAndAttributes,
 }
@@ -10659,7 +10732,11 @@ impl PyKeysAndAttributes {
     }
 }
 
-#[pyclass(name = "KinesisDataStreamDestination", frozen)]
+#[pyclass(
+    name = "KinesisDataStreamDestination",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyKinesisDataStreamDestination {
     inner: aws_sdk_dynamodb::types::KinesisDataStreamDestination,
 }
@@ -10711,7 +10788,11 @@ impl PyKinesisDataStreamDestination {
     }
 }
 
-#[pyclass(name = "LocalSecondaryIndexDescription", frozen)]
+#[pyclass(
+    name = "LocalSecondaryIndexDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyLocalSecondaryIndexDescription {
     inner: aws_sdk_dynamodb::types::LocalSecondaryIndexDescription,
 }
@@ -10800,7 +10881,11 @@ impl PyLocalSecondaryIndexDescription {
     }
 }
 
-#[pyclass(name = "LocalSecondaryIndexInfo", frozen)]
+#[pyclass(
+    name = "LocalSecondaryIndexInfo",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyLocalSecondaryIndexInfo {
     inner: aws_sdk_dynamodb::types::LocalSecondaryIndexInfo,
 }
@@ -10859,7 +10944,7 @@ impl PyLocalSecondaryIndexInfo {
     }
 }
 
-#[pyclass(name = "OnDemandThroughput", frozen)]
+#[pyclass(name = "OnDemandThroughput", module = "rboto_dynamodb._native", frozen)]
 struct PyOnDemandThroughput {
     inner: aws_sdk_dynamodb::types::OnDemandThroughput,
 }
@@ -10891,7 +10976,11 @@ impl PyOnDemandThroughput {
     }
 }
 
-#[pyclass(name = "OnDemandThroughputOverride", frozen)]
+#[pyclass(
+    name = "OnDemandThroughputOverride",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyOnDemandThroughputOverride {
     inner: aws_sdk_dynamodb::types::OnDemandThroughputOverride,
 }
@@ -10913,7 +11002,11 @@ impl PyOnDemandThroughputOverride {
     }
 }
 
-#[pyclass(name = "PointInTimeRecoveryDescription", frozen)]
+#[pyclass(
+    name = "PointInTimeRecoveryDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyPointInTimeRecoveryDescription {
     inner: aws_sdk_dynamodb::types::PointInTimeRecoveryDescription,
 }
@@ -10965,7 +11058,7 @@ impl PyPointInTimeRecoveryDescription {
     }
 }
 
-#[pyclass(name = "Projection", frozen)]
+#[pyclass(name = "Projection", module = "rboto_dynamodb._native", frozen)]
 struct PyProjection {
     inner: aws_sdk_dynamodb::types::Projection,
 }
@@ -11002,7 +11095,11 @@ impl PyProjection {
     }
 }
 
-#[pyclass(name = "ProvisionedThroughput", frozen)]
+#[pyclass(
+    name = "ProvisionedThroughput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyProvisionedThroughput {
     inner: aws_sdk_dynamodb::types::ProvisionedThroughput,
 }
@@ -11030,7 +11127,11 @@ impl PyProvisionedThroughput {
     }
 }
 
-#[pyclass(name = "ProvisionedThroughputDescription", frozen)]
+#[pyclass(
+    name = "ProvisionedThroughputDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyProvisionedThroughputDescription {
     inner: aws_sdk_dynamodb::types::ProvisionedThroughputDescription,
 }
@@ -11092,7 +11193,11 @@ impl PyProvisionedThroughputDescription {
     }
 }
 
-#[pyclass(name = "ProvisionedThroughputOverride", frozen)]
+#[pyclass(
+    name = "ProvisionedThroughputOverride",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyProvisionedThroughputOverride {
     inner: aws_sdk_dynamodb::types::ProvisionedThroughputOverride,
 }
@@ -11114,7 +11219,7 @@ impl PyProvisionedThroughputOverride {
     }
 }
 
-#[pyclass(name = "PutRequest", frozen)]
+#[pyclass(name = "PutRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyPutRequest {
     inner: aws_sdk_dynamodb::types::PutRequest,
 }
@@ -11138,7 +11243,7 @@ impl PyPutRequest {
     }
 }
 
-#[pyclass(name = "Replica", frozen)]
+#[pyclass(name = "Replica", module = "rboto_dynamodb._native", frozen)]
 struct PyReplica {
     inner: aws_sdk_dynamodb::types::Replica,
 }
@@ -11160,7 +11265,11 @@ impl PyReplica {
     }
 }
 
-#[pyclass(name = "ReplicaAutoScalingDescription", frozen)]
+#[pyclass(
+    name = "ReplicaAutoScalingDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyReplicaAutoScalingDescription {
     inner: aws_sdk_dynamodb::types::ReplicaAutoScalingDescription,
 }
@@ -11257,7 +11366,7 @@ impl PyReplicaAutoScalingDescription {
     }
 }
 
-#[pyclass(name = "ReplicaDescription", frozen)]
+#[pyclass(name = "ReplicaDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyReplicaDescription {
     inner: aws_sdk_dynamodb::types::ReplicaDescription,
 }
@@ -11434,7 +11543,11 @@ impl PyReplicaDescription {
     }
 }
 
-#[pyclass(name = "ReplicaGlobalSecondaryIndexAutoScalingDescription", frozen)]
+#[pyclass(
+    name = "ReplicaGlobalSecondaryIndexAutoScalingDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription,
 }
@@ -11504,7 +11617,11 @@ impl PyReplicaGlobalSecondaryIndexAutoScalingDescription {
     }
 }
 
-#[pyclass(name = "ReplicaGlobalSecondaryIndexDescription", frozen)]
+#[pyclass(
+    name = "ReplicaGlobalSecondaryIndexDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyReplicaGlobalSecondaryIndexDescription {
     inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription,
 }
@@ -11574,7 +11691,11 @@ impl PyReplicaGlobalSecondaryIndexDescription {
     }
 }
 
-#[pyclass(name = "ReplicaGlobalSecondaryIndexSettingsDescription", frozen)]
+#[pyclass(
+    name = "ReplicaGlobalSecondaryIndexSettingsDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyReplicaGlobalSecondaryIndexSettingsDescription {
     inner: aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription,
 }
@@ -11660,7 +11781,11 @@ impl PyReplicaGlobalSecondaryIndexSettingsDescription {
     }
 }
 
-#[pyclass(name = "ReplicaSettingsDescription", frozen)]
+#[pyclass(
+    name = "ReplicaSettingsDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyReplicaSettingsDescription {
     inner: aws_sdk_dynamodb::types::ReplicaSettingsDescription,
 }
@@ -11805,7 +11930,7 @@ impl PyReplicaSettingsDescription {
     }
 }
 
-#[pyclass(name = "RestoreSummary", frozen)]
+#[pyclass(name = "RestoreSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyRestoreSummary {
     inner: aws_sdk_dynamodb::types::RestoreSummary,
 }
@@ -11853,7 +11978,7 @@ impl PyRestoreSummary {
     }
 }
 
-#[pyclass(name = "S3BucketSource", frozen)]
+#[pyclass(name = "S3BucketSource", module = "rboto_dynamodb._native", frozen)]
 struct PyS3BucketSource {
     inner: aws_sdk_dynamodb::types::S3BucketSource,
 }
@@ -11891,7 +12016,7 @@ impl PyS3BucketSource {
     }
 }
 
-#[pyclass(name = "SearchResultItem", frozen)]
+#[pyclass(name = "SearchResultItem", module = "rboto_dynamodb._native", frozen)]
 struct PySearchResultItem {
     inner: aws_sdk_dynamodb::types::SearchResultItem,
 }
@@ -11925,7 +12050,11 @@ impl PySearchResultItem {
     }
 }
 
-#[pyclass(name = "SearchSchemaElement", frozen)]
+#[pyclass(
+    name = "SearchSchemaElement",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PySearchSchemaElement {
     inner: aws_sdk_dynamodb::types::SearchSchemaElement,
 }
@@ -11951,7 +12080,7 @@ impl PySearchSchemaElement {
     }
 }
 
-#[pyclass(name = "SourceTableDetails", frozen)]
+#[pyclass(name = "SourceTableDetails", module = "rboto_dynamodb._native", frozen)]
 struct PySourceTableDetails {
     inner: aws_sdk_dynamodb::types::SourceTableDetails,
 }
@@ -12072,7 +12201,11 @@ impl PySourceTableDetails {
     }
 }
 
-#[pyclass(name = "SourceTableFeatureDetails", frozen)]
+#[pyclass(
+    name = "SourceTableFeatureDetails",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PySourceTableFeatureDetails {
     inner: aws_sdk_dynamodb::types::SourceTableFeatureDetails,
 }
@@ -12195,7 +12328,7 @@ impl PySourceTableFeatureDetails {
     }
 }
 
-#[pyclass(name = "SseDescription", frozen)]
+#[pyclass(name = "SseDescription", module = "rboto_dynamodb._native", frozen)]
 struct PySseDescription {
     inner: aws_sdk_dynamodb::types::SseDescription,
 }
@@ -12247,7 +12380,7 @@ impl PySseDescription {
     }
 }
 
-#[pyclass(name = "SseSpecification", frozen)]
+#[pyclass(name = "SseSpecification", module = "rboto_dynamodb._native", frozen)]
 struct PySseSpecification {
     inner: aws_sdk_dynamodb::types::SseSpecification,
 }
@@ -12289,7 +12422,11 @@ impl PySseSpecification {
     }
 }
 
-#[pyclass(name = "StreamSpecification", frozen)]
+#[pyclass(
+    name = "StreamSpecification",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyStreamSpecification {
     inner: aws_sdk_dynamodb::types::StreamSpecification,
 }
@@ -12317,7 +12454,11 @@ impl PyStreamSpecification {
     }
 }
 
-#[pyclass(name = "TableAutoScalingDescription", frozen)]
+#[pyclass(
+    name = "TableAutoScalingDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTableAutoScalingDescription {
     inner: aws_sdk_dynamodb::types::TableAutoScalingDescription,
 }
@@ -12370,7 +12511,7 @@ impl PyTableAutoScalingDescription {
     }
 }
 
-#[pyclass(name = "TableClassSummary", frozen)]
+#[pyclass(name = "TableClassSummary", module = "rboto_dynamodb._native", frozen)]
 struct PyTableClassSummary {
     inner: aws_sdk_dynamodb::types::TableClassSummary,
 }
@@ -12402,7 +12543,11 @@ impl PyTableClassSummary {
     }
 }
 
-#[pyclass(name = "TableCreationParameters", frozen)]
+#[pyclass(
+    name = "TableCreationParameters",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTableCreationParameters {
     inner: aws_sdk_dynamodb::types::TableCreationParameters,
 }
@@ -12554,7 +12699,7 @@ impl PyTableCreationParameters {
     }
 }
 
-#[pyclass(name = "TableDescription", frozen)]
+#[pyclass(name = "TableDescription", module = "rboto_dynamodb._native", frozen)]
 struct PyTableDescription {
     inner: aws_sdk_dynamodb::types::TableDescription,
 }
@@ -12997,7 +13142,11 @@ impl PyTableDescription {
     }
 }
 
-#[pyclass(name = "TableWarmThroughputDescription", frozen)]
+#[pyclass(
+    name = "TableWarmThroughputDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTableWarmThroughputDescription {
     inner: aws_sdk_dynamodb::types::TableWarmThroughputDescription,
 }
@@ -13039,7 +13188,7 @@ impl PyTableWarmThroughputDescription {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_dynamodb._native", frozen)]
 struct PyTag {
     inner: aws_sdk_dynamodb::types::Tag,
 }
@@ -13063,7 +13212,11 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TimeToLiveDescription", frozen)]
+#[pyclass(
+    name = "TimeToLiveDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTimeToLiveDescription {
     inner: aws_sdk_dynamodb::types::TimeToLiveDescription,
 }
@@ -13095,7 +13248,11 @@ impl PyTimeToLiveDescription {
     }
 }
 
-#[pyclass(name = "TimeToLiveSpecification", frozen)]
+#[pyclass(
+    name = "TimeToLiveSpecification",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTimeToLiveSpecification {
     inner: aws_sdk_dynamodb::types::TimeToLiveSpecification,
 }
@@ -13119,7 +13276,11 @@ impl PyTimeToLiveSpecification {
     }
 }
 
-#[pyclass(name = "UpdateKinesisStreamingConfiguration", frozen)]
+#[pyclass(
+    name = "UpdateKinesisStreamingConfiguration",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateKinesisStreamingConfiguration {
     inner: aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration,
 }
@@ -13141,7 +13302,11 @@ impl PyUpdateKinesisStreamingConfiguration {
     }
 }
 
-#[pyclass(name = "VectorAttributeDefinition", frozen)]
+#[pyclass(
+    name = "VectorAttributeDefinition",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyVectorAttributeDefinition {
     inner: aws_sdk_dynamodb::types::VectorAttributeDefinition,
 }
@@ -13159,7 +13324,7 @@ impl PyVectorAttributeDefinition {
     }
 }
 
-#[pyclass(name = "VectorCapacity", frozen)]
+#[pyclass(name = "VectorCapacity", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorCapacity {
     inner: aws_sdk_dynamodb::types::VectorCapacity,
 }
@@ -13191,7 +13356,7 @@ impl PyVectorCapacity {
     }
 }
 
-#[pyclass(name = "VectorIndex", frozen)]
+#[pyclass(name = "VectorIndex", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorIndex {
     inner: aws_sdk_dynamodb::types::VectorIndex,
 }
@@ -13274,7 +13439,11 @@ impl PyVectorIndex {
     }
 }
 
-#[pyclass(name = "VectorIndexDescription", frozen)]
+#[pyclass(
+    name = "VectorIndexDescription",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyVectorIndexDescription {
     inner: aws_sdk_dynamodb::types::VectorIndexDescription,
 }
@@ -13419,7 +13588,7 @@ impl PyVectorIndexDescription {
     }
 }
 
-#[pyclass(name = "VectorIndexInfo", frozen)]
+#[pyclass(name = "VectorIndexInfo", module = "rboto_dynamodb._native", frozen)]
 struct PyVectorIndexInfo {
     inner: aws_sdk_dynamodb::types::VectorIndexInfo,
 }
@@ -13514,7 +13683,7 @@ impl PyVectorIndexInfo {
     }
 }
 
-#[pyclass(name = "WarmThroughput", frozen)]
+#[pyclass(name = "WarmThroughput", module = "rboto_dynamodb._native", frozen)]
 struct PyWarmThroughput {
     inner: aws_sdk_dynamodb::types::WarmThroughput,
 }
@@ -13546,7 +13715,7 @@ impl PyWarmThroughput {
     }
 }
 
-#[pyclass(name = "WriteRequest", frozen)]
+#[pyclass(name = "WriteRequest", module = "rboto_dynamodb._native", frozen)]
 struct PyWriteRequest {
     inner: aws_sdk_dynamodb::types::WriteRequest,
 }
@@ -13590,7 +13759,11 @@ impl PyWriteRequest {
     }
 }
 
-#[pyclass(name = "BatchExecuteStatementOutput", frozen)]
+#[pyclass(
+    name = "BatchExecuteStatementOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyBatchExecuteStatementOutput {
     inner: aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput,
 }
@@ -13667,7 +13840,7 @@ impl PyBatchExecuteStatementOutput {
     }
 }
 
-#[pyclass(name = "BatchGetItemOutput", frozen)]
+#[pyclass(name = "BatchGetItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyBatchGetItemOutput {
     inner: aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput,
 }
@@ -13798,7 +13971,11 @@ impl PyBatchGetItemOutput {
     }
 }
 
-#[pyclass(name = "BatchWriteItemOutput", frozen)]
+#[pyclass(
+    name = "BatchWriteItemOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyBatchWriteItemOutput {
     inner: aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput,
 }
@@ -13931,7 +14108,7 @@ impl PyBatchWriteItemOutput {
     }
 }
 
-#[pyclass(name = "CreateBackupOutput", frozen)]
+#[pyclass(name = "CreateBackupOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyCreateBackupOutput {
     inner: aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput,
 }
@@ -13966,7 +14143,11 @@ impl PyCreateBackupOutput {
     }
 }
 
-#[pyclass(name = "CreateGlobalTableOutput", frozen)]
+#[pyclass(
+    name = "CreateGlobalTableOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyCreateGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput,
 }
@@ -14001,7 +14182,7 @@ impl PyCreateGlobalTableOutput {
     }
 }
 
-#[pyclass(name = "CreateTableOutput", frozen)]
+#[pyclass(name = "CreateTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyCreateTableOutput {
     inner: aws_sdk_dynamodb::operation::create_table::CreateTableOutput,
 }
@@ -14036,7 +14217,7 @@ impl PyCreateTableOutput {
     }
 }
 
-#[pyclass(name = "DeleteBackupOutput", frozen)]
+#[pyclass(name = "DeleteBackupOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyDeleteBackupOutput {
     inner: aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput,
 }
@@ -14071,7 +14252,7 @@ impl PyDeleteBackupOutput {
     }
 }
 
-#[pyclass(name = "DeleteItemOutput", frozen)]
+#[pyclass(name = "DeleteItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyDeleteItemOutput {
     inner: aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput,
 }
@@ -14156,7 +14337,11 @@ impl PyDeleteItemOutput {
     }
 }
 
-#[pyclass(name = "DeleteResourcePolicyOutput", frozen)]
+#[pyclass(
+    name = "DeleteResourcePolicyOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDeleteResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
@@ -14185,7 +14370,7 @@ impl PyDeleteResourcePolicyOutput {
     }
 }
 
-#[pyclass(name = "DeleteTableOutput", frozen)]
+#[pyclass(name = "DeleteTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyDeleteTableOutput {
     inner: aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput,
 }
@@ -14220,7 +14405,11 @@ impl PyDeleteTableOutput {
     }
 }
 
-#[pyclass(name = "DescribeBackupOutput", frozen)]
+#[pyclass(
+    name = "DescribeBackupOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeBackupOutput {
     inner: aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput,
 }
@@ -14255,7 +14444,11 @@ impl PyDescribeBackupOutput {
     }
 }
 
-#[pyclass(name = "DescribeContinuousBackupsOutput", frozen)]
+#[pyclass(
+    name = "DescribeContinuousBackupsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeContinuousBackupsOutput {
     inner:
         aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput,
@@ -14291,7 +14484,11 @@ impl PyDescribeContinuousBackupsOutput {
     }
 }
 
-#[pyclass(name = "DescribeContributorInsightsOutput", frozen)]
+#[pyclass(
+    name = "DescribeContributorInsightsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeContributorInsightsOutput {
     inner: aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput,
 }
@@ -14432,7 +14629,11 @@ impl PyDescribeContributorInsightsOutput {
     }
 }
 
-#[pyclass(name = "DescribeEndpointsResponse", frozen)]
+#[pyclass(
+    name = "DescribeEndpointsResponse",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeEndpointsResponse {
     inner: aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput,
 }
@@ -14469,7 +14670,11 @@ impl PyDescribeEndpointsResponse {
     }
 }
 
-#[pyclass(name = "DescribeExportOutput", frozen)]
+#[pyclass(
+    name = "DescribeExportOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeExportOutput {
     inner: aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput,
 }
@@ -14504,7 +14709,11 @@ impl PyDescribeExportOutput {
     }
 }
 
-#[pyclass(name = "DescribeGlobalTableOutput", frozen)]
+#[pyclass(
+    name = "DescribeGlobalTableOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput,
 }
@@ -14539,7 +14748,11 @@ impl PyDescribeGlobalTableOutput {
     }
 }
 
-#[pyclass(name = "DescribeGlobalTableSettingsOutput", frozen)]
+#[pyclass(
+    name = "DescribeGlobalTableSettingsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeGlobalTableSettingsOutput {
     inner: aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput,
 }
@@ -14600,7 +14813,11 @@ impl PyDescribeGlobalTableSettingsOutput {
     }
 }
 
-#[pyclass(name = "DescribeImportOutput", frozen)]
+#[pyclass(
+    name = "DescribeImportOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeImportOutput {
     inner: aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput,
 }
@@ -14635,7 +14852,11 @@ impl PyDescribeImportOutput {
     }
 }
 
-#[pyclass(name = "DescribeKinesisStreamingDestinationOutput", frozen)]
+#[pyclass(
+    name = "DescribeKinesisStreamingDestinationOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput,
 }
@@ -14696,7 +14917,11 @@ impl PyDescribeKinesisStreamingDestinationOutput {
     }
 }
 
-#[pyclass(name = "DescribeLimitsOutput", frozen)]
+#[pyclass(
+    name = "DescribeLimitsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeLimitsOutput {
     inner: aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsOutput,
 }
@@ -14773,7 +14998,11 @@ impl PyDescribeLimitsOutput {
     }
 }
 
-#[pyclass(name = "DescribeTableOutput", frozen)]
+#[pyclass(
+    name = "DescribeTableOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeTableOutput {
     inner: aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput,
 }
@@ -14808,7 +15037,11 @@ impl PyDescribeTableOutput {
     }
 }
 
-#[pyclass(name = "DescribeTableReplicaAutoScalingOutput", frozen)]
+#[pyclass(
+    name = "DescribeTableReplicaAutoScalingOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeTableReplicaAutoScalingOutput {
     inner: aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput,
 }
@@ -14843,7 +15076,11 @@ impl PyDescribeTableReplicaAutoScalingOutput {
     }
 }
 
-#[pyclass(name = "DescribeTimeToLiveOutput", frozen)]
+#[pyclass(
+    name = "DescribeTimeToLiveOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDescribeTimeToLiveOutput {
     inner: aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput,
 }
@@ -14878,7 +15115,11 @@ impl PyDescribeTimeToLiveOutput {
     }
 }
 
-#[pyclass(name = "DisableKinesisStreamingDestinationOutput", frozen)]
+#[pyclass(
+    name = "DisableKinesisStreamingDestinationOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyDisableKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput,
 }
@@ -14961,7 +15202,11 @@ impl PyDisableKinesisStreamingDestinationOutput {
     }
 }
 
-#[pyclass(name = "EnableKinesisStreamingDestinationOutput", frozen)]
+#[pyclass(
+    name = "EnableKinesisStreamingDestinationOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyEnableKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput,
 }
@@ -15044,7 +15289,11 @@ impl PyEnableKinesisStreamingDestinationOutput {
     }
 }
 
-#[pyclass(name = "ExecuteStatementOutput", frozen)]
+#[pyclass(
+    name = "ExecuteStatementOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyExecuteStatementOutput {
     inner: aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput,
 }
@@ -15161,7 +15410,11 @@ impl PyExecuteStatementOutput {
     }
 }
 
-#[pyclass(name = "ExecuteTransactionOutput", frozen)]
+#[pyclass(
+    name = "ExecuteTransactionOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyExecuteTransactionOutput {
     inner: aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput,
 }
@@ -15238,7 +15491,11 @@ impl PyExecuteTransactionOutput {
     }
 }
 
-#[pyclass(name = "ExportTableToPointInTimeOutput", frozen)]
+#[pyclass(
+    name = "ExportTableToPointInTimeOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyExportTableToPointInTimeOutput {
     inner:
         aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput,
@@ -15274,7 +15531,7 @@ impl PyExportTableToPointInTimeOutput {
     }
 }
 
-#[pyclass(name = "GetItemOutput", frozen)]
+#[pyclass(name = "GetItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyGetItemOutput {
     inner: aws_sdk_dynamodb::operation::get_item::GetItemOutput,
 }
@@ -15337,7 +15594,11 @@ impl PyGetItemOutput {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyOutput", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyGetResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -15382,7 +15643,7 @@ impl PyGetResourcePolicyOutput {
     }
 }
 
-#[pyclass(name = "ImportTableOutput", frozen)]
+#[pyclass(name = "ImportTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyImportTableOutput {
     inner: aws_sdk_dynamodb::operation::import_table::ImportTableOutput,
 }
@@ -15417,7 +15678,7 @@ impl PyImportTableOutput {
     }
 }
 
-#[pyclass(name = "ListBackupsOutput", frozen)]
+#[pyclass(name = "ListBackupsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyListBackupsOutput {
     inner: aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput,
 }
@@ -15478,7 +15739,11 @@ impl PyListBackupsOutput {
     }
 }
 
-#[pyclass(name = "ListContributorInsightsOutput", frozen)]
+#[pyclass(
+    name = "ListContributorInsightsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyListContributorInsightsOutput {
     inner: aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput,
 }
@@ -15539,7 +15804,7 @@ impl PyListContributorInsightsOutput {
     }
 }
 
-#[pyclass(name = "ListExportsOutput", frozen)]
+#[pyclass(name = "ListExportsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyListExportsOutput {
     inner: aws_sdk_dynamodb::operation::list_exports::ListExportsOutput,
 }
@@ -15600,7 +15865,11 @@ impl PyListExportsOutput {
     }
 }
 
-#[pyclass(name = "ListGlobalTablesOutput", frozen)]
+#[pyclass(
+    name = "ListGlobalTablesOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyListGlobalTablesOutput {
     inner: aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput,
 }
@@ -15661,7 +15930,7 @@ impl PyListGlobalTablesOutput {
     }
 }
 
-#[pyclass(name = "ListImportsOutput", frozen)]
+#[pyclass(name = "ListImportsOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyListImportsOutput {
     inner: aws_sdk_dynamodb::operation::list_imports::ListImportsOutput,
 }
@@ -15722,7 +15991,7 @@ impl PyListImportsOutput {
     }
 }
 
-#[pyclass(name = "ListTablesOutput", frozen)]
+#[pyclass(name = "ListTablesOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyListTablesOutput {
     inner: aws_sdk_dynamodb::operation::list_tables::ListTablesOutput,
 }
@@ -15777,7 +16046,11 @@ impl PyListTablesOutput {
     }
 }
 
-#[pyclass(name = "ListTagsOfResourceOutput", frozen)]
+#[pyclass(
+    name = "ListTagsOfResourceOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyListTagsOfResourceOutput {
     inner: aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput,
 }
@@ -15838,7 +16111,7 @@ impl PyListTagsOfResourceOutput {
     }
 }
 
-#[pyclass(name = "PutItemOutput", frozen)]
+#[pyclass(name = "PutItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyPutItemOutput {
     inner: aws_sdk_dynamodb::operation::put_item::PutItemOutput,
 }
@@ -15923,7 +16196,11 @@ impl PyPutItemOutput {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyOutput", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyPutResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -15952,7 +16229,7 @@ impl PyPutResourcePolicyOutput {
     }
 }
 
-#[pyclass(name = "QueryOutput", frozen)]
+#[pyclass(name = "QueryOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyQueryOutput {
     inner: aws_sdk_dynamodb::operation::query::QueryOutput,
 }
@@ -16069,7 +16346,11 @@ impl PyQueryOutput {
     }
 }
 
-#[pyclass(name = "RestoreTableFromBackupOutput", frozen)]
+#[pyclass(
+    name = "RestoreTableFromBackupOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyRestoreTableFromBackupOutput {
     inner: aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput,
 }
@@ -16104,7 +16385,11 @@ impl PyRestoreTableFromBackupOutput {
     }
 }
 
-#[pyclass(name = "RestoreTableToPointInTimeOutput", frozen)]
+#[pyclass(
+    name = "RestoreTableToPointInTimeOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyRestoreTableToPointInTimeOutput {
     inner: aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput,
 }
@@ -16139,7 +16424,7 @@ impl PyRestoreTableToPointInTimeOutput {
     }
 }
 
-#[pyclass(name = "ScanOutput", frozen)]
+#[pyclass(name = "ScanOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyScanOutput {
     inner: aws_sdk_dynamodb::operation::scan::ScanOutput,
 }
@@ -16256,7 +16541,11 @@ impl PyScanOutput {
     }
 }
 
-#[pyclass(name = "SearchVectorsOutput", frozen)]
+#[pyclass(
+    name = "SearchVectorsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PySearchVectorsOutput {
     inner: aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput,
 }
@@ -16323,7 +16612,11 @@ impl PySearchVectorsOutput {
     }
 }
 
-#[pyclass(name = "TransactGetItemsOutput", frozen)]
+#[pyclass(
+    name = "TransactGetItemsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTransactGetItemsOutput {
     inner: aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput,
 }
@@ -16400,7 +16693,11 @@ impl PyTransactGetItemsOutput {
     }
 }
 
-#[pyclass(name = "TransactWriteItemsOutput", frozen)]
+#[pyclass(
+    name = "TransactWriteItemsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyTransactWriteItemsOutput {
     inner: aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput,
 }
@@ -16489,7 +16786,11 @@ impl PyTransactWriteItemsOutput {
     }
 }
 
-#[pyclass(name = "UpdateContinuousBackupsOutput", frozen)]
+#[pyclass(
+    name = "UpdateContinuousBackupsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateContinuousBackupsOutput {
     inner: aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput,
 }
@@ -16524,7 +16825,11 @@ impl PyUpdateContinuousBackupsOutput {
     }
 }
 
-#[pyclass(name = "UpdateContributorInsightsOutput", frozen)]
+#[pyclass(
+    name = "UpdateContributorInsightsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateContributorInsightsOutput {
     inner:
         aws_sdk_dynamodb::operation::update_contributor_insights::UpdateContributorInsightsOutput,
@@ -16602,7 +16907,11 @@ impl PyUpdateContributorInsightsOutput {
     }
 }
 
-#[pyclass(name = "UpdateGlobalTableOutput", frozen)]
+#[pyclass(
+    name = "UpdateGlobalTableOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput,
 }
@@ -16637,7 +16946,11 @@ impl PyUpdateGlobalTableOutput {
     }
 }
 
-#[pyclass(name = "UpdateGlobalTableSettingsOutput", frozen)]
+#[pyclass(
+    name = "UpdateGlobalTableSettingsOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateGlobalTableSettingsOutput {
     inner:
         aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput,
@@ -16699,7 +17012,7 @@ impl PyUpdateGlobalTableSettingsOutput {
     }
 }
 
-#[pyclass(name = "UpdateItemOutput", frozen)]
+#[pyclass(name = "UpdateItemOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyUpdateItemOutput {
     inner: aws_sdk_dynamodb::operation::update_item::UpdateItemOutput,
 }
@@ -16784,7 +17097,11 @@ impl PyUpdateItemOutput {
     }
 }
 
-#[pyclass(name = "UpdateKinesisStreamingDestinationOutput", frozen)]
+#[pyclass(
+    name = "UpdateKinesisStreamingDestinationOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput,
 }
@@ -16867,7 +17184,7 @@ impl PyUpdateKinesisStreamingDestinationOutput {
     }
 }
 
-#[pyclass(name = "UpdateTableOutput", frozen)]
+#[pyclass(name = "UpdateTableOutput", module = "rboto_dynamodb._native", frozen)]
 struct PyUpdateTableOutput {
     inner: aws_sdk_dynamodb::operation::update_table::UpdateTableOutput,
 }
@@ -16902,7 +17219,11 @@ impl PyUpdateTableOutput {
     }
 }
 
-#[pyclass(name = "UpdateTableReplicaAutoScalingOutput", frozen)]
+#[pyclass(
+    name = "UpdateTableReplicaAutoScalingOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateTableReplicaAutoScalingOutput {
     inner: aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput,
 }
@@ -16937,7 +17258,11 @@ impl PyUpdateTableReplicaAutoScalingOutput {
     }
 }
 
-#[pyclass(name = "UpdateTimeToLiveOutput", frozen)]
+#[pyclass(
+    name = "UpdateTimeToLiveOutput",
+    module = "rboto_dynamodb._native",
+    frozen
+)]
 struct PyUpdateTimeToLiveOutput {
     inner: aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput,
 }

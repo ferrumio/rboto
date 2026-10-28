@@ -2141,7 +2141,11 @@ fn widget_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Widget) -> Py
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AdvancedEventSelector", frozen)]
+#[pyclass(
+    name = "AdvancedEventSelector",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyAdvancedEventSelector {
     inner: aws_sdk_cloudtrail::types::AdvancedEventSelector,
 }
@@ -2180,7 +2184,11 @@ impl PyAdvancedEventSelector {
     }
 }
 
-#[pyclass(name = "AdvancedFieldSelector", frozen)]
+#[pyclass(
+    name = "AdvancedFieldSelector",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyAdvancedFieldSelector {
     inner: aws_sdk_cloudtrail::types::AdvancedFieldSelector,
 }
@@ -2288,7 +2296,11 @@ impl PyAdvancedFieldSelector {
     }
 }
 
-#[pyclass(name = "AggregationConfiguration", frozen)]
+#[pyclass(
+    name = "AggregationConfiguration",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyAggregationConfiguration {
     inner: aws_sdk_cloudtrail::types::AggregationConfiguration,
 }
@@ -2317,7 +2329,7 @@ impl PyAggregationConfiguration {
     }
 }
 
-#[pyclass(name = "Channel", frozen)]
+#[pyclass(name = "Channel", module = "rboto_cloudtrail._native", frozen)]
 struct PyChannel {
     inner: aws_sdk_cloudtrail::types::Channel,
 }
@@ -2349,7 +2361,11 @@ impl PyChannel {
     }
 }
 
-#[pyclass(name = "ContextKeySelector", frozen)]
+#[pyclass(
+    name = "ContextKeySelector",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyContextKeySelector {
     inner: aws_sdk_cloudtrail::types::ContextKeySelector,
 }
@@ -2378,7 +2394,7 @@ impl PyContextKeySelector {
     }
 }
 
-#[pyclass(name = "DashboardDetail", frozen)]
+#[pyclass(name = "DashboardDetail", module = "rboto_cloudtrail._native", frozen)]
 struct PyDashboardDetail {
     inner: aws_sdk_cloudtrail::types::DashboardDetail,
 }
@@ -2410,7 +2426,7 @@ impl PyDashboardDetail {
     }
 }
 
-#[pyclass(name = "DataResource", frozen)]
+#[pyclass(name = "DataResource", module = "rboto_cloudtrail._native", frozen)]
 struct PyDataResource {
     inner: aws_sdk_cloudtrail::types::DataResource,
 }
@@ -2447,7 +2463,7 @@ impl PyDataResource {
     }
 }
 
-#[pyclass(name = "Destination", frozen)]
+#[pyclass(name = "Destination", module = "rboto_cloudtrail._native", frozen)]
 struct PyDestination {
     inner: aws_sdk_cloudtrail::types::Destination,
 }
@@ -2471,7 +2487,7 @@ impl PyDestination {
     }
 }
 
-#[pyclass(name = "Event", frozen)]
+#[pyclass(name = "Event", module = "rboto_cloudtrail._native", frozen)]
 struct PyEvent {
     inner: aws_sdk_cloudtrail::types::Event,
 }
@@ -2584,7 +2600,7 @@ impl PyEvent {
     }
 }
 
-#[pyclass(name = "EventDataStore", frozen)]
+#[pyclass(name = "EventDataStore", module = "rboto_cloudtrail._native", frozen)]
 struct PyEventDataStore {
     inner: aws_sdk_cloudtrail::types::EventDataStore,
 }
@@ -2707,7 +2723,7 @@ impl PyEventDataStore {
     }
 }
 
-#[pyclass(name = "EventSelector", frozen)]
+#[pyclass(name = "EventSelector", module = "rboto_cloudtrail._native", frozen)]
 struct PyEventSelector {
     inner: aws_sdk_cloudtrail::types::EventSelector,
 }
@@ -2775,7 +2791,11 @@ impl PyEventSelector {
     }
 }
 
-#[pyclass(name = "ImportFailureListItem", frozen)]
+#[pyclass(
+    name = "ImportFailureListItem",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyImportFailureListItem {
     inner: aws_sdk_cloudtrail::types::ImportFailureListItem,
 }
@@ -2837,7 +2857,7 @@ impl PyImportFailureListItem {
     }
 }
 
-#[pyclass(name = "ImportSource", frozen)]
+#[pyclass(name = "ImportSource", module = "rboto_cloudtrail._native", frozen)]
 struct PyImportSource {
     inner: aws_sdk_cloudtrail::types::ImportSource,
 }
@@ -2865,7 +2885,7 @@ impl PyImportSource {
     }
 }
 
-#[pyclass(name = "ImportStatistics", frozen)]
+#[pyclass(name = "ImportStatistics", module = "rboto_cloudtrail._native", frozen)]
 struct PyImportStatistics {
     inner: aws_sdk_cloudtrail::types::ImportStatistics,
 }
@@ -2927,7 +2947,7 @@ impl PyImportStatistics {
     }
 }
 
-#[pyclass(name = "ImportsListItem", frozen)]
+#[pyclass(name = "ImportsListItem", module = "rboto_cloudtrail._native", frozen)]
 struct PyImportsListItem {
     inner: aws_sdk_cloudtrail::types::ImportsListItem,
 }
@@ -2994,7 +3014,7 @@ impl PyImportsListItem {
     }
 }
 
-#[pyclass(name = "IngestionStatus", frozen)]
+#[pyclass(name = "IngestionStatus", module = "rboto_cloudtrail._native", frozen)]
 struct PyIngestionStatus {
     inner: aws_sdk_cloudtrail::types::IngestionStatus,
 }
@@ -3056,7 +3076,7 @@ impl PyIngestionStatus {
     }
 }
 
-#[pyclass(name = "InsightSelector", frozen)]
+#[pyclass(name = "InsightSelector", module = "rboto_cloudtrail._native", frozen)]
 struct PyInsightSelector {
     inner: aws_sdk_cloudtrail::types::InsightSelector,
 }
@@ -3093,7 +3113,7 @@ impl PyInsightSelector {
     }
 }
 
-#[pyclass(name = "PartitionKey", frozen)]
+#[pyclass(name = "PartitionKey", module = "rboto_cloudtrail._native", frozen)]
 struct PyPartitionKey {
     inner: aws_sdk_cloudtrail::types::PartitionKey,
 }
@@ -3117,7 +3137,7 @@ impl PyPartitionKey {
     }
 }
 
-#[pyclass(name = "PublicKey", frozen)]
+#[pyclass(name = "PublicKey", module = "rboto_cloudtrail._native", frozen)]
 struct PyPublicKey {
     inner: aws_sdk_cloudtrail::types::PublicKey,
 }
@@ -3169,7 +3189,7 @@ impl PyPublicKey {
     }
 }
 
-#[pyclass(name = "Query", frozen)]
+#[pyclass(name = "Query", module = "rboto_cloudtrail._native", frozen)]
 struct PyQuery {
     inner: aws_sdk_cloudtrail::types::Query,
 }
@@ -3211,7 +3231,7 @@ impl PyQuery {
     }
 }
 
-#[pyclass(name = "QueryStatistics", frozen)]
+#[pyclass(name = "QueryStatistics", module = "rboto_cloudtrail._native", frozen)]
 struct PyQueryStatistics {
     inner: aws_sdk_cloudtrail::types::QueryStatistics,
 }
@@ -3253,7 +3273,11 @@ impl PyQueryStatistics {
     }
 }
 
-#[pyclass(name = "QueryStatisticsForDescribeQuery", frozen)]
+#[pyclass(
+    name = "QueryStatisticsForDescribeQuery",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyQueryStatisticsForDescribeQuery {
     inner: aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery,
 }
@@ -3315,7 +3339,7 @@ impl PyQueryStatisticsForDescribeQuery {
     }
 }
 
-#[pyclass(name = "RefreshSchedule", frozen)]
+#[pyclass(name = "RefreshSchedule", module = "rboto_cloudtrail._native", frozen)]
 struct PyRefreshSchedule {
     inner: aws_sdk_cloudtrail::types::RefreshSchedule,
 }
@@ -3363,7 +3387,11 @@ impl PyRefreshSchedule {
     }
 }
 
-#[pyclass(name = "RefreshScheduleFrequency", frozen)]
+#[pyclass(
+    name = "RefreshScheduleFrequency",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyRefreshScheduleFrequency {
     inner: aws_sdk_cloudtrail::types::RefreshScheduleFrequency,
 }
@@ -3395,7 +3423,7 @@ impl PyRefreshScheduleFrequency {
     }
 }
 
-#[pyclass(name = "Resource", frozen)]
+#[pyclass(name = "Resource", module = "rboto_cloudtrail._native", frozen)]
 struct PyResource {
     inner: aws_sdk_cloudtrail::types::Resource,
 }
@@ -3427,7 +3455,7 @@ impl PyResource {
     }
 }
 
-#[pyclass(name = "ResourceTag", frozen)]
+#[pyclass(name = "ResourceTag", module = "rboto_cloudtrail._native", frozen)]
 struct PyResourceTag {
     inner: aws_sdk_cloudtrail::types::ResourceTag,
 }
@@ -3470,7 +3498,7 @@ impl PyResourceTag {
     }
 }
 
-#[pyclass(name = "S3ImportSource", frozen)]
+#[pyclass(name = "S3ImportSource", module = "rboto_cloudtrail._native", frozen)]
 struct PyS3ImportSource {
     inner: aws_sdk_cloudtrail::types::S3ImportSource,
 }
@@ -3502,7 +3530,11 @@ impl PyS3ImportSource {
     }
 }
 
-#[pyclass(name = "SearchSampleQueriesSearchResult", frozen)]
+#[pyclass(
+    name = "SearchSampleQueriesSearchResult",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PySearchSampleQueriesSearchResult {
     inner: aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult,
 }
@@ -3550,7 +3582,7 @@ impl PySearchSampleQueriesSearchResult {
     }
 }
 
-#[pyclass(name = "SourceConfig", frozen)]
+#[pyclass(name = "SourceConfig", module = "rboto_cloudtrail._native", frozen)]
 struct PySourceConfig {
     inner: aws_sdk_cloudtrail::types::SourceConfig,
 }
@@ -3593,7 +3625,7 @@ impl PySourceConfig {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_cloudtrail._native", frozen)]
 struct PyTag {
     inner: aws_sdk_cloudtrail::types::Tag,
 }
@@ -3621,7 +3653,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "Trail", frozen)]
+#[pyclass(name = "Trail", module = "rboto_cloudtrail._native", frozen)]
 struct PyTrail {
     inner: aws_sdk_cloudtrail::types::Trail,
 }
@@ -3803,7 +3835,7 @@ impl PyTrail {
     }
 }
 
-#[pyclass(name = "TrailInfo", frozen)]
+#[pyclass(name = "TrailInfo", module = "rboto_cloudtrail._native", frozen)]
 struct PyTrailInfo {
     inner: aws_sdk_cloudtrail::types::TrailInfo,
 }
@@ -3845,7 +3877,7 @@ impl PyTrailInfo {
     }
 }
 
-#[pyclass(name = "Widget", frozen)]
+#[pyclass(name = "Widget", module = "rboto_cloudtrail._native", frozen)]
 struct PyWidget {
     inner: aws_sdk_cloudtrail::types::Widget,
 }
@@ -3908,7 +3940,7 @@ impl PyWidget {
     }
 }
 
-#[pyclass(name = "AddTagsResponse", frozen)]
+#[pyclass(name = "AddTagsResponse", module = "rboto_cloudtrail._native", frozen)]
 struct PyAddTagsResponse {
     inner: aws_sdk_cloudtrail::operation::add_tags::AddTagsOutput,
 }
@@ -3921,7 +3953,11 @@ impl PyAddTagsResponse {
     }
 }
 
-#[pyclass(name = "CancelQueryResponse", frozen)]
+#[pyclass(
+    name = "CancelQueryResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyCancelQueryResponse {
     inner: aws_sdk_cloudtrail::operation::cancel_query::CancelQueryOutput,
 }
@@ -3966,7 +4002,11 @@ impl PyCancelQueryResponse {
     }
 }
 
-#[pyclass(name = "CreateChannelResponse", frozen)]
+#[pyclass(
+    name = "CreateChannelResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyCreateChannelResponse {
     inner: aws_sdk_cloudtrail::operation::create_channel::CreateChannelOutput,
 }
@@ -4091,7 +4131,11 @@ impl PyCreateChannelResponse {
     }
 }
 
-#[pyclass(name = "CreateDashboardResponse", frozen)]
+#[pyclass(
+    name = "CreateDashboardResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyCreateDashboardResponse {
     inner: aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardOutput,
 }
@@ -4254,7 +4298,11 @@ impl PyCreateDashboardResponse {
     }
 }
 
-#[pyclass(name = "CreateEventDataStoreResponse", frozen)]
+#[pyclass(
+    name = "CreateEventDataStoreResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyCreateEventDataStoreResponse {
     inner: aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDataStoreOutput,
 }
@@ -4507,7 +4555,11 @@ impl PyCreateEventDataStoreResponse {
     }
 }
 
-#[pyclass(name = "CreateTrailResponse", frozen)]
+#[pyclass(
+    name = "CreateTrailResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyCreateTrailResponse {
     inner: aws_sdk_cloudtrail::operation::create_trail::CreateTrailOutput,
 }
@@ -4744,7 +4796,11 @@ impl PyCreateTrailResponse {
     }
 }
 
-#[pyclass(name = "DeleteChannelResponse", frozen)]
+#[pyclass(
+    name = "DeleteChannelResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeleteChannelResponse {
     inner: aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelOutput,
 }
@@ -4757,7 +4813,11 @@ impl PyDeleteChannelResponse {
     }
 }
 
-#[pyclass(name = "DeleteDashboardResponse", frozen)]
+#[pyclass(
+    name = "DeleteDashboardResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeleteDashboardResponse {
     inner: aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardOutput,
 }
@@ -4770,7 +4830,11 @@ impl PyDeleteDashboardResponse {
     }
 }
 
-#[pyclass(name = "DeleteEventDataStoreResponse", frozen)]
+#[pyclass(
+    name = "DeleteEventDataStoreResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeleteEventDataStoreResponse {
     inner: aws_sdk_cloudtrail::operation::delete_event_data_store::DeleteEventDataStoreOutput,
 }
@@ -4783,7 +4847,11 @@ impl PyDeleteEventDataStoreResponse {
     }
 }
 
-#[pyclass(name = "DeleteResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "DeleteResourcePolicyResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeleteResourcePolicyResponse {
     inner: aws_sdk_cloudtrail::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
@@ -4796,7 +4864,11 @@ impl PyDeleteResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "DeleteTrailResponse", frozen)]
+#[pyclass(
+    name = "DeleteTrailResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeleteTrailResponse {
     inner: aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailOutput,
 }
@@ -4809,7 +4881,11 @@ impl PyDeleteTrailResponse {
     }
 }
 
-#[pyclass(name = "DeregisterOrganizationDelegatedAdminResponse", frozen)]
+#[pyclass(
+    name = "DeregisterOrganizationDelegatedAdminResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDeregisterOrganizationDelegatedAdminResponse {
     inner: aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminOutput,
 }
@@ -4822,7 +4898,11 @@ impl PyDeregisterOrganizationDelegatedAdminResponse {
     }
 }
 
-#[pyclass(name = "DescribeQueryResponse", frozen)]
+#[pyclass(
+    name = "DescribeQueryResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDescribeQueryResponse {
     inner: aws_sdk_cloudtrail::operation::describe_query::DescribeQueryOutput,
 }
@@ -4985,7 +5065,11 @@ impl PyDescribeQueryResponse {
     }
 }
 
-#[pyclass(name = "DescribeTrailsResponse", frozen)]
+#[pyclass(
+    name = "DescribeTrailsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDescribeTrailsResponse {
     inner: aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsOutput,
 }
@@ -5030,7 +5114,11 @@ impl PyDescribeTrailsResponse {
     }
 }
 
-#[pyclass(name = "DisableFederationResponse", frozen)]
+#[pyclass(
+    name = "DisableFederationResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyDisableFederationResponse {
     inner: aws_sdk_cloudtrail::operation::disable_federation::DisableFederationOutput,
 }
@@ -5075,7 +5163,11 @@ impl PyDisableFederationResponse {
     }
 }
 
-#[pyclass(name = "EnableFederationResponse", frozen)]
+#[pyclass(
+    name = "EnableFederationResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyEnableFederationResponse {
     inner: aws_sdk_cloudtrail::operation::enable_federation::EnableFederationOutput,
 }
@@ -5136,7 +5228,11 @@ impl PyEnableFederationResponse {
     }
 }
 
-#[pyclass(name = "GenerateQueryResponse", frozen)]
+#[pyclass(
+    name = "GenerateQueryResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGenerateQueryResponse {
     inner: aws_sdk_cloudtrail::operation::generate_query::GenerateQueryOutput,
 }
@@ -5197,7 +5293,11 @@ impl PyGenerateQueryResponse {
     }
 }
 
-#[pyclass(name = "GetChannelResponse", frozen)]
+#[pyclass(
+    name = "GetChannelResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetChannelResponse {
     inner: aws_sdk_cloudtrail::operation::get_channel::GetChannelOutput,
 }
@@ -5334,7 +5434,11 @@ impl PyGetChannelResponse {
     }
 }
 
-#[pyclass(name = "GetDashboardResponse", frozen)]
+#[pyclass(
+    name = "GetDashboardResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetDashboardResponse {
     inner: aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardOutput,
 }
@@ -5529,7 +5633,11 @@ impl PyGetDashboardResponse {
     }
 }
 
-#[pyclass(name = "GetEventConfigurationResponse", frozen)]
+#[pyclass(
+    name = "GetEventConfigurationResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetEventConfigurationResponse {
     inner: aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfigurationOutput,
 }
@@ -5654,7 +5762,11 @@ impl PyGetEventConfigurationResponse {
     }
 }
 
-#[pyclass(name = "GetEventDataStoreResponse", frozen)]
+#[pyclass(
+    name = "GetEventDataStoreResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetEventDataStoreResponse {
     inner: aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStoreOutput,
 }
@@ -5939,7 +6051,11 @@ impl PyGetEventDataStoreResponse {
     }
 }
 
-#[pyclass(name = "GetEventSelectorsResponse", frozen)]
+#[pyclass(
+    name = "GetEventSelectorsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetEventSelectorsResponse {
     inner: aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsOutput,
 }
@@ -6032,7 +6148,11 @@ impl PyGetEventSelectorsResponse {
     }
 }
 
-#[pyclass(name = "GetImportResponse", frozen)]
+#[pyclass(
+    name = "GetImportResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetImportResponse {
     inner: aws_sdk_cloudtrail::operation::get_import::GetImportOutput,
 }
@@ -6211,7 +6331,11 @@ impl PyGetImportResponse {
     }
 }
 
-#[pyclass(name = "GetInsightSelectorsResponse", frozen)]
+#[pyclass(
+    name = "GetInsightSelectorsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetInsightSelectorsResponse {
     inner: aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelectorsOutput,
 }
@@ -6304,7 +6428,11 @@ impl PyGetInsightSelectorsResponse {
     }
 }
 
-#[pyclass(name = "GetQueryResultsResponse", frozen)]
+#[pyclass(
+    name = "GetQueryResultsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetQueryResultsResponse {
     inner: aws_sdk_cloudtrail::operation::get_query_results::GetQueryResultsOutput,
 }
@@ -6437,7 +6565,11 @@ impl PyGetQueryResultsResponse {
     }
 }
 
-#[pyclass(name = "GetResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "GetResourcePolicyResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetResourcePolicyResponse {
     inner: aws_sdk_cloudtrail::operation::get_resource_policy::GetResourcePolicyOutput,
 }
@@ -6498,7 +6630,7 @@ impl PyGetResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "GetTrailResponse", frozen)]
+#[pyclass(name = "GetTrailResponse", module = "rboto_cloudtrail._native", frozen)]
 struct PyGetTrailResponse {
     inner: aws_sdk_cloudtrail::operation::get_trail::GetTrailOutput,
 }
@@ -6533,7 +6665,11 @@ impl PyGetTrailResponse {
     }
 }
 
-#[pyclass(name = "GetTrailStatusResponse", frozen)]
+#[pyclass(
+    name = "GetTrailStatusResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyGetTrailStatusResponse {
     inner: aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusOutput,
 }
@@ -6818,7 +6954,11 @@ impl PyGetTrailStatusResponse {
     }
 }
 
-#[pyclass(name = "ListChannelsResponse", frozen)]
+#[pyclass(
+    name = "ListChannelsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListChannelsResponse {
     inner: aws_sdk_cloudtrail::operation::list_channels::ListChannelsOutput,
 }
@@ -6879,7 +7019,11 @@ impl PyListChannelsResponse {
     }
 }
 
-#[pyclass(name = "ListDashboardsResponse", frozen)]
+#[pyclass(
+    name = "ListDashboardsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListDashboardsResponse {
     inner: aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsOutput,
 }
@@ -6940,7 +7084,11 @@ impl PyListDashboardsResponse {
     }
 }
 
-#[pyclass(name = "ListEventDataStoresResponse", frozen)]
+#[pyclass(
+    name = "ListEventDataStoresResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListEventDataStoresResponse {
     inner: aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataStoresOutput,
 }
@@ -7001,7 +7149,11 @@ impl PyListEventDataStoresResponse {
     }
 }
 
-#[pyclass(name = "ListImportFailuresResponse", frozen)]
+#[pyclass(
+    name = "ListImportFailuresResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListImportFailuresResponse {
     inner: aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailuresOutput,
 }
@@ -7062,7 +7214,11 @@ impl PyListImportFailuresResponse {
     }
 }
 
-#[pyclass(name = "ListImportsResponse", frozen)]
+#[pyclass(
+    name = "ListImportsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListImportsResponse {
     inner: aws_sdk_cloudtrail::operation::list_imports::ListImportsOutput,
 }
@@ -7123,7 +7279,11 @@ impl PyListImportsResponse {
     }
 }
 
-#[pyclass(name = "ListInsightsDataResponse", frozen)]
+#[pyclass(
+    name = "ListInsightsDataResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListInsightsDataResponse {
     inner: aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataOutput,
 }
@@ -7184,7 +7344,11 @@ impl PyListInsightsDataResponse {
     }
 }
 
-#[pyclass(name = "ListInsightsMetricDataResponse", frozen)]
+#[pyclass(
+    name = "ListInsightsMetricDataResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListInsightsMetricDataResponse {
     inner: aws_sdk_cloudtrail::operation::list_insights_metric_data::ListInsightsMetricDataOutput,
 }
@@ -7345,7 +7509,11 @@ impl PyListInsightsMetricDataResponse {
     }
 }
 
-#[pyclass(name = "ListPublicKeysResponse", frozen)]
+#[pyclass(
+    name = "ListPublicKeysResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListPublicKeysResponse {
     inner: aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysOutput,
 }
@@ -7406,7 +7574,11 @@ impl PyListPublicKeysResponse {
     }
 }
 
-#[pyclass(name = "ListQueriesResponse", frozen)]
+#[pyclass(
+    name = "ListQueriesResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListQueriesResponse {
     inner: aws_sdk_cloudtrail::operation::list_queries::ListQueriesOutput,
 }
@@ -7467,7 +7639,7 @@ impl PyListQueriesResponse {
     }
 }
 
-#[pyclass(name = "ListTagsResponse", frozen)]
+#[pyclass(name = "ListTagsResponse", module = "rboto_cloudtrail._native", frozen)]
 struct PyListTagsResponse {
     inner: aws_sdk_cloudtrail::operation::list_tags::ListTagsOutput,
 }
@@ -7528,7 +7700,11 @@ impl PyListTagsResponse {
     }
 }
 
-#[pyclass(name = "ListTrailsResponse", frozen)]
+#[pyclass(
+    name = "ListTrailsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyListTrailsResponse {
     inner: aws_sdk_cloudtrail::operation::list_trails::ListTrailsOutput,
 }
@@ -7589,7 +7765,11 @@ impl PyListTrailsResponse {
     }
 }
 
-#[pyclass(name = "LookupEventsResponse", frozen)]
+#[pyclass(
+    name = "LookupEventsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyLookupEventsResponse {
     inner: aws_sdk_cloudtrail::operation::lookup_events::LookupEventsOutput,
 }
@@ -7650,7 +7830,11 @@ impl PyLookupEventsResponse {
     }
 }
 
-#[pyclass(name = "PutEventConfigurationResponse", frozen)]
+#[pyclass(
+    name = "PutEventConfigurationResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyPutEventConfigurationResponse {
     inner: aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfigurationOutput,
 }
@@ -7775,7 +7959,11 @@ impl PyPutEventConfigurationResponse {
     }
 }
 
-#[pyclass(name = "PutEventSelectorsResponse", frozen)]
+#[pyclass(
+    name = "PutEventSelectorsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyPutEventSelectorsResponse {
     inner: aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsOutput,
 }
@@ -7868,7 +8056,11 @@ impl PyPutEventSelectorsResponse {
     }
 }
 
-#[pyclass(name = "PutInsightSelectorsResponse", frozen)]
+#[pyclass(
+    name = "PutInsightSelectorsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyPutInsightSelectorsResponse {
     inner: aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelectorsOutput,
 }
@@ -7961,7 +8153,11 @@ impl PyPutInsightSelectorsResponse {
     }
 }
 
-#[pyclass(name = "PutResourcePolicyResponse", frozen)]
+#[pyclass(
+    name = "PutResourcePolicyResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyPutResourcePolicyResponse {
     inner: aws_sdk_cloudtrail::operation::put_resource_policy::PutResourcePolicyOutput,
 }
@@ -8022,7 +8218,11 @@ impl PyPutResourcePolicyResponse {
     }
 }
 
-#[pyclass(name = "RegisterOrganizationDelegatedAdminResponse", frozen)]
+#[pyclass(
+    name = "RegisterOrganizationDelegatedAdminResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyRegisterOrganizationDelegatedAdminResponse {
     inner: aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminOutput,
 }
@@ -8035,7 +8235,11 @@ impl PyRegisterOrganizationDelegatedAdminResponse {
     }
 }
 
-#[pyclass(name = "RemoveTagsResponse", frozen)]
+#[pyclass(
+    name = "RemoveTagsResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyRemoveTagsResponse {
     inner: aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsOutput,
 }
@@ -8048,7 +8252,11 @@ impl PyRemoveTagsResponse {
     }
 }
 
-#[pyclass(name = "RestoreEventDataStoreResponse", frozen)]
+#[pyclass(
+    name = "RestoreEventDataStoreResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyRestoreEventDataStoreResponse {
     inner: aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventDataStoreOutput,
 }
@@ -8269,7 +8477,11 @@ impl PyRestoreEventDataStoreResponse {
     }
 }
 
-#[pyclass(name = "SearchSampleQueriesResponse", frozen)]
+#[pyclass(
+    name = "SearchSampleQueriesResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PySearchSampleQueriesResponse {
     inner: aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQueriesOutput,
 }
@@ -8330,7 +8542,11 @@ impl PySearchSampleQueriesResponse {
     }
 }
 
-#[pyclass(name = "StartDashboardRefreshResponse", frozen)]
+#[pyclass(
+    name = "StartDashboardRefreshResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStartDashboardRefreshResponse {
     inner: aws_sdk_cloudtrail::operation::start_dashboard_refresh::StartDashboardRefreshOutput,
 }
@@ -8359,7 +8575,11 @@ impl PyStartDashboardRefreshResponse {
     }
 }
 
-#[pyclass(name = "StartEventDataStoreIngestionResponse", frozen)]
+#[pyclass(
+    name = "StartEventDataStoreIngestionResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStartEventDataStoreIngestionResponse {
     inner: aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionOutput,
 }
@@ -8372,7 +8592,11 @@ impl PyStartEventDataStoreIngestionResponse {
     }
 }
 
-#[pyclass(name = "StartImportResponse", frozen)]
+#[pyclass(
+    name = "StartImportResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStartImportResponse {
     inner: aws_sdk_cloudtrail::operation::start_import::StartImportOutput,
 }
@@ -8529,7 +8753,11 @@ impl PyStartImportResponse {
     }
 }
 
-#[pyclass(name = "StartLoggingResponse", frozen)]
+#[pyclass(
+    name = "StartLoggingResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStartLoggingResponse {
     inner: aws_sdk_cloudtrail::operation::start_logging::StartLoggingOutput,
 }
@@ -8542,7 +8770,11 @@ impl PyStartLoggingResponse {
     }
 }
 
-#[pyclass(name = "StartQueryResponse", frozen)]
+#[pyclass(
+    name = "StartQueryResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStartQueryResponse {
     inner: aws_sdk_cloudtrail::operation::start_query::StartQueryOutput,
 }
@@ -8587,7 +8819,11 @@ impl PyStartQueryResponse {
     }
 }
 
-#[pyclass(name = "StopEventDataStoreIngestionResponse", frozen)]
+#[pyclass(
+    name = "StopEventDataStoreIngestionResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStopEventDataStoreIngestionResponse {
     inner: aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionOutput,
 }
@@ -8600,7 +8836,11 @@ impl PyStopEventDataStoreIngestionResponse {
     }
 }
 
-#[pyclass(name = "StopImportResponse", frozen)]
+#[pyclass(
+    name = "StopImportResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStopImportResponse {
     inner: aws_sdk_cloudtrail::operation::stop_import::StopImportOutput,
 }
@@ -8779,7 +9019,11 @@ impl PyStopImportResponse {
     }
 }
 
-#[pyclass(name = "StopLoggingResponse", frozen)]
+#[pyclass(
+    name = "StopLoggingResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyStopLoggingResponse {
     inner: aws_sdk_cloudtrail::operation::stop_logging::StopLoggingOutput,
 }
@@ -8792,7 +9036,11 @@ impl PyStopLoggingResponse {
     }
 }
 
-#[pyclass(name = "UpdateChannelResponse", frozen)]
+#[pyclass(
+    name = "UpdateChannelResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyUpdateChannelResponse {
     inner: aws_sdk_cloudtrail::operation::update_channel::UpdateChannelOutput,
 }
@@ -8885,7 +9133,11 @@ impl PyUpdateChannelResponse {
     }
 }
 
-#[pyclass(name = "UpdateDashboardResponse", frozen)]
+#[pyclass(
+    name = "UpdateDashboardResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyUpdateDashboardResponse {
     inner: aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardOutput,
 }
@@ -9048,7 +9300,11 @@ impl PyUpdateDashboardResponse {
     }
 }
 
-#[pyclass(name = "UpdateEventDataStoreResponse", frozen)]
+#[pyclass(
+    name = "UpdateEventDataStoreResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyUpdateEventDataStoreResponse {
     inner: aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDataStoreOutput,
 }
@@ -9301,7 +9557,11 @@ impl PyUpdateEventDataStoreResponse {
     }
 }
 
-#[pyclass(name = "UpdateTrailResponse", frozen)]
+#[pyclass(
+    name = "UpdateTrailResponse",
+    module = "rboto_cloudtrail._native",
+    frozen
+)]
 struct PyUpdateTrailResponse {
     inner: aws_sdk_cloudtrail::operation::update_trail::UpdateTrailOutput,
 }

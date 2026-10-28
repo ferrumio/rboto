@@ -7858,7 +7858,7 @@ fn website_configuration_to_py(
     Ok(result.into_any().unbind())
 }
 
-#[pyclass(name = "AbacStatus", frozen)]
+#[pyclass(name = "AbacStatus", module = "rboto_s3._native", frozen)]
 struct PyAbacStatus {
     inner: aws_sdk_s3::types::AbacStatus,
 }
@@ -7880,7 +7880,11 @@ impl PyAbacStatus {
     }
 }
 
-#[pyclass(name = "AbortIncompleteMultipartUpload", frozen)]
+#[pyclass(
+    name = "AbortIncompleteMultipartUpload",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyAbortIncompleteMultipartUpload {
     inner: aws_sdk_s3::types::AbortIncompleteMultipartUpload,
 }
@@ -7902,7 +7906,7 @@ impl PyAbortIncompleteMultipartUpload {
     }
 }
 
-#[pyclass(name = "AccessControlTranslation", frozen)]
+#[pyclass(name = "AccessControlTranslation", module = "rboto_s3._native", frozen)]
 struct PyAccessControlTranslation {
     inner: aws_sdk_s3::types::AccessControlTranslation,
 }
@@ -7920,7 +7924,7 @@ impl PyAccessControlTranslation {
     }
 }
 
-#[pyclass(name = "AnalyticsConfiguration", frozen)]
+#[pyclass(name = "AnalyticsConfiguration", module = "rboto_s3._native", frozen)]
 struct PyAnalyticsConfiguration {
     inner: aws_sdk_s3::types::AnalyticsConfiguration,
 }
@@ -7964,7 +7968,11 @@ impl PyAnalyticsConfiguration {
     }
 }
 
-#[pyclass(name = "AnalyticsExportDestination", frozen)]
+#[pyclass(
+    name = "AnalyticsExportDestination",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyAnalyticsExportDestination {
     inner: aws_sdk_s3::types::AnalyticsExportDestination,
 }
@@ -7992,7 +8000,11 @@ impl PyAnalyticsExportDestination {
     }
 }
 
-#[pyclass(name = "AnalyticsS3BucketDestination", frozen)]
+#[pyclass(
+    name = "AnalyticsS3BucketDestination",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyAnalyticsS3BucketDestination {
     inner: aws_sdk_s3::types::AnalyticsS3BucketDestination,
 }
@@ -8036,7 +8048,7 @@ impl PyAnalyticsS3BucketDestination {
     }
 }
 
-#[pyclass(name = "AnnotationEntry", frozen)]
+#[pyclass(name = "AnnotationEntry", module = "rboto_s3._native", frozen)]
 struct PyAnnotationEntry {
     inner: aws_sdk_s3::types::AnnotationEntry,
 }
@@ -8101,7 +8113,11 @@ impl PyAnnotationEntry {
     }
 }
 
-#[pyclass(name = "AnnotationTableConfigurationResult", frozen)]
+#[pyclass(
+    name = "AnnotationTableConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyAnnotationTableConfigurationResult {
     inner: aws_sdk_s3::types::AnnotationTableConfigurationResult,
 }
@@ -8175,7 +8191,7 @@ impl PyAnnotationTableConfigurationResult {
     }
 }
 
-#[pyclass(name = "BlockedEncryptionTypes", frozen)]
+#[pyclass(name = "BlockedEncryptionTypes", module = "rboto_s3._native", frozen)]
 struct PyBlockedEncryptionTypes {
     inner: aws_sdk_s3::types::BlockedEncryptionTypes,
 }
@@ -8202,7 +8218,7 @@ impl PyBlockedEncryptionTypes {
     }
 }
 
-#[pyclass(name = "Bucket", frozen)]
+#[pyclass(name = "Bucket", module = "rboto_s3._native", frozen)]
 struct PyBucket {
     inner: aws_sdk_s3::types::Bucket,
 }
@@ -8254,7 +8270,7 @@ impl PyBucket {
     }
 }
 
-#[pyclass(name = "Checksum", frozen)]
+#[pyclass(name = "Checksum", module = "rboto_s3._native", frozen)]
 struct PyChecksum {
     inner: aws_sdk_s3::types::Checksum,
 }
@@ -8376,7 +8392,7 @@ impl PyChecksum {
     }
 }
 
-#[pyclass(name = "CommonPrefix", frozen)]
+#[pyclass(name = "CommonPrefix", module = "rboto_s3._native", frozen)]
 struct PyCommonPrefix {
     inner: aws_sdk_s3::types::CommonPrefix,
 }
@@ -8398,7 +8414,7 @@ impl PyCommonPrefix {
     }
 }
 
-#[pyclass(name = "Condition", frozen)]
+#[pyclass(name = "Condition", module = "rboto_s3._native", frozen)]
 struct PyCondition {
     inner: aws_sdk_s3::types::Condition,
 }
@@ -8430,7 +8446,7 @@ impl PyCondition {
     }
 }
 
-#[pyclass(name = "CopyObjectResult", frozen)]
+#[pyclass(name = "CopyObjectResult", module = "rboto_s3._native", frozen)]
 struct PyCopyObjectResult {
     inner: aws_sdk_s3::types::CopyObjectResult,
 }
@@ -8572,7 +8588,7 @@ impl PyCopyObjectResult {
     }
 }
 
-#[pyclass(name = "CopyPartResult", frozen)]
+#[pyclass(name = "CopyPartResult", module = "rboto_s3._native", frozen)]
 struct PyCopyPartResult {
     inner: aws_sdk_s3::types::CopyPartResult,
 }
@@ -8704,7 +8720,7 @@ impl PyCopyPartResult {
     }
 }
 
-#[pyclass(name = "CorsRule", frozen)]
+#[pyclass(name = "CorsRule", module = "rboto_s3._native", frozen)]
 struct PyCorsRule {
     inner: aws_sdk_s3::types::CorsRule,
 }
@@ -8788,7 +8804,7 @@ impl PyCorsRule {
     }
 }
 
-#[pyclass(name = "DefaultRetention", frozen)]
+#[pyclass(name = "DefaultRetention", module = "rboto_s3._native", frozen)]
 struct PyDefaultRetention {
     inner: aws_sdk_s3::types::DefaultRetention,
 }
@@ -8846,7 +8862,7 @@ impl PyDefaultRetention {
     }
 }
 
-#[pyclass(name = "DeleteMarkerEntry", frozen)]
+#[pyclass(name = "DeleteMarkerEntry", module = "rboto_s3._native", frozen)]
 struct PyDeleteMarkerEntry {
     inner: aws_sdk_s3::types::DeleteMarkerEntry,
 }
@@ -8914,7 +8930,7 @@ impl PyDeleteMarkerEntry {
     }
 }
 
-#[pyclass(name = "DeleteMarkerReplication", frozen)]
+#[pyclass(name = "DeleteMarkerReplication", module = "rboto_s3._native", frozen)]
 struct PyDeleteMarkerReplication {
     inner: aws_sdk_s3::types::DeleteMarkerReplication,
 }
@@ -8936,7 +8952,7 @@ impl PyDeleteMarkerReplication {
     }
 }
 
-#[pyclass(name = "DeletedObject", frozen)]
+#[pyclass(name = "DeletedObject", module = "rboto_s3._native", frozen)]
 struct PyDeletedObject {
     inner: aws_sdk_s3::types::DeletedObject,
 }
@@ -8988,7 +9004,7 @@ impl PyDeletedObject {
     }
 }
 
-#[pyclass(name = "Destination", frozen)]
+#[pyclass(name = "Destination", module = "rboto_s3._native", frozen)]
 struct PyDestination {
     inner: aws_sdk_s3::types::Destination,
 }
@@ -9090,7 +9106,7 @@ impl PyDestination {
     }
 }
 
-#[pyclass(name = "DestinationResult", frozen)]
+#[pyclass(name = "DestinationResult", module = "rboto_s3._native", frozen)]
 struct PyDestinationResult {
     inner: aws_sdk_s3::types::DestinationResult,
 }
@@ -9132,7 +9148,7 @@ impl PyDestinationResult {
     }
 }
 
-#[pyclass(name = "EncryptionConfiguration", frozen)]
+#[pyclass(name = "EncryptionConfiguration", module = "rboto_s3._native", frozen)]
 struct PyEncryptionConfiguration {
     inner: aws_sdk_s3::types::EncryptionConfiguration,
 }
@@ -9154,7 +9170,7 @@ impl PyEncryptionConfiguration {
     }
 }
 
-#[pyclass(name = "Error", frozen)]
+#[pyclass(name = "Error", module = "rboto_s3._native", frozen)]
 struct PyError {
     inner: aws_sdk_s3::types::Error,
 }
@@ -9206,7 +9222,7 @@ impl PyError {
     }
 }
 
-#[pyclass(name = "ErrorDetails", frozen)]
+#[pyclass(name = "ErrorDetails", module = "rboto_s3._native", frozen)]
 struct PyErrorDetails {
     inner: aws_sdk_s3::types::ErrorDetails,
 }
@@ -9238,7 +9254,7 @@ impl PyErrorDetails {
     }
 }
 
-#[pyclass(name = "ErrorDocument", frozen)]
+#[pyclass(name = "ErrorDocument", module = "rboto_s3._native", frozen)]
 struct PyErrorDocument {
     inner: aws_sdk_s3::types::ErrorDocument,
 }
@@ -9256,7 +9272,7 @@ impl PyErrorDocument {
     }
 }
 
-#[pyclass(name = "EventBridgeConfiguration", frozen)]
+#[pyclass(name = "EventBridgeConfiguration", module = "rboto_s3._native", frozen)]
 struct PyEventBridgeConfiguration {
     inner: aws_sdk_s3::types::EventBridgeConfiguration,
 }
@@ -9268,7 +9284,7 @@ impl PyEventBridgeConfiguration {
     }
 }
 
-#[pyclass(name = "EventHoldDuration", frozen)]
+#[pyclass(name = "EventHoldDuration", module = "rboto_s3._native", frozen)]
 struct PyEventHoldDuration {
     inner: aws_sdk_s3::types::EventHoldDuration,
 }
@@ -9300,7 +9316,11 @@ impl PyEventHoldDuration {
     }
 }
 
-#[pyclass(name = "ExistingObjectReplication", frozen)]
+#[pyclass(
+    name = "ExistingObjectReplication",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyExistingObjectReplication {
     inner: aws_sdk_s3::types::ExistingObjectReplication,
 }
@@ -9318,7 +9338,7 @@ impl PyExistingObjectReplication {
     }
 }
 
-#[pyclass(name = "FilterRule", frozen)]
+#[pyclass(name = "FilterRule", module = "rboto_s3._native", frozen)]
 struct PyFilterRule {
     inner: aws_sdk_s3::types::FilterRule,
 }
@@ -9350,7 +9370,11 @@ impl PyFilterRule {
     }
 }
 
-#[pyclass(name = "GetBucketMetadataConfigurationResult", frozen)]
+#[pyclass(
+    name = "GetBucketMetadataConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketMetadataConfigurationResult {
     inner: aws_sdk_s3::types::GetBucketMetadataConfigurationResult,
 }
@@ -9378,7 +9402,11 @@ impl PyGetBucketMetadataConfigurationResult {
     }
 }
 
-#[pyclass(name = "GetBucketMetadataTableConfigurationResult", frozen)]
+#[pyclass(
+    name = "GetBucketMetadataTableConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketMetadataTableConfigurationResult {
     inner: aws_sdk_s3::types::GetBucketMetadataTableConfigurationResult,
 }
@@ -9428,7 +9456,7 @@ impl PyGetBucketMetadataTableConfigurationResult {
     }
 }
 
-#[pyclass(name = "GetObjectAttributesParts", frozen)]
+#[pyclass(name = "GetObjectAttributesParts", module = "rboto_s3._native", frozen)]
 struct PyGetObjectAttributesParts {
     inner: aws_sdk_s3::types::GetObjectAttributesParts,
 }
@@ -9511,7 +9539,7 @@ impl PyGetObjectAttributesParts {
     }
 }
 
-#[pyclass(name = "Grant", frozen)]
+#[pyclass(name = "Grant", module = "rboto_s3._native", frozen)]
 struct PyGrant {
     inner: aws_sdk_s3::types::Grant,
 }
@@ -9549,7 +9577,7 @@ impl PyGrant {
     }
 }
 
-#[pyclass(name = "Grantee", frozen)]
+#[pyclass(name = "Grantee", module = "rboto_s3._native", frozen)]
 struct PyGrantee {
     inner: aws_sdk_s3::types::Grantee,
 }
@@ -9607,7 +9635,7 @@ impl PyGrantee {
     }
 }
 
-#[pyclass(name = "IndexDocument", frozen)]
+#[pyclass(name = "IndexDocument", module = "rboto_s3._native", frozen)]
 struct PyIndexDocument {
     inner: aws_sdk_s3::types::IndexDocument,
 }
@@ -9625,7 +9653,7 @@ impl PyIndexDocument {
     }
 }
 
-#[pyclass(name = "Initiator", frozen)]
+#[pyclass(name = "Initiator", module = "rboto_s3._native", frozen)]
 struct PyInitiator {
     inner: aws_sdk_s3::types::Initiator,
 }
@@ -9657,7 +9685,11 @@ impl PyInitiator {
     }
 }
 
-#[pyclass(name = "IntelligentTieringAndOperator", frozen)]
+#[pyclass(
+    name = "IntelligentTieringAndOperator",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyIntelligentTieringAndOperator {
     inner: aws_sdk_s3::types::IntelligentTieringAndOperator,
 }
@@ -9700,7 +9732,11 @@ impl PyIntelligentTieringAndOperator {
     }
 }
 
-#[pyclass(name = "IntelligentTieringConfiguration", frozen)]
+#[pyclass(
+    name = "IntelligentTieringConfiguration",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyIntelligentTieringConfiguration {
     inner: aws_sdk_s3::types::IntelligentTieringConfiguration,
 }
@@ -9757,7 +9793,7 @@ impl PyIntelligentTieringConfiguration {
     }
 }
 
-#[pyclass(name = "IntelligentTieringFilter", frozen)]
+#[pyclass(name = "IntelligentTieringFilter", module = "rboto_s3._native", frozen)]
 struct PyIntelligentTieringFilter {
     inner: aws_sdk_s3::types::IntelligentTieringFilter,
 }
@@ -9811,7 +9847,7 @@ impl PyIntelligentTieringFilter {
     }
 }
 
-#[pyclass(name = "InventoryConfiguration", frozen)]
+#[pyclass(name = "InventoryConfiguration", module = "rboto_s3._native", frozen)]
 struct PyInventoryConfiguration {
     inner: aws_sdk_s3::types::InventoryConfiguration,
 }
@@ -9906,7 +9942,7 @@ impl PyInventoryConfiguration {
     }
 }
 
-#[pyclass(name = "InventoryDestination", frozen)]
+#[pyclass(name = "InventoryDestination", module = "rboto_s3._native", frozen)]
 struct PyInventoryDestination {
     inner: aws_sdk_s3::types::InventoryDestination,
 }
@@ -9934,7 +9970,7 @@ impl PyInventoryDestination {
     }
 }
 
-#[pyclass(name = "InventoryEncryption", frozen)]
+#[pyclass(name = "InventoryEncryption", module = "rboto_s3._native", frozen)]
 struct PyInventoryEncryption {
     inner: aws_sdk_s3::types::InventoryEncryption,
 }
@@ -9978,7 +10014,7 @@ impl PyInventoryEncryption {
     }
 }
 
-#[pyclass(name = "InventoryFilter", frozen)]
+#[pyclass(name = "InventoryFilter", module = "rboto_s3._native", frozen)]
 struct PyInventoryFilter {
     inner: aws_sdk_s3::types::InventoryFilter,
 }
@@ -9996,7 +10032,11 @@ impl PyInventoryFilter {
     }
 }
 
-#[pyclass(name = "InventoryS3BucketDestination", frozen)]
+#[pyclass(
+    name = "InventoryS3BucketDestination",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyInventoryS3BucketDestination {
     inner: aws_sdk_s3::types::InventoryS3BucketDestination,
 }
@@ -10056,7 +10096,7 @@ impl PyInventoryS3BucketDestination {
     }
 }
 
-#[pyclass(name = "InventorySchedule", frozen)]
+#[pyclass(name = "InventorySchedule", module = "rboto_s3._native", frozen)]
 struct PyInventorySchedule {
     inner: aws_sdk_s3::types::InventorySchedule,
 }
@@ -10074,7 +10114,11 @@ impl PyInventorySchedule {
     }
 }
 
-#[pyclass(name = "InventoryTableConfigurationResult", frozen)]
+#[pyclass(
+    name = "InventoryTableConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyInventoryTableConfigurationResult {
     inner: aws_sdk_s3::types::InventoryTableConfigurationResult,
 }
@@ -10138,7 +10182,11 @@ impl PyInventoryTableConfigurationResult {
     }
 }
 
-#[pyclass(name = "JournalTableConfigurationResult", frozen)]
+#[pyclass(
+    name = "JournalTableConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyJournalTableConfigurationResult {
     inner: aws_sdk_s3::types::JournalTableConfigurationResult,
 }
@@ -10204,7 +10252,11 @@ impl PyJournalTableConfigurationResult {
     }
 }
 
-#[pyclass(name = "LambdaFunctionConfiguration", frozen)]
+#[pyclass(
+    name = "LambdaFunctionConfiguration",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyLambdaFunctionConfiguration {
     inner: aws_sdk_s3::types::LambdaFunctionConfiguration,
 }
@@ -10259,7 +10311,7 @@ impl PyLambdaFunctionConfiguration {
     }
 }
 
-#[pyclass(name = "LifecycleExpiration", frozen)]
+#[pyclass(name = "LifecycleExpiration", module = "rboto_s3._native", frozen)]
 struct PyLifecycleExpiration {
     inner: aws_sdk_s3::types::LifecycleExpiration,
 }
@@ -10301,7 +10353,7 @@ impl PyLifecycleExpiration {
     }
 }
 
-#[pyclass(name = "LifecycleRule", frozen)]
+#[pyclass(name = "LifecycleRule", module = "rboto_s3._native", frozen)]
 struct PyLifecycleRule {
     inner: aws_sdk_s3::types::LifecycleRule,
 }
@@ -10445,7 +10497,7 @@ impl PyLifecycleRule {
     }
 }
 
-#[pyclass(name = "LifecycleRuleAndOperator", frozen)]
+#[pyclass(name = "LifecycleRuleAndOperator", module = "rboto_s3._native", frozen)]
 struct PyLifecycleRuleAndOperator {
     inner: aws_sdk_s3::types::LifecycleRuleAndOperator,
 }
@@ -10508,7 +10560,7 @@ impl PyLifecycleRuleAndOperator {
     }
 }
 
-#[pyclass(name = "LifecycleRuleFilter", frozen)]
+#[pyclass(name = "LifecycleRuleFilter", module = "rboto_s3._native", frozen)]
 struct PyLifecycleRuleFilter {
     inner: aws_sdk_s3::types::LifecycleRuleFilter,
 }
@@ -10582,7 +10634,7 @@ impl PyLifecycleRuleFilter {
     }
 }
 
-#[pyclass(name = "LoggingEnabled", frozen)]
+#[pyclass(name = "LoggingEnabled", module = "rboto_s3._native", frozen)]
 struct PyLoggingEnabled {
     inner: aws_sdk_s3::types::LoggingEnabled,
 }
@@ -10643,7 +10695,11 @@ impl PyLoggingEnabled {
     }
 }
 
-#[pyclass(name = "MetadataConfigurationResult", frozen)]
+#[pyclass(
+    name = "MetadataConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyMetadataConfigurationResult {
     inner: aws_sdk_s3::types::MetadataConfigurationResult,
 }
@@ -10719,7 +10775,11 @@ impl PyMetadataConfigurationResult {
     }
 }
 
-#[pyclass(name = "MetadataTableConfigurationResult", frozen)]
+#[pyclass(
+    name = "MetadataTableConfigurationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyMetadataTableConfigurationResult {
     inner: aws_sdk_s3::types::MetadataTableConfigurationResult,
 }
@@ -10747,7 +10807,7 @@ impl PyMetadataTableConfigurationResult {
     }
 }
 
-#[pyclass(name = "Metrics", frozen)]
+#[pyclass(name = "Metrics", module = "rboto_s3._native", frozen)]
 struct PyMetrics {
     inner: aws_sdk_s3::types::Metrics,
 }
@@ -10781,7 +10841,7 @@ impl PyMetrics {
     }
 }
 
-#[pyclass(name = "MetricsConfiguration", frozen)]
+#[pyclass(name = "MetricsConfiguration", module = "rboto_s3._native", frozen)]
 struct PyMetricsConfiguration {
     inner: aws_sdk_s3::types::MetricsConfiguration,
 }
@@ -10809,7 +10869,7 @@ impl PyMetricsConfiguration {
     }
 }
 
-#[pyclass(name = "MultipartUpload", frozen)]
+#[pyclass(name = "MultipartUpload", module = "rboto_s3._native", frozen)]
 struct PyMultipartUpload {
     inner: aws_sdk_s3::types::MultipartUpload,
 }
@@ -10913,7 +10973,11 @@ impl PyMultipartUpload {
     }
 }
 
-#[pyclass(name = "NoncurrentVersionExpiration", frozen)]
+#[pyclass(
+    name = "NoncurrentVersionExpiration",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyNoncurrentVersionExpiration {
     inner: aws_sdk_s3::types::NoncurrentVersionExpiration,
 }
@@ -10945,7 +11009,11 @@ impl PyNoncurrentVersionExpiration {
     }
 }
 
-#[pyclass(name = "NoncurrentVersionTransition", frozen)]
+#[pyclass(
+    name = "NoncurrentVersionTransition",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyNoncurrentVersionTransition {
     inner: aws_sdk_s3::types::NoncurrentVersionTransition,
 }
@@ -10987,7 +11055,11 @@ impl PyNoncurrentVersionTransition {
     }
 }
 
-#[pyclass(name = "NotificationConfigurationFilter", frozen)]
+#[pyclass(
+    name = "NotificationConfigurationFilter",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyNotificationConfigurationFilter {
     inner: aws_sdk_s3::types::NotificationConfigurationFilter,
 }
@@ -11015,7 +11087,7 @@ impl PyNotificationConfigurationFilter {
     }
 }
 
-#[pyclass(name = "Object", frozen)]
+#[pyclass(name = "Object", module = "rboto_s3._native", frozen)]
 struct PyObject {
     inner: aws_sdk_s3::types::Object,
 }
@@ -11134,7 +11206,7 @@ impl PyObject {
     }
 }
 
-#[pyclass(name = "ObjectLockConfiguration", frozen)]
+#[pyclass(name = "ObjectLockConfiguration", module = "rboto_s3._native", frozen)]
 struct PyObjectLockConfiguration {
     inner: aws_sdk_s3::types::ObjectLockConfiguration,
 }
@@ -11172,7 +11244,7 @@ impl PyObjectLockConfiguration {
     }
 }
 
-#[pyclass(name = "ObjectLockLegalHold", frozen)]
+#[pyclass(name = "ObjectLockLegalHold", module = "rboto_s3._native", frozen)]
 struct PyObjectLockLegalHold {
     inner: aws_sdk_s3::types::ObjectLockLegalHold,
 }
@@ -11194,7 +11266,7 @@ impl PyObjectLockLegalHold {
     }
 }
 
-#[pyclass(name = "ObjectLockRetention", frozen)]
+#[pyclass(name = "ObjectLockRetention", module = "rboto_s3._native", frozen)]
 struct PyObjectLockRetention {
     inner: aws_sdk_s3::types::ObjectLockRetention,
 }
@@ -11252,7 +11324,7 @@ impl PyObjectLockRetention {
     }
 }
 
-#[pyclass(name = "ObjectLockRule", frozen)]
+#[pyclass(name = "ObjectLockRule", module = "rboto_s3._native", frozen)]
 struct PyObjectLockRule {
     inner: aws_sdk_s3::types::ObjectLockRule,
 }
@@ -11280,7 +11352,7 @@ impl PyObjectLockRule {
     }
 }
 
-#[pyclass(name = "ObjectPart", frozen)]
+#[pyclass(name = "ObjectPart", module = "rboto_s3._native", frozen)]
 struct PyObjectPart {
     inner: aws_sdk_s3::types::ObjectPart,
 }
@@ -11412,7 +11484,7 @@ impl PyObjectPart {
     }
 }
 
-#[pyclass(name = "ObjectVersion", frozen)]
+#[pyclass(name = "ObjectVersion", module = "rboto_s3._native", frozen)]
 struct PyObjectVersion {
     inner: aws_sdk_s3::types::ObjectVersion,
 }
@@ -11551,7 +11623,7 @@ impl PyObjectVersion {
     }
 }
 
-#[pyclass(name = "Owner", frozen)]
+#[pyclass(name = "Owner", module = "rboto_s3._native", frozen)]
 struct PyOwner {
     inner: aws_sdk_s3::types::Owner,
 }
@@ -11583,7 +11655,7 @@ impl PyOwner {
     }
 }
 
-#[pyclass(name = "OwnershipControls", frozen)]
+#[pyclass(name = "OwnershipControls", module = "rboto_s3._native", frozen)]
 struct PyOwnershipControls {
     inner: aws_sdk_s3::types::OwnershipControls,
 }
@@ -11612,7 +11684,7 @@ impl PyOwnershipControls {
     }
 }
 
-#[pyclass(name = "OwnershipControlsRule", frozen)]
+#[pyclass(name = "OwnershipControlsRule", module = "rboto_s3._native", frozen)]
 struct PyOwnershipControlsRule {
     inner: aws_sdk_s3::types::OwnershipControlsRule,
 }
@@ -11630,7 +11702,7 @@ impl PyOwnershipControlsRule {
     }
 }
 
-#[pyclass(name = "Part", frozen)]
+#[pyclass(name = "Part", module = "rboto_s3._native", frozen)]
 struct PyPart {
     inner: aws_sdk_s3::types::Part,
 }
@@ -11782,7 +11854,7 @@ impl PyPart {
     }
 }
 
-#[pyclass(name = "PartitionedPrefix", frozen)]
+#[pyclass(name = "PartitionedPrefix", module = "rboto_s3._native", frozen)]
 struct PyPartitionedPrefix {
     inner: aws_sdk_s3::types::PartitionedPrefix,
 }
@@ -11804,7 +11876,7 @@ impl PyPartitionedPrefix {
     }
 }
 
-#[pyclass(name = "PolicyStatus", frozen)]
+#[pyclass(name = "PolicyStatus", module = "rboto_s3._native", frozen)]
 struct PyPolicyStatus {
     inner: aws_sdk_s3::types::PolicyStatus,
 }
@@ -11826,7 +11898,11 @@ impl PyPolicyStatus {
     }
 }
 
-#[pyclass(name = "PublicAccessBlockConfiguration", frozen)]
+#[pyclass(
+    name = "PublicAccessBlockConfiguration",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyPublicAccessBlockConfiguration {
     inner: aws_sdk_s3::types::PublicAccessBlockConfiguration,
 }
@@ -11878,7 +11954,7 @@ impl PyPublicAccessBlockConfiguration {
     }
 }
 
-#[pyclass(name = "QueueConfiguration", frozen)]
+#[pyclass(name = "QueueConfiguration", module = "rboto_s3._native", frozen)]
 struct PyQueueConfiguration {
     inner: aws_sdk_s3::types::QueueConfiguration,
 }
@@ -11933,7 +12009,7 @@ impl PyQueueConfiguration {
     }
 }
 
-#[pyclass(name = "RecordExpiration", frozen)]
+#[pyclass(name = "RecordExpiration", module = "rboto_s3._native", frozen)]
 struct PyRecordExpiration {
     inner: aws_sdk_s3::types::RecordExpiration,
 }
@@ -11961,7 +12037,7 @@ impl PyRecordExpiration {
     }
 }
 
-#[pyclass(name = "Redirect", frozen)]
+#[pyclass(name = "Redirect", module = "rboto_s3._native", frozen)]
 struct PyRedirect {
     inner: aws_sdk_s3::types::Redirect,
 }
@@ -12023,7 +12099,7 @@ impl PyRedirect {
     }
 }
 
-#[pyclass(name = "RedirectAllRequestsTo", frozen)]
+#[pyclass(name = "RedirectAllRequestsTo", module = "rboto_s3._native", frozen)]
 struct PyRedirectAllRequestsTo {
     inner: aws_sdk_s3::types::RedirectAllRequestsTo,
 }
@@ -12051,7 +12127,7 @@ impl PyRedirectAllRequestsTo {
     }
 }
 
-#[pyclass(name = "ReplicaModifications", frozen)]
+#[pyclass(name = "ReplicaModifications", module = "rboto_s3._native", frozen)]
 struct PyReplicaModifications {
     inner: aws_sdk_s3::types::ReplicaModifications,
 }
@@ -12069,7 +12145,7 @@ impl PyReplicaModifications {
     }
 }
 
-#[pyclass(name = "ReplicationConfiguration", frozen)]
+#[pyclass(name = "ReplicationConfiguration", module = "rboto_s3._native", frozen)]
 struct PyReplicationConfiguration {
     inner: aws_sdk_s3::types::ReplicationConfiguration,
 }
@@ -12104,7 +12180,7 @@ impl PyReplicationConfiguration {
     }
 }
 
-#[pyclass(name = "ReplicationRule", frozen)]
+#[pyclass(name = "ReplicationRule", module = "rboto_s3._native", frozen)]
 struct PyReplicationRule {
     inner: aws_sdk_s3::types::ReplicationRule,
 }
@@ -12232,7 +12308,11 @@ impl PyReplicationRule {
     }
 }
 
-#[pyclass(name = "ReplicationRuleAndOperator", frozen)]
+#[pyclass(
+    name = "ReplicationRuleAndOperator",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyReplicationRuleAndOperator {
     inner: aws_sdk_s3::types::ReplicationRuleAndOperator,
 }
@@ -12275,7 +12355,7 @@ impl PyReplicationRuleAndOperator {
     }
 }
 
-#[pyclass(name = "ReplicationRuleFilter", frozen)]
+#[pyclass(name = "ReplicationRuleFilter", module = "rboto_s3._native", frozen)]
 struct PyReplicationRuleFilter {
     inner: aws_sdk_s3::types::ReplicationRuleFilter,
 }
@@ -12329,7 +12409,7 @@ impl PyReplicationRuleFilter {
     }
 }
 
-#[pyclass(name = "ReplicationTime", frozen)]
+#[pyclass(name = "ReplicationTime", module = "rboto_s3._native", frozen)]
 struct PyReplicationTime {
     inner: aws_sdk_s3::types::ReplicationTime,
 }
@@ -12363,7 +12443,7 @@ impl PyReplicationTime {
     }
 }
 
-#[pyclass(name = "ReplicationTimeValue", frozen)]
+#[pyclass(name = "ReplicationTimeValue", module = "rboto_s3._native", frozen)]
 struct PyReplicationTimeValue {
     inner: aws_sdk_s3::types::ReplicationTimeValue,
 }
@@ -12385,7 +12465,7 @@ impl PyReplicationTimeValue {
     }
 }
 
-#[pyclass(name = "RestoreStatus", frozen)]
+#[pyclass(name = "RestoreStatus", module = "rboto_s3._native", frozen)]
 struct PyRestoreStatus {
     inner: aws_sdk_s3::types::RestoreStatus,
 }
@@ -12417,7 +12497,7 @@ impl PyRestoreStatus {
     }
 }
 
-#[pyclass(name = "RoutingRule", frozen)]
+#[pyclass(name = "RoutingRule", module = "rboto_s3._native", frozen)]
 struct PyRoutingRule {
     inner: aws_sdk_s3::types::RoutingRule,
 }
@@ -12461,7 +12541,7 @@ impl PyRoutingRule {
     }
 }
 
-#[pyclass(name = "S3KeyFilter", frozen)]
+#[pyclass(name = "S3KeyFilter", module = "rboto_s3._native", frozen)]
 struct PyS3KeyFilter {
     inner: aws_sdk_s3::types::S3KeyFilter,
 }
@@ -12494,7 +12574,11 @@ impl PyS3KeyFilter {
     }
 }
 
-#[pyclass(name = "S3TablesDestinationResult", frozen)]
+#[pyclass(
+    name = "S3TablesDestinationResult",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyS3TablesDestinationResult {
     inner: aws_sdk_s3::types::S3TablesDestinationResult,
 }
@@ -12530,7 +12614,11 @@ impl PyS3TablesDestinationResult {
     }
 }
 
-#[pyclass(name = "ServerSideEncryptionByDefault", frozen)]
+#[pyclass(
+    name = "ServerSideEncryptionByDefault",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyServerSideEncryptionByDefault {
     inner: aws_sdk_s3::types::ServerSideEncryptionByDefault,
 }
@@ -12558,7 +12646,11 @@ impl PyServerSideEncryptionByDefault {
     }
 }
 
-#[pyclass(name = "ServerSideEncryptionConfiguration", frozen)]
+#[pyclass(
+    name = "ServerSideEncryptionConfiguration",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyServerSideEncryptionConfiguration {
     inner: aws_sdk_s3::types::ServerSideEncryptionConfiguration,
 }
@@ -12587,7 +12679,7 @@ impl PyServerSideEncryptionConfiguration {
     }
 }
 
-#[pyclass(name = "ServerSideEncryptionRule", frozen)]
+#[pyclass(name = "ServerSideEncryptionRule", module = "rboto_s3._native", frozen)]
 struct PyServerSideEncryptionRule {
     inner: aws_sdk_s3::types::ServerSideEncryptionRule,
 }
@@ -12641,7 +12733,7 @@ impl PyServerSideEncryptionRule {
     }
 }
 
-#[pyclass(name = "SessionCredentials", frozen)]
+#[pyclass(name = "SessionCredentials", module = "rboto_s3._native", frozen)]
 struct PySessionCredentials {
     inner: aws_sdk_s3::types::SessionCredentials,
 }
@@ -12677,7 +12769,7 @@ impl PySessionCredentials {
     }
 }
 
-#[pyclass(name = "SimplePrefix", frozen)]
+#[pyclass(name = "SimplePrefix", module = "rboto_s3._native", frozen)]
 struct PySimplePrefix {
     inner: aws_sdk_s3::types::SimplePrefix,
 }
@@ -12689,7 +12781,7 @@ impl PySimplePrefix {
     }
 }
 
-#[pyclass(name = "SourceSelectionCriteria", frozen)]
+#[pyclass(name = "SourceSelectionCriteria", module = "rboto_s3._native", frozen)]
 struct PySourceSelectionCriteria {
     inner: aws_sdk_s3::types::SourceSelectionCriteria,
 }
@@ -12733,7 +12825,7 @@ impl PySourceSelectionCriteria {
     }
 }
 
-#[pyclass(name = "SseKmsEncryptedObjects", frozen)]
+#[pyclass(name = "SseKmsEncryptedObjects", module = "rboto_s3._native", frozen)]
 struct PySseKmsEncryptedObjects {
     inner: aws_sdk_s3::types::SseKmsEncryptedObjects,
 }
@@ -12751,7 +12843,7 @@ impl PySseKmsEncryptedObjects {
     }
 }
 
-#[pyclass(name = "Ssekms", frozen)]
+#[pyclass(name = "Ssekms", module = "rboto_s3._native", frozen)]
 struct PySsekms {
     inner: aws_sdk_s3::types::Ssekms,
 }
@@ -12769,7 +12861,7 @@ impl PySsekms {
     }
 }
 
-#[pyclass(name = "Sses3", frozen)]
+#[pyclass(name = "Sses3", module = "rboto_s3._native", frozen)]
 struct PySses3 {
     inner: aws_sdk_s3::types::Sses3,
 }
@@ -12781,7 +12873,7 @@ impl PySses3 {
     }
 }
 
-#[pyclass(name = "StorageClassAnalysis", frozen)]
+#[pyclass(name = "StorageClassAnalysis", module = "rboto_s3._native", frozen)]
 struct PyStorageClassAnalysis {
     inner: aws_sdk_s3::types::StorageClassAnalysis,
 }
@@ -12809,7 +12901,11 @@ impl PyStorageClassAnalysis {
     }
 }
 
-#[pyclass(name = "StorageClassAnalysisDataExport", frozen)]
+#[pyclass(
+    name = "StorageClassAnalysisDataExport",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyStorageClassAnalysisDataExport {
     inner: aws_sdk_s3::types::StorageClassAnalysisDataExport,
 }
@@ -12845,7 +12941,7 @@ impl PyStorageClassAnalysisDataExport {
     }
 }
 
-#[pyclass(name = "Tag", frozen)]
+#[pyclass(name = "Tag", module = "rboto_s3._native", frozen)]
 struct PyTag {
     inner: aws_sdk_s3::types::Tag,
 }
@@ -12869,7 +12965,7 @@ impl PyTag {
     }
 }
 
-#[pyclass(name = "TargetGrant", frozen)]
+#[pyclass(name = "TargetGrant", module = "rboto_s3._native", frozen)]
 struct PyTargetGrant {
     inner: aws_sdk_s3::types::TargetGrant,
 }
@@ -12907,7 +13003,7 @@ impl PyTargetGrant {
     }
 }
 
-#[pyclass(name = "TargetObjectKeyFormat", frozen)]
+#[pyclass(name = "TargetObjectKeyFormat", module = "rboto_s3._native", frozen)]
 struct PyTargetObjectKeyFormat {
     inner: aws_sdk_s3::types::TargetObjectKeyFormat,
 }
@@ -12951,7 +13047,7 @@ impl PyTargetObjectKeyFormat {
     }
 }
 
-#[pyclass(name = "Tiering", frozen)]
+#[pyclass(name = "Tiering", module = "rboto_s3._native", frozen)]
 struct PyTiering {
     inner: aws_sdk_s3::types::Tiering,
 }
@@ -12975,7 +13071,7 @@ impl PyTiering {
     }
 }
 
-#[pyclass(name = "TopicConfiguration", frozen)]
+#[pyclass(name = "TopicConfiguration", module = "rboto_s3._native", frozen)]
 struct PyTopicConfiguration {
     inner: aws_sdk_s3::types::TopicConfiguration,
 }
@@ -13030,7 +13126,7 @@ impl PyTopicConfiguration {
     }
 }
 
-#[pyclass(name = "Transition", frozen)]
+#[pyclass(name = "Transition", module = "rboto_s3._native", frozen)]
 struct PyTransition {
     inner: aws_sdk_s3::types::Transition,
 }
@@ -13072,7 +13168,11 @@ impl PyTransition {
     }
 }
 
-#[pyclass(name = "AbortMultipartUploadOutput", frozen)]
+#[pyclass(
+    name = "AbortMultipartUploadOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyAbortMultipartUploadOutput {
     inner: aws_sdk_s3::operation::abort_multipart_upload::AbortMultipartUploadOutput,
 }
@@ -13101,7 +13201,11 @@ impl PyAbortMultipartUploadOutput {
     }
 }
 
-#[pyclass(name = "CompleteMultipartUploadOutput", frozen)]
+#[pyclass(
+    name = "CompleteMultipartUploadOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyCompleteMultipartUploadOutput {
     inner: aws_sdk_s3::operation::complete_multipart_upload::CompleteMultipartUploadOutput,
 }
@@ -13450,7 +13554,7 @@ impl PyCompleteMultipartUploadOutput {
     }
 }
 
-#[pyclass(name = "CopyObjectOutput", frozen)]
+#[pyclass(name = "CopyObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyCopyObjectOutput {
     inner: aws_sdk_s3::operation::copy_object::CopyObjectOutput,
 }
@@ -13645,7 +13749,7 @@ impl PyCopyObjectOutput {
     }
 }
 
-#[pyclass(name = "CreateBucketOutput", frozen)]
+#[pyclass(name = "CreateBucketOutput", module = "rboto_s3._native", frozen)]
 struct PyCreateBucketOutput {
     inner: aws_sdk_s3::operation::create_bucket::CreateBucketOutput,
 }
@@ -13690,7 +13794,11 @@ impl PyCreateBucketOutput {
     }
 }
 
-#[pyclass(name = "CreateMultipartUploadOutput", frozen)]
+#[pyclass(
+    name = "CreateMultipartUploadOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyCreateMultipartUploadOutput {
     inner: aws_sdk_s3::operation::create_multipart_upload::CreateMultipartUploadOutput,
 }
@@ -13927,7 +14035,7 @@ impl PyCreateMultipartUploadOutput {
     }
 }
 
-#[pyclass(name = "CreateSessionOutput", frozen)]
+#[pyclass(name = "CreateSessionOutput", module = "rboto_s3._native", frozen)]
 struct PyCreateSessionOutput {
     inner: aws_sdk_s3::operation::create_session::CreateSessionOutput,
 }
@@ -14026,7 +14134,7 @@ impl PyCreateSessionOutput {
     }
 }
 
-#[pyclass(name = "DeleteObjectOutput", frozen)]
+#[pyclass(name = "DeleteObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyDeleteObjectOutput {
     inner: aws_sdk_s3::operation::delete_object::DeleteObjectOutput,
 }
@@ -14087,7 +14195,11 @@ impl PyDeleteObjectOutput {
     }
 }
 
-#[pyclass(name = "DeleteObjectAnnotationOutput", frozen)]
+#[pyclass(
+    name = "DeleteObjectAnnotationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyDeleteObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::delete_object_annotation::DeleteObjectAnnotationOutput,
 }
@@ -14132,7 +14244,11 @@ impl PyDeleteObjectAnnotationOutput {
     }
 }
 
-#[pyclass(name = "DeleteObjectTaggingOutput", frozen)]
+#[pyclass(
+    name = "DeleteObjectTaggingOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyDeleteObjectTaggingOutput {
     inner: aws_sdk_s3::operation::delete_object_tagging::DeleteObjectTaggingOutput,
 }
@@ -14161,7 +14277,7 @@ impl PyDeleteObjectTaggingOutput {
     }
 }
 
-#[pyclass(name = "DeleteObjectsOutput", frozen)]
+#[pyclass(name = "DeleteObjectsOutput", module = "rboto_s3._native", frozen)]
 struct PyDeleteObjectsOutput {
     inner: aws_sdk_s3::operation::delete_objects::DeleteObjectsOutput,
 }
@@ -14254,7 +14370,7 @@ impl PyDeleteObjectsOutput {
     }
 }
 
-#[pyclass(name = "GetBucketAbacOutput", frozen)]
+#[pyclass(name = "GetBucketAbacOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketAbacOutput {
     inner: aws_sdk_s3::operation::get_bucket_abac::GetBucketAbacOutput,
 }
@@ -14289,7 +14405,11 @@ impl PyGetBucketAbacOutput {
     }
 }
 
-#[pyclass(name = "GetBucketAccelerateConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketAccelerateConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketAccelerateConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_accelerate_configuration::GetBucketAccelerateConfigurationOutput,
 }
@@ -14334,7 +14454,7 @@ impl PyGetBucketAccelerateConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketAclOutput", frozen)]
+#[pyclass(name = "GetBucketAclOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketAclOutput {
     inner: aws_sdk_s3::operation::get_bucket_acl::GetBucketAclOutput,
 }
@@ -14401,7 +14521,11 @@ impl PyGetBucketAclOutput {
     }
 }
 
-#[pyclass(name = "GetBucketAnalyticsConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketAnalyticsConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketAnalyticsConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_analytics_configuration::GetBucketAnalyticsConfigurationOutput,
 }
@@ -14436,7 +14560,7 @@ impl PyGetBucketAnalyticsConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketCorsOutput", frozen)]
+#[pyclass(name = "GetBucketCorsOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketCorsOutput {
     inner: aws_sdk_s3::operation::get_bucket_cors::GetBucketCorsOutput,
 }
@@ -14481,7 +14605,11 @@ impl PyGetBucketCorsOutput {
     }
 }
 
-#[pyclass(name = "GetBucketEncryptionOutput", frozen)]
+#[pyclass(
+    name = "GetBucketEncryptionOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketEncryptionOutput {
     inner: aws_sdk_s3::operation::get_bucket_encryption::GetBucketEncryptionOutput,
 }
@@ -14516,7 +14644,11 @@ impl PyGetBucketEncryptionOutput {
     }
 }
 
-#[pyclass(name = "GetBucketIntelligentTieringConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketIntelligentTieringConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketIntelligentTieringConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_intelligent_tiering_configuration::GetBucketIntelligentTieringConfigurationOutput,
 }
@@ -14551,7 +14683,11 @@ impl PyGetBucketIntelligentTieringConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketInventoryConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketInventoryConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketInventoryConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_inventory_configuration::GetBucketInventoryConfigurationOutput,
 }
@@ -14586,7 +14722,11 @@ impl PyGetBucketInventoryConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketLifecycleConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketLifecycleConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketLifecycleConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_lifecycle_configuration::GetBucketLifecycleConfigurationOutput,
 }
@@ -14647,7 +14787,7 @@ impl PyGetBucketLifecycleConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketLocationOutput", frozen)]
+#[pyclass(name = "GetBucketLocationOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketLocationOutput {
     inner: aws_sdk_s3::operation::get_bucket_location::GetBucketLocationOutput,
 }
@@ -14676,7 +14816,7 @@ impl PyGetBucketLocationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketLoggingOutput", frozen)]
+#[pyclass(name = "GetBucketLoggingOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketLoggingOutput {
     inner: aws_sdk_s3::operation::get_bucket_logging::GetBucketLoggingOutput,
 }
@@ -14711,7 +14851,11 @@ impl PyGetBucketLoggingOutput {
     }
 }
 
-#[pyclass(name = "GetBucketMetadataConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketMetadataConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketMetadataConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metadata_configuration::GetBucketMetadataConfigurationOutput,
 }
@@ -14746,7 +14890,11 @@ impl PyGetBucketMetadataConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketMetadataTableConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketMetadataTableConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketMetadataTableConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metadata_table_configuration::GetBucketMetadataTableConfigurationOutput,
 }
@@ -14787,7 +14935,11 @@ impl PyGetBucketMetadataTableConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketMetricsConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketMetricsConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketMetricsConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metrics_configuration::GetBucketMetricsConfigurationOutput,
 }
@@ -14822,7 +14974,11 @@ impl PyGetBucketMetricsConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketNotificationConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketNotificationConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketNotificationConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_notification_configuration::GetBucketNotificationConfigurationOutput,
 }
@@ -14953,7 +15109,11 @@ impl PyGetBucketNotificationConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketOwnershipControlsOutput", frozen)]
+#[pyclass(
+    name = "GetBucketOwnershipControlsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketOwnershipControlsOutput {
     inner: aws_sdk_s3::operation::get_bucket_ownership_controls::GetBucketOwnershipControlsOutput,
 }
@@ -14988,7 +15148,7 @@ impl PyGetBucketOwnershipControlsOutput {
     }
 }
 
-#[pyclass(name = "GetBucketPolicyOutput", frozen)]
+#[pyclass(name = "GetBucketPolicyOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketPolicyOutput {
     inner: aws_sdk_s3::operation::get_bucket_policy::GetBucketPolicyOutput,
 }
@@ -15017,7 +15177,11 @@ impl PyGetBucketPolicyOutput {
     }
 }
 
-#[pyclass(name = "GetBucketPolicyStatusOutput", frozen)]
+#[pyclass(
+    name = "GetBucketPolicyStatusOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketPolicyStatusOutput {
     inner: aws_sdk_s3::operation::get_bucket_policy_status::GetBucketPolicyStatusOutput,
 }
@@ -15052,7 +15216,11 @@ impl PyGetBucketPolicyStatusOutput {
     }
 }
 
-#[pyclass(name = "GetBucketReplicationOutput", frozen)]
+#[pyclass(
+    name = "GetBucketReplicationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketReplicationOutput {
     inner: aws_sdk_s3::operation::get_bucket_replication::GetBucketReplicationOutput,
 }
@@ -15087,7 +15255,11 @@ impl PyGetBucketReplicationOutput {
     }
 }
 
-#[pyclass(name = "GetBucketRequestPaymentOutput", frozen)]
+#[pyclass(
+    name = "GetBucketRequestPaymentOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketRequestPaymentOutput {
     inner: aws_sdk_s3::operation::get_bucket_request_payment::GetBucketRequestPaymentOutput,
 }
@@ -15116,7 +15288,7 @@ impl PyGetBucketRequestPaymentOutput {
     }
 }
 
-#[pyclass(name = "GetBucketTaggingOutput", frozen)]
+#[pyclass(name = "GetBucketTaggingOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketTaggingOutput {
     inner: aws_sdk_s3::operation::get_bucket_tagging::GetBucketTaggingOutput,
 }
@@ -15153,7 +15325,11 @@ impl PyGetBucketTaggingOutput {
     }
 }
 
-#[pyclass(name = "GetBucketVersioningOutput", frozen)]
+#[pyclass(
+    name = "GetBucketVersioningOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetBucketVersioningOutput {
     inner: aws_sdk_s3::operation::get_bucket_versioning::GetBucketVersioningOutput,
 }
@@ -15198,7 +15374,7 @@ impl PyGetBucketVersioningOutput {
     }
 }
 
-#[pyclass(name = "GetBucketWebsiteOutput", frozen)]
+#[pyclass(name = "GetBucketWebsiteOutput", module = "rboto_s3._native", frozen)]
 struct PyGetBucketWebsiteOutput {
     inner: aws_sdk_s3::operation::get_bucket_website::GetBucketWebsiteOutput,
 }
@@ -15309,7 +15485,7 @@ impl PyGetBucketWebsiteOutput {
     }
 }
 
-#[pyclass(name = "GetObjectOutput", frozen)]
+#[pyclass(name = "GetObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectOutput {
     inner: aws_sdk_s3::operation::get_object::GetObjectOutput,
     body: Py<PyByteStream>,
@@ -16077,7 +16253,7 @@ impl PyGetObjectOutput {
     }
 }
 
-#[pyclass(name = "GetObjectAclOutput", frozen)]
+#[pyclass(name = "GetObjectAclOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectAclOutput {
     inner: aws_sdk_s3::operation::get_object_acl::GetObjectAclOutput,
 }
@@ -16160,7 +16336,11 @@ impl PyGetObjectAclOutput {
     }
 }
 
-#[pyclass(name = "GetObjectAnnotationOutput", frozen)]
+#[pyclass(
+    name = "GetObjectAnnotationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::get_object_annotation::GetObjectAnnotationOutput,
     annotation_payload: Py<PyByteStream>,
@@ -16468,7 +16648,11 @@ impl PyGetObjectAnnotationOutput {
     }
 }
 
-#[pyclass(name = "GetObjectAttributesOutput", frozen)]
+#[pyclass(
+    name = "GetObjectAttributesOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetObjectAttributesOutput {
     inner: aws_sdk_s3::operation::get_object_attributes::GetObjectAttributesOutput,
 }
@@ -16637,7 +16821,7 @@ impl PyGetObjectAttributesOutput {
     }
 }
 
-#[pyclass(name = "GetObjectLegalHoldOutput", frozen)]
+#[pyclass(name = "GetObjectLegalHoldOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectLegalHoldOutput {
     inner: aws_sdk_s3::operation::get_object_legal_hold::GetObjectLegalHoldOutput,
 }
@@ -16672,7 +16856,11 @@ impl PyGetObjectLegalHoldOutput {
     }
 }
 
-#[pyclass(name = "GetObjectLockConfigurationOutput", frozen)]
+#[pyclass(
+    name = "GetObjectLockConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetObjectLockConfigurationOutput {
     inner: aws_sdk_s3::operation::get_object_lock_configuration::GetObjectLockConfigurationOutput,
 }
@@ -16707,7 +16895,7 @@ impl PyGetObjectLockConfigurationOutput {
     }
 }
 
-#[pyclass(name = "GetObjectRetentionOutput", frozen)]
+#[pyclass(name = "GetObjectRetentionOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectRetentionOutput {
     inner: aws_sdk_s3::operation::get_object_retention::GetObjectRetentionOutput,
 }
@@ -16742,7 +16930,7 @@ impl PyGetObjectRetentionOutput {
     }
 }
 
-#[pyclass(name = "GetObjectTaggingOutput", frozen)]
+#[pyclass(name = "GetObjectTaggingOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectTaggingOutput {
     inner: aws_sdk_s3::operation::get_object_tagging::GetObjectTaggingOutput,
 }
@@ -16795,7 +16983,7 @@ impl PyGetObjectTaggingOutput {
     }
 }
 
-#[pyclass(name = "GetObjectTorrentOutput", frozen)]
+#[pyclass(name = "GetObjectTorrentOutput", module = "rboto_s3._native", frozen)]
 struct PyGetObjectTorrentOutput {
     inner: aws_sdk_s3::operation::get_object_torrent::GetObjectTorrentOutput,
     body: Py<PyByteStream>,
@@ -16831,7 +17019,11 @@ impl PyGetObjectTorrentOutput {
     }
 }
 
-#[pyclass(name = "GetPublicAccessBlockOutput", frozen)]
+#[pyclass(
+    name = "GetPublicAccessBlockOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyGetPublicAccessBlockOutput {
     inner: aws_sdk_s3::operation::get_public_access_block::GetPublicAccessBlockOutput,
 }
@@ -16866,7 +17058,7 @@ impl PyGetPublicAccessBlockOutput {
     }
 }
 
-#[pyclass(name = "HeadBucketOutput", frozen)]
+#[pyclass(name = "HeadBucketOutput", module = "rboto_s3._native", frozen)]
 struct PyHeadBucketOutput {
     inner: aws_sdk_s3::operation::head_bucket::HeadBucketOutput,
 }
@@ -16959,7 +17151,7 @@ impl PyHeadBucketOutput {
     }
 }
 
-#[pyclass(name = "HeadObjectOutput", frozen)]
+#[pyclass(name = "HeadObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyHeadObjectOutput {
     inner: aws_sdk_s3::operation::head_object::HeadObjectOutput,
 }
@@ -17736,7 +17928,11 @@ impl PyHeadObjectOutput {
     }
 }
 
-#[pyclass(name = "ListBucketAnalyticsConfigurationsOutput", frozen)]
+#[pyclass(
+    name = "ListBucketAnalyticsConfigurationsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListBucketAnalyticsConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_analytics_configurations::ListBucketAnalyticsConfigurationsOutput,
 }
@@ -17829,7 +18025,11 @@ impl PyListBucketAnalyticsConfigurationsOutput {
     }
 }
 
-#[pyclass(name = "ListBucketIntelligentTieringConfigurationsOutput", frozen)]
+#[pyclass(
+    name = "ListBucketIntelligentTieringConfigurationsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListBucketIntelligentTieringConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_intelligent_tiering_configurations::ListBucketIntelligentTieringConfigurationsOutput,
 }
@@ -17922,7 +18122,11 @@ impl PyListBucketIntelligentTieringConfigurationsOutput {
     }
 }
 
-#[pyclass(name = "ListBucketInventoryConfigurationsOutput", frozen)]
+#[pyclass(
+    name = "ListBucketInventoryConfigurationsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListBucketInventoryConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_inventory_configurations::ListBucketInventoryConfigurationsOutput,
 }
@@ -18015,7 +18219,11 @@ impl PyListBucketInventoryConfigurationsOutput {
     }
 }
 
-#[pyclass(name = "ListBucketMetricsConfigurationsOutput", frozen)]
+#[pyclass(
+    name = "ListBucketMetricsConfigurationsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListBucketMetricsConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_metrics_configurations::ListBucketMetricsConfigurationsOutput,
 }
@@ -18108,7 +18316,7 @@ impl PyListBucketMetricsConfigurationsOutput {
     }
 }
 
-#[pyclass(name = "ListBucketsOutput", frozen)]
+#[pyclass(name = "ListBucketsOutput", module = "rboto_s3._native", frozen)]
 struct PyListBucketsOutput {
     inner: aws_sdk_s3::operation::list_buckets::ListBucketsOutput,
 }
@@ -18207,7 +18415,11 @@ impl PyListBucketsOutput {
     }
 }
 
-#[pyclass(name = "ListDirectoryBucketsOutput", frozen)]
+#[pyclass(
+    name = "ListDirectoryBucketsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListDirectoryBucketsOutput {
     inner: aws_sdk_s3::operation::list_directory_buckets::ListDirectoryBucketsOutput,
 }
@@ -18268,7 +18480,11 @@ impl PyListDirectoryBucketsOutput {
     }
 }
 
-#[pyclass(name = "ListMultipartUploadsOutput", frozen)]
+#[pyclass(
+    name = "ListMultipartUploadsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListMultipartUploadsOutput {
     inner: aws_sdk_s3::operation::list_multipart_uploads::ListMultipartUploadsOutput,
 }
@@ -18521,7 +18737,11 @@ impl PyListMultipartUploadsOutput {
     }
 }
 
-#[pyclass(name = "ListObjectAnnotationsOutput", frozen)]
+#[pyclass(
+    name = "ListObjectAnnotationsOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyListObjectAnnotationsOutput {
     inner: aws_sdk_s3::operation::list_object_annotations::ListObjectAnnotationsOutput,
 }
@@ -18710,7 +18930,7 @@ impl PyListObjectAnnotationsOutput {
     }
 }
 
-#[pyclass(name = "ListObjectVersionsOutput", frozen)]
+#[pyclass(name = "ListObjectVersionsOutput", module = "rboto_s3._native", frozen)]
 struct PyListObjectVersionsOutput {
     inner: aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput,
 }
@@ -18995,7 +19215,7 @@ impl PyListObjectVersionsOutput {
     }
 }
 
-#[pyclass(name = "ListObjectsOutput", frozen)]
+#[pyclass(name = "ListObjectsOutput", module = "rboto_s3._native", frozen)]
 struct PyListObjectsOutput {
     inner: aws_sdk_s3::operation::list_objects::ListObjectsOutput,
 }
@@ -19216,7 +19436,7 @@ impl PyListObjectsOutput {
     }
 }
 
-#[pyclass(name = "ListObjectsV2Output", frozen)]
+#[pyclass(name = "ListObjectsV2Output", module = "rboto_s3._native", frozen)]
 struct PyListObjectsV2Output {
     inner: aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Output,
 }
@@ -19469,7 +19689,7 @@ impl PyListObjectsV2Output {
     }
 }
 
-#[pyclass(name = "ListPartsOutput", frozen)]
+#[pyclass(name = "ListPartsOutput", module = "rboto_s3._native", frozen)]
 struct PyListPartsOutput {
     inner: aws_sdk_s3::operation::list_parts::ListPartsOutput,
 }
@@ -19766,7 +19986,11 @@ impl PyListPartsOutput {
     }
 }
 
-#[pyclass(name = "PutBucketLifecycleConfigurationOutput", frozen)]
+#[pyclass(
+    name = "PutBucketLifecycleConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyPutBucketLifecycleConfigurationOutput {
     inner: aws_sdk_s3::operation::put_bucket_lifecycle_configuration::PutBucketLifecycleConfigurationOutput,
 }
@@ -19795,7 +20019,7 @@ impl PyPutBucketLifecycleConfigurationOutput {
     }
 }
 
-#[pyclass(name = "PutObjectOutput", frozen)]
+#[pyclass(name = "PutObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyPutObjectOutput {
     inner: aws_sdk_s3::operation::put_object::PutObjectOutput,
 }
@@ -20160,7 +20384,7 @@ impl PyPutObjectOutput {
     }
 }
 
-#[pyclass(name = "PutObjectAclOutput", frozen)]
+#[pyclass(name = "PutObjectAclOutput", module = "rboto_s3._native", frozen)]
 struct PyPutObjectAclOutput {
     inner: aws_sdk_s3::operation::put_object_acl::PutObjectAclOutput,
 }
@@ -20189,7 +20413,11 @@ impl PyPutObjectAclOutput {
     }
 }
 
-#[pyclass(name = "PutObjectAnnotationOutput", frozen)]
+#[pyclass(
+    name = "PutObjectAnnotationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyPutObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::put_object_annotation::PutObjectAnnotationOutput,
 }
@@ -20474,7 +20702,7 @@ impl PyPutObjectAnnotationOutput {
     }
 }
 
-#[pyclass(name = "PutObjectLegalHoldOutput", frozen)]
+#[pyclass(name = "PutObjectLegalHoldOutput", module = "rboto_s3._native", frozen)]
 struct PyPutObjectLegalHoldOutput {
     inner: aws_sdk_s3::operation::put_object_legal_hold::PutObjectLegalHoldOutput,
 }
@@ -20503,7 +20731,11 @@ impl PyPutObjectLegalHoldOutput {
     }
 }
 
-#[pyclass(name = "PutObjectLockConfigurationOutput", frozen)]
+#[pyclass(
+    name = "PutObjectLockConfigurationOutput",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyPutObjectLockConfigurationOutput {
     inner: aws_sdk_s3::operation::put_object_lock_configuration::PutObjectLockConfigurationOutput,
 }
@@ -20532,7 +20764,7 @@ impl PyPutObjectLockConfigurationOutput {
     }
 }
 
-#[pyclass(name = "PutObjectRetentionOutput", frozen)]
+#[pyclass(name = "PutObjectRetentionOutput", module = "rboto_s3._native", frozen)]
 struct PyPutObjectRetentionOutput {
     inner: aws_sdk_s3::operation::put_object_retention::PutObjectRetentionOutput,
 }
@@ -20561,7 +20793,7 @@ impl PyPutObjectRetentionOutput {
     }
 }
 
-#[pyclass(name = "PutObjectTaggingOutput", frozen)]
+#[pyclass(name = "PutObjectTaggingOutput", module = "rboto_s3._native", frozen)]
 struct PyPutObjectTaggingOutput {
     inner: aws_sdk_s3::operation::put_object_tagging::PutObjectTaggingOutput,
 }
@@ -20590,7 +20822,7 @@ impl PyPutObjectTaggingOutput {
     }
 }
 
-#[pyclass(name = "RenameObjectOutput", frozen)]
+#[pyclass(name = "RenameObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyRenameObjectOutput {
     inner: aws_sdk_s3::operation::rename_object::RenameObjectOutput,
 }
@@ -20603,7 +20835,7 @@ impl PyRenameObjectOutput {
     }
 }
 
-#[pyclass(name = "RestoreObjectOutput", frozen)]
+#[pyclass(name = "RestoreObjectOutput", module = "rboto_s3._native", frozen)]
 struct PyRestoreObjectOutput {
     inner: aws_sdk_s3::operation::restore_object::RestoreObjectOutput,
 }
@@ -20648,7 +20880,11 @@ impl PyRestoreObjectOutput {
     }
 }
 
-#[pyclass(name = "UpdateObjectEncryptionResponse", frozen)]
+#[pyclass(
+    name = "UpdateObjectEncryptionResponse",
+    module = "rboto_s3._native",
+    frozen
+)]
 struct PyUpdateObjectEncryptionResponse {
     inner: aws_sdk_s3::operation::update_object_encryption::UpdateObjectEncryptionOutput,
 }
@@ -20677,7 +20913,7 @@ impl PyUpdateObjectEncryptionResponse {
     }
 }
 
-#[pyclass(name = "UploadPartOutput", frozen)]
+#[pyclass(name = "UploadPartOutput", module = "rboto_s3._native", frozen)]
 struct PyUploadPartOutput {
     inner: aws_sdk_s3::operation::upload_part::UploadPartOutput,
 }
@@ -20962,7 +21198,7 @@ impl PyUploadPartOutput {
     }
 }
 
-#[pyclass(name = "UploadPartCopyOutput", frozen)]
+#[pyclass(name = "UploadPartCopyOutput", module = "rboto_s3._native", frozen)]
 struct PyUploadPartCopyOutput {
     inner: aws_sdk_s3::operation::upload_part_copy::UploadPartCopyOutput,
 }
@@ -21109,7 +21345,10 @@ impl PyUploadPartCopyOutput {
     }
 }
 
-#[pyclass(name = "SelectObjectContentEventStreamReceiver")]
+#[pyclass(
+    name = "SelectObjectContentEventStreamReceiver",
+    module = "rboto_s3._native"
+)]
 struct PySelectObjectContentEventStreamReceiver {
     inner: Arc<
         Mutex<
