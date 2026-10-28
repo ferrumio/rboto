@@ -89,6 +89,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.accept_administrator_invitation, params, self._interceptors,
                 "guardduty", "AcceptAdministratorInvitation", self._region,
+                AcceptAdministratorInvitationResponse,
+                ("detector_id", "administrator_id", "invitation_id", ),
+                ("detector_id", "administrator_id", "invitation_id", ),
             )
             return _response
         _response = await self._native.accept_administrator_invitation(params)
@@ -111,6 +114,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.accept_invitation, params, self._interceptors,
                 "guardduty", "AcceptInvitation", self._region,
+                AcceptInvitationResponse,
+                ("detector_id", "master_id", "invitation_id", ),
+                ("detector_id", "master_id", "invitation_id", ),
             )
             return _response
         _response = await self._native.accept_invitation(params)
@@ -131,6 +137,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.archive_findings, params, self._interceptors,
                 "guardduty", "ArchiveFindings", self._region,
+                ArchiveFindingsResponse,
+                ("detector_id", "finding_ids", ),
+                ("detector_id", "finding_ids", ),
             )
             return _response
         _response = await self._native.archive_findings(params)
@@ -157,6 +166,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_custom_detection_rule_association, params, self._interceptors,
                 "guardduty", "CreateCustomDetectionRuleAssociation", self._region,
+                CreateCustomDetectionRuleAssociationResponse,
+                ("rule_id", "mode", "client_token", "tags", ),
+                ("rule_id", "mode", ),
             )
             return _response
         _response = await self._native.create_custom_detection_rule_association(params)
@@ -186,6 +198,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_custom_detection_rule_org_configuration, params, self._interceptors,
                 "guardduty", "CreateCustomDetectionRuleOrgConfiguration", self._region,
+                CreateCustomDetectionRuleOrgConfigurationResponse,
+                ("rule_id", "mode", "include_account_ids", "exclude_account_ids", "client_token", ),
+                ("rule_id", "mode", ),
             )
             return _response
         _response = await self._native.create_custom_detection_rule_org_configuration(params)
@@ -219,6 +234,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_detector, params, self._interceptors,
                 "guardduty", "CreateDetector", self._region,
+                CreateDetectorResponse,
+                ("enable", "client_token", "finding_publishing_frequency", "data_sources", "tags", "features", ),
+                ("enable", ),
             )
             return _response
         _response = await self._native.create_detector(params)
@@ -256,6 +274,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_filter, params, self._interceptors,
                 "guardduty", "CreateFilter", self._region,
+                CreateFilterResponse,
+                ("detector_id", "name", "finding_criteria", "description", "action", "rank", "client_token", "tags", ),
+                ("detector_id", "name", "finding_criteria", ),
             )
             return _response
         _response = await self._native.create_filter(params)
@@ -291,6 +312,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_ip_set, params, self._interceptors,
                 "guardduty", "CreateIPSet", self._region,
+                CreateIPSetResponse,
+                ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
+                ("detector_id", "name", "format", "location", "activate", ),
             )
             return _response
         _response = await self._native.create_ip_set(params)
@@ -314,6 +338,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_investigation, params, self._interceptors,
                 "guardduty", "CreateInvestigation", self._region,
+                CreateInvestigationResponse,
+                ("detector_id", "trigger_prompt", "client_token", ),
+                ("detector_id", "trigger_prompt", ),
             )
             return _response
         _response = await self._native.create_investigation(params)
@@ -343,6 +370,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_malware_protection_plan, params, self._interceptors,
                 "guardduty", "CreateMalwareProtectionPlan", self._region,
+                CreateMalwareProtectionPlanResponse,
+                ("role", "protected_resource", "client_token", "actions", "tags", ),
+                ("role", "protected_resource", ),
             )
             return _response
         _response = await self._native.create_malware_protection_plan(params)
@@ -363,6 +393,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_members, params, self._interceptors,
                 "guardduty", "CreateMembers", self._region,
+                CreateMembersResponse,
+                ("detector_id", "account_details", ),
+                ("detector_id", "account_details", ),
             )
             return _response
         _response = await self._native.create_members(params)
@@ -391,6 +424,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_publishing_destination, params, self._interceptors,
                 "guardduty", "CreatePublishingDestination", self._region,
+                CreatePublishingDestinationResponse,
+                ("detector_id", "destination_type", "destination_properties", "client_token", "tags", ),
+                ("detector_id", "destination_type", "destination_properties", ),
             )
             return _response
         _response = await self._native.create_publishing_destination(params)
@@ -412,6 +448,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_sample_findings, params, self._interceptors,
                 "guardduty", "CreateSampleFindings", self._region,
+                CreateSampleFindingsResponse,
+                ("detector_id", "finding_types", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.create_sample_findings(params)
@@ -447,6 +486,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_threat_entity_set, params, self._interceptors,
                 "guardduty", "CreateThreatEntitySet", self._region,
+                CreateThreatEntitySetResponse,
+                ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
+                ("detector_id", "name", "format", "location", "activate", ),
             )
             return _response
         _response = await self._native.create_threat_entity_set(params)
@@ -482,6 +524,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_threat_intel_set, params, self._interceptors,
                 "guardduty", "CreateThreatIntelSet", self._region,
+                CreateThreatIntelSetResponse,
+                ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
+                ("detector_id", "name", "format", "location", "activate", ),
             )
             return _response
         _response = await self._native.create_threat_intel_set(params)
@@ -517,6 +562,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.create_trusted_entity_set, params, self._interceptors,
                 "guardduty", "CreateTrustedEntitySet", self._region,
+                CreateTrustedEntitySetResponse,
+                ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
+                ("detector_id", "name", "format", "location", "activate", ),
             )
             return _response
         _response = await self._native.create_trusted_entity_set(params)
@@ -535,6 +583,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.decline_invitations, params, self._interceptors,
                 "guardduty", "DeclineInvitations", self._region,
+                DeclineInvitationsResponse,
+                ("account_ids", ),
+                ("account_ids", ),
             )
             return _response
         _response = await self._native.decline_invitations(params)
@@ -555,6 +606,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_custom_detection_rule_association, params, self._interceptors,
                 "guardduty", "DeleteCustomDetectionRuleAssociation", self._region,
+                DeleteCustomDetectionRuleAssociationResponse,
+                ("rule_id", "association_id", ),
+                ("rule_id", "association_id", ),
             )
             return _response
         _response = await self._native.delete_custom_detection_rule_association(params)
@@ -575,6 +629,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_custom_detection_rule_org_configuration, params, self._interceptors,
                 "guardduty", "DeleteCustomDetectionRuleOrgConfiguration", self._region,
+                DeleteCustomDetectionRuleOrgConfigurationResponse,
+                ("rule_id", "mode", ),
+                ("rule_id", "mode", ),
             )
             return _response
         _response = await self._native.delete_custom_detection_rule_org_configuration(params)
@@ -593,6 +650,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_detector, params, self._interceptors,
                 "guardduty", "DeleteDetector", self._region,
+                DeleteDetectorResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.delete_detector(params)
@@ -613,6 +673,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_filter, params, self._interceptors,
                 "guardduty", "DeleteFilter", self._region,
+                DeleteFilterResponse,
+                ("detector_id", "filter_name", ),
+                ("detector_id", "filter_name", ),
             )
             return _response
         _response = await self._native.delete_filter(params)
@@ -633,6 +696,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_ip_set, params, self._interceptors,
                 "guardduty", "DeleteIPSet", self._region,
+                DeleteIPSetResponse,
+                ("detector_id", "ip_set_id", ),
+                ("detector_id", "ip_set_id", ),
             )
             return _response
         _response = await self._native.delete_ip_set(params)
@@ -651,6 +717,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_invitations, params, self._interceptors,
                 "guardduty", "DeleteInvitations", self._region,
+                DeleteInvitationsResponse,
+                ("account_ids", ),
+                ("account_ids", ),
             )
             return _response
         _response = await self._native.delete_invitations(params)
@@ -669,6 +738,9 @@ class GuardDutyClient:
             await invoke(
                 self._native.delete_malware_protection_plan, params, self._interceptors,
                 "guardduty", "DeleteMalwareProtectionPlan", self._region,
+                type(None),
+                ("malware_protection_plan_id", ),
+                ("malware_protection_plan_id", ),
             )
             return None
         await self._native.delete_malware_protection_plan(params)
@@ -689,6 +761,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_members, params, self._interceptors,
                 "guardduty", "DeleteMembers", self._region,
+                DeleteMembersResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.delete_members(params)
@@ -709,6 +784,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_publishing_destination, params, self._interceptors,
                 "guardduty", "DeletePublishingDestination", self._region,
+                DeletePublishingDestinationResponse,
+                ("detector_id", "destination_id", ),
+                ("detector_id", "destination_id", ),
             )
             return _response
         _response = await self._native.delete_publishing_destination(params)
@@ -729,6 +807,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_threat_entity_set, params, self._interceptors,
                 "guardduty", "DeleteThreatEntitySet", self._region,
+                DeleteThreatEntitySetResponse,
+                ("detector_id", "threat_entity_set_id", ),
+                ("detector_id", "threat_entity_set_id", ),
             )
             return _response
         _response = await self._native.delete_threat_entity_set(params)
@@ -749,6 +830,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_threat_intel_set, params, self._interceptors,
                 "guardduty", "DeleteThreatIntelSet", self._region,
+                DeleteThreatIntelSetResponse,
+                ("detector_id", "threat_intel_set_id", ),
+                ("detector_id", "threat_intel_set_id", ),
             )
             return _response
         _response = await self._native.delete_threat_intel_set(params)
@@ -769,6 +853,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.delete_trusted_entity_set, params, self._interceptors,
                 "guardduty", "DeleteTrustedEntitySet", self._region,
+                DeleteTrustedEntitySetResponse,
+                ("detector_id", "trusted_entity_set_id", ),
+                ("detector_id", "trusted_entity_set_id", ),
             )
             return _response
         _response = await self._native.delete_trusted_entity_set(params)
@@ -799,6 +886,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_malware_scans, params, self._interceptors,
                 "guardduty", "DescribeMalwareScans", self._region,
+                DescribeMalwareScansResponse,
+                ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.describe_malware_scans(params)
@@ -823,6 +913,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_organization_configuration, params, self._interceptors,
                 "guardduty", "DescribeOrganizationConfiguration", self._region,
+                DescribeOrganizationConfigurationResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.describe_organization_configuration(params)
@@ -843,6 +936,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.describe_publishing_destination, params, self._interceptors,
                 "guardduty", "DescribePublishingDestination", self._region,
+                DescribePublishingDestinationResponse,
+                ("detector_id", "destination_id", ),
+                ("detector_id", "destination_id", ),
             )
             return _response
         _response = await self._native.describe_publishing_destination(params)
@@ -861,6 +957,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disable_organization_admin_account, params, self._interceptors,
                 "guardduty", "DisableOrganizationAdminAccount", self._region,
+                DisableOrganizationAdminAccountResponse,
+                ("admin_account_id", ),
+                ("admin_account_id", ),
             )
             return _response
         _response = await self._native.disable_organization_admin_account(params)
@@ -879,6 +978,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_from_administrator_account, params, self._interceptors,
                 "guardduty", "DisassociateFromAdministratorAccount", self._region,
+                DisassociateFromAdministratorAccountResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.disassociate_from_administrator_account(params)
@@ -897,6 +999,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_from_master_account, params, self._interceptors,
                 "guardduty", "DisassociateFromMasterAccount", self._region,
+                DisassociateFromMasterAccountResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.disassociate_from_master_account(params)
@@ -917,6 +1022,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.disassociate_members, params, self._interceptors,
                 "guardduty", "DisassociateMembers", self._region,
+                DisassociateMembersResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.disassociate_members(params)
@@ -935,6 +1043,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.enable_organization_admin_account, params, self._interceptors,
                 "guardduty", "EnableOrganizationAdminAccount", self._region,
+                EnableOrganizationAdminAccountResponse,
+                ("admin_account_id", ),
+                ("admin_account_id", ),
             )
             return _response
         _response = await self._native.enable_organization_admin_account(params)
@@ -953,6 +1064,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_administrator_account, params, self._interceptors,
                 "guardduty", "GetAdministratorAccount", self._region,
+                GetAdministratorAccountResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.get_administrator_account(params)
@@ -976,6 +1090,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_coverage_statistics, params, self._interceptors,
                 "guardduty", "GetCoverageStatistics", self._region,
+                GetCoverageStatisticsResponse,
+                ("detector_id", "statistics_type", "filter_criteria", ),
+                ("detector_id", "statistics_type", ),
             )
             return _response
         _response = await self._native.get_coverage_statistics(params)
@@ -994,6 +1111,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule, params, self._interceptors,
                 "guardduty", "GetCustomDetectionRule", self._region,
+                GetCustomDetectionRuleResponse,
+                ("rule_id", ),
+                ("rule_id", ),
             )
             return _response
         _response = await self._native.get_custom_detection_rule(params)
@@ -1014,6 +1134,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule_association, params, self._interceptors,
                 "guardduty", "GetCustomDetectionRuleAssociation", self._region,
+                GetCustomDetectionRuleAssociationResponse,
+                ("rule_id", "association_id", ),
+                ("rule_id", "association_id", ),
             )
             return _response
         _response = await self._native.get_custom_detection_rule_association(params)
@@ -1034,6 +1157,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_custom_detection_rule_org_configuration, params, self._interceptors,
                 "guardduty", "GetCustomDetectionRuleOrgConfiguration", self._region,
+                GetCustomDetectionRuleOrgConfigurationResponse,
+                ("rule_id", "mode", ),
+                ("rule_id", "mode", ),
             )
             return _response
         _response = await self._native.get_custom_detection_rule_org_configuration(params)
@@ -1052,6 +1178,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_detector, params, self._interceptors,
                 "guardduty", "GetDetector", self._region,
+                GetDetectorResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.get_detector(params)
@@ -1072,6 +1201,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_filter, params, self._interceptors,
                 "guardduty", "GetFilter", self._region,
+                GetFilterResponse,
+                ("detector_id", "filter_name", ),
+                ("detector_id", "filter_name", ),
             )
             return _response
         _response = await self._native.get_filter(params)
@@ -1095,6 +1227,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_findings, params, self._interceptors,
                 "guardduty", "GetFindings", self._region,
+                GetFindingsResponse,
+                ("detector_id", "finding_ids", "sort_criteria", ),
+                ("detector_id", "finding_ids", ),
             )
             return _response
         _response = await self._native.get_findings(params)
@@ -1128,6 +1263,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_findings_statistics, params, self._interceptors,
                 "guardduty", "GetFindingsStatistics", self._region,
+                GetFindingsStatisticsResponse,
+                ("detector_id", "finding_statistic_types", "finding_criteria", "group_by", "order_by", "max_results", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.get_findings_statistics(params)
@@ -1148,6 +1286,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_ip_set, params, self._interceptors,
                 "guardduty", "GetIPSet", self._region,
+                GetIPSetResponse,
+                ("detector_id", "ip_set_id", ),
+                ("detector_id", "ip_set_id", ),
             )
             return _response
         _response = await self._native.get_ip_set(params)
@@ -1168,6 +1309,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_investigation, params, self._interceptors,
                 "guardduty", "GetInvestigation", self._region,
+                GetInvestigationResponse,
+                ("detector_id", "investigation_id", ),
+                ("detector_id", "investigation_id", ),
             )
             return _response
         _response = await self._native.get_investigation(params)
@@ -1183,6 +1327,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_invitations_count, params, self._interceptors,
                 "guardduty", "GetInvitationsCount", self._region,
+                GetInvitationsCountResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_invitations_count(params)
@@ -1201,6 +1348,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_protection_plan, params, self._interceptors,
                 "guardduty", "GetMalwareProtectionPlan", self._region,
+                GetMalwareProtectionPlanResponse,
+                ("malware_protection_plan_id", ),
+                ("malware_protection_plan_id", ),
             )
             return _response
         _response = await self._native.get_malware_protection_plan(params)
@@ -1219,6 +1369,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_scan, params, self._interceptors,
                 "guardduty", "GetMalwareScan", self._region,
+                GetMalwareScanResponse,
+                ("scan_id", ),
+                ("scan_id", ),
             )
             return _response
         _response = await self._native.get_malware_scan(params)
@@ -1237,6 +1390,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_malware_scan_settings, params, self._interceptors,
                 "guardduty", "GetMalwareScanSettings", self._region,
+                GetMalwareScanSettingsResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.get_malware_scan_settings(params)
@@ -1255,6 +1411,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_master_account, params, self._interceptors,
                 "guardduty", "GetMasterAccount", self._region,
+                GetMasterAccountResponse,
+                ("detector_id", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.get_master_account(params)
@@ -1275,6 +1434,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_member_detectors, params, self._interceptors,
                 "guardduty", "GetMemberDetectors", self._region,
+                GetMemberDetectorsResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.get_member_detectors(params)
@@ -1295,6 +1457,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_members, params, self._interceptors,
                 "guardduty", "GetMembers", self._region,
+                GetMembersResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.get_members(params)
@@ -1310,6 +1475,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_organization_statistics, params, self._interceptors,
                 "guardduty", "GetOrganizationStatistics", self._region,
+                GetOrganizationStatisticsResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_organization_statistics(params)
@@ -1330,6 +1498,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_remaining_free_trial_days, params, self._interceptors,
                 "guardduty", "GetRemainingFreeTrialDays", self._region,
+                GetRemainingFreeTrialDaysResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.get_remaining_free_trial_days(params)
@@ -1350,6 +1521,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_threat_entity_set, params, self._interceptors,
                 "guardduty", "GetThreatEntitySet", self._region,
+                GetThreatEntitySetResponse,
+                ("detector_id", "threat_entity_set_id", ),
+                ("detector_id", "threat_entity_set_id", ),
             )
             return _response
         _response = await self._native.get_threat_entity_set(params)
@@ -1370,6 +1544,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_threat_intel_set, params, self._interceptors,
                 "guardduty", "GetThreatIntelSet", self._region,
+                GetThreatIntelSetResponse,
+                ("detector_id", "threat_intel_set_id", ),
+                ("detector_id", "threat_intel_set_id", ),
             )
             return _response
         _response = await self._native.get_threat_intel_set(params)
@@ -1390,6 +1567,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_trusted_entity_set, params, self._interceptors,
                 "guardduty", "GetTrustedEntitySet", self._region,
+                GetTrustedEntitySetResponse,
+                ("detector_id", "trusted_entity_set_id", ),
+                ("detector_id", "trusted_entity_set_id", ),
             )
             return _response
         _response = await self._native.get_trusted_entity_set(params)
@@ -1421,6 +1601,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.get_usage_statistics, params, self._interceptors,
                 "guardduty", "GetUsageStatistics", self._region,
+                GetUsageStatisticsResponse,
+                ("detector_id", "usage_statistic_type", "usage_criteria", "unit", "max_results", "next_token", ),
+                ("detector_id", "usage_statistic_type", "usage_criteria", ),
             )
             return _response
         _response = await self._native.get_usage_statistics(params)
@@ -1447,6 +1630,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.invite_members, params, self._interceptors,
                 "guardduty", "InviteMembers", self._region,
+                InviteMembersResponse,
+                ("detector_id", "account_ids", "disable_email_notification", "message", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.invite_members(params)
@@ -1477,6 +1663,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_coverage, params, self._interceptors,
                 "guardduty", "ListCoverage", self._region,
+                ListCoverageResponse,
+                ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_coverage(params)
@@ -1505,6 +1694,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rule_associations, params, self._interceptors,
                 "guardduty", "ListCustomDetectionRuleAssociations", self._region,
+                ListCustomDetectionRuleAssociationsResponse,
+                ("max_results", "next_token", "rule_id", "mode", ),
+                (),
             )
             return _response
         _response = await self._native.list_custom_detection_rule_associations(params)
@@ -1530,6 +1722,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rule_org_configurations, params, self._interceptors,
                 "guardduty", "ListCustomDetectionRuleOrgConfigurations", self._region,
+                ListCustomDetectionRuleOrgConfigurationsResponse,
+                ("max_results", "next_token", "status", ),
+                (),
             )
             return _response
         _response = await self._native.list_custom_detection_rule_org_configurations(params)
@@ -1555,6 +1750,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_custom_detection_rules, params, self._interceptors,
                 "guardduty", "ListCustomDetectionRules", self._region,
+                ListCustomDetectionRulesResponse,
+                ("max_results", "next_token", "filters", ),
+                (),
             )
             return _response
         _response = await self._native.list_custom_detection_rules(params)
@@ -1577,6 +1775,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_detectors, params, self._interceptors,
                 "guardduty", "ListDetectors", self._region,
+                ListDetectorsResponse,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_detectors(params)
@@ -1601,6 +1802,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_filters, params, self._interceptors,
                 "guardduty", "ListFilters", self._region,
+                ListFiltersResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_filters(params)
@@ -1631,6 +1835,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_findings, params, self._interceptors,
                 "guardduty", "ListFindings", self._region,
+                ListFindingsResponse,
+                ("detector_id", "finding_criteria", "sort_criteria", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_findings(params)
@@ -1655,6 +1862,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_ip_sets, params, self._interceptors,
                 "guardduty", "ListIPSets", self._region,
+                ListIPSetsResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_ip_sets(params)
@@ -1682,6 +1892,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_investigations, params, self._interceptors,
                 "guardduty", "ListInvestigations", self._region,
+                ListInvestigationsResponse,
+                ("detector_id", "sort_criteria", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_investigations(params)
@@ -1704,6 +1917,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_invitations, params, self._interceptors,
                 "guardduty", "ListInvitations", self._region,
+                ListInvitationsResponse,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_invitations(params)
@@ -1723,6 +1939,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_malware_protection_plans, params, self._interceptors,
                 "guardduty", "ListMalwareProtectionPlans", self._region,
+                ListMalwareProtectionPlansResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_malware_protection_plans(params)
@@ -1751,6 +1970,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_malware_scans, params, self._interceptors,
                 "guardduty", "ListMalwareScans", self._region,
+                ListMalwareScansResponse,
+                ("max_results", "next_token", "filter_criteria", "sort_criteria", ),
+                (),
             )
             return _response
         _response = await self._native.list_malware_scans(params)
@@ -1778,6 +2000,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_members, params, self._interceptors,
                 "guardduty", "ListMembers", self._region,
+                ListMembersResponse,
+                ("detector_id", "max_results", "next_token", "only_associated", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_members(params)
@@ -1800,6 +2025,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_organization_admin_accounts, params, self._interceptors,
                 "guardduty", "ListOrganizationAdminAccounts", self._region,
+                ListOrganizationAdminAccountsResponse,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_organization_admin_accounts(params)
@@ -1824,6 +2052,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_publishing_destinations, params, self._interceptors,
                 "guardduty", "ListPublishingDestinations", self._region,
+                ListPublishingDestinationsResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_publishing_destinations(params)
@@ -1842,6 +2073,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "guardduty", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -1866,6 +2100,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_threat_entity_sets, params, self._interceptors,
                 "guardduty", "ListThreatEntitySets", self._region,
+                ListThreatEntitySetsResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_threat_entity_sets(params)
@@ -1890,6 +2127,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_threat_intel_sets, params, self._interceptors,
                 "guardduty", "ListThreatIntelSets", self._region,
+                ListThreatIntelSetsResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_threat_intel_sets(params)
@@ -1914,6 +2154,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.list_trusted_entity_sets, params, self._interceptors,
                 "guardduty", "ListTrustedEntitySets", self._region,
+                ListTrustedEntitySetsResponse,
+                ("detector_id", "max_results", "next_token", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.list_trusted_entity_sets(params)
@@ -1933,6 +2176,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.send_object_malware_scan, params, self._interceptors,
                 "guardduty", "SendObjectMalwareScan", self._region,
+                SendObjectMalwareScanResponse,
+                ("s3_object", ),
+                (),
             )
             return _response
         _response = await self._native.send_object_malware_scan(params)
@@ -1957,6 +2203,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.start_malware_scan, params, self._interceptors,
                 "guardduty", "StartMalwareScan", self._region,
+                StartMalwareScanResponse,
+                ("resource_arn", "client_token", "scan_configuration", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.start_malware_scan(params)
@@ -1977,6 +2226,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.start_monitoring_members, params, self._interceptors,
                 "guardduty", "StartMonitoringMembers", self._region,
+                StartMonitoringMembersResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.start_monitoring_members(params)
@@ -1997,6 +2249,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.stop_monitoring_members, params, self._interceptors,
                 "guardduty", "StopMonitoringMembers", self._region,
+                StopMonitoringMembersResponse,
+                ("detector_id", "account_ids", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.stop_monitoring_members(params)
@@ -2017,6 +2272,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "guardduty", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2037,6 +2295,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.unarchive_findings, params, self._interceptors,
                 "guardduty", "UnarchiveFindings", self._region,
+                UnarchiveFindingsResponse,
+                ("detector_id", "finding_ids", ),
+                ("detector_id", "finding_ids", ),
             )
             return _response
         _response = await self._native.unarchive_findings(params)
@@ -2057,6 +2318,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "guardduty", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -2079,6 +2343,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_custom_detection_rule_association, params, self._interceptors,
                 "guardduty", "UpdateCustomDetectionRuleAssociation", self._region,
+                UpdateCustomDetectionRuleAssociationResponse,
+                ("rule_id", "association_id", "mode", ),
+                ("rule_id", "association_id", "mode", ),
             )
             return _response
         _response = await self._native.update_custom_detection_rule_association(params)
@@ -2105,6 +2372,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_custom_detection_rule_org_configuration, params, self._interceptors,
                 "guardduty", "UpdateCustomDetectionRuleOrgConfiguration", self._region,
+                UpdateCustomDetectionRuleOrgConfigurationResponse,
+                ("rule_id", "mode", "include_account_ids", "exclude_account_ids", ),
+                ("rule_id", "mode", ),
             )
             return _response
         _response = await self._native.update_custom_detection_rule_org_configuration(params)
@@ -2135,6 +2405,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_detector, params, self._interceptors,
                 "guardduty", "UpdateDetector", self._region,
+                UpdateDetectorResponse,
+                ("detector_id", "enable", "finding_publishing_frequency", "data_sources", "features", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.update_detector(params)
@@ -2167,6 +2440,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_filter, params, self._interceptors,
                 "guardduty", "UpdateFilter", self._region,
+                UpdateFilterResponse,
+                ("detector_id", "filter_name", "description", "action", "rank", "finding_criteria", ),
+                ("detector_id", "filter_name", ),
             )
             return _response
         _response = await self._native.update_filter(params)
@@ -2192,6 +2468,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_findings_feedback, params, self._interceptors,
                 "guardduty", "UpdateFindingsFeedback", self._region,
+                UpdateFindingsFeedbackResponse,
+                ("detector_id", "finding_ids", "feedback", "comments", ),
+                ("detector_id", "finding_ids", "feedback", ),
             )
             return _response
         _response = await self._native.update_findings_feedback(params)
@@ -2224,6 +2503,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_ip_set, params, self._interceptors,
                 "guardduty", "UpdateIPSet", self._region,
+                UpdateIPSetResponse,
+                ("detector_id", "ip_set_id", "name", "location", "activate", "expected_bucket_owner", ),
+                ("detector_id", "ip_set_id", ),
             )
             return _response
         _response = await self._native.update_ip_set(params)
@@ -2251,6 +2533,9 @@ class GuardDutyClient:
             await invoke(
                 self._native.update_malware_protection_plan, params, self._interceptors,
                 "guardduty", "UpdateMalwareProtectionPlan", self._region,
+                type(None),
+                ("malware_protection_plan_id", "role", "actions", "protected_resource", ),
+                ("malware_protection_plan_id", ),
             )
             return None
         await self._native.update_malware_protection_plan(params)
@@ -2275,6 +2560,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_malware_scan_settings, params, self._interceptors,
                 "guardduty", "UpdateMalwareScanSettings", self._region,
+                UpdateMalwareScanSettingsResponse,
+                ("detector_id", "scan_resource_criteria", "ebs_snapshot_preservation", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.update_malware_scan_settings(params)
@@ -2301,6 +2589,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_member_detectors, params, self._interceptors,
                 "guardduty", "UpdateMemberDetectors", self._region,
+                UpdateMemberDetectorsResponse,
+                ("detector_id", "account_ids", "data_sources", "features", ),
+                ("detector_id", "account_ids", ),
             )
             return _response
         _response = await self._native.update_member_detectors(params)
@@ -2331,6 +2622,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_organization_configuration, params, self._interceptors,
                 "guardduty", "UpdateOrganizationConfiguration", self._region,
+                UpdateOrganizationConfigurationResponse,
+                ("detector_id", "auto_enable", "data_sources", "features", "auto_enable_organization_members", ),
+                ("detector_id", ),
             )
             return _response
         _response = await self._native.update_organization_configuration(params)
@@ -2354,6 +2648,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_publishing_destination, params, self._interceptors,
                 "guardduty", "UpdatePublishingDestination", self._region,
+                UpdatePublishingDestinationResponse,
+                ("detector_id", "destination_id", "destination_properties", ),
+                ("detector_id", "destination_id", ),
             )
             return _response
         _response = await self._native.update_publishing_destination(params)
@@ -2386,6 +2683,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_threat_entity_set, params, self._interceptors,
                 "guardduty", "UpdateThreatEntitySet", self._region,
+                UpdateThreatEntitySetResponse,
+                ("detector_id", "threat_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
+                ("detector_id", "threat_entity_set_id", ),
             )
             return _response
         _response = await self._native.update_threat_entity_set(params)
@@ -2418,6 +2718,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_threat_intel_set, params, self._interceptors,
                 "guardduty", "UpdateThreatIntelSet", self._region,
+                UpdateThreatIntelSetResponse,
+                ("detector_id", "threat_intel_set_id", "name", "location", "activate", "expected_bucket_owner", ),
+                ("detector_id", "threat_intel_set_id", ),
             )
             return _response
         _response = await self._native.update_threat_intel_set(params)
@@ -2450,6 +2753,9 @@ class GuardDutyClient:
             _response = await invoke(
                 self._native.update_trusted_entity_set, params, self._interceptors,
                 "guardduty", "UpdateTrustedEntitySet", self._region,
+                UpdateTrustedEntitySetResponse,
+                ("detector_id", "trusted_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
+                ("detector_id", "trusted_entity_set_id", ),
             )
             return _response
         _response = await self._native.update_trusted_entity_set(params)

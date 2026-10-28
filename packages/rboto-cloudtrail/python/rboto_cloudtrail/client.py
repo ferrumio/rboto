@@ -69,6 +69,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.add_tags, params, self._interceptors,
                 "cloudtrail", "AddTags", self._region,
+                AddTagsResponse,
+                ("resource_id", "tags_list", ),
+                ("resource_id", "tags_list", ),
             )
             return _response
         _response = await self._native.add_tags(params)
@@ -93,6 +96,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.cancel_query, params, self._interceptors,
                 "cloudtrail", "CancelQuery", self._region,
+                CancelQueryResponse,
+                ("query_id", "event_data_store", "event_data_store_owner_account_id", ),
+                ("query_id", ),
             )
             return _response
         _response = await self._native.cancel_query(params)
@@ -118,6 +124,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.create_channel, params, self._interceptors,
                 "cloudtrail", "CreateChannel", self._region,
+                CreateChannelResponse,
+                ("name", "source", "destinations", "tags", ),
+                ("name", "source", "destinations", ),
             )
             return _response
         _response = await self._native.create_channel(params)
@@ -148,6 +157,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.create_dashboard, params, self._interceptors,
                 "cloudtrail", "CreateDashboard", self._region,
+                CreateDashboardResponse,
+                ("name", "refresh_schedule", "tags_list", "termination_protection_enabled", "widgets", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_dashboard(params)
@@ -193,6 +205,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.create_event_data_store, params, self._interceptors,
                 "cloudtrail", "CreateEventDataStore", self._region,
+                CreateEventDataStoreResponse,
+                ("name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "tags_list", "kms_key_id", "start_ingestion", "billing_mode", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_event_data_store(params)
@@ -246,6 +261,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.create_trail, params, self._interceptors,
                 "cloudtrail", "CreateTrail", self._region,
+                CreateTrailResponse,
+                ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "tags_list", "recursive_logging", ),
+                ("name", "s3_bucket_name", ),
             )
             return _response
         _response = await self._native.create_trail(params)
@@ -264,6 +282,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.delete_channel, params, self._interceptors,
                 "cloudtrail", "DeleteChannel", self._region,
+                DeleteChannelResponse,
+                ("channel", ),
+                ("channel", ),
             )
             return _response
         _response = await self._native.delete_channel(params)
@@ -282,6 +303,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.delete_dashboard, params, self._interceptors,
                 "cloudtrail", "DeleteDashboard", self._region,
+                DeleteDashboardResponse,
+                ("dashboard_id", ),
+                ("dashboard_id", ),
             )
             return _response
         _response = await self._native.delete_dashboard(params)
@@ -300,6 +324,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.delete_event_data_store, params, self._interceptors,
                 "cloudtrail", "DeleteEventDataStore", self._region,
+                DeleteEventDataStoreResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.delete_event_data_store(params)
@@ -318,6 +345,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, self._interceptors,
                 "cloudtrail", "DeleteResourcePolicy", self._region,
+                DeleteResourcePolicyResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -336,6 +366,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.delete_trail, params, self._interceptors,
                 "cloudtrail", "DeleteTrail", self._region,
+                DeleteTrailResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_trail(params)
@@ -354,6 +387,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.deregister_organization_delegated_admin, params, self._interceptors,
                 "cloudtrail", "DeregisterOrganizationDelegatedAdmin", self._region,
+                DeregisterOrganizationDelegatedAdminResponse,
+                ("delegated_admin_account_id", ),
+                ("delegated_admin_account_id", ),
             )
             return _response
         _response = await self._native.deregister_organization_delegated_admin(params)
@@ -385,6 +421,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.describe_query, params, self._interceptors,
                 "cloudtrail", "DescribeQuery", self._region,
+                DescribeQueryResponse,
+                ("event_data_store", "query_id", "query_alias", "refresh_id", "event_data_store_owner_account_id", ),
+                (),
             )
             return _response
         _response = await self._native.describe_query(params)
@@ -407,6 +446,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.describe_trails, params, self._interceptors,
                 "cloudtrail", "DescribeTrails", self._region,
+                DescribeTrailsResponse,
+                ("trail_name_list", "include_shadow_trails", ),
+                (),
             )
             return _response
         _response = await self._native.describe_trails(params)
@@ -425,6 +467,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.disable_federation, params, self._interceptors,
                 "cloudtrail", "DisableFederation", self._region,
+                DisableFederationResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.disable_federation(params)
@@ -445,6 +490,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.enable_federation, params, self._interceptors,
                 "cloudtrail", "EnableFederation", self._region,
+                EnableFederationResponse,
+                ("event_data_store", "federation_role_arn", ),
+                ("event_data_store", "federation_role_arn", ),
             )
             return _response
         _response = await self._native.enable_federation(params)
@@ -465,6 +513,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.generate_query, params, self._interceptors,
                 "cloudtrail", "GenerateQuery", self._region,
+                GenerateQueryResponse,
+                ("event_data_stores", "prompt", ),
+                ("event_data_stores", "prompt", ),
             )
             return _response
         _response = await self._native.generate_query(params)
@@ -483,6 +534,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_channel, params, self._interceptors,
                 "cloudtrail", "GetChannel", self._region,
+                GetChannelResponse,
+                ("channel", ),
+                ("channel", ),
             )
             return _response
         _response = await self._native.get_channel(params)
@@ -501,6 +555,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_dashboard, params, self._interceptors,
                 "cloudtrail", "GetDashboard", self._region,
+                GetDashboardResponse,
+                ("dashboard_id", ),
+                ("dashboard_id", ),
             )
             return _response
         _response = await self._native.get_dashboard(params)
@@ -523,6 +580,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_event_configuration, params, self._interceptors,
                 "cloudtrail", "GetEventConfiguration", self._region,
+                GetEventConfigurationResponse,
+                ("trail_name", "event_data_store", ),
+                (),
             )
             return _response
         _response = await self._native.get_event_configuration(params)
@@ -541,6 +601,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_event_data_store, params, self._interceptors,
                 "cloudtrail", "GetEventDataStore", self._region,
+                GetEventDataStoreResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.get_event_data_store(params)
@@ -559,6 +622,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_event_selectors, params, self._interceptors,
                 "cloudtrail", "GetEventSelectors", self._region,
+                GetEventSelectorsResponse,
+                ("trail_name", ),
+                ("trail_name", ),
             )
             return _response
         _response = await self._native.get_event_selectors(params)
@@ -577,6 +643,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_import, params, self._interceptors,
                 "cloudtrail", "GetImport", self._region,
+                GetImportResponse,
+                ("import_id", ),
+                ("import_id", ),
             )
             return _response
         _response = await self._native.get_import(params)
@@ -599,6 +668,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_insight_selectors, params, self._interceptors,
                 "cloudtrail", "GetInsightSelectors", self._region,
+                GetInsightSelectorsResponse,
+                ("trail_name", "event_data_store", ),
+                (),
             )
             return _response
         _response = await self._native.get_insight_selectors(params)
@@ -629,6 +701,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_query_results, params, self._interceptors,
                 "cloudtrail", "GetQueryResults", self._region,
+                GetQueryResultsResponse,
+                ("query_id", "event_data_store", "next_token", "max_query_results", "event_data_store_owner_account_id", ),
+                ("query_id", ),
             )
             return _response
         _response = await self._native.get_query_results(params)
@@ -647,6 +722,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, self._interceptors,
                 "cloudtrail", "GetResourcePolicy", self._region,
+                GetResourcePolicyResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -665,6 +743,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_trail, params, self._interceptors,
                 "cloudtrail", "GetTrail", self._region,
+                GetTrailResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_trail(params)
@@ -683,6 +764,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.get_trail_status, params, self._interceptors,
                 "cloudtrail", "GetTrailStatus", self._region,
+                GetTrailStatusResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_trail_status(params)
@@ -705,6 +789,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_channels, params, self._interceptors,
                 "cloudtrail", "ListChannels", self._region,
+                ListChannelsResponse,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_channels(params)
@@ -733,6 +820,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_dashboards, params, self._interceptors,
                 "cloudtrail", "ListDashboards", self._region,
+                ListDashboardsResponse,
+                ("name_prefix", "type", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_dashboards(params)
@@ -755,6 +845,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_event_data_stores, params, self._interceptors,
                 "cloudtrail", "ListEventDataStores", self._region,
+                ListEventDataStoresResponse,
+                ("next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_event_data_stores(params)
@@ -779,6 +872,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_import_failures, params, self._interceptors,
                 "cloudtrail", "ListImportFailures", self._region,
+                ListImportFailuresResponse,
+                ("import_id", "max_results", "next_token", ),
+                ("import_id", ),
             )
             return _response
         _response = await self._native.list_import_failures(params)
@@ -807,6 +903,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_imports, params, self._interceptors,
                 "cloudtrail", "ListImports", self._region,
+                ListImportsResponse,
+                ("max_results", "destination", "import_status", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_imports(params)
@@ -842,6 +941,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_insights_data, params, self._interceptors,
                 "cloudtrail", "ListInsightsData", self._region,
+                ListInsightsDataResponse,
+                ("insight_source", "data_type", "dimensions", "start_time", "end_time", "max_results", "next_token", ),
+                ("insight_source", "data_type", ),
             )
             return _response
         _response = await self._native.list_insights_data(params)
@@ -888,6 +990,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_insights_metric_data, params, self._interceptors,
                 "cloudtrail", "ListInsightsMetricData", self._region,
+                ListInsightsMetricDataResponse,
+                ("event_source", "event_name", "insight_type", "trail_name", "error_code", "start_time", "end_time", "period", "data_type", "max_results", "next_token", ),
+                ("event_source", "event_name", "insight_type", ),
             )
             return _response
         _response = await self._native.list_insights_metric_data(params)
@@ -913,6 +1018,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_public_keys, params, self._interceptors,
                 "cloudtrail", "ListPublicKeys", self._region,
+                ListPublicKeysResponse,
+                ("start_time", "end_time", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_public_keys(params)
@@ -946,6 +1054,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_queries, params, self._interceptors,
                 "cloudtrail", "ListQueries", self._region,
+                ListQueriesResponse,
+                ("event_data_store", "next_token", "max_results", "start_time", "end_time", "query_status", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.list_queries(params)
@@ -967,6 +1078,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_tags, params, self._interceptors,
                 "cloudtrail", "ListTags", self._region,
+                ListTagsResponse,
+                ("resource_id_list", "next_token", ),
+                ("resource_id_list", ),
             )
             return _response
         _response = await self._native.list_tags(params)
@@ -986,6 +1100,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.list_trails, params, self._interceptors,
                 "cloudtrail", "ListTrails", self._region,
+                ListTrailsResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_trails(params)
@@ -1020,6 +1137,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.lookup_events, params, self._interceptors,
                 "cloudtrail", "LookupEvents", self._region,
+                LookupEventsResponse,
+                ("lookup_attributes", "start_time", "end_time", "event_category", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.lookup_events(params)
@@ -1051,6 +1171,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.put_event_configuration, params, self._interceptors,
                 "cloudtrail", "PutEventConfiguration", self._region,
+                PutEventConfigurationResponse,
+                ("trail_name", "event_data_store", "max_event_size", "context_key_selectors", "aggregation_configurations", ),
+                (),
             )
             return _response
         _response = await self._native.put_event_configuration(params)
@@ -1075,6 +1198,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.put_event_selectors, params, self._interceptors,
                 "cloudtrail", "PutEventSelectors", self._region,
+                PutEventSelectorsResponse,
+                ("trail_name", "event_selectors", "advanced_event_selectors", ),
+                ("trail_name", ),
             )
             return _response
         _response = await self._native.put_event_selectors(params)
@@ -1102,6 +1228,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.put_insight_selectors, params, self._interceptors,
                 "cloudtrail", "PutInsightSelectors", self._region,
+                PutInsightSelectorsResponse,
+                ("insight_selectors", "trail_name", "event_data_store", "insights_destination", ),
+                ("insight_selectors", ),
             )
             return _response
         _response = await self._native.put_insight_selectors(params)
@@ -1122,6 +1251,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, self._interceptors,
                 "cloudtrail", "PutResourcePolicy", self._region,
+                PutResourcePolicyResponse,
+                ("resource_arn", "resource_policy", ),
+                ("resource_arn", "resource_policy", ),
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -1140,6 +1272,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.register_organization_delegated_admin, params, self._interceptors,
                 "cloudtrail", "RegisterOrganizationDelegatedAdmin", self._region,
+                RegisterOrganizationDelegatedAdminResponse,
+                ("member_account_id", ),
+                ("member_account_id", ),
             )
             return _response
         _response = await self._native.register_organization_delegated_admin(params)
@@ -1160,6 +1295,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.remove_tags, params, self._interceptors,
                 "cloudtrail", "RemoveTags", self._region,
+                RemoveTagsResponse,
+                ("resource_id", "tags_list", ),
+                ("resource_id", "tags_list", ),
             )
             return _response
         _response = await self._native.remove_tags(params)
@@ -1178,6 +1316,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.restore_event_data_store, params, self._interceptors,
                 "cloudtrail", "RestoreEventDataStore", self._region,
+                RestoreEventDataStoreResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.restore_event_data_store(params)
@@ -1202,6 +1343,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.search_sample_queries, params, self._interceptors,
                 "cloudtrail", "SearchSampleQueries", self._region,
+                SearchSampleQueriesResponse,
+                ("search_phrase", "max_results", "next_token", ),
+                ("search_phrase", ),
             )
             return _response
         _response = await self._native.search_sample_queries(params)
@@ -1223,6 +1367,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.start_dashboard_refresh, params, self._interceptors,
                 "cloudtrail", "StartDashboardRefresh", self._region,
+                StartDashboardRefreshResponse,
+                ("dashboard_id", "query_parameter_values", ),
+                ("dashboard_id", ),
             )
             return _response
         _response = await self._native.start_dashboard_refresh(params)
@@ -1241,6 +1388,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.start_event_data_store_ingestion, params, self._interceptors,
                 "cloudtrail", "StartEventDataStoreIngestion", self._region,
+                StartEventDataStoreIngestionResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.start_event_data_store_ingestion(params)
@@ -1272,6 +1422,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.start_import, params, self._interceptors,
                 "cloudtrail", "StartImport", self._region,
+                StartImportResponse,
+                ("destinations", "import_source", "start_event_time", "end_event_time", "import_id", ),
+                (),
             )
             return _response
         _response = await self._native.start_import(params)
@@ -1290,6 +1443,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.start_logging, params, self._interceptors,
                 "cloudtrail", "StartLogging", self._region,
+                StartLoggingResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.start_logging(params)
@@ -1321,6 +1477,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.start_query, params, self._interceptors,
                 "cloudtrail", "StartQuery", self._region,
+                StartQueryResponse,
+                ("query_statement", "delivery_s3_uri", "query_alias", "query_parameters", "event_data_store_owner_account_id", ),
+                (),
             )
             return _response
         _response = await self._native.start_query(params)
@@ -1339,6 +1498,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.stop_event_data_store_ingestion, params, self._interceptors,
                 "cloudtrail", "StopEventDataStoreIngestion", self._region,
+                StopEventDataStoreIngestionResponse,
+                ("event_data_store", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.stop_event_data_store_ingestion(params)
@@ -1357,6 +1519,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.stop_import, params, self._interceptors,
                 "cloudtrail", "StopImport", self._region,
+                StopImportResponse,
+                ("import_id", ),
+                ("import_id", ),
             )
             return _response
         _response = await self._native.stop_import(params)
@@ -1375,6 +1540,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.stop_logging, params, self._interceptors,
                 "cloudtrail", "StopLogging", self._region,
+                StopLoggingResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.stop_logging(params)
@@ -1399,6 +1567,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.update_channel, params, self._interceptors,
                 "cloudtrail", "UpdateChannel", self._region,
+                UpdateChannelResponse,
+                ("channel", "destinations", "name", ),
+                ("channel", ),
             )
             return _response
         _response = await self._native.update_channel(params)
@@ -1426,6 +1597,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.update_dashboard, params, self._interceptors,
                 "cloudtrail", "UpdateDashboard", self._region,
+                UpdateDashboardResponse,
+                ("dashboard_id", "widgets", "refresh_schedule", "termination_protection_enabled", ),
+                ("dashboard_id", ),
             )
             return _response
         _response = await self._native.update_dashboard(params)
@@ -1468,6 +1642,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.update_event_data_store, params, self._interceptors,
                 "cloudtrail", "UpdateEventDataStore", self._region,
+                UpdateEventDataStoreResponse,
+                ("event_data_store", "name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "kms_key_id", "billing_mode", ),
+                ("event_data_store", ),
             )
             return _response
         _response = await self._native.update_event_data_store(params)
@@ -1519,6 +1696,9 @@ class CloudTrailClient:
             _response = await invoke(
                 self._native.update_trail, params, self._interceptors,
                 "cloudtrail", "UpdateTrail", self._region,
+                UpdateTrailResponse,
+                ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "recursive_logging", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.update_trail(params)

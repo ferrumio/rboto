@@ -51,6 +51,9 @@ class {{ client_class }}:
 {% else %}            _response = await invoke(
 {% endif %}                self._native.{{ method.name }}, params, self._interceptors,
                 "{{ service_id }}", "{{ method.operation_name }}", self._region,
+                {% if method.native_output %}{{ method.output }}{% elif method.output == "None" %}type(None){% else %}dict{% endif %},
+                ({% for parameter in method.parameters %}"{{ parameter.key }}", {% endfor %}),
+                ({% for parameter in method.parameters %}{% if parameter.required %}"{{ parameter.key }}", {% endif %}{% endfor %}),
             )
 {% if method.output == "None" %}            return None
 {% elif native_outputs %}            return _response

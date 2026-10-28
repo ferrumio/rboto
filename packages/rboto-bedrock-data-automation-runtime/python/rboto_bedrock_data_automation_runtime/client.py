@@ -54,6 +54,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.get_data_automation_status, params, self._interceptors,
                 "bedrock-data-automation-runtime", "GetDataAutomationStatus", self._region,
+                GetDataAutomationStatusResponse,
+                ("invocation_arn", ),
+                ("invocation_arn", ),
             )
             return _response
         _response = await self._native.get_data_automation_status(params)
@@ -86,6 +89,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.invoke_data_automation, params, self._interceptors,
                 "bedrock-data-automation-runtime", "InvokeDataAutomation", self._region,
+                InvokeDataAutomationResponse,
+                ("input_configuration", "data_automation_profile_arn", "data_automation_configuration", "blueprints", "encryption_configuration", "output_configuration", ),
+                ("input_configuration", "data_automation_profile_arn", ),
             )
             return _response
         _response = await self._native.invoke_data_automation(params)
@@ -126,6 +132,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.invoke_data_automation_async, params, self._interceptors,
                 "bedrock-data-automation-runtime", "InvokeDataAutomationAsync", self._region,
+                InvokeDataAutomationAsyncResponse,
+                ("input_configuration", "output_configuration", "data_automation_profile_arn", "client_token", "data_automation_configuration", "encryption_configuration", "notification_configuration", "blueprints", "tags", ),
+                ("input_configuration", "output_configuration", "data_automation_profile_arn", ),
             )
             return _response
         _response = await self._native.invoke_data_automation_async(params)
@@ -144,6 +153,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "bedrock-data-automation-runtime", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -164,6 +176,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "bedrock-data-automation-runtime", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -184,6 +199,9 @@ class BedrockDataAutomationRuntimeClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "bedrock-data-automation-runtime", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)

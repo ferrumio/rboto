@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import pytest
-from rboto import OperationEvent
+from rboto import Next, OperationRequest, OperationResponse
 
 SELECTED = set(filter(None, os.environ.get("RBOTO_TEST_SERVICES", "").split(",")))
 
@@ -303,11 +303,16 @@ async def test_input_and_output_event_streams_advance_concurrently(
         await released.wait()
         yield {"chunk": {"bytes": b"second"}}
 
-    observations: list[OperationEvent] = []
+    observations: list[OperationRequest] = []
+
+    async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+        observations.append(request)
+        return await call_next(request)
+
     client = bedrock_runtime(
         region="us-east-1",
         endpoint_url=peer.endpoint,
-        interceptors=[observations.append] if observed else (),
+        interceptors=[middleware] if observed else (),
     )
     async with asyncio.timeout(15):
         response = await client.invoke_model_with_bidirectional_stream(
@@ -325,8 +330,8 @@ async def test_input_and_output_event_streams_advance_concurrently(
     assert base64.b64encode(b"first") in peer.requests[0][1]
     assert base64.b64encode(b"second") in peer.requests[0][1]
     if observed:
-        assert [event.phase for event in observations] == ["start", "success"]
-        assert observations[-1].attempt_count == 1
+        assert len(observations) == 1 and observations[0].metadata.dispatched
+        assert observations[-1].metadata.attempt_count == 1
 
 
 @pytest.mark.asyncio
@@ -338,11 +343,16 @@ async def test_modeled_event_stream_errors_are_catchable(peer: Peer, observed: b
 
     peer.content_type = "application/vnd.amazon.eventstream"
     peer.body = event_frame("validationException", {"message": "invalid stream"}, exception=True)
-    observations: list[OperationEvent] = []
+    observations: list[OperationRequest] = []
+
+    async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+        observations.append(request)
+        return await call_next(request)
+
     client = bedrock_runtime(
         region="us-east-1",
         endpoint_url=peer.endpoint,
-        interceptors=[observations.append] if observed else (),
+        interceptors=[middleware] if observed else (),
     )
     response = await client.invoke_model_with_response_stream(model_id="example", body=b"{}")
     with pytest.raises(ValidationError, match="invalid stream"):
@@ -350,7 +360,7 @@ async def test_modeled_event_stream_errors_are_catchable(peer: Peer, observed: b
     with pytest.raises(StopAsyncIteration):
         await anext(response["body"])
     if observed:
-        assert [event.phase for event in observations] == ["start", "success"]
+        assert len(observations) == 1 and observations[0].metadata.dispatched
 
 
 @pytest.mark.asyncio

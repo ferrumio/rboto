@@ -120,6 +120,9 @@ class S3Client:
             _response = await invoke(
                 self._native.abort_multipart_upload, params, self._interceptors,
                 "s3", "AbortMultipartUpload", self._region,
+                AbortMultipartUploadOutput,
+                ("bucket", "key", "upload_id", "request_payer", "expected_bucket_owner", "if_match_initiated_time", ),
+                ("bucket", "key", "upload_id", ),
             )
             return _response
         _response = await self._native.abort_multipart_upload(params)
@@ -202,6 +205,9 @@ class S3Client:
             _response = await invoke(
                 self._native.complete_multipart_upload, params, self._interceptors,
                 "s3", "CompleteMultipartUpload", self._region,
+                CompleteMultipartUploadOutput,
+                ("bucket", "key", "upload_id", "multipart_upload", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "checksum_type", "mpu_object_size", "request_payer", "expected_bucket_owner", "if_match", "if_none_match", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", ),
+                ("bucket", "key", "upload_id", ),
             )
             return _response
         _response = await self._native.complete_multipart_upload(params)
@@ -356,6 +362,9 @@ class S3Client:
             _response = await invoke(
                 self._native.copy_object, params, self._interceptors,
                 "s3", "CopyObject", self._region,
+                CopyObjectOutput,
+                ("bucket", "copy_source", "key", "acl", "cache_control", "checksum_algorithm", "content_disposition", "content_encoding", "content_language", "content_type", "copy_source_if_match", "copy_source_if_modified_since", "copy_source_if_none_match", "copy_source_if_unmodified_since", "expires", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "if_match", "if_none_match", "metadata", "metadata_directive", "tagging_directive", "annotation_directive", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "copy_source_sse_customer_algorithm", "copy_source_sse_customer_key", "copy_source_sse_customer_key_md5", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", "expected_source_bucket_owner", ),
+                ("bucket", "copy_source", "key", ),
             )
             return _response
         _response = await self._native.copy_object(params)
@@ -404,6 +413,9 @@ class S3Client:
             _response = await invoke(
                 self._native.create_bucket, params, self._interceptors,
                 "s3", "CreateBucket", self._region,
+                CreateBucketOutput,
+                ("bucket", "acl", "create_bucket_configuration", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "object_lock_enabled_for_bucket", "object_ownership", "bucket_namespace", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.create_bucket(params)
@@ -433,6 +445,9 @@ class S3Client:
             await invoke(
                 self._native.create_bucket_metadata_configuration, params, self._interceptors,
                 "s3", "CreateBucketMetadataConfiguration", self._region,
+                type(None),
+                ("bucket", "metadata_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "metadata_configuration", ),
             )
             return None
         await self._native.create_bucket_metadata_configuration(params)
@@ -462,6 +477,9 @@ class S3Client:
             await invoke(
                 self._native.create_bucket_metadata_table_configuration, params, self._interceptors,
                 "s3", "CreateBucketMetadataTableConfiguration", self._region,
+                type(None),
+                ("bucket", "metadata_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "metadata_table_configuration", ),
             )
             return None
         await self._native.create_bucket_metadata_table_configuration(params)
@@ -578,6 +596,9 @@ class S3Client:
             _response = await invoke(
                 self._native.create_multipart_upload, params, self._interceptors,
                 "s3", "CreateMultipartUpload", self._region,
+                CreateMultipartUploadOutput,
+                ("bucket", "key", "acl", "cache_control", "content_disposition", "content_encoding", "content_language", "content_type", "expires", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "metadata", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", "checksum_algorithm", "checksum_type", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.create_multipart_upload(params)
@@ -611,6 +632,9 @@ class S3Client:
             _response = await invoke(
                 self._native.create_session, params, self._interceptors,
                 "s3", "CreateSession", self._region,
+                CreateSessionOutput,
+                ("bucket", "session_mode", "server_side_encryption", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.create_session(params)
@@ -632,6 +656,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket, params, self._interceptors,
                 "s3", "DeleteBucket", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket(params)
@@ -655,6 +682,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_analytics_configuration, params, self._interceptors,
                 "s3", "DeleteBucketAnalyticsConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return None
         await self._native.delete_bucket_analytics_configuration(params)
@@ -676,6 +706,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_cors, params, self._interceptors,
                 "s3", "DeleteBucketCors", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_cors(params)
@@ -697,6 +730,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_encryption, params, self._interceptors,
                 "s3", "DeleteBucketEncryption", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_encryption(params)
@@ -720,6 +756,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_intelligent_tiering_configuration, params, self._interceptors,
                 "s3", "DeleteBucketIntelligentTieringConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return None
         await self._native.delete_bucket_intelligent_tiering_configuration(params)
@@ -743,6 +782,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_inventory_configuration, params, self._interceptors,
                 "s3", "DeleteBucketInventoryConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return None
         await self._native.delete_bucket_inventory_configuration(params)
@@ -764,6 +806,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_lifecycle, params, self._interceptors,
                 "s3", "DeleteBucketLifecycle", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_lifecycle(params)
@@ -785,6 +830,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_metadata_configuration, params, self._interceptors,
                 "s3", "DeleteBucketMetadataConfiguration", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_metadata_configuration(params)
@@ -806,6 +854,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_metadata_table_configuration, params, self._interceptors,
                 "s3", "DeleteBucketMetadataTableConfiguration", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_metadata_table_configuration(params)
@@ -829,6 +880,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_metrics_configuration, params, self._interceptors,
                 "s3", "DeleteBucketMetricsConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return None
         await self._native.delete_bucket_metrics_configuration(params)
@@ -850,6 +904,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_ownership_controls, params, self._interceptors,
                 "s3", "DeleteBucketOwnershipControls", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_ownership_controls(params)
@@ -871,6 +928,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_policy, params, self._interceptors,
                 "s3", "DeleteBucketPolicy", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_policy(params)
@@ -892,6 +952,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_replication, params, self._interceptors,
                 "s3", "DeleteBucketReplication", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_replication(params)
@@ -913,6 +976,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_tagging, params, self._interceptors,
                 "s3", "DeleteBucketTagging", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_tagging(params)
@@ -934,6 +1000,9 @@ class S3Client:
             await invoke(
                 self._native.delete_bucket_website, params, self._interceptors,
                 "s3", "DeleteBucketWebsite", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_bucket_website(params)
@@ -978,6 +1047,9 @@ class S3Client:
             _response = await invoke(
                 self._native.delete_object, params, self._interceptors,
                 "s3", "DeleteObject", self._region,
+                DeleteObjectOutput,
+                ("bucket", "key", "mfa", "version_id", "request_payer", "bypass_governance_retention", "expected_bucket_owner", "if_match", "if_match_last_modified_time", "if_match_size", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.delete_object(params)
@@ -1012,6 +1084,9 @@ class S3Client:
             _response = await invoke(
                 self._native.delete_object_annotation, params, self._interceptors,
                 "s3", "DeleteObjectAnnotation", self._region,
+                DeleteObjectAnnotationOutput,
+                ("bucket", "key", "annotation_name", "version_id", "request_payer", "expected_bucket_owner", "object_if_match", ),
+                ("bucket", "key", "annotation_name", ),
             )
             return _response
         _response = await self._native.delete_object_annotation(params)
@@ -1038,6 +1113,9 @@ class S3Client:
             _response = await invoke(
                 self._native.delete_object_tagging, params, self._interceptors,
                 "s3", "DeleteObjectTagging", self._region,
+                DeleteObjectTaggingOutput,
+                ("bucket", "key", "version_id", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.delete_object_tagging(params)
@@ -1073,6 +1151,9 @@ class S3Client:
             _response = await invoke(
                 self._native.delete_objects, params, self._interceptors,
                 "s3", "DeleteObjects", self._region,
+                DeleteObjectsOutput,
+                ("bucket", "delete", "mfa", "request_payer", "bypass_governance_retention", "expected_bucket_owner", "checksum_algorithm", ),
+                ("bucket", "delete", ),
             )
             return _response
         _response = await self._native.delete_objects(params)
@@ -1094,6 +1175,9 @@ class S3Client:
             await invoke(
                 self._native.delete_public_access_block, params, self._interceptors,
                 "s3", "DeletePublicAccessBlock", self._region,
+                type(None),
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.delete_public_access_block(params)
@@ -1115,6 +1199,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_abac, params, self._interceptors,
                 "s3", "GetBucketAbac", self._region,
+                GetBucketAbacOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_abac(params)
@@ -1139,6 +1226,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_accelerate_configuration, params, self._interceptors,
                 "s3", "GetBucketAccelerateConfiguration", self._region,
+                GetBucketAccelerateConfigurationOutput,
+                ("bucket", "expected_bucket_owner", "request_payer", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_accelerate_configuration(params)
@@ -1160,6 +1250,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_acl, params, self._interceptors,
                 "s3", "GetBucketAcl", self._region,
+                GetBucketAclOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_acl(params)
@@ -1183,6 +1276,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_analytics_configuration, params, self._interceptors,
                 "s3", "GetBucketAnalyticsConfiguration", self._region,
+                GetBucketAnalyticsConfigurationOutput,
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return _response
         _response = await self._native.get_bucket_analytics_configuration(params)
@@ -1204,6 +1300,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_cors, params, self._interceptors,
                 "s3", "GetBucketCors", self._region,
+                GetBucketCorsOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_cors(params)
@@ -1225,6 +1324,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_encryption, params, self._interceptors,
                 "s3", "GetBucketEncryption", self._region,
+                GetBucketEncryptionOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_encryption(params)
@@ -1248,6 +1350,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_intelligent_tiering_configuration, params, self._interceptors,
                 "s3", "GetBucketIntelligentTieringConfiguration", self._region,
+                GetBucketIntelligentTieringConfigurationOutput,
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return _response
         _response = await self._native.get_bucket_intelligent_tiering_configuration(params)
@@ -1271,6 +1376,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_inventory_configuration, params, self._interceptors,
                 "s3", "GetBucketInventoryConfiguration", self._region,
+                GetBucketInventoryConfigurationOutput,
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return _response
         _response = await self._native.get_bucket_inventory_configuration(params)
@@ -1292,6 +1400,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_lifecycle_configuration, params, self._interceptors,
                 "s3", "GetBucketLifecycleConfiguration", self._region,
+                GetBucketLifecycleConfigurationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_lifecycle_configuration(params)
@@ -1313,6 +1424,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_location, params, self._interceptors,
                 "s3", "GetBucketLocation", self._region,
+                GetBucketLocationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_location(params)
@@ -1334,6 +1448,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_logging, params, self._interceptors,
                 "s3", "GetBucketLogging", self._region,
+                GetBucketLoggingOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_logging(params)
@@ -1355,6 +1472,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_metadata_configuration, params, self._interceptors,
                 "s3", "GetBucketMetadataConfiguration", self._region,
+                GetBucketMetadataConfigurationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_metadata_configuration(params)
@@ -1376,6 +1496,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_metadata_table_configuration, params, self._interceptors,
                 "s3", "GetBucketMetadataTableConfiguration", self._region,
+                GetBucketMetadataTableConfigurationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_metadata_table_configuration(params)
@@ -1399,6 +1522,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_metrics_configuration, params, self._interceptors,
                 "s3", "GetBucketMetricsConfiguration", self._region,
+                GetBucketMetricsConfigurationOutput,
+                ("bucket", "id", "expected_bucket_owner", ),
+                ("bucket", "id", ),
             )
             return _response
         _response = await self._native.get_bucket_metrics_configuration(params)
@@ -1420,6 +1546,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_notification_configuration, params, self._interceptors,
                 "s3", "GetBucketNotificationConfiguration", self._region,
+                GetBucketNotificationConfigurationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_notification_configuration(params)
@@ -1441,6 +1570,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_ownership_controls, params, self._interceptors,
                 "s3", "GetBucketOwnershipControls", self._region,
+                GetBucketOwnershipControlsOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_ownership_controls(params)
@@ -1462,6 +1594,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_policy, params, self._interceptors,
                 "s3", "GetBucketPolicy", self._region,
+                GetBucketPolicyOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_policy(params)
@@ -1483,6 +1618,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_policy_status, params, self._interceptors,
                 "s3", "GetBucketPolicyStatus", self._region,
+                GetBucketPolicyStatusOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_policy_status(params)
@@ -1504,6 +1642,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_replication, params, self._interceptors,
                 "s3", "GetBucketReplication", self._region,
+                GetBucketReplicationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_replication(params)
@@ -1525,6 +1666,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_request_payment, params, self._interceptors,
                 "s3", "GetBucketRequestPayment", self._region,
+                GetBucketRequestPaymentOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_request_payment(params)
@@ -1546,6 +1690,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_tagging, params, self._interceptors,
                 "s3", "GetBucketTagging", self._region,
+                GetBucketTaggingOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_tagging(params)
@@ -1567,6 +1714,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_versioning, params, self._interceptors,
                 "s3", "GetBucketVersioning", self._region,
+                GetBucketVersioningOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_versioning(params)
@@ -1588,6 +1738,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_bucket_website, params, self._interceptors,
                 "s3", "GetBucketWebsite", self._region,
+                GetBucketWebsiteOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_bucket_website(params)
@@ -1665,6 +1818,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object, params, self._interceptors,
                 "s3", "GetObject", self._region,
+                GetObjectOutput,
+                ("bucket", "key", "if_match", "if_modified_since", "if_none_match", "if_unmodified_since", "range", "response_cache_control", "response_content_disposition", "response_content_encoding", "response_content_language", "response_content_type", "response_expires", "version_id", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "part_number", "expected_bucket_owner", "checksum_mode", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object(params)
@@ -1694,6 +1850,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_acl, params, self._interceptors,
                 "s3", "GetObjectAcl", self._region,
+                GetObjectAclOutput,
+                ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object_acl(params)
@@ -1728,6 +1887,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_annotation, params, self._interceptors,
                 "s3", "GetObjectAnnotation", self._region,
+                GetObjectAnnotationOutput,
+                ("bucket", "key", "annotation_name", "version_id", "request_payer", "expected_bucket_owner", "checksum_mode", ),
+                ("bucket", "key", "annotation_name", ),
             )
             return _response
         _response = await self._native.get_object_annotation(params)
@@ -1774,6 +1936,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_attributes, params, self._interceptors,
                 "s3", "GetObjectAttributes", self._region,
+                GetObjectAttributesOutput,
+                ("bucket", "key", "object_attributes", "version_id", "max_parts", "part_number_marker", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", "object_attributes", ),
             )
             return _response
         _response = await self._native.get_object_attributes(params)
@@ -1803,6 +1968,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_legal_hold, params, self._interceptors,
                 "s3", "GetObjectLegalHold", self._region,
+                GetObjectLegalHoldOutput,
+                ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object_legal_hold(params)
@@ -1824,6 +1992,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_lock_configuration, params, self._interceptors,
                 "s3", "GetObjectLockConfiguration", self._region,
+                GetObjectLockConfigurationOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_object_lock_configuration(params)
@@ -1853,6 +2024,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_retention, params, self._interceptors,
                 "s3", "GetObjectRetention", self._region,
+                GetObjectRetentionOutput,
+                ("bucket", "key", "version_id", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object_retention(params)
@@ -1882,6 +2056,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_tagging, params, self._interceptors,
                 "s3", "GetObjectTagging", self._region,
+                GetObjectTaggingOutput,
+                ("bucket", "key", "version_id", "expected_bucket_owner", "request_payer", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object_tagging(params)
@@ -1908,6 +2085,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_object_torrent, params, self._interceptors,
                 "s3", "GetObjectTorrent", self._region,
+                GetObjectTorrentOutput,
+                ("bucket", "key", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.get_object_torrent(params)
@@ -1929,6 +2109,9 @@ class S3Client:
             _response = await invoke(
                 self._native.get_public_access_block, params, self._interceptors,
                 "s3", "GetPublicAccessBlock", self._region,
+                GetPublicAccessBlockOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.get_public_access_block(params)
@@ -1950,6 +2133,9 @@ class S3Client:
             _response = await invoke(
                 self._native.head_bucket, params, self._interceptors,
                 "s3", "HeadBucket", self._region,
+                HeadBucketOutput,
+                ("bucket", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.head_bucket(params)
@@ -2027,6 +2213,9 @@ class S3Client:
             _response = await invoke(
                 self._native.head_object, params, self._interceptors,
                 "s3", "HeadObject", self._region,
+                HeadObjectOutput,
+                ("bucket", "key", "if_match", "if_modified_since", "if_none_match", "if_unmodified_since", "range", "response_cache_control", "response_content_disposition", "response_content_encoding", "response_content_language", "response_content_type", "response_expires", "version_id", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "part_number", "expected_bucket_owner", "checksum_mode", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.head_object(params)
@@ -2051,6 +2240,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_bucket_analytics_configurations, params, self._interceptors,
                 "s3", "ListBucketAnalyticsConfigurations", self._region,
+                ListBucketAnalyticsConfigurationsOutput,
+                ("bucket", "continuation_token", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_bucket_analytics_configurations(params)
@@ -2075,6 +2267,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_bucket_intelligent_tiering_configurations, params, self._interceptors,
                 "s3", "ListBucketIntelligentTieringConfigurations", self._region,
+                ListBucketIntelligentTieringConfigurationsOutput,
+                ("bucket", "continuation_token", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_bucket_intelligent_tiering_configurations(params)
@@ -2099,6 +2294,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_bucket_inventory_configurations, params, self._interceptors,
                 "s3", "ListBucketInventoryConfigurations", self._region,
+                ListBucketInventoryConfigurationsOutput,
+                ("bucket", "continuation_token", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_bucket_inventory_configurations(params)
@@ -2123,6 +2321,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_bucket_metrics_configurations, params, self._interceptors,
                 "s3", "ListBucketMetricsConfigurations", self._region,
+                ListBucketMetricsConfigurationsOutput,
+                ("bucket", "continuation_token", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_bucket_metrics_configurations(params)
@@ -2151,6 +2352,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_buckets, params, self._interceptors,
                 "s3", "ListBuckets", self._region,
+                ListBucketsOutput,
+                ("max_buckets", "continuation_token", "prefix", "bucket_region", ),
+                (),
             )
             return _response
         _response = await self._native.list_buckets(params)
@@ -2173,6 +2377,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_directory_buckets, params, self._interceptors,
                 "s3", "ListDirectoryBuckets", self._region,
+                ListDirectoryBucketsOutput,
+                ("continuation_token", "max_directory_buckets", ),
+                (),
             )
             return _response
         _response = await self._native.list_directory_buckets(params)
@@ -2215,6 +2422,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_multipart_uploads, params, self._interceptors,
                 "s3", "ListMultipartUploads", self._region,
+                ListMultipartUploadsOutput,
+                ("bucket", "delimiter", "encoding_type", "key_marker", "max_uploads", "prefix", "upload_id_marker", "expected_bucket_owner", "request_payer", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_multipart_uploads(params)
@@ -2253,6 +2463,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_object_annotations, params, self._interceptors,
                 "s3", "ListObjectAnnotations", self._region,
+                ListObjectAnnotationsOutput,
+                ("bucket", "key", "version_id", "max_annotation_results", "annotation_prefix", "continuation_token", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.list_object_annotations(params)
@@ -2298,6 +2511,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_object_versions, params, self._interceptors,
                 "s3", "ListObjectVersions", self._region,
+                ListObjectVersionsOutput,
+                ("bucket", "delimiter", "encoding_type", "key_marker", "max_keys", "prefix", "version_id_marker", "expected_bucket_owner", "request_payer", "optional_object_attributes", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_object_versions(params)
@@ -2340,6 +2556,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_objects, params, self._interceptors,
                 "s3", "ListObjects", self._region,
+                ListObjectsOutput,
+                ("bucket", "delimiter", "encoding_type", "marker", "max_keys", "prefix", "request_payer", "expected_bucket_owner", "optional_object_attributes", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_objects(params)
@@ -2388,6 +2607,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_objects_v2, params, self._interceptors,
                 "s3", "ListObjectsV2", self._region,
+                ListObjectsV2Output,
+                ("bucket", "delimiter", "encoding_type", "max_keys", "prefix", "continuation_token", "fetch_owner", "start_after", "request_payer", "expected_bucket_owner", "optional_object_attributes", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.list_objects_v2(params)
@@ -2431,6 +2653,9 @@ class S3Client:
             _response = await invoke(
                 self._native.list_parts, params, self._interceptors,
                 "s3", "ListParts", self._region,
+                ListPartsOutput,
+                ("bucket", "key", "upload_id", "max_parts", "part_number_marker", "request_payer", "expected_bucket_owner", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", ),
+                ("bucket", "key", "upload_id", ),
             )
             return _response
         _response = await self._native.list_parts(params)
@@ -2460,6 +2685,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_abac, params, self._interceptors,
                 "s3", "PutBucketAbac", self._region,
+                type(None),
+                ("bucket", "abac_status", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "abac_status", ),
             )
             return None
         await self._native.put_bucket_abac(params)
@@ -2486,6 +2714,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_accelerate_configuration, params, self._interceptors,
                 "s3", "PutBucketAccelerateConfiguration", self._region,
+                type(None),
+                ("bucket", "accelerate_configuration", "expected_bucket_owner", "checksum_algorithm", ),
+                ("bucket", "accelerate_configuration", ),
             )
             return None
         await self._native.put_bucket_accelerate_configuration(params)
@@ -2534,6 +2765,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_acl, params, self._interceptors,
                 "s3", "PutBucketAcl", self._region,
+                type(None),
+                ("bucket", "acl", "access_control_policy", "content_md5", "checksum_algorithm", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return None
         await self._native.put_bucket_acl(params)
@@ -2559,6 +2793,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_analytics_configuration, params, self._interceptors,
                 "s3", "PutBucketAnalyticsConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "analytics_configuration", "expected_bucket_owner", ),
+                ("bucket", "id", "analytics_configuration", ),
             )
             return None
         await self._native.put_bucket_analytics_configuration(params)
@@ -2588,6 +2825,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_cors, params, self._interceptors,
                 "s3", "PutBucketCors", self._region,
+                type(None),
+                ("bucket", "cors_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "cors_configuration", ),
             )
             return None
         await self._native.put_bucket_cors(params)
@@ -2617,6 +2857,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_encryption, params, self._interceptors,
                 "s3", "PutBucketEncryption", self._region,
+                type(None),
+                ("bucket", "server_side_encryption_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "server_side_encryption_configuration", ),
             )
             return None
         await self._native.put_bucket_encryption(params)
@@ -2642,6 +2885,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_intelligent_tiering_configuration, params, self._interceptors,
                 "s3", "PutBucketIntelligentTieringConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "intelligent_tiering_configuration", "expected_bucket_owner", ),
+                ("bucket", "id", "intelligent_tiering_configuration", ),
             )
             return None
         await self._native.put_bucket_intelligent_tiering_configuration(params)
@@ -2667,6 +2913,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_inventory_configuration, params, self._interceptors,
                 "s3", "PutBucketInventoryConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "inventory_configuration", "expected_bucket_owner", ),
+                ("bucket", "id", "inventory_configuration", ),
             )
             return None
         await self._native.put_bucket_inventory_configuration(params)
@@ -2697,6 +2946,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_bucket_lifecycle_configuration, params, self._interceptors,
                 "s3", "PutBucketLifecycleConfiguration", self._region,
+                PutBucketLifecycleConfigurationOutput,
+                ("bucket", "checksum_algorithm", "lifecycle_configuration", "expected_bucket_owner", "transition_default_minimum_object_size", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.put_bucket_lifecycle_configuration(params)
@@ -2726,6 +2978,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_logging, params, self._interceptors,
                 "s3", "PutBucketLogging", self._region,
+                type(None),
+                ("bucket", "bucket_logging_status", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "bucket_logging_status", ),
             )
             return None
         await self._native.put_bucket_logging(params)
@@ -2751,6 +3006,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_metrics_configuration, params, self._interceptors,
                 "s3", "PutBucketMetricsConfiguration", self._region,
+                type(None),
+                ("bucket", "id", "metrics_configuration", "expected_bucket_owner", ),
+                ("bucket", "id", "metrics_configuration", ),
             )
             return None
         await self._native.put_bucket_metrics_configuration(params)
@@ -2777,6 +3035,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_notification_configuration, params, self._interceptors,
                 "s3", "PutBucketNotificationConfiguration", self._region,
+                type(None),
+                ("bucket", "notification_configuration", "expected_bucket_owner", "skip_destination_validation", ),
+                ("bucket", "notification_configuration", ),
             )
             return None
         await self._native.put_bucket_notification_configuration(params)
@@ -2806,6 +3067,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_ownership_controls, params, self._interceptors,
                 "s3", "PutBucketOwnershipControls", self._region,
+                type(None),
+                ("bucket", "ownership_controls", "content_md5", "expected_bucket_owner", "checksum_algorithm", ),
+                ("bucket", "ownership_controls", ),
             )
             return None
         await self._native.put_bucket_ownership_controls(params)
@@ -2838,6 +3102,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_policy, params, self._interceptors,
                 "s3", "PutBucketPolicy", self._region,
+                type(None),
+                ("bucket", "policy", "content_md5", "checksum_algorithm", "confirm_remove_self_bucket_access", "expected_bucket_owner", ),
+                ("bucket", "policy", ),
             )
             return None
         await self._native.put_bucket_policy(params)
@@ -2870,6 +3137,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_replication, params, self._interceptors,
                 "s3", "PutBucketReplication", self._region,
+                type(None),
+                ("bucket", "replication_configuration", "content_md5", "checksum_algorithm", "token", "expected_bucket_owner", ),
+                ("bucket", "replication_configuration", ),
             )
             return None
         await self._native.put_bucket_replication(params)
@@ -2899,6 +3169,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_request_payment, params, self._interceptors,
                 "s3", "PutBucketRequestPayment", self._region,
+                type(None),
+                ("bucket", "request_payment_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "request_payment_configuration", ),
             )
             return None
         await self._native.put_bucket_request_payment(params)
@@ -2928,6 +3201,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_tagging, params, self._interceptors,
                 "s3", "PutBucketTagging", self._region,
+                type(None),
+                ("bucket", "tagging", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "tagging", ),
             )
             return None
         await self._native.put_bucket_tagging(params)
@@ -2960,6 +3236,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_versioning, params, self._interceptors,
                 "s3", "PutBucketVersioning", self._region,
+                type(None),
+                ("bucket", "versioning_configuration", "content_md5", "checksum_algorithm", "mfa", "expected_bucket_owner", ),
+                ("bucket", "versioning_configuration", ),
             )
             return None
         await self._native.put_bucket_versioning(params)
@@ -2989,6 +3268,9 @@ class S3Client:
             await invoke(
                 self._native.put_bucket_website, params, self._interceptors,
                 "s3", "PutBucketWebsite", self._region,
+                type(None),
+                ("bucket", "website_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "website_configuration", ),
             )
             return None
         await self._native.put_bucket_website(params)
@@ -3150,6 +3432,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object, params, self._interceptors,
                 "s3", "PutObject", self._region,
+                PutObjectOutput,
+                ("bucket", "key", "acl", "body", "cache_control", "content_disposition", "content_encoding", "content_language", "content_length", "content_md5", "content_type", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "expires", "if_match", "if_none_match", "grant_full_control", "grant_read", "grant_read_acp", "grant_write_acp", "write_offset_bytes", "metadata", "server_side_encryption", "storage_class", "website_redirect_location", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "ssekms_key_id", "ssekms_encryption_context", "bucket_key_enabled", "request_payer", "tagging", "object_lock_mode", "object_lock_retain_until_date", "object_lock_legal_hold_status", "object_lock_event_hold", "object_lock_event_hold_duration_days", "object_lock_event_hold_duration_years", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.put_object(params)
@@ -3206,6 +3491,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_acl, params, self._interceptors,
                 "s3", "PutObjectAcl", self._region,
+                PutObjectAclOutput,
+                ("bucket", "key", "acl", "access_control_policy", "content_md5", "checksum_algorithm", "grant_full_control", "grant_read", "grant_read_acp", "grant_write", "grant_write_acp", "request_payer", "version_id", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.put_object_acl(params)
@@ -3278,6 +3566,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_annotation, params, self._interceptors,
                 "s3", "PutObjectAnnotation", self._region,
+                PutObjectAnnotationOutput,
+                ("bucket", "key", "annotation_name", "annotation_payload", "version_id", "object_if_match", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "content_md5", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", "annotation_name", "annotation_payload", ),
             )
             return _response
         _response = await self._native.put_object_annotation(params)
@@ -3316,6 +3607,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_legal_hold, params, self._interceptors,
                 "s3", "PutObjectLegalHold", self._region,
+                PutObjectLegalHoldOutput,
+                ("bucket", "key", "legal_hold", "request_payer", "version_id", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.put_object_legal_hold(params)
@@ -3352,6 +3646,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_lock_configuration, params, self._interceptors,
                 "s3", "PutObjectLockConfiguration", self._region,
+                PutObjectLockConfigurationOutput,
+                ("bucket", "object_lock_configuration", "request_payer", "token", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", ),
             )
             return _response
         _response = await self._native.put_object_lock_configuration(params)
@@ -3393,6 +3690,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_retention, params, self._interceptors,
                 "s3", "PutObjectRetention", self._region,
+                PutObjectRetentionOutput,
+                ("bucket", "key", "retention", "request_payer", "version_id", "bypass_governance_retention", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.put_object_retention(params)
@@ -3430,6 +3730,9 @@ class S3Client:
             _response = await invoke(
                 self._native.put_object_tagging, params, self._interceptors,
                 "s3", "PutObjectTagging", self._region,
+                PutObjectTaggingOutput,
+                ("bucket", "key", "tagging", "version_id", "content_md5", "checksum_algorithm", "expected_bucket_owner", "request_payer", ),
+                ("bucket", "key", "tagging", ),
             )
             return _response
         _response = await self._native.put_object_tagging(params)
@@ -3459,6 +3762,9 @@ class S3Client:
             await invoke(
                 self._native.put_public_access_block, params, self._interceptors,
                 "s3", "PutPublicAccessBlock", self._region,
+                type(None),
+                ("bucket", "public_access_block_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "public_access_block_configuration", ),
             )
             return None
         await self._native.put_public_access_block(params)
@@ -3508,6 +3814,9 @@ class S3Client:
             _response = await invoke(
                 self._native.rename_object, params, self._interceptors,
                 "s3", "RenameObject", self._region,
+                RenameObjectOutput,
+                ("bucket", "key", "rename_source", "destination_if_match", "destination_if_none_match", "destination_if_modified_since", "destination_if_unmodified_since", "source_if_match", "source_if_none_match", "source_if_modified_since", "source_if_unmodified_since", "client_token", ),
+                ("bucket", "key", "rename_source", ),
             )
             return _response
         _response = await self._native.rename_object(params)
@@ -3543,6 +3852,9 @@ class S3Client:
             _response = await invoke(
                 self._native.restore_object, params, self._interceptors,
                 "s3", "RestoreObject", self._region,
+                RestoreObjectOutput,
+                ("bucket", "key", "version_id", "restore_request", "request_payer", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "key", ),
             )
             return _response
         _response = await self._native.restore_object(params)
@@ -3589,6 +3901,9 @@ class S3Client:
             _response = await invoke(
                 self._native.select_object_content, params, self._interceptors,
                 "s3", "SelectObjectContent", self._region,
+                dict,
+                ("bucket", "key", "expression", "expression_type", "input_serialization", "output_serialization", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_progress", "scan_range", "expected_bucket_owner", ),
+                ("bucket", "key", "expression", "expression_type", "input_serialization", "output_serialization", ),
             )
             return _response
         _response = await self._native.select_object_content(params)
@@ -3618,6 +3933,9 @@ class S3Client:
             await invoke(
                 self._native.update_bucket_metadata_annotation_table_configuration, params, self._interceptors,
                 "s3", "UpdateBucketMetadataAnnotationTableConfiguration", self._region,
+                type(None),
+                ("bucket", "annotation_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "annotation_table_configuration", ),
             )
             return None
         await self._native.update_bucket_metadata_annotation_table_configuration(params)
@@ -3647,6 +3965,9 @@ class S3Client:
             await invoke(
                 self._native.update_bucket_metadata_inventory_table_configuration, params, self._interceptors,
                 "s3", "UpdateBucketMetadataInventoryTableConfiguration", self._region,
+                type(None),
+                ("bucket", "inventory_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "inventory_table_configuration", ),
             )
             return None
         await self._native.update_bucket_metadata_inventory_table_configuration(params)
@@ -3676,6 +3997,9 @@ class S3Client:
             await invoke(
                 self._native.update_bucket_metadata_journal_table_configuration, params, self._interceptors,
                 "s3", "UpdateBucketMetadataJournalTableConfiguration", self._region,
+                type(None),
+                ("bucket", "journal_table_configuration", "content_md5", "checksum_algorithm", "expected_bucket_owner", ),
+                ("bucket", "journal_table_configuration", ),
             )
             return None
         await self._native.update_bucket_metadata_journal_table_configuration(params)
@@ -3713,6 +4037,9 @@ class S3Client:
             _response = await invoke(
                 self._native.update_object_encryption, params, self._interceptors,
                 "s3", "UpdateObjectEncryption", self._region,
+                UpdateObjectEncryptionResponse,
+                ("bucket", "key", "object_encryption", "version_id", "request_payer", "expected_bucket_owner", "content_md5", "checksum_algorithm", ),
+                ("bucket", "key", "object_encryption", ),
             )
             return _response
         _response = await self._native.update_object_encryption(params)
@@ -3794,6 +4121,9 @@ class S3Client:
             _response = await invoke(
                 self._native.upload_part, params, self._interceptors,
                 "s3", "UploadPart", self._region,
+                UploadPartOutput,
+                ("bucket", "key", "part_number", "upload_id", "body", "content_length", "content_md5", "checksum_algorithm", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "request_payer", "expected_bucket_owner", ),
+                ("bucket", "key", "part_number", "upload_id", ),
             )
             return _response
         _response = await self._native.upload_part(params)
@@ -3862,6 +4192,9 @@ class S3Client:
             _response = await invoke(
                 self._native.upload_part_copy, params, self._interceptors,
                 "s3", "UploadPartCopy", self._region,
+                UploadPartCopyOutput,
+                ("bucket", "copy_source", "key", "part_number", "upload_id", "copy_source_if_match", "copy_source_if_modified_since", "copy_source_if_none_match", "copy_source_if_unmodified_since", "copy_source_range", "sse_customer_algorithm", "sse_customer_key", "sse_customer_key_md5", "copy_source_sse_customer_algorithm", "copy_source_sse_customer_key", "copy_source_sse_customer_key_md5", "request_payer", "expected_bucket_owner", "expected_source_bucket_owner", ),
+                ("bucket", "copy_source", "key", "part_number", "upload_id", ),
             )
             return _response
         _response = await self._native.upload_part_copy(params)
@@ -4014,6 +4347,9 @@ class S3Client:
             await invoke(
                 self._native.write_get_object_response, params, self._interceptors,
                 "s3", "WriteGetObjectResponse", self._region,
+                type(None),
+                ("request_route", "request_token", "body", "status_code", "error_code", "error_message", "accept_ranges", "cache_control", "content_disposition", "content_encoding", "content_language", "content_length", "content_range", "content_type", "checksum_crc32", "checksum_crc32_c", "checksum_crc64_nvme", "checksum_sha1", "checksum_sha256", "checksum_sha512", "checksum_md5", "checksum_xxhash64", "checksum_xxhash3", "checksum_xxhash128", "delete_marker", "e_tag", "expires", "expiration", "last_modified", "missing_meta", "metadata", "object_lock_mode", "object_lock_legal_hold_status", "object_lock_retain_until_date", "parts_count", "replication_status", "request_charged", "restore", "server_side_encryption", "sse_customer_algorithm", "ssekms_key_id", "sse_customer_key_md5", "storage_class", "tag_count", "version_id", "bucket_key_enabled", ),
+                ("request_route", "request_token", ),
             )
             return None
         await self._native.write_get_object_response(params)

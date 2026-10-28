@@ -60,6 +60,9 @@ class SQSClient:
             await invoke(
                 self._native.add_permission, params, self._interceptors,
                 "sqs", "AddPermission", self._region,
+                type(None),
+                ("queue_url", "label", "aws_account_ids", "actions", ),
+                ("queue_url", "label", "aws_account_ids", "actions", ),
             )
             return None
         await self._native.add_permission(params)
@@ -78,6 +81,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.cancel_message_move_task, params, self._interceptors,
                 "sqs", "CancelMessageMoveTask", self._region,
+                CancelMessageMoveTaskResult,
+                ("task_handle", ),
+                ("task_handle", ),
             )
             return _response
         _response = await self._native.cancel_message_move_task(params)
@@ -100,6 +106,9 @@ class SQSClient:
             await invoke(
                 self._native.change_message_visibility, params, self._interceptors,
                 "sqs", "ChangeMessageVisibility", self._region,
+                type(None),
+                ("queue_url", "receipt_handle", "visibility_timeout", ),
+                ("queue_url", "receipt_handle", "visibility_timeout", ),
             )
             return None
         await self._native.change_message_visibility(params)
@@ -120,6 +129,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.change_message_visibility_batch, params, self._interceptors,
                 "sqs", "ChangeMessageVisibilityBatch", self._region,
+                ChangeMessageVisibilityBatchResult,
+                ("queue_url", "entries", ),
+                ("queue_url", "entries", ),
             )
             return _response
         _response = await self._native.change_message_visibility_batch(params)
@@ -144,6 +156,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.create_queue, params, self._interceptors,
                 "sqs", "CreateQueue", self._region,
+                CreateQueueResult,
+                ("queue_name", "attributes", "tags", ),
+                ("queue_name", ),
             )
             return _response
         _response = await self._native.create_queue(params)
@@ -164,6 +179,9 @@ class SQSClient:
             await invoke(
                 self._native.delete_message, params, self._interceptors,
                 "sqs", "DeleteMessage", self._region,
+                type(None),
+                ("queue_url", "receipt_handle", ),
+                ("queue_url", "receipt_handle", ),
             )
             return None
         await self._native.delete_message(params)
@@ -184,6 +202,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.delete_message_batch, params, self._interceptors,
                 "sqs", "DeleteMessageBatch", self._region,
+                DeleteMessageBatchResult,
+                ("queue_url", "entries", ),
+                ("queue_url", "entries", ),
             )
             return _response
         _response = await self._native.delete_message_batch(params)
@@ -202,6 +223,9 @@ class SQSClient:
             await invoke(
                 self._native.delete_queue, params, self._interceptors,
                 "sqs", "DeleteQueue", self._region,
+                type(None),
+                ("queue_url", ),
+                ("queue_url", ),
             )
             return None
         await self._native.delete_queue(params)
@@ -223,6 +247,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.get_queue_attributes, params, self._interceptors,
                 "sqs", "GetQueueAttributes", self._region,
+                GetQueueAttributesResult,
+                ("queue_url", "attribute_names", ),
+                ("queue_url", ),
             )
             return _response
         _response = await self._native.get_queue_attributes(params)
@@ -244,6 +271,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.get_queue_url, params, self._interceptors,
                 "sqs", "GetQueueUrl", self._region,
+                GetQueueUrlResult,
+                ("queue_name", "queue_owner_aws_account_id", ),
+                ("queue_name", ),
             )
             return _response
         _response = await self._native.get_queue_url(params)
@@ -268,6 +298,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_dead_letter_source_queues, params, self._interceptors,
                 "sqs", "ListDeadLetterSourceQueues", self._region,
+                ListDeadLetterSourceQueuesResult,
+                ("queue_url", "next_token", "max_results", ),
+                ("queue_url", ),
             )
             return _response
         _response = await self._native.list_dead_letter_source_queues(params)
@@ -289,6 +322,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_message_move_tasks, params, self._interceptors,
                 "sqs", "ListMessageMoveTasks", self._region,
+                ListMessageMoveTasksResult,
+                ("source_arn", "max_results", ),
+                ("source_arn", ),
             )
             return _response
         _response = await self._native.list_message_move_tasks(params)
@@ -307,6 +343,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_queue_tags, params, self._interceptors,
                 "sqs", "ListQueueTags", self._region,
+                ListQueueTagsResult,
+                ("queue_url", ),
+                ("queue_url", ),
             )
             return _response
         _response = await self._native.list_queue_tags(params)
@@ -332,6 +371,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.list_queues, params, self._interceptors,
                 "sqs", "ListQueues", self._region,
+                ListQueuesResult,
+                ("queue_name_prefix", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_queues(params)
@@ -350,6 +392,9 @@ class SQSClient:
             await invoke(
                 self._native.purge_queue, params, self._interceptors,
                 "sqs", "PurgeQueue", self._region,
+                type(None),
+                ("queue_url", ),
+                ("queue_url", ),
             )
             return None
         await self._native.purge_queue(params)
@@ -389,6 +434,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.receive_message, params, self._interceptors,
                 "sqs", "ReceiveMessage", self._region,
+                ReceiveMessageResult,
+                ("queue_url", "attribute_names", "message_system_attribute_names", "message_attribute_names", "max_number_of_messages", "visibility_timeout", "wait_time_seconds", "receive_request_attempt_id", ),
+                ("queue_url", ),
             )
             return _response
         _response = await self._native.receive_message(params)
@@ -409,6 +457,9 @@ class SQSClient:
             await invoke(
                 self._native.remove_permission, params, self._interceptors,
                 "sqs", "RemovePermission", self._region,
+                type(None),
+                ("queue_url", "label", ),
+                ("queue_url", "label", ),
             )
             return None
         await self._native.remove_permission(params)
@@ -444,6 +495,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.send_message, params, self._interceptors,
                 "sqs", "SendMessage", self._region,
+                SendMessageResult,
+                ("queue_url", "message_body", "delay_seconds", "message_attributes", "message_system_attributes", "message_deduplication_id", "message_group_id", ),
+                ("queue_url", "message_body", ),
             )
             return _response
         _response = await self._native.send_message(params)
@@ -464,6 +518,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.send_message_batch, params, self._interceptors,
                 "sqs", "SendMessageBatch", self._region,
+                SendMessageBatchResult,
+                ("queue_url", "entries", ),
+                ("queue_url", "entries", ),
             )
             return _response
         _response = await self._native.send_message_batch(params)
@@ -484,6 +541,9 @@ class SQSClient:
             await invoke(
                 self._native.set_queue_attributes, params, self._interceptors,
                 "sqs", "SetQueueAttributes", self._region,
+                type(None),
+                ("queue_url", "attributes", ),
+                ("queue_url", "attributes", ),
             )
             return None
         await self._native.set_queue_attributes(params)
@@ -508,6 +568,9 @@ class SQSClient:
             _response = await invoke(
                 self._native.start_message_move_task, params, self._interceptors,
                 "sqs", "StartMessageMoveTask", self._region,
+                StartMessageMoveTaskResult,
+                ("source_arn", "destination_arn", "max_number_of_messages_per_second", ),
+                ("source_arn", ),
             )
             return _response
         _response = await self._native.start_message_move_task(params)
@@ -528,6 +591,9 @@ class SQSClient:
             await invoke(
                 self._native.tag_queue, params, self._interceptors,
                 "sqs", "TagQueue", self._region,
+                type(None),
+                ("queue_url", "tags", ),
+                ("queue_url", "tags", ),
             )
             return None
         await self._native.tag_queue(params)
@@ -548,6 +614,9 @@ class SQSClient:
             await invoke(
                 self._native.untag_queue, params, self._interceptors,
                 "sqs", "UntagQueue", self._region,
+                type(None),
+                ("queue_url", "tag_keys", ),
+                ("queue_url", "tag_keys", ),
             )
             return None
         await self._native.untag_queue(params)

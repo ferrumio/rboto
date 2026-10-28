@@ -63,6 +63,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.batch_get_secret_value, params, self._interceptors,
                 "secrets-manager", "BatchGetSecretValue", self._region,
+                BatchGetSecretValueResponse,
+                ("secret_id_list", "filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.batch_get_secret_value(params)
@@ -81,6 +84,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.cancel_rotate_secret, params, self._interceptors,
                 "secrets-manager", "CancelRotateSecret", self._region,
+                CancelRotateSecretResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.cancel_rotate_secret(params)
@@ -126,6 +132,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.create_secret, params, self._interceptors,
                 "secrets-manager", "CreateSecret", self._region,
+                CreateSecretResponse,
+                ("name", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "tags", "add_replica_regions", "force_overwrite_replica_secret", "type", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_secret(params)
@@ -144,6 +153,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, self._interceptors,
                 "secrets-manager", "DeleteResourcePolicy", self._region,
+                DeleteResourcePolicyResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -168,6 +180,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.delete_secret, params, self._interceptors,
                 "secrets-manager", "DeleteSecret", self._region,
+                DeleteSecretResponse,
+                ("secret_id", "recovery_window_in_days", "force_delete_without_recovery", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.delete_secret(params)
@@ -186,6 +201,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.describe_secret, params, self._interceptors,
                 "secrets-manager", "DescribeSecret", self._region,
+                DescribeSecretResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.describe_secret(params)
@@ -226,6 +244,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_random_password, params, self._interceptors,
                 "secrets-manager", "GetRandomPassword", self._region,
+                GetRandomPasswordResponse,
+                ("password_length", "exclude_characters", "exclude_numbers", "exclude_punctuation", "exclude_uppercase", "exclude_lowercase", "include_space", "require_each_included_type", ),
+                (),
             )
             return _response
         _response = await self._native.get_random_password(params)
@@ -244,6 +265,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, self._interceptors,
                 "secrets-manager", "GetResourcePolicy", self._region,
+                GetResourcePolicyResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -268,6 +292,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_secret_value, params, self._interceptors,
                 "secrets-manager", "GetSecretValue", self._region,
+                GetSecretValueResponse,
+                ("secret_id", "version_id", "version_stage", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.get_secret_value(params)
@@ -295,6 +322,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.list_secret_version_ids, params, self._interceptors,
                 "secrets-manager", "ListSecretVersionIds", self._region,
+                ListSecretVersionIdsResponse,
+                ("secret_id", "max_results", "next_token", "include_deprecated", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.list_secret_version_ids(params)
@@ -329,6 +359,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.list_secrets, params, self._interceptors,
                 "secrets-manager", "ListSecrets", self._region,
+                ListSecretsResponse,
+                ("include_planned_deletion", "max_results", "next_token", "filters", "sort_order", "sort_by", ),
+                (),
             )
             return _response
         _response = await self._native.list_secrets(params)
@@ -352,6 +385,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, self._interceptors,
                 "secrets-manager", "PutResourcePolicy", self._region,
+                PutResourcePolicyResponse,
+                ("secret_id", "resource_policy", "block_public_policy", ),
+                ("secret_id", "resource_policy", ),
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -385,6 +421,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.put_secret_value, params, self._interceptors,
                 "secrets-manager", "PutSecretValue", self._region,
+                PutSecretValueResponse,
+                ("secret_id", "client_request_token", "secret_binary", "secret_string", "version_stages", "rotation_token", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.put_secret_value(params)
@@ -405,6 +444,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.remove_regions_from_replication, params, self._interceptors,
                 "secrets-manager", "RemoveRegionsFromReplication", self._region,
+                RemoveRegionsFromReplicationResponse,
+                ("secret_id", "remove_replica_regions", ),
+                ("secret_id", "remove_replica_regions", ),
             )
             return _response
         _response = await self._native.remove_regions_from_replication(params)
@@ -428,6 +470,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.replicate_secret_to_regions, params, self._interceptors,
                 "secrets-manager", "ReplicateSecretToRegions", self._region,
+                ReplicateSecretToRegionsResponse,
+                ("secret_id", "add_replica_regions", "force_overwrite_replica_secret", ),
+                ("secret_id", "add_replica_regions", ),
             )
             return _response
         _response = await self._native.replicate_secret_to_regions(params)
@@ -446,6 +491,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.restore_secret, params, self._interceptors,
                 "secrets-manager", "RestoreSecret", self._region,
+                RestoreSecretResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.restore_secret(params)
@@ -482,6 +530,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.rotate_secret, params, self._interceptors,
                 "secrets-manager", "RotateSecret", self._region,
+                RotateSecretResponse,
+                ("secret_id", "client_request_token", "rotation_lambda_arn", "rotation_rules", "external_secret_rotation_metadata", "external_secret_rotation_role_arn", "rotate_immediately", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.rotate_secret(params)
@@ -500,6 +551,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.stop_replication_to_replica, params, self._interceptors,
                 "secrets-manager", "StopReplicationToReplica", self._region,
+                StopReplicationToReplicaResponse,
+                ("secret_id", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.stop_replication_to_replica(params)
@@ -520,6 +574,9 @@ class SecretsManagerClient:
             await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "secrets-manager", "TagResource", self._region,
+                type(None),
+                ("secret_id", "tags", ),
+                ("secret_id", "tags", ),
             )
             return None
         await self._native.tag_resource(params)
@@ -540,6 +597,9 @@ class SecretsManagerClient:
             await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "secrets-manager", "UntagResource", self._region,
+                type(None),
+                ("secret_id", "tag_keys", ),
+                ("secret_id", "tag_keys", ),
             )
             return None
         await self._native.untag_resource(params)
@@ -576,6 +636,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.update_secret, params, self._interceptors,
                 "secrets-manager", "UpdateSecret", self._region,
+                UpdateSecretResponse,
+                ("secret_id", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "type", ),
+                ("secret_id", ),
             )
             return _response
         _response = await self._native.update_secret(params)
@@ -602,6 +665,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.update_secret_version_stage, params, self._interceptors,
                 "secrets-manager", "UpdateSecretVersionStage", self._region,
+                UpdateSecretVersionStageResponse,
+                ("secret_id", "version_stage", "remove_from_version_id", "move_to_version_id", ),
+                ("secret_id", "version_stage", ),
             )
             return _response
         _response = await self._native.update_secret_version_stage(params)
@@ -623,6 +689,9 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.validate_resource_policy, params, self._interceptors,
                 "secrets-manager", "ValidateResourcePolicy", self._region,
+                ValidateResourcePolicyResponse,
+                ("resource_policy", "secret_id", ),
+                ("resource_policy", ),
             )
             return _response
         _response = await self._native.validate_resource_policy(params)

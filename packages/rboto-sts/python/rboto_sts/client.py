@@ -84,6 +84,9 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role, params, self._interceptors,
                 "sts", "AssumeRole", self._region,
+                AssumeRoleResponse,
+                ("role_arn", "role_session_name", "policy_arns", "policy", "duration_seconds", "tags", "transitive_tag_keys", "external_id", "serial_number", "token_code", "source_identity", "provided_contexts", "minimum_session_token_size", ),
+                ("role_arn", "role_session_name", ),
             )
             return _response
         _response = await self._native.assume_role(params)
@@ -118,6 +121,9 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role_with_saml, params, self._interceptors,
                 "sts", "AssumeRoleWithSAML", self._region,
+                AssumeRoleWithSAMLResponse,
+                ("role_arn", "principal_arn", "saml_assertion", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
+                ("role_arn", "principal_arn", "saml_assertion", ),
             )
             return _response
         _response = await self._native.assume_role_with_saml(params)
@@ -155,6 +161,9 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role_with_web_identity, params, self._interceptors,
                 "sts", "AssumeRoleWithWebIdentity", self._region,
+                AssumeRoleWithWebIdentityResponse,
+                ("role_arn", "role_session_name", "web_identity_token", "provider_id", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
+                ("role_arn", "role_session_name", "web_identity_token", ),
             )
             return _response
         _response = await self._native.assume_role_with_web_identity(params)
@@ -181,6 +190,9 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_root, params, self._interceptors,
                 "sts", "AssumeRoot", self._region,
+                AssumeRootResponse,
+                ("target_principal", "task_policy_arn", "duration_seconds", "minimum_session_token_size", ),
+                ("target_principal", "task_policy_arn", ),
             )
             return _response
         _response = await self._native.assume_root(params)
@@ -199,6 +211,9 @@ class STSClient:
             _response = await invoke(
                 self._native.decode_authorization_message, params, self._interceptors,
                 "sts", "DecodeAuthorizationMessage", self._region,
+                DecodeAuthorizationMessageResponse,
+                ("encoded_message", ),
+                ("encoded_message", ),
             )
             return _response
         _response = await self._native.decode_authorization_message(params)
@@ -217,6 +232,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_access_key_info, params, self._interceptors,
                 "sts", "GetAccessKeyInfo", self._region,
+                GetAccessKeyInfoResponse,
+                ("access_key_id", ),
+                ("access_key_id", ),
             )
             return _response
         _response = await self._native.get_access_key_info(params)
@@ -232,6 +250,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_caller_identity, params, self._interceptors,
                 "sts", "GetCallerIdentity", self._region,
+                GetCallerIdentityResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_caller_identity(params)
@@ -250,6 +271,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_delegated_access_token, params, self._interceptors,
                 "sts", "GetDelegatedAccessToken", self._region,
+                GetDelegatedAccessTokenResponse,
+                ("trade_in_token", ),
+                ("trade_in_token", ),
             )
             return _response
         _response = await self._native.get_delegated_access_token(params)
@@ -283,6 +307,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_federation_token, params, self._interceptors,
                 "sts", "GetFederationToken", self._region,
+                GetFederationTokenResponse,
+                ("name", "policy", "policy_arns", "duration_seconds", "tags", "minimum_session_token_size", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_federation_token(params)
@@ -311,6 +338,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_session_token, params, self._interceptors,
                 "sts", "GetSessionToken", self._region,
+                GetSessionTokenResponse,
+                ("duration_seconds", "serial_number", "token_code", "minimum_session_token_size", ),
+                (),
             )
             return _response
         _response = await self._native.get_session_token(params)
@@ -337,6 +367,9 @@ class STSClient:
             _response = await invoke(
                 self._native.get_web_identity_token, params, self._interceptors,
                 "sts", "GetWebIdentityToken", self._region,
+                GetWebIdentityTokenResponse,
+                ("audience", "signing_algorithm", "duration_seconds", "tags", ),
+                ("audience", "signing_algorithm", ),
             )
             return _response
         _response = await self._native.get_web_identity_token(params)

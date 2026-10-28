@@ -60,6 +60,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.activate_subscription, params, self._interceptors,
                 "connecthealth", "ActivateSubscription", self._region,
+                ActivateSubscriptionOutput,
+                ("domain_id", "subscription_id", ),
+                ("domain_id", "subscription_id", ),
             )
             return _response
         _response = await self._native.activate_subscription(params)
@@ -87,6 +90,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.create_domain, params, self._interceptors,
                 "connecthealth", "CreateDomain", self._region,
+                CreateDomainOutput,
+                ("name", "kms_key_arn", "web_app_setup_configuration", "tags", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_domain(params)
@@ -105,6 +111,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.create_subscription, params, self._interceptors,
                 "connecthealth", "CreateSubscription", self._region,
+                CreateSubscriptionOutput,
+                ("domain_id", ),
+                ("domain_id", ),
             )
             return _response
         _response = await self._native.create_subscription(params)
@@ -125,6 +134,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.deactivate_subscription, params, self._interceptors,
                 "connecthealth", "DeactivateSubscription", self._region,
+                DeactivateSubscriptionOutput,
+                ("domain_id", "subscription_id", ),
+                ("domain_id", "subscription_id", ),
             )
             return _response
         _response = await self._native.deactivate_subscription(params)
@@ -143,6 +155,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.delete_domain, params, self._interceptors,
                 "connecthealth", "DeleteDomain", self._region,
+                DeleteDomainOutput,
+                ("domain_id", ),
+                ("domain_id", ),
             )
             return _response
         _response = await self._native.delete_domain(params)
@@ -161,6 +176,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.get_domain, params, self._interceptors,
                 "connecthealth", "GetDomain", self._region,
+                GetDomainOutput,
+                ("domain_id", ),
+                ("domain_id", ),
             )
             return _response
         _response = await self._native.get_domain(params)
@@ -183,6 +201,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.get_medical_scribe_listening_session, params, self._interceptors,
                 "connecthealth", "GetMedicalScribeListeningSession", self._region,
+                GetMedicalScribeListeningSessionOutput,
+                ("session_id", "domain_id", "subscription_id", ),
+                ("session_id", "domain_id", "subscription_id", ),
             )
             return _response
         _response = await self._native.get_medical_scribe_listening_session(params)
@@ -203,6 +224,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.get_patient_insights_job, params, self._interceptors,
                 "connecthealth", "GetPatientInsightsJob", self._region,
+                GetPatientInsightsJobResponse,
+                ("domain_id", "job_id", ),
+                ("domain_id", "job_id", ),
             )
             return _response
         _response = await self._native.get_patient_insights_job(params)
@@ -223,6 +247,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.get_subscription, params, self._interceptors,
                 "connecthealth", "GetSubscription", self._region,
+                GetSubscriptionOutput,
+                ("domain_id", "subscription_id", ),
+                ("domain_id", "subscription_id", ),
             )
             return _response
         _response = await self._native.get_subscription(params)
@@ -248,6 +275,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.list_domains, params, self._interceptors,
                 "connecthealth", "ListDomains", self._region,
+                ListDomainsOutput,
+                ("status", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_domains(params)
@@ -272,6 +302,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.list_subscriptions, params, self._interceptors,
                 "connecthealth", "ListSubscriptions", self._region,
+                ListSubscriptionsOutput,
+                ("domain_id", "max_results", "next_token", ),
+                ("domain_id", ),
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -290,6 +323,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "connecthealth", "ListTagsForResource", self._region,
+                ListTagsForResourceOutput,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -321,6 +357,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.start_medical_scribe_listening_session, params, self._interceptors,
                 "connecthealth", "StartMedicalScribeListeningSession", self._region,
+                dict,
+                ("session_id", "domain_id", "subscription_id", "language_code", "media_sample_rate_hertz", "media_encoding", "input_stream", ),
+                ("session_id", "domain_id", "subscription_id", "language_code", "media_sample_rate_hertz", "media_encoding", ),
             )
             return _response
         _response = await self._native.start_medical_scribe_listening_session(params)
@@ -354,6 +393,9 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.start_patient_insights_job, params, self._interceptors,
                 "connecthealth", "StartPatientInsightsJob", self._region,
+                StartPatientInsightsJobResponse,
+                ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", "client_token", ),
+                ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", ),
             )
             return _response
         _response = await self._native.start_patient_insights_job(params)
@@ -374,6 +416,9 @@ class ConnectHealthClient:
             await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "connecthealth", "TagResource", self._region,
+                type(None),
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return None
         await self._native.tag_resource(params)
@@ -394,6 +439,9 @@ class ConnectHealthClient:
             await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "connecthealth", "UntagResource", self._region,
+                type(None),
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return None
         await self._native.untag_resource(params)

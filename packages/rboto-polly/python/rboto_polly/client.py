@@ -55,6 +55,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.delete_lexicon, params, self._interceptors,
                 "polly", "DeleteLexicon", self._region,
+                DeleteLexiconOutput,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_lexicon(params)
@@ -83,6 +86,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.describe_voices, params, self._interceptors,
                 "polly", "DescribeVoices", self._region,
+                DescribeVoicesOutput,
+                ("engine", "language_code", "include_additional_language_codes", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_voices(params)
@@ -101,6 +107,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.get_lexicon, params, self._interceptors,
                 "polly", "GetLexicon", self._region,
+                GetLexiconOutput,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_lexicon(params)
@@ -119,6 +128,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.get_speech_synthesis_task, params, self._interceptors,
                 "polly", "GetSpeechSynthesisTask", self._region,
+                GetSpeechSynthesisTaskOutput,
+                ("task_id", ),
+                ("task_id", ),
             )
             return _response
         _response = await self._native.get_speech_synthesis_task(params)
@@ -138,6 +150,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.list_lexicons, params, self._interceptors,
                 "polly", "ListLexicons", self._region,
+                ListLexiconsOutput,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_lexicons(params)
@@ -163,6 +178,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.list_speech_synthesis_tasks, params, self._interceptors,
                 "polly", "ListSpeechSynthesisTasks", self._region,
+                ListSpeechSynthesisTasksOutput,
+                ("max_results", "next_token", "status", ),
+                (),
             )
             return _response
         _response = await self._native.list_speech_synthesis_tasks(params)
@@ -183,6 +201,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.put_lexicon, params, self._interceptors,
                 "polly", "PutLexicon", self._region,
+                PutLexiconOutput,
+                ("name", "content", ),
+                ("name", "content", ),
             )
             return _response
         _response = await self._native.put_lexicon(params)
@@ -217,6 +238,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.start_speech_synthesis_stream, params, self._interceptors,
                 "polly", "StartSpeechSynthesisStream", self._region,
+                dict,
+                ("engine", "output_format", "voice_id", "language_code", "lexicon_names", "sample_rate", "action_stream", ),
+                ("engine", "output_format", "voice_id", ),
             )
             return _response
         _response = await self._native.start_speech_synthesis_stream(params)
@@ -265,6 +289,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.start_speech_synthesis_task, params, self._interceptors,
                 "polly", "StartSpeechSynthesisTask", self._region,
+                StartSpeechSynthesisTaskOutput,
+                ("output_format", "output_s3_bucket_name", "text", "voice_id", "engine", "language_code", "lexicon_names", "output_s3_key_prefix", "sample_rate", "sns_topic_arn", "speech_mark_types", "text_type", ),
+                ("output_format", "output_s3_bucket_name", "text", "voice_id", ),
             )
             return _response
         _response = await self._native.start_speech_synthesis_task(params)
@@ -305,6 +332,9 @@ class PollyClient:
             _response = await invoke(
                 self._native.synthesize_speech, params, self._interceptors,
                 "polly", "SynthesizeSpeech", self._region,
+                SynthesizeSpeechOutput,
+                ("output_format", "text", "voice_id", "engine", "language_code", "lexicon_names", "sample_rate", "speech_mark_types", "text_type", ),
+                ("output_format", "text", "voice_id", ),
             )
             return _response
         _response = await self._native.synthesize_speech(params)

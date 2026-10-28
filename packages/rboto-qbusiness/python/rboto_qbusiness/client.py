@@ -111,6 +111,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.associate_permission, params, self._interceptors,
                 "qbusiness", "AssociatePermission", self._region,
+                AssociatePermissionResponse,
+                ("application_id", "statement_id", "actions", "principal", "conditions", ),
+                ("application_id", "statement_id", "actions", "principal", ),
             )
             return _response
         _response = await self._native.associate_permission(params)
@@ -136,6 +139,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.batch_delete_document, params, self._interceptors,
                 "qbusiness", "BatchDeleteDocument", self._region,
+                BatchDeleteDocumentResponse,
+                ("application_id", "index_id", "documents", "data_source_sync_id", ),
+                ("application_id", "index_id", "documents", ),
             )
             return _response
         _response = await self._native.batch_delete_document(params)
@@ -164,6 +170,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.batch_put_document, params, self._interceptors,
                 "qbusiness", "BatchPutDocument", self._region,
+                BatchPutDocumentResponse,
+                ("application_id", "index_id", "documents", "role_arn", "data_source_sync_id", ),
+                ("application_id", "index_id", "documents", ),
             )
             return _response
         _response = await self._native.batch_put_document(params)
@@ -184,6 +193,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.cancel_subscription, params, self._interceptors,
                 "qbusiness", "CancelSubscription", self._region,
+                CancelSubscriptionResponse,
+                ("application_id", "subscription_id", ),
+                ("application_id", "subscription_id", ),
             )
             return _response
         _response = await self._native.cancel_subscription(params)
@@ -220,6 +232,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.chat, params, self._interceptors,
                 "qbusiness", "Chat", self._region,
+                dict,
+                ("application_id", "user_id", "user_groups", "conversation_id", "parent_message_id", "client_token", "input_stream", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.chat(params)
@@ -274,6 +289,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.chat_sync, params, self._interceptors,
                 "qbusiness", "ChatSync", self._region,
+                ChatSyncOutput,
+                ("application_id", "user_id", "user_groups", "user_message", "attachments", "action_execution", "auth_challenge_response", "conversation_id", "parent_message_id", "attribute_filter", "chat_mode", "chat_mode_configuration", "client_token", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.chat_sync(params)
@@ -301,6 +319,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.check_document_access, params, self._interceptors,
                 "qbusiness", "CheckDocumentAccess", self._region,
+                CheckDocumentAccessResponse,
+                ("application_id", "index_id", "user_id", "document_id", "data_source_id", ),
+                ("application_id", "index_id", "user_id", "document_id", ),
             )
             return _response
         _response = await self._native.check_document_access(params)
@@ -324,6 +345,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_anonymous_web_experience_url, params, self._interceptors,
                 "qbusiness", "CreateAnonymousWebExperienceUrl", self._region,
+                CreateAnonymousWebExperienceUrlResponse,
+                ("application_id", "web_experience_id", "session_duration_in_minutes", ),
+                ("application_id", "web_experience_id", ),
             )
             return _response
         _response = await self._native.create_anonymous_web_experience_url(params)
@@ -381,6 +405,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_application, params, self._interceptors,
                 "qbusiness", "CreateApplication", self._region,
+                CreateApplicationResponse,
+                ("display_name", "role_arn", "identity_type", "iam_identity_provider_arn", "identity_center_instance_arn", "client_ids_for_oidc", "description", "encryption_configuration", "tags", "client_token", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "quick_sight_configuration", ),
+                ("display_name", ),
             )
             return _response
         _response = await self._native.create_application(params)
@@ -409,6 +436,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_chat_response_configuration, params, self._interceptors,
                 "qbusiness", "CreateChatResponseConfiguration", self._region,
+                CreateChatResponseConfigurationResponse,
+                ("application_id", "display_name", "response_configurations", "client_token", "tags", ),
+                ("application_id", "display_name", "response_configurations", ),
             )
             return _response
         _response = await self._native.create_chat_response_configuration(params)
@@ -442,6 +472,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_data_accessor, params, self._interceptors,
                 "qbusiness", "CreateDataAccessor", self._region,
+                CreateDataAccessorResponse,
+                ("application_id", "principal", "action_configurations", "display_name", "client_token", "authentication_detail", "tags", ),
+                ("application_id", "principal", "action_configurations", "display_name", ),
             )
             return _response
         _response = await self._native.create_data_accessor(params)
@@ -490,6 +523,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_data_source, params, self._interceptors,
                 "qbusiness", "CreateDataSource", self._region,
+                CreateDataSourceResponse,
+                ("application_id", "index_id", "display_name", "configuration", "vpc_configuration", "description", "tags", "sync_schedule", "role_arn", "client_token", "document_enrichment_configuration", "media_extraction_configuration", ),
+                ("application_id", "index_id", "display_name", "configuration", ),
             )
             return _response
         _response = await self._native.create_data_source(params)
@@ -525,6 +561,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_index, params, self._interceptors,
                 "qbusiness", "CreateIndex", self._region,
+                CreateIndexResponse,
+                ("application_id", "display_name", "description", "type", "tags", "capacity_configuration", "client_token", ),
+                ("application_id", "display_name", ),
             )
             return _response
         _response = await self._native.create_index(params)
@@ -561,6 +600,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_plugin, params, self._interceptors,
                 "qbusiness", "CreatePlugin", self._region,
+                CreatePluginResponse,
+                ("application_id", "display_name", "type", "auth_configuration", "server_url", "custom_plugin_configuration", "tags", "client_token", ),
+                ("application_id", "display_name", "type", "auth_configuration", ),
             )
             return _response
         _response = await self._native.create_plugin(params)
@@ -594,6 +636,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_retriever, params, self._interceptors,
                 "qbusiness", "CreateRetriever", self._region,
+                CreateRetrieverResponse,
+                ("application_id", "type", "display_name", "configuration", "role_arn", "client_token", "tags", ),
+                ("application_id", "type", "display_name", "configuration", ),
             )
             return _response
         _response = await self._native.create_retriever(params)
@@ -619,6 +664,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_subscription, params, self._interceptors,
                 "qbusiness", "CreateSubscription", self._region,
+                CreateSubscriptionResponse,
+                ("application_id", "principal", "type", "client_token", ),
+                ("application_id", "principal", "type", ),
             )
             return _response
         _response = await self._native.create_subscription(params)
@@ -645,6 +693,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_user, params, self._interceptors,
                 "qbusiness", "CreateUser", self._region,
+                CreateUserResponse,
+                ("application_id", "user_id", "user_aliases", "client_token", ),
+                ("application_id", "user_id", ),
             )
             return _response
         _response = await self._native.create_user(params)
@@ -696,6 +747,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.create_web_experience, params, self._interceptors,
                 "qbusiness", "CreateWebExperience", self._region,
+                CreateWebExperienceResponse,
+                ("application_id", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "origins", "role_arn", "tags", "client_token", "identity_provider_configuration", "browser_extension_configuration", "customization_configuration", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.create_web_experience(params)
@@ -714,6 +768,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_application, params, self._interceptors,
                 "qbusiness", "DeleteApplication", self._region,
+                DeleteApplicationResponse,
+                ("application_id", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.delete_application(params)
@@ -739,6 +796,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_attachment, params, self._interceptors,
                 "qbusiness", "DeleteAttachment", self._region,
+                DeleteAttachmentResponse,
+                ("application_id", "conversation_id", "attachment_id", "user_id", ),
+                ("application_id", "conversation_id", "attachment_id", ),
             )
             return _response
         _response = await self._native.delete_attachment(params)
@@ -757,6 +817,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_chat_controls_configuration, params, self._interceptors,
                 "qbusiness", "DeleteChatControlsConfiguration", self._region,
+                DeleteChatControlsConfigurationResponse,
+                ("application_id", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.delete_chat_controls_configuration(params)
@@ -777,6 +840,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_chat_response_configuration, params, self._interceptors,
                 "qbusiness", "DeleteChatResponseConfiguration", self._region,
+                DeleteChatResponseConfigurationResponse,
+                ("application_id", "chat_response_configuration_id", ),
+                ("application_id", "chat_response_configuration_id", ),
             )
             return _response
         _response = await self._native.delete_chat_response_configuration(params)
@@ -800,6 +866,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_conversation, params, self._interceptors,
                 "qbusiness", "DeleteConversation", self._region,
+                DeleteConversationResponse,
+                ("conversation_id", "application_id", "user_id", ),
+                ("conversation_id", "application_id", ),
             )
             return _response
         _response = await self._native.delete_conversation(params)
@@ -820,6 +889,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_data_accessor, params, self._interceptors,
                 "qbusiness", "DeleteDataAccessor", self._region,
+                DeleteDataAccessorResponse,
+                ("application_id", "data_accessor_id", ),
+                ("application_id", "data_accessor_id", ),
             )
             return _response
         _response = await self._native.delete_data_accessor(params)
@@ -842,6 +914,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_data_source, params, self._interceptors,
                 "qbusiness", "DeleteDataSource", self._region,
+                DeleteDataSourceResponse,
+                ("application_id", "index_id", "data_source_id", ),
+                ("application_id", "index_id", "data_source_id", ),
             )
             return _response
         _response = await self._native.delete_data_source(params)
@@ -867,6 +942,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_group, params, self._interceptors,
                 "qbusiness", "DeleteGroup", self._region,
+                DeleteGroupResponse,
+                ("application_id", "index_id", "group_name", "data_source_id", ),
+                ("application_id", "index_id", "group_name", ),
             )
             return _response
         _response = await self._native.delete_group(params)
@@ -887,6 +965,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_index, params, self._interceptors,
                 "qbusiness", "DeleteIndex", self._region,
+                DeleteIndexResponse,
+                ("application_id", "index_id", ),
+                ("application_id", "index_id", ),
             )
             return _response
         _response = await self._native.delete_index(params)
@@ -907,6 +988,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_plugin, params, self._interceptors,
                 "qbusiness", "DeletePlugin", self._region,
+                DeletePluginResponse,
+                ("application_id", "plugin_id", ),
+                ("application_id", "plugin_id", ),
             )
             return _response
         _response = await self._native.delete_plugin(params)
@@ -927,6 +1011,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_retriever, params, self._interceptors,
                 "qbusiness", "DeleteRetriever", self._region,
+                DeleteRetrieverResponse,
+                ("application_id", "retriever_id", ),
+                ("application_id", "retriever_id", ),
             )
             return _response
         _response = await self._native.delete_retriever(params)
@@ -947,6 +1034,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_user, params, self._interceptors,
                 "qbusiness", "DeleteUser", self._region,
+                DeleteUserResponse,
+                ("application_id", "user_id", ),
+                ("application_id", "user_id", ),
             )
             return _response
         _response = await self._native.delete_user(params)
@@ -967,6 +1057,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.delete_web_experience, params, self._interceptors,
                 "qbusiness", "DeleteWebExperience", self._region,
+                DeleteWebExperienceResponse,
+                ("application_id", "web_experience_id", ),
+                ("application_id", "web_experience_id", ),
             )
             return _response
         _response = await self._native.delete_web_experience(params)
@@ -987,6 +1080,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.disassociate_permission, params, self._interceptors,
                 "qbusiness", "DisassociatePermission", self._region,
+                DisassociatePermissionResponse,
+                ("application_id", "statement_id", ),
+                ("application_id", "statement_id", ),
             )
             return _response
         _response = await self._native.disassociate_permission(params)
@@ -1005,6 +1101,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_application, params, self._interceptors,
                 "qbusiness", "GetApplication", self._region,
+                GetApplicationResponse,
+                ("application_id", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.get_application(params)
@@ -1029,6 +1128,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_chat_controls_configuration, params, self._interceptors,
                 "qbusiness", "GetChatControlsConfiguration", self._region,
+                GetChatControlsConfigurationResponse,
+                ("application_id", "max_results", "next_token", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.get_chat_controls_configuration(params)
@@ -1049,6 +1151,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_chat_response_configuration, params, self._interceptors,
                 "qbusiness", "GetChatResponseConfiguration", self._region,
+                GetChatResponseConfigurationResponse,
+                ("application_id", "chat_response_configuration_id", ),
+                ("application_id", "chat_response_configuration_id", ),
             )
             return _response
         _response = await self._native.get_chat_response_configuration(params)
@@ -1069,6 +1174,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_data_accessor, params, self._interceptors,
                 "qbusiness", "GetDataAccessor", self._region,
+                GetDataAccessorResponse,
+                ("application_id", "data_accessor_id", ),
+                ("application_id", "data_accessor_id", ),
             )
             return _response
         _response = await self._native.get_data_accessor(params)
@@ -1091,6 +1199,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_data_source, params, self._interceptors,
                 "qbusiness", "GetDataSource", self._region,
+                GetDataSourceResponse,
+                ("application_id", "index_id", "data_source_id", ),
+                ("application_id", "index_id", "data_source_id", ),
             )
             return _response
         _response = await self._native.get_data_source(params)
@@ -1119,6 +1230,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_document_content, params, self._interceptors,
                 "qbusiness", "GetDocumentContent", self._region,
+                GetDocumentContentResponse,
+                ("application_id", "index_id", "document_id", "data_source_id", "output_format", ),
+                ("application_id", "index_id", "document_id", ),
             )
             return _response
         _response = await self._native.get_document_content(params)
@@ -1144,6 +1258,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_group, params, self._interceptors,
                 "qbusiness", "GetGroup", self._region,
+                GetGroupResponse,
+                ("application_id", "index_id", "group_name", "data_source_id", ),
+                ("application_id", "index_id", "group_name", ),
             )
             return _response
         _response = await self._native.get_group(params)
@@ -1164,6 +1281,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_index, params, self._interceptors,
                 "qbusiness", "GetIndex", self._region,
+                GetIndexResponse,
+                ("application_id", "index_id", ),
+                ("application_id", "index_id", ),
             )
             return _response
         _response = await self._native.get_index(params)
@@ -1188,6 +1308,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_media, params, self._interceptors,
                 "qbusiness", "GetMedia", self._region,
+                GetMediaResponse,
+                ("application_id", "conversation_id", "message_id", "media_id", ),
+                ("application_id", "conversation_id", "message_id", "media_id", ),
             )
             return _response
         _response = await self._native.get_media(params)
@@ -1208,6 +1331,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_plugin, params, self._interceptors,
                 "qbusiness", "GetPlugin", self._region,
+                GetPluginResponse,
+                ("application_id", "plugin_id", ),
+                ("application_id", "plugin_id", ),
             )
             return _response
         _response = await self._native.get_plugin(params)
@@ -1226,6 +1352,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_policy, params, self._interceptors,
                 "qbusiness", "GetPolicy", self._region,
+                GetPolicyResponse,
+                ("application_id", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.get_policy(params)
@@ -1246,6 +1375,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_retriever, params, self._interceptors,
                 "qbusiness", "GetRetriever", self._region,
+                GetRetrieverResponse,
+                ("application_id", "retriever_id", ),
+                ("application_id", "retriever_id", ),
             )
             return _response
         _response = await self._native.get_retriever(params)
@@ -1266,6 +1398,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_user, params, self._interceptors,
                 "qbusiness", "GetUser", self._region,
+                GetUserResponse,
+                ("application_id", "user_id", ),
+                ("application_id", "user_id", ),
             )
             return _response
         _response = await self._native.get_user(params)
@@ -1286,6 +1421,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.get_web_experience, params, self._interceptors,
                 "qbusiness", "GetWebExperience", self._region,
+                GetWebExperienceResponse,
+                ("application_id", "web_experience_id", ),
+                ("application_id", "web_experience_id", ),
             )
             return _response
         _response = await self._native.get_web_experience(params)
@@ -1308,6 +1446,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_applications, params, self._interceptors,
                 "qbusiness", "ListApplications", self._region,
+                ListApplicationsResponse,
+                ("next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_applications(params)
@@ -1338,6 +1479,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_attachments, params, self._interceptors,
                 "qbusiness", "ListAttachments", self._region,
+                ListAttachmentsResponse,
+                ("application_id", "conversation_id", "user_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_attachments(params)
@@ -1362,6 +1506,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_chat_response_configurations, params, self._interceptors,
                 "qbusiness", "ListChatResponseConfigurations", self._region,
+                ListChatResponseConfigurationsResponse,
+                ("application_id", "max_results", "next_token", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_chat_response_configurations(params)
@@ -1389,6 +1536,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_conversations, params, self._interceptors,
                 "qbusiness", "ListConversations", self._region,
+                ListConversationsResponse,
+                ("application_id", "user_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_conversations(params)
@@ -1413,6 +1563,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_accessors, params, self._interceptors,
                 "qbusiness", "ListDataAccessors", self._region,
+                ListDataAccessorsResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_data_accessors(params)
@@ -1450,6 +1603,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_source_sync_jobs, params, self._interceptors,
                 "qbusiness", "ListDataSourceSyncJobs", self._region,
+                ListDataSourceSyncJobsResponse,
+                ("data_source_id", "application_id", "index_id", "next_token", "max_results", "start_time", "end_time", "status_filter", ),
+                ("data_source_id", "application_id", "index_id", ),
             )
             return _response
         _response = await self._native.list_data_source_sync_jobs(params)
@@ -1476,6 +1632,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_data_sources, params, self._interceptors,
                 "qbusiness", "ListDataSources", self._region,
+                ListDataSourcesResponse,
+                ("application_id", "index_id", "next_token", "max_results", ),
+                ("application_id", "index_id", ),
             )
             return _response
         _response = await self._native.list_data_sources(params)
@@ -1505,6 +1664,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_documents, params, self._interceptors,
                 "qbusiness", "ListDocuments", self._region,
+                ListDocumentsResponse,
+                ("application_id", "index_id", "data_source_ids", "next_token", "max_results", ),
+                ("application_id", "index_id", ),
             )
             return _response
         _response = await self._native.list_documents(params)
@@ -1536,6 +1698,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_groups, params, self._interceptors,
                 "qbusiness", "ListGroups", self._region,
+                ListGroupsResponse,
+                ("application_id", "index_id", "updated_earlier_than", "data_source_id", "next_token", "max_results", ),
+                ("application_id", "index_id", "updated_earlier_than", ),
             )
             return _response
         _response = await self._native.list_groups(params)
@@ -1560,6 +1725,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_indices, params, self._interceptors,
                 "qbusiness", "ListIndices", self._region,
+                ListIndicesResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_indices(params)
@@ -1589,6 +1757,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_messages, params, self._interceptors,
                 "qbusiness", "ListMessages", self._region,
+                ListMessagesResponse,
+                ("conversation_id", "application_id", "user_id", "next_token", "max_results", ),
+                ("conversation_id", "application_id", ),
             )
             return _response
         _response = await self._native.list_messages(params)
@@ -1615,6 +1786,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_actions, params, self._interceptors,
                 "qbusiness", "ListPluginActions", self._region,
+                ListPluginActionsResponse,
+                ("application_id", "plugin_id", "next_token", "max_results", ),
+                ("application_id", "plugin_id", ),
             )
             return _response
         _response = await self._native.list_plugin_actions(params)
@@ -1639,6 +1813,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_type_actions, params, self._interceptors,
                 "qbusiness", "ListPluginTypeActions", self._region,
+                ListPluginTypeActionsResponse,
+                ("plugin_type", "next_token", "max_results", ),
+                ("plugin_type", ),
             )
             return _response
         _response = await self._native.list_plugin_type_actions(params)
@@ -1661,6 +1838,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugin_type_metadata, params, self._interceptors,
                 "qbusiness", "ListPluginTypeMetadata", self._region,
+                ListPluginTypeMetadataResponse,
+                ("next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_plugin_type_metadata(params)
@@ -1685,6 +1865,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_plugins, params, self._interceptors,
                 "qbusiness", "ListPlugins", self._region,
+                ListPluginsResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_plugins(params)
@@ -1709,6 +1892,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_retrievers, params, self._interceptors,
                 "qbusiness", "ListRetrievers", self._region,
+                ListRetrieversResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_retrievers(params)
@@ -1733,6 +1919,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_subscriptions, params, self._interceptors,
                 "qbusiness", "ListSubscriptions", self._region,
+                ListSubscriptionsResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -1751,6 +1940,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "qbusiness", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -1775,6 +1967,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.list_web_experiences, params, self._interceptors,
                 "qbusiness", "ListWebExperiences", self._region,
+                ListWebExperiencesResponse,
+                ("application_id", "next_token", "max_results", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.list_web_experiences(params)
@@ -1806,6 +2001,9 @@ class QBusinessClient:
             await invoke(
                 self._native.put_feedback, params, self._interceptors,
                 "qbusiness", "PutFeedback", self._region,
+                type(None),
+                ("application_id", "conversation_id", "message_id", "user_id", "message_copied_at", "message_usefulness", ),
+                ("application_id", "conversation_id", "message_id", ),
             )
             return None
         await self._native.put_feedback(params)
@@ -1838,6 +2036,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.put_group, params, self._interceptors,
                 "qbusiness", "PutGroup", self._region,
+                PutGroupResponse,
+                ("application_id", "index_id", "group_name", "type", "group_members", "data_source_id", "role_arn", ),
+                ("application_id", "index_id", "group_name", "type", "group_members", ),
             )
             return _response
         _response = await self._native.put_group(params)
@@ -1869,6 +2070,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.search_relevant_content, params, self._interceptors,
                 "qbusiness", "SearchRelevantContent", self._region,
+                SearchRelevantContentResponse,
+                ("application_id", "query_text", "content_source", "attribute_filter", "max_results", "next_token", ),
+                ("application_id", "query_text", "content_source", ),
             )
             return _response
         _response = await self._native.search_relevant_content(params)
@@ -1891,6 +2095,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.start_data_source_sync_job, params, self._interceptors,
                 "qbusiness", "StartDataSourceSyncJob", self._region,
+                StartDataSourceSyncJobResponse,
+                ("data_source_id", "application_id", "index_id", ),
+                ("data_source_id", "application_id", "index_id", ),
             )
             return _response
         _response = await self._native.start_data_source_sync_job(params)
@@ -1913,6 +2120,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.stop_data_source_sync_job, params, self._interceptors,
                 "qbusiness", "StopDataSourceSyncJob", self._region,
+                StopDataSourceSyncJobResponse,
+                ("data_source_id", "application_id", "index_id", ),
+                ("data_source_id", "application_id", "index_id", ),
             )
             return _response
         _response = await self._native.stop_data_source_sync_job(params)
@@ -1933,6 +2143,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "qbusiness", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -1953,6 +2166,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "qbusiness", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1995,6 +2211,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_application, params, self._interceptors,
                 "qbusiness", "UpdateApplication", self._region,
+                UpdateApplicationResponse,
+                ("application_id", "identity_center_instance_arn", "display_name", "description", "role_arn", "attachments_configuration", "q_apps_configuration", "personalization_configuration", "auto_subscription_configuration", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.update_application(params)
@@ -2037,6 +2256,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_chat_controls_configuration, params, self._interceptors,
                 "qbusiness", "UpdateChatControlsConfiguration", self._region,
+                UpdateChatControlsConfigurationResponse,
+                ("application_id", "client_token", "response_scope", "orchestration_configuration", "blocked_phrases_configuration_update", "topic_configurations_to_create_or_update", "topic_configurations_to_delete", "creator_mode_configuration", "hallucination_reduction_configuration", ),
+                ("application_id", ),
             )
             return _response
         _response = await self._native.update_chat_controls_configuration(params)
@@ -2065,6 +2287,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_chat_response_configuration, params, self._interceptors,
                 "qbusiness", "UpdateChatResponseConfiguration", self._region,
+                UpdateChatResponseConfigurationResponse,
+                ("application_id", "chat_response_configuration_id", "response_configurations", "display_name", "client_token", ),
+                ("application_id", "chat_response_configuration_id", "response_configurations", ),
             )
             return _response
         _response = await self._native.update_chat_response_configuration(params)
@@ -2093,6 +2318,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_data_accessor, params, self._interceptors,
                 "qbusiness", "UpdateDataAccessor", self._region,
+                UpdateDataAccessorResponse,
+                ("application_id", "data_accessor_id", "action_configurations", "authentication_detail", "display_name", ),
+                ("application_id", "data_accessor_id", "action_configurations", ),
             )
             return _response
         _response = await self._native.update_data_accessor(params)
@@ -2139,6 +2367,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_data_source, params, self._interceptors,
                 "qbusiness", "UpdateDataSource", self._region,
+                UpdateDataSourceResponse,
+                ("application_id", "index_id", "data_source_id", "display_name", "configuration", "vpc_configuration", "description", "sync_schedule", "role_arn", "document_enrichment_configuration", "media_extraction_configuration", ),
+                ("application_id", "index_id", "data_source_id", ),
             )
             return _response
         _response = await self._native.update_data_source(params)
@@ -2171,6 +2402,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_index, params, self._interceptors,
                 "qbusiness", "UpdateIndex", self._region,
+                UpdateIndexResponse,
+                ("application_id", "index_id", "display_name", "description", "capacity_configuration", "document_attribute_configurations", ),
+                ("application_id", "index_id", ),
             )
             return _response
         _response = await self._native.update_index(params)
@@ -2206,6 +2440,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_plugin, params, self._interceptors,
                 "qbusiness", "UpdatePlugin", self._region,
+                UpdatePluginResponse,
+                ("application_id", "plugin_id", "display_name", "state", "server_url", "custom_plugin_configuration", "auth_configuration", ),
+                ("application_id", "plugin_id", ),
             )
             return _response
         _response = await self._native.update_plugin(params)
@@ -2235,6 +2472,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_retriever, params, self._interceptors,
                 "qbusiness", "UpdateRetriever", self._region,
+                UpdateRetrieverResponse,
+                ("application_id", "retriever_id", "configuration", "display_name", "role_arn", ),
+                ("application_id", "retriever_id", ),
             )
             return _response
         _response = await self._native.update_retriever(params)
@@ -2257,6 +2497,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_subscription, params, self._interceptors,
                 "qbusiness", "UpdateSubscription", self._region,
+                UpdateSubscriptionResponse,
+                ("application_id", "subscription_id", "type", ),
+                ("application_id", "subscription_id", "type", ),
             )
             return _response
         _response = await self._native.update_subscription(params)
@@ -2283,6 +2526,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_user, params, self._interceptors,
                 "qbusiness", "UpdateUser", self._region,
+                UpdateUserResponse,
+                ("application_id", "user_id", "user_aliases_to_update", "user_aliases_to_delete", ),
+                ("application_id", "user_id", ),
             )
             return _response
         _response = await self._native.update_user(params)
@@ -2333,6 +2579,9 @@ class QBusinessClient:
             _response = await invoke(
                 self._native.update_web_experience, params, self._interceptors,
                 "qbusiness", "UpdateWebExperience", self._region,
+                UpdateWebExperienceResponse,
+                ("application_id", "web_experience_id", "role_arn", "authentication_configuration", "title", "subtitle", "welcome_message", "sample_prompts_control_mode", "identity_provider_configuration", "origins", "browser_extension_configuration", "customization_configuration", ),
+                ("application_id", "web_experience_id", ),
             )
             return _response
         _response = await self._native.update_web_experience(params)

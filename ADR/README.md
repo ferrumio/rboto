@@ -23,7 +23,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0009: Cover the AWS SDK for Python service catalog](0009-expanded-service-catalog.md)
 - [ADR-0010: Validate the newest CPython ABI and smoke-test every release target](0010-python315-validation-and-release-matrix.md)
 - [ADR-0013: Export explicit client classes from the facade](0013-public-client-classes.md)
-- [ADR-0014: Share typed operation lifecycle events](0014-observational-interceptors.md)
+- [ADR-0014: Expose asynchronous operation middleware](0014-operation-middleware.md)
 
 ## Creating an ADR
 

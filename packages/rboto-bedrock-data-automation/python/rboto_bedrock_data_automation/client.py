@@ -77,6 +77,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.copy_blueprint_stage, params, self._interceptors,
                 "bedrock-data-automation", "CopyBlueprintStage", self._region,
+                CopyBlueprintStageResponse,
+                ("blueprint_arn", "source_stage", "target_stage", "client_token", ),
+                ("blueprint_arn", "source_stage", "target_stage", ),
             )
             return _response
         _response = await self._native.copy_blueprint_stage(params)
@@ -111,6 +114,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.create_blueprint, params, self._interceptors,
                 "bedrock-data-automation", "CreateBlueprint", self._region,
+                CreateBlueprintResponse,
+                ("blueprint_name", "type", "schema", "blueprint_stage", "client_token", "encryption_configuration", "tags", ),
+                ("blueprint_name", "type", "schema", ),
             )
             return _response
         _response = await self._native.create_blueprint(params)
@@ -132,6 +138,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.create_blueprint_version, params, self._interceptors,
                 "bedrock-data-automation", "CreateBlueprintVersion", self._region,
+                CreateBlueprintVersionResponse,
+                ("blueprint_arn", "client_token", ),
+                ("blueprint_arn", ),
             )
             return _response
         _response = await self._native.create_blueprint_version(params)
@@ -162,6 +171,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.create_data_automation_library, params, self._interceptors,
                 "bedrock-data-automation", "CreateDataAutomationLibrary", self._region,
+                CreateDataAutomationLibraryResponse,
+                ("library_name", "library_description", "client_token", "encryption_configuration", "tags", ),
+                ("library_name", ),
             )
             return _response
         _response = await self._native.create_data_automation_library(params)
@@ -209,6 +221,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.create_data_automation_project, params, self._interceptors,
                 "bedrock-data-automation", "CreateDataAutomationProject", self._region,
+                CreateDataAutomationProjectResponse,
+                ("project_name", "standard_output_configuration", "project_description", "project_stage", "project_type", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "client_token", "encryption_configuration", "tags", ),
+                ("project_name", "standard_output_configuration", ),
             )
             return _response
         _response = await self._native.create_data_automation_project(params)
@@ -230,6 +245,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.delete_blueprint, params, self._interceptors,
                 "bedrock-data-automation", "DeleteBlueprint", self._region,
+                DeleteBlueprintResponse,
+                ("blueprint_arn", "blueprint_version", ),
+                ("blueprint_arn", ),
             )
             return _response
         _response = await self._native.delete_blueprint(params)
@@ -248,6 +266,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.delete_data_automation_library, params, self._interceptors,
                 "bedrock-data-automation", "DeleteDataAutomationLibrary", self._region,
+                DeleteDataAutomationLibraryResponse,
+                ("library_arn", ),
+                ("library_arn", ),
             )
             return _response
         _response = await self._native.delete_data_automation_library(params)
@@ -266,6 +287,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.delete_data_automation_project, params, self._interceptors,
                 "bedrock-data-automation", "DeleteDataAutomationProject", self._region,
+                DeleteDataAutomationProjectResponse,
+                ("project_arn", ),
+                ("project_arn", ),
             )
             return _response
         _response = await self._native.delete_data_automation_project(params)
@@ -290,6 +314,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_blueprint, params, self._interceptors,
                 "bedrock-data-automation", "GetBlueprint", self._region,
+                GetBlueprintResponse,
+                ("blueprint_arn", "blueprint_version", "blueprint_stage", ),
+                ("blueprint_arn", ),
             )
             return _response
         _response = await self._native.get_blueprint(params)
@@ -308,6 +335,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_blueprint_optimization_status, params, self._interceptors,
                 "bedrock-data-automation", "GetBlueprintOptimizationStatus", self._region,
+                GetBlueprintOptimizationStatusResponse,
+                ("invocation_arn", ),
+                ("invocation_arn", ),
             )
             return _response
         _response = await self._native.get_blueprint_optimization_status(params)
@@ -326,6 +356,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_data_automation_library, params, self._interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibrary", self._region,
+                GetDataAutomationLibraryResponse,
+                ("library_arn", ),
+                ("library_arn", ),
             )
             return _response
         _response = await self._native.get_data_automation_library(params)
@@ -348,6 +381,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_data_automation_library_entity, params, self._interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibraryEntity", self._region,
+                GetDataAutomationLibraryEntityResponse,
+                ("library_arn", "entity_type", "entity_id", ),
+                ("library_arn", "entity_type", "entity_id", ),
             )
             return _response
         _response = await self._native.get_data_automation_library_entity(params)
@@ -368,6 +404,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_data_automation_library_ingestion_job, params, self._interceptors,
                 "bedrock-data-automation", "GetDataAutomationLibraryIngestionJob", self._region,
+                GetDataAutomationLibraryIngestionJobResponse,
+                ("library_arn", "job_arn", ),
+                ("library_arn", "job_arn", ),
             )
             return _response
         _response = await self._native.get_data_automation_library_ingestion_job(params)
@@ -389,6 +428,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.get_data_automation_project, params, self._interceptors,
                 "bedrock-data-automation", "GetDataAutomationProject", self._region,
+                GetDataAutomationProjectResponse,
+                ("project_arn", "project_stage", ),
+                ("project_arn", ),
             )
             return _response
         _response = await self._native.get_data_automation_project(params)
@@ -419,6 +461,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.invoke_blueprint_optimization_async, params, self._interceptors,
                 "bedrock-data-automation", "InvokeBlueprintOptimizationAsync", self._region,
+                InvokeBlueprintOptimizationAsyncResponse,
+                ("blueprint", "samples", "output_configuration", "data_automation_profile_arn", "encryption_configuration", "tags", ),
+                ("blueprint", "samples", "output_configuration", "data_automation_profile_arn", ),
             )
             return _response
         _response = await self._native.invoke_blueprint_optimization_async(params)
@@ -454,6 +499,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.invoke_data_automation_library_ingestion_job, params, self._interceptors,
                 "bedrock-data-automation", "InvokeDataAutomationLibraryIngestionJob", self._region,
+                InvokeDataAutomationLibraryIngestionJobResponse,
+                ("library_arn", "input_configuration", "entity_type", "operation_type", "output_configuration", "client_token", "notification_configuration", "tags", ),
+                ("library_arn", "input_configuration", "entity_type", "operation_type", "output_configuration", ),
             )
             return _response
         _response = await self._native.invoke_data_automation_library_ingestion_job(params)
@@ -488,6 +536,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_blueprints, params, self._interceptors,
                 "bedrock-data-automation", "ListBlueprints", self._region,
+                ListBlueprintsResponse,
+                ("blueprint_arn", "resource_owner", "blueprint_stage_filter", "max_results", "next_token", "project_filter", ),
+                (),
             )
             return _response
         _response = await self._native.list_blueprints(params)
@@ -513,6 +564,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_data_automation_libraries, params, self._interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraries", self._region,
+                ListDataAutomationLibrariesResponse,
+                ("max_results", "next_token", "project_filter", ),
+                (),
             )
             return _response
         _response = await self._native.list_data_automation_libraries(params)
@@ -539,6 +593,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_data_automation_library_entities, params, self._interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraryEntities", self._region,
+                ListDataAutomationLibraryEntitiesResponse,
+                ("library_arn", "entity_type", "max_results", "next_token", ),
+                ("library_arn", "entity_type", ),
             )
             return _response
         _response = await self._native.list_data_automation_library_entities(params)
@@ -563,6 +620,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_data_automation_library_ingestion_jobs, params, self._interceptors,
                 "bedrock-data-automation", "ListDataAutomationLibraryIngestionJobs", self._region,
+                ListDataAutomationLibraryIngestionJobsResponse,
+                ("library_arn", "max_results", "next_token", ),
+                ("library_arn", ),
             )
             return _response
         _response = await self._native.list_data_automation_library_ingestion_jobs(params)
@@ -597,6 +657,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_data_automation_projects, params, self._interceptors,
                 "bedrock-data-automation", "ListDataAutomationProjects", self._region,
+                ListDataAutomationProjectsResponse,
+                ("max_results", "next_token", "project_stage_filter", "blueprint_filter", "resource_owner", "library_filter", ),
+                (),
             )
             return _response
         _response = await self._native.list_data_automation_projects(params)
@@ -615,6 +678,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "bedrock-data-automation", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -635,6 +701,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "bedrock-data-automation", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -655,6 +724,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "bedrock-data-automation", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -681,6 +753,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.update_blueprint, params, self._interceptors,
                 "bedrock-data-automation", "UpdateBlueprint", self._region,
+                UpdateBlueprintResponse,
+                ("blueprint_arn", "schema", "blueprint_stage", "encryption_configuration", ),
+                ("blueprint_arn", "schema", ),
             )
             return _response
         _response = await self._native.update_blueprint(params)
@@ -705,6 +780,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.update_data_automation_library, params, self._interceptors,
                 "bedrock-data-automation", "UpdateDataAutomationLibrary", self._region,
+                UpdateDataAutomationLibraryResponse,
+                ("library_arn", "library_description", "client_token", ),
+                ("library_arn", ),
             )
             return _response
         _response = await self._native.update_data_automation_library(params)
@@ -743,6 +821,9 @@ class BedrockDataAutomationClient:
             _response = await invoke(
                 self._native.update_data_automation_project, params, self._interceptors,
                 "bedrock-data-automation", "UpdateDataAutomationProject", self._region,
+                UpdateDataAutomationProjectResponse,
+                ("project_arn", "standard_output_configuration", "project_stage", "project_description", "custom_output_configuration", "override_configuration", "data_automation_library_configuration", "encryption_configuration", ),
+                ("project_arn", "standard_output_configuration", ),
             )
             return _response
         _response = await self._native.update_data_automation_project(params)

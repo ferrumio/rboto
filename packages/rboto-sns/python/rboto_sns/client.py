@@ -56,6 +56,9 @@ class SNSClient:
             await invoke(
                 self._native.add_permission, params, self._interceptors,
                 "sns", "AddPermission", self._region,
+                type(None),
+                ("topic_arn", "label", "aws_account_id", "action_name", ),
+                ("topic_arn", "label", "aws_account_id", "action_name", ),
             )
             return None
         await self._native.add_permission(params)
@@ -74,6 +77,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.check_if_phone_number_is_opted_out, params, self._interceptors,
                 "sns", "CheckIfPhoneNumberIsOptedOut", self._region,
+                CheckIfPhoneNumberIsOptedOutResponse,
+                ("phone_number", ),
+                ("phone_number", ),
             )
             return _response
         _response = await self._native.check_if_phone_number_is_opted_out(params)
@@ -97,6 +103,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.confirm_subscription, params, self._interceptors,
                 "sns", "ConfirmSubscription", self._region,
+                ConfirmSubscriptionResponse,
+                ("topic_arn", "token", "authenticate_on_unsubscribe", ),
+                ("topic_arn", "token", ),
             )
             return _response
         _response = await self._native.confirm_subscription(params)
@@ -119,6 +128,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.create_platform_application, params, self._interceptors,
                 "sns", "CreatePlatformApplication", self._region,
+                CreatePlatformApplicationResponse,
+                ("name", "platform", "attributes", ),
+                ("name", "platform", "attributes", ),
             )
             return _response
         _response = await self._native.create_platform_application(params)
@@ -145,6 +157,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.create_platform_endpoint, params, self._interceptors,
                 "sns", "CreatePlatformEndpoint", self._region,
+                CreateEndpointResponse,
+                ("platform_application_arn", "token", "custom_user_data", "attributes", ),
+                ("platform_application_arn", "token", ),
             )
             return _response
         _response = await self._native.create_platform_endpoint(params)
@@ -166,6 +181,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.create_sms_sandbox_phone_number, params, self._interceptors,
                 "sns", "CreateSMSSandboxPhoneNumber", self._region,
+                CreateSMSSandboxPhoneNumberResult,
+                ("phone_number", "language_code", ),
+                ("phone_number", ),
             )
             return _response
         _response = await self._native.create_sms_sandbox_phone_number(params)
@@ -193,6 +211,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.create_topic, params, self._interceptors,
                 "sns", "CreateTopic", self._region,
+                CreateTopicResponse,
+                ("name", "attributes", "tags", "data_protection_policy", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_topic(params)
@@ -211,6 +232,9 @@ class SNSClient:
             await invoke(
                 self._native.delete_endpoint, params, self._interceptors,
                 "sns", "DeleteEndpoint", self._region,
+                type(None),
+                ("endpoint_arn", ),
+                ("endpoint_arn", ),
             )
             return None
         await self._native.delete_endpoint(params)
@@ -229,6 +253,9 @@ class SNSClient:
             await invoke(
                 self._native.delete_platform_application, params, self._interceptors,
                 "sns", "DeletePlatformApplication", self._region,
+                type(None),
+                ("platform_application_arn", ),
+                ("platform_application_arn", ),
             )
             return None
         await self._native.delete_platform_application(params)
@@ -247,6 +274,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.delete_sms_sandbox_phone_number, params, self._interceptors,
                 "sns", "DeleteSMSSandboxPhoneNumber", self._region,
+                DeleteSMSSandboxPhoneNumberResult,
+                ("phone_number", ),
+                ("phone_number", ),
             )
             return _response
         _response = await self._native.delete_sms_sandbox_phone_number(params)
@@ -265,6 +295,9 @@ class SNSClient:
             await invoke(
                 self._native.delete_topic, params, self._interceptors,
                 "sns", "DeleteTopic", self._region,
+                type(None),
+                ("topic_arn", ),
+                ("topic_arn", ),
             )
             return None
         await self._native.delete_topic(params)
@@ -283,6 +316,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_data_protection_policy, params, self._interceptors,
                 "sns", "GetDataProtectionPolicy", self._region,
+                GetDataProtectionPolicyResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.get_data_protection_policy(params)
@@ -301,6 +337,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_endpoint_attributes, params, self._interceptors,
                 "sns", "GetEndpointAttributes", self._region,
+                GetEndpointAttributesResponse,
+                ("endpoint_arn", ),
+                ("endpoint_arn", ),
             )
             return _response
         _response = await self._native.get_endpoint_attributes(params)
@@ -319,6 +358,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_platform_application_attributes, params, self._interceptors,
                 "sns", "GetPlatformApplicationAttributes", self._region,
+                GetPlatformApplicationAttributesResponse,
+                ("platform_application_arn", ),
+                ("platform_application_arn", ),
             )
             return _response
         _response = await self._native.get_platform_application_attributes(params)
@@ -338,6 +380,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_sms_attributes, params, self._interceptors,
                 "sns", "GetSMSAttributes", self._region,
+                GetSMSAttributesResponse,
+                ("attributes", ),
+                (),
             )
             return _response
         _response = await self._native.get_sms_attributes(params)
@@ -353,6 +398,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_sms_sandbox_account_status, params, self._interceptors,
                 "sns", "GetSMSSandboxAccountStatus", self._region,
+                GetSMSSandboxAccountStatusResult,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_sms_sandbox_account_status(params)
@@ -371,6 +419,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_subscription_attributes, params, self._interceptors,
                 "sns", "GetSubscriptionAttributes", self._region,
+                GetSubscriptionAttributesResponse,
+                ("subscription_arn", ),
+                ("subscription_arn", ),
             )
             return _response
         _response = await self._native.get_subscription_attributes(params)
@@ -389,6 +440,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.get_topic_attributes, params, self._interceptors,
                 "sns", "GetTopicAttributes", self._region,
+                GetTopicAttributesResponse,
+                ("topic_arn", ),
+                ("topic_arn", ),
             )
             return _response
         _response = await self._native.get_topic_attributes(params)
@@ -410,6 +464,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_endpoints_by_platform_application, params, self._interceptors,
                 "sns", "ListEndpointsByPlatformApplication", self._region,
+                ListEndpointsByPlatformApplicationResponse,
+                ("platform_application_arn", "next_token", ),
+                ("platform_application_arn", ),
             )
             return _response
         _response = await self._native.list_endpoints_by_platform_application(params)
@@ -432,6 +489,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_origination_numbers, params, self._interceptors,
                 "sns", "ListOriginationNumbers", self._region,
+                ListOriginationNumbersResult,
+                ("next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_origination_numbers(params)
@@ -451,6 +511,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_phone_numbers_opted_out, params, self._interceptors,
                 "sns", "ListPhoneNumbersOptedOut", self._region,
+                ListPhoneNumbersOptedOutResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_phone_numbers_opted_out(params)
@@ -470,6 +533,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_platform_applications, params, self._interceptors,
                 "sns", "ListPlatformApplications", self._region,
+                ListPlatformApplicationsResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_platform_applications(params)
@@ -492,6 +558,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_sms_sandbox_phone_numbers, params, self._interceptors,
                 "sns", "ListSMSSandboxPhoneNumbers", self._region,
+                ListSMSSandboxPhoneNumbersResult,
+                ("next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_sms_sandbox_phone_numbers(params)
@@ -511,6 +580,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_subscriptions, params, self._interceptors,
                 "sns", "ListSubscriptions", self._region,
+                ListSubscriptionsResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_subscriptions(params)
@@ -532,6 +604,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_subscriptions_by_topic, params, self._interceptors,
                 "sns", "ListSubscriptionsByTopic", self._region,
+                ListSubscriptionsByTopicResponse,
+                ("topic_arn", "next_token", ),
+                ("topic_arn", ),
             )
             return _response
         _response = await self._native.list_subscriptions_by_topic(params)
@@ -550,6 +625,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "sns", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -569,6 +647,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.list_topics, params, self._interceptors,
                 "sns", "ListTopics", self._region,
+                ListTopicsResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_topics(params)
@@ -587,6 +668,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.opt_in_phone_number, params, self._interceptors,
                 "sns", "OptInPhoneNumber", self._region,
+                OptInPhoneNumberResponse,
+                ("phone_number", ),
+                ("phone_number", ),
             )
             return _response
         _response = await self._native.opt_in_phone_number(params)
@@ -629,6 +713,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.publish, params, self._interceptors,
                 "sns", "Publish", self._region,
+                PublishResponse,
+                ("message", "topic_arn", "target_arn", "phone_number", "subject", "message_structure", "message_attributes", "message_deduplication_id", "message_group_id", ),
+                ("message", ),
             )
             return _response
         _response = await self._native.publish(params)
@@ -649,6 +736,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.publish_batch, params, self._interceptors,
                 "sns", "PublishBatch", self._region,
+                PublishBatchResponse,
+                ("topic_arn", "publish_batch_request_entries", ),
+                ("topic_arn", "publish_batch_request_entries", ),
             )
             return _response
         _response = await self._native.publish_batch(params)
@@ -669,6 +759,9 @@ class SNSClient:
             await invoke(
                 self._native.put_data_protection_policy, params, self._interceptors,
                 "sns", "PutDataProtectionPolicy", self._region,
+                type(None),
+                ("resource_arn", "data_protection_policy", ),
+                ("resource_arn", "data_protection_policy", ),
             )
             return None
         await self._native.put_data_protection_policy(params)
@@ -689,6 +782,9 @@ class SNSClient:
             await invoke(
                 self._native.remove_permission, params, self._interceptors,
                 "sns", "RemovePermission", self._region,
+                type(None),
+                ("topic_arn", "label", ),
+                ("topic_arn", "label", ),
             )
             return None
         await self._native.remove_permission(params)
@@ -709,6 +805,9 @@ class SNSClient:
             await invoke(
                 self._native.set_endpoint_attributes, params, self._interceptors,
                 "sns", "SetEndpointAttributes", self._region,
+                type(None),
+                ("endpoint_arn", "attributes", ),
+                ("endpoint_arn", "attributes", ),
             )
             return None
         await self._native.set_endpoint_attributes(params)
@@ -729,6 +828,9 @@ class SNSClient:
             await invoke(
                 self._native.set_platform_application_attributes, params, self._interceptors,
                 "sns", "SetPlatformApplicationAttributes", self._region,
+                type(None),
+                ("platform_application_arn", "attributes", ),
+                ("platform_application_arn", "attributes", ),
             )
             return None
         await self._native.set_platform_application_attributes(params)
@@ -747,6 +849,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.set_sms_attributes, params, self._interceptors,
                 "sns", "SetSMSAttributes", self._region,
+                SetSMSAttributesResponse,
+                ("attributes", ),
+                ("attributes", ),
             )
             return _response
         _response = await self._native.set_sms_attributes(params)
@@ -770,6 +875,9 @@ class SNSClient:
             await invoke(
                 self._native.set_subscription_attributes, params, self._interceptors,
                 "sns", "SetSubscriptionAttributes", self._region,
+                type(None),
+                ("subscription_arn", "attribute_name", "attribute_value", ),
+                ("subscription_arn", "attribute_name", ),
             )
             return None
         await self._native.set_subscription_attributes(params)
@@ -793,6 +901,9 @@ class SNSClient:
             await invoke(
                 self._native.set_topic_attributes, params, self._interceptors,
                 "sns", "SetTopicAttributes", self._region,
+                type(None),
+                ("topic_arn", "attribute_name", "attribute_value", ),
+                ("topic_arn", "attribute_name", ),
             )
             return None
         await self._native.set_topic_attributes(params)
@@ -822,6 +933,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.subscribe, params, self._interceptors,
                 "sns", "Subscribe", self._region,
+                SubscribeResponse,
+                ("topic_arn", "protocol", "endpoint", "attributes", "return_subscription_arn", ),
+                ("topic_arn", "protocol", ),
             )
             return _response
         _response = await self._native.subscribe(params)
@@ -842,6 +956,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "sns", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -860,6 +977,9 @@ class SNSClient:
             await invoke(
                 self._native.unsubscribe, params, self._interceptors,
                 "sns", "Unsubscribe", self._region,
+                type(None),
+                ("subscription_arn", ),
+                ("subscription_arn", ),
             )
             return None
         await self._native.unsubscribe(params)
@@ -880,6 +1000,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "sns", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -900,6 +1023,9 @@ class SNSClient:
             _response = await invoke(
                 self._native.verify_sms_sandbox_phone_number, params, self._interceptors,
                 "sns", "VerifySMSSandboxPhoneNumber", self._region,
+                VerifySMSSandboxPhoneNumberResult,
+                ("phone_number", "one_time_password", ),
+                ("phone_number", "one_time_password", ),
             )
             return _response
         _response = await self._native.verify_sms_sandbox_phone_number(params)

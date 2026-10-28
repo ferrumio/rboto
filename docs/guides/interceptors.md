@@ -1,92 +1,148 @@
 # Interceptors
 
-Use an interceptor to observe calls without wrapping each operation. A callback
-receives an `OperationEvent` before the call and another when it succeeds, fails,
-or is cancelled.
+An interceptor is async middleware around an operation. It receives an
+`OperationRequest` and `call_next`, which runs the rest of the chain. It returns
+an `OperationResponse`. The client unwraps that response and returns the usual
+typed output to your application.
+
+Use middleware to change parameters, enforce an application policy, time an
+operation, recover from a failure, or serve a cached response.
 
 ```python
 --8<-- "examples/docs/interceptors.py"
 ```
 
-Callbacks may be ordinary functions or `async def` functions. rboto calls them in
-registration order on the task making the request, awaiting async callbacks.
-Callbacks receive metadata; they cannot change parameters or replace responses.
-Keep them short: blocking I/O in a callback blocks your event loop, and awaiting a
-slow callback delays the operation.
+## How the chain runs
 
-## Configure a client or Session
+For `interceptors=[first, second]`, execution proceeds as follows:
 
-Pass `interceptors=[report]` directly to any client. A client constructed with a
-Session inherits its interceptors unless you provide an explicit sequence:
-
-```python
-client = S3Client(session=session)                       # inherit
-client = S3Client(session=session, interceptors=[report])  # replace
-client = S3Client(session=session, interceptors=())       # disable
+```text
+first: before
+  second: before
+    native operation, including its retries
+  second: after
+first: after
 ```
 
-The client copies the sequence at construction. Changing the original list later
-does not change existing clients. Compatibility factories accept the same option.
-Without interceptors, operations take the direct native path.
+`await call_next(request)` forwards the operation. Returning an
+`OperationResponse` without calling it skips the remaining chain and the native
+request. Raising an exception also prevents forwarding if `call_next` has not
+run yet. Exceptions propagate through the chain to the caller unless a
+middleware explicitly catches them.
 
-## Read the event
+Each continuation can be awaited once, on the middleware's task, and only while
+that middleware is running. This prevents accidental duplicate sends and
+continuations outliving the operation. For a deadline, use `asyncio.timeout()`
+around `await call_next(request)`. Native retries remain under the client's retry
+configuration; calling `call_next` twice is not a retry API.
 
-Events and their nested context and attempt records are immutable.
+## Change parameters
+
+`request.parameters` contains the same snake_case names used by the client
+method. For Python keyword escapes, use the underlying name, such as `from`
+instead of `from_`. Values include the original typed mappings and stream
+objects; the chain does not deep-copy them.
+
+```python
+--8<-- "examples/docs/interceptor_parameters.py"
+```
+
+You can also forward a replacement mapping:
+
+```python
+updated = request.with_parameters({**request.parameters, "max_keys": 100})
+return await call_next(updated)
+```
+
+Unknown top-level parameters and missing required parameters are rejected before
+native dispatch. Values then pass through the usual native conversion and
+validation. Middleware shared across services must check the service and
+operation before changing operation-specific parameters.
+
+## Return a cached response
+
+The following example caches the immutable output of `ListBuckets` without
+parameters for five seconds. Create a separate cache instance for each client
+configuration and credential scope.
+
+```python
+--8<-- "examples/docs/interceptor_cache.py"
+```
+
+Register it with `S3Client(interceptors=[ListBucketsCache()])`. A cache hit returns
+the saved native output without sending another request. In concurrent calls,
+this small example may make more than one request while the cache is empty.
+
+A replacement must satisfy the operation's output contract. Regular native
+outputs remain immutable: return another output of the same generated class
+rather than a dictionary with similar fields. Event-stream operations retain
+their documented mapping outputs. Do not cache consumable streams.
+
+After forwarding, you can assign a replacement to `response.output` and return
+that response, or return a new `OperationResponse`. The same output contract
+applies in both cases.
+
+## Handle failures
+
+Use ordinary `try`/`except` around `await call_next(request)`. Modeled exceptions
+retain their classes. A middleware can re-raise, translate an exception, or
+return a valid fallback output. Errors in middleware are not swallowed.
+
+Use `try`/`finally` for cleanup and instrumentation. Cancellation unwinds the
+chain normally, allowing each middleware's `finally` block to run. Avoid blocking
+I/O and unbounded cleanup waits on the event loop.
+
+## Configuration and context
+
+A client inherits its Session's middleware unless an explicit sequence replaces
+it. An empty sequence disables inheritance:
+
+```python
+client = S3Client(session=session)                         # inherit
+client = S3Client(session=session, interceptors=[timing])  # replace
+client = S3Client(session=session, interceptors=())        # disable
+```
+
+The sequence is copied at construction. Without middleware, operations take the
+direct native path. Compatibility factories accept the same setting.
+
+`request.context` is immutable. It provides `service`, `operation`,
+`operation_id`, and `correlation_id`. Each invocation has a unique ID.
+`operation_context(correlation_id=...)` attaches an application ID to calls in
+that block, including child tasks created there. Nested blocks restore the
+previous ID on exit.
+
+## Native metadata
+
+Inspect `request.metadata` after `call_next` returns or raises. It is an immutable
+snapshot of native dispatch, separate from any later response replacement:
 
 | Field | Meaning |
 | --- | --- |
-| `context.operation_id` | Unique identity for this invocation, shared by its two events |
-| `context.service` / `context.operation` | Service ID and modeled operation name, such as `s3` / `GetObject` |
-| `context.correlation_id` | ID supplied through `operation_context()` |
-| `phase` | `start`, `success`, `failure`, or `cancelled` |
-| `region` | Explicit region at start; resolved region at completion when available |
-| `duration` | Elapsed seconds, available on terminal events |
-| `attempt_count` / `retry_count` | Total native attempts and retries |
-| `status_code` / `request_id` | Last attempt's HTTP status and request ID, when available |
-| `error_code` / `error_type` | Modeled error code and Python exception class name |
-| `attempts` | Completed native attempts with number, duration, status, and request ID |
-| `attempts_truncated` | Whether the attempt list omitted records after its first 32 entries |
+| `dispatched` | Whether the native adapter was called; false for cache hits and blocked calls |
+| `region` | Explicit region initially, then resolved region when available |
+| `duration` | Native call elapsed seconds, including initialization and retries |
+| `attempt_count` / `retry_count` | Native attempts and retries |
+| `status_code` / `request_id` | Last attempt's status and request ID when available |
+| `error_code` / `error_type` | Native failure's modeled code and Python exception class name |
+| `attempts` | Up to 32 completed attempts, with number, duration, status, and request ID |
+| `attempts_truncated` | Whether the attempt list omitted additional records |
 
-`None` means unavailable. For example, cancelling a call before the native result
-returns may leave its attempt count unknown. The total count remains exact when
-available even if the attempt list was truncated.
+Before dispatch, `attempt_count` is zero. After dispatch, `None` means unavailable,
+for example when cancellation prevents metadata delivery. Attempt duration
+excludes backoff before the next attempt. Attempt metadata arrives when native
+dispatch finishes, rather than as live retry notifications.
 
-Operation duration includes client initialization, start callbacks, retries, and
-time waiting between attempts. It excludes terminal callbacks. Each attempt's
-duration excludes the wait before the next attempt. Attempt records arrive with
-the terminal event, not as live retry notifications.
+A middleware that recovers from an error still sees that native error in the
+metadata. To time the entire chain, including middleware and cache hits, use an
+outer middleware as in the first example.
 
-Events contain no request parameters, response payloads, exception messages, or
-credentials. Request IDs depend on the response metadata available to the client.
+## Streaming outputs
 
-## Correlate concurrent calls
+`call_next` may return while a byte stream or event stream is still unread.
+Timing the operation does not measure subsequent consumption. Later stream
+errors are handled by the code reading the stream.
 
-`operation_context(correlation_id=...)` attaches an ID to operations within the
-block, including child tasks created there. Nested blocks restore the previous
-ID on exit. Different tasks can use different IDs with the same client.
-
-Callbacks still need to protect any mutable application state they share.
-
-## Failures and cancellation
-
-An ordinary callback exception is sent to your event loop's exception handler.
-Other callbacks continue, and the original operation result or exception is
-preserved. rboto does not configure a logger for callback errors.
-
-Cancelling the caller stops the operation and produces a cancellation event.
-Callbacks are awaited during cancellation handling too, so avoid unbounded
-waits in cleanup.
-
-If the native operation has already completed and you cancel during terminal
-callback delivery, remaining callbacks receive that settled outcome and
-cancellation then propagates to the caller. The interrupted callback is not
-restarted, and no second terminal event is emitted.
-
-## Streaming responses
-
-A `success` event means the operation returned its result. For `GetObject`, the
-body may still be unread. Reading a byte stream or event stream, or encountering
-a later stream error, does not generate another operation event.
-
-Interceptors never consume or copy stream contents. Read and handle the stream
-normally in your application.
+The chain does not read, clone, or convert responses with `to_dict()`. Middleware
+has access to the actual output, so consuming its stream would also consume it
+for the caller. Preserve ownership when replacing outputs or handling streams.

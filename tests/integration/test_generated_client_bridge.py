@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 import rboto
-from rboto import OperationEvent, Session
+from rboto import Next, OperationRequest, OperationResponse, Session
 from rboto_codegen.registry import list_services
 from rboto_codegen.rust_crate import parse_crate
 
@@ -69,8 +69,13 @@ async def test_every_python_method_dispatches_to_its_native_counterpart(
     _expected_count: int,
     observed: bool,
 ) -> None:
-    events: list[OperationEvent] = []
-    client = client_class(region="us-east-1", interceptors=[events.append] if observed else ())
+    requests: list[OperationRequest] = []
+
+    async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+        requests.append(request)
+        return await call_next(request)
+
+    client = client_class(region="us-east-1", interceptors=[middleware] if observed else ())
     sentinel = object()
     spy = NativeSpy(sentinel)
     client._native = spy  # type: ignore[attr-defined]
@@ -105,10 +110,10 @@ async def test_every_python_method_dispatches_to_its_native_counterpart(
         assert len(params) == len(supplied)
         assert all(value in params.values() for value in supplied.values())
         if observed:
-            assert [event.phase for event in events] == ["start", "success"] * 2
-            assert events[0].context is events[1].context
-            assert events[0].context.operation_id != events[2].context.operation_id
-            events.clear()
+            assert len(requests) == 2
+            assert requests[0].metadata.dispatched and requests[1].metadata.dispatched
+            assert requests[0].context.operation_id != requests[1].context.operation_id
+            requests.clear()
 
 
 @pytest.mark.parametrize(

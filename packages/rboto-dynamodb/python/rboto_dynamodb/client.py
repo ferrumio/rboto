@@ -108,6 +108,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.batch_execute_statement, params, self._interceptors,
                 "dynamodb", "BatchExecuteStatement", self._region,
+                BatchExecuteStatementOutput,
+                ("statements", "return_consumed_capacity", ),
+                ("statements", ),
             )
             return _response
         _response = await self._native.batch_execute_statement(params)
@@ -129,6 +132,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.batch_get_item, params, self._interceptors,
                 "dynamodb", "BatchGetItem", self._region,
+                BatchGetItemOutput,
+                ("request_items", "return_consumed_capacity", ),
+                ("request_items", ),
             )
             return _response
         _response = await self._native.batch_get_item(params)
@@ -153,6 +159,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.batch_write_item, params, self._interceptors,
                 "dynamodb", "BatchWriteItem", self._region,
+                BatchWriteItemOutput,
+                ("request_items", "return_consumed_capacity", "return_item_collection_metrics", ),
+                ("request_items", ),
             )
             return _response
         _response = await self._native.batch_write_item(params)
@@ -173,6 +182,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.create_backup, params, self._interceptors,
                 "dynamodb", "CreateBackup", self._region,
+                CreateBackupOutput,
+                ("table_name", "backup_name", ),
+                ("table_name", "backup_name", ),
             )
             return _response
         _response = await self._native.create_backup(params)
@@ -193,6 +205,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.create_global_table, params, self._interceptors,
                 "dynamodb", "CreateGlobalTable", self._region,
+                CreateGlobalTableOutput,
+                ("global_table_name", "replication_group", ),
+                ("global_table_name", "replication_group", ),
             )
             return _response
         _response = await self._native.create_global_table(params)
@@ -262,6 +277,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.create_table, params, self._interceptors,
                 "dynamodb", "CreateTable", self._region,
+                CreateTableOutput,
+                ("table_name", "attribute_definitions", "key_schema", "local_secondary_indexes", "global_secondary_indexes", "billing_mode", "provisioned_throughput", "stream_specification", "sse_specification", "tags", "table_class", "deletion_protection_enabled", "warm_throughput", "resource_policy", "on_demand_throughput", "global_table_source_arn", "global_table_settings_replication_mode", "vector_indexes", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.create_table(params)
@@ -280,6 +298,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.delete_backup, params, self._interceptors,
                 "dynamodb", "DeleteBackup", self._region,
+                DeleteBackupOutput,
+                ("backup_arn", ),
+                ("backup_arn", ),
             )
             return _response
         _response = await self._native.delete_backup(params)
@@ -327,6 +348,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.delete_item, params, self._interceptors,
                 "dynamodb", "DeleteItem", self._region,
+                DeleteItemOutput,
+                ("table_name", "key", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
+                ("table_name", "key", ),
             )
             return _response
         _response = await self._native.delete_item(params)
@@ -348,6 +372,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, self._interceptors,
                 "dynamodb", "DeleteResourcePolicy", self._region,
+                DeleteResourcePolicyOutput,
+                ("resource_arn", "expected_revision_id", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -366,6 +393,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.delete_table, params, self._interceptors,
                 "dynamodb", "DeleteTable", self._region,
+                DeleteTableOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.delete_table(params)
@@ -384,6 +414,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_backup, params, self._interceptors,
                 "dynamodb", "DescribeBackup", self._region,
+                DescribeBackupOutput,
+                ("backup_arn", ),
+                ("backup_arn", ),
             )
             return _response
         _response = await self._native.describe_backup(params)
@@ -402,6 +435,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_continuous_backups, params, self._interceptors,
                 "dynamodb", "DescribeContinuousBackups", self._region,
+                DescribeContinuousBackupsOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_continuous_backups(params)
@@ -423,6 +459,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_contributor_insights, params, self._interceptors,
                 "dynamodb", "DescribeContributorInsights", self._region,
+                DescribeContributorInsightsOutput,
+                ("table_name", "index_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_contributor_insights(params)
@@ -438,6 +477,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_endpoints, params, self._interceptors,
                 "dynamodb", "DescribeEndpoints", self._region,
+                DescribeEndpointsResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.describe_endpoints(params)
@@ -456,6 +498,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_export, params, self._interceptors,
                 "dynamodb", "DescribeExport", self._region,
+                DescribeExportOutput,
+                ("export_arn", ),
+                ("export_arn", ),
             )
             return _response
         _response = await self._native.describe_export(params)
@@ -474,6 +519,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_global_table, params, self._interceptors,
                 "dynamodb", "DescribeGlobalTable", self._region,
+                DescribeGlobalTableOutput,
+                ("global_table_name", ),
+                ("global_table_name", ),
             )
             return _response
         _response = await self._native.describe_global_table(params)
@@ -492,6 +540,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_global_table_settings, params, self._interceptors,
                 "dynamodb", "DescribeGlobalTableSettings", self._region,
+                DescribeGlobalTableSettingsOutput,
+                ("global_table_name", ),
+                ("global_table_name", ),
             )
             return _response
         _response = await self._native.describe_global_table_settings(params)
@@ -510,6 +561,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_import, params, self._interceptors,
                 "dynamodb", "DescribeImport", self._region,
+                DescribeImportOutput,
+                ("import_arn", ),
+                ("import_arn", ),
             )
             return _response
         _response = await self._native.describe_import(params)
@@ -528,6 +582,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_kinesis_streaming_destination, params, self._interceptors,
                 "dynamodb", "DescribeKinesisStreamingDestination", self._region,
+                DescribeKinesisStreamingDestinationOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_kinesis_streaming_destination(params)
@@ -543,6 +600,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_limits, params, self._interceptors,
                 "dynamodb", "DescribeLimits", self._region,
+                DescribeLimitsOutput,
+                (),
+                (),
             )
             return _response
         _response = await self._native.describe_limits(params)
@@ -561,6 +621,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_table, params, self._interceptors,
                 "dynamodb", "DescribeTable", self._region,
+                DescribeTableOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_table(params)
@@ -579,6 +642,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_table_replica_auto_scaling, params, self._interceptors,
                 "dynamodb", "DescribeTableReplicaAutoScaling", self._region,
+                DescribeTableReplicaAutoScalingOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_table_replica_auto_scaling(params)
@@ -597,6 +663,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.describe_time_to_live, params, self._interceptors,
                 "dynamodb", "DescribeTimeToLive", self._region,
+                DescribeTimeToLiveOutput,
+                ("table_name", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.describe_time_to_live(params)
@@ -620,6 +689,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.disable_kinesis_streaming_destination, params, self._interceptors,
                 "dynamodb", "DisableKinesisStreamingDestination", self._region,
+                DisableKinesisStreamingDestinationOutput,
+                ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
+                ("table_name", "stream_arn", ),
             )
             return _response
         _response = await self._native.disable_kinesis_streaming_destination(params)
@@ -643,6 +715,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.enable_kinesis_streaming_destination, params, self._interceptors,
                 "dynamodb", "EnableKinesisStreamingDestination", self._region,
+                EnableKinesisStreamingDestinationOutput,
+                ("table_name", "stream_arn", "enable_kinesis_streaming_configuration", ),
+                ("table_name", "stream_arn", ),
             )
             return _response
         _response = await self._native.enable_kinesis_streaming_destination(params)
@@ -679,6 +754,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.execute_statement, params, self._interceptors,
                 "dynamodb", "ExecuteStatement", self._region,
+                ExecuteStatementOutput,
+                ("statement", "parameters", "consistent_read", "next_token", "return_consumed_capacity", "limit", "return_values_on_condition_check_failure", ),
+                ("statement", ),
             )
             return _response
         _response = await self._native.execute_statement(params)
@@ -703,6 +781,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.execute_transaction, params, self._interceptors,
                 "dynamodb", "ExecuteTransaction", self._region,
+                ExecuteTransactionOutput,
+                ("transact_statements", "client_request_token", "return_consumed_capacity", ),
+                ("transact_statements", ),
             )
             return _response
         _response = await self._native.execute_transaction(params)
@@ -753,6 +834,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.export_table_to_point_in_time, params, self._interceptors,
                 "dynamodb", "ExportTableToPointInTime", self._region,
+                ExportTableToPointInTimeOutput,
+                ("table_arn", "s3_bucket", "export_time", "client_token", "s3_bucket_owner", "s3_prefix", "s3_sse_algorithm", "s3_sse_kms_key_id", "export_format", "export_type", "incremental_export_specification", "filter_specification", ),
+                ("table_arn", "s3_bucket", ),
             )
             return _response
         _response = await self._native.export_table_to_point_in_time(params)
@@ -788,6 +872,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.get_item, params, self._interceptors,
                 "dynamodb", "GetItem", self._region,
+                GetItemOutput,
+                ("table_name", "key", "attributes_to_get", "consistent_read", "return_consumed_capacity", "projection_expression", "expression_attribute_names", ),
+                ("table_name", "key", ),
             )
             return _response
         _response = await self._native.get_item(params)
@@ -806,6 +893,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, self._interceptors,
                 "dynamodb", "GetResourcePolicy", self._region,
+                GetResourcePolicyOutput,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -837,6 +927,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.import_table, params, self._interceptors,
                 "dynamodb", "ImportTable", self._region,
+                ImportTableOutput,
+                ("s3_bucket_source", "input_format", "table_creation_parameters", "client_token", "input_format_options", "input_compression_type", ),
+                ("s3_bucket_source", "input_format", "table_creation_parameters", ),
             )
             return _response
         _response = await self._native.import_table(params)
@@ -871,6 +964,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_backups, params, self._interceptors,
                 "dynamodb", "ListBackups", self._region,
+                ListBackupsOutput,
+                ("table_name", "limit", "time_range_lower_bound", "time_range_upper_bound", "exclusive_start_backup_arn", "backup_type", ),
+                (),
             )
             return _response
         _response = await self._native.list_backups(params)
@@ -896,6 +992,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_contributor_insights, params, self._interceptors,
                 "dynamodb", "ListContributorInsights", self._region,
+                ListContributorInsightsOutput,
+                ("table_name", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_contributor_insights(params)
@@ -921,6 +1020,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_exports, params, self._interceptors,
                 "dynamodb", "ListExports", self._region,
+                ListExportsOutput,
+                ("table_arn", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_exports(params)
@@ -946,6 +1048,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_global_tables, params, self._interceptors,
                 "dynamodb", "ListGlobalTables", self._region,
+                ListGlobalTablesOutput,
+                ("exclusive_start_global_table_name", "limit", "region_name", ),
+                (),
             )
             return _response
         _response = await self._native.list_global_tables(params)
@@ -971,6 +1076,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_imports, params, self._interceptors,
                 "dynamodb", "ListImports", self._region,
+                ListImportsOutput,
+                ("table_arn", "page_size", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_imports(params)
@@ -993,6 +1101,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_tables, params, self._interceptors,
                 "dynamodb", "ListTables", self._region,
+                ListTablesOutput,
+                ("exclusive_start_table_name", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_tables(params)
@@ -1014,6 +1125,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.list_tags_of_resource, params, self._interceptors,
                 "dynamodb", "ListTagsOfResource", self._region,
+                ListTagsOfResourceOutput,
+                ("resource_arn", "next_token", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_of_resource(params)
@@ -1061,6 +1175,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.put_item, params, self._interceptors,
                 "dynamodb", "PutItem", self._region,
+                PutItemOutput,
+                ("table_name", "item", "expected", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "conditional_operator", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
+                ("table_name", "item", ),
             )
             return _response
         _response = await self._native.put_item(params)
@@ -1087,6 +1204,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, self._interceptors,
                 "dynamodb", "PutResourcePolicy", self._region,
+                PutResourcePolicyOutput,
+                ("resource_arn", "policy", "expected_revision_id", "confirm_remove_self_resource_access", ),
+                ("resource_arn", "policy", ),
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -1153,6 +1273,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.query, params, self._interceptors,
                 "dynamodb", "Query", self._region,
+                QueryOutput,
+                ("table_name", "index_name", "select", "attributes_to_get", "limit", "consistent_read", "key_conditions", "query_filter", "conditional_operator", "scan_index_forward", "exclusive_start_key", "return_consumed_capacity", "projection_expression", "filter_expression", "key_condition_expression", "expression_attribute_names", "expression_attribute_values", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.query(params)
@@ -1194,6 +1317,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.restore_table_from_backup, params, self._interceptors,
                 "dynamodb", "RestoreTableFromBackup", self._region,
+                RestoreTableFromBackupOutput,
+                ("target_table_name", "backup_arn", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
+                ("target_table_name", "backup_arn", ),
             )
             return _response
         _response = await self._native.restore_table_from_backup(params)
@@ -1245,6 +1371,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.restore_table_to_point_in_time, params, self._interceptors,
                 "dynamodb", "RestoreTableToPointInTime", self._region,
+                RestoreTableToPointInTimeOutput,
+                ("target_table_name", "source_table_arn", "source_table_name", "use_latest_restorable_time", "restore_date_time", "billing_mode_override", "global_secondary_index_override", "local_secondary_index_override", "provisioned_throughput_override", "on_demand_throughput_override", "sse_specification_override", "vector_index_override", ),
+                ("target_table_name", ),
             )
             return _response
         _response = await self._native.restore_table_to_point_in_time(params)
@@ -1308,6 +1437,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.scan, params, self._interceptors,
                 "dynamodb", "Scan", self._region,
+                ScanOutput,
+                ("table_name", "index_name", "attributes_to_get", "limit", "select", "scan_filter", "conditional_operator", "exclusive_start_key", "return_consumed_capacity", "total_segments", "segment", "projection_expression", "filter_expression", "expression_attribute_names", "expression_attribute_values", "consistent_read", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.scan(params)
@@ -1347,6 +1479,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.search_vectors, params, self._interceptors,
                 "dynamodb", "SearchVectors", self._region,
+                SearchVectorsOutput,
+                ("table_name", "index_name", "search_vector", "top_k", "return_consumed_capacity", "expression_attribute_names", "expression_attribute_values", "projection_expression", "search_condition_expression", ),
+                ("table_name", "index_name", "search_vector", "top_k", ),
             )
             return _response
         _response = await self._native.search_vectors(params)
@@ -1367,6 +1502,9 @@ class DynamoDBClient:
             await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "dynamodb", "TagResource", self._region,
+                type(None),
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return None
         await self._native.tag_resource(params)
@@ -1388,6 +1526,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.transact_get_items, params, self._interceptors,
                 "dynamodb", "TransactGetItems", self._region,
+                TransactGetItemsOutput,
+                ("transact_items", "return_consumed_capacity", ),
+                ("transact_items", ),
             )
             return _response
         _response = await self._native.transact_get_items(params)
@@ -1415,6 +1556,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.transact_write_items, params, self._interceptors,
                 "dynamodb", "TransactWriteItems", self._region,
+                TransactWriteItemsOutput,
+                ("transact_items", "return_consumed_capacity", "return_item_collection_metrics", "client_request_token", ),
+                ("transact_items", ),
             )
             return _response
         _response = await self._native.transact_write_items(params)
@@ -1435,6 +1579,9 @@ class DynamoDBClient:
             await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "dynamodb", "UntagResource", self._region,
+                type(None),
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return None
         await self._native.untag_resource(params)
@@ -1455,6 +1602,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_continuous_backups, params, self._interceptors,
                 "dynamodb", "UpdateContinuousBackups", self._region,
+                UpdateContinuousBackupsOutput,
+                ("table_name", "point_in_time_recovery_specification", ),
+                ("table_name", "point_in_time_recovery_specification", ),
             )
             return _response
         _response = await self._native.update_continuous_backups(params)
@@ -1481,6 +1631,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_contributor_insights, params, self._interceptors,
                 "dynamodb", "UpdateContributorInsights", self._region,
+                UpdateContributorInsightsOutput,
+                ("table_name", "contributor_insights_action", "index_name", "contributor_insights_mode", ),
+                ("table_name", "contributor_insights_action", ),
             )
             return _response
         _response = await self._native.update_contributor_insights(params)
@@ -1501,6 +1654,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_global_table, params, self._interceptors,
                 "dynamodb", "UpdateGlobalTable", self._region,
+                UpdateGlobalTableOutput,
+                ("global_table_name", "replica_updates", ),
+                ("global_table_name", "replica_updates", ),
             )
             return _response
         _response = await self._native.update_global_table(params)
@@ -1534,6 +1690,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_global_table_settings, params, self._interceptors,
                 "dynamodb", "UpdateGlobalTableSettings", self._region,
+                UpdateGlobalTableSettingsOutput,
+                ("global_table_name", "global_table_billing_mode", "global_table_provisioned_write_capacity_units", "global_table_provisioned_write_capacity_auto_scaling_settings_update", "global_table_global_secondary_index_settings_update", "replica_settings_update", ),
+                ("global_table_name", ),
             )
             return _response
         _response = await self._native.update_global_table_settings(params)
@@ -1587,6 +1746,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_item, params, self._interceptors,
                 "dynamodb", "UpdateItem", self._region,
+                UpdateItemOutput,
+                ("table_name", "key", "attribute_updates", "expected", "conditional_operator", "return_values", "return_consumed_capacity", "return_item_collection_metrics", "update_expression", "condition_expression", "expression_attribute_names", "expression_attribute_values", "return_values_on_condition_check_failure", ),
+                ("table_name", "key", ),
             )
             return _response
         _response = await self._native.update_item(params)
@@ -1610,6 +1772,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_kinesis_streaming_destination, params, self._interceptors,
                 "dynamodb", "UpdateKinesisStreamingDestination", self._region,
+                UpdateKinesisStreamingDestinationOutput,
+                ("table_name", "stream_arn", "update_kinesis_streaming_configuration", ),
+                ("table_name", "stream_arn", ),
             )
             return _response
         _response = await self._native.update_kinesis_streaming_destination(params)
@@ -1676,6 +1841,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_table, params, self._interceptors,
                 "dynamodb", "UpdateTable", self._region,
+                UpdateTableOutput,
+                ("table_name", "attribute_definitions", "billing_mode", "provisioned_throughput", "global_secondary_index_updates", "stream_specification", "sse_specification", "replica_updates", "table_class", "deletion_protection_enabled", "multi_region_consistency", "global_table_witness_updates", "on_demand_throughput", "warm_throughput", "global_table_settings_replication_mode", "disassociation_protection_enabled", "vector_index_updates", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.update_table(params)
@@ -1703,6 +1871,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_table_replica_auto_scaling, params, self._interceptors,
                 "dynamodb", "UpdateTableReplicaAutoScaling", self._region,
+                UpdateTableReplicaAutoScalingOutput,
+                ("table_name", "global_secondary_index_updates", "provisioned_write_capacity_auto_scaling_update", "replica_updates", ),
+                ("table_name", ),
             )
             return _response
         _response = await self._native.update_table_replica_auto_scaling(params)
@@ -1723,6 +1894,9 @@ class DynamoDBClient:
             _response = await invoke(
                 self._native.update_time_to_live, params, self._interceptors,
                 "dynamodb", "UpdateTimeToLive", self._region,
+                UpdateTimeToLiveOutput,
+                ("table_name", "time_to_live_specification", ),
+                ("table_name", "time_to_live_specification", ),
             )
             return _response
         _response = await self._native.update_time_to_live(params)

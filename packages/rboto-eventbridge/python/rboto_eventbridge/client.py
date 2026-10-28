@@ -66,6 +66,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.activate_event_source, params, self._interceptors,
                 "eventbridge", "ActivateEventSource", self._region,
+                type(None),
+                ("name", ),
+                ("name", ),
             )
             return None
         await self._native.activate_event_source(params)
@@ -84,6 +87,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.cancel_replay, params, self._interceptors,
                 "eventbridge", "CancelReplay", self._region,
+                CancelReplayResponse,
+                ("replay_name", ),
+                ("replay_name", ),
             )
             return _response
         _response = await self._native.cancel_replay(params)
@@ -114,6 +120,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_api_destination, params, self._interceptors,
                 "eventbridge", "CreateApiDestination", self._region,
+                CreateApiDestinationResponse,
+                ("name", "connection_arn", "invocation_endpoint", "http_method", "description", "invocation_rate_limit_per_second", ),
+                ("name", "connection_arn", "invocation_endpoint", "http_method", ),
             )
             return _response
         _response = await self._native.create_api_destination(params)
@@ -146,6 +155,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_archive, params, self._interceptors,
                 "eventbridge", "CreateArchive", self._region,
+                CreateArchiveResponse,
+                ("archive_name", "event_source_arn", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
+                ("archive_name", "event_source_arn", ),
             )
             return _response
         _response = await self._native.create_archive(params)
@@ -177,6 +189,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_connection, params, self._interceptors,
                 "eventbridge", "CreateConnection", self._region,
+                CreateConnectionResponse,
+                ("name", "authorization_type", "auth_parameters", "description", "invocation_connectivity_parameters", "kms_key_identifier", ),
+                ("name", "authorization_type", "auth_parameters", ),
             )
             return _response
         _response = await self._native.create_connection(params)
@@ -208,6 +223,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_endpoint, params, self._interceptors,
                 "eventbridge", "CreateEndpoint", self._region,
+                CreateEndpointResponse,
+                ("name", "routing_config", "event_buses", "description", "replication_config", "role_arn", ),
+                ("name", "routing_config", "event_buses", ),
             )
             return _response
         _response = await self._native.create_endpoint(params)
@@ -244,6 +262,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_event_bus, params, self._interceptors,
                 "eventbridge", "CreateEventBus", self._region,
+                CreateEventBusResponse,
+                ("name", "event_source_name", "description", "kms_key_identifier", "dead_letter_config", "log_config", "tags", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_event_bus(params)
@@ -264,6 +285,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.create_partner_event_source, params, self._interceptors,
                 "eventbridge", "CreatePartnerEventSource", self._region,
+                CreatePartnerEventSourceResponse,
+                ("name", "account", ),
+                ("name", "account", ),
             )
             return _response
         _response = await self._native.create_partner_event_source(params)
@@ -282,6 +306,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.deactivate_event_source, params, self._interceptors,
                 "eventbridge", "DeactivateEventSource", self._region,
+                type(None),
+                ("name", ),
+                ("name", ),
             )
             return None
         await self._native.deactivate_event_source(params)
@@ -300,6 +327,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.deauthorize_connection, params, self._interceptors,
                 "eventbridge", "DeauthorizeConnection", self._region,
+                DeauthorizeConnectionResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.deauthorize_connection(params)
@@ -318,6 +348,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_api_destination, params, self._interceptors,
                 "eventbridge", "DeleteApiDestination", self._region,
+                DeleteApiDestinationResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_api_destination(params)
@@ -336,6 +369,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_archive, params, self._interceptors,
                 "eventbridge", "DeleteArchive", self._region,
+                DeleteArchiveResponse,
+                ("archive_name", ),
+                ("archive_name", ),
             )
             return _response
         _response = await self._native.delete_archive(params)
@@ -354,6 +390,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_connection, params, self._interceptors,
                 "eventbridge", "DeleteConnection", self._region,
+                DeleteConnectionResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_connection(params)
@@ -372,6 +411,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.delete_endpoint, params, self._interceptors,
                 "eventbridge", "DeleteEndpoint", self._region,
+                DeleteEndpointResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_endpoint(params)
@@ -390,6 +432,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.delete_event_bus, params, self._interceptors,
                 "eventbridge", "DeleteEventBus", self._region,
+                type(None),
+                ("name", ),
+                ("name", ),
             )
             return None
         await self._native.delete_event_bus(params)
@@ -410,6 +455,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.delete_partner_event_source, params, self._interceptors,
                 "eventbridge", "DeletePartnerEventSource", self._region,
+                type(None),
+                ("name", "account", ),
+                ("name", "account", ),
             )
             return None
         await self._native.delete_partner_event_source(params)
@@ -434,6 +482,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.delete_rule, params, self._interceptors,
                 "eventbridge", "DeleteRule", self._region,
+                type(None),
+                ("name", "event_bus_name", "force", ),
+                ("name", ),
             )
             return None
         await self._native.delete_rule(params)
@@ -452,6 +503,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_api_destination, params, self._interceptors,
                 "eventbridge", "DescribeApiDestination", self._region,
+                DescribeApiDestinationResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_api_destination(params)
@@ -470,6 +524,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_archive, params, self._interceptors,
                 "eventbridge", "DescribeArchive", self._region,
+                DescribeArchiveResponse,
+                ("archive_name", ),
+                ("archive_name", ),
             )
             return _response
         _response = await self._native.describe_archive(params)
@@ -488,6 +545,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_connection, params, self._interceptors,
                 "eventbridge", "DescribeConnection", self._region,
+                DescribeConnectionResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_connection(params)
@@ -509,6 +569,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_endpoint, params, self._interceptors,
                 "eventbridge", "DescribeEndpoint", self._region,
+                DescribeEndpointResponse,
+                ("name", "home_region", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_endpoint(params)
@@ -528,6 +591,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_event_bus, params, self._interceptors,
                 "eventbridge", "DescribeEventBus", self._region,
+                DescribeEventBusResponse,
+                ("name", ),
+                (),
             )
             return _response
         _response = await self._native.describe_event_bus(params)
@@ -546,6 +612,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_event_source, params, self._interceptors,
                 "eventbridge", "DescribeEventSource", self._region,
+                DescribeEventSourceResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_event_source(params)
@@ -564,6 +633,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_partner_event_source, params, self._interceptors,
                 "eventbridge", "DescribePartnerEventSource", self._region,
+                DescribePartnerEventSourceResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_partner_event_source(params)
@@ -582,6 +654,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_replay, params, self._interceptors,
                 "eventbridge", "DescribeReplay", self._region,
+                DescribeReplayResponse,
+                ("replay_name", ),
+                ("replay_name", ),
             )
             return _response
         _response = await self._native.describe_replay(params)
@@ -603,6 +678,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.describe_rule, params, self._interceptors,
                 "eventbridge", "DescribeRule", self._region,
+                DescribeRuleResponse,
+                ("name", "event_bus_name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_rule(params)
@@ -624,6 +702,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.disable_rule, params, self._interceptors,
                 "eventbridge", "DisableRule", self._region,
+                type(None),
+                ("name", "event_bus_name", ),
+                ("name", ),
             )
             return None
         await self._native.disable_rule(params)
@@ -645,6 +726,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.enable_rule, params, self._interceptors,
                 "eventbridge", "EnableRule", self._region,
+                type(None),
+                ("name", "event_bus_name", ),
+                ("name", ),
             )
             return None
         await self._native.enable_rule(params)
@@ -673,6 +757,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_api_destinations, params, self._interceptors,
                 "eventbridge", "ListApiDestinations", self._region,
+                ListApiDestinationsResponse,
+                ("name_prefix", "connection_arn", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_api_destinations(params)
@@ -704,6 +791,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_archives, params, self._interceptors,
                 "eventbridge", "ListArchives", self._region,
+                ListArchivesResponse,
+                ("name_prefix", "event_source_arn", "state", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_archives(params)
@@ -732,6 +822,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_connections, params, self._interceptors,
                 "eventbridge", "ListConnections", self._region,
+                ListConnectionsResponse,
+                ("name_prefix", "connection_state", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_connections(params)
@@ -760,6 +853,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_endpoints, params, self._interceptors,
                 "eventbridge", "ListEndpoints", self._region,
+                ListEndpointsResponse,
+                ("name_prefix", "home_region", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_endpoints(params)
@@ -785,6 +881,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_event_buses, params, self._interceptors,
                 "eventbridge", "ListEventBuses", self._region,
+                ListEventBusesResponse,
+                ("name_prefix", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_event_buses(params)
@@ -810,6 +909,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_event_sources, params, self._interceptors,
                 "eventbridge", "ListEventSources", self._region,
+                ListEventSourcesResponse,
+                ("name_prefix", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_event_sources(params)
@@ -834,6 +936,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_partner_event_source_accounts, params, self._interceptors,
                 "eventbridge", "ListPartnerEventSourceAccounts", self._region,
+                ListPartnerEventSourceAccountsResponse,
+                ("event_source_name", "next_token", "limit", ),
+                ("event_source_name", ),
             )
             return _response
         _response = await self._native.list_partner_event_source_accounts(params)
@@ -858,6 +963,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_partner_event_sources, params, self._interceptors,
                 "eventbridge", "ListPartnerEventSources", self._region,
+                ListPartnerEventSourcesResponse,
+                ("name_prefix", "next_token", "limit", ),
+                ("name_prefix", ),
             )
             return _response
         _response = await self._native.list_partner_event_sources(params)
@@ -889,6 +997,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_replays, params, self._interceptors,
                 "eventbridge", "ListReplays", self._region,
+                ListReplaysResponse,
+                ("name_prefix", "state", "event_source_arn", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_replays(params)
@@ -916,6 +1027,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_rule_names_by_target, params, self._interceptors,
                 "eventbridge", "ListRuleNamesByTarget", self._region,
+                ListRuleNamesByTargetResponse,
+                ("target_arn", "event_bus_name", "next_token", "limit", ),
+                ("target_arn", ),
             )
             return _response
         _response = await self._native.list_rule_names_by_target(params)
@@ -944,6 +1058,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_rules, params, self._interceptors,
                 "eventbridge", "ListRules", self._region,
+                ListRulesResponse,
+                ("name_prefix", "event_bus_name", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_rules(params)
@@ -962,6 +1079,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "eventbridge", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -989,6 +1109,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.list_targets_by_rule, params, self._interceptors,
                 "eventbridge", "ListTargetsByRule", self._region,
+                ListTargetsByRuleResponse,
+                ("rule", "event_bus_name", "next_token", "limit", ),
+                ("rule", ),
             )
             return _response
         _response = await self._native.list_targets_by_rule(params)
@@ -1010,6 +1133,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_events, params, self._interceptors,
                 "eventbridge", "PutEvents", self._region,
+                PutEventsResponse,
+                ("entries", "endpoint_id", ),
+                ("entries", ),
             )
             return _response
         _response = await self._native.put_events(params)
@@ -1028,6 +1154,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_partner_events, params, self._interceptors,
                 "eventbridge", "PutPartnerEvents", self._region,
+                PutPartnerEventsResponse,
+                ("entries", ),
+                ("entries", ),
             )
             return _response
         _response = await self._native.put_partner_events(params)
@@ -1062,6 +1191,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.put_permission, params, self._interceptors,
                 "eventbridge", "PutPermission", self._region,
+                type(None),
+                ("event_bus_name", "action", "principal", "statement_id", "condition", "policy", ),
+                (),
             )
             return None
         await self._native.put_permission(params)
@@ -1101,6 +1233,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_rule, params, self._interceptors,
                 "eventbridge", "PutRule", self._region,
+                PutRuleResponse,
+                ("name", "schedule_expression", "event_pattern", "state", "description", "role_arn", "tags", "event_bus_name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.put_rule(params)
@@ -1124,6 +1259,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.put_targets, params, self._interceptors,
                 "eventbridge", "PutTargets", self._region,
+                PutTargetsResponse,
+                ("rule", "targets", "event_bus_name", ),
+                ("rule", "targets", ),
             )
             return _response
         _response = await self._native.put_targets(params)
@@ -1149,6 +1287,9 @@ class EventBridgeClient:
             await invoke(
                 self._native.remove_permission, params, self._interceptors,
                 "eventbridge", "RemovePermission", self._region,
+                type(None),
+                ("statement_id", "remove_all_permissions", "event_bus_name", ),
+                (),
             )
             return None
         await self._native.remove_permission(params)
@@ -1175,6 +1316,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.remove_targets, params, self._interceptors,
                 "eventbridge", "RemoveTargets", self._region,
+                RemoveTargetsResponse,
+                ("rule", "ids", "event_bus_name", "force", ),
+                ("rule", "ids", ),
             )
             return _response
         _response = await self._native.remove_targets(params)
@@ -1204,6 +1348,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.start_replay, params, self._interceptors,
                 "eventbridge", "StartReplay", self._region,
+                StartReplayResponse,
+                ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", "description", ),
+                ("replay_name", "event_source_arn", "event_start_time", "event_end_time", "destination", ),
             )
             return _response
         _response = await self._native.start_replay(params)
@@ -1224,6 +1371,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "eventbridge", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -1244,6 +1394,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.test_event_pattern, params, self._interceptors,
                 "eventbridge", "TestEventPattern", self._region,
+                TestEventPatternResponse,
+                ("event_pattern", "event", ),
+                ("event_pattern", "event", ),
             )
             return _response
         _response = await self._native.test_event_pattern(params)
@@ -1264,6 +1417,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "eventbridge", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -1297,6 +1453,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_api_destination, params, self._interceptors,
                 "eventbridge", "UpdateApiDestination", self._region,
+                UpdateApiDestinationResponse,
+                ("name", "description", "connection_arn", "invocation_endpoint", "http_method", "invocation_rate_limit_per_second", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.update_api_destination(params)
@@ -1327,6 +1486,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_archive, params, self._interceptors,
                 "eventbridge", "UpdateArchive", self._region,
+                UpdateArchiveResponse,
+                ("archive_name", "description", "event_pattern", "retention_days", "kms_key_identifier", ),
+                ("archive_name", ),
             )
             return _response
         _response = await self._native.update_archive(params)
@@ -1360,6 +1522,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_connection, params, self._interceptors,
                 "eventbridge", "UpdateConnection", self._region,
+                UpdateConnectionResponse,
+                ("name", "description", "authorization_type", "auth_parameters", "invocation_connectivity_parameters", "kms_key_identifier", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.update_connection(params)
@@ -1393,6 +1558,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_endpoint, params, self._interceptors,
                 "eventbridge", "UpdateEndpoint", self._region,
+                UpdateEndpointResponse,
+                ("name", "description", "routing_config", "replication_config", "event_buses", "role_arn", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.update_endpoint(params)
@@ -1424,6 +1592,9 @@ class EventBridgeClient:
             _response = await invoke(
                 self._native.update_event_bus, params, self._interceptors,
                 "eventbridge", "UpdateEventBus", self._region,
+                UpdateEventBusResponse,
+                ("name", "kms_key_identifier", "description", "dead_letter_config", "log_config", ),
+                (),
             )
             return _response
         _response = await self._native.update_event_bus(params)

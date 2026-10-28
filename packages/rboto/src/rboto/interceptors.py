@@ -1,15 +1,14 @@
-"""Typed, observational hooks for asynchronous client operations."""
+"""Async operation middleware with typed requests, responses, and native metadata."""
 
 from __future__ import annotations
 
 import asyncio
-import inspect
 from collections.abc import Awaitable, Callable, Generator, Sequence
 from contextlib import contextmanager
 from contextvars import ContextVar
-from dataclasses import dataclass
+from dataclasses import dataclass, field, replace
 from time import perf_counter
-from typing import Literal, Protocol, TypeVar, cast
+from typing import Protocol, TypeVar, cast
 from uuid import uuid4
 
 from .exceptions import ClientError
@@ -17,7 +16,7 @@ from .exceptions import ClientError
 
 @dataclass(frozen=True, slots=True)
 class OperationContext:
-    """Identity shared by the start and terminal events of one invocation."""
+    """Identity of one public operation invocation."""
 
     operation_id: str
     service: str
@@ -36,14 +35,13 @@ class Attempt:
 
 
 @dataclass(frozen=True, slots=True)
-class OperationEvent:
-    """Metadata only: never contains request parameters, outputs, or exceptions."""
+class OperationMetadata:
+    """Native dispatch metadata, available after next returns or raises."""
 
-    context: OperationContext
-    phase: Literal["start", "success", "failure", "cancelled"]
+    dispatched: bool = False
     region: str | None = None
     duration: float | None = None
-    attempt_count: int | None = None
+    attempt_count: int | None = 0
     status_code: int | None = None
     request_id: str | None = None
     error_code: str | None = None
@@ -56,10 +54,47 @@ class OperationEvent:
         return None if self.attempt_count is None else max(0, self.attempt_count - 1)
 
 
-class Interceptor(Protocol):
-    """A callback invoked sequentially on the operation's Python task."""
+@dataclass(slots=True)
+class _RequestState:
+    metadata: OperationMetadata
 
-    def __call__(self, event: OperationEvent, /) -> Awaitable[None] | None: ...
+
+@dataclass(frozen=True, slots=True)
+class OperationRequest:
+    """Operation identity and mutable parameters shared with downstream middleware."""
+
+    context: OperationContext
+    parameters: dict[str, object] = field(repr=False)
+    _state: _RequestState = field(repr=False, compare=False)
+
+    @property
+    def metadata(self) -> OperationMetadata:
+        return self._state.metadata
+
+    def with_parameters(self, parameters: dict[str, object]) -> OperationRequest:
+        """Replace the parameter mapping while retaining this invocation's identity."""
+        return replace(self, parameters=parameters)
+
+
+@dataclass(slots=True)
+class OperationResponse:
+    """An operation output. The public client method returns this output directly."""
+
+    output: object = field(repr=False)
+
+
+class Next(Protocol):
+    """The remaining middleware and native dispatch for this invocation."""
+
+    def __call__(self, request: OperationRequest, /) -> Awaitable[OperationResponse]: ...
+
+
+class Interceptor(Protocol):
+    """Async middleware that can modify, block, recover, or replace an operation."""
+
+    def __call__(
+        self, request: OperationRequest, call_next: Next, /
+    ) -> Awaitable[OperationResponse]: ...
 
 
 _correlation_id: ContextVar[str | None] = ContextVar("rboto_correlation_id", default=None)
@@ -86,64 +121,27 @@ def resolve_interceptors(
     return resolved
 
 
-async def _notify(
-    interceptors: tuple[Interceptor, ...], event: OperationEvent
-) -> asyncio.CancelledError | None:
-    cancellation: asyncio.CancelledError | None = None
-    for interceptor in interceptors:
-        try:
-            result = interceptor(event)
-            if inspect.isawaitable(result):
-                await result
-        except asyncio.CancelledError as error:
-            task = asyncio.current_task()
-            if task is not None and task.cancelling():
-                if event.phase == "start":
-                    raise
-                # The result is already settled. Finish delivering this terminal
-                # event once to the remaining observers, then propagate cancellation.
-                cancellation = error
-            else:
-                _report_callback_error(error)
-        except Exception as error:
-            _report_callback_error(error)
-    return cancellation
-
-
-def _report_callback_error(error: BaseException) -> None:
-    asyncio.get_running_loop().call_exception_handler(
-        {"message": "rboto interceptor failed", "exception": error}
-    )
-
-
-def _terminal_event(
-    context: OperationContext,
-    phase: Literal["success", "failure", "cancelled"],
-    region: str | None,
-    duration: float,
-    metadata: dict[str, object],
-    error: BaseException | None = None,
-) -> OperationEvent:
-    raw_attempts = cast(
-        "list[tuple[int, float, int | None, str | None]]", metadata.get("attempts", [])
-    )
-    request_id = cast("str | None", metadata.get("request_id"))
-    return OperationEvent(
-        context=context,
-        phase=phase,
-        region=cast("str | None", metadata.get("region", region)),
+def _metadata(
+    region: str | None, duration: float, raw: dict[str, object], error: BaseException | None
+) -> OperationMetadata:
+    attempts = cast("list[tuple[int, float, int | None, str | None]]", raw.get("attempts", []))
+    request_id = cast("str | None", raw.get("request_id"))
+    return OperationMetadata(
+        dispatched=True,
+        region=cast("str | None", raw.get("region", region)),
         duration=duration,
-        attempt_count=cast("int | None", metadata.get("attempt_count")),
-        status_code=cast("int | None", metadata.get("status_code")),
+        attempt_count=cast("int | None", raw.get("attempt_count")),
+        status_code=cast("int | None", raw.get("status_code")),
         request_id=request_id or (error.request_id if isinstance(error, ClientError) else None),
         error_code=error.error_code if isinstance(error, ClientError) else None,
         error_type=type(error).__name__ if error is not None else None,
-        attempts=tuple(Attempt(*attempt) for attempt in raw_attempts),
-        attempts_truncated=bool(metadata.get("attempts_truncated", False)),
+        attempts=tuple(Attempt(*attempt) for attempt in attempts),
+        attempts_truncated=bool(raw.get("attempts_truncated", False)),
     )
 
 
 _Output = TypeVar("_Output")
+_UNSET = object()
 
 
 async def invoke(
@@ -153,30 +151,76 @@ async def invoke(
     service: str,
     operation: str,
     region: str | None,
+    output_type: type[object],
+    allowed_parameters: tuple[str, ...],
+    required_parameters: tuple[str, ...],
 ) -> _Output:
-    """Internal bridge used only when at least one interceptor is configured."""
+    """Internal entry point; generated methods bypass it when middleware is absent."""
     context = OperationContext(uuid4().hex, service, operation, _correlation_id.get())
-    metadata: dict[str, object] = {}
-    started = perf_counter()
-    try:
-        await _notify(interceptors, OperationEvent(context, "start", region=region))
-        output = await call(params, metadata)
-    except asyncio.CancelledError as error:
-        event = _terminal_event(
-            context, "cancelled", region, perf_counter() - started, metadata, error
-        )
-        await _notify(interceptors, event)
-        raise
-    except Exception as error:
-        event = _terminal_event(
-            context, "failure", region, perf_counter() - started, metadata, error
-        )
-        cancellation = await _notify(interceptors, event)
-        if cancellation is not None:
-            raise cancellation from error
-        raise
-    event = _terminal_event(context, "success", region, perf_counter() - started, metadata)
-    cancellation = await _notify(interceptors, event)
-    if cancellation is not None:
-        raise cancellation
-    return output
+    state = _RequestState(OperationMetadata(region=region))
+    request = OperationRequest(context, params, state)
+    native_output: object = _UNSET
+
+    def validate_response(response: object) -> None:
+        if not isinstance(response, OperationResponse):
+            raise TypeError("interceptors must return OperationResponse")
+        # Trust the native adapter's declared return type. Validate replacements
+        # and synthetic responses before exposing them to the typed client API.
+        if (native_output is _UNSET or response.output is not native_output) and not isinstance(
+            response.output, output_type
+        ):
+            raise TypeError(
+                f"{service}.{operation} requires an output of type {output_type.__name__}"
+            )
+
+    async def dispatch(index: int, current: OperationRequest) -> OperationResponse:
+        nonlocal native_output
+        if current.context is not context:
+            raise ValueError("next requires a request from the current operation")
+        if index == len(interceptors):
+            unknown = current.parameters.keys() - allowed_parameters
+            missing = [
+                key
+                for key in required_parameters
+                if key not in current.parameters or current.parameters[key] is None
+            ]
+            if unknown:
+                raise TypeError(f"unknown operation parameters: {', '.join(sorted(unknown))}")
+            if missing:
+                raise TypeError(f"missing required operation parameters: {', '.join(missing)}")
+            raw: dict[str, object] = {}
+            started = perf_counter()
+            error: BaseException | None = None
+            try:
+                native_output = await call(current.parameters, raw)
+            except BaseException as caught:
+                error = caught
+                raise
+            finally:
+                state.metadata = _metadata(region, perf_counter() - started, raw, error)
+            return OperationResponse(native_output)
+
+        active = True
+        used = False
+        task = asyncio.current_task()
+
+        async def call_next(forwarded: OperationRequest) -> OperationResponse:
+            nonlocal used
+            if not active:
+                raise RuntimeError("next cannot be called after its interceptor returns")
+            if used:
+                raise RuntimeError("next can only be called once per interceptor")
+            if asyncio.current_task() is not task:
+                raise RuntimeError("next must be awaited in the interceptor's task")
+            used = True
+            return await dispatch(index + 1, forwarded)
+
+        try:
+            response = await interceptors[index](current, call_next)
+            validate_response(response)
+            return response
+        finally:
+            active = False
+
+    response = await dispatch(0, request)
+    return cast(_Output, response.output)

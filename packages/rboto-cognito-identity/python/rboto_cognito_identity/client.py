@@ -71,6 +71,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.create_identity_pool, params, self._interceptors,
                 "cognito-identity", "CreateIdentityPool", self._region,
+                CreateIdentityPoolOutput,
+                ("identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),
+                ("identity_pool_name", "allow_unauthenticated_identities", ),
             )
             return _response
         _response = await self._native.create_identity_pool(params)
@@ -89,6 +92,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.delete_identities, params, self._interceptors,
                 "cognito-identity", "DeleteIdentities", self._region,
+                DeleteIdentitiesResponse,
+                ("identity_ids_to_delete", ),
+                ("identity_ids_to_delete", ),
             )
             return _response
         _response = await self._native.delete_identities(params)
@@ -107,6 +113,9 @@ class CognitoIdentityClient:
             await invoke(
                 self._native.delete_identity_pool, params, self._interceptors,
                 "cognito-identity", "DeleteIdentityPool", self._region,
+                type(None),
+                ("identity_pool_id", ),
+                ("identity_pool_id", ),
             )
             return None
         await self._native.delete_identity_pool(params)
@@ -125,6 +134,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.describe_identity, params, self._interceptors,
                 "cognito-identity", "DescribeIdentity", self._region,
+                DescribeIdentityOutput,
+                ("identity_id", ),
+                ("identity_id", ),
             )
             return _response
         _response = await self._native.describe_identity(params)
@@ -143,6 +155,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.describe_identity_pool, params, self._interceptors,
                 "cognito-identity", "DescribeIdentityPool", self._region,
+                DescribeIdentityPoolOutput,
+                ("identity_pool_id", ),
+                ("identity_pool_id", ),
             )
             return _response
         _response = await self._native.describe_identity_pool(params)
@@ -167,6 +182,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_credentials_for_identity, params, self._interceptors,
                 "cognito-identity", "GetCredentialsForIdentity", self._region,
+                GetCredentialsForIdentityResponse,
+                ("identity_id", "logins", "custom_role_arn", ),
+                ("identity_id", ),
             )
             return _response
         _response = await self._native.get_credentials_for_identity(params)
@@ -191,6 +209,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_id, params, self._interceptors,
                 "cognito-identity", "GetId", self._region,
+                GetIdResponse,
+                ("identity_pool_id", "account_id", "logins", ),
+                ("identity_pool_id", ),
             )
             return _response
         _response = await self._native.get_id(params)
@@ -209,6 +230,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_identity_pool_roles, params, self._interceptors,
                 "cognito-identity", "GetIdentityPoolRoles", self._region,
+                GetIdentityPoolRolesResponse,
+                ("identity_pool_id", ),
+                ("identity_pool_id", ),
             )
             return _response
         _response = await self._native.get_identity_pool_roles(params)
@@ -230,6 +254,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_open_id_token, params, self._interceptors,
                 "cognito-identity", "GetOpenIdToken", self._region,
+                GetOpenIdTokenResponse,
+                ("identity_id", "logins", ),
+                ("identity_id", ),
             )
             return _response
         _response = await self._native.get_open_id_token(params)
@@ -259,6 +286,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_open_id_token_for_developer_identity, params, self._interceptors,
                 "cognito-identity", "GetOpenIdTokenForDeveloperIdentity", self._region,
+                GetOpenIdTokenForDeveloperIdentityResponse,
+                ("identity_pool_id", "logins", "identity_id", "principal_tags", "token_duration", ),
+                ("identity_pool_id", "logins", ),
             )
             return _response
         _response = await self._native.get_open_id_token_for_developer_identity(params)
@@ -279,6 +309,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.get_principal_tag_attribute_map, params, self._interceptors,
                 "cognito-identity", "GetPrincipalTagAttributeMap", self._region,
+                GetPrincipalTagAttributeMapResponse,
+                ("identity_pool_id", "identity_provider_name", ),
+                ("identity_pool_id", "identity_provider_name", ),
             )
             return _response
         _response = await self._native.get_principal_tag_attribute_map(params)
@@ -305,6 +338,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_identities, params, self._interceptors,
                 "cognito-identity", "ListIdentities", self._region,
+                ListIdentitiesResponse,
+                ("identity_pool_id", "max_results", "next_token", "hide_disabled", ),
+                ("identity_pool_id", "max_results", ),
             )
             return _response
         _response = await self._native.list_identities(params)
@@ -326,6 +362,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_identity_pools, params, self._interceptors,
                 "cognito-identity", "ListIdentityPools", self._region,
+                ListIdentityPoolsResponse,
+                ("max_results", "next_token", ),
+                ("max_results", ),
             )
             return _response
         _response = await self._native.list_identity_pools(params)
@@ -344,6 +383,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "cognito-identity", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -374,6 +416,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.lookup_developer_identity, params, self._interceptors,
                 "cognito-identity", "LookupDeveloperIdentity", self._region,
+                LookupDeveloperIdentityResponse,
+                ("identity_pool_id", "identity_id", "developer_user_identifier", "max_results", "next_token", ),
+                ("identity_pool_id", ),
             )
             return _response
         _response = await self._native.lookup_developer_identity(params)
@@ -398,6 +443,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.merge_developer_identities, params, self._interceptors,
                 "cognito-identity", "MergeDeveloperIdentities", self._region,
+                MergeDeveloperIdentitiesResponse,
+                ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
+                ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
             )
             return _response
         _response = await self._native.merge_developer_identities(params)
@@ -421,6 +469,9 @@ class CognitoIdentityClient:
             await invoke(
                 self._native.set_identity_pool_roles, params, self._interceptors,
                 "cognito-identity", "SetIdentityPoolRoles", self._region,
+                type(None),
+                ("identity_pool_id", "roles", "role_mappings", ),
+                ("identity_pool_id", "roles", ),
             )
             return None
         await self._native.set_identity_pool_roles(params)
@@ -447,6 +498,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.set_principal_tag_attribute_map, params, self._interceptors,
                 "cognito-identity", "SetPrincipalTagAttributeMap", self._region,
+                SetPrincipalTagAttributeMapResponse,
+                ("identity_pool_id", "identity_provider_name", "use_defaults", "principal_tags", ),
+                ("identity_pool_id", "identity_provider_name", ),
             )
             return _response
         _response = await self._native.set_principal_tag_attribute_map(params)
@@ -467,6 +521,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "cognito-identity", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -491,6 +548,9 @@ class CognitoIdentityClient:
             await invoke(
                 self._native.unlink_developer_identity, params, self._interceptors,
                 "cognito-identity", "UnlinkDeveloperIdentity", self._region,
+                type(None),
+                ("identity_id", "identity_pool_id", "developer_provider_name", "developer_user_identifier", ),
+                ("identity_id", "identity_pool_id", "developer_provider_name", "developer_user_identifier", ),
             )
             return None
         await self._native.unlink_developer_identity(params)
@@ -513,6 +573,9 @@ class CognitoIdentityClient:
             await invoke(
                 self._native.unlink_identity, params, self._interceptors,
                 "cognito-identity", "UnlinkIdentity", self._region,
+                type(None),
+                ("identity_id", "logins", "logins_to_remove", ),
+                ("identity_id", "logins", "logins_to_remove", ),
             )
             return None
         await self._native.unlink_identity(params)
@@ -533,6 +596,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "cognito-identity", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -576,6 +642,9 @@ class CognitoIdentityClient:
             _response = await invoke(
                 self._native.update_identity_pool, params, self._interceptors,
                 "cognito-identity", "UpdateIdentityPool", self._region,
+                UpdateIdentityPoolOutput,
+                ("identity_pool_id", "identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),
+                ("identity_pool_id", "identity_pool_name", "allow_unauthenticated_identities", ),
             )
             return _response
         _response = await self._native.update_identity_pool(params)

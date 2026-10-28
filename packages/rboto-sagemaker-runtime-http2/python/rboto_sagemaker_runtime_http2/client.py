@@ -59,6 +59,9 @@ class SageMakerRuntimeHTTP2Client:
             _response = await invoke(
                 self._native.invoke_endpoint_with_bidirectional_stream, params, self._interceptors,
                 "sagemaker-runtime-http2", "InvokeEndpointWithBidirectionalStream", self._region,
+                dict,
+                ("endpoint_name", "body", "target_variant", "model_invocation_path", "model_query_string", ),
+                ("endpoint_name", "body", ),
             )
             return _response
         _response = await self._native.invoke_endpoint_with_bidirectional_stream(params)

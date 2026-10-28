@@ -47,6 +47,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.create_o_auth2_token, params, self._interceptors,
                 "signin", "CreateOAuth2Token", self._region,
+                CreateOAuth2TokenResponse,
+                ("token_input", ),
+                ("token_input", ),
             )
             return _response
         _response = await self._native.create_o_auth2_token(params)
@@ -67,6 +70,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.create_o_auth2_token_with_iam, params, self._interceptors,
                 "signin", "CreateOAuth2TokenWithIAM", self._region,
+                CreateOAuth2TokenWithIAMResponse,
+                ("grant_type", "resource", ),
+                ("grant_type", "resource", ),
             )
             return _response
         _response = await self._native.create_o_auth2_token_with_iam(params)
@@ -86,6 +92,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.delete_console_authorization_configuration, params, self._interceptors,
                 "signin", "DeleteConsoleAuthorizationConfiguration", self._region,
+                DeleteConsoleAuthorizationConfigurationOutput,
+                ("target_id", ),
+                (),
             )
             return _response
         _response = await self._native.delete_console_authorization_configuration(params)
@@ -107,6 +116,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.delete_resource_permission_statement, params, self._interceptors,
                 "signin", "DeleteResourcePermissionStatement", self._region,
+                DeleteResourcePermissionStatementOutput,
+                ("statement_id", "client_token", ),
+                ("statement_id", ),
             )
             return _response
         _response = await self._native.delete_resource_permission_statement(params)
@@ -126,6 +138,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.get_console_authorization_configuration, params, self._interceptors,
                 "signin", "GetConsoleAuthorizationConfiguration", self._region,
+                GetConsoleAuthorizationConfigurationOutput,
+                ("target_id", ),
+                (),
             )
             return _response
         _response = await self._native.get_console_authorization_configuration(params)
@@ -141,6 +156,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, self._interceptors,
                 "signin", "GetResourcePolicy", self._region,
+                GetResourcePolicyOutput,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -162,6 +180,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.introspect_o_auth2_token_with_iam, params, self._interceptors,
                 "signin", "IntrospectOAuth2TokenWithIAM", self._region,
+                IntrospectOAuth2TokenWithIAMResponse,
+                ("token", "token_type_hint", ),
+                ("token", ),
             )
             return _response
         _response = await self._native.introspect_o_auth2_token_with_iam(params)
@@ -184,6 +205,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.list_resource_permission_statements, params, self._interceptors,
                 "signin", "ListResourcePermissionStatements", self._region,
+                ListResourcePermissionStatementsOutput,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_resource_permission_statements(params)
@@ -203,6 +227,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.put_console_authorization_configuration, params, self._interceptors,
                 "signin", "PutConsoleAuthorizationConfiguration", self._region,
+                PutConsoleAuthorizationConfigurationOutput,
+                ("target_id", ),
+                (),
             )
             return _response
         _response = await self._native.put_console_authorization_configuration(params)
@@ -243,6 +270,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.put_resource_permission_statement, params, self._interceptors,
                 "signin", "PutResourcePermissionStatement", self._region,
+                PutResourcePermissionStatementOutput,
+                ("source_vpc", "signin_source_vpce", "console_source_vpce", "vpc_source_ip", "source_ip", "requested_region", "excluded_principal", "client_token", ),
+                (),
             )
             return _response
         _response = await self._native.put_resource_permission_statement(params)
@@ -261,6 +291,9 @@ class SignInClient:
             _response = await invoke(
                 self._native.revoke_o_auth2_token_with_iam, params, self._interceptors,
                 "signin", "RevokeOAuth2TokenWithIAM", self._region,
+                RevokeOAuth2TokenWithIAMResponse,
+                ("token", ),
+                ("token", ),
             )
             return _response
         _response = await self._native.revoke_o_auth2_token_with_iam(params)

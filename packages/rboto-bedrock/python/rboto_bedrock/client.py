@@ -104,6 +104,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.batch_delete_advanced_prompt_optimization_job, params, self._interceptors,
                 "bedrock", "BatchDeleteAdvancedPromptOptimizationJob", self._region,
+                BatchDeleteAdvancedPromptOptimizationJobResponse,
+                ("job_identifiers", ),
+                ("job_identifiers", ),
             )
             return _response
         _response = await self._native.batch_delete_advanced_prompt_optimization_job(params)
@@ -122,6 +125,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.batch_delete_evaluation_job, params, self._interceptors,
                 "bedrock", "BatchDeleteEvaluationJob", self._region,
+                BatchDeleteEvaluationJobResponse,
+                ("job_identifiers", ),
+                ("job_identifiers", ),
             )
             return _response
         _response = await self._native.batch_delete_evaluation_job(params)
@@ -142,6 +148,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.cancel_automated_reasoning_policy_build_workflow, params, self._interceptors,
                 "bedrock", "CancelAutomatedReasoningPolicyBuildWorkflow", self._region,
+                CancelAutomatedReasoningPolicyBuildWorkflowResponse,
+                ("policy_arn", "build_workflow_id", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.cancel_automated_reasoning_policy_build_workflow(params)
@@ -178,6 +187,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_advanced_prompt_optimization_job, params, self._interceptors,
                 "bedrock", "CreateAdvancedPromptOptimizationJob", self._region,
+                CreateAdvancedPromptOptimizationJobResponse,
+                ("job_name", "input_config", "output_config", "model_configurations", "job_description", "client_token", "encryption_key_arn", "tags", ),
+                ("job_name", "input_config", "output_config", "model_configurations", ),
             )
             return _response
         _response = await self._native.create_advanced_prompt_optimization_job(params)
@@ -211,6 +223,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy, params, self._interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicy", self._region,
+                CreateAutomatedReasoningPolicyResponse,
+                ("name", "description", "client_request_token", "policy_definition", "kms_key_id", "tags", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_automated_reasoning_policy(params)
@@ -242,6 +257,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy_test_case, params, self._interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyTestCase", self._region,
+                CreateAutomatedReasoningPolicyTestCaseResponse,
+                ("policy_arn", "guard_content", "expected_aggregated_findings_result", "query_content", "client_request_token", "confidence_threshold", ),
+                ("policy_arn", "guard_content", "expected_aggregated_findings_result", ),
             )
             return _response
         _response = await self._native.create_automated_reasoning_policy_test_case(params)
@@ -268,6 +286,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_automated_reasoning_policy_version, params, self._interceptors,
                 "bedrock", "CreateAutomatedReasoningPolicyVersion", self._region,
+                CreateAutomatedReasoningPolicyVersionResponse,
+                ("policy_arn", "last_updated_definition_hash", "client_request_token", "tags", ),
+                ("policy_arn", "last_updated_definition_hash", ),
             )
             return _response
         _response = await self._native.create_automated_reasoning_policy_version(params)
@@ -304,6 +325,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_custom_model, params, self._interceptors,
                 "bedrock", "CreateCustomModel", self._region,
+                CreateCustomModelResponse,
+                ("model_name", "model_source_config", "custom_model_data_source", "model_kms_key_arn", "role_arn", "model_tags", "client_request_token", ),
+                ("model_name", ),
             )
             return _response
         _response = await self._native.create_custom_model(params)
@@ -333,6 +357,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_custom_model_deployment, params, self._interceptors,
                 "bedrock", "CreateCustomModelDeployment", self._region,
+                CreateCustomModelDeploymentResponse,
+                ("model_deployment_name", "model_arn", "description", "tags", "client_request_token", ),
+                ("model_deployment_name", "model_arn", ),
             )
             return _response
         _response = await self._native.create_custom_model_deployment(params)
@@ -374,6 +401,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_evaluation_job, params, self._interceptors,
                 "bedrock", "CreateEvaluationJob", self._region,
+                CreateEvaluationJobResponse,
+                ("job_name", "role_arn", "evaluation_config", "inference_config", "output_data_config", "job_description", "client_request_token", "customer_encryption_key_id", "job_tags", "application_type", ),
+                ("job_name", "role_arn", "evaluation_config", "inference_config", "output_data_config", ),
             )
             return _response
         _response = await self._native.create_evaluation_job(params)
@@ -394,6 +424,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_foundation_model_agreement, params, self._interceptors,
                 "bedrock", "CreateFoundationModelAgreement", self._region,
+                CreateFoundationModelAgreementResponse,
+                ("offer_token", "model_id", ),
+                ("offer_token", "model_id", ),
             )
             return _response
         _response = await self._native.create_foundation_model_agreement(params)
@@ -449,6 +482,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_guardrail, params, self._interceptors,
                 "bedrock", "CreateGuardrail", self._region,
+                CreateGuardrailResponse,
+                ("name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", "tags", "client_request_token", ),
+                ("name", "blocked_input_messaging", "blocked_outputs_messaging", ),
             )
             return _response
         _response = await self._native.create_guardrail(params)
@@ -473,6 +509,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_guardrail_version, params, self._interceptors,
                 "bedrock", "CreateGuardrailVersion", self._region,
+                CreateGuardrailVersionResponse,
+                ("guardrail_identifier", "description", "client_request_token", ),
+                ("guardrail_identifier", ),
             )
             return _response
         _response = await self._native.create_guardrail_version(params)
@@ -502,6 +541,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_inference_profile, params, self._interceptors,
                 "bedrock", "CreateInferenceProfile", self._region,
+                CreateInferenceProfileResponse,
+                ("inference_profile_name", "model_source", "description", "client_request_token", "tags", ),
+                ("inference_profile_name", "model_source", ),
             )
             return _response
         _response = await self._native.create_inference_profile(params)
@@ -533,6 +575,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "CreateMarketplaceModelEndpoint", self._region,
+                CreateMarketplaceModelEndpointResponse,
+                ("model_source_identifier", "endpoint_config", "endpoint_name", "accept_eula", "client_request_token", "tags", ),
+                ("model_source_identifier", "endpoint_config", "endpoint_name", ),
             )
             return _response
         _response = await self._native.create_marketplace_model_endpoint(params)
@@ -562,6 +607,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_copy_job, params, self._interceptors,
                 "bedrock", "CreateModelCopyJob", self._region,
+                CreateModelCopyJobResponse,
+                ("source_model_arn", "target_model_name", "model_kms_key_id", "target_model_tags", "client_request_token", ),
+                ("source_model_arn", "target_model_name", ),
             )
             return _response
         _response = await self._native.create_model_copy_job(params)
@@ -617,6 +665,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_customization_job, params, self._interceptors,
                 "bedrock", "CreateModelCustomizationJob", self._region,
+                CreateModelCustomizationJobResponse,
+                ("job_name", "custom_model_name", "role_arn", "base_model_identifier", "training_data_config", "output_data_config", "client_request_token", "customization_type", "custom_model_kms_key_id", "job_tags", "custom_model_tags", "validation_data_config", "hyper_parameters", "vpc_config", "customization_config", ),
+                ("job_name", "custom_model_name", "role_arn", "base_model_identifier", "training_data_config", "output_data_config", ),
             )
             return _response
         _response = await self._native.create_model_customization_job(params)
@@ -656,6 +707,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_import_job, params, self._interceptors,
                 "bedrock", "CreateModelImportJob", self._region,
+                CreateModelImportJobResponse,
+                ("job_name", "imported_model_name", "role_arn", "model_data_source", "job_tags", "imported_model_tags", "client_request_token", "vpc_config", "imported_model_kms_key_id", ),
+                ("job_name", "imported_model_name", "role_arn", "model_data_source", ),
             )
             return _response
         _response = await self._native.create_model_import_job(params)
@@ -697,6 +751,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_model_invocation_job, params, self._interceptors,
                 "bedrock", "CreateModelInvocationJob", self._region,
+                CreateModelInvocationJobResponse,
+                ("job_name", "role_arn", "model_id", "input_data_config", "output_data_config", "client_request_token", "vpc_config", "timeout_duration_in_hours", "tags", "model_invocation_type", ),
+                ("job_name", "role_arn", "model_id", "input_data_config", "output_data_config", ),
             )
             return _response
         _response = await self._native.create_model_invocation_job(params)
@@ -730,6 +787,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_prompt_router, params, self._interceptors,
                 "bedrock", "CreatePromptRouter", self._region,
+                CreatePromptRouterResponse,
+                ("prompt_router_name", "models", "routing_criteria", "fallback_model", "client_request_token", "description", "tags", ),
+                ("prompt_router_name", "models", "routing_criteria", "fallback_model", ),
             )
             return _response
         _response = await self._native.create_prompt_router(params)
@@ -761,6 +821,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.create_provisioned_model_throughput, params, self._interceptors,
                 "bedrock", "CreateProvisionedModelThroughput", self._region,
+                CreateProvisionedModelThroughputResponse,
+                ("model_units", "provisioned_model_name", "model_id", "client_request_token", "commitment_duration", "tags", ),
+                ("model_units", "provisioned_model_name", "model_id", ),
             )
             return _response
         _response = await self._native.create_provisioned_model_throughput(params)
@@ -782,6 +845,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy, params, self._interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicy", self._region,
+                DeleteAutomatedReasoningPolicyResponse,
+                ("policy_arn", "force", ),
+                ("policy_arn", ),
             )
             return _response
         _response = await self._native.delete_automated_reasoning_policy(params)
@@ -804,6 +870,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy_build_workflow, params, self._interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyBuildWorkflow", self._region,
+                DeleteAutomatedReasoningPolicyBuildWorkflowResponse,
+                ("policy_arn", "build_workflow_id", "last_updated_at", ),
+                ("policy_arn", "build_workflow_id", "last_updated_at", ),
             )
             return _response
         _response = await self._native.delete_automated_reasoning_policy_build_workflow(params)
@@ -826,6 +895,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_automated_reasoning_policy_test_case, params, self._interceptors,
                 "bedrock", "DeleteAutomatedReasoningPolicyTestCase", self._region,
+                DeleteAutomatedReasoningPolicyTestCaseResponse,
+                ("policy_arn", "test_case_id", "last_updated_at", ),
+                ("policy_arn", "test_case_id", "last_updated_at", ),
             )
             return _response
         _response = await self._native.delete_automated_reasoning_policy_test_case(params)
@@ -844,6 +916,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_custom_model, params, self._interceptors,
                 "bedrock", "DeleteCustomModel", self._region,
+                DeleteCustomModelResponse,
+                ("model_identifier", ),
+                ("model_identifier", ),
             )
             return _response
         _response = await self._native.delete_custom_model(params)
@@ -862,6 +937,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_custom_model_deployment, params, self._interceptors,
                 "bedrock", "DeleteCustomModelDeployment", self._region,
+                DeleteCustomModelDeploymentResponse,
+                ("custom_model_deployment_identifier", ),
+                ("custom_model_deployment_identifier", ),
             )
             return _response
         _response = await self._native.delete_custom_model_deployment(params)
@@ -880,6 +958,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_enforced_guardrail_configuration, params, self._interceptors,
                 "bedrock", "DeleteEnforcedGuardrailConfiguration", self._region,
+                DeleteEnforcedGuardrailConfigurationResponse,
+                ("config_id", ),
+                ("config_id", ),
             )
             return _response
         _response = await self._native.delete_enforced_guardrail_configuration(params)
@@ -898,6 +979,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_foundation_model_agreement, params, self._interceptors,
                 "bedrock", "DeleteFoundationModelAgreement", self._region,
+                DeleteFoundationModelAgreementResponse,
+                ("model_id", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.delete_foundation_model_agreement(params)
@@ -919,6 +1003,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_guardrail, params, self._interceptors,
                 "bedrock", "DeleteGuardrail", self._region,
+                DeleteGuardrailResponse,
+                ("guardrail_identifier", "guardrail_version", ),
+                ("guardrail_identifier", ),
             )
             return _response
         _response = await self._native.delete_guardrail(params)
@@ -937,6 +1024,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_imported_model, params, self._interceptors,
                 "bedrock", "DeleteImportedModel", self._region,
+                DeleteImportedModelResponse,
+                ("model_identifier", ),
+                ("model_identifier", ),
             )
             return _response
         _response = await self._native.delete_imported_model(params)
@@ -955,6 +1045,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_inference_profile, params, self._interceptors,
                 "bedrock", "DeleteInferenceProfile", self._region,
+                DeleteInferenceProfileResponse,
+                ("inference_profile_identifier", ),
+                ("inference_profile_identifier", ),
             )
             return _response
         _response = await self._native.delete_inference_profile(params)
@@ -973,6 +1066,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "DeleteMarketplaceModelEndpoint", self._region,
+                DeleteMarketplaceModelEndpointResponse,
+                ("endpoint_arn", ),
+                ("endpoint_arn", ),
             )
             return _response
         _response = await self._native.delete_marketplace_model_endpoint(params)
@@ -988,6 +1084,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_model_invocation_logging_configuration, params, self._interceptors,
                 "bedrock", "DeleteModelInvocationLoggingConfiguration", self._region,
+                DeleteModelInvocationLoggingConfigurationResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.delete_model_invocation_logging_configuration(params)
@@ -1006,6 +1105,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_prompt_router, params, self._interceptors,
                 "bedrock", "DeletePromptRouter", self._region,
+                DeletePromptRouterResponse,
+                ("prompt_router_arn", ),
+                ("prompt_router_arn", ),
             )
             return _response
         _response = await self._native.delete_prompt_router(params)
@@ -1024,6 +1126,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_provisioned_model_throughput, params, self._interceptors,
                 "bedrock", "DeleteProvisionedModelThroughput", self._region,
+                DeleteProvisionedModelThroughputResponse,
+                ("provisioned_model_id", ),
+                ("provisioned_model_id", ),
             )
             return _response
         _response = await self._native.delete_provisioned_model_throughput(params)
@@ -1042,6 +1147,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, self._interceptors,
                 "bedrock", "DeleteResourcePolicy", self._region,
+                DeleteResourcePolicyResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -1060,6 +1168,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.deregister_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "DeregisterMarketplaceModelEndpoint", self._region,
+                DeregisterMarketplaceModelEndpointResponse,
+                ("endpoint_arn", ),
+                ("endpoint_arn", ),
             )
             return _response
         _response = await self._native.deregister_marketplace_model_endpoint(params)
@@ -1078,6 +1189,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.export_automated_reasoning_policy_version, params, self._interceptors,
                 "bedrock", "ExportAutomatedReasoningPolicyVersion", self._region,
+                ExportAutomatedReasoningPolicyVersionResponse,
+                ("policy_arn", ),
+                ("policy_arn", ),
             )
             return _response
         _response = await self._native.export_automated_reasoning_policy_version(params)
@@ -1093,6 +1207,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_account_data_retention, params, self._interceptors,
                 "bedrock", "GetAccountDataRetention", self._region,
+                GetAccountDataRetentionResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_account_data_retention(params)
@@ -1111,6 +1228,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_advanced_prompt_optimization_job, params, self._interceptors,
                 "bedrock", "GetAdvancedPromptOptimizationJob", self._region,
+                GetAdvancedPromptOptimizationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.get_advanced_prompt_optimization_job(params)
@@ -1129,6 +1249,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicy", self._region,
+                GetAutomatedReasoningPolicyResponse,
+                ("policy_arn", ),
+                ("policy_arn", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy(params)
@@ -1149,6 +1272,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_annotations, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyAnnotations", self._region,
+                GetAutomatedReasoningPolicyAnnotationsResponse,
+                ("policy_arn", "build_workflow_id", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_annotations(params)
@@ -1169,6 +1295,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_build_workflow, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflow", self._region,
+                GetAutomatedReasoningPolicyBuildWorkflowResponse,
+                ("policy_arn", "build_workflow_id", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_build_workflow(params)
@@ -1194,6 +1323,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_build_workflow_result_assets, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyBuildWorkflowResultAssets", self._region,
+                GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse,
+                ("policy_arn", "build_workflow_id", "asset_type", "asset_id", ),
+                ("policy_arn", "build_workflow_id", "asset_type", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_build_workflow_result_assets(params)
@@ -1214,6 +1346,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_next_scenario, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyNextScenario", self._region,
+                GetAutomatedReasoningPolicyNextScenarioResponse,
+                ("policy_arn", "build_workflow_id", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_next_scenario(params)
@@ -1234,6 +1369,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_test_case, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestCase", self._region,
+                GetAutomatedReasoningPolicyTestCaseResponse,
+                ("policy_arn", "test_case_id", ),
+                ("policy_arn", "test_case_id", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_test_case(params)
@@ -1256,6 +1394,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_automated_reasoning_policy_test_result, params, self._interceptors,
                 "bedrock", "GetAutomatedReasoningPolicyTestResult", self._region,
+                GetAutomatedReasoningPolicyTestResultResponse,
+                ("policy_arn", "build_workflow_id", "test_case_id", ),
+                ("policy_arn", "build_workflow_id", "test_case_id", ),
             )
             return _response
         _response = await self._native.get_automated_reasoning_policy_test_result(params)
@@ -1274,6 +1415,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_custom_model, params, self._interceptors,
                 "bedrock", "GetCustomModel", self._region,
+                GetCustomModelResponse,
+                ("model_identifier", ),
+                ("model_identifier", ),
             )
             return _response
         _response = await self._native.get_custom_model(params)
@@ -1292,6 +1436,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_custom_model_deployment, params, self._interceptors,
                 "bedrock", "GetCustomModelDeployment", self._region,
+                GetCustomModelDeploymentResponse,
+                ("custom_model_deployment_identifier", ),
+                ("custom_model_deployment_identifier", ),
             )
             return _response
         _response = await self._native.get_custom_model_deployment(params)
@@ -1310,6 +1457,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_evaluation_job, params, self._interceptors,
                 "bedrock", "GetEvaluationJob", self._region,
+                GetEvaluationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.get_evaluation_job(params)
@@ -1328,6 +1478,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_foundation_model, params, self._interceptors,
                 "bedrock", "GetFoundationModel", self._region,
+                GetFoundationModelResponse,
+                ("model_identifier", ),
+                ("model_identifier", ),
             )
             return _response
         _response = await self._native.get_foundation_model(params)
@@ -1346,6 +1499,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_foundation_model_availability, params, self._interceptors,
                 "bedrock", "GetFoundationModelAvailability", self._region,
+                GetFoundationModelAvailabilityResponse,
+                ("model_id", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.get_foundation_model_availability(params)
@@ -1367,6 +1523,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_guardrail, params, self._interceptors,
                 "bedrock", "GetGuardrail", self._region,
+                GetGuardrailResponse,
+                ("guardrail_identifier", "guardrail_version", ),
+                ("guardrail_identifier", ),
             )
             return _response
         _response = await self._native.get_guardrail(params)
@@ -1385,6 +1544,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_imported_model, params, self._interceptors,
                 "bedrock", "GetImportedModel", self._region,
+                GetImportedModelResponse,
+                ("model_identifier", ),
+                ("model_identifier", ),
             )
             return _response
         _response = await self._native.get_imported_model(params)
@@ -1403,6 +1565,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_inference_profile, params, self._interceptors,
                 "bedrock", "GetInferenceProfile", self._region,
+                GetInferenceProfileResponse,
+                ("inference_profile_identifier", ),
+                ("inference_profile_identifier", ),
             )
             return _response
         _response = await self._native.get_inference_profile(params)
@@ -1421,6 +1586,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "GetMarketplaceModelEndpoint", self._region,
+                GetMarketplaceModelEndpointResponse,
+                ("endpoint_arn", ),
+                ("endpoint_arn", ),
             )
             return _response
         _response = await self._native.get_marketplace_model_endpoint(params)
@@ -1439,6 +1607,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_copy_job, params, self._interceptors,
                 "bedrock", "GetModelCopyJob", self._region,
+                GetModelCopyJobResponse,
+                ("job_arn", ),
+                ("job_arn", ),
             )
             return _response
         _response = await self._native.get_model_copy_job(params)
@@ -1457,6 +1628,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_customization_job, params, self._interceptors,
                 "bedrock", "GetModelCustomizationJob", self._region,
+                GetModelCustomizationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.get_model_customization_job(params)
@@ -1475,6 +1649,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_import_job, params, self._interceptors,
                 "bedrock", "GetModelImportJob", self._region,
+                GetModelImportJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.get_model_import_job(params)
@@ -1493,6 +1670,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_invocation_job, params, self._interceptors,
                 "bedrock", "GetModelInvocationJob", self._region,
+                GetModelInvocationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.get_model_invocation_job(params)
@@ -1508,6 +1688,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_model_invocation_logging_configuration, params, self._interceptors,
                 "bedrock", "GetModelInvocationLoggingConfiguration", self._region,
+                GetModelInvocationLoggingConfigurationResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_model_invocation_logging_configuration(params)
@@ -1526,6 +1709,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_prompt_router, params, self._interceptors,
                 "bedrock", "GetPromptRouter", self._region,
+                GetPromptRouterResponse,
+                ("prompt_router_arn", ),
+                ("prompt_router_arn", ),
             )
             return _response
         _response = await self._native.get_prompt_router(params)
@@ -1544,6 +1730,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_provisioned_model_throughput, params, self._interceptors,
                 "bedrock", "GetProvisionedModelThroughput", self._region,
+                GetProvisionedModelThroughputResponse,
+                ("provisioned_model_id", ),
+                ("provisioned_model_id", ),
             )
             return _response
         _response = await self._native.get_provisioned_model_throughput(params)
@@ -1562,6 +1751,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, self._interceptors,
                 "bedrock", "GetResourcePolicy", self._region,
+                GetResourcePolicyResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.get_resource_policy(params)
@@ -1577,6 +1769,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.get_use_case_for_model_access, params, self._interceptors,
                 "bedrock", "GetUseCaseForModelAccess", self._region,
+                GetUseCaseForModelAccessResponse,
+                (),
+                (),
             )
             return _response
         _response = await self._native.get_use_case_for_model_access(params)
@@ -1605,6 +1800,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_advanced_prompt_optimization_jobs, params, self._interceptors,
                 "bedrock", "ListAdvancedPromptOptimizationJobs", self._region,
+                ListAdvancedPromptOptimizationJobsResponse,
+                ("max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_advanced_prompt_optimization_jobs(params)
@@ -1630,6 +1828,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policies, params, self._interceptors,
                 "bedrock", "ListAutomatedReasoningPolicies", self._region,
+                ListAutomatedReasoningPoliciesResponse,
+                ("policy_arn", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_automated_reasoning_policies(params)
@@ -1654,6 +1855,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_build_workflows, params, self._interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyBuildWorkflows", self._region,
+                ListAutomatedReasoningPolicyBuildWorkflowsResponse,
+                ("policy_arn", "next_token", "max_results", ),
+                ("policy_arn", ),
             )
             return _response
         _response = await self._native.list_automated_reasoning_policy_build_workflows(params)
@@ -1678,6 +1882,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_test_cases, params, self._interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestCases", self._region,
+                ListAutomatedReasoningPolicyTestCasesResponse,
+                ("policy_arn", "next_token", "max_results", ),
+                ("policy_arn", ),
             )
             return _response
         _response = await self._native.list_automated_reasoning_policy_test_cases(params)
@@ -1704,6 +1911,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_automated_reasoning_policy_test_results, params, self._interceptors,
                 "bedrock", "ListAutomatedReasoningPolicyTestResults", self._region,
+                ListAutomatedReasoningPolicyTestResultsResponse,
+                ("policy_arn", "build_workflow_id", "next_token", "max_results", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.list_automated_reasoning_policy_test_results(params)
@@ -1747,6 +1957,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_custom_model_deployments, params, self._interceptors,
                 "bedrock", "ListCustomModelDeployments", self._region,
+                ListCustomModelDeploymentsResponse,
+                ("created_before", "created_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", "status_equals", "model_arn_equals", ),
+                (),
             )
             return _response
         _response = await self._native.list_custom_model_deployments(params)
@@ -1796,6 +2009,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_custom_models, params, self._interceptors,
                 "bedrock", "ListCustomModels", self._region,
+                ListCustomModelsResponse,
+                ("creation_time_before", "creation_time_after", "name_contains", "base_model_arn_equals", "foundation_model_arn_equals", "max_results", "next_token", "sort_by", "sort_order", "is_owned", "model_status", ),
+                (),
             )
             return _response
         _response = await self._native.list_custom_models(params)
@@ -1815,6 +2031,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_enforced_guardrails_configuration, params, self._interceptors,
                 "bedrock", "ListEnforcedGuardrailsConfiguration", self._region,
+                ListEnforcedGuardrailsConfigurationResponse,
+                ("next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_enforced_guardrails_configuration(params)
@@ -1858,6 +2077,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_evaluation_jobs, params, self._interceptors,
                 "bedrock", "ListEvaluationJobs", self._region,
+                ListEvaluationJobsResponse,
+                ("creation_time_after", "creation_time_before", "status_equals", "application_type_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_evaluation_jobs(params)
@@ -1879,6 +2101,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_foundation_model_agreement_offers, params, self._interceptors,
                 "bedrock", "ListFoundationModelAgreementOffers", self._region,
+                ListFoundationModelAgreementOffersResponse,
+                ("model_id", "offer_type", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.list_foundation_model_agreement_offers(params)
@@ -1907,6 +2132,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_foundation_models, params, self._interceptors,
                 "bedrock", "ListFoundationModels", self._region,
+                ListFoundationModelsResponse,
+                ("by_provider", "by_customization_type", "by_output_modality", "by_inference_type", ),
+                (),
             )
             return _response
         _response = await self._native.list_foundation_models(params)
@@ -1932,6 +2160,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_guardrails, params, self._interceptors,
                 "bedrock", "ListGuardrails", self._region,
+                ListGuardrailsResponse,
+                ("guardrail_identifier", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_guardrails(params)
@@ -1969,6 +2200,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_imported_models, params, self._interceptors,
                 "bedrock", "ListImportedModels", self._region,
+                ListImportedModelsResponse,
+                ("creation_time_before", "creation_time_after", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_imported_models(params)
@@ -1994,6 +2228,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_inference_profiles, params, self._interceptors,
                 "bedrock", "ListInferenceProfiles", self._region,
+                ListInferenceProfilesResponse,
+                ("max_results", "next_token", "type_equals", ),
+                (),
             )
             return _response
         _response = await self._native.list_inference_profiles(params)
@@ -2019,6 +2256,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_marketplace_model_endpoints, params, self._interceptors,
                 "bedrock", "ListMarketplaceModelEndpoints", self._region,
+                ListMarketplaceModelEndpointsResponse,
+                ("max_results", "next_token", "model_source_equals", ),
+                (),
             )
             return _response
         _response = await self._native.list_marketplace_model_endpoints(params)
@@ -2065,6 +2305,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_copy_jobs, params, self._interceptors,
                 "bedrock", "ListModelCopyJobs", self._region,
+                ListModelCopyJobsResponse,
+                ("creation_time_after", "creation_time_before", "status_equals", "source_account_equals", "source_model_arn_equals", "target_model_name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_model_copy_jobs(params)
@@ -2105,6 +2348,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_customization_jobs, params, self._interceptors,
                 "bedrock", "ListModelCustomizationJobs", self._region,
+                ListModelCustomizationJobsResponse,
+                ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_model_customization_jobs(params)
@@ -2145,6 +2391,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_import_jobs, params, self._interceptors,
                 "bedrock", "ListModelImportJobs", self._region,
+                ListModelImportJobsResponse,
+                ("creation_time_after", "creation_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_model_import_jobs(params)
@@ -2185,6 +2434,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_model_invocation_jobs, params, self._interceptors,
                 "bedrock", "ListModelInvocationJobs", self._region,
+                ListModelInvocationJobsResponse,
+                ("submit_time_after", "submit_time_before", "status_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_model_invocation_jobs(params)
@@ -2210,6 +2462,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_prompt_routers, params, self._interceptors,
                 "bedrock", "ListPromptRouters", self._region,
+                ListPromptRoutersResponse,
+                ("max_results", "next_token", "type", ),
+                (),
             )
             return _response
         _response = await self._native.list_prompt_routers(params)
@@ -2253,6 +2508,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_provisioned_model_throughputs, params, self._interceptors,
                 "bedrock", "ListProvisionedModelThroughputs", self._region,
+                ListProvisionedModelThroughputsResponse,
+                ("creation_time_after", "creation_time_before", "status_equals", "model_arn_equals", "name_contains", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_provisioned_model_throughputs(params)
@@ -2271,6 +2529,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "bedrock", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -2289,6 +2550,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_account_data_retention, params, self._interceptors,
                 "bedrock", "PutAccountDataRetention", self._region,
+                PutAccountDataRetentionResponse,
+                ("mode", ),
+                ("mode", ),
             )
             return _response
         _response = await self._native.put_account_data_retention(params)
@@ -2310,6 +2574,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_enforced_guardrail_configuration, params, self._interceptors,
                 "bedrock", "PutEnforcedGuardrailConfiguration", self._region,
+                PutEnforcedGuardrailConfigurationResponse,
+                ("guardrail_inference_config", "config_id", ),
+                ("guardrail_inference_config", ),
             )
             return _response
         _response = await self._native.put_enforced_guardrail_configuration(params)
@@ -2328,6 +2595,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_model_invocation_logging_configuration, params, self._interceptors,
                 "bedrock", "PutModelInvocationLoggingConfiguration", self._region,
+                PutModelInvocationLoggingConfigurationResponse,
+                ("logging_config", ),
+                ("logging_config", ),
             )
             return _response
         _response = await self._native.put_model_invocation_logging_configuration(params)
@@ -2348,6 +2618,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, self._interceptors,
                 "bedrock", "PutResourcePolicy", self._region,
+                PutResourcePolicyResponse,
+                ("resource_arn", "resource_policy", ),
+                ("resource_arn", "resource_policy", ),
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -2366,6 +2639,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.put_use_case_for_model_access, params, self._interceptors,
                 "bedrock", "PutUseCaseForModelAccess", self._region,
+                PutUseCaseForModelAccessResponse,
+                ("form_data", ),
+                ("form_data", ),
             )
             return _response
         _response = await self._native.put_use_case_for_model_access(params)
@@ -2386,6 +2662,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.register_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "RegisterMarketplaceModelEndpoint", self._region,
+                RegisterMarketplaceModelEndpointResponse,
+                ("endpoint_identifier", "model_source_identifier", ),
+                ("endpoint_identifier", "model_source_identifier", ),
             )
             return _response
         _response = await self._native.register_marketplace_model_endpoint(params)
@@ -2411,6 +2690,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.start_automated_reasoning_policy_build_workflow, params, self._interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyBuildWorkflow", self._region,
+                StartAutomatedReasoningPolicyBuildWorkflowResponse,
+                ("policy_arn", "build_workflow_type", "source_content", "client_request_token", ),
+                ("policy_arn", "build_workflow_type", "source_content", ),
             )
             return _response
         _response = await self._native.start_automated_reasoning_policy_build_workflow(params)
@@ -2437,6 +2719,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.start_automated_reasoning_policy_test_workflow, params, self._interceptors,
                 "bedrock", "StartAutomatedReasoningPolicyTestWorkflow", self._region,
+                StartAutomatedReasoningPolicyTestWorkflowResponse,
+                ("policy_arn", "build_workflow_id", "test_case_ids", "client_request_token", ),
+                ("policy_arn", "build_workflow_id", ),
             )
             return _response
         _response = await self._native.start_automated_reasoning_policy_test_workflow(params)
@@ -2455,6 +2740,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_advanced_prompt_optimization_job, params, self._interceptors,
                 "bedrock", "StopAdvancedPromptOptimizationJob", self._region,
+                StopAdvancedPromptOptimizationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.stop_advanced_prompt_optimization_job(params)
@@ -2473,6 +2761,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_evaluation_job, params, self._interceptors,
                 "bedrock", "StopEvaluationJob", self._region,
+                StopEvaluationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.stop_evaluation_job(params)
@@ -2491,6 +2782,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_model_customization_job, params, self._interceptors,
                 "bedrock", "StopModelCustomizationJob", self._region,
+                StopModelCustomizationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.stop_model_customization_job(params)
@@ -2509,6 +2803,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.stop_model_invocation_job, params, self._interceptors,
                 "bedrock", "StopModelInvocationJob", self._region,
+                StopModelInvocationJobResponse,
+                ("job_identifier", ),
+                ("job_identifier", ),
             )
             return _response
         _response = await self._native.stop_model_invocation_job(params)
@@ -2529,6 +2826,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "bedrock", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -2549,6 +2849,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "bedrock", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -2575,6 +2878,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy, params, self._interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicy", self._region,
+                UpdateAutomatedReasoningPolicyResponse,
+                ("policy_arn", "policy_definition", "name", "description", ),
+                ("policy_arn", "policy_definition", ),
             )
             return _response
         _response = await self._native.update_automated_reasoning_policy(params)
@@ -2599,6 +2905,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy_annotations, params, self._interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyAnnotations", self._region,
+                UpdateAutomatedReasoningPolicyAnnotationsResponse,
+                ("policy_arn", "build_workflow_id", "annotations", "last_updated_annotation_set_hash", ),
+                ("policy_arn", "build_workflow_id", "annotations", "last_updated_annotation_set_hash", ),
             )
             return _response
         _response = await self._native.update_automated_reasoning_policy_annotations(params)
@@ -2634,6 +2943,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_automated_reasoning_policy_test_case, params, self._interceptors,
                 "bedrock", "UpdateAutomatedReasoningPolicyTestCase", self._region,
+                UpdateAutomatedReasoningPolicyTestCaseResponse,
+                ("policy_arn", "test_case_id", "guard_content", "last_updated_at", "expected_aggregated_findings_result", "query_content", "confidence_threshold", "client_request_token", ),
+                ("policy_arn", "test_case_id", "guard_content", "last_updated_at", "expected_aggregated_findings_result", ),
             )
             return _response
         _response = await self._native.update_automated_reasoning_policy_test_case(params)
@@ -2654,6 +2966,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_custom_model_deployment, params, self._interceptors,
                 "bedrock", "UpdateCustomModelDeployment", self._region,
+                UpdateCustomModelDeploymentResponse,
+                ("model_arn", "custom_model_deployment_identifier", ),
+                ("model_arn", "custom_model_deployment_identifier", ),
             )
             return _response
         _response = await self._native.update_custom_model_deployment(params)
@@ -2705,6 +3020,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_guardrail, params, self._interceptors,
                 "bedrock", "UpdateGuardrail", self._region,
+                UpdateGuardrailResponse,
+                ("guardrail_identifier", "name", "blocked_input_messaging", "blocked_outputs_messaging", "description", "topic_policy_config", "content_policy_config", "word_policy_config", "sensitive_information_policy_config", "contextual_grounding_policy_config", "automated_reasoning_policy_config", "cross_region_config", "kms_key_id", ),
+                ("guardrail_identifier", "name", "blocked_input_messaging", "blocked_outputs_messaging", ),
             )
             return _response
         _response = await self._native.update_guardrail(params)
@@ -2728,6 +3046,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_marketplace_model_endpoint, params, self._interceptors,
                 "bedrock", "UpdateMarketplaceModelEndpoint", self._region,
+                UpdateMarketplaceModelEndpointResponse,
+                ("endpoint_arn", "endpoint_config", "client_request_token", ),
+                ("endpoint_arn", "endpoint_config", ),
             )
             return _response
         _response = await self._native.update_marketplace_model_endpoint(params)
@@ -2752,6 +3073,9 @@ class BedrockClient:
             _response = await invoke(
                 self._native.update_provisioned_model_throughput, params, self._interceptors,
                 "bedrock", "UpdateProvisionedModelThroughput", self._region,
+                UpdateProvisionedModelThroughputResponse,
+                ("provisioned_model_id", "desired_provisioned_model_name", "desired_model_id", ),
+                ("provisioned_model_id", ),
             )
             return _response
         _response = await self._native.update_provisioned_model_throughput(params)

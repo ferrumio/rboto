@@ -86,6 +86,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.create_pipe, params, self._interceptors,
                 "pipes", "CreatePipe", self._region,
+                CreatePipeResponse,
+                ("name", "source", "target", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target_parameters", "tags", "log_configuration", "kms_key_identifier", ),
+                ("name", "source", "target", "role_arn", ),
             )
             return _response
         _response = await self._native.create_pipe(params)
@@ -104,6 +107,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.delete_pipe, params, self._interceptors,
                 "pipes", "DeletePipe", self._region,
+                DeletePipeResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_pipe(params)
@@ -122,6 +128,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.describe_pipe, params, self._interceptors,
                 "pipes", "DescribePipe", self._region,
+                DescribePipeResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_pipe(params)
@@ -159,6 +168,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.list_pipes, params, self._interceptors,
                 "pipes", "ListPipes", self._region,
+                ListPipesResponse,
+                ("name_prefix", "desired_state", "current_state", "source_prefix", "target_prefix", "next_token", "limit", ),
+                (),
             )
             return _response
         _response = await self._native.list_pipes(params)
@@ -177,6 +189,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "pipes", "ListTagsForResource", self._region,
+                ListTagsForResourceResponse,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -195,6 +210,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.start_pipe, params, self._interceptors,
                 "pipes", "StartPipe", self._region,
+                StartPipeResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.start_pipe(params)
@@ -213,6 +231,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.stop_pipe, params, self._interceptors,
                 "pipes", "StopPipe", self._region,
+                StopPipeResponse,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.stop_pipe(params)
@@ -233,6 +254,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "pipes", "TagResource", self._region,
+                TagResourceResponse,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -253,6 +277,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "pipes", "UntagResource", self._region,
+                UntagResourceResponse,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -300,6 +327,9 @@ class EventBridgePipesClient:
             _response = await invoke(
                 self._native.update_pipe, params, self._interceptors,
                 "pipes", "UpdatePipe", self._region,
+                UpdatePipeResponse,
+                ("name", "role_arn", "description", "desired_state", "source_parameters", "enrichment", "enrichment_parameters", "target", "target_parameters", "log_configuration", "kms_key_identifier", ),
+                ("name", "role_arn", ),
             )
             return _response
         _response = await self._native.update_pipe(params)

@@ -70,6 +70,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.cancel_key_deletion, params, self._interceptors,
                 "kms", "CancelKeyDeletion", self._region,
+                CancelKeyDeletionResponse,
+                ("key_id", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.cancel_key_deletion(params)
@@ -88,6 +91,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.connect_custom_key_store, params, self._interceptors,
                 "kms", "ConnectCustomKeyStore", self._region,
+                ConnectCustomKeyStoreResponse,
+                ("custom_key_store_id", ),
+                ("custom_key_store_id", ),
             )
             return _response
         _response = await self._native.connect_custom_key_store(params)
@@ -108,6 +114,9 @@ class KMSClient:
             await invoke(
                 self._native.create_alias, params, self._interceptors,
                 "kms", "CreateAlias", self._region,
+                type(None),
+                ("alias_name", "target_key_id", ),
+                ("alias_name", "target_key_id", ),
             )
             return None
         await self._native.create_alias(params)
@@ -156,6 +165,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_custom_key_store, params, self._interceptors,
                 "kms", "CreateCustomKeyStore", self._region,
+                CreateCustomKeyStoreResponse,
+                ("custom_key_store_name", "cloud_hsm_cluster_id", "trust_anchor_certificate", "key_store_password", "custom_key_store_type", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
+                ("custom_key_store_name", ),
             )
             return _response
         _response = await self._native.create_custom_key_store(params)
@@ -200,6 +212,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_grant, params, self._interceptors,
                 "kms", "CreateGrant", self._region,
+                CreateGrantResponse,
+                ("key_id", "operations", "grantee_principal", "retiring_principal", "constraints", "grant_tokens", "name", "dry_run", "grantee_service_principal", "retiring_service_principal", ),
+                ("key_id", "operations", ),
             )
             return _response
         _response = await self._native.create_grant(params)
@@ -249,6 +264,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_key, params, self._interceptors,
                 "kms", "CreateKey", self._region,
+                CreateKeyResponse,
+                ("policy", "description", "key_usage", "customer_master_key_spec", "key_spec", "origin", "custom_key_store_id", "bypass_policy_lockout_safety_check", "tags", "multi_region", "xks_key_id", ),
+                (),
             )
             return _response
         _response = await self._native.create_key(params)
@@ -289,6 +307,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.decrypt, params, self._interceptors,
                 "kms", "Decrypt", self._region,
+                DecryptResponse,
+                ("ciphertext_blob", "encryption_context", "grant_tokens", "key_id", "encryption_algorithm", "recipient", "dry_run", "dry_run_modifiers", ),
+                (),
             )
             return _response
         _response = await self._native.decrypt(params)
@@ -307,6 +328,9 @@ class KMSClient:
             await invoke(
                 self._native.delete_alias, params, self._interceptors,
                 "kms", "DeleteAlias", self._region,
+                type(None),
+                ("alias_name", ),
+                ("alias_name", ),
             )
             return None
         await self._native.delete_alias(params)
@@ -325,6 +349,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.delete_custom_key_store, params, self._interceptors,
                 "kms", "DeleteCustomKeyStore", self._region,
+                DeleteCustomKeyStoreResponse,
+                ("custom_key_store_id", ),
+                ("custom_key_store_id", ),
             )
             return _response
         _response = await self._native.delete_custom_key_store(params)
@@ -346,6 +373,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.delete_imported_key_material, params, self._interceptors,
                 "kms", "DeleteImportedKeyMaterial", self._region,
+                DeleteImportedKeyMaterialResponse,
+                ("key_id", "key_material_id", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.delete_imported_key_material(params)
@@ -377,6 +407,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.derive_shared_secret, params, self._interceptors,
                 "kms", "DeriveSharedSecret", self._region,
+                DeriveSharedSecretResponse,
+                ("key_id", "key_agreement_algorithm", "public_key", "grant_tokens", "dry_run", "recipient", ),
+                ("key_id", "key_agreement_algorithm", "public_key", ),
             )
             return _response
         _response = await self._native.derive_shared_secret(params)
@@ -405,6 +438,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.describe_custom_key_stores, params, self._interceptors,
                 "kms", "DescribeCustomKeyStores", self._region,
+                DescribeCustomKeyStoresResponse,
+                ("custom_key_store_id", "custom_key_store_name", "limit", "marker", ),
+                (),
             )
             return _response
         _response = await self._native.describe_custom_key_stores(params)
@@ -426,6 +462,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.describe_key, params, self._interceptors,
                 "kms", "DescribeKey", self._region,
+                DescribeKeyResponse,
+                ("key_id", "grant_tokens", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.describe_key(params)
@@ -444,6 +483,9 @@ class KMSClient:
             await invoke(
                 self._native.disable_key, params, self._interceptors,
                 "kms", "DisableKey", self._region,
+                type(None),
+                ("key_id", ),
+                ("key_id", ),
             )
             return None
         await self._native.disable_key(params)
@@ -462,6 +504,9 @@ class KMSClient:
             await invoke(
                 self._native.disable_key_rotation, params, self._interceptors,
                 "kms", "DisableKeyRotation", self._region,
+                type(None),
+                ("key_id", ),
+                ("key_id", ),
             )
             return None
         await self._native.disable_key_rotation(params)
@@ -480,6 +525,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.disconnect_custom_key_store, params, self._interceptors,
                 "kms", "DisconnectCustomKeyStore", self._region,
+                DisconnectCustomKeyStoreResponse,
+                ("custom_key_store_id", ),
+                ("custom_key_store_id", ),
             )
             return _response
         _response = await self._native.disconnect_custom_key_store(params)
@@ -498,6 +546,9 @@ class KMSClient:
             await invoke(
                 self._native.enable_key, params, self._interceptors,
                 "kms", "EnableKey", self._region,
+                type(None),
+                ("key_id", ),
+                ("key_id", ),
             )
             return None
         await self._native.enable_key(params)
@@ -519,6 +570,9 @@ class KMSClient:
             await invoke(
                 self._native.enable_key_rotation, params, self._interceptors,
                 "kms", "EnableKeyRotation", self._region,
+                type(None),
+                ("key_id", "rotation_period_in_days", ),
+                ("key_id", ),
             )
             return None
         await self._native.enable_key_rotation(params)
@@ -551,6 +605,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.encrypt, params, self._interceptors,
                 "kms", "Encrypt", self._region,
+                EncryptResponse,
+                ("key_id", "plaintext", "encryption_context", "grant_tokens", "encryption_algorithm", "dry_run", ),
+                ("key_id", "plaintext", ),
             )
             return _response
         _response = await self._native.encrypt(params)
@@ -587,6 +644,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key, params, self._interceptors,
                 "kms", "GenerateDataKey", self._region,
+                GenerateDataKeyResponse,
+                ("key_id", "encryption_context", "number_of_bytes", "key_spec", "grant_tokens", "recipient", "dry_run", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.generate_data_key(params)
@@ -619,6 +679,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_pair, params, self._interceptors,
                 "kms", "GenerateDataKeyPair", self._region,
+                GenerateDataKeyPairResponse,
+                ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "recipient", "dry_run", ),
+                ("key_id", "key_pair_spec", ),
             )
             return _response
         _response = await self._native.generate_data_key_pair(params)
@@ -648,6 +711,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_pair_without_plaintext, params, self._interceptors,
                 "kms", "GenerateDataKeyPairWithoutPlaintext", self._region,
+                GenerateDataKeyPairWithoutPlaintextResponse,
+                ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "dry_run", ),
+                ("key_id", "key_pair_spec", ),
             )
             return _response
         _response = await self._native.generate_data_key_pair_without_plaintext(params)
@@ -681,6 +747,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_without_plaintext, params, self._interceptors,
                 "kms", "GenerateDataKeyWithoutPlaintext", self._region,
+                GenerateDataKeyWithoutPlaintextResponse,
+                ("key_id", "encryption_context", "key_spec", "number_of_bytes", "grant_tokens", "dry_run", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.generate_data_key_without_plaintext(params)
@@ -709,6 +778,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_mac, params, self._interceptors,
                 "kms", "GenerateMac", self._region,
+                GenerateMacResponse,
+                ("message", "key_id", "mac_algorithm", "grant_tokens", "dry_run", ),
+                ("message", "key_id", "mac_algorithm", ),
             )
             return _response
         _response = await self._native.generate_mac(params)
@@ -734,6 +806,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_random, params, self._interceptors,
                 "kms", "GenerateRandom", self._region,
+                GenerateRandomResponse,
+                ("number_of_bytes", "custom_key_store_id", "recipient", ),
+                (),
             )
             return _response
         _response = await self._native.generate_random(params)
@@ -752,6 +827,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_last_usage, params, self._interceptors,
                 "kms", "GetKeyLastUsage", self._region,
+                GetKeyLastUsageResponse,
+                ("key_id", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.get_key_last_usage(params)
@@ -773,6 +851,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_policy, params, self._interceptors,
                 "kms", "GetKeyPolicy", self._region,
+                GetKeyPolicyResponse,
+                ("key_id", "policy_name", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.get_key_policy(params)
@@ -791,6 +872,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_rotation_status, params, self._interceptors,
                 "kms", "GetKeyRotationStatus", self._region,
+                GetKeyRotationStatusResponse,
+                ("key_id", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.get_key_rotation_status(params)
@@ -813,6 +897,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_parameters_for_import, params, self._interceptors,
                 "kms", "GetParametersForImport", self._region,
+                GetParametersForImportResponse,
+                ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
+                ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
             )
             return _response
         _response = await self._native.get_parameters_for_import(params)
@@ -834,6 +921,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_public_key, params, self._interceptors,
                 "kms", "GetPublicKey", self._region,
+                GetPublicKeyResponse,
+                ("key_id", "grant_tokens", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.get_public_key(params)
@@ -871,6 +961,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.import_key_material, params, self._interceptors,
                 "kms", "ImportKeyMaterial", self._region,
+                ImportKeyMaterialResponse,
+                ("key_id", "import_token", "encrypted_key_material", "valid_to", "expiration_model", "import_type", "key_material_description", "key_material_id", ),
+                ("key_id", "import_token", "encrypted_key_material", ),
             )
             return _response
         _response = await self._native.import_key_material(params)
@@ -896,6 +989,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_aliases, params, self._interceptors,
                 "kms", "ListAliases", self._region,
+                ListAliasesResponse,
+                ("key_id", "limit", "marker", ),
+                (),
             )
             return _response
         _response = await self._native.list_aliases(params)
@@ -929,6 +1025,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_grants, params, self._interceptors,
                 "kms", "ListGrants", self._region,
+                ListGrantsOutput,
+                ("key_id", "limit", "marker", "grant_id", "grantee_principal", "grantee_service_principal", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.list_grants(params)
@@ -953,6 +1052,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_key_policies, params, self._interceptors,
                 "kms", "ListKeyPolicies", self._region,
+                ListKeyPoliciesResponse,
+                ("key_id", "limit", "marker", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.list_key_policies(params)
@@ -980,6 +1082,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_key_rotations, params, self._interceptors,
                 "kms", "ListKeyRotations", self._region,
+                ListKeyRotationsResponse,
+                ("key_id", "include_key_material", "limit", "marker", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.list_key_rotations(params)
@@ -1002,6 +1107,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_keys, params, self._interceptors,
                 "kms", "ListKeys", self._region,
+                ListKeysResponse,
+                ("limit", "marker", ),
+                (),
             )
             return _response
         _response = await self._native.list_keys(params)
@@ -1026,6 +1134,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_resource_tags, params, self._interceptors,
                 "kms", "ListResourceTags", self._region,
+                ListResourceTagsResponse,
+                ("key_id", "limit", "marker", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.list_resource_tags(params)
@@ -1054,6 +1165,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_retirable_grants, params, self._interceptors,
                 "kms", "ListRetirableGrants", self._region,
+                ListRetirableGrantsOutput,
+                ("limit", "marker", "retiring_principal", "retiring_service_principal", ),
+                (),
             )
             return _response
         _response = await self._native.list_retirable_grants(params)
@@ -1080,6 +1194,9 @@ class KMSClient:
             await invoke(
                 self._native.put_key_policy, params, self._interceptors,
                 "kms", "PutKeyPolicy", self._region,
+                type(None),
+                ("key_id", "policy", "policy_name", "bypass_policy_lockout_safety_check", ),
+                ("key_id", "policy", ),
             )
             return None
         await self._native.put_key_policy(params)
@@ -1125,6 +1242,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.re_encrypt, params, self._interceptors,
                 "kms", "ReEncrypt", self._region,
+                ReEncryptResponse,
+                ("destination_key_id", "ciphertext_blob", "source_encryption_context", "source_key_id", "destination_encryption_context", "source_encryption_algorithm", "destination_encryption_algorithm", "grant_tokens", "dry_run", "dry_run_modifiers", ),
+                ("destination_key_id", ),
             )
             return _response
         _response = await self._native.re_encrypt(params)
@@ -1157,6 +1277,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.replicate_key, params, self._interceptors,
                 "kms", "ReplicateKey", self._region,
+                ReplicateKeyResponse,
+                ("key_id", "replica_region", "policy", "bypass_policy_lockout_safety_check", "description", "tags", ),
+                ("key_id", "replica_region", ),
             )
             return _response
         _response = await self._native.replicate_key(params)
@@ -1185,6 +1308,9 @@ class KMSClient:
             await invoke(
                 self._native.retire_grant, params, self._interceptors,
                 "kms", "RetireGrant", self._region,
+                type(None),
+                ("grant_token", "key_id", "grant_id", "dry_run", ),
+                (),
             )
             return None
         await self._native.retire_grant(params)
@@ -1208,6 +1334,9 @@ class KMSClient:
             await invoke(
                 self._native.revoke_grant, params, self._interceptors,
                 "kms", "RevokeGrant", self._region,
+                type(None),
+                ("key_id", "grant_id", "dry_run", ),
+                ("key_id", "grant_id", ),
             )
             return None
         await self._native.revoke_grant(params)
@@ -1226,6 +1355,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.rotate_key_on_demand, params, self._interceptors,
                 "kms", "RotateKeyOnDemand", self._region,
+                RotateKeyOnDemandResponse,
+                ("key_id", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.rotate_key_on_demand(params)
@@ -1247,6 +1379,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.schedule_key_deletion, params, self._interceptors,
                 "kms", "ScheduleKeyDeletion", self._region,
+                ScheduleKeyDeletionResponse,
+                ("key_id", "pending_window_in_days", ),
+                ("key_id", ),
             )
             return _response
         _response = await self._native.schedule_key_deletion(params)
@@ -1278,6 +1413,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.sign, params, self._interceptors,
                 "kms", "Sign", self._region,
+                SignResponse,
+                ("key_id", "message", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
+                ("key_id", "message", "signing_algorithm", ),
             )
             return _response
         _response = await self._native.sign(params)
@@ -1298,6 +1436,9 @@ class KMSClient:
             await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "kms", "TagResource", self._region,
+                type(None),
+                ("key_id", "tags", ),
+                ("key_id", "tags", ),
             )
             return None
         await self._native.tag_resource(params)
@@ -1318,6 +1459,9 @@ class KMSClient:
             await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "kms", "UntagResource", self._region,
+                type(None),
+                ("key_id", "tag_keys", ),
+                ("key_id", "tag_keys", ),
             )
             return None
         await self._native.untag_resource(params)
@@ -1338,6 +1482,9 @@ class KMSClient:
             await invoke(
                 self._native.update_alias, params, self._interceptors,
                 "kms", "UpdateAlias", self._region,
+                type(None),
+                ("alias_name", "target_key_id", ),
+                ("alias_name", "target_key_id", ),
             )
             return None
         await self._native.update_alias(params)
@@ -1383,6 +1530,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.update_custom_key_store, params, self._interceptors,
                 "kms", "UpdateCustomKeyStore", self._region,
+                UpdateCustomKeyStoreResponse,
+                ("custom_key_store_id", "new_custom_key_store_name", "key_store_password", "cloud_hsm_cluster_id", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
+                ("custom_key_store_id", ),
             )
             return _response
         _response = await self._native.update_custom_key_store(params)
@@ -1403,6 +1553,9 @@ class KMSClient:
             await invoke(
                 self._native.update_key_description, params, self._interceptors,
                 "kms", "UpdateKeyDescription", self._region,
+                type(None),
+                ("key_id", "description", ),
+                ("key_id", "description", ),
             )
             return None
         await self._native.update_key_description(params)
@@ -1423,6 +1576,9 @@ class KMSClient:
             await invoke(
                 self._native.update_primary_region, params, self._interceptors,
                 "kms", "UpdatePrimaryRegion", self._region,
+                type(None),
+                ("key_id", "primary_region", ),
+                ("key_id", "primary_region", ),
             )
             return None
         await self._native.update_primary_region(params)
@@ -1456,6 +1612,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.verify, params, self._interceptors,
                 "kms", "Verify", self._region,
+                VerifyResponse,
+                ("key_id", "message", "signature", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
+                ("key_id", "message", "signature", "signing_algorithm", ),
             )
             return _response
         _response = await self._native.verify(params)
@@ -1486,6 +1645,9 @@ class KMSClient:
             _response = await invoke(
                 self._native.verify_mac, params, self._interceptors,
                 "kms", "VerifyMac", self._region,
+                VerifyMacResponse,
+                ("message", "key_id", "mac_algorithm", "mac", "grant_tokens", "dry_run", ),
+                ("message", "key_id", "mac_algorithm", "mac", ),
             )
             return _response
         _response = await self._native.verify_mac(params)

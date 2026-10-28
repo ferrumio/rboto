@@ -65,6 +65,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.create_activity, params, self._interceptors,
                 "sfn", "CreateActivity", self._region,
+                CreateActivityOutput,
+                ("name", "tags", "encryption_configuration", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_activity(params)
@@ -108,6 +111,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.create_state_machine, params, self._interceptors,
                 "sfn", "CreateStateMachine", self._region,
+                CreateStateMachineOutput,
+                ("name", "definition", "role_arn", "type", "logging_configuration", "tags", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
+                ("name", "definition", "role_arn", ),
             )
             return _response
         _response = await self._native.create_state_machine(params)
@@ -131,6 +137,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.create_state_machine_alias, params, self._interceptors,
                 "sfn", "CreateStateMachineAlias", self._region,
+                CreateStateMachineAliasOutput,
+                ("name", "routing_configuration", "description", ),
+                ("name", "routing_configuration", ),
             )
             return _response
         _response = await self._native.create_state_machine_alias(params)
@@ -149,6 +158,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.delete_activity, params, self._interceptors,
                 "sfn", "DeleteActivity", self._region,
+                DeleteActivityOutput,
+                ("activity_arn", ),
+                ("activity_arn", ),
             )
             return _response
         _response = await self._native.delete_activity(params)
@@ -167,6 +179,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.delete_state_machine, params, self._interceptors,
                 "sfn", "DeleteStateMachine", self._region,
+                DeleteStateMachineOutput,
+                ("state_machine_arn", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.delete_state_machine(params)
@@ -185,6 +200,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.delete_state_machine_alias, params, self._interceptors,
                 "sfn", "DeleteStateMachineAlias", self._region,
+                DeleteStateMachineAliasOutput,
+                ("state_machine_alias_arn", ),
+                ("state_machine_alias_arn", ),
             )
             return _response
         _response = await self._native.delete_state_machine_alias(params)
@@ -203,6 +221,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.delete_state_machine_version, params, self._interceptors,
                 "sfn", "DeleteStateMachineVersion", self._region,
+                DeleteStateMachineVersionOutput,
+                ("state_machine_version_arn", ),
+                ("state_machine_version_arn", ),
             )
             return _response
         _response = await self._native.delete_state_machine_version(params)
@@ -221,6 +242,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_activity, params, self._interceptors,
                 "sfn", "DescribeActivity", self._region,
+                DescribeActivityOutput,
+                ("activity_arn", ),
+                ("activity_arn", ),
             )
             return _response
         _response = await self._native.describe_activity(params)
@@ -242,6 +266,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_execution, params, self._interceptors,
                 "sfn", "DescribeExecution", self._region,
+                DescribeExecutionOutput,
+                ("execution_arn", "included_data", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.describe_execution(params)
@@ -260,6 +287,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_map_run, params, self._interceptors,
                 "sfn", "DescribeMapRun", self._region,
+                DescribeMapRunOutput,
+                ("map_run_arn", ),
+                ("map_run_arn", ),
             )
             return _response
         _response = await self._native.describe_map_run(params)
@@ -281,6 +311,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_state_machine, params, self._interceptors,
                 "sfn", "DescribeStateMachine", self._region,
+                DescribeStateMachineOutput,
+                ("state_machine_arn", "included_data", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.describe_state_machine(params)
@@ -299,6 +332,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_state_machine_alias, params, self._interceptors,
                 "sfn", "DescribeStateMachineAlias", self._region,
+                DescribeStateMachineAliasOutput,
+                ("state_machine_alias_arn", ),
+                ("state_machine_alias_arn", ),
             )
             return _response
         _response = await self._native.describe_state_machine_alias(params)
@@ -320,6 +356,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.describe_state_machine_for_execution, params, self._interceptors,
                 "sfn", "DescribeStateMachineForExecution", self._region,
+                DescribeStateMachineForExecutionOutput,
+                ("execution_arn", "included_data", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.describe_state_machine_for_execution(params)
@@ -341,6 +380,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.get_activity_task, params, self._interceptors,
                 "sfn", "GetActivityTask", self._region,
+                GetActivityTaskOutput,
+                ("activity_arn", "worker_name", ),
+                ("activity_arn", ),
             )
             return _response
         _response = await self._native.get_activity_task(params)
@@ -371,6 +413,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.get_execution_history, params, self._interceptors,
                 "sfn", "GetExecutionHistory", self._region,
+                GetExecutionHistoryOutput,
+                ("execution_arn", "max_results", "reverse_order", "next_token", "include_execution_data", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.get_execution_history(params)
@@ -393,6 +438,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_activities, params, self._interceptors,
                 "sfn", "ListActivities", self._region,
+                ListActivitiesOutput,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_activities(params)
@@ -427,6 +475,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_executions, params, self._interceptors,
                 "sfn", "ListExecutions", self._region,
+                ListExecutionsOutput,
+                ("state_machine_arn", "status_filter", "max_results", "next_token", "map_run_arn", "redrive_filter", ),
+                (),
             )
             return _response
         _response = await self._native.list_executions(params)
@@ -451,6 +502,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_map_runs, params, self._interceptors,
                 "sfn", "ListMapRuns", self._region,
+                ListMapRunsOutput,
+                ("execution_arn", "max_results", "next_token", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.list_map_runs(params)
@@ -475,6 +529,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_state_machine_aliases, params, self._interceptors,
                 "sfn", "ListStateMachineAliases", self._region,
+                ListStateMachineAliasesOutput,
+                ("state_machine_arn", "next_token", "max_results", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.list_state_machine_aliases(params)
@@ -499,6 +556,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_state_machine_versions, params, self._interceptors,
                 "sfn", "ListStateMachineVersions", self._region,
+                ListStateMachineVersionsOutput,
+                ("state_machine_arn", "next_token", "max_results", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.list_state_machine_versions(params)
@@ -521,6 +581,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_state_machines, params, self._interceptors,
                 "sfn", "ListStateMachines", self._region,
+                ListStateMachinesOutput,
+                ("max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_state_machines(params)
@@ -539,6 +602,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "sfn", "ListTagsForResource", self._region,
+                ListTagsForResourceOutput,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -563,6 +629,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.publish_state_machine_version, params, self._interceptors,
                 "sfn", "PublishStateMachineVersion", self._region,
+                PublishStateMachineVersionOutput,
+                ("state_machine_arn", "revision_id", "description", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.publish_state_machine_version(params)
@@ -584,6 +653,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.redrive_execution, params, self._interceptors,
                 "sfn", "RedriveExecution", self._region,
+                RedriveExecutionOutput,
+                ("execution_arn", "client_token", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.redrive_execution(params)
@@ -608,6 +680,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.send_task_failure, params, self._interceptors,
                 "sfn", "SendTaskFailure", self._region,
+                SendTaskFailureOutput,
+                ("task_token", "error", "cause", ),
+                ("task_token", ),
             )
             return _response
         _response = await self._native.send_task_failure(params)
@@ -626,6 +701,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.send_task_heartbeat, params, self._interceptors,
                 "sfn", "SendTaskHeartbeat", self._region,
+                SendTaskHeartbeatOutput,
+                ("task_token", ),
+                ("task_token", ),
             )
             return _response
         _response = await self._native.send_task_heartbeat(params)
@@ -646,6 +724,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.send_task_success, params, self._interceptors,
                 "sfn", "SendTaskSuccess", self._region,
+                SendTaskSuccessOutput,
+                ("task_token", "output", ),
+                ("task_token", "output", ),
             )
             return _response
         _response = await self._native.send_task_success(params)
@@ -673,6 +754,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.start_execution, params, self._interceptors,
                 "sfn", "StartExecution", self._region,
+                StartExecutionOutput,
+                ("state_machine_arn", "name", "input", "trace_header", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.start_execution(params)
@@ -703,6 +787,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.start_sync_execution, params, self._interceptors,
                 "sfn", "StartSyncExecution", self._region,
+                StartSyncExecutionOutput,
+                ("state_machine_arn", "name", "input", "trace_header", "included_data", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.start_sync_execution(params)
@@ -727,6 +814,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.stop_execution, params, self._interceptors,
                 "sfn", "StopExecution", self._region,
+                StopExecutionOutput,
+                ("execution_arn", "error", "cause", ),
+                ("execution_arn", ),
             )
             return _response
         _response = await self._native.stop_execution(params)
@@ -747,6 +837,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "sfn", "TagResource", self._region,
+                TagResourceOutput,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -792,6 +885,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.test_state, params, self._interceptors,
                 "sfn", "TestState", self._region,
+                TestStateOutput,
+                ("definition", "role_arn", "input", "inspection_level", "reveal_secrets", "variables", "state_name", "mock", "context", "state_configuration", ),
+                ("definition", ),
             )
             return _response
         _response = await self._native.test_state(params)
@@ -812,6 +908,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "sfn", "UntagResource", self._region,
+                UntagResourceOutput,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -839,6 +938,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.update_map_run, params, self._interceptors,
                 "sfn", "UpdateMapRun", self._region,
+                UpdateMapRunOutput,
+                ("map_run_arn", "max_concurrency", "tolerated_failure_percentage", "tolerated_failure_count", ),
+                ("map_run_arn", ),
             )
             return _response
         _response = await self._native.update_map_run(params)
@@ -878,6 +980,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.update_state_machine, params, self._interceptors,
                 "sfn", "UpdateStateMachine", self._region,
+                UpdateStateMachineOutput,
+                ("state_machine_arn", "definition", "role_arn", "logging_configuration", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
+                ("state_machine_arn", ),
             )
             return _response
         _response = await self._native.update_state_machine(params)
@@ -902,6 +1007,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.update_state_machine_alias, params, self._interceptors,
                 "sfn", "UpdateStateMachineAlias", self._region,
+                UpdateStateMachineAliasOutput,
+                ("state_machine_alias_arn", "description", "routing_configuration", ),
+                ("state_machine_alias_arn", ),
             )
             return _response
         _response = await self._native.update_state_machine_alias(params)
@@ -929,6 +1037,9 @@ class StepFunctionsClient:
             _response = await invoke(
                 self._native.validate_state_machine_definition, params, self._interceptors,
                 "sfn", "ValidateStateMachineDefinition", self._region,
+                ValidateStateMachineDefinitionOutput,
+                ("definition", "type", "severity", "max_results", ),
+                ("definition", ),
             )
             return _response
         _response = await self._native.validate_state_machine_definition(params)

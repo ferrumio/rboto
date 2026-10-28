@@ -84,6 +84,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.apply_guardrail, params, self._interceptors,
                 "bedrock-runtime", "ApplyGuardrail", self._region,
+                ApplyGuardrailResponse,
+                ("guardrail_identifier", "guardrail_version", "source", "content", "output_scope", ),
+                ("guardrail_identifier", "guardrail_version", "source", "content", ),
             )
             return _response
         _response = await self._native.apply_guardrail(params)
@@ -138,6 +141,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.converse, params, self._interceptors,
                 "bedrock-runtime", "Converse", self._region,
+                ConverseResponse,
+                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.converse(params)
@@ -192,6 +198,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.converse_stream, params, self._interceptors,
                 "bedrock-runtime", "ConverseStream", self._region,
+                dict,
+                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.converse_stream(params)
@@ -212,6 +221,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.count_tokens, params, self._interceptors,
                 "bedrock-runtime", "CountTokens", self._region,
+                CountTokensResponse,
+                ("model_id", "input", ),
+                ("model_id", "input", ),
             )
             return _response
         _response = await self._native.count_tokens(params)
@@ -230,6 +242,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.get_async_invoke, params, self._interceptors,
                 "bedrock-runtime", "GetAsyncInvoke", self._region,
+                GetAsyncInvokeResponse,
+                ("invocation_arn", ),
+                ("invocation_arn", ),
             )
             return _response
         _response = await self._native.get_async_invoke(params)
@@ -250,6 +265,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.invoke_guardrail_checks, params, self._interceptors,
                 "bedrock-runtime", "InvokeGuardrailChecks", self._region,
+                InvokeGuardrailChecksResponse,
+                ("messages", "checks", ),
+                ("messages", "checks", ),
             )
             return _response
         _response = await self._native.invoke_guardrail_checks(params)
@@ -295,6 +313,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.invoke_model, params, self._interceptors,
                 "bedrock-runtime", "InvokeModel", self._region,
+                InvokeModelResponse,
+                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.invoke_model(params)
@@ -315,6 +336,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.invoke_model_with_bidirectional_stream, params, self._interceptors,
                 "bedrock-runtime", "InvokeModelWithBidirectionalStream", self._region,
+                dict,
+                ("model_id", "body", ),
+                ("model_id", "body", ),
             )
             return _response
         _response = await self._native.invoke_model_with_bidirectional_stream(params)
@@ -360,6 +384,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.invoke_model_with_response_stream, params, self._interceptors,
                 "bedrock-runtime", "InvokeModelWithResponseStream", self._region,
+                dict,
+                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
+                ("model_id", ),
             )
             return _response
         _response = await self._native.invoke_model_with_response_stream(params)
@@ -397,6 +424,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.list_async_invokes, params, self._interceptors,
                 "bedrock-runtime", "ListAsyncInvokes", self._region,
+                ListAsyncInvokesResponse,
+                ("submit_time_after", "submit_time_before", "status_equals", "max_results", "next_token", "sort_by", "sort_order", ),
+                (),
             )
             return _response
         _response = await self._native.list_async_invokes(params)
@@ -425,6 +455,9 @@ class BedrockRuntimeClient:
             _response = await invoke(
                 self._native.start_async_invoke, params, self._interceptors,
                 "bedrock-runtime", "StartAsyncInvoke", self._region,
+                StartAsyncInvokeResponse,
+                ("model_id", "model_input", "output_data_config", "client_request_token", "tags", ),
+                ("model_id", "model_input", "output_data_config", ),
             )
             return _response
         _response = await self._native.start_async_invoke(params)

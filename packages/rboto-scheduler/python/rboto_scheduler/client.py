@@ -84,6 +84,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.create_schedule, params, self._interceptors,
                 "scheduler", "CreateSchedule", self._region,
+                CreateScheduleOutput,
+                ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),
+                ("name", "schedule_expression", "target", "flexible_time_window", ),
             )
             return _response
         _response = await self._native.create_schedule(params)
@@ -108,6 +111,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.create_schedule_group, params, self._interceptors,
                 "scheduler", "CreateScheduleGroup", self._region,
+                CreateScheduleGroupOutput,
+                ("name", "tags", "client_token", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_schedule_group(params)
@@ -132,6 +138,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.delete_schedule, params, self._interceptors,
                 "scheduler", "DeleteSchedule", self._region,
+                DeleteScheduleOutput,
+                ("name", "group_name", "client_token", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_schedule(params)
@@ -153,6 +162,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.delete_schedule_group, params, self._interceptors,
                 "scheduler", "DeleteScheduleGroup", self._region,
+                DeleteScheduleGroupOutput,
+                ("name", "client_token", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_schedule_group(params)
@@ -174,6 +186,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.get_schedule, params, self._interceptors,
                 "scheduler", "GetSchedule", self._region,
+                GetScheduleOutput,
+                ("name", "group_name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_schedule(params)
@@ -192,6 +207,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.get_schedule_group, params, self._interceptors,
                 "scheduler", "GetScheduleGroup", self._region,
+                GetScheduleGroupOutput,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_schedule_group(params)
@@ -217,6 +235,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.list_schedule_groups, params, self._interceptors,
                 "scheduler", "ListScheduleGroups", self._region,
+                ListScheduleGroupsOutput,
+                ("name_prefix", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_schedule_groups(params)
@@ -248,6 +269,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.list_schedules, params, self._interceptors,
                 "scheduler", "ListSchedules", self._region,
+                ListSchedulesOutput,
+                ("group_name", "name_prefix", "state", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_schedules(params)
@@ -266,6 +290,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "scheduler", "ListTagsForResource", self._region,
+                ListTagsForResourceOutput,
+                ("resource_arn", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -286,6 +313,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.tag_resource, params, self._interceptors,
                 "scheduler", "TagResource", self._region,
+                TagResourceOutput,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
             )
             return _response
         _response = await self._native.tag_resource(params)
@@ -306,6 +336,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.untag_resource, params, self._interceptors,
                 "scheduler", "UntagResource", self._region,
+                UntagResourceOutput,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
             )
             return _response
         _response = await self._native.untag_resource(params)
@@ -357,6 +390,9 @@ class EventBridgeSchedulerClient:
             _response = await invoke(
                 self._native.update_schedule, params, self._interceptors,
                 "scheduler", "UpdateSchedule", self._region,
+                UpdateScheduleOutput,
+                ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),
+                ("name", "schedule_expression", "target", "flexible_time_window", ),
             )
             return _response
         _response = await self._native.update_schedule(params)

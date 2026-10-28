@@ -142,6 +142,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.add_tags_to_resource, params, self._interceptors,
                 "ssm", "AddTagsToResource", self._region,
+                AddTagsToResourceResult,
+                ("resource_type", "resource_id", "tags", ),
+                ("resource_type", "resource_id", "tags", ),
             )
             return _response
         _response = await self._native.add_tags_to_resource(params)
@@ -166,6 +169,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.associate_ops_item_related_item, params, self._interceptors,
                 "ssm", "AssociateOpsItemRelatedItem", self._region,
+                AssociateOpsItemRelatedItemResponse,
+                ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
+                ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
             )
             return _response
         _response = await self._native.associate_ops_item_related_item(params)
@@ -187,6 +193,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.cancel_command, params, self._interceptors,
                 "ssm", "CancelCommand", self._region,
+                CancelCommandResult,
+                ("command_id", "instance_ids", ),
+                ("command_id", ),
             )
             return _response
         _response = await self._native.cancel_command(params)
@@ -205,6 +214,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.cancel_maintenance_window_execution, params, self._interceptors,
                 "ssm", "CancelMaintenanceWindowExecution", self._region,
+                CancelMaintenanceWindowExecutionResult,
+                ("window_execution_id", ),
+                ("window_execution_id", ),
             )
             return _response
         _response = await self._native.cancel_maintenance_window_execution(params)
@@ -241,6 +253,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_activation, params, self._interceptors,
                 "ssm", "CreateActivation", self._region,
+                CreateActivationResult,
+                ("iam_role", "description", "default_instance_name", "registration_limit", "expiration_date", "tags", "registration_metadata", ),
+                ("iam_role", ),
             )
             return _response
         _response = await self._native.create_activation(params)
@@ -322,6 +337,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_association, params, self._interceptors,
                 "ssm", "CreateAssociation", self._region,
+                CreateAssociationResult,
+                ("name", "document_version", "instance_id", "parameters", "targets", "schedule_expression", "output_location", "association_name", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "tags", "alarm_configuration", "association_dispatch_assume_role", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_association(params)
@@ -343,6 +361,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_association_batch, params, self._interceptors,
                 "ssm", "CreateAssociationBatch", self._region,
+                CreateAssociationBatchResult,
+                ("entries", "association_dispatch_assume_role", ),
+                ("entries", ),
             )
             return _response
         _response = await self._native.create_association_batch(params)
@@ -373,6 +394,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_cloud_connector, params, self._interceptors,
                 "ssm", "CreateCloudConnector", self._region,
+                CreateCloudConnectorResult,
+                ("display_name", "role_arn", "configuration", "config_connector_arn", "description", "tags", ),
+                ("display_name", "role_arn", "configuration", "config_connector_arn", ),
             )
             return _response
         _response = await self._native.create_cloud_connector(params)
@@ -417,6 +441,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_document, params, self._interceptors,
                 "ssm", "CreateDocument", self._region,
+                CreateDocumentResult,
+                ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", ),
+                ("content", "name", ),
             )
             return _response
         _response = await self._native.create_document(params)
@@ -464,6 +491,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_maintenance_window, params, self._interceptors,
                 "ssm", "CreateMaintenanceWindow", self._region,
+                CreateMaintenanceWindowResult,
+                ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", "description", "start_date", "end_date", "schedule_timezone", "schedule_offset", "client_token", "tags", ),
+                ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", ),
             )
             return _response
         _response = await self._native.create_maintenance_window(params)
@@ -525,6 +555,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_ops_item, params, self._interceptors,
                 "ssm", "CreateOpsItem", self._region,
+                CreateOpsItemResponse,
+                ("description", "source", "title", "ops_item_type", "operational_data", "notifications", "priority", "related_ops_items", "tags", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "account_id", ),
+                ("description", "source", "title", ),
             )
             return _response
         _response = await self._native.create_ops_item(params)
@@ -549,6 +582,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_ops_metadata, params, self._interceptors,
                 "ssm", "CreateOpsMetadata", self._region,
+                CreateOpsMetadataResult,
+                ("resource_id", "metadata", "tags", ),
+                ("resource_id", ),
             )
             return _response
         _response = await self._native.create_ops_metadata(params)
@@ -606,6 +642,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_patch_baseline, params, self._interceptors,
                 "ssm", "CreatePatchBaseline", self._region,
+                CreatePatchBaselineResult,
+                ("name", "operating_system", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "client_token", "tags", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.create_patch_baseline(params)
@@ -633,6 +672,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_resource_data_sync, params, self._interceptors,
                 "ssm", "CreateResourceDataSync", self._region,
+                CreateResourceDataSyncResult,
+                ("sync_name", "s3_destination", "sync_type", "sync_source", ),
+                ("sync_name", ),
             )
             return _response
         _response = await self._native.create_resource_data_sync(params)
@@ -651,6 +693,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_activation, params, self._interceptors,
                 "ssm", "DeleteActivation", self._region,
+                DeleteActivationResult,
+                ("activation_id", ),
+                ("activation_id", ),
             )
             return _response
         _response = await self._native.delete_activation(params)
@@ -676,6 +721,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_association, params, self._interceptors,
                 "ssm", "DeleteAssociation", self._region,
+                DeleteAssociationResult,
+                ("name", "instance_id", "association_id", ),
+                (),
             )
             return _response
         _response = await self._native.delete_association(params)
@@ -694,6 +742,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_cloud_connector, params, self._interceptors,
                 "ssm", "DeleteCloudConnector", self._region,
+                DeleteCloudConnectorResult,
+                ("cloud_connector_id", ),
+                ("cloud_connector_id", ),
             )
             return _response
         _response = await self._native.delete_cloud_connector(params)
@@ -721,6 +772,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_document, params, self._interceptors,
                 "ssm", "DeleteDocument", self._region,
+                DeleteDocumentResult,
+                ("name", "document_version", "version_name", "force", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_document(params)
@@ -748,6 +802,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_inventory, params, self._interceptors,
                 "ssm", "DeleteInventory", self._region,
+                DeleteInventoryResult,
+                ("type_name", "schema_delete_option", "dry_run", "client_token", ),
+                ("type_name", ),
             )
             return _response
         _response = await self._native.delete_inventory(params)
@@ -766,6 +823,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_maintenance_window, params, self._interceptors,
                 "ssm", "DeleteMaintenanceWindow", self._region,
+                DeleteMaintenanceWindowResult,
+                ("window_id", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.delete_maintenance_window(params)
@@ -784,6 +844,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_ops_item, params, self._interceptors,
                 "ssm", "DeleteOpsItem", self._region,
+                DeleteOpsItemResponse,
+                ("ops_item_id", ),
+                ("ops_item_id", ),
             )
             return _response
         _response = await self._native.delete_ops_item(params)
@@ -802,6 +865,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_ops_metadata, params, self._interceptors,
                 "ssm", "DeleteOpsMetadata", self._region,
+                DeleteOpsMetadataResult,
+                ("ops_metadata_arn", ),
+                ("ops_metadata_arn", ),
             )
             return _response
         _response = await self._native.delete_ops_metadata(params)
@@ -820,6 +886,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_parameter, params, self._interceptors,
                 "ssm", "DeleteParameter", self._region,
+                DeleteParameterResult,
+                ("name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.delete_parameter(params)
@@ -838,6 +907,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_parameters, params, self._interceptors,
                 "ssm", "DeleteParameters", self._region,
+                DeleteParametersResult,
+                ("names", ),
+                ("names", ),
             )
             return _response
         _response = await self._native.delete_parameters(params)
@@ -856,6 +928,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_patch_baseline, params, self._interceptors,
                 "ssm", "DeletePatchBaseline", self._region,
+                DeletePatchBaselineResult,
+                ("baseline_id", ),
+                ("baseline_id", ),
             )
             return _response
         _response = await self._native.delete_patch_baseline(params)
@@ -877,6 +952,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_resource_data_sync, params, self._interceptors,
                 "ssm", "DeleteResourceDataSync", self._region,
+                DeleteResourceDataSyncResult,
+                ("sync_name", "sync_type", ),
+                ("sync_name", ),
             )
             return _response
         _response = await self._native.delete_resource_data_sync(params)
@@ -902,6 +980,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, self._interceptors,
                 "ssm", "DeleteResourcePolicy", self._region,
+                DeleteResourcePolicyResponse,
+                ("resource_arn", "policy_id", "policy_hash", "deletion_mode", ),
+                ("resource_arn", "policy_id", "policy_hash", ),
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
@@ -920,6 +1001,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_managed_instance, params, self._interceptors,
                 "ssm", "DeregisterManagedInstance", self._region,
+                DeregisterManagedInstanceResult,
+                ("instance_id", ),
+                ("instance_id", ),
             )
             return _response
         _response = await self._native.deregister_managed_instance(params)
@@ -940,6 +1024,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_patch_baseline_for_patch_group, params, self._interceptors,
                 "ssm", "DeregisterPatchBaselineForPatchGroup", self._region,
+                DeregisterPatchBaselineForPatchGroupResult,
+                ("baseline_id", "patch_group", ),
+                ("baseline_id", "patch_group", ),
             )
             return _response
         _response = await self._native.deregister_patch_baseline_for_patch_group(params)
@@ -963,6 +1050,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_target_from_maintenance_window, params, self._interceptors,
                 "ssm", "DeregisterTargetFromMaintenanceWindow", self._region,
+                DeregisterTargetFromMaintenanceWindowResult,
+                ("window_id", "window_target_id", "safe", ),
+                ("window_id", "window_target_id", ),
             )
             return _response
         _response = await self._native.deregister_target_from_maintenance_window(params)
@@ -983,6 +1073,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_task_from_maintenance_window, params, self._interceptors,
                 "ssm", "DeregisterTaskFromMaintenanceWindow", self._region,
+                DeregisterTaskFromMaintenanceWindowResult,
+                ("window_id", "window_task_id", ),
+                ("window_id", "window_task_id", ),
             )
             return _response
         _response = await self._native.deregister_task_from_maintenance_window(params)
@@ -1008,6 +1101,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_activations, params, self._interceptors,
                 "ssm", "DescribeActivations", self._region,
+                DescribeActivationsResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_activations(params)
@@ -1036,6 +1132,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association, params, self._interceptors,
                 "ssm", "DescribeAssociation", self._region,
+                DescribeAssociationResult,
+                ("name", "instance_id", "association_id", "association_version", ),
+                (),
             )
             return _response
         _response = await self._native.describe_association(params)
@@ -1065,6 +1164,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association_execution_targets, params, self._interceptors,
                 "ssm", "DescribeAssociationExecutionTargets", self._region,
+                DescribeAssociationExecutionTargetsResult,
+                ("association_id", "execution_id", "filters", "max_results", "next_token", ),
+                ("association_id", "execution_id", ),
             )
             return _response
         _response = await self._native.describe_association_execution_targets(params)
@@ -1092,6 +1194,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association_executions, params, self._interceptors,
                 "ssm", "DescribeAssociationExecutions", self._region,
+                DescribeAssociationExecutionsResult,
+                ("association_id", "filters", "max_results", "next_token", ),
+                ("association_id", ),
             )
             return _response
         _response = await self._native.describe_association_executions(params)
@@ -1117,6 +1222,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_automation_executions, params, self._interceptors,
                 "ssm", "DescribeAutomationExecutions", self._region,
+                DescribeAutomationExecutionsResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_automation_executions(params)
@@ -1147,6 +1255,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_automation_step_executions, params, self._interceptors,
                 "ssm", "DescribeAutomationStepExecutions", self._region,
+                DescribeAutomationStepExecutionsResult,
+                ("automation_execution_id", "filters", "next_token", "max_results", "reverse_order", ),
+                ("automation_execution_id", ),
             )
             return _response
         _response = await self._native.describe_automation_step_executions(params)
@@ -1172,6 +1283,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_available_patches, params, self._interceptors,
                 "ssm", "DescribeAvailablePatches", self._region,
+                DescribeAvailablePatchesResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_available_patches(params)
@@ -1196,6 +1310,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_document, params, self._interceptors,
                 "ssm", "DescribeDocument", self._region,
+                DescribeDocumentResult,
+                ("name", "document_version", "version_name", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.describe_document(params)
@@ -1222,6 +1339,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_document_permission, params, self._interceptors,
                 "ssm", "DescribeDocumentPermission", self._region,
+                DescribeDocumentPermissionResponse,
+                ("name", "permission_type", "max_results", "next_token", ),
+                ("name", "permission_type", ),
             )
             return _response
         _response = await self._native.describe_document_permission(params)
@@ -1246,6 +1366,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_effective_instance_associations, params, self._interceptors,
                 "ssm", "DescribeEffectiveInstanceAssociations", self._region,
+                DescribeEffectiveInstanceAssociationsResult,
+                ("instance_id", "max_results", "next_token", ),
+                ("instance_id", ),
             )
             return _response
         _response = await self._native.describe_effective_instance_associations(params)
@@ -1270,6 +1393,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_effective_patches_for_patch_baseline, params, self._interceptors,
                 "ssm", "DescribeEffectivePatchesForPatchBaseline", self._region,
+                DescribeEffectivePatchesForPatchBaselineResult,
+                ("baseline_id", "max_results", "next_token", ),
+                ("baseline_id", ),
             )
             return _response
         _response = await self._native.describe_effective_patches_for_patch_baseline(params)
@@ -1294,6 +1420,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_associations_status, params, self._interceptors,
                 "ssm", "DescribeInstanceAssociationsStatus", self._region,
+                DescribeInstanceAssociationsStatusResult,
+                ("instance_id", "max_results", "next_token", ),
+                ("instance_id", ),
             )
             return _response
         _response = await self._native.describe_instance_associations_status(params)
@@ -1322,6 +1451,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_information, params, self._interceptors,
                 "ssm", "DescribeInstanceInformation", self._region,
+                DescribeInstanceInformationResult,
+                ("instance_information_filter_list", "filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_instance_information(params)
@@ -1346,6 +1478,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patch_states, params, self._interceptors,
                 "ssm", "DescribeInstancePatchStates", self._region,
+                DescribeInstancePatchStatesResult,
+                ("instance_ids", "next_token", "max_results", ),
+                ("instance_ids", ),
             )
             return _response
         _response = await self._native.describe_instance_patch_states(params)
@@ -1373,6 +1508,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patch_states_for_patch_group, params, self._interceptors,
                 "ssm", "DescribeInstancePatchStatesForPatchGroup", self._region,
+                DescribeInstancePatchStatesForPatchGroupResult,
+                ("patch_group", "filters", "next_token", "max_results", ),
+                ("patch_group", ),
             )
             return _response
         _response = await self._native.describe_instance_patch_states_for_patch_group(params)
@@ -1400,6 +1538,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patches, params, self._interceptors,
                 "ssm", "DescribeInstancePatches", self._region,
+                DescribeInstancePatchesResult,
+                ("instance_id", "filters", "next_token", "max_results", ),
+                ("instance_id", ),
             )
             return _response
         _response = await self._native.describe_instance_patches(params)
@@ -1428,6 +1569,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_properties, params, self._interceptors,
                 "ssm", "DescribeInstanceProperties", self._region,
+                DescribeInstancePropertiesResult,
+                ("instance_property_filter_list", "filters_with_operator", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_instance_properties(params)
@@ -1453,6 +1597,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_inventory_deletions, params, self._interceptors,
                 "ssm", "DescribeInventoryDeletions", self._region,
+                DescribeInventoryDeletionsResult,
+                ("deletion_id", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.describe_inventory_deletions(params)
@@ -1482,6 +1629,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_execution_task_invocations, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTaskInvocations", self._region,
+                DescribeMaintenanceWindowExecutionTaskInvocationsResult,
+                ("window_execution_id", "task_id", "filters", "max_results", "next_token", ),
+                ("window_execution_id", "task_id", ),
             )
             return _response
         _response = await self._native.describe_maintenance_window_execution_task_invocations(params)
@@ -1509,6 +1659,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_execution_tasks, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTasks", self._region,
+                DescribeMaintenanceWindowExecutionTasksResult,
+                ("window_execution_id", "filters", "max_results", "next_token", ),
+                ("window_execution_id", ),
             )
             return _response
         _response = await self._native.describe_maintenance_window_execution_tasks(params)
@@ -1536,6 +1689,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_executions, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutions", self._region,
+                DescribeMaintenanceWindowExecutionsResult,
+                ("window_id", "filters", "max_results", "next_token", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.describe_maintenance_window_executions(params)
@@ -1570,6 +1726,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_schedule, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowSchedule", self._region,
+                DescribeMaintenanceWindowScheduleResult,
+                ("window_id", "targets", "resource_type", "filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_maintenance_window_schedule(params)
@@ -1597,6 +1756,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_targets, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowTargets", self._region,
+                DescribeMaintenanceWindowTargetsResult,
+                ("window_id", "filters", "max_results", "next_token", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.describe_maintenance_window_targets(params)
@@ -1624,6 +1786,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_tasks, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowTasks", self._region,
+                DescribeMaintenanceWindowTasksResult,
+                ("window_id", "filters", "max_results", "next_token", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.describe_maintenance_window_tasks(params)
@@ -1649,6 +1814,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_windows, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindows", self._region,
+                DescribeMaintenanceWindowsResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_maintenance_windows(params)
@@ -1675,6 +1843,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_windows_for_target, params, self._interceptors,
                 "ssm", "DescribeMaintenanceWindowsForTarget", self._region,
+                DescribeMaintenanceWindowsForTargetResult,
+                ("targets", "resource_type", "max_results", "next_token", ),
+                ("targets", "resource_type", ),
             )
             return _response
         _response = await self._native.describe_maintenance_windows_for_target(params)
@@ -1700,6 +1871,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_ops_items, params, self._interceptors,
                 "ssm", "DescribeOpsItems", self._region,
+                DescribeOpsItemsResponse,
+                ("ops_item_filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_ops_items(params)
@@ -1731,6 +1905,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_parameters, params, self._interceptors,
                 "ssm", "DescribeParameters", self._region,
+                DescribeParametersResult,
+                ("filters", "parameter_filters", "max_results", "next_token", "shared", ),
+                (),
             )
             return _response
         _response = await self._native.describe_parameters(params)
@@ -1756,6 +1933,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_baselines, params, self._interceptors,
                 "ssm", "DescribePatchBaselines", self._region,
+                DescribePatchBaselinesResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_patch_baselines(params)
@@ -1774,6 +1954,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_group_state, params, self._interceptors,
                 "ssm", "DescribePatchGroupState", self._region,
+                DescribePatchGroupStateResult,
+                ("patch_group", ),
+                ("patch_group", ),
             )
             return _response
         _response = await self._native.describe_patch_group_state(params)
@@ -1799,6 +1982,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_groups, params, self._interceptors,
                 "ssm", "DescribePatchGroups", self._region,
+                DescribePatchGroupsResult,
+                ("max_results", "filters", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.describe_patch_groups(params)
@@ -1828,6 +2014,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_properties, params, self._interceptors,
                 "ssm", "DescribePatchProperties", self._region,
+                DescribePatchPropertiesResult,
+                ("operating_system", "property", "patch_set", "max_results", "next_token", ),
+                ("operating_system", "property", ),
             )
             return _response
         _response = await self._native.describe_patch_properties(params)
@@ -1855,6 +2044,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_sessions, params, self._interceptors,
                 "ssm", "DescribeSessions", self._region,
+                DescribeSessionsResponse,
+                ("state", "max_results", "next_token", "filters", ),
+                ("state", ),
             )
             return _response
         _response = await self._native.describe_sessions(params)
@@ -1875,6 +2067,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.disassociate_ops_item_related_item, params, self._interceptors,
                 "ssm", "DisassociateOpsItemRelatedItem", self._region,
+                DisassociateOpsItemRelatedItemResponse,
+                ("ops_item_id", "association_id", ),
+                ("ops_item_id", "association_id", ),
             )
             return _response
         _response = await self._native.disassociate_ops_item_related_item(params)
@@ -1893,6 +2088,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_access_token, params, self._interceptors,
                 "ssm", "GetAccessToken", self._region,
+                GetAccessTokenResponse,
+                ("access_request_id", ),
+                ("access_request_id", ),
             )
             return _response
         _response = await self._native.get_access_token(params)
@@ -1911,6 +2109,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_automation_execution, params, self._interceptors,
                 "ssm", "GetAutomationExecution", self._region,
+                GetAutomationExecutionResult,
+                ("automation_execution_id", ),
+                ("automation_execution_id", ),
             )
             return _response
         _response = await self._native.get_automation_execution(params)
@@ -1932,6 +2133,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_calendar_state, params, self._interceptors,
                 "ssm", "GetCalendarState", self._region,
+                GetCalendarStateResponse,
+                ("calendar_names", "at_time", ),
+                ("calendar_names", ),
             )
             return _response
         _response = await self._native.get_calendar_state(params)
@@ -1950,6 +2154,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_cloud_connector, params, self._interceptors,
                 "ssm", "GetCloudConnector", self._region,
+                GetCloudConnectorResult,
+                ("cloud_connector_id", ),
+                ("cloud_connector_id", ),
             )
             return _response
         _response = await self._native.get_cloud_connector(params)
@@ -1973,6 +2180,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_command_invocation, params, self._interceptors,
                 "ssm", "GetCommandInvocation", self._region,
+                GetCommandInvocationResult,
+                ("command_id", "instance_id", "plugin_name", ),
+                ("command_id", "instance_id", ),
             )
             return _response
         _response = await self._native.get_command_invocation(params)
@@ -1991,6 +2201,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_connection_status, params, self._interceptors,
                 "ssm", "GetConnectionStatus", self._region,
+                GetConnectionStatusResponse,
+                ("target", ),
+                ("target", ),
             )
             return _response
         _response = await self._native.get_connection_status(params)
@@ -2010,6 +2223,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_default_patch_baseline, params, self._interceptors,
                 "ssm", "GetDefaultPatchBaseline", self._region,
+                GetDefaultPatchBaselineResult,
+                ("operating_system", ),
+                (),
             )
             return _response
         _response = await self._native.get_default_patch_baseline(params)
@@ -2036,6 +2252,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_deployable_patch_snapshot_for_instance, params, self._interceptors,
                 "ssm", "GetDeployablePatchSnapshotForInstance", self._region,
+                GetDeployablePatchSnapshotForInstanceResult,
+                ("instance_id", "snapshot_id", "baseline_override", "use_s3_dual_stack_endpoint", ),
+                ("instance_id", "snapshot_id", ),
             )
             return _response
         _response = await self._native.get_deployable_patch_snapshot_for_instance(params)
@@ -2063,6 +2282,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_document, params, self._interceptors,
                 "ssm", "GetDocument", self._region,
+                GetDocumentResult,
+                ("name", "version_name", "document_version", "document_format", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_document(params)
@@ -2081,6 +2303,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_execution_preview, params, self._interceptors,
                 "ssm", "GetExecutionPreview", self._region,
+                GetExecutionPreviewResponse,
+                ("execution_preview_id", ),
+                ("execution_preview_id", ),
             )
             return _response
         _response = await self._native.get_execution_preview(params)
@@ -2112,6 +2337,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_inventory, params, self._interceptors,
                 "ssm", "GetInventory", self._region,
+                GetInventoryResult,
+                ("filters", "aggregators", "result_attributes", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.get_inventory(params)
@@ -2143,6 +2371,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_inventory_schema, params, self._interceptors,
                 "ssm", "GetInventorySchema", self._region,
+                GetInventorySchemaResult,
+                ("type_name", "next_token", "max_results", "aggregator", "sub_type", ),
+                (),
             )
             return _response
         _response = await self._native.get_inventory_schema(params)
@@ -2161,6 +2392,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window, params, self._interceptors,
                 "ssm", "GetMaintenanceWindow", self._region,
+                GetMaintenanceWindowResult,
+                ("window_id", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.get_maintenance_window(params)
@@ -2179,6 +2413,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution, params, self._interceptors,
                 "ssm", "GetMaintenanceWindowExecution", self._region,
+                GetMaintenanceWindowExecutionResult,
+                ("window_execution_id", ),
+                ("window_execution_id", ),
             )
             return _response
         _response = await self._native.get_maintenance_window_execution(params)
@@ -2199,6 +2436,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution_task, params, self._interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTask", self._region,
+                GetMaintenanceWindowExecutionTaskResult,
+                ("window_execution_id", "task_id", ),
+                ("window_execution_id", "task_id", ),
             )
             return _response
         _response = await self._native.get_maintenance_window_execution_task(params)
@@ -2221,6 +2461,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution_task_invocation, params, self._interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTaskInvocation", self._region,
+                GetMaintenanceWindowExecutionTaskInvocationResult,
+                ("window_execution_id", "task_id", "invocation_id", ),
+                ("window_execution_id", "task_id", "invocation_id", ),
             )
             return _response
         _response = await self._native.get_maintenance_window_execution_task_invocation(params)
@@ -2241,6 +2484,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_task, params, self._interceptors,
                 "ssm", "GetMaintenanceWindowTask", self._region,
+                GetMaintenanceWindowTaskResult,
+                ("window_id", "window_task_id", ),
+                ("window_id", "window_task_id", ),
             )
             return _response
         _response = await self._native.get_maintenance_window_task(params)
@@ -2262,6 +2508,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_item, params, self._interceptors,
                 "ssm", "GetOpsItem", self._region,
+                GetOpsItemResponse,
+                ("ops_item_id", "ops_item_arn", ),
+                ("ops_item_id", ),
             )
             return _response
         _response = await self._native.get_ops_item(params)
@@ -2286,6 +2535,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_metadata, params, self._interceptors,
                 "ssm", "GetOpsMetadata", self._region,
+                GetOpsMetadataResult,
+                ("ops_metadata_arn", "max_results", "next_token", ),
+                ("ops_metadata_arn", ),
             )
             return _response
         _response = await self._native.get_ops_metadata(params)
@@ -2320,6 +2572,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_summary, params, self._interceptors,
                 "ssm", "GetOpsSummary", self._region,
+                GetOpsSummaryResult,
+                ("sync_name", "filters", "aggregators", "result_attributes", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.get_ops_summary(params)
@@ -2341,6 +2596,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameter, params, self._interceptors,
                 "ssm", "GetParameter", self._region,
+                GetParameterResult,
+                ("name", "with_decryption", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_parameter(params)
@@ -2368,6 +2626,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameter_history, params, self._interceptors,
                 "ssm", "GetParameterHistory", self._region,
+                GetParameterHistoryResult,
+                ("name", "with_decryption", "max_results", "next_token", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.get_parameter_history(params)
@@ -2389,6 +2650,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameters, params, self._interceptors,
                 "ssm", "GetParameters", self._region,
+                GetParametersResult,
+                ("names", "with_decryption", ),
+                ("names", ),
             )
             return _response
         _response = await self._native.get_parameters(params)
@@ -2422,6 +2686,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameters_by_path, params, self._interceptors,
                 "ssm", "GetParametersByPath", self._region,
+                GetParametersByPathResult,
+                ("path", "recursive", "parameter_filters", "with_decryption", "max_results", "next_token", ),
+                ("path", ),
             )
             return _response
         _response = await self._native.get_parameters_by_path(params)
@@ -2440,6 +2707,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_patch_baseline, params, self._interceptors,
                 "ssm", "GetPatchBaseline", self._region,
+                GetPatchBaselineResult,
+                ("baseline_id", ),
+                ("baseline_id", ),
             )
             return _response
         _response = await self._native.get_patch_baseline(params)
@@ -2461,6 +2731,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_patch_baseline_for_patch_group, params, self._interceptors,
                 "ssm", "GetPatchBaselineForPatchGroup", self._region,
+                GetPatchBaselineForPatchGroupResult,
+                ("patch_group", "operating_system", ),
+                ("patch_group", ),
             )
             return _response
         _response = await self._native.get_patch_baseline_for_patch_group(params)
@@ -2485,6 +2758,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_resource_policies, params, self._interceptors,
                 "ssm", "GetResourcePolicies", self._region,
+                GetResourcePoliciesResponse,
+                ("resource_arn", "next_token", "max_results", ),
+                ("resource_arn", ),
             )
             return _response
         _response = await self._native.get_resource_policies(params)
@@ -2503,6 +2779,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_service_setting, params, self._interceptors,
                 "ssm", "GetServiceSetting", self._region,
+                GetServiceSettingResult,
+                ("setting_id", ),
+                ("setting_id", ),
             )
             return _response
         _response = await self._native.get_service_setting(params)
@@ -2526,6 +2805,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.label_parameter_version, params, self._interceptors,
                 "ssm", "LabelParameterVersion", self._region,
+                LabelParameterVersionResult,
+                ("name", "labels", "parameter_version", ),
+                ("name", "labels", ),
             )
             return _response
         _response = await self._native.label_parameter_version(params)
@@ -2550,6 +2832,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_association_versions, params, self._interceptors,
                 "ssm", "ListAssociationVersions", self._region,
+                ListAssociationVersionsResult,
+                ("association_id", "max_results", "next_token", ),
+                ("association_id", ),
             )
             return _response
         _response = await self._native.list_association_versions(params)
@@ -2575,6 +2860,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_associations, params, self._interceptors,
                 "ssm", "ListAssociations", self._region,
+                ListAssociationsResult,
+                ("association_filter_list", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_associations(params)
@@ -2600,6 +2888,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_cloud_connectors, params, self._interceptors,
                 "ssm", "ListCloudConnectors", self._region,
+                ListCloudConnectorsResult,
+                ("max_results", "next_token", "filters", ),
+                (),
             )
             return _response
         _response = await self._native.list_cloud_connectors(params)
@@ -2634,6 +2925,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_command_invocations, params, self._interceptors,
                 "ssm", "ListCommandInvocations", self._region,
+                ListCommandInvocationsResult,
+                ("command_id", "instance_id", "max_results", "next_token", "filters", "details", ),
+                (),
             )
             return _response
         _response = await self._native.list_command_invocations(params)
@@ -2665,6 +2959,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_commands, params, self._interceptors,
                 "ssm", "ListCommands", self._region,
+                ListCommandsResult,
+                ("command_id", "instance_id", "max_results", "next_token", "filters", ),
+                (),
             )
             return _response
         _response = await self._native.list_commands(params)
@@ -2696,6 +2993,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_compliance_items, params, self._interceptors,
                 "ssm", "ListComplianceItems", self._region,
+                ListComplianceItemsResult,
+                ("filters", "resource_ids", "resource_types", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_compliance_items(params)
@@ -2721,6 +3021,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_compliance_summaries, params, self._interceptors,
                 "ssm", "ListComplianceSummaries", self._region,
+                ListComplianceSummariesResult,
+                ("filters", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_compliance_summaries(params)
@@ -2750,6 +3053,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_document_metadata_history, params, self._interceptors,
                 "ssm", "ListDocumentMetadataHistory", self._region,
+                ListDocumentMetadataHistoryResponse,
+                ("name", "metadata", "document_version", "next_token", "max_results", ),
+                ("name", "metadata", ),
             )
             return _response
         _response = await self._native.list_document_metadata_history(params)
@@ -2774,6 +3080,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_document_versions, params, self._interceptors,
                 "ssm", "ListDocumentVersions", self._region,
+                ListDocumentVersionsResult,
+                ("name", "max_results", "next_token", ),
+                ("name", ),
             )
             return _response
         _response = await self._native.list_document_versions(params)
@@ -2802,6 +3111,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_documents, params, self._interceptors,
                 "ssm", "ListDocuments", self._region,
+                ListDocumentsResult,
+                ("document_filter_list", "filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_documents(params)
@@ -2831,6 +3143,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_inventory_entries, params, self._interceptors,
                 "ssm", "ListInventoryEntries", self._region,
+                ListInventoryEntriesResult,
+                ("instance_id", "type_name", "filters", "next_token", "max_results", ),
+                ("instance_id", "type_name", ),
             )
             return _response
         _response = await self._native.list_inventory_entries(params)
@@ -2859,6 +3174,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_nodes, params, self._interceptors,
                 "ssm", "ListNodes", self._region,
+                ListNodesResult,
+                ("sync_name", "filters", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_nodes(params)
@@ -2889,6 +3207,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_nodes_summary, params, self._interceptors,
                 "ssm", "ListNodesSummary", self._region,
+                ListNodesSummaryResult,
+                ("aggregators", "sync_name", "filters", "next_token", "max_results", ),
+                ("aggregators", ),
             )
             return _response
         _response = await self._native.list_nodes_summary(params)
@@ -2914,6 +3235,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_item_events, params, self._interceptors,
                 "ssm", "ListOpsItemEvents", self._region,
+                ListOpsItemEventsResponse,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_ops_item_events(params)
@@ -2942,6 +3266,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_item_related_items, params, self._interceptors,
                 "ssm", "ListOpsItemRelatedItems", self._region,
+                ListOpsItemRelatedItemsResponse,
+                ("ops_item_id", "filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_ops_item_related_items(params)
@@ -2967,6 +3294,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_metadata, params, self._interceptors,
                 "ssm", "ListOpsMetadata", self._region,
+                ListOpsMetadataResult,
+                ("filters", "max_results", "next_token", ),
+                (),
             )
             return _response
         _response = await self._native.list_ops_metadata(params)
@@ -2992,6 +3322,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_resource_compliance_summaries, params, self._interceptors,
                 "ssm", "ListResourceComplianceSummaries", self._region,
+                ListResourceComplianceSummariesResult,
+                ("filters", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_resource_compliance_summaries(params)
@@ -3017,6 +3350,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_resource_data_sync, params, self._interceptors,
                 "ssm", "ListResourceDataSync", self._region,
+                ListResourceDataSyncResult,
+                ("sync_type", "next_token", "max_results", ),
+                (),
             )
             return _response
         _response = await self._native.list_resource_data_sync(params)
@@ -3037,6 +3373,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, self._interceptors,
                 "ssm", "ListTagsForResource", self._region,
+                ListTagsForResourceResult,
+                ("resource_type", "resource_id", ),
+                ("resource_type", "resource_id", ),
             )
             return _response
         _response = await self._native.list_tags_for_resource(params)
@@ -3066,6 +3405,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.modify_document_permission, params, self._interceptors,
                 "ssm", "ModifyDocumentPermission", self._region,
+                ModifyDocumentPermissionResponse,
+                ("name", "permission_type", "account_ids_to_add", "account_ids_to_remove", "shared_document_version", ),
+                ("name", "permission_type", ),
             )
             return _response
         _response = await self._native.modify_document_permission(params)
@@ -3098,6 +3440,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_compliance_items, params, self._interceptors,
                 "ssm", "PutComplianceItems", self._region,
+                PutComplianceItemsResult,
+                ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", "item_content_hash", "upload_type", ),
+                ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", ),
             )
             return _response
         _response = await self._native.put_compliance_items(params)
@@ -3118,6 +3463,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_inventory, params, self._interceptors,
                 "ssm", "PutInventory", self._region,
+                PutInventoryResult,
+                ("instance_id", "items", ),
+                ("instance_id", "items", ),
             )
             return _response
         _response = await self._native.put_inventory(params)
@@ -3165,6 +3513,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_parameter, params, self._interceptors,
                 "ssm", "PutParameter", self._region,
+                PutParameterResult,
+                ("name", "value", "description", "type", "key_id", "overwrite", "allowed_pattern", "tags", "tier", "policies", "data_type", ),
+                ("name", "value", ),
             )
             return _response
         _response = await self._native.put_parameter(params)
@@ -3191,6 +3542,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, self._interceptors,
                 "ssm", "PutResourcePolicy", self._region,
+                PutResourcePolicyResponse,
+                ("resource_arn", "policy", "policy_id", "policy_hash", ),
+                ("resource_arn", "policy", ),
             )
             return _response
         _response = await self._native.put_resource_policy(params)
@@ -3209,6 +3563,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_default_patch_baseline, params, self._interceptors,
                 "ssm", "RegisterDefaultPatchBaseline", self._region,
+                RegisterDefaultPatchBaselineResult,
+                ("baseline_id", ),
+                ("baseline_id", ),
             )
             return _response
         _response = await self._native.register_default_patch_baseline(params)
@@ -3229,6 +3586,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_patch_baseline_for_patch_group, params, self._interceptors,
                 "ssm", "RegisterPatchBaselineForPatchGroup", self._region,
+                RegisterPatchBaselineForPatchGroupResult,
+                ("baseline_id", "patch_group", ),
+                ("baseline_id", "patch_group", ),
             )
             return _response
         _response = await self._native.register_patch_baseline_for_patch_group(params)
@@ -3263,6 +3623,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_target_with_maintenance_window, params, self._interceptors,
                 "ssm", "RegisterTargetWithMaintenanceWindow", self._region,
+                RegisterTargetWithMaintenanceWindowResult,
+                ("window_id", "resource_type", "targets", "owner_information", "name", "description", "client_token", ),
+                ("window_id", "resource_type", "targets", ),
             )
             return _response
         _response = await self._native.register_target_with_maintenance_window(params)
@@ -3324,6 +3687,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_task_with_maintenance_window, params, self._interceptors,
                 "ssm", "RegisterTaskWithMaintenanceWindow", self._region,
+                RegisterTaskWithMaintenanceWindowResult,
+                ("window_id", "task_arn", "task_type", "targets", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "client_token", "cutoff_behavior", "alarm_configuration", ),
+                ("window_id", "task_arn", "task_type", ),
             )
             return _response
         _response = await self._native.register_task_with_maintenance_window(params)
@@ -3346,6 +3712,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.remove_tags_from_resource, params, self._interceptors,
                 "ssm", "RemoveTagsFromResource", self._region,
+                RemoveTagsFromResourceResult,
+                ("resource_type", "resource_id", "tag_keys", ),
+                ("resource_type", "resource_id", "tag_keys", ),
             )
             return _response
         _response = await self._native.remove_tags_from_resource(params)
@@ -3364,6 +3733,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.reset_service_setting, params, self._interceptors,
                 "ssm", "ResetServiceSetting", self._region,
+                ResetServiceSettingResult,
+                ("setting_id", ),
+                ("setting_id", ),
             )
             return _response
         _response = await self._native.reset_service_setting(params)
@@ -3382,6 +3754,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.resume_session, params, self._interceptors,
                 "ssm", "ResumeSession", self._region,
+                ResumeSessionResponse,
+                ("session_id", ),
+                ("session_id", ),
             )
             return _response
         _response = await self._native.resume_session(params)
@@ -3405,6 +3780,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.send_automation_signal, params, self._interceptors,
                 "ssm", "SendAutomationSignal", self._region,
+                SendAutomationSignalResult,
+                ("automation_execution_id", "signal_type", "payload", ),
+                ("automation_execution_id", "signal_type", ),
             )
             return _response
         _response = await self._native.send_automation_signal(params)
@@ -3474,6 +3852,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.send_command, params, self._interceptors,
                 "ssm", "SendCommand", self._region,
+                SendCommandResult,
+                ("document_name", "instance_ids", "targets", "document_version", "document_hash", "document_hash_type", "timeout_seconds", "comment", "parameters", "output_s3_region", "output_s3_bucket_name", "output_s3_key_prefix", "max_concurrency", "max_errors", "service_role_arn", "notification_config", "cloud_watch_output_config", "alarm_configuration", ),
+                ("document_name", ),
             )
             return _response
         _response = await self._native.send_command(params)
@@ -3497,6 +3878,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_access_request, params, self._interceptors,
                 "ssm", "StartAccessRequest", self._region,
+                StartAccessRequestResponse,
+                ("reason", "targets", "tags", ),
+                ("reason", "targets", ),
             )
             return _response
         _response = await self._native.start_access_request(params)
@@ -3515,6 +3899,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_associations_once, params, self._interceptors,
                 "ssm", "StartAssociationsOnce", self._region,
+                StartAssociationsOnceResult,
+                ("association_ids", ),
+                ("association_ids", ),
             )
             return _response
         _response = await self._native.start_associations_once(params)
@@ -3572,6 +3959,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_automation_execution, params, self._interceptors,
                 "ssm", "StartAutomationExecution", self._region,
+                StartAutomationExecutionResult,
+                ("document_name", "document_version", "parameters", "client_token", "mode", "target_parameter_name", "targets", "target_maps", "max_concurrency", "max_errors", "target_locations", "tags", "alarm_configuration", "target_locations_url", ),
+                ("document_name", ),
             )
             return _response
         _response = await self._native.start_automation_execution(params)
@@ -3619,6 +4009,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_change_request_execution, params, self._interceptors,
                 "ssm", "StartChangeRequestExecution", self._region,
+                StartChangeRequestExecutionResult,
+                ("document_name", "runbooks", "scheduled_time", "document_version", "parameters", "change_request_name", "client_token", "auto_approve", "tags", "scheduled_end_time", "change_details", ),
+                ("document_name", "runbooks", ),
             )
             return _response
         _response = await self._native.start_change_request_execution(params)
@@ -3643,6 +4036,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_execution_preview, params, self._interceptors,
                 "ssm", "StartExecutionPreview", self._region,
+                StartExecutionPreviewResponse,
+                ("document_name", "document_version", "execution_inputs", ),
+                ("document_name", ),
             )
             return _response
         _response = await self._native.start_execution_preview(params)
@@ -3670,6 +4066,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_session, params, self._interceptors,
                 "ssm", "StartSession", self._region,
+                StartSessionResponse,
+                ("target", "document_name", "reason", "parameters", ),
+                ("target", ),
             )
             return _response
         _response = await self._native.start_session(params)
@@ -3691,6 +4090,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.stop_automation_execution, params, self._interceptors,
                 "ssm", "StopAutomationExecution", self._region,
+                StopAutomationExecutionResult,
+                ("automation_execution_id", "type", ),
+                ("automation_execution_id", ),
             )
             return _response
         _response = await self._native.stop_automation_execution(params)
@@ -3709,6 +4111,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.terminate_session, params, self._interceptors,
                 "ssm", "TerminateSession", self._region,
+                TerminateSessionResponse,
+                ("session_id", ),
+                ("session_id", ),
             )
             return _response
         _response = await self._native.terminate_session(params)
@@ -3731,6 +4136,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.unlabel_parameter_version, params, self._interceptors,
                 "ssm", "UnlabelParameterVersion", self._region,
+                UnlabelParameterVersionResult,
+                ("name", "parameter_version", "labels", ),
+                ("name", "parameter_version", "labels", ),
             )
             return _response
         _response = await self._native.unlabel_parameter_version(params)
@@ -3812,6 +4220,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_association, params, self._interceptors,
                 "ssm", "UpdateAssociation", self._region,
+                UpdateAssociationResult,
+                ("association_id", "parameters", "document_version", "schedule_expression", "output_location", "name", "targets", "association_name", "association_version", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "alarm_configuration", "association_dispatch_assume_role", ),
+                ("association_id", ),
             )
             return _response
         _response = await self._native.update_association(params)
@@ -3834,6 +4245,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_association_status, params, self._interceptors,
                 "ssm", "UpdateAssociationStatus", self._region,
+                UpdateAssociationStatusResult,
+                ("name", "instance_id", "association_status", ),
+                ("name", "instance_id", "association_status", ),
             )
             return _response
         _response = await self._native.update_association_status(params)
@@ -3861,6 +4275,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_cloud_connector, params, self._interceptors,
                 "ssm", "UpdateCloudConnector", self._region,
+                UpdateCloudConnectorResult,
+                ("cloud_connector_id", "display_name", "configuration", "description", ),
+                ("cloud_connector_id", ),
             )
             return _response
         _response = await self._native.update_cloud_connector(params)
@@ -3899,6 +4316,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document, params, self._interceptors,
                 "ssm", "UpdateDocument", self._region,
+                UpdateDocumentResult,
+                ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", ),
+                ("content", "name", ),
             )
             return _response
         _response = await self._native.update_document(params)
@@ -3919,6 +4339,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document_default_version, params, self._interceptors,
                 "ssm", "UpdateDocumentDefaultVersion", self._region,
+                UpdateDocumentDefaultVersionResult,
+                ("name", "document_version", ),
+                ("name", "document_version", ),
             )
             return _response
         _response = await self._native.update_document_default_version(params)
@@ -3942,6 +4365,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document_metadata, params, self._interceptors,
                 "ssm", "UpdateDocumentMetadata", self._region,
+                UpdateDocumentMetadataResponse,
+                ("name", "document_reviews", "document_version", ),
+                ("name", "document_reviews", ),
             )
             return _response
         _response = await self._native.update_document_metadata(params)
@@ -3996,6 +4422,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window, params, self._interceptors,
                 "ssm", "UpdateMaintenanceWindow", self._region,
+                UpdateMaintenanceWindowResult,
+                ("window_id", "name", "description", "start_date", "end_date", "schedule", "schedule_timezone", "schedule_offset", "duration", "cutoff", "allow_unassociated_targets", "enabled", "replace", ),
+                ("window_id", ),
             )
             return _response
         _response = await self._native.update_maintenance_window(params)
@@ -4031,6 +4460,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window_target, params, self._interceptors,
                 "ssm", "UpdateMaintenanceWindowTarget", self._region,
+                UpdateMaintenanceWindowTargetResult,
+                ("window_id", "window_target_id", "targets", "owner_information", "name", "description", "replace", ),
+                ("window_id", "window_target_id", ),
             )
             return _response
         _response = await self._native.update_maintenance_window_target(params)
@@ -4093,6 +4525,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window_task, params, self._interceptors,
                 "ssm", "UpdateMaintenanceWindowTask", self._region,
+                UpdateMaintenanceWindowTaskResult,
+                ("window_id", "window_task_id", "targets", "task_arn", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "replace", "cutoff_behavior", "alarm_configuration", ),
+                ("window_id", "window_task_id", ),
             )
             return _response
         _response = await self._native.update_maintenance_window_task(params)
@@ -4113,6 +4548,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_managed_instance_role, params, self._interceptors,
                 "ssm", "UpdateManagedInstanceRole", self._region,
+                UpdateManagedInstanceRoleResult,
+                ("instance_id", "iam_role", ),
+                ("instance_id", "iam_role", ),
             )
             return _response
         _response = await self._native.update_managed_instance_role(params)
@@ -4176,6 +4614,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_ops_item, params, self._interceptors,
                 "ssm", "UpdateOpsItem", self._region,
+                UpdateOpsItemResponse,
+                ("ops_item_id", "description", "operational_data", "operational_data_to_delete", "notifications", "priority", "related_ops_items", "status", "title", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "ops_item_arn", ),
+                ("ops_item_id", ),
             )
             return _response
         _response = await self._native.update_ops_item(params)
@@ -4200,6 +4641,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_ops_metadata, params, self._interceptors,
                 "ssm", "UpdateOpsMetadata", self._region,
+                UpdateOpsMetadataResult,
+                ("ops_metadata_arn", "metadata_to_update", "keys_to_delete", ),
+                ("ops_metadata_arn", ),
             )
             return _response
         _response = await self._native.update_ops_metadata(params)
@@ -4254,6 +4698,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_patch_baseline, params, self._interceptors,
                 "ssm", "UpdatePatchBaseline", self._region,
+                UpdatePatchBaselineResult,
+                ("baseline_id", "name", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "replace", ),
+                ("baseline_id", ),
             )
             return _response
         _response = await self._native.update_patch_baseline(params)
@@ -4276,6 +4723,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_resource_data_sync, params, self._interceptors,
                 "ssm", "UpdateResourceDataSync", self._region,
+                UpdateResourceDataSyncResult,
+                ("sync_name", "sync_type", "sync_source", ),
+                ("sync_name", "sync_type", "sync_source", ),
             )
             return _response
         _response = await self._native.update_resource_data_sync(params)
@@ -4296,6 +4746,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_service_setting, params, self._interceptors,
                 "ssm", "UpdateServiceSetting", self._region,
+                UpdateServiceSettingResult,
+                ("setting_id", "setting_value", ),
+                ("setting_id", "setting_value", ),
             )
             return _response
         _response = await self._native.update_service_setting(params)
@@ -4320,6 +4773,9 @@ class SSMClient:
             _response = await invoke(
                 self._native.validate_cloud_connector, params, self._interceptors,
                 "ssm", "ValidateCloudConnector", self._region,
+                ValidateCloudConnectorResult,
+                ("cloud_connector_id", "max_results", "next_token", ),
+                ("cloud_connector_id", ),
             )
             return _response
         _response = await self._native.validate_cloud_connector(params)

@@ -1,4 +1,4 @@
-"""Measure local operation observation; run each mode in a fresh process."""
+"""Measure local operation middleware; run each mode in a fresh process."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING
 from rboto import DynamoDBClient
 
 if TYPE_CHECKING:
-    from rboto import Interceptor, OperationEvent
+    from rboto import Interceptor, Next, OperationRequest, OperationResponse
 
 RESPONSE_BODY = b'{"TableNames":["example"]}'
 RESPONSE = (
@@ -44,12 +44,8 @@ async def peer(reader: asyncio.StreamReader, writer: asyncio.StreamWriter) -> No
         await writer.wait_closed()
 
 
-def observe(event: OperationEvent) -> None:
-    pass
-
-
-async def observe_async(event: OperationEvent) -> None:
-    pass
+async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+    return await call_next(request)
 
 
 async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dict[str, object]:
@@ -73,9 +69,7 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
 
     server = await asyncio.start_server(handle, "127.0.0.1", 0)
     port = server.sockets[0].getsockname()[1]
-    interceptors: Sequence[Interceptor] = (
-        (observe,) if mode == "sync" else (observe_async,) if mode == "async" else ()
-    )
+    interceptors: Sequence[Interceptor] = (middleware,) if mode == "middleware" else ()
     # Omitting the new keyword allows --mode baseline to run against the parent revision.
     client = (
         DynamoDBClient(region="us-east-1", endpoint_url=f"http://127.0.0.1:{port}")
@@ -139,7 +133,7 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=["baseline", "disabled", "sync", "async"], required=True)
+    parser.add_argument("--mode", choices=["baseline", "disabled", "middleware"], required=True)
     parser.add_argument("--requests", type=int, default=2000)
     parser.add_argument("--concurrency", type=int, default=8)
     parser.add_argument("--allocations", action="store_true")
