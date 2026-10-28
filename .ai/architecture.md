@@ -52,6 +52,10 @@ public signatures and native return contracts. A private metadata sink receives
 bounded retry details from `rboto-core`. Empty configuration keeps direct dispatch.
 See ADR-0014 for continuation lifetime, exceptions, and streaming behavior.
 
+`LoggingInterceptor` in `rboto.logging` consumes that contract and emits only
+operational metadata through application-configured Python logging. See ADR-0015
+for level, field, context, and delivery semantics.
+
 ## Sources of truth
 
 The service TOML, Smithy model, pinned AWS Rust crate, generator, and templates are sources

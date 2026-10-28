@@ -46,6 +46,8 @@ from .interceptors import OperationMetadata as OperationMetadata
 from .interceptors import OperationRequest as OperationRequest
 from .interceptors import OperationResponse as OperationResponse
 from .interceptors import operation_context as operation_context
+from .logging import LoggingInterceptor as LoggingInterceptor
+from .logging import LogTraceContext as LogTraceContext
 from .services import api_gateway as api_gateway
 from .services import bedrock as bedrock
 from .services import bedrock_agent as bedrock_agent

@@ -8,6 +8,9 @@ typed output to your application.
 Use middleware to change parameters, enforce an application policy, time an
 operation, recover from a failure, or serve a cached response.
 
+For standard operation logs, register the built-in
+[`LoggingInterceptor`](logging.md).
+
 ```python
 --8<-- "examples/docs/interceptors.py"
 ```

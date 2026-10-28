@@ -12,6 +12,7 @@ from .interceptors import (
     OperationResponse,
     operation_context,
 )
+from .logging import LoggingInterceptor, LogTraceContext
 from .services import (
 {% for service in services %}    {{ service.python_name }},
 {% endfor %})
@@ -24,6 +25,8 @@ __version__ = "0.1.0"
 __all__ = [
     "Attempt",
     "Interceptor",
+    "LoggingInterceptor",
+    "LogTraceContext",
     "OperationContext",
     "Next",
     "OperationMetadata",
