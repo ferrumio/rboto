@@ -1,11 +1,16 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
+mod config;
 mod document;
+mod error;
 mod event_stream;
 mod observation;
+mod transport;
 
+pub use config::RequestConfig;
 pub use document::{document_from_py, document_to_py};
+pub use error::{http_sdk_error_to_py, raise_core_error, sdk_error_to_py};
 pub use event_stream::python_event_stream;
 pub use observation::OperationObservation;
 

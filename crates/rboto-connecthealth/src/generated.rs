@@ -3628,18 +3628,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl ConnectHealthClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -3663,7 +3674,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .activate_subscription()
                 .set_domain_id(domain_id_value)
@@ -3727,7 +3738,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_domain()
                 .set_name(name_value)
@@ -3768,7 +3779,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.create_subscription().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -3810,7 +3821,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deactivate_subscription()
                 .set_domain_id(domain_id_value)
@@ -3849,7 +3860,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_domain().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -3885,7 +3896,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_domain().set_domain_id(domain_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -3932,7 +3943,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_medical_scribe_listening_session()
                 .set_session_id(session_id_value)
@@ -3978,7 +3989,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_patient_insights_job()
                 .set_domain_id(domain_id_value)
@@ -4023,7 +4034,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_subscription()
                 .set_domain_id(domain_id_value)
@@ -4076,7 +4087,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_domains()
                 .set_status(status_value)
@@ -4127,7 +4138,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_subscriptions()
                 .set_domain_id(domain_id_value)
@@ -4167,7 +4178,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -4256,7 +4267,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_medical_scribe_listening_session()
                 .set_session_id(session_id_value)
@@ -4400,7 +4411,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_patient_insights_job()
                 .set_domain_id(domain_id_value)
@@ -4457,7 +4468,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -4507,7 +4518,7 @@ impl ConnectHealthClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)

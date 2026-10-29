@@ -64,18 +64,22 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl {{ client_class }} {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
     fn new(
         region: Option<String>,
         profile: Option<String>,
         endpoint_url: Option<String>,
-    ) -> Self {
-        Self {
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options.validate().map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
-                config: ClientConfig { region, profile, endpoint_url },
+                config: ClientConfig { region, profile, endpoint_url, options },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
 {{ methods }}

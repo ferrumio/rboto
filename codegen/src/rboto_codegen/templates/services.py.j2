@@ -5,6 +5,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, cast
 
 from ._imports import import_service
+from .config import ClientConfig
 from .interceptors import Interceptor
 from .session import Session
 
@@ -23,6 +24,7 @@ def {{ service.python_name }}(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> {{ service.client_class }}:
     module = import_service(
@@ -37,6 +39,7 @@ def {{ service.python_name }}(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 

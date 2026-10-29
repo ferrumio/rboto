@@ -25,9 +25,21 @@ Service exceptions inherit from `rboto.exceptions.ClientError`.
 Unknown codes fall back to the service base exception and retain the original code
 and operation name.
 
-The current Python adapter does not populate `request_id`. Credential and
-transport failures can also appear as a service base error with `UnknownError`.
-The facade's `CredentialsError` is not currently wired to provider failures.
+`request_id` is populated when supplied by the service. Failures outside a service
+response use shared exceptions from `rboto.exceptions`:
+
+| Exception | Meaning |
+|---|---|
+| `ConfigurationError` | Invalid settings, missing region, or request construction failure |
+| `CredentialsError` | Credentials could not be loaded or refreshed |
+| `ConnectionError` | Connection, proxy, or TLS failure |
+| `TimeoutError` | Connection, read, attempt, or operation deadline |
+| `ResponseError` | The service response could not be decoded |
+
+`TimeoutError` inherits from `ConnectionError`; both and `ResponseError` inherit
+from `ClientError`. `ConfigurationError` and `CredentialsError` inherit directly
+from `RbotoError`. Transport messages do not include request bodies or signing
+headers.
 
 ## Partial failures
 

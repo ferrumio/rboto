@@ -19,6 +19,8 @@ subsequent operations.
 | `profile` | Named shared configuration/credential profile |
 | `endpoint_url` | Override the service endpoint |
 | `session` | Reuse settings from an `rboto.Session` |
+| `config` | Credentials, roles, timeouts, retries, proxy, and TLS trust |
+| `interceptors` | Operation middleware; see [interceptors](interceptors.md) |
 
 Omitted settings use the Rust SDK's resolution rules. Set a region explicitly when
 your application needs a particular region.
@@ -32,8 +34,27 @@ For SSO, run `aws sso login --profile development` before starting the applicati
 rboto uses the available session; it does not provide interactive login.
 
 Roles configured with `role_arn` and `source_profile` in a shared profile use the
-SDK's profile provider. The current constructors do not accept role or access-key
-arguments directly. Profiles can also use `credential_process`.
+SDK's profile provider. Profiles can also use `credential_process`.
+
+To assume a role from an explicit source profile:
+
+```python
+from rboto import ClientConfig, S3Client
+
+client = S3Client(
+    region="us-east-1",
+    profile="development",
+    config=ClientConfig(
+        role_arn="arn:aws:iam::123456789012:role/application",
+        role_session_name="application",
+    ),
+)
+```
+
+`ClientConfig` also accepts `access_key_id`, `secret_access_key`, and an optional
+`session_token`. Supply the key and secret together. Explicit credentials take
+precedence over profile credentials; if `role_arn` is also set, they authenticate
+the AssumeRole call. `external_id` and `role_session_name` require `role_arn`.
 
 ## Environment and workload credentials
 
@@ -62,7 +83,8 @@ objects = S3Client(session=session)
 messages = SQSClient(session=session)
 ```
 
-`Session` is an immutable collection of settings. Each client initializes its own
+Pass `config=ClientConfig(...)` to a Session to reuse these settings too.
+`ClientConfig` and `Session` are immutable. Each client initializes its own
 SDK configuration; the session does not share a credential cache or connection
 pool across services. Combining `session` with explicit constructor settings raises
 `ValueError`. Factories such as `rboto.s3()` accept the same settings for compatibility.
@@ -77,8 +99,60 @@ export AWS_MAX_ATTEMPTS=3
 export AWS_RETRY_MODE=standard
 ```
 
-The current constructors do not expose connection/read timeouts. An
-[asyncio deadline](async-only.md#deadlines) bounds the application's wait.
+Per-client values override the corresponding environment/profile settings:
+
+```python
+from rboto import ClientConfig, S3Client
+
+client = S3Client(
+    region="us-east-1",
+    config=ClientConfig(
+        connect_timeout=2,
+        read_timeout=10,
+        attempt_timeout=15,
+        operation_timeout=30,
+        max_attempts=3,
+        retry_mode="standard",
+    ),
+)
+```
+
+Timeouts are positive, finite seconds. `operation_timeout` covers the SDK
+operation, including retries; `attempt_timeout` limits an individual attempt.
+They do not bound configuration loading or subsequent reads of a returned stream.
+Use an [asyncio deadline](async-only.md#deadlines) around the whole operation and
+stream consumption when you need an application deadline.
+
+## Proxies and private certificates
+
+```python
+from rboto import ClientConfig, S3Client
+
+client = S3Client(
+    region="us-east-1",
+    config=ClientConfig(
+        proxy_url="http://proxy.internal:8080",
+        no_proxy="localhost,127.0.0.1,.internal.example",
+        ca_bundle="/etc/application/company-ca.pem",
+    ),
+)
+```
+
+`proxy_url` supports HTTP or HTTPS proxies and applies to both HTTP and HTTPS
+destinations. For basic authentication, include URL-encoded credentials in the
+URL. `no_proxy` is a comma-separated list of hosts, domains, or IP ranges that
+connect directly; it requires `proxy_url`.
+
+`ca_bundle` adds PEM certificates to the system trust roots. It applies to service
+and credential-provider connections, including AssumeRole and HTTPS proxies.
+The file is read when the client first initializes; create a new client after
+rotating the bundle. Missing or invalid bundles raise `ConfigurationError`.
+
+These settings belong to the client and do not change the process environment.
+An explicitly configured transport uses only its own proxy rules, not
+`HTTP_PROXY`, `HTTPS_PROXY`, or `NO_PROXY`. Proxy URLs and credentials are omitted
+from the configuration's representation. TLS certificate and hostname checks
+remain enabled.
 
 ## Local endpoints
 

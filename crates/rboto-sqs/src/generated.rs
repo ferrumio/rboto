@@ -1867,18 +1867,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SQSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -1926,7 +1937,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .add_permission()
                 .set_queue_url(queue_url_value)
@@ -1967,7 +1978,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .cancel_message_move_task()
                 .set_task_handle(task_handle_value);
@@ -2018,7 +2029,7 @@ impl SQSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .change_message_visibility()
                 .set_queue_url(queue_url_value)
@@ -2071,7 +2082,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .change_message_visibility_batch()
                 .set_queue_url(queue_url_value)
@@ -2136,7 +2147,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_queue()
                 .set_queue_name(queue_name_value)
@@ -2181,7 +2192,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_message()
                 .set_queue_url(queue_url_value)
@@ -2232,7 +2243,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_message_batch()
                 .set_queue_url(queue_url_value)
@@ -2271,7 +2282,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_queue().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -2320,7 +2331,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_queue_attributes()
                 .set_queue_url(queue_url_value)
@@ -2366,7 +2377,7 @@ impl SQSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_queue_url()
                 .set_queue_name(queue_name_value)
@@ -2416,7 +2427,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_dead_letter_source_queues()
                 .set_queue_url(queue_url_value)
@@ -2462,7 +2473,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_message_move_tasks()
                 .set_source_arn(source_arn_value)
@@ -2501,7 +2512,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.list_queue_tags().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -2550,7 +2561,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_queues()
                 .set_queue_name_prefix(queue_name_prefix_value)
@@ -2589,7 +2600,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.purge_queue().set_queue_url(queue_url_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -2695,7 +2706,7 @@ impl SQSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .receive_message()
                 .set_queue_url(queue_url_value)
@@ -2746,7 +2757,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_permission()
                 .set_queue_url(queue_url_value)
@@ -2840,7 +2851,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_message()
                 .set_queue_url(queue_url_value)
@@ -2895,7 +2906,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_message_batch()
                 .set_queue_url(queue_url_value)
@@ -2948,7 +2959,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .set_queue_attributes()
                 .set_queue_url(queue_url_value)
@@ -3000,7 +3011,7 @@ impl SQSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_message_move_task()
                 .set_source_arn(source_arn_value)
@@ -3052,7 +3063,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_queue()
                 .set_queue_url(queue_url_value)
@@ -3102,7 +3113,7 @@ impl SQSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_queue()
                 .set_queue_url(queue_url_value)

@@ -1313,18 +1313,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SignInClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -1342,7 +1353,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_o_auth2_token()
                 .set_token_input(token_input_value);
@@ -1386,7 +1397,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_o_auth2_token_with_iam()
                 .set_grant_type(grant_type_value)
@@ -1425,7 +1436,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_console_authorization_configuration()
                 .set_target_id(target_id_value);
@@ -1471,7 +1482,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_permission_statement()
                 .set_statement_id(statement_id_value)
@@ -1512,7 +1523,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_console_authorization_configuration()
                 .set_target_id(target_id_value);
@@ -1546,7 +1557,7 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_resource_policy();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -1588,7 +1599,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .introspect_o_auth2_token_with_iam()
                 .set_token(token_value)
@@ -1633,7 +1644,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_resource_permission_statements()
                 .set_max_results(max_results_value)
@@ -1672,7 +1683,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_console_authorization_configuration()
                 .set_target_id(target_id_value);
@@ -1757,7 +1768,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_permission_statement()
                 .set_source_vpc(source_vpc_value)
@@ -1802,7 +1813,7 @@ impl SignInClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .revoke_o_auth2_token_with_iam()
                 .set_token(token_value);

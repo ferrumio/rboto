@@ -92,9 +92,13 @@ assert getattr(rboto, name) is cls
 assert cls.logger_name == "rboto." + service_id
 assert rboto.get_logger(service_id).name == cls.logger_name
 
-session = rboto.Session(region="us-east-1", profile="test", endpoint_url="http://localhost:4566")
+config = rboto.ClientConfig(max_attempts=2, proxy_url="http://localhost:8080")
+session = rboto.Session(
+    region="us-east-1", profile="test", endpoint_url="http://localhost:4566", config=config,
+)
 expected = {
     "region": session.region, "profile": session.profile, "endpoint_url": session.endpoint_url,
+    "config": config,
 }
 factory = getattr(rboto, factory_name)
 for constructor in (cls, factory):
@@ -102,6 +106,13 @@ for constructor in (cls, factory):
     assert type(client) is cls
     assert client._native.arguments == expected
     assert constructor(region="eu-west-1")._native.arguments["region"] == "eu-west-1"
+    assert constructor(config=config)._native.arguments["config"] is config
+    try:
+        constructor(session=session, config=config)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Ambiguous ClientConfig accepted")
     for keyword in ("region", "profile", "endpoint_url"):
         try:
             constructor(session=session, **{keyword: "conflict"})

@@ -25554,18 +25554,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl BedrockClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -25589,7 +25600,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .batch_delete_advanced_prompt_optimization_job()
                 .set_job_identifiers(job_identifiers_value);
@@ -25635,7 +25646,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .batch_delete_evaluation_job()
                 .set_job_identifiers(job_identifiers_value);
@@ -25680,7 +25691,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .cancel_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
@@ -25777,7 +25788,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_advanced_prompt_optimization_job()
                 .set_job_name(job_name_value)
@@ -25862,7 +25873,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_automated_reasoning_policy()
                 .set_name(name_value)
@@ -25941,7 +25952,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_automated_reasoning_policy_test_case()
                 .set_policy_arn(policy_arn_value)
@@ -26012,7 +26023,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_automated_reasoning_policy_version()
                 .set_policy_arn(policy_arn_value)
@@ -26101,7 +26112,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_custom_model()
                 .set_model_name(model_name_value)
@@ -26177,7 +26188,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_custom_model_deployment()
                 .set_model_deployment_name(model_deployment_name_value)
@@ -26285,7 +26296,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_evaluation_job()
                 .set_job_name(job_name_value)
@@ -26338,7 +26349,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_foundation_model_agreement()
                 .set_offer_token(offer_token_value)
@@ -26471,7 +26482,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_guardrail()
                 .set_name(name_value)
@@ -26536,7 +26547,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_guardrail_version()
                 .set_guardrail_identifier(guardrail_identifier_value)
@@ -26608,7 +26619,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_inference_profile()
                 .set_inference_profile_name(inference_profile_name_value)
@@ -26688,7 +26699,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_marketplace_model_endpoint()
                 .set_model_source_identifier(model_source_identifier_value)
@@ -26764,7 +26775,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_model_copy_job()
                 .set_source_model_arn(source_model_arn_value)
@@ -26920,7 +26931,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_model_customization_job()
                 .set_job_name(job_name_value)
@@ -27037,7 +27048,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_model_import_job()
                 .set_job_name(job_name_value)
@@ -27150,7 +27161,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_model_invocation_job()
                 .set_job_name(job_name_value)
@@ -27247,7 +27258,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_prompt_router()
                 .set_client_request_token(client_request_token_value)
@@ -27332,7 +27343,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_provisioned_model_throughput()
                 .set_client_request_token(client_request_token_value)
@@ -27381,7 +27392,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_automated_reasoning_policy()
                 .set_policy_arn(policy_arn_value)
@@ -27438,7 +27449,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
@@ -27497,7 +27508,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_automated_reasoning_policy_test_case()
                 .set_policy_arn(policy_arn_value)
@@ -27539,7 +27550,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_custom_model()
                 .set_model_identifier(model_identifier_value);
@@ -27578,7 +27589,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_custom_model_deployment()
                 .set_custom_model_deployment_identifier(custom_model_deployment_identifier_value);
@@ -27616,7 +27627,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_enforced_guardrail_configuration()
                 .set_config_id(config_id_value);
@@ -27656,7 +27667,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_foundation_model_agreement()
                 .set_model_id(model_id_value);
@@ -27702,7 +27713,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
@@ -27741,7 +27752,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_imported_model()
                 .set_model_identifier(model_identifier_value);
@@ -27780,7 +27791,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_inference_profile()
                 .set_inference_profile_identifier(inference_profile_identifier_value);
@@ -27818,7 +27829,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
@@ -27850,7 +27861,7 @@ impl BedrockClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_model_invocation_logging_configuration();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -27889,7 +27900,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_prompt_router()
                 .set_prompt_router_arn(prompt_router_arn_value);
@@ -27928,7 +27939,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_provisioned_model_throughput()
                 .set_provisioned_model_id(provisioned_model_id_value);
@@ -27966,7 +27977,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
@@ -28004,7 +28015,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
@@ -28044,7 +28055,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .export_automated_reasoning_policy_version()
                 .set_policy_arn(policy_arn_value);
@@ -28078,7 +28089,7 @@ impl BedrockClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_account_data_retention();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -28114,7 +28125,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_advanced_prompt_optimization_job()
                 .set_job_identifier(job_identifier_value);
@@ -28152,7 +28163,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy()
                 .set_policy_arn(policy_arn_value);
@@ -28197,7 +28208,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_annotations()
                 .set_policy_arn(policy_arn_value)
@@ -28245,7 +28256,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
@@ -28309,7 +28320,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_build_workflow_result_assets()
                 .set_policy_arn(policy_arn_value)
@@ -28363,7 +28374,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_next_scenario()
                 .set_policy_arn(policy_arn_value)
@@ -28410,7 +28421,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_test_case()
                 .set_policy_arn(policy_arn_value)
@@ -28464,7 +28475,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automated_reasoning_policy_test_result()
                 .set_policy_arn(policy_arn_value)
@@ -28506,7 +28517,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_custom_model()
                 .set_model_identifier(model_identifier_value);
@@ -28545,7 +28556,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_custom_model_deployment()
                 .set_custom_model_deployment_identifier(custom_model_deployment_identifier_value);
@@ -28583,7 +28594,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_evaluation_job()
                 .set_job_identifier(job_identifier_value);
@@ -28621,7 +28632,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_foundation_model()
                 .set_model_identifier(model_identifier_value);
@@ -28659,7 +28670,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_foundation_model_availability()
                 .set_model_id(model_id_value);
@@ -28705,7 +28716,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
@@ -28744,7 +28755,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_imported_model()
                 .set_model_identifier(model_identifier_value);
@@ -28783,7 +28794,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_inference_profile()
                 .set_inference_profile_identifier(inference_profile_identifier_value);
@@ -28821,7 +28832,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
@@ -28859,7 +28870,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_model_copy_job().set_job_arn(job_arn_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -28895,7 +28906,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_model_customization_job()
                 .set_job_identifier(job_identifier_value);
@@ -28933,7 +28944,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_model_import_job()
                 .set_job_identifier(job_identifier_value);
@@ -28971,7 +28982,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_model_invocation_job()
                 .set_job_identifier(job_identifier_value);
@@ -29003,7 +29014,7 @@ impl BedrockClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_model_invocation_logging_configuration();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -29042,7 +29053,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_prompt_router()
                 .set_prompt_router_arn(prompt_router_arn_value);
@@ -29081,7 +29092,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_provisioned_model_throughput()
                 .set_provisioned_model_id(provisioned_model_id_value);
@@ -29119,7 +29130,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
@@ -29151,7 +29162,7 @@ impl BedrockClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_use_case_for_model_access();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -29207,7 +29218,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_advanced_prompt_optimization_jobs()
                 .set_max_results(max_results_value)
@@ -29262,7 +29273,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_automated_reasoning_policies()
                 .set_policy_arn(policy_arn_value)
@@ -29314,7 +29325,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_automated_reasoning_policy_build_workflows()
                 .set_policy_arn(policy_arn_value)
@@ -29368,7 +29379,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_automated_reasoning_policy_test_cases()
                 .set_policy_arn(policy_arn_value)
@@ -29429,7 +29440,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_automated_reasoning_policy_test_results()
                 .set_policy_arn(policy_arn_value)
@@ -29535,7 +29546,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_custom_model_deployments()
                 .set_created_before(created_before_value)
@@ -29660,7 +29671,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_custom_models()
                 .set_creation_time_before(creation_time_before_value)
@@ -29708,7 +29719,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_enforced_guardrails_configuration()
                 .set_next_token(next_token_value);
@@ -29815,7 +29826,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_evaluation_jobs()
                 .set_creation_time_after(creation_time_after_value)
@@ -29868,7 +29879,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_foundation_model_agreement_offers()
                 .set_model_id(model_id_value)
@@ -29936,7 +29947,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_foundation_models()
                 .set_by_provider(by_provider_value)
@@ -29990,7 +30001,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_guardrails()
                 .set_guardrail_identifier(guardrail_identifier_value)
@@ -30081,7 +30092,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_imported_models()
                 .set_creation_time_before(creation_time_before_value)
@@ -30139,7 +30150,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_inference_profiles()
                 .set_max_results(max_results_value)
@@ -30192,7 +30203,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_marketplace_model_endpoints()
                 .set_max_results(max_results_value)
@@ -30305,7 +30316,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_model_copy_jobs()
                 .set_creation_time_after(creation_time_after_value)
@@ -30410,7 +30421,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_model_customization_jobs()
                 .set_creation_time_after(creation_time_after_value)
@@ -30513,7 +30524,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_model_import_jobs()
                 .set_creation_time_after(creation_time_after_value)
@@ -30616,7 +30627,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_model_invocation_jobs()
                 .set_submit_time_after(submit_time_after_value)
@@ -30675,7 +30686,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_prompt_routers()
                 .set_max_results(max_results_value)
@@ -30780,7 +30791,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_provisioned_model_throughputs()
                 .set_creation_time_after(creation_time_after_value)
@@ -30826,7 +30837,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -30866,7 +30877,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.put_account_data_retention().set_mode(mode_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -30910,7 +30921,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_enforced_guardrail_configuration()
                 .set_config_id(config_id_value)
@@ -30951,7 +30962,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_model_invocation_logging_configuration()
                 .set_logging_config(logging_config_value);
@@ -30997,7 +31008,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -31037,7 +31048,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_use_case_for_model_access()
                 .set_form_data(form_data_value);
@@ -31083,7 +31094,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_marketplace_model_endpoint()
                 .set_endpoint_identifier(endpoint_identifier_value)
@@ -31146,7 +31157,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
@@ -31215,7 +31226,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_automated_reasoning_policy_test_workflow()
                 .set_policy_arn(policy_arn_value)
@@ -31258,7 +31269,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_advanced_prompt_optimization_job()
                 .set_job_identifier(job_identifier_value);
@@ -31298,7 +31309,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_evaluation_job()
                 .set_job_identifier(job_identifier_value);
@@ -31336,7 +31347,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_model_customization_job()
                 .set_job_identifier(job_identifier_value);
@@ -31374,7 +31385,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_model_invocation_job()
                 .set_job_identifier(job_identifier_value);
@@ -31424,7 +31435,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -31474,7 +31485,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -31532,7 +31543,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_automated_reasoning_policy()
                 .set_policy_arn(policy_arn_value)
@@ -31600,7 +31611,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_automated_reasoning_policy_annotations()
                 .set_policy_arn(policy_arn_value)
@@ -31696,7 +31707,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_automated_reasoning_policy_test_case()
                 .set_policy_arn(policy_arn_value)
@@ -31750,7 +31761,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_custom_model_deployment()
                 .set_model_arn(model_arn_value)
@@ -31871,7 +31882,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
@@ -31934,7 +31945,7 @@ impl BedrockClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value)
@@ -31988,7 +31999,7 @@ impl BedrockClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_provisioned_model_throughput()
                 .set_provisioned_model_id(provisioned_model_id_value)

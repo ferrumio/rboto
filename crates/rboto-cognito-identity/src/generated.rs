@@ -2377,18 +2377,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl CognitoIdentityClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -2493,7 +2504,7 @@ impl CognitoIdentityClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_identity_pool()
                 .set_identity_pool_name(identity_pool_name_value)
@@ -2546,7 +2557,7 @@ impl CognitoIdentityClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_identities()
                 .set_identity_ids_to_delete(identity_ids_to_delete_value);
@@ -2584,7 +2595,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_identity_pool()
                 .set_identity_pool_id(identity_pool_id_value);
@@ -2622,7 +2633,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_identity()
                 .set_identity_id(identity_id_value);
@@ -2660,7 +2671,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_identity_pool()
                 .set_identity_pool_id(identity_pool_id_value);
@@ -2716,7 +2727,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_credentials_for_identity()
                 .set_identity_id(identity_id_value)
@@ -2774,7 +2785,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_id()
                 .set_account_id(account_id_value)
@@ -2813,7 +2824,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_identity_pool_roles()
                 .set_identity_pool_id(identity_pool_id_value);
@@ -2863,7 +2874,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_open_id_token()
                 .set_identity_id(identity_id_value)
@@ -2938,7 +2949,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_open_id_token_for_developer_identity()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -2989,7 +3000,7 @@ impl CognitoIdentityClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_principal_tag_attribute_map()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -3046,7 +3057,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_identities()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -3093,7 +3104,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_identity_pools()
                 .set_max_results(max_results_value)
@@ -3132,7 +3143,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -3195,7 +3206,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .lookup_developer_identity()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -3258,7 +3269,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .merge_developer_identities()
                 .set_source_user_identifier(source_user_identifier_value)
@@ -3323,7 +3334,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .set_identity_pool_roles()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -3388,7 +3399,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .set_principal_tag_attribute_map()
                 .set_identity_pool_id(identity_pool_id_value)
@@ -3441,7 +3452,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -3499,7 +3510,7 @@ impl CognitoIdentityClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .unlink_developer_identity()
                 .set_identity_id(identity_id_value)
@@ -3564,7 +3575,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .unlink_identity()
                 .set_identity_id(identity_id_value)
@@ -3616,7 +3627,7 @@ impl CognitoIdentityClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -3748,7 +3759,7 @@ impl CognitoIdentityClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_identity_pool()
                 .set_identity_pool_id(identity_pool_id_value)

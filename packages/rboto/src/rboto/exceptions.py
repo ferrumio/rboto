@@ -59,3 +59,15 @@ class ConfigurationError(RbotoError):
 
 class CredentialsError(RbotoError):
     """AWS credentials could not be loaded or refreshed."""
+
+
+class ConnectionError(ClientError):
+    """The request could not reach the service."""
+
+
+class TimeoutError(ConnectionError):
+    """A connection, request attempt, or operation exceeded its timeout."""
+
+
+class ResponseError(ClientError):
+    """The service response could not be decoded."""

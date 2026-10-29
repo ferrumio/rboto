@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import AsyncIterator, Awaitable
 from typing import final
+from rboto.config import ClientConfig
 from . import types as _types
 from .types import JSONValue
 
@@ -294,6 +295,7 @@ class LexRuntimeV2Client:
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
+        config: ClientConfig | None = None,
     ) -> None: ...
 
     def delete_session(self, params: dict[str, object], observation: dict[str, object] | None = None) -> Awaitable[DeleteSessionResponse]: ...

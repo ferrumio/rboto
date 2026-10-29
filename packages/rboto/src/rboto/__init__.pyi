@@ -38,6 +38,7 @@ from rboto_ssm import SSMClient as SSMClient
 from rboto_sts import STSClient as STSClient
 from rboto_transcribe_streaming import TranscribeStreamingClient as TranscribeStreamingClient
 
+from .config import ClientConfig as ClientConfig
 from .interceptors import Attempt as Attempt
 from .interceptors import Interceptor as Interceptor
 from .interceptors import Next as Next

@@ -37297,18 +37297,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SSMClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -37346,7 +37357,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .add_tags_to_resource()
                 .set_resource_type(resource_type_value)
@@ -37404,7 +37415,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .associate_ops_item_related_item()
                 .set_ops_item_id(ops_item_id_value)
@@ -37457,7 +37468,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .cancel_command()
                 .set_command_id(command_id_value)
@@ -37497,7 +37508,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .cancel_maintenance_window_execution()
                 .set_window_execution_id(window_execution_id_value);
@@ -37591,7 +37602,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_activation()
                 .set_description(description_value)
@@ -37827,7 +37838,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_association()
                 .set_name(name_value)
@@ -37900,7 +37911,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_association_batch()
                 .set_entries(entries_value)
@@ -37976,7 +37987,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_cloud_connector()
                 .set_display_name(display_name_value)
@@ -38093,7 +38104,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_document()
                 .set_content(content_value)
@@ -38214,7 +38225,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_maintenance_window()
                 .set_name(name_value)
@@ -38400,7 +38411,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_ops_item()
                 .set_description(description_value)
@@ -38477,7 +38488,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_ops_metadata()
                 .set_resource_id(resource_id_value)
@@ -38632,7 +38643,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_patch_baseline()
                 .set_operating_system(operating_system_value)
@@ -38705,7 +38716,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_resource_data_sync()
                 .set_sync_name(sync_name_value)
@@ -38746,7 +38757,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_activation()
                 .set_activation_id(activation_id_value);
@@ -38796,7 +38807,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_association()
                 .set_name(name_value)
@@ -38837,7 +38848,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value);
@@ -38893,7 +38904,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_document()
                 .set_name(name_value)
@@ -38955,7 +38966,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_inventory()
                 .set_type_name(type_name_value)
@@ -38996,7 +39007,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_maintenance_window()
                 .set_window_id(window_id_value);
@@ -39034,7 +39045,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_ops_item().set_ops_item_id(ops_item_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -39070,7 +39081,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_ops_metadata()
                 .set_ops_metadata_arn(ops_metadata_arn_value);
@@ -39108,7 +39119,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_parameter().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -39150,7 +39161,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_parameters().set_names(names_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -39186,7 +39197,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_patch_baseline()
                 .set_baseline_id(baseline_id_value);
@@ -39230,7 +39241,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_data_sync()
                 .set_sync_name(sync_name_value)
@@ -39288,7 +39299,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -39329,7 +39340,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_managed_instance()
                 .set_instance_id(instance_id_value);
@@ -39373,7 +39384,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_patch_baseline_for_patch_group()
                 .set_baseline_id(baseline_id_value)
@@ -39426,7 +39437,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_target_from_maintenance_window()
                 .set_window_id(window_id_value)
@@ -39474,7 +39485,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_task_from_maintenance_window()
                 .set_window_id(window_id_value)
@@ -39533,7 +39544,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_activations()
                 .set_filters(filters_value)
@@ -39592,7 +39603,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_association()
                 .set_name(name_value)
@@ -39663,7 +39674,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_association_execution_targets()
                 .set_association_id(association_id_value)
@@ -39731,7 +39742,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_association_executions()
                 .set_association_id(association_id_value)
@@ -39790,7 +39801,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_automation_executions()
                 .set_filters(filters_value)
@@ -39861,7 +39872,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_automation_step_executions()
                 .set_automation_execution_id(automation_execution_id_value)
@@ -39921,7 +39932,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_available_patches()
                 .set_filters(filters_value)
@@ -39973,7 +39984,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_document()
                 .set_name(name_value)
@@ -40033,7 +40044,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_document_permission()
                 .set_name(name_value)
@@ -40086,7 +40097,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_effective_instance_associations()
                 .set_instance_id(instance_id_value)
@@ -40140,7 +40151,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_effective_patches_for_patch_baseline()
                 .set_baseline_id(baseline_id_value)
@@ -40194,7 +40205,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_associations_status()
                 .set_instance_id(instance_id_value)
@@ -40267,7 +40278,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_information()
                 .set_instance_information_filter_list(instance_information_filter_list_value)
@@ -40326,7 +40337,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_patch_states()
                 .set_instance_ids(instance_ids_value)
@@ -40390,7 +40401,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_patch_states_for_patch_group()
                 .set_patch_group(patch_group_value)
@@ -40457,7 +40468,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_patches()
                 .set_instance_id(instance_id_value)
@@ -40530,7 +40541,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_instance_properties()
                 .set_instance_property_filter_list(instance_property_filter_list_value)
@@ -40583,7 +40594,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_inventory_deletions()
                 .set_deletion_id(deletion_id_value)
@@ -40654,7 +40665,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_execution_task_invocations()
                 .set_window_execution_id(window_execution_id_value)
@@ -40727,7 +40738,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_execution_tasks()
                 .set_window_execution_id(window_execution_id_value)
@@ -40794,7 +40805,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_executions()
                 .set_window_id(window_id_value)
@@ -40881,7 +40892,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_schedule()
                 .set_window_id(window_id_value)
@@ -40950,7 +40961,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_targets()
                 .set_window_id(window_id_value)
@@ -41015,7 +41026,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_window_tasks()
                 .set_window_id(window_id_value)
@@ -41074,7 +41085,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_windows()
                 .set_filters(filters_value)
@@ -41140,7 +41151,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_maintenance_windows_for_target()
                 .set_targets(targets_value)
@@ -41201,7 +41212,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_ops_items()
                 .set_ops_item_filters(ops_item_filters_value)
@@ -41278,7 +41289,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_parameters()
                 .set_filters(filters_value)
@@ -41338,7 +41349,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_patch_baselines()
                 .set_filters(filters_value)
@@ -41378,7 +41389,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_patch_group_state()
                 .set_patch_group(patch_group_value);
@@ -41434,7 +41445,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_patch_groups()
                 .set_max_results(max_results_value)
@@ -41502,7 +41513,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_patch_properties()
                 .set_operating_system(operating_system_value)
@@ -41569,7 +41580,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_sessions()
                 .set_state(state_value)
@@ -41616,7 +41627,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disassociate_ops_item_related_item()
                 .set_ops_item_id(ops_item_id_value)
@@ -41656,7 +41667,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_access_token()
                 .set_access_request_id(access_request_id_value);
@@ -41695,7 +41706,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_automation_execution()
                 .set_automation_execution_id(automation_execution_id_value);
@@ -41745,7 +41756,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_calendar_state()
                 .set_calendar_names(calendar_names_value)
@@ -41785,7 +41796,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value);
@@ -41835,7 +41846,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_command_invocation()
                 .set_command_id(command_id_value)
@@ -41875,7 +41886,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_connection_status().set_target(target_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -41913,7 +41924,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_default_patch_baseline()
                 .set_operating_system(operating_system_value);
@@ -41971,7 +41982,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_deployable_patch_snapshot_for_instance()
                 .set_instance_id(instance_id_value)
@@ -42033,7 +42044,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_document()
                 .set_name(name_value)
@@ -42074,7 +42085,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_execution_preview()
                 .set_execution_preview_id(execution_preview_id_value);
@@ -42155,7 +42166,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_inventory()
                 .set_filters(filters_value)
@@ -42221,7 +42232,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_inventory_schema()
                 .set_type_name(type_name_value)
@@ -42263,7 +42274,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_maintenance_window()
                 .set_window_id(window_id_value);
@@ -42302,7 +42313,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_maintenance_window_execution()
                 .set_window_execution_id(window_execution_id_value);
@@ -42347,7 +42358,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_maintenance_window_execution_task()
                 .set_window_execution_id(window_execution_id_value)
@@ -42401,7 +42412,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_maintenance_window_execution_task_invocation()
                 .set_window_execution_id(window_execution_id_value)
@@ -42449,7 +42460,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_maintenance_window_task()
                 .set_window_id(window_id_value)
@@ -42494,7 +42505,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_ops_item()
                 .set_ops_item_id(ops_item_id_value)
@@ -42544,7 +42555,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_ops_metadata()
                 .set_ops_metadata_arn(ops_metadata_arn_value)
@@ -42633,7 +42644,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_ops_summary()
                 .set_sync_name(sync_name_value)
@@ -42682,7 +42693,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_parameter()
                 .set_name(name_value)
@@ -42739,7 +42750,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_parameter_history()
                 .set_name(name_value)
@@ -42792,7 +42803,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_parameters()
                 .set_names(names_value)
@@ -42868,7 +42879,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_parameters_by_path()
                 .set_path(path_value)
@@ -42911,7 +42922,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_patch_baseline()
                 .set_baseline_id(baseline_id_value);
@@ -42957,7 +42968,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_patch_baseline_for_patch_group()
                 .set_patch_group(patch_group_value)
@@ -43008,7 +43019,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_policies()
                 .set_resource_arn(resource_arn_value)
@@ -43048,7 +43059,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_service_setting()
                 .set_setting_id(setting_id_value);
@@ -43105,7 +43116,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .label_parameter_version()
                 .set_name(name_value)
@@ -43157,7 +43168,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_association_versions()
                 .set_association_id(association_id_value)
@@ -43216,7 +43227,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_associations()
                 .set_association_filter_list(association_filter_list_value)
@@ -43274,7 +43285,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_cloud_connectors()
                 .set_max_results(max_results_value)
@@ -43350,7 +43361,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_command_invocations()
                 .set_command_id(command_id_value)
@@ -43423,7 +43434,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_commands()
                 .set_command_id(command_id_value)
@@ -43507,7 +43518,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_compliance_items()
                 .set_filters(filters_value)
@@ -43567,7 +43578,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_compliance_summaries()
                 .set_filters(filters_value)
@@ -43633,7 +43644,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_document_metadata_history()
                 .set_name(name_value)
@@ -43687,7 +43698,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_document_versions()
                 .set_name(name_value)
@@ -43758,7 +43769,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_documents()
                 .set_document_filter_list(document_filter_list_value)
@@ -43829,7 +43840,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_inventory_entries()
                 .set_instance_id(instance_id_value)
@@ -43895,7 +43906,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_nodes()
                 .set_sync_name(sync_name_value)
@@ -43971,7 +43982,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_nodes_summary()
                 .set_sync_name(sync_name_value)
@@ -44031,7 +44042,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_ops_item_events()
                 .set_filters(filters_value)
@@ -44095,7 +44106,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_ops_item_related_items()
                 .set_ops_item_id(ops_item_id_value)
@@ -44154,7 +44165,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_ops_metadata()
                 .set_filters(filters_value)
@@ -44212,7 +44223,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_resource_compliance_summaries()
                 .set_filters(filters_value)
@@ -44264,7 +44275,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_resource_data_sync()
                 .set_sync_type(sync_type_value)
@@ -44312,7 +44323,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_type(resource_type_value)
@@ -44392,7 +44403,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .modify_document_permission()
                 .set_name(name_value)
@@ -44480,7 +44491,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_compliance_items()
                 .set_resource_id(resource_id_value)
@@ -44536,7 +44547,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_inventory()
                 .set_instance_id(instance_id_value)
@@ -44643,7 +44654,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_parameter()
                 .set_name(name_value)
@@ -44709,7 +44720,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -44750,7 +44761,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_default_patch_baseline()
                 .set_baseline_id(baseline_id_value);
@@ -44794,7 +44805,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_patch_baseline_for_patch_group()
                 .set_baseline_id(baseline_id_value)
@@ -44880,7 +44891,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_target_with_maintenance_window()
                 .set_window_id(window_id_value)
@@ -45036,7 +45047,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_task_with_maintenance_window()
                 .set_window_id(window_id_value)
@@ -45111,7 +45122,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_tags_from_resource()
                 .set_resource_type(resource_type_value)
@@ -45151,7 +45162,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .reset_service_setting()
                 .set_setting_id(setting_id_value);
@@ -45189,7 +45200,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.resume_session().set_session_id(session_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -45251,7 +45262,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_automation_signal()
                 .set_automation_execution_id(automation_execution_id_value)
@@ -45425,7 +45436,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_command()
                 .set_instance_ids(instance_ids_value)
@@ -45503,7 +45514,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_access_request()
                 .set_reason(reason_value)
@@ -45549,7 +45560,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_associations_once()
                 .set_association_ids(association_ids_value);
@@ -45718,7 +45729,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_automation_execution()
                 .set_document_name(document_name_value)
@@ -45865,7 +45876,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_change_request_execution()
                 .set_scheduled_time(scheduled_time_value)
@@ -45925,7 +45936,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_execution_preview()
                 .set_document_name(document_name_value)
@@ -45995,7 +46006,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_session()
                 .set_target(target_value)
@@ -46044,7 +46055,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_automation_execution()
                 .set_automation_execution_id(automation_execution_id_value)
@@ -46083,7 +46094,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.terminate_session().set_session_id(session_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -46138,7 +46149,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .unlabel_parameter_version()
                 .set_name(name_value)
@@ -46365,7 +46376,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_association()
                 .set_association_id(association_id_value)
@@ -46437,7 +46448,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_association_status()
                 .set_name(name_value)
@@ -46496,7 +46507,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value)
@@ -46586,7 +46597,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_document()
                 .set_content(content_value)
@@ -46637,7 +46648,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_document_default_version()
                 .set_name(name_value)
@@ -46688,7 +46699,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_document_metadata()
                 .set_name(name_value)
@@ -46802,7 +46813,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_maintenance_window()
                 .set_window_id(window_id_value)
@@ -46895,7 +46906,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_maintenance_window_target()
                 .set_window_id(window_id_value)
@@ -47047,7 +47058,7 @@ impl SSMClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_maintenance_window_task()
                 .set_window_id(window_id_value)
@@ -47106,7 +47117,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_managed_instance_role()
                 .set_instance_id(instance_id_value)
@@ -47284,7 +47295,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_ops_item()
                 .set_description(description_value)
@@ -47362,7 +47373,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_ops_metadata()
                 .set_ops_metadata_arn(ops_metadata_arn_value)
@@ -47503,7 +47514,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_patch_baseline()
                 .set_baseline_id(baseline_id_value)
@@ -47569,7 +47580,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_resource_data_sync()
                 .set_sync_name(sync_name_value)
@@ -47615,7 +47626,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_service_setting()
                 .set_setting_id(setting_id_value)
@@ -47667,7 +47678,7 @@ impl SSMClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .validate_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value)

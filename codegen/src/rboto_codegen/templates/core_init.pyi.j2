@@ -4,6 +4,7 @@
 )
 {% else %}{{ line }}
 {% endif %}{% endfor %}
+from .config import ClientConfig as ClientConfig
 from .interceptors import Attempt as Attempt
 from .interceptors import Interceptor as Interceptor
 from .interceptors import Next as Next
