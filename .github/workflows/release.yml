@@ -27,6 +27,7 @@ jobs:
     outputs:
       version: ${{ steps.release.outputs.version }}
       services: ${{ steps.release.outputs.services }}
+      batches: ${{ steps.release.outputs.batches }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -47,7 +48,7 @@ jobs:
           python .github/scripts/check_version.py --expected "$VERSION"
           python -m venv .venv
           .venv/bin/pip install -e codegen
-          .venv/bin/python .github/scripts/release_catalog.py --version "$VERSION" --commit "$GITHUB_SHA"
+          .venv/bin/python .github/scripts/release_catalog.py --version "$VERSION" --commit "$GITHUB_SHA" --github-output "$GITHUB_OUTPUT"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "services=$(.venv/bin/rboto-codegen list --json)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -73,7 +74,7 @@ jobs:
           - { name: macos-arm64, runner: macos-latest, target: aarch64-apple-darwin, manylinux: "", container: "" }
     uses: ./.github/workflows/release-wheels.yml
     with:
-      services: ${{ needs.prepare.outputs.services }}
+      batches: ${{ needs.prepare.outputs.batches }}
       platform: ${{ matrix.platform.name }}
       runner: ${{ matrix.platform.runner }}
       target: ${{ matrix.platform.target }}
@@ -81,30 +82,14 @@ jobs:
       container: ${{ matrix.platform.container }}
 
   service-sdist:
-    name: ${{ matrix.service }} sdist
+    name: Source batches
     needs: prepare
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      max-parallel: 4
-      matrix:
-        service: ${{ fromJSON(needs.prepare.outputs.services) }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
-        with:
-          maturin-version: "v1.15.0"
-          command: sdist
-          args: --out dist
-          working-directory: packages/rboto-${{ matrix.service }}
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: service--${{ matrix.service }}--sdist
-          path: packages/rboto-${{ matrix.service }}/dist/*.tar.gz
-          if-no-files-found: error
-          retention-days: 14
+    uses: ./.github/workflows/release-wheels.yml
+    with:
+      batches: ${{ needs.prepare.outputs.batches }}
+      platform: sdist
+      runner: ubuntu-latest
+      kind: sdist
 
   core:
     name: Core wheel and sdist

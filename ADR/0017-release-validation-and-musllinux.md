@@ -20,9 +20,17 @@ Retain standard CPython 3.12–3.15 and individual interpreter ABIs. Build Linux
 glibc and musl 1.2 wheels for x86_64/aarch64 and macOS wheels for x86_64/arm64.
 Do not add Windows, PyPy, free-threaded Python, or abi3.
 
-Build four interpreters per service/platform job, reusing Cargo dependencies.
-Limit concurrent platforms and services. The routine CI remains focused on
-Linux CPython 3.15 and representative Python 3.12 integration tests.
+Build four interpreters per service, grouping up to six services sequentially
+per platform job and reusing Cargo dependencies. Derive balanced groups from the
+catalog, using generated Rust source size as a rough build-cost estimate. Clean
+the selected native adapter before building because services share the `_native`
+library name. Keep artifacts separate by service and record elapsed service
+durations. Disable the action's sccache installation on musl, where its required
+wheel is unavailable.
+
+Limit concurrent platforms to three, groups per platform to two, and Cargo
+processes to two. Group source distributions the same way. The routine CI remains
+focused on Linux CPython 3.15 and representative Python 3.12 integration tests.
 
 Freeze client names and package identities from descriptors in `release.json`.
 Install every service from wheels with source fallback disabled on each of the
@@ -49,6 +57,8 @@ PyPI organization so new projects belong to that organization.
 
 - The 34-service release contains 816 native wheels, 34 service sdists, and two
   facade artifacts.
+- Six service groups reduce wheel jobs from 204 to 36 and sdist jobs from 34 to
+  six. A failed group has a larger retry scope than a single-service job.
 - A successful dry run is evidence of the complete declared platform matrix;
   ordinary CI alone is not.
 - Publishing remains non-atomic across PyPI projects. Publishing the facade last

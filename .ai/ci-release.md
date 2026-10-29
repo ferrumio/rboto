@@ -40,12 +40,25 @@ Version preparation remains separate from publication. After merging a version,
 dispatch `release.yml` with that version and leave `publish` unchecked to build and
 validate the complete wheelhouse without uploading to PyPI or creating a GitHub release.
 
-The build workflow runs one job per service and platform and builds all four
-interpreters in that job. It limits platform concurrency to three and service
-concurrency to four, with two Cargo jobs per build. Each smoke job installs wheels
-only. Musl smoke jobs execute in the matching musllinux container with networking
-disabled. The descriptor-derived catalog selects client classes; do not enumerate
-`rboto.__all__` as if all public symbols were constructors.
+The build workflow groups at most six services per platform job and builds all
+four interpreters for each service sequentially. The catalog balances group size
+and spreads large generated Rust adapters across jobs. With 34 services there are
+six groups of five or six, giving 36 wheel jobs and six source-distribution jobs.
+It limits platform concurrency to three and group concurrency to two, with two
+Cargo jobs per build. Dependencies remain in the shared Cargo target directory;
+the selected native adapter is cleaned before building to prevent another
+service's cached `_native` library from being packaged. Musl builds disable the
+action's sccache installer because it requires a wheel unavailable for musl.
+
+Each service uploads its own artifact immediately. A failed group can therefore
+retain earlier successful artifacts; rerunning that job rebuilds the group.
+Service durations, including setup and upload, appear in the job summary and a
+`timings--<batch>--<platform>` CSV artifact. GitHub records the total job duration.
+
+Each smoke job installs wheels only. Musl smoke jobs execute in the matching
+musllinux container with networking disabled. The descriptor-derived catalog
+selects client classes; do not enumerate `rboto.__all__` as if all public symbols
+were constructors.
 
 `release_artifacts.py validate` checks all expected interpreter/platform wheels,
 source distributions, metadata identities, and typing files before producing

@@ -237,3 +237,41 @@ def test_registration_list_covers_every_release_project(tmp_path: Path) -> None:
     assert all(row.endswith(",ferrumio,rboto,release.yml,pypi") for row in rows[1:])
     assert catalog["commit"] == "a" * 40
     assert catalog["version"] == "0.1.0"
+    batches = catalog["batches"]
+    services = [name for batch in batches for name in batch["services"]]
+    assert sorted(services) == sorted(service["service"] for service in catalog["services"])
+    assert len(services) == len(set(services))
+    assert all(1 <= len(batch["services"]) <= 6 for batch in batches)
+
+
+@pytest.mark.parametrize("count", [1, 6, 7, 12, 13, 34, 35, 36, 37, 101])
+def test_service_batches_cover_new_services_without_small_tail_jobs(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, count: int,
+) -> None:
+    checker = load_script("release_catalog")
+    monkeypatch.setattr(checker, "ROOT", tmp_path)
+    services: list[SimpleNamespace] = []
+    for index in range(count):
+        name = f"service-{index:03}"
+        source = tmp_path / "crates" / f"rboto-{name}" / "src/generated.rs"
+        source.parent.mkdir(parents=True)
+        source.write_bytes(b"x" * (index + 1) * 100)
+        services.append(SimpleNamespace(service_id=name, distribution_name=f"rboto-{name}"))
+    batches = checker.service_batches(services)
+    assert batches == checker.service_batches(list(reversed(services)))
+    names = [name for batch in batches for name in batch["services"]]
+    assert sorted(names) == sorted(service.service_id for service in services)
+    assert len(names) == len(set(names))
+    sizes = [len(batch["services"]) for batch in batches]
+    assert max(sizes) <= 6 and max(sizes) - min(sizes) <= 1
+    # Spread the largest native adapters across different jobs.
+    largest = {service.service_id for service in services[-len(batches):]}
+    assert all(len(largest.intersection(batch["services"])) == 1 for batch in batches)
+    if count == 34:
+        assert sorted(sizes) == [5, 5, 6, 6, 6, 6]
+
+
+def test_empty_release_cannot_produce_a_successful_empty_matrix() -> None:
+    checker = load_script("release_catalog")
+    with pytest.raises(ValueError, match="no services"):
+        checker.service_batches([])
