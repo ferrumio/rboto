@@ -44,10 +44,12 @@ The build workflow groups at most six services per platform job and builds all
 four interpreters for each service sequentially. The catalog balances group size
 and spreads large generated Rust adapters across jobs. With 34 services there are
 six groups of five or six, giving 36 wheel jobs and six source-distribution jobs.
-It limits platform concurrency to three and group concurrency to two, with two
+All six platforms can start together, with one group per platform and two
 Cargo jobs per build. Dependencies remain in the shared Cargo target directory;
 the selected native adapter is cleaned before building to prevent another
-service's cached `_native` library from being packaged. Musl builds disable the
+service's cached `_native` library from being packaged. Clear compiler wrappers
+only for that cleanup command: the action sets `RUSTC_WRAPPER` before the Linux
+hook but installs sccache after it. Musl builds disable the
 action's sccache installer because it requires a wheel unavailable for musl.
 
 Each service uploads its own artifact immediately. A failed group can therefore
