@@ -56,6 +56,8 @@ variants. See [DynamoDB](dynamodb.md).
 Document inputs accept JSON-like values: `None`, booleans, integers, finite floats,
 strings, lists, and dictionaries with string keys. Their recursive alias is
 `JSONValue` in the service's `types` module.
+It is a named recursive type at runtime too: `typing.get_type_hints()` can
+resolve operation annotations, and Pydantic can build a schema from the alias.
 
 Event-stream responses use typed mappings containing async iterators. See
 [Streaming](streaming.md) for their access pattern.

@@ -19,6 +19,11 @@
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.
 
+Recursive `JSONValue` uses a Python 3.12 named type alias, so optional annotations
+resolve through `typing.get_type_hints` and schema generators can follow its
+recursive definition. Do not replace it with a quoted string assigned to
+`TypeAlias`: `JSONValue | None` would then fail during runtime introspection.
+
 ## Required workflow
 
 1. Update the source layer.

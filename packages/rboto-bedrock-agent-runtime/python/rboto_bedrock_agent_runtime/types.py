@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 ActionGroupSignature: TypeAlias = Literal['AMAZON.UserInput', 'AMAZON.CodeInterpreter', 'ANTHROPIC.Computer', 'ANTHROPIC.Bash', 'ANTHROPIC.TextEditor']
 ActionGroupSignatureOutput: TypeAlias = ActionGroupSignature | UnknownEnumValue

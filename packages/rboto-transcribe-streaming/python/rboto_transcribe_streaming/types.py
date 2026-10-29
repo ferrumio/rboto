@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 CallAnalyticsLanguageCode: TypeAlias = Literal['en-US', 'en-GB', 'es-US', 'fr-CA', 'fr-FR', 'en-AU', 'it-IT', 'de-DE', 'pt-BR']
 CallAnalyticsLanguageCodeOutput: TypeAlias = CallAnalyticsLanguageCode | UnknownEnumValue

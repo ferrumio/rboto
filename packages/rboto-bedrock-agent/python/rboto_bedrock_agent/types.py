@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 AccessControlAccess: TypeAlias = Literal['ALLOW', 'DENY']
 AccessControlAccessOutput: TypeAlias = AccessControlAccess | UnknownEnumValue

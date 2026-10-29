@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 AlgorithmSpec: TypeAlias = Literal['RSAES_PKCS1_V1_5', 'RSAES_OAEP_SHA_1', 'RSAES_OAEP_SHA_256', 'RSA_AES_KEY_WRAP_SHA_1', 'RSA_AES_KEY_WRAP_SHA_256', 'SM2PKE']
 AlgorithmSpecOutput: TypeAlias = AlgorithmSpec | UnknownEnumValue

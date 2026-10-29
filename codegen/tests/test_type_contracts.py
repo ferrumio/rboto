@@ -103,3 +103,21 @@ def invalid(ddb: DynamoDBClient, lamb: LambdaClient, s3: S3Client) -> None:
     assert result.returncode == 1, result.stdout + result.stderr
     errors = [line for line in result.stdout.splitlines() if ": error:" in line]
     assert len(errors) == 6, result.stdout
+
+
+def test_recursive_json_alias_preserves_strict_input_validation(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "json_types.py", """
+from rboto import BedrockRuntimeClient
+from rboto_bedrock_runtime.types import JSONValue
+
+valid: JSONValue = {"nested": [None, True, 1, 1.5, "text", {"items": []}]}
+invalid_key: JSONValue = {1: "not a string key"}
+invalid_value: JSONValue = {"nested": object()}
+
+async def send(client: BedrockRuntimeClient) -> None:
+    await client.converse(model_id="example", additional_model_request_fields=valid)
+    await client.converse(model_id="example", additional_model_request_fields={"bad": object()})
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    errors = [line for line in result.stdout.splitlines() if ": error:" in line]
+    assert len(errors) == 3, result.stdout

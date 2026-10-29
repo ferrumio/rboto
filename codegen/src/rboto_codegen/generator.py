@@ -1425,7 +1425,7 @@ class ServiceGenerator:
             "",
             "from ._native import ByteStream as ByteStream",
             "",
-            'JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"',
+            "type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]",
             "",
         ]
         shapes = sorted(self.service.shapes.values(), key=lambda shape: shape.name)

@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 ActorTokenContentType: TypeAlias = Literal['NONE', 'M2M', 'AWS_IAM_ID_TOKEN_JWT']
 ActorTokenContentTypeOutput: TypeAlias = ActorTokenContentType | UnknownEnumValue

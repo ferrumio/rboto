@@ -8,7 +8,7 @@ from rboto.types import UnknownEnumValue
 
 from ._native import ByteStream as ByteStream
 
-JSONValue: TypeAlias = "None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]"
+type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
 OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED']
 OAuth2ErrorCodeOutput: TypeAlias = OAuth2ErrorCode | UnknownEnumValue

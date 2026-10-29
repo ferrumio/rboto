@@ -25,6 +25,26 @@ def service(name: str) -> pytest.MarkDecorator:
     )
 
 
+@service("bedrock-runtime")
+def test_document_annotations_support_runtime_introspection_and_schemas() -> None:
+    from typing import get_type_hints
+
+    from pydantic import TypeAdapter, ValidationError
+    from rboto import BedrockRuntimeClient
+    from rboto_bedrock_runtime.types import JSONValue
+
+    for method in (BedrockRuntimeClient.converse, BedrockRuntimeClient.converse_stream):
+        hints = get_type_hints(method)
+        annotation = hints["additional_model_request_fields"]
+        assert annotation == JSONValue | None
+        adapter = TypeAdapter(annotation)
+        payload = {"nested": [None, True, 1, 2.5, {"text": "value"}]}
+        assert adapter.validate_python(payload, strict=True) == payload
+        assert "$defs" in adapter.json_schema()
+        with pytest.raises(ValidationError):
+            adapter.validate_python({"nested": object()}, strict=True)
+
+
 def event_frame(event: str, payload: dict[str, object], *, exception: bool = False) -> bytes:
     headers = bytearray()
     for name, value in {
