@@ -1,5 +1,8 @@
 # Architecture Decision Records
 
+rboto is an independent project maintained by Ferrum. It is not affiliated with,
+sponsored by, or endorsed by Amazon Web Services (AWS).
+
 This directory contains internal architecture decisions for rboto. These records are
 separate from the public documentation under `docs/`.
 

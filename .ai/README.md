@@ -1,5 +1,8 @@
 # AI Engineering Context
 
+rboto is an independent project maintained by Ferrum. It is not affiliated with,
+sponsored by, or endorsed by Amazon Web Services (AWS).
+
 This directory gives coding agents concise, repository-specific guidance. It is internal
 engineering context, not public product documentation.
 
