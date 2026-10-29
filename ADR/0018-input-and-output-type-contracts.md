@@ -43,13 +43,37 @@ Use `Sequence` for input lists, including nested lists. Output collections
 remain lists. Map inputs remain dictionaries because native conversion requires
 `PyDict`; the annotation must not promise arbitrary Mapping support.
 
+Generate a separate, opt-in `inputs` module from each service's reachable input
+model graph. It exposes snake-case `InputAdapter[T]` instances for structures,
+unions, collections, scalars, and enums. Adapters share a schema interpreter in
+`rboto.inputs`; service identifiers do not control conversion behavior. Concrete
+Rust field spellings remain the source for structure member names.
+
+Calling an adapter accepts an object and returns the validated input type.
+Conversion copies containers, drops absent optional fields, preserves sparse
+and document nulls, rejects unknown variants/enums and unexpected fields, and
+detects cycles. Native structures use explicit dictionary conversion only when
+their model graph cannot own streams. Stream-bearing native structures require
+an explicit mapping; event iterators are wrapped lazily. No adapter is imported
+or run automatically on the normal client path.
+
+Enum adapters also expose `is_known(value) -> TypeGuard[T]`. A string comparison
+alone does not reliably narrow the unknown enum marker. This generated guard
+and the validating adapter provide a supported path back to input literals.
+Do not widen input unions to admit unsupported response sentinels.
+
+Synthetic-service tests cover recursive models, name collisions, concrete field
+spellings, and enum additions without changing conversion code. Consumer tests
+exercise response reuse in mypy and Pyright, alongside native protocol tests.
+
 ## Consequences
 
 - The Python annotations describe the existing native representation without
   changing ownership, runtime values, dispatch, or the native ABI.
 - Unsafe response access and unsupported unknown inputs become type errors.
-- A response is not automatically a valid request. Applications must narrow
-  unknown variants and account for nullable fields before reusing values.
+- A response is not automatically a valid request. Generated input adapters
+  provide the explicit validated conversion for reuse; enum guards support
+  narrowing without copying an enum value.
 - Examples and tests cover safe response access, invalid inputs, dictionary
   keys, nested sequences, and preservation of unknown response values.
 - Generic generator changes require regeneration of all services.

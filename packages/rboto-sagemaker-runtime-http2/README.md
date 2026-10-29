@@ -74,6 +74,9 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_sagemaker_runtime_http2.types`.
+- Reuse response values with typed adapters from `rboto_sagemaker_runtime_http2.inputs`.
+  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
+  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.

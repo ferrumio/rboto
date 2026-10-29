@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import cast
 
 from .documentation import render_service_readme
+from .input_adapters import render_input_adapters
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .registry import list_services
@@ -41,6 +42,7 @@ class GeneratedPaths:
     rust: Path
     client: Path
     types: Path
+    inputs: Path
     native_stub: Path
     exceptions: Path
 
@@ -226,6 +228,8 @@ class ServiceGenerator:
             f"{self.descriptor.python_package}/client.py",
             types=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/types.py",
+            inputs=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
+            f"{self.descriptor.python_package}/inputs.py",
             native_stub=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/_native.pyi",
@@ -247,6 +251,7 @@ class ServiceGenerator:
             paths.rust_runtime,
             paths.client,
             paths.types,
+            paths.inputs,
             paths.native_stub,
             paths.exceptions,
         ):
@@ -266,6 +271,7 @@ class ServiceGenerator:
         _write_generated(paths.rust_runtime, self._render_rust_runtime())
         _write_generated(paths.rust, self._render_rust())
         _write_generated(paths.types, self._render_python_types())
+        _write_generated(paths.inputs, self._render_python_inputs())
         client_source = self._render_python_client()
         _write_generated(paths.client, client_source)
         _write_generated(
@@ -1306,6 +1312,29 @@ class ServiceGenerator:
         if shape is not None and shape.kind == "blob" and shape.streaming:
             return "bytes"
         return self._python_type(target)
+
+    def _render_python_inputs(self) -> str:
+        def annotation(target: str) -> str:
+            def qualify(match: re.Match[str]) -> str:
+                token = match.group()
+                if token == "None":
+                    return token
+                if token in {"str", "int", "float", "bool", "bytes", "list", "dict"}:
+                    return f"_builtins.{token}"
+                if token == self._sequence_type:
+                    return "_Sequence"
+                if token == "AsyncIterator":
+                    return "_AsyncIterator"
+                return f"_types.{token}"
+            return re.sub(r"\b[A-Za-z_]\w*\b", qualify, self._python_input_type(target))
+
+        def field_name(shape: SmithyShape, member: SmithyMember) -> str:
+            field = self._member_field(shape, member) if shape.kind == "structure" else None
+            return field.name if field is not None else member.rust_name
+
+        return render_input_adapters(
+            self.service.shapes, self._input_targets, annotation, field_name,
+        )
 
     def _rust_output_annotation(self, rust_type: str, optional: bool = False) -> str:
         kind = self._kind(rust_type)

@@ -329,6 +329,76 @@ async def test_sequence_input_and_unknown_enum_output(peer: Peer) -> None:
 
 
 @pytest.mark.asyncio
+@service("dynamodb")
+async def test_generated_adapter_reuses_pagination_key(peer: Peer) -> None:
+    from rboto import DynamoDBClient
+    from rboto_dynamodb import inputs
+
+    peer.body = b'{"Items":[],"LastEvaluatedKey":{"pk":{"S":"example"}}}'
+    client = DynamoDBClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.query(table_name="Example")
+    assert response.last_evaluated_key is not None
+    await client.query(
+        table_name="Example", exclusive_start_key=inputs.key(response.last_evaluated_key),
+    )
+    assert json.loads(peer.requests[-1][1])["ExclusiveStartKey"] == {"pk": {"S": "example"}}
+
+
+@pytest.mark.asyncio
+@service("bedrock-runtime")
+async def test_generated_adapter_reuses_conversation_with_nullable_fields(peer: Peer) -> None:
+    from rboto import BedrockRuntimeClient
+    from rboto_bedrock_runtime import inputs
+    from rboto_bedrock_runtime.types import Message
+
+    peer.body = json.dumps({
+        "output": {"message": {
+            "role": "assistant", "content": [{"toolUse": {
+                "toolUseId": "call-1", "name": "lookup", "input": {"query": "example"},
+            }}],
+        }},
+        "stopReason": "tool_use",
+        "usage": {"inputTokens": 1, "outputTokens": 1, "totalTokens": 2},
+        "metrics": {"latencyMs": 1},
+    }).encode()
+    client = BedrockRuntimeClient(region="us-east-1", endpoint_url=peer.endpoint)
+    messages: list[Message] = [{"role": "user", "content": [{"text": "hello"}]}]
+    response = await client.converse(model_id="example", messages=messages)
+    assert response.output is not None
+    original = response.output["message"]
+    assert original["content"][0]["tool_use"]["type"] is None
+    messages.append(inputs.message(original))
+    await client.converse(model_id="example", messages=messages)
+    assert json.loads(peer.requests[-1][1])["messages"][-1] == {
+        "role": "assistant", "content": [{"toolUse": {
+            "toolUseId": "call-1", "name": "lookup", "input": {"query": "example"},
+        }}],
+    }
+    assert original["content"][0]["tool_use"]["type"] is None
+
+
+@pytest.mark.asyncio
+@service("sqs")
+async def test_generated_enum_guard_and_adapter_reject_unknown_values(peer: Peer) -> None:
+    from rboto import SQSClient
+    from rboto.inputs import InputConversionError
+    from rboto_sqs import inputs
+
+    peer.body = b'{"Attributes":{"VisibilityTimeout":"30","FutureAttribute":"new"}}'
+    client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.get_queue_attributes(queue_url=peer.endpoint)
+    assert response.attributes is not None
+    for key, value in response.attributes.items():
+        if inputs.queue_attribute_name.is_known(key):
+            await client.set_queue_attributes(queue_url=peer.endpoint, attributes={key: value})
+    assert len(peer.requests) == 2
+    assert json.loads(peer.requests[-1][1])["Attributes"] == {"VisibilityTimeout": "30"}
+    with pytest.raises(InputConversionError, match="unknown enum"):
+        inputs.queue_attribute_map(response.attributes)
+    assert len(peer.requests) == 2
+
+
+@pytest.mark.asyncio
 @service("bedrock-runtime")
 @pytest.mark.parametrize("observed", [False, True])
 async def test_input_and_output_event_streams_advance_concurrently(

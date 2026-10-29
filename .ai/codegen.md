@@ -5,6 +5,9 @@
 - Service metadata or feature toggle: edit `codegen/src/rboto_codegen/services/*.toml`.
 - Parsed descriptor fields: edit `model.py` and `registry.py`.
 - Type conversion or operation behavior: edit `generator.py`.
+- Explicit input adapters: edit `input_adapters.py` and the shared interpreter
+  in `packages/rboto/src/rboto/inputs.py`. Generate from the reachable input graph,
+  preserve concrete field spellings, and keep the normal client path unchanged.
 - Repeated file structure: edit a Jinja template.
 - Package descriptions and guide paths: edit `display_name` and `documentation_path`
   in the service descriptor.
