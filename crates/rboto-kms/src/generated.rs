@@ -4998,18 +4998,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl KMSClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -5027,7 +5038,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.cancel_key_deletion().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -5064,7 +5075,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .connect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
@@ -5108,7 +5119,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_alias()
                 .set_alias_name(alias_name_value)
@@ -5221,7 +5232,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_custom_key_store()
                 .set_custom_key_store_name(custom_key_store_name_value)
@@ -5343,7 +5354,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_grant()
                 .set_key_id(key_id_value)
@@ -5463,7 +5474,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_key()
                 .set_policy(policy_value)
@@ -5578,7 +5589,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .decrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
@@ -5622,7 +5633,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_alias().set_alias_name(alias_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -5658,7 +5669,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
@@ -5702,7 +5713,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_imported_key_material()
                 .set_key_id(key_id_value)
@@ -5781,7 +5792,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .derive_shared_secret()
                 .set_key_id(key_id_value)
@@ -5844,7 +5855,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_custom_key_stores()
                 .set_custom_key_store_id(custom_key_store_id_value)
@@ -5897,7 +5908,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_key()
                 .set_key_id(key_id_value)
@@ -5935,7 +5946,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.disable_key().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -5970,7 +5981,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.disable_key_rotation().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -6007,7 +6018,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disconnect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
@@ -6045,7 +6056,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.enable_key().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -6087,7 +6098,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .enable_key_rotation()
                 .set_key_id(key_id_value)
@@ -6173,7 +6184,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .encrypt()
                 .set_key_id(key_id_value)
@@ -6265,7 +6276,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_data_key()
                 .set_key_id(key_id_value)
@@ -6353,7 +6364,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_data_key_pair()
                 .set_encryption_context(encryption_context_value)
@@ -6434,7 +6445,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_data_key_pair_without_plaintext()
                 .set_encryption_context(encryption_context_value)
@@ -6522,7 +6533,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_data_key_without_plaintext()
                 .set_key_id(key_id_value)
@@ -6597,7 +6608,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_mac()
                 .set_message(message_value)
@@ -6651,7 +6662,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_random()
                 .set_number_of_bytes(number_of_bytes_value)
@@ -6691,7 +6702,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_key_last_usage().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -6733,7 +6744,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_key_policy()
                 .set_key_id(key_id_value)
@@ -6772,7 +6783,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_key_rotation_status().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -6825,7 +6836,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_parameters_for_import()
                 .set_key_id(key_id_value)
@@ -6877,7 +6888,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_public_key()
                 .set_key_id(key_id_value)
@@ -6970,7 +6981,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .import_key_material()
                 .set_key_id(key_id_value)
@@ -7027,7 +7038,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_aliases()
                 .set_key_id(key_id_value)
@@ -7098,7 +7109,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_grants()
                 .set_limit(limit_value)
@@ -7152,7 +7163,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_key_policies()
                 .set_key_id(key_id_value)
@@ -7213,7 +7224,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_key_rotations()
                 .set_key_id(key_id_value)
@@ -7260,7 +7271,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_keys()
                 .set_limit(limit_value)
@@ -7310,7 +7321,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_resource_tags()
                 .set_key_id(key_id_value)
@@ -7370,7 +7381,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_retirable_grants()
                 .set_limit(limit_value)
@@ -7430,7 +7441,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_key_policy()
                 .set_key_id(key_id_value)
@@ -7562,7 +7573,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .re_encrypt()
                 .set_ciphertext_blob(ciphertext_blob_value)
@@ -7645,7 +7656,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .replicate_key()
                 .set_key_id(key_id_value)
@@ -7706,7 +7717,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .retire_grant()
                 .set_grant_token(grant_token_value)
@@ -7758,7 +7769,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .revoke_grant()
                 .set_key_id(key_id_value)
@@ -7797,7 +7808,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.rotate_key_on_demand().set_key_id(key_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -7840,7 +7851,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .schedule_key_deletion()
                 .set_key_id(key_id_value)
@@ -7920,7 +7931,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .sign()
                 .set_key_id(key_id_value)
@@ -7974,7 +7985,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_key_id(key_id_value)
@@ -8024,7 +8035,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_key_id(key_id_value)
@@ -8069,7 +8080,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_alias()
                 .set_alias_name(alias_name_value)
@@ -8173,7 +8184,7 @@ impl KMSClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value)
@@ -8228,7 +8239,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_key_description()
                 .set_key_id(key_id_value)
@@ -8273,7 +8284,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_primary_region()
                 .set_key_id(key_id_value)
@@ -8360,7 +8371,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .verify()
                 .set_key_id(key_id_value)
@@ -8442,7 +8453,7 @@ impl KMSClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .verify_mac()
                 .set_message(message_value)

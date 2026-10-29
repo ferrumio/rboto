@@ -20028,18 +20028,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl APIGatewayClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -20112,7 +20123,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_api_key()
                 .set_name(name_value)
@@ -20222,7 +20233,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_authorizer()
                 .set_rest_api_id(rest_api_id_value)
@@ -20293,7 +20304,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_base_path_mapping()
                 .set_domain_name(domain_name_value)
@@ -20394,7 +20405,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_deployment()
                 .set_rest_api_id(rest_api_id_value)
@@ -20452,7 +20463,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
@@ -20511,7 +20522,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
@@ -20662,7 +20673,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_domain_name()
                 .set_domain_name(domain_name_value)
@@ -20746,7 +20757,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_domain_name_access_association()
                 .set_domain_name_arn(domain_name_arn_value)
@@ -20813,7 +20824,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_model()
                 .set_rest_api_id(rest_api_id_value)
@@ -20874,7 +20885,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_request_validator()
                 .set_rest_api_id(rest_api_id_value)
@@ -20927,7 +20938,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_resource()
                 .set_rest_api_id(rest_api_id_value)
@@ -21062,7 +21073,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_rest_api()
                 .set_name(name_value)
@@ -21189,7 +21200,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_stage()
                 .set_rest_api_id(rest_api_id_value)
@@ -21278,7 +21289,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_usage_plan()
                 .set_name(name_value)
@@ -21333,7 +21344,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_usage_plan_key()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -21403,7 +21414,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_vpc_link()
                 .set_name(name_value)
@@ -21444,7 +21455,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_api_key().set_api_key(api_key_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -21486,7 +21497,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_authorizer()
                 .set_rest_api_id(rest_api_id_value)
@@ -21537,7 +21548,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_base_path_mapping()
                 .set_domain_name(domain_name_value)
@@ -21578,7 +21589,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value);
@@ -21622,7 +21633,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_deployment()
                 .set_rest_api_id(rest_api_id_value)
@@ -21668,7 +21679,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
@@ -21714,7 +21725,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
@@ -21759,7 +21770,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_domain_name()
                 .set_domain_name(domain_name_value)
@@ -21799,7 +21810,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_domain_name_access_association()
                 .set_domain_name_access_association_arn(domain_name_access_association_arn_value);
@@ -21847,7 +21858,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -21898,7 +21909,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_integration()
                 .set_rest_api_id(rest_api_id_value)
@@ -21956,7 +21967,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_integration_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -22009,7 +22020,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_method()
                 .set_rest_api_id(rest_api_id_value)
@@ -22067,7 +22078,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_method_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -22114,7 +22125,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_model()
                 .set_rest_api_id(rest_api_id_value)
@@ -22159,7 +22170,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_request_validator()
                 .set_rest_api_id(rest_api_id_value)
@@ -22204,7 +22215,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource()
                 .set_rest_api_id(rest_api_id_value)
@@ -22243,7 +22254,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_rest_api().set_rest_api_id(rest_api_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22285,7 +22296,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_stage()
                 .set_rest_api_id(rest_api_id_value)
@@ -22323,7 +22334,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value);
@@ -22367,7 +22378,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_usage_plan_key()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -22406,7 +22417,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_vpc_link().set_vpc_link_id(vpc_link_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22448,7 +22459,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .flush_stage_authorizers_cache()
                 .set_rest_api_id(rest_api_id_value)
@@ -22493,7 +22504,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .flush_stage_cache()
                 .set_rest_api_id(rest_api_id_value)
@@ -22544,7 +22555,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_client_certificate()
                 .set_description(description_value)
@@ -22577,7 +22588,7 @@ impl APIGatewayClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_account();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22618,7 +22629,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_api_key()
                 .set_api_key(api_key_value)
@@ -22680,7 +22691,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_api_keys()
                 .set_position(position_value)
@@ -22727,7 +22738,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_authorizer()
                 .set_rest_api_id(rest_api_id_value)
@@ -22778,7 +22789,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_authorizers()
                 .set_rest_api_id(rest_api_id_value)
@@ -22830,7 +22841,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_base_path_mapping()
                 .set_domain_name(domain_name_value)
@@ -22888,7 +22899,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_base_path_mappings()
                 .set_domain_name(domain_name_value)
@@ -22930,7 +22941,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value);
@@ -22974,7 +22985,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_client_certificates()
                 .set_position(position_value)
@@ -23031,7 +23042,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_deployment()
                 .set_rest_api_id(rest_api_id_value)
@@ -23083,7 +23094,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_deployments()
                 .set_rest_api_id(rest_api_id_value)
@@ -23130,7 +23141,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
@@ -23209,7 +23220,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_documentation_parts()
                 .set_rest_api_id(rest_api_id_value)
@@ -23260,7 +23271,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
@@ -23311,7 +23322,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_documentation_versions()
                 .set_rest_api_id(rest_api_id_value)
@@ -23357,7 +23368,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_domain_name()
                 .set_domain_name(domain_name_value)
@@ -23410,7 +23421,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_domain_name_access_associations()
                 .set_position(position_value)
@@ -23464,7 +23475,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_domain_names()
                 .set_position(position_value)
@@ -23534,7 +23545,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_export()
                 .set_rest_api_id(rest_api_id_value)
@@ -23583,7 +23594,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -23634,7 +23645,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_gateway_responses()
                 .set_rest_api_id(rest_api_id_value)
@@ -23686,7 +23697,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_integration()
                 .set_rest_api_id(rest_api_id_value)
@@ -23744,7 +23755,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_integration_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -23797,7 +23808,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_method()
                 .set_rest_api_id(rest_api_id_value)
@@ -23854,7 +23865,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_method_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -23907,7 +23918,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_model()
                 .set_rest_api_id(rest_api_id_value)
@@ -23952,7 +23963,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_model_template()
                 .set_rest_api_id(rest_api_id_value)
@@ -24003,7 +24014,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_models()
                 .set_rest_api_id(rest_api_id_value)
@@ -24049,7 +24060,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_request_validator()
                 .set_rest_api_id(rest_api_id_value)
@@ -24100,7 +24111,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_request_validators()
                 .set_rest_api_id(rest_api_id_value)
@@ -24158,7 +24169,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource()
                 .set_rest_api_id(rest_api_id_value)
@@ -24221,7 +24232,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resources()
                 .set_rest_api_id(rest_api_id_value)
@@ -24262,7 +24273,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_rest_api().set_rest_api_id(rest_api_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -24303,7 +24314,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_rest_apis()
                 .set_position(position_value)
@@ -24365,7 +24376,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_sdk()
                 .set_rest_api_id(rest_api_id_value)
@@ -24405,7 +24416,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_sdk_type().set_id(id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -24446,7 +24457,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_sdk_types()
                 .set_position(position_value)
@@ -24490,7 +24501,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_stage()
                 .set_rest_api_id(rest_api_id_value)
@@ -24534,7 +24545,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_stages()
                 .set_rest_api_id(rest_api_id_value)
@@ -24584,7 +24595,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_tags()
                 .set_resource_arn(resource_arn_value)
@@ -24653,7 +24664,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_usage()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -24695,7 +24706,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value);
@@ -24739,7 +24750,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_usage_plan_key()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -24796,7 +24807,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_usage_plan_keys()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -24849,7 +24860,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_usage_plans()
                 .set_position(position_value)
@@ -24889,7 +24900,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_vpc_link().set_vpc_link_id(vpc_link_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -24930,7 +24941,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_vpc_links()
                 .set_position(position_value)
@@ -24983,7 +24994,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .import_api_keys()
                 .set_body(body_value)
@@ -25043,7 +25054,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .import_documentation_parts()
                 .set_rest_api_id(rest_api_id_value)
@@ -25103,7 +25114,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .import_rest_api()
                 .set_fail_on_warnings(fail_on_warnings_value)
@@ -25183,7 +25194,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -25367,7 +25378,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_integration()
                 .set_rest_api_id(rest_api_id_value)
@@ -25482,7 +25493,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_integration_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -25609,7 +25620,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_method()
                 .set_rest_api_id(rest_api_id_value)
@@ -25699,7 +25710,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_method_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -25774,7 +25785,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_rest_api()
                 .set_rest_api_id(rest_api_id_value)
@@ -25822,7 +25833,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .reject_domain_name_access_association()
                 .set_domain_name_access_association_arn(domain_name_access_association_arn_value)
@@ -25875,7 +25886,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -25989,7 +26000,7 @@ impl APIGatewayClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_invoke_authorizer()
                 .set_rest_api_id(rest_api_id_value)
@@ -26110,7 +26121,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_invoke_method()
                 .set_rest_api_id(rest_api_id_value)
@@ -26168,7 +26179,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -26213,7 +26224,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_account()
                 .set_patch_operations(patch_operations_value);
@@ -26263,7 +26274,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_api_key()
                 .set_api_key(api_key_value)
@@ -26320,7 +26331,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_authorizer()
                 .set_rest_api_id(rest_api_id_value)
@@ -26384,7 +26395,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_base_path_mapping()
                 .set_domain_name(domain_name_value)
@@ -26438,7 +26449,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value)
@@ -26495,7 +26506,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_deployment()
                 .set_rest_api_id(rest_api_id_value)
@@ -26554,7 +26565,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
@@ -26613,7 +26624,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
@@ -26671,7 +26682,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_domain_name()
                 .set_domain_name(domain_name_value)
@@ -26731,7 +26742,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -26795,7 +26806,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_integration()
                 .set_rest_api_id(rest_api_id_value)
@@ -26866,7 +26877,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_integration_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -26932,7 +26943,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_method()
                 .set_rest_api_id(rest_api_id_value)
@@ -27003,7 +27014,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_method_response()
                 .set_rest_api_id(rest_api_id_value)
@@ -27063,7 +27074,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_model()
                 .set_rest_api_id(rest_api_id_value)
@@ -27121,7 +27132,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_request_validator()
                 .set_rest_api_id(rest_api_id_value)
@@ -27179,7 +27190,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_resource()
                 .set_rest_api_id(rest_api_id_value)
@@ -27231,7 +27242,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_rest_api()
                 .set_rest_api_id(rest_api_id_value)
@@ -27288,7 +27299,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_stage()
                 .set_rest_api_id(rest_api_id_value)
@@ -27345,7 +27356,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_usage()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -27396,7 +27407,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value)
@@ -27447,7 +27458,7 @@ impl APIGatewayClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_vpc_link()
                 .set_vpc_link_id(vpc_link_id_value)

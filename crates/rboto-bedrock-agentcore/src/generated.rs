@@ -21441,18 +21441,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl BedrockAgentCoreClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -21495,7 +21506,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .batch_create_memory_records()
                 .set_memory_id(memory_id_value)
@@ -21548,7 +21559,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .batch_delete_memory_records()
                 .set_memory_id(memory_id_value)
@@ -21606,7 +21617,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .batch_update_memory_records()
                 .set_memory_id(memory_id_value)
@@ -21652,7 +21663,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .complete_resource_token_auth()
                 .set_user_identifier(user_identifier_value)
@@ -21758,7 +21769,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_ab_test()
                 .set_name(name_value)
@@ -21879,7 +21890,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_event()
                 .set_memory_id(memory_id_value)
@@ -21968,7 +21979,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_payment_instrument()
                 .set_user_id(user_id_value)
@@ -22044,7 +22055,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_payment_session()
                 .set_user_id(user_id_value)
@@ -22087,7 +22098,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_ab_test().set_ab_test_id(ab_test_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22124,7 +22135,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_batch_evaluation()
                 .set_batch_evaluation_id(batch_evaluation_id_value);
@@ -22169,7 +22180,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_capacity_provider_session()
                 .set_capacity_provider_id(capacity_provider_id_value)
@@ -22226,7 +22237,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_event()
                 .set_memory_id(memory_id_value)
@@ -22278,7 +22289,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_memory_record()
                 .set_memory_id(memory_id_value)
@@ -22339,7 +22350,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_payment_instrument()
                 .set_user_id(user_id_value)
@@ -22394,7 +22405,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_payment_session()
                 .set_user_id(user_id_value)
@@ -22435,7 +22446,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_recommendation()
                 .set_recommendation_id(recommendation_id_value);
@@ -22499,7 +22510,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .evaluate()
                 .set_evaluator_id(evaluator_id_value)
@@ -22539,7 +22550,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_ab_test().set_ab_test_id(ab_test_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22588,7 +22599,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_agent_card()
                 .set_runtime_session_id(runtime_session_id_value)
@@ -22629,7 +22640,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_batch_evaluation()
                 .set_batch_evaluation_id(batch_evaluation_id_value);
@@ -22674,7 +22685,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_browser_session()
                 .set_browser_identifier(browser_identifier_value)
@@ -22720,7 +22731,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_code_interpreter_session()
                 .set_code_interpreter_identifier(code_interpreter_identifier_value)
@@ -22777,7 +22788,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_event()
                 .set_memory_id(memory_id_value)
@@ -22829,7 +22840,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_memory_record()
                 .set_memory_id(memory_id_value)
@@ -22896,7 +22907,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_payment_instrument()
                 .set_user_id(user_id_value)
@@ -22982,7 +22993,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_payment_instrument_balance()
                 .set_user_id(user_id_value)
@@ -23046,7 +23057,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_payment_session()
                 .set_user_id(user_id_value)
@@ -23088,7 +23099,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_recommendation()
                 .set_recommendation_id(recommendation_id_value);
@@ -23134,7 +23145,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_api_key()
                 .set_workload_identity_token(workload_identity_token_value)
@@ -23264,7 +23275,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_oauth2_token()
                 .set_workload_identity_token(workload_identity_token_value)
@@ -23327,7 +23338,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_payment_token()
                 .set_workload_identity_token(workload_identity_token_value)
@@ -23367,7 +23378,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_workload_access_token()
                 .set_workload_name(workload_name_value);
@@ -23411,7 +23422,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_workload_access_token_for_jwt()
                 .set_workload_name(workload_name_value)
@@ -23456,7 +23467,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_workload_access_token_for_user_id()
                 .set_workload_name(workload_name_value)
@@ -23550,7 +23561,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .ingest_data()
                 .set_memory_id(memory_id_value)
@@ -23688,7 +23699,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_agent_runtime()
                 .set_content_type(content_type_value)
@@ -23813,7 +23824,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_agent_runtime_command()
                 .set_content_type(content_type_value)
@@ -23923,7 +23934,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_browser()
                 .set_browser_identifier(browser_identifier_value)
@@ -23996,7 +24007,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_code_interpreter()
                 .set_code_interpreter_identifier(code_interpreter_identifier_value)
@@ -24189,7 +24200,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_harness()
                 .set_harness_arn(harness_arn_value)
@@ -24258,7 +24269,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_ab_tests()
                 .set_max_results(max_results_value)
@@ -24308,7 +24319,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_actors()
                 .set_memory_id(memory_id_value)
@@ -24353,7 +24364,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_batch_evaluations()
                 .set_max_results(max_results_value)
@@ -24414,7 +24425,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_browser_sessions()
                 .set_browser_identifier(browser_identifier_value)
@@ -24478,7 +24489,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_code_interpreter_sessions()
                 .set_code_interpreter_identifier(code_interpreter_identifier_value)
@@ -24555,7 +24566,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_events()
                 .set_memory_id(memory_id_value)
@@ -24616,7 +24627,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_memory_extraction_jobs()
                 .set_memory_id(memory_id_value)
@@ -24700,7 +24711,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_memory_records()
                 .set_memory_id(memory_id_value)
@@ -24776,7 +24787,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_payment_instruments()
                 .set_user_id(user_id_value)
@@ -24844,7 +24855,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_payment_sessions()
                 .set_user_id(user_id_value)
@@ -24901,7 +24912,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_recommendations()
                 .set_max_results(max_results_value)
@@ -24965,7 +24976,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_sessions()
                 .set_memory_id(memory_id_value)
@@ -25054,7 +25065,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .process_payment()
                 .set_user_id(user_id_value)
@@ -25129,7 +25140,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .retrieve_memory_records()
                 .set_memory_id(memory_id_value)
@@ -25204,7 +25215,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .save_browser_session_profile()
                 .set_trace_id(trace_id_value)
@@ -25271,7 +25282,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .search_registry_records()
                 .set_search_query(search_query_value)
@@ -25387,7 +25398,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_batch_evaluation()
                 .set_batch_evaluation_name(batch_evaluation_name_value)
@@ -25536,7 +25547,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_browser_session()
                 .set_trace_id(trace_id_value)
@@ -25643,7 +25654,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_code_interpreter_session()
                 .set_trace_id(trace_id_value)
@@ -25700,7 +25711,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_memory_extraction_job()
                 .set_memory_id(memory_id_value)
@@ -25785,7 +25796,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_recommendation()
                 .set_name(name_value)
@@ -25830,7 +25841,7 @@ impl BedrockAgentCoreClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_batch_evaluation()
                 .set_batch_evaluation_id(batch_evaluation_id_value);
@@ -25893,7 +25904,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_browser_session()
                 .set_trace_id(trace_id_value)
@@ -25960,7 +25971,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_code_interpreter_session()
                 .set_trace_id(trace_id_value)
@@ -26022,7 +26033,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_runtime_session()
                 .set_runtime_session_id(runtime_session_id_value)
@@ -26121,7 +26132,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_ab_test()
                 .set_ab_test_id(ab_test_id_value)
@@ -26186,7 +26197,7 @@ impl BedrockAgentCoreClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_browser_stream()
                 .set_browser_identifier(browser_identifier_value)

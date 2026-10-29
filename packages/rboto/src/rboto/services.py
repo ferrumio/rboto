@@ -5,6 +5,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, cast
 
 from ._imports import import_service
+from .config import ClientConfig
 from .interceptors import Interceptor
 from .session import Session
 
@@ -89,6 +90,7 @@ def api_gateway(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> APIGatewayClient:
     module = import_service(
@@ -103,6 +105,7 @@ def api_gateway(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -113,6 +116,7 @@ def bedrock(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockClient:
     module = import_service(
@@ -127,6 +131,7 @@ def bedrock(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -137,6 +142,7 @@ def bedrock_agent(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockAgentClient:
     module = import_service(
@@ -151,6 +157,7 @@ def bedrock_agent(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -161,6 +168,7 @@ def bedrock_agent_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockAgentRuntimeClient:
     module = import_service(
@@ -175,6 +183,7 @@ def bedrock_agent_runtime(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -185,6 +194,7 @@ def bedrock_agentcore(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockAgentCoreClient:
     module = import_service(
@@ -199,6 +209,7 @@ def bedrock_agentcore(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -209,6 +220,7 @@ def bedrock_agentcore_control(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockAgentCoreControlClient:
     module = import_service(
@@ -223,6 +235,7 @@ def bedrock_agentcore_control(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -233,6 +246,7 @@ def bedrock_data_automation(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockDataAutomationClient:
     module = import_service(
@@ -247,6 +261,7 @@ def bedrock_data_automation(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -257,6 +272,7 @@ def bedrock_data_automation_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockDataAutomationRuntimeClient:
     module = import_service(
@@ -271,6 +287,7 @@ def bedrock_data_automation_runtime(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -281,6 +298,7 @@ def bedrock_runtime(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> BedrockRuntimeClient:
     module = import_service(
@@ -295,6 +313,7 @@ def bedrock_runtime(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -305,6 +324,7 @@ def cloudtrail(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> CloudTrailClient:
     module = import_service(
@@ -319,6 +339,7 @@ def cloudtrail(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -329,6 +350,7 @@ def cloudwatch_logs(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> CloudWatchLogsClient:
     module = import_service(
@@ -343,6 +365,7 @@ def cloudwatch_logs(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -353,6 +376,7 @@ def cognito_identity(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> CognitoIdentityClient:
     module = import_service(
@@ -367,6 +391,7 @@ def cognito_identity(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -377,6 +402,7 @@ def connecthealth(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> ConnectHealthClient:
     module = import_service(
@@ -391,6 +417,7 @@ def connecthealth(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -401,6 +428,7 @@ def dynamodb(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> DynamoDBClient:
     module = import_service(
@@ -415,6 +443,7 @@ def dynamodb(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -425,6 +454,7 @@ def eventbridge(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> EventBridgeClient:
     module = import_service(
@@ -439,6 +469,7 @@ def eventbridge(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -449,6 +480,7 @@ def guardduty(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> GuardDutyClient:
     module = import_service(
@@ -463,6 +495,7 @@ def guardduty(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -473,6 +506,7 @@ def kms(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> KMSClient:
     module = import_service(
@@ -487,6 +521,7 @@ def kms(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -497,6 +532,7 @@ def lambda_(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> LambdaClient:
     module = import_service(
@@ -511,6 +547,7 @@ def lambda_(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -521,6 +558,7 @@ def lex_runtime_v2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> LexRuntimeV2Client:
     module = import_service(
@@ -535,6 +573,7 @@ def lex_runtime_v2(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -545,6 +584,7 @@ def pipes(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> EventBridgePipesClient:
     module = import_service(
@@ -559,6 +599,7 @@ def pipes(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -569,6 +610,7 @@ def polly(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> PollyClient:
     module = import_service(
@@ -583,6 +625,7 @@ def polly(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -593,6 +636,7 @@ def qbusiness(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> QBusinessClient:
     module = import_service(
@@ -607,6 +651,7 @@ def qbusiness(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -617,6 +662,7 @@ def s3(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> S3Client:
     module = import_service(
@@ -631,6 +677,7 @@ def s3(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -641,6 +688,7 @@ def sagemaker_runtime_http2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SageMakerRuntimeHTTP2Client:
     module = import_service(
@@ -655,6 +703,7 @@ def sagemaker_runtime_http2(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -665,6 +714,7 @@ def scheduler(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> EventBridgeSchedulerClient:
     module = import_service(
@@ -679,6 +729,7 @@ def scheduler(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -689,6 +740,7 @@ def secrets_manager(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SecretsManagerClient:
     module = import_service(
@@ -703,6 +755,7 @@ def secrets_manager(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -713,6 +766,7 @@ def sesv2(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SESV2Client:
     module = import_service(
@@ -727,6 +781,7 @@ def sesv2(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -737,6 +792,7 @@ def sfn(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> StepFunctionsClient:
     module = import_service(
@@ -751,6 +807,7 @@ def sfn(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -761,6 +818,7 @@ def signin(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SignInClient:
     module = import_service(
@@ -775,6 +833,7 @@ def signin(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -785,6 +844,7 @@ def sns(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SNSClient:
     module = import_service(
@@ -799,6 +859,7 @@ def sns(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -809,6 +870,7 @@ def sqs(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SQSClient:
     module = import_service(
@@ -823,6 +885,7 @@ def sqs(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -833,6 +896,7 @@ def ssm(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> SSMClient:
     module = import_service(
@@ -847,6 +911,7 @@ def ssm(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -857,6 +922,7 @@ def sts(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> STSClient:
     module = import_service(
@@ -871,6 +937,7 @@ def sts(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 
@@ -881,6 +948,7 @@ def transcribe_streaming(
     region: str | None = None,
     profile: str | None = None,
     endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
     interceptors: Sequence[Interceptor] | None = None,
 ) -> TranscribeStreamingClient:
     module = import_service(
@@ -895,6 +963,7 @@ def transcribe_streaming(
         region=region,
         profile=profile,
         endpoint_url=endpoint_url,
+        config=config,
         interceptors=interceptors,
     )
 

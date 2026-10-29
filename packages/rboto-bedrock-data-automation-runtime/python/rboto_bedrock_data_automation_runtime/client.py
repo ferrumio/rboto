@@ -4,6 +4,7 @@ from collections.abc import AsyncIterator, Sequence
 
 
 
+from rboto.config import ClientConfig
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
@@ -31,9 +32,12 @@ class BedrockDataAutomationRuntimeClient:
         region: str | None = None,
         profile: str | None = None,
         endpoint_url: str | None = None,
+        config: ClientConfig | None = None,
         interceptors: Sequence[Interceptor] | None = None,
     ) -> None:
-        region, profile, endpoint_url = resolve_config(session, region, profile, endpoint_url)
+        region, profile, endpoint_url, config = resolve_config(
+            session, region, profile, endpoint_url, config,
+        )
         self._interceptors = resolve_interceptors(
             interceptors, session.interceptors if session is not None else (),
         )
@@ -42,6 +46,7 @@ class BedrockDataAutomationRuntimeClient:
             region=region,
             profile=profile,
             endpoint_url=endpoint_url,
+            config=config,
         )
 
 

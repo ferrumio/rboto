@@ -2713,11 +2713,16 @@ dependencies = [
 name = "rboto-core"
 version = "0.1.0"
 dependencies = [
+ "aws-config",
+ "aws-credential-types",
+ "aws-smithy-http-client",
  "aws-smithy-runtime-api",
  "aws-smithy-types",
  "futures-util",
  "pyo3",
  "pyo3-async-runtimes",
+ "rustls 0.23.46",
+ "tokio",
 ]
 
 [[package]]

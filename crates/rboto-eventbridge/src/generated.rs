@@ -11203,18 +11203,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl EventBridgeClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -11232,7 +11243,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.activate_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11268,7 +11279,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.cancel_replay().set_replay_name(replay_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11338,7 +11349,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_api_destination()
                 .set_name(name_value)
@@ -11412,7 +11423,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_archive()
                 .set_archive_name(archive_name_value)
@@ -11491,7 +11502,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_connection()
                 .set_name(name_value)
@@ -11571,7 +11582,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_endpoint()
                 .set_name(name_value)
@@ -11659,7 +11670,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_event_bus()
                 .set_name(name_value)
@@ -11709,7 +11720,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_partner_event_source()
                 .set_name(name_value)
@@ -11748,7 +11759,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.deactivate_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11784,7 +11795,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.deauthorize_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11820,7 +11831,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_api_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11856,7 +11867,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_archive().set_archive_name(archive_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11892,7 +11903,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11928,7 +11939,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_endpoint().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11964,7 +11975,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_event_bus().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12006,7 +12017,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_partner_event_source()
                 .set_name(name_value)
@@ -12057,7 +12068,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_rule()
                 .set_name(name_value)
@@ -12096,7 +12107,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_api_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12132,7 +12143,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_archive()
                 .set_archive_name(archive_name_value);
@@ -12170,7 +12181,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_connection().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12212,7 +12223,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_endpoint()
                 .set_name(name_value)
@@ -12251,7 +12262,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_event_bus().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12287,7 +12298,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12323,7 +12334,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_partner_event_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12359,7 +12370,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.describe_replay().set_replay_name(replay_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12401,7 +12412,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_rule()
                 .set_name(name_value)
@@ -12446,7 +12457,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disable_rule()
                 .set_name(name_value)
@@ -12490,7 +12501,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .enable_rule()
                 .set_name(name_value)
@@ -12546,7 +12557,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_api_destinations()
                 .set_name_prefix(name_prefix_value)
@@ -12613,7 +12624,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_archives()
                 .set_name_prefix(name_prefix_value)
@@ -12675,7 +12686,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_connections()
                 .set_name_prefix(name_prefix_value)
@@ -12734,7 +12745,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_endpoints()
                 .set_name_prefix(name_prefix_value)
@@ -12787,7 +12798,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_event_buses()
                 .set_name_prefix(name_prefix_value)
@@ -12839,7 +12850,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_event_sources()
                 .set_name_prefix(name_prefix_value)
@@ -12892,7 +12903,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_partner_event_source_accounts()
                 .set_event_source_name(event_source_name_value)
@@ -12944,7 +12955,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_partner_event_sources()
                 .set_name_prefix(name_prefix_value)
@@ -13010,7 +13021,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_replays()
                 .set_name_prefix(name_prefix_value)
@@ -13069,7 +13080,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_rule_names_by_target()
                 .set_target_arn(target_arn_value)
@@ -13128,7 +13139,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_rules()
                 .set_name_prefix(name_prefix_value)
@@ -13168,7 +13179,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -13224,7 +13235,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_targets_by_rule()
                 .set_rule(rule_value)
@@ -13277,7 +13288,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_events()
                 .set_entries(entries_value)
@@ -13321,7 +13332,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.put_partner_events().set_entries(entries_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -13387,7 +13398,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_permission()
                 .set_event_bus_name(event_bus_name_value)
@@ -13481,7 +13492,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_rule()
                 .set_name(name_value)
@@ -13543,7 +13554,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_targets()
                 .set_rule(rule_value)
@@ -13595,7 +13606,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_permission()
                 .set_statement_id(statement_id_value)
@@ -13659,7 +13670,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_targets()
                 .set_rule(rule_value)
@@ -13740,7 +13751,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_replay()
                 .set_replay_name(replay_name_value)
@@ -13794,7 +13805,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -13838,7 +13849,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_event_pattern()
                 .set_event_pattern(event_pattern_value)
@@ -13889,7 +13900,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -13962,7 +13973,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_api_destination()
                 .set_name(name_value)
@@ -14030,7 +14041,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_archive()
                 .set_archive_name(archive_name_value)
@@ -14108,7 +14119,7 @@ impl EventBridgeClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_connection()
                 .set_name(name_value)
@@ -14188,7 +14199,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_endpoint()
                 .set_name(name_value)
@@ -14257,7 +14268,7 @@ impl EventBridgeClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_event_bus()
                 .set_name(name_value)

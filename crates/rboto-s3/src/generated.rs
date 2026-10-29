@@ -21600,18 +21600,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl S3Client {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -21667,7 +21678,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .abort_multipart_upload()
                 .set_bucket(bucket_value)
@@ -21850,7 +21861,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .complete_multipart_upload()
                 .set_bucket(bucket_value)
@@ -22256,7 +22267,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .copy_object()
                 .set_acl(acl_value)
@@ -22409,7 +22420,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_bucket()
                 .set_acl(acl_value)
@@ -22486,7 +22497,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
@@ -22559,7 +22570,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
@@ -22845,7 +22856,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_multipart_upload()
                 .set_acl(acl_value)
@@ -22956,7 +22967,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_session()
                 .set_session_mode(session_mode_value)
@@ -23006,7 +23017,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket()
                 .set_bucket(bucket_value)
@@ -23058,7 +23069,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
@@ -23107,7 +23118,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_cors()
                 .set_bucket(bucket_value)
@@ -23153,7 +23164,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_encryption()
                 .set_bucket(bucket_value)
@@ -23205,7 +23216,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
@@ -23260,7 +23271,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
@@ -23309,7 +23320,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_lifecycle()
                 .set_bucket(bucket_value)
@@ -23355,7 +23366,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
@@ -23403,7 +23414,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
@@ -23457,7 +23468,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
@@ -23504,7 +23515,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_ownership_controls()
                 .set_bucket(bucket_value)
@@ -23550,7 +23561,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_policy()
                 .set_bucket(bucket_value)
@@ -23596,7 +23607,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_replication()
                 .set_bucket(bucket_value)
@@ -23642,7 +23653,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_tagging()
                 .set_bucket(bucket_value)
@@ -23688,7 +23699,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_bucket_website()
                 .set_bucket(bucket_value)
@@ -23790,7 +23801,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_object()
                 .set_bucket(bucket_value)
@@ -23875,7 +23886,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_object_annotation()
                 .set_bucket(bucket_value)
@@ -23938,7 +23949,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_object_tagging()
                 .set_bucket(bucket_value)
@@ -24021,7 +24032,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_objects()
                 .set_bucket(bucket_value)
@@ -24072,7 +24083,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_public_access_block()
                 .set_bucket(bucket_value)
@@ -24118,7 +24129,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_abac()
                 .set_bucket(bucket_value)
@@ -24171,7 +24182,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
@@ -24218,7 +24229,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_acl()
                 .set_bucket(bucket_value)
@@ -24270,7 +24281,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
@@ -24317,7 +24328,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_cors()
                 .set_bucket(bucket_value)
@@ -24363,7 +24374,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_encryption()
                 .set_bucket(bucket_value)
@@ -24415,7 +24426,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
@@ -24470,7 +24481,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
@@ -24517,7 +24528,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
@@ -24563,7 +24574,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_location()
                 .set_bucket(bucket_value)
@@ -24609,7 +24620,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_logging()
                 .set_bucket(bucket_value)
@@ -24655,7 +24666,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
@@ -24701,7 +24712,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
@@ -24755,7 +24766,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
@@ -24802,7 +24813,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_notification_configuration()
                 .set_bucket(bucket_value)
@@ -24850,7 +24861,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_ownership_controls()
                 .set_bucket(bucket_value)
@@ -24896,7 +24907,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_policy()
                 .set_bucket(bucket_value)
@@ -24942,7 +24953,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_policy_status()
                 .set_bucket(bucket_value)
@@ -24988,7 +24999,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_replication()
                 .set_bucket(bucket_value)
@@ -25034,7 +25045,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_request_payment()
                 .set_bucket(bucket_value)
@@ -25080,7 +25091,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_tagging()
                 .set_bucket(bucket_value)
@@ -25126,7 +25137,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_versioning()
                 .set_bucket(bucket_value)
@@ -25172,7 +25183,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_bucket_website()
                 .set_bucket(bucket_value)
@@ -25358,7 +25369,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object()
                 .set_bucket(bucket_value)
@@ -25451,7 +25462,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_acl()
                 .set_bucket(bucket_value)
@@ -25532,7 +25543,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_annotation()
                 .set_bucket(bucket_value)
@@ -25660,7 +25671,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_attributes()
                 .set_bucket(bucket_value)
@@ -25734,7 +25745,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_legal_hold()
                 .set_bucket(bucket_value)
@@ -25783,7 +25794,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_lock_configuration()
                 .set_bucket(bucket_value)
@@ -25848,7 +25859,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_retention()
                 .set_bucket(bucket_value)
@@ -25916,7 +25927,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_tagging()
                 .set_bucket(bucket_value)
@@ -25978,7 +25989,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_object_torrent()
                 .set_bucket(bucket_value)
@@ -26036,7 +26047,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_public_access_block()
                 .set_bucket(bucket_value)
@@ -26082,7 +26093,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .head_bucket()
                 .set_bucket(bucket_value)
@@ -26267,7 +26278,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .head_object()
                 .set_bucket(bucket_value)
@@ -26338,7 +26349,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_bucket_analytics_configurations()
                 .set_bucket(bucket_value)
@@ -26394,7 +26405,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_bucket_intelligent_tiering_configurations()
                 .set_bucket(bucket_value)
@@ -26450,7 +26461,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_bucket_inventory_configurations()
                 .set_bucket(bucket_value)
@@ -26506,7 +26517,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_bucket_metrics_configurations()
                 .set_bucket(bucket_value)
@@ -26565,7 +26576,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_buckets()
                 .set_max_buckets(max_buckets_value)
@@ -26613,7 +26624,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_directory_buckets()
                 .set_continuation_token(continuation_token_value)
@@ -26703,7 +26714,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_multipart_uploads()
                 .set_bucket(bucket_value)
@@ -26796,7 +26807,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_object_annotations()
                 .set_bucket(bucket_value)
@@ -26908,7 +26919,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_object_versions()
                 .set_bucket(bucket_value)
@@ -27015,7 +27026,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_objects()
                 .set_bucket(bucket_value)
@@ -27133,7 +27144,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_objects_v2()
                 .set_bucket(bucket_value)
@@ -27240,7 +27251,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_parts()
                 .set_bucket(bucket_value)
@@ -27314,7 +27325,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_abac()
                 .set_bucket(bucket_value)
@@ -27379,7 +27390,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_accelerate_configuration()
                 .set_bucket(bucket_value)
@@ -27487,7 +27498,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_acl()
                 .set_acl(acl_value)
@@ -27555,7 +27566,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_analytics_configuration()
                 .set_bucket(bucket_value)
@@ -27625,7 +27636,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_cors()
                 .set_bucket(bucket_value)
@@ -27696,7 +27707,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_encryption()
                 .set_bucket(bucket_value)
@@ -27760,7 +27771,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_intelligent_tiering_configuration()
                 .set_bucket(bucket_value)
@@ -27823,7 +27834,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_inventory_configuration()
                 .set_bucket(bucket_value)
@@ -27897,7 +27908,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
@@ -27970,7 +27981,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_logging()
                 .set_bucket(bucket_value)
@@ -28032,7 +28043,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_metrics_configuration()
                 .set_bucket(bucket_value)
@@ -28094,7 +28105,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_notification_configuration()
                 .set_bucket(bucket_value)
@@ -28166,7 +28177,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_ownership_controls()
                 .set_bucket(bucket_value)
@@ -28243,7 +28254,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_policy()
                 .set_bucket(bucket_value)
@@ -28321,7 +28332,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_replication()
                 .set_bucket(bucket_value)
@@ -28393,7 +28404,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_request_payment()
                 .set_bucket(bucket_value)
@@ -28463,7 +28474,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_tagging()
                 .set_bucket(bucket_value)
@@ -28540,7 +28551,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_versioning()
                 .set_bucket(bucket_value)
@@ -28612,7 +28623,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bucket_website()
                 .set_bucket(bucket_value)
@@ -28990,7 +29001,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object()
                 .set_acl(acl_value)
@@ -29165,7 +29176,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_acl()
                 .set_acl(acl_value)
@@ -29340,7 +29351,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_annotation()
                 .set_bucket(bucket_value)
@@ -29444,7 +29455,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_legal_hold()
                 .set_bucket(bucket_value)
@@ -29531,7 +29542,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_lock_configuration()
                 .set_bucket(bucket_value)
@@ -29629,7 +29640,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_retention()
                 .set_bucket(bucket_value)
@@ -29722,7 +29733,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_object_tagging()
                 .set_bucket(bucket_value)
@@ -29796,7 +29807,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_public_access_block()
                 .set_bucket(bucket_value)
@@ -29931,7 +29942,7 @@ impl S3Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .rename_object()
                 .set_bucket(bucket_value)
@@ -30021,7 +30032,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .restore_object()
                 .set_bucket(bucket_value)
@@ -30137,7 +30148,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .select_object_content()
                 .set_bucket(bucket_value)
@@ -30226,7 +30237,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_annotation_table_configuration()
                 .set_bucket(bucket_value)
@@ -30303,7 +30314,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_inventory_table_configuration()
                 .set_bucket(bucket_value)
@@ -30380,7 +30391,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_bucket_metadata_journal_table_configuration()
                 .set_bucket(bucket_value)
@@ -30472,7 +30483,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_object_encryption()
                 .set_bucket(bucket_value)
@@ -30660,7 +30671,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .upload_part()
                 .set_body(body_value)
@@ -30850,7 +30861,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .upload_part_copy()
                 .set_bucket(bucket_value)
@@ -31218,7 +31229,7 @@ impl S3Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .write_get_object_response()
                 .set_request_route(request_route_value)

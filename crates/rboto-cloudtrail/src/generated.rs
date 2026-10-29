@@ -9899,18 +9899,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl CloudTrailClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -9940,7 +9951,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .add_tags()
                 .set_resource_id(resource_id_value)
@@ -9991,7 +10002,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .cancel_query()
                 .set_event_data_store(event_data_store_value)
@@ -10060,7 +10071,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_channel()
                 .set_name(name_value)
@@ -10138,7 +10149,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_dashboard()
                 .set_name(name_value)
@@ -10252,7 +10263,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_event_data_store()
                 .set_name(name_value)
@@ -10384,7 +10395,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_trail()
                 .set_name(name_value)
@@ -10433,7 +10444,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_channel().set_channel(channel_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -10469,7 +10480,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_dashboard()
                 .set_dashboard_id(dashboard_id_value);
@@ -10507,7 +10518,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_event_data_store()
                 .set_event_data_store(event_data_store_value);
@@ -10545,7 +10556,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
@@ -10583,7 +10594,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_trail().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -10619,7 +10630,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .deregister_organization_delegated_admin()
                 .set_delegated_admin_account_id(delegated_admin_account_id_value);
@@ -10684,7 +10695,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_query()
                 .set_event_data_store(event_data_store_value)
@@ -10739,7 +10750,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_trails()
                 .set_trail_name_list(trail_name_list_value)
@@ -10778,7 +10789,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disable_federation()
                 .set_event_data_store(event_data_store_value);
@@ -10823,7 +10834,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .enable_federation()
                 .set_event_data_store(event_data_store_value)
@@ -10875,7 +10886,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .generate_query()
                 .set_event_data_stores(event_data_stores_value)
@@ -10914,7 +10925,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_channel().set_channel(channel_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -10949,7 +10960,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_dashboard().set_dashboard_id(dashboard_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -10991,7 +11002,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_event_configuration()
                 .set_trail_name(trail_name_value)
@@ -11030,7 +11041,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_event_data_store()
                 .set_event_data_store(event_data_store_value);
@@ -11068,7 +11079,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_event_selectors()
                 .set_trail_name(trail_name_value);
@@ -11106,7 +11117,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_import().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11147,7 +11158,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_insight_selectors()
                 .set_trail_name(trail_name_value)
@@ -11212,7 +11223,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_query_results()
                 .set_event_data_store(event_data_store_value)
@@ -11254,7 +11265,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
@@ -11292,7 +11303,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_trail().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11327,7 +11338,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_trail_status().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -11369,7 +11380,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_channels()
                 .set_max_results(max_results_value)
@@ -11428,7 +11439,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_dashboards()
                 .set_name_prefix(name_prefix_value)
@@ -11475,7 +11486,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_event_data_stores()
                 .set_next_token(next_token_value)
@@ -11526,7 +11537,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_import_failures()
                 .set_import_id(import_id_value)
@@ -11586,7 +11597,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_imports()
                 .set_max_results(max_results_value)
@@ -11684,7 +11695,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_insights_data()
                 .set_insight_source(insight_source_value)
@@ -11802,7 +11813,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_insights_metric_data()
                 .set_trail_name(trail_name_value)
@@ -11872,7 +11883,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_public_keys()
                 .set_start_time(start_time_value)
@@ -11954,7 +11965,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_queries()
                 .set_event_data_store(event_data_store_value)
@@ -12008,7 +12019,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags()
                 .set_resource_id_list(resource_id_list_value)
@@ -12046,7 +12057,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.list_trails().set_next_token(next_token_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12130,7 +12141,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .lookup_events()
                 .set_lookup_attributes(lookup_attributes_value)
@@ -12213,7 +12224,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_event_configuration()
                 .set_trail_name(trail_name_value)
@@ -12280,7 +12291,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_event_selectors()
                 .set_trail_name(trail_name_value)
@@ -12346,7 +12357,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_insight_selectors()
                 .set_trail_name(trail_name_value)
@@ -12393,7 +12404,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -12433,7 +12444,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .register_organization_delegated_admin()
                 .set_member_account_id(member_account_id_value);
@@ -12485,7 +12496,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_tags()
                 .set_resource_id(resource_id_value)
@@ -12523,7 +12534,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .restore_event_data_store()
                 .set_event_data_store(event_data_store_value);
@@ -12573,7 +12584,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .search_sample_queries()
                 .set_search_phrase(search_phrase_value)
@@ -12626,7 +12637,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_dashboard_refresh()
                 .set_dashboard_id(dashboard_id_value)
@@ -12665,7 +12676,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
@@ -12743,7 +12754,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_import()
                 .set_destinations(destinations_value)
@@ -12784,7 +12795,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.start_logging().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12851,7 +12862,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_query()
                 .set_query_statement(query_statement_value)
@@ -12892,7 +12903,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
@@ -12930,7 +12941,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.stop_import().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -12965,7 +12976,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.stop_logging().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -13018,7 +13029,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_channel()
                 .set_channel(channel_value)
@@ -13083,7 +13094,7 @@ impl CloudTrailClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_dashboard()
                 .set_dashboard_id(dashboard_id_value)
@@ -13184,7 +13195,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_event_data_store()
                 .set_event_data_store(event_data_store_value)
@@ -13303,7 +13314,7 @@ impl CloudTrailClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_trail()
                 .set_name(name_value)

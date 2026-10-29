@@ -18206,18 +18206,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl CloudWatchLogsClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -18248,7 +18259,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .associate_kms_key()
                 .set_log_group_name(log_group_name_value)
@@ -18294,7 +18305,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .associate_source_to_s3_table_integration()
                 .set_integration_arn(integration_arn_value)
@@ -18335,7 +18346,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.cancel_export_task().set_task_id(task_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18371,7 +18382,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.cancel_import_task().set_import_id(import_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18452,7 +18463,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_delivery()
                 .set_delivery_source_name(delivery_source_name_value)
@@ -18533,7 +18544,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_export_task()
                 .set_task_name(task_name_value)
@@ -18590,7 +18601,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_import_task()
                 .set_import_source_arn(import_source_arn_value)
@@ -18684,7 +18695,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_log_anomaly_detector()
                 .set_log_group_arn_list(log_group_arn_list_value)
@@ -18761,7 +18772,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_log_group()
                 .set_log_group_name(log_group_name_value)
@@ -18809,7 +18820,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_log_stream()
                 .set_log_group_name(log_group_name_value)
@@ -18885,7 +18896,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_lookup_table()
                 .set_lookup_table_name(lookup_table_name_value)
@@ -19035,7 +19046,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_scheduled_query()
                 .set_name(name_value)
@@ -19095,7 +19106,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_account_policy()
                 .set_policy_name(policy_name_value)
@@ -19135,7 +19146,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value);
@@ -19173,7 +19184,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_delivery().set_id(id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -19209,7 +19220,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_delivery_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -19246,7 +19257,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value);
@@ -19284,7 +19295,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_delivery_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -19320,7 +19331,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_destination()
                 .set_destination_name(destination_name_value);
@@ -19359,7 +19370,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_index_policy()
                 .set_log_group_identifier(log_group_identifier_value);
@@ -19403,7 +19414,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_integration()
                 .set_integration_name(integration_name_value)
@@ -19443,7 +19454,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_log_anomaly_detector()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value);
@@ -19481,7 +19492,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_log_group()
                 .set_log_group_name(log_group_name_value);
@@ -19525,7 +19536,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_log_stream()
                 .set_log_group_name(log_group_name_value)
@@ -19564,7 +19575,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_lookup_table()
                 .set_lookup_table_arn(lookup_table_arn_value);
@@ -19608,7 +19619,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_metric_filter()
                 .set_log_group_name(log_group_name_value)
@@ -19648,7 +19659,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_query_definition()
                 .set_query_definition_id(query_definition_id_value);
@@ -19699,7 +19710,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
                 .set_policy_name(policy_name_value)
@@ -19739,7 +19750,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_retention_policy()
                 .set_log_group_name(log_group_name_value);
@@ -19777,7 +19788,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_scheduled_query()
                 .set_identifier(identifier_value);
@@ -19821,7 +19832,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_subscription_filter()
                 .set_log_group_name(log_group_name_value)
@@ -19867,7 +19878,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_syslog_configuration()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -19907,7 +19918,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_transformer()
                 .set_log_group_identifier(log_group_identifier_value);
@@ -19972,7 +19983,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_account_policies()
                 .set_policy_type(policy_type_value)
@@ -20066,7 +20077,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_configuration_templates()
                 .set_service(service_value)
@@ -20128,7 +20139,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_deliveries()
                 .set_next_token(next_token_value)
@@ -20186,7 +20197,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_delivery_destinations()
                 .set_next_token(next_token_value)
@@ -20244,7 +20255,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_delivery_sources()
                 .set_next_token(next_token_value)
@@ -20297,7 +20308,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_destinations()
                 .set_destination_name_prefix(destination_name_prefix_value)
@@ -20357,7 +20368,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_export_tasks()
                 .set_task_id(task_id_value)
@@ -20425,7 +20436,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_field_indexes()
                 .set_log_group_identifiers(log_group_identifiers_value)
@@ -20492,7 +20503,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_import_task_batches()
                 .set_import_id(import_id_value)
@@ -20560,7 +20571,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_import_tasks()
                 .set_import_id(import_id_value)
@@ -20615,7 +20626,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_index_policies()
                 .set_log_group_identifiers(log_group_identifiers_value)
@@ -20715,7 +20726,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_log_groups()
                 .set_account_identifiers(account_identifiers_value)
@@ -20800,7 +20811,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_log_streams()
                 .set_log_group_name(log_group_name_value)
@@ -20857,7 +20868,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_lookup_tables()
                 .set_lookup_table_name_prefix(lookup_table_name_prefix_value)
@@ -20928,7 +20939,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_metric_filters()
                 .set_log_group_name(log_group_name_value)
@@ -20999,7 +21010,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_queries()
                 .set_log_group_name(log_group_name_value)
@@ -21062,7 +21073,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_query_definitions()
                 .set_query_language(query_language_value)
@@ -21123,7 +21134,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_resource_policies()
                 .set_next_token(next_token_value)
@@ -21183,7 +21194,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .describe_subscription_filters()
                 .set_log_group_name(log_group_name_value)
@@ -21231,7 +21242,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disassociate_kms_key()
                 .set_log_group_name(log_group_name_value)
@@ -21270,7 +21281,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disassociate_source_from_s3_table_integration()
                 .set_identifier(identifier_value);
@@ -21384,7 +21395,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .filter_log_events()
                 .set_log_group_name(log_group_name_value)
@@ -21434,7 +21445,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value);
@@ -21472,7 +21483,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_delivery().set_id(id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -21507,7 +21518,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_delivery_destination().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -21544,7 +21555,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value);
@@ -21582,7 +21593,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_delivery_source().set_name(name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -21618,7 +21629,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_integration()
                 .set_integration_name(integration_name_value);
@@ -21657,7 +21668,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_anomaly_detector()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value);
@@ -21744,7 +21755,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_events()
                 .set_log_group_name(log_group_name_value)
@@ -21796,7 +21807,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_fields()
                 .set_data_source_name(data_source_name_value)
@@ -21848,7 +21859,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_group_fields()
                 .set_log_group_name(log_group_name_value)
@@ -21895,7 +21906,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_object()
                 .set_unmask(unmask_value)
@@ -21949,7 +21960,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_log_record()
                 .set_log_record_pointer(log_record_pointer_value)
@@ -21988,7 +21999,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_lookup_table()
                 .set_lookup_table_arn(lookup_table_arn_value);
@@ -22038,7 +22049,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_query_results()
                 .set_query_id(query_id_value)
@@ -22078,7 +22089,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_scheduled_query()
                 .set_identifier(identifier_value);
@@ -22156,7 +22167,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_scheduled_query_history()
                 .set_identifier(identifier_value)
@@ -22193,7 +22204,7 @@ impl CloudWatchLogsClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_storage_tier_policy();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -22230,7 +22241,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_transformer()
                 .set_log_group_identifier(log_group_identifier_value);
@@ -22331,7 +22342,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_aggregate_log_group_summaries()
                 .set_account_identifiers(account_identifiers_value)
@@ -22398,7 +22409,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_anomalies()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value)
@@ -22458,7 +22469,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_integrations()
                 .set_integration_name_prefix(integration_name_prefix_value)
@@ -22511,7 +22522,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_log_anomaly_detectors()
                 .set_filter_log_group_arn(filter_log_group_arn_value)
@@ -22629,7 +22640,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_log_groups()
                 .set_log_group_name_pattern(log_group_name_pattern_value)
@@ -22687,7 +22698,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_log_groups_for_query()
                 .set_query_id(query_id_value)
@@ -22749,7 +22760,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_scheduled_queries()
                 .set_max_results(max_results_value)
@@ -22802,7 +22813,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_sources_for_s3_table_integration()
                 .set_integration_arn(integration_arn_value)
@@ -22861,7 +22872,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_syslog_configurations()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -22902,7 +22913,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -22940,7 +22951,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_log_group()
                 .set_log_group_name(log_group_name_value);
@@ -23007,7 +23018,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_policy()
                 .set_policy_name(policy_name_value)
@@ -23057,7 +23068,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_bearer_token_authentication()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -23103,7 +23114,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -23185,7 +23196,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_delivery_destination()
                 .set_name(name_value)
@@ -23236,7 +23247,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value)
@@ -23312,7 +23323,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_delivery_source()
                 .set_name(name_value)
@@ -23378,7 +23389,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_destination()
                 .set_destination_name(destination_name_value)
@@ -23431,7 +23442,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_destination_policy()
                 .set_destination_name(destination_name_value)
@@ -23478,7 +23489,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_index_policy()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -23531,7 +23542,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_integration()
                 .set_integration_name(integration_name_value)
@@ -23601,7 +23612,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_log_events()
                 .set_log_group_name(log_group_name_value)
@@ -23651,7 +23662,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_log_group_deletion_protection()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -23742,7 +23753,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_metric_filter()
                 .set_log_group_name(log_group_name_value)
@@ -23837,7 +23848,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_query_definition()
                 .set_query_language(query_language_value)
@@ -23900,7 +23911,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_policy()
                 .set_policy_name(policy_name_value)
@@ -23948,7 +23959,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_retention_policy()
                 .set_log_group_name(log_group_name_value)
@@ -23989,7 +24000,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_storage_tier_policy()
                 .set_storage_tier(storage_tier_value);
@@ -24086,7 +24097,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_subscription_filter()
                 .set_log_group_name(log_group_name_value)
@@ -24139,7 +24150,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_syslog_configuration()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -24192,7 +24203,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_transformer()
                 .set_log_group_identifier(log_group_identifier_value)
@@ -24270,7 +24281,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_live_tail()
                 .set_log_group_identifiers(log_group_identifiers_value)
@@ -24379,7 +24390,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .start_query()
                 .set_query_language(query_language_value)
@@ -24423,7 +24434,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.stop_query().set_query_id(query_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -24470,7 +24481,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_log_group()
                 .set_log_group_name(log_group_name_value)
@@ -24520,7 +24531,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -24571,7 +24582,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_metric_filter()
                 .set_filter_pattern(filter_pattern_value)
@@ -24630,7 +24641,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_transformer()
                 .set_transformer_config(transformer_config_value)
@@ -24681,7 +24692,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_log_group()
                 .set_log_group_name(log_group_name_value)
@@ -24732,7 +24743,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -24805,7 +24816,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_anomaly()
                 .set_anomaly_id(anomaly_id_value)
@@ -24873,7 +24884,7 @@ impl CloudWatchLogsClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_delivery_configuration()
                 .set_id(id_value)
@@ -24944,7 +24955,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_log_anomaly_detector()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value)
@@ -25010,7 +25021,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_lookup_table()
                 .set_lookup_table_arn(lookup_table_arn_value)
@@ -25147,7 +25158,7 @@ impl CloudWatchLogsClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_scheduled_query()
                 .set_identifier(identifier_value)

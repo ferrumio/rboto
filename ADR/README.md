@@ -22,9 +22,12 @@ separate from the public documentation under `docs/`.
 - [ADR-0008: Share AWS configuration, credentials, and error mapping through an external Rust crate](0008-shared-aws-core-crate.md)
 - [ADR-0009: Cover the AWS SDK for Python service catalog](0009-expanded-service-catalog.md)
 - [ADR-0010: Validate the newest CPython ABI and smoke-test every release target](0010-python315-validation-and-release-matrix.md)
+- [ADR-0012: Centralize client settings and Python error mapping](0012-client-configuration-and-errors.md)
 - [ADR-0013: Export explicit client classes from the facade](0013-public-client-classes.md)
 - [ADR-0014: Expose asynchronous operation middleware](0014-operation-middleware.md)
 - [ADR-0015: Configure client logging globally with ready-made JSON output](0015-operation-logging.md)
+
+- [ADR-0016: Isolate transport and credential caches per client](0016-client-transport-and-credential-caches.md)
 
 ## Creating an ADR
 

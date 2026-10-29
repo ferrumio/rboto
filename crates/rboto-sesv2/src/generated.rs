@@ -16152,18 +16152,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl SESv2Client {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -16193,7 +16204,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .associate_email_identity_certificate()
                 .set_email_identity(email_identity_value)
@@ -16241,7 +16252,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.batch_get_metric_data().set_queries(queries_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -16277,7 +16288,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.cancel_export_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -16378,7 +16389,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -16440,7 +16451,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_configuration_set_event_destination()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -16514,7 +16525,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_contact()
                 .set_contact_list_name(contact_list_name_value)
@@ -16587,7 +16598,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_contact_list()
                 .set_contact_list_name(contact_list_name_value)
@@ -16673,7 +16684,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_custom_verification_email_template()
                 .set_template_name(template_name_value)
@@ -16738,7 +16749,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_dedicated_ip_pool()
                 .set_pool_name(pool_name_value)
@@ -16803,7 +16814,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_deliverability_test_report()
                 .set_report_name(report_name_value)
@@ -16870,7 +16881,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_email_identity()
                 .set_email_identity(email_identity_value)
@@ -16923,7 +16934,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_email_identity_policy()
                 .set_email_identity(email_identity_value)
@@ -16981,7 +16992,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_email_template()
                 .set_template_name(template_name_value)
@@ -17029,7 +17040,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_export_job()
                 .set_export_data_source(export_data_source_value)
@@ -17076,7 +17087,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_import_job()
                 .set_import_destination(import_destination_value)
@@ -17133,7 +17144,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_multi_region_endpoint()
                 .set_endpoint_name(endpoint_name_value)
@@ -17192,7 +17203,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_tenant()
                 .set_tenant_name(tenant_name_value)
@@ -17238,7 +17249,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_tenant_resource_association()
                 .set_tenant_name(tenant_name_value)
@@ -17278,7 +17289,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value);
@@ -17324,7 +17335,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_configuration_set_event_destination()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -17372,7 +17383,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_contact()
                 .set_contact_list_name(contact_list_name_value)
@@ -17412,7 +17423,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_contact_list()
                 .set_contact_list_name(contact_list_name_value);
@@ -17450,7 +17461,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_custom_verification_email_template()
                 .set_template_name(template_name_value);
@@ -17490,7 +17501,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_dedicated_ip_pool()
                 .set_pool_name(pool_name_value);
@@ -17528,7 +17539,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_email_identity()
                 .set_email_identity(email_identity_value);
@@ -17572,7 +17583,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_email_identity_policy()
                 .set_email_identity(email_identity_value)
@@ -17611,7 +17622,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_email_template()
                 .set_template_name(template_name_value);
@@ -17649,7 +17660,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_multi_region_endpoint()
                 .set_endpoint_name(endpoint_name_value);
@@ -17693,7 +17704,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_suppressed_destination()
                 .set_email_address(email_address_value)
@@ -17732,7 +17743,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_tenant().set_tenant_name(tenant_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -17774,7 +17785,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_tenant_resource_association()
                 .set_tenant_name(tenant_name_value)
@@ -17819,7 +17830,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .disassociate_email_identity_certificate()
                 .set_email_identity(email_identity_value)
@@ -17854,7 +17865,7 @@ impl SESv2Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_account();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -17896,7 +17907,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_blacklist_reports()
                 .set_blacklist_item_names(blacklist_item_names_value);
@@ -17935,7 +17946,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value);
@@ -17974,7 +17985,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_configuration_set_event_destinations()
                 .set_configuration_set_name(configuration_set_name_value);
@@ -18021,7 +18032,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_contact()
                 .set_contact_list_name(contact_list_name_value)
@@ -18060,7 +18071,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_contact_list()
                 .set_contact_list_name(contact_list_name_value);
@@ -18098,7 +18109,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_custom_verification_email_template()
                 .set_template_name(template_name_value);
@@ -18138,7 +18149,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_dedicated_ip().set_ip(ip_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18174,7 +18185,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_dedicated_ip_pool()
                 .set_pool_name(pool_name_value);
@@ -18224,7 +18235,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_dedicated_ips()
                 .set_pool_name(pool_name_value)
@@ -18258,7 +18269,7 @@ impl SESv2Client {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_deliverability_dashboard_options();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18296,7 +18307,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_deliverability_test_report()
                 .set_report_id(report_id_value);
@@ -18334,7 +18345,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_domain_deliverability_campaign()
                 .set_campaign_id(campaign_id_value);
@@ -18394,7 +18405,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_domain_statistics_report()
                 .set_domain(domain_value)
@@ -18434,7 +18445,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_email_address_insights()
                 .set_email_address(email_address_value);
@@ -18472,7 +18483,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_email_identity()
                 .set_email_identity(email_identity_value);
@@ -18510,7 +18521,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_email_identity_policies()
                 .set_email_identity(email_identity_value);
@@ -18548,7 +18559,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_email_template()
                 .set_template_name(template_name_value);
@@ -18586,7 +18597,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_export_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18622,7 +18633,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_import_job().set_job_id(job_id_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18658,7 +18669,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_message_insights()
                 .set_message_id(message_id_value);
@@ -18696,7 +18707,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_multi_region_endpoint()
                 .set_endpoint_name(endpoint_name_value);
@@ -18744,7 +18755,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_reputation_entity()
                 .set_reputation_entity_reference(reputation_entity_reference_value)
@@ -18789,7 +18800,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_suppressed_destination()
                 .set_email_address(email_address_value)
@@ -18828,7 +18839,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_tenant().set_tenant_name(tenant_name_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -18883,7 +18894,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_configuration_sets()
                 .set_filter(filter_value)
@@ -18929,7 +18940,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_contact_lists()
                 .set_page_size(page_size_value)
@@ -18987,7 +18998,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_contacts()
                 .set_contact_list_name(contact_list_name_value)
@@ -19034,7 +19045,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_custom_verification_email_templates()
                 .set_next_token(next_token_value)
@@ -19081,7 +19092,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_dedicated_ip_pools()
                 .set_next_token(next_token_value)
@@ -19126,7 +19137,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_deliverability_test_reports()
                 .set_next_token(next_token_value)
@@ -19200,7 +19211,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_domain_deliverability_campaigns()
                 .set_start_date(start_date_value)
@@ -19264,7 +19275,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_email_identities()
                 .set_filter(filter_value)
@@ -19316,7 +19327,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_email_identity_certificates()
                 .set_email_identity(email_identity_value)
@@ -19362,7 +19373,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_email_templates()
                 .set_next_token(next_token_value)
@@ -19423,7 +19434,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_export_jobs()
                 .set_next_token(next_token_value)
@@ -19479,7 +19490,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_import_jobs()
                 .set_import_destination_type(import_destination_type_value)
@@ -19525,7 +19536,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_multi_region_endpoints()
                 .set_next_token(next_token_value)
@@ -19585,7 +19596,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_recommendations()
                 .set_filter(filter_value)
@@ -19645,7 +19656,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_reputation_entities()
                 .set_filter(filter_value)
@@ -19697,7 +19708,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_resource_tenants()
                 .set_resource_arn(resource_arn_value)
@@ -19785,7 +19796,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_suppressed_destinations()
                 .set_tenant_name(tenant_name_value)
@@ -19828,7 +19839,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
@@ -19893,7 +19904,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tenant_resources()
                 .set_tenant_name(tenant_name_value)
@@ -19954,7 +19965,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_tenants()
                 .set_filter(filter_value)
@@ -19994,7 +20005,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_dedicated_ip_warmup_attributes()
                 .set_auto_warmup_enabled(auto_warmup_enabled_value);
@@ -20076,7 +20087,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_details()
                 .set_mail_type(mail_type_value)
@@ -20120,7 +20131,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.put_account_pricing_attributes().set_plan(plan_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -20156,7 +20167,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_sending_attributes()
                 .set_sending_enabled(sending_enabled_value);
@@ -20210,7 +20221,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_suppression_attributes()
                 .set_suppressed_reasons(suppressed_reasons_value)
@@ -20249,7 +20260,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_account_vdm_attributes()
                 .set_vdm_attributes(vdm_attributes_value);
@@ -20294,7 +20305,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_archiving_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20357,7 +20368,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_delivery_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20408,7 +20419,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_reputation_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20456,7 +20467,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_sending_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20529,7 +20540,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_suppression_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20587,7 +20598,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_tracking_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20636,7 +20647,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_configuration_set_vdm_options()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -20682,7 +20693,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_in_pool()
                 .set_ip(ip_value)
@@ -20728,7 +20739,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_pool_scaling_attributes()
                 .set_pool_name(pool_name_value)
@@ -20776,7 +20787,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_dedicated_ip_warmup_attributes()
                 .set_ip(ip_value)
@@ -20830,7 +20841,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_deliverability_dashboard_option()
                 .set_dashboard_enabled(dashboard_enabled_value)
@@ -20876,7 +20887,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_email_identity_configuration_set_attributes()
                 .set_email_identity(email_identity_value)
@@ -20923,7 +20934,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_email_identity_dkim_attributes()
                 .set_email_identity(email_identity_value)
@@ -20979,7 +20990,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_email_identity_dkim_signing_attributes()
                 .set_email_identity(email_identity_value)
@@ -21028,7 +21039,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_email_identity_feedback_attributes()
                 .set_email_identity(email_identity_value)
@@ -21084,7 +21095,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_email_identity_mail_from_attributes()
                 .set_email_identity(email_identity_value)
@@ -21140,7 +21151,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_suppressed_destination()
                 .set_email_address(email_address_value)
@@ -21204,7 +21215,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_tenant_suppression_attributes()
                 .set_tenant_name(tenant_name_value)
@@ -21338,7 +21349,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_bulk_email()
                 .set_from_email_address(from_email_address_value)
@@ -21402,7 +21413,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_custom_verification_email()
                 .set_email_address(email_address_value)
@@ -21535,7 +21546,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_email()
                 .set_from_email_address(from_email_address_value)
@@ -21598,7 +21609,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -21642,7 +21653,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .test_render_email_template()
                 .set_template_name(template_name_value)
@@ -21693,7 +21704,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
@@ -21740,7 +21751,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -21794,7 +21805,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_configuration_set_event_destination()
                 .set_configuration_set_name(configuration_set_name_value)
@@ -21868,7 +21879,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_contact()
                 .set_contact_list_name(contact_list_name_value)
@@ -21929,7 +21940,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_contact_list()
                 .set_contact_list_name(contact_list_name_value)
@@ -22002,7 +22013,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_custom_verification_email_template()
                 .set_template_name(template_name_value)
@@ -22059,7 +22070,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_email_identity_policy()
                 .set_email_identity(email_identity_value)
@@ -22105,7 +22116,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_email_template()
                 .set_template_name(template_name_value)
@@ -22162,7 +22173,7 @@ impl SESv2Client {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_reputation_entity_customer_managed_status()
                 .set_reputation_entity_type(reputation_entity_type_value)
@@ -22221,7 +22232,7 @@ impl SESv2Client {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_reputation_entity_policy()
                 .set_reputation_entity_type(reputation_entity_type_value)

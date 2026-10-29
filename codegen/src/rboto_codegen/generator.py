@@ -975,7 +975,7 @@ class ServiceGenerator:
         lines.extend(
             [
                 "        future_into_py(py, async move {",
-                "            let client = state.client().await;",
+                "            let client = state.client().await?;",
                 f"            let request = client.{operation_name}()",
             ]
         )

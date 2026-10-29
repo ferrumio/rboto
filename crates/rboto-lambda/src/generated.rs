@@ -23539,18 +23539,29 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
 #[pymethods]
 impl LambdaClient {
     #[new]
-    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None))]
-    fn new(region: Option<String>, profile: Option<String>, endpoint_url: Option<String>) -> Self {
-        Self {
+    #[pyo3(signature = (*, region=None, profile=None, endpoint_url=None, config=None))]
+    fn new(
+        region: Option<String>,
+        profile: Option<String>,
+        endpoint_url: Option<String>,
+        config: Option<RequestConfig>,
+        py: Python<'_>,
+    ) -> PyResult<Self> {
+        let options = config.unwrap_or_default();
+        options
+            .validate()
+            .map_err(|message| rboto_core::raise_core_error(py, "ConfigurationError", message))?;
+        Ok(Self {
             state: Arc::new(ClientState {
                 config: ClientConfig {
                     region,
                     profile,
                     endpoint_url,
+                    options,
                 },
                 client: OnceCell::new(),
             }),
-        }
+        })
     }
 
     #[pyo3(signature = (params, observation=None))]
@@ -23604,7 +23615,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .add_layer_version_permission()
                 .set_layer_name(layer_name_value)
@@ -23719,7 +23730,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .add_permission()
                 .set_function_name(function_name_value)
@@ -23793,7 +23804,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .checkpoint_durable_execution()
                 .set_durable_execution_arn(durable_execution_arn_value)
@@ -23858,7 +23869,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_alias()
                 .set_function_name(function_name_value)
@@ -23957,7 +23968,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value)
@@ -24029,7 +24040,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_code_signing_config()
                 .set_description(description_value)
@@ -24287,7 +24298,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_event_source_mapping()
                 .set_event_source_arn(event_source_arn_value)
@@ -24554,7 +24565,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_function()
                 .set_function_name(function_name_value)
@@ -24646,7 +24657,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .create_function_url_config()
                 .set_function_name(function_name_value)
@@ -24694,7 +24705,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_alias()
                 .set_function_name(function_name_value)
@@ -24733,7 +24744,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value);
@@ -24772,7 +24783,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value);
@@ -24810,7 +24821,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.delete_event_source_mapping().set_uuid(uuid_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -24852,7 +24863,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_function()
                 .set_function_name(function_name_value)
@@ -24891,7 +24902,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_function_code_signing_config()
                 .set_function_name(function_name_value);
@@ -24929,7 +24940,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_function_concurrency()
                 .set_function_name(function_name_value);
@@ -24973,7 +24984,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_function_event_invoke_config()
                 .set_function_name(function_name_value)
@@ -25018,7 +25029,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_function_url_config()
                 .set_function_name(function_name_value)
@@ -25063,7 +25074,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_layer_version()
                 .set_layer_name(layer_name_value)
@@ -25108,7 +25119,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_provisioned_concurrency_config()
                 .set_function_name(function_name_value)
@@ -25155,7 +25166,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -25188,7 +25199,7 @@ impl LambdaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let state = self.state.clone();
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_account_settings();
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -25230,7 +25241,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_alias()
                 .set_function_name(function_name_value)
@@ -25269,7 +25280,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value);
@@ -25308,7 +25319,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value);
@@ -25354,7 +25365,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_durable_execution()
                 .set_durable_execution_arn(durable_execution_arn_value)
@@ -25419,7 +25430,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_durable_execution_history()
                 .set_durable_execution_arn(durable_execution_arn_value)
@@ -25480,7 +25491,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_durable_execution_state()
                 .set_durable_execution_arn(durable_execution_arn_value)
@@ -25521,7 +25532,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_event_source_mapping().set_uuid(uuid_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -25563,7 +25574,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function()
                 .set_function_name(function_name_value)
@@ -25601,7 +25612,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_code_signing_config()
                 .set_function_name(function_name_value);
@@ -25639,7 +25650,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_concurrency()
                 .set_function_name(function_name_value);
@@ -25683,7 +25694,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_configuration()
                 .set_function_name(function_name_value)
@@ -25728,7 +25739,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_event_invoke_config()
                 .set_function_name(function_name_value)
@@ -25767,7 +25778,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_recursion_config()
                 .set_function_name(function_name_value);
@@ -25811,7 +25822,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_scaling_config()
                 .set_function_name(function_name_value)
@@ -25856,7 +25867,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_function_url_config()
                 .set_function_name(function_name_value)
@@ -25901,7 +25912,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_layer_version()
                 .set_layer_name(layer_name_value)
@@ -25940,7 +25951,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.get_layer_version_by_arn().set_arn(arn_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -25982,7 +25993,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_layer_version_policy()
                 .set_layer_name(layer_name_value)
@@ -26027,7 +26038,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_policy()
                 .set_function_name(function_name_value)
@@ -26071,7 +26082,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_provisioned_concurrency_config()
                 .set_function_name(function_name_value)
@@ -26110,7 +26121,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
@@ -26154,7 +26165,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .get_runtime_management_config()
                 .set_function_name(function_name_value)
@@ -26240,7 +26251,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke()
                 .set_function_name(function_name_value)
@@ -26291,7 +26302,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_async()
                 .set_function_name(function_name_value)
@@ -26370,7 +26381,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .invoke_with_response_stream()
                 .set_function_name(function_name_value)
@@ -26457,7 +26468,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_aliases()
                 .set_function_name(function_name_value)
@@ -26511,7 +26522,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_capacity_providers()
                 .set_state(state_value)
@@ -26557,7 +26568,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_code_signing_configs()
                 .set_marker(marker_value)
@@ -26663,7 +26674,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_durable_executions_by_function()
                 .set_function_name(function_name_value)
@@ -26727,7 +26738,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_event_source_mappings()
                 .set_event_source_arn(event_source_arn_value)
@@ -26780,7 +26791,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_function_event_invoke_configs()
                 .set_function_name(function_name_value)
@@ -26832,7 +26843,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_function_url_configs()
                 .set_function_name(function_name_value)
@@ -26885,7 +26896,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_function_versions_by_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value)
@@ -26947,7 +26958,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_functions()
                 .set_master_region(master_region_value)
@@ -27001,7 +27012,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_functions_by_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value)
@@ -27070,7 +27081,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_layer_versions()
                 .set_compatible_architecture(compatible_architecture_value)
@@ -27135,7 +27146,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_layers()
                 .set_compatible_architecture(compatible_architecture_value)
@@ -27187,7 +27198,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_provisioned_concurrency_configs()
                 .set_function_name(function_name_value)
@@ -27229,7 +27240,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client.list_tags().set_resource(resource_value);
             let result = if let Some(sink) = observation {
                 let observer = rboto_core::OperationObservation::default();
@@ -27276,7 +27287,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .list_versions_by_function()
                 .set_function_name(function_name_value)
@@ -27364,7 +27375,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .publish_layer_version()
                 .set_layer_name(layer_name_value)
@@ -27434,7 +27445,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .publish_version()
                 .set_function_name(function_name_value)
@@ -27483,7 +27494,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_function_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value)
@@ -27529,7 +27540,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_function_concurrency()
                 .set_function_name(function_name_value)
@@ -27595,7 +27606,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_function_event_invoke_config()
                 .set_function_name(function_name_value)
@@ -27645,7 +27656,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_function_recursion_config()
                 .set_function_name(function_name_value)
@@ -27697,7 +27708,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_function_scaling_config()
                 .set_function_name(function_name_value)
@@ -27750,7 +27761,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_provisioned_concurrency_config()
                 .set_function_name(function_name_value)
@@ -27802,7 +27813,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
@@ -27864,7 +27875,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .put_runtime_management_config()
                 .set_function_name(function_name_value)
@@ -27923,7 +27934,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_layer_version_permission()
                 .set_layer_name(layer_name_value)
@@ -27982,7 +27993,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .remove_permission()
                 .set_function_name(function_name_value)
@@ -28029,7 +28040,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_failure()
                 .set_callback_id(callback_id_value)
@@ -28070,7 +28081,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_heartbeat()
                 .set_callback_id(callback_id_value);
@@ -28117,7 +28128,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .send_durable_execution_callback_success()
                 .set_callback_id(callback_id_value)
@@ -28165,7 +28176,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .stop_durable_execution()
                 .set_durable_execution_arn(durable_execution_arn_value)
@@ -28216,7 +28227,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .tag_resource()
                 .set_resource(resource_value)
@@ -28266,7 +28277,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .untag_resource()
                 .set_resource(resource_value)
@@ -28335,7 +28346,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_alias()
                 .set_function_name(function_name_value)
@@ -28397,7 +28408,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value)
@@ -28459,7 +28470,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value)
@@ -28653,7 +28664,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_event_source_mapping()
                 .set_uuid(uuid_value)
@@ -28805,7 +28816,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_function_code()
                 .set_function_name(function_name_value)
@@ -28992,7 +29003,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_function_configuration()
                 .set_function_name(function_name_value)
@@ -29077,7 +29088,7 @@ impl LambdaClient {
                 None
             };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_function_event_invoke_config()
                 .set_function_name(function_name_value)
@@ -29146,7 +29157,7 @@ impl LambdaClient {
             None
         };
         future_into_py(py, async move {
-            let client = state.client().await;
+            let client = state.client().await?;
             let request = client
                 .update_function_url_config()
                 .set_function_name(function_name_value)
