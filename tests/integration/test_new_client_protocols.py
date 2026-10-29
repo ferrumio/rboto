@@ -133,7 +133,10 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
 
 @pytest.mark.asyncio
 @service("dynamodb")
-async def test_query_paginator_forwards_native_keys_and_middleware_per_page(peer: Peer) -> None:
+async def test_query_paginator_forwards_native_keys_and_middleware_per_page(
+    peer: Peer,
+    json_logging: io.StringIO,
+) -> None:
     from rboto import DynamoDBClient, configure_logging
     from rboto_dynamodb import QueryOutput
 
@@ -151,33 +154,29 @@ async def test_query_paginator_forwards_native_keys_and_middleware_per_page(peer
         "Items": [], "Count": 0,
         "LastEvaluatedKey": {"pk": {"S": "a"}, "sk": {"B": base64.b64encode(b"b").decode()}},
     }).encode()
-    logs = io.StringIO()
-    configure_logging(stream=logs)
-    try:
-        pages = client.paginators.query(table_name="example", limit=1)
-        assert peer.requests == []
-        first = await anext(pages)
-        assert isinstance(first, QueryOutput)
-        assert not first.items
-        cursor = first.last_evaluated_key
-        assert cursor is not None
-        cursor.clear()
-        peer.body = b'{"Items":[{"pk":{"S":"last"}}],"Count":1}'
-        second = await anext(pages)
-        assert second.items == [{"pk": {"s": "last"}}]
-        with pytest.raises(StopAsyncIteration):
-            await anext(pages)
-        assert len(peer.requests) == len(observations) == 2
-        request = json.loads(peer.requests[1][1])
-        assert request["ExclusiveStartKey"] == {"pk": {"S": "a"}, "sk": {"B": "Yg=="}}
-        assert request["TableName"] == "example" and request["Limit"] == 1
-        assert all(item.metadata.dispatched for item in observations)
-        events = [json.loads(line) for line in logs.getvalue().splitlines()]
-        assert len(events) == 2
-        assert all(event["operation"] == "Query" and event["outcome"] == "success"
-                   for event in events)
-    finally:
-        configure_logging(level="OFF")
+    configure_logging(stream=json_logging)
+    pages = client.paginators.query(table_name="example", limit=1)
+    assert peer.requests == []
+    first = await anext(pages)
+    assert isinstance(first, QueryOutput)
+    assert not first.items
+    cursor = first.last_evaluated_key
+    assert cursor is not None
+    cursor.clear()
+    peer.body = b'{"Items":[{"pk":{"S":"last"}}],"Count":1}'
+    second = await anext(pages)
+    assert second.items == [{"pk": {"s": "last"}}]
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert len(peer.requests) == len(observations) == 2
+    request = json.loads(peer.requests[1][1])
+    assert request["ExclusiveStartKey"] == {"pk": {"S": "a"}, "sk": {"B": "Yg=="}}
+    assert request["TableName"] == "example" and request["Limit"] == 1
+    assert all(item.metadata.dispatched for item in observations)
+    events = [json.loads(line) for line in json_logging.getvalue().splitlines()]
+    assert len(events) == 2
+    assert all(event["operation"] == "Query" and event["outcome"] == "success"
+               for event in events)
 
 
 @pytest.mark.asyncio
