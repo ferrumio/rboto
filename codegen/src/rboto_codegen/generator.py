@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
+from .documentation import render_service_readme
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
 from .registry import list_services
@@ -32,6 +33,8 @@ class GeneratedPaths:
     core_stub: Path
     cargo: Path
     pyproject: Path
+    readme: Path
+    license: Path
     package_init: Path
     py_typed: Path
     rust_runtime: Path
@@ -138,6 +141,10 @@ class ServiceGenerator:
             cargo=self.repository_root / f"crates/{self.descriptor.distribution_name}/Cargo.toml",
             pyproject=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/pyproject.toml",
+            readme=self.repository_root
+            / f"packages/{self.descriptor.distribution_name}/README.md",
+            license=self.repository_root
+            / f"packages/{self.descriptor.distribution_name}/LICENSE",
             package_init=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/__init__.py",
@@ -165,6 +172,8 @@ class ServiceGenerator:
             paths.core_stub,
             paths.cargo,
             paths.pyproject,
+            paths.readme,
+            paths.license,
             paths.package_init,
             paths.py_typed,
             paths.rust_runtime,
@@ -183,12 +192,18 @@ class ServiceGenerator:
         )
         _write_generated(paths.cargo, self._render_cargo())
         _write_generated(paths.pyproject, self._render_pyproject())
+        _write_generated(paths.license, (self.repository_root / "LICENSE").read_text())
         _write_generated(paths.package_init, self._render_package_init())
         _write_generated(paths.py_typed, "")
         _write_generated(paths.rust_runtime, self._render_rust_runtime())
         _write_generated(paths.rust, self._render_rust())
         _write_generated(paths.types, self._render_python_types())
-        _write_generated(paths.client, self._render_python_client())
+        client_source = self._render_python_client()
+        _write_generated(paths.client, client_source)
+        _write_generated(
+            paths.readme,
+            render_service_readme(self.descriptor, client_source, self.repository_root),
+        )
         _write_generated(paths.native_stub, self._render_native_stub())
         _write_generated(paths.exceptions, self._render_exceptions())
         return paths

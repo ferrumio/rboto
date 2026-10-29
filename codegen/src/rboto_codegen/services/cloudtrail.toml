@@ -1,4 +1,6 @@
 service_id = "cloudtrail"
+display_name = "AWS CloudTrail"
+documentation_path = "clients/"
 python_name = "cloudtrail"
 distribution_name = "rboto-cloudtrail"
 python_package = "rboto_cloudtrail"

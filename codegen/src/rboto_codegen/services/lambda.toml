@@ -1,4 +1,6 @@
 service_id = "lambda"
+display_name = "AWS Lambda"
+documentation_path = "guides/inference/"
 python_name = "lambda_"
 distribution_name = "rboto-lambda"
 python_package = "rboto_lambda"

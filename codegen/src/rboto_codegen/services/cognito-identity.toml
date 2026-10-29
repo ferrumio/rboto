@@ -1,4 +1,6 @@
 service_id = "cognito-identity"
+display_name = "Amazon Cognito Identity"
+documentation_path = "clients/"
 python_name = "cognito_identity"
 distribution_name = "rboto-cognito-identity"
 python_package = "rboto_cognito_identity"

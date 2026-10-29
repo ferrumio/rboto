@@ -9,6 +9,8 @@
 [![Typing](https://img.shields.io/badge/typing-strict-blue)](docs/clients.md)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
+**Preview (Alpha).** rboto is under active development. APIs may change between releases.
+
 rboto provides typed, async-only Python clients for 34 services. Install your
 clients, await operations, and read typed response attributes.
 

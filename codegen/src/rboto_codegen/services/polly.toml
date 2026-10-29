@@ -1,4 +1,6 @@
 service_id = "polly"
+display_name = "Amazon Polly"
+documentation_path = "clients/"
 python_name = "polly"
 distribution_name = "rboto-polly"
 python_package = "rboto_polly"

@@ -1,4 +1,6 @@
 service_id = "sfn"
+display_name = "AWS Step Functions"
+documentation_path = "guides/application-services/"
 python_name = "sfn"
 distribution_name = "rboto-sfn"
 python_package = "rboto_sfn"

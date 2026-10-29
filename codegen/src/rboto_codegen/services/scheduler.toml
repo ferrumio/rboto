@@ -1,4 +1,6 @@
 service_id = "scheduler"
+display_name = "Amazon EventBridge Scheduler"
+documentation_path = "guides/events/"
 python_name = "scheduler"
 distribution_name = "rboto-scheduler"
 python_package = "rboto_scheduler"

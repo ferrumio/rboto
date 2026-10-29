@@ -1,4 +1,6 @@
 service_id = "bedrock-agent-runtime"
+display_name = "Amazon Bedrock Agent Runtime"
+documentation_path = "clients/"
 python_name = "bedrock_agent_runtime"
 distribution_name = "rboto-bedrock-agent-runtime"
 python_package = "rboto_bedrock_agent_runtime"

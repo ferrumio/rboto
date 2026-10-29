@@ -1,4 +1,6 @@
 service_id = "sqs"
+display_name = "Amazon SQS"
+documentation_path = "guides/messaging/"
 python_name = "sqs"
 distribution_name = "rboto-sqs"
 python_package = "rboto_sqs"

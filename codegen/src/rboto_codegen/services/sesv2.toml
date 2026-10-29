@@ -1,4 +1,6 @@
 service_id = "sesv2"
+display_name = "Amazon SES V2"
+documentation_path = "guides/application-services/"
 python_name = "sesv2"
 distribution_name = "rboto-sesv2"
 python_package = "rboto_sesv2"

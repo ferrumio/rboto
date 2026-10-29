@@ -1,4 +1,6 @@
 service_id = "ssm"
+display_name = "AWS Systems Manager"
+documentation_path = "guides/application-services/"
 python_name = "ssm"
 distribution_name = "rboto-ssm"
 python_package = "rboto_ssm"

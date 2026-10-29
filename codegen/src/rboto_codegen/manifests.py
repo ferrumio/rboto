@@ -28,7 +28,7 @@ def render_pyproject(descriptor: ServiceDescriptor, repository_root: Path) -> st
     workspace = tomllib.loads((repository_root / "Cargo.toml").read_text())
     version = workspace["workspace"]["package"]["version"]
     return template_environment().get_template("pyproject.toml.j2").render(
-        **asdict(descriptor), version=version
+        **asdict(descriptor), version=version, public_name=descriptor.public_name,
     )
 
 
@@ -40,6 +40,7 @@ def generate_manifests(
     for path, content in (
         (cargo, render_cargo(descriptor)),
         (pyproject, render_pyproject(descriptor, repository_root)),
+        (pyproject.parent / "LICENSE", (repository_root / "LICENSE").read_text()),
     ):
         path.parent.mkdir(parents=True, exist_ok=True)
         if not path.exists() or path.read_text() != content:

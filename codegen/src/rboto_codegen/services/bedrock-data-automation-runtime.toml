@@ -1,4 +1,6 @@
 service_id = "bedrock-data-automation-runtime"
+display_name = "Amazon Bedrock Data Automation Runtime"
+documentation_path = "clients/"
 python_name = "bedrock_data_automation_runtime"
 distribution_name = "rboto-bedrock-data-automation-runtime"
 python_package = "rboto_bedrock_data_automation_runtime"

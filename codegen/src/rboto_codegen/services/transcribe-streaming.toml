@@ -1,4 +1,6 @@
 service_id = "transcribe-streaming"
+display_name = "Amazon Transcribe Streaming"
+documentation_path = "clients/"
 python_name = "transcribe_streaming"
 distribution_name = "rboto-transcribe-streaming"
 python_package = "rboto_transcribe_streaming"

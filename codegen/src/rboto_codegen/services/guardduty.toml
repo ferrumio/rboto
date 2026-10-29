@@ -1,4 +1,6 @@
 service_id = "guardduty"
+display_name = "Amazon GuardDuty"
+documentation_path = "clients/"
 python_name = "guardduty"
 distribution_name = "rboto-guardduty"
 python_package = "rboto_guardduty"

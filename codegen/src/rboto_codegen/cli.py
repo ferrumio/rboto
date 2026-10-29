@@ -108,6 +108,8 @@ def main() -> None:
                 generated.core_stub,
                 generated.cargo,
                 generated.pyproject,
+                generated.readme,
+                generated.license,
                 generated.package_init,
                 generated.py_typed,
                 generated.rust_runtime,

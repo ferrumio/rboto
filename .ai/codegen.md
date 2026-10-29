@@ -6,6 +6,10 @@
 - Parsed descriptor fields: edit `model.py` and `registry.py`.
 - Type conversion or operation behavior: edit `generator.py`.
 - Repeated file structure: edit a Jinja template.
+- Package descriptions and guide paths: edit `display_name` and `documentation_path`
+  in the service descriptor.
+- Package usage examples: edit `examples/clients/<python_name>.py`. README operation
+  tables and full signatures come from the in-memory Python API during generation.
 - Handwritten runtime behavior: edit the relevant non-generated Rust runtime file.
 
 Do not add service-name branches to generic generation until a declarative customization

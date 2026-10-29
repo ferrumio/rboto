@@ -1,4 +1,6 @@
 service_id = "sagemaker-runtime-http2"
+display_name = "Amazon SageMaker Runtime HTTP/2"
+documentation_path = "clients/"
 python_name = "sagemaker_runtime_http2"
 distribution_name = "rboto-sagemaker-runtime-http2"
 python_package = "rboto_sagemaker_runtime_http2"

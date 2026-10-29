@@ -20,6 +20,12 @@ class ServiceDescriptor:
     force_path_style_for_custom_endpoint: bool = False
     native_outputs: bool = False
     native_client_class: str | None = None
+    display_name: str | None = None
+    documentation_path: str = "clients/"
+
+    @property
+    def public_name(self) -> str:
+        return self.display_name or self.service_id
 
     @property
     def native_class(self) -> str:

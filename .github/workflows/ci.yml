@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e packages/rboto pytest mypy pyright ruff "pydantic>=2,<3"
+          .venv/bin/pip install -e codegen -e packages/rboto pytest mypy pyright ruff "pydantic>=2,<3" build hatchling twine
 
       - name: Service catalog
         id: catalog
@@ -60,6 +60,12 @@ jobs:
 
       - name: Version consistency
         run: .venv/bin/python .github/scripts/check_version.py
+
+      - name: Package metadata and READMEs
+        run: |
+          .venv/bin/python -m build --no-isolation --outdir dist/core packages/rboto
+          .venv/bin/python -m build --no-isolation --outdir dist/codegen codegen
+          .venv/bin/twine check --strict dist/core/* dist/codegen/*
 
   rust-quality:
     name: Rust quality
@@ -108,9 +114,12 @@ jobs:
         shell: bash
         run: |
           python -m venv .venv
-          .venv/bin/pip install packages/rboto -e codegen pytest pytest-asyncio "pydantic>=2,<3"
+          .venv/bin/pip install packages/rboto -e codegen pytest pytest-asyncio "pydantic>=2,<3" twine
           .venv/bin/pip install packages/rboto-${{ matrix.service }}/dist/*.whl
           .venv/bin/python -c "import importlib; importlib.import_module('rboto_${{ matrix.service }}'.replace('-', '_'))"
+
+      - name: Check wheel metadata and README
+        run: .venv/bin/twine check --strict packages/rboto-${{ matrix.service }}/dist/*.whl
 
       - name: Compiled method contracts
         env:

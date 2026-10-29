@@ -1,4 +1,6 @@
 service_id = "eventbridge"
+display_name = "Amazon EventBridge"
+documentation_path = "guides/events/"
 python_name = "eventbridge"
 distribution_name = "rboto-eventbridge"
 python_package = "rboto_eventbridge"

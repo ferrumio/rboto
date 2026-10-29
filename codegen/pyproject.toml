@@ -5,29 +5,32 @@ build-backend = "hatchling.build"
 [project]
 name = "rboto-codegen"
 version = "0.1.0"
-description = "Python code generator for rboto service packages"
+description = "rboto: generate typed Python clients, Rust bindings, and operation references. Alpha preview."
+readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
     { name = "Leandro Cavalcante Damascena", email = "leandro.damascena@gmail.com" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3.15",
 ]
-keywords = ["aws", "smithy", "codegen", "rust", "python"]
+keywords = ["rboto", "smithy", "codegen", "rust", "python"]
 dependencies = ["jinja2>=3.1"]
 
 [project.urls]
 Documentation = "https://ferrumio.github.io/rboto"
 Repository = "https://github.com/ferrumio/rboto"
-Homepage = "https://github.com/ferrumio/rboto"
+Homepage = "https://ferrumio.github.io/rboto/"
+Issues = "https://github.com/ferrumio/rboto/issues"
+Changelog = "https://github.com/ferrumio/rboto/releases"
 
 [project.scripts]
 rboto-codegen = "rboto_codegen.cli:main"
