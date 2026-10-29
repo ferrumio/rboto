@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from .model import ServiceDescriptor
+from .model import Pagination, ServiceDescriptor
 
 
 @dataclass(frozen=True, slots=True)
@@ -45,6 +45,7 @@ class SmithyOperation:
     output_target: str | None
     errors: tuple[str, ...]
     documentation: str
+    pagination: Pagination | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -192,6 +193,10 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
         raise ValueError(f"expected one service shape, found {len(service_entries)}")
     service_shape = service_entries[0]
     raw_service = _dict(raw_shapes[service_shape.shape_id], service_shape.shape_id)
+    pagination_defaults = _dict(
+        _traits(raw_service.get("traits")).get("smithy.api#paginated", {}),
+        "service pagination defaults",
+    )
     # Operations may be attached to nested resources rather than the service.
     operation_ids: set[str] = set()
     visited_resources: set[str] = set()
@@ -239,6 +244,18 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             for error in cast(list[object], raw_errors)
         )
         operation_traits = _traits(raw_operation.get("traits"))
+        pagination: Pagination | None = None
+        if "smithy.api#paginated" in operation_traits:
+            settings = {
+                **pagination_defaults,
+                **_dict(operation_traits["smithy.api#paginated"], "operation pagination"),
+            }
+            pagination = Pagination(
+                (_string(settings.get("inputToken"), f"{operation_id}.inputToken"),),
+                (_string(settings.get("outputToken"), f"{operation_id}.outputToken"),),
+                _string(settings["pageSize"], f"{operation_id}.pageSize")
+                if "pageSize" in settings else None,
+            )
         name = short_name(operation_id)
         operations.append(
             SmithyOperation(
@@ -249,6 +266,7 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
                 output_target=target("output"),
                 errors=errors,
                 documentation=str(operation_traits.get("smithy.api#documentation", "")),
+                pagination=pagination,
             )
         )
 

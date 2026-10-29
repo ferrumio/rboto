@@ -40,6 +40,8 @@ from .types import (
     ThrottleSettings,
     TlsConfig,
 )
+from .paginators import APIGatewayClientPaginators as _Paginators
+
 
 
 class APIGatewayClient:
@@ -68,6 +70,14 @@ class APIGatewayClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def create_api_key(
@@ -78,7 +88,7 @@ class APIGatewayClient:
         enabled: bool | None = None,
         generate_distinct_id: bool | None = None,
         value: str | None = None,
-        stage_keys: list[StageKey] | None = None,
+        stage_keys: Sequence[StageKey] | None = None,
         customer_id: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateApiKeyOutput:
@@ -120,7 +130,7 @@ class APIGatewayClient:
         rest_api_id: str,
         name: str,
         type: AuthorizerType,
-        provider_arns: list[str] | None = None,
+        provider_arns: Sequence[str] | None = None,
         auth_type: str | None = None,
         authorizer_uri: str | None = None,
         authorizer_credentials: str | None = None,
@@ -488,7 +498,7 @@ class APIGatewayClient:
         description: str | None = None,
         version: str | None = None,
         clone_from: str | None = None,
-        binary_media_types: list[str] | None = None,
+        binary_media_types: Sequence[str] | None = None,
         minimum_compression_size: int | None = None,
         api_key_source: ApiKeySourceType | None = None,
         endpoint_configuration: EndpointConfiguration | None = None,
@@ -594,7 +604,7 @@ class APIGatewayClient:
         *,
         name: str,
         description: str | None = None,
-        api_stages: list[ApiStage] | None = None,
+        api_stages: Sequence[ApiStage] | None = None,
         throttle: ThrottleSettings | None = None,
         quota: QuotaSettings | None = None,
         tags: dict[str, str] | None = None,
@@ -656,7 +666,7 @@ class APIGatewayClient:
         self,
         *,
         name: str,
-        target_arns: list[str],
+        target_arns: Sequence[str],
         description: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateVpcLinkOutput:
@@ -1530,7 +1540,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         deployment_id: str,
-        embed: list[str] | None = None,
+        embed: Sequence[str] | None = None,
     ) -> GetDeploymentOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -2107,7 +2117,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         resource_id: str,
-        embed: list[str] | None = None,
+        embed: Sequence[str] | None = None,
     ) -> GetResourceOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -2135,7 +2145,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-        embed: list[str] | None = None,
+        embed: Sequence[str] | None = None,
     ) -> Resources:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -2685,7 +2695,7 @@ class APIGatewayClient:
         request_templates: dict[str, str] | None = None,
         passthrough_behavior: str | None = None,
         cache_namespace: str | None = None,
-        cache_key_parameters: list[str] | None = None,
+        cache_key_parameters: Sequence[str] | None = None,
         content_handling: ContentHandlingStrategy | None = None,
         timeout_in_millis: int | None = None,
         tls_config: TlsConfig | None = None,
@@ -2795,7 +2805,7 @@ class APIGatewayClient:
         request_parameters: dict[str, bool] | None = None,
         request_models: dict[str, str] | None = None,
         request_validator_id: str | None = None,
-        authorization_scopes: list[str] | None = None,
+        authorization_scopes: Sequence[str] | None = None,
     ) -> PutMethodOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -2952,7 +2962,7 @@ class APIGatewayClient:
         rest_api_id: str,
         authorizer_id: str,
         headers: dict[str, str] | None = None,
-        multi_value_headers: dict[str, list[str]] | None = None,
+        multi_value_headers: dict[str, Sequence[str]] | None = None,
         path_with_query_string: str | None = None,
         body: str | None = None,
         stage_variables: dict[str, str] | None = None,
@@ -2997,7 +3007,7 @@ class APIGatewayClient:
         path_with_query_string: str | None = None,
         body: str | None = None,
         headers: dict[str, str] | None = None,
-        multi_value_headers: dict[str, list[str]] | None = None,
+        multi_value_headers: dict[str, Sequence[str]] | None = None,
         client_certificate_id: str | None = None,
         stage_variables: dict[str, str] | None = None,
     ) -> TestInvokeMethodResponse:
@@ -3036,7 +3046,7 @@ class APIGatewayClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -3059,7 +3069,7 @@ class APIGatewayClient:
     async def update_account(
         self,
         *,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateAccountOutput:
         params: dict[str, object] = {
         }
@@ -3083,7 +3093,7 @@ class APIGatewayClient:
         self,
         *,
         api_key: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateApiKeyOutput:
         params: dict[str, object] = {
             "api_key": api_key,
@@ -3109,7 +3119,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         authorizer_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateAuthorizerOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3137,7 +3147,7 @@ class APIGatewayClient:
         domain_name: str,
         base_path: str,
         domain_name_id: str | None = None,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateBasePathMappingOutput:
         params: dict[str, object] = {
             "domain_name": domain_name,
@@ -3165,7 +3175,7 @@ class APIGatewayClient:
         self,
         *,
         client_certificate_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateClientCertificateOutput:
         params: dict[str, object] = {
             "client_certificate_id": client_certificate_id,
@@ -3191,7 +3201,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         deployment_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDeploymentOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3218,7 +3228,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         documentation_part_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDocumentationPartOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3245,7 +3255,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         documentation_version: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDocumentationVersionOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3272,7 +3282,7 @@ class APIGatewayClient:
         *,
         domain_name: str,
         domain_name_id: str | None = None,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateDomainNameOutput:
         params: dict[str, object] = {
             "domain_name": domain_name,
@@ -3300,7 +3310,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         response_type: GatewayResponseType,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateGatewayResponseOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3328,7 +3338,7 @@ class APIGatewayClient:
         rest_api_id: str,
         resource_id: str,
         http_method: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateIntegrationOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3358,7 +3368,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
         status_code: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateIntegrationResponseOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3388,7 +3398,7 @@ class APIGatewayClient:
         rest_api_id: str,
         resource_id: str,
         http_method: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateMethodOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3418,7 +3428,7 @@ class APIGatewayClient:
         resource_id: str,
         http_method: str,
         status_code: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateMethodResponseOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3447,7 +3457,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         model_name: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateModelOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3474,7 +3484,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         request_validator_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateRequestValidatorOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3501,7 +3511,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         resource_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateResourceOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3527,7 +3537,7 @@ class APIGatewayClient:
         self,
         *,
         rest_api_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateRestApiOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3553,7 +3563,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         stage_name: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateStageOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
@@ -3580,7 +3590,7 @@ class APIGatewayClient:
         *,
         usage_plan_id: str,
         key_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateUsageOutput:
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
@@ -3606,7 +3616,7 @@ class APIGatewayClient:
         self,
         *,
         usage_plan_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateUsagePlanOutput:
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
@@ -3631,7 +3641,7 @@ class APIGatewayClient:
         self,
         *,
         vpc_link_id: str,
-        patch_operations: list[PatchOperation] | None = None,
+        patch_operations: Sequence[PatchOperation] | None = None,
     ) -> UpdateVpcLinkOutput:
         params: dict[str, object] = {
             "vpc_link_id": vpc_link_id,

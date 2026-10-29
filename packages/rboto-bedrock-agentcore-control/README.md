@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agentcore_control.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -83,7 +86,7 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`add_dataset_examples`](#add_dataset_examples) | <code>dataset_id: str</code>, <code>source: DataSourceType</code> | <code>AddDatasetExamplesResponse</code> |
-| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: list[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsResponse</code> |
+| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: Sequence[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsResponse</code> |
 | [`create_agent_runtime`](#create_agent_runtime) | <code>agent_runtime_name: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>CreateAgentRuntimeResponse</code> |
 | [`create_agent_runtime_endpoint`](#create_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>name: str</code> | <code>CreateAgentRuntimeEndpointResponse</code> |
 | [`create_api_key_credential_provider`](#create_api_key_credential_provider) | <code>name: str</code> | <code>CreateApiKeyCredentialProviderResponse</code> |
@@ -92,20 +95,20 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_capacity_provider`](#create_capacity_provider) | <code>name: str</code>, <code>permissions_configuration: PermissionsConfiguration</code>, <code>compute_configuration: ComputeConfiguration</code> | <code>CreateCapacityProviderOutput</code> |
 | [`create_code_interpreter`](#create_code_interpreter) | <code>name: str</code>, <code>network_configuration: CodeInterpreterNetworkConfiguration</code> | <code>CreateCodeInterpreterResponse</code> |
 | [`create_configuration_bundle`](#create_configuration_bundle) | <code>bundle_name: str</code>, <code>components: dict[str, ComponentConfiguration]</code> | <code>CreateConfigurationBundleResponse</code> |
-| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: list[ConsentPortalSource]</code> | <code>CreateConsentPortalResponse</code> |
+| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: Sequence[ConsentPortalSource]</code> | <code>CreateConsentPortalResponse</code> |
 | [`create_dataset`](#create_dataset) | <code>dataset_name: str</code>, <code>source: DataSourceType</code>, <code>schema_type: DatasetSchemaType</code> | <code>CreateDatasetResponse</code> |
 | [`create_dataset_version`](#create_dataset_version) | <code>dataset_id: str</code> | <code>CreateDatasetVersionResponse</code> |
 | [`create_evaluator`](#create_evaluator) | <code>evaluator_name: str</code>, <code>evaluator_config: EvaluatorConfig</code>, <code>level: EvaluatorLevel</code> | <code>CreateEvaluatorResponse</code> |
 | [`create_gateway`](#create_gateway) | <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>CreateGatewayResponse</code> |
-| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: list[str]</code>, <code>entries: list[LimitEntry]</code> | <code>CreateGatewayRateLimitResponse</code> |
-| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: list[Action]</code> | <code>CreateGatewayRuleResponse</code> |
+| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: Sequence[str]</code>, <code>entries: Sequence[LimitEntry]</code> | <code>CreateGatewayRateLimitResponse</code> |
+| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: Sequence[Action]</code> | <code>CreateGatewayRuleResponse</code> |
 | [`create_gateway_target`](#create_gateway_target) | <code>gateway_identifier: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>CreateGatewayTargetResponse</code> |
 | [`create_harness`](#create_harness) | <code>harness_name: str</code>, <code>execution_role_arn: str</code> | <code>CreateHarnessResponse</code> |
 | [`create_harness_endpoint`](#create_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>CreateHarnessEndpointResponse</code> |
 | [`create_memory`](#create_memory) | <code>name: str</code>, <code>event_expiry_duration: int</code> | <code>CreateMemoryOutput</code> |
 | [`create_oauth2_credential_provider`](#create_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>CreateOauth2CredentialProviderResponse</code> |
 | [`create_online_evaluation_config`](#create_online_evaluation_config) | <code>online_evaluation_config_name: str</code>, <code>rule: Rule</code>, <code>data_source_config: DataSourceConfig</code>, <code>evaluation_execution_role_arn: str</code>, <code>enable_on_create: bool</code> | <code>CreateOnlineEvaluationConfigResponse</code> |
-| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: list[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorResponse</code> |
+| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: Sequence[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorResponse</code> |
 | [`create_payment_credential_provider`](#create_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>CreatePaymentCredentialProviderResponse</code> |
 | [`create_payment_manager`](#create_payment_manager) | <code>name: str</code>, <code>authorizer_type: PaymentsAuthorizerType</code>, <code>role_arn: str</code> | <code>CreatePaymentManagerResponse</code> |
 | [`create_policy`](#create_policy) | <code>name: str</code>, <code>definition: PolicyDefinition</code>, <code>policy_engine_id: str</code> | <code>CreatePolicyResponse</code> |
@@ -123,7 +126,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_configuration_bundle`](#delete_configuration_bundle) | <code>bundle_id: str</code> | <code>DeleteConfigurationBundleResponse</code> |
 | [`delete_consent_portal`](#delete_consent_portal) | <code>consent_portal_identifier: str</code> | <code>DeleteConsentPortalResponse</code> |
 | [`delete_dataset`](#delete_dataset) | <code>dataset_id: str</code> | <code>DeleteDatasetResponse</code> |
-| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: list[str]</code> | <code>DeleteDatasetExamplesResponse</code> |
+| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: Sequence[str]</code> | <code>DeleteDatasetExamplesResponse</code> |
 | [`delete_evaluator`](#delete_evaluator) | <code>evaluator_id: str</code> | <code>DeleteEvaluatorResponse</code> |
 | [`delete_gateway`](#delete_gateway) | <code>gateway_identifier: str</code> | <code>DeleteGatewayResponse</code> |
 | [`delete_gateway_rate_limit`](#delete_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>DeleteGatewayRateLimitResponse</code> |
@@ -223,20 +226,20 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_token_vault_cmk`](#set_token_vault_cmk) | <code>kms_configuration: KmsConfiguration</code> | <code>SetTokenVaultCMKResponse</code> |
 | [`start_policy_generation`](#start_policy_generation) | <code>policy_engine_id: str</code>, <code>resource: Resource</code>, <code>content: Content</code>, <code>name: str</code> | <code>StartPolicyGenerationResponse</code> |
 | [`submit_registry_record_for_approval`](#submit_registry_record_for_approval) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>SubmitRegistryRecordForApprovalResponse</code> |
-| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: list[str]</code> | <code>SynchronizeGatewayTargetsResponse</code> |
+| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: Sequence[str]</code> | <code>SynchronizeGatewayTargetsResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_agent_runtime`](#update_agent_runtime) | <code>agent_runtime_id: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>UpdateAgentRuntimeResponse</code> |
 | [`update_agent_runtime_endpoint`](#update_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateAgentRuntimeEndpointResponse</code> |
 | [`update_api_key_credential_provider`](#update_api_key_credential_provider) | <code>name: str</code> | <code>UpdateApiKeyCredentialProviderResponse</code> |
 | [`update_capacity_provider`](#update_capacity_provider) | <code>capacity_provider_id: str</code> | <code>UpdateCapacityProviderOutput</code> |
-| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: list[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleResponse</code> |
+| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: Sequence[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleResponse</code> |
 | [`update_consent_portal`](#update_consent_portal) | <code>consent_portal_identifier: str</code> | <code>UpdateConsentPortalResponse</code> |
 | [`update_dataset`](#update_dataset) | <code>dataset_id: str</code> | <code>UpdateDatasetResponse</code> |
-| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: list[JSONValue]</code> | <code>UpdateDatasetExamplesResponse</code> |
+| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: Sequence[JSONValue]</code> | <code>UpdateDatasetExamplesResponse</code> |
 | [`update_evaluator`](#update_evaluator) | <code>evaluator_id: str</code> | <code>UpdateEvaluatorResponse</code> |
 | [`update_gateway`](#update_gateway) | <code>gateway_identifier: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>UpdateGatewayResponse</code> |
-| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: list[LimitEntry]</code> | <code>UpdateGatewayRateLimitResponse</code> |
+| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: Sequence[LimitEntry]</code> | <code>UpdateGatewayRateLimitResponse</code> |
 | [`update_gateway_rule`](#update_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>UpdateGatewayRuleResponse</code> |
 | [`update_gateway_target`](#update_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>UpdateGatewayTargetResponse</code> |
 | [`update_harness`](#update_harness) | <code>harness_id: str</code> | <code>UpdateHarnessResponse</code> |
@@ -267,16 +270,18 @@ async def add_dataset_examples(
 ) -> AddDatasetExamplesResponse: ...
 ```
 
+
 ### batch_put_gateway_rate_limits
 
 ```python
 async def batch_put_gateway_rate_limits(
     *,
     gateway_identifier: str,
-    rate_limits: list[BatchPutLimitEntry],
+    rate_limits: Sequence[BatchPutLimitEntry],
     client_token: str | None = None,
 ) -> BatchPutGatewayRateLimitsResponse: ...
 ```
+
 
 ### create_agent_runtime
 
@@ -294,12 +299,13 @@ async def create_agent_runtime(
     protocol_configuration: ProtocolConfiguration | None = None,
     lifecycle_configuration: LifecycleConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
-    filesystem_configurations: list[FilesystemConfiguration] | None = None,
+    filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     tags: dict[str, str] | None = None,
     platform_version: str | None = None,
 ) -> CreateAgentRuntimeResponse: ...
 ```
+
 
 ### create_agent_runtime_endpoint
 
@@ -315,6 +321,7 @@ async def create_agent_runtime_endpoint(
 ) -> CreateAgentRuntimeEndpointResponse: ...
 ```
 
+
 ### create_api_key_credential_provider
 
 ```python
@@ -328,6 +335,7 @@ async def create_api_key_credential_provider(
 ) -> CreateApiKeyCredentialProviderResponse: ...
 ```
 
+
 ### create_browser
 
 ```python
@@ -339,13 +347,14 @@ async def create_browser(
     execution_role_arn: str | None = None,
     recording: RecordingConfig | None = None,
     browser_signing: BrowserSigningConfigInput | None = None,
-    enterprise_policies: list[BrowserEnterprisePolicy] | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    enterprise_policies: Sequence[BrowserEnterprisePolicy] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateBrowserResponse: ...
 ```
+
 
 ### create_browser_profile
 
@@ -358,6 +367,7 @@ async def create_browser_profile(
     tags: dict[str, str] | None = None,
 ) -> CreateBrowserProfileResponse: ...
 ```
+
 
 ### create_capacity_provider
 
@@ -373,6 +383,7 @@ async def create_capacity_provider(
 ) -> CreateCapacityProviderOutput: ...
 ```
 
+
 ### create_code_interpreter
 
 ```python
@@ -382,12 +393,13 @@ async def create_code_interpreter(
     network_configuration: CodeInterpreterNetworkConfiguration,
     description: str | None = None,
     execution_role_arn: str | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateCodeInterpreterResponse: ...
 ```
+
 
 ### create_configuration_bundle
 
@@ -406,6 +418,7 @@ async def create_configuration_bundle(
 ) -> CreateConfigurationBundleResponse: ...
 ```
 
+
 ### create_consent_portal
 
 ```python
@@ -414,11 +427,12 @@ async def create_consent_portal(
     execution_role_arn: str,
     idp_config: ConsentPortalIdpConfig,
     name: str,
-    sources: list[ConsentPortalSource],
+    sources: Sequence[ConsentPortalSource],
     description: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateConsentPortalResponse: ...
 ```
+
 
 ### create_dataset
 
@@ -435,6 +449,7 @@ async def create_dataset(
 ) -> CreateDatasetResponse: ...
 ```
 
+
 ### create_dataset_version
 
 ```python
@@ -444,6 +459,7 @@ async def create_dataset_version(
     client_token: str | None = None,
 ) -> CreateDatasetVersionResponse: ...
 ```
+
 
 ### create_evaluator
 
@@ -460,6 +476,7 @@ async def create_evaluator(
 ) -> CreateEvaluatorResponse: ...
 ```
 
+
 ### create_gateway
 
 ```python
@@ -474,12 +491,13 @@ async def create_gateway(
     protocol_configuration: GatewayProtocolConfiguration | None = None,
     authorizer_configuration: AuthorizerConfiguration | None = None,
     kms_key_arn: str | None = None,
-    interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+    interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateGatewayResponse: ...
 ```
+
 
 ### create_gateway_rate_limit
 
@@ -487,13 +505,14 @@ async def create_gateway(
 async def create_gateway_rate_limit(
     *,
     gateway_identifier: str,
-    dimension_keys: list[str],
-    entries: list[LimitEntry],
+    dimension_keys: Sequence[str],
+    entries: Sequence[LimitEntry],
     client_token: str | None = None,
     rate_limit_id: str | None = None,
     description: str | None = None,
 ) -> CreateGatewayRateLimitResponse: ...
 ```
+
 
 ### create_gateway_rule
 
@@ -502,12 +521,13 @@ async def create_gateway_rule(
     *,
     gateway_identifier: str,
     priority: int,
-    actions: list[Action],
+    actions: Sequence[Action],
     client_token: str | None = None,
-    conditions: list[Condition] | None = None,
+    conditions: Sequence[Condition] | None = None,
     description: str | None = None,
 ) -> CreateGatewayRuleResponse: ...
 ```
+
 
 ### create_gateway_target
 
@@ -519,12 +539,13 @@ async def create_gateway_target(
     name: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
-    credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
-    certificate_configurations: list[CertificateConfiguration] | None = None,
+    certificate_configurations: Sequence[CertificateConfiguration] | None = None,
 ) -> CreateGatewayTargetResponse: ...
 ```
+
 
 ### create_harness
 
@@ -539,19 +560,20 @@ async def create_harness(
     environment_variables: dict[str, str] | None = None,
     authorizer_configuration: AuthorizerConfiguration | None = None,
     model: HarnessModelConfiguration | None = None,
-    system_prompt: list[HarnessSystemContentBlock] | None = None,
-    tools: list[HarnessTool] | None = None,
-    skills: list[HarnessSkill] | None = None,
-    allowed_tools: list[str] | None = None,
+    system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+    tools: Sequence[HarnessTool] | None = None,
+    skills: Sequence[HarnessSkill] | None = None,
+    allowed_tools: Sequence[str] | None = None,
     memory: HarnessMemoryConfiguration | None = None,
     truncation: HarnessTruncationConfiguration | None = None,
-    hooks: list[HarnessHook] | None = None,
+    hooks: Sequence[HarnessHook] | None = None,
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateHarnessResponse: ...
 ```
+
 
 ### create_harness_endpoint
 
@@ -567,6 +589,7 @@ async def create_harness_endpoint(
 ) -> CreateHarnessEndpointResponse: ...
 ```
 
+
 ### create_memory
 
 ```python
@@ -578,13 +601,14 @@ async def create_memory(
     description: str | None = None,
     encryption_key_arn: str | None = None,
     memory_execution_role_arn: str | None = None,
-    memory_strategies: list[MemoryStrategyInput] | None = None,
-    indexed_keys: list[IndexedKey] | None = None,
-    namespace_keys: list[NamespaceKeyEntry] | None = None,
+    memory_strategies: Sequence[MemoryStrategyInput] | None = None,
+    indexed_keys: Sequence[IndexedKey] | None = None,
+    namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
     stream_delivery_resources: StreamDeliveryResources | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateMemoryOutput: ...
 ```
+
 
 ### create_oauth2_credential_provider
 
@@ -598,6 +622,7 @@ async def create_oauth2_credential_provider(
 ) -> CreateOauth2CredentialProviderResponse: ...
 ```
 
+
 ### create_online_evaluation_config
 
 ```python
@@ -610,13 +635,14 @@ async def create_online_evaluation_config(
     enable_on_create: bool,
     client_token: str | None = None,
     description: str | None = None,
-    evaluators: list[EvaluatorReference] | None = None,
-    insights: list[Insight] | None = None,
+    evaluators: Sequence[EvaluatorReference] | None = None,
+    insights: Sequence[Insight] | None = None,
     clustering_config: ClusteringConfig | None = None,
     output_config: OutputConfig | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateOnlineEvaluationConfigResponse: ...
 ```
+
 
 ### create_payment_connector
 
@@ -626,12 +652,13 @@ async def create_payment_connector(
     payment_manager_id: str,
     name: str,
     type: PaymentConnectorType,
-    credential_provider_configurations: list[CredentialsProviderConfiguration],
+    credential_provider_configurations: Sequence[CredentialsProviderConfiguration],
     description: str | None = None,
     provision_mode: PaymentConnectorProvisionMode | None = None,
     client_token: str | None = None,
 ) -> CreatePaymentConnectorResponse: ...
 ```
+
 
 ### create_payment_credential_provider
 
@@ -644,6 +671,7 @@ async def create_payment_credential_provider(
     tags: dict[str, str] | None = None,
 ) -> CreatePaymentCredentialProviderResponse: ...
 ```
+
 
 ### create_payment_manager
 
@@ -661,6 +689,7 @@ async def create_payment_manager(
 ) -> CreatePaymentManagerResponse: ...
 ```
 
+
 ### create_policy
 
 ```python
@@ -676,6 +705,7 @@ async def create_policy(
 ) -> CreatePolicyResponse: ...
 ```
 
+
 ### create_policy_engine
 
 ```python
@@ -688,6 +718,7 @@ async def create_policy_engine(
     tags: dict[str, str] | None = None,
 ) -> CreatePolicyEngineResponse: ...
 ```
+
 
 ### create_registry
 
@@ -702,6 +733,7 @@ async def create_registry(
     approval_configuration: ApprovalConfiguration | None = None,
 ) -> CreateRegistryResponse: ...
 ```
+
 
 ### create_registry_record
 
@@ -720,16 +752,18 @@ async def create_registry_record(
 ) -> CreateRegistryRecordResponse: ...
 ```
 
+
 ### create_workload_identity
 
 ```python
 async def create_workload_identity(
     *,
     name: str,
-    allowed_resource_oauth2_return_urls: list[str] | None = None,
+    allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateWorkloadIdentityResponse: ...
 ```
+
 
 ### delete_agent_runtime
 
@@ -742,6 +776,7 @@ async def delete_agent_runtime(
 ) -> DeleteAgentRuntimeResponse: ...
 ```
 
+
 ### delete_agent_runtime_endpoint
 
 ```python
@@ -753,6 +788,7 @@ async def delete_agent_runtime_endpoint(
 ) -> DeleteAgentRuntimeEndpointResponse: ...
 ```
 
+
 ### delete_api_key_credential_provider
 
 ```python
@@ -761,6 +797,7 @@ async def delete_api_key_credential_provider(
     name: str,
 ) -> DeleteApiKeyCredentialProviderResponse: ...
 ```
+
 
 ### delete_browser
 
@@ -772,6 +809,7 @@ async def delete_browser(
 ) -> DeleteBrowserResponse: ...
 ```
 
+
 ### delete_browser_profile
 
 ```python
@@ -781,6 +819,7 @@ async def delete_browser_profile(
     client_token: str | None = None,
 ) -> DeleteBrowserProfileResponse: ...
 ```
+
 
 ### delete_capacity_provider
 
@@ -792,6 +831,7 @@ async def delete_capacity_provider(
 ) -> DeleteCapacityProviderOutput: ...
 ```
 
+
 ### delete_code_interpreter
 
 ```python
@@ -802,6 +842,7 @@ async def delete_code_interpreter(
 ) -> DeleteCodeInterpreterResponse: ...
 ```
 
+
 ### delete_configuration_bundle
 
 ```python
@@ -811,6 +852,7 @@ async def delete_configuration_bundle(
 ) -> DeleteConfigurationBundleResponse: ...
 ```
 
+
 ### delete_consent_portal
 
 ```python
@@ -819,6 +861,7 @@ async def delete_consent_portal(
     consent_portal_identifier: str,
 ) -> DeleteConsentPortalResponse: ...
 ```
+
 
 ### delete_dataset
 
@@ -830,16 +873,18 @@ async def delete_dataset(
 ) -> DeleteDatasetResponse: ...
 ```
 
+
 ### delete_dataset_examples
 
 ```python
 async def delete_dataset_examples(
     *,
     dataset_id: str,
-    example_ids: list[str],
+    example_ids: Sequence[str],
     client_token: str | None = None,
 ) -> DeleteDatasetExamplesResponse: ...
 ```
+
 
 ### delete_evaluator
 
@@ -850,6 +895,7 @@ async def delete_evaluator(
 ) -> DeleteEvaluatorResponse: ...
 ```
 
+
 ### delete_gateway
 
 ```python
@@ -858,6 +904,7 @@ async def delete_gateway(
     gateway_identifier: str,
 ) -> DeleteGatewayResponse: ...
 ```
+
 
 ### delete_gateway_rate_limit
 
@@ -869,6 +916,7 @@ async def delete_gateway_rate_limit(
 ) -> DeleteGatewayRateLimitResponse: ...
 ```
 
+
 ### delete_gateway_rule
 
 ```python
@@ -879,6 +927,7 @@ async def delete_gateway_rule(
 ) -> DeleteGatewayRuleResponse: ...
 ```
 
+
 ### delete_gateway_target
 
 ```python
@@ -888,6 +937,7 @@ async def delete_gateway_target(
     target_id: str,
 ) -> DeleteGatewayTargetResponse: ...
 ```
+
 
 ### delete_harness
 
@@ -900,6 +950,7 @@ async def delete_harness(
 ) -> DeleteHarnessResponse: ...
 ```
 
+
 ### delete_harness_endpoint
 
 ```python
@@ -911,6 +962,7 @@ async def delete_harness_endpoint(
 ) -> DeleteHarnessEndpointResponse: ...
 ```
 
+
 ### delete_memory
 
 ```python
@@ -921,6 +973,7 @@ async def delete_memory(
 ) -> DeleteMemoryOutput: ...
 ```
 
+
 ### delete_oauth2_credential_provider
 
 ```python
@@ -930,6 +983,7 @@ async def delete_oauth2_credential_provider(
 ) -> DeleteOauth2CredentialProviderResponse: ...
 ```
 
+
 ### delete_online_evaluation_config
 
 ```python
@@ -938,6 +992,7 @@ async def delete_online_evaluation_config(
     online_evaluation_config_id: str,
 ) -> DeleteOnlineEvaluationConfigResponse: ...
 ```
+
 
 ### delete_payment_connector
 
@@ -950,6 +1005,7 @@ async def delete_payment_connector(
 ) -> DeletePaymentConnectorResponse: ...
 ```
 
+
 ### delete_payment_credential_provider
 
 ```python
@@ -958,6 +1014,7 @@ async def delete_payment_credential_provider(
     name: str,
 ) -> DeletePaymentCredentialProviderResponse: ...
 ```
+
 
 ### delete_payment_manager
 
@@ -969,6 +1026,7 @@ async def delete_payment_manager(
 ) -> DeletePaymentManagerResponse: ...
 ```
 
+
 ### delete_policy
 
 ```python
@@ -979,6 +1037,7 @@ async def delete_policy(
 ) -> DeletePolicyResponse: ...
 ```
 
+
 ### delete_policy_engine
 
 ```python
@@ -988,6 +1047,7 @@ async def delete_policy_engine(
 ) -> DeletePolicyEngineResponse: ...
 ```
 
+
 ### delete_registry
 
 ```python
@@ -996,6 +1056,7 @@ async def delete_registry(
     registry_id: str,
 ) -> DeleteRegistryResponse: ...
 ```
+
 
 ### delete_registry_record
 
@@ -1007,6 +1068,7 @@ async def delete_registry_record(
 ) -> DeleteRegistryRecordResponse: ...
 ```
 
+
 ### delete_resource_policy
 
 ```python
@@ -1016,6 +1078,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyResponse: ...
 ```
 
+
 ### delete_workload_identity
 
 ```python
@@ -1024,6 +1087,7 @@ async def delete_workload_identity(
     name: str,
 ) -> DeleteWorkloadIdentityResponse: ...
 ```
+
 
 ### get_agent_runtime
 
@@ -1035,6 +1099,7 @@ async def get_agent_runtime(
 ) -> GetAgentRuntimeResponse: ...
 ```
 
+
 ### get_agent_runtime_endpoint
 
 ```python
@@ -1045,6 +1110,7 @@ async def get_agent_runtime_endpoint(
 ) -> GetAgentRuntimeEndpointResponse: ...
 ```
 
+
 ### get_api_key_credential_provider
 
 ```python
@@ -1053,6 +1119,7 @@ async def get_api_key_credential_provider(
     name: str,
 ) -> GetApiKeyCredentialProviderResponse: ...
 ```
+
 
 ### get_browser
 
@@ -1063,6 +1130,7 @@ async def get_browser(
 ) -> GetBrowserResponse: ...
 ```
 
+
 ### get_browser_profile
 
 ```python
@@ -1071,6 +1139,7 @@ async def get_browser_profile(
     profile_id: str,
 ) -> GetBrowserProfileResponse: ...
 ```
+
 
 ### get_capacity_provider
 
@@ -1081,6 +1150,7 @@ async def get_capacity_provider(
 ) -> GetCapacityProviderOutput: ...
 ```
 
+
 ### get_code_interpreter
 
 ```python
@@ -1089,6 +1159,7 @@ async def get_code_interpreter(
     code_interpreter_id: str,
 ) -> GetCodeInterpreterResponse: ...
 ```
+
 
 ### get_configuration_bundle
 
@@ -1100,6 +1171,7 @@ async def get_configuration_bundle(
 ) -> GetConfigurationBundleResponse: ...
 ```
 
+
 ### get_configuration_bundle_version
 
 ```python
@@ -1110,6 +1182,7 @@ async def get_configuration_bundle_version(
 ) -> GetConfigurationBundleVersionResponse: ...
 ```
 
+
 ### get_consent_portal
 
 ```python
@@ -1118,6 +1191,7 @@ async def get_consent_portal(
     consent_portal_identifier: str,
 ) -> GetConsentPortalResponse: ...
 ```
+
 
 ### get_dataset
 
@@ -1129,6 +1203,7 @@ async def get_dataset(
 ) -> GetDatasetResponse: ...
 ```
 
+
 ### get_evaluator
 
 ```python
@@ -1139,6 +1214,7 @@ async def get_evaluator(
 ) -> GetEvaluatorResponse: ...
 ```
 
+
 ### get_gateway
 
 ```python
@@ -1147,6 +1223,7 @@ async def get_gateway(
     gateway_identifier: str,
 ) -> GetGatewayResponse: ...
 ```
+
 
 ### get_gateway_rate_limit
 
@@ -1158,6 +1235,7 @@ async def get_gateway_rate_limit(
 ) -> GetGatewayRateLimitResponse: ...
 ```
 
+
 ### get_gateway_rule
 
 ```python
@@ -1167,6 +1245,7 @@ async def get_gateway_rule(
     rule_id: str,
 ) -> GetGatewayRuleResponse: ...
 ```
+
 
 ### get_gateway_target
 
@@ -1178,6 +1257,7 @@ async def get_gateway_target(
 ) -> GetGatewayTargetResponse: ...
 ```
 
+
 ### get_harness
 
 ```python
@@ -1187,6 +1267,7 @@ async def get_harness(
     harness_version: str | None = None,
 ) -> GetHarnessResponse: ...
 ```
+
 
 ### get_harness_endpoint
 
@@ -1198,6 +1279,7 @@ async def get_harness_endpoint(
 ) -> GetHarnessEndpointResponse: ...
 ```
 
+
 ### get_memory
 
 ```python
@@ -1208,6 +1290,7 @@ async def get_memory(
 ) -> GetMemoryOutput: ...
 ```
 
+
 ### get_oauth2_credential_provider
 
 ```python
@@ -1217,6 +1300,7 @@ async def get_oauth2_credential_provider(
 ) -> GetOauth2CredentialProviderResponse: ...
 ```
 
+
 ### get_online_evaluation_config
 
 ```python
@@ -1225,6 +1309,7 @@ async def get_online_evaluation_config(
     online_evaluation_config_id: str,
 ) -> GetOnlineEvaluationConfigResponse: ...
 ```
+
 
 ### get_payment_connector
 
@@ -1236,6 +1321,7 @@ async def get_payment_connector(
 ) -> GetPaymentConnectorResponse: ...
 ```
 
+
 ### get_payment_credential_provider
 
 ```python
@@ -1245,6 +1331,7 @@ async def get_payment_credential_provider(
 ) -> GetPaymentCredentialProviderResponse: ...
 ```
 
+
 ### get_payment_manager
 
 ```python
@@ -1253,6 +1340,7 @@ async def get_payment_manager(
     payment_manager_id: str,
 ) -> GetPaymentManagerResponse: ...
 ```
+
 
 ### get_policy
 
@@ -1264,6 +1352,7 @@ async def get_policy(
 ) -> GetPolicyResponse: ...
 ```
 
+
 ### get_policy_engine
 
 ```python
@@ -1273,6 +1362,7 @@ async def get_policy_engine(
 ) -> GetPolicyEngineResponse: ...
 ```
 
+
 ### get_policy_engine_summary
 
 ```python
@@ -1281,6 +1371,7 @@ async def get_policy_engine_summary(
     policy_engine_id: str,
 ) -> GetPolicyEngineSummaryResponse: ...
 ```
+
 
 ### get_policy_generation
 
@@ -1292,6 +1383,7 @@ async def get_policy_generation(
 ) -> GetPolicyGenerationResponse: ...
 ```
 
+
 ### get_policy_generation_summary
 
 ```python
@@ -1301,6 +1393,7 @@ async def get_policy_generation_summary(
     policy_engine_id: str,
 ) -> GetPolicyGenerationSummaryResponse: ...
 ```
+
 
 ### get_policy_summary
 
@@ -1312,6 +1405,7 @@ async def get_policy_summary(
 ) -> GetPolicySummaryResponse: ...
 ```
 
+
 ### get_registry
 
 ```python
@@ -1320,6 +1414,7 @@ async def get_registry(
     registry_id: str,
 ) -> GetRegistryResponse: ...
 ```
+
 
 ### get_registry_record
 
@@ -1331,6 +1426,7 @@ async def get_registry_record(
 ) -> GetRegistryRecordResponse: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -1339,6 +1435,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_token_vault
 
@@ -1349,6 +1446,7 @@ async def get_token_vault(
 ) -> GetTokenVaultResponse: ...
 ```
 
+
 ### get_workload_identity
 
 ```python
@@ -1357,6 +1455,7 @@ async def get_workload_identity(
     name: str,
 ) -> GetWorkloadIdentityResponse: ...
 ```
+
 
 ### list_agent_runtime_endpoints
 
@@ -1369,6 +1468,10 @@ async def list_agent_runtime_endpoints(
 ) -> ListAgentRuntimeEndpointsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_runtime_endpoints(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_runtime_versions
 
 ```python
@@ -1379,6 +1482,10 @@ async def list_agent_runtime_versions(
     next_token: str | None = None,
 ) -> ListAgentRuntimeVersionsResponse: ...
 ```
+
+Also available as `client.paginators.list_agent_runtime_versions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_agent_runtime_versions_by_capacity_provider
 
@@ -1391,6 +1498,10 @@ async def list_agent_runtime_versions_by_capacity_provider(
 ) -> ListAgentRuntimeVersionsByCapacityProviderOutput: ...
 ```
 
+Also available as `client.paginators.list_agent_runtime_versions_by_capacity_provider(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_runtimes
 
 ```python
@@ -1401,6 +1512,10 @@ async def list_agent_runtimes(
 ) -> ListAgentRuntimesResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_runtimes(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_api_key_credential_providers
 
 ```python
@@ -1410,6 +1525,10 @@ async def list_api_key_credential_providers(
     max_results: int | None = None,
 ) -> ListApiKeyCredentialProvidersResponse: ...
 ```
+
+Also available as `client.paginators.list_api_key_credential_providers(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_browser_profiles
 
@@ -1422,6 +1541,10 @@ async def list_browser_profiles(
 ) -> ListBrowserProfilesResponse: ...
 ```
 
+Also available as `client.paginators.list_browser_profiles(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_browsers
 
 ```python
@@ -1433,6 +1556,10 @@ async def list_browsers(
 ) -> ListBrowsersResponse: ...
 ```
 
+Also available as `client.paginators.list_browsers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_capacity_providers
 
 ```python
@@ -1442,6 +1569,10 @@ async def list_capacity_providers(
     next_token: str | None = None,
 ) -> ListCapacityProvidersOutput: ...
 ```
+
+Also available as `client.paginators.list_capacity_providers(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_code_interpreters
 
@@ -1453,6 +1584,10 @@ async def list_code_interpreters(
     type: ResourceType | None = None,
 ) -> ListCodeInterpretersResponse: ...
 ```
+
+Also available as `client.paginators.list_code_interpreters(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_configuration_bundle_versions
 
@@ -1466,6 +1601,10 @@ async def list_configuration_bundle_versions(
 ) -> ListConfigurationBundleVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_configuration_bundle_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_configuration_bundles
 
 ```python
@@ -1476,6 +1615,10 @@ async def list_configuration_bundles(
 ) -> ListConfigurationBundlesResponse: ...
 ```
 
+Also available as `client.paginators.list_configuration_bundles(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_consent_portals
 
 ```python
@@ -1485,6 +1628,10 @@ async def list_consent_portals(
     next_token: str | None = None,
 ) -> ListConsentPortalsResponse: ...
 ```
+
+Also available as `client.paginators.list_consent_portals(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_dataset_examples
 
@@ -1498,6 +1645,10 @@ async def list_dataset_examples(
 ) -> ListDatasetExamplesResponse: ...
 ```
 
+Also available as `client.paginators.list_dataset_examples(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_dataset_versions
 
 ```python
@@ -1509,6 +1660,10 @@ async def list_dataset_versions(
 ) -> ListDatasetVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_dataset_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_datasets
 
 ```python
@@ -1519,6 +1674,10 @@ async def list_datasets(
 ) -> ListDatasetsResponse: ...
 ```
 
+Also available as `client.paginators.list_datasets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_evaluators
 
 ```python
@@ -1528,6 +1687,10 @@ async def list_evaluators(
     max_results: int | None = None,
 ) -> ListEvaluatorsResponse: ...
 ```
+
+Also available as `client.paginators.list_evaluators(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_gateway_rate_limits
 
@@ -1540,6 +1703,10 @@ async def list_gateway_rate_limits(
 ) -> ListGatewayRateLimitsResponse: ...
 ```
 
+Also available as `client.paginators.list_gateway_rate_limits(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_gateway_rules
 
 ```python
@@ -1550,6 +1717,10 @@ async def list_gateway_rules(
     next_token: str | None = None,
 ) -> ListGatewayRulesResponse: ...
 ```
+
+Also available as `client.paginators.list_gateway_rules(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_gateway_targets
 
@@ -1562,6 +1733,10 @@ async def list_gateway_targets(
 ) -> ListGatewayTargetsResponse: ...
 ```
 
+Also available as `client.paginators.list_gateway_targets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_gateways
 
 ```python
@@ -1571,6 +1746,10 @@ async def list_gateways(
     next_token: str | None = None,
 ) -> ListGatewaysResponse: ...
 ```
+
+Also available as `client.paginators.list_gateways(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_harness_endpoints
 
@@ -1583,6 +1762,10 @@ async def list_harness_endpoints(
 ) -> ListHarnessEndpointsResponse: ...
 ```
 
+Also available as `client.paginators.list_harness_endpoints(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_harness_versions
 
 ```python
@@ -1594,6 +1777,10 @@ async def list_harness_versions(
 ) -> ListHarnessVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_harness_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_harnesses
 
 ```python
@@ -1603,6 +1790,10 @@ async def list_harnesses(
     next_token: str | None = None,
 ) -> ListHarnessesResponse: ...
 ```
+
+Also available as `client.paginators.list_harnesses(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_memories
 
@@ -1614,6 +1805,10 @@ async def list_memories(
 ) -> ListMemoriesOutput: ...
 ```
 
+Also available as `client.paginators.list_memories(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_oauth2_credential_providers
 
 ```python
@@ -1624,6 +1819,10 @@ async def list_oauth2_credential_providers(
 ) -> ListOauth2CredentialProvidersResponse: ...
 ```
 
+Also available as `client.paginators.list_oauth2_credential_providers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_online_evaluation_configs
 
 ```python
@@ -1633,6 +1832,10 @@ async def list_online_evaluation_configs(
     max_results: int | None = None,
 ) -> ListOnlineEvaluationConfigsResponse: ...
 ```
+
+Also available as `client.paginators.list_online_evaluation_configs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_payment_connectors
 
@@ -1645,6 +1848,10 @@ async def list_payment_connectors(
 ) -> ListPaymentConnectorsResponse: ...
 ```
 
+Also available as `client.paginators.list_payment_connectors(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_payment_credential_providers
 
 ```python
@@ -1655,6 +1862,10 @@ async def list_payment_credential_providers(
 ) -> ListPaymentCredentialProvidersResponse: ...
 ```
 
+Also available as `client.paginators.list_payment_credential_providers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_payment_managers
 
 ```python
@@ -1664,6 +1875,10 @@ async def list_payment_managers(
     next_token: str | None = None,
 ) -> ListPaymentManagersResponse: ...
 ```
+
+Also available as `client.paginators.list_payment_managers(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_policies
 
@@ -1677,6 +1892,10 @@ async def list_policies(
 ) -> ListPoliciesResponse: ...
 ```
 
+Also available as `client.paginators.list_policies(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_policy_engine_summaries
 
 ```python
@@ -1687,6 +1906,10 @@ async def list_policy_engine_summaries(
 ) -> ListPolicyEngineSummariesResponse: ...
 ```
 
+Also available as `client.paginators.list_policy_engine_summaries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_policy_engines
 
 ```python
@@ -1696,6 +1919,10 @@ async def list_policy_engines(
     max_results: int | None = None,
 ) -> ListPolicyEnginesResponse: ...
 ```
+
+Also available as `client.paginators.list_policy_engines(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_policy_generation_assets
 
@@ -1709,6 +1936,10 @@ async def list_policy_generation_assets(
 ) -> ListPolicyGenerationAssetsResponse: ...
 ```
 
+Also available as `client.paginators.list_policy_generation_assets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_policy_generation_summaries
 
 ```python
@@ -1720,6 +1951,10 @@ async def list_policy_generation_summaries(
 ) -> ListPolicyGenerationSummariesResponse: ...
 ```
 
+Also available as `client.paginators.list_policy_generation_summaries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_policy_generations
 
 ```python
@@ -1730,6 +1965,10 @@ async def list_policy_generations(
     max_results: int | None = None,
 ) -> ListPolicyGenerationsResponse: ...
 ```
+
+Also available as `client.paginators.list_policy_generations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_policy_summaries
 
@@ -1743,6 +1982,10 @@ async def list_policy_summaries(
 ) -> ListPolicySummariesResponse: ...
 ```
 
+Also available as `client.paginators.list_policy_summaries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_registries
 
 ```python
@@ -1754,6 +1997,10 @@ async def list_registries(
     authorizer_type: RegistryAuthorizerType | None = None,
 ) -> ListRegistriesResponse: ...
 ```
+
+Also available as `client.paginators.list_registries(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_registry_records
 
@@ -1769,6 +2016,10 @@ async def list_registry_records(
 ) -> ListRegistryRecordsResponse: ...
 ```
 
+Also available as `client.paginators.list_registry_records(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -1777,6 +2028,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_workload_identities
 
@@ -1788,6 +2040,10 @@ async def list_workload_identities(
 ) -> ListWorkloadIdentitiesResponse: ...
 ```
 
+Also available as `client.paginators.list_workload_identities(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_resource_policy
 
 ```python
@@ -1797,6 +2053,7 @@ async def put_resource_policy(
     policy: str,
 ) -> PutResourcePolicyResponse: ...
 ```
+
 
 ### rotate_payment_connector_credentials
 
@@ -1810,6 +2067,7 @@ async def rotate_payment_connector_credentials(
 ) -> RotatePaymentConnectorCredentialsResponse: ...
 ```
 
+
 ### set_token_vault_cmk
 
 ```python
@@ -1819,6 +2077,7 @@ async def set_token_vault_cmk(
     token_vault_id: str | None = None,
 ) -> SetTokenVaultCMKResponse: ...
 ```
+
 
 ### start_policy_generation
 
@@ -1833,6 +2092,7 @@ async def start_policy_generation(
 ) -> StartPolicyGenerationResponse: ...
 ```
 
+
 ### submit_registry_record_for_approval
 
 ```python
@@ -1843,15 +2103,17 @@ async def submit_registry_record_for_approval(
 ) -> SubmitRegistryRecordForApprovalResponse: ...
 ```
 
+
 ### synchronize_gateway_targets
 
 ```python
 async def synchronize_gateway_targets(
     *,
     gateway_identifier: str,
-    target_id_list: list[str],
+    target_id_list: Sequence[str],
 ) -> SynchronizeGatewayTargetsResponse: ...
 ```
+
 
 ### tag_resource
 
@@ -1863,15 +2125,17 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_agent_runtime
 
@@ -1889,12 +2153,13 @@ async def update_agent_runtime(
     lifecycle_configuration: LifecycleConfiguration | None = None,
     metadata_configuration: RuntimeMetadataConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
-    filesystem_configurations: list[FilesystemConfiguration] | None = None,
+    filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     platform_version: str | None = None,
     client_token: str | None = None,
 ) -> UpdateAgentRuntimeResponse: ...
 ```
+
 
 ### update_agent_runtime_endpoint
 
@@ -1909,6 +2174,7 @@ async def update_agent_runtime_endpoint(
 ) -> UpdateAgentRuntimeEndpointResponse: ...
 ```
 
+
 ### update_api_key_credential_provider
 
 ```python
@@ -1921,6 +2187,7 @@ async def update_api_key_credential_provider(
 ) -> UpdateApiKeyCredentialProviderResponse: ...
 ```
 
+
 ### update_capacity_provider
 
 ```python
@@ -1932,13 +2199,14 @@ async def update_capacity_provider(
 ) -> UpdateCapacityProviderOutput: ...
 ```
 
+
 ### update_configuration_bundle
 
 ```python
 async def update_configuration_bundle(
     *,
     bundle_id: str,
-    parent_version_ids: list[str],
+    parent_version_ids: Sequence[str],
     commit_message: str,
     client_token: str | None = None,
     bundle_name: str | None = None,
@@ -1949,6 +2217,7 @@ async def update_configuration_bundle(
     kms_key_arn: str | None = None,
 ) -> UpdateConfigurationBundleResponse: ...
 ```
+
 
 ### update_consent_portal
 
@@ -1962,6 +2231,7 @@ async def update_consent_portal(
 ) -> UpdateConsentPortalResponse: ...
 ```
 
+
 ### update_dataset
 
 ```python
@@ -1973,16 +2243,18 @@ async def update_dataset(
 ) -> UpdateDatasetResponse: ...
 ```
 
+
 ### update_dataset_examples
 
 ```python
 async def update_dataset_examples(
     *,
     dataset_id: str,
-    examples: list[JSONValue],
+    examples: Sequence[JSONValue],
     client_token: str | None = None,
 ) -> UpdateDatasetExamplesResponse: ...
 ```
+
 
 ### update_evaluator
 
@@ -1997,6 +2269,7 @@ async def update_evaluator(
     kms_key_arn: str | None = None,
 ) -> UpdateEvaluatorResponse: ...
 ```
+
 
 ### update_gateway
 
@@ -2013,12 +2286,13 @@ async def update_gateway(
     authorizer_configuration: AuthorizerConfiguration | None = None,
     kms_key_arn: str | None = None,
     custom_transform_configuration: CustomTransformConfiguration | None = None,
-    interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+    interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     waf_configuration: WafConfiguration | None = None,
 ) -> UpdateGatewayResponse: ...
 ```
+
 
 ### update_gateway_rate_limit
 
@@ -2027,10 +2301,11 @@ async def update_gateway_rate_limit(
     *,
     gateway_identifier: str,
     rate_limit_id: str,
-    entries: list[LimitEntry],
+    entries: Sequence[LimitEntry],
     description: str | None = None,
 ) -> UpdateGatewayRateLimitResponse: ...
 ```
+
 
 ### update_gateway_rule
 
@@ -2040,11 +2315,12 @@ async def update_gateway_rule(
     gateway_identifier: str,
     rule_id: str,
     priority: int | None = None,
-    conditions: list[Condition] | None = None,
-    actions: list[Action] | None = None,
+    conditions: Sequence[Condition] | None = None,
+    actions: Sequence[Action] | None = None,
     description: str | None = None,
 ) -> UpdateGatewayRuleResponse: ...
 ```
+
 
 ### update_gateway_target
 
@@ -2056,12 +2332,13 @@ async def update_gateway_target(
     target_configuration: TargetConfiguration,
     name: str | None = None,
     description: str | None = None,
-    credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
-    certificate_configurations: list[CertificateConfiguration] | None = None,
+    certificate_configurations: Sequence[CertificateConfiguration] | None = None,
 ) -> UpdateGatewayTargetResponse: ...
 ```
+
 
 ### update_harness
 
@@ -2076,18 +2353,19 @@ async def update_harness(
     environment_variables: dict[str, str] | None = None,
     authorizer_configuration: UpdatedAuthorizerConfiguration | None = None,
     model: HarnessModelConfiguration | None = None,
-    system_prompt: list[HarnessSystemContentBlock] | None = None,
-    tools: list[HarnessTool] | None = None,
-    skills: list[HarnessSkill] | None = None,
-    allowed_tools: list[str] | None = None,
+    system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+    tools: Sequence[HarnessTool] | None = None,
+    skills: Sequence[HarnessSkill] | None = None,
+    allowed_tools: Sequence[str] | None = None,
     memory: UpdatedHarnessMemoryConfiguration | None = None,
     truncation: HarnessTruncationConfiguration | None = None,
-    hooks: list[HarnessHook] | None = None,
+    hooks: Sequence[HarnessHook] | None = None,
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
 ) -> UpdateHarnessResponse: ...
 ```
+
 
 ### update_harness_endpoint
 
@@ -2102,6 +2380,7 @@ async def update_harness_endpoint(
 ) -> UpdateHarnessEndpointResponse: ...
 ```
 
+
 ### update_memory
 
 ```python
@@ -2113,11 +2392,12 @@ async def update_memory(
     event_expiry_duration: int | None = None,
     memory_execution_role_arn: str | None = None,
     memory_strategies: ModifyMemoryStrategies | None = None,
-    add_indexed_keys: list[IndexedKey] | None = None,
-    namespace_keys: list[NamespaceKeyEntry] | None = None,
+    add_indexed_keys: Sequence[IndexedKey] | None = None,
+    namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
     stream_delivery_resources: StreamDeliveryResources | None = None,
 ) -> UpdateMemoryOutput: ...
 ```
+
 
 ### update_oauth2_credential_provider
 
@@ -2130,6 +2410,7 @@ async def update_oauth2_credential_provider(
 ) -> UpdateOauth2CredentialProviderResponse: ...
 ```
 
+
 ### update_online_evaluation_config
 
 ```python
@@ -2140,14 +2421,15 @@ async def update_online_evaluation_config(
     description: str | None = None,
     rule: Rule | None = None,
     data_source_config: DataSourceConfig | None = None,
-    evaluators: list[EvaluatorReference] | None = None,
-    insights: list[Insight] | None = None,
+    evaluators: Sequence[EvaluatorReference] | None = None,
+    insights: Sequence[Insight] | None = None,
     clustering_config: ClusteringConfig | None = None,
     output_config: OutputConfig | None = None,
     evaluation_execution_role_arn: str | None = None,
     execution_status: OnlineEvaluationExecutionStatus | None = None,
 ) -> UpdateOnlineEvaluationConfigResponse: ...
 ```
+
 
 ### update_payment_connector
 
@@ -2158,10 +2440,11 @@ async def update_payment_connector(
     payment_connector_id: str,
     description: str | None = None,
     type: PaymentConnectorType | None = None,
-    credential_provider_configurations: list[CredentialsProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
     client_token: str | None = None,
 ) -> UpdatePaymentConnectorResponse: ...
 ```
+
 
 ### update_payment_credential_provider
 
@@ -2173,6 +2456,7 @@ async def update_payment_credential_provider(
     provider_configuration_input: PaymentProviderConfigurationInput,
 ) -> UpdatePaymentCredentialProviderResponse: ...
 ```
+
 
 ### update_payment_manager
 
@@ -2189,6 +2473,7 @@ async def update_payment_manager(
 ) -> UpdatePaymentManagerResponse: ...
 ```
 
+
 ### update_policy
 
 ```python
@@ -2203,6 +2488,7 @@ async def update_policy(
 ) -> UpdatePolicyResponse: ...
 ```
 
+
 ### update_policy_engine
 
 ```python
@@ -2212,6 +2498,7 @@ async def update_policy_engine(
     description: UpdatedDescription | None = None,
 ) -> UpdatePolicyEngineResponse: ...
 ```
+
 
 ### update_registry
 
@@ -2225,6 +2512,7 @@ async def update_registry(
     approval_configuration: UpdatedApprovalConfiguration | None = None,
 ) -> UpdateRegistryResponse: ...
 ```
+
 
 ### update_registry_record
 
@@ -2244,6 +2532,7 @@ async def update_registry_record(
 ) -> UpdateRegistryRecordResponse: ...
 ```
 
+
 ### update_registry_record_status
 
 ```python
@@ -2256,15 +2545,17 @@ async def update_registry_record_status(
 ) -> UpdateRegistryRecordStatusResponse: ...
 ```
 
+
 ### update_workload_identity
 
 ```python
 async def update_workload_identity(
     *,
     name: str,
-    allowed_resource_oauth2_return_urls: list[str] | None = None,
+    allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
 ) -> UpdateWorkloadIdentityResponse: ...
 ```
+
 
 ## Links
 

@@ -82,7 +82,8 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+
 - Catch modeled exceptions from `rboto_sagemaker_runtime_http2.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -117,6 +118,7 @@ async def invoke_endpoint_with_bidirectional_stream(
     model_query_string: str | None = None,
 ) -> InvokeEndpointWithBidirectionalStreamOutput: ...
 ```
+
 
 ## Links
 

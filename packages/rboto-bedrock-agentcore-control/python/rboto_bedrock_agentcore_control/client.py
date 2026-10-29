@@ -114,6 +114,8 @@ from .types import (
     VersionFilter,
     WafConfiguration,
 )
+from .paginators import BedrockAgentCoreControlClientPaginators as _Paginators
+
 
 
 class BedrockAgentCoreControlClient:
@@ -142,6 +144,14 @@ class BedrockAgentCoreControlClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_dataset_examples(
@@ -175,7 +185,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         gateway_identifier: str,
-        rate_limits: list[BatchPutLimitEntry],
+        rate_limits: Sequence[BatchPutLimitEntry],
         client_token: str | None = None,
     ) -> BatchPutGatewayRateLimitsResponse:
         params: dict[str, object] = {
@@ -212,7 +222,7 @@ class BedrockAgentCoreControlClient:
         protocol_configuration: ProtocolConfiguration | None = None,
         lifecycle_configuration: LifecycleConfiguration | None = None,
         environment_variables: dict[str, str] | None = None,
-        filesystem_configurations: list[FilesystemConfiguration] | None = None,
+        filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
         capacity_provider_configuration: CapacityProviderConfiguration | None = None,
         tags: dict[str, str] | None = None,
         platform_version: str | None = None,
@@ -339,9 +349,9 @@ class BedrockAgentCoreControlClient:
         execution_role_arn: str | None = None,
         recording: RecordingConfig | None = None,
         browser_signing: BrowserSigningConfigInput | None = None,
-        enterprise_policies: list[BrowserEnterprisePolicy] | None = None,
-        certificates: list[Certificate] | None = None,
-        filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+        enterprise_policies: Sequence[BrowserEnterprisePolicy] | None = None,
+        certificates: Sequence[Certificate] | None = None,
+        filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateBrowserResponse:
@@ -454,8 +464,8 @@ class BedrockAgentCoreControlClient:
         network_configuration: CodeInterpreterNetworkConfiguration,
         description: str | None = None,
         execution_role_arn: str | None = None,
-        certificates: list[Certificate] | None = None,
-        filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+        certificates: Sequence[Certificate] | None = None,
+        filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateCodeInterpreterResponse:
@@ -540,7 +550,7 @@ class BedrockAgentCoreControlClient:
         execution_role_arn: str,
         idp_config: ConsentPortalIdpConfig,
         name: str,
-        sources: list[ConsentPortalSource],
+        sources: Sequence[ConsentPortalSource],
         description: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateConsentPortalResponse:
@@ -681,7 +691,7 @@ class BedrockAgentCoreControlClient:
         protocol_configuration: GatewayProtocolConfiguration | None = None,
         authorizer_configuration: AuthorizerConfiguration | None = None,
         kms_key_arn: str | None = None,
-        interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+        interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
         policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
         exception_level: ExceptionLevel | None = None,
         tags: dict[str, str] | None = None,
@@ -729,8 +739,8 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         gateway_identifier: str,
-        dimension_keys: list[str],
-        entries: list[LimitEntry],
+        dimension_keys: Sequence[str],
+        entries: Sequence[LimitEntry],
         client_token: str | None = None,
         rate_limit_id: str | None = None,
         description: str | None = None,
@@ -765,9 +775,9 @@ class BedrockAgentCoreControlClient:
         *,
         gateway_identifier: str,
         priority: int,
-        actions: list[Action],
+        actions: Sequence[Action],
         client_token: str | None = None,
-        conditions: list[Condition] | None = None,
+        conditions: Sequence[Condition] | None = None,
         description: str | None = None,
     ) -> CreateGatewayRuleResponse:
         params: dict[str, object] = {
@@ -803,10 +813,10 @@ class BedrockAgentCoreControlClient:
         name: str | None = None,
         description: str | None = None,
         client_token: str | None = None,
-        credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+        credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
         metadata_configuration: MetadataConfiguration | None = None,
         private_endpoint: PrivateEndpoint | None = None,
-        certificate_configurations: list[CertificateConfiguration] | None = None,
+        certificate_configurations: Sequence[CertificateConfiguration] | None = None,
     ) -> CreateGatewayTargetResponse:
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -851,13 +861,13 @@ class BedrockAgentCoreControlClient:
         environment_variables: dict[str, str] | None = None,
         authorizer_configuration: AuthorizerConfiguration | None = None,
         model: HarnessModelConfiguration | None = None,
-        system_prompt: list[HarnessSystemContentBlock] | None = None,
-        tools: list[HarnessTool] | None = None,
-        skills: list[HarnessSkill] | None = None,
-        allowed_tools: list[str] | None = None,
+        system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+        tools: Sequence[HarnessTool] | None = None,
+        skills: Sequence[HarnessSkill] | None = None,
+        allowed_tools: Sequence[str] | None = None,
         memory: HarnessMemoryConfiguration | None = None,
         truncation: HarnessTruncationConfiguration | None = None,
-        hooks: list[HarnessHook] | None = None,
+        hooks: Sequence[HarnessHook] | None = None,
         max_iterations: int | None = None,
         max_tokens: int | None = None,
         timeout_seconds: int | None = None,
@@ -960,9 +970,9 @@ class BedrockAgentCoreControlClient:
         description: str | None = None,
         encryption_key_arn: str | None = None,
         memory_execution_role_arn: str | None = None,
-        memory_strategies: list[MemoryStrategyInput] | None = None,
-        indexed_keys: list[IndexedKey] | None = None,
-        namespace_keys: list[NamespaceKeyEntry] | None = None,
+        memory_strategies: Sequence[MemoryStrategyInput] | None = None,
+        indexed_keys: Sequence[IndexedKey] | None = None,
+        namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
         stream_delivery_resources: StreamDeliveryResources | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateMemoryOutput:
@@ -1041,8 +1051,8 @@ class BedrockAgentCoreControlClient:
         enable_on_create: bool,
         client_token: str | None = None,
         description: str | None = None,
-        evaluators: list[EvaluatorReference] | None = None,
-        insights: list[Insight] | None = None,
+        evaluators: Sequence[EvaluatorReference] | None = None,
+        insights: Sequence[Insight] | None = None,
         clustering_config: ClusteringConfig | None = None,
         output_config: OutputConfig | None = None,
         tags: dict[str, str] | None = None,
@@ -1088,7 +1098,7 @@ class BedrockAgentCoreControlClient:
         payment_manager_id: str,
         name: str,
         type: PaymentConnectorType,
-        credential_provider_configurations: list[CredentialsProviderConfiguration],
+        credential_provider_configurations: Sequence[CredentialsProviderConfiguration],
         description: str | None = None,
         provision_mode: PaymentConnectorProvisionMode | None = None,
         client_token: str | None = None,
@@ -1346,7 +1356,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         name: str,
-        allowed_resource_oauth2_return_urls: list[str] | None = None,
+        allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateWorkloadIdentityResponse:
         params: dict[str, object] = {
@@ -1620,7 +1630,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         dataset_id: str,
-        example_ids: list[str],
+        example_ids: Sequence[str],
         client_token: str | None = None,
     ) -> DeleteDatasetExamplesResponse:
         params: dict[str, object] = {
@@ -4153,7 +4163,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         gateway_identifier: str,
-        target_id_list: list[str],
+        target_id_list: Sequence[str],
     ) -> SynchronizeGatewayTargetsResponse:
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -4201,7 +4211,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -4235,7 +4245,7 @@ class BedrockAgentCoreControlClient:
         lifecycle_configuration: LifecycleConfiguration | None = None,
         metadata_configuration: RuntimeMetadataConfiguration | None = None,
         environment_variables: dict[str, str] | None = None,
-        filesystem_configurations: list[FilesystemConfiguration] | None = None,
+        filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
         capacity_provider_configuration: CapacityProviderConfiguration | None = None,
         platform_version: str | None = None,
         client_token: str | None = None,
@@ -4379,7 +4389,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         bundle_id: str,
-        parent_version_ids: list[str],
+        parent_version_ids: Sequence[str],
         commit_message: str,
         client_token: str | None = None,
         bundle_name: str | None = None,
@@ -4485,7 +4495,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         dataset_id: str,
-        examples: list[JSONValue],
+        examples: Sequence[JSONValue],
         client_token: str | None = None,
     ) -> UpdateDatasetExamplesResponse:
         params: dict[str, object] = {
@@ -4558,7 +4568,7 @@ class BedrockAgentCoreControlClient:
         authorizer_configuration: AuthorizerConfiguration | None = None,
         kms_key_arn: str | None = None,
         custom_transform_configuration: CustomTransformConfiguration | None = None,
-        interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+        interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
         policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
         exception_level: ExceptionLevel | None = None,
         waf_configuration: WafConfiguration | None = None,
@@ -4608,7 +4618,7 @@ class BedrockAgentCoreControlClient:
         *,
         gateway_identifier: str,
         rate_limit_id: str,
-        entries: list[LimitEntry],
+        entries: Sequence[LimitEntry],
         description: str | None = None,
     ) -> UpdateGatewayRateLimitResponse:
         params: dict[str, object] = {
@@ -4638,8 +4648,8 @@ class BedrockAgentCoreControlClient:
         gateway_identifier: str,
         rule_id: str,
         priority: int | None = None,
-        conditions: list[Condition] | None = None,
-        actions: list[Action] | None = None,
+        conditions: Sequence[Condition] | None = None,
+        actions: Sequence[Action] | None = None,
         description: str | None = None,
     ) -> UpdateGatewayRuleResponse:
         params: dict[str, object] = {
@@ -4676,10 +4686,10 @@ class BedrockAgentCoreControlClient:
         target_configuration: TargetConfiguration,
         name: str | None = None,
         description: str | None = None,
-        credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+        credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
         metadata_configuration: MetadataConfiguration | None = None,
         private_endpoint: PrivateEndpoint | None = None,
-        certificate_configurations: list[CertificateConfiguration] | None = None,
+        certificate_configurations: Sequence[CertificateConfiguration] | None = None,
     ) -> UpdateGatewayTargetResponse:
         params: dict[str, object] = {
             "gateway_identifier": gateway_identifier,
@@ -4723,13 +4733,13 @@ class BedrockAgentCoreControlClient:
         environment_variables: dict[str, str] | None = None,
         authorizer_configuration: UpdatedAuthorizerConfiguration | None = None,
         model: HarnessModelConfiguration | None = None,
-        system_prompt: list[HarnessSystemContentBlock] | None = None,
-        tools: list[HarnessTool] | None = None,
-        skills: list[HarnessSkill] | None = None,
-        allowed_tools: list[str] | None = None,
+        system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+        tools: Sequence[HarnessTool] | None = None,
+        skills: Sequence[HarnessSkill] | None = None,
+        allowed_tools: Sequence[str] | None = None,
         memory: UpdatedHarnessMemoryConfiguration | None = None,
         truncation: HarnessTruncationConfiguration | None = None,
-        hooks: list[HarnessHook] | None = None,
+        hooks: Sequence[HarnessHook] | None = None,
         max_iterations: int | None = None,
         max_tokens: int | None = None,
         timeout_seconds: int | None = None,
@@ -4827,8 +4837,8 @@ class BedrockAgentCoreControlClient:
         event_expiry_duration: int | None = None,
         memory_execution_role_arn: str | None = None,
         memory_strategies: ModifyMemoryStrategies | None = None,
-        add_indexed_keys: list[IndexedKey] | None = None,
-        namespace_keys: list[NamespaceKeyEntry] | None = None,
+        add_indexed_keys: Sequence[IndexedKey] | None = None,
+        namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
         stream_delivery_resources: StreamDeliveryResources | None = None,
     ) -> UpdateMemoryOutput:
         params: dict[str, object] = {
@@ -4898,8 +4908,8 @@ class BedrockAgentCoreControlClient:
         description: str | None = None,
         rule: Rule | None = None,
         data_source_config: DataSourceConfig | None = None,
-        evaluators: list[EvaluatorReference] | None = None,
-        insights: list[Insight] | None = None,
+        evaluators: Sequence[EvaluatorReference] | None = None,
+        insights: Sequence[Insight] | None = None,
         clustering_config: ClusteringConfig | None = None,
         output_config: OutputConfig | None = None,
         evaluation_execution_role_arn: str | None = None,
@@ -4949,7 +4959,7 @@ class BedrockAgentCoreControlClient:
         payment_connector_id: str,
         description: str | None = None,
         type: PaymentConnectorType | None = None,
-        credential_provider_configurations: list[CredentialsProviderConfiguration] | None = None,
+        credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
         client_token: str | None = None,
     ) -> UpdatePaymentConnectorResponse:
         params: dict[str, object] = {
@@ -5219,7 +5229,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         name: str,
-        allowed_resource_oauth2_return_urls: list[str] | None = None,
+        allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
     ) -> UpdateWorkloadIdentityResponse:
         params: dict[str, object] = {
             "name": name,

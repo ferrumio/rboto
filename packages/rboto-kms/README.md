@@ -62,7 +62,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_kms.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -85,7 +88,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`connect_custom_key_store`](#connect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>ConnectCustomKeyStoreResponse</code> |
 | [`create_alias`](#create_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
 | [`create_custom_key_store`](#create_custom_key_store) | <code>custom_key_store_name: str</code> | <code>CreateCustomKeyStoreResponse</code> |
-| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: list[GrantOperation]</code> | <code>CreateGrantResponse</code> |
+| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: Sequence[GrantOperation]</code> | <code>CreateGrantResponse</code> |
 | [`create_key`](#create_key) | None | <code>CreateKeyResponse</code> |
 | [`decrypt`](#decrypt) | None | <code>DecryptResponse</code> |
 | [`delete_alias`](#delete_alias) | <code>alias_name: str</code> | <code>None</code> |
@@ -127,8 +130,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`rotate_key_on_demand`](#rotate_key_on_demand) | <code>key_id: str</code> | <code>RotateKeyOnDemandResponse</code> |
 | [`schedule_key_deletion`](#schedule_key_deletion) | <code>key_id: str</code> | <code>ScheduleKeyDeletionResponse</code> |
 | [`sign`](#sign) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>SignResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>key_id: str</code>, <code>tags: list[Tag]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>key_id: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`tag_resource`](#tag_resource) | <code>key_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>key_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_alias`](#update_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
 | [`update_custom_key_store`](#update_custom_key_store) | <code>custom_key_store_id: str</code> | <code>UpdateCustomKeyStoreResponse</code> |
 | [`update_key_description`](#update_key_description) | <code>key_id: str</code>, <code>description: str</code> | <code>None</code> |
@@ -147,6 +150,7 @@ async def cancel_key_deletion(
 ) -> CancelKeyDeletionResponse: ...
 ```
 
+
 ### connect_custom_key_store
 
 ```python
@@ -155,6 +159,7 @@ async def connect_custom_key_store(
     custom_key_store_id: str,
 ) -> ConnectCustomKeyStoreResponse: ...
 ```
+
 
 ### create_alias
 
@@ -165,6 +170,7 @@ async def create_alias(
     target_key_id: str,
 ) -> None: ...
 ```
+
 
 ### create_custom_key_store
 
@@ -185,23 +191,25 @@ async def create_custom_key_store(
 ) -> CreateCustomKeyStoreResponse: ...
 ```
 
+
 ### create_grant
 
 ```python
 async def create_grant(
     *,
     key_id: str,
-    operations: list[GrantOperation],
+    operations: Sequence[GrantOperation],
     grantee_principal: str | None = None,
     retiring_principal: str | None = None,
     constraints: GrantConstraints | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     name: str | None = None,
     dry_run: bool | None = None,
     grantee_service_principal: str | None = None,
     retiring_service_principal: str | None = None,
 ) -> CreateGrantResponse: ...
 ```
+
 
 ### create_key
 
@@ -216,11 +224,12 @@ async def create_key(
     origin: OriginType | None = None,
     custom_key_store_id: str | None = None,
     bypass_policy_lockout_safety_check: bool | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     multi_region: bool | None = None,
     xks_key_id: str | None = None,
 ) -> CreateKeyResponse: ...
 ```
+
 
 ### decrypt
 
@@ -229,14 +238,15 @@ async def decrypt(
     *,
     ciphertext_blob: bytes | None = None,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     key_id: str | None = None,
     encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
-    dry_run_modifiers: list[DryRunModifierType] | None = None,
+    dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
 ) -> DecryptResponse: ...
 ```
+
 
 ### delete_alias
 
@@ -247,6 +257,7 @@ async def delete_alias(
 ) -> None: ...
 ```
 
+
 ### delete_custom_key_store
 
 ```python
@@ -255,6 +266,7 @@ async def delete_custom_key_store(
     custom_key_store_id: str,
 ) -> DeleteCustomKeyStoreResponse: ...
 ```
+
 
 ### delete_imported_key_material
 
@@ -266,6 +278,7 @@ async def delete_imported_key_material(
 ) -> DeleteImportedKeyMaterialResponse: ...
 ```
 
+
 ### derive_shared_secret
 
 ```python
@@ -274,11 +287,12 @@ async def derive_shared_secret(
     key_id: str,
     key_agreement_algorithm: KeyAgreementAlgorithmSpec,
     public_key: bytes,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
     recipient: RecipientInfo | None = None,
 ) -> DeriveSharedSecretResponse: ...
 ```
+
 
 ### describe_custom_key_stores
 
@@ -292,15 +306,20 @@ async def describe_custom_key_stores(
 ) -> DescribeCustomKeyStoresResponse: ...
 ```
 
+Also available as `client.paginators.describe_custom_key_stores(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_key
 
 ```python
 async def describe_key(
     *,
     key_id: str,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
 ) -> DescribeKeyResponse: ...
 ```
+
 
 ### disable_key
 
@@ -311,6 +330,7 @@ async def disable_key(
 ) -> None: ...
 ```
 
+
 ### disable_key_rotation
 
 ```python
@@ -319,6 +339,7 @@ async def disable_key_rotation(
     key_id: str,
 ) -> None: ...
 ```
+
 
 ### disconnect_custom_key_store
 
@@ -329,6 +350,7 @@ async def disconnect_custom_key_store(
 ) -> DisconnectCustomKeyStoreResponse: ...
 ```
 
+
 ### enable_key
 
 ```python
@@ -337,6 +359,7 @@ async def enable_key(
     key_id: str,
 ) -> None: ...
 ```
+
 
 ### enable_key_rotation
 
@@ -348,6 +371,7 @@ async def enable_key_rotation(
 ) -> None: ...
 ```
 
+
 ### encrypt
 
 ```python
@@ -356,11 +380,12 @@ async def encrypt(
     key_id: str,
     plaintext: bytes,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     dry_run: bool | None = None,
 ) -> EncryptResponse: ...
 ```
+
 
 ### generate_data_key
 
@@ -371,11 +396,12 @@ async def generate_data_key(
     encryption_context: dict[str, str] | None = None,
     number_of_bytes: int | None = None,
     key_spec: DataKeySpec | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyResponse: ...
 ```
+
 
 ### generate_data_key_pair
 
@@ -385,11 +411,12 @@ async def generate_data_key_pair(
     key_id: str,
     key_pair_spec: DataKeyPairSpec,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyPairResponse: ...
 ```
+
 
 ### generate_data_key_pair_without_plaintext
 
@@ -399,10 +426,11 @@ async def generate_data_key_pair_without_plaintext(
     key_id: str,
     key_pair_spec: DataKeyPairSpec,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyPairWithoutPlaintextResponse: ...
 ```
+
 
 ### generate_data_key_without_plaintext
 
@@ -413,10 +441,11 @@ async def generate_data_key_without_plaintext(
     encryption_context: dict[str, str] | None = None,
     key_spec: DataKeySpec | None = None,
     number_of_bytes: int | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyWithoutPlaintextResponse: ...
 ```
+
 
 ### generate_mac
 
@@ -426,10 +455,11 @@ async def generate_mac(
     message: bytes,
     key_id: str,
     mac_algorithm: MacAlgorithmSpec,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateMacResponse: ...
 ```
+
 
 ### generate_random
 
@@ -442,6 +472,7 @@ async def generate_random(
 ) -> GenerateRandomResponse: ...
 ```
 
+
 ### get_key_last_usage
 
 ```python
@@ -450,6 +481,7 @@ async def get_key_last_usage(
     key_id: str,
 ) -> GetKeyLastUsageResponse: ...
 ```
+
 
 ### get_key_policy
 
@@ -461,6 +493,7 @@ async def get_key_policy(
 ) -> GetKeyPolicyResponse: ...
 ```
 
+
 ### get_key_rotation_status
 
 ```python
@@ -469,6 +502,7 @@ async def get_key_rotation_status(
     key_id: str,
 ) -> GetKeyRotationStatusResponse: ...
 ```
+
 
 ### get_parameters_for_import
 
@@ -481,15 +515,17 @@ async def get_parameters_for_import(
 ) -> GetParametersForImportResponse: ...
 ```
 
+
 ### get_public_key
 
 ```python
 async def get_public_key(
     *,
     key_id: str,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
 ) -> GetPublicKeyResponse: ...
 ```
+
 
 ### import_key_material
 
@@ -507,6 +543,7 @@ async def import_key_material(
 ) -> ImportKeyMaterialResponse: ...
 ```
 
+
 ### list_aliases
 
 ```python
@@ -517,6 +554,10 @@ async def list_aliases(
     marker: str | None = None,
 ) -> ListAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_grants
 
@@ -532,6 +573,10 @@ async def list_grants(
 ) -> ListGrantsOutput: ...
 ```
 
+Also available as `client.paginators.list_grants(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_key_policies
 
 ```python
@@ -542,6 +587,10 @@ async def list_key_policies(
     marker: str | None = None,
 ) -> ListKeyPoliciesResponse: ...
 ```
+
+Also available as `client.paginators.list_key_policies(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_key_rotations
 
@@ -555,6 +604,10 @@ async def list_key_rotations(
 ) -> ListKeyRotationsResponse: ...
 ```
 
+Also available as `client.paginators.list_key_rotations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_keys
 
 ```python
@@ -564,6 +617,10 @@ async def list_keys(
     marker: str | None = None,
 ) -> ListKeysResponse: ...
 ```
+
+Also available as `client.paginators.list_keys(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_resource_tags
 
@@ -575,6 +632,10 @@ async def list_resource_tags(
     marker: str | None = None,
 ) -> ListResourceTagsResponse: ...
 ```
+
+Also available as `client.paginators.list_resource_tags(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_retirable_grants
 
@@ -588,6 +649,10 @@ async def list_retirable_grants(
 ) -> ListRetirableGrantsOutput: ...
 ```
 
+Also available as `client.paginators.list_retirable_grants(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_key_policy
 
 ```python
@@ -599,6 +664,7 @@ async def put_key_policy(
     bypass_policy_lockout_safety_check: bool | None = None,
 ) -> None: ...
 ```
+
 
 ### re_encrypt
 
@@ -612,11 +678,12 @@ async def re_encrypt(
     destination_encryption_context: dict[str, str] | None = None,
     source_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     destination_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-    dry_run_modifiers: list[DryRunModifierType] | None = None,
+    dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
 ) -> ReEncryptResponse: ...
 ```
+
 
 ### replicate_key
 
@@ -628,9 +695,10 @@ async def replicate_key(
     policy: str | None = None,
     bypass_policy_lockout_safety_check: bool | None = None,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> ReplicateKeyResponse: ...
 ```
+
 
 ### retire_grant
 
@@ -644,6 +712,7 @@ async def retire_grant(
 ) -> None: ...
 ```
 
+
 ### revoke_grant
 
 ```python
@@ -655,6 +724,7 @@ async def revoke_grant(
 ) -> None: ...
 ```
 
+
 ### rotate_key_on_demand
 
 ```python
@@ -663,6 +733,7 @@ async def rotate_key_on_demand(
     key_id: str,
 ) -> RotateKeyOnDemandResponse: ...
 ```
+
 
 ### schedule_key_deletion
 
@@ -674,6 +745,7 @@ async def schedule_key_deletion(
 ) -> ScheduleKeyDeletionResponse: ...
 ```
 
+
 ### sign
 
 ```python
@@ -683,10 +755,11 @@ async def sign(
     message: bytes,
     signing_algorithm: SigningAlgorithmSpec,
     message_type: MessageType | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> SignResponse: ...
 ```
+
 
 ### tag_resource
 
@@ -694,9 +767,10 @@ async def sign(
 async def tag_resource(
     *,
     key_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> None: ...
 ```
+
 
 ### untag_resource
 
@@ -704,9 +778,10 @@ async def tag_resource(
 async def untag_resource(
     *,
     key_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_alias
 
@@ -717,6 +792,7 @@ async def update_alias(
     target_key_id: str,
 ) -> None: ...
 ```
+
 
 ### update_custom_key_store
 
@@ -736,6 +812,7 @@ async def update_custom_key_store(
 ) -> UpdateCustomKeyStoreResponse: ...
 ```
 
+
 ### update_key_description
 
 ```python
@@ -745,6 +822,7 @@ async def update_key_description(
     description: str,
 ) -> None: ...
 ```
+
 
 ### update_primary_region
 
@@ -756,6 +834,7 @@ async def update_primary_region(
 ) -> None: ...
 ```
 
+
 ### verify
 
 ```python
@@ -766,10 +845,11 @@ async def verify(
     signature: bytes,
     signing_algorithm: SigningAlgorithmSpec,
     message_type: MessageType | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> VerifyResponse: ...
 ```
+
 
 ### verify_mac
 
@@ -780,10 +860,11 @@ async def verify_mac(
     key_id: str,
     mac_algorithm: MacAlgorithmSpec,
     mac: bytes,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> VerifyMacResponse: ...
 ```
+
 
 ## Links
 

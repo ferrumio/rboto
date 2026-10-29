@@ -19,6 +19,8 @@ from .types import (
     SortOrderType,
     Tag,
 )
+from .paginators import SecretsManagerClientPaginators as _Paginators
+
 
 
 class SecretsManagerClient:
@@ -47,13 +49,21 @@ class SecretsManagerClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def batch_get_secret_value(
         self,
         *,
-        secret_id_list: list[str] | None = None,
-        filters: list[Filter] | None = None,
+        secret_id_list: Sequence[str] | None = None,
+        filters: Sequence[Filter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> BatchGetSecretValueResponse:
@@ -112,8 +122,8 @@ class SecretsManagerClient:
         kms_key_id: str | None = None,
         secret_binary: bytes | None = None,
         secret_string: str | None = None,
-        tags: list[Tag] | None = None,
-        add_replica_regions: list[ReplicaRegionType] | None = None,
+        tags: Sequence[Tag] | None = None,
+        add_replica_regions: Sequence[ReplicaRegionType] | None = None,
         force_overwrite_replica_secret: bool | None = None,
         type: str | None = None,
     ) -> CreateSecretResponse:
@@ -355,7 +365,7 @@ class SecretsManagerClient:
         include_planned_deletion: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-        filters: list[Filter] | None = None,
+        filters: Sequence[Filter] | None = None,
         sort_order: SortOrderType | None = None,
         sort_by: SortByType | None = None,
     ) -> ListSecretsResponse:
@@ -421,7 +431,7 @@ class SecretsManagerClient:
         client_request_token: str | None = None,
         secret_binary: bytes | None = None,
         secret_string: str | None = None,
-        version_stages: list[str] | None = None,
+        version_stages: Sequence[str] | None = None,
         rotation_token: str | None = None,
     ) -> PutSecretValueResponse:
         params: dict[str, object] = {
@@ -455,7 +465,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-        remove_replica_regions: list[str],
+        remove_replica_regions: Sequence[str],
     ) -> RemoveRegionsFromReplicationResponse:
         params: dict[str, object] = {
             "secret_id": secret_id,
@@ -479,7 +489,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-        add_replica_regions: list[ReplicaRegionType],
+        add_replica_regions: Sequence[ReplicaRegionType],
         force_overwrite_replica_secret: bool | None = None,
     ) -> ReplicateSecretToRegionsResponse:
         params: dict[str, object] = {
@@ -531,7 +541,7 @@ class SecretsManagerClient:
         client_request_token: str | None = None,
         rotation_lambda_arn: str | None = None,
         rotation_rules: RotationRulesType | None = None,
-        external_secret_rotation_metadata: list[ExternalSecretRotationMetadataItem] | None = None,
+        external_secret_rotation_metadata: Sequence[ExternalSecretRotationMetadataItem] | None = None,
         external_secret_rotation_role_arn: str | None = None,
         rotate_immediately: bool | None = None,
     ) -> RotateSecretResponse:
@@ -590,7 +600,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> None:
         params: dict[str, object] = {
             "secret_id": secret_id,
@@ -614,7 +624,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "secret_id": secret_id,

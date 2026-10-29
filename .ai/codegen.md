@@ -11,9 +11,18 @@
 - Package usage examples: edit `examples/clients/<python_name>.py`. README operation
   tables and full signatures come from the in-memory Python API during generation.
 - Handwritten runtime behavior: edit the relevant non-generated Rust runtime file.
+- Pagination traits: parsed in `smithy.py`, validated in `pagination.py`, and
+  rendered in `paginators.py.j2`. Missing metadata belongs in the service TOML
+  `[pagination.OperationName]` tables; use modeled member names and validate
+  against the pinned model. Runtime iteration lives in `rboto/_pagination.py`.
 
 Do not add service-name branches to generic generation until a declarative customization
 has been shown to be insufficient.
+
+Recursive `JSONValue` uses a Python 3.12 named type alias, so optional annotations
+resolve through `typing.get_type_hints` and schema generators can follow its
+recursive definition. Do not replace it with a quoted string assigned to
+`TypeAlias`: `JSONValue | None` would then fail during runtime introspection.
 
 ## Required workflow
 

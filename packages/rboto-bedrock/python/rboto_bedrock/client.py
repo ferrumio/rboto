@@ -70,6 +70,8 @@ from .types import (
     ValidationDataConfig,
     VpcConfig,
 )
+from .paginators import BedrockClientPaginators as _Paginators
+
 
 
 class BedrockClient:
@@ -98,12 +100,20 @@ class BedrockClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def batch_delete_advanced_prompt_optimization_job(
         self,
         *,
-        job_identifiers: list[str],
+        job_identifiers: Sequence[str],
     ) -> BatchDeleteAdvancedPromptOptimizationJobResponse:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
@@ -125,7 +135,7 @@ class BedrockClient:
     async def batch_delete_evaluation_job(
         self,
         *,
-        job_identifiers: list[str],
+        job_identifiers: Sequence[str],
     ) -> BatchDeleteEvaluationJobResponse:
         params: dict[str, object] = {
             "job_identifiers": job_identifiers,
@@ -174,11 +184,11 @@ class BedrockClient:
         job_name: str,
         input_config: AdvancedPromptOptimizationInputConfig,
         output_config: AdvancedPromptOptimizationOutputConfig,
-        model_configurations: list[ModelConfiguration],
+        model_configurations: Sequence[ModelConfiguration],
         job_description: str | None = None,
         client_token: str | None = None,
         encryption_key_arn: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateAdvancedPromptOptimizationJobResponse:
         params: dict[str, object] = {
             "job_name": job_name,
@@ -216,7 +226,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         policy_definition: AutomatedReasoningPolicyDefinition | None = None,
         kms_key_id: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateAutomatedReasoningPolicyResponse:
         params: dict[str, object] = {
             "name": name,
@@ -286,7 +296,7 @@ class BedrockClient:
         policy_arn: str,
         last_updated_definition_hash: str,
         client_request_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateAutomatedReasoningPolicyVersionResponse:
         params: dict[str, object] = {
             "policy_arn": policy_arn,
@@ -318,7 +328,7 @@ class BedrockClient:
         custom_model_data_source: CustomModelDataSource | None = None,
         model_kms_key_arn: str | None = None,
         role_arn: str | None = None,
-        model_tags: list[Tag] | None = None,
+        model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateCustomModelResponse:
         params: dict[str, object] = {
@@ -356,7 +366,7 @@ class BedrockClient:
         model_deployment_name: str,
         model_arn: str,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateCustomModelDeploymentResponse:
         params: dict[str, object] = {
@@ -394,7 +404,7 @@ class BedrockClient:
         job_description: str | None = None,
         client_request_token: str | None = None,
         customer_encryption_key_id: str | None = None,
-        job_tags: list[Tag] | None = None,
+        job_tags: Sequence[Tag] | None = None,
         application_type: ApplicationType | None = None,
     ) -> CreateEvaluationJobResponse:
         params: dict[str, object] = {
@@ -467,7 +477,7 @@ class BedrockClient:
         automated_reasoning_policy_config: GuardrailAutomatedReasoningPolicyConfig | None = None,
         cross_region_config: GuardrailCrossRegionConfig | None = None,
         kms_key_id: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateGuardrailResponse:
         params: dict[str, object] = {
@@ -546,7 +556,7 @@ class BedrockClient:
         model_source: InferenceProfileModelSource,
         description: str | None = None,
         client_request_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateInferenceProfileResponse:
         params: dict[str, object] = {
             "inference_profile_name": inference_profile_name,
@@ -580,7 +590,7 @@ class BedrockClient:
         endpoint_name: str,
         accept_eula: bool | None = None,
         client_request_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateMarketplaceModelEndpointResponse:
         params: dict[str, object] = {
             "model_source_identifier": model_source_identifier,
@@ -613,7 +623,7 @@ class BedrockClient:
         source_model_arn: str,
         target_model_name: str,
         model_kms_key_id: str | None = None,
-        target_model_tags: list[Tag] | None = None,
+        target_model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
     ) -> CreateModelCopyJobResponse:
         params: dict[str, object] = {
@@ -652,8 +662,8 @@ class BedrockClient:
         client_request_token: str | None = None,
         customization_type: CustomizationType | None = None,
         custom_model_kms_key_id: str | None = None,
-        job_tags: list[Tag] | None = None,
-        custom_model_tags: list[Tag] | None = None,
+        job_tags: Sequence[Tag] | None = None,
+        custom_model_tags: Sequence[Tag] | None = None,
         validation_data_config: ValidationDataConfig | None = None,
         hyper_parameters: dict[str, str] | None = None,
         vpc_config: VpcConfig | None = None,
@@ -706,8 +716,8 @@ class BedrockClient:
         imported_model_name: str,
         role_arn: str,
         model_data_source: ModelDataSource,
-        job_tags: list[Tag] | None = None,
-        imported_model_tags: list[Tag] | None = None,
+        job_tags: Sequence[Tag] | None = None,
+        imported_model_tags: Sequence[Tag] | None = None,
         client_request_token: str | None = None,
         vpc_config: VpcConfig | None = None,
         imported_model_kms_key_id: str | None = None,
@@ -753,7 +763,7 @@ class BedrockClient:
         client_request_token: str | None = None,
         vpc_config: VpcConfig | None = None,
         timeout_duration_in_hours: int | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         model_invocation_type: ModelInvocationType | None = None,
     ) -> CreateModelInvocationJobResponse:
         params: dict[str, object] = {
@@ -791,12 +801,12 @@ class BedrockClient:
         self,
         *,
         prompt_router_name: str,
-        models: list[PromptRouterTargetModel],
+        models: Sequence[PromptRouterTargetModel],
         routing_criteria: RoutingCriteria,
         fallback_model: PromptRouterTargetModel,
         client_request_token: str | None = None,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreatePromptRouterResponse:
         params: dict[str, object] = {
             "prompt_router_name": prompt_router_name,
@@ -832,7 +842,7 @@ class BedrockClient:
         model_id: str,
         client_request_token: str | None = None,
         commitment_duration: CommitmentDuration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateProvisionedModelThroughputResponse:
         params: dict[str, object] = {
             "model_units": model_units,
@@ -2806,7 +2816,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-        test_case_ids: list[str] | None = None,
+        test_case_ids: Sequence[str] | None = None,
         client_request_token: str | None = None,
     ) -> StartAutomatedReasoningPolicyTestWorkflowResponse:
         params: dict[str, object] = {
@@ -2923,7 +2933,7 @@ class BedrockClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2947,7 +2957,7 @@ class BedrockClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -3002,7 +3012,7 @@ class BedrockClient:
         *,
         policy_arn: str,
         build_workflow_id: str,
-        annotations: list[AutomatedReasoningPolicyAnnotation],
+        annotations: Sequence[AutomatedReasoningPolicyAnnotation],
         last_updated_annotation_set_hash: str,
     ) -> UpdateAutomatedReasoningPolicyAnnotationsResponse:
         params: dict[str, object] = {

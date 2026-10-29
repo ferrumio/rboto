@@ -78,7 +78,7 @@ class BedrockDataAutomationRuntimeClient:
         input_configuration: SyncInputConfiguration,
         data_automation_profile_arn: str,
         data_automation_configuration: DataAutomationConfiguration | None = None,
-        blueprints: list[Blueprint] | None = None,
+        blueprints: Sequence[Blueprint] | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
         output_configuration: OutputConfiguration | None = None,
     ) -> InvokeDataAutomationResponse:
@@ -118,8 +118,8 @@ class BedrockDataAutomationRuntimeClient:
         data_automation_configuration: DataAutomationConfiguration | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
         notification_configuration: NotificationConfiguration | None = None,
-        blueprints: list[Blueprint] | None = None,
-        tags: list[Tag] | None = None,
+        blueprints: Sequence[Blueprint] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> InvokeDataAutomationAsyncResponse:
         params: dict[str, object] = {
             "input_configuration": input_configuration,
@@ -178,7 +178,7 @@ class BedrockDataAutomationRuntimeClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -202,7 +202,7 @@ class BedrockDataAutomationRuntimeClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

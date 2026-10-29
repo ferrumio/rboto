@@ -65,7 +65,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agent_runtime.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -84,7 +87,7 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: list[AgenticRetrieveMessage]</code>, <code>retrievers: list[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamResponse</code> |
+| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: Sequence[AgenticRetrieveMessage]</code>, <code>retrievers: Sequence[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamResponse</code> |
 | [`check_ingested_document_acl`](#check_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code>, <code>user_context: UserContext</code> | <code>CheckIngestedDocumentAclResponse</code> |
 | [`create_invocation`](#create_invocation) | <code>session_identifier: str</code> | <code>CreateInvocationResponse</code> |
 | [`create_session`](#create_session) | None | <code>CreateSessionResponse</code> |
@@ -100,7 +103,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_invocation_step`](#get_invocation_step) | <code>invocation_identifier: str</code>, <code>invocation_step_id: str</code>, <code>session_identifier: str</code> | <code>GetInvocationStepResponse</code> |
 | [`get_session`](#get_session) | <code>session_identifier: str</code> | <code>GetSessionResponse</code> |
 | [`invoke_agent`](#invoke_agent) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>session_id: str</code> | <code>InvokeAgentResponse</code> |
-| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: list[FlowInput]</code> | <code>InvokeFlowResponse</code> |
+| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>InvokeFlowResponse</code> |
 | [`invoke_inline_agent`](#invoke_inline_agent) | <code>foundation_model: str</code>, <code>instruction: str</code>, <code>session_id: str</code> | <code>InvokeInlineAgentResponse</code> |
 | [`list_flow_execution_events`](#list_flow_execution_events) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code>, <code>event_type: FlowExecutionEventType</code> | <code>ListFlowExecutionEventsResponse</code> |
 | [`list_flow_executions`](#list_flow_executions) | <code>flow_identifier: str</code> | <code>ListFlowExecutionsResponse</code> |
@@ -110,14 +113,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
 | [`optimize_prompt`](#optimize_prompt) | <code>input: InputPrompt</code>, <code>target_model_id: str</code> | <code>OptimizePromptResponse</code> |
 | [`put_invocation_step`](#put_invocation_step) | <code>session_identifier: str</code>, <code>invocation_identifier: str</code>, <code>invocation_step_time: str</code>, <code>payload: InvocationStepPayload</code> | <code>PutInvocationStepResponse</code> |
-| [`rerank`](#rerank) | <code>queries: list[RerankQuery]</code>, <code>sources: list[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankResponse</code> |
+| [`rerank`](#rerank) | <code>queries: Sequence[RerankQuery]</code>, <code>sources: Sequence[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankResponse</code> |
 | [`retrieve`](#retrieve) | <code>knowledge_base_id: str</code>, <code>retrieval_query: KnowledgeBaseQuery</code> | <code>RetrieveResponse</code> |
 | [`retrieve_and_generate`](#retrieve_and_generate) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateResponse</code> |
 | [`retrieve_and_generate_stream`](#retrieve_and_generate_stream) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateStreamResponse</code> |
-| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: list[FlowInput]</code> | <code>StartFlowExecutionResponse</code> |
+| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>StartFlowExecutionResponse</code> |
 | [`stop_flow_execution`](#stop_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>StopFlowExecutionResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_session`](#update_session) | <code>session_identifier: str</code> | <code>UpdateSessionResponse</code> |
 
 ## Complete signatures
@@ -127,8 +130,8 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def agentic_retrieve_stream(
     *,
-    messages: list[AgenticRetrieveMessage],
-    retrievers: list[AgenticRetriever],
+    messages: Sequence[AgenticRetrieveMessage],
+    retrievers: Sequence[AgenticRetriever],
     agentic_retrieve_configuration: AgenticRetrieveConfiguration,
     policy_configuration: AgenticRetrievePolicyConfiguration | None = None,
     next_token: str | None = None,
@@ -138,6 +141,7 @@ async def agentic_retrieve_stream(
     generate_response: bool | None = None,
 ) -> AgenticRetrieveStreamResponse: ...
 ```
+
 
 ### check_ingested_document_acl
 
@@ -151,6 +155,7 @@ async def check_ingested_document_acl(
 ) -> CheckIngestedDocumentAclResponse: ...
 ```
 
+
 ### create_invocation
 
 ```python
@@ -162,6 +167,7 @@ async def create_invocation(
 ) -> CreateInvocationResponse: ...
 ```
 
+
 ### create_session
 
 ```python
@@ -172,6 +178,7 @@ async def create_session(
     tags: dict[str, str] | None = None,
 ) -> CreateSessionResponse: ...
 ```
+
 
 ### delete_agent_memory
 
@@ -185,6 +192,7 @@ async def delete_agent_memory(
 ) -> DeleteAgentMemoryResponse: ...
 ```
 
+
 ### delete_session
 
 ```python
@@ -193,6 +201,7 @@ async def delete_session(
     session_identifier: str,
 ) -> DeleteSessionResponse: ...
 ```
+
 
 ### end_session
 
@@ -203,6 +212,7 @@ async def end_session(
 ) -> EndSessionResponse: ...
 ```
 
+
 ### generate_query
 
 ```python
@@ -212,6 +222,7 @@ async def generate_query(
     transformation_configuration: TransformationConfiguration,
 ) -> GenerateQueryResponse: ...
 ```
+
 
 ### get_agent_memory
 
@@ -227,6 +238,10 @@ async def get_agent_memory(
 ) -> GetAgentMemoryResponse: ...
 ```
 
+Also available as `client.paginators.get_agent_memory(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_document_content
 
 ```python
@@ -240,6 +255,7 @@ async def get_document_content(
 ) -> GetDocumentContentResponse: ...
 ```
 
+
 ### get_execution_flow_snapshot
 
 ```python
@@ -250,6 +266,7 @@ async def get_execution_flow_snapshot(
     execution_identifier: str,
 ) -> GetExecutionFlowSnapshotResponse: ...
 ```
+
 
 ### get_flow_execution
 
@@ -262,6 +279,7 @@ async def get_flow_execution(
 ) -> GetFlowExecutionResponse: ...
 ```
 
+
 ### get_ingested_document_acl
 
 ```python
@@ -272,6 +290,7 @@ async def get_ingested_document_acl(
     document_id: str,
 ) -> GetIngestedDocumentAclResponse: ...
 ```
+
 
 ### get_invocation_step
 
@@ -284,6 +303,7 @@ async def get_invocation_step(
 ) -> GetInvocationStepResponse: ...
 ```
 
+
 ### get_session
 
 ```python
@@ -292,6 +312,7 @@ async def get_session(
     session_identifier: str,
 ) -> GetSessionResponse: ...
 ```
+
 
 ### invoke_agent
 
@@ -313,6 +334,7 @@ async def invoke_agent(
 ) -> InvokeAgentResponse: ...
 ```
 
+
 ### invoke_flow
 
 ```python
@@ -320,12 +342,13 @@ async def invoke_flow(
     *,
     flow_identifier: str,
     flow_alias_identifier: str,
-    inputs: list[FlowInput],
+    inputs: Sequence[FlowInput],
     enable_trace: bool | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
     execution_id: str | None = None,
 ) -> InvokeFlowResponse: ...
 ```
+
 
 ### invoke_inline_agent
 
@@ -337,12 +360,12 @@ async def invoke_inline_agent(
     session_id: str,
     customer_encryption_key_arn: str | None = None,
     idle_session_ttl_in_seconds: int | None = None,
-    action_groups: list[AgentActionGroup] | None = None,
-    knowledge_bases: list[KnowledgeBase] | None = None,
+    action_groups: Sequence[AgentActionGroup] | None = None,
+    knowledge_bases: Sequence[KnowledgeBase] | None = None,
     guardrail_configuration: GuardrailConfigurationWithArn | None = None,
     prompt_override_configuration: PromptOverrideConfiguration | None = None,
     agent_collaboration: AgentCollaboration | None = None,
-    collaborator_configurations: list[CollaboratorConfiguration] | None = None,
+    collaborator_configurations: Sequence[CollaboratorConfiguration] | None = None,
     agent_name: str | None = None,
     end_session: bool | None = None,
     enable_trace: bool | None = None,
@@ -350,12 +373,13 @@ async def invoke_inline_agent(
     streaming_configurations: StreamingConfigurations | None = None,
     prompt_creation_configurations: PromptCreationConfigurations | None = None,
     inline_session_state: InlineSessionState | None = None,
-    collaborators: list[Collaborator] | None = None,
+    collaborators: Sequence[Collaborator] | None = None,
     bedrock_model_configurations: InlineBedrockModelConfigurations | None = None,
     orchestration_type: OrchestrationType | None = None,
     custom_orchestration: CustomOrchestration | None = None,
 ) -> InvokeInlineAgentResponse: ...
 ```
+
 
 ### list_flow_execution_events
 
@@ -371,6 +395,10 @@ async def list_flow_execution_events(
 ) -> ListFlowExecutionEventsResponse: ...
 ```
 
+Also available as `client.paginators.list_flow_execution_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flow_executions
 
 ```python
@@ -382,6 +410,10 @@ async def list_flow_executions(
     next_token: str | None = None,
 ) -> ListFlowExecutionsResponse: ...
 ```
+
+Also available as `client.paginators.list_flow_executions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_invocation_steps
 
@@ -395,6 +427,10 @@ async def list_invocation_steps(
 ) -> ListInvocationStepsResponse: ...
 ```
 
+Also available as `client.paginators.list_invocation_steps(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_invocations
 
 ```python
@@ -406,6 +442,10 @@ async def list_invocations(
 ) -> ListInvocationsResponse: ...
 ```
 
+Also available as `client.paginators.list_invocations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_sessions
 
 ```python
@@ -416,6 +456,10 @@ async def list_sessions(
 ) -> ListSessionsResponse: ...
 ```
 
+Also available as `client.paginators.list_sessions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -424,6 +468,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### optimize_prompt
 
@@ -434,6 +479,7 @@ async def optimize_prompt(
     target_model_id: str,
 ) -> OptimizePromptResponse: ...
 ```
+
 
 ### put_invocation_step
 
@@ -448,17 +494,22 @@ async def put_invocation_step(
 ) -> PutInvocationStepResponse: ...
 ```
 
+
 ### rerank
 
 ```python
 async def rerank(
     *,
-    queries: list[RerankQuery],
-    sources: list[RerankSource],
+    queries: Sequence[RerankQuery],
+    sources: Sequence[RerankSource],
     reranking_configuration: RerankingConfiguration,
     next_token: str | None = None,
 ) -> RerankResponse: ...
 ```
+
+Also available as `client.paginators.rerank(...)`, returning an
+async iterator of the response type above.
+
 
 ### retrieve
 
@@ -474,6 +525,10 @@ async def retrieve(
 ) -> RetrieveResponse: ...
 ```
 
+Also available as `client.paginators.retrieve(...)`, returning an
+async iterator of the response type above.
+
+
 ### retrieve_and_generate
 
 ```python
@@ -486,6 +541,7 @@ async def retrieve_and_generate(
     user_context: UserContext | None = None,
 ) -> RetrieveAndGenerateResponse: ...
 ```
+
 
 ### retrieve_and_generate_stream
 
@@ -500,6 +556,7 @@ async def retrieve_and_generate_stream(
 ) -> RetrieveAndGenerateStreamResponse: ...
 ```
 
+
 ### start_flow_execution
 
 ```python
@@ -507,11 +564,12 @@ async def start_flow_execution(
     *,
     flow_identifier: str,
     flow_alias_identifier: str,
-    inputs: list[FlowInput],
+    inputs: Sequence[FlowInput],
     flow_execution_name: str | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
 ) -> StartFlowExecutionResponse: ...
 ```
+
 
 ### stop_flow_execution
 
@@ -524,6 +582,7 @@ async def stop_flow_execution(
 ) -> StopFlowExecutionResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -534,15 +593,17 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_session
 
@@ -553,6 +614,7 @@ async def update_session(
     session_metadata: dict[str, str] | None = None,
 ) -> UpdateSessionResponse: ...
 ```
+
 
 ## Links
 

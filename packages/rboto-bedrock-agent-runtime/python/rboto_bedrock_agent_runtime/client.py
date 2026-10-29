@@ -58,6 +58,8 @@ from .types import (
     TransformationConfiguration,
     UserContext,
 )
+from .paginators import BedrockAgentRuntimeClientPaginators as _Paginators
+
 
 
 class BedrockAgentRuntimeClient:
@@ -86,13 +88,21 @@ class BedrockAgentRuntimeClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def agentic_retrieve_stream(
         self,
         *,
-        messages: list[AgenticRetrieveMessage],
-        retrievers: list[AgenticRetriever],
+        messages: Sequence[AgenticRetrieveMessage],
+        retrievers: Sequence[AgenticRetriever],
         agentic_retrieve_configuration: AgenticRetrieveConfiguration,
         policy_configuration: AgenticRetrievePolicyConfiguration | None = None,
         next_token: str | None = None,
@@ -565,7 +575,7 @@ class BedrockAgentRuntimeClient:
         *,
         flow_identifier: str,
         flow_alias_identifier: str,
-        inputs: list[FlowInput],
+        inputs: Sequence[FlowInput],
         enable_trace: bool | None = None,
         model_performance_configuration: ModelPerformanceConfiguration | None = None,
         execution_id: str | None = None,
@@ -603,12 +613,12 @@ class BedrockAgentRuntimeClient:
         session_id: str,
         customer_encryption_key_arn: str | None = None,
         idle_session_ttl_in_seconds: int | None = None,
-        action_groups: list[AgentActionGroup] | None = None,
-        knowledge_bases: list[KnowledgeBase] | None = None,
+        action_groups: Sequence[AgentActionGroup] | None = None,
+        knowledge_bases: Sequence[KnowledgeBase] | None = None,
         guardrail_configuration: GuardrailConfigurationWithArn | None = None,
         prompt_override_configuration: PromptOverrideConfiguration | None = None,
         agent_collaboration: AgentCollaboration | None = None,
-        collaborator_configurations: list[CollaboratorConfiguration] | None = None,
+        collaborator_configurations: Sequence[CollaboratorConfiguration] | None = None,
         agent_name: str | None = None,
         end_session: bool | None = None,
         enable_trace: bool | None = None,
@@ -616,7 +626,7 @@ class BedrockAgentRuntimeClient:
         streaming_configurations: StreamingConfigurations | None = None,
         prompt_creation_configurations: PromptCreationConfigurations | None = None,
         inline_session_state: InlineSessionState | None = None,
-        collaborators: list[Collaborator] | None = None,
+        collaborators: Sequence[Collaborator] | None = None,
         bedrock_model_configurations: InlineBedrockModelConfigurations | None = None,
         orchestration_type: OrchestrationType | None = None,
         custom_orchestration: CustomOrchestration | None = None,
@@ -908,8 +918,8 @@ class BedrockAgentRuntimeClient:
     async def rerank(
         self,
         *,
-        queries: list[RerankQuery],
-        sources: list[RerankSource],
+        queries: Sequence[RerankQuery],
+        sources: Sequence[RerankSource],
         reranking_configuration: RerankingConfiguration,
         next_token: str | None = None,
     ) -> RerankResponse:
@@ -1043,7 +1053,7 @@ class BedrockAgentRuntimeClient:
         *,
         flow_identifier: str,
         flow_alias_identifier: str,
-        inputs: list[FlowInput],
+        inputs: Sequence[FlowInput],
         flow_execution_name: str | None = None,
         model_performance_configuration: ModelPerformanceConfiguration | None = None,
     ) -> StartFlowExecutionResponse:
@@ -1124,7 +1134,7 @@ class BedrockAgentRuntimeClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

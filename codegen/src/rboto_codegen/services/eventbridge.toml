@@ -14,3 +14,18 @@ model_sha256 = "55dc4532838b71926afff18b6ce7a11892c6f4aadc81f4036b983eea24c4a449
 aws_model_hash = "65c54d6f22b719f6c86be82a3481a561661adb4313f3b14f5ec608b574dccb91"
 smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
 native_outputs = true
+
+[pagination.ListRuleNamesByTarget]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "Limit"
+
+[pagination.ListRules]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "Limit"
+
+[pagination.ListTargetsByRule]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "Limit"

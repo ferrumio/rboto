@@ -65,7 +65,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_sqs.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -84,13 +87,13 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_permission`](#add_permission) | <code>queue_url: str</code>, <code>label: str</code>, <code>aws_account_ids: list[str]</code>, <code>actions: list[str]</code> | <code>None</code> |
+| [`add_permission`](#add_permission) | <code>queue_url: str</code>, <code>label: str</code>, <code>aws_account_ids: Sequence[str]</code>, <code>actions: Sequence[str]</code> | <code>None</code> |
 | [`cancel_message_move_task`](#cancel_message_move_task) | <code>task_handle: str</code> | <code>CancelMessageMoveTaskResult</code> |
 | [`change_message_visibility`](#change_message_visibility) | <code>queue_url: str</code>, <code>receipt_handle: str</code>, <code>visibility_timeout: int</code> | <code>None</code> |
-| [`change_message_visibility_batch`](#change_message_visibility_batch) | <code>queue_url: str</code>, <code>entries: list[ChangeMessageVisibilityBatchRequestEntry]</code> | <code>ChangeMessageVisibilityBatchResult</code> |
+| [`change_message_visibility_batch`](#change_message_visibility_batch) | <code>queue_url: str</code>, <code>entries: Sequence[ChangeMessageVisibilityBatchRequestEntry]</code> | <code>ChangeMessageVisibilityBatchResult</code> |
 | [`create_queue`](#create_queue) | <code>queue_name: str</code> | <code>CreateQueueResult</code> |
 | [`delete_message`](#delete_message) | <code>queue_url: str</code>, <code>receipt_handle: str</code> | <code>None</code> |
-| [`delete_message_batch`](#delete_message_batch) | <code>queue_url: str</code>, <code>entries: list[DeleteMessageBatchRequestEntry]</code> | <code>DeleteMessageBatchResult</code> |
+| [`delete_message_batch`](#delete_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[DeleteMessageBatchRequestEntry]</code> | <code>DeleteMessageBatchResult</code> |
 | [`delete_queue`](#delete_queue) | <code>queue_url: str</code> | <code>None</code> |
 | [`get_queue_attributes`](#get_queue_attributes) | <code>queue_url: str</code> | <code>GetQueueAttributesResult</code> |
 | [`get_queue_url`](#get_queue_url) | <code>queue_name: str</code> | <code>GetQueueUrlResult</code> |
@@ -102,11 +105,11 @@ native response definitions are in the package's `_native.pyi`.
 | [`receive_message`](#receive_message) | <code>queue_url: str</code> | <code>ReceiveMessageResult</code> |
 | [`remove_permission`](#remove_permission) | <code>queue_url: str</code>, <code>label: str</code> | <code>None</code> |
 | [`send_message`](#send_message) | <code>queue_url: str</code>, <code>message_body: str</code> | <code>SendMessageResult</code> |
-| [`send_message_batch`](#send_message_batch) | <code>queue_url: str</code>, <code>entries: list[SendMessageBatchRequestEntry]</code> | <code>SendMessageBatchResult</code> |
+| [`send_message_batch`](#send_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[SendMessageBatchRequestEntry]</code> | <code>SendMessageBatchResult</code> |
 | [`set_queue_attributes`](#set_queue_attributes) | <code>queue_url: str</code>, <code>attributes: dict[QueueAttributeName, str]</code> | <code>None</code> |
 | [`start_message_move_task`](#start_message_move_task) | <code>source_arn: str</code> | <code>StartMessageMoveTaskResult</code> |
 | [`tag_queue`](#tag_queue) | <code>queue_url: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`untag_queue`](#untag_queue) | <code>queue_url: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`untag_queue`](#untag_queue) | <code>queue_url: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
 ## Complete signatures
 
@@ -117,10 +120,11 @@ async def add_permission(
     *,
     queue_url: str,
     label: str,
-    aws_account_ids: list[str],
-    actions: list[str],
+    aws_account_ids: Sequence[str],
+    actions: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### cancel_message_move_task
 
@@ -130,6 +134,7 @@ async def cancel_message_move_task(
     task_handle: str,
 ) -> CancelMessageMoveTaskResult: ...
 ```
+
 
 ### change_message_visibility
 
@@ -142,15 +147,17 @@ async def change_message_visibility(
 ) -> None: ...
 ```
 
+
 ### change_message_visibility_batch
 
 ```python
 async def change_message_visibility_batch(
     *,
     queue_url: str,
-    entries: list[ChangeMessageVisibilityBatchRequestEntry],
+    entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
 ) -> ChangeMessageVisibilityBatchResult: ...
 ```
+
 
 ### create_queue
 
@@ -163,6 +170,7 @@ async def create_queue(
 ) -> CreateQueueResult: ...
 ```
 
+
 ### delete_message
 
 ```python
@@ -173,15 +181,17 @@ async def delete_message(
 ) -> None: ...
 ```
 
+
 ### delete_message_batch
 
 ```python
 async def delete_message_batch(
     *,
     queue_url: str,
-    entries: list[DeleteMessageBatchRequestEntry],
+    entries: Sequence[DeleteMessageBatchRequestEntry],
 ) -> DeleteMessageBatchResult: ...
 ```
+
 
 ### delete_queue
 
@@ -192,15 +202,17 @@ async def delete_queue(
 ) -> None: ...
 ```
 
+
 ### get_queue_attributes
 
 ```python
 async def get_queue_attributes(
     *,
     queue_url: str,
-    attribute_names: list[QueueAttributeName] | None = None,
+    attribute_names: Sequence[QueueAttributeName] | None = None,
 ) -> GetQueueAttributesResult: ...
 ```
+
 
 ### get_queue_url
 
@@ -211,6 +223,7 @@ async def get_queue_url(
     queue_owner_aws_account_id: str | None = None,
 ) -> GetQueueUrlResult: ...
 ```
+
 
 ### list_dead_letter_source_queues
 
@@ -223,6 +236,10 @@ async def list_dead_letter_source_queues(
 ) -> ListDeadLetterSourceQueuesResult: ...
 ```
 
+Also available as `client.paginators.list_dead_letter_source_queues(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_message_move_tasks
 
 ```python
@@ -233,6 +250,7 @@ async def list_message_move_tasks(
 ) -> ListMessageMoveTasksResult: ...
 ```
 
+
 ### list_queue_tags
 
 ```python
@@ -241,6 +259,7 @@ async def list_queue_tags(
     queue_url: str,
 ) -> ListQueueTagsResult: ...
 ```
+
 
 ### list_queues
 
@@ -253,6 +272,10 @@ async def list_queues(
 ) -> ListQueuesResult: ...
 ```
 
+Also available as `client.paginators.list_queues(...)`, returning an
+async iterator of the response type above.
+
+
 ### purge_queue
 
 ```python
@@ -262,21 +285,23 @@ async def purge_queue(
 ) -> None: ...
 ```
 
+
 ### receive_message
 
 ```python
 async def receive_message(
     *,
     queue_url: str,
-    attribute_names: list[QueueAttributeName] | None = None,
-    message_system_attribute_names: list[MessageSystemAttributeName] | None = None,
-    message_attribute_names: list[str] | None = None,
+    attribute_names: Sequence[QueueAttributeName] | None = None,
+    message_system_attribute_names: Sequence[MessageSystemAttributeName] | None = None,
+    message_attribute_names: Sequence[str] | None = None,
     max_number_of_messages: int | None = None,
     visibility_timeout: int | None = None,
     wait_time_seconds: int | None = None,
     receive_request_attempt_id: str | None = None,
 ) -> ReceiveMessageResult: ...
 ```
+
 
 ### remove_permission
 
@@ -287,6 +312,7 @@ async def remove_permission(
     label: str,
 ) -> None: ...
 ```
+
 
 ### send_message
 
@@ -303,15 +329,17 @@ async def send_message(
 ) -> SendMessageResult: ...
 ```
 
+
 ### send_message_batch
 
 ```python
 async def send_message_batch(
     *,
     queue_url: str,
-    entries: list[SendMessageBatchRequestEntry],
+    entries: Sequence[SendMessageBatchRequestEntry],
 ) -> SendMessageBatchResult: ...
 ```
+
 
 ### set_queue_attributes
 
@@ -322,6 +350,7 @@ async def set_queue_attributes(
     attributes: dict[QueueAttributeName, str],
 ) -> None: ...
 ```
+
 
 ### start_message_move_task
 
@@ -334,6 +363,7 @@ async def start_message_move_task(
 ) -> StartMessageMoveTaskResult: ...
 ```
 
+
 ### tag_queue
 
 ```python
@@ -344,15 +374,17 @@ async def tag_queue(
 ) -> None: ...
 ```
 
+
 ### untag_queue
 
 ```python
 async def untag_queue(
     *,
     queue_url: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ## Links
 

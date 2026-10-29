@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_ssm.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -82,13 +85,13 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: list[Tag]</code> | <code>AddTagsToResourceResult</code> |
+| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>AddTagsToResourceResult</code> |
 | [`associate_ops_item_related_item`](#associate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_type: str</code>, <code>resource_type: str</code>, <code>resource_uri: str</code> | <code>AssociateOpsItemRelatedItemResponse</code> |
 | [`cancel_command`](#cancel_command) | <code>command_id: str</code> | <code>CancelCommandResult</code> |
 | [`cancel_maintenance_window_execution`](#cancel_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>CancelMaintenanceWindowExecutionResult</code> |
 | [`create_activation`](#create_activation) | <code>iam_role: str</code> | <code>CreateActivationResult</code> |
 | [`create_association`](#create_association) | <code>name: str</code> | <code>CreateAssociationResult</code> |
-| [`create_association_batch`](#create_association_batch) | <code>entries: list[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchResult</code> |
+| [`create_association_batch`](#create_association_batch) | <code>entries: Sequence[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchResult</code> |
 | [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code>, <code>config_connector_arn: str</code> | <code>CreateCloudConnectorResult</code> |
 | [`create_document`](#create_document) | <code>content: str</code>, <code>name: str</code> | <code>CreateDocumentResult</code> |
 | [`create_maintenance_window`](#create_maintenance_window) | <code>name: str</code>, <code>schedule: str</code>, <code>duration: int</code>, <code>cutoff: int</code>, <code>allow_unassociated_targets: bool</code> | <code>CreateMaintenanceWindowResult</code> |
@@ -105,7 +108,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_ops_item`](#delete_ops_item) | <code>ops_item_id: str</code> | <code>DeleteOpsItemResponse</code> |
 | [`delete_ops_metadata`](#delete_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>DeleteOpsMetadataResult</code> |
 | [`delete_parameter`](#delete_parameter) | <code>name: str</code> | <code>DeleteParameterResult</code> |
-| [`delete_parameters`](#delete_parameters) | <code>names: list[str]</code> | <code>DeleteParametersResult</code> |
+| [`delete_parameters`](#delete_parameters) | <code>names: Sequence[str]</code> | <code>DeleteParametersResult</code> |
 | [`delete_patch_baseline`](#delete_patch_baseline) | <code>baseline_id: str</code> | <code>DeletePatchBaselineResult</code> |
 | [`delete_resource_data_sync`](#delete_resource_data_sync) | <code>sync_name: str</code> | <code>DeleteResourceDataSyncResult</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code>, <code>policy_id: str</code>, <code>policy_hash: str</code> | <code>DeleteResourcePolicyResponse</code> |
@@ -126,7 +129,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_effective_patches_for_patch_baseline`](#describe_effective_patches_for_patch_baseline) | <code>baseline_id: str</code> | <code>DescribeEffectivePatchesForPatchBaselineResult</code> |
 | [`describe_instance_associations_status`](#describe_instance_associations_status) | <code>instance_id: str</code> | <code>DescribeInstanceAssociationsStatusResult</code> |
 | [`describe_instance_information`](#describe_instance_information) | None | <code>DescribeInstanceInformationResult</code> |
-| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: list[str]</code> | <code>DescribeInstancePatchStatesResult</code> |
+| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: Sequence[str]</code> | <code>DescribeInstancePatchStatesResult</code> |
 | [`describe_instance_patch_states_for_patch_group`](#describe_instance_patch_states_for_patch_group) | <code>patch_group: str</code> | <code>DescribeInstancePatchStatesForPatchGroupResult</code> |
 | [`describe_instance_patches`](#describe_instance_patches) | <code>instance_id: str</code> | <code>DescribeInstancePatchesResult</code> |
 | [`describe_instance_properties`](#describe_instance_properties) | None | <code>DescribeInstancePropertiesResult</code> |
@@ -138,7 +141,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_maintenance_window_targets`](#describe_maintenance_window_targets) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTargetsResult</code> |
 | [`describe_maintenance_window_tasks`](#describe_maintenance_window_tasks) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTasksResult</code> |
 | [`describe_maintenance_windows`](#describe_maintenance_windows) | None | <code>DescribeMaintenanceWindowsResult</code> |
-| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: list[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetResult</code> |
+| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: Sequence[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetResult</code> |
 | [`describe_ops_items`](#describe_ops_items) | None | <code>DescribeOpsItemsResponse</code> |
 | [`describe_parameters`](#describe_parameters) | None | <code>DescribeParametersResult</code> |
 | [`describe_patch_baselines`](#describe_patch_baselines) | None | <code>DescribePatchBaselinesResult</code> |
@@ -149,7 +152,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`disassociate_ops_item_related_item`](#disassociate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_id: str</code> | <code>DisassociateOpsItemRelatedItemResponse</code> |
 | [`get_access_token`](#get_access_token) | <code>access_request_id: str</code> | <code>GetAccessTokenResponse</code> |
 | [`get_automation_execution`](#get_automation_execution) | <code>automation_execution_id: str</code> | <code>GetAutomationExecutionResult</code> |
-| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: list[str]</code> | <code>GetCalendarStateResponse</code> |
+| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: Sequence[str]</code> | <code>GetCalendarStateResponse</code> |
 | [`get_cloud_connector`](#get_cloud_connector) | <code>cloud_connector_id: str</code> | <code>GetCloudConnectorResult</code> |
 | [`get_command_invocation`](#get_command_invocation) | <code>command_id: str</code>, <code>instance_id: str</code> | <code>GetCommandInvocationResult</code> |
 | [`get_connection_status`](#get_connection_status) | <code>target: str</code> | <code>GetConnectionStatusResponse</code> |
@@ -169,13 +172,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_ops_summary`](#get_ops_summary) | None | <code>GetOpsSummaryResult</code> |
 | [`get_parameter`](#get_parameter) | <code>name: str</code> | <code>GetParameterResult</code> |
 | [`get_parameter_history`](#get_parameter_history) | <code>name: str</code> | <code>GetParameterHistoryResult</code> |
-| [`get_parameters`](#get_parameters) | <code>names: list[str]</code> | <code>GetParametersResult</code> |
+| [`get_parameters`](#get_parameters) | <code>names: Sequence[str]</code> | <code>GetParametersResult</code> |
 | [`get_parameters_by_path`](#get_parameters_by_path) | <code>path: str</code> | <code>GetParametersByPathResult</code> |
 | [`get_patch_baseline`](#get_patch_baseline) | <code>baseline_id: str</code> | <code>GetPatchBaselineResult</code> |
 | [`get_patch_baseline_for_patch_group`](#get_patch_baseline_for_patch_group) | <code>patch_group: str</code> | <code>GetPatchBaselineForPatchGroupResult</code> |
 | [`get_resource_policies`](#get_resource_policies) | <code>resource_arn: str</code> | <code>GetResourcePoliciesResponse</code> |
 | [`get_service_setting`](#get_service_setting) | <code>setting_id: str</code> | <code>GetServiceSettingResult</code> |
-| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: list[str]</code> | <code>LabelParameterVersionResult</code> |
+| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: Sequence[str]</code> | <code>LabelParameterVersionResult</code> |
 | [`list_association_versions`](#list_association_versions) | <code>association_id: str</code> | <code>ListAssociationVersionsResult</code> |
 | [`list_associations`](#list_associations) | None | <code>ListAssociationsResult</code> |
 | [`list_cloud_connectors`](#list_cloud_connectors) | None | <code>ListCloudConnectorsResult</code> |
@@ -188,7 +191,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_documents`](#list_documents) | None | <code>ListDocumentsResult</code> |
 | [`list_inventory_entries`](#list_inventory_entries) | <code>instance_id: str</code>, <code>type_name: str</code> | <code>ListInventoryEntriesResult</code> |
 | [`list_nodes`](#list_nodes) | None | <code>ListNodesResult</code> |
-| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: list[NodeAggregator]</code> | <code>ListNodesSummaryResult</code> |
+| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: Sequence[NodeAggregator]</code> | <code>ListNodesSummaryResult</code> |
 | [`list_ops_item_events`](#list_ops_item_events) | None | <code>ListOpsItemEventsResponse</code> |
 | [`list_ops_item_related_items`](#list_ops_item_related_items) | None | <code>ListOpsItemRelatedItemsResponse</code> |
 | [`list_ops_metadata`](#list_ops_metadata) | None | <code>ListOpsMetadataResult</code> |
@@ -196,28 +199,28 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_resource_data_sync`](#list_resource_data_sync) | None | <code>ListResourceDataSyncResult</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code> | <code>ListTagsForResourceResult</code> |
 | [`modify_document_permission`](#modify_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>ModifyDocumentPermissionResponse</code> |
-| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: list[ComplianceItemEntry]</code> | <code>PutComplianceItemsResult</code> |
-| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: list[InventoryItem]</code> | <code>PutInventoryResult</code> |
+| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: Sequence[ComplianceItemEntry]</code> | <code>PutComplianceItemsResult</code> |
+| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: Sequence[InventoryItem]</code> | <code>PutInventoryResult</code> |
 | [`put_parameter`](#put_parameter) | <code>name: str</code>, <code>value: str</code> | <code>PutParameterResult</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`register_default_patch_baseline`](#register_default_patch_baseline) | <code>baseline_id: str</code> | <code>RegisterDefaultPatchBaselineResult</code> |
 | [`register_patch_baseline_for_patch_group`](#register_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>RegisterPatchBaselineForPatchGroupResult</code> |
-| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: list[Target]</code> | <code>RegisterTargetWithMaintenanceWindowResult</code> |
+| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: Sequence[Target]</code> | <code>RegisterTargetWithMaintenanceWindowResult</code> |
 | [`register_task_with_maintenance_window`](#register_task_with_maintenance_window) | <code>window_id: str</code>, <code>task_arn: str</code>, <code>task_type: MaintenanceWindowTaskType</code> | <code>RegisterTaskWithMaintenanceWindowResult</code> |
-| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: list[str]</code> | <code>RemoveTagsFromResourceResult</code> |
+| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>RemoveTagsFromResourceResult</code> |
 | [`reset_service_setting`](#reset_service_setting) | <code>setting_id: str</code> | <code>ResetServiceSettingResult</code> |
 | [`resume_session`](#resume_session) | <code>session_id: str</code> | <code>ResumeSessionResponse</code> |
 | [`send_automation_signal`](#send_automation_signal) | <code>automation_execution_id: str</code>, <code>signal_type: SignalType</code> | <code>SendAutomationSignalResult</code> |
 | [`send_command`](#send_command) | <code>document_name: str</code> | <code>SendCommandResult</code> |
-| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: list[Target]</code> | <code>StartAccessRequestResponse</code> |
-| [`start_associations_once`](#start_associations_once) | <code>association_ids: list[str]</code> | <code>StartAssociationsOnceResult</code> |
+| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: Sequence[Target]</code> | <code>StartAccessRequestResponse</code> |
+| [`start_associations_once`](#start_associations_once) | <code>association_ids: Sequence[str]</code> | <code>StartAssociationsOnceResult</code> |
 | [`start_automation_execution`](#start_automation_execution) | <code>document_name: str</code> | <code>StartAutomationExecutionResult</code> |
-| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: list[Runbook]</code> | <code>StartChangeRequestExecutionResult</code> |
+| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: Sequence[Runbook]</code> | <code>StartChangeRequestExecutionResult</code> |
 | [`start_execution_preview`](#start_execution_preview) | <code>document_name: str</code> | <code>StartExecutionPreviewResponse</code> |
 | [`start_session`](#start_session) | <code>target: str</code> | <code>StartSessionResponse</code> |
 | [`stop_automation_execution`](#stop_automation_execution) | <code>automation_execution_id: str</code> | <code>StopAutomationExecutionResult</code> |
 | [`terminate_session`](#terminate_session) | <code>session_id: str</code> | <code>TerminateSessionResponse</code> |
-| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: list[str]</code> | <code>UnlabelParameterVersionResult</code> |
+| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: Sequence[str]</code> | <code>UnlabelParameterVersionResult</code> |
 | [`update_association`](#update_association) | <code>association_id: str</code> | <code>UpdateAssociationResult</code> |
 | [`update_association_status`](#update_association_status) | <code>name: str</code>, <code>instance_id: str</code>, <code>association_status: AssociationStatus</code> | <code>UpdateAssociationStatusResult</code> |
 | [`update_cloud_connector`](#update_cloud_connector) | <code>cloud_connector_id: str</code> | <code>UpdateCloudConnectorResult</code> |
@@ -244,9 +247,10 @@ async def add_tags_to_resource(
     *,
     resource_type: ResourceTypeForTagging,
     resource_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> AddTagsToResourceResult: ...
 ```
+
 
 ### associate_ops_item_related_item
 
@@ -260,15 +264,17 @@ async def associate_ops_item_related_item(
 ) -> AssociateOpsItemRelatedItemResponse: ...
 ```
 
+
 ### cancel_command
 
 ```python
 async def cancel_command(
     *,
     command_id: str,
-    instance_ids: list[str] | None = None,
+    instance_ids: Sequence[str] | None = None,
 ) -> CancelCommandResult: ...
 ```
+
 
 ### cancel_maintenance_window_execution
 
@@ -278,6 +284,7 @@ async def cancel_maintenance_window_execution(
     window_execution_id: str,
 ) -> CancelMaintenanceWindowExecutionResult: ...
 ```
+
 
 ### create_activation
 
@@ -289,10 +296,11 @@ async def create_activation(
     default_instance_name: str | None = None,
     registration_limit: int | None = None,
     expiration_date: str | None = None,
-    tags: list[Tag] | None = None,
-    registration_metadata: list[RegistrationMetadataItem] | None = None,
+    tags: Sequence[Tag] | None = None,
+    registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
 ) -> CreateActivationResult: ...
 ```
+
 
 ### create_association
 
@@ -302,8 +310,8 @@ async def create_association(
     name: str,
     document_version: str | None = None,
     instance_id: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
-    targets: list[Target] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
+    targets: Sequence[Target] | None = None,
     schedule_expression: str | None = None,
     output_location: InstanceAssociationOutputLocation | None = None,
     association_name: str | None = None,
@@ -313,26 +321,28 @@ async def create_association(
     compliance_severity: AssociationComplianceSeverity | None = None,
     sync_compliance: AssociationSyncCompliance | None = None,
     apply_only_at_cron_interval: bool | None = None,
-    calendar_names: list[str] | None = None,
-    target_locations: list[TargetLocation] | None = None,
+    calendar_names: Sequence[str] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
     schedule_offset: int | None = None,
     duration: int | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
-    tags: list[Tag] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
+    tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
 ) -> CreateAssociationResult: ...
 ```
+
 
 ### create_association_batch
 
 ```python
 async def create_association_batch(
     *,
-    entries: list[CreateAssociationBatchRequestEntry],
+    entries: Sequence[CreateAssociationBatchRequestEntry],
     association_dispatch_assume_role: str | None = None,
 ) -> CreateAssociationBatchResult: ...
 ```
+
 
 ### create_cloud_connector
 
@@ -344,9 +354,10 @@ async def create_cloud_connector(
     configuration: CloudConnectorConfiguration,
     config_connector_arn: str,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateCloudConnectorResult: ...
 ```
+
 
 ### create_document
 
@@ -355,16 +366,17 @@ async def create_document(
     *,
     content: str,
     name: str,
-    requires: list[DocumentRequires] | None = None,
-    attachments: list[AttachmentsSource] | None = None,
+    requires: Sequence[DocumentRequires] | None = None,
+    attachments: Sequence[AttachmentsSource] | None = None,
     display_name: str | None = None,
     version_name: str | None = None,
     document_type: DocumentType | None = None,
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateDocumentResult: ...
 ```
+
 
 ### create_maintenance_window
 
@@ -382,9 +394,10 @@ async def create_maintenance_window(
     schedule_timezone: str | None = None,
     schedule_offset: int | None = None,
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateMaintenanceWindowResult: ...
 ```
+
 
 ### create_ops_item
 
@@ -396,10 +409,10 @@ async def create_ops_item(
     title: str,
     ops_item_type: str | None = None,
     operational_data: dict[str, OpsItemDataValue] | None = None,
-    notifications: list[OpsItemNotification] | None = None,
+    notifications: Sequence[OpsItemNotification] | None = None,
     priority: int | None = None,
-    related_ops_items: list[RelatedOpsItem] | None = None,
-    tags: list[Tag] | None = None,
+    related_ops_items: Sequence[RelatedOpsItem] | None = None,
+    tags: Sequence[Tag] | None = None,
     category: str | None = None,
     severity: str | None = None,
     actual_start_time: str | None = None,
@@ -410,6 +423,7 @@ async def create_ops_item(
 ) -> CreateOpsItemResponse: ...
 ```
 
+
 ### create_ops_metadata
 
 ```python
@@ -417,9 +431,10 @@ async def create_ops_metadata(
     *,
     resource_id: str,
     metadata: dict[str, MetadataValue] | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateOpsMetadataResult: ...
 ```
+
 
 ### create_patch_baseline
 
@@ -430,18 +445,19 @@ async def create_patch_baseline(
     operating_system: OperatingSystem | None = None,
     global_filters: PatchFilterGroup | None = None,
     approval_rules: PatchRuleGroup | None = None,
-    approved_patches: list[str] | None = None,
+    approved_patches: Sequence[str] | None = None,
     approved_patches_compliance_level: PatchComplianceLevel | None = None,
     approved_patches_enable_non_security: bool | None = None,
-    rejected_patches: list[str] | None = None,
+    rejected_patches: Sequence[str] | None = None,
     rejected_patches_action: PatchAction | None = None,
     description: str | None = None,
-    sources: list[PatchSource] | None = None,
+    sources: Sequence[PatchSource] | None = None,
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreatePatchBaselineResult: ...
 ```
+
 
 ### create_resource_data_sync
 
@@ -455,6 +471,7 @@ async def create_resource_data_sync(
 ) -> CreateResourceDataSyncResult: ...
 ```
 
+
 ### delete_activation
 
 ```python
@@ -463,6 +480,7 @@ async def delete_activation(
     activation_id: str,
 ) -> DeleteActivationResult: ...
 ```
+
 
 ### delete_association
 
@@ -475,6 +493,7 @@ async def delete_association(
 ) -> DeleteAssociationResult: ...
 ```
 
+
 ### delete_cloud_connector
 
 ```python
@@ -483,6 +502,7 @@ async def delete_cloud_connector(
     cloud_connector_id: str,
 ) -> DeleteCloudConnectorResult: ...
 ```
+
 
 ### delete_document
 
@@ -496,6 +516,7 @@ async def delete_document(
 ) -> DeleteDocumentResult: ...
 ```
 
+
 ### delete_inventory
 
 ```python
@@ -508,6 +529,7 @@ async def delete_inventory(
 ) -> DeleteInventoryResult: ...
 ```
 
+
 ### delete_maintenance_window
 
 ```python
@@ -516,6 +538,7 @@ async def delete_maintenance_window(
     window_id: str,
 ) -> DeleteMaintenanceWindowResult: ...
 ```
+
 
 ### delete_ops_item
 
@@ -526,6 +549,7 @@ async def delete_ops_item(
 ) -> DeleteOpsItemResponse: ...
 ```
 
+
 ### delete_ops_metadata
 
 ```python
@@ -534,6 +558,7 @@ async def delete_ops_metadata(
     ops_metadata_arn: str,
 ) -> DeleteOpsMetadataResult: ...
 ```
+
 
 ### delete_parameter
 
@@ -544,14 +569,16 @@ async def delete_parameter(
 ) -> DeleteParameterResult: ...
 ```
 
+
 ### delete_parameters
 
 ```python
 async def delete_parameters(
     *,
-    names: list[str],
+    names: Sequence[str],
 ) -> DeleteParametersResult: ...
 ```
+
 
 ### delete_patch_baseline
 
@@ -562,6 +589,7 @@ async def delete_patch_baseline(
 ) -> DeletePatchBaselineResult: ...
 ```
 
+
 ### delete_resource_data_sync
 
 ```python
@@ -571,6 +599,7 @@ async def delete_resource_data_sync(
     sync_type: str | None = None,
 ) -> DeleteResourceDataSyncResult: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -584,6 +613,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyResponse: ...
 ```
 
+
 ### deregister_managed_instance
 
 ```python
@@ -592,6 +622,7 @@ async def deregister_managed_instance(
     instance_id: str,
 ) -> DeregisterManagedInstanceResult: ...
 ```
+
 
 ### deregister_patch_baseline_for_patch_group
 
@@ -602,6 +633,7 @@ async def deregister_patch_baseline_for_patch_group(
     patch_group: str,
 ) -> DeregisterPatchBaselineForPatchGroupResult: ...
 ```
+
 
 ### deregister_target_from_maintenance_window
 
@@ -614,6 +646,7 @@ async def deregister_target_from_maintenance_window(
 ) -> DeregisterTargetFromMaintenanceWindowResult: ...
 ```
 
+
 ### deregister_task_from_maintenance_window
 
 ```python
@@ -624,16 +657,21 @@ async def deregister_task_from_maintenance_window(
 ) -> DeregisterTaskFromMaintenanceWindowResult: ...
 ```
 
+
 ### describe_activations
 
 ```python
 async def describe_activations(
     *,
-    filters: list[DescribeActivationsFilter] | None = None,
+    filters: Sequence[DescribeActivationsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeActivationsResult: ...
 ```
+
+Also available as `client.paginators.describe_activations(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_association
 
@@ -647,6 +685,7 @@ async def describe_association(
 ) -> DescribeAssociationResult: ...
 ```
 
+
 ### describe_association_execution_targets
 
 ```python
@@ -654,11 +693,15 @@ async def describe_association_execution_targets(
     *,
     association_id: str,
     execution_id: str,
-    filters: list[AssociationExecutionTargetsFilter] | None = None,
+    filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAssociationExecutionTargetsResult: ...
 ```
+
+Also available as `client.paginators.describe_association_execution_targets(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_association_executions
 
@@ -666,22 +709,30 @@ async def describe_association_execution_targets(
 async def describe_association_executions(
     *,
     association_id: str,
-    filters: list[AssociationExecutionFilter] | None = None,
+    filters: Sequence[AssociationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAssociationExecutionsResult: ...
 ```
+
+Also available as `client.paginators.describe_association_executions(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_automation_executions
 
 ```python
 async def describe_automation_executions(
     *,
-    filters: list[AutomationExecutionFilter] | None = None,
+    filters: Sequence[AutomationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAutomationExecutionsResult: ...
 ```
+
+Also available as `client.paginators.describe_automation_executions(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_automation_step_executions
 
@@ -689,23 +740,31 @@ async def describe_automation_executions(
 async def describe_automation_step_executions(
     *,
     automation_execution_id: str,
-    filters: list[StepExecutionFilter] | None = None,
+    filters: Sequence[StepExecutionFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
     reverse_order: bool | None = None,
 ) -> DescribeAutomationStepExecutionsResult: ...
 ```
 
+Also available as `client.paginators.describe_automation_step_executions(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_available_patches
 
 ```python
 async def describe_available_patches(
     *,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAvailablePatchesResult: ...
 ```
+
+Also available as `client.paginators.describe_available_patches(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_document
 
@@ -717,6 +776,7 @@ async def describe_document(
     version_name: str | None = None,
 ) -> DescribeDocumentResult: ...
 ```
+
 
 ### describe_document_permission
 
@@ -730,6 +790,7 @@ async def describe_document_permission(
 ) -> DescribeDocumentPermissionResponse: ...
 ```
 
+
 ### describe_effective_instance_associations
 
 ```python
@@ -740,6 +801,10 @@ async def describe_effective_instance_associations(
     next_token: str | None = None,
 ) -> DescribeEffectiveInstanceAssociationsResult: ...
 ```
+
+Also available as `client.paginators.describe_effective_instance_associations(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_effective_patches_for_patch_baseline
 
@@ -752,6 +817,10 @@ async def describe_effective_patches_for_patch_baseline(
 ) -> DescribeEffectivePatchesForPatchBaselineResult: ...
 ```
 
+Also available as `client.paginators.describe_effective_patches_for_patch_baseline(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_instance_associations_status
 
 ```python
@@ -763,28 +832,40 @@ async def describe_instance_associations_status(
 ) -> DescribeInstanceAssociationsStatusResult: ...
 ```
 
+Also available as `client.paginators.describe_instance_associations_status(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_instance_information
 
 ```python
 async def describe_instance_information(
     *,
-    instance_information_filter_list: list[InstanceInformationFilter] | None = None,
-    filters: list[InstanceInformationStringFilter] | None = None,
+    instance_information_filter_list: Sequence[InstanceInformationFilter] | None = None,
+    filters: Sequence[InstanceInformationStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeInstanceInformationResult: ...
 ```
+
+Also available as `client.paginators.describe_instance_information(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_instance_patch_states
 
 ```python
 async def describe_instance_patch_states(
     *,
-    instance_ids: list[str],
+    instance_ids: Sequence[str],
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchStatesResult: ...
 ```
+
+Also available as `client.paginators.describe_instance_patch_states(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_instance_patch_states_for_patch_group
 
@@ -792,11 +873,15 @@ async def describe_instance_patch_states(
 async def describe_instance_patch_states_for_patch_group(
     *,
     patch_group: str,
-    filters: list[InstancePatchStateFilter] | None = None,
+    filters: Sequence[InstancePatchStateFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchStatesForPatchGroupResult: ...
 ```
+
+Also available as `client.paginators.describe_instance_patch_states_for_patch_group(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_instance_patches
 
@@ -804,23 +889,31 @@ async def describe_instance_patch_states_for_patch_group(
 async def describe_instance_patches(
     *,
     instance_id: str,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchesResult: ...
 ```
+
+Also available as `client.paginators.describe_instance_patches(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_instance_properties
 
 ```python
 async def describe_instance_properties(
     *,
-    instance_property_filter_list: list[InstancePropertyFilter] | None = None,
-    filters_with_operator: list[InstancePropertyStringFilter] | None = None,
+    instance_property_filter_list: Sequence[InstancePropertyFilter] | None = None,
+    filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeInstancePropertiesResult: ...
 ```
+
+Also available as `client.paginators.describe_instance_properties(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_inventory_deletions
 
@@ -833,6 +926,10 @@ async def describe_inventory_deletions(
 ) -> DescribeInventoryDeletionsResult: ...
 ```
 
+Also available as `client.paginators.describe_inventory_deletions(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_maintenance_window_execution_task_invocations
 
 ```python
@@ -840,11 +937,15 @@ async def describe_maintenance_window_execution_task_invocations(
     *,
     window_execution_id: str,
     task_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionTaskInvocationsResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_execution_task_invocations(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_window_execution_tasks
 
@@ -852,11 +953,15 @@ async def describe_maintenance_window_execution_task_invocations(
 async def describe_maintenance_window_execution_tasks(
     *,
     window_execution_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionTasksResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_execution_tasks(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_window_executions
 
@@ -864,11 +969,15 @@ async def describe_maintenance_window_execution_tasks(
 async def describe_maintenance_window_executions(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionsResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_executions(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_window_schedule
 
@@ -876,13 +985,17 @@ async def describe_maintenance_window_executions(
 async def describe_maintenance_window_schedule(
     *,
     window_id: str | None = None,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     resource_type: MaintenanceWindowResourceType | None = None,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowScheduleResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_schedule(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_window_targets
 
@@ -890,11 +1003,15 @@ async def describe_maintenance_window_schedule(
 async def describe_maintenance_window_targets(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowTargetsResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_targets(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_window_tasks
 
@@ -902,69 +1019,93 @@ async def describe_maintenance_window_targets(
 async def describe_maintenance_window_tasks(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowTasksResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_window_tasks(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_windows
 
 ```python
 async def describe_maintenance_windows(
     *,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowsResult: ...
 ```
+
+Also available as `client.paginators.describe_maintenance_windows(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_maintenance_windows_for_target
 
 ```python
 async def describe_maintenance_windows_for_target(
     *,
-    targets: list[Target],
+    targets: Sequence[Target],
     resource_type: MaintenanceWindowResourceType,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowsForTargetResult: ...
 ```
 
+Also available as `client.paginators.describe_maintenance_windows_for_target(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_ops_items
 
 ```python
 async def describe_ops_items(
     *,
-    ops_item_filters: list[OpsItemFilter] | None = None,
+    ops_item_filters: Sequence[OpsItemFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeOpsItemsResponse: ...
 ```
+
+Also available as `client.paginators.describe_ops_items(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_parameters
 
 ```python
 async def describe_parameters(
     *,
-    filters: list[ParametersFilter] | None = None,
-    parameter_filters: list[ParameterStringFilter] | None = None,
+    filters: Sequence[ParametersFilter] | None = None,
+    parameter_filters: Sequence[ParameterStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
     shared: bool | None = None,
 ) -> DescribeParametersResult: ...
 ```
 
+Also available as `client.paginators.describe_parameters(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_patch_baselines
 
 ```python
 async def describe_patch_baselines(
     *,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribePatchBaselinesResult: ...
 ```
+
+Also available as `client.paginators.describe_patch_baselines(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_patch_group_state
 
@@ -975,16 +1116,21 @@ async def describe_patch_group_state(
 ) -> DescribePatchGroupStateResult: ...
 ```
 
+
 ### describe_patch_groups
 
 ```python
 async def describe_patch_groups(
     *,
     max_results: int | None = None,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
 ) -> DescribePatchGroupsResult: ...
 ```
+
+Also available as `client.paginators.describe_patch_groups(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_patch_properties
 
@@ -999,6 +1145,10 @@ async def describe_patch_properties(
 ) -> DescribePatchPropertiesResult: ...
 ```
 
+Also available as `client.paginators.describe_patch_properties(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_sessions
 
 ```python
@@ -1007,9 +1157,13 @@ async def describe_sessions(
     state: SessionState,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[SessionFilter] | None = None,
+    filters: Sequence[SessionFilter] | None = None,
 ) -> DescribeSessionsResponse: ...
 ```
+
+Also available as `client.paginators.describe_sessions(...)`, returning an
+async iterator of the response type above.
+
 
 ### disassociate_ops_item_related_item
 
@@ -1021,6 +1175,7 @@ async def disassociate_ops_item_related_item(
 ) -> DisassociateOpsItemRelatedItemResponse: ...
 ```
 
+
 ### get_access_token
 
 ```python
@@ -1029,6 +1184,7 @@ async def get_access_token(
     access_request_id: str,
 ) -> GetAccessTokenResponse: ...
 ```
+
 
 ### get_automation_execution
 
@@ -1039,15 +1195,17 @@ async def get_automation_execution(
 ) -> GetAutomationExecutionResult: ...
 ```
 
+
 ### get_calendar_state
 
 ```python
 async def get_calendar_state(
     *,
-    calendar_names: list[str],
+    calendar_names: Sequence[str],
     at_time: str | None = None,
 ) -> GetCalendarStateResponse: ...
 ```
+
 
 ### get_cloud_connector
 
@@ -1057,6 +1215,7 @@ async def get_cloud_connector(
     cloud_connector_id: str,
 ) -> GetCloudConnectorResult: ...
 ```
+
 
 ### get_command_invocation
 
@@ -1069,6 +1228,7 @@ async def get_command_invocation(
 ) -> GetCommandInvocationResult: ...
 ```
 
+
 ### get_connection_status
 
 ```python
@@ -1078,6 +1238,7 @@ async def get_connection_status(
 ) -> GetConnectionStatusResponse: ...
 ```
 
+
 ### get_default_patch_baseline
 
 ```python
@@ -1086,6 +1247,7 @@ async def get_default_patch_baseline(
     operating_system: OperatingSystem | None = None,
 ) -> GetDefaultPatchBaselineResult: ...
 ```
+
 
 ### get_deployable_patch_snapshot_for_instance
 
@@ -1099,6 +1261,7 @@ async def get_deployable_patch_snapshot_for_instance(
 ) -> GetDeployablePatchSnapshotForInstanceResult: ...
 ```
 
+
 ### get_document
 
 ```python
@@ -1111,6 +1274,7 @@ async def get_document(
 ) -> GetDocumentResult: ...
 ```
 
+
 ### get_execution_preview
 
 ```python
@@ -1120,18 +1284,23 @@ async def get_execution_preview(
 ) -> GetExecutionPreviewResponse: ...
 ```
 
+
 ### get_inventory
 
 ```python
 async def get_inventory(
     *,
-    filters: list[InventoryFilter] | None = None,
-    aggregators: list[InventoryAggregator] | None = None,
-    result_attributes: list[ResultAttribute] | None = None,
+    filters: Sequence[InventoryFilter] | None = None,
+    aggregators: Sequence[InventoryAggregator] | None = None,
+    result_attributes: Sequence[ResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> GetInventoryResult: ...
 ```
+
+Also available as `client.paginators.get_inventory(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_inventory_schema
 
@@ -1146,6 +1315,10 @@ async def get_inventory_schema(
 ) -> GetInventorySchemaResult: ...
 ```
 
+Also available as `client.paginators.get_inventory_schema(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_maintenance_window
 
 ```python
@@ -1154,6 +1327,7 @@ async def get_maintenance_window(
     window_id: str,
 ) -> GetMaintenanceWindowResult: ...
 ```
+
 
 ### get_maintenance_window_execution
 
@@ -1164,6 +1338,7 @@ async def get_maintenance_window_execution(
 ) -> GetMaintenanceWindowExecutionResult: ...
 ```
 
+
 ### get_maintenance_window_execution_task
 
 ```python
@@ -1173,6 +1348,7 @@ async def get_maintenance_window_execution_task(
     task_id: str,
 ) -> GetMaintenanceWindowExecutionTaskResult: ...
 ```
+
 
 ### get_maintenance_window_execution_task_invocation
 
@@ -1185,6 +1361,7 @@ async def get_maintenance_window_execution_task_invocation(
 ) -> GetMaintenanceWindowExecutionTaskInvocationResult: ...
 ```
 
+
 ### get_maintenance_window_task
 
 ```python
@@ -1195,6 +1372,7 @@ async def get_maintenance_window_task(
 ) -> GetMaintenanceWindowTaskResult: ...
 ```
 
+
 ### get_ops_item
 
 ```python
@@ -1204,6 +1382,7 @@ async def get_ops_item(
     ops_item_arn: str | None = None,
 ) -> GetOpsItemResponse: ...
 ```
+
 
 ### get_ops_metadata
 
@@ -1216,19 +1395,24 @@ async def get_ops_metadata(
 ) -> GetOpsMetadataResult: ...
 ```
 
+
 ### get_ops_summary
 
 ```python
 async def get_ops_summary(
     *,
     sync_name: str | None = None,
-    filters: list[OpsFilter] | None = None,
-    aggregators: list[OpsAggregator] | None = None,
-    result_attributes: list[OpsResultAttribute] | None = None,
+    filters: Sequence[OpsFilter] | None = None,
+    aggregators: Sequence[OpsAggregator] | None = None,
+    result_attributes: Sequence[OpsResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> GetOpsSummaryResult: ...
 ```
+
+Also available as `client.paginators.get_ops_summary(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_parameter
 
@@ -1239,6 +1423,7 @@ async def get_parameter(
     with_decryption: bool | None = None,
 ) -> GetParameterResult: ...
 ```
+
 
 ### get_parameter_history
 
@@ -1252,15 +1437,20 @@ async def get_parameter_history(
 ) -> GetParameterHistoryResult: ...
 ```
 
+Also available as `client.paginators.get_parameter_history(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_parameters
 
 ```python
 async def get_parameters(
     *,
-    names: list[str],
+    names: Sequence[str],
     with_decryption: bool | None = None,
 ) -> GetParametersResult: ...
 ```
+
 
 ### get_parameters_by_path
 
@@ -1269,12 +1459,16 @@ async def get_parameters_by_path(
     *,
     path: str,
     recursive: bool | None = None,
-    parameter_filters: list[ParameterStringFilter] | None = None,
+    parameter_filters: Sequence[ParameterStringFilter] | None = None,
     with_decryption: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> GetParametersByPathResult: ...
 ```
+
+Also available as `client.paginators.get_parameters_by_path(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_patch_baseline
 
@@ -1285,6 +1479,7 @@ async def get_patch_baseline(
 ) -> GetPatchBaselineResult: ...
 ```
 
+
 ### get_patch_baseline_for_patch_group
 
 ```python
@@ -1294,6 +1489,7 @@ async def get_patch_baseline_for_patch_group(
     operating_system: OperatingSystem | None = None,
 ) -> GetPatchBaselineForPatchGroupResult: ...
 ```
+
 
 ### get_resource_policies
 
@@ -1306,6 +1502,10 @@ async def get_resource_policies(
 ) -> GetResourcePoliciesResponse: ...
 ```
 
+Also available as `client.paginators.get_resource_policies(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_service_setting
 
 ```python
@@ -1315,16 +1515,18 @@ async def get_service_setting(
 ) -> GetServiceSettingResult: ...
 ```
 
+
 ### label_parameter_version
 
 ```python
 async def label_parameter_version(
     *,
     name: str,
-    labels: list[str],
+    labels: Sequence[str],
     parameter_version: int | None = None,
 ) -> LabelParameterVersionResult: ...
 ```
+
 
 ### list_association_versions
 
@@ -1337,16 +1539,24 @@ async def list_association_versions(
 ) -> ListAssociationVersionsResult: ...
 ```
 
+Also available as `client.paginators.list_association_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_associations
 
 ```python
 async def list_associations(
     *,
-    association_filter_list: list[AssociationFilter] | None = None,
+    association_filter_list: Sequence[AssociationFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListAssociationsResult: ...
 ```
+
+Also available as `client.paginators.list_associations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_cloud_connectors
 
@@ -1355,9 +1565,13 @@ async def list_cloud_connectors(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CloudConnectorFilter] | None = None,
+    filters: Sequence[CloudConnectorFilter] | None = None,
 ) -> ListCloudConnectorsResult: ...
 ```
+
+Also available as `client.paginators.list_cloud_connectors(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_command_invocations
 
@@ -1368,10 +1582,14 @@ async def list_command_invocations(
     instance_id: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CommandFilter] | None = None,
+    filters: Sequence[CommandFilter] | None = None,
     details: bool | None = None,
 ) -> ListCommandInvocationsResult: ...
 ```
+
+Also available as `client.paginators.list_command_invocations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_commands
 
@@ -1382,33 +1600,45 @@ async def list_commands(
     instance_id: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CommandFilter] | None = None,
+    filters: Sequence[CommandFilter] | None = None,
 ) -> ListCommandsResult: ...
 ```
+
+Also available as `client.paginators.list_commands(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_compliance_items
 
 ```python
 async def list_compliance_items(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
-    resource_ids: list[str] | None = None,
-    resource_types: list[str] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
+    resource_ids: Sequence[str] | None = None,
+    resource_types: Sequence[str] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListComplianceItemsResult: ...
 ```
+
+Also available as `client.paginators.list_compliance_items(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_compliance_summaries
 
 ```python
 async def list_compliance_summaries(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListComplianceSummariesResult: ...
 ```
+
+Also available as `client.paginators.list_compliance_summaries(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_document_metadata_history
 
@@ -1423,6 +1653,7 @@ async def list_document_metadata_history(
 ) -> ListDocumentMetadataHistoryResponse: ...
 ```
 
+
 ### list_document_versions
 
 ```python
@@ -1434,17 +1665,25 @@ async def list_document_versions(
 ) -> ListDocumentVersionsResult: ...
 ```
 
+Also available as `client.paginators.list_document_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_documents
 
 ```python
 async def list_documents(
     *,
-    document_filter_list: list[DocumentFilter] | None = None,
-    filters: list[DocumentKeyValuesFilter] | None = None,
+    document_filter_list: Sequence[DocumentFilter] | None = None,
+    filters: Sequence[DocumentKeyValuesFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListDocumentsResult: ...
 ```
+
+Also available as `client.paginators.list_documents(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_inventory_entries
 
@@ -1453,11 +1692,12 @@ async def list_inventory_entries(
     *,
     instance_id: str,
     type_name: str,
-    filters: list[InventoryFilter] | None = None,
+    filters: Sequence[InventoryFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListInventoryEntriesResult: ...
 ```
+
 
 ### list_nodes
 
@@ -1465,35 +1705,47 @@ async def list_inventory_entries(
 async def list_nodes(
     *,
     sync_name: str | None = None,
-    filters: list[NodeFilter] | None = None,
+    filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListNodesResult: ...
 ```
+
+Also available as `client.paginators.list_nodes(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_nodes_summary
 
 ```python
 async def list_nodes_summary(
     *,
-    aggregators: list[NodeAggregator],
+    aggregators: Sequence[NodeAggregator],
     sync_name: str | None = None,
-    filters: list[NodeFilter] | None = None,
+    filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListNodesSummaryResult: ...
 ```
+
+Also available as `client.paginators.list_nodes_summary(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_ops_item_events
 
 ```python
 async def list_ops_item_events(
     *,
-    filters: list[OpsItemEventFilter] | None = None,
+    filters: Sequence[OpsItemEventFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsItemEventsResponse: ...
 ```
+
+Also available as `client.paginators.list_ops_item_events(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_ops_item_related_items
 
@@ -1501,33 +1753,45 @@ async def list_ops_item_events(
 async def list_ops_item_related_items(
     *,
     ops_item_id: str | None = None,
-    filters: list[OpsItemRelatedItemsFilter] | None = None,
+    filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsItemRelatedItemsResponse: ...
 ```
+
+Also available as `client.paginators.list_ops_item_related_items(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_ops_metadata
 
 ```python
 async def list_ops_metadata(
     *,
-    filters: list[OpsMetadataFilter] | None = None,
+    filters: Sequence[OpsMetadataFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsMetadataResult: ...
 ```
+
+Also available as `client.paginators.list_ops_metadata(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_resource_compliance_summaries
 
 ```python
 async def list_resource_compliance_summaries(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListResourceComplianceSummariesResult: ...
 ```
+
+Also available as `client.paginators.list_resource_compliance_summaries(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_resource_data_sync
 
@@ -1540,6 +1804,10 @@ async def list_resource_data_sync(
 ) -> ListResourceDataSyncResult: ...
 ```
 
+Also available as `client.paginators.list_resource_data_sync(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -1550,6 +1818,7 @@ async def list_tags_for_resource(
 ) -> ListTagsForResourceResult: ...
 ```
 
+
 ### modify_document_permission
 
 ```python
@@ -1557,11 +1826,12 @@ async def modify_document_permission(
     *,
     name: str,
     permission_type: DocumentPermissionType,
-    account_ids_to_add: list[str] | None = None,
-    account_ids_to_remove: list[str] | None = None,
+    account_ids_to_add: Sequence[str] | None = None,
+    account_ids_to_remove: Sequence[str] | None = None,
     shared_document_version: str | None = None,
 ) -> ModifyDocumentPermissionResponse: ...
 ```
+
 
 ### put_compliance_items
 
@@ -1572,11 +1842,12 @@ async def put_compliance_items(
     resource_type: str,
     compliance_type: str,
     execution_summary: ComplianceExecutionSummary,
-    items: list[ComplianceItemEntry],
+    items: Sequence[ComplianceItemEntry],
     item_content_hash: str | None = None,
     upload_type: ComplianceUploadType | None = None,
 ) -> PutComplianceItemsResult: ...
 ```
+
 
 ### put_inventory
 
@@ -1584,9 +1855,10 @@ async def put_compliance_items(
 async def put_inventory(
     *,
     instance_id: str,
-    items: list[InventoryItem],
+    items: Sequence[InventoryItem],
 ) -> PutInventoryResult: ...
 ```
+
 
 ### put_parameter
 
@@ -1600,12 +1872,13 @@ async def put_parameter(
     key_id: str | None = None,
     overwrite: bool | None = None,
     allowed_pattern: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     tier: ParameterTier | None = None,
     policies: str | None = None,
     data_type: str | None = None,
 ) -> PutParameterResult: ...
 ```
+
 
 ### put_resource_policy
 
@@ -1619,6 +1892,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### register_default_patch_baseline
 
 ```python
@@ -1627,6 +1901,7 @@ async def register_default_patch_baseline(
     baseline_id: str,
 ) -> RegisterDefaultPatchBaselineResult: ...
 ```
+
 
 ### register_patch_baseline_for_patch_group
 
@@ -1638,6 +1913,7 @@ async def register_patch_baseline_for_patch_group(
 ) -> RegisterPatchBaselineForPatchGroupResult: ...
 ```
 
+
 ### register_target_with_maintenance_window
 
 ```python
@@ -1645,13 +1921,14 @@ async def register_target_with_maintenance_window(
     *,
     window_id: str,
     resource_type: MaintenanceWindowResourceType,
-    targets: list[Target],
+    targets: Sequence[Target],
     owner_information: str | None = None,
     name: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
 ) -> RegisterTargetWithMaintenanceWindowResult: ...
 ```
+
 
 ### register_task_with_maintenance_window
 
@@ -1661,7 +1938,7 @@ async def register_task_with_maintenance_window(
     window_id: str,
     task_arn: str,
     task_type: MaintenanceWindowTaskType,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     service_role_arn: str | None = None,
     task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
     task_invocation_parameters: MaintenanceWindowTaskInvocationParameters | None = None,
@@ -1677,6 +1954,7 @@ async def register_task_with_maintenance_window(
 ) -> RegisterTaskWithMaintenanceWindowResult: ...
 ```
 
+
 ### remove_tags_from_resource
 
 ```python
@@ -1684,9 +1962,10 @@ async def remove_tags_from_resource(
     *,
     resource_type: ResourceTypeForTagging,
     resource_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> RemoveTagsFromResourceResult: ...
 ```
+
 
 ### reset_service_setting
 
@@ -1697,6 +1976,7 @@ async def reset_service_setting(
 ) -> ResetServiceSettingResult: ...
 ```
 
+
 ### resume_session
 
 ```python
@@ -1706,6 +1986,7 @@ async def resume_session(
 ) -> ResumeSessionResponse: ...
 ```
 
+
 ### send_automation_signal
 
 ```python
@@ -1713,9 +1994,10 @@ async def send_automation_signal(
     *,
     automation_execution_id: str,
     signal_type: SignalType,
-    payload: dict[str, list[str]] | None = None,
+    payload: dict[str, Sequence[str]] | None = None,
 ) -> SendAutomationSignalResult: ...
 ```
+
 
 ### send_command
 
@@ -1723,14 +2005,14 @@ async def send_automation_signal(
 async def send_command(
     *,
     document_name: str,
-    instance_ids: list[str] | None = None,
-    targets: list[Target] | None = None,
+    instance_ids: Sequence[str] | None = None,
+    targets: Sequence[Target] | None = None,
     document_version: str | None = None,
     document_hash: str | None = None,
     document_hash_type: DocumentHashType | None = None,
     timeout_seconds: int | None = None,
     comment: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     output_s3_region: str | None = None,
     output_s3_bucket_name: str | None = None,
     output_s3_key_prefix: str | None = None,
@@ -1743,25 +2025,28 @@ async def send_command(
 ) -> SendCommandResult: ...
 ```
 
+
 ### start_access_request
 
 ```python
 async def start_access_request(
     *,
     reason: str,
-    targets: list[Target],
-    tags: list[Tag] | None = None,
+    targets: Sequence[Target],
+    tags: Sequence[Tag] | None = None,
 ) -> StartAccessRequestResponse: ...
 ```
+
 
 ### start_associations_once
 
 ```python
 async def start_associations_once(
     *,
-    association_ids: list[str],
+    association_ids: Sequence[str],
 ) -> StartAssociationsOnceResult: ...
 ```
+
 
 ### start_automation_execution
 
@@ -1770,20 +2055,21 @@ async def start_automation_execution(
     *,
     document_name: str,
     document_version: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     client_token: str | None = None,
     mode: ExecutionMode | None = None,
     target_parameter_name: str | None = None,
-    targets: list[Target] | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
+    targets: Sequence[Target] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
     max_concurrency: str | None = None,
     max_errors: str | None = None,
-    target_locations: list[TargetLocation] | None = None,
-    tags: list[Tag] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
+    tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     target_locations_url: str | None = None,
 ) -> StartAutomationExecutionResult: ...
 ```
+
 
 ### start_change_request_execution
 
@@ -1791,18 +2077,19 @@ async def start_automation_execution(
 async def start_change_request_execution(
     *,
     document_name: str,
-    runbooks: list[Runbook],
+    runbooks: Sequence[Runbook],
     scheduled_time: str | None = None,
     document_version: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     change_request_name: str | None = None,
     client_token: str | None = None,
     auto_approve: bool | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     scheduled_end_time: str | None = None,
     change_details: str | None = None,
 ) -> StartChangeRequestExecutionResult: ...
 ```
+
 
 ### start_execution_preview
 
@@ -1815,6 +2102,7 @@ async def start_execution_preview(
 ) -> StartExecutionPreviewResponse: ...
 ```
 
+
 ### start_session
 
 ```python
@@ -1823,9 +2111,10 @@ async def start_session(
     target: str,
     document_name: str | None = None,
     reason: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
 ) -> StartSessionResponse: ...
 ```
+
 
 ### stop_automation_execution
 
@@ -1837,6 +2126,7 @@ async def stop_automation_execution(
 ) -> StopAutomationExecutionResult: ...
 ```
 
+
 ### terminate_session
 
 ```python
@@ -1846,6 +2136,7 @@ async def terminate_session(
 ) -> TerminateSessionResponse: ...
 ```
 
+
 ### unlabel_parameter_version
 
 ```python
@@ -1853,9 +2144,10 @@ async def unlabel_parameter_version(
     *,
     name: str,
     parameter_version: int,
-    labels: list[str],
+    labels: Sequence[str],
 ) -> UnlabelParameterVersionResult: ...
 ```
+
 
 ### update_association
 
@@ -1863,12 +2155,12 @@ async def unlabel_parameter_version(
 async def update_association(
     *,
     association_id: str,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     document_version: str | None = None,
     schedule_expression: str | None = None,
     output_location: InstanceAssociationOutputLocation | None = None,
     name: str | None = None,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     association_name: str | None = None,
     association_version: str | None = None,
     automation_target_parameter_name: str | None = None,
@@ -1877,15 +2169,16 @@ async def update_association(
     compliance_severity: AssociationComplianceSeverity | None = None,
     sync_compliance: AssociationSyncCompliance | None = None,
     apply_only_at_cron_interval: bool | None = None,
-    calendar_names: list[str] | None = None,
-    target_locations: list[TargetLocation] | None = None,
+    calendar_names: Sequence[str] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
     schedule_offset: int | None = None,
     duration: int | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
 ) -> UpdateAssociationResult: ...
 ```
+
 
 ### update_association_status
 
@@ -1897,6 +2190,7 @@ async def update_association_status(
     association_status: AssociationStatus,
 ) -> UpdateAssociationStatusResult: ...
 ```
+
 
 ### update_cloud_connector
 
@@ -1910,6 +2204,7 @@ async def update_cloud_connector(
 ) -> UpdateCloudConnectorResult: ...
 ```
 
+
 ### update_document
 
 ```python
@@ -1917,7 +2212,7 @@ async def update_document(
     *,
     content: str,
     name: str,
-    attachments: list[AttachmentsSource] | None = None,
+    attachments: Sequence[AttachmentsSource] | None = None,
     display_name: str | None = None,
     version_name: str | None = None,
     document_version: str | None = None,
@@ -1925,6 +2220,7 @@ async def update_document(
     target_type: str | None = None,
 ) -> UpdateDocumentResult: ...
 ```
+
 
 ### update_document_default_version
 
@@ -1936,6 +2232,7 @@ async def update_document_default_version(
 ) -> UpdateDocumentDefaultVersionResult: ...
 ```
 
+
 ### update_document_metadata
 
 ```python
@@ -1946,6 +2243,7 @@ async def update_document_metadata(
     document_version: str | None = None,
 ) -> UpdateDocumentMetadataResponse: ...
 ```
+
 
 ### update_maintenance_window
 
@@ -1968,6 +2266,7 @@ async def update_maintenance_window(
 ) -> UpdateMaintenanceWindowResult: ...
 ```
 
+
 ### update_maintenance_window_target
 
 ```python
@@ -1975,13 +2274,14 @@ async def update_maintenance_window_target(
     *,
     window_id: str,
     window_target_id: str,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     owner_information: str | None = None,
     name: str | None = None,
     description: str | None = None,
     replace: bool | None = None,
 ) -> UpdateMaintenanceWindowTargetResult: ...
 ```
+
 
 ### update_maintenance_window_task
 
@@ -1990,7 +2290,7 @@ async def update_maintenance_window_task(
     *,
     window_id: str,
     window_task_id: str,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     task_arn: str | None = None,
     service_role_arn: str | None = None,
     task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
@@ -2007,6 +2307,7 @@ async def update_maintenance_window_task(
 ) -> UpdateMaintenanceWindowTaskResult: ...
 ```
 
+
 ### update_managed_instance_role
 
 ```python
@@ -2017,6 +2318,7 @@ async def update_managed_instance_role(
 ) -> UpdateManagedInstanceRoleResult: ...
 ```
 
+
 ### update_ops_item
 
 ```python
@@ -2025,10 +2327,10 @@ async def update_ops_item(
     ops_item_id: str,
     description: str | None = None,
     operational_data: dict[str, OpsItemDataValue] | None = None,
-    operational_data_to_delete: list[str] | None = None,
-    notifications: list[OpsItemNotification] | None = None,
+    operational_data_to_delete: Sequence[str] | None = None,
+    notifications: Sequence[OpsItemNotification] | None = None,
     priority: int | None = None,
-    related_ops_items: list[RelatedOpsItem] | None = None,
+    related_ops_items: Sequence[RelatedOpsItem] | None = None,
     status: OpsItemStatus | None = None,
     title: str | None = None,
     category: str | None = None,
@@ -2041,6 +2343,7 @@ async def update_ops_item(
 ) -> UpdateOpsItemResponse: ...
 ```
 
+
 ### update_ops_metadata
 
 ```python
@@ -2048,9 +2351,10 @@ async def update_ops_metadata(
     *,
     ops_metadata_arn: str,
     metadata_to_update: dict[str, MetadataValue] | None = None,
-    keys_to_delete: list[str] | None = None,
+    keys_to_delete: Sequence[str] | None = None,
 ) -> UpdateOpsMetadataResult: ...
 ```
+
 
 ### update_patch_baseline
 
@@ -2061,17 +2365,18 @@ async def update_patch_baseline(
     name: str | None = None,
     global_filters: PatchFilterGroup | None = None,
     approval_rules: PatchRuleGroup | None = None,
-    approved_patches: list[str] | None = None,
+    approved_patches: Sequence[str] | None = None,
     approved_patches_compliance_level: PatchComplianceLevel | None = None,
     approved_patches_enable_non_security: bool | None = None,
-    rejected_patches: list[str] | None = None,
+    rejected_patches: Sequence[str] | None = None,
     rejected_patches_action: PatchAction | None = None,
     description: str | None = None,
-    sources: list[PatchSource] | None = None,
+    sources: Sequence[PatchSource] | None = None,
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     replace: bool | None = None,
 ) -> UpdatePatchBaselineResult: ...
 ```
+
 
 ### update_resource_data_sync
 
@@ -2084,6 +2389,7 @@ async def update_resource_data_sync(
 ) -> UpdateResourceDataSyncResult: ...
 ```
 
+
 ### update_service_setting
 
 ```python
@@ -2093,6 +2399,7 @@ async def update_service_setting(
     setting_value: str,
 ) -> UpdateServiceSettingResult: ...
 ```
+
 
 ### validate_cloud_connector
 
@@ -2104,6 +2411,10 @@ async def validate_cloud_connector(
     next_token: str | None = None,
 ) -> ValidateCloudConnectorResult: ...
 ```
+
+Also available as `client.paginators.validate_cloud_connector(...)`, returning an
+async iterator of the response type above.
+
 
 ## Links
 

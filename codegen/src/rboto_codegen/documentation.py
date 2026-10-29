@@ -64,10 +64,12 @@ def operations_from_client(
 
 def render_service_readme(
     descriptor: ServiceDescriptor, client_source: str, repository_root: Path,
+    paginators: tuple[str, ...] = (),
 ) -> str:
     example = repository_root / "examples/clients" / f"{descriptor.python_name}.py"
     return template_environment().get_template("service_readme.md.j2").render(
         service=descriptor,
         example=example.read_text().rstrip(),
         operations=operations_from_client(client_source, descriptor.client_class),
+        paginators=paginators,
     )

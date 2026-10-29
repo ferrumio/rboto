@@ -20,6 +20,8 @@ from .types import (
     QueueAttributeName,
     SendMessageBatchRequestEntry,
 )
+from .paginators import SQSClientPaginators as _Paginators
+
 
 
 class SQSClient:
@@ -48,6 +50,14 @@ class SQSClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_permission(
@@ -55,8 +65,8 @@ class SQSClient:
         *,
         queue_url: str,
         label: str,
-        aws_account_ids: list[str],
-        actions: list[str],
+        aws_account_ids: Sequence[str],
+        actions: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -130,7 +140,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        entries: list[ChangeMessageVisibilityBatchRequestEntry],
+        entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
     ) -> ChangeMessageVisibilityBatchResult:
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -206,7 +216,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        entries: list[DeleteMessageBatchRequestEntry],
+        entries: Sequence[DeleteMessageBatchRequestEntry],
     ) -> DeleteMessageBatchResult:
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -252,7 +262,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        attribute_names: list[QueueAttributeName] | None = None,
+        attribute_names: Sequence[QueueAttributeName] | None = None,
     ) -> GetQueueAttributesResult:
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -428,9 +438,9 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        attribute_names: list[QueueAttributeName] | None = None,
-        message_system_attribute_names: list[MessageSystemAttributeName] | None = None,
-        message_attribute_names: list[str] | None = None,
+        attribute_names: Sequence[QueueAttributeName] | None = None,
+        message_system_attribute_names: Sequence[MessageSystemAttributeName] | None = None,
+        message_attribute_names: Sequence[str] | None = None,
         max_number_of_messages: int | None = None,
         visibility_timeout: int | None = None,
         wait_time_seconds: int | None = None,
@@ -534,7 +544,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        entries: list[SendMessageBatchRequestEntry],
+        entries: Sequence[SendMessageBatchRequestEntry],
     ) -> SendMessageBatchResult:
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -634,7 +644,7 @@ class SQSClient:
         self,
         *,
         queue_url: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "queue_url": queue_url,

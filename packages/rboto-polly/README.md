@@ -66,7 +66,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_polly.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -107,6 +110,7 @@ async def delete_lexicon(
 ) -> DeleteLexiconOutput: ...
 ```
 
+
 ### describe_voices
 
 ```python
@@ -119,6 +123,10 @@ async def describe_voices(
 ) -> DescribeVoicesOutput: ...
 ```
 
+Also available as `client.paginators.describe_voices(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_lexicon
 
 ```python
@@ -127,6 +135,7 @@ async def get_lexicon(
     name: str,
 ) -> GetLexiconOutput: ...
 ```
+
 
 ### get_speech_synthesis_task
 
@@ -137,6 +146,7 @@ async def get_speech_synthesis_task(
 ) -> GetSpeechSynthesisTaskOutput: ...
 ```
 
+
 ### list_lexicons
 
 ```python
@@ -145,6 +155,10 @@ async def list_lexicons(
     next_token: str | None = None,
 ) -> ListLexiconsOutput: ...
 ```
+
+Also available as `client.paginators.list_lexicons(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_speech_synthesis_tasks
 
@@ -157,6 +171,10 @@ async def list_speech_synthesis_tasks(
 ) -> ListSpeechSynthesisTasksOutput: ...
 ```
 
+Also available as `client.paginators.list_speech_synthesis_tasks(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_lexicon
 
 ```python
@@ -167,6 +185,7 @@ async def put_lexicon(
 ) -> PutLexiconOutput: ...
 ```
 
+
 ### start_speech_synthesis_stream
 
 ```python
@@ -176,11 +195,12 @@ async def start_speech_synthesis_stream(
     output_format: OutputFormat,
     voice_id: VoiceId,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     sample_rate: str | None = None,
     action_stream: AsyncIterator[StartSpeechSynthesisStreamActionStream] | None = None,
 ) -> StartSpeechSynthesisStreamOutput: ...
 ```
+
 
 ### start_speech_synthesis_task
 
@@ -193,14 +213,15 @@ async def start_speech_synthesis_task(
     voice_id: VoiceId,
     engine: Engine | None = None,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     output_s3_key_prefix: str | None = None,
     sample_rate: str | None = None,
     sns_topic_arn: str | None = None,
-    speech_mark_types: list[SpeechMarkType] | None = None,
+    speech_mark_types: Sequence[SpeechMarkType] | None = None,
     text_type: TextType | None = None,
 ) -> StartSpeechSynthesisTaskOutput: ...
 ```
+
 
 ### synthesize_speech
 
@@ -212,12 +233,13 @@ async def synthesize_speech(
     voice_id: VoiceId,
     engine: Engine | None = None,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     sample_rate: str | None = None,
-    speech_mark_types: list[SpeechMarkType] | None = None,
+    speech_mark_types: Sequence[SpeechMarkType] | None = None,
     text_type: TextType | None = None,
 ) -> SynthesizeSpeechOutput: ...
 ```
+
 
 ## Links
 

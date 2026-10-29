@@ -62,7 +62,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_scheduler.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -90,8 +93,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_schedule_groups`](#list_schedule_groups) | None | <code>ListScheduleGroupsOutput</code> |
 | [`list_schedules`](#list_schedules) | None | <code>ListSchedulesOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceOutput</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 | [`update_schedule`](#update_schedule) | <code>name: str</code>, <code>schedule_expression: str</code>, <code>target: Target</code>, <code>flexible_time_window: FlexibleTimeWindow</code> | <code>UpdateScheduleOutput</code> |
 
 ## Complete signatures
@@ -117,16 +120,18 @@ async def create_schedule(
 ) -> CreateScheduleOutput: ...
 ```
 
+
 ### create_schedule_group
 
 ```python
 async def create_schedule_group(
     *,
     name: str,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
 ) -> CreateScheduleGroupOutput: ...
 ```
+
 
 ### delete_schedule
 
@@ -139,6 +144,7 @@ async def delete_schedule(
 ) -> DeleteScheduleOutput: ...
 ```
 
+
 ### delete_schedule_group
 
 ```python
@@ -148,6 +154,7 @@ async def delete_schedule_group(
     client_token: str | None = None,
 ) -> DeleteScheduleGroupOutput: ...
 ```
+
 
 ### get_schedule
 
@@ -159,6 +166,7 @@ async def get_schedule(
 ) -> GetScheduleOutput: ...
 ```
 
+
 ### get_schedule_group
 
 ```python
@@ -167,6 +175,7 @@ async def get_schedule_group(
     name: str,
 ) -> GetScheduleGroupOutput: ...
 ```
+
 
 ### list_schedule_groups
 
@@ -178,6 +187,10 @@ async def list_schedule_groups(
     max_results: int | None = None,
 ) -> ListScheduleGroupsOutput: ...
 ```
+
+Also available as `client.paginators.list_schedule_groups(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_schedules
 
@@ -192,6 +205,10 @@ async def list_schedules(
 ) -> ListSchedulesOutput: ...
 ```
 
+Also available as `client.paginators.list_schedules(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -201,15 +218,17 @@ async def list_tags_for_resource(
 ) -> ListTagsForResourceOutput: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceOutput: ...
 ```
+
 
 ### untag_resource
 
@@ -217,9 +236,10 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceOutput: ...
 ```
+
 
 ### update_schedule
 
@@ -241,6 +261,7 @@ async def update_schedule(
     action_after_completion: ActionAfterCompletion | None = None,
 ) -> UpdateScheduleOutput: ...
 ```
+
 
 ## Links
 

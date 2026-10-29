@@ -50,16 +50,16 @@ class STSClient:
         *,
         role_arn: str,
         role_session_name: str,
-        policy_arns: list[PolicyDescriptorType] | None = None,
+        policy_arns: Sequence[PolicyDescriptorType] | None = None,
         policy: str | None = None,
         duration_seconds: int | None = None,
-        tags: list[Tag] | None = None,
-        transitive_tag_keys: list[str] | None = None,
+        tags: Sequence[Tag] | None = None,
+        transitive_tag_keys: Sequence[str] | None = None,
         external_id: str | None = None,
         serial_number: str | None = None,
         token_code: str | None = None,
         source_identity: str | None = None,
-        provided_contexts: list[ProvidedContext] | None = None,
+        provided_contexts: Sequence[ProvidedContext] | None = None,
         minimum_session_token_size: int | None = None,
     ) -> AssumeRoleResponse:
         params: dict[str, object] = {
@@ -108,7 +108,7 @@ class STSClient:
         role_arn: str,
         principal_arn: str,
         saml_assertion: str,
-        policy_arns: list[PolicyDescriptorType] | None = None,
+        policy_arns: Sequence[PolicyDescriptorType] | None = None,
         policy: str | None = None,
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
@@ -147,7 +147,7 @@ class STSClient:
         role_session_name: str,
         web_identity_token: str,
         provider_id: str | None = None,
-        policy_arns: list[PolicyDescriptorType] | None = None,
+        policy_arns: Sequence[PolicyDescriptorType] | None = None,
         policy: str | None = None,
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
@@ -301,9 +301,9 @@ class STSClient:
         *,
         name: str,
         policy: str | None = None,
-        policy_arns: list[PolicyDescriptorType] | None = None,
+        policy_arns: Sequence[PolicyDescriptorType] | None = None,
         duration_seconds: int | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         minimum_session_token_size: int | None = None,
     ) -> GetFederationTokenResponse:
         params: dict[str, object] = {
@@ -368,10 +368,10 @@ class STSClient:
     async def get_web_identity_token(
         self,
         *,
-        audience: list[str],
+        audience: Sequence[str],
         signing_algorithm: str,
         duration_seconds: int | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> GetWebIdentityTokenResponse:
         params: dict[str, object] = {
             "audience": audience,

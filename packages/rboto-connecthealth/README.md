@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_connecthealth.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -97,7 +100,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_medical_scribe_listening_session`](#start_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code>, <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code> | <code>StartMedicalScribeListeningSessionOutput</code> |
 | [`start_patient_insights_job`](#start_patient_insights_job) | <code>domain_id: str</code>, <code>patient_context: PatientInsightsPatientContext</code>, <code>insights_context: InsightsContext</code>, <code>encounter_context: PatientInsightsEncounterContext</code>, <code>user_context: UserContext</code>, <code>input_data_config: InputDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>StartPatientInsightsJobResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
 ## Complete signatures
 
@@ -111,6 +114,7 @@ async def activate_subscription(
 ) -> ActivateSubscriptionOutput: ...
 ```
 
+
 ### create_domain
 
 ```python
@@ -123,6 +127,7 @@ async def create_domain(
 ) -> CreateDomainOutput: ...
 ```
 
+
 ### create_subscription
 
 ```python
@@ -131,6 +136,7 @@ async def create_subscription(
     domain_id: str,
 ) -> CreateSubscriptionOutput: ...
 ```
+
 
 ### deactivate_subscription
 
@@ -142,6 +148,7 @@ async def deactivate_subscription(
 ) -> DeactivateSubscriptionOutput: ...
 ```
 
+
 ### delete_domain
 
 ```python
@@ -151,6 +158,7 @@ async def delete_domain(
 ) -> DeleteDomainOutput: ...
 ```
 
+
 ### get_domain
 
 ```python
@@ -159,6 +167,7 @@ async def get_domain(
     domain_id: str,
 ) -> GetDomainOutput: ...
 ```
+
 
 ### get_medical_scribe_listening_session
 
@@ -171,6 +180,7 @@ async def get_medical_scribe_listening_session(
 ) -> GetMedicalScribeListeningSessionOutput: ...
 ```
 
+
 ### get_patient_insights_job
 
 ```python
@@ -181,6 +191,7 @@ async def get_patient_insights_job(
 ) -> GetPatientInsightsJobResponse: ...
 ```
 
+
 ### get_subscription
 
 ```python
@@ -190,6 +201,7 @@ async def get_subscription(
     subscription_id: str,
 ) -> GetSubscriptionOutput: ...
 ```
+
 
 ### list_domains
 
@@ -202,6 +214,10 @@ async def list_domains(
 ) -> ListDomainsOutput: ...
 ```
 
+Also available as `client.paginators.list_domains(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_subscriptions
 
 ```python
@@ -213,6 +229,10 @@ async def list_subscriptions(
 ) -> ListSubscriptionsOutput: ...
 ```
 
+Also available as `client.paginators.list_subscriptions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -221,6 +241,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceOutput: ...
 ```
+
 
 ### start_medical_scribe_listening_session
 
@@ -236,6 +257,7 @@ async def start_medical_scribe_listening_session(
     input_stream: AsyncIterator[MedicalScribeInputStream] | None = None,
 ) -> StartMedicalScribeListeningSessionOutput: ...
 ```
+
 
 ### start_patient_insights_job
 
@@ -253,6 +275,7 @@ async def start_patient_insights_job(
 ) -> StartPatientInsightsJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -263,15 +286,17 @@ async def tag_resource(
 ) -> None: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ## Links
 

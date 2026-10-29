@@ -68,6 +68,8 @@ from .types import (
     WebExperienceAuthConfiguration,
     WebExperienceSamplePromptsControlMode,
 )
+from .paginators import QBusinessClientPaginators as _Paginators
+
 
 
 class QBusinessClient:
@@ -96,6 +98,14 @@ class QBusinessClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def associate_permission(
@@ -103,9 +113,9 @@ class QBusinessClient:
         *,
         application_id: str,
         statement_id: str,
-        actions: list[str],
+        actions: Sequence[str],
         principal: str,
-        conditions: list[PermissionCondition] | None = None,
+        conditions: Sequence[PermissionCondition] | None = None,
     ) -> AssociatePermissionResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -134,7 +144,7 @@ class QBusinessClient:
         *,
         application_id: str,
         index_id: str,
-        documents: list[DeleteDocument],
+        documents: Sequence[DeleteDocument],
         data_source_sync_id: str | None = None,
     ) -> BatchDeleteDocumentResponse:
         params: dict[str, object] = {
@@ -163,7 +173,7 @@ class QBusinessClient:
         *,
         application_id: str,
         index_id: str,
-        documents: list[Document],
+        documents: Sequence[Document],
         role_arn: str | None = None,
         data_source_sync_id: str | None = None,
     ) -> BatchPutDocumentResponse:
@@ -219,7 +229,7 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str | None = None,
-        user_groups: list[str] | None = None,
+        user_groups: Sequence[str] | None = None,
         conversation_id: str | None = None,
         parent_message_id: str | None = None,
         client_token: str | None = None,
@@ -259,9 +269,9 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str | None = None,
-        user_groups: list[str] | None = None,
+        user_groups: Sequence[str] | None = None,
         user_message: str | None = None,
-        attachments: list[AttachmentInput] | None = None,
+        attachments: Sequence[AttachmentInput] | None = None,
         action_execution: ActionExecution | None = None,
         auth_challenge_response: AuthChallengeResponse | None = None,
         conversation_id: str | None = None,
@@ -378,10 +388,10 @@ class QBusinessClient:
         identity_type: IdentityType | None = None,
         iam_identity_provider_arn: str | None = None,
         identity_center_instance_arn: str | None = None,
-        client_ids_for_oidc: list[str] | None = None,
+        client_ids_for_oidc: Sequence[str] | None = None,
         description: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
         attachments_configuration: AttachmentsConfiguration | None = None,
         q_apps_configuration: QAppsConfiguration | None = None,
@@ -438,7 +448,7 @@ class QBusinessClient:
         display_name: str,
         response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
         client_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateChatResponseConfigurationResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -468,11 +478,11 @@ class QBusinessClient:
         *,
         application_id: str,
         principal: str,
-        action_configurations: list[ActionConfiguration],
+        action_configurations: Sequence[ActionConfiguration],
         display_name: str,
         client_token: str | None = None,
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateDataAccessorResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -509,7 +519,7 @@ class QBusinessClient:
         configuration: JSONValue,
         vpc_configuration: DataSourceVpcConfiguration | None = None,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         sync_schedule: str | None = None,
         role_arn: str | None = None,
         client_token: str | None = None,
@@ -559,7 +569,7 @@ class QBusinessClient:
         display_name: str,
         description: str | None = None,
         type: IndexType | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         capacity_configuration: IndexCapacityConfiguration | None = None,
         client_token: str | None = None,
     ) -> CreateIndexResponse:
@@ -600,7 +610,7 @@ class QBusinessClient:
         auth_configuration: PluginAuthConfiguration,
         server_url: str | None = None,
         custom_plugin_configuration: CustomPluginConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
     ) -> CreatePluginResponse:
         params: dict[str, object] = {
@@ -640,7 +650,7 @@ class QBusinessClient:
         configuration: RetrieverConfiguration,
         role_arn: str | None = None,
         client_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateRetrieverResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -702,7 +712,7 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str,
-        user_aliases: list[UserAlias] | None = None,
+        user_aliases: Sequence[UserAlias] | None = None,
         client_token: str | None = None,
     ) -> CreateUserResponse:
         params: dict[str, object] = {
@@ -735,9 +745,9 @@ class QBusinessClient:
         subtitle: str | None = None,
         welcome_message: str | None = None,
         sample_prompts_control_mode: WebExperienceSamplePromptsControlMode | None = None,
-        origins: list[str] | None = None,
+        origins: Sequence[str] | None = None,
         role_arn: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
         identity_provider_configuration: IdentityProviderConfiguration | None = None,
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
@@ -1707,7 +1717,7 @@ class QBusinessClient:
         *,
         application_id: str,
         index_id: str,
-        data_source_ids: list[str] | None = None,
+        data_source_ids: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDocumentsResponse:
@@ -2211,7 +2221,7 @@ class QBusinessClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2235,7 +2245,7 @@ class QBusinessClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2309,8 +2319,8 @@ class QBusinessClient:
         response_scope: ResponseScope | None = None,
         orchestration_configuration: OrchestrationConfiguration | None = None,
         blocked_phrases_configuration_update: BlockedPhrasesConfigurationUpdate | None = None,
-        topic_configurations_to_create_or_update: list[TopicConfiguration] | None = None,
-        topic_configurations_to_delete: list[TopicConfiguration] | None = None,
+        topic_configurations_to_create_or_update: Sequence[TopicConfiguration] | None = None,
+        topic_configurations_to_delete: Sequence[TopicConfiguration] | None = None,
         creator_mode_configuration: CreatorModeConfiguration | None = None,
         hallucination_reduction_configuration: HallucinationReductionConfiguration | None = None,
     ) -> UpdateChatControlsConfigurationResponse:
@@ -2384,7 +2394,7 @@ class QBusinessClient:
         *,
         application_id: str,
         data_accessor_id: str,
-        action_configurations: list[ActionConfiguration],
+        action_configurations: Sequence[ActionConfiguration],
         authentication_detail: DataAccessorAuthenticationDetail | None = None,
         display_name: str | None = None,
     ) -> UpdateDataAccessorResponse:
@@ -2469,7 +2479,7 @@ class QBusinessClient:
         display_name: str | None = None,
         description: str | None = None,
         capacity_configuration: IndexCapacityConfiguration | None = None,
-        document_attribute_configurations: list[DocumentAttributeConfiguration] | None = None,
+        document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
     ) -> UpdateIndexResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -2600,8 +2610,8 @@ class QBusinessClient:
         *,
         application_id: str,
         user_id: str,
-        user_aliases_to_update: list[UserAlias] | None = None,
-        user_aliases_to_delete: list[UserAlias] | None = None,
+        user_aliases_to_update: Sequence[UserAlias] | None = None,
+        user_aliases_to_delete: Sequence[UserAlias] | None = None,
     ) -> UpdateUserResponse:
         params: dict[str, object] = {
             "application_id": application_id,
@@ -2637,7 +2647,7 @@ class QBusinessClient:
         welcome_message: str | None = None,
         sample_prompts_control_mode: WebExperienceSamplePromptsControlMode | None = None,
         identity_provider_configuration: IdentityProviderConfiguration | None = None,
-        origins: list[str] | None = None,
+        origins: Sequence[str] | None = None,
         browser_extension_configuration: BrowserExtensionConfiguration | None = None,
         customization_configuration: CustomizationConfiguration | None = None,
     ) -> UpdateWebExperienceResponse:

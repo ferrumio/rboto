@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agent.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -89,14 +92,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_agent_alias`](#create_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_name: str</code> | <code>CreateAgentAliasResponse</code> |
 | [`create_data_source`](#create_data_source) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>CreateDataSourceResponse</code> |
 | [`create_flow`](#create_flow) | <code>name: str</code>, <code>execution_role_arn: str</code> | <code>CreateFlowResponse</code> |
-| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: list[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasResponse</code> |
+| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasResponse</code> |
 | [`create_flow_version`](#create_flow_version) | <code>flow_identifier: str</code> | <code>CreateFlowVersionResponse</code> |
 | [`create_knowledge_base`](#create_knowledge_base) | <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>CreateKnowledgeBaseResponse</code> |
 | [`create_prompt`](#create_prompt) | <code>name: str</code> | <code>CreatePromptResponse</code> |
 | [`create_prompt_version`](#create_prompt_version) | <code>prompt_identifier: str</code> | <code>CreatePromptVersionResponse</code> |
 | [`create_retrieval_instruction`](#create_retrieval_instruction) | <code>name: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>CreateRetrievalInstructionResponse</code> |
 | [`create_retrieval_instruction_version`](#create_retrieval_instruction_version) | <code>retrieval_instruction_id: str</code> | <code>CreateRetrievalInstructionVersionResponse</code> |
-| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: list[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationResponse</code> |
+| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: Sequence[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationResponse</code> |
 | [`delete_agent`](#delete_agent) | <code>agent_id: str</code> | <code>DeleteAgentResponse</code> |
 | [`delete_agent_action_group`](#delete_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>DeleteAgentActionGroupResponse</code> |
 | [`delete_agent_alias`](#delete_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentAliasResponse</code> |
@@ -106,7 +109,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_flow_alias`](#delete_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>DeleteFlowAliasResponse</code> |
 | [`delete_flow_version`](#delete_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>DeleteFlowVersionResponse</code> |
 | [`delete_knowledge_base`](#delete_knowledge_base) | <code>knowledge_base_id: str</code> | <code>DeleteKnowledgeBaseResponse</code> |
-| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: list[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsResponse</code> |
+| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsResponse</code> |
 | [`delete_prompt`](#delete_prompt) | <code>prompt_identifier: str</code> | <code>DeletePromptResponse</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
 | [`delete_retrieval_instruction`](#delete_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>DeleteRetrievalInstructionResponse</code> |
@@ -125,12 +128,12 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_flow_version`](#get_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>GetFlowVersionResponse</code> |
 | [`get_ingestion_job`](#get_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>GetIngestionJobResponse</code> |
 | [`get_knowledge_base`](#get_knowledge_base) | <code>knowledge_base_id: str</code> | <code>GetKnowledgeBaseResponse</code> |
-| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: list[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsResponse</code> |
+| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsResponse</code> |
 | [`get_prompt`](#get_prompt) | <code>prompt_identifier: str</code> | <code>GetPromptResponse</code> |
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
 | [`get_retrieval_instruction`](#get_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>GetRetrievalInstructionResponse</code> |
 | [`get_vpc_configuration`](#get_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>GetVpcConfigurationResponse</code> |
-| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: list[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsResponse</code> |
+| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: Sequence[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsResponse</code> |
 | [`list_agent_action_groups`](#list_agent_action_groups) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentActionGroupsResponse</code> |
 | [`list_agent_aliases`](#list_agent_aliases) | <code>agent_id: str</code> | <code>ListAgentAliasesResponse</code> |
 | [`list_agent_collaborators`](#list_agent_collaborators) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentCollaboratorsResponse</code> |
@@ -155,7 +158,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_ingestion_job`](#start_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>StartIngestionJobResponse</code> |
 | [`stop_ingestion_job`](#stop_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>StopIngestionJobResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_agent`](#update_agent) | <code>agent_id: str</code>, <code>agent_name: str</code>, <code>foundation_model: str</code>, <code>agent_resource_role_arn: str</code> | <code>UpdateAgentResponse</code> |
 | [`update_agent_action_group`](#update_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code>, <code>action_group_name: str</code> | <code>UpdateAgentActionGroupResponse</code> |
 | [`update_agent_alias`](#update_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>agent_alias_name: str</code> | <code>UpdateAgentAliasResponse</code> |
@@ -163,7 +166,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_agent_knowledge_base`](#update_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>UpdateAgentKnowledgeBaseResponse</code> |
 | [`update_data_source`](#update_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>UpdateDataSourceResponse</code> |
 | [`update_flow`](#update_flow) | <code>name: str</code>, <code>execution_role_arn: str</code>, <code>flow_identifier: str</code> | <code>UpdateFlowResponse</code> |
-| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: list[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasResponse</code> |
+| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasResponse</code> |
 | [`update_knowledge_base`](#update_knowledge_base) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>UpdateKnowledgeBaseResponse</code> |
 | [`update_prompt`](#update_prompt) | <code>name: str</code>, <code>prompt_identifier: str</code> | <code>UpdatePromptResponse</code> |
 | [`update_retrieval_instruction`](#update_retrieval_instruction) | <code>retrieval_instruction_id: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>UpdateRetrievalInstructionResponse</code> |
@@ -186,6 +189,7 @@ async def associate_agent_collaborator(
 ) -> AssociateAgentCollaboratorResponse: ...
 ```
 
+
 ### associate_agent_knowledge_base
 
 ```python
@@ -198,6 +202,7 @@ async def associate_agent_knowledge_base(
     knowledge_base_state: KnowledgeBaseState | None = None,
 ) -> AssociateAgentKnowledgeBaseResponse: ...
 ```
+
 
 ### create_agent
 
@@ -222,6 +227,7 @@ async def create_agent(
 ) -> CreateAgentResponse: ...
 ```
 
+
 ### create_agent_action_group
 
 ```python
@@ -241,6 +247,7 @@ async def create_agent_action_group(
 ) -> CreateAgentActionGroupResponse: ...
 ```
 
+
 ### create_agent_alias
 
 ```python
@@ -250,10 +257,11 @@ async def create_agent_alias(
     agent_alias_name: str,
     client_token: str | None = None,
     description: str | None = None,
-    routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+    routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateAgentAliasResponse: ...
 ```
+
 
 ### create_data_source
 
@@ -271,6 +279,7 @@ async def create_data_source(
 ) -> CreateDataSourceResponse: ...
 ```
 
+
 ### create_flow
 
 ```python
@@ -286,13 +295,14 @@ async def create_flow(
 ) -> CreateFlowResponse: ...
 ```
 
+
 ### create_flow_alias
 
 ```python
 async def create_flow_alias(
     *,
     name: str,
-    routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+    routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
     flow_identifier: str,
     description: str | None = None,
     concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
@@ -300,6 +310,7 @@ async def create_flow_alias(
     tags: dict[str, str] | None = None,
 ) -> CreateFlowAliasResponse: ...
 ```
+
 
 ### create_flow_version
 
@@ -311,6 +322,7 @@ async def create_flow_version(
     client_token: str | None = None,
 ) -> CreateFlowVersionResponse: ...
 ```
+
 
 ### create_knowledge_base
 
@@ -327,6 +339,7 @@ async def create_knowledge_base(
 ) -> CreateKnowledgeBaseResponse: ...
 ```
 
+
 ### create_prompt
 
 ```python
@@ -336,11 +349,12 @@ async def create_prompt(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     default_variant: str | None = None,
-    variants: list[PromptVariant] | None = None,
+    variants: Sequence[PromptVariant] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreatePromptResponse: ...
 ```
+
 
 ### create_prompt_version
 
@@ -353,6 +367,7 @@ async def create_prompt_version(
     tags: dict[str, str] | None = None,
 ) -> CreatePromptVersionResponse: ...
 ```
+
 
 ### create_retrieval_instruction
 
@@ -368,6 +383,7 @@ async def create_retrieval_instruction(
 ) -> CreateRetrievalInstructionResponse: ...
 ```
 
+
 ### create_retrieval_instruction_version
 
 ```python
@@ -379,6 +395,7 @@ async def create_retrieval_instruction_version(
 ) -> CreateRetrievalInstructionVersionResponse: ...
 ```
 
+
 ### create_vpc_configuration
 
 ```python
@@ -386,7 +403,7 @@ async def create_vpc_configuration(
     *,
     knowledge_base_id: str,
     vpc_id: str,
-    subnet_ids: list[str],
+    subnet_ids: Sequence[str],
     resource_target: str,
     port: int,
     protocol: VpcProtocol,
@@ -399,6 +416,7 @@ async def create_vpc_configuration(
 ) -> CreateVpcConfigurationResponse: ...
 ```
 
+
 ### delete_agent
 
 ```python
@@ -408,6 +426,7 @@ async def delete_agent(
     skip_resource_in_use_check: bool | None = None,
 ) -> DeleteAgentResponse: ...
 ```
+
 
 ### delete_agent_action_group
 
@@ -421,6 +440,7 @@ async def delete_agent_action_group(
 ) -> DeleteAgentActionGroupResponse: ...
 ```
 
+
 ### delete_agent_alias
 
 ```python
@@ -430,6 +450,7 @@ async def delete_agent_alias(
     agent_alias_id: str,
 ) -> DeleteAgentAliasResponse: ...
 ```
+
 
 ### delete_agent_version
 
@@ -442,6 +463,7 @@ async def delete_agent_version(
 ) -> DeleteAgentVersionResponse: ...
 ```
 
+
 ### delete_data_source
 
 ```python
@@ -451,6 +473,7 @@ async def delete_data_source(
     data_source_id: str,
 ) -> DeleteDataSourceResponse: ...
 ```
+
 
 ### delete_flow
 
@@ -462,6 +485,7 @@ async def delete_flow(
 ) -> DeleteFlowResponse: ...
 ```
 
+
 ### delete_flow_alias
 
 ```python
@@ -471,6 +495,7 @@ async def delete_flow_alias(
     alias_identifier: str,
 ) -> DeleteFlowAliasResponse: ...
 ```
+
 
 ### delete_flow_version
 
@@ -483,6 +508,7 @@ async def delete_flow_version(
 ) -> DeleteFlowVersionResponse: ...
 ```
 
+
 ### delete_knowledge_base
 
 ```python
@@ -492,6 +518,7 @@ async def delete_knowledge_base(
 ) -> DeleteKnowledgeBaseResponse: ...
 ```
 
+
 ### delete_knowledge_base_documents
 
 ```python
@@ -499,10 +526,11 @@ async def delete_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    document_identifiers: list[DocumentIdentifier],
+    document_identifiers: Sequence[DocumentIdentifier],
     client_token: str | None = None,
 ) -> DeleteKnowledgeBaseDocumentsResponse: ...
 ```
+
 
 ### delete_prompt
 
@@ -514,6 +542,7 @@ async def delete_prompt(
 ) -> DeletePromptResponse: ...
 ```
 
+
 ### delete_resource_policy
 
 ```python
@@ -523,6 +552,7 @@ async def delete_resource_policy(
     expected_revision_id: str | None = None,
 ) -> DeleteResourcePolicyResponse: ...
 ```
+
 
 ### delete_retrieval_instruction
 
@@ -534,6 +564,7 @@ async def delete_retrieval_instruction(
 ) -> DeleteRetrievalInstructionResponse: ...
 ```
 
+
 ### delete_vpc_configuration
 
 ```python
@@ -543,6 +574,7 @@ async def delete_vpc_configuration(
     vpc_configuration_id: str,
 ) -> DeleteVpcConfigurationResponse: ...
 ```
+
 
 ### disassociate_agent_collaborator
 
@@ -555,6 +587,7 @@ async def disassociate_agent_collaborator(
 ) -> DisassociateAgentCollaboratorResponse: ...
 ```
 
+
 ### disassociate_agent_knowledge_base
 
 ```python
@@ -566,6 +599,7 @@ async def disassociate_agent_knowledge_base(
 ) -> DisassociateAgentKnowledgeBaseResponse: ...
 ```
 
+
 ### get_agent
 
 ```python
@@ -574,6 +608,7 @@ async def get_agent(
     agent_id: str,
 ) -> GetAgentResponse: ...
 ```
+
 
 ### get_agent_action_group
 
@@ -586,6 +621,7 @@ async def get_agent_action_group(
 ) -> GetAgentActionGroupResponse: ...
 ```
 
+
 ### get_agent_alias
 
 ```python
@@ -595,6 +631,7 @@ async def get_agent_alias(
     agent_alias_id: str,
 ) -> GetAgentAliasResponse: ...
 ```
+
 
 ### get_agent_collaborator
 
@@ -607,6 +644,7 @@ async def get_agent_collaborator(
 ) -> GetAgentCollaboratorResponse: ...
 ```
 
+
 ### get_agent_knowledge_base
 
 ```python
@@ -618,6 +656,7 @@ async def get_agent_knowledge_base(
 ) -> GetAgentKnowledgeBaseResponse: ...
 ```
 
+
 ### get_agent_version
 
 ```python
@@ -627,6 +666,7 @@ async def get_agent_version(
     agent_version: str,
 ) -> GetAgentVersionResponse: ...
 ```
+
 
 ### get_data_source
 
@@ -638,6 +678,7 @@ async def get_data_source(
 ) -> GetDataSourceResponse: ...
 ```
 
+
 ### get_flow
 
 ```python
@@ -648,6 +689,7 @@ async def get_flow(
 ) -> GetFlowResponse: ...
 ```
 
+
 ### get_flow_alias
 
 ```python
@@ -657,6 +699,7 @@ async def get_flow_alias(
     alias_identifier: str,
 ) -> GetFlowAliasResponse: ...
 ```
+
 
 ### get_flow_version
 
@@ -669,6 +712,7 @@ async def get_flow_version(
 ) -> GetFlowVersionResponse: ...
 ```
 
+
 ### get_ingestion_job
 
 ```python
@@ -680,6 +724,7 @@ async def get_ingestion_job(
 ) -> GetIngestionJobResponse: ...
 ```
 
+
 ### get_knowledge_base
 
 ```python
@@ -689,6 +734,7 @@ async def get_knowledge_base(
 ) -> GetKnowledgeBaseResponse: ...
 ```
 
+
 ### get_knowledge_base_documents
 
 ```python
@@ -696,9 +742,10 @@ async def get_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    document_identifiers: list[DocumentIdentifier],
+    document_identifiers: Sequence[DocumentIdentifier],
 ) -> GetKnowledgeBaseDocumentsResponse: ...
 ```
+
 
 ### get_prompt
 
@@ -711,6 +758,7 @@ async def get_prompt(
 ) -> GetPromptResponse: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -719,6 +767,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_retrieval_instruction
 
@@ -730,6 +779,7 @@ async def get_retrieval_instruction(
 ) -> GetRetrievalInstructionResponse: ...
 ```
 
+
 ### get_vpc_configuration
 
 ```python
@@ -740,6 +790,7 @@ async def get_vpc_configuration(
 ) -> GetVpcConfigurationResponse: ...
 ```
 
+
 ### ingest_knowledge_base_documents
 
 ```python
@@ -747,10 +798,11 @@ async def ingest_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    documents: list[KnowledgeBaseDocument],
+    documents: Sequence[KnowledgeBaseDocument],
     client_token: str | None = None,
 ) -> IngestKnowledgeBaseDocumentsResponse: ...
 ```
+
 
 ### list_agent_action_groups
 
@@ -764,6 +816,10 @@ async def list_agent_action_groups(
 ) -> ListAgentActionGroupsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_action_groups(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_aliases
 
 ```python
@@ -774,6 +830,10 @@ async def list_agent_aliases(
     next_token: str | None = None,
 ) -> ListAgentAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_agent_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_agent_collaborators
 
@@ -787,6 +847,10 @@ async def list_agent_collaborators(
 ) -> ListAgentCollaboratorsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_collaborators(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_knowledge_bases
 
 ```python
@@ -799,6 +863,10 @@ async def list_agent_knowledge_bases(
 ) -> ListAgentKnowledgeBasesResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_knowledge_bases(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_versions
 
 ```python
@@ -810,6 +878,10 @@ async def list_agent_versions(
 ) -> ListAgentVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agents
 
 ```python
@@ -819,6 +891,10 @@ async def list_agents(
     next_token: str | None = None,
 ) -> ListAgentsResponse: ...
 ```
+
+Also available as `client.paginators.list_agents(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_data_sources
 
@@ -831,6 +907,10 @@ async def list_data_sources(
 ) -> ListDataSourcesResponse: ...
 ```
 
+Also available as `client.paginators.list_data_sources(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flow_aliases
 
 ```python
@@ -841,6 +921,10 @@ async def list_flow_aliases(
     next_token: str | None = None,
 ) -> ListFlowAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_flow_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_flow_versions
 
@@ -853,6 +937,10 @@ async def list_flow_versions(
 ) -> ListFlowVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_flow_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flows
 
 ```python
@@ -863,6 +951,10 @@ async def list_flows(
 ) -> ListFlowsResponse: ...
 ```
 
+Also available as `client.paginators.list_flows(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_ingestion_jobs
 
 ```python
@@ -870,12 +962,16 @@ async def list_ingestion_jobs(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    filters: list[IngestionJobFilter] | None = None,
+    filters: Sequence[IngestionJobFilter] | None = None,
     sort_by: IngestionJobSortBy | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListIngestionJobsResponse: ...
 ```
+
+Also available as `client.paginators.list_ingestion_jobs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_knowledge_base_documents
 
@@ -889,6 +985,10 @@ async def list_knowledge_base_documents(
 ) -> ListKnowledgeBaseDocumentsResponse: ...
 ```
 
+Also available as `client.paginators.list_knowledge_base_documents(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_knowledge_bases
 
 ```python
@@ -898,6 +998,10 @@ async def list_knowledge_bases(
     next_token: str | None = None,
 ) -> ListKnowledgeBasesResponse: ...
 ```
+
+Also available as `client.paginators.list_knowledge_bases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_prompts
 
@@ -910,6 +1014,10 @@ async def list_prompts(
 ) -> ListPromptsResponse: ...
 ```
 
+Also available as `client.paginators.list_prompts(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_retrieval_instruction_versions
 
 ```python
@@ -920,6 +1028,10 @@ async def list_retrieval_instruction_versions(
     next_token: str | None = None,
 ) -> ListRetrievalInstructionVersionsResponse: ...
 ```
+
+Also available as `client.paginators.list_retrieval_instruction_versions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_retrieval_instructions
 
@@ -932,6 +1044,10 @@ async def list_retrieval_instructions(
 ) -> ListRetrievalInstructionsResponse: ...
 ```
 
+Also available as `client.paginators.list_retrieval_instructions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -940,6 +1056,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_vpc_configurations
 
@@ -953,6 +1070,10 @@ async def list_vpc_configurations(
 ) -> ListVpcConfigurationsResponse: ...
 ```
 
+Also available as `client.paginators.list_vpc_configurations(...)`, returning an
+async iterator of the response type above.
+
+
 ### prepare_agent
 
 ```python
@@ -962,6 +1083,7 @@ async def prepare_agent(
 ) -> PrepareAgentResponse: ...
 ```
 
+
 ### prepare_flow
 
 ```python
@@ -970,6 +1092,7 @@ async def prepare_flow(
     flow_identifier: str,
 ) -> PrepareFlowResponse: ...
 ```
+
 
 ### put_resource_policy
 
@@ -981,6 +1104,7 @@ async def put_resource_policy(
     expected_revision_id: str | None = None,
 ) -> PutResourcePolicyResponse: ...
 ```
+
 
 ### start_ingestion_job
 
@@ -994,6 +1118,7 @@ async def start_ingestion_job(
 ) -> StartIngestionJobResponse: ...
 ```
 
+
 ### stop_ingestion_job
 
 ```python
@@ -1005,6 +1130,7 @@ async def stop_ingestion_job(
 ) -> StopIngestionJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1015,15 +1141,17 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_agent
 
@@ -1047,6 +1175,7 @@ async def update_agent(
 ) -> UpdateAgentResponse: ...
 ```
 
+
 ### update_agent_action_group
 
 ```python
@@ -1066,6 +1195,7 @@ async def update_agent_action_group(
 ) -> UpdateAgentActionGroupResponse: ...
 ```
 
+
 ### update_agent_alias
 
 ```python
@@ -1075,10 +1205,11 @@ async def update_agent_alias(
     agent_alias_id: str,
     agent_alias_name: str,
     description: str | None = None,
-    routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+    routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     alias_invocation_state: AliasInvocationState | None = None,
 ) -> UpdateAgentAliasResponse: ...
 ```
+
 
 ### update_agent_collaborator
 
@@ -1095,6 +1226,7 @@ async def update_agent_collaborator(
 ) -> UpdateAgentCollaboratorResponse: ...
 ```
 
+
 ### update_agent_knowledge_base
 
 ```python
@@ -1107,6 +1239,7 @@ async def update_agent_knowledge_base(
     knowledge_base_state: KnowledgeBaseState | None = None,
 ) -> UpdateAgentKnowledgeBaseResponse: ...
 ```
+
 
 ### update_data_source
 
@@ -1124,6 +1257,7 @@ async def update_data_source(
 ) -> UpdateDataSourceResponse: ...
 ```
 
+
 ### update_flow
 
 ```python
@@ -1138,19 +1272,21 @@ async def update_flow(
 ) -> UpdateFlowResponse: ...
 ```
 
+
 ### update_flow_alias
 
 ```python
 async def update_flow_alias(
     *,
     name: str,
-    routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+    routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
     flow_identifier: str,
     alias_identifier: str,
     description: str | None = None,
     concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
 ) -> UpdateFlowAliasResponse: ...
 ```
+
 
 ### update_knowledge_base
 
@@ -1166,6 +1302,7 @@ async def update_knowledge_base(
 ) -> UpdateKnowledgeBaseResponse: ...
 ```
 
+
 ### update_prompt
 
 ```python
@@ -1176,9 +1313,10 @@ async def update_prompt(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     default_variant: str | None = None,
-    variants: list[PromptVariant] | None = None,
+    variants: Sequence[PromptVariant] | None = None,
 ) -> UpdatePromptResponse: ...
 ```
+
 
 ### update_retrieval_instruction
 
@@ -1191,6 +1329,7 @@ async def update_retrieval_instruction(
 ) -> UpdateRetrievalInstructionResponse: ...
 ```
 
+
 ### validate_flow_definition
 
 ```python
@@ -1199,6 +1338,7 @@ async def validate_flow_definition(
     definition: FlowDefinition,
 ) -> ValidateFlowDefinitionResponse: ...
 ```
+
 
 ## Links
 

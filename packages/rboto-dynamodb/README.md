@@ -64,7 +64,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_dynamodb.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -83,11 +86,11 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`batch_execute_statement`](#batch_execute_statement) | <code>statements: list[BatchStatementRequest]</code> | <code>BatchExecuteStatementOutput</code> |
+| [`batch_execute_statement`](#batch_execute_statement) | <code>statements: Sequence[BatchStatementRequest]</code> | <code>BatchExecuteStatementOutput</code> |
 | [`batch_get_item`](#batch_get_item) | <code>request_items: dict[str, KeysAndAttributes]</code> | <code>BatchGetItemOutput</code> |
-| [`batch_write_item`](#batch_write_item) | <code>request_items: dict[str, list[WriteRequest]]</code> | <code>BatchWriteItemOutput</code> |
+| [`batch_write_item`](#batch_write_item) | <code>request_items: dict[str, Sequence[WriteRequest]]</code> | <code>BatchWriteItemOutput</code> |
 | [`create_backup`](#create_backup) | <code>table_name: str</code>, <code>backup_name: str</code> | <code>CreateBackupOutput</code> |
-| [`create_global_table`](#create_global_table) | <code>global_table_name: str</code>, <code>replication_group: list[Replica]</code> | <code>CreateGlobalTableOutput</code> |
+| [`create_global_table`](#create_global_table) | <code>global_table_name: str</code>, <code>replication_group: Sequence[Replica]</code> | <code>CreateGlobalTableOutput</code> |
 | [`create_table`](#create_table) | <code>table_name: str</code> | <code>CreateTableOutput</code> |
 | [`delete_backup`](#delete_backup) | <code>backup_arn: str</code> | <code>DeleteBackupOutput</code> |
 | [`delete_item`](#delete_item) | <code>table_name: str</code>, <code>key: dict[str, AttributeValue]</code> | <code>DeleteItemOutput</code> |
@@ -109,7 +112,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`disable_kinesis_streaming_destination`](#disable_kinesis_streaming_destination) | <code>table_name: str</code>, <code>stream_arn: str</code> | <code>DisableKinesisStreamingDestinationOutput</code> |
 | [`enable_kinesis_streaming_destination`](#enable_kinesis_streaming_destination) | <code>table_name: str</code>, <code>stream_arn: str</code> | <code>EnableKinesisStreamingDestinationOutput</code> |
 | [`execute_statement`](#execute_statement) | <code>statement: str</code> | <code>ExecuteStatementOutput</code> |
-| [`execute_transaction`](#execute_transaction) | <code>transact_statements: list[ParameterizedStatement]</code> | <code>ExecuteTransactionOutput</code> |
+| [`execute_transaction`](#execute_transaction) | <code>transact_statements: Sequence[ParameterizedStatement]</code> | <code>ExecuteTransactionOutput</code> |
 | [`export_table_to_point_in_time`](#export_table_to_point_in_time) | <code>table_arn: str</code>, <code>s3_bucket: str</code> | <code>ExportTableToPointInTimeOutput</code> |
 | [`get_item`](#get_item) | <code>table_name: str</code>, <code>key: dict[str, AttributeValue]</code> | <code>GetItemOutput</code> |
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
@@ -127,14 +130,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`restore_table_from_backup`](#restore_table_from_backup) | <code>target_table_name: str</code>, <code>backup_arn: str</code> | <code>RestoreTableFromBackupOutput</code> |
 | [`restore_table_to_point_in_time`](#restore_table_to_point_in_time) | <code>target_table_name: str</code> | <code>RestoreTableToPointInTimeOutput</code> |
 | [`scan`](#scan) | <code>table_name: str</code> | <code>ScanOutput</code> |
-| [`search_vectors`](#search_vectors) | <code>table_name: str</code>, <code>index_name: str</code>, <code>search_vector: list[AttributeValue]</code>, <code>top_k: int</code> | <code>SearchVectorsOutput</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>None</code> |
-| [`transact_get_items`](#transact_get_items) | <code>transact_items: list[TransactGetItem]</code> | <code>TransactGetItemsOutput</code> |
-| [`transact_write_items`](#transact_write_items) | <code>transact_items: list[TransactWriteItem]</code> | <code>TransactWriteItemsOutput</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`search_vectors`](#search_vectors) | <code>table_name: str</code>, <code>index_name: str</code>, <code>search_vector: Sequence[AttributeValue]</code>, <code>top_k: int</code> | <code>SearchVectorsOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
+| [`transact_get_items`](#transact_get_items) | <code>transact_items: Sequence[TransactGetItem]</code> | <code>TransactGetItemsOutput</code> |
+| [`transact_write_items`](#transact_write_items) | <code>transact_items: Sequence[TransactWriteItem]</code> | <code>TransactWriteItemsOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_continuous_backups`](#update_continuous_backups) | <code>table_name: str</code>, <code>point_in_time_recovery_specification: PointInTimeRecoverySpecification</code> | <code>UpdateContinuousBackupsOutput</code> |
 | [`update_contributor_insights`](#update_contributor_insights) | <code>table_name: str</code>, <code>contributor_insights_action: ContributorInsightsAction</code> | <code>UpdateContributorInsightsOutput</code> |
-| [`update_global_table`](#update_global_table) | <code>global_table_name: str</code>, <code>replica_updates: list[ReplicaUpdate]</code> | <code>UpdateGlobalTableOutput</code> |
+| [`update_global_table`](#update_global_table) | <code>global_table_name: str</code>, <code>replica_updates: Sequence[ReplicaUpdate]</code> | <code>UpdateGlobalTableOutput</code> |
 | [`update_global_table_settings`](#update_global_table_settings) | <code>global_table_name: str</code> | <code>UpdateGlobalTableSettingsOutput</code> |
 | [`update_item`](#update_item) | <code>table_name: str</code>, <code>key: dict[str, AttributeValue]</code> | <code>UpdateItemOutput</code> |
 | [`update_kinesis_streaming_destination`](#update_kinesis_streaming_destination) | <code>table_name: str</code>, <code>stream_arn: str</code> | <code>UpdateKinesisStreamingDestinationOutput</code> |
@@ -149,10 +152,11 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def batch_execute_statement(
     *,
-    statements: list[BatchStatementRequest],
+    statements: Sequence[BatchStatementRequest],
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> BatchExecuteStatementOutput: ...
 ```
+
 
 ### batch_get_item
 
@@ -164,16 +168,18 @@ async def batch_get_item(
 ) -> BatchGetItemOutput: ...
 ```
 
+
 ### batch_write_item
 
 ```python
 async def batch_write_item(
     *,
-    request_items: dict[str, list[WriteRequest]],
+    request_items: dict[str, Sequence[WriteRequest]],
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
     return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
 ) -> BatchWriteItemOutput: ...
 ```
+
 
 ### create_backup
 
@@ -185,15 +191,17 @@ async def create_backup(
 ) -> CreateBackupOutput: ...
 ```
 
+
 ### create_global_table
 
 ```python
 async def create_global_table(
     *,
     global_table_name: str,
-    replication_group: list[Replica],
+    replication_group: Sequence[Replica],
 ) -> CreateGlobalTableOutput: ...
 ```
+
 
 ### create_table
 
@@ -201,15 +209,15 @@ async def create_global_table(
 async def create_table(
     *,
     table_name: str,
-    attribute_definitions: list[AttributeDefinition] | None = None,
-    key_schema: list[KeySchemaElement] | None = None,
-    local_secondary_indexes: list[LocalSecondaryIndex] | None = None,
-    global_secondary_indexes: list[GlobalSecondaryIndex] | None = None,
+    attribute_definitions: Sequence[AttributeDefinition] | None = None,
+    key_schema: Sequence[KeySchemaElement] | None = None,
+    local_secondary_indexes: Sequence[LocalSecondaryIndex] | None = None,
+    global_secondary_indexes: Sequence[GlobalSecondaryIndex] | None = None,
     billing_mode: BillingMode | None = None,
     provisioned_throughput: ProvisionedThroughput | None = None,
     stream_specification: StreamSpecification | None = None,
     sse_specification: SSESpecification | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     table_class: TableClass | None = None,
     deletion_protection_enabled: bool | None = None,
     warm_throughput: WarmThroughput | None = None,
@@ -217,9 +225,10 @@ async def create_table(
     on_demand_throughput: OnDemandThroughput | None = None,
     global_table_source_arn: str | None = None,
     global_table_settings_replication_mode: GlobalTableSettingsReplicationMode | None = None,
-    vector_indexes: list[VectorIndex] | None = None,
+    vector_indexes: Sequence[VectorIndex] | None = None,
 ) -> CreateTableOutput: ...
 ```
+
 
 ### delete_backup
 
@@ -229,6 +238,7 @@ async def delete_backup(
     backup_arn: str,
 ) -> DeleteBackupOutput: ...
 ```
+
 
 ### delete_item
 
@@ -249,6 +259,7 @@ async def delete_item(
 ) -> DeleteItemOutput: ...
 ```
 
+
 ### delete_resource_policy
 
 ```python
@@ -259,6 +270,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyOutput: ...
 ```
 
+
 ### delete_table
 
 ```python
@@ -267,6 +279,7 @@ async def delete_table(
     table_name: str,
 ) -> DeleteTableOutput: ...
 ```
+
 
 ### describe_backup
 
@@ -277,6 +290,7 @@ async def describe_backup(
 ) -> DescribeBackupOutput: ...
 ```
 
+
 ### describe_continuous_backups
 
 ```python
@@ -285,6 +299,7 @@ async def describe_continuous_backups(
     table_name: str,
 ) -> DescribeContinuousBackupsOutput: ...
 ```
+
 
 ### describe_contributor_insights
 
@@ -296,11 +311,13 @@ async def describe_contributor_insights(
 ) -> DescribeContributorInsightsOutput: ...
 ```
 
+
 ### describe_endpoints
 
 ```python
 async def describe_endpoints() -> DescribeEndpointsResponse: ...
 ```
+
 
 ### describe_export
 
@@ -311,6 +328,7 @@ async def describe_export(
 ) -> DescribeExportOutput: ...
 ```
 
+
 ### describe_global_table
 
 ```python
@@ -319,6 +337,7 @@ async def describe_global_table(
     global_table_name: str,
 ) -> DescribeGlobalTableOutput: ...
 ```
+
 
 ### describe_global_table_settings
 
@@ -329,6 +348,7 @@ async def describe_global_table_settings(
 ) -> DescribeGlobalTableSettingsOutput: ...
 ```
 
+
 ### describe_import
 
 ```python
@@ -337,6 +357,7 @@ async def describe_import(
     import_arn: str,
 ) -> DescribeImportOutput: ...
 ```
+
 
 ### describe_kinesis_streaming_destination
 
@@ -347,11 +368,13 @@ async def describe_kinesis_streaming_destination(
 ) -> DescribeKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### describe_limits
 
 ```python
 async def describe_limits() -> DescribeLimitsOutput: ...
 ```
+
 
 ### describe_table
 
@@ -362,6 +385,7 @@ async def describe_table(
 ) -> DescribeTableOutput: ...
 ```
 
+
 ### describe_table_replica_auto_scaling
 
 ```python
@@ -371,6 +395,7 @@ async def describe_table_replica_auto_scaling(
 ) -> DescribeTableReplicaAutoScalingOutput: ...
 ```
 
+
 ### describe_time_to_live
 
 ```python
@@ -379,6 +404,7 @@ async def describe_time_to_live(
     table_name: str,
 ) -> DescribeTimeToLiveOutput: ...
 ```
+
 
 ### disable_kinesis_streaming_destination
 
@@ -391,6 +417,7 @@ async def disable_kinesis_streaming_destination(
 ) -> DisableKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### enable_kinesis_streaming_destination
 
 ```python
@@ -402,13 +429,14 @@ async def enable_kinesis_streaming_destination(
 ) -> EnableKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### execute_statement
 
 ```python
 async def execute_statement(
     *,
     statement: str,
-    parameters: list[AttributeValue] | None = None,
+    parameters: Sequence[AttributeValue] | None = None,
     consistent_read: bool | None = None,
     next_token: str | None = None,
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
@@ -417,16 +445,18 @@ async def execute_statement(
 ) -> ExecuteStatementOutput: ...
 ```
 
+
 ### execute_transaction
 
 ```python
 async def execute_transaction(
     *,
-    transact_statements: list[ParameterizedStatement],
+    transact_statements: Sequence[ParameterizedStatement],
     client_request_token: str | None = None,
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> ExecuteTransactionOutput: ...
 ```
+
 
 ### export_table_to_point_in_time
 
@@ -448,6 +478,7 @@ async def export_table_to_point_in_time(
 ) -> ExportTableToPointInTimeOutput: ...
 ```
 
+
 ### get_item
 
 ```python
@@ -455,13 +486,14 @@ async def get_item(
     *,
     table_name: str,
     key: dict[str, AttributeValue],
-    attributes_to_get: list[str] | None = None,
+    attributes_to_get: Sequence[str] | None = None,
     consistent_read: bool | None = None,
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
     projection_expression: str | None = None,
     expression_attribute_names: dict[str, str] | None = None,
 ) -> GetItemOutput: ...
 ```
+
 
 ### get_resource_policy
 
@@ -471,6 +503,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyOutput: ...
 ```
+
 
 ### import_table
 
@@ -486,6 +519,7 @@ async def import_table(
 ) -> ImportTableOutput: ...
 ```
 
+
 ### list_backups
 
 ```python
@@ -500,6 +534,10 @@ async def list_backups(
 ) -> ListBackupsOutput: ...
 ```
 
+Also available as `client.paginators.list_backups(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_contributor_insights
 
 ```python
@@ -510,6 +548,10 @@ async def list_contributor_insights(
     max_results: int | None = None,
 ) -> ListContributorInsightsOutput: ...
 ```
+
+Also available as `client.paginators.list_contributor_insights(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_exports
 
@@ -522,6 +564,10 @@ async def list_exports(
 ) -> ListExportsOutput: ...
 ```
 
+Also available as `client.paginators.list_exports(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_global_tables
 
 ```python
@@ -532,6 +578,7 @@ async def list_global_tables(
     region_name: str | None = None,
 ) -> ListGlobalTablesOutput: ...
 ```
+
 
 ### list_imports
 
@@ -544,6 +591,10 @@ async def list_imports(
 ) -> ListImportsOutput: ...
 ```
 
+Also available as `client.paginators.list_imports(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tables
 
 ```python
@@ -554,6 +605,10 @@ async def list_tables(
 ) -> ListTablesOutput: ...
 ```
 
+Also available as `client.paginators.list_tables(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_of_resource
 
 ```python
@@ -563,6 +618,10 @@ async def list_tags_of_resource(
     next_token: str | None = None,
 ) -> ListTagsOfResourceOutput: ...
 ```
+
+Also available as `client.paginators.list_tags_of_resource(...)`, returning an
+async iterator of the response type above.
+
 
 ### put_item
 
@@ -583,6 +642,7 @@ async def put_item(
 ) -> PutItemOutput: ...
 ```
 
+
 ### put_resource_policy
 
 ```python
@@ -595,6 +655,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyOutput: ...
 ```
 
+
 ### query
 
 ```python
@@ -603,7 +664,7 @@ async def query(
     table_name: str,
     index_name: str | None = None,
     select: Select | None = None,
-    attributes_to_get: list[str] | None = None,
+    attributes_to_get: Sequence[str] | None = None,
     limit: int | None = None,
     consistent_read: bool | None = None,
     key_conditions: dict[str, Condition] | None = None,
@@ -620,6 +681,10 @@ async def query(
 ) -> QueryOutput: ...
 ```
 
+Also available as `client.paginators.query(...)`, returning an
+async iterator of the response type above.
+
+
 ### restore_table_from_backup
 
 ```python
@@ -628,14 +693,15 @@ async def restore_table_from_backup(
     target_table_name: str,
     backup_arn: str,
     billing_mode_override: BillingMode | None = None,
-    global_secondary_index_override: list[GlobalSecondaryIndex] | None = None,
-    local_secondary_index_override: list[LocalSecondaryIndex] | None = None,
+    global_secondary_index_override: Sequence[GlobalSecondaryIndex] | None = None,
+    local_secondary_index_override: Sequence[LocalSecondaryIndex] | None = None,
     provisioned_throughput_override: ProvisionedThroughput | None = None,
     on_demand_throughput_override: OnDemandThroughput | None = None,
     sse_specification_override: SSESpecification | None = None,
-    vector_index_override: list[VectorIndex] | None = None,
+    vector_index_override: Sequence[VectorIndex] | None = None,
 ) -> RestoreTableFromBackupOutput: ...
 ```
+
 
 ### restore_table_to_point_in_time
 
@@ -648,14 +714,15 @@ async def restore_table_to_point_in_time(
     use_latest_restorable_time: bool | None = None,
     restore_date_time: str | None = None,
     billing_mode_override: BillingMode | None = None,
-    global_secondary_index_override: list[GlobalSecondaryIndex] | None = None,
-    local_secondary_index_override: list[LocalSecondaryIndex] | None = None,
+    global_secondary_index_override: Sequence[GlobalSecondaryIndex] | None = None,
+    local_secondary_index_override: Sequence[LocalSecondaryIndex] | None = None,
     provisioned_throughput_override: ProvisionedThroughput | None = None,
     on_demand_throughput_override: OnDemandThroughput | None = None,
     sse_specification_override: SSESpecification | None = None,
-    vector_index_override: list[VectorIndex] | None = None,
+    vector_index_override: Sequence[VectorIndex] | None = None,
 ) -> RestoreTableToPointInTimeOutput: ...
 ```
+
 
 ### scan
 
@@ -664,7 +731,7 @@ async def scan(
     *,
     table_name: str,
     index_name: str | None = None,
-    attributes_to_get: list[str] | None = None,
+    attributes_to_get: Sequence[str] | None = None,
     limit: int | None = None,
     select: Select | None = None,
     scan_filter: dict[str, Condition] | None = None,
@@ -681,6 +748,10 @@ async def scan(
 ) -> ScanOutput: ...
 ```
 
+Also available as `client.paginators.scan(...)`, returning an
+async iterator of the response type above.
+
+
 ### search_vectors
 
 ```python
@@ -688,7 +759,7 @@ async def search_vectors(
     *,
     table_name: str,
     index_name: str,
-    search_vector: list[AttributeValue],
+    search_vector: Sequence[AttributeValue],
     top_k: int,
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
     expression_attribute_names: dict[str, str] | None = None,
@@ -698,37 +769,41 @@ async def search_vectors(
 ) -> SearchVectorsOutput: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> None: ...
 ```
+
 
 ### transact_get_items
 
 ```python
 async def transact_get_items(
     *,
-    transact_items: list[TransactGetItem],
+    transact_items: Sequence[TransactGetItem],
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> TransactGetItemsOutput: ...
 ```
+
 
 ### transact_write_items
 
 ```python
 async def transact_write_items(
     *,
-    transact_items: list[TransactWriteItem],
+    transact_items: Sequence[TransactWriteItem],
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
     return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
     client_request_token: str | None = None,
 ) -> TransactWriteItemsOutput: ...
 ```
+
 
 ### untag_resource
 
@@ -736,9 +811,10 @@ async def transact_write_items(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_continuous_backups
 
@@ -749,6 +825,7 @@ async def update_continuous_backups(
     point_in_time_recovery_specification: PointInTimeRecoverySpecification,
 ) -> UpdateContinuousBackupsOutput: ...
 ```
+
 
 ### update_contributor_insights
 
@@ -762,15 +839,17 @@ async def update_contributor_insights(
 ) -> UpdateContributorInsightsOutput: ...
 ```
 
+
 ### update_global_table
 
 ```python
 async def update_global_table(
     *,
     global_table_name: str,
-    replica_updates: list[ReplicaUpdate],
+    replica_updates: Sequence[ReplicaUpdate],
 ) -> UpdateGlobalTableOutput: ...
 ```
+
 
 ### update_global_table_settings
 
@@ -781,10 +860,11 @@ async def update_global_table_settings(
     global_table_billing_mode: BillingMode | None = None,
     global_table_provisioned_write_capacity_units: int | None = None,
     global_table_provisioned_write_capacity_auto_scaling_settings_update: AutoScalingSettingsUpdate | None = None,
-    global_table_global_secondary_index_settings_update: list[GlobalTableGlobalSecondaryIndexSettingsUpdate] | None = None,
-    replica_settings_update: list[ReplicaSettingsUpdate] | None = None,
+    global_table_global_secondary_index_settings_update: Sequence[GlobalTableGlobalSecondaryIndexSettingsUpdate] | None = None,
+    replica_settings_update: Sequence[ReplicaSettingsUpdate] | None = None,
 ) -> UpdateGlobalTableSettingsOutput: ...
 ```
+
 
 ### update_item
 
@@ -807,6 +887,7 @@ async def update_item(
 ) -> UpdateItemOutput: ...
 ```
 
+
 ### update_kinesis_streaming_destination
 
 ```python
@@ -818,30 +899,32 @@ async def update_kinesis_streaming_destination(
 ) -> UpdateKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### update_table
 
 ```python
 async def update_table(
     *,
     table_name: str,
-    attribute_definitions: list[AttributeDefinition] | None = None,
+    attribute_definitions: Sequence[AttributeDefinition] | None = None,
     billing_mode: BillingMode | None = None,
     provisioned_throughput: ProvisionedThroughput | None = None,
-    global_secondary_index_updates: list[GlobalSecondaryIndexUpdate] | None = None,
+    global_secondary_index_updates: Sequence[GlobalSecondaryIndexUpdate] | None = None,
     stream_specification: StreamSpecification | None = None,
     sse_specification: SSESpecification | None = None,
-    replica_updates: list[ReplicationGroupUpdate] | None = None,
+    replica_updates: Sequence[ReplicationGroupUpdate] | None = None,
     table_class: TableClass | None = None,
     deletion_protection_enabled: bool | None = None,
     multi_region_consistency: MultiRegionConsistency | None = None,
-    global_table_witness_updates: list[GlobalTableWitnessGroupUpdate] | None = None,
+    global_table_witness_updates: Sequence[GlobalTableWitnessGroupUpdate] | None = None,
     on_demand_throughput: OnDemandThroughput | None = None,
     warm_throughput: WarmThroughput | None = None,
     global_table_settings_replication_mode: GlobalTableSettingsReplicationMode | None = None,
     disassociation_protection_enabled: bool | None = None,
-    vector_index_updates: list[VectorIndexUpdate] | None = None,
+    vector_index_updates: Sequence[VectorIndexUpdate] | None = None,
 ) -> UpdateTableOutput: ...
 ```
+
 
 ### update_table_replica_auto_scaling
 
@@ -849,11 +932,12 @@ async def update_table(
 async def update_table_replica_auto_scaling(
     *,
     table_name: str,
-    global_secondary_index_updates: list[GlobalSecondaryIndexAutoScalingUpdate] | None = None,
+    global_secondary_index_updates: Sequence[GlobalSecondaryIndexAutoScalingUpdate] | None = None,
     provisioned_write_capacity_auto_scaling_update: AutoScalingSettingsUpdate | None = None,
-    replica_updates: list[ReplicaAutoScalingUpdate] | None = None,
+    replica_updates: Sequence[ReplicaAutoScalingUpdate] | None = None,
 ) -> UpdateTableReplicaAutoScalingOutput: ...
 ```
+
 
 ### update_time_to_live
 
@@ -864,6 +948,7 @@ async def update_time_to_live(
     time_to_live_specification: TimeToLiveSpecification,
 ) -> UpdateTimeToLiveOutput: ...
 ```
+
 
 ## Links
 

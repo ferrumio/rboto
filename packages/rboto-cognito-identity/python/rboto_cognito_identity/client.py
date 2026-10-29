@@ -14,6 +14,8 @@ from .types import (
     CognitoIdentityProvider,
     RoleMapping,
 )
+from .paginators import CognitoIdentityClientPaginators as _Paginators
+
 
 
 class CognitoIdentityClient:
@@ -42,6 +44,14 @@ class CognitoIdentityClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def create_identity_pool(
@@ -52,9 +62,9 @@ class CognitoIdentityClient:
         allow_classic_flow: bool | None = None,
         supported_login_providers: dict[str, str] | None = None,
         developer_provider_name: str | None = None,
-        open_id_connect_provider_arns: list[str] | None = None,
-        cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-        saml_provider_arns: list[str] | None = None,
+        open_id_connect_provider_arns: Sequence[str] | None = None,
+        cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+        saml_provider_arns: Sequence[str] | None = None,
         identity_pool_tags: dict[str, str] | None = None,
     ) -> CreateIdentityPoolOutput:
         params: dict[str, object] = {
@@ -92,7 +102,7 @@ class CognitoIdentityClient:
     async def delete_identities(
         self,
         *,
-        identity_ids_to_delete: list[str],
+        identity_ids_to_delete: Sequence[str],
     ) -> DeleteIdentitiesResponse:
         params: dict[str, object] = {
             "identity_ids_to_delete": identity_ids_to_delete,
@@ -590,7 +600,7 @@ class CognitoIdentityClient:
         *,
         identity_id: str,
         logins: dict[str, str],
-        logins_to_remove: list[str],
+        logins_to_remove: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "identity_id": identity_id,
@@ -615,7 +625,7 @@ class CognitoIdentityClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -644,9 +654,9 @@ class CognitoIdentityClient:
         allow_classic_flow: bool | None = None,
         supported_login_providers: dict[str, str] | None = None,
         developer_provider_name: str | None = None,
-        open_id_connect_provider_arns: list[str] | None = None,
-        cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-        saml_provider_arns: list[str] | None = None,
+        open_id_connect_provider_arns: Sequence[str] | None = None,
+        cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+        saml_provider_arns: Sequence[str] | None = None,
         identity_pool_tags: dict[str, str] | None = None,
     ) -> UpdateIdentityPoolOutput:
         params: dict[str, object] = {

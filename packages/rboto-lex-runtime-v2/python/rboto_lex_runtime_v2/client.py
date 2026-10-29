@@ -111,7 +111,7 @@ class LexRuntimeV2Client:
         locale_id: str,
         session_id: str,
         session_state: SessionState,
-        messages: list[Message] | None = None,
+        messages: Sequence[Message] | None = None,
         request_attributes: dict[str, str] | None = None,
         response_content_type: str | None = None,
     ) -> PutSessionResponse:

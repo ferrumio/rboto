@@ -65,7 +65,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_cognito_identity.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -85,7 +88,7 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`create_identity_pool`](#create_identity_pool) | <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>CreateIdentityPoolOutput</code> |
-| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: list[str]</code> | <code>DeleteIdentitiesResponse</code> |
+| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: Sequence[str]</code> | <code>DeleteIdentitiesResponse</code> |
 | [`delete_identity_pool`](#delete_identity_pool) | <code>identity_pool_id: str</code> | <code>None</code> |
 | [`describe_identity`](#describe_identity) | <code>identity_id: str</code> | <code>DescribeIdentityOutput</code> |
 | [`describe_identity_pool`](#describe_identity_pool) | <code>identity_pool_id: str</code> | <code>DescribeIdentityPoolOutput</code> |
@@ -104,8 +107,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_principal_tag_attribute_map`](#set_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>SetPrincipalTagAttributeMapResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
 | [`unlink_developer_identity`](#unlink_developer_identity) | <code>identity_id: str</code>, <code>identity_pool_id: str</code>, <code>developer_provider_name: str</code>, <code>developer_user_identifier: str</code> | <code>None</code> |
-| [`unlink_identity`](#unlink_identity) | <code>identity_id: str</code>, <code>logins: dict[str, str]</code>, <code>logins_to_remove: list[str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`unlink_identity`](#unlink_identity) | <code>identity_id: str</code>, <code>logins: dict[str, str]</code>, <code>logins_to_remove: Sequence[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_identity_pool`](#update_identity_pool) | <code>identity_pool_id: str</code>, <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>UpdateIdentityPoolOutput</code> |
 
 ## Complete signatures
@@ -120,21 +123,23 @@ async def create_identity_pool(
     allow_classic_flow: bool | None = None,
     supported_login_providers: dict[str, str] | None = None,
     developer_provider_name: str | None = None,
-    open_id_connect_provider_arns: list[str] | None = None,
-    cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-    saml_provider_arns: list[str] | None = None,
+    open_id_connect_provider_arns: Sequence[str] | None = None,
+    cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+    saml_provider_arns: Sequence[str] | None = None,
     identity_pool_tags: dict[str, str] | None = None,
 ) -> CreateIdentityPoolOutput: ...
 ```
+
 
 ### delete_identities
 
 ```python
 async def delete_identities(
     *,
-    identity_ids_to_delete: list[str],
+    identity_ids_to_delete: Sequence[str],
 ) -> DeleteIdentitiesResponse: ...
 ```
+
 
 ### delete_identity_pool
 
@@ -145,6 +150,7 @@ async def delete_identity_pool(
 ) -> None: ...
 ```
 
+
 ### describe_identity
 
 ```python
@@ -154,6 +160,7 @@ async def describe_identity(
 ) -> DescribeIdentityOutput: ...
 ```
 
+
 ### describe_identity_pool
 
 ```python
@@ -162,6 +169,7 @@ async def describe_identity_pool(
     identity_pool_id: str,
 ) -> DescribeIdentityPoolOutput: ...
 ```
+
 
 ### get_credentials_for_identity
 
@@ -174,6 +182,7 @@ async def get_credentials_for_identity(
 ) -> GetCredentialsForIdentityResponse: ...
 ```
 
+
 ### get_id
 
 ```python
@@ -185,6 +194,7 @@ async def get_id(
 ) -> GetIdResponse: ...
 ```
 
+
 ### get_identity_pool_roles
 
 ```python
@@ -193,6 +203,7 @@ async def get_identity_pool_roles(
     identity_pool_id: str,
 ) -> GetIdentityPoolRolesResponse: ...
 ```
+
 
 ### get_open_id_token
 
@@ -203,6 +214,7 @@ async def get_open_id_token(
     logins: dict[str, str] | None = None,
 ) -> GetOpenIdTokenResponse: ...
 ```
+
 
 ### get_open_id_token_for_developer_identity
 
@@ -217,6 +229,7 @@ async def get_open_id_token_for_developer_identity(
 ) -> GetOpenIdTokenForDeveloperIdentityResponse: ...
 ```
 
+
 ### get_principal_tag_attribute_map
 
 ```python
@@ -226,6 +239,7 @@ async def get_principal_tag_attribute_map(
     identity_provider_name: str,
 ) -> GetPrincipalTagAttributeMapResponse: ...
 ```
+
 
 ### list_identities
 
@@ -239,6 +253,7 @@ async def list_identities(
 ) -> ListIdentitiesResponse: ...
 ```
 
+
 ### list_identity_pools
 
 ```python
@@ -249,6 +264,10 @@ async def list_identity_pools(
 ) -> ListIdentityPoolsResponse: ...
 ```
 
+Also available as `client.paginators.list_identity_pools(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -257,6 +276,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### lookup_developer_identity
 
@@ -271,6 +291,7 @@ async def lookup_developer_identity(
 ) -> LookupDeveloperIdentityResponse: ...
 ```
 
+
 ### merge_developer_identities
 
 ```python
@@ -283,6 +304,7 @@ async def merge_developer_identities(
 ) -> MergeDeveloperIdentitiesResponse: ...
 ```
 
+
 ### set_identity_pool_roles
 
 ```python
@@ -293,6 +315,7 @@ async def set_identity_pool_roles(
     role_mappings: dict[str, RoleMapping] | None = None,
 ) -> None: ...
 ```
+
 
 ### set_principal_tag_attribute_map
 
@@ -306,6 +329,7 @@ async def set_principal_tag_attribute_map(
 ) -> SetPrincipalTagAttributeMapResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -315,6 +339,7 @@ async def tag_resource(
     tags: dict[str, str],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### unlink_developer_identity
 
@@ -328,6 +353,7 @@ async def unlink_developer_identity(
 ) -> None: ...
 ```
 
+
 ### unlink_identity
 
 ```python
@@ -335,9 +361,10 @@ async def unlink_identity(
     *,
     identity_id: str,
     logins: dict[str, str],
-    logins_to_remove: list[str],
+    logins_to_remove: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### untag_resource
 
@@ -345,9 +372,10 @@ async def unlink_identity(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_identity_pool
 
@@ -360,12 +388,13 @@ async def update_identity_pool(
     allow_classic_flow: bool | None = None,
     supported_login_providers: dict[str, str] | None = None,
     developer_provider_name: str | None = None,
-    open_id_connect_provider_arns: list[str] | None = None,
-    cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-    saml_provider_arns: list[str] | None = None,
+    open_id_connect_provider_arns: Sequence[str] | None = None,
+    cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+    saml_provider_arns: Sequence[str] | None = None,
     identity_pool_tags: dict[str, str] | None = None,
 ) -> UpdateIdentityPoolOutput: ...
 ```
+
 
 ## Links
 

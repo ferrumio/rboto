@@ -66,6 +66,8 @@ from .types import (
     VdmAttributes,
     VdmOptions,
 )
+from .paginators import SESV2ClientPaginators as _Paginators
+
 
 
 class SESV2Client:
@@ -94,6 +96,14 @@ class SESV2Client:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def associate_email_identity_certificate(
@@ -126,7 +136,7 @@ class SESV2Client:
     async def batch_get_metric_data(
         self,
         *,
-        queries: list[BatchGetMetricDataQuery],
+        queries: Sequence[BatchGetMetricDataQuery],
     ) -> BatchGetMetricDataResponse:
         params: dict[str, object] = {
             "queries": queries,
@@ -175,7 +185,7 @@ class SESV2Client:
         delivery_options: DeliveryOptions | None = None,
         reputation_options: ReputationOptions | None = None,
         sending_options: SendingOptions | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         suppression_options: SuppressionOptions | None = None,
         vdm_options: VdmOptions | None = None,
         archiving_options: ArchivingOptions | None = None,
@@ -247,7 +257,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
         email_address: str,
-        topic_preferences: list[TopicPreference] | None = None,
+        topic_preferences: Sequence[TopicPreference] | None = None,
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
     ) -> CreateContactResponse:
@@ -279,9 +289,9 @@ class SESV2Client:
         self,
         *,
         contact_list_name: str,
-        topics: list[Topic] | None = None,
+        topics: Sequence[Topic] | None = None,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateContactListResponse:
         params: dict[str, object] = {
             "contact_list_name": contact_list_name,
@@ -315,7 +325,7 @@ class SESV2Client:
         template_content: str,
         success_redirection_url: str,
         failure_redirection_url: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateCustomVerificationEmailTemplateResponse:
         params: dict[str, object] = {
             "template_name": template_name,
@@ -345,7 +355,7 @@ class SESV2Client:
         self,
         *,
         pool_name: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         scaling_mode: ScalingMode | None = None,
     ) -> CreateDedicatedIpPoolResponse:
         params: dict[str, object] = {
@@ -375,7 +385,7 @@ class SESV2Client:
         from_email_address: str,
         content: EmailContent,
         report_name: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateDeliverabilityTestReportResponse:
         params: dict[str, object] = {
             "from_email_address": from_email_address,
@@ -403,7 +413,7 @@ class SESV2Client:
         self,
         *,
         email_identity: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         dkim_signing_attributes: DkimSigningAttributes | None = None,
         configuration_set_name: str | None = None,
     ) -> CreateEmailIdentityResponse:
@@ -461,7 +471,7 @@ class SESV2Client:
         *,
         template_name: str,
         template_content: EmailTemplateContent,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateEmailTemplateResponse:
         params: dict[str, object] = {
             "template_name": template_name,
@@ -536,7 +546,7 @@ class SESV2Client:
         *,
         endpoint_name: str,
         details: Details,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateMultiRegionEndpointResponse:
         params: dict[str, object] = {
             "endpoint_name": endpoint_name,
@@ -562,7 +572,7 @@ class SESV2Client:
         self,
         *,
         tenant_name: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         suppression_attributes: TenantSuppressionAttributes | None = None,
     ) -> CreateTenantResponse:
         params: dict[str, object] = {
@@ -954,7 +964,7 @@ class SESV2Client:
     async def get_blacklist_reports(
         self,
         *,
-        blacklist_item_names: list[str],
+        blacklist_item_names: Sequence[str],
     ) -> GetBlacklistReportsResponse:
         params: dict[str, object] = {
             "blacklist_item_names": blacklist_item_names,
@@ -1950,7 +1960,7 @@ class SESV2Client:
         self,
         *,
         tenant_name: str | None = None,
-        reasons: list[SuppressionListReason] | None = None,
+        reasons: Sequence[SuppressionListReason] | None = None,
         start_date: str | None = None,
         end_date: str | None = None,
         next_token: str | None = None,
@@ -2096,7 +2106,7 @@ class SESV2Client:
         website_url: str,
         contact_language: ContactLanguage | None = None,
         use_case_description: str | None = None,
-        additional_contact_email_addresses: list[str] | None = None,
+        additional_contact_email_addresses: Sequence[str] | None = None,
         production_access_enabled: bool | None = None,
     ) -> PutAccountDetailsResponse:
         params: dict[str, object] = {
@@ -2173,7 +2183,7 @@ class SESV2Client:
     async def put_account_suppression_attributes(
         self,
         *,
-        suppressed_reasons: list[SuppressionListReason] | None = None,
+        suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_attributes: SuppressionValidationAttributes | None = None,
     ) -> PutAccountSuppressionAttributesResponse:
         params: dict[str, object] = {
@@ -2329,7 +2339,7 @@ class SESV2Client:
         *,
         configuration_set_name: str,
         suppression_scope: SuppressionListScope | None = None,
-        suppressed_reasons: list[SuppressionListReason] | None = None,
+        suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         validation_options: SuppressionValidationOptions | None = None,
     ) -> PutConfigurationSetSuppressionOptionsResponse:
         params: dict[str, object] = {
@@ -2484,7 +2494,7 @@ class SESV2Client:
         self,
         *,
         dashboard_enabled: bool,
-        subscribed_domains: list[DomainDeliverabilityTrackingOption] | None = None,
+        subscribed_domains: Sequence[DomainDeliverabilityTrackingOption] | None = None,
     ) -> PutDeliverabilityDashboardOptionResponse:
         params: dict[str, object] = {
             "dashboard_enabled": dashboard_enabled,
@@ -2666,7 +2676,7 @@ class SESV2Client:
         self,
         *,
         tenant_name: str,
-        suppressed_reasons: list[SuppressionListReason] | None = None,
+        suppressed_reasons: Sequence[SuppressionListReason] | None = None,
         suppression_scope: SuppressionListScope | None = None,
     ) -> PutTenantSuppressionAttributesResponse:
         params: dict[str, object] = {
@@ -2694,13 +2704,13 @@ class SESV2Client:
         self,
         *,
         default_content: BulkEmailContent,
-        bulk_email_entries: list[BulkEmailEntry],
+        bulk_email_entries: Sequence[BulkEmailEntry],
         from_email_address: str | None = None,
         from_email_address_identity_arn: str | None = None,
-        reply_to_addresses: list[str] | None = None,
+        reply_to_addresses: Sequence[str] | None = None,
         feedback_forwarding_email_address: str | None = None,
         feedback_forwarding_email_address_identity_arn: str | None = None,
-        default_email_tags: list[MessageTag] | None = None,
+        default_email_tags: Sequence[MessageTag] | None = None,
         configuration_set_name: str | None = None,
         endpoint_id: str | None = None,
         tenant_name: str | None = None,
@@ -2778,10 +2788,10 @@ class SESV2Client:
         from_email_address: str | None = None,
         from_email_address_identity_arn: str | None = None,
         destination: Destination | None = None,
-        reply_to_addresses: list[str] | None = None,
+        reply_to_addresses: Sequence[str] | None = None,
         feedback_forwarding_email_address: str | None = None,
         feedback_forwarding_email_address_identity_arn: str | None = None,
-        email_tags: list[MessageTag] | None = None,
+        email_tags: Sequence[MessageTag] | None = None,
         configuration_set_name: str | None = None,
         endpoint_id: str | None = None,
         tenant_name: str | None = None,
@@ -2833,7 +2843,7 @@ class SESV2Client:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2881,7 +2891,7 @@ class SESV2Client:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2957,7 +2967,7 @@ class SESV2Client:
         *,
         contact_list_name: str,
         email_address: str,
-        topic_preferences: list[TopicPreference] | None = None,
+        topic_preferences: Sequence[TopicPreference] | None = None,
         unsubscribe_all: bool | None = None,
         attributes_data: str | None = None,
     ) -> UpdateContactResponse:
@@ -2989,7 +2999,7 @@ class SESV2Client:
         self,
         *,
         contact_list_name: str,
-        topics: list[Topic] | None = None,
+        topics: Sequence[Topic] | None = None,
         description: str | None = None,
     ) -> UpdateContactListResponse:
         params: dict[str, object] = {

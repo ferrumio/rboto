@@ -18,6 +18,7 @@ from .services import (
 {% for service in services %}    {{ service.python_name }},
 {% endfor %})
 from .session import Session
+from .types import UnknownEnumValue
 
 if TYPE_CHECKING:
 {% for service in services %}    from {{ service.python_package }} import {{ service.client_class }}
@@ -38,6 +39,7 @@ __all__ = [
     "OperationResponse",
     "operation_context",
     "Session",
+    "UnknownEnumValue",
 {% for service in services %}    "{{ service.client_class }}",
 {% endfor %}
 {% for service in services %}    "{{ service.python_name }}",

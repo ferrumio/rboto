@@ -73,6 +73,8 @@ from .types import (
     VersioningConfiguration,
     WebsiteConfiguration,
 )
+from .paginators import S3ClientPaginators as _Paginators
+
 
 
 class S3Client:
@@ -101,6 +103,14 @@ class S3Client:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def abort_multipart_upload(
@@ -1963,7 +1973,7 @@ class S3Client:
         *,
         bucket: str,
         key: str,
-        object_attributes: list[ObjectAttributes],
+        object_attributes: Sequence[ObjectAttributes],
         version_id: str | None = None,
         max_parts: int | None = None,
         part_number_marker: str | None = None,
@@ -2563,7 +2573,7 @@ class S3Client:
         version_id_marker: str | None = None,
         expected_bucket_owner: str | None = None,
         request_payer: RequestPayer | None = None,
-        optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+        optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectVersionsOutput:
         params: dict[str, object] = {
             "bucket": bucket,
@@ -2611,7 +2621,7 @@ class S3Client:
         prefix: str | None = None,
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
-        optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+        optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectsOutput:
         params: dict[str, object] = {
             "bucket": bucket,
@@ -2659,7 +2669,7 @@ class S3Client:
         start_after: str | None = None,
         request_payer: RequestPayer | None = None,
         expected_bucket_owner: str | None = None,
-        optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+        optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
     ) -> ListObjectsV2Output:
         params: dict[str, object] = {
             "bucket": bucket,

@@ -4,7 +4,7 @@ import tomllib
 from pathlib import Path
 from typing import cast
 
-from .model import ServiceDescriptor
+from .model import Pagination, ServiceDescriptor
 
 
 def service_config_dir() -> Path:
@@ -34,6 +34,38 @@ def _boolean(data: dict[str, object], name: str) -> bool:
     return value
 
 
+def _pagination(data: dict[str, object]) -> tuple[tuple[str, Pagination], ...]:
+    raw = data.get("pagination", {})
+    if not isinstance(raw, dict):
+        raise ValueError("pagination must be a table")
+    result: list[tuple[str, Pagination]] = []
+    for operation, value in cast(dict[str, object], raw).items():
+        if not isinstance(value, dict):
+            raise ValueError(f"pagination.{operation} must be a table")
+        entry = cast(dict[str, object], value)
+        unknown = entry.keys() - {"input_tokens", "output_tokens", "page_size", "more_results"}
+        if unknown:
+            raise ValueError(f"unknown pagination fields for {operation}: {sorted(unknown)}")
+
+        def tokens(name: str) -> tuple[str, ...]:
+            items = entry.get(name)
+            if not isinstance(items, list) or not items:
+                raise ValueError(f"pagination.{operation}.{name} must be a nonempty list")
+            values = cast(list[object], items)
+            if any(not isinstance(item, str) or not item for item in values):
+                raise ValueError(f"pagination.{operation}.{name} must contain strings")
+            return tuple(cast(list[str], values))
+
+        inputs, outputs = tokens("input_tokens"), tokens("output_tokens")
+        if len(inputs) != len(outputs) or len(set(inputs)) != len(inputs):
+            raise ValueError(f"pagination.{operation} must pair distinct input tokens with outputs")
+        result.append((operation, Pagination(
+            inputs, outputs, _optional_string(entry, "page_size"),
+            _optional_string(entry, "more_results"),
+        )))
+    return tuple(result)
+
+
 def load_service(path: Path) -> ServiceDescriptor:
     data = cast(dict[str, object], tomllib.loads(path.read_text()))
     descriptor = ServiceDescriptor(
@@ -56,6 +88,7 @@ def load_service(path: Path) -> ServiceDescriptor:
         native_client_class=_optional_string(data, "native_client_class"),
         display_name=_optional_string(data, "display_name"),
         documentation_path=_optional_string(data, "documentation_path") or "clients/",
+        pagination=_pagination(data),
     )
     if path.stem != descriptor.service_id:
         raise ValueError(

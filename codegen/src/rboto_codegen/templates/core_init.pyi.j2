@@ -19,6 +19,7 @@ from .logging import configure_logging as configure_logging
 from .logging import get_logger as get_logger
 {% for service in services %}from .services import {{ service.python_name }} as {{ service.python_name }}
 {% endfor %}from .session import Session as Session
+from .types import UnknownEnumValue as UnknownEnumValue
 
 __version__: str
 __all__: list[str]

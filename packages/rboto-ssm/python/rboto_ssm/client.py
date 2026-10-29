@@ -104,6 +104,8 @@ from .types import (
     Target,
     TargetLocation,
 )
+from .paginators import SSMClientPaginators as _Paginators
+
 
 
 class SSMClient:
@@ -132,6 +134,14 @@ class SSMClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_tags_to_resource(
@@ -139,7 +149,7 @@ class SSMClient:
         *,
         resource_type: ResourceTypeForTagging,
         resource_id: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> AddTagsToResourceResult:
         params: dict[str, object] = {
             "resource_type": resource_type,
@@ -192,7 +202,7 @@ class SSMClient:
         self,
         *,
         command_id: str,
-        instance_ids: list[str] | None = None,
+        instance_ids: Sequence[str] | None = None,
     ) -> CancelCommandResult:
         params: dict[str, object] = {
             "command_id": command_id,
@@ -243,8 +253,8 @@ class SSMClient:
         default_instance_name: str | None = None,
         registration_limit: int | None = None,
         expiration_date: str | None = None,
-        tags: list[Tag] | None = None,
-        registration_metadata: list[RegistrationMetadataItem] | None = None,
+        tags: Sequence[Tag] | None = None,
+        registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
     ) -> CreateActivationResult:
         params: dict[str, object] = {
             "iam_role": iam_role,
@@ -281,8 +291,8 @@ class SSMClient:
         name: str,
         document_version: str | None = None,
         instance_id: str | None = None,
-        parameters: dict[str, list[str]] | None = None,
-        targets: list[Target] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
+        targets: Sequence[Target] | None = None,
         schedule_expression: str | None = None,
         output_location: InstanceAssociationOutputLocation | None = None,
         association_name: str | None = None,
@@ -292,12 +302,12 @@ class SSMClient:
         compliance_severity: AssociationComplianceSeverity | None = None,
         sync_compliance: AssociationSyncCompliance | None = None,
         apply_only_at_cron_interval: bool | None = None,
-        calendar_names: list[str] | None = None,
-        target_locations: list[TargetLocation] | None = None,
+        calendar_names: Sequence[str] | None = None,
+        target_locations: Sequence[TargetLocation] | None = None,
         schedule_offset: int | None = None,
         duration: int | None = None,
-        target_maps: list[dict[str, list[str]]] | None = None,
-        tags: list[Tag] | None = None,
+        target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
+        tags: Sequence[Tag] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
     ) -> CreateAssociationResult:
@@ -363,7 +373,7 @@ class SSMClient:
     async def create_association_batch(
         self,
         *,
-        entries: list[CreateAssociationBatchRequestEntry],
+        entries: Sequence[CreateAssociationBatchRequestEntry],
         association_dispatch_assume_role: str | None = None,
     ) -> CreateAssociationBatchResult:
         params: dict[str, object] = {
@@ -393,7 +403,7 @@ class SSMClient:
         configuration: CloudConnectorConfiguration,
         config_connector_arn: str,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateCloudConnectorResult:
         params: dict[str, object] = {
             "display_name": display_name,
@@ -424,14 +434,14 @@ class SSMClient:
         *,
         content: str,
         name: str,
-        requires: list[DocumentRequires] | None = None,
-        attachments: list[AttachmentsSource] | None = None,
+        requires: Sequence[DocumentRequires] | None = None,
+        attachments: Sequence[AttachmentsSource] | None = None,
         display_name: str | None = None,
         version_name: str | None = None,
         document_type: DocumentType | None = None,
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateDocumentResult:
         params: dict[str, object] = {
             "content": content,
@@ -481,7 +491,7 @@ class SSMClient:
         schedule_timezone: str | None = None,
         schedule_offset: int | None = None,
         client_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateMaintenanceWindowResult:
         params: dict[str, object] = {
             "name": name,
@@ -526,10 +536,10 @@ class SSMClient:
         title: str,
         ops_item_type: str | None = None,
         operational_data: dict[str, OpsItemDataValue] | None = None,
-        notifications: list[OpsItemNotification] | None = None,
+        notifications: Sequence[OpsItemNotification] | None = None,
         priority: int | None = None,
-        related_ops_items: list[RelatedOpsItem] | None = None,
-        tags: list[Tag] | None = None,
+        related_ops_items: Sequence[RelatedOpsItem] | None = None,
+        tags: Sequence[Tag] | None = None,
         category: str | None = None,
         severity: str | None = None,
         actual_start_time: str | None = None,
@@ -588,7 +598,7 @@ class SSMClient:
         *,
         resource_id: str,
         metadata: dict[str, MetadataValue] | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateOpsMetadataResult:
         params: dict[str, object] = {
             "resource_id": resource_id,
@@ -618,16 +628,16 @@ class SSMClient:
         operating_system: OperatingSystem | None = None,
         global_filters: PatchFilterGroup | None = None,
         approval_rules: PatchRuleGroup | None = None,
-        approved_patches: list[str] | None = None,
+        approved_patches: Sequence[str] | None = None,
         approved_patches_compliance_level: PatchComplianceLevel | None = None,
         approved_patches_enable_non_security: bool | None = None,
-        rejected_patches: list[str] | None = None,
+        rejected_patches: Sequence[str] | None = None,
         rejected_patches_action: PatchAction | None = None,
         description: str | None = None,
-        sources: list[PatchSource] | None = None,
+        sources: Sequence[PatchSource] | None = None,
         available_security_updates_compliance_status: PatchComplianceStatus | None = None,
         client_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreatePatchBaselineResult:
         params: dict[str, object] = {
             "name": name,
@@ -929,7 +939,7 @@ class SSMClient:
     async def delete_parameters(
         self,
         *,
-        names: list[str],
+        names: Sequence[str],
     ) -> DeleteParametersResult:
         params: dict[str, object] = {
             "names": names,
@@ -1124,7 +1134,7 @@ class SSMClient:
     async def describe_activations(
         self,
         *,
-        filters: list[DescribeActivationsFilter] | None = None,
+        filters: Sequence[DescribeActivationsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeActivationsResult:
@@ -1187,7 +1197,7 @@ class SSMClient:
         *,
         association_id: str,
         execution_id: str,
-        filters: list[AssociationExecutionTargetsFilter] | None = None,
+        filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAssociationExecutionTargetsResult:
@@ -1219,7 +1229,7 @@ class SSMClient:
         self,
         *,
         association_id: str,
-        filters: list[AssociationExecutionFilter] | None = None,
+        filters: Sequence[AssociationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAssociationExecutionsResult:
@@ -1249,7 +1259,7 @@ class SSMClient:
     async def describe_automation_executions(
         self,
         *,
-        filters: list[AutomationExecutionFilter] | None = None,
+        filters: Sequence[AutomationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAutomationExecutionsResult:
@@ -1279,7 +1289,7 @@ class SSMClient:
         self,
         *,
         automation_execution_id: str,
-        filters: list[StepExecutionFilter] | None = None,
+        filters: Sequence[StepExecutionFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
         reverse_order: bool | None = None,
@@ -1312,7 +1322,7 @@ class SSMClient:
     async def describe_available_patches(
         self,
         *,
-        filters: list[PatchOrchestratorFilter] | None = None,
+        filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeAvailablePatchesResult:
@@ -1483,8 +1493,8 @@ class SSMClient:
     async def describe_instance_information(
         self,
         *,
-        instance_information_filter_list: list[InstanceInformationFilter] | None = None,
-        filters: list[InstanceInformationStringFilter] | None = None,
+        instance_information_filter_list: Sequence[InstanceInformationFilter] | None = None,
+        filters: Sequence[InstanceInformationStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeInstanceInformationResult:
@@ -1515,7 +1525,7 @@ class SSMClient:
     async def describe_instance_patch_states(
         self,
         *,
-        instance_ids: list[str],
+        instance_ids: Sequence[str],
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchStatesResult:
@@ -1544,7 +1554,7 @@ class SSMClient:
         self,
         *,
         patch_group: str,
-        filters: list[InstancePatchStateFilter] | None = None,
+        filters: Sequence[InstancePatchStateFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchStatesForPatchGroupResult:
@@ -1575,7 +1585,7 @@ class SSMClient:
         self,
         *,
         instance_id: str,
-        filters: list[PatchOrchestratorFilter] | None = None,
+        filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> DescribeInstancePatchesResult:
@@ -1605,8 +1615,8 @@ class SSMClient:
     async def describe_instance_properties(
         self,
         *,
-        instance_property_filter_list: list[InstancePropertyFilter] | None = None,
-        filters_with_operator: list[InstancePropertyStringFilter] | None = None,
+        instance_property_filter_list: Sequence[InstancePropertyFilter] | None = None,
+        filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeInstancePropertiesResult:
@@ -1668,7 +1678,7 @@ class SSMClient:
         *,
         window_execution_id: str,
         task_id: str,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionTaskInvocationsResult:
@@ -1700,7 +1710,7 @@ class SSMClient:
         self,
         *,
         window_execution_id: str,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionTasksResult:
@@ -1731,7 +1741,7 @@ class SSMClient:
         self,
         *,
         window_id: str,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowExecutionsResult:
@@ -1762,9 +1772,9 @@ class SSMClient:
         self,
         *,
         window_id: str | None = None,
-        targets: list[Target] | None = None,
+        targets: Sequence[Target] | None = None,
         resource_type: MaintenanceWindowResourceType | None = None,
-        filters: list[PatchOrchestratorFilter] | None = None,
+        filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowScheduleResult:
@@ -1800,7 +1810,7 @@ class SSMClient:
         self,
         *,
         window_id: str,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowTargetsResult:
@@ -1831,7 +1841,7 @@ class SSMClient:
         self,
         *,
         window_id: str,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowTasksResult:
@@ -1861,7 +1871,7 @@ class SSMClient:
     async def describe_maintenance_windows(
         self,
         *,
-        filters: list[MaintenanceWindowFilter] | None = None,
+        filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeMaintenanceWindowsResult:
@@ -1890,7 +1900,7 @@ class SSMClient:
     async def describe_maintenance_windows_for_target(
         self,
         *,
-        targets: list[Target],
+        targets: Sequence[Target],
         resource_type: MaintenanceWindowResourceType,
         max_results: int | None = None,
         next_token: str | None = None,
@@ -1920,7 +1930,7 @@ class SSMClient:
     async def describe_ops_items(
         self,
         *,
-        ops_item_filters: list[OpsItemFilter] | None = None,
+        ops_item_filters: Sequence[OpsItemFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribeOpsItemsResponse:
@@ -1949,8 +1959,8 @@ class SSMClient:
     async def describe_parameters(
         self,
         *,
-        filters: list[ParametersFilter] | None = None,
-        parameter_filters: list[ParameterStringFilter] | None = None,
+        filters: Sequence[ParametersFilter] | None = None,
+        parameter_filters: Sequence[ParameterStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
         shared: bool | None = None,
@@ -1984,7 +1994,7 @@ class SSMClient:
     async def describe_patch_baselines(
         self,
         *,
-        filters: list[PatchOrchestratorFilter] | None = None,
+        filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> DescribePatchBaselinesResult:
@@ -2036,7 +2046,7 @@ class SSMClient:
         self,
         *,
         max_results: int | None = None,
-        filters: list[PatchOrchestratorFilter] | None = None,
+        filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
     ) -> DescribePatchGroupsResult:
         params: dict[str, object] = {
@@ -2100,7 +2110,7 @@ class SSMClient:
         state: SessionState,
         max_results: int | None = None,
         next_token: str | None = None,
-        filters: list[SessionFilter] | None = None,
+        filters: Sequence[SessionFilter] | None = None,
     ) -> DescribeSessionsResponse:
         params: dict[str, object] = {
             "state": state,
@@ -2196,7 +2206,7 @@ class SSMClient:
     async def get_calendar_state(
         self,
         *,
-        calendar_names: list[str],
+        calendar_names: Sequence[str],
         at_time: str | None = None,
     ) -> GetCalendarStateResponse:
         params: dict[str, object] = {
@@ -2398,9 +2408,9 @@ class SSMClient:
     async def get_inventory(
         self,
         *,
-        filters: list[InventoryFilter] | None = None,
-        aggregators: list[InventoryAggregator] | None = None,
-        result_attributes: list[ResultAttribute] | None = None,
+        filters: Sequence[InventoryFilter] | None = None,
+        aggregators: Sequence[InventoryAggregator] | None = None,
+        result_attributes: Sequence[ResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> GetInventoryResult:
@@ -2640,9 +2650,9 @@ class SSMClient:
         self,
         *,
         sync_name: str | None = None,
-        filters: list[OpsFilter] | None = None,
-        aggregators: list[OpsAggregator] | None = None,
-        result_attributes: list[OpsResultAttribute] | None = None,
+        filters: Sequence[OpsFilter] | None = None,
+        aggregators: Sequence[OpsAggregator] | None = None,
+        result_attributes: Sequence[OpsResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> GetOpsSummaryResult:
@@ -2733,7 +2743,7 @@ class SSMClient:
     async def get_parameters(
         self,
         *,
-        names: list[str],
+        names: Sequence[str],
         with_decryption: bool | None = None,
     ) -> GetParametersResult:
         params: dict[str, object] = {
@@ -2760,7 +2770,7 @@ class SSMClient:
         *,
         path: str,
         recursive: bool | None = None,
-        parameter_filters: list[ParameterStringFilter] | None = None,
+        parameter_filters: Sequence[ParameterStringFilter] | None = None,
         with_decryption: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
@@ -2893,7 +2903,7 @@ class SSMClient:
         self,
         *,
         name: str,
-        labels: list[str],
+        labels: Sequence[str],
         parameter_version: int | None = None,
     ) -> LabelParameterVersionResult:
         params: dict[str, object] = {
@@ -2947,7 +2957,7 @@ class SSMClient:
     async def list_associations(
         self,
         *,
-        association_filter_list: list[AssociationFilter] | None = None,
+        association_filter_list: Sequence[AssociationFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListAssociationsResult:
@@ -2978,7 +2988,7 @@ class SSMClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-        filters: list[CloudConnectorFilter] | None = None,
+        filters: Sequence[CloudConnectorFilter] | None = None,
     ) -> ListCloudConnectorsResult:
         params: dict[str, object] = {
         }
@@ -3009,7 +3019,7 @@ class SSMClient:
         instance_id: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-        filters: list[CommandFilter] | None = None,
+        filters: Sequence[CommandFilter] | None = None,
         details: bool | None = None,
     ) -> ListCommandInvocationsResult:
         params: dict[str, object] = {
@@ -3047,7 +3057,7 @@ class SSMClient:
         instance_id: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-        filters: list[CommandFilter] | None = None,
+        filters: Sequence[CommandFilter] | None = None,
     ) -> ListCommandsResult:
         params: dict[str, object] = {
         }
@@ -3078,9 +3088,9 @@ class SSMClient:
     async def list_compliance_items(
         self,
         *,
-        filters: list[ComplianceStringFilter] | None = None,
-        resource_ids: list[str] | None = None,
-        resource_types: list[str] | None = None,
+        filters: Sequence[ComplianceStringFilter] | None = None,
+        resource_ids: Sequence[str] | None = None,
+        resource_types: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListComplianceItemsResult:
@@ -3113,7 +3123,7 @@ class SSMClient:
     async def list_compliance_summaries(
         self,
         *,
-        filters: list[ComplianceStringFilter] | None = None,
+        filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListComplianceSummariesResult:
@@ -3203,8 +3213,8 @@ class SSMClient:
     async def list_documents(
         self,
         *,
-        document_filter_list: list[DocumentFilter] | None = None,
-        filters: list[DocumentKeyValuesFilter] | None = None,
+        document_filter_list: Sequence[DocumentFilter] | None = None,
+        filters: Sequence[DocumentKeyValuesFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDocumentsResult:
@@ -3237,7 +3247,7 @@ class SSMClient:
         *,
         instance_id: str,
         type_name: str,
-        filters: list[InventoryFilter] | None = None,
+        filters: Sequence[InventoryFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListInventoryEntriesResult:
@@ -3269,7 +3279,7 @@ class SSMClient:
         self,
         *,
         sync_name: str | None = None,
-        filters: list[NodeFilter] | None = None,
+        filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListNodesResult:
@@ -3300,9 +3310,9 @@ class SSMClient:
     async def list_nodes_summary(
         self,
         *,
-        aggregators: list[NodeAggregator],
+        aggregators: Sequence[NodeAggregator],
         sync_name: str | None = None,
-        filters: list[NodeFilter] | None = None,
+        filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListNodesSummaryResult:
@@ -3334,7 +3344,7 @@ class SSMClient:
     async def list_ops_item_events(
         self,
         *,
-        filters: list[OpsItemEventFilter] | None = None,
+        filters: Sequence[OpsItemEventFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsItemEventsResponse:
@@ -3364,7 +3374,7 @@ class SSMClient:
         self,
         *,
         ops_item_id: str | None = None,
-        filters: list[OpsItemRelatedItemsFilter] | None = None,
+        filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsItemRelatedItemsResponse:
@@ -3395,7 +3405,7 @@ class SSMClient:
     async def list_ops_metadata(
         self,
         *,
-        filters: list[OpsMetadataFilter] | None = None,
+        filters: Sequence[OpsMetadataFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListOpsMetadataResult:
@@ -3424,7 +3434,7 @@ class SSMClient:
     async def list_resource_compliance_summaries(
         self,
         *,
-        filters: list[ComplianceStringFilter] | None = None,
+        filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListResourceComplianceSummariesResult:
@@ -3508,8 +3518,8 @@ class SSMClient:
         *,
         name: str,
         permission_type: DocumentPermissionType,
-        account_ids_to_add: list[str] | None = None,
-        account_ids_to_remove: list[str] | None = None,
+        account_ids_to_add: Sequence[str] | None = None,
+        account_ids_to_remove: Sequence[str] | None = None,
         shared_document_version: str | None = None,
     ) -> ModifyDocumentPermissionResponse:
         params: dict[str, object] = {
@@ -3543,7 +3553,7 @@ class SSMClient:
         resource_type: str,
         compliance_type: str,
         execution_summary: ComplianceExecutionSummary,
-        items: list[ComplianceItemEntry],
+        items: Sequence[ComplianceItemEntry],
         item_content_hash: str | None = None,
         upload_type: ComplianceUploadType | None = None,
     ) -> PutComplianceItemsResult:
@@ -3576,7 +3586,7 @@ class SSMClient:
         self,
         *,
         instance_id: str,
-        items: list[InventoryItem],
+        items: Sequence[InventoryItem],
     ) -> PutInventoryResult:
         params: dict[str, object] = {
             "instance_id": instance_id,
@@ -3606,7 +3616,7 @@ class SSMClient:
         key_id: str | None = None,
         overwrite: bool | None = None,
         allowed_pattern: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         tier: ParameterTier | None = None,
         policies: str | None = None,
         data_type: str | None = None,
@@ -3728,7 +3738,7 @@ class SSMClient:
         *,
         window_id: str,
         resource_type: MaintenanceWindowResourceType,
-        targets: list[Target],
+        targets: Sequence[Target],
         owner_information: str | None = None,
         name: str | None = None,
         description: str | None = None,
@@ -3767,7 +3777,7 @@ class SSMClient:
         window_id: str,
         task_arn: str,
         task_type: MaintenanceWindowTaskType,
-        targets: list[Target] | None = None,
+        targets: Sequence[Target] | None = None,
         service_role_arn: str | None = None,
         task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
         task_invocation_parameters: MaintenanceWindowTaskInvocationParameters | None = None,
@@ -3831,7 +3841,7 @@ class SSMClient:
         *,
         resource_type: ResourceTypeForTagging,
         resource_id: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> RemoveTagsFromResourceResult:
         params: dict[str, object] = {
             "resource_type": resource_type,
@@ -3901,7 +3911,7 @@ class SSMClient:
         *,
         automation_execution_id: str,
         signal_type: SignalType,
-        payload: dict[str, list[str]] | None = None,
+        payload: dict[str, Sequence[str]] | None = None,
     ) -> SendAutomationSignalResult:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
@@ -3927,14 +3937,14 @@ class SSMClient:
         self,
         *,
         document_name: str,
-        instance_ids: list[str] | None = None,
-        targets: list[Target] | None = None,
+        instance_ids: Sequence[str] | None = None,
+        targets: Sequence[Target] | None = None,
         document_version: str | None = None,
         document_hash: str | None = None,
         document_hash_type: DocumentHashType | None = None,
         timeout_seconds: int | None = None,
         comment: str | None = None,
-        parameters: dict[str, list[str]] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
         output_s3_region: str | None = None,
         output_s3_bucket_name: str | None = None,
         output_s3_key_prefix: str | None = None,
@@ -4000,8 +4010,8 @@ class SSMClient:
         self,
         *,
         reason: str,
-        targets: list[Target],
-        tags: list[Tag] | None = None,
+        targets: Sequence[Target],
+        tags: Sequence[Tag] | None = None,
     ) -> StartAccessRequestResponse:
         params: dict[str, object] = {
             "reason": reason,
@@ -4026,7 +4036,7 @@ class SSMClient:
     async def start_associations_once(
         self,
         *,
-        association_ids: list[str],
+        association_ids: Sequence[str],
     ) -> StartAssociationsOnceResult:
         params: dict[str, object] = {
             "association_ids": association_ids,
@@ -4050,16 +4060,16 @@ class SSMClient:
         *,
         document_name: str,
         document_version: str | None = None,
-        parameters: dict[str, list[str]] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
         client_token: str | None = None,
         mode: ExecutionMode | None = None,
         target_parameter_name: str | None = None,
-        targets: list[Target] | None = None,
-        target_maps: list[dict[str, list[str]]] | None = None,
+        targets: Sequence[Target] | None = None,
+        target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
         max_concurrency: str | None = None,
         max_errors: str | None = None,
-        target_locations: list[TargetLocation] | None = None,
-        tags: list[Tag] | None = None,
+        target_locations: Sequence[TargetLocation] | None = None,
+        tags: Sequence[Tag] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         target_locations_url: str | None = None,
     ) -> StartAutomationExecutionResult:
@@ -4110,14 +4120,14 @@ class SSMClient:
         self,
         *,
         document_name: str,
-        runbooks: list[Runbook],
+        runbooks: Sequence[Runbook],
         scheduled_time: str | None = None,
         document_version: str | None = None,
-        parameters: dict[str, list[str]] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
         change_request_name: str | None = None,
         client_token: str | None = None,
         auto_approve: bool | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         scheduled_end_time: str | None = None,
         change_details: str | None = None,
     ) -> StartChangeRequestExecutionResult:
@@ -4191,7 +4201,7 @@ class SSMClient:
         target: str,
         document_name: str | None = None,
         reason: str | None = None,
-        parameters: dict[str, list[str]] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
     ) -> StartSessionResponse:
         params: dict[str, object] = {
             "target": target,
@@ -4268,7 +4278,7 @@ class SSMClient:
         *,
         name: str,
         parameter_version: int,
-        labels: list[str],
+        labels: Sequence[str],
     ) -> UnlabelParameterVersionResult:
         params: dict[str, object] = {
             "name": name,
@@ -4293,12 +4303,12 @@ class SSMClient:
         self,
         *,
         association_id: str,
-        parameters: dict[str, list[str]] | None = None,
+        parameters: dict[str, Sequence[str]] | None = None,
         document_version: str | None = None,
         schedule_expression: str | None = None,
         output_location: InstanceAssociationOutputLocation | None = None,
         name: str | None = None,
-        targets: list[Target] | None = None,
+        targets: Sequence[Target] | None = None,
         association_name: str | None = None,
         association_version: str | None = None,
         automation_target_parameter_name: str | None = None,
@@ -4307,11 +4317,11 @@ class SSMClient:
         compliance_severity: AssociationComplianceSeverity | None = None,
         sync_compliance: AssociationSyncCompliance | None = None,
         apply_only_at_cron_interval: bool | None = None,
-        calendar_names: list[str] | None = None,
-        target_locations: list[TargetLocation] | None = None,
+        calendar_names: Sequence[str] | None = None,
+        target_locations: Sequence[TargetLocation] | None = None,
         schedule_offset: int | None = None,
         duration: int | None = None,
-        target_maps: list[dict[str, list[str]]] | None = None,
+        target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
     ) -> UpdateAssociationResult:
@@ -4436,7 +4446,7 @@ class SSMClient:
         *,
         content: str,
         name: str,
-        attachments: list[AttachmentsSource] | None = None,
+        attachments: Sequence[AttachmentsSource] | None = None,
         display_name: str | None = None,
         version_name: str | None = None,
         document_version: str | None = None,
@@ -4587,7 +4597,7 @@ class SSMClient:
         *,
         window_id: str,
         window_target_id: str,
-        targets: list[Target] | None = None,
+        targets: Sequence[Target] | None = None,
         owner_information: str | None = None,
         name: str | None = None,
         description: str | None = None,
@@ -4626,7 +4636,7 @@ class SSMClient:
         *,
         window_id: str,
         window_task_id: str,
-        targets: list[Target] | None = None,
+        targets: Sequence[Target] | None = None,
         task_arn: str | None = None,
         service_role_arn: str | None = None,
         task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
@@ -4717,10 +4727,10 @@ class SSMClient:
         ops_item_id: str,
         description: str | None = None,
         operational_data: dict[str, OpsItemDataValue] | None = None,
-        operational_data_to_delete: list[str] | None = None,
-        notifications: list[OpsItemNotification] | None = None,
+        operational_data_to_delete: Sequence[str] | None = None,
+        notifications: Sequence[OpsItemNotification] | None = None,
         priority: int | None = None,
-        related_ops_items: list[RelatedOpsItem] | None = None,
+        related_ops_items: Sequence[RelatedOpsItem] | None = None,
         status: OpsItemStatus | None = None,
         title: str | None = None,
         category: str | None = None,
@@ -4783,7 +4793,7 @@ class SSMClient:
         *,
         ops_metadata_arn: str,
         metadata_to_update: dict[str, MetadataValue] | None = None,
-        keys_to_delete: list[str] | None = None,
+        keys_to_delete: Sequence[str] | None = None,
     ) -> UpdateOpsMetadataResult:
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
@@ -4813,13 +4823,13 @@ class SSMClient:
         name: str | None = None,
         global_filters: PatchFilterGroup | None = None,
         approval_rules: PatchRuleGroup | None = None,
-        approved_patches: list[str] | None = None,
+        approved_patches: Sequence[str] | None = None,
         approved_patches_compliance_level: PatchComplianceLevel | None = None,
         approved_patches_enable_non_security: bool | None = None,
-        rejected_patches: list[str] | None = None,
+        rejected_patches: Sequence[str] | None = None,
         rejected_patches_action: PatchAction | None = None,
         description: str | None = None,
-        sources: list[PatchSource] | None = None,
+        sources: Sequence[PatchSource] | None = None,
         available_security_updates_compliance_status: PatchComplianceStatus | None = None,
         replace: bool | None = None,
     ) -> UpdatePatchBaselineResult:

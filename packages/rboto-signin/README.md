@@ -62,7 +62,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_signin.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -104,6 +107,7 @@ async def create_o_auth2_token(
 ) -> CreateOAuth2TokenResponse: ...
 ```
 
+
 ### create_o_auth2_token_with_iam
 
 ```python
@@ -114,6 +118,7 @@ async def create_o_auth2_token_with_iam(
 ) -> CreateOAuth2TokenWithIAMResponse: ...
 ```
 
+
 ### delete_console_authorization_configuration
 
 ```python
@@ -122,6 +127,7 @@ async def delete_console_authorization_configuration(
     target_id: str | None = None,
 ) -> DeleteConsoleAuthorizationConfigurationOutput: ...
 ```
+
 
 ### delete_resource_permission_statement
 
@@ -133,6 +139,7 @@ async def delete_resource_permission_statement(
 ) -> DeleteResourcePermissionStatementOutput: ...
 ```
 
+
 ### get_console_authorization_configuration
 
 ```python
@@ -142,11 +149,13 @@ async def get_console_authorization_configuration(
 ) -> GetConsoleAuthorizationConfigurationOutput: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
 async def get_resource_policy() -> GetResourcePolicyOutput: ...
 ```
+
 
 ### introspect_o_auth2_token_with_iam
 
@@ -158,6 +167,7 @@ async def introspect_o_auth2_token_with_iam(
 ) -> IntrospectOAuth2TokenWithIAMResponse: ...
 ```
 
+
 ### list_resource_permission_statements
 
 ```python
@@ -168,6 +178,10 @@ async def list_resource_permission_statements(
 ) -> ListResourcePermissionStatementsOutput: ...
 ```
 
+Also available as `client.paginators.list_resource_permission_statements(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_console_authorization_configuration
 
 ```python
@@ -176,6 +190,7 @@ async def put_console_authorization_configuration(
     target_id: str | None = None,
 ) -> PutConsoleAuthorizationConfigurationOutput: ...
 ```
+
 
 ### put_resource_permission_statement
 
@@ -193,6 +208,7 @@ async def put_resource_permission_statement(
 ) -> PutResourcePermissionStatementOutput: ...
 ```
 
+
 ### revoke_o_auth2_token_with_iam
 
 ```python
@@ -201,6 +217,7 @@ async def revoke_o_auth2_token_with_iam(
     token: str,
 ) -> RevokeOAuth2TokenWithIAMResponse: ...
 ```
+
 
 ## Links
 

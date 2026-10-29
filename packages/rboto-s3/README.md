@@ -69,7 +69,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_s3.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -142,7 +145,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_object`](#get_object) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectOutput</code> |
 | [`get_object_acl`](#get_object_acl) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectAclOutput</code> |
 | [`get_object_annotation`](#get_object_annotation) | <code>bucket: str</code>, <code>key: str</code>, <code>annotation_name: str</code> | <code>GetObjectAnnotationOutput</code> |
-| [`get_object_attributes`](#get_object_attributes) | <code>bucket: str</code>, <code>key: str</code>, <code>object_attributes: list[ObjectAttributes]</code> | <code>GetObjectAttributesOutput</code> |
+| [`get_object_attributes`](#get_object_attributes) | <code>bucket: str</code>, <code>key: str</code>, <code>object_attributes: Sequence[ObjectAttributes]</code> | <code>GetObjectAttributesOutput</code> |
 | [`get_object_legal_hold`](#get_object_legal_hold) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectLegalHoldOutput</code> |
 | [`get_object_lock_configuration`](#get_object_lock_configuration) | <code>bucket: str</code> | <code>GetObjectLockConfigurationOutput</code> |
 | [`get_object_retention`](#get_object_retention) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectRetentionOutput</code> |
@@ -217,6 +220,7 @@ async def abort_multipart_upload(
 ) -> AbortMultipartUploadOutput: ...
 ```
 
+
 ### complete_multipart_upload
 
 ```python
@@ -247,6 +251,7 @@ async def complete_multipart_upload(
     sse_customer_key_md5: str | None = None,
 ) -> CompleteMultipartUploadOutput: ...
 ```
+
 
 ### copy_object
 
@@ -303,6 +308,7 @@ async def copy_object(
 ) -> CopyObjectOutput: ...
 ```
 
+
 ### create_bucket
 
 ```python
@@ -322,6 +328,7 @@ async def create_bucket(
 ) -> CreateBucketOutput: ...
 ```
 
+
 ### create_bucket_metadata_configuration
 
 ```python
@@ -335,6 +342,7 @@ async def create_bucket_metadata_configuration(
 ) -> None: ...
 ```
 
+
 ### create_bucket_metadata_table_configuration
 
 ```python
@@ -347,6 +355,7 @@ async def create_bucket_metadata_table_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### create_multipart_upload
 
@@ -390,6 +399,7 @@ async def create_multipart_upload(
 ) -> CreateMultipartUploadOutput: ...
 ```
 
+
 ### create_session
 
 ```python
@@ -404,6 +414,7 @@ async def create_session(
 ) -> CreateSessionOutput: ...
 ```
 
+
 ### delete_bucket
 
 ```python
@@ -413,6 +424,7 @@ async def delete_bucket(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_analytics_configuration
 
@@ -425,6 +437,7 @@ async def delete_bucket_analytics_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_cors
 
 ```python
@@ -435,6 +448,7 @@ async def delete_bucket_cors(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_encryption
 
 ```python
@@ -444,6 +458,7 @@ async def delete_bucket_encryption(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_intelligent_tiering_configuration
 
@@ -456,6 +471,7 @@ async def delete_bucket_intelligent_tiering_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_inventory_configuration
 
 ```python
@@ -467,6 +483,7 @@ async def delete_bucket_inventory_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_lifecycle
 
 ```python
@@ -476,6 +493,7 @@ async def delete_bucket_lifecycle(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_metadata_configuration
 
@@ -487,6 +505,7 @@ async def delete_bucket_metadata_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_metadata_table_configuration
 
 ```python
@@ -496,6 +515,7 @@ async def delete_bucket_metadata_table_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_metrics_configuration
 
@@ -508,6 +528,7 @@ async def delete_bucket_metrics_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_ownership_controls
 
 ```python
@@ -517,6 +538,7 @@ async def delete_bucket_ownership_controls(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_policy
 
@@ -528,6 +550,7 @@ async def delete_bucket_policy(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_replication
 
 ```python
@@ -537,6 +560,7 @@ async def delete_bucket_replication(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_bucket_tagging
 
@@ -548,6 +572,7 @@ async def delete_bucket_tagging(
 ) -> None: ...
 ```
 
+
 ### delete_bucket_website
 
 ```python
@@ -557,6 +582,7 @@ async def delete_bucket_website(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_object
 
@@ -576,6 +602,7 @@ async def delete_object(
 ) -> DeleteObjectOutput: ...
 ```
 
+
 ### delete_object_annotation
 
 ```python
@@ -591,6 +618,7 @@ async def delete_object_annotation(
 ) -> DeleteObjectAnnotationOutput: ...
 ```
 
+
 ### delete_object_tagging
 
 ```python
@@ -602,6 +630,7 @@ async def delete_object_tagging(
     expected_bucket_owner: str | None = None,
 ) -> DeleteObjectTaggingOutput: ...
 ```
+
 
 ### delete_objects
 
@@ -618,6 +647,7 @@ async def delete_objects(
 ) -> DeleteObjectsOutput: ...
 ```
 
+
 ### delete_public_access_block
 
 ```python
@@ -628,6 +658,7 @@ async def delete_public_access_block(
 ) -> None: ...
 ```
 
+
 ### get_bucket_abac
 
 ```python
@@ -637,6 +668,7 @@ async def get_bucket_abac(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketAbacOutput: ...
 ```
+
 
 ### get_bucket_accelerate_configuration
 
@@ -649,6 +681,7 @@ async def get_bucket_accelerate_configuration(
 ) -> GetBucketAccelerateConfigurationOutput: ...
 ```
 
+
 ### get_bucket_acl
 
 ```python
@@ -658,6 +691,7 @@ async def get_bucket_acl(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketAclOutput: ...
 ```
+
 
 ### get_bucket_analytics_configuration
 
@@ -670,6 +704,7 @@ async def get_bucket_analytics_configuration(
 ) -> GetBucketAnalyticsConfigurationOutput: ...
 ```
 
+
 ### get_bucket_cors
 
 ```python
@@ -680,6 +715,7 @@ async def get_bucket_cors(
 ) -> GetBucketCorsOutput: ...
 ```
 
+
 ### get_bucket_encryption
 
 ```python
@@ -689,6 +725,7 @@ async def get_bucket_encryption(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketEncryptionOutput: ...
 ```
+
 
 ### get_bucket_intelligent_tiering_configuration
 
@@ -701,6 +738,7 @@ async def get_bucket_intelligent_tiering_configuration(
 ) -> GetBucketIntelligentTieringConfigurationOutput: ...
 ```
 
+
 ### get_bucket_inventory_configuration
 
 ```python
@@ -712,6 +750,7 @@ async def get_bucket_inventory_configuration(
 ) -> GetBucketInventoryConfigurationOutput: ...
 ```
 
+
 ### get_bucket_lifecycle_configuration
 
 ```python
@@ -721,6 +760,7 @@ async def get_bucket_lifecycle_configuration(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketLifecycleConfigurationOutput: ...
 ```
+
 
 ### get_bucket_location
 
@@ -732,6 +772,7 @@ async def get_bucket_location(
 ) -> GetBucketLocationOutput: ...
 ```
 
+
 ### get_bucket_logging
 
 ```python
@@ -741,6 +782,7 @@ async def get_bucket_logging(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketLoggingOutput: ...
 ```
+
 
 ### get_bucket_metadata_configuration
 
@@ -752,6 +794,7 @@ async def get_bucket_metadata_configuration(
 ) -> GetBucketMetadataConfigurationOutput: ...
 ```
 
+
 ### get_bucket_metadata_table_configuration
 
 ```python
@@ -761,6 +804,7 @@ async def get_bucket_metadata_table_configuration(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketMetadataTableConfigurationOutput: ...
 ```
+
 
 ### get_bucket_metrics_configuration
 
@@ -773,6 +817,7 @@ async def get_bucket_metrics_configuration(
 ) -> GetBucketMetricsConfigurationOutput: ...
 ```
 
+
 ### get_bucket_notification_configuration
 
 ```python
@@ -782,6 +827,7 @@ async def get_bucket_notification_configuration(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketNotificationConfigurationOutput: ...
 ```
+
 
 ### get_bucket_ownership_controls
 
@@ -793,6 +839,7 @@ async def get_bucket_ownership_controls(
 ) -> GetBucketOwnershipControlsOutput: ...
 ```
 
+
 ### get_bucket_policy
 
 ```python
@@ -802,6 +849,7 @@ async def get_bucket_policy(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketPolicyOutput: ...
 ```
+
 
 ### get_bucket_policy_status
 
@@ -813,6 +861,7 @@ async def get_bucket_policy_status(
 ) -> GetBucketPolicyStatusOutput: ...
 ```
 
+
 ### get_bucket_replication
 
 ```python
@@ -822,6 +871,7 @@ async def get_bucket_replication(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketReplicationOutput: ...
 ```
+
 
 ### get_bucket_request_payment
 
@@ -833,6 +883,7 @@ async def get_bucket_request_payment(
 ) -> GetBucketRequestPaymentOutput: ...
 ```
 
+
 ### get_bucket_tagging
 
 ```python
@@ -842,6 +893,7 @@ async def get_bucket_tagging(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketTaggingOutput: ...
 ```
+
 
 ### get_bucket_versioning
 
@@ -853,6 +905,7 @@ async def get_bucket_versioning(
 ) -> GetBucketVersioningOutput: ...
 ```
 
+
 ### get_bucket_website
 
 ```python
@@ -862,6 +915,7 @@ async def get_bucket_website(
     expected_bucket_owner: str | None = None,
 ) -> GetBucketWebsiteOutput: ...
 ```
+
 
 ### get_object
 
@@ -892,6 +946,7 @@ async def get_object(
 ) -> GetObjectOutput: ...
 ```
 
+
 ### get_object_acl
 
 ```python
@@ -904,6 +959,7 @@ async def get_object_acl(
     expected_bucket_owner: str | None = None,
 ) -> GetObjectAclOutput: ...
 ```
+
 
 ### get_object_annotation
 
@@ -920,6 +976,7 @@ async def get_object_annotation(
 ) -> GetObjectAnnotationOutput: ...
 ```
 
+
 ### get_object_attributes
 
 ```python
@@ -927,7 +984,7 @@ async def get_object_attributes(
     *,
     bucket: str,
     key: str,
-    object_attributes: list[ObjectAttributes],
+    object_attributes: Sequence[ObjectAttributes],
     version_id: str | None = None,
     max_parts: int | None = None,
     part_number_marker: str | None = None,
@@ -938,6 +995,7 @@ async def get_object_attributes(
     expected_bucket_owner: str | None = None,
 ) -> GetObjectAttributesOutput: ...
 ```
+
 
 ### get_object_legal_hold
 
@@ -952,6 +1010,7 @@ async def get_object_legal_hold(
 ) -> GetObjectLegalHoldOutput: ...
 ```
 
+
 ### get_object_lock_configuration
 
 ```python
@@ -961,6 +1020,7 @@ async def get_object_lock_configuration(
     expected_bucket_owner: str | None = None,
 ) -> GetObjectLockConfigurationOutput: ...
 ```
+
 
 ### get_object_retention
 
@@ -975,6 +1035,7 @@ async def get_object_retention(
 ) -> GetObjectRetentionOutput: ...
 ```
 
+
 ### get_object_tagging
 
 ```python
@@ -988,6 +1049,7 @@ async def get_object_tagging(
 ) -> GetObjectTaggingOutput: ...
 ```
 
+
 ### get_object_torrent
 
 ```python
@@ -1000,6 +1062,7 @@ async def get_object_torrent(
 ) -> GetObjectTorrentOutput: ...
 ```
 
+
 ### get_public_access_block
 
 ```python
@@ -1010,6 +1073,7 @@ async def get_public_access_block(
 ) -> GetPublicAccessBlockOutput: ...
 ```
 
+
 ### head_bucket
 
 ```python
@@ -1019,6 +1083,7 @@ async def head_bucket(
     expected_bucket_owner: str | None = None,
 ) -> HeadBucketOutput: ...
 ```
+
 
 ### head_object
 
@@ -1049,6 +1114,7 @@ async def head_object(
 ) -> HeadObjectOutput: ...
 ```
 
+
 ### list_bucket_analytics_configurations
 
 ```python
@@ -1059,6 +1125,7 @@ async def list_bucket_analytics_configurations(
     expected_bucket_owner: str | None = None,
 ) -> ListBucketAnalyticsConfigurationsOutput: ...
 ```
+
 
 ### list_bucket_intelligent_tiering_configurations
 
@@ -1071,6 +1138,7 @@ async def list_bucket_intelligent_tiering_configurations(
 ) -> ListBucketIntelligentTieringConfigurationsOutput: ...
 ```
 
+
 ### list_bucket_inventory_configurations
 
 ```python
@@ -1082,6 +1150,7 @@ async def list_bucket_inventory_configurations(
 ) -> ListBucketInventoryConfigurationsOutput: ...
 ```
 
+
 ### list_bucket_metrics_configurations
 
 ```python
@@ -1092,6 +1161,7 @@ async def list_bucket_metrics_configurations(
     expected_bucket_owner: str | None = None,
 ) -> ListBucketMetricsConfigurationsOutput: ...
 ```
+
 
 ### list_buckets
 
@@ -1105,6 +1175,10 @@ async def list_buckets(
 ) -> ListBucketsOutput: ...
 ```
 
+Also available as `client.paginators.list_buckets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_directory_buckets
 
 ```python
@@ -1114,6 +1188,10 @@ async def list_directory_buckets(
     max_directory_buckets: int | None = None,
 ) -> ListDirectoryBucketsOutput: ...
 ```
+
+Also available as `client.paginators.list_directory_buckets(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_multipart_uploads
 
@@ -1132,6 +1210,10 @@ async def list_multipart_uploads(
 ) -> ListMultipartUploadsOutput: ...
 ```
 
+Also available as `client.paginators.list_multipart_uploads(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_object_annotations
 
 ```python
@@ -1148,6 +1230,10 @@ async def list_object_annotations(
 ) -> ListObjectAnnotationsOutput: ...
 ```
 
+Also available as `client.paginators.list_object_annotations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_object_versions
 
 ```python
@@ -1162,9 +1248,13 @@ async def list_object_versions(
     version_id_marker: str | None = None,
     expected_bucket_owner: str | None = None,
     request_payer: RequestPayer | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectVersionsOutput: ...
 ```
+
+Also available as `client.paginators.list_object_versions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_objects
 
@@ -1179,9 +1269,13 @@ async def list_objects(
     prefix: str | None = None,
     request_payer: RequestPayer | None = None,
     expected_bucket_owner: str | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectsOutput: ...
 ```
+
+Also available as `client.paginators.list_objects(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_objects_v2
 
@@ -1198,9 +1292,13 @@ async def list_objects_v2(
     start_after: str | None = None,
     request_payer: RequestPayer | None = None,
     expected_bucket_owner: str | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectsV2Output: ...
 ```
+
+Also available as `client.paginators.list_objects_v2(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_parts
 
@@ -1220,6 +1318,10 @@ async def list_parts(
 ) -> ListPartsOutput: ...
 ```
 
+Also available as `client.paginators.list_parts(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_bucket_abac
 
 ```python
@@ -1233,6 +1335,7 @@ async def put_bucket_abac(
 ) -> None: ...
 ```
 
+
 ### put_bucket_accelerate_configuration
 
 ```python
@@ -1244,6 +1347,7 @@ async def put_bucket_accelerate_configuration(
     checksum_algorithm: ChecksumAlgorithm | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_acl
 
@@ -1264,6 +1368,7 @@ async def put_bucket_acl(
 ) -> None: ...
 ```
 
+
 ### put_bucket_analytics_configuration
 
 ```python
@@ -1275,6 +1380,7 @@ async def put_bucket_analytics_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_cors
 
@@ -1289,6 +1395,7 @@ async def put_bucket_cors(
 ) -> None: ...
 ```
 
+
 ### put_bucket_encryption
 
 ```python
@@ -1302,6 +1409,7 @@ async def put_bucket_encryption(
 ) -> None: ...
 ```
 
+
 ### put_bucket_intelligent_tiering_configuration
 
 ```python
@@ -1314,6 +1422,7 @@ async def put_bucket_intelligent_tiering_configuration(
 ) -> None: ...
 ```
 
+
 ### put_bucket_inventory_configuration
 
 ```python
@@ -1325,6 +1434,7 @@ async def put_bucket_inventory_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_lifecycle_configuration
 
@@ -1339,6 +1449,7 @@ async def put_bucket_lifecycle_configuration(
 ) -> PutBucketLifecycleConfigurationOutput: ...
 ```
 
+
 ### put_bucket_logging
 
 ```python
@@ -1352,6 +1463,7 @@ async def put_bucket_logging(
 ) -> None: ...
 ```
 
+
 ### put_bucket_metrics_configuration
 
 ```python
@@ -1363,6 +1475,7 @@ async def put_bucket_metrics_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_notification_configuration
 
@@ -1376,6 +1489,7 @@ async def put_bucket_notification_configuration(
 ) -> None: ...
 ```
 
+
 ### put_bucket_ownership_controls
 
 ```python
@@ -1388,6 +1502,7 @@ async def put_bucket_ownership_controls(
     checksum_algorithm: ChecksumAlgorithm | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_policy
 
@@ -1403,6 +1518,7 @@ async def put_bucket_policy(
 ) -> None: ...
 ```
 
+
 ### put_bucket_replication
 
 ```python
@@ -1417,6 +1533,7 @@ async def put_bucket_replication(
 ) -> None: ...
 ```
 
+
 ### put_bucket_request_payment
 
 ```python
@@ -1430,6 +1547,7 @@ async def put_bucket_request_payment(
 ) -> None: ...
 ```
 
+
 ### put_bucket_tagging
 
 ```python
@@ -1442,6 +1560,7 @@ async def put_bucket_tagging(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### put_bucket_versioning
 
@@ -1457,6 +1576,7 @@ async def put_bucket_versioning(
 ) -> None: ...
 ```
 
+
 ### put_bucket_website
 
 ```python
@@ -1469,6 +1589,7 @@ async def put_bucket_website(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### put_object
 
@@ -1527,6 +1648,7 @@ async def put_object(
 ) -> PutObjectOutput: ...
 ```
 
+
 ### put_object_acl
 
 ```python
@@ -1548,6 +1670,7 @@ async def put_object_acl(
     expected_bucket_owner: str | None = None,
 ) -> PutObjectAclOutput: ...
 ```
+
 
 ### put_object_annotation
 
@@ -1577,6 +1700,7 @@ async def put_object_annotation(
 ) -> PutObjectAnnotationOutput: ...
 ```
 
+
 ### put_object_legal_hold
 
 ```python
@@ -1593,6 +1717,7 @@ async def put_object_legal_hold(
 ) -> PutObjectLegalHoldOutput: ...
 ```
 
+
 ### put_object_lock_configuration
 
 ```python
@@ -1607,6 +1732,7 @@ async def put_object_lock_configuration(
     expected_bucket_owner: str | None = None,
 ) -> PutObjectLockConfigurationOutput: ...
 ```
+
 
 ### put_object_retention
 
@@ -1625,6 +1751,7 @@ async def put_object_retention(
 ) -> PutObjectRetentionOutput: ...
 ```
 
+
 ### put_object_tagging
 
 ```python
@@ -1641,6 +1768,7 @@ async def put_object_tagging(
 ) -> PutObjectTaggingOutput: ...
 ```
 
+
 ### put_public_access_block
 
 ```python
@@ -1653,6 +1781,7 @@ async def put_public_access_block(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### rename_object
 
@@ -1674,6 +1803,7 @@ async def rename_object(
 ) -> RenameObjectOutput: ...
 ```
 
+
 ### restore_object
 
 ```python
@@ -1688,6 +1818,7 @@ async def restore_object(
     expected_bucket_owner: str | None = None,
 ) -> RestoreObjectOutput: ...
 ```
+
 
 ### select_object_content
 
@@ -1709,6 +1840,7 @@ async def select_object_content(
 ) -> SelectObjectContentOutput: ...
 ```
 
+
 ### update_bucket_metadata_annotation_table_configuration
 
 ```python
@@ -1721,6 +1853,7 @@ async def update_bucket_metadata_annotation_table_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### update_bucket_metadata_inventory_table_configuration
 
@@ -1735,6 +1868,7 @@ async def update_bucket_metadata_inventory_table_configuration(
 ) -> None: ...
 ```
 
+
 ### update_bucket_metadata_journal_table_configuration
 
 ```python
@@ -1747,6 +1881,7 @@ async def update_bucket_metadata_journal_table_configuration(
     expected_bucket_owner: str | None = None,
 ) -> None: ...
 ```
+
 
 ### update_object_encryption
 
@@ -1763,6 +1898,7 @@ async def update_object_encryption(
     checksum_algorithm: ChecksumAlgorithm | None = None,
 ) -> UpdateObjectEncryptionResponse: ...
 ```
+
 
 ### upload_part
 
@@ -1795,6 +1931,7 @@ async def upload_part(
 ) -> UploadPartOutput: ...
 ```
 
+
 ### upload_part_copy
 
 ```python
@@ -1821,6 +1958,7 @@ async def upload_part_copy(
     expected_source_bucket_owner: str | None = None,
 ) -> UploadPartCopyOutput: ...
 ```
+
 
 ### write_get_object_response
 
@@ -1875,6 +2013,7 @@ async def write_get_object_response(
     bucket_key_enabled: bool | None = None,
 ) -> None: ...
 ```
+
 
 ## Links
 

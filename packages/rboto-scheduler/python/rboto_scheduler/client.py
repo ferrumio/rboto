@@ -17,6 +17,8 @@ from .types import (
     Tag,
     Target,
 )
+from .paginators import EventBridgeSchedulerClientPaginators as _Paginators
+
 
 
 class EventBridgeSchedulerClient:
@@ -45,6 +47,14 @@ class EventBridgeSchedulerClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def create_schedule(
@@ -106,7 +116,7 @@ class EventBridgeSchedulerClient:
         self,
         *,
         name: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         client_token: str | None = None,
     ) -> CreateScheduleGroupOutput:
         params: dict[str, object] = {
@@ -320,7 +330,7 @@ class EventBridgeSchedulerClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -344,7 +354,7 @@ class EventBridgeSchedulerClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

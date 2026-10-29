@@ -63,7 +63,8 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+
 - Catch modeled exceptions from `rboto_sts.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -92,7 +93,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_delegated_access_token`](#get_delegated_access_token) | <code>trade_in_token: str</code> | <code>GetDelegatedAccessTokenResponse</code> |
 | [`get_federation_token`](#get_federation_token) | <code>name: str</code> | <code>GetFederationTokenResponse</code> |
 | [`get_session_token`](#get_session_token) | None | <code>GetSessionTokenResponse</code> |
-| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: list[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenResponse</code> |
+| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: Sequence[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenResponse</code> |
 
 ## Complete signatures
 
@@ -103,19 +104,20 @@ async def assume_role(
     *,
     role_arn: str,
     role_session_name: str,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
-    transitive_tag_keys: list[str] | None = None,
+    tags: Sequence[Tag] | None = None,
+    transitive_tag_keys: Sequence[str] | None = None,
     external_id: str | None = None,
     serial_number: str | None = None,
     token_code: str | None = None,
     source_identity: str | None = None,
-    provided_contexts: list[ProvidedContext] | None = None,
+    provided_contexts: Sequence[ProvidedContext] | None = None,
     minimum_session_token_size: int | None = None,
 ) -> AssumeRoleResponse: ...
 ```
+
 
 ### assume_role_with_saml
 
@@ -125,12 +127,13 @@ async def assume_role_with_saml(
     role_arn: str,
     principal_arn: str,
     saml_assertion: str,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
 ) -> AssumeRoleWithSAMLResponse: ...
 ```
+
 
 ### assume_role_with_web_identity
 
@@ -141,12 +144,13 @@ async def assume_role_with_web_identity(
     role_session_name: str,
     web_identity_token: str,
     provider_id: str | None = None,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
 ) -> AssumeRoleWithWebIdentityResponse: ...
 ```
+
 
 ### assume_root
 
@@ -160,6 +164,7 @@ async def assume_root(
 ) -> AssumeRootResponse: ...
 ```
 
+
 ### decode_authorization_message
 
 ```python
@@ -168,6 +173,7 @@ async def decode_authorization_message(
     encoded_message: str,
 ) -> DecodeAuthorizationMessageResponse: ...
 ```
+
 
 ### get_access_key_info
 
@@ -178,11 +184,13 @@ async def get_access_key_info(
 ) -> GetAccessKeyInfoResponse: ...
 ```
 
+
 ### get_caller_identity
 
 ```python
 async def get_caller_identity() -> GetCallerIdentityResponse: ...
 ```
+
 
 ### get_delegated_access_token
 
@@ -193,6 +201,7 @@ async def get_delegated_access_token(
 ) -> GetDelegatedAccessTokenResponse: ...
 ```
 
+
 ### get_federation_token
 
 ```python
@@ -200,12 +209,13 @@ async def get_federation_token(
     *,
     name: str,
     policy: str | None = None,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     minimum_session_token_size: int | None = None,
 ) -> GetFederationTokenResponse: ...
 ```
+
 
 ### get_session_token
 
@@ -219,17 +229,19 @@ async def get_session_token(
 ) -> GetSessionTokenResponse: ...
 ```
 
+
 ### get_web_identity_token
 
 ```python
 async def get_web_identity_token(
     *,
-    audience: list[str],
+    audience: Sequence[str],
     signing_algorithm: str,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> GetWebIdentityTokenResponse: ...
 ```
+
 
 ## Links
 

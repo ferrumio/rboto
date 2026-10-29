@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_api_gateway.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -97,7 +100,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_stage`](#create_stage) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>deployment_id: str</code> | <code>CreateStageOutput</code> |
 | [`create_usage_plan`](#create_usage_plan) | <code>name: str</code> | <code>CreateUsagePlanOutput</code> |
 | [`create_usage_plan_key`](#create_usage_plan_key) | <code>usage_plan_id: str</code>, <code>key_id: str</code>, <code>key_type: str</code> | <code>CreateUsagePlanKeyOutput</code> |
-| [`create_vpc_link`](#create_vpc_link) | <code>name: str</code>, <code>target_arns: list[str]</code> | <code>CreateVpcLinkOutput</code> |
+| [`create_vpc_link`](#create_vpc_link) | <code>name: str</code>, <code>target_arns: Sequence[str]</code> | <code>CreateVpcLinkOutput</code> |
 | [`delete_api_key`](#delete_api_key) | <code>api_key: str</code> | <code>None</code> |
 | [`delete_authorizer`](#delete_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>None</code> |
 | [`delete_base_path_mapping`](#delete_base_path_mapping) | <code>domain_name: str</code>, <code>base_path: str</code> | <code>None</code> |
@@ -183,7 +186,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`test_invoke_authorizer`](#test_invoke_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>TestInvokeAuthorizerResponse</code> |
 | [`test_invoke_method`](#test_invoke_method) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>TestInvokeMethodResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_account`](#update_account) | None | <code>UpdateAccountOutput</code> |
 | [`update_api_key`](#update_api_key) | <code>api_key: str</code> | <code>UpdateApiKeyOutput</code> |
 | [`update_authorizer`](#update_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>UpdateAuthorizerOutput</code> |
@@ -219,11 +222,12 @@ async def create_api_key(
     enabled: bool | None = None,
     generate_distinct_id: bool | None = None,
     value: str | None = None,
-    stage_keys: list[StageKey] | None = None,
+    stage_keys: Sequence[StageKey] | None = None,
     customer_id: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateApiKeyOutput: ...
 ```
+
 
 ### create_authorizer
 
@@ -233,7 +237,7 @@ async def create_authorizer(
     rest_api_id: str,
     name: str,
     type: AuthorizerType,
-    provider_arns: list[str] | None = None,
+    provider_arns: Sequence[str] | None = None,
     auth_type: str | None = None,
     authorizer_uri: str | None = None,
     authorizer_credentials: str | None = None,
@@ -242,6 +246,7 @@ async def create_authorizer(
     authorizer_result_ttl_in_seconds: int | None = None,
 ) -> CreateAuthorizerOutput: ...
 ```
+
 
 ### create_base_path_mapping
 
@@ -255,6 +260,7 @@ async def create_base_path_mapping(
     stage: str | None = None,
 ) -> CreateBasePathMappingOutput: ...
 ```
+
 
 ### create_deployment
 
@@ -273,6 +279,7 @@ async def create_deployment(
 ) -> CreateDeploymentOutput: ...
 ```
 
+
 ### create_documentation_part
 
 ```python
@@ -283,6 +290,7 @@ async def create_documentation_part(
     properties: str,
 ) -> CreateDocumentationPartOutput: ...
 ```
+
 
 ### create_documentation_version
 
@@ -295,6 +303,7 @@ async def create_documentation_version(
     description: str | None = None,
 ) -> CreateDocumentationVersionOutput: ...
 ```
+
 
 ### create_domain_name
 
@@ -320,6 +329,7 @@ async def create_domain_name(
 ) -> CreateDomainNameOutput: ...
 ```
 
+
 ### create_domain_name_access_association
 
 ```python
@@ -331,6 +341,7 @@ async def create_domain_name_access_association(
     tags: dict[str, str] | None = None,
 ) -> CreateDomainNameAccessAssociationOutput: ...
 ```
+
 
 ### create_model
 
@@ -345,6 +356,7 @@ async def create_model(
 ) -> CreateModelOutput: ...
 ```
 
+
 ### create_request_validator
 
 ```python
@@ -357,6 +369,7 @@ async def create_request_validator(
 ) -> CreateRequestValidatorOutput: ...
 ```
 
+
 ### create_resource
 
 ```python
@@ -368,6 +381,7 @@ async def create_resource(
 ) -> CreateResourceOutput: ...
 ```
 
+
 ### create_rest_api
 
 ```python
@@ -377,7 +391,7 @@ async def create_rest_api(
     description: str | None = None,
     version: str | None = None,
     clone_from: str | None = None,
-    binary_media_types: list[str] | None = None,
+    binary_media_types: Sequence[str] | None = None,
     minimum_compression_size: int | None = None,
     api_key_source: ApiKeySourceType | None = None,
     endpoint_configuration: EndpointConfiguration | None = None,
@@ -388,6 +402,7 @@ async def create_rest_api(
     endpoint_access_mode: EndpointAccessMode | None = None,
 ) -> CreateRestApiOutput: ...
 ```
+
 
 ### create_stage
 
@@ -408,6 +423,7 @@ async def create_stage(
 ) -> CreateStageOutput: ...
 ```
 
+
 ### create_usage_plan
 
 ```python
@@ -415,12 +431,13 @@ async def create_usage_plan(
     *,
     name: str,
     description: str | None = None,
-    api_stages: list[ApiStage] | None = None,
+    api_stages: Sequence[ApiStage] | None = None,
     throttle: ThrottleSettings | None = None,
     quota: QuotaSettings | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateUsagePlanOutput: ...
 ```
+
 
 ### create_usage_plan_key
 
@@ -433,17 +450,19 @@ async def create_usage_plan_key(
 ) -> CreateUsagePlanKeyOutput: ...
 ```
 
+
 ### create_vpc_link
 
 ```python
 async def create_vpc_link(
     *,
     name: str,
-    target_arns: list[str],
+    target_arns: Sequence[str],
     description: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateVpcLinkOutput: ...
 ```
+
 
 ### delete_api_key
 
@@ -454,6 +473,7 @@ async def delete_api_key(
 ) -> None: ...
 ```
 
+
 ### delete_authorizer
 
 ```python
@@ -463,6 +483,7 @@ async def delete_authorizer(
     authorizer_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_base_path_mapping
 
@@ -475,6 +496,7 @@ async def delete_base_path_mapping(
 ) -> None: ...
 ```
 
+
 ### delete_client_certificate
 
 ```python
@@ -483,6 +505,7 @@ async def delete_client_certificate(
     client_certificate_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_deployment
 
@@ -494,6 +517,7 @@ async def delete_deployment(
 ) -> None: ...
 ```
 
+
 ### delete_documentation_part
 
 ```python
@@ -503,6 +527,7 @@ async def delete_documentation_part(
     documentation_part_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_documentation_version
 
@@ -514,6 +539,7 @@ async def delete_documentation_version(
 ) -> None: ...
 ```
 
+
 ### delete_domain_name
 
 ```python
@@ -524,6 +550,7 @@ async def delete_domain_name(
 ) -> None: ...
 ```
 
+
 ### delete_domain_name_access_association
 
 ```python
@@ -532,6 +559,7 @@ async def delete_domain_name_access_association(
     domain_name_access_association_arn: str,
 ) -> None: ...
 ```
+
 
 ### delete_gateway_response
 
@@ -543,6 +571,7 @@ async def delete_gateway_response(
 ) -> None: ...
 ```
 
+
 ### delete_integration
 
 ```python
@@ -553,6 +582,7 @@ async def delete_integration(
     http_method: str,
 ) -> None: ...
 ```
+
 
 ### delete_integration_response
 
@@ -566,6 +596,7 @@ async def delete_integration_response(
 ) -> None: ...
 ```
 
+
 ### delete_method
 
 ```python
@@ -576,6 +607,7 @@ async def delete_method(
     http_method: str,
 ) -> None: ...
 ```
+
 
 ### delete_method_response
 
@@ -589,6 +621,7 @@ async def delete_method_response(
 ) -> None: ...
 ```
 
+
 ### delete_model
 
 ```python
@@ -598,6 +631,7 @@ async def delete_model(
     model_name: str,
 ) -> None: ...
 ```
+
 
 ### delete_request_validator
 
@@ -609,6 +643,7 @@ async def delete_request_validator(
 ) -> None: ...
 ```
 
+
 ### delete_resource
 
 ```python
@@ -619,6 +654,7 @@ async def delete_resource(
 ) -> None: ...
 ```
 
+
 ### delete_rest_api
 
 ```python
@@ -627,6 +663,7 @@ async def delete_rest_api(
     rest_api_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_stage
 
@@ -638,6 +675,7 @@ async def delete_stage(
 ) -> None: ...
 ```
 
+
 ### delete_usage_plan
 
 ```python
@@ -646,6 +684,7 @@ async def delete_usage_plan(
     usage_plan_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_usage_plan_key
 
@@ -657,6 +696,7 @@ async def delete_usage_plan_key(
 ) -> None: ...
 ```
 
+
 ### delete_vpc_link
 
 ```python
@@ -665,6 +705,7 @@ async def delete_vpc_link(
     vpc_link_id: str,
 ) -> None: ...
 ```
+
 
 ### flush_stage_authorizers_cache
 
@@ -676,6 +717,7 @@ async def flush_stage_authorizers_cache(
 ) -> None: ...
 ```
 
+
 ### flush_stage_cache
 
 ```python
@@ -685,6 +727,7 @@ async def flush_stage_cache(
     stage_name: str,
 ) -> None: ...
 ```
+
 
 ### generate_client_certificate
 
@@ -696,11 +739,13 @@ async def generate_client_certificate(
 ) -> GenerateClientCertificateOutput: ...
 ```
 
+
 ### get_account
 
 ```python
 async def get_account() -> GetAccountOutput: ...
 ```
+
 
 ### get_api_key
 
@@ -711,6 +756,7 @@ async def get_api_key(
     include_value: bool | None = None,
 ) -> GetApiKeyOutput: ...
 ```
+
 
 ### get_api_keys
 
@@ -725,6 +771,10 @@ async def get_api_keys(
 ) -> ApiKeys: ...
 ```
 
+Also available as `client.paginators.get_api_keys(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_authorizer
 
 ```python
@@ -734,6 +784,7 @@ async def get_authorizer(
     authorizer_id: str,
 ) -> GetAuthorizerOutput: ...
 ```
+
 
 ### get_authorizers
 
@@ -746,6 +797,10 @@ async def get_authorizers(
 ) -> Authorizers: ...
 ```
 
+Also available as `client.paginators.get_authorizers(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_base_path_mapping
 
 ```python
@@ -756,6 +811,7 @@ async def get_base_path_mapping(
     domain_name_id: str | None = None,
 ) -> GetBasePathMappingOutput: ...
 ```
+
 
 ### get_base_path_mappings
 
@@ -769,6 +825,10 @@ async def get_base_path_mappings(
 ) -> BasePathMappings: ...
 ```
 
+Also available as `client.paginators.get_base_path_mappings(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_client_certificate
 
 ```python
@@ -777,6 +837,7 @@ async def get_client_certificate(
     client_certificate_id: str,
 ) -> GetClientCertificateOutput: ...
 ```
+
 
 ### get_client_certificates
 
@@ -788,6 +849,10 @@ async def get_client_certificates(
 ) -> ClientCertificates: ...
 ```
 
+Also available as `client.paginators.get_client_certificates(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_deployment
 
 ```python
@@ -795,9 +860,10 @@ async def get_deployment(
     *,
     rest_api_id: str,
     deployment_id: str,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> GetDeploymentOutput: ...
 ```
+
 
 ### get_deployments
 
@@ -810,6 +876,10 @@ async def get_deployments(
 ) -> Deployments: ...
 ```
 
+Also available as `client.paginators.get_deployments(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_documentation_part
 
 ```python
@@ -819,6 +889,7 @@ async def get_documentation_part(
     documentation_part_id: str,
 ) -> GetDocumentationPartOutput: ...
 ```
+
 
 ### get_documentation_parts
 
@@ -835,6 +906,10 @@ async def get_documentation_parts(
 ) -> DocumentationParts: ...
 ```
 
+Also available as `client.paginators.get_documentation_parts(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_documentation_version
 
 ```python
@@ -844,6 +919,7 @@ async def get_documentation_version(
     documentation_version: str,
 ) -> GetDocumentationVersionOutput: ...
 ```
+
 
 ### get_documentation_versions
 
@@ -856,6 +932,10 @@ async def get_documentation_versions(
 ) -> DocumentationVersions: ...
 ```
 
+Also available as `client.paginators.get_documentation_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_domain_name
 
 ```python
@@ -865,6 +945,7 @@ async def get_domain_name(
     domain_name_id: str | None = None,
 ) -> GetDomainNameOutput: ...
 ```
+
 
 ### get_domain_name_access_associations
 
@@ -877,6 +958,7 @@ async def get_domain_name_access_associations(
 ) -> DomainNameAccessAssociations: ...
 ```
 
+
 ### get_domain_names
 
 ```python
@@ -887,6 +969,10 @@ async def get_domain_names(
     resource_owner: ResourceOwner | None = None,
 ) -> DomainNames: ...
 ```
+
+Also available as `client.paginators.get_domain_names(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_export
 
@@ -901,6 +987,7 @@ async def get_export(
 ) -> ExportResponse: ...
 ```
 
+
 ### get_gateway_response
 
 ```python
@@ -910,6 +997,7 @@ async def get_gateway_response(
     response_type: GatewayResponseType,
 ) -> GetGatewayResponseOutput: ...
 ```
+
 
 ### get_gateway_responses
 
@@ -922,6 +1010,10 @@ async def get_gateway_responses(
 ) -> GatewayResponses: ...
 ```
 
+Also available as `client.paginators.get_gateway_responses(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_integration
 
 ```python
@@ -932,6 +1024,7 @@ async def get_integration(
     http_method: str,
 ) -> GetIntegrationOutput: ...
 ```
+
 
 ### get_integration_response
 
@@ -945,6 +1038,7 @@ async def get_integration_response(
 ) -> GetIntegrationResponseOutput: ...
 ```
 
+
 ### get_method
 
 ```python
@@ -955,6 +1049,7 @@ async def get_method(
     http_method: str,
 ) -> GetMethodOutput: ...
 ```
+
 
 ### get_method_response
 
@@ -968,6 +1063,7 @@ async def get_method_response(
 ) -> GetMethodResponseOutput: ...
 ```
 
+
 ### get_model
 
 ```python
@@ -979,6 +1075,7 @@ async def get_model(
 ) -> GetModelOutput: ...
 ```
 
+
 ### get_model_template
 
 ```python
@@ -988,6 +1085,7 @@ async def get_model_template(
     model_name: str,
 ) -> Template: ...
 ```
+
 
 ### get_models
 
@@ -1000,6 +1098,10 @@ async def get_models(
 ) -> Models: ...
 ```
 
+Also available as `client.paginators.get_models(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_request_validator
 
 ```python
@@ -1009,6 +1111,7 @@ async def get_request_validator(
     request_validator_id: str,
 ) -> GetRequestValidatorOutput: ...
 ```
+
 
 ### get_request_validators
 
@@ -1021,6 +1124,10 @@ async def get_request_validators(
 ) -> RequestValidators: ...
 ```
 
+Also available as `client.paginators.get_request_validators(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_resource
 
 ```python
@@ -1028,9 +1135,10 @@ async def get_resource(
     *,
     rest_api_id: str,
     resource_id: str,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> GetResourceOutput: ...
 ```
+
 
 ### get_resources
 
@@ -1040,9 +1148,13 @@ async def get_resources(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> Resources: ...
 ```
+
+Also available as `client.paginators.get_resources(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_rest_api
 
@@ -1053,6 +1165,7 @@ async def get_rest_api(
 ) -> GetRestApiOutput: ...
 ```
 
+
 ### get_rest_apis
 
 ```python
@@ -1062,6 +1175,10 @@ async def get_rest_apis(
     limit: int | None = None,
 ) -> RestApis: ...
 ```
+
+Also available as `client.paginators.get_rest_apis(...)`, returning an
+async iterator of the response type above.
+
 
 ### get_sdk
 
@@ -1075,6 +1192,7 @@ async def get_sdk(
 ) -> SdkResponse: ...
 ```
 
+
 ### get_sdk_type
 
 ```python
@@ -1083,6 +1201,7 @@ async def get_sdk_type(
     id: str,
 ) -> GetSdkTypeOutput: ...
 ```
+
 
 ### get_sdk_types
 
@@ -1094,6 +1213,7 @@ async def get_sdk_types(
 ) -> SdkTypes: ...
 ```
 
+
 ### get_stage
 
 ```python
@@ -1103,6 +1223,7 @@ async def get_stage(
     stage_name: str,
 ) -> GetStageOutput: ...
 ```
+
 
 ### get_stages
 
@@ -1114,6 +1235,7 @@ async def get_stages(
 ) -> Stages: ...
 ```
 
+
 ### get_tags
 
 ```python
@@ -1124,6 +1246,7 @@ async def get_tags(
     limit: int | None = None,
 ) -> Tags: ...
 ```
+
 
 ### get_usage
 
@@ -1139,6 +1262,10 @@ async def get_usage(
 ) -> GetUsageOutput: ...
 ```
 
+Also available as `client.paginators.get_usage(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_usage_plan
 
 ```python
@@ -1147,6 +1274,7 @@ async def get_usage_plan(
     usage_plan_id: str,
 ) -> GetUsagePlanOutput: ...
 ```
+
 
 ### get_usage_plan_key
 
@@ -1157,6 +1285,7 @@ async def get_usage_plan_key(
     key_id: str,
 ) -> GetUsagePlanKeyOutput: ...
 ```
+
 
 ### get_usage_plan_keys
 
@@ -1170,6 +1299,10 @@ async def get_usage_plan_keys(
 ) -> UsagePlanKeys: ...
 ```
 
+Also available as `client.paginators.get_usage_plan_keys(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_usage_plans
 
 ```python
@@ -1181,6 +1314,10 @@ async def get_usage_plans(
 ) -> UsagePlans: ...
 ```
 
+Also available as `client.paginators.get_usage_plans(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_vpc_link
 
 ```python
@@ -1189,6 +1326,7 @@ async def get_vpc_link(
     vpc_link_id: str,
 ) -> GetVpcLinkOutput: ...
 ```
+
 
 ### get_vpc_links
 
@@ -1200,6 +1338,10 @@ async def get_vpc_links(
 ) -> VpcLinks: ...
 ```
 
+Also available as `client.paginators.get_vpc_links(...)`, returning an
+async iterator of the response type above.
+
+
 ### import_api_keys
 
 ```python
@@ -1210,6 +1352,7 @@ async def import_api_keys(
     fail_on_warnings: bool | None = None,
 ) -> ApiKeyIds: ...
 ```
+
 
 ### import_documentation_parts
 
@@ -1223,6 +1366,7 @@ async def import_documentation_parts(
 ) -> DocumentationPartIds: ...
 ```
 
+
 ### import_rest_api
 
 ```python
@@ -1233,6 +1377,7 @@ async def import_rest_api(
     parameters: dict[str, str] | None = None,
 ) -> ImportRestApiOutput: ...
 ```
+
 
 ### put_gateway_response
 
@@ -1246,6 +1391,7 @@ async def put_gateway_response(
     response_templates: dict[str, str] | None = None,
 ) -> PutGatewayResponseOutput: ...
 ```
+
 
 ### put_integration
 
@@ -1265,7 +1411,7 @@ async def put_integration(
     request_templates: dict[str, str] | None = None,
     passthrough_behavior: str | None = None,
     cache_namespace: str | None = None,
-    cache_key_parameters: list[str] | None = None,
+    cache_key_parameters: Sequence[str] | None = None,
     content_handling: ContentHandlingStrategy | None = None,
     timeout_in_millis: int | None = None,
     tls_config: TlsConfig | None = None,
@@ -1273,6 +1419,7 @@ async def put_integration(
     integration_target: str | None = None,
 ) -> PutIntegrationOutput: ...
 ```
+
 
 ### put_integration_response
 
@@ -1290,6 +1437,7 @@ async def put_integration_response(
 ) -> PutIntegrationResponseOutput: ...
 ```
 
+
 ### put_method
 
 ```python
@@ -1305,9 +1453,10 @@ async def put_method(
     request_parameters: dict[str, bool] | None = None,
     request_models: dict[str, str] | None = None,
     request_validator_id: str | None = None,
-    authorization_scopes: list[str] | None = None,
+    authorization_scopes: Sequence[str] | None = None,
 ) -> PutMethodOutput: ...
 ```
+
 
 ### put_method_response
 
@@ -1323,6 +1472,7 @@ async def put_method_response(
 ) -> PutMethodResponseOutput: ...
 ```
 
+
 ### put_rest_api
 
 ```python
@@ -1336,6 +1486,7 @@ async def put_rest_api(
 ) -> PutRestApiOutput: ...
 ```
 
+
 ### reject_domain_name_access_association
 
 ```python
@@ -1345,6 +1496,7 @@ async def reject_domain_name_access_association(
     domain_name_arn: str,
 ) -> None: ...
 ```
+
 
 ### tag_resource
 
@@ -1356,6 +1508,7 @@ async def tag_resource(
 ) -> None: ...
 ```
 
+
 ### test_invoke_authorizer
 
 ```python
@@ -1364,13 +1517,14 @@ async def test_invoke_authorizer(
     rest_api_id: str,
     authorizer_id: str,
     headers: dict[str, str] | None = None,
-    multi_value_headers: dict[str, list[str]] | None = None,
+    multi_value_headers: dict[str, Sequence[str]] | None = None,
     path_with_query_string: str | None = None,
     body: str | None = None,
     stage_variables: dict[str, str] | None = None,
     additional_context: dict[str, str] | None = None,
 ) -> TestInvokeAuthorizerResponse: ...
 ```
+
 
 ### test_invoke_method
 
@@ -1383,11 +1537,12 @@ async def test_invoke_method(
     path_with_query_string: str | None = None,
     body: str | None = None,
     headers: dict[str, str] | None = None,
-    multi_value_headers: dict[str, list[str]] | None = None,
+    multi_value_headers: dict[str, Sequence[str]] | None = None,
     client_certificate_id: str | None = None,
     stage_variables: dict[str, str] | None = None,
 ) -> TestInvokeMethodResponse: ...
 ```
+
 
 ### untag_resource
 
@@ -1395,18 +1550,20 @@ async def test_invoke_method(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_account
 
 ```python
 async def update_account(
     *,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateAccountOutput: ...
 ```
+
 
 ### update_api_key
 
@@ -1414,9 +1571,10 @@ async def update_account(
 async def update_api_key(
     *,
     api_key: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateApiKeyOutput: ...
 ```
+
 
 ### update_authorizer
 
@@ -1425,9 +1583,10 @@ async def update_authorizer(
     *,
     rest_api_id: str,
     authorizer_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateAuthorizerOutput: ...
 ```
+
 
 ### update_base_path_mapping
 
@@ -1437,9 +1596,10 @@ async def update_base_path_mapping(
     domain_name: str,
     base_path: str,
     domain_name_id: str | None = None,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateBasePathMappingOutput: ...
 ```
+
 
 ### update_client_certificate
 
@@ -1447,9 +1607,10 @@ async def update_base_path_mapping(
 async def update_client_certificate(
     *,
     client_certificate_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateClientCertificateOutput: ...
 ```
+
 
 ### update_deployment
 
@@ -1458,9 +1619,10 @@ async def update_deployment(
     *,
     rest_api_id: str,
     deployment_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDeploymentOutput: ...
 ```
+
 
 ### update_documentation_part
 
@@ -1469,9 +1631,10 @@ async def update_documentation_part(
     *,
     rest_api_id: str,
     documentation_part_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDocumentationPartOutput: ...
 ```
+
 
 ### update_documentation_version
 
@@ -1480,9 +1643,10 @@ async def update_documentation_version(
     *,
     rest_api_id: str,
     documentation_version: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDocumentationVersionOutput: ...
 ```
+
 
 ### update_domain_name
 
@@ -1491,9 +1655,10 @@ async def update_domain_name(
     *,
     domain_name: str,
     domain_name_id: str | None = None,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDomainNameOutput: ...
 ```
+
 
 ### update_gateway_response
 
@@ -1502,9 +1667,10 @@ async def update_gateway_response(
     *,
     rest_api_id: str,
     response_type: GatewayResponseType,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateGatewayResponseOutput: ...
 ```
+
 
 ### update_integration
 
@@ -1514,9 +1680,10 @@ async def update_integration(
     rest_api_id: str,
     resource_id: str,
     http_method: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateIntegrationOutput: ...
 ```
+
 
 ### update_integration_response
 
@@ -1527,9 +1694,10 @@ async def update_integration_response(
     resource_id: str,
     http_method: str,
     status_code: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateIntegrationResponseOutput: ...
 ```
+
 
 ### update_method
 
@@ -1539,9 +1707,10 @@ async def update_method(
     rest_api_id: str,
     resource_id: str,
     http_method: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateMethodOutput: ...
 ```
+
 
 ### update_method_response
 
@@ -1552,9 +1721,10 @@ async def update_method_response(
     resource_id: str,
     http_method: str,
     status_code: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateMethodResponseOutput: ...
 ```
+
 
 ### update_model
 
@@ -1563,9 +1733,10 @@ async def update_model(
     *,
     rest_api_id: str,
     model_name: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateModelOutput: ...
 ```
+
 
 ### update_request_validator
 
@@ -1574,9 +1745,10 @@ async def update_request_validator(
     *,
     rest_api_id: str,
     request_validator_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateRequestValidatorOutput: ...
 ```
+
 
 ### update_resource
 
@@ -1585,9 +1757,10 @@ async def update_resource(
     *,
     rest_api_id: str,
     resource_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateResourceOutput: ...
 ```
+
 
 ### update_rest_api
 
@@ -1595,9 +1768,10 @@ async def update_resource(
 async def update_rest_api(
     *,
     rest_api_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateRestApiOutput: ...
 ```
+
 
 ### update_stage
 
@@ -1606,9 +1780,10 @@ async def update_stage(
     *,
     rest_api_id: str,
     stage_name: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateStageOutput: ...
 ```
+
 
 ### update_usage
 
@@ -1617,9 +1792,10 @@ async def update_usage(
     *,
     usage_plan_id: str,
     key_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateUsageOutput: ...
 ```
+
 
 ### update_usage_plan
 
@@ -1627,9 +1803,10 @@ async def update_usage(
 async def update_usage_plan(
     *,
     usage_plan_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateUsagePlanOutput: ...
 ```
+
 
 ### update_vpc_link
 
@@ -1637,9 +1814,10 @@ async def update_usage_plan(
 async def update_vpc_link(
     *,
     vpc_link_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateVpcLinkOutput: ...
 ```
+
 
 ## Links
 

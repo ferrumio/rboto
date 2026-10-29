@@ -83,7 +83,8 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+
 - Catch modeled exceptions from `rboto_transcribe_streaming.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -119,6 +120,7 @@ async def get_medical_scribe_stream(
 ) -> GetMedicalScribeStreamResponse: ...
 ```
 
+
 ### start_call_analytics_stream_transcription
 
 ```python
@@ -146,6 +148,7 @@ async def start_call_analytics_stream_transcription(
 ) -> StartCallAnalyticsStreamTranscriptionResponse: ...
 ```
 
+
 ### start_medical_scribe_stream
 
 ```python
@@ -158,6 +161,7 @@ async def start_medical_scribe_stream(
     session_id: str | None = None,
 ) -> StartMedicalScribeStreamResponse: ...
 ```
+
 
 ### start_medical_stream_transcription
 
@@ -178,6 +182,7 @@ async def start_medical_stream_transcription(
     content_identification_type: MedicalContentIdentificationType | None = None,
 ) -> StartMedicalStreamTranscriptionResponse: ...
 ```
+
 
 ### start_stream_transcription
 
@@ -211,6 +216,7 @@ async def start_stream_transcription(
     transcript_format: TranscriptFormat | None = None,
 ) -> StartStreamTranscriptionResponse: ...
 ```
+
 
 ## Links
 

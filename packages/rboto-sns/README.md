@@ -65,7 +65,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_sns.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -84,7 +87,7 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_permission`](#add_permission) | <code>topic_arn: str</code>, <code>label: str</code>, <code>aws_account_id: list[str]</code>, <code>action_name: list[str]</code> | <code>None</code> |
+| [`add_permission`](#add_permission) | <code>topic_arn: str</code>, <code>label: str</code>, <code>aws_account_id: Sequence[str]</code>, <code>action_name: Sequence[str]</code> | <code>None</code> |
 | [`check_if_phone_number_is_opted_out`](#check_if_phone_number_is_opted_out) | <code>phone_number: str</code> | <code>CheckIfPhoneNumberIsOptedOutResponse</code> |
 | [`confirm_subscription`](#confirm_subscription) | <code>topic_arn: str</code>, <code>token: str</code> | <code>ConfirmSubscriptionResponse</code> |
 | [`create_platform_application`](#create_platform_application) | <code>name: str</code>, <code>platform: str</code>, <code>attributes: dict[str, str]</code> | <code>CreatePlatformApplicationResponse</code> |
@@ -113,7 +116,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_topics`](#list_topics) | None | <code>ListTopicsResponse</code> |
 | [`opt_in_phone_number`](#opt_in_phone_number) | <code>phone_number: str</code> | <code>OptInPhoneNumberResponse</code> |
 | [`publish`](#publish) | <code>message: str</code> | <code>PublishResponse</code> |
-| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: list[PublishBatchRequestEntry]</code> | <code>PublishBatchResponse</code> |
+| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: Sequence[PublishBatchRequestEntry]</code> | <code>PublishBatchResponse</code> |
 | [`put_data_protection_policy`](#put_data_protection_policy) | <code>resource_arn: str</code>, <code>data_protection_policy: str</code> | <code>None</code> |
 | [`remove_permission`](#remove_permission) | <code>topic_arn: str</code>, <code>label: str</code> | <code>None</code> |
 | [`set_endpoint_attributes`](#set_endpoint_attributes) | <code>endpoint_arn: str</code>, <code>attributes: dict[str, str]</code> | <code>None</code> |
@@ -122,9 +125,9 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_subscription_attributes`](#set_subscription_attributes) | <code>subscription_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
 | [`set_topic_attributes`](#set_topic_attributes) | <code>topic_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
 | [`subscribe`](#subscribe) | <code>topic_arn: str</code>, <code>protocol: str</code> | <code>SubscribeResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
 | [`unsubscribe`](#unsubscribe) | <code>subscription_arn: str</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`verify_sms_sandbox_phone_number`](#verify_sms_sandbox_phone_number) | <code>phone_number: str</code>, <code>one_time_password: str</code> | <code>VerifySMSSandboxPhoneNumberResult</code> |
 
 ## Complete signatures
@@ -136,10 +139,11 @@ async def add_permission(
     *,
     topic_arn: str,
     label: str,
-    aws_account_id: list[str],
-    action_name: list[str],
+    aws_account_id: Sequence[str],
+    action_name: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### check_if_phone_number_is_opted_out
 
@@ -149,6 +153,7 @@ async def check_if_phone_number_is_opted_out(
     phone_number: str,
 ) -> CheckIfPhoneNumberIsOptedOutResponse: ...
 ```
+
 
 ### confirm_subscription
 
@@ -161,6 +166,7 @@ async def confirm_subscription(
 ) -> ConfirmSubscriptionResponse: ...
 ```
 
+
 ### create_platform_application
 
 ```python
@@ -171,6 +177,7 @@ async def create_platform_application(
     attributes: dict[str, str],
 ) -> CreatePlatformApplicationResponse: ...
 ```
+
 
 ### create_platform_endpoint
 
@@ -184,6 +191,7 @@ async def create_platform_endpoint(
 ) -> CreateEndpointResponse: ...
 ```
 
+
 ### create_sms_sandbox_phone_number
 
 ```python
@@ -194,6 +202,7 @@ async def create_sms_sandbox_phone_number(
 ) -> CreateSMSSandboxPhoneNumberResult: ...
 ```
 
+
 ### create_topic
 
 ```python
@@ -201,10 +210,11 @@ async def create_topic(
     *,
     name: str,
     attributes: dict[str, str] | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     data_protection_policy: str | None = None,
 ) -> CreateTopicResponse: ...
 ```
+
 
 ### delete_endpoint
 
@@ -215,6 +225,7 @@ async def delete_endpoint(
 ) -> None: ...
 ```
 
+
 ### delete_platform_application
 
 ```python
@@ -223,6 +234,7 @@ async def delete_platform_application(
     platform_application_arn: str,
 ) -> None: ...
 ```
+
 
 ### delete_sms_sandbox_phone_number
 
@@ -233,6 +245,7 @@ async def delete_sms_sandbox_phone_number(
 ) -> DeleteSMSSandboxPhoneNumberResult: ...
 ```
 
+
 ### delete_topic
 
 ```python
@@ -241,6 +254,7 @@ async def delete_topic(
     topic_arn: str,
 ) -> None: ...
 ```
+
 
 ### get_data_protection_policy
 
@@ -251,6 +265,7 @@ async def get_data_protection_policy(
 ) -> GetDataProtectionPolicyResponse: ...
 ```
 
+
 ### get_endpoint_attributes
 
 ```python
@@ -259,6 +274,7 @@ async def get_endpoint_attributes(
     endpoint_arn: str,
 ) -> GetEndpointAttributesResponse: ...
 ```
+
 
 ### get_platform_application_attributes
 
@@ -269,20 +285,23 @@ async def get_platform_application_attributes(
 ) -> GetPlatformApplicationAttributesResponse: ...
 ```
 
+
 ### get_sms_attributes
 
 ```python
 async def get_sms_attributes(
     *,
-    attributes: list[str] | None = None,
+    attributes: Sequence[str] | None = None,
 ) -> GetSMSAttributesResponse: ...
 ```
+
 
 ### get_sms_sandbox_account_status
 
 ```python
 async def get_sms_sandbox_account_status() -> GetSMSSandboxAccountStatusResult: ...
 ```
+
 
 ### get_subscription_attributes
 
@@ -293,6 +312,7 @@ async def get_subscription_attributes(
 ) -> GetSubscriptionAttributesResponse: ...
 ```
 
+
 ### get_topic_attributes
 
 ```python
@@ -301,6 +321,7 @@ async def get_topic_attributes(
     topic_arn: str,
 ) -> GetTopicAttributesResponse: ...
 ```
+
 
 ### list_endpoints_by_platform_application
 
@@ -312,6 +333,10 @@ async def list_endpoints_by_platform_application(
 ) -> ListEndpointsByPlatformApplicationResponse: ...
 ```
 
+Also available as `client.paginators.list_endpoints_by_platform_application(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_origination_numbers
 
 ```python
@@ -322,6 +347,10 @@ async def list_origination_numbers(
 ) -> ListOriginationNumbersResult: ...
 ```
 
+Also available as `client.paginators.list_origination_numbers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_phone_numbers_opted_out
 
 ```python
@@ -331,6 +360,10 @@ async def list_phone_numbers_opted_out(
 ) -> ListPhoneNumbersOptedOutResponse: ...
 ```
 
+Also available as `client.paginators.list_phone_numbers_opted_out(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_platform_applications
 
 ```python
@@ -339,6 +372,10 @@ async def list_platform_applications(
     next_token: str | None = None,
 ) -> ListPlatformApplicationsResponse: ...
 ```
+
+Also available as `client.paginators.list_platform_applications(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_sms_sandbox_phone_numbers
 
@@ -350,6 +387,10 @@ async def list_sms_sandbox_phone_numbers(
 ) -> ListSMSSandboxPhoneNumbersResult: ...
 ```
 
+Also available as `client.paginators.list_sms_sandbox_phone_numbers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_subscriptions
 
 ```python
@@ -358,6 +399,10 @@ async def list_subscriptions(
     next_token: str | None = None,
 ) -> ListSubscriptionsResponse: ...
 ```
+
+Also available as `client.paginators.list_subscriptions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_subscriptions_by_topic
 
@@ -369,6 +414,10 @@ async def list_subscriptions_by_topic(
 ) -> ListSubscriptionsByTopicResponse: ...
 ```
 
+Also available as `client.paginators.list_subscriptions_by_topic(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -377,6 +426,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_topics
 
@@ -387,6 +437,10 @@ async def list_topics(
 ) -> ListTopicsResponse: ...
 ```
 
+Also available as `client.paginators.list_topics(...)`, returning an
+async iterator of the response type above.
+
+
 ### opt_in_phone_number
 
 ```python
@@ -395,6 +449,7 @@ async def opt_in_phone_number(
     phone_number: str,
 ) -> OptInPhoneNumberResponse: ...
 ```
+
 
 ### publish
 
@@ -413,15 +468,17 @@ async def publish(
 ) -> PublishResponse: ...
 ```
 
+
 ### publish_batch
 
 ```python
 async def publish_batch(
     *,
     topic_arn: str,
-    publish_batch_request_entries: list[PublishBatchRequestEntry],
+    publish_batch_request_entries: Sequence[PublishBatchRequestEntry],
 ) -> PublishBatchResponse: ...
 ```
+
 
 ### put_data_protection_policy
 
@@ -433,6 +490,7 @@ async def put_data_protection_policy(
 ) -> None: ...
 ```
 
+
 ### remove_permission
 
 ```python
@@ -442,6 +500,7 @@ async def remove_permission(
     label: str,
 ) -> None: ...
 ```
+
 
 ### set_endpoint_attributes
 
@@ -453,6 +512,7 @@ async def set_endpoint_attributes(
 ) -> None: ...
 ```
 
+
 ### set_platform_application_attributes
 
 ```python
@@ -463,6 +523,7 @@ async def set_platform_application_attributes(
 ) -> None: ...
 ```
 
+
 ### set_sms_attributes
 
 ```python
@@ -471,6 +532,7 @@ async def set_sms_attributes(
     attributes: dict[str, str],
 ) -> SetSMSAttributesResponse: ...
 ```
+
 
 ### set_subscription_attributes
 
@@ -483,6 +545,7 @@ async def set_subscription_attributes(
 ) -> None: ...
 ```
 
+
 ### set_topic_attributes
 
 ```python
@@ -493,6 +556,7 @@ async def set_topic_attributes(
     attribute_value: str | None = None,
 ) -> None: ...
 ```
+
 
 ### subscribe
 
@@ -507,15 +571,17 @@ async def subscribe(
 ) -> SubscribeResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### unsubscribe
 
@@ -526,15 +592,17 @@ async def unsubscribe(
 ) -> None: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### verify_sms_sandbox_phone_number
 
@@ -545,6 +613,7 @@ async def verify_sms_sandbox_phone_number(
     one_time_password: str,
 ) -> VerifySMSSandboxPhoneNumberResult: ...
 ```
+
 
 ## Links
 

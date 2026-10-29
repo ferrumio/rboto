@@ -2,6 +2,14 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
+class Pagination:
+    input_tokens: tuple[str, ...]
+    output_tokens: tuple[str, ...]
+    page_size: str | None = None
+    more_results: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class ServiceDescriptor:
     service_id: str
     python_name: str
@@ -22,6 +30,7 @@ class ServiceDescriptor:
     native_client_class: str | None = None
     display_name: str | None = None
     documentation_path: str = "clients/"
+    pagination: tuple[tuple[str, Pagination], ...] = ()
 
     @property
     def public_name(self) -> str:

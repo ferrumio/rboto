@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -82,10 +85,10 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`batch_delete_advanced_prompt_optimization_job`](#batch_delete_advanced_prompt_optimization_job) | <code>job_identifiers: list[str]</code> | <code>BatchDeleteAdvancedPromptOptimizationJobResponse</code> |
-| [`batch_delete_evaluation_job`](#batch_delete_evaluation_job) | <code>job_identifiers: list[str]</code> | <code>BatchDeleteEvaluationJobResponse</code> |
+| [`batch_delete_advanced_prompt_optimization_job`](#batch_delete_advanced_prompt_optimization_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteAdvancedPromptOptimizationJobResponse</code> |
+| [`batch_delete_evaluation_job`](#batch_delete_evaluation_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteEvaluationJobResponse</code> |
 | [`cancel_automated_reasoning_policy_build_workflow`](#cancel_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>CancelAutomatedReasoningPolicyBuildWorkflowResponse</code> |
-| [`create_advanced_prompt_optimization_job`](#create_advanced_prompt_optimization_job) | <code>job_name: str</code>, <code>input_config: AdvancedPromptOptimizationInputConfig</code>, <code>output_config: AdvancedPromptOptimizationOutputConfig</code>, <code>model_configurations: list[ModelConfiguration]</code> | <code>CreateAdvancedPromptOptimizationJobResponse</code> |
+| [`create_advanced_prompt_optimization_job`](#create_advanced_prompt_optimization_job) | <code>job_name: str</code>, <code>input_config: AdvancedPromptOptimizationInputConfig</code>, <code>output_config: AdvancedPromptOptimizationOutputConfig</code>, <code>model_configurations: Sequence[ModelConfiguration]</code> | <code>CreateAdvancedPromptOptimizationJobResponse</code> |
 | [`create_automated_reasoning_policy`](#create_automated_reasoning_policy) | <code>name: str</code> | <code>CreateAutomatedReasoningPolicyResponse</code> |
 | [`create_automated_reasoning_policy_test_case`](#create_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>guard_content: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>CreateAutomatedReasoningPolicyTestCaseResponse</code> |
 | [`create_automated_reasoning_policy_version`](#create_automated_reasoning_policy_version) | <code>policy_arn: str</code>, <code>last_updated_definition_hash: str</code> | <code>CreateAutomatedReasoningPolicyVersionResponse</code> |
@@ -101,7 +104,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_model_customization_job`](#create_model_customization_job) | <code>job_name: str</code>, <code>custom_model_name: str</code>, <code>role_arn: str</code>, <code>base_model_identifier: str</code>, <code>training_data_config: TrainingDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>CreateModelCustomizationJobResponse</code> |
 | [`create_model_import_job`](#create_model_import_job) | <code>job_name: str</code>, <code>imported_model_name: str</code>, <code>role_arn: str</code>, <code>model_data_source: ModelDataSource</code> | <code>CreateModelImportJobResponse</code> |
 | [`create_model_invocation_job`](#create_model_invocation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>model_id: str</code>, <code>input_data_config: ModelInvocationJobInputDataConfig</code>, <code>output_data_config: ModelInvocationJobOutputDataConfig</code> | <code>CreateModelInvocationJobResponse</code> |
-| [`create_prompt_router`](#create_prompt_router) | <code>prompt_router_name: str</code>, <code>models: list[PromptRouterTargetModel]</code>, <code>routing_criteria: RoutingCriteria</code>, <code>fallback_model: PromptRouterTargetModel</code> | <code>CreatePromptRouterResponse</code> |
+| [`create_prompt_router`](#create_prompt_router) | <code>prompt_router_name: str</code>, <code>models: Sequence[PromptRouterTargetModel]</code>, <code>routing_criteria: RoutingCriteria</code>, <code>fallback_model: PromptRouterTargetModel</code> | <code>CreatePromptRouterResponse</code> |
 | [`create_provisioned_model_throughput`](#create_provisioned_model_throughput) | <code>model_units: int</code>, <code>provisioned_model_name: str</code>, <code>model_id: str</code> | <code>CreateProvisionedModelThroughputResponse</code> |
 | [`delete_automated_reasoning_policy`](#delete_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>DeleteAutomatedReasoningPolicyResponse</code> |
 | [`delete_automated_reasoning_policy_build_workflow`](#delete_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyBuildWorkflowResponse</code> |
@@ -181,10 +184,10 @@ native response definitions are in the package's `_native.pyi`.
 | [`stop_evaluation_job`](#stop_evaluation_job) | <code>job_identifier: str</code> | <code>StopEvaluationJobResponse</code> |
 | [`stop_model_customization_job`](#stop_model_customization_job) | <code>job_identifier: str</code> | <code>StopModelCustomizationJobResponse</code> |
 | [`stop_model_invocation_job`](#stop_model_invocation_job) | <code>job_identifier: str</code> | <code>StopModelInvocationJobResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_automated_reasoning_policy`](#update_automated_reasoning_policy) | <code>policy_arn: str</code>, <code>policy_definition: AutomatedReasoningPolicyDefinition</code> | <code>UpdateAutomatedReasoningPolicyResponse</code> |
-| [`update_automated_reasoning_policy_annotations`](#update_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>annotations: list[AutomatedReasoningPolicyAnnotation]</code>, <code>last_updated_annotation_set_hash: str</code> | <code>UpdateAutomatedReasoningPolicyAnnotationsResponse</code> |
+| [`update_automated_reasoning_policy_annotations`](#update_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>annotations: Sequence[AutomatedReasoningPolicyAnnotation]</code>, <code>last_updated_annotation_set_hash: str</code> | <code>UpdateAutomatedReasoningPolicyAnnotationsResponse</code> |
 | [`update_automated_reasoning_policy_test_case`](#update_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>guard_content: str</code>, <code>last_updated_at: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>UpdateAutomatedReasoningPolicyTestCaseResponse</code> |
 | [`update_custom_model_deployment`](#update_custom_model_deployment) | <code>model_arn: str</code>, <code>custom_model_deployment_identifier: str</code> | <code>UpdateCustomModelDeploymentResponse</code> |
 | [`update_guardrail`](#update_guardrail) | <code>guardrail_identifier: str</code>, <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>UpdateGuardrailResponse</code> |
@@ -198,18 +201,20 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def batch_delete_advanced_prompt_optimization_job(
     *,
-    job_identifiers: list[str],
+    job_identifiers: Sequence[str],
 ) -> BatchDeleteAdvancedPromptOptimizationJobResponse: ...
 ```
+
 
 ### batch_delete_evaluation_job
 
 ```python
 async def batch_delete_evaluation_job(
     *,
-    job_identifiers: list[str],
+    job_identifiers: Sequence[str],
 ) -> BatchDeleteEvaluationJobResponse: ...
 ```
+
 
 ### cancel_automated_reasoning_policy_build_workflow
 
@@ -221,6 +226,7 @@ async def cancel_automated_reasoning_policy_build_workflow(
 ) -> CancelAutomatedReasoningPolicyBuildWorkflowResponse: ...
 ```
 
+
 ### create_advanced_prompt_optimization_job
 
 ```python
@@ -229,13 +235,14 @@ async def create_advanced_prompt_optimization_job(
     job_name: str,
     input_config: AdvancedPromptOptimizationInputConfig,
     output_config: AdvancedPromptOptimizationOutputConfig,
-    model_configurations: list[ModelConfiguration],
+    model_configurations: Sequence[ModelConfiguration],
     job_description: str | None = None,
     client_token: str | None = None,
     encryption_key_arn: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateAdvancedPromptOptimizationJobResponse: ...
 ```
+
 
 ### create_automated_reasoning_policy
 
@@ -247,9 +254,10 @@ async def create_automated_reasoning_policy(
     client_request_token: str | None = None,
     policy_definition: AutomatedReasoningPolicyDefinition | None = None,
     kms_key_id: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateAutomatedReasoningPolicyResponse: ...
 ```
+
 
 ### create_automated_reasoning_policy_test_case
 
@@ -265,6 +273,7 @@ async def create_automated_reasoning_policy_test_case(
 ) -> CreateAutomatedReasoningPolicyTestCaseResponse: ...
 ```
 
+
 ### create_automated_reasoning_policy_version
 
 ```python
@@ -273,9 +282,10 @@ async def create_automated_reasoning_policy_version(
     policy_arn: str,
     last_updated_definition_hash: str,
     client_request_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateAutomatedReasoningPolicyVersionResponse: ...
 ```
+
 
 ### create_custom_model
 
@@ -287,10 +297,11 @@ async def create_custom_model(
     custom_model_data_source: CustomModelDataSource | None = None,
     model_kms_key_arn: str | None = None,
     role_arn: str | None = None,
-    model_tags: list[Tag] | None = None,
+    model_tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
 ) -> CreateCustomModelResponse: ...
 ```
+
 
 ### create_custom_model_deployment
 
@@ -300,10 +311,11 @@ async def create_custom_model_deployment(
     model_deployment_name: str,
     model_arn: str,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
 ) -> CreateCustomModelDeploymentResponse: ...
 ```
+
 
 ### create_evaluation_job
 
@@ -318,10 +330,11 @@ async def create_evaluation_job(
     job_description: str | None = None,
     client_request_token: str | None = None,
     customer_encryption_key_id: str | None = None,
-    job_tags: list[Tag] | None = None,
+    job_tags: Sequence[Tag] | None = None,
     application_type: ApplicationType | None = None,
 ) -> CreateEvaluationJobResponse: ...
 ```
+
 
 ### create_foundation_model_agreement
 
@@ -332,6 +345,7 @@ async def create_foundation_model_agreement(
     model_id: str,
 ) -> CreateFoundationModelAgreementResponse: ...
 ```
+
 
 ### create_guardrail
 
@@ -350,10 +364,11 @@ async def create_guardrail(
     automated_reasoning_policy_config: GuardrailAutomatedReasoningPolicyConfig | None = None,
     cross_region_config: GuardrailCrossRegionConfig | None = None,
     kms_key_id: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
 ) -> CreateGuardrailResponse: ...
 ```
+
 
 ### create_guardrail_version
 
@@ -366,6 +381,7 @@ async def create_guardrail_version(
 ) -> CreateGuardrailVersionResponse: ...
 ```
 
+
 ### create_inference_profile
 
 ```python
@@ -375,9 +391,10 @@ async def create_inference_profile(
     model_source: InferenceProfileModelSource,
     description: str | None = None,
     client_request_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateInferenceProfileResponse: ...
 ```
+
 
 ### create_marketplace_model_endpoint
 
@@ -389,9 +406,10 @@ async def create_marketplace_model_endpoint(
     endpoint_name: str,
     accept_eula: bool | None = None,
     client_request_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateMarketplaceModelEndpointResponse: ...
 ```
+
 
 ### create_model_copy_job
 
@@ -401,10 +419,11 @@ async def create_model_copy_job(
     source_model_arn: str,
     target_model_name: str,
     model_kms_key_id: str | None = None,
-    target_model_tags: list[Tag] | None = None,
+    target_model_tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
 ) -> CreateModelCopyJobResponse: ...
 ```
+
 
 ### create_model_customization_job
 
@@ -420,14 +439,15 @@ async def create_model_customization_job(
     client_request_token: str | None = None,
     customization_type: CustomizationType | None = None,
     custom_model_kms_key_id: str | None = None,
-    job_tags: list[Tag] | None = None,
-    custom_model_tags: list[Tag] | None = None,
+    job_tags: Sequence[Tag] | None = None,
+    custom_model_tags: Sequence[Tag] | None = None,
     validation_data_config: ValidationDataConfig | None = None,
     hyper_parameters: dict[str, str] | None = None,
     vpc_config: VpcConfig | None = None,
     customization_config: CustomizationConfig | None = None,
 ) -> CreateModelCustomizationJobResponse: ...
 ```
+
 
 ### create_model_import_job
 
@@ -438,13 +458,14 @@ async def create_model_import_job(
     imported_model_name: str,
     role_arn: str,
     model_data_source: ModelDataSource,
-    job_tags: list[Tag] | None = None,
-    imported_model_tags: list[Tag] | None = None,
+    job_tags: Sequence[Tag] | None = None,
+    imported_model_tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
     vpc_config: VpcConfig | None = None,
     imported_model_kms_key_id: str | None = None,
 ) -> CreateModelImportJobResponse: ...
 ```
+
 
 ### create_model_invocation_job
 
@@ -459,10 +480,11 @@ async def create_model_invocation_job(
     client_request_token: str | None = None,
     vpc_config: VpcConfig | None = None,
     timeout_duration_in_hours: int | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     model_invocation_type: ModelInvocationType | None = None,
 ) -> CreateModelInvocationJobResponse: ...
 ```
+
 
 ### create_prompt_router
 
@@ -470,14 +492,15 @@ async def create_model_invocation_job(
 async def create_prompt_router(
     *,
     prompt_router_name: str,
-    models: list[PromptRouterTargetModel],
+    models: Sequence[PromptRouterTargetModel],
     routing_criteria: RoutingCriteria,
     fallback_model: PromptRouterTargetModel,
     client_request_token: str | None = None,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreatePromptRouterResponse: ...
 ```
+
 
 ### create_provisioned_model_throughput
 
@@ -489,9 +512,10 @@ async def create_provisioned_model_throughput(
     model_id: str,
     client_request_token: str | None = None,
     commitment_duration: CommitmentDuration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateProvisionedModelThroughputResponse: ...
 ```
+
 
 ### delete_automated_reasoning_policy
 
@@ -502,6 +526,7 @@ async def delete_automated_reasoning_policy(
     force: bool | None = None,
 ) -> DeleteAutomatedReasoningPolicyResponse: ...
 ```
+
 
 ### delete_automated_reasoning_policy_build_workflow
 
@@ -514,6 +539,7 @@ async def delete_automated_reasoning_policy_build_workflow(
 ) -> DeleteAutomatedReasoningPolicyBuildWorkflowResponse: ...
 ```
 
+
 ### delete_automated_reasoning_policy_test_case
 
 ```python
@@ -525,6 +551,7 @@ async def delete_automated_reasoning_policy_test_case(
 ) -> DeleteAutomatedReasoningPolicyTestCaseResponse: ...
 ```
 
+
 ### delete_custom_model
 
 ```python
@@ -533,6 +560,7 @@ async def delete_custom_model(
     model_identifier: str,
 ) -> DeleteCustomModelResponse: ...
 ```
+
 
 ### delete_custom_model_deployment
 
@@ -543,6 +571,7 @@ async def delete_custom_model_deployment(
 ) -> DeleteCustomModelDeploymentResponse: ...
 ```
 
+
 ### delete_enforced_guardrail_configuration
 
 ```python
@@ -552,6 +581,7 @@ async def delete_enforced_guardrail_configuration(
 ) -> DeleteEnforcedGuardrailConfigurationResponse: ...
 ```
 
+
 ### delete_foundation_model_agreement
 
 ```python
@@ -560,6 +590,7 @@ async def delete_foundation_model_agreement(
     model_id: str,
 ) -> DeleteFoundationModelAgreementResponse: ...
 ```
+
 
 ### delete_guardrail
 
@@ -571,6 +602,7 @@ async def delete_guardrail(
 ) -> DeleteGuardrailResponse: ...
 ```
 
+
 ### delete_imported_model
 
 ```python
@@ -579,6 +611,7 @@ async def delete_imported_model(
     model_identifier: str,
 ) -> DeleteImportedModelResponse: ...
 ```
+
 
 ### delete_inference_profile
 
@@ -589,6 +622,7 @@ async def delete_inference_profile(
 ) -> DeleteInferenceProfileResponse: ...
 ```
 
+
 ### delete_marketplace_model_endpoint
 
 ```python
@@ -598,11 +632,13 @@ async def delete_marketplace_model_endpoint(
 ) -> DeleteMarketplaceModelEndpointResponse: ...
 ```
 
+
 ### delete_model_invocation_logging_configuration
 
 ```python
 async def delete_model_invocation_logging_configuration() -> DeleteModelInvocationLoggingConfigurationResponse: ...
 ```
+
 
 ### delete_prompt_router
 
@@ -613,6 +649,7 @@ async def delete_prompt_router(
 ) -> DeletePromptRouterResponse: ...
 ```
 
+
 ### delete_provisioned_model_throughput
 
 ```python
@@ -621,6 +658,7 @@ async def delete_provisioned_model_throughput(
     provisioned_model_id: str,
 ) -> DeleteProvisionedModelThroughputResponse: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -631,6 +669,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyResponse: ...
 ```
 
+
 ### deregister_marketplace_model_endpoint
 
 ```python
@@ -639,6 +678,7 @@ async def deregister_marketplace_model_endpoint(
     endpoint_arn: str,
 ) -> DeregisterMarketplaceModelEndpointResponse: ...
 ```
+
 
 ### export_automated_reasoning_policy_version
 
@@ -649,11 +689,13 @@ async def export_automated_reasoning_policy_version(
 ) -> ExportAutomatedReasoningPolicyVersionResponse: ...
 ```
 
+
 ### get_account_data_retention
 
 ```python
 async def get_account_data_retention() -> GetAccountDataRetentionResponse: ...
 ```
+
 
 ### get_advanced_prompt_optimization_job
 
@@ -664,6 +706,7 @@ async def get_advanced_prompt_optimization_job(
 ) -> GetAdvancedPromptOptimizationJobResponse: ...
 ```
 
+
 ### get_automated_reasoning_policy
 
 ```python
@@ -672,6 +715,7 @@ async def get_automated_reasoning_policy(
     policy_arn: str,
 ) -> GetAutomatedReasoningPolicyResponse: ...
 ```
+
 
 ### get_automated_reasoning_policy_annotations
 
@@ -683,6 +727,7 @@ async def get_automated_reasoning_policy_annotations(
 ) -> GetAutomatedReasoningPolicyAnnotationsResponse: ...
 ```
 
+
 ### get_automated_reasoning_policy_build_workflow
 
 ```python
@@ -692,6 +737,7 @@ async def get_automated_reasoning_policy_build_workflow(
     build_workflow_id: str,
 ) -> GetAutomatedReasoningPolicyBuildWorkflowResponse: ...
 ```
+
 
 ### get_automated_reasoning_policy_build_workflow_result_assets
 
@@ -705,6 +751,7 @@ async def get_automated_reasoning_policy_build_workflow_result_assets(
 ) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse: ...
 ```
 
+
 ### get_automated_reasoning_policy_next_scenario
 
 ```python
@@ -715,6 +762,7 @@ async def get_automated_reasoning_policy_next_scenario(
 ) -> GetAutomatedReasoningPolicyNextScenarioResponse: ...
 ```
 
+
 ### get_automated_reasoning_policy_test_case
 
 ```python
@@ -724,6 +772,7 @@ async def get_automated_reasoning_policy_test_case(
     test_case_id: str,
 ) -> GetAutomatedReasoningPolicyTestCaseResponse: ...
 ```
+
 
 ### get_automated_reasoning_policy_test_result
 
@@ -736,6 +785,7 @@ async def get_automated_reasoning_policy_test_result(
 ) -> GetAutomatedReasoningPolicyTestResultResponse: ...
 ```
 
+
 ### get_custom_model
 
 ```python
@@ -744,6 +794,7 @@ async def get_custom_model(
     model_identifier: str,
 ) -> GetCustomModelResponse: ...
 ```
+
 
 ### get_custom_model_deployment
 
@@ -754,6 +805,7 @@ async def get_custom_model_deployment(
 ) -> GetCustomModelDeploymentResponse: ...
 ```
 
+
 ### get_evaluation_job
 
 ```python
@@ -762,6 +814,7 @@ async def get_evaluation_job(
     job_identifier: str,
 ) -> GetEvaluationJobResponse: ...
 ```
+
 
 ### get_foundation_model
 
@@ -772,6 +825,7 @@ async def get_foundation_model(
 ) -> GetFoundationModelResponse: ...
 ```
 
+
 ### get_foundation_model_availability
 
 ```python
@@ -780,6 +834,7 @@ async def get_foundation_model_availability(
     model_id: str,
 ) -> GetFoundationModelAvailabilityResponse: ...
 ```
+
 
 ### get_guardrail
 
@@ -791,6 +846,7 @@ async def get_guardrail(
 ) -> GetGuardrailResponse: ...
 ```
 
+
 ### get_imported_model
 
 ```python
@@ -799,6 +855,7 @@ async def get_imported_model(
     model_identifier: str,
 ) -> GetImportedModelResponse: ...
 ```
+
 
 ### get_inference_profile
 
@@ -809,6 +866,7 @@ async def get_inference_profile(
 ) -> GetInferenceProfileResponse: ...
 ```
 
+
 ### get_marketplace_model_endpoint
 
 ```python
@@ -817,6 +875,7 @@ async def get_marketplace_model_endpoint(
     endpoint_arn: str,
 ) -> GetMarketplaceModelEndpointResponse: ...
 ```
+
 
 ### get_model_copy_job
 
@@ -827,6 +886,7 @@ async def get_model_copy_job(
 ) -> GetModelCopyJobResponse: ...
 ```
 
+
 ### get_model_customization_job
 
 ```python
@@ -835,6 +895,7 @@ async def get_model_customization_job(
     job_identifier: str,
 ) -> GetModelCustomizationJobResponse: ...
 ```
+
 
 ### get_model_import_job
 
@@ -845,6 +906,7 @@ async def get_model_import_job(
 ) -> GetModelImportJobResponse: ...
 ```
 
+
 ### get_model_invocation_job
 
 ```python
@@ -854,11 +916,13 @@ async def get_model_invocation_job(
 ) -> GetModelInvocationJobResponse: ...
 ```
 
+
 ### get_model_invocation_logging_configuration
 
 ```python
 async def get_model_invocation_logging_configuration() -> GetModelInvocationLoggingConfigurationResponse: ...
 ```
+
 
 ### get_prompt_router
 
@@ -869,6 +933,7 @@ async def get_prompt_router(
 ) -> GetPromptRouterResponse: ...
 ```
 
+
 ### get_provisioned_model_throughput
 
 ```python
@@ -877,6 +942,7 @@ async def get_provisioned_model_throughput(
     provisioned_model_id: str,
 ) -> GetProvisionedModelThroughputResponse: ...
 ```
+
 
 ### get_resource_policy
 
@@ -887,11 +953,13 @@ async def get_resource_policy(
 ) -> GetResourcePolicyResponse: ...
 ```
 
+
 ### get_use_case_for_model_access
 
 ```python
 async def get_use_case_for_model_access() -> GetUseCaseForModelAccessResponse: ...
 ```
+
 
 ### list_advanced_prompt_optimization_jobs
 
@@ -905,6 +973,10 @@ async def list_advanced_prompt_optimization_jobs(
 ) -> ListAdvancedPromptOptimizationJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_advanced_prompt_optimization_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_automated_reasoning_policies
 
 ```python
@@ -915,6 +987,10 @@ async def list_automated_reasoning_policies(
     max_results: int | None = None,
 ) -> ListAutomatedReasoningPoliciesResponse: ...
 ```
+
+Also available as `client.paginators.list_automated_reasoning_policies(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_automated_reasoning_policy_build_workflows
 
@@ -927,6 +1003,10 @@ async def list_automated_reasoning_policy_build_workflows(
 ) -> ListAutomatedReasoningPolicyBuildWorkflowsResponse: ...
 ```
 
+Also available as `client.paginators.list_automated_reasoning_policy_build_workflows(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_automated_reasoning_policy_test_cases
 
 ```python
@@ -937,6 +1017,10 @@ async def list_automated_reasoning_policy_test_cases(
     max_results: int | None = None,
 ) -> ListAutomatedReasoningPolicyTestCasesResponse: ...
 ```
+
+Also available as `client.paginators.list_automated_reasoning_policy_test_cases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_automated_reasoning_policy_test_results
 
@@ -949,6 +1033,10 @@ async def list_automated_reasoning_policy_test_results(
     max_results: int | None = None,
 ) -> ListAutomatedReasoningPolicyTestResultsResponse: ...
 ```
+
+Also available as `client.paginators.list_automated_reasoning_policy_test_results(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_custom_model_deployments
 
@@ -966,6 +1054,10 @@ async def list_custom_model_deployments(
     model_arn_equals: str | None = None,
 ) -> ListCustomModelDeploymentsResponse: ...
 ```
+
+Also available as `client.paginators.list_custom_model_deployments(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_custom_models
 
@@ -986,6 +1078,10 @@ async def list_custom_models(
 ) -> ListCustomModelsResponse: ...
 ```
 
+Also available as `client.paginators.list_custom_models(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_enforced_guardrails_configuration
 
 ```python
@@ -994,6 +1090,10 @@ async def list_enforced_guardrails_configuration(
     next_token: str | None = None,
 ) -> ListEnforcedGuardrailsConfigurationResponse: ...
 ```
+
+Also available as `client.paginators.list_enforced_guardrails_configuration(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_evaluation_jobs
 
@@ -1012,6 +1112,10 @@ async def list_evaluation_jobs(
 ) -> ListEvaluationJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_evaluation_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_foundation_model_agreement_offers
 
 ```python
@@ -1021,6 +1125,7 @@ async def list_foundation_model_agreement_offers(
     offer_type: OfferType | None = None,
 ) -> ListFoundationModelAgreementOffersResponse: ...
 ```
+
 
 ### list_foundation_models
 
@@ -1034,6 +1139,7 @@ async def list_foundation_models(
 ) -> ListFoundationModelsResponse: ...
 ```
 
+
 ### list_guardrails
 
 ```python
@@ -1044,6 +1150,10 @@ async def list_guardrails(
     next_token: str | None = None,
 ) -> ListGuardrailsResponse: ...
 ```
+
+Also available as `client.paginators.list_guardrails(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_imported_models
 
@@ -1060,6 +1170,10 @@ async def list_imported_models(
 ) -> ListImportedModelsResponse: ...
 ```
 
+Also available as `client.paginators.list_imported_models(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_inference_profiles
 
 ```python
@@ -1071,6 +1185,10 @@ async def list_inference_profiles(
 ) -> ListInferenceProfilesResponse: ...
 ```
 
+Also available as `client.paginators.list_inference_profiles(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_marketplace_model_endpoints
 
 ```python
@@ -1081,6 +1199,10 @@ async def list_marketplace_model_endpoints(
     model_source_equals: str | None = None,
 ) -> ListMarketplaceModelEndpointsResponse: ...
 ```
+
+Also available as `client.paginators.list_marketplace_model_endpoints(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_model_copy_jobs
 
@@ -1100,6 +1222,10 @@ async def list_model_copy_jobs(
 ) -> ListModelCopyJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_model_copy_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_model_customization_jobs
 
 ```python
@@ -1115,6 +1241,10 @@ async def list_model_customization_jobs(
     sort_order: SortOrder | None = None,
 ) -> ListModelCustomizationJobsResponse: ...
 ```
+
+Also available as `client.paginators.list_model_customization_jobs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_model_import_jobs
 
@@ -1132,6 +1262,10 @@ async def list_model_import_jobs(
 ) -> ListModelImportJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_model_import_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_model_invocation_jobs
 
 ```python
@@ -1148,6 +1282,10 @@ async def list_model_invocation_jobs(
 ) -> ListModelInvocationJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_model_invocation_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_prompt_routers
 
 ```python
@@ -1158,6 +1296,10 @@ async def list_prompt_routers(
     type: PromptRouterType | None = None,
 ) -> ListPromptRoutersResponse: ...
 ```
+
+Also available as `client.paginators.list_prompt_routers(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_provisioned_model_throughputs
 
@@ -1176,6 +1318,10 @@ async def list_provisioned_model_throughputs(
 ) -> ListProvisionedModelThroughputsResponse: ...
 ```
 
+Also available as `client.paginators.list_provisioned_model_throughputs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -1185,6 +1331,7 @@ async def list_tags_for_resource(
 ) -> ListTagsForResourceResponse: ...
 ```
 
+
 ### put_account_data_retention
 
 ```python
@@ -1193,6 +1340,7 @@ async def put_account_data_retention(
     mode: DataRetentionMode,
 ) -> PutAccountDataRetentionResponse: ...
 ```
+
 
 ### put_enforced_guardrail_configuration
 
@@ -1204,6 +1352,7 @@ async def put_enforced_guardrail_configuration(
 ) -> PutEnforcedGuardrailConfigurationResponse: ...
 ```
 
+
 ### put_model_invocation_logging_configuration
 
 ```python
@@ -1212,6 +1361,7 @@ async def put_model_invocation_logging_configuration(
     logging_config: LoggingConfig,
 ) -> PutModelInvocationLoggingConfigurationResponse: ...
 ```
+
 
 ### put_resource_policy
 
@@ -1223,6 +1373,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### put_use_case_for_model_access
 
 ```python
@@ -1231,6 +1382,7 @@ async def put_use_case_for_model_access(
     form_data: bytes,
 ) -> PutUseCaseForModelAccessResponse: ...
 ```
+
 
 ### register_marketplace_model_endpoint
 
@@ -1241,6 +1393,7 @@ async def register_marketplace_model_endpoint(
     model_source_identifier: str,
 ) -> RegisterMarketplaceModelEndpointResponse: ...
 ```
+
 
 ### start_automated_reasoning_policy_build_workflow
 
@@ -1254,6 +1407,7 @@ async def start_automated_reasoning_policy_build_workflow(
 ) -> StartAutomatedReasoningPolicyBuildWorkflowResponse: ...
 ```
 
+
 ### start_automated_reasoning_policy_test_workflow
 
 ```python
@@ -1261,10 +1415,11 @@ async def start_automated_reasoning_policy_test_workflow(
     *,
     policy_arn: str,
     build_workflow_id: str,
-    test_case_ids: list[str] | None = None,
+    test_case_ids: Sequence[str] | None = None,
     client_request_token: str | None = None,
 ) -> StartAutomatedReasoningPolicyTestWorkflowResponse: ...
 ```
+
 
 ### stop_advanced_prompt_optimization_job
 
@@ -1275,6 +1430,7 @@ async def stop_advanced_prompt_optimization_job(
 ) -> StopAdvancedPromptOptimizationJobResponse: ...
 ```
 
+
 ### stop_evaluation_job
 
 ```python
@@ -1283,6 +1439,7 @@ async def stop_evaluation_job(
     job_identifier: str,
 ) -> StopEvaluationJobResponse: ...
 ```
+
 
 ### stop_model_customization_job
 
@@ -1293,6 +1450,7 @@ async def stop_model_customization_job(
 ) -> StopModelCustomizationJobResponse: ...
 ```
 
+
 ### stop_model_invocation_job
 
 ```python
@@ -1302,15 +1460,17 @@ async def stop_model_invocation_job(
 ) -> StopModelInvocationJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### untag_resource
 
@@ -1318,9 +1478,10 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_automated_reasoning_policy
 
@@ -1334,6 +1495,7 @@ async def update_automated_reasoning_policy(
 ) -> UpdateAutomatedReasoningPolicyResponse: ...
 ```
 
+
 ### update_automated_reasoning_policy_annotations
 
 ```python
@@ -1341,10 +1503,11 @@ async def update_automated_reasoning_policy_annotations(
     *,
     policy_arn: str,
     build_workflow_id: str,
-    annotations: list[AutomatedReasoningPolicyAnnotation],
+    annotations: Sequence[AutomatedReasoningPolicyAnnotation],
     last_updated_annotation_set_hash: str,
 ) -> UpdateAutomatedReasoningPolicyAnnotationsResponse: ...
 ```
+
 
 ### update_automated_reasoning_policy_test_case
 
@@ -1362,6 +1525,7 @@ async def update_automated_reasoning_policy_test_case(
 ) -> UpdateAutomatedReasoningPolicyTestCaseResponse: ...
 ```
 
+
 ### update_custom_model_deployment
 
 ```python
@@ -1371,6 +1535,7 @@ async def update_custom_model_deployment(
     custom_model_deployment_identifier: str,
 ) -> UpdateCustomModelDeploymentResponse: ...
 ```
+
 
 ### update_guardrail
 
@@ -1393,6 +1558,7 @@ async def update_guardrail(
 ) -> UpdateGuardrailResponse: ...
 ```
 
+
 ### update_marketplace_model_endpoint
 
 ```python
@@ -1404,6 +1570,7 @@ async def update_marketplace_model_endpoint(
 ) -> UpdateMarketplaceModelEndpointResponse: ...
 ```
 
+
 ### update_provisioned_model_throughput
 
 ```python
@@ -1414,6 +1581,7 @@ async def update_provisioned_model_throughput(
     desired_model_id: str | None = None,
 ) -> UpdateProvisionedModelThroughputResponse: ...
 ```
+
 
 ## Links
 

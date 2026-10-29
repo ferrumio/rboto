@@ -67,7 +67,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_secrets_manager.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -99,13 +102,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_secrets`](#list_secrets) | None | <code>ListSecretsResponse</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>secret_id: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`put_secret_value`](#put_secret_value) | <code>secret_id: str</code> | <code>PutSecretValueResponse</code> |
-| [`remove_regions_from_replication`](#remove_regions_from_replication) | <code>secret_id: str</code>, <code>remove_replica_regions: list[str]</code> | <code>RemoveRegionsFromReplicationResponse</code> |
-| [`replicate_secret_to_regions`](#replicate_secret_to_regions) | <code>secret_id: str</code>, <code>add_replica_regions: list[ReplicaRegionType]</code> | <code>ReplicateSecretToRegionsResponse</code> |
+| [`remove_regions_from_replication`](#remove_regions_from_replication) | <code>secret_id: str</code>, <code>remove_replica_regions: Sequence[str]</code> | <code>RemoveRegionsFromReplicationResponse</code> |
+| [`replicate_secret_to_regions`](#replicate_secret_to_regions) | <code>secret_id: str</code>, <code>add_replica_regions: Sequence[ReplicaRegionType]</code> | <code>ReplicateSecretToRegionsResponse</code> |
 | [`restore_secret`](#restore_secret) | <code>secret_id: str</code> | <code>RestoreSecretResponse</code> |
 | [`rotate_secret`](#rotate_secret) | <code>secret_id: str</code> | <code>RotateSecretResponse</code> |
 | [`stop_replication_to_replica`](#stop_replication_to_replica) | <code>secret_id: str</code> | <code>StopReplicationToReplicaResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>secret_id: str</code>, <code>tags: list[Tag]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>secret_id: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`tag_resource`](#tag_resource) | <code>secret_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>secret_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_secret`](#update_secret) | <code>secret_id: str</code> | <code>UpdateSecretResponse</code> |
 | [`update_secret_version_stage`](#update_secret_version_stage) | <code>secret_id: str</code>, <code>version_stage: str</code> | <code>UpdateSecretVersionStageResponse</code> |
 | [`validate_resource_policy`](#validate_resource_policy) | <code>resource_policy: str</code> | <code>ValidateResourcePolicyResponse</code> |
@@ -117,12 +120,16 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def batch_get_secret_value(
     *,
-    secret_id_list: list[str] | None = None,
-    filters: list[Filter] | None = None,
+    secret_id_list: Sequence[str] | None = None,
+    filters: Sequence[Filter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> BatchGetSecretValueResponse: ...
 ```
+
+Also available as `client.paginators.batch_get_secret_value(...)`, returning an
+async iterator of the response type above.
+
 
 ### cancel_rotate_secret
 
@@ -132,6 +139,7 @@ async def cancel_rotate_secret(
     secret_id: str,
 ) -> CancelRotateSecretResponse: ...
 ```
+
 
 ### create_secret
 
@@ -144,12 +152,13 @@ async def create_secret(
     kms_key_id: str | None = None,
     secret_binary: bytes | None = None,
     secret_string: str | None = None,
-    tags: list[Tag] | None = None,
-    add_replica_regions: list[ReplicaRegionType] | None = None,
+    tags: Sequence[Tag] | None = None,
+    add_replica_regions: Sequence[ReplicaRegionType] | None = None,
     force_overwrite_replica_secret: bool | None = None,
     type: str | None = None,
 ) -> CreateSecretResponse: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -159,6 +168,7 @@ async def delete_resource_policy(
     secret_id: str,
 ) -> DeleteResourcePolicyResponse: ...
 ```
+
 
 ### delete_secret
 
@@ -171,6 +181,7 @@ async def delete_secret(
 ) -> DeleteSecretResponse: ...
 ```
 
+
 ### describe_secret
 
 ```python
@@ -179,6 +190,7 @@ async def describe_secret(
     secret_id: str,
 ) -> DescribeSecretResponse: ...
 ```
+
 
 ### get_random_password
 
@@ -196,6 +208,7 @@ async def get_random_password(
 ) -> GetRandomPasswordResponse: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -204,6 +217,7 @@ async def get_resource_policy(
     secret_id: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_secret_value
 
@@ -215,6 +229,7 @@ async def get_secret_value(
     version_stage: str | None = None,
 ) -> GetSecretValueResponse: ...
 ```
+
 
 ### list_secret_version_ids
 
@@ -228,6 +243,10 @@ async def list_secret_version_ids(
 ) -> ListSecretVersionIdsResponse: ...
 ```
 
+Also available as `client.paginators.list_secret_version_ids(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_secrets
 
 ```python
@@ -236,11 +255,15 @@ async def list_secrets(
     include_planned_deletion: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[Filter] | None = None,
+    filters: Sequence[Filter] | None = None,
     sort_order: SortOrderType | None = None,
     sort_by: SortByType | None = None,
 ) -> ListSecretsResponse: ...
 ```
+
+Also available as `client.paginators.list_secrets(...)`, returning an
+async iterator of the response type above.
+
 
 ### put_resource_policy
 
@@ -253,6 +276,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### put_secret_value
 
 ```python
@@ -262,10 +286,11 @@ async def put_secret_value(
     client_request_token: str | None = None,
     secret_binary: bytes | None = None,
     secret_string: str | None = None,
-    version_stages: list[str] | None = None,
+    version_stages: Sequence[str] | None = None,
     rotation_token: str | None = None,
 ) -> PutSecretValueResponse: ...
 ```
+
 
 ### remove_regions_from_replication
 
@@ -273,9 +298,10 @@ async def put_secret_value(
 async def remove_regions_from_replication(
     *,
     secret_id: str,
-    remove_replica_regions: list[str],
+    remove_replica_regions: Sequence[str],
 ) -> RemoveRegionsFromReplicationResponse: ...
 ```
+
 
 ### replicate_secret_to_regions
 
@@ -283,10 +309,11 @@ async def remove_regions_from_replication(
 async def replicate_secret_to_regions(
     *,
     secret_id: str,
-    add_replica_regions: list[ReplicaRegionType],
+    add_replica_regions: Sequence[ReplicaRegionType],
     force_overwrite_replica_secret: bool | None = None,
 ) -> ReplicateSecretToRegionsResponse: ...
 ```
+
 
 ### restore_secret
 
@@ -297,6 +324,7 @@ async def restore_secret(
 ) -> RestoreSecretResponse: ...
 ```
 
+
 ### rotate_secret
 
 ```python
@@ -306,11 +334,12 @@ async def rotate_secret(
     client_request_token: str | None = None,
     rotation_lambda_arn: str | None = None,
     rotation_rules: RotationRulesType | None = None,
-    external_secret_rotation_metadata: list[ExternalSecretRotationMetadataItem] | None = None,
+    external_secret_rotation_metadata: Sequence[ExternalSecretRotationMetadataItem] | None = None,
     external_secret_rotation_role_arn: str | None = None,
     rotate_immediately: bool | None = None,
 ) -> RotateSecretResponse: ...
 ```
+
 
 ### stop_replication_to_replica
 
@@ -321,15 +350,17 @@ async def stop_replication_to_replica(
 ) -> StopReplicationToReplicaResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     secret_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> None: ...
 ```
+
 
 ### untag_resource
 
@@ -337,9 +368,10 @@ async def tag_resource(
 async def untag_resource(
     *,
     secret_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_secret
 
@@ -356,6 +388,7 @@ async def update_secret(
 ) -> UpdateSecretResponse: ...
 ```
 
+
 ### update_secret_version_stage
 
 ```python
@@ -368,6 +401,7 @@ async def update_secret_version_stage(
 ) -> UpdateSecretVersionStageResponse: ...
 ```
 
+
 ### validate_resource_policy
 
 ```python
@@ -377,6 +411,7 @@ async def validate_resource_policy(
     secret_id: str | None = None,
 ) -> ValidateResourcePolicyResponse: ...
 ```
+
 
 ## Links
 

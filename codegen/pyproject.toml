@@ -36,7 +36,7 @@ Changelog = "https://github.com/ferrumio/rboto/releases"
 rboto-codegen = "rboto_codegen.cli:main"
 
 [dependency-groups]
-test = ["pytest>=8.3", "mypy>=1.15", "pyright>=1.1.400"]
+test = ["pytest>=8.3", "pytest-asyncio>=1", "mypy>=1.15", "pyright>=1.1.400", "pydantic>=2,<3"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/rboto_codegen"]

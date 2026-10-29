@@ -71,7 +71,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_eventbridge.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -95,7 +98,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_api_destination`](#create_api_destination) | <code>name: str</code>, <code>connection_arn: str</code>, <code>invocation_endpoint: str</code>, <code>http_method: ApiDestinationHttpMethod</code> | <code>CreateApiDestinationResponse</code> |
 | [`create_archive`](#create_archive) | <code>archive_name: str</code>, <code>event_source_arn: str</code> | <code>CreateArchiveResponse</code> |
 | [`create_connection`](#create_connection) | <code>name: str</code>, <code>authorization_type: ConnectionAuthorizationType</code>, <code>auth_parameters: CreateConnectionAuthRequestParameters</code> | <code>CreateConnectionResponse</code> |
-| [`create_endpoint`](#create_endpoint) | <code>name: str</code>, <code>routing_config: RoutingConfig</code>, <code>event_buses: list[EndpointEventBus]</code> | <code>CreateEndpointResponse</code> |
+| [`create_endpoint`](#create_endpoint) | <code>name: str</code>, <code>routing_config: RoutingConfig</code>, <code>event_buses: Sequence[EndpointEventBus]</code> | <code>CreateEndpointResponse</code> |
 | [`create_event_bus`](#create_event_bus) | <code>name: str</code> | <code>CreateEventBusResponse</code> |
 | [`create_partner_event_source`](#create_partner_event_source) | <code>name: str</code>, <code>account: str</code> | <code>CreatePartnerEventSourceResponse</code> |
 | [`deactivate_event_source`](#deactivate_event_source) | <code>name: str</code> | <code>None</code> |
@@ -131,17 +134,17 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_rules`](#list_rules) | None | <code>ListRulesResponse</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
 | [`list_targets_by_rule`](#list_targets_by_rule) | <code>rule: str</code> | <code>ListTargetsByRuleResponse</code> |
-| [`put_events`](#put_events) | <code>entries: list[PutEventsRequestEntry]</code> | <code>PutEventsResponse</code> |
-| [`put_partner_events`](#put_partner_events) | <code>entries: list[PutPartnerEventsRequestEntry]</code> | <code>PutPartnerEventsResponse</code> |
+| [`put_events`](#put_events) | <code>entries: Sequence[PutEventsRequestEntry]</code> | <code>PutEventsResponse</code> |
+| [`put_partner_events`](#put_partner_events) | <code>entries: Sequence[PutPartnerEventsRequestEntry]</code> | <code>PutPartnerEventsResponse</code> |
 | [`put_permission`](#put_permission) | None | <code>None</code> |
 | [`put_rule`](#put_rule) | <code>name: str</code> | <code>PutRuleResponse</code> |
-| [`put_targets`](#put_targets) | <code>rule: str</code>, <code>targets: list[Target]</code> | <code>PutTargetsResponse</code> |
+| [`put_targets`](#put_targets) | <code>rule: str</code>, <code>targets: Sequence[Target]</code> | <code>PutTargetsResponse</code> |
 | [`remove_permission`](#remove_permission) | None | <code>None</code> |
-| [`remove_targets`](#remove_targets) | <code>rule: str</code>, <code>ids: list[str]</code> | <code>RemoveTargetsResponse</code> |
+| [`remove_targets`](#remove_targets) | <code>rule: str</code>, <code>ids: Sequence[str]</code> | <code>RemoveTargetsResponse</code> |
 | [`start_replay`](#start_replay) | <code>replay_name: str</code>, <code>event_source_arn: str</code>, <code>event_start_time: str</code>, <code>event_end_time: str</code>, <code>destination: ReplayDestination</code> | <code>StartReplayResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
 | [`test_event_pattern`](#test_event_pattern) | <code>event_pattern: str</code>, <code>event: str</code> | <code>TestEventPatternResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_api_destination`](#update_api_destination) | <code>name: str</code> | <code>UpdateApiDestinationResponse</code> |
 | [`update_archive`](#update_archive) | <code>archive_name: str</code> | <code>UpdateArchiveResponse</code> |
 | [`update_connection`](#update_connection) | <code>name: str</code> | <code>UpdateConnectionResponse</code> |
@@ -159,6 +162,7 @@ async def activate_event_source(
 ) -> None: ...
 ```
 
+
 ### cancel_replay
 
 ```python
@@ -167,6 +171,7 @@ async def cancel_replay(
     replay_name: str,
 ) -> CancelReplayResponse: ...
 ```
+
 
 ### create_api_destination
 
@@ -182,6 +187,7 @@ async def create_api_destination(
 ) -> CreateApiDestinationResponse: ...
 ```
 
+
 ### create_archive
 
 ```python
@@ -195,6 +201,7 @@ async def create_archive(
     kms_key_identifier: str | None = None,
 ) -> CreateArchiveResponse: ...
 ```
+
 
 ### create_connection
 
@@ -210,6 +217,7 @@ async def create_connection(
 ) -> CreateConnectionResponse: ...
 ```
 
+
 ### create_endpoint
 
 ```python
@@ -217,12 +225,13 @@ async def create_endpoint(
     *,
     name: str,
     routing_config: RoutingConfig,
-    event_buses: list[EndpointEventBus],
+    event_buses: Sequence[EndpointEventBus],
     description: str | None = None,
     replication_config: ReplicationConfig | None = None,
     role_arn: str | None = None,
 ) -> CreateEndpointResponse: ...
 ```
+
 
 ### create_event_bus
 
@@ -235,9 +244,10 @@ async def create_event_bus(
     kms_key_identifier: str | None = None,
     dead_letter_config: DeadLetterConfig | None = None,
     log_config: LogConfig | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateEventBusResponse: ...
 ```
+
 
 ### create_partner_event_source
 
@@ -249,6 +259,7 @@ async def create_partner_event_source(
 ) -> CreatePartnerEventSourceResponse: ...
 ```
 
+
 ### deactivate_event_source
 
 ```python
@@ -257,6 +268,7 @@ async def deactivate_event_source(
     name: str,
 ) -> None: ...
 ```
+
 
 ### deauthorize_connection
 
@@ -267,6 +279,7 @@ async def deauthorize_connection(
 ) -> DeauthorizeConnectionResponse: ...
 ```
 
+
 ### delete_api_destination
 
 ```python
@@ -275,6 +288,7 @@ async def delete_api_destination(
     name: str,
 ) -> DeleteApiDestinationResponse: ...
 ```
+
 
 ### delete_archive
 
@@ -285,6 +299,7 @@ async def delete_archive(
 ) -> DeleteArchiveResponse: ...
 ```
 
+
 ### delete_connection
 
 ```python
@@ -293,6 +308,7 @@ async def delete_connection(
     name: str,
 ) -> DeleteConnectionResponse: ...
 ```
+
 
 ### delete_endpoint
 
@@ -303,6 +319,7 @@ async def delete_endpoint(
 ) -> DeleteEndpointResponse: ...
 ```
 
+
 ### delete_event_bus
 
 ```python
@@ -311,6 +328,7 @@ async def delete_event_bus(
     name: str,
 ) -> None: ...
 ```
+
 
 ### delete_partner_event_source
 
@@ -321,6 +339,7 @@ async def delete_partner_event_source(
     account: str,
 ) -> None: ...
 ```
+
 
 ### delete_rule
 
@@ -333,6 +352,7 @@ async def delete_rule(
 ) -> None: ...
 ```
 
+
 ### describe_api_destination
 
 ```python
@@ -341,6 +361,7 @@ async def describe_api_destination(
     name: str,
 ) -> DescribeApiDestinationResponse: ...
 ```
+
 
 ### describe_archive
 
@@ -351,6 +372,7 @@ async def describe_archive(
 ) -> DescribeArchiveResponse: ...
 ```
 
+
 ### describe_connection
 
 ```python
@@ -359,6 +381,7 @@ async def describe_connection(
     name: str,
 ) -> DescribeConnectionResponse: ...
 ```
+
 
 ### describe_endpoint
 
@@ -370,6 +393,7 @@ async def describe_endpoint(
 ) -> DescribeEndpointResponse: ...
 ```
 
+
 ### describe_event_bus
 
 ```python
@@ -378,6 +402,7 @@ async def describe_event_bus(
     name: str | None = None,
 ) -> DescribeEventBusResponse: ...
 ```
+
 
 ### describe_event_source
 
@@ -388,6 +413,7 @@ async def describe_event_source(
 ) -> DescribeEventSourceResponse: ...
 ```
 
+
 ### describe_partner_event_source
 
 ```python
@@ -397,6 +423,7 @@ async def describe_partner_event_source(
 ) -> DescribePartnerEventSourceResponse: ...
 ```
 
+
 ### describe_replay
 
 ```python
@@ -405,6 +432,7 @@ async def describe_replay(
     replay_name: str,
 ) -> DescribeReplayResponse: ...
 ```
+
 
 ### describe_rule
 
@@ -416,6 +444,7 @@ async def describe_rule(
 ) -> DescribeRuleResponse: ...
 ```
 
+
 ### disable_rule
 
 ```python
@@ -426,6 +455,7 @@ async def disable_rule(
 ) -> None: ...
 ```
 
+
 ### enable_rule
 
 ```python
@@ -435,6 +465,7 @@ async def enable_rule(
     event_bus_name: str | None = None,
 ) -> None: ...
 ```
+
 
 ### list_api_destinations
 
@@ -447,6 +478,7 @@ async def list_api_destinations(
     limit: int | None = None,
 ) -> ListApiDestinationsResponse: ...
 ```
+
 
 ### list_archives
 
@@ -461,6 +493,7 @@ async def list_archives(
 ) -> ListArchivesResponse: ...
 ```
 
+
 ### list_connections
 
 ```python
@@ -472,6 +505,7 @@ async def list_connections(
     limit: int | None = None,
 ) -> ListConnectionsResponse: ...
 ```
+
 
 ### list_endpoints
 
@@ -485,6 +519,7 @@ async def list_endpoints(
 ) -> ListEndpointsResponse: ...
 ```
 
+
 ### list_event_buses
 
 ```python
@@ -495,6 +530,7 @@ async def list_event_buses(
     limit: int | None = None,
 ) -> ListEventBusesResponse: ...
 ```
+
 
 ### list_event_sources
 
@@ -507,6 +543,7 @@ async def list_event_sources(
 ) -> ListEventSourcesResponse: ...
 ```
 
+
 ### list_partner_event_source_accounts
 
 ```python
@@ -518,6 +555,7 @@ async def list_partner_event_source_accounts(
 ) -> ListPartnerEventSourceAccountsResponse: ...
 ```
 
+
 ### list_partner_event_sources
 
 ```python
@@ -528,6 +566,7 @@ async def list_partner_event_sources(
     limit: int | None = None,
 ) -> ListPartnerEventSourcesResponse: ...
 ```
+
 
 ### list_replays
 
@@ -542,6 +581,7 @@ async def list_replays(
 ) -> ListReplaysResponse: ...
 ```
 
+
 ### list_rule_names_by_target
 
 ```python
@@ -553,6 +593,10 @@ async def list_rule_names_by_target(
     limit: int | None = None,
 ) -> ListRuleNamesByTargetResponse: ...
 ```
+
+Also available as `client.paginators.list_rule_names_by_target(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_rules
 
@@ -566,6 +610,10 @@ async def list_rules(
 ) -> ListRulesResponse: ...
 ```
 
+Also available as `client.paginators.list_rules(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -574,6 +622,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_targets_by_rule
 
@@ -587,24 +636,30 @@ async def list_targets_by_rule(
 ) -> ListTargetsByRuleResponse: ...
 ```
 
+Also available as `client.paginators.list_targets_by_rule(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_events
 
 ```python
 async def put_events(
     *,
-    entries: list[PutEventsRequestEntry],
+    entries: Sequence[PutEventsRequestEntry],
     endpoint_id: str | None = None,
 ) -> PutEventsResponse: ...
 ```
+
 
 ### put_partner_events
 
 ```python
 async def put_partner_events(
     *,
-    entries: list[PutPartnerEventsRequestEntry],
+    entries: Sequence[PutPartnerEventsRequestEntry],
 ) -> PutPartnerEventsResponse: ...
 ```
+
 
 ### put_permission
 
@@ -620,6 +675,7 @@ async def put_permission(
 ) -> None: ...
 ```
 
+
 ### put_rule
 
 ```python
@@ -631,10 +687,11 @@ async def put_rule(
     state: RuleState | None = None,
     description: str | None = None,
     role_arn: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     event_bus_name: str | None = None,
 ) -> PutRuleResponse: ...
 ```
+
 
 ### put_targets
 
@@ -642,10 +699,11 @@ async def put_rule(
 async def put_targets(
     *,
     rule: str,
-    targets: list[Target],
+    targets: Sequence[Target],
     event_bus_name: str | None = None,
 ) -> PutTargetsResponse: ...
 ```
+
 
 ### remove_permission
 
@@ -658,17 +716,19 @@ async def remove_permission(
 ) -> None: ...
 ```
 
+
 ### remove_targets
 
 ```python
 async def remove_targets(
     *,
     rule: str,
-    ids: list[str],
+    ids: Sequence[str],
     event_bus_name: str | None = None,
     force: bool | None = None,
 ) -> RemoveTargetsResponse: ...
 ```
+
 
 ### start_replay
 
@@ -684,15 +744,17 @@ async def start_replay(
 ) -> StartReplayResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### test_event_pattern
 
@@ -704,15 +766,17 @@ async def test_event_pattern(
 ) -> TestEventPatternResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_api_destination
 
@@ -728,6 +792,7 @@ async def update_api_destination(
 ) -> UpdateApiDestinationResponse: ...
 ```
 
+
 ### update_archive
 
 ```python
@@ -740,6 +805,7 @@ async def update_archive(
     kms_key_identifier: str | None = None,
 ) -> UpdateArchiveResponse: ...
 ```
+
 
 ### update_connection
 
@@ -755,6 +821,7 @@ async def update_connection(
 ) -> UpdateConnectionResponse: ...
 ```
 
+
 ### update_endpoint
 
 ```python
@@ -764,10 +831,11 @@ async def update_endpoint(
     description: str | None = None,
     routing_config: RoutingConfig | None = None,
     replication_config: ReplicationConfig | None = None,
-    event_buses: list[EndpointEventBus] | None = None,
+    event_buses: Sequence[EndpointEventBus] | None = None,
     role_arn: str | None = None,
 ) -> UpdateEndpointResponse: ...
 ```
+
 
 ### update_event_bus
 
@@ -781,6 +849,7 @@ async def update_event_bus(
     log_config: LogConfig | None = None,
 ) -> UpdateEventBusResponse: ...
 ```
+
 
 ## Links
 

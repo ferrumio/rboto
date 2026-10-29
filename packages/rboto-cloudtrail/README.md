@@ -63,7 +63,10 @@ Reuse the client across calls. Constructing a client does not send a request.
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_cloudtrail.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -82,9 +85,9 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: list[Tag]</code> | <code>AddTagsResponse</code> |
+| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>AddTagsResponse</code> |
 | [`cancel_query`](#cancel_query) | <code>query_id: str</code> | <code>CancelQueryResponse</code> |
-| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: list[Destination]</code> | <code>CreateChannelResponse</code> |
+| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: Sequence[Destination]</code> | <code>CreateChannelResponse</code> |
 | [`create_dashboard`](#create_dashboard) | <code>name: str</code> | <code>CreateDashboardResponse</code> |
 | [`create_event_data_store`](#create_event_data_store) | <code>name: str</code> | <code>CreateEventDataStoreResponse</code> |
 | [`create_trail`](#create_trail) | <code>name: str</code>, <code>s3_bucket_name: str</code> | <code>CreateTrailResponse</code> |
@@ -98,7 +101,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_trails`](#describe_trails) | None | <code>DescribeTrailsResponse</code> |
 | [`disable_federation`](#disable_federation) | <code>event_data_store: str</code> | <code>DisableFederationResponse</code> |
 | [`enable_federation`](#enable_federation) | <code>event_data_store: str</code>, <code>federation_role_arn: str</code> | <code>EnableFederationResponse</code> |
-| [`generate_query`](#generate_query) | <code>event_data_stores: list[str]</code>, <code>prompt: str</code> | <code>GenerateQueryResponse</code> |
+| [`generate_query`](#generate_query) | <code>event_data_stores: Sequence[str]</code>, <code>prompt: str</code> | <code>GenerateQueryResponse</code> |
 | [`get_channel`](#get_channel) | <code>channel: str</code> | <code>GetChannelResponse</code> |
 | [`get_dashboard`](#get_dashboard) | <code>dashboard_id: str</code> | <code>GetDashboardResponse</code> |
 | [`get_event_configuration`](#get_event_configuration) | None | <code>GetEventConfigurationResponse</code> |
@@ -119,15 +122,15 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_insights_metric_data`](#list_insights_metric_data) | <code>event_source: str</code>, <code>event_name: str</code>, <code>insight_type: InsightType</code> | <code>ListInsightsMetricDataResponse</code> |
 | [`list_public_keys`](#list_public_keys) | None | <code>ListPublicKeysResponse</code> |
 | [`list_queries`](#list_queries) | <code>event_data_store: str</code> | <code>ListQueriesResponse</code> |
-| [`list_tags`](#list_tags) | <code>resource_id_list: list[str]</code> | <code>ListTagsResponse</code> |
+| [`list_tags`](#list_tags) | <code>resource_id_list: Sequence[str]</code> | <code>ListTagsResponse</code> |
 | [`list_trails`](#list_trails) | None | <code>ListTrailsResponse</code> |
 | [`lookup_events`](#lookup_events) | None | <code>LookupEventsResponse</code> |
 | [`put_event_configuration`](#put_event_configuration) | None | <code>PutEventConfigurationResponse</code> |
 | [`put_event_selectors`](#put_event_selectors) | <code>trail_name: str</code> | <code>PutEventSelectorsResponse</code> |
-| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: list[InsightSelector]</code> | <code>PutInsightSelectorsResponse</code> |
+| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: Sequence[InsightSelector]</code> | <code>PutInsightSelectorsResponse</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`register_organization_delegated_admin`](#register_organization_delegated_admin) | <code>member_account_id: str</code> | <code>RegisterOrganizationDelegatedAdminResponse</code> |
-| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: list[Tag]</code> | <code>RemoveTagsResponse</code> |
+| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>RemoveTagsResponse</code> |
 | [`restore_event_data_store`](#restore_event_data_store) | <code>event_data_store: str</code> | <code>RestoreEventDataStoreResponse</code> |
 | [`search_sample_queries`](#search_sample_queries) | <code>search_phrase: str</code> | <code>SearchSampleQueriesResponse</code> |
 | [`start_dashboard_refresh`](#start_dashboard_refresh) | <code>dashboard_id: str</code> | <code>StartDashboardRefreshResponse</code> |
@@ -151,9 +154,10 @@ native response definitions are in the package's `_native.pyi`.
 async def add_tags(
     *,
     resource_id: str,
-    tags_list: list[Tag],
+    tags_list: Sequence[Tag],
 ) -> AddTagsResponse: ...
 ```
+
 
 ### cancel_query
 
@@ -166,6 +170,7 @@ async def cancel_query(
 ) -> CancelQueryResponse: ...
 ```
 
+
 ### create_channel
 
 ```python
@@ -173,10 +178,11 @@ async def create_channel(
     *,
     name: str,
     source: str,
-    destinations: list[Destination],
-    tags: list[Tag] | None = None,
+    destinations: Sequence[Destination],
+    tags: Sequence[Tag] | None = None,
 ) -> CreateChannelResponse: ...
 ```
+
 
 ### create_dashboard
 
@@ -185,11 +191,12 @@ async def create_dashboard(
     *,
     name: str,
     refresh_schedule: RefreshSchedule | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     termination_protection_enabled: bool | None = None,
-    widgets: list[RequestWidget] | None = None,
+    widgets: Sequence[RequestWidget] | None = None,
 ) -> CreateDashboardResponse: ...
 ```
+
 
 ### create_event_data_store
 
@@ -197,17 +204,18 @@ async def create_dashboard(
 async def create_event_data_store(
     *,
     name: str,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     multi_region_enabled: bool | None = None,
     organization_enabled: bool | None = None,
     retention_period: int | None = None,
     termination_protection_enabled: bool | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     kms_key_id: str | None = None,
     start_ingestion: bool | None = None,
     billing_mode: BillingMode | None = None,
 ) -> CreateEventDataStoreResponse: ...
 ```
+
 
 ### create_trail
 
@@ -225,10 +233,11 @@ async def create_trail(
     cloud_watch_logs_role_arn: str | None = None,
     kms_key_id: str | None = None,
     is_organization_trail: bool | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     recursive_logging: bool | None = None,
 ) -> CreateTrailResponse: ...
 ```
+
 
 ### delete_channel
 
@@ -239,6 +248,7 @@ async def delete_channel(
 ) -> DeleteChannelResponse: ...
 ```
 
+
 ### delete_dashboard
 
 ```python
@@ -247,6 +257,7 @@ async def delete_dashboard(
     dashboard_id: str,
 ) -> DeleteDashboardResponse: ...
 ```
+
 
 ### delete_event_data_store
 
@@ -257,6 +268,7 @@ async def delete_event_data_store(
 ) -> DeleteEventDataStoreResponse: ...
 ```
 
+
 ### delete_resource_policy
 
 ```python
@@ -265,6 +277,7 @@ async def delete_resource_policy(
     resource_arn: str,
 ) -> DeleteResourcePolicyResponse: ...
 ```
+
 
 ### delete_trail
 
@@ -275,6 +288,7 @@ async def delete_trail(
 ) -> DeleteTrailResponse: ...
 ```
 
+
 ### deregister_organization_delegated_admin
 
 ```python
@@ -283,6 +297,7 @@ async def deregister_organization_delegated_admin(
     delegated_admin_account_id: str,
 ) -> DeregisterOrganizationDelegatedAdminResponse: ...
 ```
+
 
 ### describe_query
 
@@ -297,15 +312,17 @@ async def describe_query(
 ) -> DescribeQueryResponse: ...
 ```
 
+
 ### describe_trails
 
 ```python
 async def describe_trails(
     *,
-    trail_name_list: list[str] | None = None,
+    trail_name_list: Sequence[str] | None = None,
     include_shadow_trails: bool | None = None,
 ) -> DescribeTrailsResponse: ...
 ```
+
 
 ### disable_federation
 
@@ -315,6 +332,7 @@ async def disable_federation(
     event_data_store: str,
 ) -> DisableFederationResponse: ...
 ```
+
 
 ### enable_federation
 
@@ -326,15 +344,17 @@ async def enable_federation(
 ) -> EnableFederationResponse: ...
 ```
 
+
 ### generate_query
 
 ```python
 async def generate_query(
     *,
-    event_data_stores: list[str],
+    event_data_stores: Sequence[str],
     prompt: str,
 ) -> GenerateQueryResponse: ...
 ```
+
 
 ### get_channel
 
@@ -345,6 +365,7 @@ async def get_channel(
 ) -> GetChannelResponse: ...
 ```
 
+
 ### get_dashboard
 
 ```python
@@ -353,6 +374,7 @@ async def get_dashboard(
     dashboard_id: str,
 ) -> GetDashboardResponse: ...
 ```
+
 
 ### get_event_configuration
 
@@ -364,6 +386,7 @@ async def get_event_configuration(
 ) -> GetEventConfigurationResponse: ...
 ```
 
+
 ### get_event_data_store
 
 ```python
@@ -372,6 +395,7 @@ async def get_event_data_store(
     event_data_store: str,
 ) -> GetEventDataStoreResponse: ...
 ```
+
 
 ### get_event_selectors
 
@@ -382,6 +406,7 @@ async def get_event_selectors(
 ) -> GetEventSelectorsResponse: ...
 ```
 
+
 ### get_import
 
 ```python
@@ -390,6 +415,7 @@ async def get_import(
     import_id: str,
 ) -> GetImportResponse: ...
 ```
+
 
 ### get_insight_selectors
 
@@ -400,6 +426,7 @@ async def get_insight_selectors(
     event_data_store: str | None = None,
 ) -> GetInsightSelectorsResponse: ...
 ```
+
 
 ### get_query_results
 
@@ -414,6 +441,10 @@ async def get_query_results(
 ) -> GetQueryResultsResponse: ...
 ```
 
+Also available as `client.paginators.get_query_results(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_resource_policy
 
 ```python
@@ -422,6 +453,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_trail
 
@@ -432,6 +464,7 @@ async def get_trail(
 ) -> GetTrailResponse: ...
 ```
 
+
 ### get_trail_status
 
 ```python
@@ -440,6 +473,7 @@ async def get_trail_status(
     name: str,
 ) -> GetTrailStatusResponse: ...
 ```
+
 
 ### list_channels
 
@@ -450,6 +484,10 @@ async def list_channels(
     next_token: str | None = None,
 ) -> ListChannelsResponse: ...
 ```
+
+Also available as `client.paginators.list_channels(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_dashboards
 
@@ -463,6 +501,7 @@ async def list_dashboards(
 ) -> ListDashboardsResponse: ...
 ```
 
+
 ### list_event_data_stores
 
 ```python
@@ -472,6 +511,10 @@ async def list_event_data_stores(
     max_results: int | None = None,
 ) -> ListEventDataStoresResponse: ...
 ```
+
+Also available as `client.paginators.list_event_data_stores(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_import_failures
 
@@ -484,6 +527,10 @@ async def list_import_failures(
 ) -> ListImportFailuresResponse: ...
 ```
 
+Also available as `client.paginators.list_import_failures(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_imports
 
 ```python
@@ -495,6 +542,10 @@ async def list_imports(
     next_token: str | None = None,
 ) -> ListImportsResponse: ...
 ```
+
+Also available as `client.paginators.list_imports(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_insights_data
 
@@ -510,6 +561,10 @@ async def list_insights_data(
     next_token: str | None = None,
 ) -> ListInsightsDataResponse: ...
 ```
+
+Also available as `client.paginators.list_insights_data(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_insights_metric_data
 
@@ -530,6 +585,10 @@ async def list_insights_metric_data(
 ) -> ListInsightsMetricDataResponse: ...
 ```
 
+Also available as `client.paginators.list_insights_metric_data(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_public_keys
 
 ```python
@@ -540,6 +599,10 @@ async def list_public_keys(
     next_token: str | None = None,
 ) -> ListPublicKeysResponse: ...
 ```
+
+Also available as `client.paginators.list_public_keys(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_queries
 
@@ -555,15 +618,23 @@ async def list_queries(
 ) -> ListQueriesResponse: ...
 ```
 
+Also available as `client.paginators.list_queries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags
 
 ```python
 async def list_tags(
     *,
-    resource_id_list: list[str],
+    resource_id_list: Sequence[str],
     next_token: str | None = None,
 ) -> ListTagsResponse: ...
 ```
+
+Also available as `client.paginators.list_tags(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_trails
 
@@ -574,12 +645,16 @@ async def list_trails(
 ) -> ListTrailsResponse: ...
 ```
 
+Also available as `client.paginators.list_trails(...)`, returning an
+async iterator of the response type above.
+
+
 ### lookup_events
 
 ```python
 async def lookup_events(
     *,
-    lookup_attributes: list[LookupAttribute] | None = None,
+    lookup_attributes: Sequence[LookupAttribute] | None = None,
     start_time: str | None = None,
     end_time: str | None = None,
     event_category: EventCategory | None = None,
@@ -587,6 +662,10 @@ async def lookup_events(
     next_token: str | None = None,
 ) -> LookupEventsResponse: ...
 ```
+
+Also available as `client.paginators.lookup_events(...)`, returning an
+async iterator of the response type above.
+
 
 ### put_event_configuration
 
@@ -596,10 +675,11 @@ async def put_event_configuration(
     trail_name: str | None = None,
     event_data_store: str | None = None,
     max_event_size: MaxEventSize | None = None,
-    context_key_selectors: list[ContextKeySelector] | None = None,
-    aggregation_configurations: list[AggregationConfiguration] | None = None,
+    context_key_selectors: Sequence[ContextKeySelector] | None = None,
+    aggregation_configurations: Sequence[AggregationConfiguration] | None = None,
 ) -> PutEventConfigurationResponse: ...
 ```
+
 
 ### put_event_selectors
 
@@ -607,22 +687,24 @@ async def put_event_configuration(
 async def put_event_selectors(
     *,
     trail_name: str,
-    event_selectors: list[EventSelector] | None = None,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    event_selectors: Sequence[EventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
 ) -> PutEventSelectorsResponse: ...
 ```
+
 
 ### put_insight_selectors
 
 ```python
 async def put_insight_selectors(
     *,
-    insight_selectors: list[InsightSelector],
+    insight_selectors: Sequence[InsightSelector],
     trail_name: str | None = None,
     event_data_store: str | None = None,
     insights_destination: str | None = None,
 ) -> PutInsightSelectorsResponse: ...
 ```
+
 
 ### put_resource_policy
 
@@ -634,6 +716,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### register_organization_delegated_admin
 
 ```python
@@ -643,15 +726,17 @@ async def register_organization_delegated_admin(
 ) -> RegisterOrganizationDelegatedAdminResponse: ...
 ```
 
+
 ### remove_tags
 
 ```python
 async def remove_tags(
     *,
     resource_id: str,
-    tags_list: list[Tag],
+    tags_list: Sequence[Tag],
 ) -> RemoveTagsResponse: ...
 ```
+
 
 ### restore_event_data_store
 
@@ -661,6 +746,7 @@ async def restore_event_data_store(
     event_data_store: str,
 ) -> RestoreEventDataStoreResponse: ...
 ```
+
 
 ### search_sample_queries
 
@@ -673,6 +759,7 @@ async def search_sample_queries(
 ) -> SearchSampleQueriesResponse: ...
 ```
 
+
 ### start_dashboard_refresh
 
 ```python
@@ -683,6 +770,7 @@ async def start_dashboard_refresh(
 ) -> StartDashboardRefreshResponse: ...
 ```
 
+
 ### start_event_data_store_ingestion
 
 ```python
@@ -692,18 +780,20 @@ async def start_event_data_store_ingestion(
 ) -> StartEventDataStoreIngestionResponse: ...
 ```
 
+
 ### start_import
 
 ```python
 async def start_import(
     *,
-    destinations: list[str] | None = None,
+    destinations: Sequence[str] | None = None,
     import_source: ImportSource | None = None,
     start_event_time: str | None = None,
     end_event_time: str | None = None,
     import_id: str | None = None,
 ) -> StartImportResponse: ...
 ```
+
 
 ### start_logging
 
@@ -714,6 +804,7 @@ async def start_logging(
 ) -> StartLoggingResponse: ...
 ```
 
+
 ### start_query
 
 ```python
@@ -722,10 +813,11 @@ async def start_query(
     query_statement: str | None = None,
     delivery_s3_uri: str | None = None,
     query_alias: str | None = None,
-    query_parameters: list[str] | None = None,
+    query_parameters: Sequence[str] | None = None,
     event_data_store_owner_account_id: str | None = None,
 ) -> StartQueryResponse: ...
 ```
+
 
 ### stop_event_data_store_ingestion
 
@@ -736,6 +828,7 @@ async def stop_event_data_store_ingestion(
 ) -> StopEventDataStoreIngestionResponse: ...
 ```
 
+
 ### stop_import
 
 ```python
@@ -744,6 +837,7 @@ async def stop_import(
     import_id: str,
 ) -> StopImportResponse: ...
 ```
+
 
 ### stop_logging
 
@@ -754,16 +848,18 @@ async def stop_logging(
 ) -> StopLoggingResponse: ...
 ```
 
+
 ### update_channel
 
 ```python
 async def update_channel(
     *,
     channel: str,
-    destinations: list[Destination] | None = None,
+    destinations: Sequence[Destination] | None = None,
     name: str | None = None,
 ) -> UpdateChannelResponse: ...
 ```
+
 
 ### update_dashboard
 
@@ -771,11 +867,12 @@ async def update_channel(
 async def update_dashboard(
     *,
     dashboard_id: str,
-    widgets: list[RequestWidget] | None = None,
+    widgets: Sequence[RequestWidget] | None = None,
     refresh_schedule: RefreshSchedule | None = None,
     termination_protection_enabled: bool | None = None,
 ) -> UpdateDashboardResponse: ...
 ```
+
 
 ### update_event_data_store
 
@@ -784,7 +881,7 @@ async def update_event_data_store(
     *,
     event_data_store: str,
     name: str | None = None,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     multi_region_enabled: bool | None = None,
     organization_enabled: bool | None = None,
     retention_period: int | None = None,
@@ -793,6 +890,7 @@ async def update_event_data_store(
     billing_mode: BillingMode | None = None,
 ) -> UpdateEventDataStoreResponse: ...
 ```
+
 
 ### update_trail
 
@@ -813,6 +911,7 @@ async def update_trail(
     recursive_logging: bool | None = None,
 ) -> UpdateTrailResponse: ...
 ```
+
 
 ## Links
 

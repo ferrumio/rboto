@@ -51,6 +51,7 @@ from .services import (
     transcribe_streaming,
 )
 from .session import Session
+from .types import UnknownEnumValue
 
 if TYPE_CHECKING:
     from rboto_api_gateway import APIGatewayClient
@@ -104,6 +105,7 @@ __all__ = [
     "OperationResponse",
     "operation_context",
     "Session",
+    "UnknownEnumValue",
     "APIGatewayClient",
     "BedrockClient",
     "BedrockAgentClient",
