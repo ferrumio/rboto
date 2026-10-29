@@ -44,8 +44,10 @@ The build workflow groups at most six services per platform job and builds all
 four interpreters for each service sequentially. The catalog balances group size
 and spreads large generated Rust adapters across jobs. With 34 services there are
 six groups of five or six, giving 36 wheel jobs and six source-distribution jobs.
-All six platforms can start together, with one group per platform and two
-Cargo jobs per build. Dependencies remain in the shared Cargo target directory;
+All platform groups, source-distribution groups, and smoke jobs run without
+workflow-imposed matrix concurrency caps, subject to GitHub runner availability
+and account limits. Each build keeps two Cargo jobs per runner.
+Dependencies remain in the shared Cargo target directory;
 the selected native adapter is cleaned before building to prevent another
 service's cached `_native` library from being packaged. Clear compiler wrappers
 only for that cleanup command: the action sets `RUSTC_WRAPPER` before the Linux
@@ -70,7 +72,8 @@ source distributions, metadata identities, and typing files before producing
 
 A `vX.Y.Z` tag or a manual dispatch with `publish=true` publishes after all validation
 jobs pass. All publisher jobs use environment `pypi`. Services publish in separate
-jobs with at most four concurrent uploads; the facade publishes last.
+jobs without a matrix concurrency cap; the facade publishes last.
+Runs for the same version remain serialized to avoid overlapping publication.
 
 If publication is interrupted, rerun the failed jobs in the original Actions run.
 They download the original artifacts, compare local hashes with `SHA256SUMS`, and

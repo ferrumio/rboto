@@ -28,9 +28,11 @@ library name. Keep artifacts separate by service and record elapsed service
 durations. Disable the action's sccache installation on musl, where its required
 wheel is unavailable.
 
-Allow all six platforms to start together, with one group per platform and two
-Cargo processes. Clear compiler wrappers only for the adapter cleanup command,
-which runs before the action installs sccache. Group source distributions the same way.
+Allow all platform and source-distribution groups to start together without
+matrix concurrency caps, subject to GitHub runner availability and account
+limits. Keep two Cargo processes per runner. Clear compiler wrappers only for the
+adapter cleanup command, which runs before the action installs sccache.
+Group source distributions the same way.
 The routine CI remains
 focused on Linux CPython 3.15 and representative Python 3.12 integration tests.
 
@@ -46,6 +48,8 @@ and SHA-256 hashes. Manual dispatch defaults to validation without publication.
 Tags or an explicit `publish=true` enable publication after these checks.
 
 Publish each service in a separate OIDC job using the same `pypi` environment.
+Smoke and service publication matrices also have no explicit concurrency cap.
+Serialize runs for the same version to avoid overlapping publication.
 Publish the facade only after all services are complete. Before retrying, compare
 each artifact against its validated checksum and the checksum returned by PyPI.
 Skip only identical files; differing bytes fail. Retry failed jobs from the

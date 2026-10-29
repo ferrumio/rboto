@@ -63,7 +63,6 @@ jobs:
     needs: prepare
     strategy:
       fail-fast: false
-      max-parallel: 6
       matrix:
         platform:
           - { name: manylinux-x86_64, runner: ubuntu-latest, target: x86_64-unknown-linux-gnu, manylinux: "2_17", container: "quay.io/pypa/manylinux2014_x86_64:latest" }
@@ -116,7 +115,6 @@ jobs:
     runs-on: ${{ matrix.platform.runner }}
     strategy:
       fail-fast: false
-      max-parallel: 4
       matrix:
         python: ["3.12", "3.13", "3.14", "3.15"]
         platform:
@@ -222,7 +220,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 4
       matrix:
         service: ${{ fromJSON(needs.prepare.outputs.services) }}
     environment:
