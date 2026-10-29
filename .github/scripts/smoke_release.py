@@ -7,7 +7,7 @@ import inspect
 import json
 from importlib.metadata import distribution
 from pathlib import Path
-from typing import cast
+from typing import cast, get_type_hints
 
 
 def smoke(catalog_path: Path) -> None:
@@ -38,6 +38,13 @@ def smoke(catalog_path: Path) -> None:
         assert methods, service["client"]
         for name in methods:
             assert callable(getattr(client._native, name)), (package, name)
+            # Resolve the actual public annotations, including recursive aliases.
+            assert get_type_hints(getattr(client_class, name)), (package, name)
+        paginators = getattr(client, "paginators", None)
+        if paginators is not None:
+            for name, method in inspect.getmembers(paginators, inspect.ismethod):
+                if not name.startswith("_"):
+                    assert get_type_hints(method), (package, "paginators", name)
         assert native.__file__ is not None
         print(f"{service['distribution']} {version}: {len(methods)} async operations")
     print(f"Validated {len(services)} installed service wheels.")
