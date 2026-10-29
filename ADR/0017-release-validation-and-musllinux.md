@@ -28,8 +28,10 @@ library name. Keep artifacts separate by service and record elapsed service
 durations. Disable the action's sccache installation on musl, where its required
 wheel is unavailable.
 
-Limit concurrent platforms to three, groups per platform to two, and Cargo
-processes to two. Group source distributions the same way. The routine CI remains
+Allow all six platforms to start together, with one group per platform and two
+Cargo processes. Clear compiler wrappers only for the adapter cleanup command,
+which runs before the action installs sccache. Group source distributions the same way.
+The routine CI remains
 focused on Linux CPython 3.15 and representative Python 3.12 integration tests.
 
 Freeze client names and package identities from descriptors in `release.json`.
