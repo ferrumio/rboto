@@ -1,5 +1,8 @@
 # Interceptor overhead
 
+rboto is an independent project maintained by [Ferrumio](https://github.com/ferrumio).
+It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS).
+
 `interceptors.py` runs a compiled DynamoDB client against an HTTP server on
 loopback. It supplies test credentials and does not contact an external service.
 Run each mode in a fresh process:
