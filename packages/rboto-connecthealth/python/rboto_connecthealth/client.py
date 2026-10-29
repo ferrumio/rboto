@@ -452,7 +452,7 @@ class ConnectHealthClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

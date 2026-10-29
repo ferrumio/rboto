@@ -104,7 +104,7 @@ class BedrockDataAutomationClient:
         blueprint_stage: BlueprintStage | None = None,
         client_token: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateBlueprintResponse:
         params: dict[str, object] = {
             "blueprint_name": blueprint_name,
@@ -165,7 +165,7 @@ class BedrockDataAutomationClient:
         library_description: str | None = None,
         client_token: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateDataAutomationLibraryResponse:
         params: dict[str, object] = {
             "library_name": library_name,
@@ -205,7 +205,7 @@ class BedrockDataAutomationClient:
         data_automation_library_configuration: DataAutomationLibraryConfiguration | None = None,
         client_token: str | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateDataAutomationProjectResponse:
         params: dict[str, object] = {
             "project_name": project_name,
@@ -463,11 +463,11 @@ class BedrockDataAutomationClient:
         self,
         *,
         blueprint: BlueprintOptimizationObject,
-        samples: list[BlueprintOptimizationSample],
+        samples: Sequence[BlueprintOptimizationSample],
         output_configuration: BlueprintOptimizationOutputConfiguration,
         data_automation_profile_arn: str,
         encryption_configuration: EncryptionConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> InvokeBlueprintOptimizationAsyncResponse:
         params: dict[str, object] = {
             "blueprint": blueprint,
@@ -503,7 +503,7 @@ class BedrockDataAutomationClient:
         output_configuration: OutputConfiguration,
         client_token: str | None = None,
         notification_configuration: NotificationConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> InvokeDataAutomationLibraryIngestionJobResponse:
         params: dict[str, object] = {
             "library_arn": library_arn,
@@ -721,7 +721,7 @@ class BedrockDataAutomationClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -745,7 +745,7 @@ class BedrockDataAutomationClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

@@ -190,11 +190,11 @@ class KMSClient:
         self,
         *,
         key_id: str,
-        operations: list[GrantOperation],
+        operations: Sequence[GrantOperation],
         grantee_principal: str | None = None,
         retiring_principal: str | None = None,
         constraints: GrantConstraints | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         name: str | None = None,
         dry_run: bool | None = None,
         grantee_service_principal: str | None = None,
@@ -245,7 +245,7 @@ class KMSClient:
         origin: OriginType | None = None,
         custom_key_store_id: str | None = None,
         bypass_policy_lockout_safety_check: bool | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         multi_region: bool | None = None,
         xks_key_id: str | None = None,
     ) -> CreateKeyResponse:
@@ -292,12 +292,12 @@ class KMSClient:
         *,
         ciphertext_blob: bytes | None = None,
         encryption_context: dict[str, str] | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         key_id: str | None = None,
         encryption_algorithm: EncryptionAlgorithmSpec | None = None,
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
-        dry_run_modifiers: list[DryRunModifierType] | None = None,
+        dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
     ) -> DecryptResponse:
         params: dict[str, object] = {
         }
@@ -406,7 +406,7 @@ class KMSClient:
         key_id: str,
         key_agreement_algorithm: KeyAgreementAlgorithmSpec,
         public_key: bytes,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
         recipient: RecipientInfo | None = None,
     ) -> DeriveSharedSecretResponse:
@@ -471,7 +471,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
     ) -> DescribeKeyResponse:
         params: dict[str, object] = {
             "key_id": key_id,
@@ -611,7 +611,7 @@ class KMSClient:
         key_id: str,
         plaintext: bytes,
         encryption_context: dict[str, str] | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         encryption_algorithm: EncryptionAlgorithmSpec | None = None,
         dry_run: bool | None = None,
     ) -> EncryptResponse:
@@ -648,7 +648,7 @@ class KMSClient:
         encryption_context: dict[str, str] | None = None,
         number_of_bytes: int | None = None,
         key_spec: DataKeySpec | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyResponse:
@@ -687,7 +687,7 @@ class KMSClient:
         key_id: str,
         key_pair_spec: DataKeyPairSpec,
         encryption_context: dict[str, str] | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyPairResponse:
@@ -723,7 +723,7 @@ class KMSClient:
         key_id: str,
         key_pair_spec: DataKeyPairSpec,
         encryption_context: dict[str, str] | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyPairWithoutPlaintextResponse:
         params: dict[str, object] = {
@@ -757,7 +757,7 @@ class KMSClient:
         encryption_context: dict[str, str] | None = None,
         key_spec: DataKeySpec | None = None,
         number_of_bytes: int | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateDataKeyWithoutPlaintextResponse:
         params: dict[str, object] = {
@@ -793,7 +793,7 @@ class KMSClient:
         message: bytes,
         key_id: str,
         mac_algorithm: MacAlgorithmSpec,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> GenerateMacResponse:
         params: dict[str, object] = {
@@ -947,7 +947,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
     ) -> GetPublicKeyResponse:
         params: dict[str, object] = {
             "key_id": key_id,
@@ -1260,9 +1260,9 @@ class KMSClient:
         destination_encryption_context: dict[str, str] | None = None,
         source_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
         destination_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-        dry_run_modifiers: list[DryRunModifierType] | None = None,
+        dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
     ) -> ReEncryptResponse:
         params: dict[str, object] = {
             "destination_key_id": destination_key_id,
@@ -1307,7 +1307,7 @@ class KMSClient:
         policy: str | None = None,
         bypass_policy_lockout_safety_check: bool | None = None,
         description: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> ReplicateKeyResponse:
         params: dict[str, object] = {
             "key_id": key_id,
@@ -1448,7 +1448,7 @@ class KMSClient:
         message: bytes,
         signing_algorithm: SigningAlgorithmSpec,
         message_type: MessageType | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> SignResponse:
         params: dict[str, object] = {
@@ -1480,7 +1480,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> None:
         params: dict[str, object] = {
             "key_id": key_id,
@@ -1504,7 +1504,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "key_id": key_id,
@@ -1653,7 +1653,7 @@ class KMSClient:
         signature: bytes,
         signing_algorithm: SigningAlgorithmSpec,
         message_type: MessageType | None = None,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> VerifyResponse:
         params: dict[str, object] = {
@@ -1689,7 +1689,7 @@ class KMSClient:
         key_id: str,
         mac_algorithm: MacAlgorithmSpec,
         mac: bytes,
-        grant_tokens: list[str] | None = None,
+        grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
     ) -> VerifyMacResponse:
         params: dict[str, object] = {

@@ -139,7 +139,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_object`](#get_object) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectOutput</code> |
 | [`get_object_acl`](#get_object_acl) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectAclOutput</code> |
 | [`get_object_annotation`](#get_object_annotation) | <code>bucket: str</code>, <code>key: str</code>, <code>annotation_name: str</code> | <code>GetObjectAnnotationOutput</code> |
-| [`get_object_attributes`](#get_object_attributes) | <code>bucket: str</code>, <code>key: str</code>, <code>object_attributes: list[ObjectAttributes]</code> | <code>GetObjectAttributesOutput</code> |
+| [`get_object_attributes`](#get_object_attributes) | <code>bucket: str</code>, <code>key: str</code>, <code>object_attributes: Sequence[ObjectAttributes]</code> | <code>GetObjectAttributesOutput</code> |
 | [`get_object_legal_hold`](#get_object_legal_hold) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectLegalHoldOutput</code> |
 | [`get_object_lock_configuration`](#get_object_lock_configuration) | <code>bucket: str</code> | <code>GetObjectLockConfigurationOutput</code> |
 | [`get_object_retention`](#get_object_retention) | <code>bucket: str</code>, <code>key: str</code> | <code>GetObjectRetentionOutput</code> |
@@ -924,7 +924,7 @@ async def get_object_attributes(
     *,
     bucket: str,
     key: str,
-    object_attributes: list[ObjectAttributes],
+    object_attributes: Sequence[ObjectAttributes],
     version_id: str | None = None,
     max_parts: int | None = None,
     part_number_marker: str | None = None,
@@ -1159,7 +1159,7 @@ async def list_object_versions(
     version_id_marker: str | None = None,
     expected_bucket_owner: str | None = None,
     request_payer: RequestPayer | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectVersionsOutput: ...
 ```
 
@@ -1176,7 +1176,7 @@ async def list_objects(
     prefix: str | None = None,
     request_payer: RequestPayer | None = None,
     expected_bucket_owner: str | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectsOutput: ...
 ```
 
@@ -1195,7 +1195,7 @@ async def list_objects_v2(
     start_after: str | None = None,
     request_payer: RequestPayer | None = None,
     expected_bucket_owner: str | None = None,
-    optional_object_attributes: list[OptionalObjectAttributes] | None = None,
+    optional_object_attributes: Sequence[OptionalObjectAttributes] | None = None,
 ) -> ListObjectsV2Output: ...
 ```
 

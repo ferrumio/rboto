@@ -104,7 +104,7 @@ class DynamoDBClient:
     async def batch_execute_statement(
         self,
         *,
-        statements: list[BatchStatementRequest],
+        statements: Sequence[BatchStatementRequest],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> BatchExecuteStatementOutput:
         params: dict[str, object] = {
@@ -154,7 +154,7 @@ class DynamoDBClient:
     async def batch_write_item(
         self,
         *,
-        request_items: dict[str, list[WriteRequest]],
+        request_items: dict[str, Sequence[WriteRequest]],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
         return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
     ) -> BatchWriteItemOutput:
@@ -207,7 +207,7 @@ class DynamoDBClient:
         self,
         *,
         global_table_name: str,
-        replication_group: list[Replica],
+        replication_group: Sequence[Replica],
     ) -> CreateGlobalTableOutput:
         params: dict[str, object] = {
             "global_table_name": global_table_name,
@@ -231,15 +231,15 @@ class DynamoDBClient:
         self,
         *,
         table_name: str,
-        attribute_definitions: list[AttributeDefinition] | None = None,
-        key_schema: list[KeySchemaElement] | None = None,
-        local_secondary_indexes: list[LocalSecondaryIndex] | None = None,
-        global_secondary_indexes: list[GlobalSecondaryIndex] | None = None,
+        attribute_definitions: Sequence[AttributeDefinition] | None = None,
+        key_schema: Sequence[KeySchemaElement] | None = None,
+        local_secondary_indexes: Sequence[LocalSecondaryIndex] | None = None,
+        global_secondary_indexes: Sequence[GlobalSecondaryIndex] | None = None,
         billing_mode: BillingMode | None = None,
         provisioned_throughput: ProvisionedThroughput | None = None,
         stream_specification: StreamSpecification | None = None,
         sse_specification: SSESpecification | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         table_class: TableClass | None = None,
         deletion_protection_enabled: bool | None = None,
         warm_throughput: WarmThroughput | None = None,
@@ -247,7 +247,7 @@ class DynamoDBClient:
         on_demand_throughput: OnDemandThroughput | None = None,
         global_table_source_arn: str | None = None,
         global_table_settings_replication_mode: GlobalTableSettingsReplicationMode | None = None,
-        vector_indexes: list[VectorIndex] | None = None,
+        vector_indexes: Sequence[VectorIndex] | None = None,
     ) -> CreateTableOutput:
         params: dict[str, object] = {
             "table_name": table_name,
@@ -761,7 +761,7 @@ class DynamoDBClient:
         self,
         *,
         statement: str,
-        parameters: list[AttributeValue] | None = None,
+        parameters: Sequence[AttributeValue] | None = None,
         consistent_read: bool | None = None,
         next_token: str | None = None,
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
@@ -800,7 +800,7 @@ class DynamoDBClient:
     async def execute_transaction(
         self,
         *,
-        transact_statements: list[ParameterizedStatement],
+        transact_statements: Sequence[ParameterizedStatement],
         client_request_token: str | None = None,
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> ExecuteTransactionOutput:
@@ -884,7 +884,7 @@ class DynamoDBClient:
         *,
         table_name: str,
         key: dict[str, AttributeValue],
-        attributes_to_get: list[str] | None = None,
+        attributes_to_get: Sequence[str] | None = None,
         consistent_read: bool | None = None,
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
         projection_expression: str | None = None,
@@ -1267,7 +1267,7 @@ class DynamoDBClient:
         table_name: str,
         index_name: str | None = None,
         select: Select | None = None,
-        attributes_to_get: list[str] | None = None,
+        attributes_to_get: Sequence[str] | None = None,
         limit: int | None = None,
         consistent_read: bool | None = None,
         key_conditions: dict[str, Condition] | None = None,
@@ -1337,12 +1337,12 @@ class DynamoDBClient:
         target_table_name: str,
         backup_arn: str,
         billing_mode_override: BillingMode | None = None,
-        global_secondary_index_override: list[GlobalSecondaryIndex] | None = None,
-        local_secondary_index_override: list[LocalSecondaryIndex] | None = None,
+        global_secondary_index_override: Sequence[GlobalSecondaryIndex] | None = None,
+        local_secondary_index_override: Sequence[LocalSecondaryIndex] | None = None,
         provisioned_throughput_override: ProvisionedThroughput | None = None,
         on_demand_throughput_override: OnDemandThroughput | None = None,
         sse_specification_override: SSESpecification | None = None,
-        vector_index_override: list[VectorIndex] | None = None,
+        vector_index_override: Sequence[VectorIndex] | None = None,
     ) -> RestoreTableFromBackupOutput:
         params: dict[str, object] = {
             "target_table_name": target_table_name,
@@ -1385,12 +1385,12 @@ class DynamoDBClient:
         use_latest_restorable_time: bool | None = None,
         restore_date_time: str | None = None,
         billing_mode_override: BillingMode | None = None,
-        global_secondary_index_override: list[GlobalSecondaryIndex] | None = None,
-        local_secondary_index_override: list[LocalSecondaryIndex] | None = None,
+        global_secondary_index_override: Sequence[GlobalSecondaryIndex] | None = None,
+        local_secondary_index_override: Sequence[LocalSecondaryIndex] | None = None,
         provisioned_throughput_override: ProvisionedThroughput | None = None,
         on_demand_throughput_override: OnDemandThroughput | None = None,
         sse_specification_override: SSESpecification | None = None,
-        vector_index_override: list[VectorIndex] | None = None,
+        vector_index_override: Sequence[VectorIndex] | None = None,
     ) -> RestoreTableToPointInTimeOutput:
         params: dict[str, object] = {
             "target_table_name": target_table_name,
@@ -1436,7 +1436,7 @@ class DynamoDBClient:
         *,
         table_name: str,
         index_name: str | None = None,
-        attributes_to_get: list[str] | None = None,
+        attributes_to_get: Sequence[str] | None = None,
         limit: int | None = None,
         select: Select | None = None,
         scan_filter: dict[str, Condition] | None = None,
@@ -1503,7 +1503,7 @@ class DynamoDBClient:
         *,
         table_name: str,
         index_name: str,
-        search_vector: list[AttributeValue],
+        search_vector: Sequence[AttributeValue],
         top_k: int,
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
         expression_attribute_names: dict[str, str] | None = None,
@@ -1545,7 +1545,7 @@ class DynamoDBClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> None:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1568,7 +1568,7 @@ class DynamoDBClient:
     async def transact_get_items(
         self,
         *,
-        transact_items: list[TransactGetItem],
+        transact_items: Sequence[TransactGetItem],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
     ) -> TransactGetItemsOutput:
         params: dict[str, object] = {
@@ -1593,7 +1593,7 @@ class DynamoDBClient:
     async def transact_write_items(
         self,
         *,
-        transact_items: list[TransactWriteItem],
+        transact_items: Sequence[TransactWriteItem],
         return_consumed_capacity: ReturnConsumedCapacity | None = None,
         return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
         client_request_token: str | None = None,
@@ -1625,7 +1625,7 @@ class DynamoDBClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1703,7 +1703,7 @@ class DynamoDBClient:
         self,
         *,
         global_table_name: str,
-        replica_updates: list[ReplicaUpdate],
+        replica_updates: Sequence[ReplicaUpdate],
     ) -> UpdateGlobalTableOutput:
         params: dict[str, object] = {
             "global_table_name": global_table_name,
@@ -1730,8 +1730,8 @@ class DynamoDBClient:
         global_table_billing_mode: BillingMode | None = None,
         global_table_provisioned_write_capacity_units: int | None = None,
         global_table_provisioned_write_capacity_auto_scaling_settings_update: AutoScalingSettingsUpdate | None = None,
-        global_table_global_secondary_index_settings_update: list[GlobalTableGlobalSecondaryIndexSettingsUpdate] | None = None,
-        replica_settings_update: list[ReplicaSettingsUpdate] | None = None,
+        global_table_global_secondary_index_settings_update: Sequence[GlobalTableGlobalSecondaryIndexSettingsUpdate] | None = None,
+        replica_settings_update: Sequence[ReplicaSettingsUpdate] | None = None,
     ) -> UpdateGlobalTableSettingsOutput:
         params: dict[str, object] = {
             "global_table_name": global_table_name,
@@ -1848,22 +1848,22 @@ class DynamoDBClient:
         self,
         *,
         table_name: str,
-        attribute_definitions: list[AttributeDefinition] | None = None,
+        attribute_definitions: Sequence[AttributeDefinition] | None = None,
         billing_mode: BillingMode | None = None,
         provisioned_throughput: ProvisionedThroughput | None = None,
-        global_secondary_index_updates: list[GlobalSecondaryIndexUpdate] | None = None,
+        global_secondary_index_updates: Sequence[GlobalSecondaryIndexUpdate] | None = None,
         stream_specification: StreamSpecification | None = None,
         sse_specification: SSESpecification | None = None,
-        replica_updates: list[ReplicationGroupUpdate] | None = None,
+        replica_updates: Sequence[ReplicationGroupUpdate] | None = None,
         table_class: TableClass | None = None,
         deletion_protection_enabled: bool | None = None,
         multi_region_consistency: MultiRegionConsistency | None = None,
-        global_table_witness_updates: list[GlobalTableWitnessGroupUpdate] | None = None,
+        global_table_witness_updates: Sequence[GlobalTableWitnessGroupUpdate] | None = None,
         on_demand_throughput: OnDemandThroughput | None = None,
         warm_throughput: WarmThroughput | None = None,
         global_table_settings_replication_mode: GlobalTableSettingsReplicationMode | None = None,
         disassociation_protection_enabled: bool | None = None,
-        vector_index_updates: list[VectorIndexUpdate] | None = None,
+        vector_index_updates: Sequence[VectorIndexUpdate] | None = None,
     ) -> UpdateTableOutput:
         params: dict[str, object] = {
             "table_name": table_name,
@@ -1918,9 +1918,9 @@ class DynamoDBClient:
         self,
         *,
         table_name: str,
-        global_secondary_index_updates: list[GlobalSecondaryIndexAutoScalingUpdate] | None = None,
+        global_secondary_index_updates: Sequence[GlobalSecondaryIndexAutoScalingUpdate] | None = None,
         provisioned_write_capacity_auto_scaling_update: AutoScalingSettingsUpdate | None = None,
-        replica_updates: list[ReplicaAutoScalingUpdate] | None = None,
+        replica_updates: Sequence[ReplicaAutoScalingUpdate] | None = None,
     ) -> UpdateTableReplicaAutoScalingOutput:
         params: dict[str, object] = {
             "table_name": table_name,

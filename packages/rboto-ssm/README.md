@@ -79,13 +79,13 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: list[Tag]</code> | <code>AddTagsToResourceResult</code> |
+| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>AddTagsToResourceResult</code> |
 | [`associate_ops_item_related_item`](#associate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_type: str</code>, <code>resource_type: str</code>, <code>resource_uri: str</code> | <code>AssociateOpsItemRelatedItemResponse</code> |
 | [`cancel_command`](#cancel_command) | <code>command_id: str</code> | <code>CancelCommandResult</code> |
 | [`cancel_maintenance_window_execution`](#cancel_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>CancelMaintenanceWindowExecutionResult</code> |
 | [`create_activation`](#create_activation) | <code>iam_role: str</code> | <code>CreateActivationResult</code> |
 | [`create_association`](#create_association) | <code>name: str</code> | <code>CreateAssociationResult</code> |
-| [`create_association_batch`](#create_association_batch) | <code>entries: list[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchResult</code> |
+| [`create_association_batch`](#create_association_batch) | <code>entries: Sequence[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchResult</code> |
 | [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code>, <code>config_connector_arn: str</code> | <code>CreateCloudConnectorResult</code> |
 | [`create_document`](#create_document) | <code>content: str</code>, <code>name: str</code> | <code>CreateDocumentResult</code> |
 | [`create_maintenance_window`](#create_maintenance_window) | <code>name: str</code>, <code>schedule: str</code>, <code>duration: int</code>, <code>cutoff: int</code>, <code>allow_unassociated_targets: bool</code> | <code>CreateMaintenanceWindowResult</code> |
@@ -102,7 +102,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_ops_item`](#delete_ops_item) | <code>ops_item_id: str</code> | <code>DeleteOpsItemResponse</code> |
 | [`delete_ops_metadata`](#delete_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>DeleteOpsMetadataResult</code> |
 | [`delete_parameter`](#delete_parameter) | <code>name: str</code> | <code>DeleteParameterResult</code> |
-| [`delete_parameters`](#delete_parameters) | <code>names: list[str]</code> | <code>DeleteParametersResult</code> |
+| [`delete_parameters`](#delete_parameters) | <code>names: Sequence[str]</code> | <code>DeleteParametersResult</code> |
 | [`delete_patch_baseline`](#delete_patch_baseline) | <code>baseline_id: str</code> | <code>DeletePatchBaselineResult</code> |
 | [`delete_resource_data_sync`](#delete_resource_data_sync) | <code>sync_name: str</code> | <code>DeleteResourceDataSyncResult</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code>, <code>policy_id: str</code>, <code>policy_hash: str</code> | <code>DeleteResourcePolicyResponse</code> |
@@ -123,7 +123,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_effective_patches_for_patch_baseline`](#describe_effective_patches_for_patch_baseline) | <code>baseline_id: str</code> | <code>DescribeEffectivePatchesForPatchBaselineResult</code> |
 | [`describe_instance_associations_status`](#describe_instance_associations_status) | <code>instance_id: str</code> | <code>DescribeInstanceAssociationsStatusResult</code> |
 | [`describe_instance_information`](#describe_instance_information) | None | <code>DescribeInstanceInformationResult</code> |
-| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: list[str]</code> | <code>DescribeInstancePatchStatesResult</code> |
+| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: Sequence[str]</code> | <code>DescribeInstancePatchStatesResult</code> |
 | [`describe_instance_patch_states_for_patch_group`](#describe_instance_patch_states_for_patch_group) | <code>patch_group: str</code> | <code>DescribeInstancePatchStatesForPatchGroupResult</code> |
 | [`describe_instance_patches`](#describe_instance_patches) | <code>instance_id: str</code> | <code>DescribeInstancePatchesResult</code> |
 | [`describe_instance_properties`](#describe_instance_properties) | None | <code>DescribeInstancePropertiesResult</code> |
@@ -135,7 +135,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_maintenance_window_targets`](#describe_maintenance_window_targets) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTargetsResult</code> |
 | [`describe_maintenance_window_tasks`](#describe_maintenance_window_tasks) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTasksResult</code> |
 | [`describe_maintenance_windows`](#describe_maintenance_windows) | None | <code>DescribeMaintenanceWindowsResult</code> |
-| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: list[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetResult</code> |
+| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: Sequence[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetResult</code> |
 | [`describe_ops_items`](#describe_ops_items) | None | <code>DescribeOpsItemsResponse</code> |
 | [`describe_parameters`](#describe_parameters) | None | <code>DescribeParametersResult</code> |
 | [`describe_patch_baselines`](#describe_patch_baselines) | None | <code>DescribePatchBaselinesResult</code> |
@@ -146,7 +146,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`disassociate_ops_item_related_item`](#disassociate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_id: str</code> | <code>DisassociateOpsItemRelatedItemResponse</code> |
 | [`get_access_token`](#get_access_token) | <code>access_request_id: str</code> | <code>GetAccessTokenResponse</code> |
 | [`get_automation_execution`](#get_automation_execution) | <code>automation_execution_id: str</code> | <code>GetAutomationExecutionResult</code> |
-| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: list[str]</code> | <code>GetCalendarStateResponse</code> |
+| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: Sequence[str]</code> | <code>GetCalendarStateResponse</code> |
 | [`get_cloud_connector`](#get_cloud_connector) | <code>cloud_connector_id: str</code> | <code>GetCloudConnectorResult</code> |
 | [`get_command_invocation`](#get_command_invocation) | <code>command_id: str</code>, <code>instance_id: str</code> | <code>GetCommandInvocationResult</code> |
 | [`get_connection_status`](#get_connection_status) | <code>target: str</code> | <code>GetConnectionStatusResponse</code> |
@@ -166,13 +166,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_ops_summary`](#get_ops_summary) | None | <code>GetOpsSummaryResult</code> |
 | [`get_parameter`](#get_parameter) | <code>name: str</code> | <code>GetParameterResult</code> |
 | [`get_parameter_history`](#get_parameter_history) | <code>name: str</code> | <code>GetParameterHistoryResult</code> |
-| [`get_parameters`](#get_parameters) | <code>names: list[str]</code> | <code>GetParametersResult</code> |
+| [`get_parameters`](#get_parameters) | <code>names: Sequence[str]</code> | <code>GetParametersResult</code> |
 | [`get_parameters_by_path`](#get_parameters_by_path) | <code>path: str</code> | <code>GetParametersByPathResult</code> |
 | [`get_patch_baseline`](#get_patch_baseline) | <code>baseline_id: str</code> | <code>GetPatchBaselineResult</code> |
 | [`get_patch_baseline_for_patch_group`](#get_patch_baseline_for_patch_group) | <code>patch_group: str</code> | <code>GetPatchBaselineForPatchGroupResult</code> |
 | [`get_resource_policies`](#get_resource_policies) | <code>resource_arn: str</code> | <code>GetResourcePoliciesResponse</code> |
 | [`get_service_setting`](#get_service_setting) | <code>setting_id: str</code> | <code>GetServiceSettingResult</code> |
-| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: list[str]</code> | <code>LabelParameterVersionResult</code> |
+| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: Sequence[str]</code> | <code>LabelParameterVersionResult</code> |
 | [`list_association_versions`](#list_association_versions) | <code>association_id: str</code> | <code>ListAssociationVersionsResult</code> |
 | [`list_associations`](#list_associations) | None | <code>ListAssociationsResult</code> |
 | [`list_cloud_connectors`](#list_cloud_connectors) | None | <code>ListCloudConnectorsResult</code> |
@@ -185,7 +185,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_documents`](#list_documents) | None | <code>ListDocumentsResult</code> |
 | [`list_inventory_entries`](#list_inventory_entries) | <code>instance_id: str</code>, <code>type_name: str</code> | <code>ListInventoryEntriesResult</code> |
 | [`list_nodes`](#list_nodes) | None | <code>ListNodesResult</code> |
-| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: list[NodeAggregator]</code> | <code>ListNodesSummaryResult</code> |
+| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: Sequence[NodeAggregator]</code> | <code>ListNodesSummaryResult</code> |
 | [`list_ops_item_events`](#list_ops_item_events) | None | <code>ListOpsItemEventsResponse</code> |
 | [`list_ops_item_related_items`](#list_ops_item_related_items) | None | <code>ListOpsItemRelatedItemsResponse</code> |
 | [`list_ops_metadata`](#list_ops_metadata) | None | <code>ListOpsMetadataResult</code> |
@@ -193,28 +193,28 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_resource_data_sync`](#list_resource_data_sync) | None | <code>ListResourceDataSyncResult</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code> | <code>ListTagsForResourceResult</code> |
 | [`modify_document_permission`](#modify_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>ModifyDocumentPermissionResponse</code> |
-| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: list[ComplianceItemEntry]</code> | <code>PutComplianceItemsResult</code> |
-| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: list[InventoryItem]</code> | <code>PutInventoryResult</code> |
+| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: Sequence[ComplianceItemEntry]</code> | <code>PutComplianceItemsResult</code> |
+| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: Sequence[InventoryItem]</code> | <code>PutInventoryResult</code> |
 | [`put_parameter`](#put_parameter) | <code>name: str</code>, <code>value: str</code> | <code>PutParameterResult</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`register_default_patch_baseline`](#register_default_patch_baseline) | <code>baseline_id: str</code> | <code>RegisterDefaultPatchBaselineResult</code> |
 | [`register_patch_baseline_for_patch_group`](#register_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>RegisterPatchBaselineForPatchGroupResult</code> |
-| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: list[Target]</code> | <code>RegisterTargetWithMaintenanceWindowResult</code> |
+| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: Sequence[Target]</code> | <code>RegisterTargetWithMaintenanceWindowResult</code> |
 | [`register_task_with_maintenance_window`](#register_task_with_maintenance_window) | <code>window_id: str</code>, <code>task_arn: str</code>, <code>task_type: MaintenanceWindowTaskType</code> | <code>RegisterTaskWithMaintenanceWindowResult</code> |
-| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: list[str]</code> | <code>RemoveTagsFromResourceResult</code> |
+| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>RemoveTagsFromResourceResult</code> |
 | [`reset_service_setting`](#reset_service_setting) | <code>setting_id: str</code> | <code>ResetServiceSettingResult</code> |
 | [`resume_session`](#resume_session) | <code>session_id: str</code> | <code>ResumeSessionResponse</code> |
 | [`send_automation_signal`](#send_automation_signal) | <code>automation_execution_id: str</code>, <code>signal_type: SignalType</code> | <code>SendAutomationSignalResult</code> |
 | [`send_command`](#send_command) | <code>document_name: str</code> | <code>SendCommandResult</code> |
-| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: list[Target]</code> | <code>StartAccessRequestResponse</code> |
-| [`start_associations_once`](#start_associations_once) | <code>association_ids: list[str]</code> | <code>StartAssociationsOnceResult</code> |
+| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: Sequence[Target]</code> | <code>StartAccessRequestResponse</code> |
+| [`start_associations_once`](#start_associations_once) | <code>association_ids: Sequence[str]</code> | <code>StartAssociationsOnceResult</code> |
 | [`start_automation_execution`](#start_automation_execution) | <code>document_name: str</code> | <code>StartAutomationExecutionResult</code> |
-| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: list[Runbook]</code> | <code>StartChangeRequestExecutionResult</code> |
+| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: Sequence[Runbook]</code> | <code>StartChangeRequestExecutionResult</code> |
 | [`start_execution_preview`](#start_execution_preview) | <code>document_name: str</code> | <code>StartExecutionPreviewResponse</code> |
 | [`start_session`](#start_session) | <code>target: str</code> | <code>StartSessionResponse</code> |
 | [`stop_automation_execution`](#stop_automation_execution) | <code>automation_execution_id: str</code> | <code>StopAutomationExecutionResult</code> |
 | [`terminate_session`](#terminate_session) | <code>session_id: str</code> | <code>TerminateSessionResponse</code> |
-| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: list[str]</code> | <code>UnlabelParameterVersionResult</code> |
+| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: Sequence[str]</code> | <code>UnlabelParameterVersionResult</code> |
 | [`update_association`](#update_association) | <code>association_id: str</code> | <code>UpdateAssociationResult</code> |
 | [`update_association_status`](#update_association_status) | <code>name: str</code>, <code>instance_id: str</code>, <code>association_status: AssociationStatus</code> | <code>UpdateAssociationStatusResult</code> |
 | [`update_cloud_connector`](#update_cloud_connector) | <code>cloud_connector_id: str</code> | <code>UpdateCloudConnectorResult</code> |
@@ -241,7 +241,7 @@ async def add_tags_to_resource(
     *,
     resource_type: ResourceTypeForTagging,
     resource_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> AddTagsToResourceResult: ...
 ```
 
@@ -263,7 +263,7 @@ async def associate_ops_item_related_item(
 async def cancel_command(
     *,
     command_id: str,
-    instance_ids: list[str] | None = None,
+    instance_ids: Sequence[str] | None = None,
 ) -> CancelCommandResult: ...
 ```
 
@@ -286,8 +286,8 @@ async def create_activation(
     default_instance_name: str | None = None,
     registration_limit: int | None = None,
     expiration_date: str | None = None,
-    tags: list[Tag] | None = None,
-    registration_metadata: list[RegistrationMetadataItem] | None = None,
+    tags: Sequence[Tag] | None = None,
+    registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
 ) -> CreateActivationResult: ...
 ```
 
@@ -299,8 +299,8 @@ async def create_association(
     name: str,
     document_version: str | None = None,
     instance_id: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
-    targets: list[Target] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
+    targets: Sequence[Target] | None = None,
     schedule_expression: str | None = None,
     output_location: InstanceAssociationOutputLocation | None = None,
     association_name: str | None = None,
@@ -310,12 +310,12 @@ async def create_association(
     compliance_severity: AssociationComplianceSeverity | None = None,
     sync_compliance: AssociationSyncCompliance | None = None,
     apply_only_at_cron_interval: bool | None = None,
-    calendar_names: list[str] | None = None,
-    target_locations: list[TargetLocation] | None = None,
+    calendar_names: Sequence[str] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
     schedule_offset: int | None = None,
     duration: int | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
-    tags: list[Tag] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
+    tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
 ) -> CreateAssociationResult: ...
@@ -326,7 +326,7 @@ async def create_association(
 ```python
 async def create_association_batch(
     *,
-    entries: list[CreateAssociationBatchRequestEntry],
+    entries: Sequence[CreateAssociationBatchRequestEntry],
     association_dispatch_assume_role: str | None = None,
 ) -> CreateAssociationBatchResult: ...
 ```
@@ -341,7 +341,7 @@ async def create_cloud_connector(
     configuration: CloudConnectorConfiguration,
     config_connector_arn: str,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateCloudConnectorResult: ...
 ```
 
@@ -352,14 +352,14 @@ async def create_document(
     *,
     content: str,
     name: str,
-    requires: list[DocumentRequires] | None = None,
-    attachments: list[AttachmentsSource] | None = None,
+    requires: Sequence[DocumentRequires] | None = None,
+    attachments: Sequence[AttachmentsSource] | None = None,
     display_name: str | None = None,
     version_name: str | None = None,
     document_type: DocumentType | None = None,
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateDocumentResult: ...
 ```
 
@@ -379,7 +379,7 @@ async def create_maintenance_window(
     schedule_timezone: str | None = None,
     schedule_offset: int | None = None,
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateMaintenanceWindowResult: ...
 ```
 
@@ -393,10 +393,10 @@ async def create_ops_item(
     title: str,
     ops_item_type: str | None = None,
     operational_data: dict[str, OpsItemDataValue] | None = None,
-    notifications: list[OpsItemNotification] | None = None,
+    notifications: Sequence[OpsItemNotification] | None = None,
     priority: int | None = None,
-    related_ops_items: list[RelatedOpsItem] | None = None,
-    tags: list[Tag] | None = None,
+    related_ops_items: Sequence[RelatedOpsItem] | None = None,
+    tags: Sequence[Tag] | None = None,
     category: str | None = None,
     severity: str | None = None,
     actual_start_time: str | None = None,
@@ -414,7 +414,7 @@ async def create_ops_metadata(
     *,
     resource_id: str,
     metadata: dict[str, MetadataValue] | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateOpsMetadataResult: ...
 ```
 
@@ -427,16 +427,16 @@ async def create_patch_baseline(
     operating_system: OperatingSystem | None = None,
     global_filters: PatchFilterGroup | None = None,
     approval_rules: PatchRuleGroup | None = None,
-    approved_patches: list[str] | None = None,
+    approved_patches: Sequence[str] | None = None,
     approved_patches_compliance_level: PatchComplianceLevel | None = None,
     approved_patches_enable_non_security: bool | None = None,
-    rejected_patches: list[str] | None = None,
+    rejected_patches: Sequence[str] | None = None,
     rejected_patches_action: PatchAction | None = None,
     description: str | None = None,
-    sources: list[PatchSource] | None = None,
+    sources: Sequence[PatchSource] | None = None,
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreatePatchBaselineResult: ...
 ```
 
@@ -546,7 +546,7 @@ async def delete_parameter(
 ```python
 async def delete_parameters(
     *,
-    names: list[str],
+    names: Sequence[str],
 ) -> DeleteParametersResult: ...
 ```
 
@@ -626,7 +626,7 @@ async def deregister_task_from_maintenance_window(
 ```python
 async def describe_activations(
     *,
-    filters: list[DescribeActivationsFilter] | None = None,
+    filters: Sequence[DescribeActivationsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeActivationsResult: ...
@@ -651,7 +651,7 @@ async def describe_association_execution_targets(
     *,
     association_id: str,
     execution_id: str,
-    filters: list[AssociationExecutionTargetsFilter] | None = None,
+    filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAssociationExecutionTargetsResult: ...
@@ -663,7 +663,7 @@ async def describe_association_execution_targets(
 async def describe_association_executions(
     *,
     association_id: str,
-    filters: list[AssociationExecutionFilter] | None = None,
+    filters: Sequence[AssociationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAssociationExecutionsResult: ...
@@ -674,7 +674,7 @@ async def describe_association_executions(
 ```python
 async def describe_automation_executions(
     *,
-    filters: list[AutomationExecutionFilter] | None = None,
+    filters: Sequence[AutomationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAutomationExecutionsResult: ...
@@ -686,7 +686,7 @@ async def describe_automation_executions(
 async def describe_automation_step_executions(
     *,
     automation_execution_id: str,
-    filters: list[StepExecutionFilter] | None = None,
+    filters: Sequence[StepExecutionFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
     reverse_order: bool | None = None,
@@ -698,7 +698,7 @@ async def describe_automation_step_executions(
 ```python
 async def describe_available_patches(
     *,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeAvailablePatchesResult: ...
@@ -765,8 +765,8 @@ async def describe_instance_associations_status(
 ```python
 async def describe_instance_information(
     *,
-    instance_information_filter_list: list[InstanceInformationFilter] | None = None,
-    filters: list[InstanceInformationStringFilter] | None = None,
+    instance_information_filter_list: Sequence[InstanceInformationFilter] | None = None,
+    filters: Sequence[InstanceInformationStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeInstanceInformationResult: ...
@@ -777,7 +777,7 @@ async def describe_instance_information(
 ```python
 async def describe_instance_patch_states(
     *,
-    instance_ids: list[str],
+    instance_ids: Sequence[str],
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchStatesResult: ...
@@ -789,7 +789,7 @@ async def describe_instance_patch_states(
 async def describe_instance_patch_states_for_patch_group(
     *,
     patch_group: str,
-    filters: list[InstancePatchStateFilter] | None = None,
+    filters: Sequence[InstancePatchStateFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchStatesForPatchGroupResult: ...
@@ -801,7 +801,7 @@ async def describe_instance_patch_states_for_patch_group(
 async def describe_instance_patches(
     *,
     instance_id: str,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> DescribeInstancePatchesResult: ...
@@ -812,8 +812,8 @@ async def describe_instance_patches(
 ```python
 async def describe_instance_properties(
     *,
-    instance_property_filter_list: list[InstancePropertyFilter] | None = None,
-    filters_with_operator: list[InstancePropertyStringFilter] | None = None,
+    instance_property_filter_list: Sequence[InstancePropertyFilter] | None = None,
+    filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeInstancePropertiesResult: ...
@@ -837,7 +837,7 @@ async def describe_maintenance_window_execution_task_invocations(
     *,
     window_execution_id: str,
     task_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionTaskInvocationsResult: ...
@@ -849,7 +849,7 @@ async def describe_maintenance_window_execution_task_invocations(
 async def describe_maintenance_window_execution_tasks(
     *,
     window_execution_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionTasksResult: ...
@@ -861,7 +861,7 @@ async def describe_maintenance_window_execution_tasks(
 async def describe_maintenance_window_executions(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowExecutionsResult: ...
@@ -873,9 +873,9 @@ async def describe_maintenance_window_executions(
 async def describe_maintenance_window_schedule(
     *,
     window_id: str | None = None,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     resource_type: MaintenanceWindowResourceType | None = None,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowScheduleResult: ...
@@ -887,7 +887,7 @@ async def describe_maintenance_window_schedule(
 async def describe_maintenance_window_targets(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowTargetsResult: ...
@@ -899,7 +899,7 @@ async def describe_maintenance_window_targets(
 async def describe_maintenance_window_tasks(
     *,
     window_id: str,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowTasksResult: ...
@@ -910,7 +910,7 @@ async def describe_maintenance_window_tasks(
 ```python
 async def describe_maintenance_windows(
     *,
-    filters: list[MaintenanceWindowFilter] | None = None,
+    filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeMaintenanceWindowsResult: ...
@@ -921,7 +921,7 @@ async def describe_maintenance_windows(
 ```python
 async def describe_maintenance_windows_for_target(
     *,
-    targets: list[Target],
+    targets: Sequence[Target],
     resource_type: MaintenanceWindowResourceType,
     max_results: int | None = None,
     next_token: str | None = None,
@@ -933,7 +933,7 @@ async def describe_maintenance_windows_for_target(
 ```python
 async def describe_ops_items(
     *,
-    ops_item_filters: list[OpsItemFilter] | None = None,
+    ops_item_filters: Sequence[OpsItemFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribeOpsItemsResponse: ...
@@ -944,8 +944,8 @@ async def describe_ops_items(
 ```python
 async def describe_parameters(
     *,
-    filters: list[ParametersFilter] | None = None,
-    parameter_filters: list[ParameterStringFilter] | None = None,
+    filters: Sequence[ParametersFilter] | None = None,
+    parameter_filters: Sequence[ParameterStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
     shared: bool | None = None,
@@ -957,7 +957,7 @@ async def describe_parameters(
 ```python
 async def describe_patch_baselines(
     *,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> DescribePatchBaselinesResult: ...
@@ -978,7 +978,7 @@ async def describe_patch_group_state(
 async def describe_patch_groups(
     *,
     max_results: int | None = None,
-    filters: list[PatchOrchestratorFilter] | None = None,
+    filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
 ) -> DescribePatchGroupsResult: ...
 ```
@@ -1004,7 +1004,7 @@ async def describe_sessions(
     state: SessionState,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[SessionFilter] | None = None,
+    filters: Sequence[SessionFilter] | None = None,
 ) -> DescribeSessionsResponse: ...
 ```
 
@@ -1041,7 +1041,7 @@ async def get_automation_execution(
 ```python
 async def get_calendar_state(
     *,
-    calendar_names: list[str],
+    calendar_names: Sequence[str],
     at_time: str | None = None,
 ) -> GetCalendarStateResponse: ...
 ```
@@ -1122,9 +1122,9 @@ async def get_execution_preview(
 ```python
 async def get_inventory(
     *,
-    filters: list[InventoryFilter] | None = None,
-    aggregators: list[InventoryAggregator] | None = None,
-    result_attributes: list[ResultAttribute] | None = None,
+    filters: Sequence[InventoryFilter] | None = None,
+    aggregators: Sequence[InventoryAggregator] | None = None,
+    result_attributes: Sequence[ResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> GetInventoryResult: ...
@@ -1219,9 +1219,9 @@ async def get_ops_metadata(
 async def get_ops_summary(
     *,
     sync_name: str | None = None,
-    filters: list[OpsFilter] | None = None,
-    aggregators: list[OpsAggregator] | None = None,
-    result_attributes: list[OpsResultAttribute] | None = None,
+    filters: Sequence[OpsFilter] | None = None,
+    aggregators: Sequence[OpsAggregator] | None = None,
+    result_attributes: Sequence[OpsResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> GetOpsSummaryResult: ...
@@ -1254,7 +1254,7 @@ async def get_parameter_history(
 ```python
 async def get_parameters(
     *,
-    names: list[str],
+    names: Sequence[str],
     with_decryption: bool | None = None,
 ) -> GetParametersResult: ...
 ```
@@ -1266,7 +1266,7 @@ async def get_parameters_by_path(
     *,
     path: str,
     recursive: bool | None = None,
-    parameter_filters: list[ParameterStringFilter] | None = None,
+    parameter_filters: Sequence[ParameterStringFilter] | None = None,
     with_decryption: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
@@ -1318,7 +1318,7 @@ async def get_service_setting(
 async def label_parameter_version(
     *,
     name: str,
-    labels: list[str],
+    labels: Sequence[str],
     parameter_version: int | None = None,
 ) -> LabelParameterVersionResult: ...
 ```
@@ -1339,7 +1339,7 @@ async def list_association_versions(
 ```python
 async def list_associations(
     *,
-    association_filter_list: list[AssociationFilter] | None = None,
+    association_filter_list: Sequence[AssociationFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListAssociationsResult: ...
@@ -1352,7 +1352,7 @@ async def list_cloud_connectors(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CloudConnectorFilter] | None = None,
+    filters: Sequence[CloudConnectorFilter] | None = None,
 ) -> ListCloudConnectorsResult: ...
 ```
 
@@ -1365,7 +1365,7 @@ async def list_command_invocations(
     instance_id: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CommandFilter] | None = None,
+    filters: Sequence[CommandFilter] | None = None,
     details: bool | None = None,
 ) -> ListCommandInvocationsResult: ...
 ```
@@ -1379,7 +1379,7 @@ async def list_commands(
     instance_id: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[CommandFilter] | None = None,
+    filters: Sequence[CommandFilter] | None = None,
 ) -> ListCommandsResult: ...
 ```
 
@@ -1388,9 +1388,9 @@ async def list_commands(
 ```python
 async def list_compliance_items(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
-    resource_ids: list[str] | None = None,
-    resource_types: list[str] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
+    resource_ids: Sequence[str] | None = None,
+    resource_types: Sequence[str] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListComplianceItemsResult: ...
@@ -1401,7 +1401,7 @@ async def list_compliance_items(
 ```python
 async def list_compliance_summaries(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListComplianceSummariesResult: ...
@@ -1436,8 +1436,8 @@ async def list_document_versions(
 ```python
 async def list_documents(
     *,
-    document_filter_list: list[DocumentFilter] | None = None,
-    filters: list[DocumentKeyValuesFilter] | None = None,
+    document_filter_list: Sequence[DocumentFilter] | None = None,
+    filters: Sequence[DocumentKeyValuesFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListDocumentsResult: ...
@@ -1450,7 +1450,7 @@ async def list_inventory_entries(
     *,
     instance_id: str,
     type_name: str,
-    filters: list[InventoryFilter] | None = None,
+    filters: Sequence[InventoryFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListInventoryEntriesResult: ...
@@ -1462,7 +1462,7 @@ async def list_inventory_entries(
 async def list_nodes(
     *,
     sync_name: str | None = None,
-    filters: list[NodeFilter] | None = None,
+    filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListNodesResult: ...
@@ -1473,9 +1473,9 @@ async def list_nodes(
 ```python
 async def list_nodes_summary(
     *,
-    aggregators: list[NodeAggregator],
+    aggregators: Sequence[NodeAggregator],
     sync_name: str | None = None,
-    filters: list[NodeFilter] | None = None,
+    filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListNodesSummaryResult: ...
@@ -1486,7 +1486,7 @@ async def list_nodes_summary(
 ```python
 async def list_ops_item_events(
     *,
-    filters: list[OpsItemEventFilter] | None = None,
+    filters: Sequence[OpsItemEventFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsItemEventsResponse: ...
@@ -1498,7 +1498,7 @@ async def list_ops_item_events(
 async def list_ops_item_related_items(
     *,
     ops_item_id: str | None = None,
-    filters: list[OpsItemRelatedItemsFilter] | None = None,
+    filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsItemRelatedItemsResponse: ...
@@ -1509,7 +1509,7 @@ async def list_ops_item_related_items(
 ```python
 async def list_ops_metadata(
     *,
-    filters: list[OpsMetadataFilter] | None = None,
+    filters: Sequence[OpsMetadataFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> ListOpsMetadataResult: ...
@@ -1520,7 +1520,7 @@ async def list_ops_metadata(
 ```python
 async def list_resource_compliance_summaries(
     *,
-    filters: list[ComplianceStringFilter] | None = None,
+    filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListResourceComplianceSummariesResult: ...
@@ -1554,8 +1554,8 @@ async def modify_document_permission(
     *,
     name: str,
     permission_type: DocumentPermissionType,
-    account_ids_to_add: list[str] | None = None,
-    account_ids_to_remove: list[str] | None = None,
+    account_ids_to_add: Sequence[str] | None = None,
+    account_ids_to_remove: Sequence[str] | None = None,
     shared_document_version: str | None = None,
 ) -> ModifyDocumentPermissionResponse: ...
 ```
@@ -1569,7 +1569,7 @@ async def put_compliance_items(
     resource_type: str,
     compliance_type: str,
     execution_summary: ComplianceExecutionSummary,
-    items: list[ComplianceItemEntry],
+    items: Sequence[ComplianceItemEntry],
     item_content_hash: str | None = None,
     upload_type: ComplianceUploadType | None = None,
 ) -> PutComplianceItemsResult: ...
@@ -1581,7 +1581,7 @@ async def put_compliance_items(
 async def put_inventory(
     *,
     instance_id: str,
-    items: list[InventoryItem],
+    items: Sequence[InventoryItem],
 ) -> PutInventoryResult: ...
 ```
 
@@ -1597,7 +1597,7 @@ async def put_parameter(
     key_id: str | None = None,
     overwrite: bool | None = None,
     allowed_pattern: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     tier: ParameterTier | None = None,
     policies: str | None = None,
     data_type: str | None = None,
@@ -1642,7 +1642,7 @@ async def register_target_with_maintenance_window(
     *,
     window_id: str,
     resource_type: MaintenanceWindowResourceType,
-    targets: list[Target],
+    targets: Sequence[Target],
     owner_information: str | None = None,
     name: str | None = None,
     description: str | None = None,
@@ -1658,7 +1658,7 @@ async def register_task_with_maintenance_window(
     window_id: str,
     task_arn: str,
     task_type: MaintenanceWindowTaskType,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     service_role_arn: str | None = None,
     task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
     task_invocation_parameters: MaintenanceWindowTaskInvocationParameters | None = None,
@@ -1681,7 +1681,7 @@ async def remove_tags_from_resource(
     *,
     resource_type: ResourceTypeForTagging,
     resource_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> RemoveTagsFromResourceResult: ...
 ```
 
@@ -1710,7 +1710,7 @@ async def send_automation_signal(
     *,
     automation_execution_id: str,
     signal_type: SignalType,
-    payload: dict[str, list[str]] | None = None,
+    payload: dict[str, Sequence[str]] | None = None,
 ) -> SendAutomationSignalResult: ...
 ```
 
@@ -1720,14 +1720,14 @@ async def send_automation_signal(
 async def send_command(
     *,
     document_name: str,
-    instance_ids: list[str] | None = None,
-    targets: list[Target] | None = None,
+    instance_ids: Sequence[str] | None = None,
+    targets: Sequence[Target] | None = None,
     document_version: str | None = None,
     document_hash: str | None = None,
     document_hash_type: DocumentHashType | None = None,
     timeout_seconds: int | None = None,
     comment: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     output_s3_region: str | None = None,
     output_s3_bucket_name: str | None = None,
     output_s3_key_prefix: str | None = None,
@@ -1746,8 +1746,8 @@ async def send_command(
 async def start_access_request(
     *,
     reason: str,
-    targets: list[Target],
-    tags: list[Tag] | None = None,
+    targets: Sequence[Target],
+    tags: Sequence[Tag] | None = None,
 ) -> StartAccessRequestResponse: ...
 ```
 
@@ -1756,7 +1756,7 @@ async def start_access_request(
 ```python
 async def start_associations_once(
     *,
-    association_ids: list[str],
+    association_ids: Sequence[str],
 ) -> StartAssociationsOnceResult: ...
 ```
 
@@ -1767,16 +1767,16 @@ async def start_automation_execution(
     *,
     document_name: str,
     document_version: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     client_token: str | None = None,
     mode: ExecutionMode | None = None,
     target_parameter_name: str | None = None,
-    targets: list[Target] | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
+    targets: Sequence[Target] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
     max_concurrency: str | None = None,
     max_errors: str | None = None,
-    target_locations: list[TargetLocation] | None = None,
-    tags: list[Tag] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
+    tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     target_locations_url: str | None = None,
 ) -> StartAutomationExecutionResult: ...
@@ -1788,14 +1788,14 @@ async def start_automation_execution(
 async def start_change_request_execution(
     *,
     document_name: str,
-    runbooks: list[Runbook],
+    runbooks: Sequence[Runbook],
     scheduled_time: str | None = None,
     document_version: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     change_request_name: str | None = None,
     client_token: str | None = None,
     auto_approve: bool | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     scheduled_end_time: str | None = None,
     change_details: str | None = None,
 ) -> StartChangeRequestExecutionResult: ...
@@ -1820,7 +1820,7 @@ async def start_session(
     target: str,
     document_name: str | None = None,
     reason: str | None = None,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
 ) -> StartSessionResponse: ...
 ```
 
@@ -1850,7 +1850,7 @@ async def unlabel_parameter_version(
     *,
     name: str,
     parameter_version: int,
-    labels: list[str],
+    labels: Sequence[str],
 ) -> UnlabelParameterVersionResult: ...
 ```
 
@@ -1860,12 +1860,12 @@ async def unlabel_parameter_version(
 async def update_association(
     *,
     association_id: str,
-    parameters: dict[str, list[str]] | None = None,
+    parameters: dict[str, Sequence[str]] | None = None,
     document_version: str | None = None,
     schedule_expression: str | None = None,
     output_location: InstanceAssociationOutputLocation | None = None,
     name: str | None = None,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     association_name: str | None = None,
     association_version: str | None = None,
     automation_target_parameter_name: str | None = None,
@@ -1874,11 +1874,11 @@ async def update_association(
     compliance_severity: AssociationComplianceSeverity | None = None,
     sync_compliance: AssociationSyncCompliance | None = None,
     apply_only_at_cron_interval: bool | None = None,
-    calendar_names: list[str] | None = None,
-    target_locations: list[TargetLocation] | None = None,
+    calendar_names: Sequence[str] | None = None,
+    target_locations: Sequence[TargetLocation] | None = None,
     schedule_offset: int | None = None,
     duration: int | None = None,
-    target_maps: list[dict[str, list[str]]] | None = None,
+    target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
 ) -> UpdateAssociationResult: ...
@@ -1914,7 +1914,7 @@ async def update_document(
     *,
     content: str,
     name: str,
-    attachments: list[AttachmentsSource] | None = None,
+    attachments: Sequence[AttachmentsSource] | None = None,
     display_name: str | None = None,
     version_name: str | None = None,
     document_version: str | None = None,
@@ -1972,7 +1972,7 @@ async def update_maintenance_window_target(
     *,
     window_id: str,
     window_target_id: str,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     owner_information: str | None = None,
     name: str | None = None,
     description: str | None = None,
@@ -1987,7 +1987,7 @@ async def update_maintenance_window_task(
     *,
     window_id: str,
     window_task_id: str,
-    targets: list[Target] | None = None,
+    targets: Sequence[Target] | None = None,
     task_arn: str | None = None,
     service_role_arn: str | None = None,
     task_parameters: dict[str, MaintenanceWindowTaskParameterValueExpression] | None = None,
@@ -2022,10 +2022,10 @@ async def update_ops_item(
     ops_item_id: str,
     description: str | None = None,
     operational_data: dict[str, OpsItemDataValue] | None = None,
-    operational_data_to_delete: list[str] | None = None,
-    notifications: list[OpsItemNotification] | None = None,
+    operational_data_to_delete: Sequence[str] | None = None,
+    notifications: Sequence[OpsItemNotification] | None = None,
     priority: int | None = None,
-    related_ops_items: list[RelatedOpsItem] | None = None,
+    related_ops_items: Sequence[RelatedOpsItem] | None = None,
     status: OpsItemStatus | None = None,
     title: str | None = None,
     category: str | None = None,
@@ -2045,7 +2045,7 @@ async def update_ops_metadata(
     *,
     ops_metadata_arn: str,
     metadata_to_update: dict[str, MetadataValue] | None = None,
-    keys_to_delete: list[str] | None = None,
+    keys_to_delete: Sequence[str] | None = None,
 ) -> UpdateOpsMetadataResult: ...
 ```
 
@@ -2058,13 +2058,13 @@ async def update_patch_baseline(
     name: str | None = None,
     global_filters: PatchFilterGroup | None = None,
     approval_rules: PatchRuleGroup | None = None,
-    approved_patches: list[str] | None = None,
+    approved_patches: Sequence[str] | None = None,
     approved_patches_compliance_level: PatchComplianceLevel | None = None,
     approved_patches_enable_non_security: bool | None = None,
-    rejected_patches: list[str] | None = None,
+    rejected_patches: Sequence[str] | None = None,
     rejected_patches_action: PatchAction | None = None,
     description: str | None = None,
-    sources: list[PatchSource] | None = None,
+    sources: Sequence[PatchSource] | None = None,
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     replace: bool | None = None,
 ) -> UpdatePatchBaselineResult: ...

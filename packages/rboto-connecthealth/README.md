@@ -94,7 +94,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_medical_scribe_listening_session`](#start_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code>, <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code> | <code>StartMedicalScribeListeningSessionOutput</code> |
 | [`start_patient_insights_job`](#start_patient_insights_job) | <code>domain_id: str</code>, <code>patient_context: PatientInsightsPatientContext</code>, <code>insights_context: InsightsContext</code>, <code>encounter_context: PatientInsightsEncounterContext</code>, <code>user_context: UserContext</code>, <code>input_data_config: InputDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>StartPatientInsightsJobResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
 ## Complete signatures
 
@@ -266,7 +266,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
 

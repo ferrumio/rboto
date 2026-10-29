@@ -82,9 +82,9 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`associate_permission`](#associate_permission) | <code>application_id: str</code>, <code>statement_id: str</code>, <code>actions: list[str]</code>, <code>principal: str</code> | <code>AssociatePermissionResponse</code> |
-| [`batch_delete_document`](#batch_delete_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: list[DeleteDocument]</code> | <code>BatchDeleteDocumentResponse</code> |
-| [`batch_put_document`](#batch_put_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: list[Document]</code> | <code>BatchPutDocumentResponse</code> |
+| [`associate_permission`](#associate_permission) | <code>application_id: str</code>, <code>statement_id: str</code>, <code>actions: Sequence[str]</code>, <code>principal: str</code> | <code>AssociatePermissionResponse</code> |
+| [`batch_delete_document`](#batch_delete_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[DeleteDocument]</code> | <code>BatchDeleteDocumentResponse</code> |
+| [`batch_put_document`](#batch_put_document) | <code>application_id: str</code>, <code>index_id: str</code>, <code>documents: Sequence[Document]</code> | <code>BatchPutDocumentResponse</code> |
 | [`cancel_subscription`](#cancel_subscription) | <code>application_id: str</code>, <code>subscription_id: str</code> | <code>CancelSubscriptionResponse</code> |
 | [`chat`](#chat) | <code>application_id: str</code> | <code>ChatOutput</code> |
 | [`chat_sync`](#chat_sync) | <code>application_id: str</code> | <code>ChatSyncOutput</code> |
@@ -92,7 +92,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_anonymous_web_experience_url`](#create_anonymous_web_experience_url) | <code>application_id: str</code>, <code>web_experience_id: str</code> | <code>CreateAnonymousWebExperienceUrlResponse</code> |
 | [`create_application`](#create_application) | <code>display_name: str</code> | <code>CreateApplicationResponse</code> |
 | [`create_chat_response_configuration`](#create_chat_response_configuration) | <code>application_id: str</code>, <code>display_name: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>CreateChatResponseConfigurationResponse</code> |
-| [`create_data_accessor`](#create_data_accessor) | <code>application_id: str</code>, <code>principal: str</code>, <code>action_configurations: list[ActionConfiguration]</code>, <code>display_name: str</code> | <code>CreateDataAccessorResponse</code> |
+| [`create_data_accessor`](#create_data_accessor) | <code>application_id: str</code>, <code>principal: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code>, <code>display_name: str</code> | <code>CreateDataAccessorResponse</code> |
 | [`create_data_source`](#create_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>display_name: str</code>, <code>configuration: JSONValue</code> | <code>CreateDataSourceResponse</code> |
 | [`create_index`](#create_index) | <code>application_id: str</code>, <code>display_name: str</code> | <code>CreateIndexResponse</code> |
 | [`create_plugin`](#create_plugin) | <code>application_id: str</code>, <code>display_name: str</code>, <code>type: PluginType</code>, <code>auth_configuration: PluginAuthConfiguration</code> | <code>CreatePluginResponse</code> |
@@ -152,12 +152,12 @@ native response definitions are in the package's `_native.pyi`.
 | [`search_relevant_content`](#search_relevant_content) | <code>application_id: str</code>, <code>query_text: str</code>, <code>content_source: ContentSource</code> | <code>SearchRelevantContentResponse</code> |
 | [`start_data_source_sync_job`](#start_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StartDataSourceSyncJobResponse</code> |
 | [`stop_data_source_sync_job`](#stop_data_source_sync_job) | <code>data_source_id: str</code>, <code>application_id: str</code>, <code>index_id: str</code> | <code>StopDataSourceSyncJobResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_application`](#update_application) | <code>application_id: str</code> | <code>UpdateApplicationResponse</code> |
 | [`update_chat_controls_configuration`](#update_chat_controls_configuration) | <code>application_id: str</code> | <code>UpdateChatControlsConfigurationResponse</code> |
 | [`update_chat_response_configuration`](#update_chat_response_configuration) | <code>application_id: str</code>, <code>chat_response_configuration_id: str</code>, <code>response_configurations: dict[ResponseConfigurationType, ResponseConfiguration]</code> | <code>UpdateChatResponseConfigurationResponse</code> |
-| [`update_data_accessor`](#update_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code>, <code>action_configurations: list[ActionConfiguration]</code> | <code>UpdateDataAccessorResponse</code> |
+| [`update_data_accessor`](#update_data_accessor) | <code>application_id: str</code>, <code>data_accessor_id: str</code>, <code>action_configurations: Sequence[ActionConfiguration]</code> | <code>UpdateDataAccessorResponse</code> |
 | [`update_data_source`](#update_data_source) | <code>application_id: str</code>, <code>index_id: str</code>, <code>data_source_id: str</code> | <code>UpdateDataSourceResponse</code> |
 | [`update_index`](#update_index) | <code>application_id: str</code>, <code>index_id: str</code> | <code>UpdateIndexResponse</code> |
 | [`update_plugin`](#update_plugin) | <code>application_id: str</code>, <code>plugin_id: str</code> | <code>UpdatePluginResponse</code> |
@@ -175,9 +175,9 @@ async def associate_permission(
     *,
     application_id: str,
     statement_id: str,
-    actions: list[str],
+    actions: Sequence[str],
     principal: str,
-    conditions: list[PermissionCondition] | None = None,
+    conditions: Sequence[PermissionCondition] | None = None,
 ) -> AssociatePermissionResponse: ...
 ```
 
@@ -188,7 +188,7 @@ async def batch_delete_document(
     *,
     application_id: str,
     index_id: str,
-    documents: list[DeleteDocument],
+    documents: Sequence[DeleteDocument],
     data_source_sync_id: str | None = None,
 ) -> BatchDeleteDocumentResponse: ...
 ```
@@ -200,7 +200,7 @@ async def batch_put_document(
     *,
     application_id: str,
     index_id: str,
-    documents: list[Document],
+    documents: Sequence[Document],
     role_arn: str | None = None,
     data_source_sync_id: str | None = None,
 ) -> BatchPutDocumentResponse: ...
@@ -223,7 +223,7 @@ async def chat(
     *,
     application_id: str,
     user_id: str | None = None,
-    user_groups: list[str] | None = None,
+    user_groups: Sequence[str] | None = None,
     conversation_id: str | None = None,
     parent_message_id: str | None = None,
     client_token: str | None = None,
@@ -238,9 +238,9 @@ async def chat_sync(
     *,
     application_id: str,
     user_id: str | None = None,
-    user_groups: list[str] | None = None,
+    user_groups: Sequence[str] | None = None,
     user_message: str | None = None,
-    attachments: list[AttachmentInput] | None = None,
+    attachments: Sequence[AttachmentInput] | None = None,
     action_execution: ActionExecution | None = None,
     auth_challenge_response: AuthChallengeResponse | None = None,
     conversation_id: str | None = None,
@@ -286,10 +286,10 @@ async def create_application(
     identity_type: IdentityType | None = None,
     iam_identity_provider_arn: str | None = None,
     identity_center_instance_arn: str | None = None,
-    client_ids_for_oidc: list[str] | None = None,
+    client_ids_for_oidc: Sequence[str] | None = None,
     description: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
     attachments_configuration: AttachmentsConfiguration | None = None,
     q_apps_configuration: QAppsConfiguration | None = None,
@@ -307,7 +307,7 @@ async def create_chat_response_configuration(
     display_name: str,
     response_configurations: dict[ResponseConfigurationType, ResponseConfiguration],
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateChatResponseConfigurationResponse: ...
 ```
 
@@ -318,11 +318,11 @@ async def create_data_accessor(
     *,
     application_id: str,
     principal: str,
-    action_configurations: list[ActionConfiguration],
+    action_configurations: Sequence[ActionConfiguration],
     display_name: str,
     client_token: str | None = None,
     authentication_detail: DataAccessorAuthenticationDetail | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateDataAccessorResponse: ...
 ```
 
@@ -337,7 +337,7 @@ async def create_data_source(
     configuration: JSONValue,
     vpc_configuration: DataSourceVpcConfiguration | None = None,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     sync_schedule: str | None = None,
     role_arn: str | None = None,
     client_token: str | None = None,
@@ -355,7 +355,7 @@ async def create_index(
     display_name: str,
     description: str | None = None,
     type: IndexType | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     capacity_configuration: IndexCapacityConfiguration | None = None,
     client_token: str | None = None,
 ) -> CreateIndexResponse: ...
@@ -372,7 +372,7 @@ async def create_plugin(
     auth_configuration: PluginAuthConfiguration,
     server_url: str | None = None,
     custom_plugin_configuration: CustomPluginConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
 ) -> CreatePluginResponse: ...
 ```
@@ -388,7 +388,7 @@ async def create_retriever(
     configuration: RetrieverConfiguration,
     role_arn: str | None = None,
     client_token: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateRetrieverResponse: ...
 ```
 
@@ -411,7 +411,7 @@ async def create_user(
     *,
     application_id: str,
     user_id: str,
-    user_aliases: list[UserAlias] | None = None,
+    user_aliases: Sequence[UserAlias] | None = None,
     client_token: str | None = None,
 ) -> CreateUserResponse: ...
 ```
@@ -426,9 +426,9 @@ async def create_web_experience(
     subtitle: str | None = None,
     welcome_message: str | None = None,
     sample_prompts_control_mode: WebExperienceSamplePromptsControlMode | None = None,
-    origins: list[str] | None = None,
+    origins: Sequence[str] | None = None,
     role_arn: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
     identity_provider_configuration: IdentityProviderConfiguration | None = None,
     browser_extension_configuration: BrowserExtensionConfiguration | None = None,
@@ -819,7 +819,7 @@ async def list_documents(
     *,
     application_id: str,
     index_id: str,
-    data_source_ids: list[str] | None = None,
+    data_source_ids: Sequence[str] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
 ) -> ListDocumentsResponse: ...
@@ -1020,7 +1020,7 @@ async def stop_data_source_sync_job(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
 
@@ -1030,7 +1030,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 
@@ -1061,8 +1061,8 @@ async def update_chat_controls_configuration(
     response_scope: ResponseScope | None = None,
     orchestration_configuration: OrchestrationConfiguration | None = None,
     blocked_phrases_configuration_update: BlockedPhrasesConfigurationUpdate | None = None,
-    topic_configurations_to_create_or_update: list[TopicConfiguration] | None = None,
-    topic_configurations_to_delete: list[TopicConfiguration] | None = None,
+    topic_configurations_to_create_or_update: Sequence[TopicConfiguration] | None = None,
+    topic_configurations_to_delete: Sequence[TopicConfiguration] | None = None,
     creator_mode_configuration: CreatorModeConfiguration | None = None,
     hallucination_reduction_configuration: HallucinationReductionConfiguration | None = None,
 ) -> UpdateChatControlsConfigurationResponse: ...
@@ -1088,7 +1088,7 @@ async def update_data_accessor(
     *,
     application_id: str,
     data_accessor_id: str,
-    action_configurations: list[ActionConfiguration],
+    action_configurations: Sequence[ActionConfiguration],
     authentication_detail: DataAccessorAuthenticationDetail | None = None,
     display_name: str | None = None,
 ) -> UpdateDataAccessorResponse: ...
@@ -1123,7 +1123,7 @@ async def update_index(
     display_name: str | None = None,
     description: str | None = None,
     capacity_configuration: IndexCapacityConfiguration | None = None,
-    document_attribute_configurations: list[DocumentAttributeConfiguration] | None = None,
+    document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
 ) -> UpdateIndexResponse: ...
 ```
 
@@ -1173,8 +1173,8 @@ async def update_user(
     *,
     application_id: str,
     user_id: str,
-    user_aliases_to_update: list[UserAlias] | None = None,
-    user_aliases_to_delete: list[UserAlias] | None = None,
+    user_aliases_to_update: Sequence[UserAlias] | None = None,
+    user_aliases_to_delete: Sequence[UserAlias] | None = None,
 ) -> UpdateUserResponse: ...
 ```
 
@@ -1192,7 +1192,7 @@ async def update_web_experience(
     welcome_message: str | None = None,
     sample_prompts_control_mode: WebExperienceSamplePromptsControlMode | None = None,
     identity_provider_configuration: IdentityProviderConfiguration | None = None,
-    origins: list[str] | None = None,
+    origins: Sequence[str] | None = None,
     browser_extension_configuration: BrowserExtensionConfiguration | None = None,
     customization_configuration: CustomizationConfiguration | None = None,
 ) -> UpdateWebExperienceResponse: ...

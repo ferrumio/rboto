@@ -89,7 +89,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_delegated_access_token`](#get_delegated_access_token) | <code>trade_in_token: str</code> | <code>GetDelegatedAccessTokenResponse</code> |
 | [`get_federation_token`](#get_federation_token) | <code>name: str</code> | <code>GetFederationTokenResponse</code> |
 | [`get_session_token`](#get_session_token) | None | <code>GetSessionTokenResponse</code> |
-| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: list[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenResponse</code> |
+| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: Sequence[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenResponse</code> |
 
 ## Complete signatures
 
@@ -100,16 +100,16 @@ async def assume_role(
     *,
     role_arn: str,
     role_session_name: str,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
-    transitive_tag_keys: list[str] | None = None,
+    tags: Sequence[Tag] | None = None,
+    transitive_tag_keys: Sequence[str] | None = None,
     external_id: str | None = None,
     serial_number: str | None = None,
     token_code: str | None = None,
     source_identity: str | None = None,
-    provided_contexts: list[ProvidedContext] | None = None,
+    provided_contexts: Sequence[ProvidedContext] | None = None,
     minimum_session_token_size: int | None = None,
 ) -> AssumeRoleResponse: ...
 ```
@@ -122,7 +122,7 @@ async def assume_role_with_saml(
     role_arn: str,
     principal_arn: str,
     saml_assertion: str,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
@@ -138,7 +138,7 @@ async def assume_role_with_web_identity(
     role_session_name: str,
     web_identity_token: str,
     provider_id: str | None = None,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
@@ -197,9 +197,9 @@ async def get_federation_token(
     *,
     name: str,
     policy: str | None = None,
-    policy_arns: list[PolicyDescriptorType] | None = None,
+    policy_arns: Sequence[PolicyDescriptorType] | None = None,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     minimum_session_token_size: int | None = None,
 ) -> GetFederationTokenResponse: ...
 ```
@@ -221,10 +221,10 @@ async def get_session_token(
 ```python
 async def get_web_identity_token(
     *,
-    audience: list[str],
+    audience: Sequence[str],
     signing_algorithm: str,
     duration_seconds: int | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> GetWebIdentityTokenResponse: ...
 ```
 

@@ -173,7 +173,7 @@ async def start_speech_synthesis_stream(
     output_format: OutputFormat,
     voice_id: VoiceId,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     sample_rate: str | None = None,
     action_stream: AsyncIterator[StartSpeechSynthesisStreamActionStream] | None = None,
 ) -> StartSpeechSynthesisStreamOutput: ...
@@ -190,11 +190,11 @@ async def start_speech_synthesis_task(
     voice_id: VoiceId,
     engine: Engine | None = None,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     output_s3_key_prefix: str | None = None,
     sample_rate: str | None = None,
     sns_topic_arn: str | None = None,
-    speech_mark_types: list[SpeechMarkType] | None = None,
+    speech_mark_types: Sequence[SpeechMarkType] | None = None,
     text_type: TextType | None = None,
 ) -> StartSpeechSynthesisTaskOutput: ...
 ```
@@ -209,9 +209,9 @@ async def synthesize_speech(
     voice_id: VoiceId,
     engine: Engine | None = None,
     language_code: LanguageCode | None = None,
-    lexicon_names: list[str] | None = None,
+    lexicon_names: Sequence[str] | None = None,
     sample_rate: str | None = None,
-    speech_mark_types: list[SpeechMarkType] | None = None,
+    speech_mark_types: Sequence[SpeechMarkType] | None = None,
     text_type: TextType | None = None,
 ) -> SynthesizeSpeechOutput: ...
 ```

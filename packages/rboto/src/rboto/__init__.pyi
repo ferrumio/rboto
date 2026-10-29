@@ -86,6 +86,7 @@ from .services import ssm as ssm
 from .services import sts as sts
 from .services import transcribe_streaming as transcribe_streaming
 from .session import Session as Session
+from .types import UnknownEnumValue as UnknownEnumValue
 
 __version__: str
 __all__: list[str]

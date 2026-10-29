@@ -288,6 +288,48 @@ async def test_invalid_documents_and_multivariant_unions_fail_before_io(peer: Pe
 
 @pytest.mark.asyncio
 @service("bedrock-runtime")
+async def test_nullable_member_inside_response_union(peer: Peer) -> None:
+    from rboto import BedrockRuntimeClient
+
+    peer.body = json.dumps({
+        "output": {"message": {
+            "role": "assistant",
+            "content": [{"toolUse": {
+                "toolUseId": "call-1", "name": "lookup", "input": {"query": "example"},
+            }}],
+        }},
+        "stopReason": "tool_use",
+        "usage": {"inputTokens": 1, "outputTokens": 1, "totalTokens": 2},
+        "metrics": {"latencyMs": 1},
+    }).encode()
+    client = BedrockRuntimeClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.converse(
+        model_id="example", messages=[{"role": "user", "content": [{"text": "hello"}]}],
+    )
+    assert response.output is not None
+    tool = response.output["message"]["content"][0]["tool_use"]
+    assert tool["type"] is None
+
+
+@pytest.mark.asyncio
+@service("sqs")
+async def test_sequence_input_and_unknown_enum_output(peer: Peer) -> None:
+    from rboto import SQSClient, UnknownEnumValue
+
+    peer.body = b'{"Attributes":{"VisibilityTimeout":"30","FutureAttribute":"new"}}'
+    client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
+    response = await client.get_queue_attributes(
+        queue_url=f"{peer.endpoint}/123456789012/example", attribute_names=("All",),
+    )
+    assert response.attributes is not None
+    assert response.attributes["VisibilityTimeout"] == "30"
+    assert response.attributes[UnknownEnumValue("FutureAttribute")] == "new"
+    assert all(isinstance(key, str) for key in response.attributes)
+    assert len(peer.requests) == 1
+
+
+@pytest.mark.asyncio
+@service("bedrock-runtime")
 @pytest.mark.parametrize("observed", [False, True])
 async def test_input_and_output_event_streams_advance_concurrently(
     peer: Peer, observed: bool

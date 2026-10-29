@@ -86,14 +86,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_agent_alias`](#create_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_name: str</code> | <code>CreateAgentAliasResponse</code> |
 | [`create_data_source`](#create_data_source) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>CreateDataSourceResponse</code> |
 | [`create_flow`](#create_flow) | <code>name: str</code>, <code>execution_role_arn: str</code> | <code>CreateFlowResponse</code> |
-| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: list[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasResponse</code> |
+| [`create_flow_alias`](#create_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code> | <code>CreateFlowAliasResponse</code> |
 | [`create_flow_version`](#create_flow_version) | <code>flow_identifier: str</code> | <code>CreateFlowVersionResponse</code> |
 | [`create_knowledge_base`](#create_knowledge_base) | <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>CreateKnowledgeBaseResponse</code> |
 | [`create_prompt`](#create_prompt) | <code>name: str</code> | <code>CreatePromptResponse</code> |
 | [`create_prompt_version`](#create_prompt_version) | <code>prompt_identifier: str</code> | <code>CreatePromptVersionResponse</code> |
 | [`create_retrieval_instruction`](#create_retrieval_instruction) | <code>name: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>CreateRetrievalInstructionResponse</code> |
 | [`create_retrieval_instruction_version`](#create_retrieval_instruction_version) | <code>retrieval_instruction_id: str</code> | <code>CreateRetrievalInstructionVersionResponse</code> |
-| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: list[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationResponse</code> |
+| [`create_vpc_configuration`](#create_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_id: str</code>, <code>subnet_ids: Sequence[str]</code>, <code>resource_target: str</code>, <code>port: int</code>, <code>protocol: VpcProtocol</code>, <code>resolution_mode: VpcResolutionMode</code> | <code>CreateVpcConfigurationResponse</code> |
 | [`delete_agent`](#delete_agent) | <code>agent_id: str</code> | <code>DeleteAgentResponse</code> |
 | [`delete_agent_action_group`](#delete_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code> | <code>DeleteAgentActionGroupResponse</code> |
 | [`delete_agent_alias`](#delete_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentAliasResponse</code> |
@@ -103,7 +103,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_flow_alias`](#delete_flow_alias) | <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>DeleteFlowAliasResponse</code> |
 | [`delete_flow_version`](#delete_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>DeleteFlowVersionResponse</code> |
 | [`delete_knowledge_base`](#delete_knowledge_base) | <code>knowledge_base_id: str</code> | <code>DeleteKnowledgeBaseResponse</code> |
-| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: list[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsResponse</code> |
+| [`delete_knowledge_base_documents`](#delete_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>DeleteKnowledgeBaseDocumentsResponse</code> |
 | [`delete_prompt`](#delete_prompt) | <code>prompt_identifier: str</code> | <code>DeletePromptResponse</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
 | [`delete_retrieval_instruction`](#delete_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>DeleteRetrievalInstructionResponse</code> |
@@ -122,12 +122,12 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_flow_version`](#get_flow_version) | <code>flow_identifier: str</code>, <code>flow_version: str</code> | <code>GetFlowVersionResponse</code> |
 | [`get_ingestion_job`](#get_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>GetIngestionJobResponse</code> |
 | [`get_knowledge_base`](#get_knowledge_base) | <code>knowledge_base_id: str</code> | <code>GetKnowledgeBaseResponse</code> |
-| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: list[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsResponse</code> |
+| [`get_knowledge_base_documents`](#get_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_identifiers: Sequence[DocumentIdentifier]</code> | <code>GetKnowledgeBaseDocumentsResponse</code> |
 | [`get_prompt`](#get_prompt) | <code>prompt_identifier: str</code> | <code>GetPromptResponse</code> |
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
 | [`get_retrieval_instruction`](#get_retrieval_instruction) | <code>retrieval_instruction_id: str</code> | <code>GetRetrievalInstructionResponse</code> |
 | [`get_vpc_configuration`](#get_vpc_configuration) | <code>knowledge_base_id: str</code>, <code>vpc_configuration_id: str</code> | <code>GetVpcConfigurationResponse</code> |
-| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: list[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsResponse</code> |
+| [`ingest_knowledge_base_documents`](#ingest_knowledge_base_documents) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>documents: Sequence[KnowledgeBaseDocument]</code> | <code>IngestKnowledgeBaseDocumentsResponse</code> |
 | [`list_agent_action_groups`](#list_agent_action_groups) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentActionGroupsResponse</code> |
 | [`list_agent_aliases`](#list_agent_aliases) | <code>agent_id: str</code> | <code>ListAgentAliasesResponse</code> |
 | [`list_agent_collaborators`](#list_agent_collaborators) | <code>agent_id: str</code>, <code>agent_version: str</code> | <code>ListAgentCollaboratorsResponse</code> |
@@ -152,7 +152,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_ingestion_job`](#start_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code> | <code>StartIngestionJobResponse</code> |
 | [`stop_ingestion_job`](#stop_ingestion_job) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>ingestion_job_id: str</code> | <code>StopIngestionJobResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_agent`](#update_agent) | <code>agent_id: str</code>, <code>agent_name: str</code>, <code>foundation_model: str</code>, <code>agent_resource_role_arn: str</code> | <code>UpdateAgentResponse</code> |
 | [`update_agent_action_group`](#update_agent_action_group) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>action_group_id: str</code>, <code>action_group_name: str</code> | <code>UpdateAgentActionGroupResponse</code> |
 | [`update_agent_alias`](#update_agent_alias) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>agent_alias_name: str</code> | <code>UpdateAgentAliasResponse</code> |
@@ -160,7 +160,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_agent_knowledge_base`](#update_agent_knowledge_base) | <code>agent_id: str</code>, <code>agent_version: str</code>, <code>knowledge_base_id: str</code> | <code>UpdateAgentKnowledgeBaseResponse</code> |
 | [`update_data_source`](#update_data_source) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>name: str</code>, <code>data_source_configuration: DataSourceConfiguration</code> | <code>UpdateDataSourceResponse</code> |
 | [`update_flow`](#update_flow) | <code>name: str</code>, <code>execution_role_arn: str</code>, <code>flow_identifier: str</code> | <code>UpdateFlowResponse</code> |
-| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: list[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasResponse</code> |
+| [`update_flow_alias`](#update_flow_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem]</code>, <code>flow_identifier: str</code>, <code>alias_identifier: str</code> | <code>UpdateFlowAliasResponse</code> |
 | [`update_knowledge_base`](#update_knowledge_base) | <code>knowledge_base_id: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>knowledge_base_configuration: KnowledgeBaseConfiguration</code> | <code>UpdateKnowledgeBaseResponse</code> |
 | [`update_prompt`](#update_prompt) | <code>name: str</code>, <code>prompt_identifier: str</code> | <code>UpdatePromptResponse</code> |
 | [`update_retrieval_instruction`](#update_retrieval_instruction) | <code>retrieval_instruction_id: str</code>, <code>instruction: RetrievalInstructionContent</code> | <code>UpdateRetrievalInstructionResponse</code> |
@@ -247,7 +247,7 @@ async def create_agent_alias(
     agent_alias_name: str,
     client_token: str | None = None,
     description: str | None = None,
-    routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+    routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateAgentAliasResponse: ...
 ```
@@ -289,7 +289,7 @@ async def create_flow(
 async def create_flow_alias(
     *,
     name: str,
-    routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+    routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
     flow_identifier: str,
     description: str | None = None,
     concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
@@ -333,7 +333,7 @@ async def create_prompt(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     default_variant: str | None = None,
-    variants: list[PromptVariant] | None = None,
+    variants: Sequence[PromptVariant] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreatePromptResponse: ...
@@ -383,7 +383,7 @@ async def create_vpc_configuration(
     *,
     knowledge_base_id: str,
     vpc_id: str,
-    subnet_ids: list[str],
+    subnet_ids: Sequence[str],
     resource_target: str,
     port: int,
     protocol: VpcProtocol,
@@ -496,7 +496,7 @@ async def delete_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    document_identifiers: list[DocumentIdentifier],
+    document_identifiers: Sequence[DocumentIdentifier],
     client_token: str | None = None,
 ) -> DeleteKnowledgeBaseDocumentsResponse: ...
 ```
@@ -693,7 +693,7 @@ async def get_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    document_identifiers: list[DocumentIdentifier],
+    document_identifiers: Sequence[DocumentIdentifier],
 ) -> GetKnowledgeBaseDocumentsResponse: ...
 ```
 
@@ -744,7 +744,7 @@ async def ingest_knowledge_base_documents(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    documents: list[KnowledgeBaseDocument],
+    documents: Sequence[KnowledgeBaseDocument],
     client_token: str | None = None,
 ) -> IngestKnowledgeBaseDocumentsResponse: ...
 ```
@@ -867,7 +867,7 @@ async def list_ingestion_jobs(
     *,
     knowledge_base_id: str,
     data_source_id: str,
-    filters: list[IngestionJobFilter] | None = None,
+    filters: Sequence[IngestionJobFilter] | None = None,
     sort_by: IngestionJobSortBy | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
@@ -1018,7 +1018,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 
@@ -1072,7 +1072,7 @@ async def update_agent_alias(
     agent_alias_id: str,
     agent_alias_name: str,
     description: str | None = None,
-    routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+    routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
     alias_invocation_state: AliasInvocationState | None = None,
 ) -> UpdateAgentAliasResponse: ...
 ```
@@ -1141,7 +1141,7 @@ async def update_flow(
 async def update_flow_alias(
     *,
     name: str,
-    routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+    routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
     flow_identifier: str,
     alias_identifier: str,
     description: str | None = None,
@@ -1173,7 +1173,7 @@ async def update_prompt(
     description: str | None = None,
     customer_encryption_key_arn: str | None = None,
     default_variant: str | None = None,
-    variants: list[PromptVariant] | None = None,
+    variants: Sequence[PromptVariant] | None = None,
 ) -> UpdatePromptResponse: ...
 ```
 

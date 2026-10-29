@@ -84,8 +84,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`invoke_data_automation`](#invoke_data_automation) | <code>input_configuration: SyncInputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationResponse</code> |
 | [`invoke_data_automation_async`](#invoke_data_automation_async) | <code>input_configuration: InputConfiguration</code>, <code>output_configuration: OutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeDataAutomationAsyncResponse</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 
 ## Complete signatures
 
@@ -106,7 +106,7 @@ async def invoke_data_automation(
     input_configuration: SyncInputConfiguration,
     data_automation_profile_arn: str,
     data_automation_configuration: DataAutomationConfiguration | None = None,
-    blueprints: list[Blueprint] | None = None,
+    blueprints: Sequence[Blueprint] | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     output_configuration: OutputConfiguration | None = None,
 ) -> InvokeDataAutomationResponse: ...
@@ -124,8 +124,8 @@ async def invoke_data_automation_async(
     data_automation_configuration: DataAutomationConfiguration | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     notification_configuration: NotificationConfiguration | None = None,
-    blueprints: list[Blueprint] | None = None,
-    tags: list[Tag] | None = None,
+    blueprints: Sequence[Blueprint] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> InvokeDataAutomationAsyncResponse: ...
 ```
 
@@ -144,7 +144,7 @@ async def list_tags_for_resource(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
 
@@ -154,7 +154,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 

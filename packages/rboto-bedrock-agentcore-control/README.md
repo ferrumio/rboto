@@ -80,7 +80,7 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`add_dataset_examples`](#add_dataset_examples) | <code>dataset_id: str</code>, <code>source: DataSourceType</code> | <code>AddDatasetExamplesResponse</code> |
-| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: list[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsResponse</code> |
+| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: Sequence[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsResponse</code> |
 | [`create_agent_runtime`](#create_agent_runtime) | <code>agent_runtime_name: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>CreateAgentRuntimeResponse</code> |
 | [`create_agent_runtime_endpoint`](#create_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>name: str</code> | <code>CreateAgentRuntimeEndpointResponse</code> |
 | [`create_api_key_credential_provider`](#create_api_key_credential_provider) | <code>name: str</code> | <code>CreateApiKeyCredentialProviderResponse</code> |
@@ -89,20 +89,20 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_capacity_provider`](#create_capacity_provider) | <code>name: str</code>, <code>permissions_configuration: PermissionsConfiguration</code>, <code>compute_configuration: ComputeConfiguration</code> | <code>CreateCapacityProviderOutput</code> |
 | [`create_code_interpreter`](#create_code_interpreter) | <code>name: str</code>, <code>network_configuration: CodeInterpreterNetworkConfiguration</code> | <code>CreateCodeInterpreterResponse</code> |
 | [`create_configuration_bundle`](#create_configuration_bundle) | <code>bundle_name: str</code>, <code>components: dict[str, ComponentConfiguration]</code> | <code>CreateConfigurationBundleResponse</code> |
-| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: list[ConsentPortalSource]</code> | <code>CreateConsentPortalResponse</code> |
+| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: Sequence[ConsentPortalSource]</code> | <code>CreateConsentPortalResponse</code> |
 | [`create_dataset`](#create_dataset) | <code>dataset_name: str</code>, <code>source: DataSourceType</code>, <code>schema_type: DatasetSchemaType</code> | <code>CreateDatasetResponse</code> |
 | [`create_dataset_version`](#create_dataset_version) | <code>dataset_id: str</code> | <code>CreateDatasetVersionResponse</code> |
 | [`create_evaluator`](#create_evaluator) | <code>evaluator_name: str</code>, <code>evaluator_config: EvaluatorConfig</code>, <code>level: EvaluatorLevel</code> | <code>CreateEvaluatorResponse</code> |
 | [`create_gateway`](#create_gateway) | <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>CreateGatewayResponse</code> |
-| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: list[str]</code>, <code>entries: list[LimitEntry]</code> | <code>CreateGatewayRateLimitResponse</code> |
-| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: list[Action]</code> | <code>CreateGatewayRuleResponse</code> |
+| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: Sequence[str]</code>, <code>entries: Sequence[LimitEntry]</code> | <code>CreateGatewayRateLimitResponse</code> |
+| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: Sequence[Action]</code> | <code>CreateGatewayRuleResponse</code> |
 | [`create_gateway_target`](#create_gateway_target) | <code>gateway_identifier: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>CreateGatewayTargetResponse</code> |
 | [`create_harness`](#create_harness) | <code>harness_name: str</code>, <code>execution_role_arn: str</code> | <code>CreateHarnessResponse</code> |
 | [`create_harness_endpoint`](#create_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>CreateHarnessEndpointResponse</code> |
 | [`create_memory`](#create_memory) | <code>name: str</code>, <code>event_expiry_duration: int</code> | <code>CreateMemoryOutput</code> |
 | [`create_oauth2_credential_provider`](#create_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>CreateOauth2CredentialProviderResponse</code> |
 | [`create_online_evaluation_config`](#create_online_evaluation_config) | <code>online_evaluation_config_name: str</code>, <code>rule: Rule</code>, <code>data_source_config: DataSourceConfig</code>, <code>evaluation_execution_role_arn: str</code>, <code>enable_on_create: bool</code> | <code>CreateOnlineEvaluationConfigResponse</code> |
-| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: list[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorResponse</code> |
+| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: Sequence[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorResponse</code> |
 | [`create_payment_credential_provider`](#create_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>CreatePaymentCredentialProviderResponse</code> |
 | [`create_payment_manager`](#create_payment_manager) | <code>name: str</code>, <code>authorizer_type: PaymentsAuthorizerType</code>, <code>role_arn: str</code> | <code>CreatePaymentManagerResponse</code> |
 | [`create_policy`](#create_policy) | <code>name: str</code>, <code>definition: PolicyDefinition</code>, <code>policy_engine_id: str</code> | <code>CreatePolicyResponse</code> |
@@ -120,7 +120,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_configuration_bundle`](#delete_configuration_bundle) | <code>bundle_id: str</code> | <code>DeleteConfigurationBundleResponse</code> |
 | [`delete_consent_portal`](#delete_consent_portal) | <code>consent_portal_identifier: str</code> | <code>DeleteConsentPortalResponse</code> |
 | [`delete_dataset`](#delete_dataset) | <code>dataset_id: str</code> | <code>DeleteDatasetResponse</code> |
-| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: list[str]</code> | <code>DeleteDatasetExamplesResponse</code> |
+| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: Sequence[str]</code> | <code>DeleteDatasetExamplesResponse</code> |
 | [`delete_evaluator`](#delete_evaluator) | <code>evaluator_id: str</code> | <code>DeleteEvaluatorResponse</code> |
 | [`delete_gateway`](#delete_gateway) | <code>gateway_identifier: str</code> | <code>DeleteGatewayResponse</code> |
 | [`delete_gateway_rate_limit`](#delete_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>DeleteGatewayRateLimitResponse</code> |
@@ -220,20 +220,20 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_token_vault_cmk`](#set_token_vault_cmk) | <code>kms_configuration: KmsConfiguration</code> | <code>SetTokenVaultCMKResponse</code> |
 | [`start_policy_generation`](#start_policy_generation) | <code>policy_engine_id: str</code>, <code>resource: Resource</code>, <code>content: Content</code>, <code>name: str</code> | <code>StartPolicyGenerationResponse</code> |
 | [`submit_registry_record_for_approval`](#submit_registry_record_for_approval) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>SubmitRegistryRecordForApprovalResponse</code> |
-| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: list[str]</code> | <code>SynchronizeGatewayTargetsResponse</code> |
+| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: Sequence[str]</code> | <code>SynchronizeGatewayTargetsResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_agent_runtime`](#update_agent_runtime) | <code>agent_runtime_id: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>UpdateAgentRuntimeResponse</code> |
 | [`update_agent_runtime_endpoint`](#update_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateAgentRuntimeEndpointResponse</code> |
 | [`update_api_key_credential_provider`](#update_api_key_credential_provider) | <code>name: str</code> | <code>UpdateApiKeyCredentialProviderResponse</code> |
 | [`update_capacity_provider`](#update_capacity_provider) | <code>capacity_provider_id: str</code> | <code>UpdateCapacityProviderOutput</code> |
-| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: list[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleResponse</code> |
+| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: Sequence[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleResponse</code> |
 | [`update_consent_portal`](#update_consent_portal) | <code>consent_portal_identifier: str</code> | <code>UpdateConsentPortalResponse</code> |
 | [`update_dataset`](#update_dataset) | <code>dataset_id: str</code> | <code>UpdateDatasetResponse</code> |
-| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: list[JSONValue]</code> | <code>UpdateDatasetExamplesResponse</code> |
+| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: Sequence[JSONValue]</code> | <code>UpdateDatasetExamplesResponse</code> |
 | [`update_evaluator`](#update_evaluator) | <code>evaluator_id: str</code> | <code>UpdateEvaluatorResponse</code> |
 | [`update_gateway`](#update_gateway) | <code>gateway_identifier: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>UpdateGatewayResponse</code> |
-| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: list[LimitEntry]</code> | <code>UpdateGatewayRateLimitResponse</code> |
+| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: Sequence[LimitEntry]</code> | <code>UpdateGatewayRateLimitResponse</code> |
 | [`update_gateway_rule`](#update_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>UpdateGatewayRuleResponse</code> |
 | [`update_gateway_target`](#update_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>UpdateGatewayTargetResponse</code> |
 | [`update_harness`](#update_harness) | <code>harness_id: str</code> | <code>UpdateHarnessResponse</code> |
@@ -270,7 +270,7 @@ async def add_dataset_examples(
 async def batch_put_gateway_rate_limits(
     *,
     gateway_identifier: str,
-    rate_limits: list[BatchPutLimitEntry],
+    rate_limits: Sequence[BatchPutLimitEntry],
     client_token: str | None = None,
 ) -> BatchPutGatewayRateLimitsResponse: ...
 ```
@@ -291,7 +291,7 @@ async def create_agent_runtime(
     protocol_configuration: ProtocolConfiguration | None = None,
     lifecycle_configuration: LifecycleConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
-    filesystem_configurations: list[FilesystemConfiguration] | None = None,
+    filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     tags: dict[str, str] | None = None,
     platform_version: str | None = None,
@@ -336,9 +336,9 @@ async def create_browser(
     execution_role_arn: str | None = None,
     recording: RecordingConfig | None = None,
     browser_signing: BrowserSigningConfigInput | None = None,
-    enterprise_policies: list[BrowserEnterprisePolicy] | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    enterprise_policies: Sequence[BrowserEnterprisePolicy] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateBrowserResponse: ...
@@ -379,8 +379,8 @@ async def create_code_interpreter(
     network_configuration: CodeInterpreterNetworkConfiguration,
     description: str | None = None,
     execution_role_arn: str | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateCodeInterpreterResponse: ...
@@ -411,7 +411,7 @@ async def create_consent_portal(
     execution_role_arn: str,
     idp_config: ConsentPortalIdpConfig,
     name: str,
-    sources: list[ConsentPortalSource],
+    sources: Sequence[ConsentPortalSource],
     description: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateConsentPortalResponse: ...
@@ -471,7 +471,7 @@ async def create_gateway(
     protocol_configuration: GatewayProtocolConfiguration | None = None,
     authorizer_configuration: AuthorizerConfiguration | None = None,
     kms_key_arn: str | None = None,
-    interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+    interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     tags: dict[str, str] | None = None,
@@ -484,8 +484,8 @@ async def create_gateway(
 async def create_gateway_rate_limit(
     *,
     gateway_identifier: str,
-    dimension_keys: list[str],
-    entries: list[LimitEntry],
+    dimension_keys: Sequence[str],
+    entries: Sequence[LimitEntry],
     client_token: str | None = None,
     rate_limit_id: str | None = None,
     description: str | None = None,
@@ -499,9 +499,9 @@ async def create_gateway_rule(
     *,
     gateway_identifier: str,
     priority: int,
-    actions: list[Action],
+    actions: Sequence[Action],
     client_token: str | None = None,
-    conditions: list[Condition] | None = None,
+    conditions: Sequence[Condition] | None = None,
     description: str | None = None,
 ) -> CreateGatewayRuleResponse: ...
 ```
@@ -516,10 +516,10 @@ async def create_gateway_target(
     name: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
-    credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
-    certificate_configurations: list[CertificateConfiguration] | None = None,
+    certificate_configurations: Sequence[CertificateConfiguration] | None = None,
 ) -> CreateGatewayTargetResponse: ...
 ```
 
@@ -536,13 +536,13 @@ async def create_harness(
     environment_variables: dict[str, str] | None = None,
     authorizer_configuration: AuthorizerConfiguration | None = None,
     model: HarnessModelConfiguration | None = None,
-    system_prompt: list[HarnessSystemContentBlock] | None = None,
-    tools: list[HarnessTool] | None = None,
-    skills: list[HarnessSkill] | None = None,
-    allowed_tools: list[str] | None = None,
+    system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+    tools: Sequence[HarnessTool] | None = None,
+    skills: Sequence[HarnessSkill] | None = None,
+    allowed_tools: Sequence[str] | None = None,
     memory: HarnessMemoryConfiguration | None = None,
     truncation: HarnessTruncationConfiguration | None = None,
-    hooks: list[HarnessHook] | None = None,
+    hooks: Sequence[HarnessHook] | None = None,
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
@@ -575,9 +575,9 @@ async def create_memory(
     description: str | None = None,
     encryption_key_arn: str | None = None,
     memory_execution_role_arn: str | None = None,
-    memory_strategies: list[MemoryStrategyInput] | None = None,
-    indexed_keys: list[IndexedKey] | None = None,
-    namespace_keys: list[NamespaceKeyEntry] | None = None,
+    memory_strategies: Sequence[MemoryStrategyInput] | None = None,
+    indexed_keys: Sequence[IndexedKey] | None = None,
+    namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
     stream_delivery_resources: StreamDeliveryResources | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateMemoryOutput: ...
@@ -607,8 +607,8 @@ async def create_online_evaluation_config(
     enable_on_create: bool,
     client_token: str | None = None,
     description: str | None = None,
-    evaluators: list[EvaluatorReference] | None = None,
-    insights: list[Insight] | None = None,
+    evaluators: Sequence[EvaluatorReference] | None = None,
+    insights: Sequence[Insight] | None = None,
     clustering_config: ClusteringConfig | None = None,
     output_config: OutputConfig | None = None,
     tags: dict[str, str] | None = None,
@@ -623,7 +623,7 @@ async def create_payment_connector(
     payment_manager_id: str,
     name: str,
     type: PaymentConnectorType,
-    credential_provider_configurations: list[CredentialsProviderConfiguration],
+    credential_provider_configurations: Sequence[CredentialsProviderConfiguration],
     description: str | None = None,
     provision_mode: PaymentConnectorProvisionMode | None = None,
     client_token: str | None = None,
@@ -723,7 +723,7 @@ async def create_registry_record(
 async def create_workload_identity(
     *,
     name: str,
-    allowed_resource_oauth2_return_urls: list[str] | None = None,
+    allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateWorkloadIdentityResponse: ...
 ```
@@ -833,7 +833,7 @@ async def delete_dataset(
 async def delete_dataset_examples(
     *,
     dataset_id: str,
-    example_ids: list[str],
+    example_ids: Sequence[str],
     client_token: str | None = None,
 ) -> DeleteDatasetExamplesResponse: ...
 ```
@@ -1846,7 +1846,7 @@ async def submit_registry_record_for_approval(
 async def synchronize_gateway_targets(
     *,
     gateway_identifier: str,
-    target_id_list: list[str],
+    target_id_list: Sequence[str],
 ) -> SynchronizeGatewayTargetsResponse: ...
 ```
 
@@ -1866,7 +1866,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 
@@ -1886,7 +1886,7 @@ async def update_agent_runtime(
     lifecycle_configuration: LifecycleConfiguration | None = None,
     metadata_configuration: RuntimeMetadataConfiguration | None = None,
     environment_variables: dict[str, str] | None = None,
-    filesystem_configurations: list[FilesystemConfiguration] | None = None,
+    filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     platform_version: str | None = None,
     client_token: str | None = None,
@@ -1935,7 +1935,7 @@ async def update_capacity_provider(
 async def update_configuration_bundle(
     *,
     bundle_id: str,
-    parent_version_ids: list[str],
+    parent_version_ids: Sequence[str],
     commit_message: str,
     client_token: str | None = None,
     bundle_name: str | None = None,
@@ -1976,7 +1976,7 @@ async def update_dataset(
 async def update_dataset_examples(
     *,
     dataset_id: str,
-    examples: list[JSONValue],
+    examples: Sequence[JSONValue],
     client_token: str | None = None,
 ) -> UpdateDatasetExamplesResponse: ...
 ```
@@ -2010,7 +2010,7 @@ async def update_gateway(
     authorizer_configuration: AuthorizerConfiguration | None = None,
     kms_key_arn: str | None = None,
     custom_transform_configuration: CustomTransformConfiguration | None = None,
-    interceptor_configurations: list[GatewayInterceptorConfiguration] | None = None,
+    interceptor_configurations: Sequence[GatewayInterceptorConfiguration] | None = None,
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     waf_configuration: WafConfiguration | None = None,
@@ -2024,7 +2024,7 @@ async def update_gateway_rate_limit(
     *,
     gateway_identifier: str,
     rate_limit_id: str,
-    entries: list[LimitEntry],
+    entries: Sequence[LimitEntry],
     description: str | None = None,
 ) -> UpdateGatewayRateLimitResponse: ...
 ```
@@ -2037,8 +2037,8 @@ async def update_gateway_rule(
     gateway_identifier: str,
     rule_id: str,
     priority: int | None = None,
-    conditions: list[Condition] | None = None,
-    actions: list[Action] | None = None,
+    conditions: Sequence[Condition] | None = None,
+    actions: Sequence[Action] | None = None,
     description: str | None = None,
 ) -> UpdateGatewayRuleResponse: ...
 ```
@@ -2053,10 +2053,10 @@ async def update_gateway_target(
     target_configuration: TargetConfiguration,
     name: str | None = None,
     description: str | None = None,
-    credential_provider_configurations: list[CredentialProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialProviderConfiguration] | None = None,
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
-    certificate_configurations: list[CertificateConfiguration] | None = None,
+    certificate_configurations: Sequence[CertificateConfiguration] | None = None,
 ) -> UpdateGatewayTargetResponse: ...
 ```
 
@@ -2073,13 +2073,13 @@ async def update_harness(
     environment_variables: dict[str, str] | None = None,
     authorizer_configuration: UpdatedAuthorizerConfiguration | None = None,
     model: HarnessModelConfiguration | None = None,
-    system_prompt: list[HarnessSystemContentBlock] | None = None,
-    tools: list[HarnessTool] | None = None,
-    skills: list[HarnessSkill] | None = None,
-    allowed_tools: list[str] | None = None,
+    system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+    tools: Sequence[HarnessTool] | None = None,
+    skills: Sequence[HarnessSkill] | None = None,
+    allowed_tools: Sequence[str] | None = None,
     memory: UpdatedHarnessMemoryConfiguration | None = None,
     truncation: HarnessTruncationConfiguration | None = None,
-    hooks: list[HarnessHook] | None = None,
+    hooks: Sequence[HarnessHook] | None = None,
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
@@ -2110,8 +2110,8 @@ async def update_memory(
     event_expiry_duration: int | None = None,
     memory_execution_role_arn: str | None = None,
     memory_strategies: ModifyMemoryStrategies | None = None,
-    add_indexed_keys: list[IndexedKey] | None = None,
-    namespace_keys: list[NamespaceKeyEntry] | None = None,
+    add_indexed_keys: Sequence[IndexedKey] | None = None,
+    namespace_keys: Sequence[NamespaceKeyEntry] | None = None,
     stream_delivery_resources: StreamDeliveryResources | None = None,
 ) -> UpdateMemoryOutput: ...
 ```
@@ -2137,8 +2137,8 @@ async def update_online_evaluation_config(
     description: str | None = None,
     rule: Rule | None = None,
     data_source_config: DataSourceConfig | None = None,
-    evaluators: list[EvaluatorReference] | None = None,
-    insights: list[Insight] | None = None,
+    evaluators: Sequence[EvaluatorReference] | None = None,
+    insights: Sequence[Insight] | None = None,
     clustering_config: ClusteringConfig | None = None,
     output_config: OutputConfig | None = None,
     evaluation_execution_role_arn: str | None = None,
@@ -2155,7 +2155,7 @@ async def update_payment_connector(
     payment_connector_id: str,
     description: str | None = None,
     type: PaymentConnectorType | None = None,
-    credential_provider_configurations: list[CredentialsProviderConfiguration] | None = None,
+    credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
     client_token: str | None = None,
 ) -> UpdatePaymentConnectorResponse: ...
 ```
@@ -2259,7 +2259,7 @@ async def update_registry_record_status(
 async def update_workload_identity(
     *,
     name: str,
-    allowed_resource_oauth2_return_urls: list[str] | None = None,
+    allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
 ) -> UpdateWorkloadIdentityResponse: ...
 ```
 

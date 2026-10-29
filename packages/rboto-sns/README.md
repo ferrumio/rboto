@@ -81,7 +81,7 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_permission`](#add_permission) | <code>topic_arn: str</code>, <code>label: str</code>, <code>aws_account_id: list[str]</code>, <code>action_name: list[str]</code> | <code>None</code> |
+| [`add_permission`](#add_permission) | <code>topic_arn: str</code>, <code>label: str</code>, <code>aws_account_id: Sequence[str]</code>, <code>action_name: Sequence[str]</code> | <code>None</code> |
 | [`check_if_phone_number_is_opted_out`](#check_if_phone_number_is_opted_out) | <code>phone_number: str</code> | <code>CheckIfPhoneNumberIsOptedOutResponse</code> |
 | [`confirm_subscription`](#confirm_subscription) | <code>topic_arn: str</code>, <code>token: str</code> | <code>ConfirmSubscriptionResponse</code> |
 | [`create_platform_application`](#create_platform_application) | <code>name: str</code>, <code>platform: str</code>, <code>attributes: dict[str, str]</code> | <code>CreatePlatformApplicationResponse</code> |
@@ -110,7 +110,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_topics`](#list_topics) | None | <code>ListTopicsResponse</code> |
 | [`opt_in_phone_number`](#opt_in_phone_number) | <code>phone_number: str</code> | <code>OptInPhoneNumberResponse</code> |
 | [`publish`](#publish) | <code>message: str</code> | <code>PublishResponse</code> |
-| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: list[PublishBatchRequestEntry]</code> | <code>PublishBatchResponse</code> |
+| [`publish_batch`](#publish_batch) | <code>topic_arn: str</code>, <code>publish_batch_request_entries: Sequence[PublishBatchRequestEntry]</code> | <code>PublishBatchResponse</code> |
 | [`put_data_protection_policy`](#put_data_protection_policy) | <code>resource_arn: str</code>, <code>data_protection_policy: str</code> | <code>None</code> |
 | [`remove_permission`](#remove_permission) | <code>topic_arn: str</code>, <code>label: str</code> | <code>None</code> |
 | [`set_endpoint_attributes`](#set_endpoint_attributes) | <code>endpoint_arn: str</code>, <code>attributes: dict[str, str]</code> | <code>None</code> |
@@ -119,9 +119,9 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_subscription_attributes`](#set_subscription_attributes) | <code>subscription_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
 | [`set_topic_attributes`](#set_topic_attributes) | <code>topic_arn: str</code>, <code>attribute_name: str</code> | <code>None</code> |
 | [`subscribe`](#subscribe) | <code>topic_arn: str</code>, <code>protocol: str</code> | <code>SubscribeResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
 | [`unsubscribe`](#unsubscribe) | <code>subscription_arn: str</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`verify_sms_sandbox_phone_number`](#verify_sms_sandbox_phone_number) | <code>phone_number: str</code>, <code>one_time_password: str</code> | <code>VerifySMSSandboxPhoneNumberResult</code> |
 
 ## Complete signatures
@@ -133,8 +133,8 @@ async def add_permission(
     *,
     topic_arn: str,
     label: str,
-    aws_account_id: list[str],
-    action_name: list[str],
+    aws_account_id: Sequence[str],
+    action_name: Sequence[str],
 ) -> None: ...
 ```
 
@@ -198,7 +198,7 @@ async def create_topic(
     *,
     name: str,
     attributes: dict[str, str] | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     data_protection_policy: str | None = None,
 ) -> CreateTopicResponse: ...
 ```
@@ -271,7 +271,7 @@ async def get_platform_application_attributes(
 ```python
 async def get_sms_attributes(
     *,
-    attributes: list[str] | None = None,
+    attributes: Sequence[str] | None = None,
 ) -> GetSMSAttributesResponse: ...
 ```
 
@@ -416,7 +416,7 @@ async def publish(
 async def publish_batch(
     *,
     topic_arn: str,
-    publish_batch_request_entries: list[PublishBatchRequestEntry],
+    publish_batch_request_entries: Sequence[PublishBatchRequestEntry],
 ) -> PublishBatchResponse: ...
 ```
 
@@ -510,7 +510,7 @@ async def subscribe(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
 
@@ -529,7 +529,7 @@ async def unsubscribe(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 

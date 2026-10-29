@@ -96,13 +96,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_secrets`](#list_secrets) | None | <code>ListSecretsResponse</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>secret_id: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`put_secret_value`](#put_secret_value) | <code>secret_id: str</code> | <code>PutSecretValueResponse</code> |
-| [`remove_regions_from_replication`](#remove_regions_from_replication) | <code>secret_id: str</code>, <code>remove_replica_regions: list[str]</code> | <code>RemoveRegionsFromReplicationResponse</code> |
-| [`replicate_secret_to_regions`](#replicate_secret_to_regions) | <code>secret_id: str</code>, <code>add_replica_regions: list[ReplicaRegionType]</code> | <code>ReplicateSecretToRegionsResponse</code> |
+| [`remove_regions_from_replication`](#remove_regions_from_replication) | <code>secret_id: str</code>, <code>remove_replica_regions: Sequence[str]</code> | <code>RemoveRegionsFromReplicationResponse</code> |
+| [`replicate_secret_to_regions`](#replicate_secret_to_regions) | <code>secret_id: str</code>, <code>add_replica_regions: Sequence[ReplicaRegionType]</code> | <code>ReplicateSecretToRegionsResponse</code> |
 | [`restore_secret`](#restore_secret) | <code>secret_id: str</code> | <code>RestoreSecretResponse</code> |
 | [`rotate_secret`](#rotate_secret) | <code>secret_id: str</code> | <code>RotateSecretResponse</code> |
 | [`stop_replication_to_replica`](#stop_replication_to_replica) | <code>secret_id: str</code> | <code>StopReplicationToReplicaResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>secret_id: str</code>, <code>tags: list[Tag]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>secret_id: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`tag_resource`](#tag_resource) | <code>secret_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>secret_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_secret`](#update_secret) | <code>secret_id: str</code> | <code>UpdateSecretResponse</code> |
 | [`update_secret_version_stage`](#update_secret_version_stage) | <code>secret_id: str</code>, <code>version_stage: str</code> | <code>UpdateSecretVersionStageResponse</code> |
 | [`validate_resource_policy`](#validate_resource_policy) | <code>resource_policy: str</code> | <code>ValidateResourcePolicyResponse</code> |
@@ -114,8 +114,8 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def batch_get_secret_value(
     *,
-    secret_id_list: list[str] | None = None,
-    filters: list[Filter] | None = None,
+    secret_id_list: Sequence[str] | None = None,
+    filters: Sequence[Filter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> BatchGetSecretValueResponse: ...
@@ -141,8 +141,8 @@ async def create_secret(
     kms_key_id: str | None = None,
     secret_binary: bytes | None = None,
     secret_string: str | None = None,
-    tags: list[Tag] | None = None,
-    add_replica_regions: list[ReplicaRegionType] | None = None,
+    tags: Sequence[Tag] | None = None,
+    add_replica_regions: Sequence[ReplicaRegionType] | None = None,
     force_overwrite_replica_secret: bool | None = None,
     type: str | None = None,
 ) -> CreateSecretResponse: ...
@@ -233,7 +233,7 @@ async def list_secrets(
     include_planned_deletion: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    filters: list[Filter] | None = None,
+    filters: Sequence[Filter] | None = None,
     sort_order: SortOrderType | None = None,
     sort_by: SortByType | None = None,
 ) -> ListSecretsResponse: ...
@@ -259,7 +259,7 @@ async def put_secret_value(
     client_request_token: str | None = None,
     secret_binary: bytes | None = None,
     secret_string: str | None = None,
-    version_stages: list[str] | None = None,
+    version_stages: Sequence[str] | None = None,
     rotation_token: str | None = None,
 ) -> PutSecretValueResponse: ...
 ```
@@ -270,7 +270,7 @@ async def put_secret_value(
 async def remove_regions_from_replication(
     *,
     secret_id: str,
-    remove_replica_regions: list[str],
+    remove_replica_regions: Sequence[str],
 ) -> RemoveRegionsFromReplicationResponse: ...
 ```
 
@@ -280,7 +280,7 @@ async def remove_regions_from_replication(
 async def replicate_secret_to_regions(
     *,
     secret_id: str,
-    add_replica_regions: list[ReplicaRegionType],
+    add_replica_regions: Sequence[ReplicaRegionType],
     force_overwrite_replica_secret: bool | None = None,
 ) -> ReplicateSecretToRegionsResponse: ...
 ```
@@ -303,7 +303,7 @@ async def rotate_secret(
     client_request_token: str | None = None,
     rotation_lambda_arn: str | None = None,
     rotation_rules: RotationRulesType | None = None,
-    external_secret_rotation_metadata: list[ExternalSecretRotationMetadataItem] | None = None,
+    external_secret_rotation_metadata: Sequence[ExternalSecretRotationMetadataItem] | None = None,
     external_secret_rotation_role_arn: str | None = None,
     rotate_immediately: bool | None = None,
 ) -> RotateSecretResponse: ...
@@ -324,7 +324,7 @@ async def stop_replication_to_replica(
 async def tag_resource(
     *,
     secret_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> None: ...
 ```
 
@@ -334,7 +334,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     secret_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
 

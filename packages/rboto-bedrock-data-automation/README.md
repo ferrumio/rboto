@@ -93,7 +93,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_data_automation_library_entity`](#get_data_automation_library_entity) | <code>library_arn: str</code>, <code>entity_type: EntityType</code>, <code>entity_id: str</code> | <code>GetDataAutomationLibraryEntityResponse</code> |
 | [`get_data_automation_library_ingestion_job`](#get_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>job_arn: str</code> | <code>GetDataAutomationLibraryIngestionJobResponse</code> |
 | [`get_data_automation_project`](#get_data_automation_project) | <code>project_arn: str</code> | <code>GetDataAutomationProjectResponse</code> |
-| [`invoke_blueprint_optimization_async`](#invoke_blueprint_optimization_async) | <code>blueprint: BlueprintOptimizationObject</code>, <code>samples: list[BlueprintOptimizationSample]</code>, <code>output_configuration: BlueprintOptimizationOutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeBlueprintOptimizationAsyncResponse</code> |
+| [`invoke_blueprint_optimization_async`](#invoke_blueprint_optimization_async) | <code>blueprint: BlueprintOptimizationObject</code>, <code>samples: Sequence[BlueprintOptimizationSample]</code>, <code>output_configuration: BlueprintOptimizationOutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeBlueprintOptimizationAsyncResponse</code> |
 | [`invoke_data_automation_library_ingestion_job`](#invoke_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>input_configuration: InputConfiguration</code>, <code>entity_type: EntityType</code>, <code>operation_type: LibraryIngestionJobOperationType</code>, <code>output_configuration: OutputConfiguration</code> | <code>InvokeDataAutomationLibraryIngestionJobResponse</code> |
 | [`list_blueprints`](#list_blueprints) | None | <code>ListBlueprintsResponse</code> |
 | [`list_data_automation_libraries`](#list_data_automation_libraries) | None | <code>ListDataAutomationLibrariesResponse</code> |
@@ -101,8 +101,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_data_automation_library_ingestion_jobs`](#list_data_automation_library_ingestion_jobs) | <code>library_arn: str</code> | <code>ListDataAutomationLibraryIngestionJobsResponse</code> |
 | [`list_data_automation_projects`](#list_data_automation_projects) | None | <code>ListDataAutomationProjectsResponse</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_blueprint`](#update_blueprint) | <code>blueprint_arn: str</code>, <code>schema: str</code> | <code>UpdateBlueprintResponse</code> |
 | [`update_data_automation_library`](#update_data_automation_library) | <code>library_arn: str</code> | <code>UpdateDataAutomationLibraryResponse</code> |
 | [`update_data_automation_project`](#update_data_automation_project) | <code>project_arn: str</code>, <code>standard_output_configuration: StandardOutputConfiguration</code> | <code>UpdateDataAutomationProjectResponse</code> |
@@ -132,7 +132,7 @@ async def create_blueprint(
     blueprint_stage: BlueprintStage | None = None,
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateBlueprintResponse: ...
 ```
 
@@ -155,7 +155,7 @@ async def create_data_automation_library(
     library_description: str | None = None,
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateDataAutomationLibraryResponse: ...
 ```
 
@@ -174,7 +174,7 @@ async def create_data_automation_project(
     data_automation_library_configuration: DataAutomationLibraryConfiguration | None = None,
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateDataAutomationProjectResponse: ...
 ```
 
@@ -272,11 +272,11 @@ async def get_data_automation_project(
 async def invoke_blueprint_optimization_async(
     *,
     blueprint: BlueprintOptimizationObject,
-    samples: list[BlueprintOptimizationSample],
+    samples: Sequence[BlueprintOptimizationSample],
     output_configuration: BlueprintOptimizationOutputConfiguration,
     data_automation_profile_arn: str,
     encryption_configuration: EncryptionConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> InvokeBlueprintOptimizationAsyncResponse: ...
 ```
 
@@ -292,7 +292,7 @@ async def invoke_data_automation_library_ingestion_job(
     output_configuration: OutputConfiguration,
     client_token: str | None = None,
     notification_configuration: NotificationConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> InvokeDataAutomationLibraryIngestionJobResponse: ...
 ```
 
@@ -373,7 +373,7 @@ async def list_tags_for_resource(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
 
@@ -383,7 +383,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 

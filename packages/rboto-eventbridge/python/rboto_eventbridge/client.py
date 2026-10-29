@@ -216,7 +216,7 @@ class EventBridgeClient:
         *,
         name: str,
         routing_config: RoutingConfig,
-        event_buses: list[EndpointEventBus],
+        event_buses: Sequence[EndpointEventBus],
         description: str | None = None,
         replication_config: ReplicationConfig | None = None,
         role_arn: str | None = None,
@@ -255,7 +255,7 @@ class EventBridgeClient:
         kms_key_identifier: str | None = None,
         dead_letter_config: DeadLetterConfig | None = None,
         log_config: LogConfig | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> CreateEventBusResponse:
         params: dict[str, object] = {
             "name": name,
@@ -1170,7 +1170,7 @@ class EventBridgeClient:
     async def put_events(
         self,
         *,
-        entries: list[PutEventsRequestEntry],
+        entries: Sequence[PutEventsRequestEntry],
         endpoint_id: str | None = None,
     ) -> PutEventsResponse:
         params: dict[str, object] = {
@@ -1195,7 +1195,7 @@ class EventBridgeClient:
     async def put_partner_events(
         self,
         *,
-        entries: list[PutPartnerEventsRequestEntry],
+        entries: Sequence[PutPartnerEventsRequestEntry],
     ) -> PutPartnerEventsResponse:
         params: dict[str, object] = {
             "entries": entries,
@@ -1261,7 +1261,7 @@ class EventBridgeClient:
         state: RuleState | None = None,
         description: str | None = None,
         role_arn: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         event_bus_name: str | None = None,
     ) -> PutRuleResponse:
         params: dict[str, object] = {
@@ -1299,7 +1299,7 @@ class EventBridgeClient:
         self,
         *,
         rule: str,
-        targets: list[Target],
+        targets: Sequence[Target],
         event_bus_name: str | None = None,
     ) -> PutTargetsResponse:
         params: dict[str, object] = {
@@ -1355,7 +1355,7 @@ class EventBridgeClient:
         self,
         *,
         rule: str,
-        ids: list[str],
+        ids: Sequence[str],
         event_bus_name: str | None = None,
         force: bool | None = None,
     ) -> RemoveTargetsResponse:
@@ -1418,7 +1418,7 @@ class EventBridgeClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1466,7 +1466,7 @@ class EventBridgeClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1601,7 +1601,7 @@ class EventBridgeClient:
         description: str | None = None,
         routing_config: RoutingConfig | None = None,
         replication_config: ReplicationConfig | None = None,
-        event_buses: list[EndpointEventBus] | None = None,
+        event_buses: Sequence[EndpointEventBus] | None = None,
         role_arn: str | None = None,
     ) -> UpdateEndpointResponse:
         params: dict[str, object] = {

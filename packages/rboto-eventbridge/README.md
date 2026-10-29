@@ -92,7 +92,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_api_destination`](#create_api_destination) | <code>name: str</code>, <code>connection_arn: str</code>, <code>invocation_endpoint: str</code>, <code>http_method: ApiDestinationHttpMethod</code> | <code>CreateApiDestinationResponse</code> |
 | [`create_archive`](#create_archive) | <code>archive_name: str</code>, <code>event_source_arn: str</code> | <code>CreateArchiveResponse</code> |
 | [`create_connection`](#create_connection) | <code>name: str</code>, <code>authorization_type: ConnectionAuthorizationType</code>, <code>auth_parameters: CreateConnectionAuthRequestParameters</code> | <code>CreateConnectionResponse</code> |
-| [`create_endpoint`](#create_endpoint) | <code>name: str</code>, <code>routing_config: RoutingConfig</code>, <code>event_buses: list[EndpointEventBus]</code> | <code>CreateEndpointResponse</code> |
+| [`create_endpoint`](#create_endpoint) | <code>name: str</code>, <code>routing_config: RoutingConfig</code>, <code>event_buses: Sequence[EndpointEventBus]</code> | <code>CreateEndpointResponse</code> |
 | [`create_event_bus`](#create_event_bus) | <code>name: str</code> | <code>CreateEventBusResponse</code> |
 | [`create_partner_event_source`](#create_partner_event_source) | <code>name: str</code>, <code>account: str</code> | <code>CreatePartnerEventSourceResponse</code> |
 | [`deactivate_event_source`](#deactivate_event_source) | <code>name: str</code> | <code>None</code> |
@@ -128,17 +128,17 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_rules`](#list_rules) | None | <code>ListRulesResponse</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
 | [`list_targets_by_rule`](#list_targets_by_rule) | <code>rule: str</code> | <code>ListTargetsByRuleResponse</code> |
-| [`put_events`](#put_events) | <code>entries: list[PutEventsRequestEntry]</code> | <code>PutEventsResponse</code> |
-| [`put_partner_events`](#put_partner_events) | <code>entries: list[PutPartnerEventsRequestEntry]</code> | <code>PutPartnerEventsResponse</code> |
+| [`put_events`](#put_events) | <code>entries: Sequence[PutEventsRequestEntry]</code> | <code>PutEventsResponse</code> |
+| [`put_partner_events`](#put_partner_events) | <code>entries: Sequence[PutPartnerEventsRequestEntry]</code> | <code>PutPartnerEventsResponse</code> |
 | [`put_permission`](#put_permission) | None | <code>None</code> |
 | [`put_rule`](#put_rule) | <code>name: str</code> | <code>PutRuleResponse</code> |
-| [`put_targets`](#put_targets) | <code>rule: str</code>, <code>targets: list[Target]</code> | <code>PutTargetsResponse</code> |
+| [`put_targets`](#put_targets) | <code>rule: str</code>, <code>targets: Sequence[Target]</code> | <code>PutTargetsResponse</code> |
 | [`remove_permission`](#remove_permission) | None | <code>None</code> |
-| [`remove_targets`](#remove_targets) | <code>rule: str</code>, <code>ids: list[str]</code> | <code>RemoveTargetsResponse</code> |
+| [`remove_targets`](#remove_targets) | <code>rule: str</code>, <code>ids: Sequence[str]</code> | <code>RemoveTargetsResponse</code> |
 | [`start_replay`](#start_replay) | <code>replay_name: str</code>, <code>event_source_arn: str</code>, <code>event_start_time: str</code>, <code>event_end_time: str</code>, <code>destination: ReplayDestination</code> | <code>StartReplayResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceResponse</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
 | [`test_event_pattern`](#test_event_pattern) | <code>event_pattern: str</code>, <code>event: str</code> | <code>TestEventPatternResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_api_destination`](#update_api_destination) | <code>name: str</code> | <code>UpdateApiDestinationResponse</code> |
 | [`update_archive`](#update_archive) | <code>archive_name: str</code> | <code>UpdateArchiveResponse</code> |
 | [`update_connection`](#update_connection) | <code>name: str</code> | <code>UpdateConnectionResponse</code> |
@@ -214,7 +214,7 @@ async def create_endpoint(
     *,
     name: str,
     routing_config: RoutingConfig,
-    event_buses: list[EndpointEventBus],
+    event_buses: Sequence[EndpointEventBus],
     description: str | None = None,
     replication_config: ReplicationConfig | None = None,
     role_arn: str | None = None,
@@ -232,7 +232,7 @@ async def create_event_bus(
     kms_key_identifier: str | None = None,
     dead_letter_config: DeadLetterConfig | None = None,
     log_config: LogConfig | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> CreateEventBusResponse: ...
 ```
 
@@ -589,7 +589,7 @@ async def list_targets_by_rule(
 ```python
 async def put_events(
     *,
-    entries: list[PutEventsRequestEntry],
+    entries: Sequence[PutEventsRequestEntry],
     endpoint_id: str | None = None,
 ) -> PutEventsResponse: ...
 ```
@@ -599,7 +599,7 @@ async def put_events(
 ```python
 async def put_partner_events(
     *,
-    entries: list[PutPartnerEventsRequestEntry],
+    entries: Sequence[PutPartnerEventsRequestEntry],
 ) -> PutPartnerEventsResponse: ...
 ```
 
@@ -628,7 +628,7 @@ async def put_rule(
     state: RuleState | None = None,
     description: str | None = None,
     role_arn: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     event_bus_name: str | None = None,
 ) -> PutRuleResponse: ...
 ```
@@ -639,7 +639,7 @@ async def put_rule(
 async def put_targets(
     *,
     rule: str,
-    targets: list[Target],
+    targets: Sequence[Target],
     event_bus_name: str | None = None,
 ) -> PutTargetsResponse: ...
 ```
@@ -661,7 +661,7 @@ async def remove_permission(
 async def remove_targets(
     *,
     rule: str,
-    ids: list[str],
+    ids: Sequence[str],
     event_bus_name: str | None = None,
     force: bool | None = None,
 ) -> RemoveTargetsResponse: ...
@@ -687,7 +687,7 @@ async def start_replay(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
 
@@ -707,7 +707,7 @@ async def test_event_pattern(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 
@@ -761,7 +761,7 @@ async def update_endpoint(
     description: str | None = None,
     routing_config: RoutingConfig | None = None,
     replication_config: ReplicationConfig | None = None,
-    event_buses: list[EndpointEventBus] | None = None,
+    event_buses: Sequence[EndpointEventBus] | None = None,
     role_arn: str | None = None,
 ) -> UpdateEndpointResponse: ...
 ```

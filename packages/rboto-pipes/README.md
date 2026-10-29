@@ -87,7 +87,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_pipe`](#start_pipe) | <code>name: str</code> | <code>StartPipeResponse</code> |
 | [`stop_pipe`](#stop_pipe) | <code>name: str</code> | <code>StopPipeResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_pipe`](#update_pipe) | <code>name: str</code>, <code>role_arn: str</code> | <code>UpdatePipeResponse</code> |
 
 ## Complete signatures
@@ -189,7 +189,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 

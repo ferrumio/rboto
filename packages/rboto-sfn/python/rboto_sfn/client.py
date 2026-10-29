@@ -59,7 +59,7 @@ class StepFunctionsClient:
         self,
         *,
         name: str,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         encryption_configuration: EncryptionConfiguration | None = None,
     ) -> CreateActivityOutput:
         params: dict[str, object] = {
@@ -91,7 +91,7 @@ class StepFunctionsClient:
         role_arn: str,
         type: StateMachineType | None = None,
         logging_configuration: LoggingConfiguration | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         tracing_configuration: TracingConfiguration | None = None,
         publish: bool | None = None,
         version_description: str | None = None,
@@ -134,7 +134,7 @@ class StepFunctionsClient:
         self,
         *,
         name: str,
-        routing_configuration: list[RoutingConfigurationListItem],
+        routing_configuration: Sequence[RoutingConfigurationListItem],
         description: str | None = None,
     ) -> CreateStateMachineAliasOutput:
         params: dict[str, object] = {
@@ -865,7 +865,7 @@ class StepFunctionsClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -938,7 +938,7 @@ class StepFunctionsClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1037,7 +1037,7 @@ class StepFunctionsClient:
         *,
         state_machine_alias_arn: str,
         description: str | None = None,
-        routing_configuration: list[RoutingConfigurationListItem] | None = None,
+        routing_configuration: Sequence[RoutingConfigurationListItem] | None = None,
     ) -> UpdateStateMachineAliasOutput:
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,

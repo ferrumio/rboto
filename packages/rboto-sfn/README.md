@@ -83,7 +83,7 @@ native response definitions are in the package's `_native.pyi`.
 |---|---|---|
 | [`create_activity`](#create_activity) | <code>name: str</code> | <code>CreateActivityOutput</code> |
 | [`create_state_machine`](#create_state_machine) | <code>name: str</code>, <code>definition: str</code>, <code>role_arn: str</code> | <code>CreateStateMachineOutput</code> |
-| [`create_state_machine_alias`](#create_state_machine_alias) | <code>name: str</code>, <code>routing_configuration: list[RoutingConfigurationListItem]</code> | <code>CreateStateMachineAliasOutput</code> |
+| [`create_state_machine_alias`](#create_state_machine_alias) | <code>name: str</code>, <code>routing_configuration: Sequence[RoutingConfigurationListItem]</code> | <code>CreateStateMachineAliasOutput</code> |
 | [`delete_activity`](#delete_activity) | <code>activity_arn: str</code> | <code>DeleteActivityOutput</code> |
 | [`delete_state_machine`](#delete_state_machine) | <code>state_machine_arn: str</code> | <code>DeleteStateMachineOutput</code> |
 | [`delete_state_machine_alias`](#delete_state_machine_alias) | <code>state_machine_alias_arn: str</code> | <code>DeleteStateMachineAliasOutput</code> |
@@ -111,9 +111,9 @@ native response definitions are in the package's `_native.pyi`.
 | [`start_execution`](#start_execution) | <code>state_machine_arn: str</code> | <code>StartExecutionOutput</code> |
 | [`start_sync_execution`](#start_sync_execution) | <code>state_machine_arn: str</code> | <code>StartSyncExecutionOutput</code> |
 | [`stop_execution`](#stop_execution) | <code>execution_arn: str</code> | <code>StopExecutionOutput</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
 | [`test_state`](#test_state) | <code>definition: str</code> | <code>TestStateOutput</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 | [`update_map_run`](#update_map_run) | <code>map_run_arn: str</code> | <code>UpdateMapRunOutput</code> |
 | [`update_state_machine`](#update_state_machine) | <code>state_machine_arn: str</code> | <code>UpdateStateMachineOutput</code> |
 | [`update_state_machine_alias`](#update_state_machine_alias) | <code>state_machine_alias_arn: str</code> | <code>UpdateStateMachineAliasOutput</code> |
@@ -127,7 +127,7 @@ native response definitions are in the package's `_native.pyi`.
 async def create_activity(
     *,
     name: str,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
 ) -> CreateActivityOutput: ...
 ```
@@ -142,7 +142,7 @@ async def create_state_machine(
     role_arn: str,
     type: StateMachineType | None = None,
     logging_configuration: LoggingConfiguration | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     tracing_configuration: TracingConfiguration | None = None,
     publish: bool | None = None,
     version_description: str | None = None,
@@ -156,7 +156,7 @@ async def create_state_machine(
 async def create_state_machine_alias(
     *,
     name: str,
-    routing_configuration: list[RoutingConfigurationListItem],
+    routing_configuration: Sequence[RoutingConfigurationListItem],
     description: str | None = None,
 ) -> CreateStateMachineAliasOutput: ...
 ```
@@ -446,7 +446,7 @@ async def stop_execution(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceOutput: ...
 ```
 
@@ -474,7 +474,7 @@ async def test_state(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceOutput: ...
 ```
 
@@ -513,7 +513,7 @@ async def update_state_machine_alias(
     *,
     state_machine_alias_arn: str,
     description: str | None = None,
-    routing_configuration: list[RoutingConfigurationListItem] | None = None,
+    routing_configuration: Sequence[RoutingConfigurationListItem] | None = None,
 ) -> UpdateStateMachineAliasOutput: ...
 ```
 

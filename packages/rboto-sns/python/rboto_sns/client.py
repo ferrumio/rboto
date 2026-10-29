@@ -51,8 +51,8 @@ class SNSClient:
         *,
         topic_arn: str,
         label: str,
-        aws_account_id: list[str],
-        action_name: list[str],
+        aws_account_id: Sequence[str],
+        action_name: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "topic_arn": topic_arn,
@@ -209,7 +209,7 @@ class SNSClient:
         *,
         name: str,
         attributes: dict[str, str] | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
         data_protection_policy: str | None = None,
     ) -> CreateTopicResponse:
         params: dict[str, object] = {
@@ -392,7 +392,7 @@ class SNSClient:
     async def get_sms_attributes(
         self,
         *,
-        attributes: list[str] | None = None,
+        attributes: Sequence[str] | None = None,
     ) -> GetSMSAttributesResponse:
         params: dict[str, object] = {
         }
@@ -763,7 +763,7 @@ class SNSClient:
         self,
         *,
         topic_arn: str,
-        publish_batch_request_entries: list[PublishBatchRequestEntry],
+        publish_batch_request_entries: Sequence[PublishBatchRequestEntry],
     ) -> PublishBatchResponse:
         params: dict[str, object] = {
             "topic_arn": topic_arn,
@@ -992,7 +992,7 @@ class SNSClient:
         self,
         *,
         resource_arn: str,
-        tags: list[Tag],
+        tags: Sequence[Tag],
     ) -> TagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1038,7 +1038,7 @@ class SNSClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,

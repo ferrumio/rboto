@@ -82,7 +82,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`connect_custom_key_store`](#connect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>ConnectCustomKeyStoreResponse</code> |
 | [`create_alias`](#create_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
 | [`create_custom_key_store`](#create_custom_key_store) | <code>custom_key_store_name: str</code> | <code>CreateCustomKeyStoreResponse</code> |
-| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: list[GrantOperation]</code> | <code>CreateGrantResponse</code> |
+| [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: Sequence[GrantOperation]</code> | <code>CreateGrantResponse</code> |
 | [`create_key`](#create_key) | None | <code>CreateKeyResponse</code> |
 | [`decrypt`](#decrypt) | None | <code>DecryptResponse</code> |
 | [`delete_alias`](#delete_alias) | <code>alias_name: str</code> | <code>None</code> |
@@ -124,8 +124,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`rotate_key_on_demand`](#rotate_key_on_demand) | <code>key_id: str</code> | <code>RotateKeyOnDemandResponse</code> |
 | [`schedule_key_deletion`](#schedule_key_deletion) | <code>key_id: str</code> | <code>ScheduleKeyDeletionResponse</code> |
 | [`sign`](#sign) | <code>key_id: str</code>, <code>message: bytes</code>, <code>signing_algorithm: SigningAlgorithmSpec</code> | <code>SignResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>key_id: str</code>, <code>tags: list[Tag]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>key_id: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`tag_resource`](#tag_resource) | <code>key_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>key_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_alias`](#update_alias) | <code>alias_name: str</code>, <code>target_key_id: str</code> | <code>None</code> |
 | [`update_custom_key_store`](#update_custom_key_store) | <code>custom_key_store_id: str</code> | <code>UpdateCustomKeyStoreResponse</code> |
 | [`update_key_description`](#update_key_description) | <code>key_id: str</code>, <code>description: str</code> | <code>None</code> |
@@ -188,11 +188,11 @@ async def create_custom_key_store(
 async def create_grant(
     *,
     key_id: str,
-    operations: list[GrantOperation],
+    operations: Sequence[GrantOperation],
     grantee_principal: str | None = None,
     retiring_principal: str | None = None,
     constraints: GrantConstraints | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     name: str | None = None,
     dry_run: bool | None = None,
     grantee_service_principal: str | None = None,
@@ -213,7 +213,7 @@ async def create_key(
     origin: OriginType | None = None,
     custom_key_store_id: str | None = None,
     bypass_policy_lockout_safety_check: bool | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     multi_region: bool | None = None,
     xks_key_id: str | None = None,
 ) -> CreateKeyResponse: ...
@@ -226,12 +226,12 @@ async def decrypt(
     *,
     ciphertext_blob: bytes | None = None,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     key_id: str | None = None,
     encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
-    dry_run_modifiers: list[DryRunModifierType] | None = None,
+    dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
 ) -> DecryptResponse: ...
 ```
 
@@ -271,7 +271,7 @@ async def derive_shared_secret(
     key_id: str,
     key_agreement_algorithm: KeyAgreementAlgorithmSpec,
     public_key: bytes,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
     recipient: RecipientInfo | None = None,
 ) -> DeriveSharedSecretResponse: ...
@@ -295,7 +295,7 @@ async def describe_custom_key_stores(
 async def describe_key(
     *,
     key_id: str,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
 ) -> DescribeKeyResponse: ...
 ```
 
@@ -353,7 +353,7 @@ async def encrypt(
     key_id: str,
     plaintext: bytes,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     dry_run: bool | None = None,
 ) -> EncryptResponse: ...
@@ -368,7 +368,7 @@ async def generate_data_key(
     encryption_context: dict[str, str] | None = None,
     number_of_bytes: int | None = None,
     key_spec: DataKeySpec | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyResponse: ...
@@ -382,7 +382,7 @@ async def generate_data_key_pair(
     key_id: str,
     key_pair_spec: DataKeyPairSpec,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     recipient: RecipientInfo | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyPairResponse: ...
@@ -396,7 +396,7 @@ async def generate_data_key_pair_without_plaintext(
     key_id: str,
     key_pair_spec: DataKeyPairSpec,
     encryption_context: dict[str, str] | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyPairWithoutPlaintextResponse: ...
 ```
@@ -410,7 +410,7 @@ async def generate_data_key_without_plaintext(
     encryption_context: dict[str, str] | None = None,
     key_spec: DataKeySpec | None = None,
     number_of_bytes: int | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateDataKeyWithoutPlaintextResponse: ...
 ```
@@ -423,7 +423,7 @@ async def generate_mac(
     message: bytes,
     key_id: str,
     mac_algorithm: MacAlgorithmSpec,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> GenerateMacResponse: ...
 ```
@@ -484,7 +484,7 @@ async def get_parameters_for_import(
 async def get_public_key(
     *,
     key_id: str,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
 ) -> GetPublicKeyResponse: ...
 ```
 
@@ -609,9 +609,9 @@ async def re_encrypt(
     destination_encryption_context: dict[str, str] | None = None,
     source_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
     destination_encryption_algorithm: EncryptionAlgorithmSpec | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
-    dry_run_modifiers: list[DryRunModifierType] | None = None,
+    dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
 ) -> ReEncryptResponse: ...
 ```
 
@@ -625,7 +625,7 @@ async def replicate_key(
     policy: str | None = None,
     bypass_policy_lockout_safety_check: bool | None = None,
     description: str | None = None,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
 ) -> ReplicateKeyResponse: ...
 ```
 
@@ -680,7 +680,7 @@ async def sign(
     message: bytes,
     signing_algorithm: SigningAlgorithmSpec,
     message_type: MessageType | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> SignResponse: ...
 ```
@@ -691,7 +691,7 @@ async def sign(
 async def tag_resource(
     *,
     key_id: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> None: ...
 ```
 
@@ -701,7 +701,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     key_id: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
 
@@ -763,7 +763,7 @@ async def verify(
     signature: bytes,
     signing_algorithm: SigningAlgorithmSpec,
     message_type: MessageType | None = None,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> VerifyResponse: ...
 ```
@@ -777,7 +777,7 @@ async def verify_mac(
     key_id: str,
     mac_algorithm: MacAlgorithmSpec,
     mac: bytes,
-    grant_tokens: list[str] | None = None,
+    grant_tokens: Sequence[str] | None = None,
     dry_run: bool | None = None,
 ) -> VerifyMacResponse: ...
 ```

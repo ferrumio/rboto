@@ -266,7 +266,7 @@ class BedrockAgentClient:
         agent_alias_name: str,
         client_token: str | None = None,
         description: str | None = None,
-        routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+        routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateAgentAliasResponse:
         params: dict[str, object] = {
@@ -379,7 +379,7 @@ class BedrockAgentClient:
         self,
         *,
         name: str,
-        routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+        routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
         flow_identifier: str,
         description: str | None = None,
         concurrency_configuration: FlowAliasConcurrencyConfiguration | None = None,
@@ -486,7 +486,7 @@ class BedrockAgentClient:
         description: str | None = None,
         customer_encryption_key_arn: str | None = None,
         default_variant: str | None = None,
-        variants: list[PromptVariant] | None = None,
+        variants: Sequence[PromptVariant] | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreatePromptResponse:
@@ -619,7 +619,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
         vpc_id: str,
-        subnet_ids: list[str],
+        subnet_ids: Sequence[str],
         resource_target: str,
         port: int,
         protocol: VpcProtocol,
@@ -895,7 +895,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
         data_source_id: str,
-        document_identifiers: list[DocumentIdentifier],
+        document_identifiers: Sequence[DocumentIdentifier],
         client_token: str | None = None,
     ) -> DeleteKnowledgeBaseDocumentsResponse:
         params: dict[str, object] = {
@@ -1371,7 +1371,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
         data_source_id: str,
-        document_identifiers: list[DocumentIdentifier],
+        document_identifiers: Sequence[DocumentIdentifier],
     ) -> GetKnowledgeBaseDocumentsResponse:
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,
@@ -1496,7 +1496,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
         data_source_id: str,
-        documents: list[KnowledgeBaseDocument],
+        documents: Sequence[KnowledgeBaseDocument],
         client_token: str | None = None,
     ) -> IngestKnowledgeBaseDocumentsResponse:
         params: dict[str, object] = {
@@ -1807,7 +1807,7 @@ class BedrockAgentClient:
         *,
         knowledge_base_id: str,
         data_source_id: str,
-        filters: list[IngestionJobFilter] | None = None,
+        filters: Sequence[IngestionJobFilter] | None = None,
         sort_by: IngestionJobSortBy | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
@@ -2188,7 +2188,7 @@ class BedrockAgentClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> UntagResourceResponse:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -2322,7 +2322,7 @@ class BedrockAgentClient:
         agent_alias_id: str,
         agent_alias_name: str,
         description: str | None = None,
-        routing_configuration: list[AgentAliasRoutingConfigurationListItem] | None = None,
+        routing_configuration: Sequence[AgentAliasRoutingConfigurationListItem] | None = None,
         alias_invocation_state: AliasInvocationState | None = None,
     ) -> UpdateAgentAliasResponse:
         params: dict[str, object] = {
@@ -2496,7 +2496,7 @@ class BedrockAgentClient:
         self,
         *,
         name: str,
-        routing_configuration: list[FlowAliasRoutingConfigurationListItem],
+        routing_configuration: Sequence[FlowAliasRoutingConfigurationListItem],
         flow_identifier: str,
         alias_identifier: str,
         description: str | None = None,
@@ -2568,7 +2568,7 @@ class BedrockAgentClient:
         description: str | None = None,
         customer_encryption_key_arn: str | None = None,
         default_variant: str | None = None,
-        variants: list[PromptVariant] | None = None,
+        variants: Sequence[PromptVariant] | None = None,
     ) -> UpdatePromptResponse:
         params: dict[str, object] = {
             "name": name,

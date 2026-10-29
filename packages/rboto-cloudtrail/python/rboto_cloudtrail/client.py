@@ -67,7 +67,7 @@ class CloudTrailClient:
         self,
         *,
         resource_id: str,
-        tags_list: list[Tag],
+        tags_list: Sequence[Tag],
     ) -> AddTagsResponse:
         params: dict[str, object] = {
             "resource_id": resource_id,
@@ -120,8 +120,8 @@ class CloudTrailClient:
         *,
         name: str,
         source: str,
-        destinations: list[Destination],
-        tags: list[Tag] | None = None,
+        destinations: Sequence[Destination],
+        tags: Sequence[Tag] | None = None,
     ) -> CreateChannelResponse:
         params: dict[str, object] = {
             "name": name,
@@ -149,9 +149,9 @@ class CloudTrailClient:
         *,
         name: str,
         refresh_schedule: RefreshSchedule | None = None,
-        tags_list: list[Tag] | None = None,
+        tags_list: Sequence[Tag] | None = None,
         termination_protection_enabled: bool | None = None,
-        widgets: list[RequestWidget] | None = None,
+        widgets: Sequence[RequestWidget] | None = None,
     ) -> CreateDashboardResponse:
         params: dict[str, object] = {
             "name": name,
@@ -182,12 +182,12 @@ class CloudTrailClient:
         self,
         *,
         name: str,
-        advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+        advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
         multi_region_enabled: bool | None = None,
         organization_enabled: bool | None = None,
         retention_period: int | None = None,
         termination_protection_enabled: bool | None = None,
-        tags_list: list[Tag] | None = None,
+        tags_list: Sequence[Tag] | None = None,
         kms_key_id: str | None = None,
         start_ingestion: bool | None = None,
         billing_mode: BillingMode | None = None,
@@ -241,7 +241,7 @@ class CloudTrailClient:
         cloud_watch_logs_role_arn: str | None = None,
         kms_key_id: str | None = None,
         is_organization_trail: bool | None = None,
-        tags_list: list[Tag] | None = None,
+        tags_list: Sequence[Tag] | None = None,
         recursive_logging: bool | None = None,
     ) -> CreateTrailResponse:
         params: dict[str, object] = {
@@ -454,7 +454,7 @@ class CloudTrailClient:
     async def describe_trails(
         self,
         *,
-        trail_name_list: list[str] | None = None,
+        trail_name_list: Sequence[str] | None = None,
         include_shadow_trails: bool | None = None,
     ) -> DescribeTrailsResponse:
         params: dict[str, object] = {
@@ -526,7 +526,7 @@ class CloudTrailClient:
     async def generate_query(
         self,
         *,
-        event_data_stores: list[str],
+        event_data_stores: Sequence[str],
         prompt: str,
     ) -> GenerateQueryResponse:
         params: dict[str, object] = {
@@ -1111,7 +1111,7 @@ class CloudTrailClient:
     async def list_tags(
         self,
         *,
-        resource_id_list: list[str],
+        resource_id_list: Sequence[str],
         next_token: str | None = None,
     ) -> ListTagsResponse:
         params: dict[str, object] = {
@@ -1159,7 +1159,7 @@ class CloudTrailClient:
     async def lookup_events(
         self,
         *,
-        lookup_attributes: list[LookupAttribute] | None = None,
+        lookup_attributes: Sequence[LookupAttribute] | None = None,
         start_time: str | None = None,
         end_time: str | None = None,
         event_category: EventCategory | None = None,
@@ -1200,8 +1200,8 @@ class CloudTrailClient:
         trail_name: str | None = None,
         event_data_store: str | None = None,
         max_event_size: MaxEventSize | None = None,
-        context_key_selectors: list[ContextKeySelector] | None = None,
-        aggregation_configurations: list[AggregationConfiguration] | None = None,
+        context_key_selectors: Sequence[ContextKeySelector] | None = None,
+        aggregation_configurations: Sequence[AggregationConfiguration] | None = None,
     ) -> PutEventConfigurationResponse:
         params: dict[str, object] = {
         }
@@ -1233,8 +1233,8 @@ class CloudTrailClient:
         self,
         *,
         trail_name: str,
-        event_selectors: list[EventSelector] | None = None,
-        advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+        event_selectors: Sequence[EventSelector] | None = None,
+        advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     ) -> PutEventSelectorsResponse:
         params: dict[str, object] = {
             "trail_name": trail_name,
@@ -1260,7 +1260,7 @@ class CloudTrailClient:
     async def put_insight_selectors(
         self,
         *,
-        insight_selectors: list[InsightSelector],
+        insight_selectors: Sequence[InsightSelector],
         trail_name: str | None = None,
         event_data_store: str | None = None,
         insights_destination: str | None = None,
@@ -1338,7 +1338,7 @@ class CloudTrailClient:
         self,
         *,
         resource_id: str,
-        tags_list: list[Tag],
+        tags_list: Sequence[Tag],
     ) -> RemoveTagsResponse:
         params: dict[str, object] = {
             "resource_id": resource_id,
@@ -1458,7 +1458,7 @@ class CloudTrailClient:
     async def start_import(
         self,
         *,
-        destinations: list[str] | None = None,
+        destinations: Sequence[str] | None = None,
         import_source: ImportSource | None = None,
         start_event_time: str | None = None,
         end_event_time: str | None = None,
@@ -1518,7 +1518,7 @@ class CloudTrailClient:
         query_statement: str | None = None,
         delivery_s3_uri: str | None = None,
         query_alias: str | None = None,
-        query_parameters: list[str] | None = None,
+        query_parameters: Sequence[str] | None = None,
         event_data_store_owner_account_id: str | None = None,
     ) -> StartQueryResponse:
         params: dict[str, object] = {
@@ -1617,7 +1617,7 @@ class CloudTrailClient:
         self,
         *,
         channel: str,
-        destinations: list[Destination] | None = None,
+        destinations: Sequence[Destination] | None = None,
         name: str | None = None,
     ) -> UpdateChannelResponse:
         params: dict[str, object] = {
@@ -1645,7 +1645,7 @@ class CloudTrailClient:
         self,
         *,
         dashboard_id: str,
-        widgets: list[RequestWidget] | None = None,
+        widgets: Sequence[RequestWidget] | None = None,
         refresh_schedule: RefreshSchedule | None = None,
         termination_protection_enabled: bool | None = None,
     ) -> UpdateDashboardResponse:
@@ -1677,7 +1677,7 @@ class CloudTrailClient:
         *,
         event_data_store: str,
         name: str | None = None,
-        advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+        advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
         multi_region_enabled: bool | None = None,
         organization_enabled: bool | None = None,
         retention_period: int | None = None,

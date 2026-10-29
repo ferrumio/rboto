@@ -87,8 +87,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_schedule_groups`](#list_schedule_groups) | None | <code>ListScheduleGroupsOutput</code> |
 | [`list_schedules`](#list_schedules) | None | <code>ListSchedulesOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: list[Tag]</code> | <code>TagResourceOutput</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 | [`update_schedule`](#update_schedule) | <code>name: str</code>, <code>schedule_expression: str</code>, <code>target: Target</code>, <code>flexible_time_window: FlexibleTimeWindow</code> | <code>UpdateScheduleOutput</code> |
 
 ## Complete signatures
@@ -120,7 +120,7 @@ async def create_schedule(
 async def create_schedule_group(
     *,
     name: str,
-    tags: list[Tag] | None = None,
+    tags: Sequence[Tag] | None = None,
     client_token: str | None = None,
 ) -> CreateScheduleGroupOutput: ...
 ```
@@ -204,7 +204,7 @@ async def list_tags_for_resource(
 async def tag_resource(
     *,
     resource_arn: str,
-    tags: list[Tag],
+    tags: Sequence[Tag],
 ) -> TagResourceOutput: ...
 ```
 
@@ -214,7 +214,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceOutput: ...
 ```
 

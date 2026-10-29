@@ -79,12 +79,12 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`batch_create_memory_records`](#batch_create_memory_records) | <code>memory_id: str</code>, <code>records: list[MemoryRecordCreateInput]</code> | <code>BatchCreateMemoryRecordsOutput</code> |
-| [`batch_delete_memory_records`](#batch_delete_memory_records) | <code>memory_id: str</code>, <code>records: list[MemoryRecordDeleteInput]</code> | <code>BatchDeleteMemoryRecordsOutput</code> |
-| [`batch_update_memory_records`](#batch_update_memory_records) | <code>memory_id: str</code>, <code>records: list[MemoryRecordUpdateInput]</code> | <code>BatchUpdateMemoryRecordsOutput</code> |
+| [`batch_create_memory_records`](#batch_create_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordCreateInput]</code> | <code>BatchCreateMemoryRecordsOutput</code> |
+| [`batch_delete_memory_records`](#batch_delete_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordDeleteInput]</code> | <code>BatchDeleteMemoryRecordsOutput</code> |
+| [`batch_update_memory_records`](#batch_update_memory_records) | <code>memory_id: str</code>, <code>records: Sequence[MemoryRecordUpdateInput]</code> | <code>BatchUpdateMemoryRecordsOutput</code> |
 | [`complete_resource_token_auth`](#complete_resource_token_auth) | <code>user_identifier: UserIdentifier</code>, <code>session_uri: str</code> | <code>CompleteResourceTokenAuthResponse</code> |
-| [`create_ab_test`](#create_ab_test) | <code>name: str</code>, <code>gateway_arn: str</code>, <code>variants: list[Variant]</code>, <code>evaluation_config: ABTestEvaluationConfig</code>, <code>role_arn: str</code> | <code>CreateABTestResponse</code> |
-| [`create_event`](#create_event) | <code>memory_id: str</code>, <code>actor_id: str</code>, <code>event_timestamp: str</code>, <code>payload: list[PayloadType]</code> | <code>CreateEventOutput</code> |
+| [`create_ab_test`](#create_ab_test) | <code>name: str</code>, <code>gateway_arn: str</code>, <code>variants: Sequence[Variant]</code>, <code>evaluation_config: ABTestEvaluationConfig</code>, <code>role_arn: str</code> | <code>CreateABTestResponse</code> |
+| [`create_event`](#create_event) | <code>memory_id: str</code>, <code>actor_id: str</code>, <code>event_timestamp: str</code>, <code>payload: Sequence[PayloadType]</code> | <code>CreateEventOutput</code> |
 | [`create_payment_instrument`](#create_payment_instrument) | <code>payment_manager_arn: str</code>, <code>payment_connector_id: str</code>, <code>payment_instrument_type: PaymentInstrumentType</code>, <code>payment_instrument_details: PaymentInstrumentDetails</code> | <code>CreatePaymentInstrumentResponse</code> |
 | [`create_payment_session`](#create_payment_session) | <code>payment_manager_arn: str</code>, <code>expiry_time_in_minutes: int</code> | <code>CreatePaymentSessionResponse</code> |
 | [`delete_ab_test`](#delete_ab_test) | <code>ab_test_id: str</code> | <code>DeleteABTestResponse</code> |
@@ -108,7 +108,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_payment_session`](#get_payment_session) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code> | <code>GetPaymentSessionResponse</code> |
 | [`get_recommendation`](#get_recommendation) | <code>recommendation_id: str</code> | <code>GetRecommendationResponse</code> |
 | [`get_resource_api_key`](#get_resource_api_key) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code> | <code>GetResourceApiKeyResponse</code> |
-| [`get_resource_oauth2_token`](#get_resource_oauth2_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>scopes: list[str]</code>, <code>oauth2_flow: Oauth2FlowType</code> | <code>GetResourceOauth2TokenResponse</code> |
+| [`get_resource_oauth2_token`](#get_resource_oauth2_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>scopes: Sequence[str]</code>, <code>oauth2_flow: Oauth2FlowType</code> | <code>GetResourceOauth2TokenResponse</code> |
 | [`get_resource_payment_token`](#get_resource_payment_token) | <code>workload_identity_token: str</code>, <code>resource_credential_provider_name: str</code>, <code>payment_token_request: PaymentTokenRequestInput</code> | <code>GetResourcePaymentTokenResponse</code> |
 | [`get_workload_access_token`](#get_workload_access_token) | <code>workload_name: str</code> | <code>GetWorkloadAccessTokenResponse</code> |
 | [`get_workload_access_token_for_jwt`](#get_workload_access_token_for_jwt) | <code>workload_name: str</code>, <code>user_token: str</code> | <code>GetWorkloadAccessTokenForJWTResponse</code> |
@@ -118,7 +118,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`invoke_agent_runtime_command`](#invoke_agent_runtime_command) | <code>agent_runtime_arn: str</code>, <code>body: InvokeAgentRuntimeCommandRequestBody</code> | <code>InvokeAgentRuntimeCommandResponse</code> |
 | [`invoke_browser`](#invoke_browser) | <code>browser_identifier: str</code>, <code>session_id: str</code>, <code>action: BrowserAction</code> | <code>InvokeBrowserResponse</code> |
 | [`invoke_code_interpreter`](#invoke_code_interpreter) | <code>code_interpreter_identifier: str</code>, <code>name: ToolName</code> | <code>InvokeCodeInterpreterResponse</code> |
-| [`invoke_harness`](#invoke_harness) | <code>harness_arn: str</code>, <code>runtime_session_id: str</code>, <code>messages: list[HarnessMessage]</code> | <code>InvokeHarnessResponse</code> |
+| [`invoke_harness`](#invoke_harness) | <code>harness_arn: str</code>, <code>runtime_session_id: str</code>, <code>messages: Sequence[HarnessMessage]</code> | <code>InvokeHarnessResponse</code> |
 | [`list_ab_tests`](#list_ab_tests) | None | <code>ListABTestsResponse</code> |
 | [`list_actors`](#list_actors) | <code>memory_id: str</code> | <code>ListActorsOutput</code> |
 | [`list_batch_evaluations`](#list_batch_evaluations) | None | <code>ListBatchEvaluationsResponse</code> |
@@ -134,7 +134,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`process_payment`](#process_payment) | <code>payment_manager_arn: str</code>, <code>payment_session_id: str</code>, <code>payment_instrument_id: str</code>, <code>payment_type: PaymentType</code>, <code>payment_input: PaymentInput</code> | <code>ProcessPaymentResponse</code> |
 | [`retrieve_memory_records`](#retrieve_memory_records) | <code>memory_id: str</code>, <code>search_criteria: SearchCriteria</code> | <code>RetrieveMemoryRecordsOutput</code> |
 | [`save_browser_session_profile`](#save_browser_session_profile) | <code>profile_identifier: str</code>, <code>browser_identifier: str</code>, <code>session_id: str</code> | <code>SaveBrowserSessionProfileResponse</code> |
-| [`search_registry_records`](#search_registry_records) | <code>search_query: str</code>, <code>registry_ids: list[str]</code> | <code>SearchRegistryRecordsResponse</code> |
+| [`search_registry_records`](#search_registry_records) | <code>search_query: str</code>, <code>registry_ids: Sequence[str]</code> | <code>SearchRegistryRecordsResponse</code> |
 | [`start_batch_evaluation`](#start_batch_evaluation) | <code>batch_evaluation_name: str</code>, <code>data_source_config: DataSourceConfig</code> | <code>StartBatchEvaluationResponse</code> |
 | [`start_browser_session`](#start_browser_session) | <code>browser_identifier: str</code> | <code>StartBrowserSessionResponse</code> |
 | [`start_code_interpreter_session`](#start_code_interpreter_session) | <code>code_interpreter_identifier: str</code> | <code>StartCodeInterpreterSessionResponse</code> |
@@ -155,7 +155,7 @@ native response definitions are in the package's `_native.pyi`.
 async def batch_create_memory_records(
     *,
     memory_id: str,
-    records: list[MemoryRecordCreateInput],
+    records: Sequence[MemoryRecordCreateInput],
     client_token: str | None = None,
     record_expiry_specification: RecordExpirySpecification | None = None,
 ) -> BatchCreateMemoryRecordsOutput: ...
@@ -167,7 +167,7 @@ async def batch_create_memory_records(
 async def batch_delete_memory_records(
     *,
     memory_id: str,
-    records: list[MemoryRecordDeleteInput],
+    records: Sequence[MemoryRecordDeleteInput],
 ) -> BatchDeleteMemoryRecordsOutput: ...
 ```
 
@@ -177,7 +177,7 @@ async def batch_delete_memory_records(
 async def batch_update_memory_records(
     *,
     memory_id: str,
-    records: list[MemoryRecordUpdateInput],
+    records: Sequence[MemoryRecordUpdateInput],
     record_expiry_specification: RecordExpirySpecification | None = None,
 ) -> BatchUpdateMemoryRecordsOutput: ...
 ```
@@ -199,7 +199,7 @@ async def create_ab_test(
     *,
     name: str,
     gateway_arn: str,
-    variants: list[Variant],
+    variants: Sequence[Variant],
     evaluation_config: ABTestEvaluationConfig,
     role_arn: str,
     description: str | None = None,
@@ -218,7 +218,7 @@ async def create_event(
     memory_id: str,
     actor_id: str,
     event_timestamp: str,
-    payload: list[PayloadType],
+    payload: Sequence[PayloadType],
     session_id: str | None = None,
     branch: Branch | None = None,
     client_token: str | None = None,
@@ -348,7 +348,7 @@ async def evaluate(
     evaluator_id: str,
     evaluation_input: EvaluationInput,
     evaluation_target: EvaluationTarget | None = None,
-    evaluation_reference_inputs: list[EvaluationReferenceInput] | None = None,
+    evaluation_reference_inputs: Sequence[EvaluationReferenceInput] | None = None,
 ) -> EvaluateResponse: ...
 ```
 
@@ -490,15 +490,15 @@ async def get_resource_oauth2_token(
     *,
     workload_identity_token: str,
     resource_credential_provider_name: str,
-    scopes: list[str],
+    scopes: Sequence[str],
     oauth2_flow: Oauth2FlowType,
     session_uri: str | None = None,
     resource_oauth2_return_url: str | None = None,
     force_authentication: bool | None = None,
     custom_parameters: dict[str, str] | None = None,
     custom_state: str | None = None,
-    resources: list[str] | None = None,
-    audiences: list[str] | None = None,
+    resources: Sequence[str] | None = None,
+    audiences: Sequence[str] | None = None,
 ) -> GetResourceOauth2TokenResponse: ...
 ```
 
@@ -633,7 +633,7 @@ async def invoke_harness(
     *,
     harness_arn: str,
     runtime_session_id: str,
-    messages: list[HarnessMessage],
+    messages: Sequence[HarnessMessage],
     qualifier: str | None = None,
     runtime_user_id: str | None = None,
     trace_parent: str | None = None,
@@ -641,10 +641,10 @@ async def invoke_harness(
     trace_id: str | None = None,
     baggage: str | None = None,
     model: HarnessModelConfiguration | None = None,
-    system_prompt: list[HarnessSystemContentBlock] | None = None,
-    tools: list[HarnessTool] | None = None,
-    skills: list[HarnessSkill] | None = None,
-    allowed_tools: list[str] | None = None,
+    system_prompt: Sequence[HarnessSystemContentBlock] | None = None,
+    tools: Sequence[HarnessTool] | None = None,
+    skills: Sequence[HarnessSkill] | None = None,
+    allowed_tools: Sequence[str] | None = None,
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
@@ -745,7 +745,7 @@ async def list_memory_records(
     memory_strategy_id: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-    metadata_filters: list[MemoryMetadataFilterExpression] | None = None,
+    metadata_filters: Sequence[MemoryMetadataFilterExpression] | None = None,
 ) -> ListMemoryRecordsOutput: ...
 ```
 
@@ -850,7 +850,7 @@ async def save_browser_session_profile(
 async def search_registry_records(
     *,
     search_query: str,
-    registry_ids: list[str],
+    registry_ids: Sequence[str],
     max_results: int | None = None,
     filters: JSONValue | None = None,
 ) -> SearchRegistryRecordsResponse: ...
@@ -863,8 +863,8 @@ async def start_batch_evaluation(
     *,
     batch_evaluation_name: str,
     data_source_config: DataSourceConfig,
-    evaluators: list[Evaluator] | None = None,
-    insights: list[Insight] | None = None,
+    evaluators: Sequence[Evaluator] | None = None,
+    insights: Sequence[Insight] | None = None,
     client_token: str | None = None,
     evaluation_metadata: EvaluationMetadata | None = None,
     tags: dict[str, str] | None = None,
@@ -885,12 +885,12 @@ async def start_browser_session(
     name: str | None = None,
     session_timeout_seconds: int | None = None,
     view_port: ViewPort | None = None,
-    extensions: list[BrowserExtension] | None = None,
+    extensions: Sequence[BrowserExtension] | None = None,
     profile_configuration: BrowserProfileConfiguration | None = None,
     proxy_configuration: ProxyConfiguration | None = None,
-    enterprise_policies: list[BrowserEnterprisePolicy] | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    enterprise_policies: Sequence[BrowserEnterprisePolicy] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
 ) -> StartBrowserSessionResponse: ...
 ```
@@ -905,8 +905,8 @@ async def start_code_interpreter_session(
     trace_parent: str | None = None,
     name: str | None = None,
     session_timeout_seconds: int | None = None,
-    certificates: list[Certificate] | None = None,
-    filesystem_configurations: list[ToolsFileSystemConfiguration] | None = None,
+    certificates: Sequence[Certificate] | None = None,
+    filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
 ) -> StartCodeInterpreterSessionResponse: ...
 ```
@@ -993,7 +993,7 @@ async def update_ab_test(
     client_token: str | None = None,
     name: str | None = None,
     description: str | None = None,
-    variants: list[Variant] | None = None,
+    variants: Sequence[Variant] | None = None,
     gateway_filter: GatewayFilter | None = None,
     evaluation_config: ABTestEvaluationConfig | None = None,
     role_arn: str | None = None,

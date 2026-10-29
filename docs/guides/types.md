@@ -15,6 +15,9 @@ An annotation helps your type checker catch a misspelled field where you constru
 it. You can also pass a dictionary directly to the method. Service permissions,
 resource existence, and value constraints are checked when the request runs.
 
+Input collections accept sequences, including lists and tuples. Map inputs
+require dictionaries.
+
 ## Response attributes
 
 Regular responses and nested structures expose read-only attributes:
@@ -56,6 +59,57 @@ strings, lists, and dictionaries with string keys. Their recursive alias is
 
 Event-stream responses use typed mappings containing async iterators. See
 [Streaming](streaming.md) for their access pattern.
+
+## Input and output types
+
+Structures shared by requests and dictionary responses have separate types.
+For example, `ToolUseBlock` describes a Bedrock input and `ToolUseBlockOutput`
+describes the returned dictionary. Its optional `type` field is present but may
+be `None`:
+
+```python
+from rboto_bedrock_runtime.types import ToolUseBlockOutput
+
+
+def tool_kind(block: ToolUseBlockOutput) -> str:
+    kind = block["type"]
+    return kind.upper() if kind is not None else "unspecified"
+```
+
+Response dictionaries include known keys even when their values are absent.
+Check the value against `None`; checking only that the key exists is insufficient.
+Nested response structures and stream events follow the same rule.
+
+Request unions accept only known, serializable variants. Response unions can
+also contain `{"unknown": True}` when the service sends a new variant. For
+example, DynamoDB uses `AttributeValue` for inputs and `AttributeValueOutput`
+for returned values. Narrow or handle unknown variants before reusing a response
+as a request. The [DynamoDB pagination example](dynamodb.md) converts continuation
+keys explicitly.
+
+## Enum response values
+
+Inputs accept the literal values defined by the installed service model.
+Response types also preserve those names, including keys in attribute maps.
+New enum values from the service remain ordinary strings and carry the static
+type `UnknownEnumValue`; this adds no runtime wrapper.
+
+For an explicit lookup of an attribute introduced after your installed model:
+
+```python
+from rboto import UnknownEnumValue
+from rboto_sqs import GetQueueAttributesResult
+
+
+def future_attribute(response: GetQueueAttributesResult) -> str | None:
+    if response.attributes is None:
+        return None
+    return response.attributes.get(UnknownEnumValue("FutureAttribute"))
+```
+
+Known keys such as `"VisibilityTimeout"` need no wrapper. An arbitrary string
+such as `"VisibilityTimout"` is a type error. `UnknownEnumValue` is a typing
+marker over `str`, not a runtime class to use with `isinstance`.
 
 ## Check your code
 

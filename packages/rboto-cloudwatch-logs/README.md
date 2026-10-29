@@ -86,7 +86,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_delivery`](#create_delivery) | <code>delivery_source_name: str</code>, <code>delivery_destination_arn: str</code> | <code>CreateDeliveryResponse</code> |
 | [`create_export_task`](#create_export_task) | <code>log_group_name: str</code>, <code>from_: int</code>, <code>to: int</code>, <code>destination: str</code> | <code>CreateExportTaskResponse</code> |
 | [`create_import_task`](#create_import_task) | <code>import_source_arn: str</code>, <code>import_role_arn: str</code> | <code>CreateImportTaskResponse</code> |
-| [`create_log_anomaly_detector`](#create_log_anomaly_detector) | <code>log_group_arn_list: list[str]</code> | <code>CreateLogAnomalyDetectorResponse</code> |
+| [`create_log_anomaly_detector`](#create_log_anomaly_detector) | <code>log_group_arn_list: Sequence[str]</code> | <code>CreateLogAnomalyDetectorResponse</code> |
 | [`create_log_group`](#create_log_group) | <code>log_group_name: str</code> | <code>None</code> |
 | [`create_log_stream`](#create_log_stream) | <code>log_group_name: str</code>, <code>log_stream_name: str</code> | <code>None</code> |
 | [`create_lookup_table`](#create_lookup_table) | <code>lookup_table_name: str</code> | <code>CreateLookupTableResponse</code> |
@@ -119,10 +119,10 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_delivery_sources`](#describe_delivery_sources) | None | <code>DescribeDeliverySourcesResponse</code> |
 | [`describe_destinations`](#describe_destinations) | None | <code>DescribeDestinationsResponse</code> |
 | [`describe_export_tasks`](#describe_export_tasks) | None | <code>DescribeExportTasksResponse</code> |
-| [`describe_field_indexes`](#describe_field_indexes) | <code>log_group_identifiers: list[str]</code> | <code>DescribeFieldIndexesResponse</code> |
+| [`describe_field_indexes`](#describe_field_indexes) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeFieldIndexesResponse</code> |
 | [`describe_import_task_batches`](#describe_import_task_batches) | <code>import_id: str</code> | <code>DescribeImportTaskBatchesResponse</code> |
 | [`describe_import_tasks`](#describe_import_tasks) | None | <code>DescribeImportTasksResponse</code> |
-| [`describe_index_policies`](#describe_index_policies) | <code>log_group_identifiers: list[str]</code> | <code>DescribeIndexPoliciesResponse</code> |
+| [`describe_index_policies`](#describe_index_policies) | <code>log_group_identifiers: Sequence[str]</code> | <code>DescribeIndexPoliciesResponse</code> |
 | [`describe_log_groups`](#describe_log_groups) | None | <code>DescribeLogGroupsResponse</code> |
 | [`describe_log_streams`](#describe_log_streams) | None | <code>DescribeLogStreamsResponse</code> |
 | [`describe_lookup_tables`](#describe_lookup_tables) | None | <code>DescribeLookupTablesResponse</code> |
@@ -173,25 +173,25 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_destination_policy`](#put_destination_policy) | <code>destination_name: str</code>, <code>access_policy: str</code> | <code>None</code> |
 | [`put_index_policy`](#put_index_policy) | <code>log_group_identifier: str</code>, <code>policy_document: str</code> | <code>PutIndexPolicyResponse</code> |
 | [`put_integration`](#put_integration) | <code>integration_name: str</code>, <code>resource_config: ResourceConfig</code>, <code>integration_type: IntegrationType</code> | <code>PutIntegrationResponse</code> |
-| [`put_log_events`](#put_log_events) | <code>log_group_name: str</code>, <code>log_stream_name: str</code>, <code>log_events: list[InputLogEvent]</code> | <code>PutLogEventsResponse</code> |
+| [`put_log_events`](#put_log_events) | <code>log_group_name: str</code>, <code>log_stream_name: str</code>, <code>log_events: Sequence[InputLogEvent]</code> | <code>PutLogEventsResponse</code> |
 | [`put_log_group_deletion_protection`](#put_log_group_deletion_protection) | <code>log_group_identifier: str</code>, <code>deletion_protection_enabled: bool</code> | <code>None</code> |
-| [`put_metric_filter`](#put_metric_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code>, <code>filter_pattern: str</code>, <code>metric_transformations: list[MetricTransformation]</code> | <code>None</code> |
+| [`put_metric_filter`](#put_metric_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code>, <code>filter_pattern: str</code>, <code>metric_transformations: Sequence[MetricTransformation]</code> | <code>None</code> |
 | [`put_query_definition`](#put_query_definition) | <code>name: str</code>, <code>query_string: str</code> | <code>PutQueryDefinitionResponse</code> |
 | [`put_resource_policy`](#put_resource_policy) | None | <code>PutResourcePolicyResponse</code> |
 | [`put_retention_policy`](#put_retention_policy) | <code>log_group_name: str</code>, <code>retention_in_days: int</code> | <code>None</code> |
 | [`put_storage_tier_policy`](#put_storage_tier_policy) | <code>storage_tier: StorageTier</code> | <code>PutStorageTierPolicyResponse</code> |
 | [`put_subscription_filter`](#put_subscription_filter) | <code>log_group_name: str</code>, <code>filter_name: str</code>, <code>filter_pattern: str</code>, <code>destination_arn: str</code> | <code>None</code> |
 | [`put_syslog_configuration`](#put_syslog_configuration) | <code>log_group_identifier: str</code> | <code>None</code> |
-| [`put_transformer`](#put_transformer) | <code>log_group_identifier: str</code>, <code>transformer_config: list[Processor]</code> | <code>None</code> |
-| [`start_live_tail`](#start_live_tail) | <code>log_group_identifiers: list[str]</code> | <code>StartLiveTailResponse</code> |
+| [`put_transformer`](#put_transformer) | <code>log_group_identifier: str</code>, <code>transformer_config: Sequence[Processor]</code> | <code>None</code> |
+| [`start_live_tail`](#start_live_tail) | <code>log_group_identifiers: Sequence[str]</code> | <code>StartLiveTailResponse</code> |
 | [`start_query`](#start_query) | <code>start_time: int</code>, <code>end_time: int</code>, <code>query_string: str</code> | <code>StartQueryResponse</code> |
 | [`stop_query`](#stop_query) | <code>query_id: str</code> | <code>StopQueryResponse</code> |
 | [`tag_log_group`](#tag_log_group) | <code>log_group_name: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
-| [`test_metric_filter`](#test_metric_filter) | <code>filter_pattern: str</code>, <code>log_event_messages: list[str]</code> | <code>TestMetricFilterResponse</code> |
-| [`test_transformer`](#test_transformer) | <code>transformer_config: list[Processor]</code>, <code>log_event_messages: list[str]</code> | <code>TestTransformerResponse</code> |
-| [`untag_log_group`](#untag_log_group) | <code>log_group_name: str</code>, <code>tags: list[str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`test_metric_filter`](#test_metric_filter) | <code>filter_pattern: str</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestMetricFilterResponse</code> |
+| [`test_transformer`](#test_transformer) | <code>transformer_config: Sequence[Processor]</code>, <code>log_event_messages: Sequence[str]</code> | <code>TestTransformerResponse</code> |
+| [`untag_log_group`](#untag_log_group) | <code>log_group_name: str</code>, <code>tags: Sequence[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_anomaly`](#update_anomaly) | <code>anomaly_detector_arn: str</code> | <code>None</code> |
 | [`update_delivery_configuration`](#update_delivery_configuration) | <code>id: str</code> | <code>UpdateDeliveryConfigurationResponse</code> |
 | [`update_log_anomaly_detector`](#update_log_anomaly_detector) | <code>anomaly_detector_arn: str</code>, <code>enabled: bool</code> | <code>None</code> |
@@ -246,7 +246,7 @@ async def create_delivery(
     *,
     delivery_source_name: str,
     delivery_destination_arn: str,
-    record_fields: list[str] | None = None,
+    record_fields: Sequence[str] | None = None,
     field_delimiter: str | None = None,
     s3_delivery_configuration: S3DeliveryConfiguration | None = None,
     tags: dict[str, str] | None = None,
@@ -284,7 +284,7 @@ async def create_import_task(
 ```python
 async def create_log_anomaly_detector(
     *,
-    log_group_arn_list: list[str],
+    log_group_arn_list: Sequence[str],
     detector_name: str | None = None,
     evaluation_frequency: EvaluationFrequency | None = None,
     filter_pattern: str | None = None,
@@ -342,7 +342,7 @@ async def create_scheduled_query(
     schedule_expression: str,
     execution_role_arn: str,
     description: str | None = None,
-    log_group_identifiers: list[str] | None = None,
+    log_group_identifiers: Sequence[str] | None = None,
     timezone: str | None = None,
     start_time_offset: int | None = None,
     end_time_offset: int | None = None,
@@ -558,7 +558,7 @@ async def describe_account_policies(
     *,
     policy_type: PolicyType,
     policy_name: str | None = None,
-    account_identifiers: list[str] | None = None,
+    account_identifiers: Sequence[str] | None = None,
     next_token: str | None = None,
 ) -> DescribeAccountPoliciesResponse: ...
 ```
@@ -569,9 +569,9 @@ async def describe_account_policies(
 async def describe_configuration_templates(
     *,
     service: str | None = None,
-    log_types: list[str] | None = None,
-    resource_types: list[str] | None = None,
-    delivery_destination_types: list[DeliveryDestinationType] | None = None,
+    log_types: Sequence[str] | None = None,
+    resource_types: Sequence[str] | None = None,
+    delivery_destination_types: Sequence[DeliveryDestinationType] | None = None,
     next_token: str | None = None,
     limit: int | None = None,
 ) -> DescribeConfigurationTemplatesResponse: ...
@@ -584,7 +584,7 @@ async def describe_deliveries(
     *,
     next_token: str | None = None,
     limit: int | None = None,
-    delivery_source_names: list[str] | None = None,
+    delivery_source_names: Sequence[str] | None = None,
 ) -> DescribeDeliveriesResponse: ...
 ```
 
@@ -595,7 +595,7 @@ async def describe_delivery_destinations(
     *,
     next_token: str | None = None,
     limit: int | None = None,
-    names: list[str] | None = None,
+    names: Sequence[str] | None = None,
 ) -> DescribeDeliveryDestinationsResponse: ...
 ```
 
@@ -606,7 +606,7 @@ async def describe_delivery_sources(
     *,
     next_token: str | None = None,
     limit: int | None = None,
-    resource_arns: list[str] | None = None,
+    resource_arns: Sequence[str] | None = None,
 ) -> DescribeDeliverySourcesResponse: ...
 ```
 
@@ -638,8 +638,8 @@ async def describe_export_tasks(
 ```python
 async def describe_field_indexes(
     *,
-    log_group_identifiers: list[str],
-    index_categories: list[IndexCategory] | None = None,
+    log_group_identifiers: Sequence[str],
+    index_categories: Sequence[IndexCategory] | None = None,
     next_token: str | None = None,
 ) -> DescribeFieldIndexesResponse: ...
 ```
@@ -650,7 +650,7 @@ async def describe_field_indexes(
 async def describe_import_task_batches(
     *,
     import_id: str,
-    batch_import_status: list[ImportStatus] | None = None,
+    batch_import_status: Sequence[ImportStatus] | None = None,
     limit: int | None = None,
     next_token: str | None = None,
 ) -> DescribeImportTaskBatchesResponse: ...
@@ -674,7 +674,7 @@ async def describe_import_tasks(
 ```python
 async def describe_index_policies(
     *,
-    log_group_identifiers: list[str],
+    log_group_identifiers: Sequence[str],
     next_token: str | None = None,
 ) -> DescribeIndexPoliciesResponse: ...
 ```
@@ -684,14 +684,14 @@ async def describe_index_policies(
 ```python
 async def describe_log_groups(
     *,
-    account_identifiers: list[str] | None = None,
+    account_identifiers: Sequence[str] | None = None,
     log_group_name_prefix: str | None = None,
     log_group_name_pattern: str | None = None,
     next_token: str | None = None,
     limit: int | None = None,
     include_linked_accounts: bool | None = None,
     log_group_class: LogGroupClass | None = None,
-    log_group_identifiers: list[str] | None = None,
+    log_group_identifiers: Sequence[str] | None = None,
 ) -> DescribeLogGroupsResponse: ...
 ```
 
@@ -810,7 +810,7 @@ async def filter_log_events(
     *,
     log_group_name: str | None = None,
     log_group_identifier: str | None = None,
-    log_stream_names: list[str] | None = None,
+    log_stream_names: Sequence[str] | None = None,
     log_stream_name_prefix: str | None = None,
     start_time: int | None = None,
     end_time: int | None = None,
@@ -981,7 +981,7 @@ async def get_scheduled_query_history(
     identifier: str,
     start_time: int,
     end_time: int,
-    execution_statuses: list[ExecutionStatus] | None = None,
+    execution_statuses: Sequence[ExecutionStatus] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
 ) -> GetScheduledQueryHistoryResponse: ...
@@ -1008,11 +1008,11 @@ async def get_transformer(
 async def list_aggregate_log_group_summaries(
     *,
     group_by: ListAggregateLogGroupSummariesGroupBy,
-    account_identifiers: list[str] | None = None,
+    account_identifiers: Sequence[str] | None = None,
     include_linked_accounts: bool | None = None,
     log_group_class: LogGroupClass | None = None,
     log_group_name_pattern: str | None = None,
-    data_sources: list[DataSourceFilter] | None = None,
+    data_sources: Sequence[DataSourceFilter] | None = None,
     next_token: str | None = None,
     limit: int | None = None,
 ) -> ListAggregateLogGroupSummariesResponse: ...
@@ -1060,12 +1060,12 @@ async def list_log_groups(
     log_group_name_pattern: str | None = None,
     log_group_class: LogGroupClass | None = None,
     include_linked_accounts: bool | None = None,
-    account_identifiers: list[str] | None = None,
+    account_identifiers: Sequence[str] | None = None,
     next_token: str | None = None,
     limit: int | None = None,
-    data_sources: list[DataSourceFilter] | None = None,
-    field_index_names: list[str] | None = None,
-    log_group_tags: list[TagFilter] | None = None,
+    data_sources: Sequence[DataSourceFilter] | None = None,
+    field_index_names: Sequence[str] | None = None,
+    log_group_tags: Sequence[TagFilter] | None = None,
 ) -> ListLogGroupsResponse: ...
 ```
 
@@ -1254,7 +1254,7 @@ async def put_log_events(
     *,
     log_group_name: str,
     log_stream_name: str,
-    log_events: list[InputLogEvent],
+    log_events: Sequence[InputLogEvent],
     sequence_token: str | None = None,
     entity: Entity | None = None,
 ) -> PutLogEventsResponse: ...
@@ -1278,10 +1278,10 @@ async def put_metric_filter(
     log_group_name: str,
     filter_name: str,
     filter_pattern: str,
-    metric_transformations: list[MetricTransformation],
+    metric_transformations: Sequence[MetricTransformation],
     apply_on_transformed_logs: bool | None = None,
     field_selection_criteria: str | None = None,
-    emit_system_field_dimensions: list[str] | None = None,
+    emit_system_field_dimensions: Sequence[str] | None = None,
 ) -> None: ...
 ```
 
@@ -1294,9 +1294,9 @@ async def put_query_definition(
     query_string: str,
     query_language: QueryLanguage | None = None,
     query_definition_id: str | None = None,
-    log_group_names: list[str] | None = None,
+    log_group_names: Sequence[str] | None = None,
     client_token: str | None = None,
-    parameters: list[QueryParameter] | None = None,
+    parameters: Sequence[QueryParameter] | None = None,
 ) -> PutQueryDefinitionResponse: ...
 ```
 
@@ -1344,7 +1344,7 @@ async def put_subscription_filter(
     distribution: Distribution | None = None,
     apply_on_transformed_logs: bool | None = None,
     field_selection_criteria: str | None = None,
-    emit_system_fields: list[str] | None = None,
+    emit_system_fields: Sequence[str] | None = None,
 ) -> None: ...
 ```
 
@@ -1364,7 +1364,7 @@ async def put_syslog_configuration(
 async def put_transformer(
     *,
     log_group_identifier: str,
-    transformer_config: list[Processor],
+    transformer_config: Sequence[Processor],
 ) -> None: ...
 ```
 
@@ -1373,9 +1373,9 @@ async def put_transformer(
 ```python
 async def start_live_tail(
     *,
-    log_group_identifiers: list[str],
-    log_stream_names: list[str] | None = None,
-    log_stream_name_prefixes: list[str] | None = None,
+    log_group_identifiers: Sequence[str],
+    log_stream_names: Sequence[str] | None = None,
+    log_stream_name_prefixes: Sequence[str] | None = None,
     log_event_filter_pattern: str | None = None,
 ) -> StartLiveTailResponse: ...
 ```
@@ -1390,8 +1390,8 @@ async def start_query(
     query_string: str,
     query_language: QueryLanguage | None = None,
     log_group_name: str | None = None,
-    log_group_names: list[str] | None = None,
-    log_group_identifiers: list[str] | None = None,
+    log_group_names: Sequence[str] | None = None,
+    log_group_identifiers: Sequence[str] | None = None,
     limit: int | None = None,
 ) -> StartQueryResponse: ...
 ```
@@ -1431,7 +1431,7 @@ async def tag_resource(
 async def test_metric_filter(
     *,
     filter_pattern: str,
-    log_event_messages: list[str],
+    log_event_messages: Sequence[str],
 ) -> TestMetricFilterResponse: ...
 ```
 
@@ -1440,8 +1440,8 @@ async def test_metric_filter(
 ```python
 async def test_transformer(
     *,
-    transformer_config: list[Processor],
-    log_event_messages: list[str],
+    transformer_config: Sequence[Processor],
+    log_event_messages: Sequence[str],
 ) -> TestTransformerResponse: ...
 ```
 
@@ -1451,7 +1451,7 @@ async def test_transformer(
 async def untag_log_group(
     *,
     log_group_name: str,
-    tags: list[str],
+    tags: Sequence[str],
 ) -> None: ...
 ```
 
@@ -1461,7 +1461,7 @@ async def untag_log_group(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
 
@@ -1485,7 +1485,7 @@ async def update_anomaly(
 async def update_delivery_configuration(
     *,
     id: str,
-    record_fields: list[str] | None = None,
+    record_fields: Sequence[str] | None = None,
     field_delimiter: str | None = None,
     s3_delivery_configuration: S3DeliveryConfiguration | None = None,
 ) -> UpdateDeliveryConfigurationResponse: ...
@@ -1528,7 +1528,7 @@ async def update_scheduled_query(
     schedule_expression: str,
     execution_role_arn: str,
     description: str | None = None,
-    log_group_identifiers: list[str] | None = None,
+    log_group_identifiers: Sequence[str] | None = None,
     timezone: str | None = None,
     start_time_offset: int | None = None,
     end_time_offset: int | None = None,

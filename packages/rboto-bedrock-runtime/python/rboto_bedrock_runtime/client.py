@@ -77,7 +77,7 @@ class BedrockRuntimeClient:
         guardrail_identifier: str,
         guardrail_version: str,
         source: GuardrailContentSource,
-        content: list[GuardrailContentBlock],
+        content: Sequence[GuardrailContentBlock],
         output_scope: GuardrailOutputScope | None = None,
     ) -> ApplyGuardrailResponse:
         params: dict[str, object] = {
@@ -106,14 +106,14 @@ class BedrockRuntimeClient:
         self,
         *,
         model_id: str,
-        messages: list[Message] | None = None,
-        system: list[SystemContentBlock] | None = None,
+        messages: Sequence[Message] | None = None,
+        system: Sequence[SystemContentBlock] | None = None,
         inference_config: InferenceConfiguration | None = None,
         tool_config: ToolConfiguration | None = None,
         guardrail_config: GuardrailConfiguration | None = None,
         additional_model_request_fields: JSONValue | None = None,
         prompt_variables: dict[str, PromptVariableValues] | None = None,
-        additional_model_response_field_paths: list[str] | None = None,
+        additional_model_response_field_paths: Sequence[str] | None = None,
         request_metadata: dict[str, str] | None = None,
         performance_config: PerformanceConfiguration | None = None,
         service_tier: ServiceTier | None = None,
@@ -164,14 +164,14 @@ class BedrockRuntimeClient:
         self,
         *,
         model_id: str,
-        messages: list[Message] | None = None,
-        system: list[SystemContentBlock] | None = None,
+        messages: Sequence[Message] | None = None,
+        system: Sequence[SystemContentBlock] | None = None,
         inference_config: InferenceConfiguration | None = None,
         tool_config: ToolConfiguration | None = None,
         guardrail_config: GuardrailStreamConfiguration | None = None,
         additional_model_request_fields: JSONValue | None = None,
         prompt_variables: dict[str, PromptVariableValues] | None = None,
-        additional_model_response_field_paths: list[str] | None = None,
+        additional_model_response_field_paths: Sequence[str] | None = None,
         request_metadata: dict[str, str] | None = None,
         performance_config: PerformanceConfiguration | None = None,
         service_tier: ServiceTier | None = None,
@@ -267,7 +267,7 @@ class BedrockRuntimeClient:
     async def invoke_guardrail_checks(
         self,
         *,
-        messages: list[GuardrailChecksMessage],
+        messages: Sequence[GuardrailChecksMessage],
         checks: GuardrailChecksConfig,
     ) -> InvokeGuardrailChecksResponse:
         params: dict[str, object] = {
@@ -458,7 +458,7 @@ class BedrockRuntimeClient:
         model_input: JSONValue,
         output_data_config: AsyncInvokeOutputDataConfig,
         client_request_token: str | None = None,
-        tags: list[Tag] | None = None,
+        tags: Sequence[Tag] | None = None,
     ) -> StartAsyncInvokeResponse:
         params: dict[str, object] = {
             "model_id": model_id,

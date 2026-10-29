@@ -94,7 +94,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_stage`](#create_stage) | <code>rest_api_id: str</code>, <code>stage_name: str</code>, <code>deployment_id: str</code> | <code>CreateStageOutput</code> |
 | [`create_usage_plan`](#create_usage_plan) | <code>name: str</code> | <code>CreateUsagePlanOutput</code> |
 | [`create_usage_plan_key`](#create_usage_plan_key) | <code>usage_plan_id: str</code>, <code>key_id: str</code>, <code>key_type: str</code> | <code>CreateUsagePlanKeyOutput</code> |
-| [`create_vpc_link`](#create_vpc_link) | <code>name: str</code>, <code>target_arns: list[str]</code> | <code>CreateVpcLinkOutput</code> |
+| [`create_vpc_link`](#create_vpc_link) | <code>name: str</code>, <code>target_arns: Sequence[str]</code> | <code>CreateVpcLinkOutput</code> |
 | [`delete_api_key`](#delete_api_key) | <code>api_key: str</code> | <code>None</code> |
 | [`delete_authorizer`](#delete_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>None</code> |
 | [`delete_base_path_mapping`](#delete_base_path_mapping) | <code>domain_name: str</code>, <code>base_path: str</code> | <code>None</code> |
@@ -180,7 +180,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`test_invoke_authorizer`](#test_invoke_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>TestInvokeAuthorizerResponse</code> |
 | [`test_invoke_method`](#test_invoke_method) | <code>rest_api_id: str</code>, <code>resource_id: str</code>, <code>http_method: str</code> | <code>TestInvokeMethodResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_account`](#update_account) | None | <code>UpdateAccountOutput</code> |
 | [`update_api_key`](#update_api_key) | <code>api_key: str</code> | <code>UpdateApiKeyOutput</code> |
 | [`update_authorizer`](#update_authorizer) | <code>rest_api_id: str</code>, <code>authorizer_id: str</code> | <code>UpdateAuthorizerOutput</code> |
@@ -216,7 +216,7 @@ async def create_api_key(
     enabled: bool | None = None,
     generate_distinct_id: bool | None = None,
     value: str | None = None,
-    stage_keys: list[StageKey] | None = None,
+    stage_keys: Sequence[StageKey] | None = None,
     customer_id: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateApiKeyOutput: ...
@@ -230,7 +230,7 @@ async def create_authorizer(
     rest_api_id: str,
     name: str,
     type: AuthorizerType,
-    provider_arns: list[str] | None = None,
+    provider_arns: Sequence[str] | None = None,
     auth_type: str | None = None,
     authorizer_uri: str | None = None,
     authorizer_credentials: str | None = None,
@@ -374,7 +374,7 @@ async def create_rest_api(
     description: str | None = None,
     version: str | None = None,
     clone_from: str | None = None,
-    binary_media_types: list[str] | None = None,
+    binary_media_types: Sequence[str] | None = None,
     minimum_compression_size: int | None = None,
     api_key_source: ApiKeySourceType | None = None,
     endpoint_configuration: EndpointConfiguration | None = None,
@@ -412,7 +412,7 @@ async def create_usage_plan(
     *,
     name: str,
     description: str | None = None,
-    api_stages: list[ApiStage] | None = None,
+    api_stages: Sequence[ApiStage] | None = None,
     throttle: ThrottleSettings | None = None,
     quota: QuotaSettings | None = None,
     tags: dict[str, str] | None = None,
@@ -436,7 +436,7 @@ async def create_usage_plan_key(
 async def create_vpc_link(
     *,
     name: str,
-    target_arns: list[str],
+    target_arns: Sequence[str],
     description: str | None = None,
     tags: dict[str, str] | None = None,
 ) -> CreateVpcLinkOutput: ...
@@ -792,7 +792,7 @@ async def get_deployment(
     *,
     rest_api_id: str,
     deployment_id: str,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> GetDeploymentOutput: ...
 ```
 
@@ -1025,7 +1025,7 @@ async def get_resource(
     *,
     rest_api_id: str,
     resource_id: str,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> GetResourceOutput: ...
 ```
 
@@ -1037,7 +1037,7 @@ async def get_resources(
     rest_api_id: str,
     position: str | None = None,
     limit: int | None = None,
-    embed: list[str] | None = None,
+    embed: Sequence[str] | None = None,
 ) -> Resources: ...
 ```
 
@@ -1262,7 +1262,7 @@ async def put_integration(
     request_templates: dict[str, str] | None = None,
     passthrough_behavior: str | None = None,
     cache_namespace: str | None = None,
-    cache_key_parameters: list[str] | None = None,
+    cache_key_parameters: Sequence[str] | None = None,
     content_handling: ContentHandlingStrategy | None = None,
     timeout_in_millis: int | None = None,
     tls_config: TlsConfig | None = None,
@@ -1302,7 +1302,7 @@ async def put_method(
     request_parameters: dict[str, bool] | None = None,
     request_models: dict[str, str] | None = None,
     request_validator_id: str | None = None,
-    authorization_scopes: list[str] | None = None,
+    authorization_scopes: Sequence[str] | None = None,
 ) -> PutMethodOutput: ...
 ```
 
@@ -1361,7 +1361,7 @@ async def test_invoke_authorizer(
     rest_api_id: str,
     authorizer_id: str,
     headers: dict[str, str] | None = None,
-    multi_value_headers: dict[str, list[str]] | None = None,
+    multi_value_headers: dict[str, Sequence[str]] | None = None,
     path_with_query_string: str | None = None,
     body: str | None = None,
     stage_variables: dict[str, str] | None = None,
@@ -1380,7 +1380,7 @@ async def test_invoke_method(
     path_with_query_string: str | None = None,
     body: str | None = None,
     headers: dict[str, str] | None = None,
-    multi_value_headers: dict[str, list[str]] | None = None,
+    multi_value_headers: dict[str, Sequence[str]] | None = None,
     client_certificate_id: str | None = None,
     stage_variables: dict[str, str] | None = None,
 ) -> TestInvokeMethodResponse: ...
@@ -1392,7 +1392,7 @@ async def test_invoke_method(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> None: ...
 ```
 
@@ -1401,7 +1401,7 @@ async def untag_resource(
 ```python
 async def update_account(
     *,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateAccountOutput: ...
 ```
 
@@ -1411,7 +1411,7 @@ async def update_account(
 async def update_api_key(
     *,
     api_key: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateApiKeyOutput: ...
 ```
 
@@ -1422,7 +1422,7 @@ async def update_authorizer(
     *,
     rest_api_id: str,
     authorizer_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateAuthorizerOutput: ...
 ```
 
@@ -1434,7 +1434,7 @@ async def update_base_path_mapping(
     domain_name: str,
     base_path: str,
     domain_name_id: str | None = None,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateBasePathMappingOutput: ...
 ```
 
@@ -1444,7 +1444,7 @@ async def update_base_path_mapping(
 async def update_client_certificate(
     *,
     client_certificate_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateClientCertificateOutput: ...
 ```
 
@@ -1455,7 +1455,7 @@ async def update_deployment(
     *,
     rest_api_id: str,
     deployment_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDeploymentOutput: ...
 ```
 
@@ -1466,7 +1466,7 @@ async def update_documentation_part(
     *,
     rest_api_id: str,
     documentation_part_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDocumentationPartOutput: ...
 ```
 
@@ -1477,7 +1477,7 @@ async def update_documentation_version(
     *,
     rest_api_id: str,
     documentation_version: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDocumentationVersionOutput: ...
 ```
 
@@ -1488,7 +1488,7 @@ async def update_domain_name(
     *,
     domain_name: str,
     domain_name_id: str | None = None,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateDomainNameOutput: ...
 ```
 
@@ -1499,7 +1499,7 @@ async def update_gateway_response(
     *,
     rest_api_id: str,
     response_type: GatewayResponseType,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateGatewayResponseOutput: ...
 ```
 
@@ -1511,7 +1511,7 @@ async def update_integration(
     rest_api_id: str,
     resource_id: str,
     http_method: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateIntegrationOutput: ...
 ```
 
@@ -1524,7 +1524,7 @@ async def update_integration_response(
     resource_id: str,
     http_method: str,
     status_code: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateIntegrationResponseOutput: ...
 ```
 
@@ -1536,7 +1536,7 @@ async def update_method(
     rest_api_id: str,
     resource_id: str,
     http_method: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateMethodOutput: ...
 ```
 
@@ -1549,7 +1549,7 @@ async def update_method_response(
     resource_id: str,
     http_method: str,
     status_code: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateMethodResponseOutput: ...
 ```
 
@@ -1560,7 +1560,7 @@ async def update_model(
     *,
     rest_api_id: str,
     model_name: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateModelOutput: ...
 ```
 
@@ -1571,7 +1571,7 @@ async def update_request_validator(
     *,
     rest_api_id: str,
     request_validator_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateRequestValidatorOutput: ...
 ```
 
@@ -1582,7 +1582,7 @@ async def update_resource(
     *,
     rest_api_id: str,
     resource_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateResourceOutput: ...
 ```
 
@@ -1592,7 +1592,7 @@ async def update_resource(
 async def update_rest_api(
     *,
     rest_api_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateRestApiOutput: ...
 ```
 
@@ -1603,7 +1603,7 @@ async def update_stage(
     *,
     rest_api_id: str,
     stage_name: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateStageOutput: ...
 ```
 
@@ -1614,7 +1614,7 @@ async def update_usage(
     *,
     usage_plan_id: str,
     key_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateUsageOutput: ...
 ```
 
@@ -1624,7 +1624,7 @@ async def update_usage(
 async def update_usage_plan(
     *,
     usage_plan_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateUsagePlanOutput: ...
 ```
 
@@ -1634,7 +1634,7 @@ async def update_usage_plan(
 async def update_vpc_link(
     *,
     vpc_link_id: str,
-    patch_operations: list[PatchOperation] | None = None,
+    patch_operations: Sequence[PatchOperation] | None = None,
 ) -> UpdateVpcLinkOutput: ...
 ```
 

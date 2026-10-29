@@ -81,7 +81,7 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: list[AgenticRetrieveMessage]</code>, <code>retrievers: list[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamResponse</code> |
+| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: Sequence[AgenticRetrieveMessage]</code>, <code>retrievers: Sequence[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamResponse</code> |
 | [`check_ingested_document_acl`](#check_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code>, <code>user_context: UserContext</code> | <code>CheckIngestedDocumentAclResponse</code> |
 | [`create_invocation`](#create_invocation) | <code>session_identifier: str</code> | <code>CreateInvocationResponse</code> |
 | [`create_session`](#create_session) | None | <code>CreateSessionResponse</code> |
@@ -97,7 +97,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_invocation_step`](#get_invocation_step) | <code>invocation_identifier: str</code>, <code>invocation_step_id: str</code>, <code>session_identifier: str</code> | <code>GetInvocationStepResponse</code> |
 | [`get_session`](#get_session) | <code>session_identifier: str</code> | <code>GetSessionResponse</code> |
 | [`invoke_agent`](#invoke_agent) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>session_id: str</code> | <code>InvokeAgentResponse</code> |
-| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: list[FlowInput]</code> | <code>InvokeFlowResponse</code> |
+| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>InvokeFlowResponse</code> |
 | [`invoke_inline_agent`](#invoke_inline_agent) | <code>foundation_model: str</code>, <code>instruction: str</code>, <code>session_id: str</code> | <code>InvokeInlineAgentResponse</code> |
 | [`list_flow_execution_events`](#list_flow_execution_events) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code>, <code>event_type: FlowExecutionEventType</code> | <code>ListFlowExecutionEventsResponse</code> |
 | [`list_flow_executions`](#list_flow_executions) | <code>flow_identifier: str</code> | <code>ListFlowExecutionsResponse</code> |
@@ -107,14 +107,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
 | [`optimize_prompt`](#optimize_prompt) | <code>input: InputPrompt</code>, <code>target_model_id: str</code> | <code>OptimizePromptResponse</code> |
 | [`put_invocation_step`](#put_invocation_step) | <code>session_identifier: str</code>, <code>invocation_identifier: str</code>, <code>invocation_step_time: str</code>, <code>payload: InvocationStepPayload</code> | <code>PutInvocationStepResponse</code> |
-| [`rerank`](#rerank) | <code>queries: list[RerankQuery]</code>, <code>sources: list[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankResponse</code> |
+| [`rerank`](#rerank) | <code>queries: Sequence[RerankQuery]</code>, <code>sources: Sequence[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankResponse</code> |
 | [`retrieve`](#retrieve) | <code>knowledge_base_id: str</code>, <code>retrieval_query: KnowledgeBaseQuery</code> | <code>RetrieveResponse</code> |
 | [`retrieve_and_generate`](#retrieve_and_generate) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateResponse</code> |
 | [`retrieve_and_generate_stream`](#retrieve_and_generate_stream) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateStreamResponse</code> |
-| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: list[FlowInput]</code> | <code>StartFlowExecutionResponse</code> |
+| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>StartFlowExecutionResponse</code> |
 | [`stop_flow_execution`](#stop_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>StopFlowExecutionResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_session`](#update_session) | <code>session_identifier: str</code> | <code>UpdateSessionResponse</code> |
 
 ## Complete signatures
@@ -124,8 +124,8 @@ native response definitions are in the package's `_native.pyi`.
 ```python
 async def agentic_retrieve_stream(
     *,
-    messages: list[AgenticRetrieveMessage],
-    retrievers: list[AgenticRetriever],
+    messages: Sequence[AgenticRetrieveMessage],
+    retrievers: Sequence[AgenticRetriever],
     agentic_retrieve_configuration: AgenticRetrieveConfiguration,
     policy_configuration: AgenticRetrievePolicyConfiguration | None = None,
     next_token: str | None = None,
@@ -317,7 +317,7 @@ async def invoke_flow(
     *,
     flow_identifier: str,
     flow_alias_identifier: str,
-    inputs: list[FlowInput],
+    inputs: Sequence[FlowInput],
     enable_trace: bool | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
     execution_id: str | None = None,
@@ -334,12 +334,12 @@ async def invoke_inline_agent(
     session_id: str,
     customer_encryption_key_arn: str | None = None,
     idle_session_ttl_in_seconds: int | None = None,
-    action_groups: list[AgentActionGroup] | None = None,
-    knowledge_bases: list[KnowledgeBase] | None = None,
+    action_groups: Sequence[AgentActionGroup] | None = None,
+    knowledge_bases: Sequence[KnowledgeBase] | None = None,
     guardrail_configuration: GuardrailConfigurationWithArn | None = None,
     prompt_override_configuration: PromptOverrideConfiguration | None = None,
     agent_collaboration: AgentCollaboration | None = None,
-    collaborator_configurations: list[CollaboratorConfiguration] | None = None,
+    collaborator_configurations: Sequence[CollaboratorConfiguration] | None = None,
     agent_name: str | None = None,
     end_session: bool | None = None,
     enable_trace: bool | None = None,
@@ -347,7 +347,7 @@ async def invoke_inline_agent(
     streaming_configurations: StreamingConfigurations | None = None,
     prompt_creation_configurations: PromptCreationConfigurations | None = None,
     inline_session_state: InlineSessionState | None = None,
-    collaborators: list[Collaborator] | None = None,
+    collaborators: Sequence[Collaborator] | None = None,
     bedrock_model_configurations: InlineBedrockModelConfigurations | None = None,
     orchestration_type: OrchestrationType | None = None,
     custom_orchestration: CustomOrchestration | None = None,
@@ -450,8 +450,8 @@ async def put_invocation_step(
 ```python
 async def rerank(
     *,
-    queries: list[RerankQuery],
-    sources: list[RerankSource],
+    queries: Sequence[RerankQuery],
+    sources: Sequence[RerankSource],
     reranking_configuration: RerankingConfiguration,
     next_token: str | None = None,
 ) -> RerankResponse: ...
@@ -504,7 +504,7 @@ async def start_flow_execution(
     *,
     flow_identifier: str,
     flow_alias_identifier: str,
-    inputs: list[FlowInput],
+    inputs: Sequence[FlowInput],
     flow_execution_name: str | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
 ) -> StartFlowExecutionResponse: ...
@@ -537,7 +537,7 @@ async def tag_resource(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 

@@ -79,9 +79,9 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: list[Tag]</code> | <code>AddTagsResponse</code> |
+| [`add_tags`](#add_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>AddTagsResponse</code> |
 | [`cancel_query`](#cancel_query) | <code>query_id: str</code> | <code>CancelQueryResponse</code> |
-| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: list[Destination]</code> | <code>CreateChannelResponse</code> |
+| [`create_channel`](#create_channel) | <code>name: str</code>, <code>source: str</code>, <code>destinations: Sequence[Destination]</code> | <code>CreateChannelResponse</code> |
 | [`create_dashboard`](#create_dashboard) | <code>name: str</code> | <code>CreateDashboardResponse</code> |
 | [`create_event_data_store`](#create_event_data_store) | <code>name: str</code> | <code>CreateEventDataStoreResponse</code> |
 | [`create_trail`](#create_trail) | <code>name: str</code>, <code>s3_bucket_name: str</code> | <code>CreateTrailResponse</code> |
@@ -95,7 +95,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`describe_trails`](#describe_trails) | None | <code>DescribeTrailsResponse</code> |
 | [`disable_federation`](#disable_federation) | <code>event_data_store: str</code> | <code>DisableFederationResponse</code> |
 | [`enable_federation`](#enable_federation) | <code>event_data_store: str</code>, <code>federation_role_arn: str</code> | <code>EnableFederationResponse</code> |
-| [`generate_query`](#generate_query) | <code>event_data_stores: list[str]</code>, <code>prompt: str</code> | <code>GenerateQueryResponse</code> |
+| [`generate_query`](#generate_query) | <code>event_data_stores: Sequence[str]</code>, <code>prompt: str</code> | <code>GenerateQueryResponse</code> |
 | [`get_channel`](#get_channel) | <code>channel: str</code> | <code>GetChannelResponse</code> |
 | [`get_dashboard`](#get_dashboard) | <code>dashboard_id: str</code> | <code>GetDashboardResponse</code> |
 | [`get_event_configuration`](#get_event_configuration) | None | <code>GetEventConfigurationResponse</code> |
@@ -116,15 +116,15 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_insights_metric_data`](#list_insights_metric_data) | <code>event_source: str</code>, <code>event_name: str</code>, <code>insight_type: InsightType</code> | <code>ListInsightsMetricDataResponse</code> |
 | [`list_public_keys`](#list_public_keys) | None | <code>ListPublicKeysResponse</code> |
 | [`list_queries`](#list_queries) | <code>event_data_store: str</code> | <code>ListQueriesResponse</code> |
-| [`list_tags`](#list_tags) | <code>resource_id_list: list[str]</code> | <code>ListTagsResponse</code> |
+| [`list_tags`](#list_tags) | <code>resource_id_list: Sequence[str]</code> | <code>ListTagsResponse</code> |
 | [`list_trails`](#list_trails) | None | <code>ListTrailsResponse</code> |
 | [`lookup_events`](#lookup_events) | None | <code>LookupEventsResponse</code> |
 | [`put_event_configuration`](#put_event_configuration) | None | <code>PutEventConfigurationResponse</code> |
 | [`put_event_selectors`](#put_event_selectors) | <code>trail_name: str</code> | <code>PutEventSelectorsResponse</code> |
-| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: list[InsightSelector]</code> | <code>PutInsightSelectorsResponse</code> |
+| [`put_insight_selectors`](#put_insight_selectors) | <code>insight_selectors: Sequence[InsightSelector]</code> | <code>PutInsightSelectorsResponse</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
 | [`register_organization_delegated_admin`](#register_organization_delegated_admin) | <code>member_account_id: str</code> | <code>RegisterOrganizationDelegatedAdminResponse</code> |
-| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: list[Tag]</code> | <code>RemoveTagsResponse</code> |
+| [`remove_tags`](#remove_tags) | <code>resource_id: str</code>, <code>tags_list: Sequence[Tag]</code> | <code>RemoveTagsResponse</code> |
 | [`restore_event_data_store`](#restore_event_data_store) | <code>event_data_store: str</code> | <code>RestoreEventDataStoreResponse</code> |
 | [`search_sample_queries`](#search_sample_queries) | <code>search_phrase: str</code> | <code>SearchSampleQueriesResponse</code> |
 | [`start_dashboard_refresh`](#start_dashboard_refresh) | <code>dashboard_id: str</code> | <code>StartDashboardRefreshResponse</code> |
@@ -148,7 +148,7 @@ native response definitions are in the package's `_native.pyi`.
 async def add_tags(
     *,
     resource_id: str,
-    tags_list: list[Tag],
+    tags_list: Sequence[Tag],
 ) -> AddTagsResponse: ...
 ```
 
@@ -170,8 +170,8 @@ async def create_channel(
     *,
     name: str,
     source: str,
-    destinations: list[Destination],
-    tags: list[Tag] | None = None,
+    destinations: Sequence[Destination],
+    tags: Sequence[Tag] | None = None,
 ) -> CreateChannelResponse: ...
 ```
 
@@ -182,9 +182,9 @@ async def create_dashboard(
     *,
     name: str,
     refresh_schedule: RefreshSchedule | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     termination_protection_enabled: bool | None = None,
-    widgets: list[RequestWidget] | None = None,
+    widgets: Sequence[RequestWidget] | None = None,
 ) -> CreateDashboardResponse: ...
 ```
 
@@ -194,12 +194,12 @@ async def create_dashboard(
 async def create_event_data_store(
     *,
     name: str,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     multi_region_enabled: bool | None = None,
     organization_enabled: bool | None = None,
     retention_period: int | None = None,
     termination_protection_enabled: bool | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     kms_key_id: str | None = None,
     start_ingestion: bool | None = None,
     billing_mode: BillingMode | None = None,
@@ -222,7 +222,7 @@ async def create_trail(
     cloud_watch_logs_role_arn: str | None = None,
     kms_key_id: str | None = None,
     is_organization_trail: bool | None = None,
-    tags_list: list[Tag] | None = None,
+    tags_list: Sequence[Tag] | None = None,
     recursive_logging: bool | None = None,
 ) -> CreateTrailResponse: ...
 ```
@@ -299,7 +299,7 @@ async def describe_query(
 ```python
 async def describe_trails(
     *,
-    trail_name_list: list[str] | None = None,
+    trail_name_list: Sequence[str] | None = None,
     include_shadow_trails: bool | None = None,
 ) -> DescribeTrailsResponse: ...
 ```
@@ -328,7 +328,7 @@ async def enable_federation(
 ```python
 async def generate_query(
     *,
-    event_data_stores: list[str],
+    event_data_stores: Sequence[str],
     prompt: str,
 ) -> GenerateQueryResponse: ...
 ```
@@ -557,7 +557,7 @@ async def list_queries(
 ```python
 async def list_tags(
     *,
-    resource_id_list: list[str],
+    resource_id_list: Sequence[str],
     next_token: str | None = None,
 ) -> ListTagsResponse: ...
 ```
@@ -576,7 +576,7 @@ async def list_trails(
 ```python
 async def lookup_events(
     *,
-    lookup_attributes: list[LookupAttribute] | None = None,
+    lookup_attributes: Sequence[LookupAttribute] | None = None,
     start_time: str | None = None,
     end_time: str | None = None,
     event_category: EventCategory | None = None,
@@ -593,8 +593,8 @@ async def put_event_configuration(
     trail_name: str | None = None,
     event_data_store: str | None = None,
     max_event_size: MaxEventSize | None = None,
-    context_key_selectors: list[ContextKeySelector] | None = None,
-    aggregation_configurations: list[AggregationConfiguration] | None = None,
+    context_key_selectors: Sequence[ContextKeySelector] | None = None,
+    aggregation_configurations: Sequence[AggregationConfiguration] | None = None,
 ) -> PutEventConfigurationResponse: ...
 ```
 
@@ -604,8 +604,8 @@ async def put_event_configuration(
 async def put_event_selectors(
     *,
     trail_name: str,
-    event_selectors: list[EventSelector] | None = None,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    event_selectors: Sequence[EventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
 ) -> PutEventSelectorsResponse: ...
 ```
 
@@ -614,7 +614,7 @@ async def put_event_selectors(
 ```python
 async def put_insight_selectors(
     *,
-    insight_selectors: list[InsightSelector],
+    insight_selectors: Sequence[InsightSelector],
     trail_name: str | None = None,
     event_data_store: str | None = None,
     insights_destination: str | None = None,
@@ -646,7 +646,7 @@ async def register_organization_delegated_admin(
 async def remove_tags(
     *,
     resource_id: str,
-    tags_list: list[Tag],
+    tags_list: Sequence[Tag],
 ) -> RemoveTagsResponse: ...
 ```
 
@@ -694,7 +694,7 @@ async def start_event_data_store_ingestion(
 ```python
 async def start_import(
     *,
-    destinations: list[str] | None = None,
+    destinations: Sequence[str] | None = None,
     import_source: ImportSource | None = None,
     start_event_time: str | None = None,
     end_event_time: str | None = None,
@@ -719,7 +719,7 @@ async def start_query(
     query_statement: str | None = None,
     delivery_s3_uri: str | None = None,
     query_alias: str | None = None,
-    query_parameters: list[str] | None = None,
+    query_parameters: Sequence[str] | None = None,
     event_data_store_owner_account_id: str | None = None,
 ) -> StartQueryResponse: ...
 ```
@@ -757,7 +757,7 @@ async def stop_logging(
 async def update_channel(
     *,
     channel: str,
-    destinations: list[Destination] | None = None,
+    destinations: Sequence[Destination] | None = None,
     name: str | None = None,
 ) -> UpdateChannelResponse: ...
 ```
@@ -768,7 +768,7 @@ async def update_channel(
 async def update_dashboard(
     *,
     dashboard_id: str,
-    widgets: list[RequestWidget] | None = None,
+    widgets: Sequence[RequestWidget] | None = None,
     refresh_schedule: RefreshSchedule | None = None,
     termination_protection_enabled: bool | None = None,
 ) -> UpdateDashboardResponse: ...
@@ -781,7 +781,7 @@ async def update_event_data_store(
     *,
     event_data_store: str,
     name: str | None = None,
-    advanced_event_selectors: list[AdvancedEventSelector] | None = None,
+    advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
     multi_region_enabled: bool | None = None,
     organization_enabled: bool | None = None,
     retention_period: int | None = None,

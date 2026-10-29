@@ -82,7 +82,7 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`create_identity_pool`](#create_identity_pool) | <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>CreateIdentityPoolOutput</code> |
-| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: list[str]</code> | <code>DeleteIdentitiesResponse</code> |
+| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: Sequence[str]</code> | <code>DeleteIdentitiesResponse</code> |
 | [`delete_identity_pool`](#delete_identity_pool) | <code>identity_pool_id: str</code> | <code>None</code> |
 | [`describe_identity`](#describe_identity) | <code>identity_id: str</code> | <code>DescribeIdentityOutput</code> |
 | [`describe_identity_pool`](#describe_identity_pool) | <code>identity_pool_id: str</code> | <code>DescribeIdentityPoolOutput</code> |
@@ -101,8 +101,8 @@ native response definitions are in the package's `_native.pyi`.
 | [`set_principal_tag_attribute_map`](#set_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>SetPrincipalTagAttributeMapResponse</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
 | [`unlink_developer_identity`](#unlink_developer_identity) | <code>identity_id: str</code>, <code>identity_pool_id: str</code>, <code>developer_provider_name: str</code>, <code>developer_user_identifier: str</code> | <code>None</code> |
-| [`unlink_identity`](#unlink_identity) | <code>identity_id: str</code>, <code>logins: dict[str, str]</code>, <code>logins_to_remove: list[str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: list[str]</code> | <code>UntagResourceResponse</code> |
+| [`unlink_identity`](#unlink_identity) | <code>identity_id: str</code>, <code>logins: dict[str, str]</code>, <code>logins_to_remove: Sequence[str]</code> | <code>None</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
 | [`update_identity_pool`](#update_identity_pool) | <code>identity_pool_id: str</code>, <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>UpdateIdentityPoolOutput</code> |
 
 ## Complete signatures
@@ -117,9 +117,9 @@ async def create_identity_pool(
     allow_classic_flow: bool | None = None,
     supported_login_providers: dict[str, str] | None = None,
     developer_provider_name: str | None = None,
-    open_id_connect_provider_arns: list[str] | None = None,
-    cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-    saml_provider_arns: list[str] | None = None,
+    open_id_connect_provider_arns: Sequence[str] | None = None,
+    cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+    saml_provider_arns: Sequence[str] | None = None,
     identity_pool_tags: dict[str, str] | None = None,
 ) -> CreateIdentityPoolOutput: ...
 ```
@@ -129,7 +129,7 @@ async def create_identity_pool(
 ```python
 async def delete_identities(
     *,
-    identity_ids_to_delete: list[str],
+    identity_ids_to_delete: Sequence[str],
 ) -> DeleteIdentitiesResponse: ...
 ```
 
@@ -332,7 +332,7 @@ async def unlink_identity(
     *,
     identity_id: str,
     logins: dict[str, str],
-    logins_to_remove: list[str],
+    logins_to_remove: Sequence[str],
 ) -> None: ...
 ```
 
@@ -342,7 +342,7 @@ async def unlink_identity(
 async def untag_resource(
     *,
     resource_arn: str,
-    tag_keys: list[str],
+    tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
 
@@ -357,9 +357,9 @@ async def update_identity_pool(
     allow_classic_flow: bool | None = None,
     supported_login_providers: dict[str, str] | None = None,
     developer_provider_name: str | None = None,
-    open_id_connect_provider_arns: list[str] | None = None,
-    cognito_identity_providers: list[CognitoIdentityProvider] | None = None,
-    saml_provider_arns: list[str] | None = None,
+    open_id_connect_provider_arns: Sequence[str] | None = None,
+    cognito_identity_providers: Sequence[CognitoIdentityProvider] | None = None,
+    saml_provider_arns: Sequence[str] | None = None,
     identity_pool_tags: dict[str, str] | None = None,
 ) -> UpdateIdentityPoolOutput: ...
 ```

@@ -182,7 +182,7 @@ class CloudWatchLogsClient:
         *,
         delivery_source_name: str,
         delivery_destination_arn: str,
-        record_fields: list[str] | None = None,
+        record_fields: Sequence[str] | None = None,
         field_delimiter: str | None = None,
         s3_delivery_configuration: S3DeliveryConfiguration | None = None,
         tags: dict[str, str] | None = None,
@@ -280,7 +280,7 @@ class CloudWatchLogsClient:
     async def create_log_anomaly_detector(
         self,
         *,
-        log_group_arn_list: list[str],
+        log_group_arn_list: Sequence[str],
         detector_name: str | None = None,
         evaluation_frequency: EvaluationFrequency | None = None,
         filter_pattern: str | None = None,
@@ -421,7 +421,7 @@ class CloudWatchLogsClient:
         schedule_expression: str,
         execution_role_arn: str,
         description: str | None = None,
-        log_group_identifiers: list[str] | None = None,
+        log_group_identifiers: Sequence[str] | None = None,
         timezone: str | None = None,
         start_time_offset: int | None = None,
         end_time_offset: int | None = None,
@@ -960,7 +960,7 @@ class CloudWatchLogsClient:
         *,
         policy_type: PolicyType,
         policy_name: str | None = None,
-        account_identifiers: list[str] | None = None,
+        account_identifiers: Sequence[str] | None = None,
         next_token: str | None = None,
     ) -> DescribeAccountPoliciesResponse:
         params: dict[str, object] = {
@@ -990,9 +990,9 @@ class CloudWatchLogsClient:
         self,
         *,
         service: str | None = None,
-        log_types: list[str] | None = None,
-        resource_types: list[str] | None = None,
-        delivery_destination_types: list[DeliveryDestinationType] | None = None,
+        log_types: Sequence[str] | None = None,
+        resource_types: Sequence[str] | None = None,
+        delivery_destination_types: Sequence[DeliveryDestinationType] | None = None,
         next_token: str | None = None,
         limit: int | None = None,
     ) -> DescribeConfigurationTemplatesResponse:
@@ -1029,7 +1029,7 @@ class CloudWatchLogsClient:
         *,
         next_token: str | None = None,
         limit: int | None = None,
-        delivery_source_names: list[str] | None = None,
+        delivery_source_names: Sequence[str] | None = None,
     ) -> DescribeDeliveriesResponse:
         params: dict[str, object] = {
         }
@@ -1058,7 +1058,7 @@ class CloudWatchLogsClient:
         *,
         next_token: str | None = None,
         limit: int | None = None,
-        names: list[str] | None = None,
+        names: Sequence[str] | None = None,
     ) -> DescribeDeliveryDestinationsResponse:
         params: dict[str, object] = {
         }
@@ -1087,7 +1087,7 @@ class CloudWatchLogsClient:
         *,
         next_token: str | None = None,
         limit: int | None = None,
-        resource_arns: list[str] | None = None,
+        resource_arns: Sequence[str] | None = None,
     ) -> DescribeDeliverySourcesResponse:
         params: dict[str, object] = {
         }
@@ -1175,8 +1175,8 @@ class CloudWatchLogsClient:
     async def describe_field_indexes(
         self,
         *,
-        log_group_identifiers: list[str],
-        index_categories: list[IndexCategory] | None = None,
+        log_group_identifiers: Sequence[str],
+        index_categories: Sequence[IndexCategory] | None = None,
         next_token: str | None = None,
     ) -> DescribeFieldIndexesResponse:
         params: dict[str, object] = {
@@ -1204,7 +1204,7 @@ class CloudWatchLogsClient:
         self,
         *,
         import_id: str,
-        batch_import_status: list[ImportStatus] | None = None,
+        batch_import_status: Sequence[ImportStatus] | None = None,
         limit: int | None = None,
         next_token: str | None = None,
     ) -> DescribeImportTaskBatchesResponse:
@@ -1269,7 +1269,7 @@ class CloudWatchLogsClient:
     async def describe_index_policies(
         self,
         *,
-        log_group_identifiers: list[str],
+        log_group_identifiers: Sequence[str],
         next_token: str | None = None,
     ) -> DescribeIndexPoliciesResponse:
         params: dict[str, object] = {
@@ -1294,14 +1294,14 @@ class CloudWatchLogsClient:
     async def describe_log_groups(
         self,
         *,
-        account_identifiers: list[str] | None = None,
+        account_identifiers: Sequence[str] | None = None,
         log_group_name_prefix: str | None = None,
         log_group_name_pattern: str | None = None,
         next_token: str | None = None,
         limit: int | None = None,
         include_linked_accounts: bool | None = None,
         log_group_class: LogGroupClass | None = None,
-        log_group_identifiers: list[str] | None = None,
+        log_group_identifiers: Sequence[str] | None = None,
     ) -> DescribeLogGroupsResponse:
         params: dict[str, object] = {
         }
@@ -1626,7 +1626,7 @@ class CloudWatchLogsClient:
         *,
         log_group_name: str | None = None,
         log_group_identifier: str | None = None,
-        log_stream_names: list[str] | None = None,
+        log_stream_names: Sequence[str] | None = None,
         log_stream_name_prefix: str | None = None,
         start_time: int | None = None,
         end_time: int | None = None,
@@ -2058,7 +2058,7 @@ class CloudWatchLogsClient:
         identifier: str,
         start_time: int,
         end_time: int,
-        execution_statuses: list[ExecutionStatus] | None = None,
+        execution_statuses: Sequence[ExecutionStatus] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> GetScheduledQueryHistoryResponse:
@@ -2132,11 +2132,11 @@ class CloudWatchLogsClient:
         self,
         *,
         group_by: ListAggregateLogGroupSummariesGroupBy,
-        account_identifiers: list[str] | None = None,
+        account_identifiers: Sequence[str] | None = None,
         include_linked_accounts: bool | None = None,
         log_group_class: LogGroupClass | None = None,
         log_group_name_pattern: str | None = None,
-        data_sources: list[DataSourceFilter] | None = None,
+        data_sources: Sequence[DataSourceFilter] | None = None,
         next_token: str | None = None,
         limit: int | None = None,
     ) -> ListAggregateLogGroupSummariesResponse:
@@ -2267,12 +2267,12 @@ class CloudWatchLogsClient:
         log_group_name_pattern: str | None = None,
         log_group_class: LogGroupClass | None = None,
         include_linked_accounts: bool | None = None,
-        account_identifiers: list[str] | None = None,
+        account_identifiers: Sequence[str] | None = None,
         next_token: str | None = None,
         limit: int | None = None,
-        data_sources: list[DataSourceFilter] | None = None,
-        field_index_names: list[str] | None = None,
-        log_group_tags: list[TagFilter] | None = None,
+        data_sources: Sequence[DataSourceFilter] | None = None,
+        field_index_names: Sequence[str] | None = None,
+        log_group_tags: Sequence[TagFilter] | None = None,
     ) -> ListLogGroupsResponse:
         params: dict[str, object] = {
         }
@@ -2756,7 +2756,7 @@ class CloudWatchLogsClient:
         *,
         log_group_name: str,
         log_stream_name: str,
-        log_events: list[InputLogEvent],
+        log_events: Sequence[InputLogEvent],
         sequence_token: str | None = None,
         entity: Entity | None = None,
     ) -> PutLogEventsResponse:
@@ -2813,10 +2813,10 @@ class CloudWatchLogsClient:
         log_group_name: str,
         filter_name: str,
         filter_pattern: str,
-        metric_transformations: list[MetricTransformation],
+        metric_transformations: Sequence[MetricTransformation],
         apply_on_transformed_logs: bool | None = None,
         field_selection_criteria: str | None = None,
-        emit_system_field_dimensions: list[str] | None = None,
+        emit_system_field_dimensions: Sequence[str] | None = None,
     ) -> None:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
@@ -2851,9 +2851,9 @@ class CloudWatchLogsClient:
         query_string: str,
         query_language: QueryLanguage | None = None,
         query_definition_id: str | None = None,
-        log_group_names: list[str] | None = None,
+        log_group_names: Sequence[str] | None = None,
         client_token: str | None = None,
-        parameters: list[QueryParameter] | None = None,
+        parameters: Sequence[QueryParameter] | None = None,
     ) -> PutQueryDefinitionResponse:
         params: dict[str, object] = {
             "name": name,
@@ -2972,7 +2972,7 @@ class CloudWatchLogsClient:
         distribution: Distribution | None = None,
         apply_on_transformed_logs: bool | None = None,
         field_selection_criteria: str | None = None,
-        emit_system_fields: list[str] | None = None,
+        emit_system_fields: Sequence[str] | None = None,
     ) -> None:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
@@ -3033,7 +3033,7 @@ class CloudWatchLogsClient:
         self,
         *,
         log_group_identifier: str,
-        transformer_config: list[Processor],
+        transformer_config: Sequence[Processor],
     ) -> None:
         params: dict[str, object] = {
             "log_group_identifier": log_group_identifier,
@@ -3056,9 +3056,9 @@ class CloudWatchLogsClient:
     async def start_live_tail(
         self,
         *,
-        log_group_identifiers: list[str],
-        log_stream_names: list[str] | None = None,
-        log_stream_name_prefixes: list[str] | None = None,
+        log_group_identifiers: Sequence[str],
+        log_stream_names: Sequence[str] | None = None,
+        log_stream_name_prefixes: Sequence[str] | None = None,
         log_event_filter_pattern: str | None = None,
     ) -> StartLiveTailResponse:
         params: dict[str, object] = {
@@ -3092,8 +3092,8 @@ class CloudWatchLogsClient:
         query_string: str,
         query_language: QueryLanguage | None = None,
         log_group_name: str | None = None,
-        log_group_names: list[str] | None = None,
-        log_group_identifiers: list[str] | None = None,
+        log_group_names: Sequence[str] | None = None,
+        log_group_identifiers: Sequence[str] | None = None,
         limit: int | None = None,
     ) -> StartQueryResponse:
         params: dict[str, object] = {
@@ -3199,7 +3199,7 @@ class CloudWatchLogsClient:
         self,
         *,
         filter_pattern: str,
-        log_event_messages: list[str],
+        log_event_messages: Sequence[str],
     ) -> TestMetricFilterResponse:
         params: dict[str, object] = {
             "filter_pattern": filter_pattern,
@@ -3222,8 +3222,8 @@ class CloudWatchLogsClient:
     async def test_transformer(
         self,
         *,
-        transformer_config: list[Processor],
-        log_event_messages: list[str],
+        transformer_config: Sequence[Processor],
+        log_event_messages: Sequence[str],
     ) -> TestTransformerResponse:
         params: dict[str, object] = {
             "transformer_config": transformer_config,
@@ -3247,7 +3247,7 @@ class CloudWatchLogsClient:
         self,
         *,
         log_group_name: str,
-        tags: list[str],
+        tags: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "log_group_name": log_group_name,
@@ -3271,7 +3271,7 @@ class CloudWatchLogsClient:
         self,
         *,
         resource_arn: str,
-        tag_keys: list[str],
+        tag_keys: Sequence[str],
     ) -> None:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -3332,7 +3332,7 @@ class CloudWatchLogsClient:
         self,
         *,
         id: str,
-        record_fields: list[str] | None = None,
+        record_fields: Sequence[str] | None = None,
         field_delimiter: str | None = None,
         s3_delivery_configuration: S3DeliveryConfiguration | None = None,
     ) -> UpdateDeliveryConfigurationResponse:
@@ -3435,7 +3435,7 @@ class CloudWatchLogsClient:
         schedule_expression: str,
         execution_role_arn: str,
         description: str | None = None,
-        log_group_identifiers: list[str] | None = None,
+        log_group_identifiers: Sequence[str] | None = None,
         timezone: str | None = None,
         start_time_offset: int | None = None,
         end_time_offset: int | None = None,
