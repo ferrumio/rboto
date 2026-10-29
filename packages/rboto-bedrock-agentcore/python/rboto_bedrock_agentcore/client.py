@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthResponse, CreateABTestResponse, CreateEventOutput, CreatePaymentInstrumentResponse, CreatePaymentSessionResponse, DeleteABTestResponse, DeleteBatchEvaluationResponse, DeleteCapacityProviderSessionResponse, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentResponse, DeletePaymentSessionResponse, DeleteRecommendationResponse, EvaluateResponse, GetABTestResponse, GetAgentCardResponse, GetBatchEvaluationResponse, GetBrowserSessionResponse, GetCodeInterpreterSessionResponse, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceResponse, GetPaymentInstrumentResponse, GetPaymentSessionResponse, GetRecommendationResponse, GetResourceApiKeyResponse, GetResourceOauth2TokenResponse, GetResourcePaymentTokenResponse, GetWorkloadAccessTokenForJWTResponse, GetWorkloadAccessTokenForUserIdResponse, GetWorkloadAccessTokenResponse, IngestDataOutput, InvokeAgentRuntimeResponse, InvokeBrowserResponse, ListABTestsResponse, ListActorsOutput, ListBatchEvaluationsResponse, ListBrowserSessionsResponse, ListCodeInterpreterSessionsResponse, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsResponse, ListPaymentSessionsResponse, ListRecommendationsResponse, ListSessionsOutput, ProcessPaymentResponse, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileResponse, SearchRegistryRecordsResponse, StartBatchEvaluationResponse, StartBrowserSessionResponse, StartCodeInterpreterSessionResponse, StartMemoryExtractionJobOutput, StartRecommendationResponse, StopBatchEvaluationResponse, StopBrowserSessionResponse, StopCodeInterpreterSessionResponse, StopRuntimeSessionResponse, UpdateABTestResponse, UpdateBrowserStreamResponse
 from .types import (
@@ -77,6 +78,8 @@ from .types import (
 
 
 class BedrockAgentCoreClient:
+    logger_name = "rboto.bedrock-agentcore"
+
     def __init__(
         self,
         *,
@@ -114,9 +117,10 @@ class BedrockAgentCoreClient:
             params["client_token"] = client_token
         if record_expiry_specification is not None:
             params["record_expiry_specification"] = record_expiry_specification
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_create_memory_records, params, self._interceptors,
+                self._native.batch_create_memory_records, params, _interceptors,
                 "bedrock-agentcore", "BatchCreateMemoryRecords", self._region,
                 BatchCreateMemoryRecordsOutput,
                 ("memory_id", "records", "client_token", "record_expiry_specification", ),
@@ -137,9 +141,10 @@ class BedrockAgentCoreClient:
             "memory_id": memory_id,
             "records": records,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_delete_memory_records, params, self._interceptors,
+                self._native.batch_delete_memory_records, params, _interceptors,
                 "bedrock-agentcore", "BatchDeleteMemoryRecords", self._region,
                 BatchDeleteMemoryRecordsOutput,
                 ("memory_id", "records", ),
@@ -163,9 +168,10 @@ class BedrockAgentCoreClient:
         }
         if record_expiry_specification is not None:
             params["record_expiry_specification"] = record_expiry_specification
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_update_memory_records, params, self._interceptors,
+                self._native.batch_update_memory_records, params, _interceptors,
                 "bedrock-agentcore", "BatchUpdateMemoryRecords", self._region,
                 BatchUpdateMemoryRecordsOutput,
                 ("memory_id", "records", "record_expiry_specification", ),
@@ -186,9 +192,10 @@ class BedrockAgentCoreClient:
             "user_identifier": user_identifier,
             "session_uri": session_uri,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.complete_resource_token_auth, params, self._interceptors,
+                self._native.complete_resource_token_auth, params, _interceptors,
                 "bedrock-agentcore", "CompleteResourceTokenAuth", self._region,
                 CompleteResourceTokenAuthResponse,
                 ("user_identifier", "session_uri", ),
@@ -230,9 +237,10 @@ class BedrockAgentCoreClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_ab_test, params, self._interceptors,
+                self._native.create_ab_test, params, _interceptors,
                 "bedrock-agentcore", "CreateABTest", self._region,
                 CreateABTestResponse,
                 ("name", "gateway_arn", "variants", "evaluation_config", "role_arn", "description", "gateway_filter", "enable_on_create", "client_token", "tags", ),
@@ -275,9 +283,10 @@ class BedrockAgentCoreClient:
             params["extraction_mode"] = extraction_mode
         if extraction_config is not None:
             params["extraction_config"] = extraction_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_event, params, self._interceptors,
+                self._native.create_event, params, _interceptors,
                 "bedrock-agentcore", "CreateEvent", self._region,
                 CreateEventOutput,
                 ("memory_id", "actor_id", "event_timestamp", "payload", "session_id", "branch", "client_token", "metadata", "extraction_mode", "extraction_config", ),
@@ -311,9 +320,10 @@ class BedrockAgentCoreClient:
             params["agent_name"] = agent_name
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_payment_instrument, params, self._interceptors,
+                self._native.create_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "CreatePaymentInstrument", self._region,
                 CreatePaymentInstrumentResponse,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_type", "payment_instrument_details", "user_id", "agent_name", "client_token", ),
@@ -346,9 +356,10 @@ class BedrockAgentCoreClient:
             params["limits"] = limits
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_payment_session, params, self._interceptors,
+                self._native.create_payment_session, params, _interceptors,
                 "bedrock-agentcore", "CreatePaymentSession", self._region,
                 CreatePaymentSessionResponse,
                 ("payment_manager_arn", "expiry_time_in_minutes", "user_id", "agent_name", "limits", "client_token", ),
@@ -367,9 +378,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_ab_test, params, self._interceptors,
+                self._native.delete_ab_test, params, _interceptors,
                 "bedrock-agentcore", "DeleteABTest", self._region,
                 DeleteABTestResponse,
                 ("ab_test_id", ),
@@ -388,9 +400,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_batch_evaluation, params, self._interceptors,
+                self._native.delete_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "DeleteBatchEvaluation", self._region,
                 DeleteBatchEvaluationResponse,
                 ("batch_evaluation_id", ),
@@ -411,9 +424,10 @@ class BedrockAgentCoreClient:
             "capacity_provider_id": capacity_provider_id,
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_capacity_provider_session, params, self._interceptors,
+                self._native.delete_capacity_provider_session, params, _interceptors,
                 "bedrock-agentcore", "DeleteCapacityProviderSession", self._region,
                 DeleteCapacityProviderSessionResponse,
                 ("capacity_provider_id", "session_id", ),
@@ -438,9 +452,10 @@ class BedrockAgentCoreClient:
             "event_id": event_id,
             "actor_id": actor_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_event, params, self._interceptors,
+                self._native.delete_event, params, _interceptors,
                 "bedrock-agentcore", "DeleteEvent", self._region,
                 DeleteEventOutput,
                 ("memory_id", "session_id", "event_id", "actor_id", ),
@@ -464,9 +479,10 @@ class BedrockAgentCoreClient:
         }
         if namespace is not None:
             params["namespace"] = namespace
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_memory_record, params, self._interceptors,
+                self._native.delete_memory_record, params, _interceptors,
                 "bedrock-agentcore", "DeleteMemoryRecord", self._region,
                 DeleteMemoryRecordOutput,
                 ("memory_id", "memory_record_id", "namespace", ),
@@ -492,9 +508,10 @@ class BedrockAgentCoreClient:
         }
         if user_id is not None:
             params["user_id"] = user_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_payment_instrument, params, self._interceptors,
+                self._native.delete_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "DeletePaymentInstrument", self._region,
                 DeletePaymentInstrumentResponse,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", "user_id", ),
@@ -518,9 +535,10 @@ class BedrockAgentCoreClient:
         }
         if user_id is not None:
             params["user_id"] = user_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_payment_session, params, self._interceptors,
+                self._native.delete_payment_session, params, _interceptors,
                 "bedrock-agentcore", "DeletePaymentSession", self._region,
                 DeletePaymentSessionResponse,
                 ("payment_manager_arn", "payment_session_id", "user_id", ),
@@ -539,9 +557,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_recommendation, params, self._interceptors,
+                self._native.delete_recommendation, params, _interceptors,
                 "bedrock-agentcore", "DeleteRecommendation", self._region,
                 DeleteRecommendationResponse,
                 ("recommendation_id", ),
@@ -568,9 +587,10 @@ class BedrockAgentCoreClient:
             params["evaluation_target"] = evaluation_target
         if evaluation_reference_inputs is not None:
             params["evaluation_reference_inputs"] = evaluation_reference_inputs
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.evaluate, params, self._interceptors,
+                self._native.evaluate, params, _interceptors,
                 "bedrock-agentcore", "Evaluate", self._region,
                 EvaluateResponse,
                 ("evaluator_id", "evaluation_input", "evaluation_target", "evaluation_reference_inputs", ),
@@ -589,9 +609,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ab_test, params, self._interceptors,
+                self._native.get_ab_test, params, _interceptors,
                 "bedrock-agentcore", "GetABTest", self._region,
                 GetABTestResponse,
                 ("ab_test_id", ),
@@ -616,9 +637,10 @@ class BedrockAgentCoreClient:
             params["runtime_session_id"] = runtime_session_id
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_agent_card, params, self._interceptors,
+                self._native.get_agent_card, params, _interceptors,
                 "bedrock-agentcore", "GetAgentCard", self._region,
                 GetAgentCardResponse,
                 ("agent_runtime_arn", "runtime_session_id", "qualifier", ),
@@ -637,9 +659,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_batch_evaluation, params, self._interceptors,
+                self._native.get_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "GetBatchEvaluation", self._region,
                 GetBatchEvaluationResponse,
                 ("batch_evaluation_id", ),
@@ -660,9 +683,10 @@ class BedrockAgentCoreClient:
             "browser_identifier": browser_identifier,
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_browser_session, params, self._interceptors,
+                self._native.get_browser_session, params, _interceptors,
                 "bedrock-agentcore", "GetBrowserSession", self._region,
                 GetBrowserSessionResponse,
                 ("browser_identifier", "session_id", ),
@@ -683,9 +707,10 @@ class BedrockAgentCoreClient:
             "code_interpreter_identifier": code_interpreter_identifier,
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_code_interpreter_session, params, self._interceptors,
+                self._native.get_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "GetCodeInterpreterSession", self._region,
                 GetCodeInterpreterSessionResponse,
                 ("code_interpreter_identifier", "session_id", ),
@@ -710,9 +735,10 @@ class BedrockAgentCoreClient:
             "actor_id": actor_id,
             "event_id": event_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_event, params, self._interceptors,
+                self._native.get_event, params, _interceptors,
                 "bedrock-agentcore", "GetEvent", self._region,
                 GetEventOutput,
                 ("memory_id", "session_id", "actor_id", "event_id", ),
@@ -736,9 +762,10 @@ class BedrockAgentCoreClient:
         }
         if namespace is not None:
             params["namespace"] = namespace
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_memory_record, params, self._interceptors,
+                self._native.get_memory_record, params, _interceptors,
                 "bedrock-agentcore", "GetMemoryRecord", self._region,
                 GetMemoryRecordOutput,
                 ("memory_id", "memory_record_id", "namespace", ),
@@ -768,9 +795,10 @@ class BedrockAgentCoreClient:
             params["agent_name"] = agent_name
         if payment_connector_id is not None:
             params["payment_connector_id"] = payment_connector_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_instrument, params, self._interceptors,
+                self._native.get_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentInstrument", self._region,
                 GetPaymentInstrumentResponse,
                 ("payment_manager_arn", "payment_instrument_id", "user_id", "agent_name", "payment_connector_id", ),
@@ -803,9 +831,10 @@ class BedrockAgentCoreClient:
             params["user_id"] = user_id
         if agent_name is not None:
             params["agent_name"] = agent_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_instrument_balance, params, self._interceptors,
+                self._native.get_payment_instrument_balance, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentInstrumentBalance", self._region,
                 GetPaymentInstrumentBalanceResponse,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", "chain", "token", "user_id", "agent_name", ),
@@ -832,9 +861,10 @@ class BedrockAgentCoreClient:
             params["user_id"] = user_id
         if agent_name is not None:
             params["agent_name"] = agent_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_payment_session, params, self._interceptors,
+                self._native.get_payment_session, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentSession", self._region,
                 GetPaymentSessionResponse,
                 ("payment_manager_arn", "payment_session_id", "user_id", "agent_name", ),
@@ -853,9 +883,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_recommendation, params, self._interceptors,
+                self._native.get_recommendation, params, _interceptors,
                 "bedrock-agentcore", "GetRecommendation", self._region,
                 GetRecommendationResponse,
                 ("recommendation_id", ),
@@ -876,9 +907,10 @@ class BedrockAgentCoreClient:
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_api_key, params, self._interceptors,
+                self._native.get_resource_api_key, params, _interceptors,
                 "bedrock-agentcore", "GetResourceApiKey", self._region,
                 GetResourceApiKeyResponse,
                 ("workload_identity_token", "resource_credential_provider_name", ),
@@ -924,9 +956,10 @@ class BedrockAgentCoreClient:
             params["resources"] = resources
         if audiences is not None:
             params["audiences"] = audiences
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_oauth2_token, params, self._interceptors,
+                self._native.get_resource_oauth2_token, params, _interceptors,
                 "bedrock-agentcore", "GetResourceOauth2Token", self._region,
                 GetResourceOauth2TokenResponse,
                 ("workload_identity_token", "resource_credential_provider_name", "scopes", "oauth2_flow", "session_uri", "resource_oauth2_return_url", "force_authentication", "custom_parameters", "custom_state", "resources", "audiences", ),
@@ -949,9 +982,10 @@ class BedrockAgentCoreClient:
             "resource_credential_provider_name": resource_credential_provider_name,
             "payment_token_request": payment_token_request,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_payment_token, params, self._interceptors,
+                self._native.get_resource_payment_token, params, _interceptors,
                 "bedrock-agentcore", "GetResourcePaymentToken", self._region,
                 GetResourcePaymentTokenResponse,
                 ("workload_identity_token", "resource_credential_provider_name", "payment_token_request", ),
@@ -970,9 +1004,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "workload_name": workload_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_workload_access_token, params, self._interceptors,
+                self._native.get_workload_access_token, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessToken", self._region,
                 GetWorkloadAccessTokenResponse,
                 ("workload_name", ),
@@ -993,9 +1028,10 @@ class BedrockAgentCoreClient:
             "workload_name": workload_name,
             "user_token": user_token,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_workload_access_token_for_jwt, params, self._interceptors,
+                self._native.get_workload_access_token_for_jwt, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessTokenForJWT", self._region,
                 GetWorkloadAccessTokenForJWTResponse,
                 ("workload_name", "user_token", ),
@@ -1016,9 +1052,10 @@ class BedrockAgentCoreClient:
             "workload_name": workload_name,
             "user_id": user_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_workload_access_token_for_user_id, params, self._interceptors,
+                self._native.get_workload_access_token_for_user_id, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessTokenForUserId", self._region,
                 GetWorkloadAccessTokenForUserIdResponse,
                 ("workload_name", "user_id", ),
@@ -1055,9 +1092,10 @@ class BedrockAgentCoreClient:
             params["metadata"] = metadata
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.ingest_data, params, self._interceptors,
+                self._native.ingest_data, params, _interceptors,
                 "bedrock-agentcore", "IngestData", self._region,
                 IngestDataOutput,
                 ("memory_id", "source", "content_timestamp", "actor_id", "session_id", "extraction_config", "metadata", "client_token", ),
@@ -1120,9 +1158,10 @@ class BedrockAgentCoreClient:
             params["qualifier"] = qualifier
         if account_id is not None:
             params["account_id"] = account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_agent_runtime, params, self._interceptors,
+                self._native.invoke_agent_runtime, params, _interceptors,
                 "bedrock-agentcore", "InvokeAgentRuntime", self._region,
                 InvokeAgentRuntimeResponse,
                 ("agent_runtime_arn", "payload", "content_type", "accept", "mcp_session_id", "runtime_session_id", "mcp_protocol_version", "mcp_method", "mcp_name", "runtime_user_id", "trace_id", "trace_parent", "trace_state", "baggage", "qualifier", "account_id", ),
@@ -1170,9 +1209,10 @@ class BedrockAgentCoreClient:
             params["qualifier"] = qualifier
         if account_id is not None:
             params["account_id"] = account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_agent_runtime_command, params, self._interceptors,
+                self._native.invoke_agent_runtime_command, params, _interceptors,
                 "bedrock-agentcore", "InvokeAgentRuntimeCommand", self._region,
                 dict,
                 ("agent_runtime_arn", "body", "content_type", "accept", "runtime_session_id", "trace_id", "trace_parent", "trace_state", "baggage", "qualifier", "account_id", ),
@@ -1195,9 +1235,10 @@ class BedrockAgentCoreClient:
             "session_id": session_id,
             "action": action,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_browser, params, self._interceptors,
+                self._native.invoke_browser, params, _interceptors,
                 "bedrock-agentcore", "InvokeBrowser", self._region,
                 InvokeBrowserResponse,
                 ("browser_identifier", "session_id", "action", ),
@@ -1230,9 +1271,10 @@ class BedrockAgentCoreClient:
             params["trace_parent"] = trace_parent
         if arguments is not None:
             params["arguments"] = arguments
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_code_interpreter, params, self._interceptors,
+                self._native.invoke_code_interpreter, params, _interceptors,
                 "bedrock-agentcore", "InvokeCodeInterpreter", self._region,
                 dict,
                 ("code_interpreter_identifier", "name", "session_id", "trace_id", "trace_parent", "arguments", ),
@@ -1300,9 +1342,10 @@ class BedrockAgentCoreClient:
             params["timeout_seconds"] = timeout_seconds
         if actor_id is not None:
             params["actor_id"] = actor_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_harness, params, self._interceptors,
+                self._native.invoke_harness, params, _interceptors,
                 "bedrock-agentcore", "InvokeHarness", self._region,
                 dict,
                 ("harness_arn", "runtime_session_id", "messages", "qualifier", "runtime_user_id", "trace_parent", "trace_state", "trace_id", "baggage", "model", "system_prompt", "tools", "skills", "allowed_tools", "max_iterations", "max_tokens", "timeout_seconds", "actor_id", ),
@@ -1325,9 +1368,10 @@ class BedrockAgentCoreClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_ab_tests, params, self._interceptors,
+                self._native.list_ab_tests, params, _interceptors,
                 "bedrock-agentcore", "ListABTests", self._region,
                 ListABTestsResponse,
                 ("max_results", "next_token", ),
@@ -1352,9 +1396,10 @@ class BedrockAgentCoreClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_actors, params, self._interceptors,
+                self._native.list_actors, params, _interceptors,
                 "bedrock-agentcore", "ListActors", self._region,
                 ListActorsOutput,
                 ("memory_id", "max_results", "next_token", ),
@@ -1377,9 +1422,10 @@ class BedrockAgentCoreClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_batch_evaluations, params, self._interceptors,
+                self._native.list_batch_evaluations, params, _interceptors,
                 "bedrock-agentcore", "ListBatchEvaluations", self._region,
                 ListBatchEvaluationsResponse,
                 ("max_results", "next_token", ),
@@ -1407,9 +1453,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if status is not None:
             params["status"] = status
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_browser_sessions, params, self._interceptors,
+                self._native.list_browser_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListBrowserSessions", self._region,
                 ListBrowserSessionsResponse,
                 ("browser_identifier", "max_results", "next_token", "status", ),
@@ -1437,9 +1484,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if status is not None:
             params["status"] = status
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_code_interpreter_sessions, params, self._interceptors,
+                self._native.list_code_interpreter_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListCodeInterpreterSessions", self._region,
                 ListCodeInterpreterSessionsResponse,
                 ("code_interpreter_identifier", "max_results", "next_token", "status", ),
@@ -1474,9 +1522,10 @@ class BedrockAgentCoreClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_events, params, self._interceptors,
+                self._native.list_events, params, _interceptors,
                 "bedrock-agentcore", "ListEvents", self._region,
                 ListEventsOutput,
                 ("memory_id", "session_id", "actor_id", "include_payloads", "filter", "max_results", "next_token", ),
@@ -1504,9 +1553,10 @@ class BedrockAgentCoreClient:
             params["filter"] = filter
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_memory_extraction_jobs, params, self._interceptors,
+                self._native.list_memory_extraction_jobs, params, _interceptors,
                 "bedrock-agentcore", "ListMemoryExtractionJobs", self._region,
                 ListMemoryExtractionJobsOutput,
                 ("memory_id", "max_results", "filter", "next_token", ),
@@ -1543,9 +1593,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if metadata_filters is not None:
             params["metadata_filters"] = metadata_filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_memory_records, params, self._interceptors,
+                self._native.list_memory_records, params, _interceptors,
                 "bedrock-agentcore", "ListMemoryRecords", self._region,
                 ListMemoryRecordsOutput,
                 ("memory_id", "namespace", "namespace_path", "memory_strategy_id", "max_results", "next_token", "metadata_filters", ),
@@ -1579,9 +1630,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_payment_instruments, params, self._interceptors,
+                self._native.list_payment_instruments, params, _interceptors,
                 "bedrock-agentcore", "ListPaymentInstruments", self._region,
                 ListPaymentInstrumentsResponse,
                 ("payment_manager_arn", "user_id", "agent_name", "payment_connector_id", "next_token", "max_results", ),
@@ -1612,9 +1664,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_payment_sessions, params, self._interceptors,
+                self._native.list_payment_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListPaymentSessions", self._region,
                 ListPaymentSessionsResponse,
                 ("payment_manager_arn", "user_id", "agent_name", "next_token", "max_results", ),
@@ -1640,9 +1693,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if status_filter is not None:
             params["status_filter"] = status_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_recommendations, params, self._interceptors,
+                self._native.list_recommendations, params, _interceptors,
                 "bedrock-agentcore", "ListRecommendations", self._region,
                 ListRecommendationsResponse,
                 ("max_results", "next_token", "status_filter", ),
@@ -1672,9 +1726,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if filter is not None:
             params["filter"] = filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_sessions, params, self._interceptors,
+                self._native.list_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListSessions", self._region,
                 ListSessionsOutput,
                 ("memory_id", "actor_id", "max_results", "next_token", "filter", ),
@@ -1710,9 +1765,10 @@ class BedrockAgentCoreClient:
             params["agent_name"] = agent_name
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.process_payment, params, self._interceptors,
+                self._native.process_payment, params, _interceptors,
                 "bedrock-agentcore", "ProcessPayment", self._region,
                 ProcessPaymentResponse,
                 ("payment_manager_arn", "payment_session_id", "payment_instrument_id", "payment_type", "payment_input", "user_id", "agent_name", "client_token", ),
@@ -1745,9 +1801,10 @@ class BedrockAgentCoreClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.retrieve_memory_records, params, self._interceptors,
+                self._native.retrieve_memory_records, params, _interceptors,
                 "bedrock-agentcore", "RetrieveMemoryRecords", self._region,
                 RetrieveMemoryRecordsOutput,
                 ("memory_id", "search_criteria", "namespace", "namespace_path", "next_token", "max_results", ),
@@ -1779,9 +1836,10 @@ class BedrockAgentCoreClient:
             params["trace_parent"] = trace_parent
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.save_browser_session_profile, params, self._interceptors,
+                self._native.save_browser_session_profile, params, _interceptors,
                 "bedrock-agentcore", "SaveBrowserSessionProfile", self._region,
                 SaveBrowserSessionProfileResponse,
                 ("profile_identifier", "browser_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
@@ -1808,9 +1866,10 @@ class BedrockAgentCoreClient:
             params["max_results"] = max_results
         if filters is not None:
             params["filters"] = filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.search_registry_records, params, self._interceptors,
+                self._native.search_registry_records, params, _interceptors,
                 "bedrock-agentcore", "SearchRegistryRecords", self._region,
                 SearchRegistryRecordsResponse,
                 ("search_query", "registry_ids", "max_results", "filters", ),
@@ -1855,9 +1914,10 @@ class BedrockAgentCoreClient:
             params["description"] = description
         if output_config is not None:
             params["output_config"] = output_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_batch_evaluation, params, self._interceptors,
+                self._native.start_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "StartBatchEvaluation", self._region,
                 StartBatchEvaluationResponse,
                 ("batch_evaluation_name", "data_source_config", "evaluators", "insights", "client_token", "evaluation_metadata", "tags", "kms_key_arn", "description", "output_config", ),
@@ -1912,9 +1972,10 @@ class BedrockAgentCoreClient:
             params["filesystem_configurations"] = filesystem_configurations
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_browser_session, params, self._interceptors,
+                self._native.start_browser_session, params, _interceptors,
                 "bedrock-agentcore", "StartBrowserSession", self._region,
                 StartBrowserSessionResponse,
                 ("browser_identifier", "trace_id", "trace_parent", "name", "session_timeout_seconds", "view_port", "extensions", "profile_configuration", "proxy_configuration", "enterprise_policies", "certificates", "filesystem_configurations", "client_token", ),
@@ -1954,9 +2015,10 @@ class BedrockAgentCoreClient:
             params["filesystem_configurations"] = filesystem_configurations
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_code_interpreter_session, params, self._interceptors,
+                self._native.start_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "StartCodeInterpreterSession", self._region,
                 StartCodeInterpreterSessionResponse,
                 ("code_interpreter_identifier", "trace_id", "trace_parent", "name", "session_timeout_seconds", "certificates", "filesystem_configurations", "client_token", ),
@@ -1980,9 +2042,10 @@ class BedrockAgentCoreClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_memory_extraction_job, params, self._interceptors,
+                self._native.start_memory_extraction_job, params, _interceptors,
                 "bedrock-agentcore", "StartMemoryExtractionJob", self._region,
                 StartMemoryExtractionJobOutput,
                 ("memory_id", "extraction_job", "client_token", ),
@@ -2017,9 +2080,10 @@ class BedrockAgentCoreClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_recommendation, params, self._interceptors,
+                self._native.start_recommendation, params, _interceptors,
                 "bedrock-agentcore", "StartRecommendation", self._region,
                 StartRecommendationResponse,
                 ("name", "type", "recommendation_config", "description", "kms_key_arn", "client_token", "tags", ),
@@ -2038,9 +2102,10 @@ class BedrockAgentCoreClient:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_batch_evaluation, params, self._interceptors,
+                self._native.stop_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "StopBatchEvaluation", self._region,
                 StopBatchEvaluationResponse,
                 ("batch_evaluation_id", ),
@@ -2070,9 +2135,10 @@ class BedrockAgentCoreClient:
             params["trace_parent"] = trace_parent
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_browser_session, params, self._interceptors,
+                self._native.stop_browser_session, params, _interceptors,
                 "bedrock-agentcore", "StopBrowserSession", self._region,
                 StopBrowserSessionResponse,
                 ("browser_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
@@ -2102,9 +2168,10 @@ class BedrockAgentCoreClient:
             params["trace_parent"] = trace_parent
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_code_interpreter_session, params, self._interceptors,
+                self._native.stop_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "StopCodeInterpreterSession", self._region,
                 StopCodeInterpreterSessionResponse,
                 ("code_interpreter_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
@@ -2131,9 +2198,10 @@ class BedrockAgentCoreClient:
             params["qualifier"] = qualifier
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_runtime_session, params, self._interceptors,
+                self._native.stop_runtime_session, params, _interceptors,
                 "bedrock-agentcore", "StopRuntimeSession", self._region,
                 StopRuntimeSessionResponse,
                 ("runtime_session_id", "agent_runtime_arn", "qualifier", "client_token", ),
@@ -2176,9 +2244,10 @@ class BedrockAgentCoreClient:
             params["role_arn"] = role_arn
         if execution_status is not None:
             params["execution_status"] = execution_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_ab_test, params, self._interceptors,
+                self._native.update_ab_test, params, _interceptors,
                 "bedrock-agentcore", "UpdateABTest", self._region,
                 UpdateABTestResponse,
                 ("ab_test_id", "client_token", "name", "description", "variants", "gateway_filter", "evaluation_config", "role_arn", "execution_status", ),
@@ -2204,9 +2273,10 @@ class BedrockAgentCoreClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_browser_stream, params, self._interceptors,
+                self._native.update_browser_stream, params, _interceptors,
                 "bedrock-agentcore", "UpdateBrowserStream", self._region,
                 UpdateBrowserStreamResponse,
                 ("browser_identifier", "session_id", "stream_update", "client_token", ),

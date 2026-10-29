@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import STSClient as NativeClient, AssumeRoleResponse, AssumeRoleWithSAMLResponse, AssumeRoleWithWebIdentityResponse, AssumeRootResponse, DecodeAuthorizationMessageResponse, GetAccessKeyInfoResponse, GetCallerIdentityResponse, GetDelegatedAccessTokenResponse, GetFederationTokenResponse, GetSessionTokenResponse, GetWebIdentityTokenResponse
 from .types import (
@@ -16,6 +17,8 @@ from .types import (
 
 
 class STSClient:
+    logger_name = "rboto.sts"
+
     def __init__(
         self,
         *,
@@ -80,9 +83,10 @@ class STSClient:
             params["provided_contexts"] = provided_contexts
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.assume_role, params, self._interceptors,
+                self._native.assume_role, params, _interceptors,
                 "sts", "AssumeRole", self._region,
                 AssumeRoleResponse,
                 ("role_arn", "role_session_name", "policy_arns", "policy", "duration_seconds", "tags", "transitive_tag_keys", "external_id", "serial_number", "token_code", "source_identity", "provided_contexts", "minimum_session_token_size", ),
@@ -117,9 +121,10 @@ class STSClient:
             params["duration_seconds"] = duration_seconds
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.assume_role_with_saml, params, self._interceptors,
+                self._native.assume_role_with_saml, params, _interceptors,
                 "sts", "AssumeRoleWithSAML", self._region,
                 AssumeRoleWithSAMLResponse,
                 ("role_arn", "principal_arn", "saml_assertion", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
@@ -157,9 +162,10 @@ class STSClient:
             params["duration_seconds"] = duration_seconds
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.assume_role_with_web_identity, params, self._interceptors,
+                self._native.assume_role_with_web_identity, params, _interceptors,
                 "sts", "AssumeRoleWithWebIdentity", self._region,
                 AssumeRoleWithWebIdentityResponse,
                 ("role_arn", "role_session_name", "web_identity_token", "provider_id", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
@@ -186,9 +192,10 @@ class STSClient:
             params["duration_seconds"] = duration_seconds
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.assume_root, params, self._interceptors,
+                self._native.assume_root, params, _interceptors,
                 "sts", "AssumeRoot", self._region,
                 AssumeRootResponse,
                 ("target_principal", "task_policy_arn", "duration_seconds", "minimum_session_token_size", ),
@@ -207,9 +214,10 @@ class STSClient:
         params: dict[str, object] = {
             "encoded_message": encoded_message,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.decode_authorization_message, params, self._interceptors,
+                self._native.decode_authorization_message, params, _interceptors,
                 "sts", "DecodeAuthorizationMessage", self._region,
                 DecodeAuthorizationMessageResponse,
                 ("encoded_message", ),
@@ -228,9 +236,10 @@ class STSClient:
         params: dict[str, object] = {
             "access_key_id": access_key_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_access_key_info, params, self._interceptors,
+                self._native.get_access_key_info, params, _interceptors,
                 "sts", "GetAccessKeyInfo", self._region,
                 GetAccessKeyInfoResponse,
                 ("access_key_id", ),
@@ -246,9 +255,10 @@ class STSClient:
     ) -> GetCallerIdentityResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_caller_identity, params, self._interceptors,
+                self._native.get_caller_identity, params, _interceptors,
                 "sts", "GetCallerIdentity", self._region,
                 GetCallerIdentityResponse,
                 (),
@@ -267,9 +277,10 @@ class STSClient:
         params: dict[str, object] = {
             "trade_in_token": trade_in_token,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_delegated_access_token, params, self._interceptors,
+                self._native.get_delegated_access_token, params, _interceptors,
                 "sts", "GetDelegatedAccessToken", self._region,
                 GetDelegatedAccessTokenResponse,
                 ("trade_in_token", ),
@@ -303,9 +314,10 @@ class STSClient:
             params["tags"] = tags
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_federation_token, params, self._interceptors,
+                self._native.get_federation_token, params, _interceptors,
                 "sts", "GetFederationToken", self._region,
                 GetFederationTokenResponse,
                 ("name", "policy", "policy_arns", "duration_seconds", "tags", "minimum_session_token_size", ),
@@ -334,9 +346,10 @@ class STSClient:
             params["token_code"] = token_code
         if minimum_session_token_size is not None:
             params["minimum_session_token_size"] = minimum_session_token_size
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_session_token, params, self._interceptors,
+                self._native.get_session_token, params, _interceptors,
                 "sts", "GetSessionToken", self._region,
                 GetSessionTokenResponse,
                 ("duration_seconds", "serial_number", "token_code", "minimum_session_token_size", ),
@@ -363,9 +376,10 @@ class STSClient:
             params["duration_seconds"] = duration_seconds
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("sts", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_web_identity_token, params, self._interceptors,
+                self._native.get_web_identity_token, params, _interceptors,
                 "sts", "GetWebIdentityToken", self._region,
                 GetWebIdentityTokenResponse,
                 ("audience", "signing_algorithm", "duration_seconds", "tags", ),

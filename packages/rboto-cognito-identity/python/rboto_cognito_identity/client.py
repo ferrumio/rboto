@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import CognitoIdentityClient as NativeClient, CreateIdentityPoolOutput, DeleteIdentitiesResponse, DescribeIdentityOutput, DescribeIdentityPoolOutput, GetCredentialsForIdentityResponse, GetIdResponse, GetIdentityPoolRolesResponse, GetOpenIdTokenForDeveloperIdentityResponse, GetOpenIdTokenResponse, GetPrincipalTagAttributeMapResponse, ListIdentitiesResponse, ListIdentityPoolsResponse, ListTagsForResourceResponse, LookupDeveloperIdentityResponse, MergeDeveloperIdentitiesResponse, SetPrincipalTagAttributeMapResponse, TagResourceResponse, UntagResourceResponse, UpdateIdentityPoolOutput
 from .types import (
@@ -15,6 +16,8 @@ from .types import (
 
 
 class CognitoIdentityClient:
+    logger_name = "rboto.cognito-identity"
+
     def __init__(
         self,
         *,
@@ -67,9 +70,10 @@ class CognitoIdentityClient:
             params["saml_provider_arns"] = saml_provider_arns
         if identity_pool_tags is not None:
             params["identity_pool_tags"] = identity_pool_tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_identity_pool, params, self._interceptors,
+                self._native.create_identity_pool, params, _interceptors,
                 "cognito-identity", "CreateIdentityPool", self._region,
                 CreateIdentityPoolOutput,
                 ("identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),
@@ -88,9 +92,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "identity_ids_to_delete": identity_ids_to_delete,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_identities, params, self._interceptors,
+                self._native.delete_identities, params, _interceptors,
                 "cognito-identity", "DeleteIdentities", self._region,
                 DeleteIdentitiesResponse,
                 ("identity_ids_to_delete", ),
@@ -109,9 +114,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_identity_pool, params, self._interceptors,
+                self._native.delete_identity_pool, params, _interceptors,
                 "cognito-identity", "DeleteIdentityPool", self._region,
                 type(None),
                 ("identity_pool_id", ),
@@ -130,9 +136,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "identity_id": identity_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_identity, params, self._interceptors,
+                self._native.describe_identity, params, _interceptors,
                 "cognito-identity", "DescribeIdentity", self._region,
                 DescribeIdentityOutput,
                 ("identity_id", ),
@@ -151,9 +158,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_identity_pool, params, self._interceptors,
+                self._native.describe_identity_pool, params, _interceptors,
                 "cognito-identity", "DescribeIdentityPool", self._region,
                 DescribeIdentityPoolOutput,
                 ("identity_pool_id", ),
@@ -178,9 +186,10 @@ class CognitoIdentityClient:
             params["logins"] = logins
         if custom_role_arn is not None:
             params["custom_role_arn"] = custom_role_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_credentials_for_identity, params, self._interceptors,
+                self._native.get_credentials_for_identity, params, _interceptors,
                 "cognito-identity", "GetCredentialsForIdentity", self._region,
                 GetCredentialsForIdentityResponse,
                 ("identity_id", "logins", "custom_role_arn", ),
@@ -205,9 +214,10 @@ class CognitoIdentityClient:
             params["account_id"] = account_id
         if logins is not None:
             params["logins"] = logins
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_id, params, self._interceptors,
+                self._native.get_id, params, _interceptors,
                 "cognito-identity", "GetId", self._region,
                 GetIdResponse,
                 ("identity_pool_id", "account_id", "logins", ),
@@ -226,9 +236,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "identity_pool_id": identity_pool_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_identity_pool_roles, params, self._interceptors,
+                self._native.get_identity_pool_roles, params, _interceptors,
                 "cognito-identity", "GetIdentityPoolRoles", self._region,
                 GetIdentityPoolRolesResponse,
                 ("identity_pool_id", ),
@@ -250,9 +261,10 @@ class CognitoIdentityClient:
         }
         if logins is not None:
             params["logins"] = logins
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_open_id_token, params, self._interceptors,
+                self._native.get_open_id_token, params, _interceptors,
                 "cognito-identity", "GetOpenIdToken", self._region,
                 GetOpenIdTokenResponse,
                 ("identity_id", "logins", ),
@@ -282,9 +294,10 @@ class CognitoIdentityClient:
             params["principal_tags"] = principal_tags
         if token_duration is not None:
             params["token_duration"] = token_duration
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_open_id_token_for_developer_identity, params, self._interceptors,
+                self._native.get_open_id_token_for_developer_identity, params, _interceptors,
                 "cognito-identity", "GetOpenIdTokenForDeveloperIdentity", self._region,
                 GetOpenIdTokenForDeveloperIdentityResponse,
                 ("identity_pool_id", "logins", "identity_id", "principal_tags", "token_duration", ),
@@ -305,9 +318,10 @@ class CognitoIdentityClient:
             "identity_pool_id": identity_pool_id,
             "identity_provider_name": identity_provider_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_principal_tag_attribute_map, params, self._interceptors,
+                self._native.get_principal_tag_attribute_map, params, _interceptors,
                 "cognito-identity", "GetPrincipalTagAttributeMap", self._region,
                 GetPrincipalTagAttributeMapResponse,
                 ("identity_pool_id", "identity_provider_name", ),
@@ -334,9 +348,10 @@ class CognitoIdentityClient:
             params["next_token"] = next_token
         if hide_disabled is not None:
             params["hide_disabled"] = hide_disabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_identities, params, self._interceptors,
+                self._native.list_identities, params, _interceptors,
                 "cognito-identity", "ListIdentities", self._region,
                 ListIdentitiesResponse,
                 ("identity_pool_id", "max_results", "next_token", "hide_disabled", ),
@@ -358,9 +373,10 @@ class CognitoIdentityClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_identity_pools, params, self._interceptors,
+                self._native.list_identity_pools, params, _interceptors,
                 "cognito-identity", "ListIdentityPools", self._region,
                 ListIdentityPoolsResponse,
                 ("max_results", "next_token", ),
@@ -379,9 +395,10 @@ class CognitoIdentityClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "cognito-identity", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -412,9 +429,10 @@ class CognitoIdentityClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.lookup_developer_identity, params, self._interceptors,
+                self._native.lookup_developer_identity, params, _interceptors,
                 "cognito-identity", "LookupDeveloperIdentity", self._region,
                 LookupDeveloperIdentityResponse,
                 ("identity_pool_id", "identity_id", "developer_user_identifier", "max_results", "next_token", ),
@@ -439,9 +457,10 @@ class CognitoIdentityClient:
             "developer_provider_name": developer_provider_name,
             "identity_pool_id": identity_pool_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.merge_developer_identities, params, self._interceptors,
+                self._native.merge_developer_identities, params, _interceptors,
                 "cognito-identity", "MergeDeveloperIdentities", self._region,
                 MergeDeveloperIdentitiesResponse,
                 ("source_user_identifier", "destination_user_identifier", "developer_provider_name", "identity_pool_id", ),
@@ -465,9 +484,10 @@ class CognitoIdentityClient:
         }
         if role_mappings is not None:
             params["role_mappings"] = role_mappings
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.set_identity_pool_roles, params, self._interceptors,
+                self._native.set_identity_pool_roles, params, _interceptors,
                 "cognito-identity", "SetIdentityPoolRoles", self._region,
                 type(None),
                 ("identity_pool_id", "roles", "role_mappings", ),
@@ -494,9 +514,10 @@ class CognitoIdentityClient:
             params["use_defaults"] = use_defaults
         if principal_tags is not None:
             params["principal_tags"] = principal_tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.set_principal_tag_attribute_map, params, self._interceptors,
+                self._native.set_principal_tag_attribute_map, params, _interceptors,
                 "cognito-identity", "SetPrincipalTagAttributeMap", self._region,
                 SetPrincipalTagAttributeMapResponse,
                 ("identity_pool_id", "identity_provider_name", "use_defaults", "principal_tags", ),
@@ -517,9 +538,10 @@ class CognitoIdentityClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "cognito-identity", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -544,9 +566,10 @@ class CognitoIdentityClient:
             "developer_provider_name": developer_provider_name,
             "developer_user_identifier": developer_user_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.unlink_developer_identity, params, self._interceptors,
+                self._native.unlink_developer_identity, params, _interceptors,
                 "cognito-identity", "UnlinkDeveloperIdentity", self._region,
                 type(None),
                 ("identity_id", "identity_pool_id", "developer_provider_name", "developer_user_identifier", ),
@@ -569,9 +592,10 @@ class CognitoIdentityClient:
             "logins": logins,
             "logins_to_remove": logins_to_remove,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.unlink_identity, params, self._interceptors,
+                self._native.unlink_identity, params, _interceptors,
                 "cognito-identity", "UnlinkIdentity", self._region,
                 type(None),
                 ("identity_id", "logins", "logins_to_remove", ),
@@ -592,9 +616,10 @@ class CognitoIdentityClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "cognito-identity", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -638,9 +663,10 @@ class CognitoIdentityClient:
             params["saml_provider_arns"] = saml_provider_arns
         if identity_pool_tags is not None:
             params["identity_pool_tags"] = identity_pool_tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cognito-identity", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_identity_pool, params, self._interceptors,
+                self._native.update_identity_pool, params, _interceptors,
                 "cognito-identity", "UpdateIdentityPool", self._region,
                 UpdateIdentityPoolOutput,
                 ("identity_pool_id", "identity_pool_name", "allow_unauthenticated_identities", "allow_classic_flow", "supported_login_providers", "developer_provider_name", "open_id_connect_provider_arns", "cognito_identity_providers", "saml_provider_arns", "identity_pool_tags", ),

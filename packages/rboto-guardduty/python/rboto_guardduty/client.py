@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationResponse, AcceptInvitationResponse, ArchiveFindingsResponse, CreateCustomDetectionRuleAssociationResponse, CreateCustomDetectionRuleOrgConfigurationResponse, CreateDetectorResponse, CreateFilterResponse, CreateIPSetResponse, CreateInvestigationResponse, CreateMalwareProtectionPlanResponse, CreateMembersResponse, CreatePublishingDestinationResponse, CreateSampleFindingsResponse, CreateThreatEntitySetResponse, CreateThreatIntelSetResponse, CreateTrustedEntitySetResponse, DeclineInvitationsResponse, DeleteCustomDetectionRuleAssociationResponse, DeleteCustomDetectionRuleOrgConfigurationResponse, DeleteDetectorResponse, DeleteFilterResponse, DeleteIPSetResponse, DeleteInvitationsResponse, DeleteMembersResponse, DeletePublishingDestinationResponse, DeleteThreatEntitySetResponse, DeleteThreatIntelSetResponse, DeleteTrustedEntitySetResponse, DescribeMalwareScansResponse, DescribeOrganizationConfigurationResponse, DescribePublishingDestinationResponse, DisableOrganizationAdminAccountResponse, DisassociateFromAdministratorAccountResponse, DisassociateFromMasterAccountResponse, DisassociateMembersResponse, EnableOrganizationAdminAccountResponse, GetAdministratorAccountResponse, GetCoverageStatisticsResponse, GetCustomDetectionRuleAssociationResponse, GetCustomDetectionRuleOrgConfigurationResponse, GetCustomDetectionRuleResponse, GetDetectorResponse, GetFilterResponse, GetFindingsResponse, GetFindingsStatisticsResponse, GetIPSetResponse, GetInvestigationResponse, GetInvitationsCountResponse, GetMalwareProtectionPlanResponse, GetMalwareScanResponse, GetMalwareScanSettingsResponse, GetMasterAccountResponse, GetMemberDetectorsResponse, GetMembersResponse, GetOrganizationStatisticsResponse, GetRemainingFreeTrialDaysResponse, GetThreatEntitySetResponse, GetThreatIntelSetResponse, GetTrustedEntitySetResponse, GetUsageStatisticsResponse, InviteMembersResponse, ListCoverageResponse, ListCustomDetectionRuleAssociationsResponse, ListCustomDetectionRuleOrgConfigurationsResponse, ListCustomDetectionRulesResponse, ListDetectorsResponse, ListFiltersResponse, ListFindingsResponse, ListIPSetsResponse, ListInvestigationsResponse, ListInvitationsResponse, ListMalwareProtectionPlansResponse, ListMalwareScansResponse, ListMembersResponse, ListOrganizationAdminAccountsResponse, ListPublishingDestinationsResponse, ListTagsForResourceResponse, ListThreatEntitySetsResponse, ListThreatIntelSetsResponse, ListTrustedEntitySetsResponse, SendObjectMalwareScanResponse, StartMalwareScanResponse, StartMonitoringMembersResponse, StopMonitoringMembersResponse, TagResourceResponse, UnarchiveFindingsResponse, UntagResourceResponse, UpdateCustomDetectionRuleAssociationResponse, UpdateCustomDetectionRuleOrgConfigurationResponse, UpdateDetectorResponse, UpdateFilterResponse, UpdateFindingsFeedbackResponse, UpdateIPSetResponse, UpdateMalwareScanSettingsResponse, UpdateMemberDetectorsResponse, UpdateOrganizationConfigurationResponse, UpdatePublishingDestinationResponse, UpdateThreatEntitySetResponse, UpdateThreatIntelSetResponse, UpdateTrustedEntitySetResponse
 from .types import (
@@ -52,6 +53,8 @@ from .types import (
 
 
 class GuardDutyClient:
+    logger_name = "rboto.guardduty"
+
     def __init__(
         self,
         *,
@@ -85,9 +88,10 @@ class GuardDutyClient:
             "administrator_id": administrator_id,
             "invitation_id": invitation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.accept_administrator_invitation, params, self._interceptors,
+                self._native.accept_administrator_invitation, params, _interceptors,
                 "guardduty", "AcceptAdministratorInvitation", self._region,
                 AcceptAdministratorInvitationResponse,
                 ("detector_id", "administrator_id", "invitation_id", ),
@@ -110,9 +114,10 @@ class GuardDutyClient:
             "master_id": master_id,
             "invitation_id": invitation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.accept_invitation, params, self._interceptors,
+                self._native.accept_invitation, params, _interceptors,
                 "guardduty", "AcceptInvitation", self._region,
                 AcceptInvitationResponse,
                 ("detector_id", "master_id", "invitation_id", ),
@@ -133,9 +138,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "finding_ids": finding_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.archive_findings, params, self._interceptors,
+                self._native.archive_findings, params, _interceptors,
                 "guardduty", "ArchiveFindings", self._region,
                 ArchiveFindingsResponse,
                 ("detector_id", "finding_ids", ),
@@ -162,9 +168,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_detection_rule_association, params, self._interceptors,
+                self._native.create_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "CreateCustomDetectionRuleAssociation", self._region,
                 CreateCustomDetectionRuleAssociationResponse,
                 ("rule_id", "mode", "client_token", "tags", ),
@@ -194,9 +201,10 @@ class GuardDutyClient:
             params["exclude_account_ids"] = exclude_account_ids
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_custom_detection_rule_org_configuration, params, self._interceptors,
+                self._native.create_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "CreateCustomDetectionRuleOrgConfiguration", self._region,
                 CreateCustomDetectionRuleOrgConfigurationResponse,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", "client_token", ),
@@ -230,9 +238,10 @@ class GuardDutyClient:
             params["tags"] = tags
         if features is not None:
             params["features"] = features
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_detector, params, self._interceptors,
+                self._native.create_detector, params, _interceptors,
                 "guardduty", "CreateDetector", self._region,
                 CreateDetectorResponse,
                 ("enable", "client_token", "finding_publishing_frequency", "data_sources", "tags", "features", ),
@@ -270,9 +279,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_filter, params, self._interceptors,
+                self._native.create_filter, params, _interceptors,
                 "guardduty", "CreateFilter", self._region,
                 CreateFilterResponse,
                 ("detector_id", "name", "finding_criteria", "description", "action", "rank", "client_token", "tags", ),
@@ -308,9 +318,10 @@ class GuardDutyClient:
             params["tags"] = tags
         if expected_bucket_owner is not None:
             params["expected_bucket_owner"] = expected_bucket_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_ip_set, params, self._interceptors,
+                self._native.create_ip_set, params, _interceptors,
                 "guardduty", "CreateIPSet", self._region,
                 CreateIPSetResponse,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
@@ -334,9 +345,10 @@ class GuardDutyClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_investigation, params, self._interceptors,
+                self._native.create_investigation, params, _interceptors,
                 "guardduty", "CreateInvestigation", self._region,
                 CreateInvestigationResponse,
                 ("detector_id", "trigger_prompt", "client_token", ),
@@ -366,9 +378,10 @@ class GuardDutyClient:
             params["actions"] = actions
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_malware_protection_plan, params, self._interceptors,
+                self._native.create_malware_protection_plan, params, _interceptors,
                 "guardduty", "CreateMalwareProtectionPlan", self._region,
                 CreateMalwareProtectionPlanResponse,
                 ("role", "protected_resource", "client_token", "actions", "tags", ),
@@ -389,9 +402,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_details": account_details,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_members, params, self._interceptors,
+                self._native.create_members, params, _interceptors,
                 "guardduty", "CreateMembers", self._region,
                 CreateMembersResponse,
                 ("detector_id", "account_details", ),
@@ -420,9 +434,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_publishing_destination, params, self._interceptors,
+                self._native.create_publishing_destination, params, _interceptors,
                 "guardduty", "CreatePublishingDestination", self._region,
                 CreatePublishingDestinationResponse,
                 ("detector_id", "destination_type", "destination_properties", "client_token", "tags", ),
@@ -444,9 +459,10 @@ class GuardDutyClient:
         }
         if finding_types is not None:
             params["finding_types"] = finding_types
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_sample_findings, params, self._interceptors,
+                self._native.create_sample_findings, params, _interceptors,
                 "guardduty", "CreateSampleFindings", self._region,
                 CreateSampleFindingsResponse,
                 ("detector_id", "finding_types", ),
@@ -482,9 +498,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_threat_entity_set, params, self._interceptors,
+                self._native.create_threat_entity_set, params, _interceptors,
                 "guardduty", "CreateThreatEntitySet", self._region,
                 CreateThreatEntitySetResponse,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
@@ -520,9 +537,10 @@ class GuardDutyClient:
             params["tags"] = tags
         if expected_bucket_owner is not None:
             params["expected_bucket_owner"] = expected_bucket_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_threat_intel_set, params, self._interceptors,
+                self._native.create_threat_intel_set, params, _interceptors,
                 "guardduty", "CreateThreatIntelSet", self._region,
                 CreateThreatIntelSetResponse,
                 ("detector_id", "name", "format", "location", "activate", "client_token", "tags", "expected_bucket_owner", ),
@@ -558,9 +576,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_trusted_entity_set, params, self._interceptors,
+                self._native.create_trusted_entity_set, params, _interceptors,
                 "guardduty", "CreateTrustedEntitySet", self._region,
                 CreateTrustedEntitySetResponse,
                 ("detector_id", "name", "format", "location", "activate", "expected_bucket_owner", "client_token", "tags", ),
@@ -579,9 +598,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.decline_invitations, params, self._interceptors,
+                self._native.decline_invitations, params, _interceptors,
                 "guardduty", "DeclineInvitations", self._region,
                 DeclineInvitationsResponse,
                 ("account_ids", ),
@@ -602,9 +622,10 @@ class GuardDutyClient:
             "rule_id": rule_id,
             "association_id": association_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_detection_rule_association, params, self._interceptors,
+                self._native.delete_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "DeleteCustomDetectionRuleAssociation", self._region,
                 DeleteCustomDetectionRuleAssociationResponse,
                 ("rule_id", "association_id", ),
@@ -625,9 +646,10 @@ class GuardDutyClient:
             "rule_id": rule_id,
             "mode": mode,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_custom_detection_rule_org_configuration, params, self._interceptors,
+                self._native.delete_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "DeleteCustomDetectionRuleOrgConfiguration", self._region,
                 DeleteCustomDetectionRuleOrgConfigurationResponse,
                 ("rule_id", "mode", ),
@@ -646,9 +668,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_detector, params, self._interceptors,
+                self._native.delete_detector, params, _interceptors,
                 "guardduty", "DeleteDetector", self._region,
                 DeleteDetectorResponse,
                 ("detector_id", ),
@@ -669,9 +692,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "filter_name": filter_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_filter, params, self._interceptors,
+                self._native.delete_filter, params, _interceptors,
                 "guardduty", "DeleteFilter", self._region,
                 DeleteFilterResponse,
                 ("detector_id", "filter_name", ),
@@ -692,9 +716,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_ip_set, params, self._interceptors,
+                self._native.delete_ip_set, params, _interceptors,
                 "guardduty", "DeleteIPSet", self._region,
                 DeleteIPSetResponse,
                 ("detector_id", "ip_set_id", ),
@@ -713,9 +738,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_invitations, params, self._interceptors,
+                self._native.delete_invitations, params, _interceptors,
                 "guardduty", "DeleteInvitations", self._region,
                 DeleteInvitationsResponse,
                 ("account_ids", ),
@@ -734,9 +760,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_malware_protection_plan, params, self._interceptors,
+                self._native.delete_malware_protection_plan, params, _interceptors,
                 "guardduty", "DeleteMalwareProtectionPlan", self._region,
                 type(None),
                 ("malware_protection_plan_id", ),
@@ -757,9 +784,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_members, params, self._interceptors,
+                self._native.delete_members, params, _interceptors,
                 "guardduty", "DeleteMembers", self._region,
                 DeleteMembersResponse,
                 ("detector_id", "account_ids", ),
@@ -780,9 +808,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "destination_id": destination_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_publishing_destination, params, self._interceptors,
+                self._native.delete_publishing_destination, params, _interceptors,
                 "guardduty", "DeletePublishingDestination", self._region,
                 DeletePublishingDestinationResponse,
                 ("detector_id", "destination_id", ),
@@ -803,9 +832,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_threat_entity_set, params, self._interceptors,
+                self._native.delete_threat_entity_set, params, _interceptors,
                 "guardduty", "DeleteThreatEntitySet", self._region,
                 DeleteThreatEntitySetResponse,
                 ("detector_id", "threat_entity_set_id", ),
@@ -826,9 +856,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_threat_intel_set, params, self._interceptors,
+                self._native.delete_threat_intel_set, params, _interceptors,
                 "guardduty", "DeleteThreatIntelSet", self._region,
                 DeleteThreatIntelSetResponse,
                 ("detector_id", "threat_intel_set_id", ),
@@ -849,9 +880,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_trusted_entity_set, params, self._interceptors,
+                self._native.delete_trusted_entity_set, params, _interceptors,
                 "guardduty", "DeleteTrustedEntitySet", self._region,
                 DeleteTrustedEntitySetResponse,
                 ("detector_id", "trusted_entity_set_id", ),
@@ -882,9 +914,10 @@ class GuardDutyClient:
             params["filter_criteria"] = filter_criteria
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_malware_scans, params, self._interceptors,
+                self._native.describe_malware_scans, params, _interceptors,
                 "guardduty", "DescribeMalwareScans", self._region,
                 DescribeMalwareScansResponse,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
@@ -909,9 +942,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_organization_configuration, params, self._interceptors,
+                self._native.describe_organization_configuration, params, _interceptors,
                 "guardduty", "DescribeOrganizationConfiguration", self._region,
                 DescribeOrganizationConfigurationResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -932,9 +966,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "destination_id": destination_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_publishing_destination, params, self._interceptors,
+                self._native.describe_publishing_destination, params, _interceptors,
                 "guardduty", "DescribePublishingDestination", self._region,
                 DescribePublishingDestinationResponse,
                 ("detector_id", "destination_id", ),
@@ -953,9 +988,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disable_organization_admin_account, params, self._interceptors,
+                self._native.disable_organization_admin_account, params, _interceptors,
                 "guardduty", "DisableOrganizationAdminAccount", self._region,
                 DisableOrganizationAdminAccountResponse,
                 ("admin_account_id", ),
@@ -974,9 +1010,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_from_administrator_account, params, self._interceptors,
+                self._native.disassociate_from_administrator_account, params, _interceptors,
                 "guardduty", "DisassociateFromAdministratorAccount", self._region,
                 DisassociateFromAdministratorAccountResponse,
                 ("detector_id", ),
@@ -995,9 +1032,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_from_master_account, params, self._interceptors,
+                self._native.disassociate_from_master_account, params, _interceptors,
                 "guardduty", "DisassociateFromMasterAccount", self._region,
                 DisassociateFromMasterAccountResponse,
                 ("detector_id", ),
@@ -1018,9 +1056,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disassociate_members, params, self._interceptors,
+                self._native.disassociate_members, params, _interceptors,
                 "guardduty", "DisassociateMembers", self._region,
                 DisassociateMembersResponse,
                 ("detector_id", "account_ids", ),
@@ -1039,9 +1078,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "admin_account_id": admin_account_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.enable_organization_admin_account, params, self._interceptors,
+                self._native.enable_organization_admin_account, params, _interceptors,
                 "guardduty", "EnableOrganizationAdminAccount", self._region,
                 EnableOrganizationAdminAccountResponse,
                 ("admin_account_id", ),
@@ -1060,9 +1100,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_administrator_account, params, self._interceptors,
+                self._native.get_administrator_account, params, _interceptors,
                 "guardduty", "GetAdministratorAccount", self._region,
                 GetAdministratorAccountResponse,
                 ("detector_id", ),
@@ -1086,9 +1127,10 @@ class GuardDutyClient:
         }
         if filter_criteria is not None:
             params["filter_criteria"] = filter_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_coverage_statistics, params, self._interceptors,
+                self._native.get_coverage_statistics, params, _interceptors,
                 "guardduty", "GetCoverageStatistics", self._region,
                 GetCoverageStatisticsResponse,
                 ("detector_id", "statistics_type", "filter_criteria", ),
@@ -1107,9 +1149,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "rule_id": rule_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_detection_rule, params, self._interceptors,
+                self._native.get_custom_detection_rule, params, _interceptors,
                 "guardduty", "GetCustomDetectionRule", self._region,
                 GetCustomDetectionRuleResponse,
                 ("rule_id", ),
@@ -1130,9 +1173,10 @@ class GuardDutyClient:
             "rule_id": rule_id,
             "association_id": association_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_detection_rule_association, params, self._interceptors,
+                self._native.get_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "GetCustomDetectionRuleAssociation", self._region,
                 GetCustomDetectionRuleAssociationResponse,
                 ("rule_id", "association_id", ),
@@ -1153,9 +1197,10 @@ class GuardDutyClient:
             "rule_id": rule_id,
             "mode": mode,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_custom_detection_rule_org_configuration, params, self._interceptors,
+                self._native.get_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "GetCustomDetectionRuleOrgConfiguration", self._region,
                 GetCustomDetectionRuleOrgConfigurationResponse,
                 ("rule_id", "mode", ),
@@ -1174,9 +1219,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_detector, params, self._interceptors,
+                self._native.get_detector, params, _interceptors,
                 "guardduty", "GetDetector", self._region,
                 GetDetectorResponse,
                 ("detector_id", ),
@@ -1197,9 +1243,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "filter_name": filter_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_filter, params, self._interceptors,
+                self._native.get_filter, params, _interceptors,
                 "guardduty", "GetFilter", self._region,
                 GetFilterResponse,
                 ("detector_id", "filter_name", ),
@@ -1223,9 +1270,10 @@ class GuardDutyClient:
         }
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_findings, params, self._interceptors,
+                self._native.get_findings, params, _interceptors,
                 "guardduty", "GetFindings", self._region,
                 GetFindingsResponse,
                 ("detector_id", "finding_ids", "sort_criteria", ),
@@ -1259,9 +1307,10 @@ class GuardDutyClient:
             params["order_by"] = order_by
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_findings_statistics, params, self._interceptors,
+                self._native.get_findings_statistics, params, _interceptors,
                 "guardduty", "GetFindingsStatistics", self._region,
                 GetFindingsStatisticsResponse,
                 ("detector_id", "finding_statistic_types", "finding_criteria", "group_by", "order_by", "max_results", ),
@@ -1282,9 +1331,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "ip_set_id": ip_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ip_set, params, self._interceptors,
+                self._native.get_ip_set, params, _interceptors,
                 "guardduty", "GetIPSet", self._region,
                 GetIPSetResponse,
                 ("detector_id", "ip_set_id", ),
@@ -1305,9 +1355,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "investigation_id": investigation_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_investigation, params, self._interceptors,
+                self._native.get_investigation, params, _interceptors,
                 "guardduty", "GetInvestigation", self._region,
                 GetInvestigationResponse,
                 ("detector_id", "investigation_id", ),
@@ -1323,9 +1374,10 @@ class GuardDutyClient:
     ) -> GetInvitationsCountResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_invitations_count, params, self._interceptors,
+                self._native.get_invitations_count, params, _interceptors,
                 "guardduty", "GetInvitationsCount", self._region,
                 GetInvitationsCountResponse,
                 (),
@@ -1344,9 +1396,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "malware_protection_plan_id": malware_protection_plan_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_malware_protection_plan, params, self._interceptors,
+                self._native.get_malware_protection_plan, params, _interceptors,
                 "guardduty", "GetMalwareProtectionPlan", self._region,
                 GetMalwareProtectionPlanResponse,
                 ("malware_protection_plan_id", ),
@@ -1365,9 +1418,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "scan_id": scan_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_malware_scan, params, self._interceptors,
+                self._native.get_malware_scan, params, _interceptors,
                 "guardduty", "GetMalwareScan", self._region,
                 GetMalwareScanResponse,
                 ("scan_id", ),
@@ -1386,9 +1440,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_malware_scan_settings, params, self._interceptors,
+                self._native.get_malware_scan_settings, params, _interceptors,
                 "guardduty", "GetMalwareScanSettings", self._region,
                 GetMalwareScanSettingsResponse,
                 ("detector_id", ),
@@ -1407,9 +1462,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_master_account, params, self._interceptors,
+                self._native.get_master_account, params, _interceptors,
                 "guardduty", "GetMasterAccount", self._region,
                 GetMasterAccountResponse,
                 ("detector_id", ),
@@ -1430,9 +1486,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_member_detectors, params, self._interceptors,
+                self._native.get_member_detectors, params, _interceptors,
                 "guardduty", "GetMemberDetectors", self._region,
                 GetMemberDetectorsResponse,
                 ("detector_id", "account_ids", ),
@@ -1453,9 +1510,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_members, params, self._interceptors,
+                self._native.get_members, params, _interceptors,
                 "guardduty", "GetMembers", self._region,
                 GetMembersResponse,
                 ("detector_id", "account_ids", ),
@@ -1471,9 +1529,10 @@ class GuardDutyClient:
     ) -> GetOrganizationStatisticsResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_organization_statistics, params, self._interceptors,
+                self._native.get_organization_statistics, params, _interceptors,
                 "guardduty", "GetOrganizationStatistics", self._region,
                 GetOrganizationStatisticsResponse,
                 (),
@@ -1494,9 +1553,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_remaining_free_trial_days, params, self._interceptors,
+                self._native.get_remaining_free_trial_days, params, _interceptors,
                 "guardduty", "GetRemainingFreeTrialDays", self._region,
                 GetRemainingFreeTrialDaysResponse,
                 ("detector_id", "account_ids", ),
@@ -1517,9 +1577,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "threat_entity_set_id": threat_entity_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_threat_entity_set, params, self._interceptors,
+                self._native.get_threat_entity_set, params, _interceptors,
                 "guardduty", "GetThreatEntitySet", self._region,
                 GetThreatEntitySetResponse,
                 ("detector_id", "threat_entity_set_id", ),
@@ -1540,9 +1601,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "threat_intel_set_id": threat_intel_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_threat_intel_set, params, self._interceptors,
+                self._native.get_threat_intel_set, params, _interceptors,
                 "guardduty", "GetThreatIntelSet", self._region,
                 GetThreatIntelSetResponse,
                 ("detector_id", "threat_intel_set_id", ),
@@ -1563,9 +1625,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "trusted_entity_set_id": trusted_entity_set_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_trusted_entity_set, params, self._interceptors,
+                self._native.get_trusted_entity_set, params, _interceptors,
                 "guardduty", "GetTrustedEntitySet", self._region,
                 GetTrustedEntitySetResponse,
                 ("detector_id", "trusted_entity_set_id", ),
@@ -1597,9 +1660,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_usage_statistics, params, self._interceptors,
+                self._native.get_usage_statistics, params, _interceptors,
                 "guardduty", "GetUsageStatistics", self._region,
                 GetUsageStatisticsResponse,
                 ("detector_id", "usage_statistic_type", "usage_criteria", "unit", "max_results", "next_token", ),
@@ -1626,9 +1690,10 @@ class GuardDutyClient:
             params["disable_email_notification"] = disable_email_notification
         if message is not None:
             params["message"] = message
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invite_members, params, self._interceptors,
+                self._native.invite_members, params, _interceptors,
                 "guardduty", "InviteMembers", self._region,
                 InviteMembersResponse,
                 ("detector_id", "account_ids", "disable_email_notification", "message", ),
@@ -1659,9 +1724,10 @@ class GuardDutyClient:
             params["filter_criteria"] = filter_criteria
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_coverage, params, self._interceptors,
+                self._native.list_coverage, params, _interceptors,
                 "guardduty", "ListCoverage", self._region,
                 ListCoverageResponse,
                 ("detector_id", "next_token", "max_results", "filter_criteria", "sort_criteria", ),
@@ -1690,9 +1756,10 @@ class GuardDutyClient:
             params["rule_id"] = rule_id
         if mode is not None:
             params["mode"] = mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_detection_rule_associations, params, self._interceptors,
+                self._native.list_custom_detection_rule_associations, params, _interceptors,
                 "guardduty", "ListCustomDetectionRuleAssociations", self._region,
                 ListCustomDetectionRuleAssociationsResponse,
                 ("max_results", "next_token", "rule_id", "mode", ),
@@ -1718,9 +1785,10 @@ class GuardDutyClient:
             params["next_token"] = next_token
         if status is not None:
             params["status"] = status
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_detection_rule_org_configurations, params, self._interceptors,
+                self._native.list_custom_detection_rule_org_configurations, params, _interceptors,
                 "guardduty", "ListCustomDetectionRuleOrgConfigurations", self._region,
                 ListCustomDetectionRuleOrgConfigurationsResponse,
                 ("max_results", "next_token", "status", ),
@@ -1746,9 +1814,10 @@ class GuardDutyClient:
             params["next_token"] = next_token
         if filters is not None:
             params["filters"] = filters
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_custom_detection_rules, params, self._interceptors,
+                self._native.list_custom_detection_rules, params, _interceptors,
                 "guardduty", "ListCustomDetectionRules", self._region,
                 ListCustomDetectionRulesResponse,
                 ("max_results", "next_token", "filters", ),
@@ -1771,9 +1840,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_detectors, params, self._interceptors,
+                self._native.list_detectors, params, _interceptors,
                 "guardduty", "ListDetectors", self._region,
                 ListDetectorsResponse,
                 ("max_results", "next_token", ),
@@ -1798,9 +1868,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_filters, params, self._interceptors,
+                self._native.list_filters, params, _interceptors,
                 "guardduty", "ListFilters", self._region,
                 ListFiltersResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -1831,9 +1902,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_findings, params, self._interceptors,
+                self._native.list_findings, params, _interceptors,
                 "guardduty", "ListFindings", self._region,
                 ListFindingsResponse,
                 ("detector_id", "finding_criteria", "sort_criteria", "max_results", "next_token", ),
@@ -1858,9 +1930,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_ip_sets, params, self._interceptors,
+                self._native.list_ip_sets, params, _interceptors,
                 "guardduty", "ListIPSets", self._region,
                 ListIPSetsResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -1888,9 +1961,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_investigations, params, self._interceptors,
+                self._native.list_investigations, params, _interceptors,
                 "guardduty", "ListInvestigations", self._region,
                 ListInvestigationsResponse,
                 ("detector_id", "sort_criteria", "max_results", "next_token", ),
@@ -1913,9 +1987,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_invitations, params, self._interceptors,
+                self._native.list_invitations, params, _interceptors,
                 "guardduty", "ListInvitations", self._region,
                 ListInvitationsResponse,
                 ("max_results", "next_token", ),
@@ -1935,9 +2010,10 @@ class GuardDutyClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_malware_protection_plans, params, self._interceptors,
+                self._native.list_malware_protection_plans, params, _interceptors,
                 "guardduty", "ListMalwareProtectionPlans", self._region,
                 ListMalwareProtectionPlansResponse,
                 ("next_token", ),
@@ -1966,9 +2042,10 @@ class GuardDutyClient:
             params["filter_criteria"] = filter_criteria
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_malware_scans, params, self._interceptors,
+                self._native.list_malware_scans, params, _interceptors,
                 "guardduty", "ListMalwareScans", self._region,
                 ListMalwareScansResponse,
                 ("max_results", "next_token", "filter_criteria", "sort_criteria", ),
@@ -1996,9 +2073,10 @@ class GuardDutyClient:
             params["next_token"] = next_token
         if only_associated is not None:
             params["only_associated"] = only_associated
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_members, params, self._interceptors,
+                self._native.list_members, params, _interceptors,
                 "guardduty", "ListMembers", self._region,
                 ListMembersResponse,
                 ("detector_id", "max_results", "next_token", "only_associated", ),
@@ -2021,9 +2099,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_organization_admin_accounts, params, self._interceptors,
+                self._native.list_organization_admin_accounts, params, _interceptors,
                 "guardduty", "ListOrganizationAdminAccounts", self._region,
                 ListOrganizationAdminAccountsResponse,
                 ("max_results", "next_token", ),
@@ -2048,9 +2127,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_publishing_destinations, params, self._interceptors,
+                self._native.list_publishing_destinations, params, _interceptors,
                 "guardduty", "ListPublishingDestinations", self._region,
                 ListPublishingDestinationsResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -2069,9 +2149,10 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "guardduty", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -2096,9 +2177,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_threat_entity_sets, params, self._interceptors,
+                self._native.list_threat_entity_sets, params, _interceptors,
                 "guardduty", "ListThreatEntitySets", self._region,
                 ListThreatEntitySetsResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -2123,9 +2205,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_threat_intel_sets, params, self._interceptors,
+                self._native.list_threat_intel_sets, params, _interceptors,
                 "guardduty", "ListThreatIntelSets", self._region,
                 ListThreatIntelSetsResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -2150,9 +2233,10 @@ class GuardDutyClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_trusted_entity_sets, params, self._interceptors,
+                self._native.list_trusted_entity_sets, params, _interceptors,
                 "guardduty", "ListTrustedEntitySets", self._region,
                 ListTrustedEntitySetsResponse,
                 ("detector_id", "max_results", "next_token", ),
@@ -2172,9 +2256,10 @@ class GuardDutyClient:
         }
         if s3_object is not None:
             params["s3_object"] = s3_object
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_object_malware_scan, params, self._interceptors,
+                self._native.send_object_malware_scan, params, _interceptors,
                 "guardduty", "SendObjectMalwareScan", self._region,
                 SendObjectMalwareScanResponse,
                 ("s3_object", ),
@@ -2199,9 +2284,10 @@ class GuardDutyClient:
             params["client_token"] = client_token
         if scan_configuration is not None:
             params["scan_configuration"] = scan_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_malware_scan, params, self._interceptors,
+                self._native.start_malware_scan, params, _interceptors,
                 "guardduty", "StartMalwareScan", self._region,
                 StartMalwareScanResponse,
                 ("resource_arn", "client_token", "scan_configuration", ),
@@ -2222,9 +2308,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_monitoring_members, params, self._interceptors,
+                self._native.start_monitoring_members, params, _interceptors,
                 "guardduty", "StartMonitoringMembers", self._region,
                 StartMonitoringMembersResponse,
                 ("detector_id", "account_ids", ),
@@ -2245,9 +2332,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "account_ids": account_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_monitoring_members, params, self._interceptors,
+                self._native.stop_monitoring_members, params, _interceptors,
                 "guardduty", "StopMonitoringMembers", self._region,
                 StopMonitoringMembersResponse,
                 ("detector_id", "account_ids", ),
@@ -2268,9 +2356,10 @@ class GuardDutyClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "guardduty", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -2291,9 +2380,10 @@ class GuardDutyClient:
             "detector_id": detector_id,
             "finding_ids": finding_ids,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.unarchive_findings, params, self._interceptors,
+                self._native.unarchive_findings, params, _interceptors,
                 "guardduty", "UnarchiveFindings", self._region,
                 UnarchiveFindingsResponse,
                 ("detector_id", "finding_ids", ),
@@ -2314,9 +2404,10 @@ class GuardDutyClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "guardduty", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -2339,9 +2430,10 @@ class GuardDutyClient:
             "association_id": association_id,
             "mode": mode,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_custom_detection_rule_association, params, self._interceptors,
+                self._native.update_custom_detection_rule_association, params, _interceptors,
                 "guardduty", "UpdateCustomDetectionRuleAssociation", self._region,
                 UpdateCustomDetectionRuleAssociationResponse,
                 ("rule_id", "association_id", "mode", ),
@@ -2368,9 +2460,10 @@ class GuardDutyClient:
             params["include_account_ids"] = include_account_ids
         if exclude_account_ids is not None:
             params["exclude_account_ids"] = exclude_account_ids
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_custom_detection_rule_org_configuration, params, self._interceptors,
+                self._native.update_custom_detection_rule_org_configuration, params, _interceptors,
                 "guardduty", "UpdateCustomDetectionRuleOrgConfiguration", self._region,
                 UpdateCustomDetectionRuleOrgConfigurationResponse,
                 ("rule_id", "mode", "include_account_ids", "exclude_account_ids", ),
@@ -2401,9 +2494,10 @@ class GuardDutyClient:
             params["data_sources"] = data_sources
         if features is not None:
             params["features"] = features
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_detector, params, self._interceptors,
+                self._native.update_detector, params, _interceptors,
                 "guardduty", "UpdateDetector", self._region,
                 UpdateDetectorResponse,
                 ("detector_id", "enable", "finding_publishing_frequency", "data_sources", "features", ),
@@ -2436,9 +2530,10 @@ class GuardDutyClient:
             params["rank"] = rank
         if finding_criteria is not None:
             params["finding_criteria"] = finding_criteria
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_filter, params, self._interceptors,
+                self._native.update_filter, params, _interceptors,
                 "guardduty", "UpdateFilter", self._region,
                 UpdateFilterResponse,
                 ("detector_id", "filter_name", "description", "action", "rank", "finding_criteria", ),
@@ -2464,9 +2559,10 @@ class GuardDutyClient:
         }
         if comments is not None:
             params["comments"] = comments
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_findings_feedback, params, self._interceptors,
+                self._native.update_findings_feedback, params, _interceptors,
                 "guardduty", "UpdateFindingsFeedback", self._region,
                 UpdateFindingsFeedbackResponse,
                 ("detector_id", "finding_ids", "feedback", "comments", ),
@@ -2499,9 +2595,10 @@ class GuardDutyClient:
             params["activate"] = activate
         if expected_bucket_owner is not None:
             params["expected_bucket_owner"] = expected_bucket_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_ip_set, params, self._interceptors,
+                self._native.update_ip_set, params, _interceptors,
                 "guardduty", "UpdateIPSet", self._region,
                 UpdateIPSetResponse,
                 ("detector_id", "ip_set_id", "name", "location", "activate", "expected_bucket_owner", ),
@@ -2529,9 +2626,10 @@ class GuardDutyClient:
             params["actions"] = actions
         if protected_resource is not None:
             params["protected_resource"] = protected_resource
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.update_malware_protection_plan, params, self._interceptors,
+                self._native.update_malware_protection_plan, params, _interceptors,
                 "guardduty", "UpdateMalwareProtectionPlan", self._region,
                 type(None),
                 ("malware_protection_plan_id", "role", "actions", "protected_resource", ),
@@ -2556,9 +2654,10 @@ class GuardDutyClient:
             params["scan_resource_criteria"] = scan_resource_criteria
         if ebs_snapshot_preservation is not None:
             params["ebs_snapshot_preservation"] = ebs_snapshot_preservation
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_malware_scan_settings, params, self._interceptors,
+                self._native.update_malware_scan_settings, params, _interceptors,
                 "guardduty", "UpdateMalwareScanSettings", self._region,
                 UpdateMalwareScanSettingsResponse,
                 ("detector_id", "scan_resource_criteria", "ebs_snapshot_preservation", ),
@@ -2585,9 +2684,10 @@ class GuardDutyClient:
             params["data_sources"] = data_sources
         if features is not None:
             params["features"] = features
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_member_detectors, params, self._interceptors,
+                self._native.update_member_detectors, params, _interceptors,
                 "guardduty", "UpdateMemberDetectors", self._region,
                 UpdateMemberDetectorsResponse,
                 ("detector_id", "account_ids", "data_sources", "features", ),
@@ -2618,9 +2718,10 @@ class GuardDutyClient:
             params["features"] = features
         if auto_enable_organization_members is not None:
             params["auto_enable_organization_members"] = auto_enable_organization_members
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_organization_configuration, params, self._interceptors,
+                self._native.update_organization_configuration, params, _interceptors,
                 "guardduty", "UpdateOrganizationConfiguration", self._region,
                 UpdateOrganizationConfigurationResponse,
                 ("detector_id", "auto_enable", "data_sources", "features", "auto_enable_organization_members", ),
@@ -2644,9 +2745,10 @@ class GuardDutyClient:
         }
         if destination_properties is not None:
             params["destination_properties"] = destination_properties
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_publishing_destination, params, self._interceptors,
+                self._native.update_publishing_destination, params, _interceptors,
                 "guardduty", "UpdatePublishingDestination", self._region,
                 UpdatePublishingDestinationResponse,
                 ("detector_id", "destination_id", "destination_properties", ),
@@ -2679,9 +2781,10 @@ class GuardDutyClient:
             params["expected_bucket_owner"] = expected_bucket_owner
         if activate is not None:
             params["activate"] = activate
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_threat_entity_set, params, self._interceptors,
+                self._native.update_threat_entity_set, params, _interceptors,
                 "guardduty", "UpdateThreatEntitySet", self._region,
                 UpdateThreatEntitySetResponse,
                 ("detector_id", "threat_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),
@@ -2714,9 +2817,10 @@ class GuardDutyClient:
             params["activate"] = activate
         if expected_bucket_owner is not None:
             params["expected_bucket_owner"] = expected_bucket_owner
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_threat_intel_set, params, self._interceptors,
+                self._native.update_threat_intel_set, params, _interceptors,
                 "guardduty", "UpdateThreatIntelSet", self._region,
                 UpdateThreatIntelSetResponse,
                 ("detector_id", "threat_intel_set_id", "name", "location", "activate", "expected_bucket_owner", ),
@@ -2749,9 +2853,10 @@ class GuardDutyClient:
             params["expected_bucket_owner"] = expected_bucket_owner
         if activate is not None:
             params["activate"] = activate
-        if self._interceptors:
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_trusted_entity_set, params, self._interceptors,
+                self._native.update_trusted_entity_set, params, _interceptors,
                 "guardduty", "UpdateTrustedEntitySet", self._region,
                 UpdateTrustedEntitySetResponse,
                 ("detector_id", "trusted_entity_set_id", "name", "location", "expected_bucket_owner", "activate", ),

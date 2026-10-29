@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import BedrockAgentRuntimeClient as NativeClient, CheckIngestedDocumentAclResponse, CreateInvocationResponse, CreateSessionResponse, DeleteAgentMemoryResponse, DeleteSessionResponse, EndSessionResponse, GenerateQueryResponse, GetAgentMemoryResponse, GetDocumentContentResponse, GetExecutionFlowSnapshotResponse, GetFlowExecutionResponse, GetIngestedDocumentAclResponse, GetInvocationStepResponse, GetSessionResponse, ListFlowExecutionEventsResponse, ListFlowExecutionsResponse, ListInvocationStepsResponse, ListInvocationsResponse, ListSessionsResponse, ListTagsForResourceResponse, PutInvocationStepResponse, RerankResponse, RetrieveAndGenerateResponse, RetrieveResponse, StartFlowExecutionResponse, StopFlowExecutionResponse, TagResourceResponse, UntagResourceResponse, UpdateSessionResponse
 from .types import (
@@ -59,6 +60,8 @@ from .types import (
 
 
 class BedrockAgentRuntimeClient:
+    logger_name = "rboto.bedrock-agent-runtime"
+
     def __init__(
         self,
         *,
@@ -110,9 +113,10 @@ class BedrockAgentRuntimeClient:
             params["retrieval_instruction_configuration"] = retrieval_instruction_configuration
         if generate_response is not None:
             params["generate_response"] = generate_response
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.agentic_retrieve_stream, params, self._interceptors,
+                self._native.agentic_retrieve_stream, params, _interceptors,
                 "bedrock-agent-runtime", "AgenticRetrieveStream", self._region,
                 dict,
                 ("messages", "retrievers", "agentic_retrieve_configuration", "policy_configuration", "next_token", "user_context", "memory_configuration", "retrieval_instruction_configuration", "generate_response", ),
@@ -137,9 +141,10 @@ class BedrockAgentRuntimeClient:
             "document_id": document_id,
             "user_context": user_context,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.check_ingested_document_acl, params, self._interceptors,
+                self._native.check_ingested_document_acl, params, _interceptors,
                 "bedrock-agent-runtime", "CheckIngestedDocumentAcl", self._region,
                 CheckIngestedDocumentAclResponse,
                 ("knowledge_base_id", "data_source_id", "document_id", "user_context", ),
@@ -164,9 +169,10 @@ class BedrockAgentRuntimeClient:
             params["invocation_id"] = invocation_id
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_invocation, params, self._interceptors,
+                self._native.create_invocation, params, _interceptors,
                 "bedrock-agent-runtime", "CreateInvocation", self._region,
                 CreateInvocationResponse,
                 ("session_identifier", "invocation_id", "description", ),
@@ -192,9 +198,10 @@ class BedrockAgentRuntimeClient:
             params["encryption_key_arn"] = encryption_key_arn
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_session, params, self._interceptors,
+                self._native.create_session, params, _interceptors,
                 "bedrock-agent-runtime", "CreateSession", self._region,
                 CreateSessionResponse,
                 ("session_metadata", "encryption_key_arn", "tags", ),
@@ -221,9 +228,10 @@ class BedrockAgentRuntimeClient:
             params["memory_id"] = memory_id
         if session_id is not None:
             params["session_id"] = session_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_agent_memory, params, self._interceptors,
+                self._native.delete_agent_memory, params, _interceptors,
                 "bedrock-agent-runtime", "DeleteAgentMemory", self._region,
                 DeleteAgentMemoryResponse,
                 ("agent_id", "agent_alias_id", "memory_id", "session_id", ),
@@ -242,9 +250,10 @@ class BedrockAgentRuntimeClient:
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_session, params, self._interceptors,
+                self._native.delete_session, params, _interceptors,
                 "bedrock-agent-runtime", "DeleteSession", self._region,
                 DeleteSessionResponse,
                 ("session_identifier", ),
@@ -263,9 +272,10 @@ class BedrockAgentRuntimeClient:
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.end_session, params, self._interceptors,
+                self._native.end_session, params, _interceptors,
                 "bedrock-agent-runtime", "EndSession", self._region,
                 EndSessionResponse,
                 ("session_identifier", ),
@@ -286,9 +296,10 @@ class BedrockAgentRuntimeClient:
             "query_generation_input": query_generation_input,
             "transformation_configuration": transformation_configuration,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_query, params, self._interceptors,
+                self._native.generate_query, params, _interceptors,
                 "bedrock-agent-runtime", "GenerateQuery", self._region,
                 GenerateQueryResponse,
                 ("query_generation_input", "transformation_configuration", ),
@@ -319,9 +330,10 @@ class BedrockAgentRuntimeClient:
             params["next_token"] = next_token
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_agent_memory, params, self._interceptors,
+                self._native.get_agent_memory, params, _interceptors,
                 "bedrock-agent-runtime", "GetAgentMemory", self._region,
                 GetAgentMemoryResponse,
                 ("agent_id", "agent_alias_id", "memory_type", "memory_id", "next_token", "max_items", ),
@@ -350,9 +362,10 @@ class BedrockAgentRuntimeClient:
             params["output_format"] = output_format
         if user_context is not None:
             params["user_context"] = user_context
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_document_content, params, self._interceptors,
+                self._native.get_document_content, params, _interceptors,
                 "bedrock-agent-runtime", "GetDocumentContent", self._region,
                 GetDocumentContentResponse,
                 ("knowledge_base_id", "data_source_id", "document_id", "output_format", "user_context", ),
@@ -375,9 +388,10 @@ class BedrockAgentRuntimeClient:
             "flow_alias_identifier": flow_alias_identifier,
             "execution_identifier": execution_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_execution_flow_snapshot, params, self._interceptors,
+                self._native.get_execution_flow_snapshot, params, _interceptors,
                 "bedrock-agent-runtime", "GetExecutionFlowSnapshot", self._region,
                 GetExecutionFlowSnapshotResponse,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
@@ -400,9 +414,10 @@ class BedrockAgentRuntimeClient:
             "flow_alias_identifier": flow_alias_identifier,
             "execution_identifier": execution_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_flow_execution, params, self._interceptors,
+                self._native.get_flow_execution, params, _interceptors,
                 "bedrock-agent-runtime", "GetFlowExecution", self._region,
                 GetFlowExecutionResponse,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
@@ -425,9 +440,10 @@ class BedrockAgentRuntimeClient:
             "data_source_id": data_source_id,
             "document_id": document_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_ingested_document_acl, params, self._interceptors,
+                self._native.get_ingested_document_acl, params, _interceptors,
                 "bedrock-agent-runtime", "GetIngestedDocumentAcl", self._region,
                 GetIngestedDocumentAclResponse,
                 ("knowledge_base_id", "data_source_id", "document_id", ),
@@ -450,9 +466,10 @@ class BedrockAgentRuntimeClient:
             "invocation_step_id": invocation_step_id,
             "session_identifier": session_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_invocation_step, params, self._interceptors,
+                self._native.get_invocation_step, params, _interceptors,
                 "bedrock-agent-runtime", "GetInvocationStep", self._region,
                 GetInvocationStepResponse,
                 ("invocation_identifier", "invocation_step_id", "session_identifier", ),
@@ -471,9 +488,10 @@ class BedrockAgentRuntimeClient:
         params: dict[str, object] = {
             "session_identifier": session_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_session, params, self._interceptors,
+                self._native.get_session, params, _interceptors,
                 "bedrock-agent-runtime", "GetSession", self._region,
                 GetSessionResponse,
                 ("session_identifier", ),
@@ -523,9 +541,10 @@ class BedrockAgentRuntimeClient:
             params["prompt_creation_configurations"] = prompt_creation_configurations
         if source_arn is not None:
             params["source_arn"] = source_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_agent, params, self._interceptors,
+                self._native.invoke_agent, params, _interceptors,
                 "bedrock-agent-runtime", "InvokeAgent", self._region,
                 dict,
                 ("agent_id", "agent_alias_id", "session_id", "session_state", "end_session", "enable_trace", "input_text", "memory_id", "bedrock_model_configurations", "streaming_configurations", "prompt_creation_configurations", "source_arn", ),
@@ -557,9 +576,10 @@ class BedrockAgentRuntimeClient:
             params["model_performance_configuration"] = model_performance_configuration
         if execution_id is not None:
             params["execution_id"] = execution_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_flow, params, self._interceptors,
+                self._native.invoke_flow, params, _interceptors,
                 "bedrock-agent-runtime", "InvokeFlow", self._region,
                 dict,
                 ("flow_identifier", "flow_alias_identifier", "inputs", "enable_trace", "model_performance_configuration", "execution_id", ),
@@ -639,9 +659,10 @@ class BedrockAgentRuntimeClient:
             params["orchestration_type"] = orchestration_type
         if custom_orchestration is not None:
             params["custom_orchestration"] = custom_orchestration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_inline_agent, params, self._interceptors,
+                self._native.invoke_inline_agent, params, _interceptors,
                 "bedrock-agent-runtime", "InvokeInlineAgent", self._region,
                 dict,
                 ("foundation_model", "instruction", "session_id", "customer_encryption_key_arn", "idle_session_ttl_in_seconds", "action_groups", "knowledge_bases", "guardrail_configuration", "prompt_override_configuration", "agent_collaboration", "collaborator_configurations", "agent_name", "end_session", "enable_trace", "input_text", "streaming_configurations", "prompt_creation_configurations", "inline_session_state", "collaborators", "bedrock_model_configurations", "orchestration_type", "custom_orchestration", ),
@@ -672,9 +693,10 @@ class BedrockAgentRuntimeClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_flow_execution_events, params, self._interceptors,
+                self._native.list_flow_execution_events, params, _interceptors,
                 "bedrock-agent-runtime", "ListFlowExecutionEvents", self._region,
                 ListFlowExecutionEventsResponse,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", "event_type", "max_results", "next_token", ),
@@ -702,9 +724,10 @@ class BedrockAgentRuntimeClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_flow_executions, params, self._interceptors,
+                self._native.list_flow_executions, params, _interceptors,
                 "bedrock-agent-runtime", "ListFlowExecutions", self._region,
                 ListFlowExecutionsResponse,
                 ("flow_identifier", "flow_alias_identifier", "max_results", "next_token", ),
@@ -732,9 +755,10 @@ class BedrockAgentRuntimeClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_invocation_steps, params, self._interceptors,
+                self._native.list_invocation_steps, params, _interceptors,
                 "bedrock-agent-runtime", "ListInvocationSteps", self._region,
                 ListInvocationStepsResponse,
                 ("session_identifier", "invocation_identifier", "next_token", "max_results", ),
@@ -759,9 +783,10 @@ class BedrockAgentRuntimeClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_invocations, params, self._interceptors,
+                self._native.list_invocations, params, _interceptors,
                 "bedrock-agent-runtime", "ListInvocations", self._region,
                 ListInvocationsResponse,
                 ("session_identifier", "next_token", "max_results", ),
@@ -784,9 +809,10 @@ class BedrockAgentRuntimeClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_sessions, params, self._interceptors,
+                self._native.list_sessions, params, _interceptors,
                 "bedrock-agent-runtime", "ListSessions", self._region,
                 ListSessionsResponse,
                 ("max_results", "next_token", ),
@@ -805,9 +831,10 @@ class BedrockAgentRuntimeClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "bedrock-agent-runtime", "ListTagsForResource", self._region,
                 ListTagsForResourceResponse,
                 ("resource_arn", ),
@@ -828,9 +855,10 @@ class BedrockAgentRuntimeClient:
             "input": input,
             "target_model_id": target_model_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.optimize_prompt, params, self._interceptors,
+                self._native.optimize_prompt, params, _interceptors,
                 "bedrock-agent-runtime", "OptimizePrompt", self._region,
                 dict,
                 ("input", "target_model_id", ),
@@ -858,9 +886,10 @@ class BedrockAgentRuntimeClient:
         }
         if invocation_step_id is not None:
             params["invocation_step_id"] = invocation_step_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_invocation_step, params, self._interceptors,
+                self._native.put_invocation_step, params, _interceptors,
                 "bedrock-agent-runtime", "PutInvocationStep", self._region,
                 PutInvocationStepResponse,
                 ("session_identifier", "invocation_identifier", "invocation_step_time", "payload", "invocation_step_id", ),
@@ -886,9 +915,10 @@ class BedrockAgentRuntimeClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.rerank, params, self._interceptors,
+                self._native.rerank, params, _interceptors,
                 "bedrock-agent-runtime", "Rerank", self._region,
                 RerankResponse,
                 ("queries", "sources", "reranking_configuration", "next_token", ),
@@ -921,9 +951,10 @@ class BedrockAgentRuntimeClient:
             params["next_token"] = next_token
         if user_context is not None:
             params["user_context"] = user_context
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.retrieve, params, self._interceptors,
+                self._native.retrieve, params, _interceptors,
                 "bedrock-agent-runtime", "Retrieve", self._region,
                 RetrieveResponse,
                 ("knowledge_base_id", "retrieval_query", "retrieval_configuration", "guardrail_configuration", "next_token", "user_context", ),
@@ -954,9 +985,10 @@ class BedrockAgentRuntimeClient:
             params["session_configuration"] = session_configuration
         if user_context is not None:
             params["user_context"] = user_context
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.retrieve_and_generate, params, self._interceptors,
+                self._native.retrieve_and_generate, params, _interceptors,
                 "bedrock-agent-runtime", "RetrieveAndGenerate", self._region,
                 RetrieveAndGenerateResponse,
                 ("input", "session_id", "retrieve_and_generate_configuration", "session_configuration", "user_context", ),
@@ -987,9 +1019,10 @@ class BedrockAgentRuntimeClient:
             params["session_configuration"] = session_configuration
         if user_context is not None:
             params["user_context"] = user_context
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.retrieve_and_generate_stream, params, self._interceptors,
+                self._native.retrieve_and_generate_stream, params, _interceptors,
                 "bedrock-agent-runtime", "RetrieveAndGenerateStream", self._region,
                 dict,
                 ("input", "session_id", "retrieve_and_generate_configuration", "session_configuration", "user_context", ),
@@ -1018,9 +1051,10 @@ class BedrockAgentRuntimeClient:
             params["flow_execution_name"] = flow_execution_name
         if model_performance_configuration is not None:
             params["model_performance_configuration"] = model_performance_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_flow_execution, params, self._interceptors,
+                self._native.start_flow_execution, params, _interceptors,
                 "bedrock-agent-runtime", "StartFlowExecution", self._region,
                 StartFlowExecutionResponse,
                 ("flow_identifier", "flow_alias_identifier", "inputs", "flow_execution_name", "model_performance_configuration", ),
@@ -1043,9 +1077,10 @@ class BedrockAgentRuntimeClient:
             "flow_alias_identifier": flow_alias_identifier,
             "execution_identifier": execution_identifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_flow_execution, params, self._interceptors,
+                self._native.stop_flow_execution, params, _interceptors,
                 "bedrock-agent-runtime", "StopFlowExecution", self._region,
                 StopFlowExecutionResponse,
                 ("flow_identifier", "flow_alias_identifier", "execution_identifier", ),
@@ -1066,9 +1101,10 @@ class BedrockAgentRuntimeClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "bedrock-agent-runtime", "TagResource", self._region,
                 TagResourceResponse,
                 ("resource_arn", "tags", ),
@@ -1089,9 +1125,10 @@ class BedrockAgentRuntimeClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "bedrock-agent-runtime", "UntagResource", self._region,
                 UntagResourceResponse,
                 ("resource_arn", "tag_keys", ),
@@ -1113,9 +1150,10 @@ class BedrockAgentRuntimeClient:
         }
         if session_metadata is not None:
             params["session_metadata"] = session_metadata
-        if self._interceptors:
+        _interceptors = operation_interceptors("bedrock-agent-runtime", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_session, params, self._interceptors,
+                self._native.update_session, params, _interceptors,
                 "bedrock-agent-runtime", "UpdateSession", self._region,
                 UpdateSessionResponse,
                 ("session_identifier", "session_metadata", ),

@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionResponse, AddPermissionResponse, CheckpointDurableExecutionResponse, CreateAliasOutput, CreateCapacityProviderResponse, CreateCodeSigningConfigResponse, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigResponse, DeleteCapacityProviderResponse, DeleteCodeSigningConfigResponse, DeleteEventSourceMappingOutput, DeleteFunctionResponse, GetAccountSettingsResponse, GetAliasOutput, GetCapacityProviderResponse, GetCodeSigningConfigResponse, GetDurableExecutionHistoryResponse, GetDurableExecutionResponse, GetDurableExecutionStateResponse, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigResponse, GetFunctionConcurrencyResponse, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionRecursionConfigResponse, GetFunctionResponse, GetFunctionScalingConfigResponse, GetFunctionUrlConfigResponse, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyResponse, GetPolicyResponse, GetProvisionedConcurrencyConfigResponse, GetResourcePolicyResponse, GetRuntimeManagementConfigResponse, InvocationResponse, InvokeAsyncResponse, ListAliasesResponse, ListCapacityProvidersResponse, ListCodeSigningConfigsResponse, ListDurableExecutionsByFunctionResponse, ListEventSourceMappingsResponse, ListFunctionEventInvokeConfigsResponse, ListFunctionUrlConfigsResponse, ListFunctionVersionsByCapacityProviderResponse, ListFunctionsByCodeSigningConfigResponse, ListFunctionsResponse, ListLayerVersionsResponse, ListLayersResponse, ListProvisionedConcurrencyConfigsResponse, ListTagsResponse, ListVersionsByFunctionResponse, PublishLayerVersionResponse, PublishVersionOutput, PutFunctionCodeSigningConfigResponse, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigResponse, PutFunctionScalingConfigResponse, PutProvisionedConcurrencyConfigResponse, PutResourcePolicyResponse, PutRuntimeManagementConfigResponse, SendDurableExecutionCallbackFailureResponse, SendDurableExecutionCallbackHeartbeatResponse, SendDurableExecutionCallbackSuccessResponse, StopDurableExecutionResponse, UpdateAliasOutput, UpdateCapacityProviderResponse, UpdateCodeSigningConfigResponse, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigResponse
 from .types import (
@@ -69,6 +70,8 @@ from .types import (
 
 
 class LambdaClient:
+    logger_name = "rboto.lambda"
+
     def __init__(
         self,
         *,
@@ -112,9 +115,10 @@ class LambdaClient:
             params["organization_id"] = organization_id
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.add_layer_version_permission, params, self._interceptors,
+                self._native.add_layer_version_permission, params, _interceptors,
                 "lambda", "AddLayerVersionPermission", self._region,
                 AddLayerVersionPermissionResponse,
                 ("layer_name", "version_number", "statement_id", "action", "principal", "organization_id", "revision_id", ),
@@ -163,9 +167,10 @@ class LambdaClient:
             params["revision_id"] = revision_id
         if principal_org_id is not None:
             params["principal_org_id"] = principal_org_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.add_permission, params, self._interceptors,
+                self._native.add_permission, params, _interceptors,
                 "lambda", "AddPermission", self._region,
                 AddPermissionResponse,
                 ("function_name", "statement_id", "action", "principal", "source_arn", "function_url_auth_type", "invoked_via_function_url", "source_account", "event_source_token", "qualifier", "revision_id", "principal_org_id", ),
@@ -192,9 +197,10 @@ class LambdaClient:
             params["updates"] = updates
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.checkpoint_durable_execution, params, self._interceptors,
+                self._native.checkpoint_durable_execution, params, _interceptors,
                 "lambda", "CheckpointDurableExecution", self._region,
                 CheckpointDurableExecutionResponse,
                 ("durable_execution_arn", "checkpoint_token", "updates", "client_token", ),
@@ -223,9 +229,10 @@ class LambdaClient:
             params["description"] = description
         if routing_config is not None:
             params["routing_config"] = routing_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_alias, params, self._interceptors,
+                self._native.create_alias, params, _interceptors,
                 "lambda", "CreateAlias", self._region,
                 CreateAliasOutput,
                 ("function_name", "name", "function_version", "description", "routing_config", ),
@@ -266,9 +273,10 @@ class LambdaClient:
             params["propagate_tags"] = propagate_tags
         if telemetry_config is not None:
             params["telemetry_config"] = telemetry_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_capacity_provider, params, self._interceptors,
+                self._native.create_capacity_provider, params, _interceptors,
                 "lambda", "CreateCapacityProvider", self._region,
                 CreateCapacityProviderResponse,
                 ("capacity_provider_name", "vpc_config", "permissions_config", "instance_requirements", "capacity_provider_scaling_config", "kms_key_arn", "tags", "propagate_tags", "telemetry_config", ),
@@ -296,9 +304,10 @@ class LambdaClient:
             params["code_signing_policies"] = code_signing_policies
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_code_signing_config, params, self._interceptors,
+                self._native.create_code_signing_config, params, _interceptors,
                 "lambda", "CreateCodeSigningConfig", self._region,
                 CreateCodeSigningConfigResponse,
                 ("allowed_publishers", "description", "code_signing_policies", "tags", ),
@@ -398,9 +407,10 @@ class LambdaClient:
             params["document_db_event_source_config"] = document_db_event_source_config
         if provisioned_poller_config is not None:
             params["provisioned_poller_config"] = provisioned_poller_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_event_source_mapping, params, self._interceptors,
+                self._native.create_event_source_mapping, params, _interceptors,
                 "lambda", "CreateEventSourceMapping", self._region,
                 CreateEventSourceMappingOutput,
                 ("function_name", "event_source_arn", "enabled", "batch_size", "filter_criteria", "kms_key_arn", "metrics_config", "logging_config", "scaling_config", "maximum_batching_window_in_seconds", "parallelization_factor", "starting_position", "starting_position_timestamp", "destination_config", "maximum_record_age_in_seconds", "bisect_batch_on_function_error", "maximum_retry_attempts", "tags", "tumbling_window_in_seconds", "topics", "queues", "source_access_configurations", "self_managed_event_source", "function_response_types", "amazon_managed_kafka_event_source_config", "self_managed_kafka_event_source_config", "document_db_event_source_config", "provisioned_poller_config", ),
@@ -498,9 +508,10 @@ class LambdaClient:
             params["capacity_provider_config"] = capacity_provider_config
         if durable_config is not None:
             params["durable_config"] = durable_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_function, params, self._interceptors,
+                self._native.create_function, params, _interceptors,
                 "lambda", "CreateFunction", self._region,
                 CreateFunctionOutput,
                 ("function_name", "role", "code", "runtime", "handler", "description", "timeout", "memory_size", "publish", "publish_to", "vpc_config", "package_type", "dead_letter_config", "environment", "kms_key_arn", "tracing_config", "tags", "layers", "file_system_configs", "code_signing_config_arn", "image_config", "architectures", "ephemeral_storage", "snap_start", "logging_config", "tenancy_config", "capacity_provider_config", "durable_config", ),
@@ -530,9 +541,10 @@ class LambdaClient:
             params["cors"] = cors
         if invoke_mode is not None:
             params["invoke_mode"] = invoke_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_function_url_config, params, self._interceptors,
+                self._native.create_function_url_config, params, _interceptors,
                 "lambda", "CreateFunctionUrlConfig", self._region,
                 CreateFunctionUrlConfigResponse,
                 ("function_name", "auth_type", "qualifier", "cors", "invoke_mode", ),
@@ -553,9 +565,10 @@ class LambdaClient:
             "function_name": function_name,
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_alias, params, self._interceptors,
+                self._native.delete_alias, params, _interceptors,
                 "lambda", "DeleteAlias", self._region,
                 type(None),
                 ("function_name", "name", ),
@@ -574,9 +587,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_capacity_provider, params, self._interceptors,
+                self._native.delete_capacity_provider, params, _interceptors,
                 "lambda", "DeleteCapacityProvider", self._region,
                 DeleteCapacityProviderResponse,
                 ("capacity_provider_name", ),
@@ -595,9 +609,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_code_signing_config, params, self._interceptors,
+                self._native.delete_code_signing_config, params, _interceptors,
                 "lambda", "DeleteCodeSigningConfig", self._region,
                 DeleteCodeSigningConfigResponse,
                 ("code_signing_config_arn", ),
@@ -616,9 +631,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "uuid": uuid,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_event_source_mapping, params, self._interceptors,
+                self._native.delete_event_source_mapping, params, _interceptors,
                 "lambda", "DeleteEventSourceMapping", self._region,
                 DeleteEventSourceMappingOutput,
                 ("uuid", ),
@@ -640,9 +656,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_function, params, self._interceptors,
+                self._native.delete_function, params, _interceptors,
                 "lambda", "DeleteFunction", self._region,
                 DeleteFunctionResponse,
                 ("function_name", "qualifier", ),
@@ -661,9 +678,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_function_code_signing_config, params, self._interceptors,
+                self._native.delete_function_code_signing_config, params, _interceptors,
                 "lambda", "DeleteFunctionCodeSigningConfig", self._region,
                 type(None),
                 ("function_name", ),
@@ -682,9 +700,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_function_concurrency, params, self._interceptors,
+                self._native.delete_function_concurrency, params, _interceptors,
                 "lambda", "DeleteFunctionConcurrency", self._region,
                 type(None),
                 ("function_name", ),
@@ -706,9 +725,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_function_event_invoke_config, params, self._interceptors,
+                self._native.delete_function_event_invoke_config, params, _interceptors,
                 "lambda", "DeleteFunctionEventInvokeConfig", self._region,
                 type(None),
                 ("function_name", "qualifier", ),
@@ -730,9 +750,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_function_url_config, params, self._interceptors,
+                self._native.delete_function_url_config, params, _interceptors,
                 "lambda", "DeleteFunctionUrlConfig", self._region,
                 type(None),
                 ("function_name", "qualifier", ),
@@ -753,9 +774,10 @@ class LambdaClient:
             "layer_name": layer_name,
             "version_number": version_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_layer_version, params, self._interceptors,
+                self._native.delete_layer_version, params, _interceptors,
                 "lambda", "DeleteLayerVersion", self._region,
                 type(None),
                 ("layer_name", "version_number", ),
@@ -776,9 +798,10 @@ class LambdaClient:
             "function_name": function_name,
             "qualifier": qualifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_provisioned_concurrency_config, params, self._interceptors,
+                self._native.delete_provisioned_concurrency_config, params, _interceptors,
                 "lambda", "DeleteProvisionedConcurrencyConfig", self._region,
                 type(None),
                 ("function_name", "qualifier", ),
@@ -800,9 +823,10 @@ class LambdaClient:
         }
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "lambda", "DeleteResourcePolicy", self._region,
                 type(None),
                 ("resource_arn", "revision_id", ),
@@ -818,9 +842,10 @@ class LambdaClient:
     ) -> GetAccountSettingsResponse:
         params: dict[str, object] = {
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_account_settings, params, self._interceptors,
+                self._native.get_account_settings, params, _interceptors,
                 "lambda", "GetAccountSettings", self._region,
                 GetAccountSettingsResponse,
                 (),
@@ -841,9 +866,10 @@ class LambdaClient:
             "function_name": function_name,
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_alias, params, self._interceptors,
+                self._native.get_alias, params, _interceptors,
                 "lambda", "GetAlias", self._region,
                 GetAliasOutput,
                 ("function_name", "name", ),
@@ -862,9 +888,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "capacity_provider_name": capacity_provider_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_capacity_provider, params, self._interceptors,
+                self._native.get_capacity_provider, params, _interceptors,
                 "lambda", "GetCapacityProvider", self._region,
                 GetCapacityProviderResponse,
                 ("capacity_provider_name", ),
@@ -883,9 +910,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "code_signing_config_arn": code_signing_config_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_code_signing_config, params, self._interceptors,
+                self._native.get_code_signing_config, params, _interceptors,
                 "lambda", "GetCodeSigningConfig", self._region,
                 GetCodeSigningConfigResponse,
                 ("code_signing_config_arn", ),
@@ -907,9 +935,10 @@ class LambdaClient:
         }
         if include_execution_data is not None:
             params["include_execution_data"] = include_execution_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_durable_execution, params, self._interceptors,
+                self._native.get_durable_execution, params, _interceptors,
                 "lambda", "GetDurableExecution", self._region,
                 GetDurableExecutionResponse,
                 ("durable_execution_arn", "include_execution_data", ),
@@ -940,9 +969,10 @@ class LambdaClient:
             params["marker"] = marker
         if reverse_order is not None:
             params["reverse_order"] = reverse_order
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_durable_execution_history, params, self._interceptors,
+                self._native.get_durable_execution_history, params, _interceptors,
                 "lambda", "GetDurableExecutionHistory", self._region,
                 GetDurableExecutionHistoryResponse,
                 ("durable_execution_arn", "include_execution_data", "max_items", "marker", "reverse_order", ),
@@ -969,9 +999,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_durable_execution_state, params, self._interceptors,
+                self._native.get_durable_execution_state, params, _interceptors,
                 "lambda", "GetDurableExecutionState", self._region,
                 GetDurableExecutionStateResponse,
                 ("durable_execution_arn", "checkpoint_token", "marker", "max_items", ),
@@ -990,9 +1021,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "uuid": uuid,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_event_source_mapping, params, self._interceptors,
+                self._native.get_event_source_mapping, params, _interceptors,
                 "lambda", "GetEventSourceMapping", self._region,
                 GetEventSourceMappingOutput,
                 ("uuid", ),
@@ -1014,9 +1046,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function, params, self._interceptors,
+                self._native.get_function, params, _interceptors,
                 "lambda", "GetFunction", self._region,
                 GetFunctionResponse,
                 ("function_name", "qualifier", ),
@@ -1035,9 +1068,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_code_signing_config, params, self._interceptors,
+                self._native.get_function_code_signing_config, params, _interceptors,
                 "lambda", "GetFunctionCodeSigningConfig", self._region,
                 GetFunctionCodeSigningConfigResponse,
                 ("function_name", ),
@@ -1056,9 +1090,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_concurrency, params, self._interceptors,
+                self._native.get_function_concurrency, params, _interceptors,
                 "lambda", "GetFunctionConcurrency", self._region,
                 GetFunctionConcurrencyResponse,
                 ("function_name", ),
@@ -1080,9 +1115,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_configuration, params, self._interceptors,
+                self._native.get_function_configuration, params, _interceptors,
                 "lambda", "GetFunctionConfiguration", self._region,
                 GetFunctionConfigurationOutput,
                 ("function_name", "qualifier", ),
@@ -1104,9 +1140,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_event_invoke_config, params, self._interceptors,
+                self._native.get_function_event_invoke_config, params, _interceptors,
                 "lambda", "GetFunctionEventInvokeConfig", self._region,
                 GetFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", ),
@@ -1125,9 +1162,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_recursion_config, params, self._interceptors,
+                self._native.get_function_recursion_config, params, _interceptors,
                 "lambda", "GetFunctionRecursionConfig", self._region,
                 GetFunctionRecursionConfigResponse,
                 ("function_name", ),
@@ -1148,9 +1186,10 @@ class LambdaClient:
             "function_name": function_name,
             "qualifier": qualifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_scaling_config, params, self._interceptors,
+                self._native.get_function_scaling_config, params, _interceptors,
                 "lambda", "GetFunctionScalingConfig", self._region,
                 GetFunctionScalingConfigResponse,
                 ("function_name", "qualifier", ),
@@ -1172,9 +1211,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_function_url_config, params, self._interceptors,
+                self._native.get_function_url_config, params, _interceptors,
                 "lambda", "GetFunctionUrlConfig", self._region,
                 GetFunctionUrlConfigResponse,
                 ("function_name", "qualifier", ),
@@ -1195,9 +1235,10 @@ class LambdaClient:
             "layer_name": layer_name,
             "version_number": version_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_layer_version, params, self._interceptors,
+                self._native.get_layer_version, params, _interceptors,
                 "lambda", "GetLayerVersion", self._region,
                 GetLayerVersionOutput,
                 ("layer_name", "version_number", ),
@@ -1216,9 +1257,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "arn": arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_layer_version_by_arn, params, self._interceptors,
+                self._native.get_layer_version_by_arn, params, _interceptors,
                 "lambda", "GetLayerVersionByArn", self._region,
                 GetLayerVersionByArnOutput,
                 ("arn", ),
@@ -1239,9 +1281,10 @@ class LambdaClient:
             "layer_name": layer_name,
             "version_number": version_number,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_layer_version_policy, params, self._interceptors,
+                self._native.get_layer_version_policy, params, _interceptors,
                 "lambda", "GetLayerVersionPolicy", self._region,
                 GetLayerVersionPolicyResponse,
                 ("layer_name", "version_number", ),
@@ -1263,9 +1306,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_policy, params, self._interceptors,
+                self._native.get_policy, params, _interceptors,
                 "lambda", "GetPolicy", self._region,
                 GetPolicyResponse,
                 ("function_name", "qualifier", ),
@@ -1286,9 +1330,10 @@ class LambdaClient:
             "function_name": function_name,
             "qualifier": qualifier,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_provisioned_concurrency_config, params, self._interceptors,
+                self._native.get_provisioned_concurrency_config, params, _interceptors,
                 "lambda", "GetProvisionedConcurrencyConfig", self._region,
                 GetProvisionedConcurrencyConfigResponse,
                 ("function_name", "qualifier", ),
@@ -1307,9 +1352,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "lambda", "GetResourcePolicy", self._region,
                 GetResourcePolicyResponse,
                 ("resource_arn", ),
@@ -1331,9 +1377,10 @@ class LambdaClient:
         }
         if qualifier is not None:
             params["qualifier"] = qualifier
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_runtime_management_config, params, self._interceptors,
+                self._native.get_runtime_management_config, params, _interceptors,
                 "lambda", "GetRuntimeManagementConfig", self._region,
                 GetRuntimeManagementConfigResponse,
                 ("function_name", "qualifier", ),
@@ -1373,9 +1420,10 @@ class LambdaClient:
             params["qualifier"] = qualifier
         if tenant_id is not None:
             params["tenant_id"] = tenant_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke, params, self._interceptors,
+                self._native.invoke, params, _interceptors,
                 "lambda", "Invoke", self._region,
                 InvocationResponse,
                 ("function_name", "invocation_type", "log_type", "client_context", "durable_execution_name", "payload", "qualifier", "tenant_id", ),
@@ -1396,9 +1444,10 @@ class LambdaClient:
             "function_name": function_name,
             "invoke_args": invoke_args,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_async, params, self._interceptors,
+                self._native.invoke_async, params, _interceptors,
                 "lambda", "InvokeAsync", self._region,
                 InvokeAsyncResponse,
                 ("function_name", "invoke_args", ),
@@ -1435,9 +1484,10 @@ class LambdaClient:
             params["tenant_id"] = tenant_id
         if invocation_type is not None:
             params["invocation_type"] = invocation_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.invoke_with_response_stream, params, self._interceptors,
+                self._native.invoke_with_response_stream, params, _interceptors,
                 "lambda", "InvokeWithResponseStream", self._region,
                 dict,
                 ("function_name", "log_type", "client_context", "qualifier", "payload", "tenant_id", "invocation_type", ),
@@ -1465,9 +1515,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_aliases, params, self._interceptors,
+                self._native.list_aliases, params, _interceptors,
                 "lambda", "ListAliases", self._region,
                 ListAliasesResponse,
                 ("function_name", "function_version", "marker", "max_items", ),
@@ -1493,9 +1544,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_capacity_providers, params, self._interceptors,
+                self._native.list_capacity_providers, params, _interceptors,
                 "lambda", "ListCapacityProviders", self._region,
                 ListCapacityProvidersResponse,
                 ("state", "marker", "max_items", ),
@@ -1518,9 +1570,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_code_signing_configs, params, self._interceptors,
+                self._native.list_code_signing_configs, params, _interceptors,
                 "lambda", "ListCodeSigningConfigs", self._region,
                 ListCodeSigningConfigsResponse,
                 ("marker", "max_items", ),
@@ -1563,9 +1616,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_durable_executions_by_function, params, self._interceptors,
+                self._native.list_durable_executions_by_function, params, _interceptors,
                 "lambda", "ListDurableExecutionsByFunction", self._region,
                 ListDurableExecutionsByFunctionResponse,
                 ("function_name", "qualifier", "durable_execution_name", "statuses", "started_after", "started_before", "reverse_order", "marker", "max_items", ),
@@ -1594,9 +1648,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_event_source_mappings, params, self._interceptors,
+                self._native.list_event_source_mappings, params, _interceptors,
                 "lambda", "ListEventSourceMappings", self._region,
                 ListEventSourceMappingsResponse,
                 ("event_source_arn", "function_name", "marker", "max_items", ),
@@ -1621,9 +1676,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_function_event_invoke_configs, params, self._interceptors,
+                self._native.list_function_event_invoke_configs, params, _interceptors,
                 "lambda", "ListFunctionEventInvokeConfigs", self._region,
                 ListFunctionEventInvokeConfigsResponse,
                 ("function_name", "marker", "max_items", ),
@@ -1648,9 +1704,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_function_url_configs, params, self._interceptors,
+                self._native.list_function_url_configs, params, _interceptors,
                 "lambda", "ListFunctionUrlConfigs", self._region,
                 ListFunctionUrlConfigsResponse,
                 ("function_name", "marker", "max_items", ),
@@ -1675,9 +1732,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_function_versions_by_capacity_provider, params, self._interceptors,
+                self._native.list_function_versions_by_capacity_provider, params, _interceptors,
                 "lambda", "ListFunctionVersionsByCapacityProvider", self._region,
                 ListFunctionVersionsByCapacityProviderResponse,
                 ("capacity_provider_name", "marker", "max_items", ),
@@ -1706,9 +1764,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_functions, params, self._interceptors,
+                self._native.list_functions, params, _interceptors,
                 "lambda", "ListFunctions", self._region,
                 ListFunctionsResponse,
                 ("master_region", "function_version", "marker", "max_items", ),
@@ -1733,9 +1792,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_functions_by_code_signing_config, params, self._interceptors,
+                self._native.list_functions_by_code_signing_config, params, _interceptors,
                 "lambda", "ListFunctionsByCodeSigningConfig", self._region,
                 ListFunctionsByCodeSigningConfigResponse,
                 ("code_signing_config_arn", "marker", "max_items", ),
@@ -1766,9 +1826,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_layer_versions, params, self._interceptors,
+                self._native.list_layer_versions, params, _interceptors,
                 "lambda", "ListLayerVersions", self._region,
                 ListLayerVersionsResponse,
                 ("layer_name", "compatible_architecture", "compatible_runtime", "marker", "max_items", ),
@@ -1797,9 +1858,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_layers, params, self._interceptors,
+                self._native.list_layers, params, _interceptors,
                 "lambda", "ListLayers", self._region,
                 ListLayersResponse,
                 ("compatible_architecture", "compatible_runtime", "marker", "max_items", ),
@@ -1824,9 +1886,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_provisioned_concurrency_configs, params, self._interceptors,
+                self._native.list_provisioned_concurrency_configs, params, _interceptors,
                 "lambda", "ListProvisionedConcurrencyConfigs", self._region,
                 ListProvisionedConcurrencyConfigsResponse,
                 ("function_name", "marker", "max_items", ),
@@ -1845,9 +1908,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "resource": resource,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags, params, self._interceptors,
+                self._native.list_tags, params, _interceptors,
                 "lambda", "ListTags", self._region,
                 ListTagsResponse,
                 ("resource", ),
@@ -1872,9 +1936,10 @@ class LambdaClient:
             params["marker"] = marker
         if max_items is not None:
             params["max_items"] = max_items
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_versions_by_function, params, self._interceptors,
+                self._native.list_versions_by_function, params, _interceptors,
                 "lambda", "ListVersionsByFunction", self._region,
                 ListVersionsByFunctionResponse,
                 ("function_name", "marker", "max_items", ),
@@ -1907,9 +1972,10 @@ class LambdaClient:
             params["compatible_runtimes"] = compatible_runtimes
         if license_info is not None:
             params["license_info"] = license_info
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.publish_layer_version, params, self._interceptors,
+                self._native.publish_layer_version, params, _interceptors,
                 "lambda", "PublishLayerVersion", self._region,
                 PublishLayerVersionResponse,
                 ("layer_name", "content", "description", "compatible_architectures", "compatible_runtimes", "license_info", ),
@@ -1940,9 +2006,10 @@ class LambdaClient:
             params["revision_id"] = revision_id
         if publish_to is not None:
             params["publish_to"] = publish_to
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.publish_version, params, self._interceptors,
+                self._native.publish_version, params, _interceptors,
                 "lambda", "PublishVersion", self._region,
                 PublishVersionOutput,
                 ("function_name", "code_sha256", "description", "revision_id", "publish_to", ),
@@ -1963,9 +2030,10 @@ class LambdaClient:
             "code_signing_config_arn": code_signing_config_arn,
             "function_name": function_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_function_code_signing_config, params, self._interceptors,
+                self._native.put_function_code_signing_config, params, _interceptors,
                 "lambda", "PutFunctionCodeSigningConfig", self._region,
                 PutFunctionCodeSigningConfigResponse,
                 ("code_signing_config_arn", "function_name", ),
@@ -1986,9 +2054,10 @@ class LambdaClient:
             "function_name": function_name,
             "reserved_concurrent_executions": reserved_concurrent_executions,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_function_concurrency, params, self._interceptors,
+                self._native.put_function_concurrency, params, _interceptors,
                 "lambda", "PutFunctionConcurrency", self._region,
                 PutFunctionConcurrencyOutput,
                 ("function_name", "reserved_concurrent_executions", ),
@@ -2019,9 +2088,10 @@ class LambdaClient:
             params["maximum_event_age_in_seconds"] = maximum_event_age_in_seconds
         if destination_config is not None:
             params["destination_config"] = destination_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_function_event_invoke_config, params, self._interceptors,
+                self._native.put_function_event_invoke_config, params, _interceptors,
                 "lambda", "PutFunctionEventInvokeConfig", self._region,
                 PutFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", "maximum_retry_attempts", "maximum_event_age_in_seconds", "destination_config", ),
@@ -2042,9 +2112,10 @@ class LambdaClient:
             "function_name": function_name,
             "recursive_loop": recursive_loop,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_function_recursion_config, params, self._interceptors,
+                self._native.put_function_recursion_config, params, _interceptors,
                 "lambda", "PutFunctionRecursionConfig", self._region,
                 PutFunctionRecursionConfigResponse,
                 ("function_name", "recursive_loop", ),
@@ -2068,9 +2139,10 @@ class LambdaClient:
         }
         if function_scaling_config is not None:
             params["function_scaling_config"] = function_scaling_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_function_scaling_config, params, self._interceptors,
+                self._native.put_function_scaling_config, params, _interceptors,
                 "lambda", "PutFunctionScalingConfig", self._region,
                 PutFunctionScalingConfigResponse,
                 ("function_name", "qualifier", "function_scaling_config", ),
@@ -2093,9 +2165,10 @@ class LambdaClient:
             "qualifier": qualifier,
             "provisioned_concurrent_executions": provisioned_concurrent_executions,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_provisioned_concurrency_config, params, self._interceptors,
+                self._native.put_provisioned_concurrency_config, params, _interceptors,
                 "lambda", "PutProvisionedConcurrencyConfig", self._region,
                 PutProvisionedConcurrencyConfigResponse,
                 ("function_name", "qualifier", "provisioned_concurrent_executions", ),
@@ -2119,9 +2192,10 @@ class LambdaClient:
         }
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "lambda", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("resource_arn", "policy", "revision_id", ),
@@ -2148,9 +2222,10 @@ class LambdaClient:
             params["qualifier"] = qualifier
         if runtime_version_arn is not None:
             params["runtime_version_arn"] = runtime_version_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_runtime_management_config, params, self._interceptors,
+                self._native.put_runtime_management_config, params, _interceptors,
                 "lambda", "PutRuntimeManagementConfig", self._region,
                 PutRuntimeManagementConfigResponse,
                 ("function_name", "update_runtime_on", "qualifier", "runtime_version_arn", ),
@@ -2176,9 +2251,10 @@ class LambdaClient:
         }
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.remove_layer_version_permission, params, self._interceptors,
+                self._native.remove_layer_version_permission, params, _interceptors,
                 "lambda", "RemoveLayerVersionPermission", self._region,
                 type(None),
                 ("layer_name", "version_number", "statement_id", "revision_id", ),
@@ -2205,9 +2281,10 @@ class LambdaClient:
             params["qualifier"] = qualifier
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.remove_permission, params, self._interceptors,
+                self._native.remove_permission, params, _interceptors,
                 "lambda", "RemovePermission", self._region,
                 type(None),
                 ("function_name", "statement_id", "qualifier", "revision_id", ),
@@ -2229,9 +2306,10 @@ class LambdaClient:
         }
         if error is not None:
             params["error"] = error
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_durable_execution_callback_failure, params, self._interceptors,
+                self._native.send_durable_execution_callback_failure, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackFailure", self._region,
                 SendDurableExecutionCallbackFailureResponse,
                 ("callback_id", "error", ),
@@ -2250,9 +2328,10 @@ class LambdaClient:
         params: dict[str, object] = {
             "callback_id": callback_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_durable_execution_callback_heartbeat, params, self._interceptors,
+                self._native.send_durable_execution_callback_heartbeat, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackHeartbeat", self._region,
                 SendDurableExecutionCallbackHeartbeatResponse,
                 ("callback_id", ),
@@ -2274,9 +2353,10 @@ class LambdaClient:
         }
         if result is not None:
             params["result"] = result
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_durable_execution_callback_success, params, self._interceptors,
+                self._native.send_durable_execution_callback_success, params, _interceptors,
                 "lambda", "SendDurableExecutionCallbackSuccess", self._region,
                 SendDurableExecutionCallbackSuccessResponse,
                 ("callback_id", "result", ),
@@ -2298,9 +2378,10 @@ class LambdaClient:
         }
         if error is not None:
             params["error"] = error
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_durable_execution, params, self._interceptors,
+                self._native.stop_durable_execution, params, _interceptors,
                 "lambda", "StopDurableExecution", self._region,
                 StopDurableExecutionResponse,
                 ("durable_execution_arn", "error", ),
@@ -2321,9 +2402,10 @@ class LambdaClient:
             "resource": resource,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "lambda", "TagResource", self._region,
                 type(None),
                 ("resource", "tags", ),
@@ -2344,9 +2426,10 @@ class LambdaClient:
             "resource": resource,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "lambda", "UntagResource", self._region,
                 type(None),
                 ("resource", "tag_keys", ),
@@ -2379,9 +2462,10 @@ class LambdaClient:
             params["routing_config"] = routing_config
         if revision_id is not None:
             params["revision_id"] = revision_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_alias, params, self._interceptors,
+                self._native.update_alias, params, _interceptors,
                 "lambda", "UpdateAlias", self._region,
                 UpdateAliasOutput,
                 ("function_name", "name", "function_version", "description", "routing_config", "revision_id", ),
@@ -2409,9 +2493,10 @@ class LambdaClient:
             params["propagate_tags"] = propagate_tags
         if telemetry_config is not None:
             params["telemetry_config"] = telemetry_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_capacity_provider, params, self._interceptors,
+                self._native.update_capacity_provider, params, _interceptors,
                 "lambda", "UpdateCapacityProvider", self._region,
                 UpdateCapacityProviderResponse,
                 ("capacity_provider_name", "capacity_provider_scaling_config", "propagate_tags", "telemetry_config", ),
@@ -2439,9 +2524,10 @@ class LambdaClient:
             params["allowed_publishers"] = allowed_publishers
         if code_signing_policies is not None:
             params["code_signing_policies"] = code_signing_policies
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_code_signing_config, params, self._interceptors,
+                self._native.update_code_signing_config, params, _interceptors,
                 "lambda", "UpdateCodeSigningConfig", self._region,
                 UpdateCodeSigningConfigResponse,
                 ("code_signing_config_arn", "description", "allowed_publishers", "code_signing_policies", ),
@@ -2523,9 +2609,10 @@ class LambdaClient:
             params["document_db_event_source_config"] = document_db_event_source_config
         if provisioned_poller_config is not None:
             params["provisioned_poller_config"] = provisioned_poller_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_event_source_mapping, params, self._interceptors,
+                self._native.update_event_source_mapping, params, _interceptors,
                 "lambda", "UpdateEventSourceMapping", self._region,
                 UpdateEventSourceMappingOutput,
                 ("uuid", "function_name", "enabled", "batch_size", "filter_criteria", "kms_key_arn", "metrics_config", "logging_config", "scaling_config", "maximum_batching_window_in_seconds", "parallelization_factor", "destination_config", "maximum_record_age_in_seconds", "bisect_batch_on_function_error", "maximum_retry_attempts", "tumbling_window_in_seconds", "source_access_configurations", "function_response_types", "amazon_managed_kafka_event_source_config", "self_managed_kafka_event_source_config", "document_db_event_source_config", "provisioned_poller_config", ),
@@ -2580,9 +2667,10 @@ class LambdaClient:
             params["revision_id"] = revision_id
         if source_kms_key_arn is not None:
             params["source_kms_key_arn"] = source_kms_key_arn
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_function_code, params, self._interceptors,
+                self._native.update_function_code, params, _interceptors,
                 "lambda", "UpdateFunctionCode", self._region,
                 UpdateFunctionCodeOutput,
                 ("function_name", "zip_file", "s3_bucket", "s3_key", "s3_object_version", "s3_object_storage_mode", "image_uri", "architectures", "publish", "publish_to", "dry_run", "revision_id", "source_kms_key_arn", ),
@@ -2661,9 +2749,10 @@ class LambdaClient:
             params["capacity_provider_config"] = capacity_provider_config
         if durable_config is not None:
             params["durable_config"] = durable_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_function_configuration, params, self._interceptors,
+                self._native.update_function_configuration, params, _interceptors,
                 "lambda", "UpdateFunctionConfiguration", self._region,
                 UpdateFunctionConfigurationOutput,
                 ("function_name", "role", "handler", "description", "timeout", "memory_size", "vpc_config", "environment", "runtime", "dead_letter_config", "kms_key_arn", "tracing_config", "revision_id", "layers", "file_system_configs", "image_config", "ephemeral_storage", "snap_start", "logging_config", "capacity_provider_config", "durable_config", ),
@@ -2694,9 +2783,10 @@ class LambdaClient:
             params["maximum_event_age_in_seconds"] = maximum_event_age_in_seconds
         if destination_config is not None:
             params["destination_config"] = destination_config
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_function_event_invoke_config, params, self._interceptors,
+                self._native.update_function_event_invoke_config, params, _interceptors,
                 "lambda", "UpdateFunctionEventInvokeConfig", self._region,
                 UpdateFunctionEventInvokeConfigOutput,
                 ("function_name", "qualifier", "maximum_retry_attempts", "maximum_event_age_in_seconds", "destination_config", ),
@@ -2727,9 +2817,10 @@ class LambdaClient:
             params["cors"] = cors
         if invoke_mode is not None:
             params["invoke_mode"] = invoke_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_function_url_config, params, self._interceptors,
+                self._native.update_function_url_config, params, _interceptors,
                 "lambda", "UpdateFunctionUrlConfig", self._region,
                 UpdateFunctionUrlConfigResponse,
                 ("function_name", "qualifier", "auth_type", "cors", "invoke_mode", ),

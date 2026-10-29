@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import LexRuntimeV2Client as NativeClient, DeleteSessionResponse, GetSessionResponse, PutSessionResponse, RecognizeTextResponse, RecognizeUtteranceResponse
 from .types import (
@@ -18,6 +19,8 @@ from .types import (
 
 
 class LexRuntimeV2Client:
+    logger_name = "rboto.lex-runtime-v2"
+
     def __init__(
         self,
         *,
@@ -53,9 +56,10 @@ class LexRuntimeV2Client:
             "locale_id": locale_id,
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_session, params, self._interceptors,
+                self._native.delete_session, params, _interceptors,
                 "lex-runtime-v2", "DeleteSession", self._region,
                 DeleteSessionResponse,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
@@ -80,9 +84,10 @@ class LexRuntimeV2Client:
             "locale_id": locale_id,
             "session_id": session_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_session, params, self._interceptors,
+                self._native.get_session, params, _interceptors,
                 "lex-runtime-v2", "GetSession", self._region,
                 GetSessionResponse,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", ),
@@ -118,9 +123,10 @@ class LexRuntimeV2Client:
             params["request_attributes"] = request_attributes
         if response_content_type is not None:
             params["response_content_type"] = response_content_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_session, params, self._interceptors,
+                self._native.put_session, params, _interceptors,
                 "lex-runtime-v2", "PutSession", self._region,
                 PutSessionResponse,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "session_state", "messages", "request_attributes", "response_content_type", ),
@@ -153,9 +159,10 @@ class LexRuntimeV2Client:
             params["session_state"] = session_state
         if request_attributes is not None:
             params["request_attributes"] = request_attributes
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.recognize_text, params, self._interceptors,
+                self._native.recognize_text, params, _interceptors,
                 "lex-runtime-v2", "RecognizeText", self._region,
                 RecognizeTextResponse,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "text", "session_state", "request_attributes", ),
@@ -194,9 +201,10 @@ class LexRuntimeV2Client:
             params["response_content_type"] = response_content_type
         if input_stream is not None:
             params["input_stream"] = input_stream
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.recognize_utterance, params, self._interceptors,
+                self._native.recognize_utterance, params, _interceptors,
                 "lex-runtime-v2", "RecognizeUtterance", self._region,
                 RecognizeUtteranceResponse,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_content_type", "session_state", "request_attributes", "response_content_type", "input_stream", ),
@@ -226,9 +234,10 @@ class LexRuntimeV2Client:
         }
         if conversation_mode is not None:
             params["conversation_mode"] = conversation_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("lex-runtime-v2", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_conversation, params, self._interceptors,
+                self._native.start_conversation, params, _interceptors,
                 "lex-runtime-v2", "StartConversation", self._region,
                 dict,
                 ("bot_id", "bot_alias_id", "locale_id", "session_id", "request_event_stream", "conversation_mode", ),

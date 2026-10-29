@@ -8,6 +8,43 @@ from ._imports import import_service
 from .interceptors import Interceptor
 from .session import Session
 
+SERVICE_IDS = frozenset((
+    "api-gateway",
+    "bedrock",
+    "bedrock-agent",
+    "bedrock-agent-runtime",
+    "bedrock-agentcore",
+    "bedrock-agentcore-control",
+    "bedrock-data-automation",
+    "bedrock-data-automation-runtime",
+    "bedrock-runtime",
+    "cloudtrail",
+    "cloudwatch-logs",
+    "cognito-identity",
+    "connecthealth",
+    "dynamodb",
+    "eventbridge",
+    "guardduty",
+    "kms",
+    "lambda",
+    "lex-runtime-v2",
+    "pipes",
+    "polly",
+    "qbusiness",
+    "s3",
+    "sagemaker-runtime-http2",
+    "scheduler",
+    "secrets-manager",
+    "sesv2",
+    "sfn",
+    "signin",
+    "sns",
+    "sqs",
+    "ssm",
+    "sts",
+    "transcribe-streaming",
+))
+
 if TYPE_CHECKING:
     from rboto_api_gateway import APIGatewayClient
     from rboto_bedrock import BedrockClient

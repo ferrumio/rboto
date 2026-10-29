@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SecretsManagerClient as NativeClient, BatchGetSecretValueResponse, CancelRotateSecretResponse, CreateSecretResponse, DeleteResourcePolicyResponse, DeleteSecretResponse, DescribeSecretResponse, GetRandomPasswordResponse, GetResourcePolicyResponse, GetSecretValueResponse, ListSecretVersionIdsResponse, ListSecretsResponse, PutResourcePolicyResponse, PutSecretValueResponse, RemoveRegionsFromReplicationResponse, ReplicateSecretToRegionsResponse, RestoreSecretResponse, RotateSecretResponse, StopReplicationToReplicaResponse, UpdateSecretResponse, UpdateSecretVersionStageResponse, ValidateResourcePolicyResponse
 from .types import (
@@ -20,6 +21,8 @@ from .types import (
 
 
 class SecretsManagerClient:
+    logger_name = "rboto.secrets-manager"
+
     def __init__(
         self,
         *,
@@ -59,9 +62,10 @@ class SecretsManagerClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.batch_get_secret_value, params, self._interceptors,
+                self._native.batch_get_secret_value, params, _interceptors,
                 "secrets-manager", "BatchGetSecretValue", self._region,
                 BatchGetSecretValueResponse,
                 ("secret_id_list", "filters", "max_results", "next_token", ),
@@ -80,9 +84,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_rotate_secret, params, self._interceptors,
+                self._native.cancel_rotate_secret, params, _interceptors,
                 "secrets-manager", "CancelRotateSecret", self._region,
                 CancelRotateSecretResponse,
                 ("secret_id", ),
@@ -128,9 +133,10 @@ class SecretsManagerClient:
             params["force_overwrite_replica_secret"] = force_overwrite_replica_secret
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_secret, params, self._interceptors,
+                self._native.create_secret, params, _interceptors,
                 "secrets-manager", "CreateSecret", self._region,
                 CreateSecretResponse,
                 ("name", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "tags", "add_replica_regions", "force_overwrite_replica_secret", "type", ),
@@ -149,9 +155,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "secrets-manager", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyResponse,
                 ("secret_id", ),
@@ -176,9 +183,10 @@ class SecretsManagerClient:
             params["recovery_window_in_days"] = recovery_window_in_days
         if force_delete_without_recovery is not None:
             params["force_delete_without_recovery"] = force_delete_without_recovery
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_secret, params, self._interceptors,
+                self._native.delete_secret, params, _interceptors,
                 "secrets-manager", "DeleteSecret", self._region,
                 DeleteSecretResponse,
                 ("secret_id", "recovery_window_in_days", "force_delete_without_recovery", ),
@@ -197,9 +205,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_secret, params, self._interceptors,
+                self._native.describe_secret, params, _interceptors,
                 "secrets-manager", "DescribeSecret", self._region,
                 DescribeSecretResponse,
                 ("secret_id", ),
@@ -240,9 +249,10 @@ class SecretsManagerClient:
             params["include_space"] = include_space
         if require_each_included_type is not None:
             params["require_each_included_type"] = require_each_included_type
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_random_password, params, self._interceptors,
+                self._native.get_random_password, params, _interceptors,
                 "secrets-manager", "GetRandomPassword", self._region,
                 GetRandomPasswordResponse,
                 ("password_length", "exclude_characters", "exclude_numbers", "exclude_punctuation", "exclude_uppercase", "exclude_lowercase", "include_space", "require_each_included_type", ),
@@ -261,9 +271,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "secrets-manager", "GetResourcePolicy", self._region,
                 GetResourcePolicyResponse,
                 ("secret_id", ),
@@ -288,9 +299,10 @@ class SecretsManagerClient:
             params["version_id"] = version_id
         if version_stage is not None:
             params["version_stage"] = version_stage
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_secret_value, params, self._interceptors,
+                self._native.get_secret_value, params, _interceptors,
                 "secrets-manager", "GetSecretValue", self._region,
                 GetSecretValueResponse,
                 ("secret_id", "version_id", "version_stage", ),
@@ -318,9 +330,10 @@ class SecretsManagerClient:
             params["next_token"] = next_token
         if include_deprecated is not None:
             params["include_deprecated"] = include_deprecated
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_secret_version_ids, params, self._interceptors,
+                self._native.list_secret_version_ids, params, _interceptors,
                 "secrets-manager", "ListSecretVersionIds", self._region,
                 ListSecretVersionIdsResponse,
                 ("secret_id", "max_results", "next_token", "include_deprecated", ),
@@ -355,9 +368,10 @@ class SecretsManagerClient:
             params["sort_order"] = sort_order
         if sort_by is not None:
             params["sort_by"] = sort_by
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_secrets, params, self._interceptors,
+                self._native.list_secrets, params, _interceptors,
                 "secrets-manager", "ListSecrets", self._region,
                 ListSecretsResponse,
                 ("include_planned_deletion", "max_results", "next_token", "filters", "sort_order", "sort_by", ),
@@ -381,9 +395,10 @@ class SecretsManagerClient:
         }
         if block_public_policy is not None:
             params["block_public_policy"] = block_public_policy
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "secrets-manager", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("secret_id", "resource_policy", "block_public_policy", ),
@@ -417,9 +432,10 @@ class SecretsManagerClient:
             params["version_stages"] = version_stages
         if rotation_token is not None:
             params["rotation_token"] = rotation_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_secret_value, params, self._interceptors,
+                self._native.put_secret_value, params, _interceptors,
                 "secrets-manager", "PutSecretValue", self._region,
                 PutSecretValueResponse,
                 ("secret_id", "client_request_token", "secret_binary", "secret_string", "version_stages", "rotation_token", ),
@@ -440,9 +456,10 @@ class SecretsManagerClient:
             "secret_id": secret_id,
             "remove_replica_regions": remove_replica_regions,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.remove_regions_from_replication, params, self._interceptors,
+                self._native.remove_regions_from_replication, params, _interceptors,
                 "secrets-manager", "RemoveRegionsFromReplication", self._region,
                 RemoveRegionsFromReplicationResponse,
                 ("secret_id", "remove_replica_regions", ),
@@ -466,9 +483,10 @@ class SecretsManagerClient:
         }
         if force_overwrite_replica_secret is not None:
             params["force_overwrite_replica_secret"] = force_overwrite_replica_secret
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.replicate_secret_to_regions, params, self._interceptors,
+                self._native.replicate_secret_to_regions, params, _interceptors,
                 "secrets-manager", "ReplicateSecretToRegions", self._region,
                 ReplicateSecretToRegionsResponse,
                 ("secret_id", "add_replica_regions", "force_overwrite_replica_secret", ),
@@ -487,9 +505,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.restore_secret, params, self._interceptors,
+                self._native.restore_secret, params, _interceptors,
                 "secrets-manager", "RestoreSecret", self._region,
                 RestoreSecretResponse,
                 ("secret_id", ),
@@ -526,9 +545,10 @@ class SecretsManagerClient:
             params["external_secret_rotation_role_arn"] = external_secret_rotation_role_arn
         if rotate_immediately is not None:
             params["rotate_immediately"] = rotate_immediately
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.rotate_secret, params, self._interceptors,
+                self._native.rotate_secret, params, _interceptors,
                 "secrets-manager", "RotateSecret", self._region,
                 RotateSecretResponse,
                 ("secret_id", "client_request_token", "rotation_lambda_arn", "rotation_rules", "external_secret_rotation_metadata", "external_secret_rotation_role_arn", "rotate_immediately", ),
@@ -547,9 +567,10 @@ class SecretsManagerClient:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_replication_to_replica, params, self._interceptors,
+                self._native.stop_replication_to_replica, params, _interceptors,
                 "secrets-manager", "StopReplicationToReplica", self._region,
                 StopReplicationToReplicaResponse,
                 ("secret_id", ),
@@ -570,9 +591,10 @@ class SecretsManagerClient:
             "secret_id": secret_id,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "secrets-manager", "TagResource", self._region,
                 type(None),
                 ("secret_id", "tags", ),
@@ -593,9 +615,10 @@ class SecretsManagerClient:
             "secret_id": secret_id,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "secrets-manager", "UntagResource", self._region,
                 type(None),
                 ("secret_id", "tag_keys", ),
@@ -632,9 +655,10 @@ class SecretsManagerClient:
             params["secret_string"] = secret_string
         if type is not None:
             params["type"] = type
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_secret, params, self._interceptors,
+                self._native.update_secret, params, _interceptors,
                 "secrets-manager", "UpdateSecret", self._region,
                 UpdateSecretResponse,
                 ("secret_id", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "type", ),
@@ -661,9 +685,10 @@ class SecretsManagerClient:
             params["remove_from_version_id"] = remove_from_version_id
         if move_to_version_id is not None:
             params["move_to_version_id"] = move_to_version_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_secret_version_stage, params, self._interceptors,
+                self._native.update_secret_version_stage, params, _interceptors,
                 "secrets-manager", "UpdateSecretVersionStage", self._region,
                 UpdateSecretVersionStageResponse,
                 ("secret_id", "version_stage", "remove_from_version_id", "move_to_version_id", ),
@@ -685,9 +710,10 @@ class SecretsManagerClient:
         }
         if secret_id is not None:
             params["secret_id"] = secret_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("secrets-manager", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.validate_resource_policy, params, self._interceptors,
+                self._native.validate_resource_policy, params, _interceptors,
                 "secrets-manager", "ValidateResourcePolicy", self._region,
                 ValidateResourcePolicyResponse,
                 ("resource_policy", "secret_id", ),

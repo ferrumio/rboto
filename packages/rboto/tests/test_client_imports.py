@@ -13,9 +13,7 @@ ROOT = Path(__file__).resolve().parents[3]
 
 
 def run_isolated(source: str, *args: str) -> None:
-    result = subprocess.run(
-        [sys.executable, "-c", source, *args], capture_output=True, text=True
-    )
+    result = subprocess.run([sys.executable, "-c", source, *args], capture_output=True, text=True)
     assert result.returncode == 0, result.stdout + result.stderr
 
 
@@ -58,7 +56,7 @@ import json
 import sys
 from types import ModuleType
 
-package, name, legacy, factory_name, source_path = json.loads(sys.argv[1])
+package, name, legacy, factory_name, source_path, service_id = json.loads(sys.argv[1])
 sys.path.insert(0, source_path)
 
 class RejectOtherServices(importlib.abc.MetaPathFinder):
@@ -91,6 +89,8 @@ assert cls.__module__ == package + ".client"
 assert getattr(service, legacy) is cls
 assert getattr(importlib.import_module(package + ".client"), legacy) is cls
 assert getattr(rboto, name) is cls
+assert cls.logger_name == "rboto." + service_id
+assert rboto.get_logger(service_id).name == cls.logger_name
 
 session = rboto.Session(region="us-east-1", profile="test", endpoint_url="http://localhost:4566")
 expected = {
@@ -113,6 +113,34 @@ assert all(
     parameter.kind is inspect.Parameter.KEYWORD_ONLY
     for parameter in inspect.signature(cls).parameters.values()
 )
+
+# The same client picks up global logging configured after construction.
+import asyncio
+import io
+stream = io.StringIO()
+client = cls(region="us-east-1")
+class Spy:
+    def __getattr__(self, name):
+        async def call(params, metadata=None):
+            return object()
+        return call
+client._native = Spy()
+method_name = next(
+    name for name, method in cls.__dict__.items() if inspect.iscoroutinefunction(method)
+)
+method = getattr(client, method_name)
+parameters = {
+    name: object() for name, parameter in inspect.signature(method).parameters.items()
+    if parameter.default is inspect.Parameter.empty
+}
+rboto.configure_logging(stream=stream)
+asyncio.run(method(**parameters))
+record = json.loads(stream.getvalue())
+assert record["logger"] == cls.logger_name
+assert record["service"] == service_id
+rboto.get_logger(service_id).disabled = True
+asyncio.run(method(**parameters))
+assert len(stream.getvalue().splitlines()) == 1
 """,
         json.dumps(
             [
@@ -121,6 +149,7 @@ assert all(
                 service.native_class,
                 service.python_name,
                 str(ROOT / "packages" / service.distribution_name / "python"),
+                service.service_id,
             ]
         ),
     )
@@ -135,9 +164,7 @@ assert all(
         ("", "original import failure"),
     ],
 )
-def test_missing_service_hint_does_not_hide_broken_dependencies(
-    missing: str, message: str
-) -> None:
+def test_missing_service_hint_does_not_hide_broken_dependencies(missing: str, message: str) -> None:
     run_isolated(
         """
 import importlib.abc

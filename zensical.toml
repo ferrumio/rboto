@@ -17,6 +17,7 @@ nav = [
         { "Streaming" = "guides/streaming.md" },
         { "Errors" = "guides/errors.md" },
         { "Interceptors" = "guides/interceptors.md" },
+        { "Logging" = "guides/logging.md" },
         { "Testing" = "guides/testing.md" },
     ] },
     { "Service guides" = [

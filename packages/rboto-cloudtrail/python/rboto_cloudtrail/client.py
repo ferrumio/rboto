@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import CloudTrailClient as NativeClient, AddTagsResponse, CancelQueryResponse, CreateChannelResponse, CreateDashboardResponse, CreateEventDataStoreResponse, CreateTrailResponse, DeleteChannelResponse, DeleteDashboardResponse, DeleteEventDataStoreResponse, DeleteResourcePolicyResponse, DeleteTrailResponse, DeregisterOrganizationDelegatedAdminResponse, DescribeQueryResponse, DescribeTrailsResponse, DisableFederationResponse, EnableFederationResponse, GenerateQueryResponse, GetChannelResponse, GetDashboardResponse, GetEventConfigurationResponse, GetEventDataStoreResponse, GetEventSelectorsResponse, GetImportResponse, GetInsightSelectorsResponse, GetQueryResultsResponse, GetResourcePolicyResponse, GetTrailResponse, GetTrailStatusResponse, ListChannelsResponse, ListDashboardsResponse, ListEventDataStoresResponse, ListImportFailuresResponse, ListImportsResponse, ListInsightsDataResponse, ListInsightsMetricDataResponse, ListPublicKeysResponse, ListQueriesResponse, ListTagsResponse, ListTrailsResponse, LookupEventsResponse, PutEventConfigurationResponse, PutEventSelectorsResponse, PutInsightSelectorsResponse, PutResourcePolicyResponse, RegisterOrganizationDelegatedAdminResponse, RemoveTagsResponse, RestoreEventDataStoreResponse, SearchSampleQueriesResponse, StartDashboardRefreshResponse, StartEventDataStoreIngestionResponse, StartImportResponse, StartLoggingResponse, StartQueryResponse, StopEventDataStoreIngestionResponse, StopImportResponse, StopLoggingResponse, UpdateChannelResponse, UpdateDashboardResponse, UpdateEventDataStoreResponse, UpdateTrailResponse
 from .types import (
@@ -34,6 +35,8 @@ from .types import (
 
 
 class CloudTrailClient:
+    logger_name = "rboto.cloudtrail"
+
     def __init__(
         self,
         *,
@@ -65,9 +68,10 @@ class CloudTrailClient:
             "resource_id": resource_id,
             "tags_list": tags_list,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.add_tags, params, self._interceptors,
+                self._native.add_tags, params, _interceptors,
                 "cloudtrail", "AddTags", self._region,
                 AddTagsResponse,
                 ("resource_id", "tags_list", ),
@@ -92,9 +96,10 @@ class CloudTrailClient:
             params["event_data_store"] = event_data_store
         if event_data_store_owner_account_id is not None:
             params["event_data_store_owner_account_id"] = event_data_store_owner_account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.cancel_query, params, self._interceptors,
+                self._native.cancel_query, params, _interceptors,
                 "cloudtrail", "CancelQuery", self._region,
                 CancelQueryResponse,
                 ("query_id", "event_data_store", "event_data_store_owner_account_id", ),
@@ -120,9 +125,10 @@ class CloudTrailClient:
         }
         if tags is not None:
             params["tags"] = tags
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_channel, params, self._interceptors,
+                self._native.create_channel, params, _interceptors,
                 "cloudtrail", "CreateChannel", self._region,
                 CreateChannelResponse,
                 ("name", "source", "destinations", "tags", ),
@@ -153,9 +159,10 @@ class CloudTrailClient:
             params["termination_protection_enabled"] = termination_protection_enabled
         if widgets is not None:
             params["widgets"] = widgets
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_dashboard, params, self._interceptors,
+                self._native.create_dashboard, params, _interceptors,
                 "cloudtrail", "CreateDashboard", self._region,
                 CreateDashboardResponse,
                 ("name", "refresh_schedule", "tags_list", "termination_protection_enabled", "widgets", ),
@@ -201,9 +208,10 @@ class CloudTrailClient:
             params["start_ingestion"] = start_ingestion
         if billing_mode is not None:
             params["billing_mode"] = billing_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_event_data_store, params, self._interceptors,
+                self._native.create_event_data_store, params, _interceptors,
                 "cloudtrail", "CreateEventDataStore", self._region,
                 CreateEventDataStoreResponse,
                 ("name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "tags_list", "kms_key_id", "start_ingestion", "billing_mode", ),
@@ -257,9 +265,10 @@ class CloudTrailClient:
             params["tags_list"] = tags_list
         if recursive_logging is not None:
             params["recursive_logging"] = recursive_logging
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_trail, params, self._interceptors,
+                self._native.create_trail, params, _interceptors,
                 "cloudtrail", "CreateTrail", self._region,
                 CreateTrailResponse,
                 ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "tags_list", "recursive_logging", ),
@@ -278,9 +287,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "channel": channel,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_channel, params, self._interceptors,
+                self._native.delete_channel, params, _interceptors,
                 "cloudtrail", "DeleteChannel", self._region,
                 DeleteChannelResponse,
                 ("channel", ),
@@ -299,9 +309,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_dashboard, params, self._interceptors,
+                self._native.delete_dashboard, params, _interceptors,
                 "cloudtrail", "DeleteDashboard", self._region,
                 DeleteDashboardResponse,
                 ("dashboard_id", ),
@@ -320,9 +331,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_event_data_store, params, self._interceptors,
+                self._native.delete_event_data_store, params, _interceptors,
                 "cloudtrail", "DeleteEventDataStore", self._region,
                 DeleteEventDataStoreResponse,
                 ("event_data_store", ),
@@ -341,9 +353,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_resource_policy, params, self._interceptors,
+                self._native.delete_resource_policy, params, _interceptors,
                 "cloudtrail", "DeleteResourcePolicy", self._region,
                 DeleteResourcePolicyResponse,
                 ("resource_arn", ),
@@ -362,9 +375,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_trail, params, self._interceptors,
+                self._native.delete_trail, params, _interceptors,
                 "cloudtrail", "DeleteTrail", self._region,
                 DeleteTrailResponse,
                 ("name", ),
@@ -383,9 +397,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "delegated_admin_account_id": delegated_admin_account_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.deregister_organization_delegated_admin, params, self._interceptors,
+                self._native.deregister_organization_delegated_admin, params, _interceptors,
                 "cloudtrail", "DeregisterOrganizationDelegatedAdmin", self._region,
                 DeregisterOrganizationDelegatedAdminResponse,
                 ("delegated_admin_account_id", ),
@@ -417,9 +432,10 @@ class CloudTrailClient:
             params["refresh_id"] = refresh_id
         if event_data_store_owner_account_id is not None:
             params["event_data_store_owner_account_id"] = event_data_store_owner_account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_query, params, self._interceptors,
+                self._native.describe_query, params, _interceptors,
                 "cloudtrail", "DescribeQuery", self._region,
                 DescribeQueryResponse,
                 ("event_data_store", "query_id", "query_alias", "refresh_id", "event_data_store_owner_account_id", ),
@@ -442,9 +458,10 @@ class CloudTrailClient:
             params["trail_name_list"] = trail_name_list
         if include_shadow_trails is not None:
             params["include_shadow_trails"] = include_shadow_trails
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_trails, params, self._interceptors,
+                self._native.describe_trails, params, _interceptors,
                 "cloudtrail", "DescribeTrails", self._region,
                 DescribeTrailsResponse,
                 ("trail_name_list", "include_shadow_trails", ),
@@ -463,9 +480,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.disable_federation, params, self._interceptors,
+                self._native.disable_federation, params, _interceptors,
                 "cloudtrail", "DisableFederation", self._region,
                 DisableFederationResponse,
                 ("event_data_store", ),
@@ -486,9 +504,10 @@ class CloudTrailClient:
             "event_data_store": event_data_store,
             "federation_role_arn": federation_role_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.enable_federation, params, self._interceptors,
+                self._native.enable_federation, params, _interceptors,
                 "cloudtrail", "EnableFederation", self._region,
                 EnableFederationResponse,
                 ("event_data_store", "federation_role_arn", ),
@@ -509,9 +528,10 @@ class CloudTrailClient:
             "event_data_stores": event_data_stores,
             "prompt": prompt,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.generate_query, params, self._interceptors,
+                self._native.generate_query, params, _interceptors,
                 "cloudtrail", "GenerateQuery", self._region,
                 GenerateQueryResponse,
                 ("event_data_stores", "prompt", ),
@@ -530,9 +550,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "channel": channel,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_channel, params, self._interceptors,
+                self._native.get_channel, params, _interceptors,
                 "cloudtrail", "GetChannel", self._region,
                 GetChannelResponse,
                 ("channel", ),
@@ -551,9 +572,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "dashboard_id": dashboard_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_dashboard, params, self._interceptors,
+                self._native.get_dashboard, params, _interceptors,
                 "cloudtrail", "GetDashboard", self._region,
                 GetDashboardResponse,
                 ("dashboard_id", ),
@@ -576,9 +598,10 @@ class CloudTrailClient:
             params["trail_name"] = trail_name
         if event_data_store is not None:
             params["event_data_store"] = event_data_store
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_event_configuration, params, self._interceptors,
+                self._native.get_event_configuration, params, _interceptors,
                 "cloudtrail", "GetEventConfiguration", self._region,
                 GetEventConfigurationResponse,
                 ("trail_name", "event_data_store", ),
@@ -597,9 +620,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_event_data_store, params, self._interceptors,
+                self._native.get_event_data_store, params, _interceptors,
                 "cloudtrail", "GetEventDataStore", self._region,
                 GetEventDataStoreResponse,
                 ("event_data_store", ),
@@ -618,9 +642,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "trail_name": trail_name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_event_selectors, params, self._interceptors,
+                self._native.get_event_selectors, params, _interceptors,
                 "cloudtrail", "GetEventSelectors", self._region,
                 GetEventSelectorsResponse,
                 ("trail_name", ),
@@ -639,9 +664,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "import_id": import_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_import, params, self._interceptors,
+                self._native.get_import, params, _interceptors,
                 "cloudtrail", "GetImport", self._region,
                 GetImportResponse,
                 ("import_id", ),
@@ -664,9 +690,10 @@ class CloudTrailClient:
             params["trail_name"] = trail_name
         if event_data_store is not None:
             params["event_data_store"] = event_data_store
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_insight_selectors, params, self._interceptors,
+                self._native.get_insight_selectors, params, _interceptors,
                 "cloudtrail", "GetInsightSelectors", self._region,
                 GetInsightSelectorsResponse,
                 ("trail_name", "event_data_store", ),
@@ -697,9 +724,10 @@ class CloudTrailClient:
             params["max_query_results"] = max_query_results
         if event_data_store_owner_account_id is not None:
             params["event_data_store_owner_account_id"] = event_data_store_owner_account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_query_results, params, self._interceptors,
+                self._native.get_query_results, params, _interceptors,
                 "cloudtrail", "GetQueryResults", self._region,
                 GetQueryResultsResponse,
                 ("query_id", "event_data_store", "next_token", "max_query_results", "event_data_store_owner_account_id", ),
@@ -718,9 +746,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_resource_policy, params, self._interceptors,
+                self._native.get_resource_policy, params, _interceptors,
                 "cloudtrail", "GetResourcePolicy", self._region,
                 GetResourcePolicyResponse,
                 ("resource_arn", ),
@@ -739,9 +768,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_trail, params, self._interceptors,
+                self._native.get_trail, params, _interceptors,
                 "cloudtrail", "GetTrail", self._region,
                 GetTrailResponse,
                 ("name", ),
@@ -760,9 +790,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_trail_status, params, self._interceptors,
+                self._native.get_trail_status, params, _interceptors,
                 "cloudtrail", "GetTrailStatus", self._region,
                 GetTrailStatusResponse,
                 ("name", ),
@@ -785,9 +816,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_channels, params, self._interceptors,
+                self._native.list_channels, params, _interceptors,
                 "cloudtrail", "ListChannels", self._region,
                 ListChannelsResponse,
                 ("max_results", "next_token", ),
@@ -816,9 +848,10 @@ class CloudTrailClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_dashboards, params, self._interceptors,
+                self._native.list_dashboards, params, _interceptors,
                 "cloudtrail", "ListDashboards", self._region,
                 ListDashboardsResponse,
                 ("name_prefix", "type", "next_token", "max_results", ),
@@ -841,9 +874,10 @@ class CloudTrailClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_event_data_stores, params, self._interceptors,
+                self._native.list_event_data_stores, params, _interceptors,
                 "cloudtrail", "ListEventDataStores", self._region,
                 ListEventDataStoresResponse,
                 ("next_token", "max_results", ),
@@ -868,9 +902,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_import_failures, params, self._interceptors,
+                self._native.list_import_failures, params, _interceptors,
                 "cloudtrail", "ListImportFailures", self._region,
                 ListImportFailuresResponse,
                 ("import_id", "max_results", "next_token", ),
@@ -899,9 +934,10 @@ class CloudTrailClient:
             params["import_status"] = import_status
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_imports, params, self._interceptors,
+                self._native.list_imports, params, _interceptors,
                 "cloudtrail", "ListImports", self._region,
                 ListImportsResponse,
                 ("max_results", "destination", "import_status", "next_token", ),
@@ -937,9 +973,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_insights_data, params, self._interceptors,
+                self._native.list_insights_data, params, _interceptors,
                 "cloudtrail", "ListInsightsData", self._region,
                 ListInsightsDataResponse,
                 ("insight_source", "data_type", "dimensions", "start_time", "end_time", "max_results", "next_token", ),
@@ -986,9 +1023,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_insights_metric_data, params, self._interceptors,
+                self._native.list_insights_metric_data, params, _interceptors,
                 "cloudtrail", "ListInsightsMetricData", self._region,
                 ListInsightsMetricDataResponse,
                 ("event_source", "event_name", "insight_type", "trail_name", "error_code", "start_time", "end_time", "period", "data_type", "max_results", "next_token", ),
@@ -1014,9 +1052,10 @@ class CloudTrailClient:
             params["end_time"] = end_time
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_public_keys, params, self._interceptors,
+                self._native.list_public_keys, params, _interceptors,
                 "cloudtrail", "ListPublicKeys", self._region,
                 ListPublicKeysResponse,
                 ("start_time", "end_time", "next_token", ),
@@ -1050,9 +1089,10 @@ class CloudTrailClient:
             params["end_time"] = end_time
         if query_status is not None:
             params["query_status"] = query_status
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_queries, params, self._interceptors,
+                self._native.list_queries, params, _interceptors,
                 "cloudtrail", "ListQueries", self._region,
                 ListQueriesResponse,
                 ("event_data_store", "next_token", "max_results", "start_time", "end_time", "query_status", ),
@@ -1074,9 +1114,10 @@ class CloudTrailClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags, params, self._interceptors,
+                self._native.list_tags, params, _interceptors,
                 "cloudtrail", "ListTags", self._region,
                 ListTagsResponse,
                 ("resource_id_list", "next_token", ),
@@ -1096,9 +1137,10 @@ class CloudTrailClient:
         }
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_trails, params, self._interceptors,
+                self._native.list_trails, params, _interceptors,
                 "cloudtrail", "ListTrails", self._region,
                 ListTrailsResponse,
                 ("next_token", ),
@@ -1133,9 +1175,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.lookup_events, params, self._interceptors,
+                self._native.lookup_events, params, _interceptors,
                 "cloudtrail", "LookupEvents", self._region,
                 LookupEventsResponse,
                 ("lookup_attributes", "start_time", "end_time", "event_category", "max_results", "next_token", ),
@@ -1167,9 +1210,10 @@ class CloudTrailClient:
             params["context_key_selectors"] = context_key_selectors
         if aggregation_configurations is not None:
             params["aggregation_configurations"] = aggregation_configurations
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_event_configuration, params, self._interceptors,
+                self._native.put_event_configuration, params, _interceptors,
                 "cloudtrail", "PutEventConfiguration", self._region,
                 PutEventConfigurationResponse,
                 ("trail_name", "event_data_store", "max_event_size", "context_key_selectors", "aggregation_configurations", ),
@@ -1194,9 +1238,10 @@ class CloudTrailClient:
             params["event_selectors"] = event_selectors
         if advanced_event_selectors is not None:
             params["advanced_event_selectors"] = advanced_event_selectors
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_event_selectors, params, self._interceptors,
+                self._native.put_event_selectors, params, _interceptors,
                 "cloudtrail", "PutEventSelectors", self._region,
                 PutEventSelectorsResponse,
                 ("trail_name", "event_selectors", "advanced_event_selectors", ),
@@ -1224,9 +1269,10 @@ class CloudTrailClient:
             params["event_data_store"] = event_data_store
         if insights_destination is not None:
             params["insights_destination"] = insights_destination
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_insight_selectors, params, self._interceptors,
+                self._native.put_insight_selectors, params, _interceptors,
                 "cloudtrail", "PutInsightSelectors", self._region,
                 PutInsightSelectorsResponse,
                 ("insight_selectors", "trail_name", "event_data_store", "insights_destination", ),
@@ -1247,9 +1293,10 @@ class CloudTrailClient:
             "resource_arn": resource_arn,
             "resource_policy": resource_policy,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.put_resource_policy, params, self._interceptors,
+                self._native.put_resource_policy, params, _interceptors,
                 "cloudtrail", "PutResourcePolicy", self._region,
                 PutResourcePolicyResponse,
                 ("resource_arn", "resource_policy", ),
@@ -1268,9 +1315,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "member_account_id": member_account_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.register_organization_delegated_admin, params, self._interceptors,
+                self._native.register_organization_delegated_admin, params, _interceptors,
                 "cloudtrail", "RegisterOrganizationDelegatedAdmin", self._region,
                 RegisterOrganizationDelegatedAdminResponse,
                 ("member_account_id", ),
@@ -1291,9 +1339,10 @@ class CloudTrailClient:
             "resource_id": resource_id,
             "tags_list": tags_list,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.remove_tags, params, self._interceptors,
+                self._native.remove_tags, params, _interceptors,
                 "cloudtrail", "RemoveTags", self._region,
                 RemoveTagsResponse,
                 ("resource_id", "tags_list", ),
@@ -1312,9 +1361,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.restore_event_data_store, params, self._interceptors,
+                self._native.restore_event_data_store, params, _interceptors,
                 "cloudtrail", "RestoreEventDataStore", self._region,
                 RestoreEventDataStoreResponse,
                 ("event_data_store", ),
@@ -1339,9 +1389,10 @@ class CloudTrailClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.search_sample_queries, params, self._interceptors,
+                self._native.search_sample_queries, params, _interceptors,
                 "cloudtrail", "SearchSampleQueries", self._region,
                 SearchSampleQueriesResponse,
                 ("search_phrase", "max_results", "next_token", ),
@@ -1363,9 +1414,10 @@ class CloudTrailClient:
         }
         if query_parameter_values is not None:
             params["query_parameter_values"] = query_parameter_values
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_dashboard_refresh, params, self._interceptors,
+                self._native.start_dashboard_refresh, params, _interceptors,
                 "cloudtrail", "StartDashboardRefresh", self._region,
                 StartDashboardRefreshResponse,
                 ("dashboard_id", "query_parameter_values", ),
@@ -1384,9 +1436,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_event_data_store_ingestion, params, self._interceptors,
+                self._native.start_event_data_store_ingestion, params, _interceptors,
                 "cloudtrail", "StartEventDataStoreIngestion", self._region,
                 StartEventDataStoreIngestionResponse,
                 ("event_data_store", ),
@@ -1418,9 +1471,10 @@ class CloudTrailClient:
             params["end_event_time"] = end_event_time
         if import_id is not None:
             params["import_id"] = import_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_import, params, self._interceptors,
+                self._native.start_import, params, _interceptors,
                 "cloudtrail", "StartImport", self._region,
                 StartImportResponse,
                 ("destinations", "import_source", "start_event_time", "end_event_time", "import_id", ),
@@ -1439,9 +1493,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_logging, params, self._interceptors,
+                self._native.start_logging, params, _interceptors,
                 "cloudtrail", "StartLogging", self._region,
                 StartLoggingResponse,
                 ("name", ),
@@ -1473,9 +1528,10 @@ class CloudTrailClient:
             params["query_parameters"] = query_parameters
         if event_data_store_owner_account_id is not None:
             params["event_data_store_owner_account_id"] = event_data_store_owner_account_id
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_query, params, self._interceptors,
+                self._native.start_query, params, _interceptors,
                 "cloudtrail", "StartQuery", self._region,
                 StartQueryResponse,
                 ("query_statement", "delivery_s3_uri", "query_alias", "query_parameters", "event_data_store_owner_account_id", ),
@@ -1494,9 +1550,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "event_data_store": event_data_store,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_event_data_store_ingestion, params, self._interceptors,
+                self._native.stop_event_data_store_ingestion, params, _interceptors,
                 "cloudtrail", "StopEventDataStoreIngestion", self._region,
                 StopEventDataStoreIngestionResponse,
                 ("event_data_store", ),
@@ -1515,9 +1572,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "import_id": import_id,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_import, params, self._interceptors,
+                self._native.stop_import, params, _interceptors,
                 "cloudtrail", "StopImport", self._region,
                 StopImportResponse,
                 ("import_id", ),
@@ -1536,9 +1594,10 @@ class CloudTrailClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_logging, params, self._interceptors,
+                self._native.stop_logging, params, _interceptors,
                 "cloudtrail", "StopLogging", self._region,
                 StopLoggingResponse,
                 ("name", ),
@@ -1563,9 +1622,10 @@ class CloudTrailClient:
             params["destinations"] = destinations
         if name is not None:
             params["name"] = name
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_channel, params, self._interceptors,
+                self._native.update_channel, params, _interceptors,
                 "cloudtrail", "UpdateChannel", self._region,
                 UpdateChannelResponse,
                 ("channel", "destinations", "name", ),
@@ -1593,9 +1653,10 @@ class CloudTrailClient:
             params["refresh_schedule"] = refresh_schedule
         if termination_protection_enabled is not None:
             params["termination_protection_enabled"] = termination_protection_enabled
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_dashboard, params, self._interceptors,
+                self._native.update_dashboard, params, _interceptors,
                 "cloudtrail", "UpdateDashboard", self._region,
                 UpdateDashboardResponse,
                 ("dashboard_id", "widgets", "refresh_schedule", "termination_protection_enabled", ),
@@ -1638,9 +1699,10 @@ class CloudTrailClient:
             params["kms_key_id"] = kms_key_id
         if billing_mode is not None:
             params["billing_mode"] = billing_mode
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_event_data_store, params, self._interceptors,
+                self._native.update_event_data_store, params, _interceptors,
                 "cloudtrail", "UpdateEventDataStore", self._region,
                 UpdateEventDataStoreResponse,
                 ("event_data_store", "name", "advanced_event_selectors", "multi_region_enabled", "organization_enabled", "retention_period", "termination_protection_enabled", "kms_key_id", "billing_mode", ),
@@ -1692,9 +1754,10 @@ class CloudTrailClient:
             params["is_organization_trail"] = is_organization_trail
         if recursive_logging is not None:
             params["recursive_logging"] = recursive_logging
-        if self._interceptors:
+        _interceptors = operation_interceptors("cloudtrail", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_trail, params, self._interceptors,
+                self._native.update_trail, params, _interceptors,
                 "cloudtrail", "UpdateTrail", self._region,
                 UpdateTrailResponse,
                 ("name", "s3_bucket_name", "s3_key_prefix", "sns_topic_name", "include_global_service_events", "is_multi_region_trail", "enable_log_file_validation", "cloud_watch_logs_log_group_arn", "cloud_watch_logs_role_arn", "kms_key_id", "is_organization_trail", "recursive_logging", ),

@@ -47,3 +47,52 @@ These are peaks for the whole measured run, not bytes allocated per operation.
 Repeat with release wheels before using these development measurements to
 estimate production overhead. Remote service latency and exporter or handler
 I/O are not represented here.
+
+## Global JSON logging
+
+The same local endpoint measures automatic logging configured through
+`configure_logging()`:
+
+```bash
+.venv/bin/python benchmarks/interceptors.py --mode disabled --requests 4000
+.venv/bin/python benchmarks/interceptors.py --mode middleware --requests 4000
+.venv/bin/python benchmarks/interceptors.py --mode logging-disabled --requests 4000
+.venv/bin/python benchmarks/interceptors.py --mode logging-info --requests 4000
+.venv/bin/python benchmarks/interceptors.py --mode logging-debug --requests 4000
+```
+
+`disabled` leaves global logging unconfigured. `middleware` adds one pass-through
+application interceptor. `logging-disabled` configures level OFF and bypasses the
+automatic middleware and its native metadata collection. The enabled modes include
+the built-in JSON formatter and handler. Their text stream counts output lines and
+retains the last 256 without external I/O. Each measured request succeeds on its
+first attempt, so DEBUG adds no retry records in this scenario.
+
+Warmup and connection shutdown are outside the measured interval. CPU and RSS
+include the local HTTP peer. Allocation runs include retained JSON strings and
+latency samples; they exclude native allocations and are not per-call counts.
+
+Measured on 2026-10-28 with CPython 3.12.15 on Linux ARM64 and unoptimized native
+extensions with debug symbols disabled. Each mode ran five times in shuffled
+order, with 4,000 requests and concurrency 8. Values are medians across runs.
+
+| Mode | p50 (ms) | p95 (ms) | Process CPU per call (µs) | Peak RSS (MiB) |
+| --- | ---: | ---: | ---: | ---: |
+| Logging unconfigured | 0.906 | 1.017 | 903.1 | 54.88 |
+| Pass-through application middleware | 1.132 | 1.407 | 1002.6 | 55.13 |
+| Global logging OFF | 0.910 | 1.030 | 903.8 | 54.78 |
+| Global JSON logging INFO | 1.325 | 1.644 | 1040.4 | 56.16 |
+| Global JSON logging DEBUG, no retries | 1.325 | 1.659 | 1038.8 | 55.72 |
+
+The INFO path includes automatic middleware, native metadata collection, JSON
+serialization, and a synchronous write to the memory stream. Compared with OFF,
+it added 0.415 ms to median latency (45.65%) and 15.12% to process CPU in this run.
+Compared with pass-through middleware, its median latency was 0.193 ms higher.
+OFF bypassed the metadata collection path and measured close to unconfigured
+logging. Process RSS varies between runs.
+
+Separate 2,000-request allocation runs recorded traced Python peaks of 367,605
+bytes unconfigured, 709,525 with pass-through middleware, 354,253 with logging OFF,
+893,242 with INFO, and 896,250 with DEBUG. These include the last 256 serialized
+JSON lines. Repeat with release wheels and the intended destination before
+estimating production cost.

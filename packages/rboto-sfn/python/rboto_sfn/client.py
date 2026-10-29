@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SFNClient as NativeClient, CreateActivityOutput, CreateStateMachineAliasOutput, CreateStateMachineOutput, DeleteActivityOutput, DeleteStateMachineAliasOutput, DeleteStateMachineOutput, DeleteStateMachineVersionOutput, DescribeActivityOutput, DescribeExecutionOutput, DescribeMapRunOutput, DescribeStateMachineAliasOutput, DescribeStateMachineForExecutionOutput, DescribeStateMachineOutput, GetActivityTaskOutput, GetExecutionHistoryOutput, ListActivitiesOutput, ListExecutionsOutput, ListMapRunsOutput, ListStateMachineAliasesOutput, ListStateMachineVersionsOutput, ListStateMachinesOutput, ListTagsForResourceOutput, PublishStateMachineVersionOutput, RedriveExecutionOutput, SendTaskFailureOutput, SendTaskHeartbeatOutput, SendTaskSuccessOutput, StartExecutionOutput, StartSyncExecutionOutput, StopExecutionOutput, TagResourceOutput, TestStateOutput, UntagResourceOutput, UpdateMapRunOutput, UpdateStateMachineAliasOutput, UpdateStateMachineOutput, ValidateStateMachineDefinitionOutput
 from .types import (
@@ -26,6 +27,8 @@ from .types import (
 
 
 class StepFunctionsClient:
+    logger_name = "rboto.sfn"
+
     def __init__(
         self,
         *,
@@ -61,9 +64,10 @@ class StepFunctionsClient:
             params["tags"] = tags
         if encryption_configuration is not None:
             params["encryption_configuration"] = encryption_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_activity, params, self._interceptors,
+                self._native.create_activity, params, _interceptors,
                 "sfn", "CreateActivity", self._region,
                 CreateActivityOutput,
                 ("name", "tags", "encryption_configuration", ),
@@ -107,9 +111,10 @@ class StepFunctionsClient:
             params["version_description"] = version_description
         if encryption_configuration is not None:
             params["encryption_configuration"] = encryption_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_state_machine, params, self._interceptors,
+                self._native.create_state_machine, params, _interceptors,
                 "sfn", "CreateStateMachine", self._region,
                 CreateStateMachineOutput,
                 ("name", "definition", "role_arn", "type", "logging_configuration", "tags", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
@@ -133,9 +138,10 @@ class StepFunctionsClient:
         }
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_state_machine_alias, params, self._interceptors,
+                self._native.create_state_machine_alias, params, _interceptors,
                 "sfn", "CreateStateMachineAlias", self._region,
                 CreateStateMachineAliasOutput,
                 ("name", "routing_configuration", "description", ),
@@ -154,9 +160,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "activity_arn": activity_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_activity, params, self._interceptors,
+                self._native.delete_activity, params, _interceptors,
                 "sfn", "DeleteActivity", self._region,
                 DeleteActivityOutput,
                 ("activity_arn", ),
@@ -175,9 +182,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "state_machine_arn": state_machine_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_state_machine, params, self._interceptors,
+                self._native.delete_state_machine, params, _interceptors,
                 "sfn", "DeleteStateMachine", self._region,
                 DeleteStateMachineOutput,
                 ("state_machine_arn", ),
@@ -196,9 +204,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_state_machine_alias, params, self._interceptors,
+                self._native.delete_state_machine_alias, params, _interceptors,
                 "sfn", "DeleteStateMachineAlias", self._region,
                 DeleteStateMachineAliasOutput,
                 ("state_machine_alias_arn", ),
@@ -217,9 +226,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "state_machine_version_arn": state_machine_version_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_state_machine_version, params, self._interceptors,
+                self._native.delete_state_machine_version, params, _interceptors,
                 "sfn", "DeleteStateMachineVersion", self._region,
                 DeleteStateMachineVersionOutput,
                 ("state_machine_version_arn", ),
@@ -238,9 +248,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "activity_arn": activity_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_activity, params, self._interceptors,
+                self._native.describe_activity, params, _interceptors,
                 "sfn", "DescribeActivity", self._region,
                 DescribeActivityOutput,
                 ("activity_arn", ),
@@ -262,9 +273,10 @@ class StepFunctionsClient:
         }
         if included_data is not None:
             params["included_data"] = included_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_execution, params, self._interceptors,
+                self._native.describe_execution, params, _interceptors,
                 "sfn", "DescribeExecution", self._region,
                 DescribeExecutionOutput,
                 ("execution_arn", "included_data", ),
@@ -283,9 +295,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "map_run_arn": map_run_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_map_run, params, self._interceptors,
+                self._native.describe_map_run, params, _interceptors,
                 "sfn", "DescribeMapRun", self._region,
                 DescribeMapRunOutput,
                 ("map_run_arn", ),
@@ -307,9 +320,10 @@ class StepFunctionsClient:
         }
         if included_data is not None:
             params["included_data"] = included_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_state_machine, params, self._interceptors,
+                self._native.describe_state_machine, params, _interceptors,
                 "sfn", "DescribeStateMachine", self._region,
                 DescribeStateMachineOutput,
                 ("state_machine_arn", "included_data", ),
@@ -328,9 +342,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "state_machine_alias_arn": state_machine_alias_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_state_machine_alias, params, self._interceptors,
+                self._native.describe_state_machine_alias, params, _interceptors,
                 "sfn", "DescribeStateMachineAlias", self._region,
                 DescribeStateMachineAliasOutput,
                 ("state_machine_alias_arn", ),
@@ -352,9 +367,10 @@ class StepFunctionsClient:
         }
         if included_data is not None:
             params["included_data"] = included_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.describe_state_machine_for_execution, params, self._interceptors,
+                self._native.describe_state_machine_for_execution, params, _interceptors,
                 "sfn", "DescribeStateMachineForExecution", self._region,
                 DescribeStateMachineForExecutionOutput,
                 ("execution_arn", "included_data", ),
@@ -376,9 +392,10 @@ class StepFunctionsClient:
         }
         if worker_name is not None:
             params["worker_name"] = worker_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_activity_task, params, self._interceptors,
+                self._native.get_activity_task, params, _interceptors,
                 "sfn", "GetActivityTask", self._region,
                 GetActivityTaskOutput,
                 ("activity_arn", "worker_name", ),
@@ -409,9 +426,10 @@ class StepFunctionsClient:
             params["next_token"] = next_token
         if include_execution_data is not None:
             params["include_execution_data"] = include_execution_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_execution_history, params, self._interceptors,
+                self._native.get_execution_history, params, _interceptors,
                 "sfn", "GetExecutionHistory", self._region,
                 GetExecutionHistoryOutput,
                 ("execution_arn", "max_results", "reverse_order", "next_token", "include_execution_data", ),
@@ -434,9 +452,10 @@ class StepFunctionsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_activities, params, self._interceptors,
+                self._native.list_activities, params, _interceptors,
                 "sfn", "ListActivities", self._region,
                 ListActivitiesOutput,
                 ("max_results", "next_token", ),
@@ -471,9 +490,10 @@ class StepFunctionsClient:
             params["map_run_arn"] = map_run_arn
         if redrive_filter is not None:
             params["redrive_filter"] = redrive_filter
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_executions, params, self._interceptors,
+                self._native.list_executions, params, _interceptors,
                 "sfn", "ListExecutions", self._region,
                 ListExecutionsOutput,
                 ("state_machine_arn", "status_filter", "max_results", "next_token", "map_run_arn", "redrive_filter", ),
@@ -498,9 +518,10 @@ class StepFunctionsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_map_runs, params, self._interceptors,
+                self._native.list_map_runs, params, _interceptors,
                 "sfn", "ListMapRuns", self._region,
                 ListMapRunsOutput,
                 ("execution_arn", "max_results", "next_token", ),
@@ -525,9 +546,10 @@ class StepFunctionsClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_state_machine_aliases, params, self._interceptors,
+                self._native.list_state_machine_aliases, params, _interceptors,
                 "sfn", "ListStateMachineAliases", self._region,
                 ListStateMachineAliasesOutput,
                 ("state_machine_arn", "next_token", "max_results", ),
@@ -552,9 +574,10 @@ class StepFunctionsClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_state_machine_versions, params, self._interceptors,
+                self._native.list_state_machine_versions, params, _interceptors,
                 "sfn", "ListStateMachineVersions", self._region,
                 ListStateMachineVersionsOutput,
                 ("state_machine_arn", "next_token", "max_results", ),
@@ -577,9 +600,10 @@ class StepFunctionsClient:
             params["max_results"] = max_results
         if next_token is not None:
             params["next_token"] = next_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_state_machines, params, self._interceptors,
+                self._native.list_state_machines, params, _interceptors,
                 "sfn", "ListStateMachines", self._region,
                 ListStateMachinesOutput,
                 ("max_results", "next_token", ),
@@ -598,9 +622,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "sfn", "ListTagsForResource", self._region,
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
@@ -625,9 +650,10 @@ class StepFunctionsClient:
             params["revision_id"] = revision_id
         if description is not None:
             params["description"] = description
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.publish_state_machine_version, params, self._interceptors,
+                self._native.publish_state_machine_version, params, _interceptors,
                 "sfn", "PublishStateMachineVersion", self._region,
                 PublishStateMachineVersionOutput,
                 ("state_machine_arn", "revision_id", "description", ),
@@ -649,9 +675,10 @@ class StepFunctionsClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.redrive_execution, params, self._interceptors,
+                self._native.redrive_execution, params, _interceptors,
                 "sfn", "RedriveExecution", self._region,
                 RedriveExecutionOutput,
                 ("execution_arn", "client_token", ),
@@ -676,9 +703,10 @@ class StepFunctionsClient:
             params["error"] = error
         if cause is not None:
             params["cause"] = cause
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_task_failure, params, self._interceptors,
+                self._native.send_task_failure, params, _interceptors,
                 "sfn", "SendTaskFailure", self._region,
                 SendTaskFailureOutput,
                 ("task_token", "error", "cause", ),
@@ -697,9 +725,10 @@ class StepFunctionsClient:
         params: dict[str, object] = {
             "task_token": task_token,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_task_heartbeat, params, self._interceptors,
+                self._native.send_task_heartbeat, params, _interceptors,
                 "sfn", "SendTaskHeartbeat", self._region,
                 SendTaskHeartbeatOutput,
                 ("task_token", ),
@@ -720,9 +749,10 @@ class StepFunctionsClient:
             "task_token": task_token,
             "output": output,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.send_task_success, params, self._interceptors,
+                self._native.send_task_success, params, _interceptors,
                 "sfn", "SendTaskSuccess", self._region,
                 SendTaskSuccessOutput,
                 ("task_token", "output", ),
@@ -750,9 +780,10 @@ class StepFunctionsClient:
             params["input"] = input
         if trace_header is not None:
             params["trace_header"] = trace_header
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_execution, params, self._interceptors,
+                self._native.start_execution, params, _interceptors,
                 "sfn", "StartExecution", self._region,
                 StartExecutionOutput,
                 ("state_machine_arn", "name", "input", "trace_header", ),
@@ -783,9 +814,10 @@ class StepFunctionsClient:
             params["trace_header"] = trace_header
         if included_data is not None:
             params["included_data"] = included_data
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.start_sync_execution, params, self._interceptors,
+                self._native.start_sync_execution, params, _interceptors,
                 "sfn", "StartSyncExecution", self._region,
                 StartSyncExecutionOutput,
                 ("state_machine_arn", "name", "input", "trace_header", "included_data", ),
@@ -810,9 +842,10 @@ class StepFunctionsClient:
             params["error"] = error
         if cause is not None:
             params["cause"] = cause
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.stop_execution, params, self._interceptors,
+                self._native.stop_execution, params, _interceptors,
                 "sfn", "StopExecution", self._region,
                 StopExecutionOutput,
                 ("execution_arn", "error", "cause", ),
@@ -833,9 +866,10 @@ class StepFunctionsClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "sfn", "TagResource", self._region,
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
@@ -881,9 +915,10 @@ class StepFunctionsClient:
             params["context"] = context
         if state_configuration is not None:
             params["state_configuration"] = state_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.test_state, params, self._interceptors,
+                self._native.test_state, params, _interceptors,
                 "sfn", "TestState", self._region,
                 TestStateOutput,
                 ("definition", "role_arn", "input", "inspection_level", "reveal_secrets", "variables", "state_name", "mock", "context", "state_configuration", ),
@@ -904,9 +939,10 @@ class StepFunctionsClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "sfn", "UntagResource", self._region,
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
@@ -934,9 +970,10 @@ class StepFunctionsClient:
             params["tolerated_failure_percentage"] = tolerated_failure_percentage
         if tolerated_failure_count is not None:
             params["tolerated_failure_count"] = tolerated_failure_count
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_map_run, params, self._interceptors,
+                self._native.update_map_run, params, _interceptors,
                 "sfn", "UpdateMapRun", self._region,
                 UpdateMapRunOutput,
                 ("map_run_arn", "max_concurrency", "tolerated_failure_percentage", "tolerated_failure_count", ),
@@ -976,9 +1013,10 @@ class StepFunctionsClient:
             params["version_description"] = version_description
         if encryption_configuration is not None:
             params["encryption_configuration"] = encryption_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_state_machine, params, self._interceptors,
+                self._native.update_state_machine, params, _interceptors,
                 "sfn", "UpdateStateMachine", self._region,
                 UpdateStateMachineOutput,
                 ("state_machine_arn", "definition", "role_arn", "logging_configuration", "tracing_configuration", "publish", "version_description", "encryption_configuration", ),
@@ -1003,9 +1041,10 @@ class StepFunctionsClient:
             params["description"] = description
         if routing_configuration is not None:
             params["routing_configuration"] = routing_configuration
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_state_machine_alias, params, self._interceptors,
+                self._native.update_state_machine_alias, params, _interceptors,
                 "sfn", "UpdateStateMachineAlias", self._region,
                 UpdateStateMachineAliasOutput,
                 ("state_machine_alias_arn", "description", "routing_configuration", ),
@@ -1033,9 +1072,10 @@ class StepFunctionsClient:
             params["severity"] = severity
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("sfn", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.validate_state_machine_definition, params, self._interceptors,
+                self._native.validate_state_machine_definition, params, _interceptors,
                 "sfn", "ValidateStateMachineDefinition", self._region,
                 ValidateStateMachineDefinitionOutput,
                 ("definition", "type", "severity", "max_results", ),

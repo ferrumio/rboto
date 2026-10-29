@@ -1,6 +1,9 @@
 """Exercise observation across the compiled bridge with deterministic local I/O."""
 
 import asyncio
+import io
+import json
+import logging
 import os
 import socket
 import threading
@@ -10,8 +13,17 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import pytest
-from rboto import Next, OperationRequest, OperationResponse, Session, operation_context
+from rboto import (
+    Next,
+    OperationRequest,
+    OperationResponse,
+    Session,
+    configure_logging,
+    get_logger,
+    operation_context,
+)
 from rboto.exceptions import ClientError
+from rboto.logging import OperationLogFields, _LoggingInterceptor
 
 SELECTED = set(filter(None, os.environ.get("RBOTO_TEST_SERVICES", "").split(",")))
 
@@ -367,3 +379,264 @@ def test_native_client_middleware_across_event_loops(peer: Peer) -> None:
         assert asyncio.run(client.list_tables()).table_names == ["example"]
     assert len(recorder.requests) == 3
     assert len({r.context.operation_id for r in recorder.requests}) == 3
+
+
+def log_fields(caplog: pytest.LogCaptureFixture) -> list[OperationLogFields]:
+    return [r.__dict__["rboto"] for r in caplog.records if r.name.startswith("rboto.")]
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+@pytest.mark.parametrize("outcome", ["success", "retry", "modeled", "exhausted"])
+async def test_logging_native_outcomes(
+    peer: Peer,
+    caplog: pytest.LogCaptureFixture,
+    outcome: str,
+) -> None:
+    from rboto import DynamoDBClient
+    from rboto_dynamodb.exceptions import ResourceNotFoundError
+
+    caplog.set_level(logging.DEBUG, logger="rboto")
+    secret = "private-input-output-exception-CANARY"
+    peer.failures = 10 if outcome == "exhausted" else 1 if outcome == "retry" else 0
+    if outcome == "modeled":
+        peer.status = 400
+        peer.body = f'{{"__type":"ResourceNotFoundException","message":"{secret}"}}'.encode()
+    else:
+        peer.body = f'{{"TableNames":["{secret}"]}}'.encode()
+    client = DynamoDBClient(endpoint_url=peer.endpoint, interceptors=[_LoggingInterceptor()])
+    if outcome in {"modeled", "exhausted"}:
+        with pytest.raises(ResourceNotFoundError if outcome == "modeled" else ClientError):
+            await client.describe_table(table_name=secret)
+    else:
+        assert (await client.list_tables()).table_names == [secret]
+    rows = log_fields(caplog)
+    [completion] = [row for row in rows if row["event"] == "operation.completed"]
+    count = 3 if outcome == "exhausted" else 2 if outcome == "retry" else 1
+    assert completion["attempt_count"] == count
+    assert completion["retry_count"] == count - 1
+    assert completion["request_id"] == f"request-{count}"
+    assert completion["outcome"] == ("error" if outcome in {"modeled", "exhausted"} else "success")
+    assert completion["error_code"] == (
+        "ResourceNotFoundException"
+        if outcome == "modeled"
+        else "ServiceUnavailable"
+        if outcome == "exhausted"
+        else None
+    )
+    assert len(rows) == (2 if count > 1 else 1)
+    if count > 1:
+        assert len(rows[1]["attempts"]) == count
+    assert secret not in caplog.text
+    assert all(r.exc_info is None for r in caplog.records if r.name.startswith("rboto."))
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_logging_transport_failure(peer: Peer, caplog: pytest.LogCaptureFixture) -> None:
+    from rboto import DynamoDBClient
+
+    caplog.set_level(logging.INFO, logger="rboto")
+    with socket.socket() as closed:
+        closed.bind(("127.0.0.1", 0))
+        endpoint = f"http://127.0.0.1:{closed.getsockname()[1]}"
+        client = DynamoDBClient(endpoint_url=endpoint, interceptors=[_LoggingInterceptor()])
+        with pytest.raises(ClientError):
+            await client.list_tables()
+    [row] = log_fields(caplog)
+    assert row["outcome"] == "error" and row["attempt_count"] == 3
+    assert row["status_code"] is None and row["request_id"] is None
+    assert endpoint not in caplog.text
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_logging_cancelled_native_call(
+    peer: Peer,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    from rboto import DynamoDBClient
+
+    caplog.set_level(logging.INFO, logger="rboto")
+    peer.header_gate = threading.Event()
+    client = DynamoDBClient(endpoint_url=peer.endpoint, interceptors=[_LoggingInterceptor()])
+    task = asyncio.create_task(client.list_tables())
+    assert await asyncio.to_thread(peer.received.wait, 5)
+    task.cancel()
+    with pytest.raises(asyncio.CancelledError):
+        await task
+    [cancelled] = log_fields(caplog)
+    assert cancelled["outcome"] == "cancelled" and cancelled["attempt_count"] is None
+    snapshot = cancelled.copy()
+    peer.header_gate.set()
+    await client.list_tables()
+    assert len(log_fields(caplog)) == 2
+    assert cancelled == snapshot
+
+
+@pytest.mark.asyncio
+@service("s3")
+async def test_logging_returns_before_body_and_does_not_consume_stream(
+    peer: Peer,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    from rboto import S3Client
+
+    caplog.set_level(logging.DEBUG, logger="rboto")
+    peer.body = b"stream-CANARY"
+    peer.content_type = "application/octet-stream"
+    peer.body_gate = threading.Event()
+    client = S3Client(endpoint_url=peer.endpoint, interceptors=[_LoggingInterceptor()])
+    result = await asyncio.wait_for(client.get_object(bucket="example", key="key-CANARY"), 5)
+    [row] = log_fields(caplog)
+    assert row["outcome"] == "success" and row["status_code"] == 200
+    assert "CANARY" not in caplog.text
+    peer.body_gate.set()
+    assert await result.body.read() == peer.body
+    assert await result.body.read() == b""
+    assert len(log_fields(caplog)) == 1
+
+
+@service("s3", "dynamodb")
+def test_logging_concurrent_clients_and_reused_event_loops(
+    peer: Peer,
+    caplog: pytest.LogCaptureFixture,
+) -> None:
+    from rboto import DynamoDBClient, S3Client
+
+    caplog.set_level(logging.INFO, logger="rboto")
+    session = Session(endpoint_url=peer.endpoint, interceptors=(_LoggingInterceptor(),))
+    dynamo, storage = DynamoDBClient(session=session), S3Client(session=session)
+
+    async def run(start: int) -> None:
+        async def call(number: int) -> None:
+            with operation_context(correlation_id=str(number)):
+                if number % 2:
+                    await dynamo.list_tables()
+                else:
+                    await storage.head_object(bucket="example", key=str(number))
+
+        await asyncio.gather(*(call(n) for n in range(start, start + 10)))
+
+    asyncio.run(run(0))
+    asyncio.run(run(10))
+    rows = log_fields(caplog)
+    assert len(rows) == len({r["operation_id"] for r in rows}) == 20
+    assert {r["correlation_id"] for r in rows} == {str(n) for n in range(20)}
+    assert {r["service"] for r in rows} == {"s3", "dynamodb"}
+    assert len({r["request_id"] for r in rows}) == 20
+
+
+@pytest.fixture
+def json_logging() -> Iterator[io.StringIO]:
+    import rboto.logging as module
+    from rboto.services import SERVICE_IDS
+
+    loggers = [logging.getLogger("rboto"), *(get_logger(name) for name in SERVICE_IDS)]
+    states = [
+        (item, item.level, item.disabled, item.propagate, item.handlers[:]) for item in loggers
+    ]
+    old = module._configured, module._handler, module._operation_logging
+    output = io.StringIO()
+    try:
+        yield output
+    finally:
+        if module._handler is not None and module._handler is not old[1]:
+            module._handler.close()
+        module._configured, module._handler, module._operation_logging = old
+        for logger, level, disabled, propagate, handlers in states:
+            logger.handlers[:] = handlers
+            logger.setLevel(level)
+            logger.disabled = disabled
+            logger.propagate = propagate
+
+
+def json_records(stream: io.StringIO) -> list[dict[str, object]]:
+    return [json.loads(line) for line in stream.getvalue().splitlines()]
+
+
+@service("s3", "dynamodb")
+def test_global_logging_existing_clients_and_service_controls(
+    peer: Peer,
+    json_logging: io.StringIO,
+) -> None:
+    from rboto import DynamoDBClient, S3Client
+
+    dynamo = DynamoDBClient(endpoint_url=peer.endpoint)
+    storage = S3Client(endpoint_url=peer.endpoint)
+    assert dynamo.logger_name == "rboto.dynamodb" and storage.logger_name == "rboto.s3"
+    asyncio.run(dynamo.list_tables())
+    assert json_records(json_logging) == []
+    configure_logging(stream=json_logging)
+
+    async def concurrent() -> None:
+        async def call(index: int) -> None:
+            with operation_context(correlation_id=str(index)):
+                if index % 2:
+                    await dynamo.list_tables()
+                else:
+                    await storage.head_object(bucket="example", key="private-CANARY")
+
+        await asyncio.gather(*(call(n) for n in range(10)))
+
+    asyncio.run(concurrent())
+    records = json_records(json_logging)
+    assert len(records) == 10
+    assert {record["logger"] for record in records} == {"rboto.s3", "rboto.dynamodb"}
+    assert {record["correlation_id"] for record in records} == {str(n) for n in range(10)}
+    assert all(record["level"] == "INFO" and "timestamp" in record for record in records)
+    assert "CANARY" not in json_logging.getvalue()
+
+    get_logger("s3").disabled = True
+    asyncio.run(concurrent())
+    assert len(json_records(json_logging)) == 15
+    configure_logging(service_levels={"dynamodb": "OFF"}, stream=json_logging)
+    asyncio.run(concurrent())
+    assert len(json_records(json_logging)) == 20
+    configure_logging(level="OFF", stream=json_logging)
+    asyncio.run(concurrent())
+    assert len(json_records(json_logging)) == 20
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_global_json_retries_and_failure(
+    peer: Peer,
+    json_logging: io.StringIO,
+) -> None:
+    from rboto import DynamoDBClient
+    from rboto_dynamodb.exceptions import ResourceNotFoundError
+
+    configure_logging(level="DEBUG", stream=json_logging)
+    client = DynamoDBClient(endpoint_url=peer.endpoint)
+    peer.failures = 1
+    await client.list_tables()
+    completion, retry = json_records(json_logging)
+    assert completion["retry_count"] == 1
+    assert retry["event"] == "operation.retry" and retry["level"] == "DEBUG"
+    peer.status = 400
+    peer.body = b'{"__type":"ResourceNotFoundException","message":"private-CANARY"}'
+    with pytest.raises(ResourceNotFoundError):
+        await client.describe_table(table_name="private-CANARY")
+    error = json_records(json_logging)[-1]
+    assert error["level"] == "ERROR" and error["error_code"] == "ResourceNotFoundException"
+    assert "CANARY" not in json_logging.getvalue()
+
+
+@pytest.mark.asyncio
+@service("s3")
+async def test_global_json_does_not_read_streams(peer: Peer, json_logging: io.StringIO) -> None:
+    from rboto import S3Client
+
+    configure_logging(stream=json_logging)
+    peer.body = b"private-stream-CANARY"
+    peer.content_type = "application/octet-stream"
+    peer.body_gate = threading.Event()
+    client = S3Client(endpoint_url=peer.endpoint)
+    output = await asyncio.wait_for(client.get_object(bucket="example", key="private-CANARY"), 5)
+    assert len(json_records(json_logging)) == 1
+    assert "CANARY" not in json_logging.getvalue()
+    peer.body_gate.set()
+    assert await output.body.read() == peer.body
+    assert await output.body.read() == b""
+    assert len(json_records(json_logging)) == 1

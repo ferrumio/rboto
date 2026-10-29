@@ -6,6 +6,7 @@ from collections.abc import AsyncIterator, Sequence
 
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
+from rboto.logging import operation_interceptors
 
 from ._native import SchedulerClient as NativeClient, CreateScheduleGroupOutput, CreateScheduleOutput, DeleteScheduleGroupOutput, DeleteScheduleOutput, GetScheduleGroupOutput, GetScheduleOutput, ListScheduleGroupsOutput, ListSchedulesOutput, ListTagsForResourceOutput, TagResourceOutput, UntagResourceOutput, UpdateScheduleOutput
 from .types import (
@@ -18,6 +19,8 @@ from .types import (
 
 
 class EventBridgeSchedulerClient:
+    logger_name = "rboto.scheduler"
+
     def __init__(
         self,
         *,
@@ -80,9 +83,10 @@ class EventBridgeSchedulerClient:
             params["client_token"] = client_token
         if action_after_completion is not None:
             params["action_after_completion"] = action_after_completion
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_schedule, params, self._interceptors,
+                self._native.create_schedule, params, _interceptors,
                 "scheduler", "CreateSchedule", self._region,
                 CreateScheduleOutput,
                 ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),
@@ -107,9 +111,10 @@ class EventBridgeSchedulerClient:
             params["tags"] = tags
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.create_schedule_group, params, self._interceptors,
+                self._native.create_schedule_group, params, _interceptors,
                 "scheduler", "CreateScheduleGroup", self._region,
                 CreateScheduleGroupOutput,
                 ("name", "tags", "client_token", ),
@@ -134,9 +139,10 @@ class EventBridgeSchedulerClient:
             params["group_name"] = group_name
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_schedule, params, self._interceptors,
+                self._native.delete_schedule, params, _interceptors,
                 "scheduler", "DeleteSchedule", self._region,
                 DeleteScheduleOutput,
                 ("name", "group_name", "client_token", ),
@@ -158,9 +164,10 @@ class EventBridgeSchedulerClient:
         }
         if client_token is not None:
             params["client_token"] = client_token
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.delete_schedule_group, params, self._interceptors,
+                self._native.delete_schedule_group, params, _interceptors,
                 "scheduler", "DeleteScheduleGroup", self._region,
                 DeleteScheduleGroupOutput,
                 ("name", "client_token", ),
@@ -182,9 +189,10 @@ class EventBridgeSchedulerClient:
         }
         if group_name is not None:
             params["group_name"] = group_name
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_schedule, params, self._interceptors,
+                self._native.get_schedule, params, _interceptors,
                 "scheduler", "GetSchedule", self._region,
                 GetScheduleOutput,
                 ("name", "group_name", ),
@@ -203,9 +211,10 @@ class EventBridgeSchedulerClient:
         params: dict[str, object] = {
             "name": name,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.get_schedule_group, params, self._interceptors,
+                self._native.get_schedule_group, params, _interceptors,
                 "scheduler", "GetScheduleGroup", self._region,
                 GetScheduleGroupOutput,
                 ("name", ),
@@ -231,9 +240,10 @@ class EventBridgeSchedulerClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_schedule_groups, params, self._interceptors,
+                self._native.list_schedule_groups, params, _interceptors,
                 "scheduler", "ListScheduleGroups", self._region,
                 ListScheduleGroupsOutput,
                 ("name_prefix", "next_token", "max_results", ),
@@ -265,9 +275,10 @@ class EventBridgeSchedulerClient:
             params["next_token"] = next_token
         if max_results is not None:
             params["max_results"] = max_results
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_schedules, params, self._interceptors,
+                self._native.list_schedules, params, _interceptors,
                 "scheduler", "ListSchedules", self._region,
                 ListSchedulesOutput,
                 ("group_name", "name_prefix", "state", "next_token", "max_results", ),
@@ -286,9 +297,10 @@ class EventBridgeSchedulerClient:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.list_tags_for_resource, params, self._interceptors,
+                self._native.list_tags_for_resource, params, _interceptors,
                 "scheduler", "ListTagsForResource", self._region,
                 ListTagsForResourceOutput,
                 ("resource_arn", ),
@@ -309,9 +321,10 @@ class EventBridgeSchedulerClient:
             "resource_arn": resource_arn,
             "tags": tags,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.tag_resource, params, self._interceptors,
+                self._native.tag_resource, params, _interceptors,
                 "scheduler", "TagResource", self._region,
                 TagResourceOutput,
                 ("resource_arn", "tags", ),
@@ -332,9 +345,10 @@ class EventBridgeSchedulerClient:
             "resource_arn": resource_arn,
             "tag_keys": tag_keys,
         }
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.untag_resource, params, self._interceptors,
+                self._native.untag_resource, params, _interceptors,
                 "scheduler", "UntagResource", self._region,
                 UntagResourceOutput,
                 ("resource_arn", "tag_keys", ),
@@ -386,9 +400,10 @@ class EventBridgeSchedulerClient:
             params["client_token"] = client_token
         if action_after_completion is not None:
             params["action_after_completion"] = action_after_completion
-        if self._interceptors:
+        _interceptors = operation_interceptors("scheduler", self._interceptors)
+        if _interceptors:
             _response = await invoke(
-                self._native.update_schedule, params, self._interceptors,
+                self._native.update_schedule, params, _interceptors,
                 "scheduler", "UpdateSchedule", self._region,
                 UpdateScheduleOutput,
                 ("name", "schedule_expression", "target", "flexible_time_window", "group_name", "start_date", "end_date", "description", "schedule_expression_timezone", "state", "kms_key_arn", "client_token", "action_after_completion", ),

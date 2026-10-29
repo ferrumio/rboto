@@ -4,19 +4,21 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import io
 import json
 import os
 import resource
 import statistics
 import time
 import tracemalloc
+from collections import deque
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 from rboto import DynamoDBClient
 
 if TYPE_CHECKING:
-    from rboto import Interceptor, Next, OperationRequest, OperationResponse
+    from rboto import Interceptor, LogLevel, Next, OperationRequest, OperationResponse
 
 RESPONSE_BODY = b'{"TableNames":["example"]}'
 RESPONSE = (
@@ -48,6 +50,20 @@ async def middleware(request: OperationRequest, call_next: Next) -> OperationRes
     return await call_next(request)
 
 
+class MemorySink(io.StringIO):
+    """Count JSON lines and retain a bounded sample without external I/O."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.records: deque[str] = deque(maxlen=256)
+        self.count = 0
+
+    def write(self, value: str) -> int:
+        self.count += value.count("\n")
+        self.records.append(value)
+        return len(value)
+
+
 async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dict[str, object]:
     for name in tuple(os.environ):
         if name.startswith("AWS_"):
@@ -70,6 +86,15 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
     server = await asyncio.start_server(handle, "127.0.0.1", 0)
     port = server.sockets[0].getsockname()[1]
     interceptors: Sequence[Interceptor] = (middleware,) if mode == "middleware" else ()
+    sink: MemorySink | None = None
+    if mode.startswith("logging-"):
+        from rboto import configure_logging
+
+        sink = MemorySink()
+        level: LogLevel = (
+            "OFF" if mode == "logging-disabled" else "INFO" if mode == "logging-info" else "DEBUG"
+        )
+        configure_logging(level=level, stream=sink)
     # Omitting the new keyword allows --mode baseline to run against the parent revision.
     client = (
         DynamoDBClient(region="us-east-1", endpoint_url=f"http://127.0.0.1:{port}")
@@ -94,6 +119,9 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
     async with server:
         try:
             await asyncio.gather(*(worker(20, False) for _ in range(concurrency)))
+            if sink is not None:
+                sink.records.clear()
+                sink.count = 0
             if allocations:
                 tracemalloc.start()
             cpu_start = time.process_time()
@@ -115,6 +143,9 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
             for writer in tuple(connections):
                 writer.close()
             await asyncio.gather(*(writer.wait_closed() for writer in tuple(connections)))
+            if sink is not None:
+                configure_logging(level="OFF")
+                sink.close()
     ordered = sorted(latencies)
     return {
         "mode": mode,
@@ -127,13 +158,25 @@ async def run(mode: str, count: int, concurrency: int, allocations: bool) -> dic
         "p95_us": ordered[int((len(ordered) - 1) * 0.95)],
         "process_peak_rss_kib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
         "peak_python_traced_bytes": peak_python_bytes,
+        "log_records": sink.count if sink is not None else 0,
         "note": "Includes the local HTTP peer; traced allocations exclude native memory.",
     }
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=["baseline", "disabled", "middleware"], required=True)
+    parser.add_argument(
+        "--mode",
+        choices=[
+            "baseline",
+            "disabled",
+            "middleware",
+            "logging-disabled",
+            "logging-info",
+            "logging-debug",
+        ],
+        required=True,
+    )
     parser.add_argument("--requests", type=int, default=2000)
     parser.add_argument("--concurrency", type=int, default=8)
     parser.add_argument("--allocations", action="store_true")
