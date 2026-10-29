@@ -20,6 +20,8 @@ from .types import (
     QueueAttributeName,
     SendMessageBatchRequestEntry,
 )
+from .paginators import SQSClientPaginators as _Paginators
+
 
 
 class SQSClient:
@@ -48,6 +50,14 @@ class SQSClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_permission(

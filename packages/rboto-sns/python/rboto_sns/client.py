@@ -16,6 +16,8 @@ from .types import (
     PublishBatchRequestEntry,
     Tag,
 )
+from .paginators import SNSClientPaginators as _Paginators
+
 
 
 class SNSClient:
@@ -44,6 +46,14 @@ class SNSClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_permission(

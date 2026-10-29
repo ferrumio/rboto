@@ -57,15 +57,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_sfn.types`.
-- Reuse response values with typed adapters from `rboto_sfn.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_sfn.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -135,6 +135,7 @@ async def create_activity(
 ) -> CreateActivityOutput: ...
 ```
 
+
 ### create_state_machine
 
 ```python
@@ -153,6 +154,7 @@ async def create_state_machine(
 ) -> CreateStateMachineOutput: ...
 ```
 
+
 ### create_state_machine_alias
 
 ```python
@@ -164,6 +166,7 @@ async def create_state_machine_alias(
 ) -> CreateStateMachineAliasOutput: ...
 ```
 
+
 ### delete_activity
 
 ```python
@@ -172,6 +175,7 @@ async def delete_activity(
     activity_arn: str,
 ) -> DeleteActivityOutput: ...
 ```
+
 
 ### delete_state_machine
 
@@ -182,6 +186,7 @@ async def delete_state_machine(
 ) -> DeleteStateMachineOutput: ...
 ```
 
+
 ### delete_state_machine_alias
 
 ```python
@@ -190,6 +195,7 @@ async def delete_state_machine_alias(
     state_machine_alias_arn: str,
 ) -> DeleteStateMachineAliasOutput: ...
 ```
+
 
 ### delete_state_machine_version
 
@@ -200,6 +206,7 @@ async def delete_state_machine_version(
 ) -> DeleteStateMachineVersionOutput: ...
 ```
 
+
 ### describe_activity
 
 ```python
@@ -208,6 +215,7 @@ async def describe_activity(
     activity_arn: str,
 ) -> DescribeActivityOutput: ...
 ```
+
 
 ### describe_execution
 
@@ -219,6 +227,7 @@ async def describe_execution(
 ) -> DescribeExecutionOutput: ...
 ```
 
+
 ### describe_map_run
 
 ```python
@@ -227,6 +236,7 @@ async def describe_map_run(
     map_run_arn: str,
 ) -> DescribeMapRunOutput: ...
 ```
+
 
 ### describe_state_machine
 
@@ -238,6 +248,7 @@ async def describe_state_machine(
 ) -> DescribeStateMachineOutput: ...
 ```
 
+
 ### describe_state_machine_alias
 
 ```python
@@ -246,6 +257,7 @@ async def describe_state_machine_alias(
     state_machine_alias_arn: str,
 ) -> DescribeStateMachineAliasOutput: ...
 ```
+
 
 ### describe_state_machine_for_execution
 
@@ -257,6 +269,7 @@ async def describe_state_machine_for_execution(
 ) -> DescribeStateMachineForExecutionOutput: ...
 ```
 
+
 ### get_activity_task
 
 ```python
@@ -266,6 +279,7 @@ async def get_activity_task(
     worker_name: str | None = None,
 ) -> GetActivityTaskOutput: ...
 ```
+
 
 ### get_execution_history
 
@@ -280,6 +294,10 @@ async def get_execution_history(
 ) -> GetExecutionHistoryOutput: ...
 ```
 
+Also available as `client.paginators.get_execution_history(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_activities
 
 ```python
@@ -289,6 +307,10 @@ async def list_activities(
     next_token: str | None = None,
 ) -> ListActivitiesOutput: ...
 ```
+
+Also available as `client.paginators.list_activities(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_executions
 
@@ -304,6 +326,10 @@ async def list_executions(
 ) -> ListExecutionsOutput: ...
 ```
 
+Also available as `client.paginators.list_executions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_map_runs
 
 ```python
@@ -314,6 +340,10 @@ async def list_map_runs(
     next_token: str | None = None,
 ) -> ListMapRunsOutput: ...
 ```
+
+Also available as `client.paginators.list_map_runs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_state_machine_aliases
 
@@ -326,6 +356,7 @@ async def list_state_machine_aliases(
 ) -> ListStateMachineAliasesOutput: ...
 ```
 
+
 ### list_state_machine_versions
 
 ```python
@@ -337,6 +368,7 @@ async def list_state_machine_versions(
 ) -> ListStateMachineVersionsOutput: ...
 ```
 
+
 ### list_state_machines
 
 ```python
@@ -347,6 +379,10 @@ async def list_state_machines(
 ) -> ListStateMachinesOutput: ...
 ```
 
+Also available as `client.paginators.list_state_machines(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -355,6 +391,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceOutput: ...
 ```
+
 
 ### publish_state_machine_version
 
@@ -367,6 +404,7 @@ async def publish_state_machine_version(
 ) -> PublishStateMachineVersionOutput: ...
 ```
 
+
 ### redrive_execution
 
 ```python
@@ -376,6 +414,7 @@ async def redrive_execution(
     client_token: str | None = None,
 ) -> RedriveExecutionOutput: ...
 ```
+
 
 ### send_task_failure
 
@@ -388,6 +427,7 @@ async def send_task_failure(
 ) -> SendTaskFailureOutput: ...
 ```
 
+
 ### send_task_heartbeat
 
 ```python
@@ -396,6 +436,7 @@ async def send_task_heartbeat(
     task_token: str,
 ) -> SendTaskHeartbeatOutput: ...
 ```
+
 
 ### send_task_success
 
@@ -406,6 +447,7 @@ async def send_task_success(
     output: str,
 ) -> SendTaskSuccessOutput: ...
 ```
+
 
 ### start_execution
 
@@ -418,6 +460,7 @@ async def start_execution(
     trace_header: str | None = None,
 ) -> StartExecutionOutput: ...
 ```
+
 
 ### start_sync_execution
 
@@ -432,6 +475,7 @@ async def start_sync_execution(
 ) -> StartSyncExecutionOutput: ...
 ```
 
+
 ### stop_execution
 
 ```python
@@ -443,6 +487,7 @@ async def stop_execution(
 ) -> StopExecutionOutput: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -452,6 +497,7 @@ async def tag_resource(
     tags: Sequence[Tag],
 ) -> TagResourceOutput: ...
 ```
+
 
 ### test_state
 
@@ -471,6 +517,7 @@ async def test_state(
 ) -> TestStateOutput: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -480,6 +527,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceOutput: ...
 ```
+
 
 ### update_map_run
 
@@ -492,6 +540,7 @@ async def update_map_run(
     tolerated_failure_count: int | None = None,
 ) -> UpdateMapRunOutput: ...
 ```
+
 
 ### update_state_machine
 
@@ -509,6 +558,7 @@ async def update_state_machine(
 ) -> UpdateStateMachineOutput: ...
 ```
 
+
 ### update_state_machine_alias
 
 ```python
@@ -519,6 +569,7 @@ async def update_state_machine_alias(
     routing_configuration: Sequence[RoutingConfigurationListItem] | None = None,
 ) -> UpdateStateMachineAliasOutput: ...
 ```
+
 
 ### validate_state_machine_definition
 
@@ -531,6 +582,7 @@ async def validate_state_machine_definition(
     max_results: int | None = None,
 ) -> ValidateStateMachineDefinitionOutput: ...
 ```
+
 
 ## Links
 

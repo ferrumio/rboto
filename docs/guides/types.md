@@ -84,41 +84,8 @@ Request unions accept only known, serializable variants. Response unions can
 also contain `{"unknown": True}` when the service sends a new variant. For
 example, DynamoDB uses `AttributeValue` for inputs and `AttributeValueOutput`
 for returned values. Narrow or handle unknown variants before reusing a response
-as a request.
-
-## Reuse a response as input
-
-Each service has an `inputs` module with typed adapters. An adapter's name is the
-model shape name in snake case: `inputs.message`, `inputs.key`, or
-`inputs.queue_attribute_name`. Calling one validates the value and returns the
-corresponding input type.
-
-For example, append a Bedrock response to a typed conversation history:
-
-```python
---8<-- "examples/docs/bedrock_history.py"
-```
-
-Before the next call, add the next user message or handle any requested tool
-results. For DynamoDB pagination, use
-`exclusive_start_key=inputs.key(response.last_evaluated_key)` after checking that
-the key is present. See the complete [pagination example](dynamodb.md).
-
-Adapters copy containers, omit optional fields whose value is `None`, and convert
-nested values recursively. They preserve explicit nulls inside JSON documents
-and sparse collections. Missing required fields, unknown enum values, unknown
-union variants, and unexpected fields raise `rboto.inputs.InputConversionError`,
-which includes the field path. The source value is not modified.
-
-Ordinary native response objects can be converted through their `to_dict()`
-representation. Objects that may own streams require an explicit mapping, so a
-failed conversion cannot take stream ownership. Read byte streams explicitly
-before using their bytes as input. Async event iterators are adapted lazily;
-invalid events raise when consumed.
-
-Adapters run only when called. Normal client calls retain their existing
-conversion path. Adapters check the input representation; service permissions,
-resource state, and service-specific value constraints still apply.
+as a request. For pagination, use [typed paginators](pagination.md); they manage
+continuation keys internally.
 
 ## Enum response values
 
@@ -143,18 +110,6 @@ def future_attribute(response: GetQueueAttributesResult) -> str | None:
 Known keys such as `"VisibilityTimeout"` need no wrapper. An arbitrary string
 such as `"VisibilityTimout"` is a type error. `UnknownEnumValue` is a typing
 marker over `str`, not a runtime class to use with `isinstance`.
-
-To reuse an enum value, call its adapter to validate it, or use `is_known()` to
-narrow the existing value in both mypy and Pyright:
-
-```python
---8<-- "examples/docs/sqs_known_enum.py"
-```
-
-`is_known()` returns `False` for values missing from the installed model.
-Calling the adapter instead raises `InputConversionError` for such values.
-A plain string equality check does not reliably narrow `UnknownEnumValue`
-in type checkers.
 
 ## Check your code
 

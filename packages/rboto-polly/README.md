@@ -58,15 +58,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_polly.types`.
-- Reuse response values with typed adapters from `rboto_polly.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_polly.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -107,6 +107,7 @@ async def delete_lexicon(
 ) -> DeleteLexiconOutput: ...
 ```
 
+
 ### describe_voices
 
 ```python
@@ -119,6 +120,10 @@ async def describe_voices(
 ) -> DescribeVoicesOutput: ...
 ```
 
+Also available as `client.paginators.describe_voices(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_lexicon
 
 ```python
@@ -127,6 +132,7 @@ async def get_lexicon(
     name: str,
 ) -> GetLexiconOutput: ...
 ```
+
 
 ### get_speech_synthesis_task
 
@@ -137,6 +143,7 @@ async def get_speech_synthesis_task(
 ) -> GetSpeechSynthesisTaskOutput: ...
 ```
 
+
 ### list_lexicons
 
 ```python
@@ -145,6 +152,10 @@ async def list_lexicons(
     next_token: str | None = None,
 ) -> ListLexiconsOutput: ...
 ```
+
+Also available as `client.paginators.list_lexicons(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_speech_synthesis_tasks
 
@@ -157,6 +168,10 @@ async def list_speech_synthesis_tasks(
 ) -> ListSpeechSynthesisTasksOutput: ...
 ```
 
+Also available as `client.paginators.list_speech_synthesis_tasks(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_lexicon
 
 ```python
@@ -166,6 +181,7 @@ async def put_lexicon(
     content: str,
 ) -> PutLexiconOutput: ...
 ```
+
 
 ### start_speech_synthesis_stream
 
@@ -181,6 +197,7 @@ async def start_speech_synthesis_stream(
     action_stream: AsyncIterator[StartSpeechSynthesisStreamActionStream] | None = None,
 ) -> StartSpeechSynthesisStreamOutput: ...
 ```
+
 
 ### start_speech_synthesis_task
 
@@ -202,6 +219,7 @@ async def start_speech_synthesis_task(
 ) -> StartSpeechSynthesisTaskOutput: ...
 ```
 
+
 ### synthesize_speech
 
 ```python
@@ -218,6 +236,7 @@ async def synthesize_speech(
     text_type: TextType | None = None,
 ) -> SynthesizeSpeechOutput: ...
 ```
+
 
 ## Links
 

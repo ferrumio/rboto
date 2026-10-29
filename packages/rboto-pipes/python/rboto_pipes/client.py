@@ -19,6 +19,8 @@ from .types import (
     RequestedPipeState,
     UpdatePipeSourceParameters,
 )
+from .paginators import EventBridgePipesClientPaginators as _Paginators
+
 
 
 class EventBridgePipesClient:
@@ -47,6 +49,14 @@ class EventBridgePipesClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def create_pipe(

@@ -13,7 +13,9 @@ from rboto.logging import operation_interceptors
 from ._native import {{ native_client_class }} as NativeClient{% for name in native_output_names %}, {{ name }}{% endfor %}
 from .types import (
 {% for name in type_names %}    {{ name }},
-{% endfor %})
+{% endfor %}){% if pagination %}
+from .paginators import {{ client_class }}Paginators as _Paginators
+{% endif %}
 
 
 class {{ client_class }}:
@@ -42,7 +44,15 @@ class {{ client_class }}:
             endpoint_url=endpoint_url,
             config=config,
         )
-{% for method in methods %}
+{% if pagination %}        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
+{% endif %}{% for method in methods %}
 
     async def {{ method.name }}(
         self,

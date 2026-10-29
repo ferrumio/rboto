@@ -57,15 +57,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_bedrock_runtime.types`.
-- Reuse response values with typed adapters from `rboto_bedrock_runtime.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_runtime.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -111,6 +111,7 @@ async def apply_guardrail(
 ) -> ApplyGuardrailResponse: ...
 ```
 
+
 ### converse
 
 ```python
@@ -131,6 +132,7 @@ async def converse(
     output_config: OutputConfig | None = None,
 ) -> ConverseResponse: ...
 ```
+
 
 ### converse_stream
 
@@ -153,6 +155,7 @@ async def converse_stream(
 ) -> ConverseStreamResponse: ...
 ```
 
+
 ### count_tokens
 
 ```python
@@ -163,6 +166,7 @@ async def count_tokens(
 ) -> CountTokensResponse: ...
 ```
 
+
 ### get_async_invoke
 
 ```python
@@ -171,6 +175,7 @@ async def get_async_invoke(
     invocation_arn: str,
 ) -> GetAsyncInvokeResponse: ...
 ```
+
 
 ### invoke_guardrail_checks
 
@@ -181,6 +186,7 @@ async def invoke_guardrail_checks(
     checks: GuardrailChecksConfig,
 ) -> InvokeGuardrailChecksResponse: ...
 ```
+
 
 ### invoke_model
 
@@ -200,6 +206,7 @@ async def invoke_model(
 ) -> InvokeModelResponse: ...
 ```
 
+
 ### invoke_model_with_bidirectional_stream
 
 ```python
@@ -209,6 +216,7 @@ async def invoke_model_with_bidirectional_stream(
     body: AsyncIterator[InvokeModelWithBidirectionalStreamInput],
 ) -> InvokeModelWithBidirectionalStreamResponse: ...
 ```
+
 
 ### invoke_model_with_response_stream
 
@@ -228,6 +236,7 @@ async def invoke_model_with_response_stream(
 ) -> InvokeModelWithResponseStreamResponse: ...
 ```
 
+
 ### list_async_invokes
 
 ```python
@@ -243,6 +252,10 @@ async def list_async_invokes(
 ) -> ListAsyncInvokesResponse: ...
 ```
 
+Also available as `client.paginators.list_async_invokes(...)`, returning an
+async iterator of the response type above.
+
+
 ### start_async_invoke
 
 ```python
@@ -255,6 +268,7 @@ async def start_async_invoke(
     tags: Sequence[Tag] | None = None,
 ) -> StartAsyncInvokeResponse: ...
 ```
+
 
 ## Links
 

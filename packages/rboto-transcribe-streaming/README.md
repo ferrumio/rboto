@@ -75,15 +75,13 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_transcribe_streaming.types`.
-- Reuse response values with typed adapters from `rboto_transcribe_streaming.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+
 - Catch modeled exceptions from `rboto_transcribe_streaming.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -119,6 +117,7 @@ async def get_medical_scribe_stream(
 ) -> GetMedicalScribeStreamResponse: ...
 ```
 
+
 ### start_call_analytics_stream_transcription
 
 ```python
@@ -146,6 +145,7 @@ async def start_call_analytics_stream_transcription(
 ) -> StartCallAnalyticsStreamTranscriptionResponse: ...
 ```
 
+
 ### start_medical_scribe_stream
 
 ```python
@@ -158,6 +158,7 @@ async def start_medical_scribe_stream(
     session_id: str | None = None,
 ) -> StartMedicalScribeStreamResponse: ...
 ```
+
 
 ### start_medical_stream_transcription
 
@@ -178,6 +179,7 @@ async def start_medical_stream_transcription(
     content_identification_type: MedicalContentIdentificationType | None = None,
 ) -> StartMedicalStreamTranscriptionResponse: ...
 ```
+
 
 ### start_stream_transcription
 
@@ -211,6 +213,7 @@ async def start_stream_transcription(
     transcript_format: TranscriptFormat | None = None,
 ) -> StartStreamTranscriptionResponse: ...
 ```
+
 
 ## Links
 

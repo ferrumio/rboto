@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_pipes.types`.
-- Reuse response values with typed adapters from `rboto_pipes.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_pipes.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -116,6 +116,7 @@ async def create_pipe(
 ) -> CreatePipeResponse: ...
 ```
 
+
 ### delete_pipe
 
 ```python
@@ -125,6 +126,7 @@ async def delete_pipe(
 ) -> DeletePipeResponse: ...
 ```
 
+
 ### describe_pipe
 
 ```python
@@ -133,6 +135,7 @@ async def describe_pipe(
     name: str,
 ) -> DescribePipeResponse: ...
 ```
+
 
 ### list_pipes
 
@@ -149,6 +152,10 @@ async def list_pipes(
 ) -> ListPipesResponse: ...
 ```
 
+Also available as `client.paginators.list_pipes(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -157,6 +164,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### start_pipe
 
@@ -167,6 +175,7 @@ async def start_pipe(
 ) -> StartPipeResponse: ...
 ```
 
+
 ### stop_pipe
 
 ```python
@@ -175,6 +184,7 @@ async def stop_pipe(
     name: str,
 ) -> StopPipeResponse: ...
 ```
+
 
 ### tag_resource
 
@@ -186,6 +196,7 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -195,6 +206,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_pipe
 
@@ -214,6 +226,7 @@ async def update_pipe(
     kms_key_identifier: str | None = None,
 ) -> UpdatePipeResponse: ...
 ```
+
 
 ## Links
 

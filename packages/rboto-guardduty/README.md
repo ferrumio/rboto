@@ -54,15 +54,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_guardduty.types`.
-- Reuse response values with typed adapters from `rboto_guardduty.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_guardduty.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -197,6 +197,7 @@ async def accept_administrator_invitation(
 ) -> AcceptAdministratorInvitationResponse: ...
 ```
 
+
 ### accept_invitation
 
 ```python
@@ -208,6 +209,7 @@ async def accept_invitation(
 ) -> AcceptInvitationResponse: ...
 ```
 
+
 ### archive_findings
 
 ```python
@@ -217,6 +219,7 @@ async def archive_findings(
     finding_ids: _Sequence[str],
 ) -> ArchiveFindingsResponse: ...
 ```
+
 
 ### create_custom_detection_rule_association
 
@@ -229,6 +232,7 @@ async def create_custom_detection_rule_association(
     tags: dict[str, str] | None = None,
 ) -> CreateCustomDetectionRuleAssociationResponse: ...
 ```
+
 
 ### create_custom_detection_rule_org_configuration
 
@@ -243,6 +247,7 @@ async def create_custom_detection_rule_org_configuration(
 ) -> CreateCustomDetectionRuleOrgConfigurationResponse: ...
 ```
 
+
 ### create_detector
 
 ```python
@@ -256,6 +261,7 @@ async def create_detector(
     features: _Sequence[DetectorFeatureConfiguration] | None = None,
 ) -> CreateDetectorResponse: ...
 ```
+
 
 ### create_filter
 
@@ -273,6 +279,7 @@ async def create_filter(
 ) -> CreateFilterResponse: ...
 ```
 
+
 ### create_investigation
 
 ```python
@@ -283,6 +290,7 @@ async def create_investigation(
     client_token: str | None = None,
 ) -> CreateInvestigationResponse: ...
 ```
+
 
 ### create_ip_set
 
@@ -300,6 +308,7 @@ async def create_ip_set(
 ) -> CreateIPSetResponse: ...
 ```
 
+
 ### create_malware_protection_plan
 
 ```python
@@ -313,6 +322,7 @@ async def create_malware_protection_plan(
 ) -> CreateMalwareProtectionPlanResponse: ...
 ```
 
+
 ### create_members
 
 ```python
@@ -322,6 +332,7 @@ async def create_members(
     account_details: _Sequence[AccountDetail],
 ) -> CreateMembersResponse: ...
 ```
+
 
 ### create_publishing_destination
 
@@ -336,6 +347,7 @@ async def create_publishing_destination(
 ) -> CreatePublishingDestinationResponse: ...
 ```
 
+
 ### create_sample_findings
 
 ```python
@@ -345,6 +357,7 @@ async def create_sample_findings(
     finding_types: _Sequence[str] | None = None,
 ) -> CreateSampleFindingsResponse: ...
 ```
+
 
 ### create_threat_entity_set
 
@@ -362,6 +375,7 @@ async def create_threat_entity_set(
 ) -> CreateThreatEntitySetResponse: ...
 ```
 
+
 ### create_threat_intel_set
 
 ```python
@@ -377,6 +391,7 @@ async def create_threat_intel_set(
     expected_bucket_owner: str | None = None,
 ) -> CreateThreatIntelSetResponse: ...
 ```
+
 
 ### create_trusted_entity_set
 
@@ -394,6 +409,7 @@ async def create_trusted_entity_set(
 ) -> CreateTrustedEntitySetResponse: ...
 ```
 
+
 ### decline_invitations
 
 ```python
@@ -402,6 +418,7 @@ async def decline_invitations(
     account_ids: _Sequence[str],
 ) -> DeclineInvitationsResponse: ...
 ```
+
 
 ### delete_custom_detection_rule_association
 
@@ -413,6 +430,7 @@ async def delete_custom_detection_rule_association(
 ) -> DeleteCustomDetectionRuleAssociationResponse: ...
 ```
 
+
 ### delete_custom_detection_rule_org_configuration
 
 ```python
@@ -423,6 +441,7 @@ async def delete_custom_detection_rule_org_configuration(
 ) -> DeleteCustomDetectionRuleOrgConfigurationResponse: ...
 ```
 
+
 ### delete_detector
 
 ```python
@@ -431,6 +450,7 @@ async def delete_detector(
     detector_id: str,
 ) -> DeleteDetectorResponse: ...
 ```
+
 
 ### delete_filter
 
@@ -442,6 +462,7 @@ async def delete_filter(
 ) -> DeleteFilterResponse: ...
 ```
 
+
 ### delete_invitations
 
 ```python
@@ -450,6 +471,7 @@ async def delete_invitations(
     account_ids: _Sequence[str],
 ) -> DeleteInvitationsResponse: ...
 ```
+
 
 ### delete_ip_set
 
@@ -461,6 +483,7 @@ async def delete_ip_set(
 ) -> DeleteIPSetResponse: ...
 ```
 
+
 ### delete_malware_protection_plan
 
 ```python
@@ -469,6 +492,7 @@ async def delete_malware_protection_plan(
     malware_protection_plan_id: str,
 ) -> None: ...
 ```
+
 
 ### delete_members
 
@@ -480,6 +504,7 @@ async def delete_members(
 ) -> DeleteMembersResponse: ...
 ```
 
+
 ### delete_publishing_destination
 
 ```python
@@ -489,6 +514,7 @@ async def delete_publishing_destination(
     destination_id: str,
 ) -> DeletePublishingDestinationResponse: ...
 ```
+
 
 ### delete_threat_entity_set
 
@@ -500,6 +526,7 @@ async def delete_threat_entity_set(
 ) -> DeleteThreatEntitySetResponse: ...
 ```
 
+
 ### delete_threat_intel_set
 
 ```python
@@ -510,6 +537,7 @@ async def delete_threat_intel_set(
 ) -> DeleteThreatIntelSetResponse: ...
 ```
 
+
 ### delete_trusted_entity_set
 
 ```python
@@ -519,6 +547,7 @@ async def delete_trusted_entity_set(
     trusted_entity_set_id: str,
 ) -> DeleteTrustedEntitySetResponse: ...
 ```
+
 
 ### describe_malware_scans
 
@@ -533,6 +562,10 @@ async def describe_malware_scans(
 ) -> DescribeMalwareScansResponse: ...
 ```
 
+Also available as `client.paginators.describe_malware_scans(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_organization_configuration
 
 ```python
@@ -544,6 +577,10 @@ async def describe_organization_configuration(
 ) -> DescribeOrganizationConfigurationResponse: ...
 ```
 
+Also available as `client.paginators.describe_organization_configuration(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_publishing_destination
 
 ```python
@@ -554,6 +591,7 @@ async def describe_publishing_destination(
 ) -> DescribePublishingDestinationResponse: ...
 ```
 
+
 ### disable_organization_admin_account
 
 ```python
@@ -562,6 +600,7 @@ async def disable_organization_admin_account(
     admin_account_id: str,
 ) -> DisableOrganizationAdminAccountResponse: ...
 ```
+
 
 ### disassociate_from_administrator_account
 
@@ -572,6 +611,7 @@ async def disassociate_from_administrator_account(
 ) -> DisassociateFromAdministratorAccountResponse: ...
 ```
 
+
 ### disassociate_from_master_account
 
 ```python
@@ -580,6 +620,7 @@ async def disassociate_from_master_account(
     detector_id: str,
 ) -> DisassociateFromMasterAccountResponse: ...
 ```
+
 
 ### disassociate_members
 
@@ -591,6 +632,7 @@ async def disassociate_members(
 ) -> DisassociateMembersResponse: ...
 ```
 
+
 ### enable_organization_admin_account
 
 ```python
@@ -600,6 +642,7 @@ async def enable_organization_admin_account(
 ) -> EnableOrganizationAdminAccountResponse: ...
 ```
 
+
 ### get_administrator_account
 
 ```python
@@ -608,6 +651,7 @@ async def get_administrator_account(
     detector_id: str,
 ) -> GetAdministratorAccountResponse: ...
 ```
+
 
 ### get_coverage_statistics
 
@@ -620,6 +664,7 @@ async def get_coverage_statistics(
 ) -> GetCoverageStatisticsResponse: ...
 ```
 
+
 ### get_custom_detection_rule
 
 ```python
@@ -628,6 +673,7 @@ async def get_custom_detection_rule(
     rule_id: str,
 ) -> GetCustomDetectionRuleResponse: ...
 ```
+
 
 ### get_custom_detection_rule_association
 
@@ -639,6 +685,7 @@ async def get_custom_detection_rule_association(
 ) -> GetCustomDetectionRuleAssociationResponse: ...
 ```
 
+
 ### get_custom_detection_rule_org_configuration
 
 ```python
@@ -649,6 +696,7 @@ async def get_custom_detection_rule_org_configuration(
 ) -> GetCustomDetectionRuleOrgConfigurationResponse: ...
 ```
 
+
 ### get_detector
 
 ```python
@@ -657,6 +705,7 @@ async def get_detector(
     detector_id: str,
 ) -> GetDetectorResponse: ...
 ```
+
 
 ### get_filter
 
@@ -668,6 +717,7 @@ async def get_filter(
 ) -> GetFilterResponse: ...
 ```
 
+
 ### get_findings
 
 ```python
@@ -678,6 +728,7 @@ async def get_findings(
     sort_criteria: SortCriteria | None = None,
 ) -> GetFindingsResponse: ...
 ```
+
 
 ### get_findings_statistics
 
@@ -693,6 +744,7 @@ async def get_findings_statistics(
 ) -> GetFindingsStatisticsResponse: ...
 ```
 
+
 ### get_investigation
 
 ```python
@@ -703,11 +755,13 @@ async def get_investigation(
 ) -> GetInvestigationResponse: ...
 ```
 
+
 ### get_invitations_count
 
 ```python
 async def get_invitations_count() -> GetInvitationsCountResponse: ...
 ```
+
 
 ### get_ip_set
 
@@ -719,6 +773,7 @@ async def get_ip_set(
 ) -> GetIPSetResponse: ...
 ```
 
+
 ### get_malware_protection_plan
 
 ```python
@@ -727,6 +782,7 @@ async def get_malware_protection_plan(
     malware_protection_plan_id: str,
 ) -> GetMalwareProtectionPlanResponse: ...
 ```
+
 
 ### get_malware_scan
 
@@ -737,6 +793,7 @@ async def get_malware_scan(
 ) -> GetMalwareScanResponse: ...
 ```
 
+
 ### get_malware_scan_settings
 
 ```python
@@ -746,6 +803,7 @@ async def get_malware_scan_settings(
 ) -> GetMalwareScanSettingsResponse: ...
 ```
 
+
 ### get_master_account
 
 ```python
@@ -754,6 +812,7 @@ async def get_master_account(
     detector_id: str,
 ) -> GetMasterAccountResponse: ...
 ```
+
 
 ### get_member_detectors
 
@@ -765,6 +824,7 @@ async def get_member_detectors(
 ) -> GetMemberDetectorsResponse: ...
 ```
 
+
 ### get_members
 
 ```python
@@ -775,11 +835,13 @@ async def get_members(
 ) -> GetMembersResponse: ...
 ```
 
+
 ### get_organization_statistics
 
 ```python
 async def get_organization_statistics() -> GetOrganizationStatisticsResponse: ...
 ```
+
 
 ### get_remaining_free_trial_days
 
@@ -791,6 +853,7 @@ async def get_remaining_free_trial_days(
 ) -> GetRemainingFreeTrialDaysResponse: ...
 ```
 
+
 ### get_threat_entity_set
 
 ```python
@@ -800,6 +863,7 @@ async def get_threat_entity_set(
     threat_entity_set_id: str,
 ) -> GetThreatEntitySetResponse: ...
 ```
+
 
 ### get_threat_intel_set
 
@@ -811,6 +875,7 @@ async def get_threat_intel_set(
 ) -> GetThreatIntelSetResponse: ...
 ```
 
+
 ### get_trusted_entity_set
 
 ```python
@@ -820,6 +885,7 @@ async def get_trusted_entity_set(
     trusted_entity_set_id: str,
 ) -> GetTrustedEntitySetResponse: ...
 ```
+
 
 ### get_usage_statistics
 
@@ -835,6 +901,10 @@ async def get_usage_statistics(
 ) -> GetUsageStatisticsResponse: ...
 ```
 
+Also available as `client.paginators.get_usage_statistics(...)`, returning an
+async iterator of the response type above.
+
+
 ### invite_members
 
 ```python
@@ -846,6 +916,7 @@ async def invite_members(
     message: str | None = None,
 ) -> InviteMembersResponse: ...
 ```
+
 
 ### list_coverage
 
@@ -860,6 +931,10 @@ async def list_coverage(
 ) -> ListCoverageResponse: ...
 ```
 
+Also available as `client.paginators.list_coverage(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_custom_detection_rule_associations
 
 ```python
@@ -872,6 +947,10 @@ async def list_custom_detection_rule_associations(
 ) -> ListCustomDetectionRuleAssociationsResponse: ...
 ```
 
+Also available as `client.paginators.list_custom_detection_rule_associations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_custom_detection_rule_org_configurations
 
 ```python
@@ -882,6 +961,10 @@ async def list_custom_detection_rule_org_configurations(
     status: DetectionRuleConfigurationStatus | None = None,
 ) -> ListCustomDetectionRuleOrgConfigurationsResponse: ...
 ```
+
+Also available as `client.paginators.list_custom_detection_rule_org_configurations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_custom_detection_rules
 
@@ -894,6 +977,10 @@ async def list_custom_detection_rules(
 ) -> ListCustomDetectionRulesResponse: ...
 ```
 
+Also available as `client.paginators.list_custom_detection_rules(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_detectors
 
 ```python
@@ -903,6 +990,10 @@ async def list_detectors(
     next_token: str | None = None,
 ) -> ListDetectorsResponse: ...
 ```
+
+Also available as `client.paginators.list_detectors(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_filters
 
@@ -914,6 +1005,10 @@ async def list_filters(
     next_token: str | None = None,
 ) -> ListFiltersResponse: ...
 ```
+
+Also available as `client.paginators.list_filters(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_findings
 
@@ -928,6 +1023,10 @@ async def list_findings(
 ) -> ListFindingsResponse: ...
 ```
 
+Also available as `client.paginators.list_findings(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_investigations
 
 ```python
@@ -940,6 +1039,10 @@ async def list_investigations(
 ) -> ListInvestigationsResponse: ...
 ```
 
+Also available as `client.paginators.list_investigations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_invitations
 
 ```python
@@ -949,6 +1052,10 @@ async def list_invitations(
     next_token: str | None = None,
 ) -> ListInvitationsResponse: ...
 ```
+
+Also available as `client.paginators.list_invitations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_ip_sets
 
@@ -961,6 +1068,10 @@ async def list_ip_sets(
 ) -> ListIPSetsResponse: ...
 ```
 
+Also available as `client.paginators.list_ip_sets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_malware_protection_plans
 
 ```python
@@ -969,6 +1080,7 @@ async def list_malware_protection_plans(
     next_token: str | None = None,
 ) -> ListMalwareProtectionPlansResponse: ...
 ```
+
 
 ### list_malware_scans
 
@@ -982,6 +1094,10 @@ async def list_malware_scans(
 ) -> ListMalwareScansResponse: ...
 ```
 
+Also available as `client.paginators.list_malware_scans(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_members
 
 ```python
@@ -994,6 +1110,10 @@ async def list_members(
 ) -> ListMembersResponse: ...
 ```
 
+Also available as `client.paginators.list_members(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_organization_admin_accounts
 
 ```python
@@ -1003,6 +1123,10 @@ async def list_organization_admin_accounts(
     next_token: str | None = None,
 ) -> ListOrganizationAdminAccountsResponse: ...
 ```
+
+Also available as `client.paginators.list_organization_admin_accounts(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_publishing_destinations
 
@@ -1015,6 +1139,10 @@ async def list_publishing_destinations(
 ) -> ListPublishingDestinationsResponse: ...
 ```
 
+Also available as `client.paginators.list_publishing_destinations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -1023,6 +1151,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_threat_entity_sets
 
@@ -1035,6 +1164,10 @@ async def list_threat_entity_sets(
 ) -> ListThreatEntitySetsResponse: ...
 ```
 
+Also available as `client.paginators.list_threat_entity_sets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_threat_intel_sets
 
 ```python
@@ -1045,6 +1178,10 @@ async def list_threat_intel_sets(
     next_token: str | None = None,
 ) -> ListThreatIntelSetsResponse: ...
 ```
+
+Also available as `client.paginators.list_threat_intel_sets(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_trusted_entity_sets
 
@@ -1057,6 +1194,10 @@ async def list_trusted_entity_sets(
 ) -> ListTrustedEntitySetsResponse: ...
 ```
 
+Also available as `client.paginators.list_trusted_entity_sets(...)`, returning an
+async iterator of the response type above.
+
+
 ### send_object_malware_scan
 
 ```python
@@ -1065,6 +1206,7 @@ async def send_object_malware_scan(
     s3_object: S3ObjectForSendObjectMalwareScan | None = None,
 ) -> SendObjectMalwareScanResponse: ...
 ```
+
 
 ### start_malware_scan
 
@@ -1077,6 +1219,7 @@ async def start_malware_scan(
 ) -> StartMalwareScanResponse: ...
 ```
 
+
 ### start_monitoring_members
 
 ```python
@@ -1086,6 +1229,7 @@ async def start_monitoring_members(
     account_ids: _Sequence[str],
 ) -> StartMonitoringMembersResponse: ...
 ```
+
 
 ### stop_monitoring_members
 
@@ -1097,6 +1241,7 @@ async def stop_monitoring_members(
 ) -> StopMonitoringMembersResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1106,6 +1251,7 @@ async def tag_resource(
     tags: dict[str, str],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### unarchive_findings
 
@@ -1117,6 +1263,7 @@ async def unarchive_findings(
 ) -> UnarchiveFindingsResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1126,6 +1273,7 @@ async def untag_resource(
     tag_keys: _Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_custom_detection_rule_association
 
@@ -1137,6 +1285,7 @@ async def update_custom_detection_rule_association(
     mode: AssociationMode,
 ) -> UpdateCustomDetectionRuleAssociationResponse: ...
 ```
+
 
 ### update_custom_detection_rule_org_configuration
 
@@ -1150,6 +1299,7 @@ async def update_custom_detection_rule_org_configuration(
 ) -> UpdateCustomDetectionRuleOrgConfigurationResponse: ...
 ```
 
+
 ### update_detector
 
 ```python
@@ -1162,6 +1312,7 @@ async def update_detector(
     features: _Sequence[DetectorFeatureConfiguration] | None = None,
 ) -> UpdateDetectorResponse: ...
 ```
+
 
 ### update_filter
 
@@ -1177,6 +1328,7 @@ async def update_filter(
 ) -> UpdateFilterResponse: ...
 ```
 
+
 ### update_findings_feedback
 
 ```python
@@ -1188,6 +1340,7 @@ async def update_findings_feedback(
     comments: str | None = None,
 ) -> UpdateFindingsFeedbackResponse: ...
 ```
+
 
 ### update_ip_set
 
@@ -1203,6 +1356,7 @@ async def update_ip_set(
 ) -> UpdateIPSetResponse: ...
 ```
 
+
 ### update_malware_protection_plan
 
 ```python
@@ -1215,6 +1369,7 @@ async def update_malware_protection_plan(
 ) -> None: ...
 ```
 
+
 ### update_malware_scan_settings
 
 ```python
@@ -1225,6 +1380,7 @@ async def update_malware_scan_settings(
     ebs_snapshot_preservation: EbsSnapshotPreservation | None = None,
 ) -> UpdateMalwareScanSettingsResponse: ...
 ```
+
 
 ### update_member_detectors
 
@@ -1237,6 +1393,7 @@ async def update_member_detectors(
     features: _Sequence[MemberFeaturesConfiguration] | None = None,
 ) -> UpdateMemberDetectorsResponse: ...
 ```
+
 
 ### update_organization_configuration
 
@@ -1251,6 +1408,7 @@ async def update_organization_configuration(
 ) -> UpdateOrganizationConfigurationResponse: ...
 ```
 
+
 ### update_publishing_destination
 
 ```python
@@ -1261,6 +1419,7 @@ async def update_publishing_destination(
     destination_properties: DestinationProperties | None = None,
 ) -> UpdatePublishingDestinationResponse: ...
 ```
+
 
 ### update_threat_entity_set
 
@@ -1276,6 +1435,7 @@ async def update_threat_entity_set(
 ) -> UpdateThreatEntitySetResponse: ...
 ```
 
+
 ### update_threat_intel_set
 
 ```python
@@ -1290,6 +1450,7 @@ async def update_threat_intel_set(
 ) -> UpdateThreatIntelSetResponse: ...
 ```
 
+
 ### update_trusted_entity_set
 
 ```python
@@ -1303,6 +1464,7 @@ async def update_trusted_entity_set(
     activate: bool | None = None,
 ) -> UpdateTrustedEntitySetResponse: ...
 ```
+
 
 ## Links
 

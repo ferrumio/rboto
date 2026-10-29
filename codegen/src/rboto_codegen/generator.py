@@ -8,9 +8,9 @@ from pathlib import Path
 from typing import cast
 
 from .documentation import render_service_readme
-from .input_adapters import render_input_adapters
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
+from .pagination import resolve_pagination
 from .registry import list_services
 from .rust_crate import RustField, RustOperation, RustType, parse_crate
 from .smithy import SmithyMember, SmithyShape, load_model, short_name, to_snake_case
@@ -42,9 +42,9 @@ class GeneratedPaths:
     rust: Path
     client: Path
     types: Path
-    inputs: Path
     native_stub: Path
     exceptions: Path
+    paginators: Path
 
 
 def _split_generic(value: str) -> tuple[str, ...]:
@@ -124,6 +124,14 @@ class ServiceGenerator:
         self._rust_names = {name.lower(): name for name in self.crate.types}
         self.templates = template_environment()
         self._configure_python_types()
+        self.pagination = resolve_pagination(
+            descriptor,
+            self.service,
+            {item["operation"] for item in self._native_output_operations()},
+            lambda shape, member: (
+                field.name if (field := self._member_field(shape, member)) else member.rust_name
+            ),
+        )
 
     def _reachable_shapes(self, roots: list[str | None]) -> set[str]:
         pending = list(roots)
@@ -228,14 +236,14 @@ class ServiceGenerator:
             f"{self.descriptor.python_package}/client.py",
             types=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/types.py",
-            inputs=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
-            f"{self.descriptor.python_package}/inputs.py",
             native_stub=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/_native.pyi",
             exceptions=self.repository_root
             / f"packages/{self.descriptor.distribution_name}/python/"
             f"{self.descriptor.python_package}/exceptions.py",
+            paginators=self.repository_root / f"packages/{self.descriptor.distribution_name}/python/"
+            f"{self.descriptor.python_package}/paginators.py",
         )
         for path in (
             paths.rust,
@@ -251,7 +259,6 @@ class ServiceGenerator:
             paths.rust_runtime,
             paths.client,
             paths.types,
-            paths.inputs,
             paths.native_stub,
             paths.exceptions,
         ):
@@ -271,12 +278,18 @@ class ServiceGenerator:
         _write_generated(paths.rust_runtime, self._render_rust_runtime())
         _write_generated(paths.rust, self._render_rust())
         _write_generated(paths.types, self._render_python_types())
-        _write_generated(paths.inputs, self._render_python_inputs())
         client_source = self._render_python_client()
         _write_generated(paths.client, client_source)
+        if self.pagination:
+            _write_generated(paths.paginators, self._render_python_client(paginators=True))
+        elif paths.paginators.exists():
+            paths.paginators.unlink()
         _write_generated(
             paths.readme,
-            render_service_readme(self.descriptor, client_source, self.repository_root),
+            render_service_readme(
+                self.descriptor, client_source, self.repository_root,
+                tuple(item.operation for item in self.pagination),
+            ),
         )
         _write_generated(paths.native_stub, self._render_native_stub())
         _write_generated(paths.exceptions, self._render_exceptions())
@@ -1313,29 +1326,6 @@ class ServiceGenerator:
             return "bytes"
         return self._python_type(target)
 
-    def _render_python_inputs(self) -> str:
-        def annotation(target: str) -> str:
-            def qualify(match: re.Match[str]) -> str:
-                token = match.group()
-                if token == "None":
-                    return token
-                if token in {"str", "int", "float", "bool", "bytes", "list", "dict"}:
-                    return f"_builtins.{token}"
-                if token == self._sequence_type:
-                    return "_Sequence"
-                if token == "AsyncIterator":
-                    return "_AsyncIterator"
-                return f"_types.{token}"
-            return re.sub(r"\b[A-Za-z_]\w*\b", qualify, self._python_input_type(target))
-
-        def field_name(shape: SmithyShape, member: SmithyMember) -> str:
-            field = self._member_field(shape, member) if shape.kind == "structure" else None
-            return field.name if field is not None else member.rust_name
-
-        return render_input_adapters(
-            self.service.shapes, self._input_targets, annotation, field_name,
-        )
-
     def _rust_output_annotation(self, rust_type: str, optional: bool = False) -> str:
         kind = self._kind(rust_type)
         if kind in {"string", "datetime"}:
@@ -1565,8 +1555,12 @@ class ServiceGenerator:
             "native_output": native_output,
         }
 
-    def _render_python_client(self) -> str:
-        methods = [self._method_signature(op.rust_name) for op in self.service.operations]
+    def _render_python_client(self, *, paginators: bool = False) -> str:
+        names = (
+            [item.operation for item in self.pagination] if paginators
+            else [op.rust_name for op in self.service.operations]
+        )
+        methods = [self._method_signature(name) for name in names]
         type_names: set[str] = set()
         ignored = {
             "str", "int", "bool", "float", "bytes", "list", "dict", "None",
@@ -1575,6 +1569,8 @@ class ServiceGenerator:
         native_output_names = {
             metadata["class_name"] for metadata in self._native_output_operations()
         }
+        if paginators:
+            native_output_names.intersection_update(str(method["output"]) for method in methods)
         for method in methods:
             output = str(method["output"])
             if output not in native_output_names:
@@ -1597,7 +1593,7 @@ class ServiceGenerator:
                     if token not in ignored
                 )
         return (
-            self.templates.get_template("client.py.j2")
+            self.templates.get_template("paginators.py.j2" if paginators else "client.py.j2")
             .render(
                 methods=methods,
                 type_names=sorted(type_names),
@@ -1607,6 +1603,14 @@ class ServiceGenerator:
                 native_client_class=self.descriptor.native_class,
                 service_id=self.descriptor.service_id,
                 sequence_type=self._sequence_type,
+                pagination={
+                    item.operation: {
+                        "input_tokens": repr(item.input_tokens),
+                        "output_tokens": repr(item.output_tokens),
+                        "more_results": repr(item.more_results),
+                    }
+                    for item in self.pagination
+                },
             )
             .rstrip()
             + "\n"

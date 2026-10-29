@@ -76,6 +76,8 @@ from .types import (
     Variant,
     ViewPort,
 )
+from .paginators import BedrockAgentCoreClientPaginators as _Paginators
+
 
 
 class BedrockAgentCoreClient:
@@ -104,6 +106,14 @@ class BedrockAgentCoreClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def batch_create_memory_records(

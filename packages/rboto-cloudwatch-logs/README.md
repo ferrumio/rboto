@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_cloudwatch_logs.types`.
-- Reuse response values with typed adapters from `rboto_cloudwatch_logs.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_cloudwatch_logs.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -214,6 +214,7 @@ async def associate_kms_key(
 ) -> None: ...
 ```
 
+
 ### associate_source_to_s3_table_integration
 
 ```python
@@ -224,6 +225,7 @@ async def associate_source_to_s3_table_integration(
 ) -> AssociateSourceToS3TableIntegrationResponse: ...
 ```
 
+
 ### cancel_export_task
 
 ```python
@@ -233,6 +235,7 @@ async def cancel_export_task(
 ) -> None: ...
 ```
 
+
 ### cancel_import_task
 
 ```python
@@ -241,6 +244,7 @@ async def cancel_import_task(
     import_id: str,
 ) -> CancelImportTaskResponse: ...
 ```
+
 
 ### create_delivery
 
@@ -255,6 +259,7 @@ async def create_delivery(
     tags: dict[str, str] | None = None,
 ) -> CreateDeliveryResponse: ...
 ```
+
 
 ### create_export_task
 
@@ -271,6 +276,7 @@ async def create_export_task(
 ) -> CreateExportTaskResponse: ...
 ```
 
+
 ### create_import_task
 
 ```python
@@ -281,6 +287,7 @@ async def create_import_task(
     import_filter: ImportFilter | None = None,
 ) -> CreateImportTaskResponse: ...
 ```
+
 
 ### create_log_anomaly_detector
 
@@ -297,6 +304,7 @@ async def create_log_anomaly_detector(
 ) -> CreateLogAnomalyDetectorResponse: ...
 ```
 
+
 ### create_log_group
 
 ```python
@@ -310,6 +318,7 @@ async def create_log_group(
 ) -> None: ...
 ```
 
+
 ### create_log_stream
 
 ```python
@@ -319,6 +328,7 @@ async def create_log_stream(
     log_stream_name: str,
 ) -> None: ...
 ```
+
 
 ### create_lookup_table
 
@@ -333,6 +343,7 @@ async def create_lookup_table(
     tags: dict[str, str] | None = None,
 ) -> CreateLookupTableResponse: ...
 ```
+
 
 ### create_scheduled_query
 
@@ -357,6 +368,7 @@ async def create_scheduled_query(
 ) -> CreateScheduledQueryResponse: ...
 ```
 
+
 ### delete_account_policy
 
 ```python
@@ -367,6 +379,7 @@ async def delete_account_policy(
 ) -> None: ...
 ```
 
+
 ### delete_data_protection_policy
 
 ```python
@@ -375,6 +388,7 @@ async def delete_data_protection_policy(
     log_group_identifier: str,
 ) -> None: ...
 ```
+
 
 ### delete_delivery
 
@@ -385,6 +399,7 @@ async def delete_delivery(
 ) -> None: ...
 ```
 
+
 ### delete_delivery_destination
 
 ```python
@@ -393,6 +408,7 @@ async def delete_delivery_destination(
     name: str,
 ) -> None: ...
 ```
+
 
 ### delete_delivery_destination_policy
 
@@ -403,6 +419,7 @@ async def delete_delivery_destination_policy(
 ) -> None: ...
 ```
 
+
 ### delete_delivery_source
 
 ```python
@@ -411,6 +428,7 @@ async def delete_delivery_source(
     name: str,
 ) -> None: ...
 ```
+
 
 ### delete_destination
 
@@ -421,6 +439,7 @@ async def delete_destination(
 ) -> None: ...
 ```
 
+
 ### delete_index_policy
 
 ```python
@@ -429,6 +448,7 @@ async def delete_index_policy(
     log_group_identifier: str,
 ) -> DeleteIndexPolicyResponse: ...
 ```
+
 
 ### delete_integration
 
@@ -440,6 +460,7 @@ async def delete_integration(
 ) -> DeleteIntegrationResponse: ...
 ```
 
+
 ### delete_log_anomaly_detector
 
 ```python
@@ -449,6 +470,7 @@ async def delete_log_anomaly_detector(
 ) -> None: ...
 ```
 
+
 ### delete_log_group
 
 ```python
@@ -457,6 +479,7 @@ async def delete_log_group(
     log_group_name: str,
 ) -> None: ...
 ```
+
 
 ### delete_log_stream
 
@@ -468,6 +491,7 @@ async def delete_log_stream(
 ) -> None: ...
 ```
 
+
 ### delete_lookup_table
 
 ```python
@@ -476,6 +500,7 @@ async def delete_lookup_table(
     lookup_table_arn: str,
 ) -> None: ...
 ```
+
 
 ### delete_metric_filter
 
@@ -487,6 +512,7 @@ async def delete_metric_filter(
 ) -> None: ...
 ```
 
+
 ### delete_query_definition
 
 ```python
@@ -495,6 +521,7 @@ async def delete_query_definition(
     query_definition_id: str,
 ) -> DeleteQueryDefinitionResponse: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -507,6 +534,7 @@ async def delete_resource_policy(
 ) -> None: ...
 ```
 
+
 ### delete_retention_policy
 
 ```python
@@ -516,6 +544,7 @@ async def delete_retention_policy(
 ) -> None: ...
 ```
 
+
 ### delete_scheduled_query
 
 ```python
@@ -524,6 +553,7 @@ async def delete_scheduled_query(
     identifier: str,
 ) -> DeleteScheduledQueryResponse: ...
 ```
+
 
 ### delete_subscription_filter
 
@@ -535,6 +565,7 @@ async def delete_subscription_filter(
 ) -> None: ...
 ```
 
+
 ### delete_syslog_configuration
 
 ```python
@@ -545,6 +576,7 @@ async def delete_syslog_configuration(
 ) -> None: ...
 ```
 
+
 ### delete_transformer
 
 ```python
@@ -553,6 +585,7 @@ async def delete_transformer(
     log_group_identifier: str,
 ) -> None: ...
 ```
+
 
 ### describe_account_policies
 
@@ -565,6 +598,7 @@ async def describe_account_policies(
     next_token: str | None = None,
 ) -> DescribeAccountPoliciesResponse: ...
 ```
+
 
 ### describe_configuration_templates
 
@@ -580,6 +614,10 @@ async def describe_configuration_templates(
 ) -> DescribeConfigurationTemplatesResponse: ...
 ```
 
+Also available as `client.paginators.describe_configuration_templates(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_deliveries
 
 ```python
@@ -590,6 +628,10 @@ async def describe_deliveries(
     delivery_source_names: Sequence[str] | None = None,
 ) -> DescribeDeliveriesResponse: ...
 ```
+
+Also available as `client.paginators.describe_deliveries(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_delivery_destinations
 
@@ -602,6 +644,10 @@ async def describe_delivery_destinations(
 ) -> DescribeDeliveryDestinationsResponse: ...
 ```
 
+Also available as `client.paginators.describe_delivery_destinations(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_delivery_sources
 
 ```python
@@ -613,6 +659,10 @@ async def describe_delivery_sources(
 ) -> DescribeDeliverySourcesResponse: ...
 ```
 
+Also available as `client.paginators.describe_delivery_sources(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_destinations
 
 ```python
@@ -623,6 +673,10 @@ async def describe_destinations(
     limit: int | None = None,
 ) -> DescribeDestinationsResponse: ...
 ```
+
+Also available as `client.paginators.describe_destinations(...)`, returning an
+async iterator of the response type above.
+
 
 ### describe_export_tasks
 
@@ -636,6 +690,10 @@ async def describe_export_tasks(
 ) -> DescribeExportTasksResponse: ...
 ```
 
+Also available as `client.paginators.describe_export_tasks(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_field_indexes
 
 ```python
@@ -646,6 +704,7 @@ async def describe_field_indexes(
     next_token: str | None = None,
 ) -> DescribeFieldIndexesResponse: ...
 ```
+
 
 ### describe_import_task_batches
 
@@ -658,6 +717,7 @@ async def describe_import_task_batches(
     next_token: str | None = None,
 ) -> DescribeImportTaskBatchesResponse: ...
 ```
+
 
 ### describe_import_tasks
 
@@ -672,6 +732,7 @@ async def describe_import_tasks(
 ) -> DescribeImportTasksResponse: ...
 ```
 
+
 ### describe_index_policies
 
 ```python
@@ -681,6 +742,7 @@ async def describe_index_policies(
     next_token: str | None = None,
 ) -> DescribeIndexPoliciesResponse: ...
 ```
+
 
 ### describe_log_groups
 
@@ -698,6 +760,10 @@ async def describe_log_groups(
 ) -> DescribeLogGroupsResponse: ...
 ```
 
+Also available as `client.paginators.describe_log_groups(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_log_streams
 
 ```python
@@ -713,6 +779,10 @@ async def describe_log_streams(
 ) -> DescribeLogStreamsResponse: ...
 ```
 
+Also available as `client.paginators.describe_log_streams(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_lookup_tables
 
 ```python
@@ -723,6 +793,7 @@ async def describe_lookup_tables(
     next_token: str | None = None,
 ) -> DescribeLookupTablesResponse: ...
 ```
+
 
 ### describe_metric_filters
 
@@ -738,6 +809,10 @@ async def describe_metric_filters(
 ) -> DescribeMetricFiltersResponse: ...
 ```
 
+Also available as `client.paginators.describe_metric_filters(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_queries
 
 ```python
@@ -751,6 +826,10 @@ async def describe_queries(
 ) -> DescribeQueriesResponse: ...
 ```
 
+Also available as `client.paginators.describe_queries(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_query_definitions
 
 ```python
@@ -762,6 +841,7 @@ async def describe_query_definitions(
     next_token: str | None = None,
 ) -> DescribeQueryDefinitionsResponse: ...
 ```
+
 
 ### describe_resource_policies
 
@@ -775,6 +855,10 @@ async def describe_resource_policies(
 ) -> DescribeResourcePoliciesResponse: ...
 ```
 
+Also available as `client.paginators.describe_resource_policies(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_subscription_filters
 
 ```python
@@ -787,6 +871,10 @@ async def describe_subscription_filters(
 ) -> DescribeSubscriptionFiltersResponse: ...
 ```
 
+Also available as `client.paginators.describe_subscription_filters(...)`, returning an
+async iterator of the response type above.
+
+
 ### disassociate_kms_key
 
 ```python
@@ -797,6 +885,7 @@ async def disassociate_kms_key(
 ) -> None: ...
 ```
 
+
 ### disassociate_source_from_s3_table_integration
 
 ```python
@@ -805,6 +894,7 @@ async def disassociate_source_from_s3_table_integration(
     identifier: str,
 ) -> DisassociateSourceFromS3TableIntegrationResponse: ...
 ```
+
 
 ### filter_log_events
 
@@ -826,6 +916,10 @@ async def filter_log_events(
 ) -> FilterLogEventsResponse: ...
 ```
 
+Also available as `client.paginators.filter_log_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_data_protection_policy
 
 ```python
@@ -834,6 +928,7 @@ async def get_data_protection_policy(
     log_group_identifier: str,
 ) -> GetDataProtectionPolicyResponse: ...
 ```
+
 
 ### get_delivery
 
@@ -844,6 +939,7 @@ async def get_delivery(
 ) -> GetDeliveryResponse: ...
 ```
 
+
 ### get_delivery_destination
 
 ```python
@@ -852,6 +948,7 @@ async def get_delivery_destination(
     name: str,
 ) -> GetDeliveryDestinationResponse: ...
 ```
+
 
 ### get_delivery_destination_policy
 
@@ -862,6 +959,7 @@ async def get_delivery_destination_policy(
 ) -> GetDeliveryDestinationPolicyResponse: ...
 ```
 
+
 ### get_delivery_source
 
 ```python
@@ -870,6 +968,7 @@ async def get_delivery_source(
     name: str,
 ) -> GetDeliverySourceResponse: ...
 ```
+
 
 ### get_integration
 
@@ -880,6 +979,7 @@ async def get_integration(
 ) -> GetIntegrationResponse: ...
 ```
 
+
 ### get_log_anomaly_detector
 
 ```python
@@ -888,6 +988,7 @@ async def get_log_anomaly_detector(
     anomaly_detector_arn: str,
 ) -> GetLogAnomalyDetectorResponse: ...
 ```
+
 
 ### get_log_events
 
@@ -906,6 +1007,10 @@ async def get_log_events(
 ) -> GetLogEventsResponse: ...
 ```
 
+Also available as `client.paginators.get_log_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_log_fields
 
 ```python
@@ -915,6 +1020,7 @@ async def get_log_fields(
     data_source_type: str,
 ) -> GetLogFieldsResponse: ...
 ```
+
 
 ### get_log_group_fields
 
@@ -927,6 +1033,7 @@ async def get_log_group_fields(
 ) -> GetLogGroupFieldsResponse: ...
 ```
 
+
 ### get_log_object
 
 ```python
@@ -936,6 +1043,7 @@ async def get_log_object(
     unmask: bool | None = None,
 ) -> GetLogObjectResponse: ...
 ```
+
 
 ### get_log_record
 
@@ -947,6 +1055,7 @@ async def get_log_record(
 ) -> GetLogRecordResponse: ...
 ```
 
+
 ### get_lookup_table
 
 ```python
@@ -955,6 +1064,7 @@ async def get_lookup_table(
     lookup_table_arn: str,
 ) -> GetLookupTableResponse: ...
 ```
+
 
 ### get_query_results
 
@@ -967,6 +1077,7 @@ async def get_query_results(
 ) -> GetQueryResultsResponse: ...
 ```
 
+
 ### get_scheduled_query
 
 ```python
@@ -975,6 +1086,7 @@ async def get_scheduled_query(
     identifier: str,
 ) -> GetScheduledQueryResponse: ...
 ```
+
 
 ### get_scheduled_query_history
 
@@ -990,11 +1102,16 @@ async def get_scheduled_query_history(
 ) -> GetScheduledQueryHistoryResponse: ...
 ```
 
+Also available as `client.paginators.get_scheduled_query_history(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_storage_tier_policy
 
 ```python
 async def get_storage_tier_policy() -> GetStorageTierPolicyResponse: ...
 ```
+
 
 ### get_transformer
 
@@ -1004,6 +1121,7 @@ async def get_transformer(
     log_group_identifier: str,
 ) -> GetTransformerResponse: ...
 ```
+
 
 ### list_aggregate_log_group_summaries
 
@@ -1021,6 +1139,10 @@ async def list_aggregate_log_group_summaries(
 ) -> ListAggregateLogGroupSummariesResponse: ...
 ```
 
+Also available as `client.paginators.list_aggregate_log_group_summaries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_anomalies
 
 ```python
@@ -1033,6 +1155,10 @@ async def list_anomalies(
 ) -> ListAnomaliesResponse: ...
 ```
 
+Also available as `client.paginators.list_anomalies(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_integrations
 
 ```python
@@ -1044,6 +1170,7 @@ async def list_integrations(
 ) -> ListIntegrationsResponse: ...
 ```
 
+
 ### list_log_anomaly_detectors
 
 ```python
@@ -1054,6 +1181,10 @@ async def list_log_anomaly_detectors(
     next_token: str | None = None,
 ) -> ListLogAnomalyDetectorsResponse: ...
 ```
+
+Also available as `client.paginators.list_log_anomaly_detectors(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_log_groups
 
@@ -1072,6 +1203,7 @@ async def list_log_groups(
 ) -> ListLogGroupsResponse: ...
 ```
 
+
 ### list_log_groups_for_query
 
 ```python
@@ -1082,6 +1214,10 @@ async def list_log_groups_for_query(
     max_results: int | None = None,
 ) -> ListLogGroupsForQueryResponse: ...
 ```
+
+Also available as `client.paginators.list_log_groups_for_query(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_scheduled_queries
 
@@ -1095,6 +1231,10 @@ async def list_scheduled_queries(
 ) -> ListScheduledQueriesResponse: ...
 ```
 
+Also available as `client.paginators.list_scheduled_queries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_sources_for_s3_table_integration
 
 ```python
@@ -1105,6 +1245,10 @@ async def list_sources_for_s3_table_integration(
     next_token: str | None = None,
 ) -> ListSourcesForS3TableIntegrationResponse: ...
 ```
+
+Also available as `client.paginators.list_sources_for_s3_table_integration(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_syslog_configurations
 
@@ -1118,6 +1262,7 @@ async def list_syslog_configurations(
 ) -> ListSyslogConfigurationsResponse: ...
 ```
 
+
 ### list_tags_for_resource
 
 ```python
@@ -1127,6 +1272,7 @@ async def list_tags_for_resource(
 ) -> ListTagsForResourceResponse: ...
 ```
 
+
 ### list_tags_log_group
 
 ```python
@@ -1135,6 +1281,7 @@ async def list_tags_log_group(
     log_group_name: str,
 ) -> ListTagsLogGroupResponse: ...
 ```
+
 
 ### put_account_policy
 
@@ -1149,6 +1296,7 @@ async def put_account_policy(
 ) -> PutAccountPolicyResponse: ...
 ```
 
+
 ### put_bearer_token_authentication
 
 ```python
@@ -1159,6 +1307,7 @@ async def put_bearer_token_authentication(
 ) -> None: ...
 ```
 
+
 ### put_data_protection_policy
 
 ```python
@@ -1168,6 +1317,7 @@ async def put_data_protection_policy(
     policy_document: str,
 ) -> PutDataProtectionPolicyResponse: ...
 ```
+
 
 ### put_delivery_destination
 
@@ -1183,6 +1333,7 @@ async def put_delivery_destination(
 ) -> PutDeliveryDestinationResponse: ...
 ```
 
+
 ### put_delivery_destination_policy
 
 ```python
@@ -1192,6 +1343,7 @@ async def put_delivery_destination_policy(
     delivery_destination_policy: str,
 ) -> PutDeliveryDestinationPolicyResponse: ...
 ```
+
 
 ### put_delivery_source
 
@@ -1206,6 +1358,7 @@ async def put_delivery_source(
 ) -> PutDeliverySourceResponse: ...
 ```
 
+
 ### put_destination
 
 ```python
@@ -1218,6 +1371,7 @@ async def put_destination(
 ) -> PutDestinationResponse: ...
 ```
 
+
 ### put_destination_policy
 
 ```python
@@ -1229,6 +1383,7 @@ async def put_destination_policy(
 ) -> None: ...
 ```
 
+
 ### put_index_policy
 
 ```python
@@ -1238,6 +1393,7 @@ async def put_index_policy(
     policy_document: str,
 ) -> PutIndexPolicyResponse: ...
 ```
+
 
 ### put_integration
 
@@ -1249,6 +1405,7 @@ async def put_integration(
     integration_type: IntegrationType,
 ) -> PutIntegrationResponse: ...
 ```
+
 
 ### put_log_events
 
@@ -1263,6 +1420,7 @@ async def put_log_events(
 ) -> PutLogEventsResponse: ...
 ```
 
+
 ### put_log_group_deletion_protection
 
 ```python
@@ -1272,6 +1430,7 @@ async def put_log_group_deletion_protection(
     deletion_protection_enabled: bool,
 ) -> None: ...
 ```
+
 
 ### put_metric_filter
 
@@ -1288,6 +1447,7 @@ async def put_metric_filter(
 ) -> None: ...
 ```
 
+
 ### put_query_definition
 
 ```python
@@ -1303,6 +1463,7 @@ async def put_query_definition(
 ) -> PutQueryDefinitionResponse: ...
 ```
 
+
 ### put_resource_policy
 
 ```python
@@ -1315,6 +1476,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### put_retention_policy
 
 ```python
@@ -1325,6 +1487,7 @@ async def put_retention_policy(
 ) -> None: ...
 ```
 
+
 ### put_storage_tier_policy
 
 ```python
@@ -1333,6 +1496,7 @@ async def put_storage_tier_policy(
     storage_tier: StorageTier,
 ) -> PutStorageTierPolicyResponse: ...
 ```
+
 
 ### put_subscription_filter
 
@@ -1351,6 +1515,7 @@ async def put_subscription_filter(
 ) -> None: ...
 ```
 
+
 ### put_syslog_configuration
 
 ```python
@@ -1361,6 +1526,7 @@ async def put_syslog_configuration(
 ) -> None: ...
 ```
 
+
 ### put_transformer
 
 ```python
@@ -1370,6 +1536,7 @@ async def put_transformer(
     transformer_config: Sequence[Processor],
 ) -> None: ...
 ```
+
 
 ### start_live_tail
 
@@ -1382,6 +1549,7 @@ async def start_live_tail(
     log_event_filter_pattern: str | None = None,
 ) -> StartLiveTailResponse: ...
 ```
+
 
 ### start_query
 
@@ -1399,6 +1567,7 @@ async def start_query(
 ) -> StartQueryResponse: ...
 ```
 
+
 ### stop_query
 
 ```python
@@ -1407,6 +1576,7 @@ async def stop_query(
     query_id: str,
 ) -> StopQueryResponse: ...
 ```
+
 
 ### tag_log_group
 
@@ -1418,6 +1588,7 @@ async def tag_log_group(
 ) -> None: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1427,6 +1598,7 @@ async def tag_resource(
     tags: dict[str, str],
 ) -> None: ...
 ```
+
 
 ### test_metric_filter
 
@@ -1438,6 +1610,7 @@ async def test_metric_filter(
 ) -> TestMetricFilterResponse: ...
 ```
 
+
 ### test_transformer
 
 ```python
@@ -1447,6 +1620,7 @@ async def test_transformer(
     log_event_messages: Sequence[str],
 ) -> TestTransformerResponse: ...
 ```
+
 
 ### untag_log_group
 
@@ -1458,6 +1632,7 @@ async def untag_log_group(
 ) -> None: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1467,6 +1642,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_anomaly
 
@@ -1482,6 +1658,7 @@ async def update_anomaly(
 ) -> None: ...
 ```
 
+
 ### update_delivery_configuration
 
 ```python
@@ -1493,6 +1670,7 @@ async def update_delivery_configuration(
     s3_delivery_configuration: S3DeliveryConfiguration | None = None,
 ) -> UpdateDeliveryConfigurationResponse: ...
 ```
+
 
 ### update_log_anomaly_detector
 
@@ -1507,6 +1685,7 @@ async def update_log_anomaly_detector(
 ) -> None: ...
 ```
 
+
 ### update_lookup_table
 
 ```python
@@ -1519,6 +1698,7 @@ async def update_lookup_table(
     kms_key_id: str | None = None,
 ) -> UpdateLookupTableResponse: ...
 ```
+
 
 ### update_scheduled_query
 
@@ -1541,6 +1721,7 @@ async def update_scheduled_query(
     state: ScheduledQueryState | None = None,
 ) -> UpdateScheduledQueryResponse: ...
 ```
+
 
 ## Links
 

@@ -29,6 +29,7 @@ separate from the public documentation under `docs/`.
 
 - [ADR-0016: Isolate transport and credential caches per client](0016-client-transport-and-credential-caches.md)
 - [ADR-0018: Generate distinct input and response type contracts](0018-input-and-output-type-contracts.md)
+- [ADR-0019: Generate typed paginators from validated metadata](0019-typed-pagination.md)
 
 ## Creating an ADR
 

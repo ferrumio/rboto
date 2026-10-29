@@ -54,15 +54,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_scheduler.types`.
-- Reuse response values with typed adapters from `rboto_scheduler.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_scheduler.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -117,6 +117,7 @@ async def create_schedule(
 ) -> CreateScheduleOutput: ...
 ```
 
+
 ### create_schedule_group
 
 ```python
@@ -127,6 +128,7 @@ async def create_schedule_group(
     client_token: str | None = None,
 ) -> CreateScheduleGroupOutput: ...
 ```
+
 
 ### delete_schedule
 
@@ -139,6 +141,7 @@ async def delete_schedule(
 ) -> DeleteScheduleOutput: ...
 ```
 
+
 ### delete_schedule_group
 
 ```python
@@ -148,6 +151,7 @@ async def delete_schedule_group(
     client_token: str | None = None,
 ) -> DeleteScheduleGroupOutput: ...
 ```
+
 
 ### get_schedule
 
@@ -159,6 +163,7 @@ async def get_schedule(
 ) -> GetScheduleOutput: ...
 ```
 
+
 ### get_schedule_group
 
 ```python
@@ -167,6 +172,7 @@ async def get_schedule_group(
     name: str,
 ) -> GetScheduleGroupOutput: ...
 ```
+
 
 ### list_schedule_groups
 
@@ -178,6 +184,10 @@ async def list_schedule_groups(
     max_results: int | None = None,
 ) -> ListScheduleGroupsOutput: ...
 ```
+
+Also available as `client.paginators.list_schedule_groups(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_schedules
 
@@ -192,6 +202,10 @@ async def list_schedules(
 ) -> ListSchedulesOutput: ...
 ```
 
+Also available as `client.paginators.list_schedules(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -200,6 +214,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceOutput: ...
 ```
+
 
 ### tag_resource
 
@@ -211,6 +226,7 @@ async def tag_resource(
 ) -> TagResourceOutput: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -220,6 +236,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceOutput: ...
 ```
+
 
 ### update_schedule
 
@@ -241,6 +258,7 @@ async def update_schedule(
     action_after_completion: ActionAfterCompletion | None = None,
 ) -> UpdateScheduleOutput: ...
 ```
+
 
 ## Links
 

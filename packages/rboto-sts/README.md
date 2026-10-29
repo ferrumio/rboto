@@ -55,15 +55,13 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_sts.types`.
-- Reuse response values with typed adapters from `rboto_sts.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+
 - Catch modeled exceptions from `rboto_sts.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -117,6 +115,7 @@ async def assume_role(
 ) -> AssumeRoleResponse: ...
 ```
 
+
 ### assume_role_with_saml
 
 ```python
@@ -131,6 +130,7 @@ async def assume_role_with_saml(
     minimum_session_token_size: int | None = None,
 ) -> AssumeRoleWithSAMLResponse: ...
 ```
+
 
 ### assume_role_with_web_identity
 
@@ -148,6 +148,7 @@ async def assume_role_with_web_identity(
 ) -> AssumeRoleWithWebIdentityResponse: ...
 ```
 
+
 ### assume_root
 
 ```python
@@ -160,6 +161,7 @@ async def assume_root(
 ) -> AssumeRootResponse: ...
 ```
 
+
 ### decode_authorization_message
 
 ```python
@@ -168,6 +170,7 @@ async def decode_authorization_message(
     encoded_message: str,
 ) -> DecodeAuthorizationMessageResponse: ...
 ```
+
 
 ### get_access_key_info
 
@@ -178,11 +181,13 @@ async def get_access_key_info(
 ) -> GetAccessKeyInfoResponse: ...
 ```
 
+
 ### get_caller_identity
 
 ```python
 async def get_caller_identity() -> GetCallerIdentityResponse: ...
 ```
+
 
 ### get_delegated_access_token
 
@@ -192,6 +197,7 @@ async def get_delegated_access_token(
     trade_in_token: str,
 ) -> GetDelegatedAccessTokenResponse: ...
 ```
+
 
 ### get_federation_token
 
@@ -207,6 +213,7 @@ async def get_federation_token(
 ) -> GetFederationTokenResponse: ...
 ```
 
+
 ### get_session_token
 
 ```python
@@ -219,6 +226,7 @@ async def get_session_token(
 ) -> GetSessionTokenResponse: ...
 ```
 
+
 ### get_web_identity_token
 
 ```python
@@ -230,6 +238,7 @@ async def get_web_identity_token(
     tags: Sequence[Tag] | None = None,
 ) -> GetWebIdentityTokenResponse: ...
 ```
+
 
 ## Links
 

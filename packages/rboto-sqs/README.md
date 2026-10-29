@@ -57,15 +57,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_sqs.types`.
-- Reuse response values with typed adapters from `rboto_sqs.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_sqs.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -122,6 +122,7 @@ async def add_permission(
 ) -> None: ...
 ```
 
+
 ### cancel_message_move_task
 
 ```python
@@ -130,6 +131,7 @@ async def cancel_message_move_task(
     task_handle: str,
 ) -> CancelMessageMoveTaskResult: ...
 ```
+
 
 ### change_message_visibility
 
@@ -142,6 +144,7 @@ async def change_message_visibility(
 ) -> None: ...
 ```
 
+
 ### change_message_visibility_batch
 
 ```python
@@ -151,6 +154,7 @@ async def change_message_visibility_batch(
     entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
 ) -> ChangeMessageVisibilityBatchResult: ...
 ```
+
 
 ### create_queue
 
@@ -163,6 +167,7 @@ async def create_queue(
 ) -> CreateQueueResult: ...
 ```
 
+
 ### delete_message
 
 ```python
@@ -172,6 +177,7 @@ async def delete_message(
     receipt_handle: str,
 ) -> None: ...
 ```
+
 
 ### delete_message_batch
 
@@ -183,6 +189,7 @@ async def delete_message_batch(
 ) -> DeleteMessageBatchResult: ...
 ```
 
+
 ### delete_queue
 
 ```python
@@ -191,6 +198,7 @@ async def delete_queue(
     queue_url: str,
 ) -> None: ...
 ```
+
 
 ### get_queue_attributes
 
@@ -202,6 +210,7 @@ async def get_queue_attributes(
 ) -> GetQueueAttributesResult: ...
 ```
 
+
 ### get_queue_url
 
 ```python
@@ -211,6 +220,7 @@ async def get_queue_url(
     queue_owner_aws_account_id: str | None = None,
 ) -> GetQueueUrlResult: ...
 ```
+
 
 ### list_dead_letter_source_queues
 
@@ -223,6 +233,10 @@ async def list_dead_letter_source_queues(
 ) -> ListDeadLetterSourceQueuesResult: ...
 ```
 
+Also available as `client.paginators.list_dead_letter_source_queues(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_message_move_tasks
 
 ```python
@@ -233,6 +247,7 @@ async def list_message_move_tasks(
 ) -> ListMessageMoveTasksResult: ...
 ```
 
+
 ### list_queue_tags
 
 ```python
@@ -241,6 +256,7 @@ async def list_queue_tags(
     queue_url: str,
 ) -> ListQueueTagsResult: ...
 ```
+
 
 ### list_queues
 
@@ -253,6 +269,10 @@ async def list_queues(
 ) -> ListQueuesResult: ...
 ```
 
+Also available as `client.paginators.list_queues(...)`, returning an
+async iterator of the response type above.
+
+
 ### purge_queue
 
 ```python
@@ -261,6 +281,7 @@ async def purge_queue(
     queue_url: str,
 ) -> None: ...
 ```
+
 
 ### receive_message
 
@@ -278,6 +299,7 @@ async def receive_message(
 ) -> ReceiveMessageResult: ...
 ```
 
+
 ### remove_permission
 
 ```python
@@ -287,6 +309,7 @@ async def remove_permission(
     label: str,
 ) -> None: ...
 ```
+
 
 ### send_message
 
@@ -303,6 +326,7 @@ async def send_message(
 ) -> SendMessageResult: ...
 ```
 
+
 ### send_message_batch
 
 ```python
@@ -313,6 +337,7 @@ async def send_message_batch(
 ) -> SendMessageBatchResult: ...
 ```
 
+
 ### set_queue_attributes
 
 ```python
@@ -322,6 +347,7 @@ async def set_queue_attributes(
     attributes: dict[QueueAttributeName, str],
 ) -> None: ...
 ```
+
 
 ### start_message_move_task
 
@@ -334,6 +360,7 @@ async def start_message_move_task(
 ) -> StartMessageMoveTaskResult: ...
 ```
 
+
 ### tag_queue
 
 ```python
@@ -344,6 +371,7 @@ async def tag_queue(
 ) -> None: ...
 ```
 
+
 ### untag_queue
 
 ```python
@@ -353,6 +381,7 @@ async def untag_queue(
     tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ## Links
 

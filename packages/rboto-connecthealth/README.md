@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_connecthealth.types`.
-- Reuse response values with typed adapters from `rboto_connecthealth.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_connecthealth.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -111,6 +111,7 @@ async def activate_subscription(
 ) -> ActivateSubscriptionOutput: ...
 ```
 
+
 ### create_domain
 
 ```python
@@ -123,6 +124,7 @@ async def create_domain(
 ) -> CreateDomainOutput: ...
 ```
 
+
 ### create_subscription
 
 ```python
@@ -131,6 +133,7 @@ async def create_subscription(
     domain_id: str,
 ) -> CreateSubscriptionOutput: ...
 ```
+
 
 ### deactivate_subscription
 
@@ -142,6 +145,7 @@ async def deactivate_subscription(
 ) -> DeactivateSubscriptionOutput: ...
 ```
 
+
 ### delete_domain
 
 ```python
@@ -151,6 +155,7 @@ async def delete_domain(
 ) -> DeleteDomainOutput: ...
 ```
 
+
 ### get_domain
 
 ```python
@@ -159,6 +164,7 @@ async def get_domain(
     domain_id: str,
 ) -> GetDomainOutput: ...
 ```
+
 
 ### get_medical_scribe_listening_session
 
@@ -171,6 +177,7 @@ async def get_medical_scribe_listening_session(
 ) -> GetMedicalScribeListeningSessionOutput: ...
 ```
 
+
 ### get_patient_insights_job
 
 ```python
@@ -181,6 +188,7 @@ async def get_patient_insights_job(
 ) -> GetPatientInsightsJobResponse: ...
 ```
 
+
 ### get_subscription
 
 ```python
@@ -190,6 +198,7 @@ async def get_subscription(
     subscription_id: str,
 ) -> GetSubscriptionOutput: ...
 ```
+
 
 ### list_domains
 
@@ -202,6 +211,10 @@ async def list_domains(
 ) -> ListDomainsOutput: ...
 ```
 
+Also available as `client.paginators.list_domains(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_subscriptions
 
 ```python
@@ -213,6 +226,10 @@ async def list_subscriptions(
 ) -> ListSubscriptionsOutput: ...
 ```
 
+Also available as `client.paginators.list_subscriptions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -221,6 +238,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceOutput: ...
 ```
+
 
 ### start_medical_scribe_listening_session
 
@@ -236,6 +254,7 @@ async def start_medical_scribe_listening_session(
     input_stream: AsyncIterator[MedicalScribeInputStream] | None = None,
 ) -> StartMedicalScribeListeningSessionOutput: ...
 ```
+
 
 ### start_patient_insights_job
 
@@ -253,6 +272,7 @@ async def start_patient_insights_job(
 ) -> StartPatientInsightsJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -263,6 +283,7 @@ async def tag_resource(
 ) -> None: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -272,6 +293,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ## Links
 

@@ -32,6 +32,8 @@ from .types import (
     Target,
     UpdateConnectionAuthRequestParameters,
 )
+from .paginators import EventBridgeClientPaginators as _Paginators
+
 
 
 class EventBridgeClient:
@@ -60,6 +62,14 @@ class EventBridgeClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def activate_event_source(

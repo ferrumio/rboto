@@ -75,6 +75,8 @@ Response nullability follows Rust fields; unknown union variants are output-only
 Response enums retain their known literals plus the erased `UnknownEnumValue`
 string type for future SDK values. Input lists accept sequences, while maps
 continue to require dictionaries.
-Each generated service `inputs` module adapts reusable response values to those
-input contracts. The shared schema interpreter and enum type guards live in
-`rboto.inputs`; they are opt-in and independent of the service identifier.
+
+ADR-0019 defines `client.paginators`, generated from validated Smithy traits and
+descriptor supplements. The private Python iterator calls public operations
+page by page, preserving middleware and native responses. There is no public
+`inputs` adapter namespace.

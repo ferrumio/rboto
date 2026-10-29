@@ -114,6 +114,8 @@ from .types import (
     VersionFilter,
     WafConfiguration,
 )
+from .paginators import BedrockAgentCoreControlClientPaginators as _Paginators
+
 
 
 class BedrockAgentCoreControlClient:
@@ -142,6 +144,14 @@ class BedrockAgentCoreControlClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def add_dataset_examples(

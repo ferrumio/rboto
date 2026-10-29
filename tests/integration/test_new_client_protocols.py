@@ -2,6 +2,7 @@
 
 import asyncio
 import base64
+import io
 import json
 import os
 import struct
@@ -10,6 +11,7 @@ import zlib
 from collections.abc import AsyncIterator, Iterator
 from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from urllib.parse import parse_qs, urlsplit
 
 import pytest
 from rboto import Next, OperationRequest, OperationResponse
@@ -127,6 +129,118 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_query_paginator_forwards_native_keys_and_middleware_per_page(peer: Peer) -> None:
+    from rboto import DynamoDBClient, configure_logging
+    from rboto_dynamodb import QueryOutput
+
+    observations: list[OperationRequest] = []
+
+    async def middleware(request: OperationRequest, call_next: Next) -> OperationResponse:
+        observations.append(request)
+        return await call_next(request)
+
+    client = DynamoDBClient(
+        region="us-east-1", endpoint_url=peer.endpoint, interceptors=[middleware],
+    )
+    assert client.paginators is client.paginators
+    peer.body = json.dumps({
+        "Items": [], "Count": 0,
+        "LastEvaluatedKey": {"pk": {"S": "a"}, "sk": {"B": base64.b64encode(b"b").decode()}},
+    }).encode()
+    logs = io.StringIO()
+    configure_logging(stream=logs)
+    try:
+        pages = client.paginators.query(table_name="example", limit=1)
+        assert peer.requests == []
+        first = await anext(pages)
+        assert isinstance(first, QueryOutput)
+        assert not first.items
+        cursor = first.last_evaluated_key
+        assert cursor is not None
+        cursor.clear()
+        peer.body = b'{"Items":[{"pk":{"S":"last"}}],"Count":1}'
+        second = await anext(pages)
+        assert second.items == [{"pk": {"s": "last"}}]
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+        assert len(peer.requests) == len(observations) == 2
+        request = json.loads(peer.requests[1][1])
+        assert request["ExclusiveStartKey"] == {"pk": {"S": "a"}, "sk": {"B": "Yg=="}}
+        assert request["TableName"] == "example" and request["Limit"] == 1
+        assert all(item.metadata.dispatched for item in observations)
+        events = [json.loads(line) for line in logs.getvalue().splitlines()]
+        assert len(events) == 2
+        assert all(event["operation"] == "Query" and event["outcome"] == "success"
+                   for event in events)
+    finally:
+        configure_logging(level="OFF")
+
+
+@pytest.mark.asyncio
+@service("s3")
+async def test_s3_paginator_uses_composite_cursor_and_completion_flag(peer: Peer) -> None:
+    from rboto import S3Client
+
+    client = S3Client(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.content_type = "application/xml"
+    peer.body = (
+        b"<ListMultipartUploadsResult><IsTruncated>true</IsTruncated>"
+        b"<NextKeyMarker>folder/key</NextKeyMarker><NextUploadIdMarker>upload-1</NextUploadIdMarker>"
+        b"</ListMultipartUploadsResult>"
+    )
+    pages = client.paginators.list_multipart_uploads(bucket="example", max_uploads=2)
+    await anext(pages)
+    peer.body = (
+        b"<ListMultipartUploadsResult><IsTruncated>false</IsTruncated>"
+        b"<NextKeyMarker>unused</NextKeyMarker><NextUploadIdMarker>unused</NextUploadIdMarker>"
+        b"</ListMultipartUploadsResult>"
+    )
+    await anext(pages)
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert len(peer.requests) == 2
+    params = parse_qs(urlsplit(peer.requests[1][0]).query)
+    assert params["key-marker"] == ["folder/key"]
+    assert params["upload-id-marker"] == ["upload-1"]
+    assert params["max-uploads"] == ["2"]
+
+
+@pytest.mark.asyncio
+@service("s3")
+async def test_s3_list_objects_paginator_falls_back_to_last_key(peer: Peer) -> None:
+    from rboto import S3Client
+
+    client = S3Client(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.content_type = "application/xml"
+    peer.body = (
+        b"<ListBucketResult><IsTruncated>true</IsTruncated>"
+        b"<Contents><Key>a</Key></Contents><Contents><Key>folder/b</Key></Contents>"
+        b"</ListBucketResult>"
+    )
+    pages = client.paginators.list_objects(bucket="example")
+    await anext(pages)
+    peer.body = b"<ListBucketResult><IsTruncated>false</IsTruncated></ListBucketResult>"
+    await anext(pages)
+    with pytest.raises(StopAsyncIteration):
+        await anext(pages)
+    assert len(peer.requests) == 2
+    assert parse_qs(urlsplit(peer.requests[1][0]).query)["marker"] == ["folder/b"]
+
+
+@pytest.mark.asyncio
+@service("sqs")
+async def test_sqs_paginator_forwards_token_and_stops_when_it_repeats(peer: Peer) -> None:
+    from rboto import SQSClient
+
+    client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
+    peer.body = b'{"QueueUrls":[],"NextToken":"same"}'
+    pages = [page async for page in client.paginators.list_queues(max_results=10)]
+    assert len(pages) == len(peer.requests) == 2
+    assert json.loads(peer.requests[1][1]) == {"MaxResults": 10, "NextToken": "same"}
 
 
 @pytest.mark.asyncio
@@ -326,76 +440,6 @@ async def test_sequence_input_and_unknown_enum_output(peer: Peer) -> None:
     assert response.attributes[UnknownEnumValue("FutureAttribute")] == "new"
     assert all(isinstance(key, str) for key in response.attributes)
     assert len(peer.requests) == 1
-
-
-@pytest.mark.asyncio
-@service("dynamodb")
-async def test_generated_adapter_reuses_pagination_key(peer: Peer) -> None:
-    from rboto import DynamoDBClient
-    from rboto_dynamodb import inputs
-
-    peer.body = b'{"Items":[],"LastEvaluatedKey":{"pk":{"S":"example"}}}'
-    client = DynamoDBClient(region="us-east-1", endpoint_url=peer.endpoint)
-    response = await client.query(table_name="Example")
-    assert response.last_evaluated_key is not None
-    await client.query(
-        table_name="Example", exclusive_start_key=inputs.key(response.last_evaluated_key),
-    )
-    assert json.loads(peer.requests[-1][1])["ExclusiveStartKey"] == {"pk": {"S": "example"}}
-
-
-@pytest.mark.asyncio
-@service("bedrock-runtime")
-async def test_generated_adapter_reuses_conversation_with_nullable_fields(peer: Peer) -> None:
-    from rboto import BedrockRuntimeClient
-    from rboto_bedrock_runtime import inputs
-    from rboto_bedrock_runtime.types import Message
-
-    peer.body = json.dumps({
-        "output": {"message": {
-            "role": "assistant", "content": [{"toolUse": {
-                "toolUseId": "call-1", "name": "lookup", "input": {"query": "example"},
-            }}],
-        }},
-        "stopReason": "tool_use",
-        "usage": {"inputTokens": 1, "outputTokens": 1, "totalTokens": 2},
-        "metrics": {"latencyMs": 1},
-    }).encode()
-    client = BedrockRuntimeClient(region="us-east-1", endpoint_url=peer.endpoint)
-    messages: list[Message] = [{"role": "user", "content": [{"text": "hello"}]}]
-    response = await client.converse(model_id="example", messages=messages)
-    assert response.output is not None
-    original = response.output["message"]
-    assert original["content"][0]["tool_use"]["type"] is None
-    messages.append(inputs.message(original))
-    await client.converse(model_id="example", messages=messages)
-    assert json.loads(peer.requests[-1][1])["messages"][-1] == {
-        "role": "assistant", "content": [{"toolUse": {
-            "toolUseId": "call-1", "name": "lookup", "input": {"query": "example"},
-        }}],
-    }
-    assert original["content"][0]["tool_use"]["type"] is None
-
-
-@pytest.mark.asyncio
-@service("sqs")
-async def test_generated_enum_guard_and_adapter_reject_unknown_values(peer: Peer) -> None:
-    from rboto import SQSClient
-    from rboto.inputs import InputConversionError
-    from rboto_sqs import inputs
-
-    peer.body = b'{"Attributes":{"VisibilityTimeout":"30","FutureAttribute":"new"}}'
-    client = SQSClient(region="us-east-1", endpoint_url=peer.endpoint)
-    response = await client.get_queue_attributes(queue_url=peer.endpoint)
-    assert response.attributes is not None
-    for key, value in response.attributes.items():
-        if inputs.queue_attribute_name.is_known(key):
-            await client.set_queue_attributes(queue_url=peer.endpoint, attributes={key: value})
-    assert len(peer.requests) == 2
-    assert json.loads(peer.requests[-1][1])["Attributes"] == {"VisibilityTimeout": "30"}
-    with pytest.raises(InputConversionError, match="unknown enum"):
-        inputs.queue_attribute_map(response.attributes)
-    assert len(peer.requests) == 2
 
 
 @pytest.mark.asyncio

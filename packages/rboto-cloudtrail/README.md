@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_cloudtrail.types`.
-- Reuse response values with typed adapters from `rboto_cloudtrail.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_cloudtrail.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -155,6 +155,7 @@ async def add_tags(
 ) -> AddTagsResponse: ...
 ```
 
+
 ### cancel_query
 
 ```python
@@ -165,6 +166,7 @@ async def cancel_query(
     event_data_store_owner_account_id: str | None = None,
 ) -> CancelQueryResponse: ...
 ```
+
 
 ### create_channel
 
@@ -178,6 +180,7 @@ async def create_channel(
 ) -> CreateChannelResponse: ...
 ```
 
+
 ### create_dashboard
 
 ```python
@@ -190,6 +193,7 @@ async def create_dashboard(
     widgets: Sequence[RequestWidget] | None = None,
 ) -> CreateDashboardResponse: ...
 ```
+
 
 ### create_event_data_store
 
@@ -208,6 +212,7 @@ async def create_event_data_store(
     billing_mode: BillingMode | None = None,
 ) -> CreateEventDataStoreResponse: ...
 ```
+
 
 ### create_trail
 
@@ -230,6 +235,7 @@ async def create_trail(
 ) -> CreateTrailResponse: ...
 ```
 
+
 ### delete_channel
 
 ```python
@@ -238,6 +244,7 @@ async def delete_channel(
     channel: str,
 ) -> DeleteChannelResponse: ...
 ```
+
 
 ### delete_dashboard
 
@@ -248,6 +255,7 @@ async def delete_dashboard(
 ) -> DeleteDashboardResponse: ...
 ```
 
+
 ### delete_event_data_store
 
 ```python
@@ -256,6 +264,7 @@ async def delete_event_data_store(
     event_data_store: str,
 ) -> DeleteEventDataStoreResponse: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -266,6 +275,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyResponse: ...
 ```
 
+
 ### delete_trail
 
 ```python
@@ -275,6 +285,7 @@ async def delete_trail(
 ) -> DeleteTrailResponse: ...
 ```
 
+
 ### deregister_organization_delegated_admin
 
 ```python
@@ -283,6 +294,7 @@ async def deregister_organization_delegated_admin(
     delegated_admin_account_id: str,
 ) -> DeregisterOrganizationDelegatedAdminResponse: ...
 ```
+
 
 ### describe_query
 
@@ -297,6 +309,7 @@ async def describe_query(
 ) -> DescribeQueryResponse: ...
 ```
 
+
 ### describe_trails
 
 ```python
@@ -307,6 +320,7 @@ async def describe_trails(
 ) -> DescribeTrailsResponse: ...
 ```
 
+
 ### disable_federation
 
 ```python
@@ -315,6 +329,7 @@ async def disable_federation(
     event_data_store: str,
 ) -> DisableFederationResponse: ...
 ```
+
 
 ### enable_federation
 
@@ -326,6 +341,7 @@ async def enable_federation(
 ) -> EnableFederationResponse: ...
 ```
 
+
 ### generate_query
 
 ```python
@@ -336,6 +352,7 @@ async def generate_query(
 ) -> GenerateQueryResponse: ...
 ```
 
+
 ### get_channel
 
 ```python
@@ -345,6 +362,7 @@ async def get_channel(
 ) -> GetChannelResponse: ...
 ```
 
+
 ### get_dashboard
 
 ```python
@@ -353,6 +371,7 @@ async def get_dashboard(
     dashboard_id: str,
 ) -> GetDashboardResponse: ...
 ```
+
 
 ### get_event_configuration
 
@@ -364,6 +383,7 @@ async def get_event_configuration(
 ) -> GetEventConfigurationResponse: ...
 ```
 
+
 ### get_event_data_store
 
 ```python
@@ -372,6 +392,7 @@ async def get_event_data_store(
     event_data_store: str,
 ) -> GetEventDataStoreResponse: ...
 ```
+
 
 ### get_event_selectors
 
@@ -382,6 +403,7 @@ async def get_event_selectors(
 ) -> GetEventSelectorsResponse: ...
 ```
 
+
 ### get_import
 
 ```python
@@ -390,6 +412,7 @@ async def get_import(
     import_id: str,
 ) -> GetImportResponse: ...
 ```
+
 
 ### get_insight_selectors
 
@@ -400,6 +423,7 @@ async def get_insight_selectors(
     event_data_store: str | None = None,
 ) -> GetInsightSelectorsResponse: ...
 ```
+
 
 ### get_query_results
 
@@ -414,6 +438,10 @@ async def get_query_results(
 ) -> GetQueryResultsResponse: ...
 ```
 
+Also available as `client.paginators.get_query_results(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_resource_policy
 
 ```python
@@ -422,6 +450,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_trail
 
@@ -432,6 +461,7 @@ async def get_trail(
 ) -> GetTrailResponse: ...
 ```
 
+
 ### get_trail_status
 
 ```python
@@ -440,6 +470,7 @@ async def get_trail_status(
     name: str,
 ) -> GetTrailStatusResponse: ...
 ```
+
 
 ### list_channels
 
@@ -450,6 +481,10 @@ async def list_channels(
     next_token: str | None = None,
 ) -> ListChannelsResponse: ...
 ```
+
+Also available as `client.paginators.list_channels(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_dashboards
 
@@ -463,6 +498,7 @@ async def list_dashboards(
 ) -> ListDashboardsResponse: ...
 ```
 
+
 ### list_event_data_stores
 
 ```python
@@ -472,6 +508,10 @@ async def list_event_data_stores(
     max_results: int | None = None,
 ) -> ListEventDataStoresResponse: ...
 ```
+
+Also available as `client.paginators.list_event_data_stores(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_import_failures
 
@@ -484,6 +524,10 @@ async def list_import_failures(
 ) -> ListImportFailuresResponse: ...
 ```
 
+Also available as `client.paginators.list_import_failures(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_imports
 
 ```python
@@ -495,6 +539,10 @@ async def list_imports(
     next_token: str | None = None,
 ) -> ListImportsResponse: ...
 ```
+
+Also available as `client.paginators.list_imports(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_insights_data
 
@@ -510,6 +558,10 @@ async def list_insights_data(
     next_token: str | None = None,
 ) -> ListInsightsDataResponse: ...
 ```
+
+Also available as `client.paginators.list_insights_data(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_insights_metric_data
 
@@ -530,6 +582,10 @@ async def list_insights_metric_data(
 ) -> ListInsightsMetricDataResponse: ...
 ```
 
+Also available as `client.paginators.list_insights_metric_data(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_public_keys
 
 ```python
@@ -540,6 +596,10 @@ async def list_public_keys(
     next_token: str | None = None,
 ) -> ListPublicKeysResponse: ...
 ```
+
+Also available as `client.paginators.list_public_keys(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_queries
 
@@ -555,6 +615,10 @@ async def list_queries(
 ) -> ListQueriesResponse: ...
 ```
 
+Also available as `client.paginators.list_queries(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags
 
 ```python
@@ -565,6 +629,10 @@ async def list_tags(
 ) -> ListTagsResponse: ...
 ```
 
+Also available as `client.paginators.list_tags(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_trails
 
 ```python
@@ -573,6 +641,10 @@ async def list_trails(
     next_token: str | None = None,
 ) -> ListTrailsResponse: ...
 ```
+
+Also available as `client.paginators.list_trails(...)`, returning an
+async iterator of the response type above.
+
 
 ### lookup_events
 
@@ -588,6 +660,10 @@ async def lookup_events(
 ) -> LookupEventsResponse: ...
 ```
 
+Also available as `client.paginators.lookup_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_event_configuration
 
 ```python
@@ -601,6 +677,7 @@ async def put_event_configuration(
 ) -> PutEventConfigurationResponse: ...
 ```
 
+
 ### put_event_selectors
 
 ```python
@@ -611,6 +688,7 @@ async def put_event_selectors(
     advanced_event_selectors: Sequence[AdvancedEventSelector] | None = None,
 ) -> PutEventSelectorsResponse: ...
 ```
+
 
 ### put_insight_selectors
 
@@ -624,6 +702,7 @@ async def put_insight_selectors(
 ) -> PutInsightSelectorsResponse: ...
 ```
 
+
 ### put_resource_policy
 
 ```python
@@ -634,6 +713,7 @@ async def put_resource_policy(
 ) -> PutResourcePolicyResponse: ...
 ```
 
+
 ### register_organization_delegated_admin
 
 ```python
@@ -642,6 +722,7 @@ async def register_organization_delegated_admin(
     member_account_id: str,
 ) -> RegisterOrganizationDelegatedAdminResponse: ...
 ```
+
 
 ### remove_tags
 
@@ -653,6 +734,7 @@ async def remove_tags(
 ) -> RemoveTagsResponse: ...
 ```
 
+
 ### restore_event_data_store
 
 ```python
@@ -661,6 +743,7 @@ async def restore_event_data_store(
     event_data_store: str,
 ) -> RestoreEventDataStoreResponse: ...
 ```
+
 
 ### search_sample_queries
 
@@ -673,6 +756,7 @@ async def search_sample_queries(
 ) -> SearchSampleQueriesResponse: ...
 ```
 
+
 ### start_dashboard_refresh
 
 ```python
@@ -683,6 +767,7 @@ async def start_dashboard_refresh(
 ) -> StartDashboardRefreshResponse: ...
 ```
 
+
 ### start_event_data_store_ingestion
 
 ```python
@@ -691,6 +776,7 @@ async def start_event_data_store_ingestion(
     event_data_store: str,
 ) -> StartEventDataStoreIngestionResponse: ...
 ```
+
 
 ### start_import
 
@@ -705,6 +791,7 @@ async def start_import(
 ) -> StartImportResponse: ...
 ```
 
+
 ### start_logging
 
 ```python
@@ -713,6 +800,7 @@ async def start_logging(
     name: str,
 ) -> StartLoggingResponse: ...
 ```
+
 
 ### start_query
 
@@ -727,6 +815,7 @@ async def start_query(
 ) -> StartQueryResponse: ...
 ```
 
+
 ### stop_event_data_store_ingestion
 
 ```python
@@ -735,6 +824,7 @@ async def stop_event_data_store_ingestion(
     event_data_store: str,
 ) -> StopEventDataStoreIngestionResponse: ...
 ```
+
 
 ### stop_import
 
@@ -745,6 +835,7 @@ async def stop_import(
 ) -> StopImportResponse: ...
 ```
 
+
 ### stop_logging
 
 ```python
@@ -753,6 +844,7 @@ async def stop_logging(
     name: str,
 ) -> StopLoggingResponse: ...
 ```
+
 
 ### update_channel
 
@@ -765,6 +857,7 @@ async def update_channel(
 ) -> UpdateChannelResponse: ...
 ```
 
+
 ### update_dashboard
 
 ```python
@@ -776,6 +869,7 @@ async def update_dashboard(
     termination_protection_enabled: bool | None = None,
 ) -> UpdateDashboardResponse: ...
 ```
+
 
 ### update_event_data_store
 
@@ -793,6 +887,7 @@ async def update_event_data_store(
     billing_mode: BillingMode | None = None,
 ) -> UpdateEventDataStoreResponse: ...
 ```
+
 
 ### update_trail
 
@@ -813,6 +908,7 @@ async def update_trail(
     recursive_logging: bool | None = None,
 ) -> UpdateTrailResponse: ...
 ```
+
 
 ## Links
 

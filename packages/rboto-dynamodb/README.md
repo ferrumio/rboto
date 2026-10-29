@@ -56,15 +56,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_dynamodb.types`.
-- Reuse response values with typed adapters from `rboto_dynamodb.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_dynamodb.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -154,6 +154,7 @@ async def batch_execute_statement(
 ) -> BatchExecuteStatementOutput: ...
 ```
 
+
 ### batch_get_item
 
 ```python
@@ -163,6 +164,7 @@ async def batch_get_item(
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> BatchGetItemOutput: ...
 ```
+
 
 ### batch_write_item
 
@@ -175,6 +177,7 @@ async def batch_write_item(
 ) -> BatchWriteItemOutput: ...
 ```
 
+
 ### create_backup
 
 ```python
@@ -185,6 +188,7 @@ async def create_backup(
 ) -> CreateBackupOutput: ...
 ```
 
+
 ### create_global_table
 
 ```python
@@ -194,6 +198,7 @@ async def create_global_table(
     replication_group: Sequence[Replica],
 ) -> CreateGlobalTableOutput: ...
 ```
+
 
 ### create_table
 
@@ -221,6 +226,7 @@ async def create_table(
 ) -> CreateTableOutput: ...
 ```
 
+
 ### delete_backup
 
 ```python
@@ -229,6 +235,7 @@ async def delete_backup(
     backup_arn: str,
 ) -> DeleteBackupOutput: ...
 ```
+
 
 ### delete_item
 
@@ -249,6 +256,7 @@ async def delete_item(
 ) -> DeleteItemOutput: ...
 ```
 
+
 ### delete_resource_policy
 
 ```python
@@ -259,6 +267,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyOutput: ...
 ```
 
+
 ### delete_table
 
 ```python
@@ -267,6 +276,7 @@ async def delete_table(
     table_name: str,
 ) -> DeleteTableOutput: ...
 ```
+
 
 ### describe_backup
 
@@ -277,6 +287,7 @@ async def describe_backup(
 ) -> DescribeBackupOutput: ...
 ```
 
+
 ### describe_continuous_backups
 
 ```python
@@ -285,6 +296,7 @@ async def describe_continuous_backups(
     table_name: str,
 ) -> DescribeContinuousBackupsOutput: ...
 ```
+
 
 ### describe_contributor_insights
 
@@ -296,11 +308,13 @@ async def describe_contributor_insights(
 ) -> DescribeContributorInsightsOutput: ...
 ```
 
+
 ### describe_endpoints
 
 ```python
 async def describe_endpoints() -> DescribeEndpointsResponse: ...
 ```
+
 
 ### describe_export
 
@@ -311,6 +325,7 @@ async def describe_export(
 ) -> DescribeExportOutput: ...
 ```
 
+
 ### describe_global_table
 
 ```python
@@ -319,6 +334,7 @@ async def describe_global_table(
     global_table_name: str,
 ) -> DescribeGlobalTableOutput: ...
 ```
+
 
 ### describe_global_table_settings
 
@@ -329,6 +345,7 @@ async def describe_global_table_settings(
 ) -> DescribeGlobalTableSettingsOutput: ...
 ```
 
+
 ### describe_import
 
 ```python
@@ -337,6 +354,7 @@ async def describe_import(
     import_arn: str,
 ) -> DescribeImportOutput: ...
 ```
+
 
 ### describe_kinesis_streaming_destination
 
@@ -347,11 +365,13 @@ async def describe_kinesis_streaming_destination(
 ) -> DescribeKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### describe_limits
 
 ```python
 async def describe_limits() -> DescribeLimitsOutput: ...
 ```
+
 
 ### describe_table
 
@@ -362,6 +382,7 @@ async def describe_table(
 ) -> DescribeTableOutput: ...
 ```
 
+
 ### describe_table_replica_auto_scaling
 
 ```python
@@ -371,6 +392,7 @@ async def describe_table_replica_auto_scaling(
 ) -> DescribeTableReplicaAutoScalingOutput: ...
 ```
 
+
 ### describe_time_to_live
 
 ```python
@@ -379,6 +401,7 @@ async def describe_time_to_live(
     table_name: str,
 ) -> DescribeTimeToLiveOutput: ...
 ```
+
 
 ### disable_kinesis_streaming_destination
 
@@ -391,6 +414,7 @@ async def disable_kinesis_streaming_destination(
 ) -> DisableKinesisStreamingDestinationOutput: ...
 ```
 
+
 ### enable_kinesis_streaming_destination
 
 ```python
@@ -401,6 +425,7 @@ async def enable_kinesis_streaming_destination(
     enable_kinesis_streaming_configuration: EnableKinesisStreamingConfiguration | None = None,
 ) -> EnableKinesisStreamingDestinationOutput: ...
 ```
+
 
 ### execute_statement
 
@@ -417,6 +442,7 @@ async def execute_statement(
 ) -> ExecuteStatementOutput: ...
 ```
 
+
 ### execute_transaction
 
 ```python
@@ -427,6 +453,7 @@ async def execute_transaction(
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> ExecuteTransactionOutput: ...
 ```
+
 
 ### export_table_to_point_in_time
 
@@ -448,6 +475,7 @@ async def export_table_to_point_in_time(
 ) -> ExportTableToPointInTimeOutput: ...
 ```
 
+
 ### get_item
 
 ```python
@@ -463,6 +491,7 @@ async def get_item(
 ) -> GetItemOutput: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -471,6 +500,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyOutput: ...
 ```
+
 
 ### import_table
 
@@ -486,6 +516,7 @@ async def import_table(
 ) -> ImportTableOutput: ...
 ```
 
+
 ### list_backups
 
 ```python
@@ -500,6 +531,10 @@ async def list_backups(
 ) -> ListBackupsOutput: ...
 ```
 
+Also available as `client.paginators.list_backups(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_contributor_insights
 
 ```python
@@ -510,6 +545,10 @@ async def list_contributor_insights(
     max_results: int | None = None,
 ) -> ListContributorInsightsOutput: ...
 ```
+
+Also available as `client.paginators.list_contributor_insights(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_exports
 
@@ -522,6 +561,10 @@ async def list_exports(
 ) -> ListExportsOutput: ...
 ```
 
+Also available as `client.paginators.list_exports(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_global_tables
 
 ```python
@@ -532,6 +575,7 @@ async def list_global_tables(
     region_name: str | None = None,
 ) -> ListGlobalTablesOutput: ...
 ```
+
 
 ### list_imports
 
@@ -544,6 +588,10 @@ async def list_imports(
 ) -> ListImportsOutput: ...
 ```
 
+Also available as `client.paginators.list_imports(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tables
 
 ```python
@@ -554,6 +602,10 @@ async def list_tables(
 ) -> ListTablesOutput: ...
 ```
 
+Also available as `client.paginators.list_tables(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_of_resource
 
 ```python
@@ -563,6 +615,10 @@ async def list_tags_of_resource(
     next_token: str | None = None,
 ) -> ListTagsOfResourceOutput: ...
 ```
+
+Also available as `client.paginators.list_tags_of_resource(...)`, returning an
+async iterator of the response type above.
+
 
 ### put_item
 
@@ -583,6 +639,7 @@ async def put_item(
 ) -> PutItemOutput: ...
 ```
 
+
 ### put_resource_policy
 
 ```python
@@ -594,6 +651,7 @@ async def put_resource_policy(
     confirm_remove_self_resource_access: bool | None = None,
 ) -> PutResourcePolicyOutput: ...
 ```
+
 
 ### query
 
@@ -620,6 +678,10 @@ async def query(
 ) -> QueryOutput: ...
 ```
 
+Also available as `client.paginators.query(...)`, returning an
+async iterator of the response type above.
+
+
 ### restore_table_from_backup
 
 ```python
@@ -636,6 +698,7 @@ async def restore_table_from_backup(
     vector_index_override: Sequence[VectorIndex] | None = None,
 ) -> RestoreTableFromBackupOutput: ...
 ```
+
 
 ### restore_table_to_point_in_time
 
@@ -656,6 +719,7 @@ async def restore_table_to_point_in_time(
     vector_index_override: Sequence[VectorIndex] | None = None,
 ) -> RestoreTableToPointInTimeOutput: ...
 ```
+
 
 ### scan
 
@@ -681,6 +745,10 @@ async def scan(
 ) -> ScanOutput: ...
 ```
 
+Also available as `client.paginators.scan(...)`, returning an
+async iterator of the response type above.
+
+
 ### search_vectors
 
 ```python
@@ -698,6 +766,7 @@ async def search_vectors(
 ) -> SearchVectorsOutput: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -708,6 +777,7 @@ async def tag_resource(
 ) -> None: ...
 ```
 
+
 ### transact_get_items
 
 ```python
@@ -717,6 +787,7 @@ async def transact_get_items(
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
 ) -> TransactGetItemsOutput: ...
 ```
+
 
 ### transact_write_items
 
@@ -730,6 +801,7 @@ async def transact_write_items(
 ) -> TransactWriteItemsOutput: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -740,6 +812,7 @@ async def untag_resource(
 ) -> None: ...
 ```
 
+
 ### update_continuous_backups
 
 ```python
@@ -749,6 +822,7 @@ async def update_continuous_backups(
     point_in_time_recovery_specification: PointInTimeRecoverySpecification,
 ) -> UpdateContinuousBackupsOutput: ...
 ```
+
 
 ### update_contributor_insights
 
@@ -762,6 +836,7 @@ async def update_contributor_insights(
 ) -> UpdateContributorInsightsOutput: ...
 ```
 
+
 ### update_global_table
 
 ```python
@@ -771,6 +846,7 @@ async def update_global_table(
     replica_updates: Sequence[ReplicaUpdate],
 ) -> UpdateGlobalTableOutput: ...
 ```
+
 
 ### update_global_table_settings
 
@@ -785,6 +861,7 @@ async def update_global_table_settings(
     replica_settings_update: Sequence[ReplicaSettingsUpdate] | None = None,
 ) -> UpdateGlobalTableSettingsOutput: ...
 ```
+
 
 ### update_item
 
@@ -807,6 +884,7 @@ async def update_item(
 ) -> UpdateItemOutput: ...
 ```
 
+
 ### update_kinesis_streaming_destination
 
 ```python
@@ -817,6 +895,7 @@ async def update_kinesis_streaming_destination(
     update_kinesis_streaming_configuration: UpdateKinesisStreamingConfiguration | None = None,
 ) -> UpdateKinesisStreamingDestinationOutput: ...
 ```
+
 
 ### update_table
 
@@ -843,6 +922,7 @@ async def update_table(
 ) -> UpdateTableOutput: ...
 ```
 
+
 ### update_table_replica_auto_scaling
 
 ```python
@@ -855,6 +935,7 @@ async def update_table_replica_auto_scaling(
 ) -> UpdateTableReplicaAutoScalingOutput: ...
 ```
 
+
 ### update_time_to_live
 
 ```python
@@ -864,6 +945,7 @@ async def update_time_to_live(
     time_to_live_specification: TimeToLiveSpecification,
 ) -> UpdateTimeToLiveOutput: ...
 ```
+
 
 ## Links
 

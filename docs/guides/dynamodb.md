@@ -24,8 +24,9 @@ the write. A missing item gives `response.item is None`.
 --8<-- "examples/docs/dynamodb_query.py"
 ```
 
-The helper queries a table whose partition key is `pk`. Follow `last_evaluated_key`
-even when a page contains no items: filtering can remove all items from a page.
+The helper queries a table whose partition key is `pk`. The paginator follows
+`last_evaluated_key` even when a page contains no items: filtering can remove all
+items from a page. See [Pagination](pagination.md) for page size and stopping.
 
 Conditional writes can raise `ConditionalCheckFailedError`. Batch writes require
 checking `unprocessed_items`; see [Errors](errors.md#partial-failures).

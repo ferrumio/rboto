@@ -86,3 +86,20 @@ invalid_input: ToolUseBlock = {
     assert len(errors) == 5, result.stdout
     for code in ("[union-attr]", "[index]", "[dict-item]", "[typeddict-item]"):
         assert any(code in error for error in errors), result.stdout
+
+
+def test_paginators_reject_invalid_arguments_and_unknown_operations(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "invalid_paginators.py", """
+from rboto import DynamoDBClient, LambdaClient, S3Client
+
+def invalid(ddb: DynamoDBClient, lamb: LambdaClient, s3: S3Client) -> None:
+    lamb.paginators.list_functions(max_items="ten")
+    lamb.paginators.list_functions(max_itmes=10)
+    lamb.paginators.invoke(function_name="example")
+    ddb.paginators.query()
+    ddb.paginators.query(table_name="example", exclusive_start_key={"pk": {"unknown": True}})
+    s3.paginators.list_objects_v2(bucket=5)
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    errors = [line for line in result.stdout.splitlines() if ": error:" in line]
+    assert len(errors) == 6, result.stdout

@@ -58,15 +58,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_qbusiness.types`.
-- Reuse response values with typed adapters from `rboto_qbusiness.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_qbusiness.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -184,6 +184,7 @@ async def associate_permission(
 ) -> AssociatePermissionResponse: ...
 ```
 
+
 ### batch_delete_document
 
 ```python
@@ -195,6 +196,7 @@ async def batch_delete_document(
     data_source_sync_id: str | None = None,
 ) -> BatchDeleteDocumentResponse: ...
 ```
+
 
 ### batch_put_document
 
@@ -209,6 +211,7 @@ async def batch_put_document(
 ) -> BatchPutDocumentResponse: ...
 ```
 
+
 ### cancel_subscription
 
 ```python
@@ -218,6 +221,7 @@ async def cancel_subscription(
     subscription_id: str,
 ) -> CancelSubscriptionResponse: ...
 ```
+
 
 ### chat
 
@@ -233,6 +237,7 @@ async def chat(
     input_stream: AsyncIterator[ChatInputStream] | None = None,
 ) -> ChatOutput: ...
 ```
+
 
 ### chat_sync
 
@@ -255,6 +260,7 @@ async def chat_sync(
 ) -> ChatSyncOutput: ...
 ```
 
+
 ### check_document_access
 
 ```python
@@ -268,6 +274,7 @@ async def check_document_access(
 ) -> CheckDocumentAccessResponse: ...
 ```
 
+
 ### create_anonymous_web_experience_url
 
 ```python
@@ -278,6 +285,7 @@ async def create_anonymous_web_experience_url(
     session_duration_in_minutes: int | None = None,
 ) -> CreateAnonymousWebExperienceUrlResponse: ...
 ```
+
 
 ### create_application
 
@@ -301,6 +309,7 @@ async def create_application(
 ) -> CreateApplicationResponse: ...
 ```
 
+
 ### create_chat_response_configuration
 
 ```python
@@ -313,6 +322,7 @@ async def create_chat_response_configuration(
     tags: Sequence[Tag] | None = None,
 ) -> CreateChatResponseConfigurationResponse: ...
 ```
+
 
 ### create_data_accessor
 
@@ -328,6 +338,7 @@ async def create_data_accessor(
     tags: Sequence[Tag] | None = None,
 ) -> CreateDataAccessorResponse: ...
 ```
+
 
 ### create_data_source
 
@@ -349,6 +360,7 @@ async def create_data_source(
 ) -> CreateDataSourceResponse: ...
 ```
 
+
 ### create_index
 
 ```python
@@ -363,6 +375,7 @@ async def create_index(
     client_token: str | None = None,
 ) -> CreateIndexResponse: ...
 ```
+
 
 ### create_plugin
 
@@ -380,6 +393,7 @@ async def create_plugin(
 ) -> CreatePluginResponse: ...
 ```
 
+
 ### create_retriever
 
 ```python
@@ -395,6 +409,7 @@ async def create_retriever(
 ) -> CreateRetrieverResponse: ...
 ```
 
+
 ### create_subscription
 
 ```python
@@ -407,6 +422,7 @@ async def create_subscription(
 ) -> CreateSubscriptionResponse: ...
 ```
 
+
 ### create_user
 
 ```python
@@ -418,6 +434,7 @@ async def create_user(
     client_token: str | None = None,
 ) -> CreateUserResponse: ...
 ```
+
 
 ### create_web_experience
 
@@ -439,6 +456,7 @@ async def create_web_experience(
 ) -> CreateWebExperienceResponse: ...
 ```
 
+
 ### delete_application
 
 ```python
@@ -447,6 +465,7 @@ async def delete_application(
     application_id: str,
 ) -> DeleteApplicationResponse: ...
 ```
+
 
 ### delete_attachment
 
@@ -460,6 +479,7 @@ async def delete_attachment(
 ) -> DeleteAttachmentResponse: ...
 ```
 
+
 ### delete_chat_controls_configuration
 
 ```python
@@ -468,6 +488,7 @@ async def delete_chat_controls_configuration(
     application_id: str,
 ) -> DeleteChatControlsConfigurationResponse: ...
 ```
+
 
 ### delete_chat_response_configuration
 
@@ -478,6 +499,7 @@ async def delete_chat_response_configuration(
     chat_response_configuration_id: str,
 ) -> DeleteChatResponseConfigurationResponse: ...
 ```
+
 
 ### delete_conversation
 
@@ -490,6 +512,7 @@ async def delete_conversation(
 ) -> DeleteConversationResponse: ...
 ```
 
+
 ### delete_data_accessor
 
 ```python
@@ -499,6 +522,7 @@ async def delete_data_accessor(
     data_accessor_id: str,
 ) -> DeleteDataAccessorResponse: ...
 ```
+
 
 ### delete_data_source
 
@@ -510,6 +534,7 @@ async def delete_data_source(
     data_source_id: str,
 ) -> DeleteDataSourceResponse: ...
 ```
+
 
 ### delete_group
 
@@ -523,6 +548,7 @@ async def delete_group(
 ) -> DeleteGroupResponse: ...
 ```
 
+
 ### delete_index
 
 ```python
@@ -532,6 +558,7 @@ async def delete_index(
     index_id: str,
 ) -> DeleteIndexResponse: ...
 ```
+
 
 ### delete_plugin
 
@@ -543,6 +570,7 @@ async def delete_plugin(
 ) -> DeletePluginResponse: ...
 ```
 
+
 ### delete_retriever
 
 ```python
@@ -552,6 +580,7 @@ async def delete_retriever(
     retriever_id: str,
 ) -> DeleteRetrieverResponse: ...
 ```
+
 
 ### delete_user
 
@@ -563,6 +592,7 @@ async def delete_user(
 ) -> DeleteUserResponse: ...
 ```
 
+
 ### delete_web_experience
 
 ```python
@@ -572,6 +602,7 @@ async def delete_web_experience(
     web_experience_id: str,
 ) -> DeleteWebExperienceResponse: ...
 ```
+
 
 ### disassociate_permission
 
@@ -583,6 +614,7 @@ async def disassociate_permission(
 ) -> DisassociatePermissionResponse: ...
 ```
 
+
 ### get_application
 
 ```python
@@ -591,6 +623,7 @@ async def get_application(
     application_id: str,
 ) -> GetApplicationResponse: ...
 ```
+
 
 ### get_chat_controls_configuration
 
@@ -603,6 +636,10 @@ async def get_chat_controls_configuration(
 ) -> GetChatControlsConfigurationResponse: ...
 ```
 
+Also available as `client.paginators.get_chat_controls_configuration(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_chat_response_configuration
 
 ```python
@@ -612,6 +649,7 @@ async def get_chat_response_configuration(
     chat_response_configuration_id: str,
 ) -> GetChatResponseConfigurationResponse: ...
 ```
+
 
 ### get_data_accessor
 
@@ -623,6 +661,7 @@ async def get_data_accessor(
 ) -> GetDataAccessorResponse: ...
 ```
 
+
 ### get_data_source
 
 ```python
@@ -633,6 +672,7 @@ async def get_data_source(
     data_source_id: str,
 ) -> GetDataSourceResponse: ...
 ```
+
 
 ### get_document_content
 
@@ -647,6 +687,7 @@ async def get_document_content(
 ) -> GetDocumentContentResponse: ...
 ```
 
+
 ### get_group
 
 ```python
@@ -659,6 +700,7 @@ async def get_group(
 ) -> GetGroupResponse: ...
 ```
 
+
 ### get_index
 
 ```python
@@ -668,6 +710,7 @@ async def get_index(
     index_id: str,
 ) -> GetIndexResponse: ...
 ```
+
 
 ### get_media
 
@@ -681,6 +724,7 @@ async def get_media(
 ) -> GetMediaResponse: ...
 ```
 
+
 ### get_plugin
 
 ```python
@@ -691,6 +735,7 @@ async def get_plugin(
 ) -> GetPluginResponse: ...
 ```
 
+
 ### get_policy
 
 ```python
@@ -699,6 +744,7 @@ async def get_policy(
     application_id: str,
 ) -> GetPolicyResponse: ...
 ```
+
 
 ### get_retriever
 
@@ -710,6 +756,7 @@ async def get_retriever(
 ) -> GetRetrieverResponse: ...
 ```
 
+
 ### get_user
 
 ```python
@@ -719,6 +766,7 @@ async def get_user(
     user_id: str,
 ) -> GetUserResponse: ...
 ```
+
 
 ### get_web_experience
 
@@ -730,6 +778,7 @@ async def get_web_experience(
 ) -> GetWebExperienceResponse: ...
 ```
 
+
 ### list_applications
 
 ```python
@@ -739,6 +788,10 @@ async def list_applications(
     max_results: int | None = None,
 ) -> ListApplicationsResponse: ...
 ```
+
+Also available as `client.paginators.list_applications(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_attachments
 
@@ -753,6 +806,10 @@ async def list_attachments(
 ) -> ListAttachmentsResponse: ...
 ```
 
+Also available as `client.paginators.list_attachments(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_chat_response_configurations
 
 ```python
@@ -763,6 +820,10 @@ async def list_chat_response_configurations(
     next_token: str | None = None,
 ) -> ListChatResponseConfigurationsResponse: ...
 ```
+
+Also available as `client.paginators.list_chat_response_configurations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_conversations
 
@@ -776,6 +837,10 @@ async def list_conversations(
 ) -> ListConversationsResponse: ...
 ```
 
+Also available as `client.paginators.list_conversations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_data_accessors
 
 ```python
@@ -786,6 +851,10 @@ async def list_data_accessors(
     max_results: int | None = None,
 ) -> ListDataAccessorsResponse: ...
 ```
+
+Also available as `client.paginators.list_data_accessors(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_data_source_sync_jobs
 
@@ -803,6 +872,10 @@ async def list_data_source_sync_jobs(
 ) -> ListDataSourceSyncJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_data_source_sync_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_data_sources
 
 ```python
@@ -814,6 +887,10 @@ async def list_data_sources(
     max_results: int | None = None,
 ) -> ListDataSourcesResponse: ...
 ```
+
+Also available as `client.paginators.list_data_sources(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_documents
 
@@ -827,6 +904,10 @@ async def list_documents(
     max_results: int | None = None,
 ) -> ListDocumentsResponse: ...
 ```
+
+Also available as `client.paginators.list_documents(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_groups
 
@@ -842,6 +923,10 @@ async def list_groups(
 ) -> ListGroupsResponse: ...
 ```
 
+Also available as `client.paginators.list_groups(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_indices
 
 ```python
@@ -852,6 +937,10 @@ async def list_indices(
     max_results: int | None = None,
 ) -> ListIndicesResponse: ...
 ```
+
+Also available as `client.paginators.list_indices(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_messages
 
@@ -866,6 +955,10 @@ async def list_messages(
 ) -> ListMessagesResponse: ...
 ```
 
+Also available as `client.paginators.list_messages(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_plugin_actions
 
 ```python
@@ -878,6 +971,10 @@ async def list_plugin_actions(
 ) -> ListPluginActionsResponse: ...
 ```
 
+Also available as `client.paginators.list_plugin_actions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_plugin_type_actions
 
 ```python
@@ -889,6 +986,10 @@ async def list_plugin_type_actions(
 ) -> ListPluginTypeActionsResponse: ...
 ```
 
+Also available as `client.paginators.list_plugin_type_actions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_plugin_type_metadata
 
 ```python
@@ -898,6 +999,10 @@ async def list_plugin_type_metadata(
     max_results: int | None = None,
 ) -> ListPluginTypeMetadataResponse: ...
 ```
+
+Also available as `client.paginators.list_plugin_type_metadata(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_plugins
 
@@ -910,6 +1015,10 @@ async def list_plugins(
 ) -> ListPluginsResponse: ...
 ```
 
+Also available as `client.paginators.list_plugins(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_retrievers
 
 ```python
@@ -920,6 +1029,10 @@ async def list_retrievers(
     max_results: int | None = None,
 ) -> ListRetrieversResponse: ...
 ```
+
+Also available as `client.paginators.list_retrievers(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_subscriptions
 
@@ -932,6 +1045,10 @@ async def list_subscriptions(
 ) -> ListSubscriptionsResponse: ...
 ```
 
+Also available as `client.paginators.list_subscriptions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -940,6 +1057,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_web_experiences
 
@@ -951,6 +1069,10 @@ async def list_web_experiences(
     max_results: int | None = None,
 ) -> ListWebExperiencesResponse: ...
 ```
+
+Also available as `client.paginators.list_web_experiences(...)`, returning an
+async iterator of the response type above.
+
 
 ### put_feedback
 
@@ -965,6 +1087,7 @@ async def put_feedback(
     message_usefulness: MessageUsefulnessFeedback | None = None,
 ) -> None: ...
 ```
+
 
 ### put_group
 
@@ -981,6 +1104,7 @@ async def put_group(
 ) -> PutGroupResponse: ...
 ```
 
+
 ### search_relevant_content
 
 ```python
@@ -995,6 +1119,10 @@ async def search_relevant_content(
 ) -> SearchRelevantContentResponse: ...
 ```
 
+Also available as `client.paginators.search_relevant_content(...)`, returning an
+async iterator of the response type above.
+
+
 ### start_data_source_sync_job
 
 ```python
@@ -1005,6 +1133,7 @@ async def start_data_source_sync_job(
     index_id: str,
 ) -> StartDataSourceSyncJobResponse: ...
 ```
+
 
 ### stop_data_source_sync_job
 
@@ -1017,6 +1146,7 @@ async def stop_data_source_sync_job(
 ) -> StopDataSourceSyncJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1027,6 +1157,7 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1036,6 +1167,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_application
 
@@ -1054,6 +1186,7 @@ async def update_application(
 ) -> UpdateApplicationResponse: ...
 ```
 
+
 ### update_chat_controls_configuration
 
 ```python
@@ -1071,6 +1204,7 @@ async def update_chat_controls_configuration(
 ) -> UpdateChatControlsConfigurationResponse: ...
 ```
 
+
 ### update_chat_response_configuration
 
 ```python
@@ -1084,6 +1218,7 @@ async def update_chat_response_configuration(
 ) -> UpdateChatResponseConfigurationResponse: ...
 ```
 
+
 ### update_data_accessor
 
 ```python
@@ -1096,6 +1231,7 @@ async def update_data_accessor(
     display_name: str | None = None,
 ) -> UpdateDataAccessorResponse: ...
 ```
+
 
 ### update_data_source
 
@@ -1116,6 +1252,7 @@ async def update_data_source(
 ) -> UpdateDataSourceResponse: ...
 ```
 
+
 ### update_index
 
 ```python
@@ -1129,6 +1266,7 @@ async def update_index(
     document_attribute_configurations: Sequence[DocumentAttributeConfiguration] | None = None,
 ) -> UpdateIndexResponse: ...
 ```
+
 
 ### update_plugin
 
@@ -1145,6 +1283,7 @@ async def update_plugin(
 ) -> UpdatePluginResponse: ...
 ```
 
+
 ### update_retriever
 
 ```python
@@ -1158,6 +1297,7 @@ async def update_retriever(
 ) -> UpdateRetrieverResponse: ...
 ```
 
+
 ### update_subscription
 
 ```python
@@ -1168,6 +1308,7 @@ async def update_subscription(
     type: SubscriptionType,
 ) -> UpdateSubscriptionResponse: ...
 ```
+
 
 ### update_user
 
@@ -1180,6 +1321,7 @@ async def update_user(
     user_aliases_to_delete: Sequence[UserAlias] | None = None,
 ) -> UpdateUserResponse: ...
 ```
+
 
 ### update_web_experience
 
@@ -1200,6 +1342,7 @@ async def update_web_experience(
     customization_configuration: CustomizationConfiguration | None = None,
 ) -> UpdateWebExperienceResponse: ...
 ```
+
 
 ## Links
 

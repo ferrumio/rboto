@@ -66,6 +66,8 @@ from .types import (
     VdmAttributes,
     VdmOptions,
 )
+from .paginators import SESV2ClientPaginators as _Paginators
+
 
 
 class SESV2Client:
@@ -94,6 +96,14 @@ class SESV2Client:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def associate_email_identity_certificate(

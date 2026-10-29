@@ -57,15 +57,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_bedrock_agent_runtime.types`.
-- Reuse response values with typed adapters from `rboto_bedrock_agent_runtime.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agent_runtime.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -139,6 +139,7 @@ async def agentic_retrieve_stream(
 ) -> AgenticRetrieveStreamResponse: ...
 ```
 
+
 ### check_ingested_document_acl
 
 ```python
@@ -151,6 +152,7 @@ async def check_ingested_document_acl(
 ) -> CheckIngestedDocumentAclResponse: ...
 ```
 
+
 ### create_invocation
 
 ```python
@@ -162,6 +164,7 @@ async def create_invocation(
 ) -> CreateInvocationResponse: ...
 ```
 
+
 ### create_session
 
 ```python
@@ -172,6 +175,7 @@ async def create_session(
     tags: dict[str, str] | None = None,
 ) -> CreateSessionResponse: ...
 ```
+
 
 ### delete_agent_memory
 
@@ -185,6 +189,7 @@ async def delete_agent_memory(
 ) -> DeleteAgentMemoryResponse: ...
 ```
 
+
 ### delete_session
 
 ```python
@@ -193,6 +198,7 @@ async def delete_session(
     session_identifier: str,
 ) -> DeleteSessionResponse: ...
 ```
+
 
 ### end_session
 
@@ -203,6 +209,7 @@ async def end_session(
 ) -> EndSessionResponse: ...
 ```
 
+
 ### generate_query
 
 ```python
@@ -212,6 +219,7 @@ async def generate_query(
     transformation_configuration: TransformationConfiguration,
 ) -> GenerateQueryResponse: ...
 ```
+
 
 ### get_agent_memory
 
@@ -227,6 +235,10 @@ async def get_agent_memory(
 ) -> GetAgentMemoryResponse: ...
 ```
 
+Also available as `client.paginators.get_agent_memory(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_document_content
 
 ```python
@@ -240,6 +252,7 @@ async def get_document_content(
 ) -> GetDocumentContentResponse: ...
 ```
 
+
 ### get_execution_flow_snapshot
 
 ```python
@@ -250,6 +263,7 @@ async def get_execution_flow_snapshot(
     execution_identifier: str,
 ) -> GetExecutionFlowSnapshotResponse: ...
 ```
+
 
 ### get_flow_execution
 
@@ -262,6 +276,7 @@ async def get_flow_execution(
 ) -> GetFlowExecutionResponse: ...
 ```
 
+
 ### get_ingested_document_acl
 
 ```python
@@ -272,6 +287,7 @@ async def get_ingested_document_acl(
     document_id: str,
 ) -> GetIngestedDocumentAclResponse: ...
 ```
+
 
 ### get_invocation_step
 
@@ -284,6 +300,7 @@ async def get_invocation_step(
 ) -> GetInvocationStepResponse: ...
 ```
 
+
 ### get_session
 
 ```python
@@ -292,6 +309,7 @@ async def get_session(
     session_identifier: str,
 ) -> GetSessionResponse: ...
 ```
+
 
 ### invoke_agent
 
@@ -313,6 +331,7 @@ async def invoke_agent(
 ) -> InvokeAgentResponse: ...
 ```
 
+
 ### invoke_flow
 
 ```python
@@ -326,6 +345,7 @@ async def invoke_flow(
     execution_id: str | None = None,
 ) -> InvokeFlowResponse: ...
 ```
+
 
 ### invoke_inline_agent
 
@@ -357,6 +377,7 @@ async def invoke_inline_agent(
 ) -> InvokeInlineAgentResponse: ...
 ```
 
+
 ### list_flow_execution_events
 
 ```python
@@ -371,6 +392,10 @@ async def list_flow_execution_events(
 ) -> ListFlowExecutionEventsResponse: ...
 ```
 
+Also available as `client.paginators.list_flow_execution_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flow_executions
 
 ```python
@@ -382,6 +407,10 @@ async def list_flow_executions(
     next_token: str | None = None,
 ) -> ListFlowExecutionsResponse: ...
 ```
+
+Also available as `client.paginators.list_flow_executions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_invocation_steps
 
@@ -395,6 +424,10 @@ async def list_invocation_steps(
 ) -> ListInvocationStepsResponse: ...
 ```
 
+Also available as `client.paginators.list_invocation_steps(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_invocations
 
 ```python
@@ -406,6 +439,10 @@ async def list_invocations(
 ) -> ListInvocationsResponse: ...
 ```
 
+Also available as `client.paginators.list_invocations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_sessions
 
 ```python
@@ -416,6 +453,10 @@ async def list_sessions(
 ) -> ListSessionsResponse: ...
 ```
 
+Also available as `client.paginators.list_sessions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -424,6 +465,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### optimize_prompt
 
@@ -434,6 +476,7 @@ async def optimize_prompt(
     target_model_id: str,
 ) -> OptimizePromptResponse: ...
 ```
+
 
 ### put_invocation_step
 
@@ -448,6 +491,7 @@ async def put_invocation_step(
 ) -> PutInvocationStepResponse: ...
 ```
 
+
 ### rerank
 
 ```python
@@ -459,6 +503,10 @@ async def rerank(
     next_token: str | None = None,
 ) -> RerankResponse: ...
 ```
+
+Also available as `client.paginators.rerank(...)`, returning an
+async iterator of the response type above.
+
 
 ### retrieve
 
@@ -474,6 +522,10 @@ async def retrieve(
 ) -> RetrieveResponse: ...
 ```
 
+Also available as `client.paginators.retrieve(...)`, returning an
+async iterator of the response type above.
+
+
 ### retrieve_and_generate
 
 ```python
@@ -486,6 +538,7 @@ async def retrieve_and_generate(
     user_context: UserContext | None = None,
 ) -> RetrieveAndGenerateResponse: ...
 ```
+
 
 ### retrieve_and_generate_stream
 
@@ -500,6 +553,7 @@ async def retrieve_and_generate_stream(
 ) -> RetrieveAndGenerateStreamResponse: ...
 ```
 
+
 ### start_flow_execution
 
 ```python
@@ -513,6 +567,7 @@ async def start_flow_execution(
 ) -> StartFlowExecutionResponse: ...
 ```
 
+
 ### stop_flow_execution
 
 ```python
@@ -524,6 +579,7 @@ async def stop_flow_execution(
 ) -> StopFlowExecutionResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -533,6 +589,7 @@ async def tag_resource(
     tags: dict[str, str],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### untag_resource
 
@@ -544,6 +601,7 @@ async def untag_resource(
 ) -> UntagResourceResponse: ...
 ```
 
+
 ### update_session
 
 ```python
@@ -553,6 +611,7 @@ async def update_session(
     session_metadata: dict[str, str] | None = None,
 ) -> UpdateSessionResponse: ...
 ```
+
 
 ## Links
 

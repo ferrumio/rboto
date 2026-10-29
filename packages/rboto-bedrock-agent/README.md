@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_bedrock_agent.types`.
-- Reuse response values with typed adapters from `rboto_bedrock_agent.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agent.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -186,6 +186,7 @@ async def associate_agent_collaborator(
 ) -> AssociateAgentCollaboratorResponse: ...
 ```
 
+
 ### associate_agent_knowledge_base
 
 ```python
@@ -198,6 +199,7 @@ async def associate_agent_knowledge_base(
     knowledge_base_state: KnowledgeBaseState | None = None,
 ) -> AssociateAgentKnowledgeBaseResponse: ...
 ```
+
 
 ### create_agent
 
@@ -222,6 +224,7 @@ async def create_agent(
 ) -> CreateAgentResponse: ...
 ```
 
+
 ### create_agent_action_group
 
 ```python
@@ -241,6 +244,7 @@ async def create_agent_action_group(
 ) -> CreateAgentActionGroupResponse: ...
 ```
 
+
 ### create_agent_alias
 
 ```python
@@ -254,6 +258,7 @@ async def create_agent_alias(
     tags: dict[str, str] | None = None,
 ) -> CreateAgentAliasResponse: ...
 ```
+
 
 ### create_data_source
 
@@ -271,6 +276,7 @@ async def create_data_source(
 ) -> CreateDataSourceResponse: ...
 ```
 
+
 ### create_flow
 
 ```python
@@ -285,6 +291,7 @@ async def create_flow(
     tags: dict[str, str] | None = None,
 ) -> CreateFlowResponse: ...
 ```
+
 
 ### create_flow_alias
 
@@ -301,6 +308,7 @@ async def create_flow_alias(
 ) -> CreateFlowAliasResponse: ...
 ```
 
+
 ### create_flow_version
 
 ```python
@@ -311,6 +319,7 @@ async def create_flow_version(
     client_token: str | None = None,
 ) -> CreateFlowVersionResponse: ...
 ```
+
 
 ### create_knowledge_base
 
@@ -327,6 +336,7 @@ async def create_knowledge_base(
 ) -> CreateKnowledgeBaseResponse: ...
 ```
 
+
 ### create_prompt
 
 ```python
@@ -342,6 +352,7 @@ async def create_prompt(
 ) -> CreatePromptResponse: ...
 ```
 
+
 ### create_prompt_version
 
 ```python
@@ -353,6 +364,7 @@ async def create_prompt_version(
     tags: dict[str, str] | None = None,
 ) -> CreatePromptVersionResponse: ...
 ```
+
 
 ### create_retrieval_instruction
 
@@ -368,6 +380,7 @@ async def create_retrieval_instruction(
 ) -> CreateRetrievalInstructionResponse: ...
 ```
 
+
 ### create_retrieval_instruction_version
 
 ```python
@@ -378,6 +391,7 @@ async def create_retrieval_instruction_version(
     client_token: str | None = None,
 ) -> CreateRetrievalInstructionVersionResponse: ...
 ```
+
 
 ### create_vpc_configuration
 
@@ -399,6 +413,7 @@ async def create_vpc_configuration(
 ) -> CreateVpcConfigurationResponse: ...
 ```
 
+
 ### delete_agent
 
 ```python
@@ -408,6 +423,7 @@ async def delete_agent(
     skip_resource_in_use_check: bool | None = None,
 ) -> DeleteAgentResponse: ...
 ```
+
 
 ### delete_agent_action_group
 
@@ -421,6 +437,7 @@ async def delete_agent_action_group(
 ) -> DeleteAgentActionGroupResponse: ...
 ```
 
+
 ### delete_agent_alias
 
 ```python
@@ -430,6 +447,7 @@ async def delete_agent_alias(
     agent_alias_id: str,
 ) -> DeleteAgentAliasResponse: ...
 ```
+
 
 ### delete_agent_version
 
@@ -442,6 +460,7 @@ async def delete_agent_version(
 ) -> DeleteAgentVersionResponse: ...
 ```
 
+
 ### delete_data_source
 
 ```python
@@ -451,6 +470,7 @@ async def delete_data_source(
     data_source_id: str,
 ) -> DeleteDataSourceResponse: ...
 ```
+
 
 ### delete_flow
 
@@ -462,6 +482,7 @@ async def delete_flow(
 ) -> DeleteFlowResponse: ...
 ```
 
+
 ### delete_flow_alias
 
 ```python
@@ -471,6 +492,7 @@ async def delete_flow_alias(
     alias_identifier: str,
 ) -> DeleteFlowAliasResponse: ...
 ```
+
 
 ### delete_flow_version
 
@@ -483,6 +505,7 @@ async def delete_flow_version(
 ) -> DeleteFlowVersionResponse: ...
 ```
 
+
 ### delete_knowledge_base
 
 ```python
@@ -491,6 +514,7 @@ async def delete_knowledge_base(
     knowledge_base_id: str,
 ) -> DeleteKnowledgeBaseResponse: ...
 ```
+
 
 ### delete_knowledge_base_documents
 
@@ -504,6 +528,7 @@ async def delete_knowledge_base_documents(
 ) -> DeleteKnowledgeBaseDocumentsResponse: ...
 ```
 
+
 ### delete_prompt
 
 ```python
@@ -513,6 +538,7 @@ async def delete_prompt(
     prompt_version: str | None = None,
 ) -> DeletePromptResponse: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -524,6 +550,7 @@ async def delete_resource_policy(
 ) -> DeleteResourcePolicyResponse: ...
 ```
 
+
 ### delete_retrieval_instruction
 
 ```python
@@ -534,6 +561,7 @@ async def delete_retrieval_instruction(
 ) -> DeleteRetrievalInstructionResponse: ...
 ```
 
+
 ### delete_vpc_configuration
 
 ```python
@@ -543,6 +571,7 @@ async def delete_vpc_configuration(
     vpc_configuration_id: str,
 ) -> DeleteVpcConfigurationResponse: ...
 ```
+
 
 ### disassociate_agent_collaborator
 
@@ -555,6 +584,7 @@ async def disassociate_agent_collaborator(
 ) -> DisassociateAgentCollaboratorResponse: ...
 ```
 
+
 ### disassociate_agent_knowledge_base
 
 ```python
@@ -566,6 +596,7 @@ async def disassociate_agent_knowledge_base(
 ) -> DisassociateAgentKnowledgeBaseResponse: ...
 ```
 
+
 ### get_agent
 
 ```python
@@ -574,6 +605,7 @@ async def get_agent(
     agent_id: str,
 ) -> GetAgentResponse: ...
 ```
+
 
 ### get_agent_action_group
 
@@ -586,6 +618,7 @@ async def get_agent_action_group(
 ) -> GetAgentActionGroupResponse: ...
 ```
 
+
 ### get_agent_alias
 
 ```python
@@ -595,6 +628,7 @@ async def get_agent_alias(
     agent_alias_id: str,
 ) -> GetAgentAliasResponse: ...
 ```
+
 
 ### get_agent_collaborator
 
@@ -607,6 +641,7 @@ async def get_agent_collaborator(
 ) -> GetAgentCollaboratorResponse: ...
 ```
 
+
 ### get_agent_knowledge_base
 
 ```python
@@ -618,6 +653,7 @@ async def get_agent_knowledge_base(
 ) -> GetAgentKnowledgeBaseResponse: ...
 ```
 
+
 ### get_agent_version
 
 ```python
@@ -627,6 +663,7 @@ async def get_agent_version(
     agent_version: str,
 ) -> GetAgentVersionResponse: ...
 ```
+
 
 ### get_data_source
 
@@ -638,6 +675,7 @@ async def get_data_source(
 ) -> GetDataSourceResponse: ...
 ```
 
+
 ### get_flow
 
 ```python
@@ -648,6 +686,7 @@ async def get_flow(
 ) -> GetFlowResponse: ...
 ```
 
+
 ### get_flow_alias
 
 ```python
@@ -657,6 +696,7 @@ async def get_flow_alias(
     alias_identifier: str,
 ) -> GetFlowAliasResponse: ...
 ```
+
 
 ### get_flow_version
 
@@ -669,6 +709,7 @@ async def get_flow_version(
 ) -> GetFlowVersionResponse: ...
 ```
 
+
 ### get_ingestion_job
 
 ```python
@@ -680,6 +721,7 @@ async def get_ingestion_job(
 ) -> GetIngestionJobResponse: ...
 ```
 
+
 ### get_knowledge_base
 
 ```python
@@ -688,6 +730,7 @@ async def get_knowledge_base(
     knowledge_base_id: str,
 ) -> GetKnowledgeBaseResponse: ...
 ```
+
 
 ### get_knowledge_base_documents
 
@@ -700,6 +743,7 @@ async def get_knowledge_base_documents(
 ) -> GetKnowledgeBaseDocumentsResponse: ...
 ```
 
+
 ### get_prompt
 
 ```python
@@ -711,6 +755,7 @@ async def get_prompt(
 ) -> GetPromptResponse: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -719,6 +764,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_retrieval_instruction
 
@@ -730,6 +776,7 @@ async def get_retrieval_instruction(
 ) -> GetRetrievalInstructionResponse: ...
 ```
 
+
 ### get_vpc_configuration
 
 ```python
@@ -739,6 +786,7 @@ async def get_vpc_configuration(
     vpc_configuration_id: str,
 ) -> GetVpcConfigurationResponse: ...
 ```
+
 
 ### ingest_knowledge_base_documents
 
@@ -752,6 +800,7 @@ async def ingest_knowledge_base_documents(
 ) -> IngestKnowledgeBaseDocumentsResponse: ...
 ```
 
+
 ### list_agent_action_groups
 
 ```python
@@ -764,6 +813,10 @@ async def list_agent_action_groups(
 ) -> ListAgentActionGroupsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_action_groups(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_aliases
 
 ```python
@@ -774,6 +827,10 @@ async def list_agent_aliases(
     next_token: str | None = None,
 ) -> ListAgentAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_agent_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_agent_collaborators
 
@@ -787,6 +844,10 @@ async def list_agent_collaborators(
 ) -> ListAgentCollaboratorsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_collaborators(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_knowledge_bases
 
 ```python
@@ -799,6 +860,10 @@ async def list_agent_knowledge_bases(
 ) -> ListAgentKnowledgeBasesResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_knowledge_bases(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agent_versions
 
 ```python
@@ -810,6 +875,10 @@ async def list_agent_versions(
 ) -> ListAgentVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_agent_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_agents
 
 ```python
@@ -819,6 +888,10 @@ async def list_agents(
     next_token: str | None = None,
 ) -> ListAgentsResponse: ...
 ```
+
+Also available as `client.paginators.list_agents(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_data_sources
 
@@ -831,6 +904,10 @@ async def list_data_sources(
 ) -> ListDataSourcesResponse: ...
 ```
 
+Also available as `client.paginators.list_data_sources(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flow_aliases
 
 ```python
@@ -841,6 +918,10 @@ async def list_flow_aliases(
     next_token: str | None = None,
 ) -> ListFlowAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_flow_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_flow_versions
 
@@ -853,6 +934,10 @@ async def list_flow_versions(
 ) -> ListFlowVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_flow_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_flows
 
 ```python
@@ -862,6 +947,10 @@ async def list_flows(
     next_token: str | None = None,
 ) -> ListFlowsResponse: ...
 ```
+
+Also available as `client.paginators.list_flows(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_ingestion_jobs
 
@@ -877,6 +966,10 @@ async def list_ingestion_jobs(
 ) -> ListIngestionJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_ingestion_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_knowledge_base_documents
 
 ```python
@@ -889,6 +982,10 @@ async def list_knowledge_base_documents(
 ) -> ListKnowledgeBaseDocumentsResponse: ...
 ```
 
+Also available as `client.paginators.list_knowledge_base_documents(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_knowledge_bases
 
 ```python
@@ -898,6 +995,10 @@ async def list_knowledge_bases(
     next_token: str | None = None,
 ) -> ListKnowledgeBasesResponse: ...
 ```
+
+Also available as `client.paginators.list_knowledge_bases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_prompts
 
@@ -910,6 +1011,10 @@ async def list_prompts(
 ) -> ListPromptsResponse: ...
 ```
 
+Also available as `client.paginators.list_prompts(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_retrieval_instruction_versions
 
 ```python
@@ -920,6 +1025,10 @@ async def list_retrieval_instruction_versions(
     next_token: str | None = None,
 ) -> ListRetrievalInstructionVersionsResponse: ...
 ```
+
+Also available as `client.paginators.list_retrieval_instruction_versions(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_retrieval_instructions
 
@@ -932,6 +1041,10 @@ async def list_retrieval_instructions(
 ) -> ListRetrievalInstructionsResponse: ...
 ```
 
+Also available as `client.paginators.list_retrieval_instructions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -940,6 +1053,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_vpc_configurations
 
@@ -953,6 +1067,10 @@ async def list_vpc_configurations(
 ) -> ListVpcConfigurationsResponse: ...
 ```
 
+Also available as `client.paginators.list_vpc_configurations(...)`, returning an
+async iterator of the response type above.
+
+
 ### prepare_agent
 
 ```python
@@ -962,6 +1080,7 @@ async def prepare_agent(
 ) -> PrepareAgentResponse: ...
 ```
 
+
 ### prepare_flow
 
 ```python
@@ -970,6 +1089,7 @@ async def prepare_flow(
     flow_identifier: str,
 ) -> PrepareFlowResponse: ...
 ```
+
 
 ### put_resource_policy
 
@@ -981,6 +1101,7 @@ async def put_resource_policy(
     expected_revision_id: str | None = None,
 ) -> PutResourcePolicyResponse: ...
 ```
+
 
 ### start_ingestion_job
 
@@ -994,6 +1115,7 @@ async def start_ingestion_job(
 ) -> StartIngestionJobResponse: ...
 ```
 
+
 ### stop_ingestion_job
 
 ```python
@@ -1005,6 +1127,7 @@ async def stop_ingestion_job(
 ) -> StopIngestionJobResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1015,6 +1138,7 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1024,6 +1148,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_agent
 
@@ -1047,6 +1172,7 @@ async def update_agent(
 ) -> UpdateAgentResponse: ...
 ```
 
+
 ### update_agent_action_group
 
 ```python
@@ -1066,6 +1192,7 @@ async def update_agent_action_group(
 ) -> UpdateAgentActionGroupResponse: ...
 ```
 
+
 ### update_agent_alias
 
 ```python
@@ -1079,6 +1206,7 @@ async def update_agent_alias(
     alias_invocation_state: AliasInvocationState | None = None,
 ) -> UpdateAgentAliasResponse: ...
 ```
+
 
 ### update_agent_collaborator
 
@@ -1095,6 +1223,7 @@ async def update_agent_collaborator(
 ) -> UpdateAgentCollaboratorResponse: ...
 ```
 
+
 ### update_agent_knowledge_base
 
 ```python
@@ -1107,6 +1236,7 @@ async def update_agent_knowledge_base(
     knowledge_base_state: KnowledgeBaseState | None = None,
 ) -> UpdateAgentKnowledgeBaseResponse: ...
 ```
+
 
 ### update_data_source
 
@@ -1124,6 +1254,7 @@ async def update_data_source(
 ) -> UpdateDataSourceResponse: ...
 ```
 
+
 ### update_flow
 
 ```python
@@ -1137,6 +1268,7 @@ async def update_flow(
     definition: FlowDefinition | None = None,
 ) -> UpdateFlowResponse: ...
 ```
+
 
 ### update_flow_alias
 
@@ -1152,6 +1284,7 @@ async def update_flow_alias(
 ) -> UpdateFlowAliasResponse: ...
 ```
 
+
 ### update_knowledge_base
 
 ```python
@@ -1165,6 +1298,7 @@ async def update_knowledge_base(
     storage_configuration: StorageConfiguration | None = None,
 ) -> UpdateKnowledgeBaseResponse: ...
 ```
+
 
 ### update_prompt
 
@@ -1180,6 +1314,7 @@ async def update_prompt(
 ) -> UpdatePromptResponse: ...
 ```
 
+
 ### update_retrieval_instruction
 
 ```python
@@ -1191,6 +1326,7 @@ async def update_retrieval_instruction(
 ) -> UpdateRetrievalInstructionResponse: ...
 ```
 
+
 ### validate_flow_definition
 
 ```python
@@ -1199,6 +1335,7 @@ async def validate_flow_definition(
     definition: FlowDefinition,
 ) -> ValidateFlowDefinitionResponse: ...
 ```
+
 
 ## Links
 

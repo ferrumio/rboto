@@ -13,6 +13,8 @@ from ._native import SignInClient as NativeClient, CreateOAuth2TokenResponse, Cr
 from .types import (
     CreateOAuth2TokenRequestBody,
 )
+from .paginators import SignInClientPaginators as _Paginators
+
 
 
 class SignInClient:
@@ -41,6 +43,14 @@ class SignInClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._paginators: _Paginators | None = None
+
+    @property
+    def paginators(self) -> _Paginators:
+        """Typed, lazy iterators over the supported paginated operations."""
+        if self._paginators is None:
+            self._paginators = _Paginators(self)
+        return self._paginators
 
 
     async def create_o_auth2_token(

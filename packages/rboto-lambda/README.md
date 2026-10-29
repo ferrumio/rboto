@@ -57,15 +57,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_lambda.types`.
-- Reuse response values with typed adapters from `rboto_lambda.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_lambda.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -190,6 +190,7 @@ async def add_layer_version_permission(
 ) -> AddLayerVersionPermissionResponse: ...
 ```
 
+
 ### add_permission
 
 ```python
@@ -210,6 +211,7 @@ async def add_permission(
 ) -> AddPermissionResponse: ...
 ```
 
+
 ### checkpoint_durable_execution
 
 ```python
@@ -221,6 +223,7 @@ async def checkpoint_durable_execution(
     client_token: str | None = None,
 ) -> CheckpointDurableExecutionResponse: ...
 ```
+
 
 ### create_alias
 
@@ -234,6 +237,7 @@ async def create_alias(
     routing_config: AliasRoutingConfiguration | None = None,
 ) -> CreateAliasOutput: ...
 ```
+
 
 ### create_capacity_provider
 
@@ -252,6 +256,7 @@ async def create_capacity_provider(
 ) -> CreateCapacityProviderResponse: ...
 ```
 
+
 ### create_code_signing_config
 
 ```python
@@ -263,6 +268,7 @@ async def create_code_signing_config(
     tags: dict[str, str] | None = None,
 ) -> CreateCodeSigningConfigResponse: ...
 ```
+
 
 ### create_event_source_mapping
 
@@ -300,6 +306,7 @@ async def create_event_source_mapping(
 ) -> CreateEventSourceMappingOutput: ...
 ```
 
+
 ### create_function
 
 ```python
@@ -336,6 +343,7 @@ async def create_function(
 ) -> CreateFunctionOutput: ...
 ```
 
+
 ### create_function_url_config
 
 ```python
@@ -349,6 +357,7 @@ async def create_function_url_config(
 ) -> CreateFunctionUrlConfigResponse: ...
 ```
 
+
 ### delete_alias
 
 ```python
@@ -359,6 +368,7 @@ async def delete_alias(
 ) -> None: ...
 ```
 
+
 ### delete_capacity_provider
 
 ```python
@@ -367,6 +377,7 @@ async def delete_capacity_provider(
     capacity_provider_name: str,
 ) -> DeleteCapacityProviderResponse: ...
 ```
+
 
 ### delete_code_signing_config
 
@@ -377,6 +388,7 @@ async def delete_code_signing_config(
 ) -> DeleteCodeSigningConfigResponse: ...
 ```
 
+
 ### delete_event_source_mapping
 
 ```python
@@ -385,6 +397,7 @@ async def delete_event_source_mapping(
     uuid: str,
 ) -> DeleteEventSourceMappingOutput: ...
 ```
+
 
 ### delete_function
 
@@ -396,6 +409,7 @@ async def delete_function(
 ) -> DeleteFunctionResponse: ...
 ```
 
+
 ### delete_function_code_signing_config
 
 ```python
@@ -405,6 +419,7 @@ async def delete_function_code_signing_config(
 ) -> None: ...
 ```
 
+
 ### delete_function_concurrency
 
 ```python
@@ -413,6 +428,7 @@ async def delete_function_concurrency(
     function_name: str,
 ) -> None: ...
 ```
+
 
 ### delete_function_event_invoke_config
 
@@ -424,6 +440,7 @@ async def delete_function_event_invoke_config(
 ) -> None: ...
 ```
 
+
 ### delete_function_url_config
 
 ```python
@@ -433,6 +450,7 @@ async def delete_function_url_config(
     qualifier: str | None = None,
 ) -> None: ...
 ```
+
 
 ### delete_layer_version
 
@@ -444,6 +462,7 @@ async def delete_layer_version(
 ) -> None: ...
 ```
 
+
 ### delete_provisioned_concurrency_config
 
 ```python
@@ -453,6 +472,7 @@ async def delete_provisioned_concurrency_config(
     qualifier: str,
 ) -> None: ...
 ```
+
 
 ### delete_resource_policy
 
@@ -464,11 +484,13 @@ async def delete_resource_policy(
 ) -> None: ...
 ```
 
+
 ### get_account_settings
 
 ```python
 async def get_account_settings() -> GetAccountSettingsResponse: ...
 ```
+
 
 ### get_alias
 
@@ -480,6 +502,7 @@ async def get_alias(
 ) -> GetAliasOutput: ...
 ```
 
+
 ### get_capacity_provider
 
 ```python
@@ -488,6 +511,7 @@ async def get_capacity_provider(
     capacity_provider_name: str,
 ) -> GetCapacityProviderResponse: ...
 ```
+
 
 ### get_code_signing_config
 
@@ -498,6 +522,7 @@ async def get_code_signing_config(
 ) -> GetCodeSigningConfigResponse: ...
 ```
 
+
 ### get_durable_execution
 
 ```python
@@ -507,6 +532,7 @@ async def get_durable_execution(
     include_execution_data: bool | None = None,
 ) -> GetDurableExecutionResponse: ...
 ```
+
 
 ### get_durable_execution_history
 
@@ -521,6 +547,10 @@ async def get_durable_execution_history(
 ) -> GetDurableExecutionHistoryResponse: ...
 ```
 
+Also available as `client.paginators.get_durable_execution_history(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_durable_execution_state
 
 ```python
@@ -533,6 +563,10 @@ async def get_durable_execution_state(
 ) -> GetDurableExecutionStateResponse: ...
 ```
 
+Also available as `client.paginators.get_durable_execution_state(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_event_source_mapping
 
 ```python
@@ -541,6 +575,7 @@ async def get_event_source_mapping(
     uuid: str,
 ) -> GetEventSourceMappingOutput: ...
 ```
+
 
 ### get_function
 
@@ -552,6 +587,7 @@ async def get_function(
 ) -> GetFunctionResponse: ...
 ```
 
+
 ### get_function_code_signing_config
 
 ```python
@@ -561,6 +597,7 @@ async def get_function_code_signing_config(
 ) -> GetFunctionCodeSigningConfigResponse: ...
 ```
 
+
 ### get_function_concurrency
 
 ```python
@@ -569,6 +606,7 @@ async def get_function_concurrency(
     function_name: str,
 ) -> GetFunctionConcurrencyResponse: ...
 ```
+
 
 ### get_function_configuration
 
@@ -580,6 +618,7 @@ async def get_function_configuration(
 ) -> GetFunctionConfigurationOutput: ...
 ```
 
+
 ### get_function_event_invoke_config
 
 ```python
@@ -590,6 +629,7 @@ async def get_function_event_invoke_config(
 ) -> GetFunctionEventInvokeConfigOutput: ...
 ```
 
+
 ### get_function_recursion_config
 
 ```python
@@ -598,6 +638,7 @@ async def get_function_recursion_config(
     function_name: str,
 ) -> GetFunctionRecursionConfigResponse: ...
 ```
+
 
 ### get_function_scaling_config
 
@@ -609,6 +650,7 @@ async def get_function_scaling_config(
 ) -> GetFunctionScalingConfigResponse: ...
 ```
 
+
 ### get_function_url_config
 
 ```python
@@ -618,6 +660,7 @@ async def get_function_url_config(
     qualifier: str | None = None,
 ) -> GetFunctionUrlConfigResponse: ...
 ```
+
 
 ### get_layer_version
 
@@ -629,6 +672,7 @@ async def get_layer_version(
 ) -> GetLayerVersionOutput: ...
 ```
 
+
 ### get_layer_version_by_arn
 
 ```python
@@ -637,6 +681,7 @@ async def get_layer_version_by_arn(
     arn: str,
 ) -> GetLayerVersionByArnOutput: ...
 ```
+
 
 ### get_layer_version_policy
 
@@ -648,6 +693,7 @@ async def get_layer_version_policy(
 ) -> GetLayerVersionPolicyResponse: ...
 ```
 
+
 ### get_policy
 
 ```python
@@ -657,6 +703,7 @@ async def get_policy(
     qualifier: str | None = None,
 ) -> GetPolicyResponse: ...
 ```
+
 
 ### get_provisioned_concurrency_config
 
@@ -668,6 +715,7 @@ async def get_provisioned_concurrency_config(
 ) -> GetProvisionedConcurrencyConfigResponse: ...
 ```
 
+
 ### get_resource_policy
 
 ```python
@@ -676,6 +724,7 @@ async def get_resource_policy(
     resource_arn: str,
 ) -> GetResourcePolicyResponse: ...
 ```
+
 
 ### get_runtime_management_config
 
@@ -686,6 +735,7 @@ async def get_runtime_management_config(
     qualifier: str | None = None,
 ) -> GetRuntimeManagementConfigResponse: ...
 ```
+
 
 ### invoke
 
@@ -703,6 +753,7 @@ async def invoke(
 ) -> InvocationResponse: ...
 ```
 
+
 ### invoke_async
 
 ```python
@@ -712,6 +763,7 @@ async def invoke_async(
     invoke_args: bytes,
 ) -> InvokeAsyncResponse: ...
 ```
+
 
 ### invoke_with_response_stream
 
@@ -728,6 +780,7 @@ async def invoke_with_response_stream(
 ) -> InvokeWithResponseStreamResponse: ...
 ```
 
+
 ### list_aliases
 
 ```python
@@ -740,6 +793,10 @@ async def list_aliases(
 ) -> ListAliasesResponse: ...
 ```
 
+Also available as `client.paginators.list_aliases(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_capacity_providers
 
 ```python
@@ -751,6 +808,10 @@ async def list_capacity_providers(
 ) -> ListCapacityProvidersResponse: ...
 ```
 
+Also available as `client.paginators.list_capacity_providers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_code_signing_configs
 
 ```python
@@ -760,6 +821,10 @@ async def list_code_signing_configs(
     max_items: int | None = None,
 ) -> ListCodeSigningConfigsResponse: ...
 ```
+
+Also available as `client.paginators.list_code_signing_configs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_durable_executions_by_function
 
@@ -778,6 +843,10 @@ async def list_durable_executions_by_function(
 ) -> ListDurableExecutionsByFunctionResponse: ...
 ```
 
+Also available as `client.paginators.list_durable_executions_by_function(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_event_source_mappings
 
 ```python
@@ -790,6 +859,10 @@ async def list_event_source_mappings(
 ) -> ListEventSourceMappingsResponse: ...
 ```
 
+Also available as `client.paginators.list_event_source_mappings(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_function_event_invoke_configs
 
 ```python
@@ -800,6 +873,10 @@ async def list_function_event_invoke_configs(
     max_items: int | None = None,
 ) -> ListFunctionEventInvokeConfigsResponse: ...
 ```
+
+Also available as `client.paginators.list_function_event_invoke_configs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_function_url_configs
 
@@ -812,6 +889,10 @@ async def list_function_url_configs(
 ) -> ListFunctionUrlConfigsResponse: ...
 ```
 
+Also available as `client.paginators.list_function_url_configs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_function_versions_by_capacity_provider
 
 ```python
@@ -822,6 +903,10 @@ async def list_function_versions_by_capacity_provider(
     max_items: int | None = None,
 ) -> ListFunctionVersionsByCapacityProviderResponse: ...
 ```
+
+Also available as `client.paginators.list_function_versions_by_capacity_provider(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_functions
 
@@ -835,6 +920,10 @@ async def list_functions(
 ) -> ListFunctionsResponse: ...
 ```
 
+Also available as `client.paginators.list_functions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_functions_by_code_signing_config
 
 ```python
@@ -845,6 +934,10 @@ async def list_functions_by_code_signing_config(
     max_items: int | None = None,
 ) -> ListFunctionsByCodeSigningConfigResponse: ...
 ```
+
+Also available as `client.paginators.list_functions_by_code_signing_config(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_layer_versions
 
@@ -859,6 +952,10 @@ async def list_layer_versions(
 ) -> ListLayerVersionsResponse: ...
 ```
 
+Also available as `client.paginators.list_layer_versions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_layers
 
 ```python
@@ -871,6 +968,10 @@ async def list_layers(
 ) -> ListLayersResponse: ...
 ```
 
+Also available as `client.paginators.list_layers(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_provisioned_concurrency_configs
 
 ```python
@@ -882,6 +983,10 @@ async def list_provisioned_concurrency_configs(
 ) -> ListProvisionedConcurrencyConfigsResponse: ...
 ```
 
+Also available as `client.paginators.list_provisioned_concurrency_configs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags
 
 ```python
@@ -890,6 +995,7 @@ async def list_tags(
     resource: str,
 ) -> ListTagsResponse: ...
 ```
+
 
 ### list_versions_by_function
 
@@ -901,6 +1007,10 @@ async def list_versions_by_function(
     max_items: int | None = None,
 ) -> ListVersionsByFunctionResponse: ...
 ```
+
+Also available as `client.paginators.list_versions_by_function(...)`, returning an
+async iterator of the response type above.
+
 
 ### publish_layer_version
 
@@ -916,6 +1026,7 @@ async def publish_layer_version(
 ) -> PublishLayerVersionResponse: ...
 ```
 
+
 ### publish_version
 
 ```python
@@ -929,6 +1040,7 @@ async def publish_version(
 ) -> PublishVersionOutput: ...
 ```
 
+
 ### put_function_code_signing_config
 
 ```python
@@ -939,6 +1051,7 @@ async def put_function_code_signing_config(
 ) -> PutFunctionCodeSigningConfigResponse: ...
 ```
 
+
 ### put_function_concurrency
 
 ```python
@@ -948,6 +1061,7 @@ async def put_function_concurrency(
     reserved_concurrent_executions: int,
 ) -> PutFunctionConcurrencyOutput: ...
 ```
+
 
 ### put_function_event_invoke_config
 
@@ -962,6 +1076,7 @@ async def put_function_event_invoke_config(
 ) -> PutFunctionEventInvokeConfigOutput: ...
 ```
 
+
 ### put_function_recursion_config
 
 ```python
@@ -971,6 +1086,7 @@ async def put_function_recursion_config(
     recursive_loop: RecursiveLoop,
 ) -> PutFunctionRecursionConfigResponse: ...
 ```
+
 
 ### put_function_scaling_config
 
@@ -983,6 +1099,7 @@ async def put_function_scaling_config(
 ) -> PutFunctionScalingConfigResponse: ...
 ```
 
+
 ### put_provisioned_concurrency_config
 
 ```python
@@ -994,6 +1111,7 @@ async def put_provisioned_concurrency_config(
 ) -> PutProvisionedConcurrencyConfigResponse: ...
 ```
 
+
 ### put_resource_policy
 
 ```python
@@ -1004,6 +1122,7 @@ async def put_resource_policy(
     revision_id: str | None = None,
 ) -> PutResourcePolicyResponse: ...
 ```
+
 
 ### put_runtime_management_config
 
@@ -1017,6 +1136,7 @@ async def put_runtime_management_config(
 ) -> PutRuntimeManagementConfigResponse: ...
 ```
 
+
 ### remove_layer_version_permission
 
 ```python
@@ -1028,6 +1148,7 @@ async def remove_layer_version_permission(
     revision_id: str | None = None,
 ) -> None: ...
 ```
+
 
 ### remove_permission
 
@@ -1041,6 +1162,7 @@ async def remove_permission(
 ) -> None: ...
 ```
 
+
 ### send_durable_execution_callback_failure
 
 ```python
@@ -1051,6 +1173,7 @@ async def send_durable_execution_callback_failure(
 ) -> SendDurableExecutionCallbackFailureResponse: ...
 ```
 
+
 ### send_durable_execution_callback_heartbeat
 
 ```python
@@ -1059,6 +1182,7 @@ async def send_durable_execution_callback_heartbeat(
     callback_id: str,
 ) -> SendDurableExecutionCallbackHeartbeatResponse: ...
 ```
+
 
 ### send_durable_execution_callback_success
 
@@ -1070,6 +1194,7 @@ async def send_durable_execution_callback_success(
 ) -> SendDurableExecutionCallbackSuccessResponse: ...
 ```
 
+
 ### stop_durable_execution
 
 ```python
@@ -1079,6 +1204,7 @@ async def stop_durable_execution(
     error: ErrorObject | None = None,
 ) -> StopDurableExecutionResponse: ...
 ```
+
 
 ### tag_resource
 
@@ -1090,6 +1216,7 @@ async def tag_resource(
 ) -> None: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1099,6 +1226,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> None: ...
 ```
+
 
 ### update_alias
 
@@ -1114,6 +1242,7 @@ async def update_alias(
 ) -> UpdateAliasOutput: ...
 ```
 
+
 ### update_capacity_provider
 
 ```python
@@ -1126,6 +1255,7 @@ async def update_capacity_provider(
 ) -> UpdateCapacityProviderResponse: ...
 ```
 
+
 ### update_code_signing_config
 
 ```python
@@ -1137,6 +1267,7 @@ async def update_code_signing_config(
     code_signing_policies: CodeSigningPolicies | None = None,
 ) -> UpdateCodeSigningConfigResponse: ...
 ```
+
 
 ### update_event_source_mapping
 
@@ -1168,6 +1299,7 @@ async def update_event_source_mapping(
 ) -> UpdateEventSourceMappingOutput: ...
 ```
 
+
 ### update_function_code
 
 ```python
@@ -1188,6 +1320,7 @@ async def update_function_code(
     source_kms_key_arn: str | None = None,
 ) -> UpdateFunctionCodeOutput: ...
 ```
+
 
 ### update_function_configuration
 
@@ -1218,6 +1351,7 @@ async def update_function_configuration(
 ) -> UpdateFunctionConfigurationOutput: ...
 ```
 
+
 ### update_function_event_invoke_config
 
 ```python
@@ -1231,6 +1365,7 @@ async def update_function_event_invoke_config(
 ) -> UpdateFunctionEventInvokeConfigOutput: ...
 ```
 
+
 ### update_function_url_config
 
 ```python
@@ -1243,6 +1378,7 @@ async def update_function_url_config(
     invoke_mode: InvokeMode | None = None,
 ) -> UpdateFunctionUrlConfigResponse: ...
 ```
+
 
 ## Links
 

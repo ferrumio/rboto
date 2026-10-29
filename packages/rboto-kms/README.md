@@ -54,15 +54,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_kms.types`.
-- Reuse response values with typed adapters from `rboto_kms.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_kms.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -147,6 +147,7 @@ async def cancel_key_deletion(
 ) -> CancelKeyDeletionResponse: ...
 ```
 
+
 ### connect_custom_key_store
 
 ```python
@@ -155,6 +156,7 @@ async def connect_custom_key_store(
     custom_key_store_id: str,
 ) -> ConnectCustomKeyStoreResponse: ...
 ```
+
 
 ### create_alias
 
@@ -165,6 +167,7 @@ async def create_alias(
     target_key_id: str,
 ) -> None: ...
 ```
+
 
 ### create_custom_key_store
 
@@ -185,6 +188,7 @@ async def create_custom_key_store(
 ) -> CreateCustomKeyStoreResponse: ...
 ```
 
+
 ### create_grant
 
 ```python
@@ -202,6 +206,7 @@ async def create_grant(
     retiring_service_principal: str | None = None,
 ) -> CreateGrantResponse: ...
 ```
+
 
 ### create_key
 
@@ -222,6 +227,7 @@ async def create_key(
 ) -> CreateKeyResponse: ...
 ```
 
+
 ### decrypt
 
 ```python
@@ -238,6 +244,7 @@ async def decrypt(
 ) -> DecryptResponse: ...
 ```
 
+
 ### delete_alias
 
 ```python
@@ -246,6 +253,7 @@ async def delete_alias(
     alias_name: str,
 ) -> None: ...
 ```
+
 
 ### delete_custom_key_store
 
@@ -256,6 +264,7 @@ async def delete_custom_key_store(
 ) -> DeleteCustomKeyStoreResponse: ...
 ```
 
+
 ### delete_imported_key_material
 
 ```python
@@ -265,6 +274,7 @@ async def delete_imported_key_material(
     key_material_id: str | None = None,
 ) -> DeleteImportedKeyMaterialResponse: ...
 ```
+
 
 ### derive_shared_secret
 
@@ -280,6 +290,7 @@ async def derive_shared_secret(
 ) -> DeriveSharedSecretResponse: ...
 ```
 
+
 ### describe_custom_key_stores
 
 ```python
@@ -292,6 +303,10 @@ async def describe_custom_key_stores(
 ) -> DescribeCustomKeyStoresResponse: ...
 ```
 
+Also available as `client.paginators.describe_custom_key_stores(...)`, returning an
+async iterator of the response type above.
+
+
 ### describe_key
 
 ```python
@@ -302,6 +317,7 @@ async def describe_key(
 ) -> DescribeKeyResponse: ...
 ```
 
+
 ### disable_key
 
 ```python
@@ -310,6 +326,7 @@ async def disable_key(
     key_id: str,
 ) -> None: ...
 ```
+
 
 ### disable_key_rotation
 
@@ -320,6 +337,7 @@ async def disable_key_rotation(
 ) -> None: ...
 ```
 
+
 ### disconnect_custom_key_store
 
 ```python
@@ -328,6 +346,7 @@ async def disconnect_custom_key_store(
     custom_key_store_id: str,
 ) -> DisconnectCustomKeyStoreResponse: ...
 ```
+
 
 ### enable_key
 
@@ -338,6 +357,7 @@ async def enable_key(
 ) -> None: ...
 ```
 
+
 ### enable_key_rotation
 
 ```python
@@ -347,6 +367,7 @@ async def enable_key_rotation(
     rotation_period_in_days: int | None = None,
 ) -> None: ...
 ```
+
 
 ### encrypt
 
@@ -361,6 +382,7 @@ async def encrypt(
     dry_run: bool | None = None,
 ) -> EncryptResponse: ...
 ```
+
 
 ### generate_data_key
 
@@ -377,6 +399,7 @@ async def generate_data_key(
 ) -> GenerateDataKeyResponse: ...
 ```
 
+
 ### generate_data_key_pair
 
 ```python
@@ -391,6 +414,7 @@ async def generate_data_key_pair(
 ) -> GenerateDataKeyPairResponse: ...
 ```
 
+
 ### generate_data_key_pair_without_plaintext
 
 ```python
@@ -403,6 +427,7 @@ async def generate_data_key_pair_without_plaintext(
     dry_run: bool | None = None,
 ) -> GenerateDataKeyPairWithoutPlaintextResponse: ...
 ```
+
 
 ### generate_data_key_without_plaintext
 
@@ -418,6 +443,7 @@ async def generate_data_key_without_plaintext(
 ) -> GenerateDataKeyWithoutPlaintextResponse: ...
 ```
 
+
 ### generate_mac
 
 ```python
@@ -431,6 +457,7 @@ async def generate_mac(
 ) -> GenerateMacResponse: ...
 ```
 
+
 ### generate_random
 
 ```python
@@ -442,6 +469,7 @@ async def generate_random(
 ) -> GenerateRandomResponse: ...
 ```
 
+
 ### get_key_last_usage
 
 ```python
@@ -450,6 +478,7 @@ async def get_key_last_usage(
     key_id: str,
 ) -> GetKeyLastUsageResponse: ...
 ```
+
 
 ### get_key_policy
 
@@ -461,6 +490,7 @@ async def get_key_policy(
 ) -> GetKeyPolicyResponse: ...
 ```
 
+
 ### get_key_rotation_status
 
 ```python
@@ -469,6 +499,7 @@ async def get_key_rotation_status(
     key_id: str,
 ) -> GetKeyRotationStatusResponse: ...
 ```
+
 
 ### get_parameters_for_import
 
@@ -481,6 +512,7 @@ async def get_parameters_for_import(
 ) -> GetParametersForImportResponse: ...
 ```
 
+
 ### get_public_key
 
 ```python
@@ -490,6 +522,7 @@ async def get_public_key(
     grant_tokens: Sequence[str] | None = None,
 ) -> GetPublicKeyResponse: ...
 ```
+
 
 ### import_key_material
 
@@ -507,6 +540,7 @@ async def import_key_material(
 ) -> ImportKeyMaterialResponse: ...
 ```
 
+
 ### list_aliases
 
 ```python
@@ -517,6 +551,10 @@ async def list_aliases(
     marker: str | None = None,
 ) -> ListAliasesResponse: ...
 ```
+
+Also available as `client.paginators.list_aliases(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_grants
 
@@ -532,6 +570,10 @@ async def list_grants(
 ) -> ListGrantsOutput: ...
 ```
 
+Also available as `client.paginators.list_grants(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_key_policies
 
 ```python
@@ -542,6 +584,10 @@ async def list_key_policies(
     marker: str | None = None,
 ) -> ListKeyPoliciesResponse: ...
 ```
+
+Also available as `client.paginators.list_key_policies(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_key_rotations
 
@@ -555,6 +601,10 @@ async def list_key_rotations(
 ) -> ListKeyRotationsResponse: ...
 ```
 
+Also available as `client.paginators.list_key_rotations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_keys
 
 ```python
@@ -564,6 +614,10 @@ async def list_keys(
     marker: str | None = None,
 ) -> ListKeysResponse: ...
 ```
+
+Also available as `client.paginators.list_keys(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_resource_tags
 
@@ -575,6 +629,10 @@ async def list_resource_tags(
     marker: str | None = None,
 ) -> ListResourceTagsResponse: ...
 ```
+
+Also available as `client.paginators.list_resource_tags(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_retirable_grants
 
@@ -588,6 +646,10 @@ async def list_retirable_grants(
 ) -> ListRetirableGrantsOutput: ...
 ```
 
+Also available as `client.paginators.list_retirable_grants(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_key_policy
 
 ```python
@@ -599,6 +661,7 @@ async def put_key_policy(
     bypass_policy_lockout_safety_check: bool | None = None,
 ) -> None: ...
 ```
+
 
 ### re_encrypt
 
@@ -618,6 +681,7 @@ async def re_encrypt(
 ) -> ReEncryptResponse: ...
 ```
 
+
 ### replicate_key
 
 ```python
@@ -632,6 +696,7 @@ async def replicate_key(
 ) -> ReplicateKeyResponse: ...
 ```
 
+
 ### retire_grant
 
 ```python
@@ -644,6 +709,7 @@ async def retire_grant(
 ) -> None: ...
 ```
 
+
 ### revoke_grant
 
 ```python
@@ -655,6 +721,7 @@ async def revoke_grant(
 ) -> None: ...
 ```
 
+
 ### rotate_key_on_demand
 
 ```python
@@ -663,6 +730,7 @@ async def rotate_key_on_demand(
     key_id: str,
 ) -> RotateKeyOnDemandResponse: ...
 ```
+
 
 ### schedule_key_deletion
 
@@ -673,6 +741,7 @@ async def schedule_key_deletion(
     pending_window_in_days: int | None = None,
 ) -> ScheduleKeyDeletionResponse: ...
 ```
+
 
 ### sign
 
@@ -688,6 +757,7 @@ async def sign(
 ) -> SignResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -697,6 +767,7 @@ async def tag_resource(
     tags: Sequence[Tag],
 ) -> None: ...
 ```
+
 
 ### untag_resource
 
@@ -708,6 +779,7 @@ async def untag_resource(
 ) -> None: ...
 ```
 
+
 ### update_alias
 
 ```python
@@ -717,6 +789,7 @@ async def update_alias(
     target_key_id: str,
 ) -> None: ...
 ```
+
 
 ### update_custom_key_store
 
@@ -736,6 +809,7 @@ async def update_custom_key_store(
 ) -> UpdateCustomKeyStoreResponse: ...
 ```
 
+
 ### update_key_description
 
 ```python
@@ -746,6 +820,7 @@ async def update_key_description(
 ) -> None: ...
 ```
 
+
 ### update_primary_region
 
 ```python
@@ -755,6 +830,7 @@ async def update_primary_region(
     primary_region: str,
 ) -> None: ...
 ```
+
 
 ### verify
 
@@ -771,6 +847,7 @@ async def verify(
 ) -> VerifyResponse: ...
 ```
 
+
 ### verify_mac
 
 ```python
@@ -784,6 +861,7 @@ async def verify_mac(
     dry_run: bool | None = None,
 ) -> VerifyMacResponse: ...
 ```
+
 
 ## Links
 

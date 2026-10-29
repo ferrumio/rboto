@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_bedrock_data_automation.types`.
-- Reuse response values with typed adapters from `rboto_bedrock_data_automation.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_data_automation.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -124,6 +124,7 @@ async def copy_blueprint_stage(
 ) -> CopyBlueprintStageResponse: ...
 ```
 
+
 ### create_blueprint
 
 ```python
@@ -139,6 +140,7 @@ async def create_blueprint(
 ) -> CreateBlueprintResponse: ...
 ```
 
+
 ### create_blueprint_version
 
 ```python
@@ -148,6 +150,7 @@ async def create_blueprint_version(
     client_token: str | None = None,
 ) -> CreateBlueprintVersionResponse: ...
 ```
+
 
 ### create_data_automation_library
 
@@ -161,6 +164,7 @@ async def create_data_automation_library(
     tags: Sequence[Tag] | None = None,
 ) -> CreateDataAutomationLibraryResponse: ...
 ```
+
 
 ### create_data_automation_project
 
@@ -181,6 +185,7 @@ async def create_data_automation_project(
 ) -> CreateDataAutomationProjectResponse: ...
 ```
 
+
 ### delete_blueprint
 
 ```python
@@ -191,6 +196,7 @@ async def delete_blueprint(
 ) -> DeleteBlueprintResponse: ...
 ```
 
+
 ### delete_data_automation_library
 
 ```python
@@ -200,6 +206,7 @@ async def delete_data_automation_library(
 ) -> DeleteDataAutomationLibraryResponse: ...
 ```
 
+
 ### delete_data_automation_project
 
 ```python
@@ -208,6 +215,7 @@ async def delete_data_automation_project(
     project_arn: str,
 ) -> DeleteDataAutomationProjectResponse: ...
 ```
+
 
 ### get_blueprint
 
@@ -220,6 +228,7 @@ async def get_blueprint(
 ) -> GetBlueprintResponse: ...
 ```
 
+
 ### get_blueprint_optimization_status
 
 ```python
@@ -229,6 +238,7 @@ async def get_blueprint_optimization_status(
 ) -> GetBlueprintOptimizationStatusResponse: ...
 ```
 
+
 ### get_data_automation_library
 
 ```python
@@ -237,6 +247,7 @@ async def get_data_automation_library(
     library_arn: str,
 ) -> GetDataAutomationLibraryResponse: ...
 ```
+
 
 ### get_data_automation_library_entity
 
@@ -249,6 +260,7 @@ async def get_data_automation_library_entity(
 ) -> GetDataAutomationLibraryEntityResponse: ...
 ```
 
+
 ### get_data_automation_library_ingestion_job
 
 ```python
@@ -259,6 +271,7 @@ async def get_data_automation_library_ingestion_job(
 ) -> GetDataAutomationLibraryIngestionJobResponse: ...
 ```
 
+
 ### get_data_automation_project
 
 ```python
@@ -268,6 +281,7 @@ async def get_data_automation_project(
     project_stage: DataAutomationProjectStage | None = None,
 ) -> GetDataAutomationProjectResponse: ...
 ```
+
 
 ### invoke_blueprint_optimization_async
 
@@ -282,6 +296,7 @@ async def invoke_blueprint_optimization_async(
     tags: Sequence[Tag] | None = None,
 ) -> InvokeBlueprintOptimizationAsyncResponse: ...
 ```
+
 
 ### invoke_data_automation_library_ingestion_job
 
@@ -299,6 +314,7 @@ async def invoke_data_automation_library_ingestion_job(
 ) -> InvokeDataAutomationLibraryIngestionJobResponse: ...
 ```
 
+
 ### list_blueprints
 
 ```python
@@ -313,6 +329,10 @@ async def list_blueprints(
 ) -> ListBlueprintsResponse: ...
 ```
 
+Also available as `client.paginators.list_blueprints(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_data_automation_libraries
 
 ```python
@@ -323,6 +343,10 @@ async def list_data_automation_libraries(
     project_filter: DataAutomationProjectFilter | None = None,
 ) -> ListDataAutomationLibrariesResponse: ...
 ```
+
+Also available as `client.paginators.list_data_automation_libraries(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_data_automation_library_entities
 
@@ -336,6 +360,10 @@ async def list_data_automation_library_entities(
 ) -> ListDataAutomationLibraryEntitiesResponse: ...
 ```
 
+Also available as `client.paginators.list_data_automation_library_entities(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_data_automation_library_ingestion_jobs
 
 ```python
@@ -346,6 +374,10 @@ async def list_data_automation_library_ingestion_jobs(
     next_token: str | None = None,
 ) -> ListDataAutomationLibraryIngestionJobsResponse: ...
 ```
+
+Also available as `client.paginators.list_data_automation_library_ingestion_jobs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_data_automation_projects
 
@@ -361,6 +393,10 @@ async def list_data_automation_projects(
 ) -> ListDataAutomationProjectsResponse: ...
 ```
 
+Also available as `client.paginators.list_data_automation_projects(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -369,6 +405,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### tag_resource
 
@@ -380,6 +417,7 @@ async def tag_resource(
 ) -> TagResourceResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -389,6 +427,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_blueprint
 
@@ -402,6 +441,7 @@ async def update_blueprint(
 ) -> UpdateBlueprintResponse: ...
 ```
 
+
 ### update_data_automation_library
 
 ```python
@@ -412,6 +452,7 @@ async def update_data_automation_library(
     client_token: str | None = None,
 ) -> UpdateDataAutomationLibraryResponse: ...
 ```
+
 
 ### update_data_automation_project
 
@@ -428,6 +469,7 @@ async def update_data_automation_project(
     encryption_configuration: EncryptionConfiguration | None = None,
 ) -> UpdateDataAutomationProjectResponse: ...
 ```
+
 
 ## Links
 

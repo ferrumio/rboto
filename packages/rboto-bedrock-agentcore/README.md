@@ -55,15 +55,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_bedrock_agentcore.types`.
-- Reuse response values with typed adapters from `rboto_bedrock_agentcore.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_bedrock_agentcore.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -164,6 +164,7 @@ async def batch_create_memory_records(
 ) -> BatchCreateMemoryRecordsOutput: ...
 ```
 
+
 ### batch_delete_memory_records
 
 ```python
@@ -173,6 +174,7 @@ async def batch_delete_memory_records(
     records: Sequence[MemoryRecordDeleteInput],
 ) -> BatchDeleteMemoryRecordsOutput: ...
 ```
+
 
 ### batch_update_memory_records
 
@@ -185,6 +187,7 @@ async def batch_update_memory_records(
 ) -> BatchUpdateMemoryRecordsOutput: ...
 ```
 
+
 ### complete_resource_token_auth
 
 ```python
@@ -194,6 +197,7 @@ async def complete_resource_token_auth(
     session_uri: str,
 ) -> CompleteResourceTokenAuthResponse: ...
 ```
+
 
 ### create_ab_test
 
@@ -213,6 +217,7 @@ async def create_ab_test(
 ) -> CreateABTestResponse: ...
 ```
 
+
 ### create_event
 
 ```python
@@ -231,6 +236,7 @@ async def create_event(
 ) -> CreateEventOutput: ...
 ```
 
+
 ### create_payment_instrument
 
 ```python
@@ -246,6 +252,7 @@ async def create_payment_instrument(
 ) -> CreatePaymentInstrumentResponse: ...
 ```
 
+
 ### create_payment_session
 
 ```python
@@ -260,6 +267,7 @@ async def create_payment_session(
 ) -> CreatePaymentSessionResponse: ...
 ```
 
+
 ### delete_ab_test
 
 ```python
@@ -268,6 +276,7 @@ async def delete_ab_test(
     ab_test_id: str,
 ) -> DeleteABTestResponse: ...
 ```
+
 
 ### delete_batch_evaluation
 
@@ -278,6 +287,7 @@ async def delete_batch_evaluation(
 ) -> DeleteBatchEvaluationResponse: ...
 ```
 
+
 ### delete_capacity_provider_session
 
 ```python
@@ -287,6 +297,7 @@ async def delete_capacity_provider_session(
     session_id: str,
 ) -> DeleteCapacityProviderSessionResponse: ...
 ```
+
 
 ### delete_event
 
@@ -300,6 +311,7 @@ async def delete_event(
 ) -> DeleteEventOutput: ...
 ```
 
+
 ### delete_memory_record
 
 ```python
@@ -310,6 +322,7 @@ async def delete_memory_record(
     namespace: str | None = None,
 ) -> DeleteMemoryRecordOutput: ...
 ```
+
 
 ### delete_payment_instrument
 
@@ -323,6 +336,7 @@ async def delete_payment_instrument(
 ) -> DeletePaymentInstrumentResponse: ...
 ```
 
+
 ### delete_payment_session
 
 ```python
@@ -334,6 +348,7 @@ async def delete_payment_session(
 ) -> DeletePaymentSessionResponse: ...
 ```
 
+
 ### delete_recommendation
 
 ```python
@@ -342,6 +357,7 @@ async def delete_recommendation(
     recommendation_id: str,
 ) -> DeleteRecommendationResponse: ...
 ```
+
 
 ### evaluate
 
@@ -355,6 +371,7 @@ async def evaluate(
 ) -> EvaluateResponse: ...
 ```
 
+
 ### get_ab_test
 
 ```python
@@ -363,6 +380,7 @@ async def get_ab_test(
     ab_test_id: str,
 ) -> GetABTestResponse: ...
 ```
+
 
 ### get_agent_card
 
@@ -375,6 +393,7 @@ async def get_agent_card(
 ) -> GetAgentCardResponse: ...
 ```
 
+
 ### get_batch_evaluation
 
 ```python
@@ -383,6 +402,7 @@ async def get_batch_evaluation(
     batch_evaluation_id: str,
 ) -> GetBatchEvaluationResponse: ...
 ```
+
 
 ### get_browser_session
 
@@ -394,6 +414,7 @@ async def get_browser_session(
 ) -> GetBrowserSessionResponse: ...
 ```
 
+
 ### get_code_interpreter_session
 
 ```python
@@ -403,6 +424,7 @@ async def get_code_interpreter_session(
     session_id: str,
 ) -> GetCodeInterpreterSessionResponse: ...
 ```
+
 
 ### get_event
 
@@ -416,6 +438,7 @@ async def get_event(
 ) -> GetEventOutput: ...
 ```
 
+
 ### get_memory_record
 
 ```python
@@ -426,6 +449,7 @@ async def get_memory_record(
     namespace: str | None = None,
 ) -> GetMemoryRecordOutput: ...
 ```
+
 
 ### get_payment_instrument
 
@@ -439,6 +463,7 @@ async def get_payment_instrument(
     payment_connector_id: str | None = None,
 ) -> GetPaymentInstrumentResponse: ...
 ```
+
 
 ### get_payment_instrument_balance
 
@@ -455,6 +480,7 @@ async def get_payment_instrument_balance(
 ) -> GetPaymentInstrumentBalanceResponse: ...
 ```
 
+
 ### get_payment_session
 
 ```python
@@ -467,6 +493,7 @@ async def get_payment_session(
 ) -> GetPaymentSessionResponse: ...
 ```
 
+
 ### get_recommendation
 
 ```python
@@ -475,6 +502,7 @@ async def get_recommendation(
     recommendation_id: str,
 ) -> GetRecommendationResponse: ...
 ```
+
 
 ### get_resource_api_key
 
@@ -485,6 +513,7 @@ async def get_resource_api_key(
     resource_credential_provider_name: str,
 ) -> GetResourceApiKeyResponse: ...
 ```
+
 
 ### get_resource_oauth2_token
 
@@ -505,6 +534,7 @@ async def get_resource_oauth2_token(
 ) -> GetResourceOauth2TokenResponse: ...
 ```
 
+
 ### get_resource_payment_token
 
 ```python
@@ -516,6 +546,7 @@ async def get_resource_payment_token(
 ) -> GetResourcePaymentTokenResponse: ...
 ```
 
+
 ### get_workload_access_token
 
 ```python
@@ -524,6 +555,7 @@ async def get_workload_access_token(
     workload_name: str,
 ) -> GetWorkloadAccessTokenResponse: ...
 ```
+
 
 ### get_workload_access_token_for_jwt
 
@@ -535,6 +567,7 @@ async def get_workload_access_token_for_jwt(
 ) -> GetWorkloadAccessTokenForJWTResponse: ...
 ```
 
+
 ### get_workload_access_token_for_user_id
 
 ```python
@@ -544,6 +577,7 @@ async def get_workload_access_token_for_user_id(
     user_id: str,
 ) -> GetWorkloadAccessTokenForUserIdResponse: ...
 ```
+
 
 ### ingest_data
 
@@ -560,6 +594,7 @@ async def ingest_data(
     client_token: str | None = None,
 ) -> IngestDataOutput: ...
 ```
+
 
 ### invoke_agent_runtime
 
@@ -585,6 +620,7 @@ async def invoke_agent_runtime(
 ) -> InvokeAgentRuntimeResponse: ...
 ```
 
+
 ### invoke_agent_runtime_command
 
 ```python
@@ -604,6 +640,7 @@ async def invoke_agent_runtime_command(
 ) -> InvokeAgentRuntimeCommandResponse: ...
 ```
 
+
 ### invoke_browser
 
 ```python
@@ -614,6 +651,7 @@ async def invoke_browser(
     action: BrowserAction,
 ) -> InvokeBrowserResponse: ...
 ```
+
 
 ### invoke_code_interpreter
 
@@ -628,6 +666,7 @@ async def invoke_code_interpreter(
     arguments: ToolArguments | None = None,
 ) -> InvokeCodeInterpreterResponse: ...
 ```
+
 
 ### invoke_harness
 
@@ -655,6 +694,7 @@ async def invoke_harness(
 ) -> InvokeHarnessResponse: ...
 ```
 
+
 ### list_ab_tests
 
 ```python
@@ -664,6 +704,10 @@ async def list_ab_tests(
     next_token: str | None = None,
 ) -> ListABTestsResponse: ...
 ```
+
+Also available as `client.paginators.list_ab_tests(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_actors
 
@@ -676,6 +720,10 @@ async def list_actors(
 ) -> ListActorsOutput: ...
 ```
 
+Also available as `client.paginators.list_actors(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_batch_evaluations
 
 ```python
@@ -685,6 +733,10 @@ async def list_batch_evaluations(
     next_token: str | None = None,
 ) -> ListBatchEvaluationsResponse: ...
 ```
+
+Also available as `client.paginators.list_batch_evaluations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_browser_sessions
 
@@ -698,6 +750,7 @@ async def list_browser_sessions(
 ) -> ListBrowserSessionsResponse: ...
 ```
 
+
 ### list_code_interpreter_sessions
 
 ```python
@@ -709,6 +762,7 @@ async def list_code_interpreter_sessions(
     status: CodeInterpreterSessionStatus | None = None,
 ) -> ListCodeInterpreterSessionsResponse: ...
 ```
+
 
 ### list_events
 
@@ -725,6 +779,10 @@ async def list_events(
 ) -> ListEventsOutput: ...
 ```
 
+Also available as `client.paginators.list_events(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_memory_extraction_jobs
 
 ```python
@@ -736,6 +794,10 @@ async def list_memory_extraction_jobs(
     next_token: str | None = None,
 ) -> ListMemoryExtractionJobsOutput: ...
 ```
+
+Also available as `client.paginators.list_memory_extraction_jobs(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_memory_records
 
@@ -752,6 +814,10 @@ async def list_memory_records(
 ) -> ListMemoryRecordsOutput: ...
 ```
 
+Also available as `client.paginators.list_memory_records(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_payment_instruments
 
 ```python
@@ -766,6 +832,10 @@ async def list_payment_instruments(
 ) -> ListPaymentInstrumentsResponse: ...
 ```
 
+Also available as `client.paginators.list_payment_instruments(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_payment_sessions
 
 ```python
@@ -779,6 +849,10 @@ async def list_payment_sessions(
 ) -> ListPaymentSessionsResponse: ...
 ```
 
+Also available as `client.paginators.list_payment_sessions(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_recommendations
 
 ```python
@@ -789,6 +863,10 @@ async def list_recommendations(
     status_filter: RecommendationStatus | None = None,
 ) -> ListRecommendationsResponse: ...
 ```
+
+Also available as `client.paginators.list_recommendations(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_sessions
 
@@ -802,6 +880,10 @@ async def list_sessions(
     filter: SessionFilter | None = None,
 ) -> ListSessionsOutput: ...
 ```
+
+Also available as `client.paginators.list_sessions(...)`, returning an
+async iterator of the response type above.
+
 
 ### process_payment
 
@@ -819,6 +901,7 @@ async def process_payment(
 ) -> ProcessPaymentResponse: ...
 ```
 
+
 ### retrieve_memory_records
 
 ```python
@@ -832,6 +915,10 @@ async def retrieve_memory_records(
     max_results: int | None = None,
 ) -> RetrieveMemoryRecordsOutput: ...
 ```
+
+Also available as `client.paginators.retrieve_memory_records(...)`, returning an
+async iterator of the response type above.
+
 
 ### save_browser_session_profile
 
@@ -847,6 +934,7 @@ async def save_browser_session_profile(
 ) -> SaveBrowserSessionProfileResponse: ...
 ```
 
+
 ### search_registry_records
 
 ```python
@@ -858,6 +946,7 @@ async def search_registry_records(
     filters: JSONValue | None = None,
 ) -> SearchRegistryRecordsResponse: ...
 ```
+
 
 ### start_batch_evaluation
 
@@ -876,6 +965,7 @@ async def start_batch_evaluation(
     output_config: OutputConfig | None = None,
 ) -> StartBatchEvaluationResponse: ...
 ```
+
 
 ### start_browser_session
 
@@ -898,6 +988,7 @@ async def start_browser_session(
 ) -> StartBrowserSessionResponse: ...
 ```
 
+
 ### start_code_interpreter_session
 
 ```python
@@ -914,6 +1005,7 @@ async def start_code_interpreter_session(
 ) -> StartCodeInterpreterSessionResponse: ...
 ```
 
+
 ### start_memory_extraction_job
 
 ```python
@@ -924,6 +1016,7 @@ async def start_memory_extraction_job(
     client_token: str | None = None,
 ) -> StartMemoryExtractionJobOutput: ...
 ```
+
 
 ### start_recommendation
 
@@ -940,6 +1033,7 @@ async def start_recommendation(
 ) -> StartRecommendationResponse: ...
 ```
 
+
 ### stop_batch_evaluation
 
 ```python
@@ -948,6 +1042,7 @@ async def stop_batch_evaluation(
     batch_evaluation_id: str,
 ) -> StopBatchEvaluationResponse: ...
 ```
+
 
 ### stop_browser_session
 
@@ -962,6 +1057,7 @@ async def stop_browser_session(
 ) -> StopBrowserSessionResponse: ...
 ```
 
+
 ### stop_code_interpreter_session
 
 ```python
@@ -975,6 +1071,7 @@ async def stop_code_interpreter_session(
 ) -> StopCodeInterpreterSessionResponse: ...
 ```
 
+
 ### stop_runtime_session
 
 ```python
@@ -986,6 +1083,7 @@ async def stop_runtime_session(
     client_token: str | None = None,
 ) -> StopRuntimeSessionResponse: ...
 ```
+
 
 ### update_ab_test
 
@@ -1004,6 +1102,7 @@ async def update_ab_test(
 ) -> UpdateABTestResponse: ...
 ```
 
+
 ### update_browser_stream
 
 ```python
@@ -1015,6 +1114,7 @@ async def update_browser_stream(
     client_token: str | None = None,
 ) -> UpdateBrowserStreamResponse: ...
 ```
+
 
 ## Links
 

@@ -66,15 +66,15 @@ Reuse the client across calls. Constructing a client does not send a request.
 - Every operation is asynchronous: use `await client.method(...)`.
 - Operation arguments are keyword-only and use the Python names listed below.
 - Structured inputs use typed dictionaries and tagged unions from `rboto_sesv2.types`.
-- Reuse response values with typed adapters from `rboto_sesv2.inputs`.
-  Adapter names follow model names in snake case. Enum adapters also provide `is_known()`
-  for type narrowing. See [types and responses](https://ferrumio.github.io/rboto/guides/types/).
 - Regular responses expose typed attributes; `response.to_dict()` converts them to a dictionary.
 - Event-stream responses may be typed dictionaries containing async iterators. Follow the
   declared return type; consume event streams with `async for`.
 - Byte streams are consumed asynchronously. `await stream.read()` buffers the complete body;
   iterate the stream when processing a large response.
-- List operations return one page. Pass the operation's continuation token for the next page.
+- Direct operation calls return one page.
+- Use `async for page in client.paginators.method(...)` for supported paginated operations.
+  Paginators accept the same typed arguments as the corresponding client method.
+
 - Catch modeled exceptions from `rboto_sesv2.exceptions`. Their `error_code`,
   `message`, and `operation_name` identify service failures.
 
@@ -223,6 +223,7 @@ async def associate_email_identity_certificate(
 ) -> AssociateEmailIdentityCertificateResponse: ...
 ```
 
+
 ### batch_get_metric_data
 
 ```python
@@ -232,6 +233,7 @@ async def batch_get_metric_data(
 ) -> BatchGetMetricDataResponse: ...
 ```
 
+
 ### cancel_export_job
 
 ```python
@@ -240,6 +242,7 @@ async def cancel_export_job(
     job_id: str,
 ) -> CancelExportJobResponse: ...
 ```
+
 
 ### create_configuration_set
 
@@ -259,6 +262,7 @@ async def create_configuration_set(
 ) -> CreateConfigurationSetResponse: ...
 ```
 
+
 ### create_configuration_set_event_destination
 
 ```python
@@ -269,6 +273,7 @@ async def create_configuration_set_event_destination(
     event_destination: EventDestinationDefinition,
 ) -> CreateConfigurationSetEventDestinationResponse: ...
 ```
+
 
 ### create_contact
 
@@ -283,6 +288,7 @@ async def create_contact(
 ) -> CreateContactResponse: ...
 ```
 
+
 ### create_contact_list
 
 ```python
@@ -294,6 +300,7 @@ async def create_contact_list(
     tags: Sequence[Tag] | None = None,
 ) -> CreateContactListResponse: ...
 ```
+
 
 ### create_custom_verification_email_template
 
@@ -310,6 +317,7 @@ async def create_custom_verification_email_template(
 ) -> CreateCustomVerificationEmailTemplateResponse: ...
 ```
 
+
 ### create_dedicated_ip_pool
 
 ```python
@@ -320,6 +328,7 @@ async def create_dedicated_ip_pool(
     scaling_mode: ScalingMode | None = None,
 ) -> CreateDedicatedIpPoolResponse: ...
 ```
+
 
 ### create_deliverability_test_report
 
@@ -333,6 +342,7 @@ async def create_deliverability_test_report(
 ) -> CreateDeliverabilityTestReportResponse: ...
 ```
 
+
 ### create_email_identity
 
 ```python
@@ -345,6 +355,7 @@ async def create_email_identity(
 ) -> CreateEmailIdentityResponse: ...
 ```
 
+
 ### create_email_identity_policy
 
 ```python
@@ -355,6 +366,7 @@ async def create_email_identity_policy(
     policy: str,
 ) -> CreateEmailIdentityPolicyResponse: ...
 ```
+
 
 ### create_email_template
 
@@ -367,6 +379,7 @@ async def create_email_template(
 ) -> CreateEmailTemplateResponse: ...
 ```
 
+
 ### create_export_job
 
 ```python
@@ -377,6 +390,7 @@ async def create_export_job(
 ) -> CreateExportJobResponse: ...
 ```
 
+
 ### create_import_job
 
 ```python
@@ -386,6 +400,7 @@ async def create_import_job(
     import_data_source: ImportDataSource,
 ) -> CreateImportJobResponse: ...
 ```
+
 
 ### create_multi_region_endpoint
 
@@ -398,6 +413,7 @@ async def create_multi_region_endpoint(
 ) -> CreateMultiRegionEndpointResponse: ...
 ```
 
+
 ### create_tenant
 
 ```python
@@ -409,6 +425,7 @@ async def create_tenant(
 ) -> CreateTenantResponse: ...
 ```
 
+
 ### create_tenant_resource_association
 
 ```python
@@ -419,6 +436,7 @@ async def create_tenant_resource_association(
 ) -> CreateTenantResourceAssociationResponse: ...
 ```
 
+
 ### delete_configuration_set
 
 ```python
@@ -427,6 +445,7 @@ async def delete_configuration_set(
     configuration_set_name: str,
 ) -> DeleteConfigurationSetResponse: ...
 ```
+
 
 ### delete_configuration_set_event_destination
 
@@ -438,6 +457,7 @@ async def delete_configuration_set_event_destination(
 ) -> DeleteConfigurationSetEventDestinationResponse: ...
 ```
 
+
 ### delete_contact
 
 ```python
@@ -448,6 +468,7 @@ async def delete_contact(
 ) -> DeleteContactResponse: ...
 ```
 
+
 ### delete_contact_list
 
 ```python
@@ -456,6 +477,7 @@ async def delete_contact_list(
     contact_list_name: str,
 ) -> DeleteContactListResponse: ...
 ```
+
 
 ### delete_custom_verification_email_template
 
@@ -466,6 +488,7 @@ async def delete_custom_verification_email_template(
 ) -> DeleteCustomVerificationEmailTemplateResponse: ...
 ```
 
+
 ### delete_dedicated_ip_pool
 
 ```python
@@ -475,6 +498,7 @@ async def delete_dedicated_ip_pool(
 ) -> DeleteDedicatedIpPoolResponse: ...
 ```
 
+
 ### delete_email_identity
 
 ```python
@@ -483,6 +507,7 @@ async def delete_email_identity(
     email_identity: str,
 ) -> DeleteEmailIdentityResponse: ...
 ```
+
 
 ### delete_email_identity_policy
 
@@ -494,6 +519,7 @@ async def delete_email_identity_policy(
 ) -> DeleteEmailIdentityPolicyResponse: ...
 ```
 
+
 ### delete_email_template
 
 ```python
@@ -503,6 +529,7 @@ async def delete_email_template(
 ) -> DeleteEmailTemplateResponse: ...
 ```
 
+
 ### delete_multi_region_endpoint
 
 ```python
@@ -511,6 +538,7 @@ async def delete_multi_region_endpoint(
     endpoint_name: str,
 ) -> DeleteMultiRegionEndpointResponse: ...
 ```
+
 
 ### delete_suppressed_destination
 
@@ -522,6 +550,7 @@ async def delete_suppressed_destination(
 ) -> DeleteSuppressedDestinationResponse: ...
 ```
 
+
 ### delete_tenant
 
 ```python
@@ -530,6 +559,7 @@ async def delete_tenant(
     tenant_name: str,
 ) -> DeleteTenantResponse: ...
 ```
+
 
 ### delete_tenant_resource_association
 
@@ -541,6 +571,7 @@ async def delete_tenant_resource_association(
 ) -> DeleteTenantResourceAssociationResponse: ...
 ```
 
+
 ### disassociate_email_identity_certificate
 
 ```python
@@ -551,11 +582,13 @@ async def disassociate_email_identity_certificate(
 ) -> DisassociateEmailIdentityCertificateResponse: ...
 ```
 
+
 ### get_account
 
 ```python
 async def get_account() -> GetAccountResponse: ...
 ```
+
 
 ### get_blacklist_reports
 
@@ -566,6 +599,7 @@ async def get_blacklist_reports(
 ) -> GetBlacklistReportsResponse: ...
 ```
 
+
 ### get_configuration_set
 
 ```python
@@ -575,6 +609,7 @@ async def get_configuration_set(
 ) -> GetConfigurationSetResponse: ...
 ```
 
+
 ### get_configuration_set_event_destinations
 
 ```python
@@ -583,6 +618,7 @@ async def get_configuration_set_event_destinations(
     configuration_set_name: str,
 ) -> GetConfigurationSetEventDestinationsResponse: ...
 ```
+
 
 ### get_contact
 
@@ -594,6 +630,7 @@ async def get_contact(
 ) -> GetContactResponse: ...
 ```
 
+
 ### get_contact_list
 
 ```python
@@ -602,6 +639,7 @@ async def get_contact_list(
     contact_list_name: str,
 ) -> GetContactListResponse: ...
 ```
+
 
 ### get_custom_verification_email_template
 
@@ -612,6 +650,7 @@ async def get_custom_verification_email_template(
 ) -> GetCustomVerificationEmailTemplateResponse: ...
 ```
 
+
 ### get_dedicated_ip
 
 ```python
@@ -621,6 +660,7 @@ async def get_dedicated_ip(
 ) -> GetDedicatedIpResponse: ...
 ```
 
+
 ### get_dedicated_ip_pool
 
 ```python
@@ -629,6 +669,7 @@ async def get_dedicated_ip_pool(
     pool_name: str,
 ) -> GetDedicatedIpPoolResponse: ...
 ```
+
 
 ### get_dedicated_ips
 
@@ -641,11 +682,16 @@ async def get_dedicated_ips(
 ) -> GetDedicatedIpsResponse: ...
 ```
 
+Also available as `client.paginators.get_dedicated_ips(...)`, returning an
+async iterator of the response type above.
+
+
 ### get_deliverability_dashboard_options
 
 ```python
 async def get_deliverability_dashboard_options() -> GetDeliverabilityDashboardOptionsResponse: ...
 ```
+
 
 ### get_deliverability_test_report
 
@@ -656,6 +702,7 @@ async def get_deliverability_test_report(
 ) -> GetDeliverabilityTestReportResponse: ...
 ```
 
+
 ### get_domain_deliverability_campaign
 
 ```python
@@ -664,6 +711,7 @@ async def get_domain_deliverability_campaign(
     campaign_id: str,
 ) -> GetDomainDeliverabilityCampaignResponse: ...
 ```
+
 
 ### get_domain_statistics_report
 
@@ -676,6 +724,7 @@ async def get_domain_statistics_report(
 ) -> GetDomainStatisticsReportResponse: ...
 ```
 
+
 ### get_email_address_insights
 
 ```python
@@ -684,6 +733,7 @@ async def get_email_address_insights(
     email_address: str,
 ) -> GetEmailAddressInsightsResponse: ...
 ```
+
 
 ### get_email_identity
 
@@ -694,6 +744,7 @@ async def get_email_identity(
 ) -> GetEmailIdentityResponse: ...
 ```
 
+
 ### get_email_identity_policies
 
 ```python
@@ -702,6 +753,7 @@ async def get_email_identity_policies(
     email_identity: str,
 ) -> GetEmailIdentityPoliciesResponse: ...
 ```
+
 
 ### get_email_template
 
@@ -712,6 +764,7 @@ async def get_email_template(
 ) -> GetEmailTemplateResponse: ...
 ```
 
+
 ### get_export_job
 
 ```python
@@ -720,6 +773,7 @@ async def get_export_job(
     job_id: str,
 ) -> GetExportJobResponse: ...
 ```
+
 
 ### get_import_job
 
@@ -730,6 +784,7 @@ async def get_import_job(
 ) -> GetImportJobResponse: ...
 ```
 
+
 ### get_message_insights
 
 ```python
@@ -739,6 +794,7 @@ async def get_message_insights(
 ) -> GetMessageInsightsResponse: ...
 ```
 
+
 ### get_multi_region_endpoint
 
 ```python
@@ -747,6 +803,7 @@ async def get_multi_region_endpoint(
     endpoint_name: str,
 ) -> GetMultiRegionEndpointResponse: ...
 ```
+
 
 ### get_reputation_entity
 
@@ -758,6 +815,7 @@ async def get_reputation_entity(
 ) -> GetReputationEntityResponse: ...
 ```
 
+
 ### get_suppressed_destination
 
 ```python
@@ -768,6 +826,7 @@ async def get_suppressed_destination(
 ) -> GetSuppressedDestinationResponse: ...
 ```
 
+
 ### get_tenant
 
 ```python
@@ -776,6 +835,7 @@ async def get_tenant(
     tenant_name: str,
 ) -> GetTenantResponse: ...
 ```
+
 
 ### list_configuration_sets
 
@@ -788,6 +848,10 @@ async def list_configuration_sets(
 ) -> ListConfigurationSetsResponse: ...
 ```
 
+Also available as `client.paginators.list_configuration_sets(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_contact_lists
 
 ```python
@@ -797,6 +861,10 @@ async def list_contact_lists(
     next_token: str | None = None,
 ) -> ListContactListsResponse: ...
 ```
+
+Also available as `client.paginators.list_contact_lists(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_contacts
 
@@ -810,6 +878,10 @@ async def list_contacts(
 ) -> ListContactsResponse: ...
 ```
 
+Also available as `client.paginators.list_contacts(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_custom_verification_email_templates
 
 ```python
@@ -819,6 +891,10 @@ async def list_custom_verification_email_templates(
     page_size: int | None = None,
 ) -> ListCustomVerificationEmailTemplatesResponse: ...
 ```
+
+Also available as `client.paginators.list_custom_verification_email_templates(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_dedicated_ip_pools
 
@@ -830,6 +906,10 @@ async def list_dedicated_ip_pools(
 ) -> ListDedicatedIpPoolsResponse: ...
 ```
 
+Also available as `client.paginators.list_dedicated_ip_pools(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_deliverability_test_reports
 
 ```python
@@ -839,6 +919,10 @@ async def list_deliverability_test_reports(
     page_size: int | None = None,
 ) -> ListDeliverabilityTestReportsResponse: ...
 ```
+
+Also available as `client.paginators.list_deliverability_test_reports(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_domain_deliverability_campaigns
 
@@ -853,6 +937,10 @@ async def list_domain_deliverability_campaigns(
 ) -> ListDomainDeliverabilityCampaignsResponse: ...
 ```
 
+Also available as `client.paginators.list_domain_deliverability_campaigns(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_email_identities
 
 ```python
@@ -863,6 +951,10 @@ async def list_email_identities(
     page_size: int | None = None,
 ) -> ListEmailIdentitiesResponse: ...
 ```
+
+Also available as `client.paginators.list_email_identities(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_email_identity_certificates
 
@@ -875,6 +967,10 @@ async def list_email_identity_certificates(
 ) -> ListEmailIdentityCertificatesResponse: ...
 ```
 
+Also available as `client.paginators.list_email_identity_certificates(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_email_templates
 
 ```python
@@ -884,6 +980,10 @@ async def list_email_templates(
     page_size: int | None = None,
 ) -> ListEmailTemplatesResponse: ...
 ```
+
+Also available as `client.paginators.list_email_templates(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_export_jobs
 
@@ -897,6 +997,10 @@ async def list_export_jobs(
 ) -> ListExportJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_export_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_import_jobs
 
 ```python
@@ -908,6 +1012,10 @@ async def list_import_jobs(
 ) -> ListImportJobsResponse: ...
 ```
 
+Also available as `client.paginators.list_import_jobs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_multi_region_endpoints
 
 ```python
@@ -917,6 +1025,10 @@ async def list_multi_region_endpoints(
     page_size: int | None = None,
 ) -> ListMultiRegionEndpointsResponse: ...
 ```
+
+Also available as `client.paginators.list_multi_region_endpoints(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_recommendations
 
@@ -929,6 +1041,10 @@ async def list_recommendations(
 ) -> ListRecommendationsResponse: ...
 ```
 
+Also available as `client.paginators.list_recommendations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_reputation_entities
 
 ```python
@@ -940,6 +1056,10 @@ async def list_reputation_entities(
 ) -> ListReputationEntitiesResponse: ...
 ```
 
+Also available as `client.paginators.list_reputation_entities(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_resource_tenants
 
 ```python
@@ -950,6 +1070,10 @@ async def list_resource_tenants(
     next_token: str | None = None,
 ) -> ListResourceTenantsResponse: ...
 ```
+
+Also available as `client.paginators.list_resource_tenants(...)`, returning an
+async iterator of the response type above.
+
 
 ### list_suppressed_destinations
 
@@ -965,6 +1089,10 @@ async def list_suppressed_destinations(
 ) -> ListSuppressedDestinationsResponse: ...
 ```
 
+Also available as `client.paginators.list_suppressed_destinations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tags_for_resource
 
 ```python
@@ -973,6 +1101,7 @@ async def list_tags_for_resource(
     resource_arn: str,
 ) -> ListTagsForResourceResponse: ...
 ```
+
 
 ### list_tenant_resources
 
@@ -986,6 +1115,10 @@ async def list_tenant_resources(
 ) -> ListTenantResourcesResponse: ...
 ```
 
+Also available as `client.paginators.list_tenant_resources(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_tenants
 
 ```python
@@ -997,6 +1130,10 @@ async def list_tenants(
 ) -> ListTenantsResponse: ...
 ```
 
+Also available as `client.paginators.list_tenants(...)`, returning an
+async iterator of the response type above.
+
+
 ### put_account_dedicated_ip_warmup_attributes
 
 ```python
@@ -1005,6 +1142,7 @@ async def put_account_dedicated_ip_warmup_attributes(
     auto_warmup_enabled: bool | None = None,
 ) -> PutAccountDedicatedIpWarmupAttributesResponse: ...
 ```
+
 
 ### put_account_details
 
@@ -1020,6 +1158,7 @@ async def put_account_details(
 ) -> PutAccountDetailsResponse: ...
 ```
 
+
 ### put_account_pricing_attributes
 
 ```python
@@ -1029,6 +1168,7 @@ async def put_account_pricing_attributes(
 ) -> PutAccountPricingAttributesResponse: ...
 ```
 
+
 ### put_account_sending_attributes
 
 ```python
@@ -1037,6 +1177,7 @@ async def put_account_sending_attributes(
     sending_enabled: bool | None = None,
 ) -> PutAccountSendingAttributesResponse: ...
 ```
+
 
 ### put_account_suppression_attributes
 
@@ -1048,6 +1189,7 @@ async def put_account_suppression_attributes(
 ) -> PutAccountSuppressionAttributesResponse: ...
 ```
 
+
 ### put_account_vdm_attributes
 
 ```python
@@ -1056,6 +1198,7 @@ async def put_account_vdm_attributes(
     vdm_attributes: VdmAttributes,
 ) -> PutAccountVdmAttributesResponse: ...
 ```
+
 
 ### put_configuration_set_archiving_options
 
@@ -1066,6 +1209,7 @@ async def put_configuration_set_archiving_options(
     archive_arn: str | None = None,
 ) -> PutConfigurationSetArchivingOptionsResponse: ...
 ```
+
 
 ### put_configuration_set_delivery_options
 
@@ -1079,6 +1223,7 @@ async def put_configuration_set_delivery_options(
 ) -> PutConfigurationSetDeliveryOptionsResponse: ...
 ```
 
+
 ### put_configuration_set_reputation_options
 
 ```python
@@ -1089,6 +1234,7 @@ async def put_configuration_set_reputation_options(
 ) -> PutConfigurationSetReputationOptionsResponse: ...
 ```
 
+
 ### put_configuration_set_sending_options
 
 ```python
@@ -1098,6 +1244,7 @@ async def put_configuration_set_sending_options(
     sending_enabled: bool | None = None,
 ) -> PutConfigurationSetSendingOptionsResponse: ...
 ```
+
 
 ### put_configuration_set_suppression_options
 
@@ -1111,6 +1258,7 @@ async def put_configuration_set_suppression_options(
 ) -> PutConfigurationSetSuppressionOptionsResponse: ...
 ```
 
+
 ### put_configuration_set_tracking_options
 
 ```python
@@ -1122,6 +1270,7 @@ async def put_configuration_set_tracking_options(
 ) -> PutConfigurationSetTrackingOptionsResponse: ...
 ```
 
+
 ### put_configuration_set_vdm_options
 
 ```python
@@ -1131,6 +1280,7 @@ async def put_configuration_set_vdm_options(
     vdm_options: VdmOptions | None = None,
 ) -> PutConfigurationSetVdmOptionsResponse: ...
 ```
+
 
 ### put_dedicated_ip_in_pool
 
@@ -1142,6 +1292,7 @@ async def put_dedicated_ip_in_pool(
 ) -> PutDedicatedIpInPoolResponse: ...
 ```
 
+
 ### put_dedicated_ip_pool_scaling_attributes
 
 ```python
@@ -1151,6 +1302,7 @@ async def put_dedicated_ip_pool_scaling_attributes(
     scaling_mode: ScalingMode,
 ) -> PutDedicatedIpPoolScalingAttributesResponse: ...
 ```
+
 
 ### put_dedicated_ip_warmup_attributes
 
@@ -1162,6 +1314,7 @@ async def put_dedicated_ip_warmup_attributes(
 ) -> PutDedicatedIpWarmupAttributesResponse: ...
 ```
 
+
 ### put_deliverability_dashboard_option
 
 ```python
@@ -1171,6 +1324,7 @@ async def put_deliverability_dashboard_option(
     subscribed_domains: Sequence[DomainDeliverabilityTrackingOption] | None = None,
 ) -> PutDeliverabilityDashboardOptionResponse: ...
 ```
+
 
 ### put_email_identity_configuration_set_attributes
 
@@ -1182,6 +1336,7 @@ async def put_email_identity_configuration_set_attributes(
 ) -> PutEmailIdentityConfigurationSetAttributesResponse: ...
 ```
 
+
 ### put_email_identity_dkim_attributes
 
 ```python
@@ -1191,6 +1346,7 @@ async def put_email_identity_dkim_attributes(
     signing_enabled: bool | None = None,
 ) -> PutEmailIdentityDkimAttributesResponse: ...
 ```
+
 
 ### put_email_identity_dkim_signing_attributes
 
@@ -1203,6 +1359,7 @@ async def put_email_identity_dkim_signing_attributes(
 ) -> PutEmailIdentityDkimSigningAttributesResponse: ...
 ```
 
+
 ### put_email_identity_feedback_attributes
 
 ```python
@@ -1212,6 +1369,7 @@ async def put_email_identity_feedback_attributes(
     email_forwarding_enabled: bool | None = None,
 ) -> PutEmailIdentityFeedbackAttributesResponse: ...
 ```
+
 
 ### put_email_identity_mail_from_attributes
 
@@ -1224,6 +1382,7 @@ async def put_email_identity_mail_from_attributes(
 ) -> PutEmailIdentityMailFromAttributesResponse: ...
 ```
 
+
 ### put_suppressed_destination
 
 ```python
@@ -1235,6 +1394,7 @@ async def put_suppressed_destination(
 ) -> PutSuppressedDestinationResponse: ...
 ```
 
+
 ### put_tenant_suppression_attributes
 
 ```python
@@ -1245,6 +1405,7 @@ async def put_tenant_suppression_attributes(
     suppression_scope: SuppressionListScope | None = None,
 ) -> PutTenantSuppressionAttributesResponse: ...
 ```
+
 
 ### send_bulk_email
 
@@ -1266,6 +1427,7 @@ async def send_bulk_email(
 ) -> SendBulkEmailResponse: ...
 ```
 
+
 ### send_custom_verification_email
 
 ```python
@@ -1276,6 +1438,7 @@ async def send_custom_verification_email(
     configuration_set_name: str | None = None,
 ) -> SendCustomVerificationEmailResponse: ...
 ```
+
 
 ### send_email
 
@@ -1298,6 +1461,7 @@ async def send_email(
 ) -> SendEmailResponse: ...
 ```
 
+
 ### tag_resource
 
 ```python
@@ -1307,6 +1471,7 @@ async def tag_resource(
     tags: Sequence[Tag],
 ) -> TagResourceResponse: ...
 ```
+
 
 ### test_render_email_template
 
@@ -1318,6 +1483,7 @@ async def test_render_email_template(
 ) -> TestRenderEmailTemplateResponse: ...
 ```
 
+
 ### untag_resource
 
 ```python
@@ -1327,6 +1493,7 @@ async def untag_resource(
     tag_keys: Sequence[str],
 ) -> UntagResourceResponse: ...
 ```
+
 
 ### update_configuration_set
 
@@ -1338,6 +1505,7 @@ async def update_configuration_set(
 ) -> UpdateConfigurationSetResponse: ...
 ```
 
+
 ### update_configuration_set_event_destination
 
 ```python
@@ -1348,6 +1516,7 @@ async def update_configuration_set_event_destination(
     event_destination: EventDestinationDefinition,
 ) -> UpdateConfigurationSetEventDestinationResponse: ...
 ```
+
 
 ### update_contact
 
@@ -1362,6 +1531,7 @@ async def update_contact(
 ) -> UpdateContactResponse: ...
 ```
 
+
 ### update_contact_list
 
 ```python
@@ -1372,6 +1542,7 @@ async def update_contact_list(
     description: str | None = None,
 ) -> UpdateContactListResponse: ...
 ```
+
 
 ### update_custom_verification_email_template
 
@@ -1387,6 +1558,7 @@ async def update_custom_verification_email_template(
 ) -> UpdateCustomVerificationEmailTemplateResponse: ...
 ```
 
+
 ### update_email_identity_policy
 
 ```python
@@ -1398,6 +1570,7 @@ async def update_email_identity_policy(
 ) -> UpdateEmailIdentityPolicyResponse: ...
 ```
 
+
 ### update_email_template
 
 ```python
@@ -1407,6 +1580,7 @@ async def update_email_template(
     template_content: EmailTemplateContent,
 ) -> UpdateEmailTemplateResponse: ...
 ```
+
 
 ### update_reputation_entity_customer_managed_status
 
@@ -1419,6 +1593,7 @@ async def update_reputation_entity_customer_managed_status(
 ) -> UpdateReputationEntityCustomerManagedStatusResponse: ...
 ```
 
+
 ### update_reputation_entity_policy
 
 ```python
@@ -1429,6 +1604,7 @@ async def update_reputation_entity_policy(
     reputation_entity_policy: str,
 ) -> UpdateReputationEntityPolicyResponse: ...
 ```
+
 
 ## Links
 
