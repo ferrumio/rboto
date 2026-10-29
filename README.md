@@ -14,8 +14,8 @@ EventBridge, and SQS. Install the services you use, import their client classes
 from `rboto`, and await operations. Requests run through the AWS SDK for Rust;
 Python inputs and response attributes carry types for your editor and type checker.
 
-rboto is an independent project maintained by Ferrum. It is not affiliated with,
-sponsored by, or endorsed by Amazon Web Services (AWS).
+rboto is an independent project maintained by [Ferrumio](https://github.com/ferrumio).
+It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS).
 
 **Preview (Alpha).** rboto is under active development. APIs may change between releases.
 

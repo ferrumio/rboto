@@ -1,7 +1,7 @@
 # rboto-codegen
 
-rboto is an independent project maintained by Ferrum. It is not affiliated with,
-sponsored by, or endorsed by Amazon Web Services (AWS).
+rboto is an independent project maintained by [Ferrumio](https://github.com/ferrumio).
+It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS).
 
 **Preview (Alpha).** rboto is under active development. APIs may change between releases.
 
