@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e packages/rboto pytest mypy pyright ruff "pydantic>=2,<3" build hatchling twine
+          .venv/bin/pip install -e codegen -e packages/rboto pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" build hatchling twine
 
       - name: Service catalog
         id: catalog
