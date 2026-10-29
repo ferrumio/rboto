@@ -34,9 +34,10 @@ The release configuration targets these CPython wheels:
 | Operating system | Architecture | Python |
 |---|---|---|
 | Linux with glibc | x86_64, aarch64 | 3.12, 3.13, 3.14, 3.15 |
+| Linux with musl 1.2+ (including Alpine) | x86_64, aarch64 | 3.12, 3.13, 3.14, 3.15 |
 | macOS | x86_64, arm64 | 3.12, 3.13, 3.14, 3.15 |
 
-Windows, musllinux/Alpine, PyPy, and free-threaded CPython are not in the current
+Windows, PyPy, and free-threaded CPython are not in the current
 wheel matrix. Wheels target individual Python versions.
 
 ## Select credentials

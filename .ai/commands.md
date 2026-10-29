@@ -15,7 +15,7 @@ integration examples and run the compiled model interoperability tests.
 
 ```bash
 .venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
-.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples
+.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples .github/scripts
 .venv/bin/pyright
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
 ```

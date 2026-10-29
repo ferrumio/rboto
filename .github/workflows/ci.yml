@@ -55,7 +55,7 @@ jobs:
         run: |
           .venv/bin/mypy --strict \
             codegen/src codegen/tests packages/rboto/src \
-            packages/rboto-*/python tests/typecheck examples
+            packages/rboto-*/python tests/typecheck examples .github/scripts
           .venv/bin/pyright
 
       - name: Version consistency
