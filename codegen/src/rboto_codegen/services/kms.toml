@@ -1,4 +1,6 @@
 service_id = "kms"
+display_name = "AWS KMS"
+documentation_path = "guides/application-services/"
 python_name = "kms"
 distribution_name = "rboto-kms"
 python_package = "rboto_kms"

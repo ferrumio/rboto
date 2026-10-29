@@ -1,4 +1,6 @@
 service_id = "s3"
+display_name = "Amazon S3"
+documentation_path = "guides/s3/"
 python_name = "s3"
 distribution_name = "rboto-s3"
 python_package = "rboto_s3"

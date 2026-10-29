@@ -40,7 +40,7 @@ def load_script(name: str) -> ModuleType:
 
 
 def seed_repository(root: Path) -> None:
-    for relative in ("Cargo.toml", "codegen/pyproject.toml"):
+    for relative in ("Cargo.toml", "codegen/pyproject.toml", "LICENSE"):
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text((ROOT / relative).read_text())

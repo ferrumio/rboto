@@ -1,4 +1,6 @@
 service_id = "bedrock"
+display_name = "Amazon Bedrock"
+documentation_path = "clients/"
 python_name = "bedrock"
 distribution_name = "rboto-bedrock"
 python_package = "rboto_bedrock"

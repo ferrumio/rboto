@@ -1,4 +1,6 @@
 service_id = "pipes"
+display_name = "Amazon EventBridge Pipes"
+documentation_path = "guides/events/"
 python_name = "pipes"
 distribution_name = "rboto-pipes"
 python_package = "rboto_pipes"

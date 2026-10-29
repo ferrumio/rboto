@@ -1,4 +1,6 @@
 service_id = "api-gateway"
+display_name = "Amazon API Gateway"
+documentation_path = "clients/"
 python_name = "api_gateway"
 distribution_name = "rboto-api-gateway"
 python_package = "rboto_api_gateway"

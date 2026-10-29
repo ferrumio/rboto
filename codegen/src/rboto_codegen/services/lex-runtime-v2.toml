@@ -1,4 +1,6 @@
 service_id = "lex-runtime-v2"
+display_name = "Amazon Lex Runtime V2"
+documentation_path = "clients/"
 python_name = "lex_runtime_v2"
 distribution_name = "rboto-lex-runtime-v2"
 python_package = "rboto_lex_runtime_v2"

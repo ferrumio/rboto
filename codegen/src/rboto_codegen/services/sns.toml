@@ -1,4 +1,6 @@
 service_id = "sns"
+display_name = "Amazon SNS"
+documentation_path = "guides/messaging/"
 python_name = "sns"
 distribution_name = "rboto-sns"
 python_package = "rboto_sns"

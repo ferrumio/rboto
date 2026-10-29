@@ -1,4 +1,6 @@
 service_id = "signin"
+display_name = "AWS Sign-In"
+documentation_path = "clients/"
 python_name = "signin"
 distribution_name = "rboto-signin"
 python_package = "rboto_signin"

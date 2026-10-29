@@ -1,4 +1,6 @@
 service_id = "bedrock-agentcore-control"
+display_name = "Amazon Bedrock AgentCore Control"
+documentation_path = "clients/"
 python_name = "bedrock_agentcore_control"
 distribution_name = "rboto-bedrock-agentcore-control"
 python_package = "rboto_bedrock_agentcore_control"

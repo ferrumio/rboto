@@ -1,4 +1,6 @@
 service_id = "qbusiness"
+display_name = "Amazon Q Business"
+documentation_path = "clients/"
 python_name = "qbusiness"
 distribution_name = "rboto-qbusiness"
 python_package = "rboto_qbusiness"

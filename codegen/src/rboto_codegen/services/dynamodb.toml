@@ -1,4 +1,6 @@
 service_id = "dynamodb"
+display_name = "Amazon DynamoDB"
+documentation_path = "guides/dynamodb/"
 python_name = "dynamodb"
 distribution_name = "rboto-dynamodb"
 python_package = "rboto_dynamodb"

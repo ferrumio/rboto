@@ -5,31 +5,36 @@ build-backend = "maturin"
 [project]
 name = "rboto-sagemaker-runtime-http2"
 version = "0.1.0"
-description = "Async generated sagemaker-runtime-http2 client for rboto, powered by the AWS SDK for Rust"
+description = "rboto: async-only, typed Python client for Amazon SageMaker Runtime HTTP/2, powered by Rust. Alpha preview."
+readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
     { name = "Leandro Cavalcante Damascena", email = "leandro.damascena@gmail.com" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "Framework :: AsyncIO",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3.15",
     "Programming Language :: Rust",
-    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
-keywords = ["aws", "sagemaker-runtime-http2", "async", "rust", "python"]
+keywords = ["rboto", "aws", "sagemaker-runtime-http2", "asyncio", "typing", "rust"]
 dependencies = ["rboto==0.1.0"]
 
 [project.urls]
-Documentation = "https://ferrumio.github.io/rboto"
+Documentation = "https://ferrumio.github.io/rboto/clients/"
 Repository = "https://github.com/ferrumio/rboto"
-Homepage = "https://github.com/ferrumio/rboto"
+Homepage = "https://ferrumio.github.io/rboto/"
+Issues = "https://github.com/ferrumio/rboto/issues"
+Changelog = "https://github.com/ferrumio/rboto/releases"
 
 [tool.maturin]
 manifest-path = "../../crates/rboto-sagemaker-runtime-http2/Cargo.toml"

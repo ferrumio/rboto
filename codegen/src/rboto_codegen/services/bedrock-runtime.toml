@@ -1,4 +1,6 @@
 service_id = "bedrock-runtime"
+display_name = "Amazon Bedrock Runtime"
+documentation_path = "guides/inference/"
 python_name = "bedrock_runtime"
 distribution_name = "rboto-bedrock-runtime"
 python_package = "rboto_bedrock_runtime"

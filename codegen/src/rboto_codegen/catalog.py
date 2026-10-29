@@ -7,6 +7,7 @@ import re
 import tomllib
 from pathlib import Path
 
+from .manifests import template_environment
 from .registry import list_services
 
 
@@ -48,3 +49,12 @@ def generate_catalog(repository_root: Path) -> None:
         *(f"packages/{service.distribution_name}/python" for service in services),
     ]
     config_path.write_text(json.dumps(config, indent=2) + "\n")
+
+    readme = template_environment().get_template("core_readme.md.j2").render(
+        services=services,
+        example=(repository_root / "examples/clients/sts.py").read_text().rstrip(),
+    )
+    (manifest.parent / "README.md").write_text(readme)
+    license_text = (repository_root / "LICENSE").read_text()
+    for package in (manifest.parent, repository_root / "codegen"):
+        (package / "LICENSE").write_text(license_text)

@@ -1,4 +1,6 @@
 service_id = "cloudwatch-logs"
+display_name = "Amazon CloudWatch Logs"
+documentation_path = "guides/application-services/"
 python_name = "cloudwatch_logs"
 distribution_name = "rboto-cloudwatch-logs"
 python_package = "rboto_cloudwatch_logs"

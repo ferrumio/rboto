@@ -5,31 +5,36 @@ build-backend = "maturin"
 [project]
 name = "{{ distribution_name }}"
 version = "{{ version }}"
-description = "Async generated {{ service_id }} client for rboto, powered by the AWS SDK for Rust"
+description = "rboto: async-only, typed Python client for {{ public_name }}, powered by Rust. Alpha preview."
+readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "Apache-2.0" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
     { name = "Leandro Cavalcante Damascena", email = "leandro.damascena@gmail.com" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "Framework :: AsyncIO",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: 3.15",
     "Programming Language :: Rust",
-    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
 ]
-keywords = ["aws", "{{ service_id }}", "async", "rust", "python"]
+keywords = ["rboto", "aws", "{{ service_id }}", "asyncio", "typing", "rust"]
 dependencies = ["rboto=={{ version }}"]
 
 [project.urls]
-Documentation = "https://ferrumio.github.io/rboto"
+Documentation = "https://ferrumio.github.io/rboto/{{ documentation_path }}"
 Repository = "https://github.com/ferrumio/rboto"
-Homepage = "https://github.com/ferrumio/rboto"
+Homepage = "https://ferrumio.github.io/rboto/"
+Issues = "https://github.com/ferrumio/rboto/issues"
+Changelog = "https://github.com/ferrumio/rboto/releases"
 
 [tool.maturin]
 manifest-path = "../../crates/{{ distribution_name }}/Cargo.toml"

@@ -1,4 +1,6 @@
 service_id = "connecthealth"
+display_name = "Amazon Connect Health"
+documentation_path = "clients/"
 python_name = "connecthealth"
 distribution_name = "rboto-connecthealth"
 python_package = "rboto_connecthealth"

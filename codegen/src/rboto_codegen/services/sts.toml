@@ -1,4 +1,6 @@
 service_id = "sts"
+display_name = "AWS STS"
+documentation_path = "clients/"
 python_name = "sts"
 distribution_name = "rboto-sts"
 python_package = "rboto_sts"
