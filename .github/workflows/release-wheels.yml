@@ -1,0 +1,122 @@
+name: Release package batches
+
+on:
+  workflow_call:
+    inputs:
+      batches:
+        required: true
+        type: string
+      platform:
+        required: true
+        type: string
+      runner:
+        required: true
+        type: string
+      target:
+        type: string
+        default: ""
+      manylinux:
+        type: string
+        default: ""
+      container:
+        type: string
+        default: ""
+      kind:
+        type: string
+        default: wheel
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: ${{ matrix.batch.name }} / ${{ inputs.platform }}
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        batch: ${{ fromJSON(inputs.batches) }}
+    env:
+      CARGO_BUILD_JOBS: "2"
+      CARGO_INCREMENTAL: "0"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        if: runner.os == 'macOS'
+        with:
+          python-version: |
+            3.12
+            3.13
+            3.14
+            3.15
+      - name: Start batch timings
+        shell: bash
+        run: |
+          mkdir -p timings
+          echo 'platform,service,seconds,outcome' > timings/services.csv
+          printf '| Platform | Service | Elapsed | Outcome |\n| --- | --- | --- | --- |\n' >> "$GITHUB_STEP_SUMMARY"
+      - uses: ./.github/actions/build-release-service
+        with:
+          service: ${{ matrix.batch.services[0] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: ./.github/actions/build-release-service
+        if: success() && matrix.batch.services[1] != null
+        with:
+          service: ${{ matrix.batch.services[1] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: ./.github/actions/build-release-service
+        if: success() && matrix.batch.services[2] != null
+        with:
+          service: ${{ matrix.batch.services[2] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: ./.github/actions/build-release-service
+        if: success() && matrix.batch.services[3] != null
+        with:
+          service: ${{ matrix.batch.services[3] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: ./.github/actions/build-release-service
+        if: success() && matrix.batch.services[4] != null
+        with:
+          service: ${{ matrix.batch.services[4] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: ./.github/actions/build-release-service
+        if: success() && matrix.batch.services[5] != null
+        with:
+          service: ${{ matrix.batch.services[5] }}
+          platform: ${{ inputs.platform }}
+          target: ${{ inputs.target }}
+          manylinux: ${{ inputs.manylinux }}
+          container: ${{ inputs.container }}
+          kind: ${{ inputs.kind }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: timings--${{ matrix.batch.name }}--${{ inputs.platform }}
+          path: timings/*.csv
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14

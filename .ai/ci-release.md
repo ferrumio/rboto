@@ -18,7 +18,7 @@ cost.
 `.github/workflows/release.yml` owns the complete supported binary matrix:
 
 - CPython 3.12, 3.13, 3.14, and 3.15.
-- Linux x86_64 and aarch64.
+- Linux glibc (manylinux 2.17) and musl (musllinux 1.2), x86_64 and aarch64.
 - macOS x86_64 and arm64.
 - Service wheels and source distributions.
 - Core wheel and source distribution.
@@ -31,7 +31,71 @@ and separate job matrices. Publication waits for all wheelhouse smoke jobs.
 Native packages require maturin 1.15+. PyO3 and pyo3-async-runtimes must be upgraded
 together and validated with rebuilt extensions on the minimum and newest CPython.
 
-See ADR-0010.
+See ADR-0017.
+
+### Preparing and validating a release
+
+All packages use the same `X.Y.Z`; previews use `0.x.x` without a prerelease suffix.
+Version preparation remains separate from publication. After merging a version,
+dispatch `release.yml` with that version and leave `publish` unchecked to build and
+validate the complete wheelhouse without uploading to PyPI or creating a GitHub release.
+
+The build workflow groups at most six services per platform job and builds all
+four interpreters for each service sequentially. The catalog balances group size
+and spreads large generated Rust adapters across jobs. With 34 services there are
+six groups of five or six, giving 36 wheel jobs and six source-distribution jobs.
+It limits platform concurrency to three and group concurrency to two, with two
+Cargo jobs per build. Dependencies remain in the shared Cargo target directory;
+the selected native adapter is cleaned before building to prevent another
+service's cached `_native` library from being packaged. Musl builds disable the
+action's sccache installer because it requires a wheel unavailable for musl.
+
+Each service uploads its own artifact immediately. A failed group can therefore
+retain earlier successful artifacts; rerunning that job rebuilds the group.
+Service durations, including setup and upload, appear in the job summary and a
+`timings--<batch>--<platform>` CSV artifact. GitHub records the total job duration.
+
+Each smoke job installs wheels only. Musl smoke jobs execute in the matching
+musllinux container with networking disabled. The descriptor-derived catalog
+selects client classes; do not enumerate `rboto.__all__` as if all public symbols
+were constructors.
+
+`release_artifacts.py validate` checks all expected interpreter/platform wheels,
+source distributions, metadata identities, and typing files before producing
+`SHA256SUMS`. Release artifacts and the catalog are retained for 14 days.
+
+### Publishing and recovery
+
+A `vX.Y.Z` tag or a manual dispatch with `publish=true` publishes after all validation
+jobs pass. All publisher jobs use environment `pypi`. Services publish in separate
+jobs with at most four concurrent uploads; the facade publishes last.
+
+If publication is interrupted, rerun the failed jobs in the original Actions run.
+They download the original artifacts, compare local hashes with `SHA256SUMS`, and
+query PyPI. Identical files are skipped, different bytes fail, and only missing
+files are uploaded. The job verifies the complete project after upload. Do not
+rebuild files under a published version to recover a partial upload: native builds
+can differ byte-for-byte.
+
+The GitHub release is finalized only after PyPI publication. Its assets can be
+retried from the same run.
+
+### One-time PyPI setup
+
+Download `trusted-publishers.csv` from the `release-catalog` artifact, or produce it:
+
+```bash
+.venv/bin/python .github/scripts/release_catalog.py \
+  --version 0.1.0 --commit "$(git rev-parse HEAD)" --output /tmp/rboto-release
+```
+
+Register a pending Trusted Publisher for each project in PyPI's Publishing page:
+owner `ferrumio`, repository `rboto`, workflow `release.yml`, environment `pypi`.
+This includes the facade and every service, but not the internal code generator.
+There is no per-release registration. Add a registration when adding a new service.
+For a PyPI organization, create pending publishers under that organization so the
+first upload creates organization-owned projects. Pending registration does not
+reserve a name until the first upload.
 
 ## Model updates and package versions
 
@@ -52,7 +116,7 @@ because the built-in token does not trigger normal PR/push events. `actions: wri
 scoped to the updater job. No App token or personal access token is required. The workflow
 does not approve, merge, or publish packages, and does not change organization policy.
 
-The optional `package_version` dispatch input prepares a stable `X.Y.Z` rboto release.
+The optional `package_version` dispatch input prepares an `X.Y.Z` rboto release.
 It updates the workspace, core and codegen versions; generated service versions and their
 core dependency pins follow the workspace version. Extras and `Cargo.lock` are refreshed
 as part of generation/resolution. Versioned update branches are separate from model-only
@@ -60,8 +124,9 @@ updates so the next schedule does not erase a pending version bump.
 
 Leaving `package_version` empty preserves the rboto package version. Neither the schedule
 nor manual model updates publish packages. After merging a prepared version, create its
-`vX.Y.Z` tag or dispatch `release.yml` with that same version to build, smoke-test, and
-publish the full wheelhouse. Release preparation checks both manifest versions and the
+`vX.Y.Z` tag or dispatch `release.yml` with that same version and `publish=true` to
+build, smoke-test, and publish the full wheelhouse. Without `publish=true`, manual
+dispatch only validates. Release preparation checks both manifest versions and the
 mutual core/service dependency pins.
 
 See ADR-0011.

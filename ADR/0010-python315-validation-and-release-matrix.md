@@ -1,6 +1,6 @@
 # ADR-0010: Validate the newest CPython ABI and smoke-test every release target
 
-- Status: Accepted
+- Status: Superseded by [ADR-0017](0017-release-validation-and-musllinux.md)
 - Date: 2026-10-27
 - Deciders: rboto maintainers
 - Supersedes: [ADR-0007](0007-ci-and-release-matrix.md)

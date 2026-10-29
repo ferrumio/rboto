@@ -1,0 +1,78 @@
+name: Build one release service
+description: Build and retain one service inside a sequential release batch
+inputs:
+  service:
+    required: true
+    description: Descriptor service identifier
+  platform:
+    required: true
+    description: Artifact platform identifier
+  target:
+    default: ""
+    description: Rust target triple
+  manylinux:
+    default: ""
+    description: Maturin compatibility target
+  container:
+    default: ""
+    description: Linux build container
+  kind:
+    default: wheel
+    description: wheel or sdist
+runs:
+  using: composite
+  steps:
+    - name: Start service timer
+      id: timer
+      shell: bash
+      run: echo "started=$(date +%s)" >> "$GITHUB_OUTPUT"
+    - name: Clear previous native adapter on macOS
+      if: runner.os == 'macOS' && inputs.kind == 'wheel'
+      shell: bash
+      env:
+        SERVICE: ${{ inputs.service }}
+        TARGET: ${{ inputs.target }}
+      run: cargo clean --package "rboto-$SERVICE-native" --release --target "$TARGET"
+    - name: Build service artifacts
+      id: build
+      uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
+      with:
+        maturin-version: "v1.15.0"
+        command: ${{ inputs.kind == 'sdist' && 'sdist' || 'build' }}
+        target: ${{ inputs.target }}
+        manylinux: ${{ inputs.manylinux }}
+        container: ${{ inputs.container }}
+        args: ${{ inputs.kind == 'sdist' && '--out dist' || '--release --locked --out dist -i python3.12 python3.13 python3.14 python3.15' }}
+        working-directory: packages/rboto-${{ inputs.service }}
+        # The action installs sccache from wheels; none are available for musl.
+        sccache: ${{ inputs.kind == 'wheel' && !startsWith(inputs.platform, 'musllinux') }}
+        before-script-linux: |
+          if [ "${{ inputs.kind }}" = wheel ]; then
+            export CARGO_BUILD_JOBS=2
+            export PATH="/opt/python/cp312-cp312/bin:/opt/python/cp313-cp313/bin:/opt/python/cp314-cp314/bin:/opt/python/cp315-cp315/bin:$PATH"
+            case "${{ inputs.target }}" in
+              *-musl) export RUSTFLAGS="${RUSTFLAGS:-} -C target-feature=-crt-static" ;;
+            esac
+            cargo clean --package "rboto-${{ inputs.service }}-native" --release --target "${{ inputs.target }}"
+          fi
+    - name: Retain service artifacts
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      with:
+        name: service--${{ inputs.service }}--${{ inputs.platform }}
+        path: packages/rboto-${{ inputs.service }}/dist/${{ inputs.kind == 'sdist' && '*.tar.gz' || '*.whl' }}
+        if-no-files-found: error
+        overwrite: true
+        retention-days: 14
+    - name: Record service duration
+      if: always() && steps.timer.outputs.started != ''
+      shell: bash
+      env:
+        SERVICE: ${{ inputs.service }}
+        PLATFORM: ${{ inputs.platform }}
+        STARTED: ${{ steps.timer.outputs.started }}
+        OUTCOME: ${{ steps.build.outcome }}
+      run: |
+        ELAPSED=$(( $(date +%s) - STARTED ))
+        mkdir -p timings
+        printf '%s,%s,%s,%s\n' "$PLATFORM" "$SERVICE" "$ELAPSED" "$OUTCOME" >> timings/services.csv
+        printf '| %s | %s | %ss | %s |\n' "$PLATFORM" "$SERVICE" "$ELAPSED" "$OUTCOME" >> "$GITHUB_STEP_SUMMARY"
