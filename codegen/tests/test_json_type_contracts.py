@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import ast
 import importlib.util
 import sys
 from pathlib import Path
@@ -20,18 +21,20 @@ ROOT = Path(__file__).parents[2]
 def test_json_alias_resolves_at_runtime_and_builds_a_recursive_schema(
     service: ServiceDescriptor, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    # Load the complete generated types module. ByteStream is irrelevant to JSON;
-    # a stand-in keeps this contract check independent of native build availability.
+    # Native class bodies are irrelevant to JSON. Stand-ins keep this contract
+    # check independent of native build availability while loading the whole module.
     namespace = f"_json_contract_{service.python_name}"
     package = ModuleType(namespace)
     native = ModuleType(f"{namespace}._native")
-    setattr(native, "ByteStream", object)
     monkeypatch.setitem(sys.modules, namespace, package)
     monkeypatch.setitem(sys.modules, native.__name__, native)
     source = (
         ROOT / "packages" / service.distribution_name / "python"
         / service.python_package / "types.py"
     )
+    for node in ast.parse(source.with_name("_native.pyi").read_text()).body:
+        if isinstance(node, ast.ClassDef):
+            setattr(native, node.name, type(node.name, (), {}))
     spec = importlib.util.spec_from_file_location(f"{namespace}.types", source)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)

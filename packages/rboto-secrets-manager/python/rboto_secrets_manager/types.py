@@ -6,7 +6,39 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ApiErrorType: TypeAlias = _native.ApiErrorType
+BatchGetSecretValueResponse: TypeAlias = _native.BatchGetSecretValueResponse
+ByteStream: TypeAlias = _native.ByteStream
+CancelRotateSecretResponse: TypeAlias = _native.CancelRotateSecretResponse
+CreateSecretResponse: TypeAlias = _native.CreateSecretResponse
+DeleteResourcePolicyResponse: TypeAlias = _native.DeleteResourcePolicyResponse
+DeleteSecretResponse: TypeAlias = _native.DeleteSecretResponse
+DescribeSecretResponse: TypeAlias = _native.DescribeSecretResponse
+ExternalSecretRotationMetadataItemOutput: TypeAlias = _native.ExternalSecretRotationMetadataItem
+GetRandomPasswordResponse: TypeAlias = _native.GetRandomPasswordResponse
+GetResourcePolicyResponse: TypeAlias = _native.GetResourcePolicyResponse
+GetSecretValueResponse: TypeAlias = _native.GetSecretValueResponse
+ListSecretVersionIdsResponse: TypeAlias = _native.ListSecretVersionIdsResponse
+ListSecretsResponse: TypeAlias = _native.ListSecretsResponse
+PutResourcePolicyResponse: TypeAlias = _native.PutResourcePolicyResponse
+PutSecretValueResponse: TypeAlias = _native.PutSecretValueResponse
+RemoveRegionsFromReplicationResponse: TypeAlias = _native.RemoveRegionsFromReplicationResponse
+ReplicateSecretToRegionsResponse: TypeAlias = _native.ReplicateSecretToRegionsResponse
+ReplicationStatusTypeOutput: TypeAlias = _native.ReplicationStatusType
+RestoreSecretResponse: TypeAlias = _native.RestoreSecretResponse
+RotateSecretResponse: TypeAlias = _native.RotateSecretResponse
+RotationRulesTypeOutput: TypeAlias = _native.RotationRulesType
+SecretListEntryOutput: TypeAlias = _native.SecretListEntry
+SecretValueEntryOutput: TypeAlias = _native.SecretValueEntry
+SecretVersionsListEntryOutput: TypeAlias = _native.SecretVersionsListEntry
+StopReplicationToReplicaResponse: TypeAlias = _native.StopReplicationToReplicaResponse
+TagOutput: TypeAlias = _native.Tag
+UpdateSecretResponse: TypeAlias = _native.UpdateSecretResponse
+UpdateSecretVersionStageResponse: TypeAlias = _native.UpdateSecretVersionStageResponse
+ValidateResourcePolicyResponse: TypeAlias = _native.ValidateResourcePolicyResponse
+ValidationErrorsEntryOutput: TypeAlias = _native.ValidationErrorsEntry
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

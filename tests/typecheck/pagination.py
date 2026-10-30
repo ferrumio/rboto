@@ -2,9 +2,9 @@ from collections.abc import AsyncIterator
 from typing import assert_type
 
 from rboto import DynamoDBClient, LambdaClient, S3Client
-from rboto_dynamodb import QueryOutput
-from rboto_lambda import ListFunctionsResponse
-from rboto_s3._native import ListMultipartUploadsOutput
+from rboto_dynamodb.types import QueryOutput
+from rboto_lambda.types import ListFunctionsResponse
+from rboto_s3.types import ListMultipartUploadsOutput
 
 
 async def pagination(ddb: DynamoDBClient, lamb: LambdaClient, s3: S3Client) -> None:

@@ -3,6 +3,16 @@
 Each client includes method signatures and types for required arguments, nested
 inputs, literal values, and response fields. No separate stub package is needed.
 
+Import clients from `rboto` and service types from `rboto_<service>.types`:
+
+```python
+--8<-- "examples/docs/response_types.py"
+```
+
+`CreateBucketRequest` describes the request arguments; `CreateBucketOutput`
+describes the returned object. Both are available in `rboto_s3.types`.
+You can let the checker infer local variables such as `response`.
+
 ## Typed inputs
 
 Operations use keyword arguments. Nested structures use typed dictionaries:
@@ -29,6 +39,15 @@ Regular responses and nested structures expose read-only attributes:
 Fields may be `None` when the service omits them. Check before dereferencing them.
 For an optional collection, `response.buckets or []` is useful when absence and an
 empty collection mean the same thing to your application.
+
+Native response classes, nested response classes, `ByteStream`, and event-stream
+receivers are also available from the service's `types` module. These imports
+refer to the same native classes returned by the client.
+
+Existing dictionary types keep their names. When a nested native class shares
+one of those names, its public alias adds `Output`: `Bucket` remains the typed
+dictionary, while `BucketOutput` describes an object from `response.buckets`.
+Existing response imports from the service package root remain supported.
 
 ## Dictionaries
 
@@ -100,7 +119,7 @@ For an explicit lookup of an attribute introduced after your installed model:
 
 ```python
 from rboto import UnknownEnumValue
-from rboto_sqs import GetQueueAttributesResult
+from rboto_sqs.types import GetQueueAttributesResult
 
 
 def future_attribute(response: GetQueueAttributesResult) -> str | None:

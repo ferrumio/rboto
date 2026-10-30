@@ -6,7 +6,75 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AwsVpcConfigurationOutput: TypeAlias = _native.AwsVpcConfiguration
+BatchArrayPropertiesOutput: TypeAlias = _native.BatchArrayProperties
+BatchContainerOverridesOutput: TypeAlias = _native.BatchContainerOverrides
+BatchEnvironmentVariableOutput: TypeAlias = _native.BatchEnvironmentVariable
+BatchJobDependencyOutput: TypeAlias = _native.BatchJobDependency
+BatchResourceRequirementOutput: TypeAlias = _native.BatchResourceRequirement
+BatchRetryStrategyOutput: TypeAlias = _native.BatchRetryStrategy
+ByteStream: TypeAlias = _native.ByteStream
+CapacityProviderStrategyItemOutput: TypeAlias = _native.CapacityProviderStrategyItem
+CloudwatchLogsLogDestinationOutput: TypeAlias = _native.CloudwatchLogsLogDestination
+CreatePipeResponse: TypeAlias = _native.CreatePipeResponse
+DeadLetterConfigOutput: TypeAlias = _native.DeadLetterConfig
+DeletePipeResponse: TypeAlias = _native.DeletePipeResponse
+DescribePipeResponse: TypeAlias = _native.DescribePipeResponse
+DimensionMappingOutput: TypeAlias = _native.DimensionMapping
+EcsContainerOverrideOutput: TypeAlias = _native.EcsContainerOverride
+EcsEnvironmentFileOutput: TypeAlias = _native.EcsEnvironmentFile
+EcsEnvironmentVariableOutput: TypeAlias = _native.EcsEnvironmentVariable
+EcsEphemeralStorageOutput: TypeAlias = _native.EcsEphemeralStorage
+EcsInferenceAcceleratorOverrideOutput: TypeAlias = _native.EcsInferenceAcceleratorOverride
+EcsResourceRequirementOutput: TypeAlias = _native.EcsResourceRequirement
+EcsTaskOverrideOutput: TypeAlias = _native.EcsTaskOverride
+FilterOutput: TypeAlias = _native.Filter
+FilterCriteriaOutput: TypeAlias = _native.FilterCriteria
+FirehoseLogDestinationOutput: TypeAlias = _native.FirehoseLogDestination
+ListPipesResponse: TypeAlias = _native.ListPipesResponse
+ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+MultiMeasureAttributeMappingOutput: TypeAlias = _native.MultiMeasureAttributeMapping
+MultiMeasureMappingOutput: TypeAlias = _native.MultiMeasureMapping
+NetworkConfigurationOutput: TypeAlias = _native.NetworkConfiguration
+PipeOutput: TypeAlias = _native.Pipe
+PipeEnrichmentHttpParametersOutput: TypeAlias = _native.PipeEnrichmentHttpParameters
+PipeEnrichmentParametersOutput: TypeAlias = _native.PipeEnrichmentParameters
+PipeLogConfigurationOutput: TypeAlias = _native.PipeLogConfiguration
+PipeSourceActiveMqBrokerParameters: TypeAlias = _native.PipeSourceActiveMqBrokerParameters
+PipeSourceDynamoDbStreamParameters: TypeAlias = _native.PipeSourceDynamoDbStreamParameters
+PipeSourceKinesisStreamParametersOutput: TypeAlias = _native.PipeSourceKinesisStreamParameters
+PipeSourceManagedStreamingKafkaParametersOutput: TypeAlias = _native.PipeSourceManagedStreamingKafkaParameters
+PipeSourceParametersOutput: TypeAlias = _native.PipeSourceParameters
+PipeSourceRabbitMqBrokerParameters: TypeAlias = _native.PipeSourceRabbitMqBrokerParameters
+PipeSourceSelfManagedKafkaParametersOutput: TypeAlias = _native.PipeSourceSelfManagedKafkaParameters
+PipeSourceSqsQueueParametersOutput: TypeAlias = _native.PipeSourceSqsQueueParameters
+PipeTargetBatchJobParametersOutput: TypeAlias = _native.PipeTargetBatchJobParameters
+PipeTargetCloudWatchLogsParametersOutput: TypeAlias = _native.PipeTargetCloudWatchLogsParameters
+PipeTargetEcsTaskParametersOutput: TypeAlias = _native.PipeTargetEcsTaskParameters
+PipeTargetEventBridgeEventBusParametersOutput: TypeAlias = _native.PipeTargetEventBridgeEventBusParameters
+PipeTargetHttpParametersOutput: TypeAlias = _native.PipeTargetHttpParameters
+PipeTargetKinesisStreamParametersOutput: TypeAlias = _native.PipeTargetKinesisStreamParameters
+PipeTargetLambdaFunctionParametersOutput: TypeAlias = _native.PipeTargetLambdaFunctionParameters
+PipeTargetParametersOutput: TypeAlias = _native.PipeTargetParameters
+PipeTargetRedshiftDataParametersOutput: TypeAlias = _native.PipeTargetRedshiftDataParameters
+PipeTargetSageMakerPipelineParametersOutput: TypeAlias = _native.PipeTargetSageMakerPipelineParameters
+PipeTargetSqsQueueParametersOutput: TypeAlias = _native.PipeTargetSqsQueueParameters
+PipeTargetStateMachineParametersOutput: TypeAlias = _native.PipeTargetStateMachineParameters
+PipeTargetTimestreamParametersOutput: TypeAlias = _native.PipeTargetTimestreamParameters
+PlacementConstraintOutput: TypeAlias = _native.PlacementConstraint
+PlacementStrategyOutput: TypeAlias = _native.PlacementStrategy
+S3LogDestinationOutput: TypeAlias = _native.S3LogDestination
+SageMakerPipelineParameterOutput: TypeAlias = _native.SageMakerPipelineParameter
+SelfManagedKafkaAccessConfigurationVpcOutput: TypeAlias = _native.SelfManagedKafkaAccessConfigurationVpc
+SingleMeasureMappingOutput: TypeAlias = _native.SingleMeasureMapping
+StartPipeResponse: TypeAlias = _native.StartPipeResponse
+StopPipeResponse: TypeAlias = _native.StopPipeResponse
+TagOutput: TypeAlias = _native.Tag
+TagResourceResponse: TypeAlias = _native.TagResourceResponse
+UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
+UpdatePipeResponse: TypeAlias = _native.UpdatePipeResponse
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

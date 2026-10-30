@@ -6,7 +6,10 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ByteStream: TypeAlias = _native.ByteStream
+ResponseStreamEventReceiver: TypeAlias = _native.ResponseStreamEventReceiver
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

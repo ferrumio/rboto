@@ -1,12 +1,9 @@
 import json
 
 from rboto import EventBridgeClient, EventBridgePipesClient, EventBridgeSchedulerClient
-from rboto_eventbridge import PutEventsResponse
-from rboto_eventbridge.types import PutEventsRequestEntry
-from rboto_pipes import CreatePipeResponse
-from rboto_pipes.types import PipeSourceParameters
-from rboto_scheduler import CreateScheduleOutput
-from rboto_scheduler.types import FlexibleTimeWindow, Target
+from rboto_eventbridge.types import PutEventsRequestEntry, PutEventsResponse
+from rboto_pipes.types import CreatePipeResponse, PipeSourceParameters
+from rboto_scheduler.types import CreateScheduleOutput, FlexibleTimeWindow, Target
 
 
 async def publish(bus_name: str) -> PutEventsResponse:

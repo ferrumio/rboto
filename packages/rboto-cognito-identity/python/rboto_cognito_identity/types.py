@@ -6,7 +6,36 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ByteStream: TypeAlias = _native.ByteStream
+CognitoIdentityProviderOutput: TypeAlias = _native.CognitoIdentityProvider
+CreateIdentityPoolOutput: TypeAlias = _native.CreateIdentityPoolOutput
+CredentialsOutput: TypeAlias = _native.Credentials
+DeleteIdentitiesResponse: TypeAlias = _native.DeleteIdentitiesResponse
+DescribeIdentityOutput: TypeAlias = _native.DescribeIdentityOutput
+DescribeIdentityPoolOutput: TypeAlias = _native.DescribeIdentityPoolOutput
+GetCredentialsForIdentityResponse: TypeAlias = _native.GetCredentialsForIdentityResponse
+GetIdResponse: TypeAlias = _native.GetIdResponse
+GetIdentityPoolRolesResponse: TypeAlias = _native.GetIdentityPoolRolesResponse
+GetOpenIdTokenForDeveloperIdentityResponse: TypeAlias = _native.GetOpenIdTokenForDeveloperIdentityResponse
+GetOpenIdTokenResponse: TypeAlias = _native.GetOpenIdTokenResponse
+GetPrincipalTagAttributeMapResponse: TypeAlias = _native.GetPrincipalTagAttributeMapResponse
+IdentityDescription: TypeAlias = _native.IdentityDescription
+IdentityPoolShortDescriptionOutput: TypeAlias = _native.IdentityPoolShortDescription
+ListIdentitiesResponse: TypeAlias = _native.ListIdentitiesResponse
+ListIdentityPoolsResponse: TypeAlias = _native.ListIdentityPoolsResponse
+ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+LookupDeveloperIdentityResponse: TypeAlias = _native.LookupDeveloperIdentityResponse
+MappingRuleOutput: TypeAlias = _native.MappingRule
+MergeDeveloperIdentitiesResponse: TypeAlias = _native.MergeDeveloperIdentitiesResponse
+RoleMappingOutput: TypeAlias = _native.RoleMapping
+RulesConfigurationTypeOutput: TypeAlias = _native.RulesConfigurationType
+SetPrincipalTagAttributeMapResponse: TypeAlias = _native.SetPrincipalTagAttributeMapResponse
+TagResourceResponse: TypeAlias = _native.TagResourceResponse
+UnprocessedIdentityIdOutput: TypeAlias = _native.UnprocessedIdentityId
+UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
+UpdateIdentityPoolOutput: TypeAlias = _native.UpdateIdentityPoolOutput
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

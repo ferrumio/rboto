@@ -15,8 +15,7 @@ if Path(sys.prefix).resolve() != PROJECT_VENV.resolve():
     os.execv(venv_python, [str(venv_python), *sys.argv])
 
 from rboto import S3Client
-from rboto_s3 import ByteStream
-from rboto_s3.types import BucketLocationConstraint, CreateBucketConfiguration
+from rboto_s3.types import BucketLocationConstraint, ByteStream, CreateBucketConfiguration
 
 
 @dataclass(frozen=True, slots=True)

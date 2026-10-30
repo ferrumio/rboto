@@ -6,7 +6,18 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ByteStream: TypeAlias = _native.ByteStream
+GetDataAutomationStatusResponse: TypeAlias = _native.GetDataAutomationStatusResponse
+InvokeDataAutomationAsyncResponse: TypeAlias = _native.InvokeDataAutomationAsyncResponse
+InvokeDataAutomationResponse: TypeAlias = _native.InvokeDataAutomationResponse
+ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+OutputConfigurationOutput: TypeAlias = _native.OutputConfiguration
+OutputSegmentOutput: TypeAlias = _native.OutputSegment
+TagOutput: TypeAlias = _native.Tag
+TagResourceResponse: TypeAlias = _native.TagResourceResponse
+UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

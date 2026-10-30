@@ -6,7 +6,21 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ByteStream: TypeAlias = _native.ByteStream
+CallAnalyticsTranscriptResultStreamReceiver: TypeAlias = _native.CallAnalyticsTranscriptResultStreamReceiver
+ClinicalNoteGenerationResultOutput: TypeAlias = _native.ClinicalNoteGenerationResult
+ClinicalNoteGenerationSettingsOutput: TypeAlias = _native.ClinicalNoteGenerationSettings
+GetMedicalScribeStreamResponse: TypeAlias = _native.GetMedicalScribeStreamResponse
+MedicalScribeChannelDefinitionOutput: TypeAlias = _native.MedicalScribeChannelDefinition
+MedicalScribeEncryptionSettingsOutput: TypeAlias = _native.MedicalScribeEncryptionSettings
+MedicalScribePostStreamAnalyticsResultOutput: TypeAlias = _native.MedicalScribePostStreamAnalyticsResult
+MedicalScribePostStreamAnalyticsSettingsOutput: TypeAlias = _native.MedicalScribePostStreamAnalyticsSettings
+MedicalScribeResultStreamReceiver: TypeAlias = _native.MedicalScribeResultStreamReceiver
+MedicalScribeStreamDetailsOutput: TypeAlias = _native.MedicalScribeStreamDetails
+MedicalTranscriptResultStreamReceiver: TypeAlias = _native.MedicalTranscriptResultStreamReceiver
+TranscriptResultStreamReceiver: TypeAlias = _native.TranscriptResultStreamReceiver
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

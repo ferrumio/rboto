@@ -2,7 +2,7 @@ from typing import assert_type
 
 from rboto import DynamoDBClient, SQSClient, UnknownEnumValue
 from rboto_bedrock_runtime.types import ToolUseBlockOutput
-from rboto_sqs import GetQueueAttributesResult
+from rboto_sqs.types import GetQueueAttributesResult
 
 
 def read_tool_kind(block: ToolUseBlockOutput) -> str:
