@@ -6,7 +6,62 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AliasListEntryOutput: TypeAlias = _native.AliasListEntry
+ByteStream: TypeAlias = _native.ByteStream
+CancelKeyDeletionResponse: TypeAlias = _native.CancelKeyDeletionResponse
+ConnectCustomKeyStoreResponse: TypeAlias = _native.ConnectCustomKeyStoreResponse
+CreateCustomKeyStoreResponse: TypeAlias = _native.CreateCustomKeyStoreResponse
+CreateGrantResponse: TypeAlias = _native.CreateGrantResponse
+CreateKeyResponse: TypeAlias = _native.CreateKeyResponse
+CustomKeyStoresListEntryOutput: TypeAlias = _native.CustomKeyStoresListEntry
+DecryptResponse: TypeAlias = _native.DecryptResponse
+DeleteCustomKeyStoreResponse: TypeAlias = _native.DeleteCustomKeyStoreResponse
+DeleteImportedKeyMaterialResponse: TypeAlias = _native.DeleteImportedKeyMaterialResponse
+DeriveSharedSecretResponse: TypeAlias = _native.DeriveSharedSecretResponse
+DescribeCustomKeyStoresResponse: TypeAlias = _native.DescribeCustomKeyStoresResponse
+DescribeKeyResponse: TypeAlias = _native.DescribeKeyResponse
+DisconnectCustomKeyStoreResponse: TypeAlias = _native.DisconnectCustomKeyStoreResponse
+EncryptResponse: TypeAlias = _native.EncryptResponse
+GenerateDataKeyPairResponse: TypeAlias = _native.GenerateDataKeyPairResponse
+GenerateDataKeyPairWithoutPlaintextResponse: TypeAlias = _native.GenerateDataKeyPairWithoutPlaintextResponse
+GenerateDataKeyResponse: TypeAlias = _native.GenerateDataKeyResponse
+GenerateDataKeyWithoutPlaintextResponse: TypeAlias = _native.GenerateDataKeyWithoutPlaintextResponse
+GenerateMacResponse: TypeAlias = _native.GenerateMacResponse
+GenerateRandomResponse: TypeAlias = _native.GenerateRandomResponse
+GetKeyLastUsageResponse: TypeAlias = _native.GetKeyLastUsageResponse
+GetKeyPolicyResponse: TypeAlias = _native.GetKeyPolicyResponse
+GetKeyRotationStatusResponse: TypeAlias = _native.GetKeyRotationStatusResponse
+GetParametersForImportResponse: TypeAlias = _native.GetParametersForImportResponse
+GetPublicKeyResponse: TypeAlias = _native.GetPublicKeyResponse
+GrantConstraintsOutput: TypeAlias = _native.GrantConstraints
+GrantListEntryOutput: TypeAlias = _native.GrantListEntry
+ImportKeyMaterialResponse: TypeAlias = _native.ImportKeyMaterialResponse
+KeyLastUsageDataOutput: TypeAlias = _native.KeyLastUsageData
+KeyListEntryOutput: TypeAlias = _native.KeyListEntry
+KeyMetadataOutput: TypeAlias = _native.KeyMetadata
+ListAliasesResponse: TypeAlias = _native.ListAliasesResponse
+ListGrantsOutput: TypeAlias = _native.ListGrantsOutput
+ListKeyPoliciesResponse: TypeAlias = _native.ListKeyPoliciesResponse
+ListKeyRotationsResponse: TypeAlias = _native.ListKeyRotationsResponse
+ListKeysResponse: TypeAlias = _native.ListKeysResponse
+ListResourceTagsResponse: TypeAlias = _native.ListResourceTagsResponse
+ListRetirableGrantsOutput: TypeAlias = _native.ListRetirableGrantsOutput
+MultiRegionConfigurationOutput: TypeAlias = _native.MultiRegionConfiguration
+MultiRegionKeyOutput: TypeAlias = _native.MultiRegionKey
+ReEncryptResponse: TypeAlias = _native.ReEncryptResponse
+ReplicateKeyResponse: TypeAlias = _native.ReplicateKeyResponse
+RotateKeyOnDemandResponse: TypeAlias = _native.RotateKeyOnDemandResponse
+RotationsListEntryOutput: TypeAlias = _native.RotationsListEntry
+ScheduleKeyDeletionResponse: TypeAlias = _native.ScheduleKeyDeletionResponse
+SignResponse: TypeAlias = _native.SignResponse
+TagOutput: TypeAlias = _native.Tag
+UpdateCustomKeyStoreResponse: TypeAlias = _native.UpdateCustomKeyStoreResponse
+VerifyMacResponse: TypeAlias = _native.VerifyMacResponse
+VerifyResponse: TypeAlias = _native.VerifyResponse
+XksKeyConfigurationTypeOutput: TypeAlias = _native.XksKeyConfigurationType
+XksProxyConfigurationTypeOutput: TypeAlias = _native.XksProxyConfigurationType
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

@@ -6,7 +6,30 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+BatchResultErrorEntryOutput: TypeAlias = _native.BatchResultErrorEntry
+ByteStream: TypeAlias = _native.ByteStream
+CancelMessageMoveTaskResult: TypeAlias = _native.CancelMessageMoveTaskResult
+ChangeMessageVisibilityBatchResult: TypeAlias = _native.ChangeMessageVisibilityBatchResult
+ChangeMessageVisibilityBatchResultEntryOutput: TypeAlias = _native.ChangeMessageVisibilityBatchResultEntry
+CreateQueueResult: TypeAlias = _native.CreateQueueResult
+DeleteMessageBatchResult: TypeAlias = _native.DeleteMessageBatchResult
+DeleteMessageBatchResultEntryOutput: TypeAlias = _native.DeleteMessageBatchResultEntry
+GetQueueAttributesResult: TypeAlias = _native.GetQueueAttributesResult
+GetQueueUrlResult: TypeAlias = _native.GetQueueUrlResult
+ListDeadLetterSourceQueuesResult: TypeAlias = _native.ListDeadLetterSourceQueuesResult
+ListMessageMoveTasksResult: TypeAlias = _native.ListMessageMoveTasksResult
+ListMessageMoveTasksResultEntryOutput: TypeAlias = _native.ListMessageMoveTasksResultEntry
+ListQueueTagsResult: TypeAlias = _native.ListQueueTagsResult
+ListQueuesResult: TypeAlias = _native.ListQueuesResult
+MessageOutput: TypeAlias = _native.Message
+MessageAttributeValueOutput: TypeAlias = _native.MessageAttributeValue
+ReceiveMessageResult: TypeAlias = _native.ReceiveMessageResult
+SendMessageBatchResult: TypeAlias = _native.SendMessageBatchResult
+SendMessageBatchResultEntryOutput: TypeAlias = _native.SendMessageBatchResultEntry
+SendMessageResult: TypeAlias = _native.SendMessageResult
+StartMessageMoveTaskResult: TypeAlias = _native.StartMessageMoveTaskResult
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

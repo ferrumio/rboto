@@ -6,7 +6,23 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AssumeRoleResponse: TypeAlias = _native.AssumeRoleResponse
+AssumeRoleWithSAMLResponse: TypeAlias = _native.AssumeRoleWithSAMLResponse
+AssumeRoleWithWebIdentityResponse: TypeAlias = _native.AssumeRoleWithWebIdentityResponse
+AssumeRootResponse: TypeAlias = _native.AssumeRootResponse
+AssumedRoleUserOutput: TypeAlias = _native.AssumedRoleUser
+ByteStream: TypeAlias = _native.ByteStream
+CredentialsOutput: TypeAlias = _native.Credentials
+DecodeAuthorizationMessageResponse: TypeAlias = _native.DecodeAuthorizationMessageResponse
+FederatedUserOutput: TypeAlias = _native.FederatedUser
+GetAccessKeyInfoResponse: TypeAlias = _native.GetAccessKeyInfoResponse
+GetCallerIdentityResponse: TypeAlias = _native.GetCallerIdentityResponse
+GetDelegatedAccessTokenResponse: TypeAlias = _native.GetDelegatedAccessTokenResponse
+GetFederationTokenResponse: TypeAlias = _native.GetFederationTokenResponse
+GetSessionTokenResponse: TypeAlias = _native.GetSessionTokenResponse
+GetWebIdentityTokenResponse: TypeAlias = _native.GetWebIdentityTokenResponse
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

@@ -121,3 +121,66 @@ async def send(client: BedrockRuntimeClient) -> None:
     assert result.returncode == 1, result.stdout + result.stderr
     errors = [line for line in result.stdout.splitlines() if ": error:" in line]
     assert len(errors) == 3, result.stdout
+
+
+def test_response_types_are_public_alongside_input_types(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "public_types.py", """
+from collections.abc import AsyncIterator
+from typing import assert_type
+from rboto import BedrockRuntimeClient, LambdaClient, S3Client
+from rboto_s3 import CreateBucketOutput as LegacyCreateBucketOutput
+from rboto_s3.types import (
+    Bucket, BucketOutput, ByteStream, CreateBucketOutput, CreateBucketRequest,
+    GetObjectOutput, ListBucketsOutput, ListMultipartUploadsOutput,
+)
+from rboto_lambda.types import FunctionConfiguration, ListFunctionsResponse
+from rboto_bedrock_runtime.types import ConverseStreamOutput, ConverseStreamResponse
+
+def describe_bucket(bucket: BucketOutput) -> str | None:
+    return bucket.name
+
+async def create(client: S3Client) -> CreateBucketOutput:
+    request: CreateBucketRequest = {"bucket": "example"}
+    response = await client.create_bucket(bucket=request["bucket"])
+    assert_type(response, CreateBucketOutput)
+    legacy: LegacyCreateBucketOutput = response
+    return legacy
+
+async def consume(s3: S3Client, lamb: LambdaClient, bedrock: BedrockRuntimeClient) -> None:
+    request_bucket: Bucket = {"name": "example"}
+    assert_type(request_bucket["name"], str)
+    buckets = await s3.list_buckets()
+    assert_type(buckets, ListBucketsOutput)
+    for bucket in buckets.buckets or []:
+        assert_type(bucket, BucketOutput)
+        describe_bucket(bucket)
+    obj = await s3.get_object(bucket="example", key="key")
+    assert_type(obj, GetObjectOutput)
+    assert_type(obj.body, ByteStream)
+    functions = await lamb.list_functions()
+    assert_type(functions, ListFunctionsResponse)
+    for function in functions.functions or []:
+        assert_type(function, FunctionConfiguration)
+    async for page in s3.paginators.list_multipart_uploads(bucket="example"):
+        assert_type(page, ListMultipartUploadsOutput)
+    streaming = await bedrock.converse_stream(model_id="example")
+    assert_type(streaming, ConverseStreamResponse)
+    assert_type(streaming["stream"], AsyncIterator[ConverseStreamOutput])
+""")
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_output_aliases_preserve_readonly_fields_and_input_distinction(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "invalid_public_types.py", """
+from rboto import S3Client
+from rboto_s3.types import Bucket, BucketOutput, CreateBucketRequest
+
+async def invalid(client: S3Client, output: BucketOutput) -> None:
+    request: CreateBucketRequest = await client.create_bucket(bucket="example")
+    output.name = "changed"
+    mapping: Bucket = output
+    print(request, mapping)
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    errors = [line for line in result.stdout.splitlines() if ": error:" in line]
+    assert len(errors) == 3, result.stdout

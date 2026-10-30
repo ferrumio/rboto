@@ -6,7 +6,40 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AwsVpcConfigurationOutput: TypeAlias = _native.AwsVpcConfiguration
+ByteStream: TypeAlias = _native.ByteStream
+CapacityProviderStrategyItemOutput: TypeAlias = _native.CapacityProviderStrategyItem
+CreateScheduleGroupOutput: TypeAlias = _native.CreateScheduleGroupOutput
+CreateScheduleOutput: TypeAlias = _native.CreateScheduleOutput
+DeadLetterConfigOutput: TypeAlias = _native.DeadLetterConfig
+DeleteScheduleGroupOutput: TypeAlias = _native.DeleteScheduleGroupOutput
+DeleteScheduleOutput: TypeAlias = _native.DeleteScheduleOutput
+EcsParametersOutput: TypeAlias = _native.EcsParameters
+EventBridgeParametersOutput: TypeAlias = _native.EventBridgeParameters
+FlexibleTimeWindowOutput: TypeAlias = _native.FlexibleTimeWindow
+GetScheduleGroupOutput: TypeAlias = _native.GetScheduleGroupOutput
+GetScheduleOutput: TypeAlias = _native.GetScheduleOutput
+KinesisParametersOutput: TypeAlias = _native.KinesisParameters
+ListScheduleGroupsOutput: TypeAlias = _native.ListScheduleGroupsOutput
+ListSchedulesOutput: TypeAlias = _native.ListSchedulesOutput
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+NetworkConfigurationOutput: TypeAlias = _native.NetworkConfiguration
+PlacementConstraintOutput: TypeAlias = _native.PlacementConstraint
+PlacementStrategyOutput: TypeAlias = _native.PlacementStrategy
+RetryPolicyOutput: TypeAlias = _native.RetryPolicy
+SageMakerPipelineParameterOutput: TypeAlias = _native.SageMakerPipelineParameter
+SageMakerPipelineParametersOutput: TypeAlias = _native.SageMakerPipelineParameters
+ScheduleGroupSummaryOutput: TypeAlias = _native.ScheduleGroupSummary
+ScheduleSummaryOutput: TypeAlias = _native.ScheduleSummary
+SqsParametersOutput: TypeAlias = _native.SqsParameters
+TagOutput: TypeAlias = _native.Tag
+TagResourceOutput: TypeAlias = _native.TagResourceOutput
+TargetOutput: TypeAlias = _native.Target
+TargetSummaryOutput: TypeAlias = _native.TargetSummary
+UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+UpdateScheduleOutput: TypeAlias = _native.UpdateScheduleOutput
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

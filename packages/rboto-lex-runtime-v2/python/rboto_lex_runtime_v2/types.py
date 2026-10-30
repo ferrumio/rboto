@@ -6,7 +6,34 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ActiveContextOutputValue: TypeAlias = _native.ActiveContext
+ActiveContextTimeToLiveOutputValue: TypeAlias = _native.ActiveContextTimeToLive
+ButtonOutputValue: TypeAlias = _native.Button
+ByteStream: TypeAlias = _native.ByteStream
+ConfidenceScoreOutput: TypeAlias = _native.ConfidenceScore
+DeleteSessionResponse: TypeAlias = _native.DeleteSessionResponse
+DialogActionOutputValue: TypeAlias = _native.DialogAction
+ElicitSubSlotOutputValue: TypeAlias = _native.ElicitSubSlot
+GetSessionResponse: TypeAlias = _native.GetSessionResponse
+ImageResponseCardOutputValue: TypeAlias = _native.ImageResponseCard
+IntentOutputValue: TypeAlias = _native.Intent
+InterpretationOutput: TypeAlias = _native.Interpretation
+MessageOutputValue: TypeAlias = _native.Message
+PutSessionResponse: TypeAlias = _native.PutSessionResponse
+RecognizeTextResponse: TypeAlias = _native.RecognizeTextResponse
+RecognizeUtteranceResponse: TypeAlias = _native.RecognizeUtteranceResponse
+RecognizedBotMemberOutput: TypeAlias = _native.RecognizedBotMember
+RuntimeHintDetailsOutputValue: TypeAlias = _native.RuntimeHintDetails
+RuntimeHintValueOutputValue: TypeAlias = _native.RuntimeHintValue
+RuntimeHintsOutputValue: TypeAlias = _native.RuntimeHints
+SentimentResponseOutput: TypeAlias = _native.SentimentResponse
+SentimentScoreOutput: TypeAlias = _native.SentimentScore
+SessionStateOutputValue: TypeAlias = _native.SessionState
+SlotOutputValue: TypeAlias = _native.Slot
+StartConversationResponseEventStreamReceiver: TypeAlias = _native.StartConversationResponseEventStreamReceiver
+ValueOutputValue: TypeAlias = _native.Value
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

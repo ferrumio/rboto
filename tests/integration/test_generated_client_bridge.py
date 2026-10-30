@@ -129,12 +129,19 @@ def test_native_properties_match_the_generated_stubs(service: object) -> None:
     package_name = getattr(service, "python_package")
     package = importlib.import_module(package_name)
     native = importlib.import_module(f"{package_name}._native")
+    types = importlib.import_module(f"{package_name}.types")
     assert package.__file__ is not None
     stub = ast.parse(Path(package.__file__).with_name("_native.pyi").read_text())
     for node in stub.body:
         if not isinstance(node, ast.ClassDef):
             continue
         native_class = getattr(native, node.name)
+        if node.name != getattr(service, "native_class"):
+            assert any(value is native_class for value in vars(types).values()), (
+                f"{package_name}.types must expose native type {node.name}"
+            )
+            if node.name in package.__all__:
+                assert getattr(package, node.name) is native_class
         assert native_class.__module__ == native.__name__, (
             f"{package_name}.{node.name} must identify its importable native module"
         )

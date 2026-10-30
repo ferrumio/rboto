@@ -6,7 +6,24 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ByteStream: TypeAlias = _native.ByteStream
+DeleteLexiconOutput: TypeAlias = _native.DeleteLexiconOutput
+DescribeVoicesOutput: TypeAlias = _native.DescribeVoicesOutput
+GetLexiconOutput: TypeAlias = _native.GetLexiconOutput
+GetSpeechSynthesisTaskOutput: TypeAlias = _native.GetSpeechSynthesisTaskOutput
+LexiconOutput: TypeAlias = _native.Lexicon
+LexiconAttributesOutput: TypeAlias = _native.LexiconAttributes
+LexiconDescriptionOutput: TypeAlias = _native.LexiconDescription
+ListLexiconsOutput: TypeAlias = _native.ListLexiconsOutput
+ListSpeechSynthesisTasksOutput: TypeAlias = _native.ListSpeechSynthesisTasksOutput
+PutLexiconOutput: TypeAlias = _native.PutLexiconOutput
+StartSpeechSynthesisStreamEventStreamReceiver: TypeAlias = _native.StartSpeechSynthesisStreamEventStreamReceiver
+StartSpeechSynthesisTaskOutput: TypeAlias = _native.StartSpeechSynthesisTaskOutput
+SynthesisTaskOutput: TypeAlias = _native.SynthesisTask
+SynthesizeSpeechOutput: TypeAlias = _native.SynthesizeSpeechOutput
+VoiceOutput: TypeAlias = _native.Voice
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

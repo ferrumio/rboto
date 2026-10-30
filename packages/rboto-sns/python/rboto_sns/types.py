@@ -6,7 +6,49 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+BatchResultErrorEntryOutput: TypeAlias = _native.BatchResultErrorEntry
+ByteStream: TypeAlias = _native.ByteStream
+CheckIfPhoneNumberIsOptedOutResponse: TypeAlias = _native.CheckIfPhoneNumberIsOptedOutResponse
+ConfirmSubscriptionResponse: TypeAlias = _native.ConfirmSubscriptionResponse
+CreateEndpointResponse: TypeAlias = _native.CreateEndpointResponse
+CreatePlatformApplicationResponse: TypeAlias = _native.CreatePlatformApplicationResponse
+CreateSMSSandboxPhoneNumberResult: TypeAlias = _native.CreateSMSSandboxPhoneNumberResult
+CreateTopicResponse: TypeAlias = _native.CreateTopicResponse
+DeleteSMSSandboxPhoneNumberResult: TypeAlias = _native.DeleteSMSSandboxPhoneNumberResult
+EndpointOutput: TypeAlias = _native.Endpoint
+GetDataProtectionPolicyResponse: TypeAlias = _native.GetDataProtectionPolicyResponse
+GetEndpointAttributesResponse: TypeAlias = _native.GetEndpointAttributesResponse
+GetPlatformApplicationAttributesResponse: TypeAlias = _native.GetPlatformApplicationAttributesResponse
+GetSMSAttributesResponse: TypeAlias = _native.GetSMSAttributesResponse
+GetSMSSandboxAccountStatusResult: TypeAlias = _native.GetSMSSandboxAccountStatusResult
+GetSubscriptionAttributesResponse: TypeAlias = _native.GetSubscriptionAttributesResponse
+GetTopicAttributesResponse: TypeAlias = _native.GetTopicAttributesResponse
+ListEndpointsByPlatformApplicationResponse: TypeAlias = _native.ListEndpointsByPlatformApplicationResponse
+ListOriginationNumbersResult: TypeAlias = _native.ListOriginationNumbersResult
+ListPhoneNumbersOptedOutResponse: TypeAlias = _native.ListPhoneNumbersOptedOutResponse
+ListPlatformApplicationsResponse: TypeAlias = _native.ListPlatformApplicationsResponse
+ListSMSSandboxPhoneNumbersResult: TypeAlias = _native.ListSMSSandboxPhoneNumbersResult
+ListSubscriptionsByTopicResponse: TypeAlias = _native.ListSubscriptionsByTopicResponse
+ListSubscriptionsResponse: TypeAlias = _native.ListSubscriptionsResponse
+ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+ListTopicsResponse: TypeAlias = _native.ListTopicsResponse
+OptInPhoneNumberResponse: TypeAlias = _native.OptInPhoneNumberResponse
+PhoneNumberInformationOutput: TypeAlias = _native.PhoneNumberInformation
+PlatformApplicationOutput: TypeAlias = _native.PlatformApplication
+PublishBatchResponse: TypeAlias = _native.PublishBatchResponse
+PublishBatchResultEntryOutput: TypeAlias = _native.PublishBatchResultEntry
+PublishResponse: TypeAlias = _native.PublishResponse
+SetSMSAttributesResponse: TypeAlias = _native.SetSMSAttributesResponse
+SmsSandboxPhoneNumber: TypeAlias = _native.SmsSandboxPhoneNumber
+SubscribeResponse: TypeAlias = _native.SubscribeResponse
+SubscriptionOutput: TypeAlias = _native.Subscription
+TagOutput: TypeAlias = _native.Tag
+TagResourceResponse: TypeAlias = _native.TagResourceResponse
+TopicOutput: TypeAlias = _native.Topic
+UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
+VerifySMSSandboxPhoneNumberResult: TypeAlias = _native.VerifySMSSandboxPhoneNumberResult
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

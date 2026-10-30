@@ -6,7 +6,43 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+ActivateSubscriptionOutput: TypeAlias = _native.ActivateSubscriptionOutput
+ArtifactDetailsOutput: TypeAlias = _native.ArtifactDetails
+ByteStream: TypeAlias = _native.ByteStream
+ClinicalNoteGenerationResultOutput: TypeAlias = _native.ClinicalNoteGenerationResult
+ClinicalNoteGenerationSettingsResponseOutput: TypeAlias = _native.ClinicalNoteGenerationSettingsResponse
+CreateDomainOutput: TypeAlias = _native.CreateDomainOutput
+CreateSubscriptionOutput: TypeAlias = _native.CreateSubscriptionOutput
+DeactivateSubscriptionOutput: TypeAlias = _native.DeactivateSubscriptionOutput
+DeleteDomainOutput: TypeAlias = _native.DeleteDomainOutput
+DomainSummaryOutput: TypeAlias = _native.DomainSummary
+EncryptionContextOutput: TypeAlias = _native.EncryptionContext
+FhirServer: TypeAlias = _native.FhirServer
+GetDomainOutput: TypeAlias = _native.GetDomainOutput
+GetMedicalScribeListeningSessionOutput: TypeAlias = _native.GetMedicalScribeListeningSessionOutput
+GetPatientInsightsJobResponse: TypeAlias = _native.GetPatientInsightsJobResponse
+GetSubscriptionOutput: TypeAlias = _native.GetSubscriptionOutput
+InputDataConfigOutput: TypeAlias = _native.InputDataConfig
+InsightsContextOutput: TypeAlias = _native.InsightsContext
+InsightsOutputResponse: TypeAlias = _native.InsightsOutput
+ListDomainsOutput: TypeAlias = _native.ListDomainsOutput
+ListSubscriptionsOutput: TypeAlias = _native.ListSubscriptionsOutput
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+MedicalScribeChannelDefinitionOutput: TypeAlias = _native.MedicalScribeChannelDefinition
+MedicalScribeListeningSessionDetailsOutput: TypeAlias = _native.MedicalScribeListeningSessionDetails
+MedicalScribeOutputStreamReceiver: TypeAlias = _native.MedicalScribeOutputStreamReceiver
+MedicalScribePostStreamActionSettingsResponseOutput: TypeAlias = _native.MedicalScribePostStreamActionSettingsResponse
+MedicalScribePostStreamActionsResultOutput: TypeAlias = _native.MedicalScribePostStreamActionsResult
+OutputDataConfigOutput: TypeAlias = _native.OutputDataConfig
+PatientInsightsEncounterContextOutput: TypeAlias = _native.PatientInsightsEncounterContext
+PatientInsightsPatientContextOutput: TypeAlias = _native.PatientInsightsPatientContext
+S3SourceOutput: TypeAlias = _native.S3Source
+StartPatientInsightsJobResponse: TypeAlias = _native.StartPatientInsightsJobResponse
+SubscriptionDescriptionOutput: TypeAlias = _native.SubscriptionDescription
+UserContextOutput: TypeAlias = _native.UserContext
+WebAppConfigurationOutput: TypeAlias = _native.WebAppConfiguration
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

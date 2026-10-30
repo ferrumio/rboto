@@ -6,7 +6,81 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AgenticRetrieveStreamResponseOutputReceiver: TypeAlias = _native.AgenticRetrieveStreamResponseOutputReceiver
+AudioSegmentOutput: TypeAlias = _native.AudioSegment
+ByteStream: TypeAlias = _native.ByteStream
+CheckIngestedDocumentAclResponse: TypeAlias = _native.CheckIngestedDocumentAclResponse
+CitationOutput: TypeAlias = _native.Citation
+CreateInvocationResponse: TypeAlias = _native.CreateInvocationResponse
+CreateSessionResponse: TypeAlias = _native.CreateSessionResponse
+DeleteAgentMemoryResponse: TypeAlias = _native.DeleteAgentMemoryResponse
+DeleteSessionResponse: TypeAlias = _native.DeleteSessionResponse
+DocumentAclOutput: TypeAlias = _native.DocumentAcl
+DocumentAclConditionOutput: TypeAlias = _native.DocumentAclCondition
+DocumentAclGroupOutput: TypeAlias = _native.DocumentAclGroup
+DocumentAclMembershipOutput: TypeAlias = _native.DocumentAclMembership
+DocumentAclUserOutput: TypeAlias = _native.DocumentAclUser
+EndSessionResponse: TypeAlias = _native.EndSessionResponse
+FlowExecutionErrorOutput: TypeAlias = _native.FlowExecutionError
+FlowExecutionSummaryOutput: TypeAlias = _native.FlowExecutionSummary
+FlowResponseStreamReceiver: TypeAlias = _native.FlowResponseStreamReceiver
+GenerateQueryResponse: TypeAlias = _native.GenerateQueryResponse
+GeneratedQueryOutput: TypeAlias = _native.GeneratedQuery
+GeneratedResponsePartOutput: TypeAlias = _native.GeneratedResponsePart
+GetAgentMemoryResponse: TypeAlias = _native.GetAgentMemoryResponse
+GetDocumentContentResponse: TypeAlias = _native.GetDocumentContentResponse
+GetExecutionFlowSnapshotResponse: TypeAlias = _native.GetExecutionFlowSnapshotResponse
+GetFlowExecutionResponse: TypeAlias = _native.GetFlowExecutionResponse
+GetIngestedDocumentAclResponse: TypeAlias = _native.GetIngestedDocumentAclResponse
+GetInvocationStepResponse: TypeAlias = _native.GetInvocationStepResponse
+GetSessionResponse: TypeAlias = _native.GetSessionResponse
+InlineAgentResponseStreamReceiver: TypeAlias = _native.InlineAgentResponseStreamReceiver
+InvocationStepOutput: TypeAlias = _native.InvocationStep
+InvocationStepSummaryOutput: TypeAlias = _native.InvocationStepSummary
+InvocationSummaryOutput: TypeAlias = _native.InvocationSummary
+KnowledgeBaseRetrievalResultOutput: TypeAlias = _native.KnowledgeBaseRetrievalResult
+ListFlowExecutionEventsResponse: TypeAlias = _native.ListFlowExecutionEventsResponse
+ListFlowExecutionsResponse: TypeAlias = _native.ListFlowExecutionsResponse
+ListInvocationStepsResponse: TypeAlias = _native.ListInvocationStepsResponse
+ListInvocationsResponse: TypeAlias = _native.ListInvocationsResponse
+ListSessionsResponse: TypeAlias = _native.ListSessionsResponse
+ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
+OptimizedPromptStreamReceiver: TypeAlias = _native.OptimizedPromptStreamReceiver
+PutInvocationStepResponse: TypeAlias = _native.PutInvocationStepResponse
+RerankDocumentOutput: TypeAlias = _native.RerankDocument
+RerankResponse: TypeAlias = _native.RerankResponse
+RerankResultOutput: TypeAlias = _native.RerankResult
+RerankTextDocumentOutput: TypeAlias = _native.RerankTextDocument
+ResponseStreamReceiver: TypeAlias = _native.ResponseStreamReceiver
+RetrievalResultConfluenceLocationOutput: TypeAlias = _native.RetrievalResultConfluenceLocation
+RetrievalResultContentOutput: TypeAlias = _native.RetrievalResultContent
+RetrievalResultContentColumnOutput: TypeAlias = _native.RetrievalResultContentColumn
+RetrievalResultCustomDocumentLocationOutput: TypeAlias = _native.RetrievalResultCustomDocumentLocation
+RetrievalResultGoogleDriveLocationOutput: TypeAlias = _native.RetrievalResultGoogleDriveLocation
+RetrievalResultKendraDocumentLocationOutput: TypeAlias = _native.RetrievalResultKendraDocumentLocation
+RetrievalResultLocationOutput: TypeAlias = _native.RetrievalResultLocation
+RetrievalResultOneDriveLocationOutput: TypeAlias = _native.RetrievalResultOneDriveLocation
+RetrievalResultS3LocationOutput: TypeAlias = _native.RetrievalResultS3Location
+RetrievalResultSalesforceLocationOutput: TypeAlias = _native.RetrievalResultSalesforceLocation
+RetrievalResultSharePointLocationOutput: TypeAlias = _native.RetrievalResultSharePointLocation
+RetrievalResultSqlLocationOutput: TypeAlias = _native.RetrievalResultSqlLocation
+RetrievalResultWebLocationOutput: TypeAlias = _native.RetrievalResultWebLocation
+RetrieveAndGenerateOutputResponse: TypeAlias = _native.RetrieveAndGenerateOutput
+RetrieveAndGenerateResponse: TypeAlias = _native.RetrieveAndGenerateResponse
+RetrieveAndGenerateStreamResponseOutputReceiver: TypeAlias = _native.RetrieveAndGenerateStreamResponseOutputReceiver
+RetrieveResponse: TypeAlias = _native.RetrieveResponse
+RetrievedReferenceOutput: TypeAlias = _native.RetrievedReference
+SessionSummaryOutput: TypeAlias = _native.SessionSummary
+SpanOutput: TypeAlias = _native.Span
+StartFlowExecutionResponse: TypeAlias = _native.StartFlowExecutionResponse
+StopFlowExecutionResponse: TypeAlias = _native.StopFlowExecutionResponse
+TagResourceResponse: TypeAlias = _native.TagResourceResponse
+TextResponsePartOutput: TypeAlias = _native.TextResponsePart
+UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
+UpdateSessionResponse: TypeAlias = _native.UpdateSessionResponse
+VideoSegmentOutput: TypeAlias = _native.VideoSegment
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

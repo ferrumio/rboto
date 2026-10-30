@@ -1,5 +1,5 @@
 from rboto import SNSClient
-from rboto_sns import PublishResponse
+from rboto_sns.types import PublishResponse
 
 
 async def publish(topic_arn: str) -> str | None:

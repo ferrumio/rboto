@@ -1,7 +1,6 @@
 from rboto import DynamoDBClient, SQSClient
-from rboto_dynamodb import GetItemOutput
-from rboto_dynamodb.types import AttributeValue
-from rboto_sqs import SendMessageResult
+from rboto_dynamodb.types import AttributeValue, GetItemOutput
+from rboto_sqs.types import SendMessageResult
 
 
 async def send(queue_url: str) -> str | None:

@@ -44,6 +44,11 @@ exception names; the old client name remains a Python compatibility alias.
 Do not rename native symbols or modeled exception bases as a side effect of
 changing a public client name. See ADR-0013.
 
+Service `types` modules are the public import location for inputs and responses,
+including nested native objects and streams. Native exports are direct aliases;
+existing dictionary names and package-root response imports remain compatible.
+See ADR-0020 for collision handling.
+
 ## Operation middleware
 
 Configured interceptors form an async `(request, next) -> response` chain in

@@ -1,5 +1,5 @@
 from rboto import S3Client
-from rboto_s3 import GetObjectOutput
+from rboto_s3.types import GetObjectOutput
 
 
 async def download() -> bytes:

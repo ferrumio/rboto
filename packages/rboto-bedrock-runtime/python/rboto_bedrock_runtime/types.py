@@ -6,7 +6,61 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AppliedGuardrailDetailsOutput: TypeAlias = _native.AppliedGuardrailDetails
+ApplyGuardrailResponse: TypeAlias = _native.ApplyGuardrailResponse
+AsyncInvokeSummaryOutput: TypeAlias = _native.AsyncInvokeSummary
+ByteStream: TypeAlias = _native.ByteStream
+CacheDetailOutput: TypeAlias = _native.CacheDetail
+ConverseMetricsOutput: TypeAlias = _native.ConverseMetrics
+ConverseResponse: TypeAlias = _native.ConverseResponse
+ConverseStreamOutputReceiver: TypeAlias = _native.ConverseStreamOutputReceiver
+ConverseTraceOutput: TypeAlias = _native.ConverseTrace
+CountTokensResponse: TypeAlias = _native.CountTokensResponse
+GetAsyncInvokeResponse: TypeAlias = _native.GetAsyncInvokeResponse
+GuardrailAssessmentOutput: TypeAlias = _native.GuardrailAssessment
+GuardrailAutomatedReasoningPolicyAssessmentOutput: TypeAlias = _native.GuardrailAutomatedReasoningPolicyAssessment
+GuardrailChecksContentFilterResultOutput: TypeAlias = _native.GuardrailChecksContentFilterResult
+GuardrailChecksContentFilterResultEntryOutput: TypeAlias = _native.GuardrailChecksContentFilterResultEntry
+GuardrailChecksContentFilterUsageOutput: TypeAlias = _native.GuardrailChecksContentFilterUsage
+GuardrailChecksPromptAttackResultOutput: TypeAlias = _native.GuardrailChecksPromptAttackResult
+GuardrailChecksPromptAttackResultEntryOutput: TypeAlias = _native.GuardrailChecksPromptAttackResultEntry
+GuardrailChecksPromptAttackUsageOutput: TypeAlias = _native.GuardrailChecksPromptAttackUsage
+GuardrailChecksResultsOutput: TypeAlias = _native.GuardrailChecksResults
+GuardrailChecksSensitiveInformationResultOutput: TypeAlias = _native.GuardrailChecksSensitiveInformationResult
+GuardrailChecksSensitiveInformationResultEntryOutput: TypeAlias = _native.GuardrailChecksSensitiveInformationResultEntry
+GuardrailChecksSensitiveInformationUsageOutput: TypeAlias = _native.GuardrailChecksSensitiveInformationUsage
+GuardrailChecksUsageResultsOutput: TypeAlias = _native.GuardrailChecksUsageResults
+GuardrailContentFilterOutput: TypeAlias = _native.GuardrailContentFilter
+GuardrailContentPolicyAssessmentOutput: TypeAlias = _native.GuardrailContentPolicyAssessment
+GuardrailContextualGroundingFilterOutput: TypeAlias = _native.GuardrailContextualGroundingFilter
+GuardrailContextualGroundingPolicyAssessmentOutput: TypeAlias = _native.GuardrailContextualGroundingPolicyAssessment
+GuardrailCoverageOutput: TypeAlias = _native.GuardrailCoverage
+GuardrailCustomWordOutput: TypeAlias = _native.GuardrailCustomWord
+GuardrailImageCoverageOutput: TypeAlias = _native.GuardrailImageCoverage
+GuardrailInvocationMetricsOutput: TypeAlias = _native.GuardrailInvocationMetrics
+GuardrailManagedWordOutput: TypeAlias = _native.GuardrailManagedWord
+GuardrailOutputContentOutput: TypeAlias = _native.GuardrailOutputContent
+GuardrailPiiEntityFilterOutput: TypeAlias = _native.GuardrailPiiEntityFilter
+GuardrailRegexFilterOutput: TypeAlias = _native.GuardrailRegexFilter
+GuardrailSensitiveInformationPolicyAssessmentOutput: TypeAlias = _native.GuardrailSensitiveInformationPolicyAssessment
+GuardrailTextCharactersCoverageOutput: TypeAlias = _native.GuardrailTextCharactersCoverage
+GuardrailTopicOutput: TypeAlias = _native.GuardrailTopic
+GuardrailTopicPolicyAssessmentOutput: TypeAlias = _native.GuardrailTopicPolicyAssessment
+GuardrailTraceAssessmentOutput: TypeAlias = _native.GuardrailTraceAssessment
+GuardrailUsageOutput: TypeAlias = _native.GuardrailUsage
+GuardrailWordPolicyAssessmentOutput: TypeAlias = _native.GuardrailWordPolicyAssessment
+InvokeGuardrailChecksResponse: TypeAlias = _native.InvokeGuardrailChecksResponse
+InvokeModelResponse: TypeAlias = _native.InvokeModelResponse
+InvokeModelWithBidirectionalStreamOutputReceiver: TypeAlias = _native.InvokeModelWithBidirectionalStreamOutputReceiver
+ListAsyncInvokesResponse: TypeAlias = _native.ListAsyncInvokesResponse
+PerformanceConfigurationOutputValue: TypeAlias = _native.PerformanceConfiguration
+PromptRouterTraceOutput: TypeAlias = _native.PromptRouterTrace
+ResponseStreamReceiver: TypeAlias = _native.ResponseStreamReceiver
+ServiceTierOutputValue: TypeAlias = _native.ServiceTier
+StartAsyncInvokeResponse: TypeAlias = _native.StartAsyncInvokeResponse
+TokenUsageOutput: TypeAlias = _native.TokenUsage
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

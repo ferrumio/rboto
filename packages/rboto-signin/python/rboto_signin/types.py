@@ -6,7 +6,25 @@ from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
 
 from rboto.types import UnknownEnumValue
 
-from ._native import ByteStream as ByteStream
+from . import _native
+
+AccessTokenOutput: TypeAlias = _native.AccessToken
+ByteStream: TypeAlias = _native.ByteStream
+CreateOAuth2TokenResponse: TypeAlias = _native.CreateOAuth2TokenResponse
+CreateOAuth2TokenResponseBodyOutput: TypeAlias = _native.CreateOAuth2TokenResponseBody
+CreateOAuth2TokenWithIAMResponse: TypeAlias = _native.CreateOAuth2TokenWithIAMResponse
+DeleteConsoleAuthorizationConfigurationOutput: TypeAlias = _native.DeleteConsoleAuthorizationConfigurationOutput
+DeleteResourcePermissionStatementOutput: TypeAlias = _native.DeleteResourcePermissionStatementOutput
+GetConsoleAuthorizationConfigurationOutput: TypeAlias = _native.GetConsoleAuthorizationConfigurationOutput
+GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+IntrospectOAuth2TokenWithIAMResponse: TypeAlias = _native.IntrospectOAuth2TokenWithIAMResponse
+ListResourcePermissionStatementsOutput: TypeAlias = _native.ListResourcePermissionStatementsOutput
+PermissionStatementSummaryOutput: TypeAlias = _native.PermissionStatementSummary
+PolicyStatementOutput: TypeAlias = _native.PolicyStatement
+PutConsoleAuthorizationConfigurationOutput: TypeAlias = _native.PutConsoleAuthorizationConfigurationOutput
+PutResourcePermissionStatementOutput: TypeAlias = _native.PutResourcePermissionStatementOutput
+RevokeOAuth2TokenWithIAMResponse: TypeAlias = _native.RevokeOAuth2TokenWithIAMResponse
+SigninResourceBasedPolicyOutput: TypeAlias = _native.SigninResourceBasedPolicy
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 
