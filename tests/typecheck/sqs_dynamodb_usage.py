@@ -1,11 +1,11 @@
 from rboto import DynamoDBClient, SQSClient
 from rboto_dynamodb.types import AttributeValue, GetItemOutput
-from rboto_sqs.types import SendMessageResult
+from rboto_sqs.types import SendMessageOutput
 
 
 async def send(queue_url: str) -> str | None:
     client = SQSClient(region="us-east-1")
-    response: SendMessageResult = await client.send_message(
+    response: SendMessageOutput = await client.send_message(
         queue_url=queue_url,
         message_body="hello",
     )

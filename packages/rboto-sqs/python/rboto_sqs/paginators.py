@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListDeadLetterSourceQueuesResult,
-    ListQueuesResult,
+    ListDeadLetterSourceQueuesOutput,
+    ListQueuesOutput,
 )
 
 
@@ -28,7 +28,7 @@ class SQSClientPaginators:
         queue_url: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListDeadLetterSourceQueuesResult]:
+    ) -> AsyncIterator[ListDeadLetterSourceQueuesOutput]:
         """Yield each page from list_dead_letter_source_queues; requests start on iteration."""
         params: dict[str, object] = {
             "queue_url": queue_url,
@@ -53,7 +53,7 @@ class SQSClientPaginators:
         queue_name_prefix: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListQueuesResult]:
+    ) -> AsyncIterator[ListQueuesOutput]:
         """Yield each page from list_queues; requests start on iteration."""
         params: dict[str, object] = {
         }

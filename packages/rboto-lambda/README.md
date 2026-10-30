@@ -87,20 +87,20 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_layer_version_permission`](#add_layer_version_permission) | <code>layer_name: str</code>, <code>version_number: int</code>, <code>statement_id: str</code>, <code>action: str</code>, <code>principal: str</code> | <code>AddLayerVersionPermissionResponse</code> |
-| [`add_permission`](#add_permission) | <code>function_name: str</code>, <code>statement_id: str</code>, <code>action: str</code>, <code>principal: str</code> | <code>AddPermissionResponse</code> |
-| [`checkpoint_durable_execution`](#checkpoint_durable_execution) | <code>durable_execution_arn: str</code>, <code>checkpoint_token: str</code> | <code>CheckpointDurableExecutionResponse</code> |
+| [`add_layer_version_permission`](#add_layer_version_permission) | <code>layer_name: str</code>, <code>version_number: int</code>, <code>statement_id: str</code>, <code>action: str</code>, <code>principal: str</code> | <code>AddLayerVersionPermissionOutput</code> |
+| [`add_permission`](#add_permission) | <code>function_name: str</code>, <code>statement_id: str</code>, <code>action: str</code>, <code>principal: str</code> | <code>AddPermissionOutput</code> |
+| [`checkpoint_durable_execution`](#checkpoint_durable_execution) | <code>durable_execution_arn: str</code>, <code>checkpoint_token: str</code> | <code>CheckpointDurableExecutionOutput</code> |
 | [`create_alias`](#create_alias) | <code>function_name: str</code>, <code>name: str</code>, <code>function_version: str</code> | <code>CreateAliasOutput</code> |
-| [`create_capacity_provider`](#create_capacity_provider) | <code>capacity_provider_name: str</code>, <code>vpc_config: CapacityProviderVpcConfig</code>, <code>permissions_config: CapacityProviderPermissionsConfig</code> | <code>CreateCapacityProviderResponse</code> |
-| [`create_code_signing_config`](#create_code_signing_config) | <code>allowed_publishers: AllowedPublishers</code> | <code>CreateCodeSigningConfigResponse</code> |
+| [`create_capacity_provider`](#create_capacity_provider) | <code>capacity_provider_name: str</code>, <code>vpc_config: CapacityProviderVpcConfig</code>, <code>permissions_config: CapacityProviderPermissionsConfig</code> | <code>CreateCapacityProviderOutput</code> |
+| [`create_code_signing_config`](#create_code_signing_config) | <code>allowed_publishers: AllowedPublishers</code> | <code>CreateCodeSigningConfigOutput</code> |
 | [`create_event_source_mapping`](#create_event_source_mapping) | <code>function_name: str</code> | <code>CreateEventSourceMappingOutput</code> |
 | [`create_function`](#create_function) | <code>function_name: str</code>, <code>role: str</code>, <code>code: FunctionCode</code> | <code>CreateFunctionOutput</code> |
-| [`create_function_url_config`](#create_function_url_config) | <code>function_name: str</code>, <code>auth_type: FunctionUrlAuthType</code> | <code>CreateFunctionUrlConfigResponse</code> |
+| [`create_function_url_config`](#create_function_url_config) | <code>function_name: str</code>, <code>auth_type: FunctionUrlAuthType</code> | <code>CreateFunctionUrlConfigOutput</code> |
 | [`delete_alias`](#delete_alias) | <code>function_name: str</code>, <code>name: str</code> | <code>None</code> |
-| [`delete_capacity_provider`](#delete_capacity_provider) | <code>capacity_provider_name: str</code> | <code>DeleteCapacityProviderResponse</code> |
-| [`delete_code_signing_config`](#delete_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>DeleteCodeSigningConfigResponse</code> |
+| [`delete_capacity_provider`](#delete_capacity_provider) | <code>capacity_provider_name: str</code> | <code>DeleteCapacityProviderOutput</code> |
+| [`delete_code_signing_config`](#delete_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>DeleteCodeSigningConfigOutput</code> |
 | [`delete_event_source_mapping`](#delete_event_source_mapping) | <code>uuid: str</code> | <code>DeleteEventSourceMappingOutput</code> |
-| [`delete_function`](#delete_function) | <code>function_name: str</code> | <code>DeleteFunctionResponse</code> |
+| [`delete_function`](#delete_function) | <code>function_name: str</code> | <code>DeleteFunctionOutput</code> |
 | [`delete_function_code_signing_config`](#delete_function_code_signing_config) | <code>function_name: str</code> | <code>None</code> |
 | [`delete_function_concurrency`](#delete_function_concurrency) | <code>function_name: str</code> | <code>None</code> |
 | [`delete_function_event_invoke_config`](#delete_function_event_invoke_config) | <code>function_name: str</code> | <code>None</code> |
@@ -108,73 +108,73 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_layer_version`](#delete_layer_version) | <code>layer_name: str</code>, <code>version_number: int</code> | <code>None</code> |
 | [`delete_provisioned_concurrency_config`](#delete_provisioned_concurrency_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>None</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>None</code> |
-| [`get_account_settings`](#get_account_settings) | None | <code>GetAccountSettingsResponse</code> |
+| [`get_account_settings`](#get_account_settings) | None | <code>GetAccountSettingsOutput</code> |
 | [`get_alias`](#get_alias) | <code>function_name: str</code>, <code>name: str</code> | <code>GetAliasOutput</code> |
-| [`get_capacity_provider`](#get_capacity_provider) | <code>capacity_provider_name: str</code> | <code>GetCapacityProviderResponse</code> |
-| [`get_code_signing_config`](#get_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>GetCodeSigningConfigResponse</code> |
-| [`get_durable_execution`](#get_durable_execution) | <code>durable_execution_arn: str</code> | <code>GetDurableExecutionResponse</code> |
-| [`get_durable_execution_history`](#get_durable_execution_history) | <code>durable_execution_arn: str</code> | <code>GetDurableExecutionHistoryResponse</code> |
-| [`get_durable_execution_state`](#get_durable_execution_state) | <code>durable_execution_arn: str</code>, <code>checkpoint_token: str</code> | <code>GetDurableExecutionStateResponse</code> |
+| [`get_capacity_provider`](#get_capacity_provider) | <code>capacity_provider_name: str</code> | <code>GetCapacityProviderOutput</code> |
+| [`get_code_signing_config`](#get_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>GetCodeSigningConfigOutput</code> |
+| [`get_durable_execution`](#get_durable_execution) | <code>durable_execution_arn: str</code> | <code>GetDurableExecutionOutput</code> |
+| [`get_durable_execution_history`](#get_durable_execution_history) | <code>durable_execution_arn: str</code> | <code>GetDurableExecutionHistoryOutput</code> |
+| [`get_durable_execution_state`](#get_durable_execution_state) | <code>durable_execution_arn: str</code>, <code>checkpoint_token: str</code> | <code>GetDurableExecutionStateOutput</code> |
 | [`get_event_source_mapping`](#get_event_source_mapping) | <code>uuid: str</code> | <code>GetEventSourceMappingOutput</code> |
-| [`get_function`](#get_function) | <code>function_name: str</code> | <code>GetFunctionResponse</code> |
-| [`get_function_code_signing_config`](#get_function_code_signing_config) | <code>function_name: str</code> | <code>GetFunctionCodeSigningConfigResponse</code> |
-| [`get_function_concurrency`](#get_function_concurrency) | <code>function_name: str</code> | <code>GetFunctionConcurrencyResponse</code> |
+| [`get_function`](#get_function) | <code>function_name: str</code> | <code>GetFunctionOutput</code> |
+| [`get_function_code_signing_config`](#get_function_code_signing_config) | <code>function_name: str</code> | <code>GetFunctionCodeSigningConfigOutput</code> |
+| [`get_function_concurrency`](#get_function_concurrency) | <code>function_name: str</code> | <code>GetFunctionConcurrencyOutput</code> |
 | [`get_function_configuration`](#get_function_configuration) | <code>function_name: str</code> | <code>GetFunctionConfigurationOutput</code> |
 | [`get_function_event_invoke_config`](#get_function_event_invoke_config) | <code>function_name: str</code> | <code>GetFunctionEventInvokeConfigOutput</code> |
-| [`get_function_recursion_config`](#get_function_recursion_config) | <code>function_name: str</code> | <code>GetFunctionRecursionConfigResponse</code> |
-| [`get_function_scaling_config`](#get_function_scaling_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>GetFunctionScalingConfigResponse</code> |
-| [`get_function_url_config`](#get_function_url_config) | <code>function_name: str</code> | <code>GetFunctionUrlConfigResponse</code> |
+| [`get_function_recursion_config`](#get_function_recursion_config) | <code>function_name: str</code> | <code>GetFunctionRecursionConfigOutput</code> |
+| [`get_function_scaling_config`](#get_function_scaling_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>GetFunctionScalingConfigOutput</code> |
+| [`get_function_url_config`](#get_function_url_config) | <code>function_name: str</code> | <code>GetFunctionUrlConfigOutput</code> |
 | [`get_layer_version`](#get_layer_version) | <code>layer_name: str</code>, <code>version_number: int</code> | <code>GetLayerVersionOutput</code> |
 | [`get_layer_version_by_arn`](#get_layer_version_by_arn) | <code>arn: str</code> | <code>GetLayerVersionByArnOutput</code> |
-| [`get_layer_version_policy`](#get_layer_version_policy) | <code>layer_name: str</code>, <code>version_number: int</code> | <code>GetLayerVersionPolicyResponse</code> |
-| [`get_policy`](#get_policy) | <code>function_name: str</code> | <code>GetPolicyResponse</code> |
-| [`get_provisioned_concurrency_config`](#get_provisioned_concurrency_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>GetProvisionedConcurrencyConfigResponse</code> |
-| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
-| [`get_runtime_management_config`](#get_runtime_management_config) | <code>function_name: str</code> | <code>GetRuntimeManagementConfigResponse</code> |
-| [`invoke`](#invoke) | <code>function_name: str</code> | <code>InvocationResponse</code> |
-| [`invoke_async`](#invoke_async) | <code>function_name: str</code>, <code>invoke_args: bytes</code> | <code>InvokeAsyncResponse</code> |
-| [`invoke_with_response_stream`](#invoke_with_response_stream) | <code>function_name: str</code> | <code>InvokeWithResponseStreamResponse</code> |
-| [`list_aliases`](#list_aliases) | <code>function_name: str</code> | <code>ListAliasesResponse</code> |
-| [`list_capacity_providers`](#list_capacity_providers) | None | <code>ListCapacityProvidersResponse</code> |
-| [`list_code_signing_configs`](#list_code_signing_configs) | None | <code>ListCodeSigningConfigsResponse</code> |
-| [`list_durable_executions_by_function`](#list_durable_executions_by_function) | <code>function_name: str</code> | <code>ListDurableExecutionsByFunctionResponse</code> |
-| [`list_event_source_mappings`](#list_event_source_mappings) | None | <code>ListEventSourceMappingsResponse</code> |
-| [`list_function_event_invoke_configs`](#list_function_event_invoke_configs) | <code>function_name: str</code> | <code>ListFunctionEventInvokeConfigsResponse</code> |
-| [`list_function_url_configs`](#list_function_url_configs) | <code>function_name: str</code> | <code>ListFunctionUrlConfigsResponse</code> |
-| [`list_function_versions_by_capacity_provider`](#list_function_versions_by_capacity_provider) | <code>capacity_provider_name: str</code> | <code>ListFunctionVersionsByCapacityProviderResponse</code> |
-| [`list_functions`](#list_functions) | None | <code>ListFunctionsResponse</code> |
-| [`list_functions_by_code_signing_config`](#list_functions_by_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>ListFunctionsByCodeSigningConfigResponse</code> |
-| [`list_layer_versions`](#list_layer_versions) | <code>layer_name: str</code> | <code>ListLayerVersionsResponse</code> |
-| [`list_layers`](#list_layers) | None | <code>ListLayersResponse</code> |
-| [`list_provisioned_concurrency_configs`](#list_provisioned_concurrency_configs) | <code>function_name: str</code> | <code>ListProvisionedConcurrencyConfigsResponse</code> |
-| [`list_tags`](#list_tags) | <code>resource: str</code> | <code>ListTagsResponse</code> |
-| [`list_versions_by_function`](#list_versions_by_function) | <code>function_name: str</code> | <code>ListVersionsByFunctionResponse</code> |
-| [`publish_layer_version`](#publish_layer_version) | <code>layer_name: str</code>, <code>content: LayerVersionContentInput</code> | <code>PublishLayerVersionResponse</code> |
+| [`get_layer_version_policy`](#get_layer_version_policy) | <code>layer_name: str</code>, <code>version_number: int</code> | <code>GetLayerVersionPolicyOutput</code> |
+| [`get_policy`](#get_policy) | <code>function_name: str</code> | <code>GetPolicyOutput</code> |
+| [`get_provisioned_concurrency_config`](#get_provisioned_concurrency_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>GetProvisionedConcurrencyConfigOutput</code> |
+| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_runtime_management_config`](#get_runtime_management_config) | <code>function_name: str</code> | <code>GetRuntimeManagementConfigOutput</code> |
+| [`invoke`](#invoke) | <code>function_name: str</code> | <code>InvokeOutput</code> |
+| [`invoke_async`](#invoke_async) | <code>function_name: str</code>, <code>invoke_args: bytes</code> | <code>InvokeAsyncOutput</code> |
+| [`invoke_with_response_stream`](#invoke_with_response_stream) | <code>function_name: str</code> | <code>InvokeWithResponseStreamOutput</code> |
+| [`list_aliases`](#list_aliases) | <code>function_name: str</code> | <code>ListAliasesOutput</code> |
+| [`list_capacity_providers`](#list_capacity_providers) | None | <code>ListCapacityProvidersOutput</code> |
+| [`list_code_signing_configs`](#list_code_signing_configs) | None | <code>ListCodeSigningConfigsOutput</code> |
+| [`list_durable_executions_by_function`](#list_durable_executions_by_function) | <code>function_name: str</code> | <code>ListDurableExecutionsByFunctionOutput</code> |
+| [`list_event_source_mappings`](#list_event_source_mappings) | None | <code>ListEventSourceMappingsOutput</code> |
+| [`list_function_event_invoke_configs`](#list_function_event_invoke_configs) | <code>function_name: str</code> | <code>ListFunctionEventInvokeConfigsOutput</code> |
+| [`list_function_url_configs`](#list_function_url_configs) | <code>function_name: str</code> | <code>ListFunctionUrlConfigsOutput</code> |
+| [`list_function_versions_by_capacity_provider`](#list_function_versions_by_capacity_provider) | <code>capacity_provider_name: str</code> | <code>ListFunctionVersionsByCapacityProviderOutput</code> |
+| [`list_functions`](#list_functions) | None | <code>ListFunctionsOutput</code> |
+| [`list_functions_by_code_signing_config`](#list_functions_by_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>ListFunctionsByCodeSigningConfigOutput</code> |
+| [`list_layer_versions`](#list_layer_versions) | <code>layer_name: str</code> | <code>ListLayerVersionsOutput</code> |
+| [`list_layers`](#list_layers) | None | <code>ListLayersOutput</code> |
+| [`list_provisioned_concurrency_configs`](#list_provisioned_concurrency_configs) | <code>function_name: str</code> | <code>ListProvisionedConcurrencyConfigsOutput</code> |
+| [`list_tags`](#list_tags) | <code>resource: str</code> | <code>ListTagsOutput</code> |
+| [`list_versions_by_function`](#list_versions_by_function) | <code>function_name: str</code> | <code>ListVersionsByFunctionOutput</code> |
+| [`publish_layer_version`](#publish_layer_version) | <code>layer_name: str</code>, <code>content: LayerVersionContentInput</code> | <code>PublishLayerVersionOutput</code> |
 | [`publish_version`](#publish_version) | <code>function_name: str</code> | <code>PublishVersionOutput</code> |
-| [`put_function_code_signing_config`](#put_function_code_signing_config) | <code>code_signing_config_arn: str</code>, <code>function_name: str</code> | <code>PutFunctionCodeSigningConfigResponse</code> |
+| [`put_function_code_signing_config`](#put_function_code_signing_config) | <code>code_signing_config_arn: str</code>, <code>function_name: str</code> | <code>PutFunctionCodeSigningConfigOutput</code> |
 | [`put_function_concurrency`](#put_function_concurrency) | <code>function_name: str</code>, <code>reserved_concurrent_executions: int</code> | <code>PutFunctionConcurrencyOutput</code> |
 | [`put_function_event_invoke_config`](#put_function_event_invoke_config) | <code>function_name: str</code> | <code>PutFunctionEventInvokeConfigOutput</code> |
-| [`put_function_recursion_config`](#put_function_recursion_config) | <code>function_name: str</code>, <code>recursive_loop: RecursiveLoop</code> | <code>PutFunctionRecursionConfigResponse</code> |
-| [`put_function_scaling_config`](#put_function_scaling_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>PutFunctionScalingConfigResponse</code> |
-| [`put_provisioned_concurrency_config`](#put_provisioned_concurrency_config) | <code>function_name: str</code>, <code>qualifier: str</code>, <code>provisioned_concurrent_executions: int</code> | <code>PutProvisionedConcurrencyConfigResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`put_runtime_management_config`](#put_runtime_management_config) | <code>function_name: str</code>, <code>update_runtime_on: UpdateRuntimeOn</code> | <code>PutRuntimeManagementConfigResponse</code> |
+| [`put_function_recursion_config`](#put_function_recursion_config) | <code>function_name: str</code>, <code>recursive_loop: RecursiveLoop</code> | <code>PutFunctionRecursionConfigOutput</code> |
+| [`put_function_scaling_config`](#put_function_scaling_config) | <code>function_name: str</code>, <code>qualifier: str</code> | <code>PutFunctionScalingConfigOutput</code> |
+| [`put_provisioned_concurrency_config`](#put_provisioned_concurrency_config) | <code>function_name: str</code>, <code>qualifier: str</code>, <code>provisioned_concurrent_executions: int</code> | <code>PutProvisionedConcurrencyConfigOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`put_runtime_management_config`](#put_runtime_management_config) | <code>function_name: str</code>, <code>update_runtime_on: UpdateRuntimeOn</code> | <code>PutRuntimeManagementConfigOutput</code> |
 | [`remove_layer_version_permission`](#remove_layer_version_permission) | <code>layer_name: str</code>, <code>version_number: int</code>, <code>statement_id: str</code> | <code>None</code> |
 | [`remove_permission`](#remove_permission) | <code>function_name: str</code>, <code>statement_id: str</code> | <code>None</code> |
-| [`send_durable_execution_callback_failure`](#send_durable_execution_callback_failure) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackFailureResponse</code> |
-| [`send_durable_execution_callback_heartbeat`](#send_durable_execution_callback_heartbeat) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackHeartbeatResponse</code> |
-| [`send_durable_execution_callback_success`](#send_durable_execution_callback_success) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackSuccessResponse</code> |
-| [`stop_durable_execution`](#stop_durable_execution) | <code>durable_execution_arn: str</code> | <code>StopDurableExecutionResponse</code> |
+| [`send_durable_execution_callback_failure`](#send_durable_execution_callback_failure) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackFailureOutput</code> |
+| [`send_durable_execution_callback_heartbeat`](#send_durable_execution_callback_heartbeat) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackHeartbeatOutput</code> |
+| [`send_durable_execution_callback_success`](#send_durable_execution_callback_success) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackSuccessOutput</code> |
+| [`stop_durable_execution`](#stop_durable_execution) | <code>durable_execution_arn: str</code> | <code>StopDurableExecutionOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>resource: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`untag_resource`](#untag_resource) | <code>resource: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 | [`update_alias`](#update_alias) | <code>function_name: str</code>, <code>name: str</code> | <code>UpdateAliasOutput</code> |
-| [`update_capacity_provider`](#update_capacity_provider) | <code>capacity_provider_name: str</code> | <code>UpdateCapacityProviderResponse</code> |
-| [`update_code_signing_config`](#update_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>UpdateCodeSigningConfigResponse</code> |
+| [`update_capacity_provider`](#update_capacity_provider) | <code>capacity_provider_name: str</code> | <code>UpdateCapacityProviderOutput</code> |
+| [`update_code_signing_config`](#update_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>UpdateCodeSigningConfigOutput</code> |
 | [`update_event_source_mapping`](#update_event_source_mapping) | <code>uuid: str</code> | <code>UpdateEventSourceMappingOutput</code> |
 | [`update_function_code`](#update_function_code) | <code>function_name: str</code> | <code>UpdateFunctionCodeOutput</code> |
 | [`update_function_configuration`](#update_function_configuration) | <code>function_name: str</code> | <code>UpdateFunctionConfigurationOutput</code> |
 | [`update_function_event_invoke_config`](#update_function_event_invoke_config) | <code>function_name: str</code> | <code>UpdateFunctionEventInvokeConfigOutput</code> |
-| [`update_function_url_config`](#update_function_url_config) | <code>function_name: str</code> | <code>UpdateFunctionUrlConfigResponse</code> |
+| [`update_function_url_config`](#update_function_url_config) | <code>function_name: str</code> | <code>UpdateFunctionUrlConfigOutput</code> |
 
 ## Complete signatures
 
@@ -190,7 +190,7 @@ async def add_layer_version_permission(
     principal: str,
     organization_id: str | None = None,
     revision_id: str | None = None,
-) -> AddLayerVersionPermissionResponse: ...
+) -> AddLayerVersionPermissionOutput: ...
 ```
 
 
@@ -211,7 +211,7 @@ async def add_permission(
     qualifier: str | None = None,
     revision_id: str | None = None,
     principal_org_id: str | None = None,
-) -> AddPermissionResponse: ...
+) -> AddPermissionOutput: ...
 ```
 
 
@@ -224,7 +224,7 @@ async def checkpoint_durable_execution(
     checkpoint_token: str,
     updates: Sequence[OperationUpdate] | None = None,
     client_token: str | None = None,
-) -> CheckpointDurableExecutionResponse: ...
+) -> CheckpointDurableExecutionOutput: ...
 ```
 
 
@@ -256,7 +256,7 @@ async def create_capacity_provider(
     tags: dict[str, str] | None = None,
     propagate_tags: PropagateTags | None = None,
     telemetry_config: CapacityProviderTelemetryConfig | None = None,
-) -> CreateCapacityProviderResponse: ...
+) -> CreateCapacityProviderOutput: ...
 ```
 
 
@@ -269,7 +269,7 @@ async def create_code_signing_config(
     description: str | None = None,
     code_signing_policies: CodeSigningPolicies | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateCodeSigningConfigResponse: ...
+) -> CreateCodeSigningConfigOutput: ...
 ```
 
 
@@ -357,7 +357,7 @@ async def create_function_url_config(
     qualifier: str | None = None,
     cors: Cors | None = None,
     invoke_mode: InvokeMode | None = None,
-) -> CreateFunctionUrlConfigResponse: ...
+) -> CreateFunctionUrlConfigOutput: ...
 ```
 
 
@@ -378,7 +378,7 @@ async def delete_alias(
 async def delete_capacity_provider(
     *,
     capacity_provider_name: str,
-) -> DeleteCapacityProviderResponse: ...
+) -> DeleteCapacityProviderOutput: ...
 ```
 
 
@@ -388,7 +388,7 @@ async def delete_capacity_provider(
 async def delete_code_signing_config(
     *,
     code_signing_config_arn: str,
-) -> DeleteCodeSigningConfigResponse: ...
+) -> DeleteCodeSigningConfigOutput: ...
 ```
 
 
@@ -409,7 +409,7 @@ async def delete_function(
     *,
     function_name: str,
     qualifier: str | None = None,
-) -> DeleteFunctionResponse: ...
+) -> DeleteFunctionOutput: ...
 ```
 
 
@@ -491,7 +491,7 @@ async def delete_resource_policy(
 ### get_account_settings
 
 ```python
-async def get_account_settings() -> GetAccountSettingsResponse: ...
+async def get_account_settings() -> GetAccountSettingsOutput: ...
 ```
 
 
@@ -512,7 +512,7 @@ async def get_alias(
 async def get_capacity_provider(
     *,
     capacity_provider_name: str,
-) -> GetCapacityProviderResponse: ...
+) -> GetCapacityProviderOutput: ...
 ```
 
 
@@ -522,7 +522,7 @@ async def get_capacity_provider(
 async def get_code_signing_config(
     *,
     code_signing_config_arn: str,
-) -> GetCodeSigningConfigResponse: ...
+) -> GetCodeSigningConfigOutput: ...
 ```
 
 
@@ -533,7 +533,7 @@ async def get_durable_execution(
     *,
     durable_execution_arn: str,
     include_execution_data: bool | None = None,
-) -> GetDurableExecutionResponse: ...
+) -> GetDurableExecutionOutput: ...
 ```
 
 
@@ -547,7 +547,7 @@ async def get_durable_execution_history(
     max_items: int | None = None,
     marker: str | None = None,
     reverse_order: bool | None = None,
-) -> GetDurableExecutionHistoryResponse: ...
+) -> GetDurableExecutionHistoryOutput: ...
 ```
 
 Also available as `client.paginators.get_durable_execution_history(...)`, returning an
@@ -563,7 +563,7 @@ async def get_durable_execution_state(
     checkpoint_token: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> GetDurableExecutionStateResponse: ...
+) -> GetDurableExecutionStateOutput: ...
 ```
 
 Also available as `client.paginators.get_durable_execution_state(...)`, returning an
@@ -587,7 +587,7 @@ async def get_function(
     *,
     function_name: str,
     qualifier: str | None = None,
-) -> GetFunctionResponse: ...
+) -> GetFunctionOutput: ...
 ```
 
 
@@ -597,7 +597,7 @@ async def get_function(
 async def get_function_code_signing_config(
     *,
     function_name: str,
-) -> GetFunctionCodeSigningConfigResponse: ...
+) -> GetFunctionCodeSigningConfigOutput: ...
 ```
 
 
@@ -607,7 +607,7 @@ async def get_function_code_signing_config(
 async def get_function_concurrency(
     *,
     function_name: str,
-) -> GetFunctionConcurrencyResponse: ...
+) -> GetFunctionConcurrencyOutput: ...
 ```
 
 
@@ -639,7 +639,7 @@ async def get_function_event_invoke_config(
 async def get_function_recursion_config(
     *,
     function_name: str,
-) -> GetFunctionRecursionConfigResponse: ...
+) -> GetFunctionRecursionConfigOutput: ...
 ```
 
 
@@ -650,7 +650,7 @@ async def get_function_scaling_config(
     *,
     function_name: str,
     qualifier: str,
-) -> GetFunctionScalingConfigResponse: ...
+) -> GetFunctionScalingConfigOutput: ...
 ```
 
 
@@ -661,7 +661,7 @@ async def get_function_url_config(
     *,
     function_name: str,
     qualifier: str | None = None,
-) -> GetFunctionUrlConfigResponse: ...
+) -> GetFunctionUrlConfigOutput: ...
 ```
 
 
@@ -693,7 +693,7 @@ async def get_layer_version_policy(
     *,
     layer_name: str,
     version_number: int,
-) -> GetLayerVersionPolicyResponse: ...
+) -> GetLayerVersionPolicyOutput: ...
 ```
 
 
@@ -704,7 +704,7 @@ async def get_policy(
     *,
     function_name: str,
     qualifier: str | None = None,
-) -> GetPolicyResponse: ...
+) -> GetPolicyOutput: ...
 ```
 
 
@@ -715,7 +715,7 @@ async def get_provisioned_concurrency_config(
     *,
     function_name: str,
     qualifier: str,
-) -> GetProvisionedConcurrencyConfigResponse: ...
+) -> GetProvisionedConcurrencyConfigOutput: ...
 ```
 
 
@@ -725,7 +725,7 @@ async def get_provisioned_concurrency_config(
 async def get_resource_policy(
     *,
     resource_arn: str,
-) -> GetResourcePolicyResponse: ...
+) -> GetResourcePolicyOutput: ...
 ```
 
 
@@ -736,7 +736,7 @@ async def get_runtime_management_config(
     *,
     function_name: str,
     qualifier: str | None = None,
-) -> GetRuntimeManagementConfigResponse: ...
+) -> GetRuntimeManagementConfigOutput: ...
 ```
 
 
@@ -753,7 +753,7 @@ async def invoke(
     payload: bytes | None = None,
     qualifier: str | None = None,
     tenant_id: str | None = None,
-) -> InvocationResponse: ...
+) -> InvokeOutput: ...
 ```
 
 
@@ -764,7 +764,7 @@ async def invoke_async(
     *,
     function_name: str,
     invoke_args: bytes,
-) -> InvokeAsyncResponse: ...
+) -> InvokeAsyncOutput: ...
 ```
 
 
@@ -780,7 +780,7 @@ async def invoke_with_response_stream(
     payload: bytes | None = None,
     tenant_id: str | None = None,
     invocation_type: ResponseStreamingInvocationType | None = None,
-) -> InvokeWithResponseStreamResponse: ...
+) -> InvokeWithResponseStreamOutput: ...
 ```
 
 
@@ -793,7 +793,7 @@ async def list_aliases(
     function_version: str | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListAliasesResponse: ...
+) -> ListAliasesOutput: ...
 ```
 
 Also available as `client.paginators.list_aliases(...)`, returning an
@@ -808,7 +808,7 @@ async def list_capacity_providers(
     state: CapacityProviderState | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListCapacityProvidersResponse: ...
+) -> ListCapacityProvidersOutput: ...
 ```
 
 Also available as `client.paginators.list_capacity_providers(...)`, returning an
@@ -822,7 +822,7 @@ async def list_code_signing_configs(
     *,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListCodeSigningConfigsResponse: ...
+) -> ListCodeSigningConfigsOutput: ...
 ```
 
 Also available as `client.paginators.list_code_signing_configs(...)`, returning an
@@ -843,7 +843,7 @@ async def list_durable_executions_by_function(
     reverse_order: bool | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListDurableExecutionsByFunctionResponse: ...
+) -> ListDurableExecutionsByFunctionOutput: ...
 ```
 
 Also available as `client.paginators.list_durable_executions_by_function(...)`, returning an
@@ -859,7 +859,7 @@ async def list_event_source_mappings(
     function_name: str | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListEventSourceMappingsResponse: ...
+) -> ListEventSourceMappingsOutput: ...
 ```
 
 Also available as `client.paginators.list_event_source_mappings(...)`, returning an
@@ -874,7 +874,7 @@ async def list_function_event_invoke_configs(
     function_name: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListFunctionEventInvokeConfigsResponse: ...
+) -> ListFunctionEventInvokeConfigsOutput: ...
 ```
 
 Also available as `client.paginators.list_function_event_invoke_configs(...)`, returning an
@@ -889,7 +889,7 @@ async def list_function_url_configs(
     function_name: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListFunctionUrlConfigsResponse: ...
+) -> ListFunctionUrlConfigsOutput: ...
 ```
 
 Also available as `client.paginators.list_function_url_configs(...)`, returning an
@@ -904,7 +904,7 @@ async def list_function_versions_by_capacity_provider(
     capacity_provider_name: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListFunctionVersionsByCapacityProviderResponse: ...
+) -> ListFunctionVersionsByCapacityProviderOutput: ...
 ```
 
 Also available as `client.paginators.list_function_versions_by_capacity_provider(...)`, returning an
@@ -920,7 +920,7 @@ async def list_functions(
     function_version: FunctionVersion | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListFunctionsResponse: ...
+) -> ListFunctionsOutput: ...
 ```
 
 Also available as `client.paginators.list_functions(...)`, returning an
@@ -935,7 +935,7 @@ async def list_functions_by_code_signing_config(
     code_signing_config_arn: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListFunctionsByCodeSigningConfigResponse: ...
+) -> ListFunctionsByCodeSigningConfigOutput: ...
 ```
 
 Also available as `client.paginators.list_functions_by_code_signing_config(...)`, returning an
@@ -952,7 +952,7 @@ async def list_layer_versions(
     compatible_runtime: Runtime | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListLayerVersionsResponse: ...
+) -> ListLayerVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_layer_versions(...)`, returning an
@@ -968,7 +968,7 @@ async def list_layers(
     compatible_runtime: Runtime | None = None,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListLayersResponse: ...
+) -> ListLayersOutput: ...
 ```
 
 Also available as `client.paginators.list_layers(...)`, returning an
@@ -983,7 +983,7 @@ async def list_provisioned_concurrency_configs(
     function_name: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListProvisionedConcurrencyConfigsResponse: ...
+) -> ListProvisionedConcurrencyConfigsOutput: ...
 ```
 
 Also available as `client.paginators.list_provisioned_concurrency_configs(...)`, returning an
@@ -996,7 +996,7 @@ async iterator of the response type above.
 async def list_tags(
     *,
     resource: str,
-) -> ListTagsResponse: ...
+) -> ListTagsOutput: ...
 ```
 
 
@@ -1008,7 +1008,7 @@ async def list_versions_by_function(
     function_name: str,
     marker: str | None = None,
     max_items: int | None = None,
-) -> ListVersionsByFunctionResponse: ...
+) -> ListVersionsByFunctionOutput: ...
 ```
 
 Also available as `client.paginators.list_versions_by_function(...)`, returning an
@@ -1026,7 +1026,7 @@ async def publish_layer_version(
     compatible_architectures: Sequence[Architecture] | None = None,
     compatible_runtimes: Sequence[Runtime] | None = None,
     license_info: str | None = None,
-) -> PublishLayerVersionResponse: ...
+) -> PublishLayerVersionOutput: ...
 ```
 
 
@@ -1051,7 +1051,7 @@ async def put_function_code_signing_config(
     *,
     code_signing_config_arn: str,
     function_name: str,
-) -> PutFunctionCodeSigningConfigResponse: ...
+) -> PutFunctionCodeSigningConfigOutput: ...
 ```
 
 
@@ -1087,7 +1087,7 @@ async def put_function_recursion_config(
     *,
     function_name: str,
     recursive_loop: RecursiveLoop,
-) -> PutFunctionRecursionConfigResponse: ...
+) -> PutFunctionRecursionConfigOutput: ...
 ```
 
 
@@ -1099,7 +1099,7 @@ async def put_function_scaling_config(
     function_name: str,
     qualifier: str,
     function_scaling_config: FunctionScalingConfig | None = None,
-) -> PutFunctionScalingConfigResponse: ...
+) -> PutFunctionScalingConfigOutput: ...
 ```
 
 
@@ -1111,7 +1111,7 @@ async def put_provisioned_concurrency_config(
     function_name: str,
     qualifier: str,
     provisioned_concurrent_executions: int,
-) -> PutProvisionedConcurrencyConfigResponse: ...
+) -> PutProvisionedConcurrencyConfigOutput: ...
 ```
 
 
@@ -1123,7 +1123,7 @@ async def put_resource_policy(
     resource_arn: str,
     policy: str,
     revision_id: str | None = None,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -1136,7 +1136,7 @@ async def put_runtime_management_config(
     update_runtime_on: UpdateRuntimeOn,
     qualifier: str | None = None,
     runtime_version_arn: str | None = None,
-) -> PutRuntimeManagementConfigResponse: ...
+) -> PutRuntimeManagementConfigOutput: ...
 ```
 
 
@@ -1173,7 +1173,7 @@ async def send_durable_execution_callback_failure(
     *,
     callback_id: str,
     error: ErrorObject | None = None,
-) -> SendDurableExecutionCallbackFailureResponse: ...
+) -> SendDurableExecutionCallbackFailureOutput: ...
 ```
 
 
@@ -1183,7 +1183,7 @@ async def send_durable_execution_callback_failure(
 async def send_durable_execution_callback_heartbeat(
     *,
     callback_id: str,
-) -> SendDurableExecutionCallbackHeartbeatResponse: ...
+) -> SendDurableExecutionCallbackHeartbeatOutput: ...
 ```
 
 
@@ -1194,7 +1194,7 @@ async def send_durable_execution_callback_success(
     *,
     callback_id: str,
     result: bytes | None = None,
-) -> SendDurableExecutionCallbackSuccessResponse: ...
+) -> SendDurableExecutionCallbackSuccessOutput: ...
 ```
 
 
@@ -1205,7 +1205,7 @@ async def stop_durable_execution(
     *,
     durable_execution_arn: str,
     error: ErrorObject | None = None,
-) -> StopDurableExecutionResponse: ...
+) -> StopDurableExecutionOutput: ...
 ```
 
 
@@ -1255,7 +1255,7 @@ async def update_capacity_provider(
     capacity_provider_scaling_config: CapacityProviderScalingConfig | None = None,
     propagate_tags: PropagateTags | None = None,
     telemetry_config: CapacityProviderTelemetryConfig | None = None,
-) -> UpdateCapacityProviderResponse: ...
+) -> UpdateCapacityProviderOutput: ...
 ```
 
 
@@ -1268,7 +1268,7 @@ async def update_code_signing_config(
     description: str | None = None,
     allowed_publishers: AllowedPublishers | None = None,
     code_signing_policies: CodeSigningPolicies | None = None,
-) -> UpdateCodeSigningConfigResponse: ...
+) -> UpdateCodeSigningConfigOutput: ...
 ```
 
 
@@ -1379,7 +1379,7 @@ async def update_function_url_config(
     auth_type: FunctionUrlAuthType | None = None,
     cors: Cors | None = None,
     invoke_mode: InvokeMode | None = None,
-) -> UpdateFunctionUrlConfigResponse: ...
+) -> UpdateFunctionUrlConfigOutput: ...
 ```
 
 

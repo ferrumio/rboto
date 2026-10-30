@@ -11695,16 +11695,16 @@ impl PyWebExperience {
 }
 
 #[pyclass(
-    name = "AssociatePermissionResponse",
+    name = "AssociatePermissionOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyAssociatePermissionResponse {
+struct PyOperationAssociatePermissionOutput {
     inner: aws_sdk_qbusiness::operation::associate_permission::AssociatePermissionOutput,
 }
 
 #[pymethods]
-impl PyAssociatePermissionResponse {
+impl PyOperationAssociatePermissionOutput {
     #[getter]
     fn statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement {
@@ -11728,16 +11728,16 @@ impl PyAssociatePermissionResponse {
 }
 
 #[pyclass(
-    name = "BatchDeleteDocumentResponse",
+    name = "BatchDeleteDocumentOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyBatchDeleteDocumentResponse {
+struct PyOperationBatchDeleteDocumentOutput {
     inner: aws_sdk_qbusiness::operation::batch_delete_document::BatchDeleteDocumentOutput,
 }
 
 #[pymethods]
-impl PyBatchDeleteDocumentResponse {
+impl PyOperationBatchDeleteDocumentOutput {
     #[getter]
     fn failed_documents(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed_documents {
@@ -11777,16 +11777,16 @@ impl PyBatchDeleteDocumentResponse {
 }
 
 #[pyclass(
-    name = "BatchPutDocumentResponse",
+    name = "BatchPutDocumentOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyBatchPutDocumentResponse {
+struct PyOperationBatchPutDocumentOutput {
     inner: aws_sdk_qbusiness::operation::batch_put_document::BatchPutDocumentOutput,
 }
 
 #[pymethods]
-impl PyBatchPutDocumentResponse {
+impl PyOperationBatchPutDocumentOutput {
     #[getter]
     fn failed_documents(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failed_documents {
@@ -11826,16 +11826,16 @@ impl PyBatchPutDocumentResponse {
 }
 
 #[pyclass(
-    name = "CancelSubscriptionResponse",
+    name = "CancelSubscriptionOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCancelSubscriptionResponse {
+struct PyOperationCancelSubscriptionOutput {
     inner: aws_sdk_qbusiness::operation::cancel_subscription::CancelSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyCancelSubscriptionResponse {
+impl PyOperationCancelSubscriptionOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
@@ -11903,12 +11903,12 @@ impl PyCancelSubscriptionResponse {
 }
 
 #[pyclass(name = "ChatSyncOutput", module = "rboto_qbusiness._native", frozen)]
-struct PyChatSyncOutput {
+struct PyOperationChatSyncOutput {
     inner: aws_sdk_qbusiness::operation::chat_sync::ChatSyncOutput,
 }
 
 #[pymethods]
-impl PyChatSyncOutput {
+impl PyOperationChatSyncOutput {
     #[getter]
     fn conversation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.conversation_id {
@@ -12098,16 +12098,16 @@ impl PyChatSyncOutput {
 }
 
 #[pyclass(
-    name = "CheckDocumentAccessResponse",
+    name = "CheckDocumentAccessOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCheckDocumentAccessResponse {
+struct PyOperationCheckDocumentAccessOutput {
     inner: aws_sdk_qbusiness::operation::check_document_access::CheckDocumentAccessOutput,
 }
 
 #[pymethods]
-impl PyCheckDocumentAccessResponse {
+impl PyOperationCheckDocumentAccessOutput {
     #[getter]
     fn user_groups(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_groups {
@@ -12217,16 +12217,16 @@ impl PyCheckDocumentAccessResponse {
 }
 
 #[pyclass(
-    name = "CreateAnonymousWebExperienceUrlResponse",
+    name = "CreateAnonymousWebExperienceUrlOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateAnonymousWebExperienceUrlResponse {
+struct PyOperationCreateAnonymousWebExperienceUrlOutput {
     inner: aws_sdk_qbusiness::operation::create_anonymous_web_experience_url::CreateAnonymousWebExperienceUrlOutput,
 }
 
 #[pymethods]
-impl PyCreateAnonymousWebExperienceUrlResponse {
+impl PyOperationCreateAnonymousWebExperienceUrlOutput {
     #[getter]
     fn anonymous_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.anonymous_url {
@@ -12250,16 +12250,16 @@ impl PyCreateAnonymousWebExperienceUrlResponse {
 }
 
 #[pyclass(
-    name = "CreateApplicationResponse",
+    name = "CreateApplicationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateApplicationResponse {
+struct PyOperationCreateApplicationOutput {
     inner: aws_sdk_qbusiness::operation::create_application::CreateApplicationOutput,
 }
 
 #[pymethods]
-impl PyCreateApplicationResponse {
+impl PyOperationCreateApplicationOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -12299,16 +12299,16 @@ impl PyCreateApplicationResponse {
 }
 
 #[pyclass(
-    name = "CreateChatResponseConfigurationResponse",
+    name = "CreateChatResponseConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateChatResponseConfigurationResponse {
+struct PyOperationCreateChatResponseConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::create_chat_response_configuration::CreateChatResponseConfigurationOutput,
 }
 
 #[pymethods]
-impl PyCreateChatResponseConfigurationResponse {
+impl PyOperationCreateChatResponseConfigurationOutput {
     #[getter]
     fn chat_response_configuration_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2109 = (&self.inner.chat_response_configuration_id)
@@ -12340,16 +12340,16 @@ impl PyCreateChatResponseConfigurationResponse {
 }
 
 #[pyclass(
-    name = "CreateDataAccessorResponse",
+    name = "CreateDataAccessorOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateDataAccessorResponse {
+struct PyOperationCreateDataAccessorOutput {
     inner: aws_sdk_qbusiness::operation::create_data_accessor::CreateDataAccessorOutput,
 }
 
 #[pymethods]
-impl PyCreateDataAccessorResponse {
+impl PyOperationCreateDataAccessorOutput {
     #[getter]
     fn data_accessor_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2113 = (&self.inner.data_accessor_id).as_str().into_py_any(py)?;
@@ -12381,16 +12381,16 @@ impl PyCreateDataAccessorResponse {
 }
 
 #[pyclass(
-    name = "CreateDataSourceResponse",
+    name = "CreateDataSourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateDataSourceResponse {
+struct PyOperationCreateDataSourceOutput {
     inner: aws_sdk_qbusiness::operation::create_data_source::CreateDataSourceOutput,
 }
 
 #[pymethods]
-impl PyCreateDataSourceResponse {
+impl PyOperationCreateDataSourceOutput {
     #[getter]
     fn data_source_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_source_id {
@@ -12429,17 +12429,13 @@ impl PyCreateDataSourceResponse {
     }
 }
 
-#[pyclass(
-    name = "CreateIndexResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyCreateIndexResponse {
+#[pyclass(name = "CreateIndexOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationCreateIndexOutput {
     inner: aws_sdk_qbusiness::operation::create_index::CreateIndexOutput,
 }
 
 #[pymethods]
-impl PyCreateIndexResponse {
+impl PyOperationCreateIndexOutput {
     #[getter]
     fn index_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.index_id {
@@ -12479,16 +12475,16 @@ impl PyCreateIndexResponse {
 }
 
 #[pyclass(
-    name = "CreatePluginResponse",
+    name = "CreatePluginOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreatePluginResponse {
+struct PyOperationCreatePluginOutput {
     inner: aws_sdk_qbusiness::operation::create_plugin::CreatePluginOutput,
 }
 
 #[pymethods]
-impl PyCreatePluginResponse {
+impl PyOperationCreatePluginOutput {
     #[getter]
     fn plugin_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.plugin_id {
@@ -12544,16 +12540,16 @@ impl PyCreatePluginResponse {
 }
 
 #[pyclass(
-    name = "CreateRetrieverResponse",
+    name = "CreateRetrieverOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateRetrieverResponse {
+struct PyOperationCreateRetrieverOutput {
     inner: aws_sdk_qbusiness::operation::create_retriever::CreateRetrieverOutput,
 }
 
 #[pymethods]
-impl PyCreateRetrieverResponse {
+impl PyOperationCreateRetrieverOutput {
     #[getter]
     fn retriever_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retriever_id {
@@ -12593,16 +12589,16 @@ impl PyCreateRetrieverResponse {
 }
 
 #[pyclass(
-    name = "CreateSubscriptionResponse",
+    name = "CreateSubscriptionOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateSubscriptionResponse {
+struct PyOperationCreateSubscriptionOutput {
     inner: aws_sdk_qbusiness::operation::create_subscription::CreateSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyCreateSubscriptionResponse {
+impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_id {
@@ -12685,17 +12681,13 @@ impl PyCreateSubscriptionResponse {
     }
 }
 
-#[pyclass(
-    name = "CreateUserResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyCreateUserResponse {
+#[pyclass(name = "CreateUserOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationCreateUserOutput {
     inner: aws_sdk_qbusiness::operation::create_user::CreateUserOutput,
 }
 
 #[pymethods]
-impl PyCreateUserResponse {
+impl PyOperationCreateUserOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12703,16 +12695,16 @@ impl PyCreateUserResponse {
 }
 
 #[pyclass(
-    name = "CreateWebExperienceResponse",
+    name = "CreateWebExperienceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyCreateWebExperienceResponse {
+struct PyOperationCreateWebExperienceOutput {
     inner: aws_sdk_qbusiness::operation::create_web_experience::CreateWebExperienceOutput,
 }
 
 #[pymethods]
-impl PyCreateWebExperienceResponse {
+impl PyOperationCreateWebExperienceOutput {
     #[getter]
     fn web_experience_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_experience_id {
@@ -12752,16 +12744,16 @@ impl PyCreateWebExperienceResponse {
 }
 
 #[pyclass(
-    name = "DeleteApplicationResponse",
+    name = "DeleteApplicationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteApplicationResponse {
+struct PyOperationDeleteApplicationOutput {
     inner: aws_sdk_qbusiness::operation::delete_application::DeleteApplicationOutput,
 }
 
 #[pymethods]
-impl PyDeleteApplicationResponse {
+impl PyOperationDeleteApplicationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12769,16 +12761,16 @@ impl PyDeleteApplicationResponse {
 }
 
 #[pyclass(
-    name = "DeleteAttachmentResponse",
+    name = "DeleteAttachmentOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteAttachmentResponse {
+struct PyOperationDeleteAttachmentOutput {
     inner: aws_sdk_qbusiness::operation::delete_attachment::DeleteAttachmentOutput,
 }
 
 #[pymethods]
-impl PyDeleteAttachmentResponse {
+impl PyOperationDeleteAttachmentOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12786,16 +12778,16 @@ impl PyDeleteAttachmentResponse {
 }
 
 #[pyclass(
-    name = "DeleteChatControlsConfigurationResponse",
+    name = "DeleteChatControlsConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteChatControlsConfigurationResponse {
+struct PyOperationDeleteChatControlsConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::delete_chat_controls_configuration::DeleteChatControlsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteChatControlsConfigurationResponse {
+impl PyOperationDeleteChatControlsConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12803,16 +12795,16 @@ impl PyDeleteChatControlsConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeleteChatResponseConfigurationResponse",
+    name = "DeleteChatResponseConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteChatResponseConfigurationResponse {
+struct PyOperationDeleteChatResponseConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::delete_chat_response_configuration::DeleteChatResponseConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteChatResponseConfigurationResponse {
+impl PyOperationDeleteChatResponseConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12820,16 +12812,16 @@ impl PyDeleteChatResponseConfigurationResponse {
 }
 
 #[pyclass(
-    name = "DeleteConversationResponse",
+    name = "DeleteConversationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteConversationResponse {
+struct PyOperationDeleteConversationOutput {
     inner: aws_sdk_qbusiness::operation::delete_conversation::DeleteConversationOutput,
 }
 
 #[pymethods]
-impl PyDeleteConversationResponse {
+impl PyOperationDeleteConversationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12837,16 +12829,16 @@ impl PyDeleteConversationResponse {
 }
 
 #[pyclass(
-    name = "DeleteDataAccessorResponse",
+    name = "DeleteDataAccessorOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteDataAccessorResponse {
+struct PyOperationDeleteDataAccessorOutput {
     inner: aws_sdk_qbusiness::operation::delete_data_accessor::DeleteDataAccessorOutput,
 }
 
 #[pymethods]
-impl PyDeleteDataAccessorResponse {
+impl PyOperationDeleteDataAccessorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12854,50 +12846,42 @@ impl PyDeleteDataAccessorResponse {
 }
 
 #[pyclass(
-    name = "DeleteDataSourceResponse",
+    name = "DeleteDataSourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteDataSourceResponse {
+struct PyOperationDeleteDataSourceOutput {
     inner: aws_sdk_qbusiness::operation::delete_data_source::DeleteDataSourceOutput,
 }
 
 #[pymethods]
-impl PyDeleteDataSourceResponse {
+impl PyOperationDeleteDataSourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "DeleteGroupResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyDeleteGroupResponse {
+#[pyclass(name = "DeleteGroupOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationDeleteGroupOutput {
     inner: aws_sdk_qbusiness::operation::delete_group::DeleteGroupOutput,
 }
 
 #[pymethods]
-impl PyDeleteGroupResponse {
+impl PyOperationDeleteGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "DeleteIndexResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyDeleteIndexResponse {
+#[pyclass(name = "DeleteIndexOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationDeleteIndexOutput {
     inner: aws_sdk_qbusiness::operation::delete_index::DeleteIndexOutput,
 }
 
 #[pymethods]
-impl PyDeleteIndexResponse {
+impl PyOperationDeleteIndexOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12905,16 +12889,16 @@ impl PyDeleteIndexResponse {
 }
 
 #[pyclass(
-    name = "DeletePluginResponse",
+    name = "DeletePluginOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeletePluginResponse {
+struct PyOperationDeletePluginOutput {
     inner: aws_sdk_qbusiness::operation::delete_plugin::DeletePluginOutput,
 }
 
 #[pymethods]
-impl PyDeletePluginResponse {
+impl PyOperationDeletePluginOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12922,33 +12906,29 @@ impl PyDeletePluginResponse {
 }
 
 #[pyclass(
-    name = "DeleteRetrieverResponse",
+    name = "DeleteRetrieverOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteRetrieverResponse {
+struct PyOperationDeleteRetrieverOutput {
     inner: aws_sdk_qbusiness::operation::delete_retriever::DeleteRetrieverOutput,
 }
 
 #[pymethods]
-impl PyDeleteRetrieverResponse {
+impl PyOperationDeleteRetrieverOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "DeleteUserResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyDeleteUserResponse {
+#[pyclass(name = "DeleteUserOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationDeleteUserOutput {
     inner: aws_sdk_qbusiness::operation::delete_user::DeleteUserOutput,
 }
 
 #[pymethods]
-impl PyDeleteUserResponse {
+impl PyOperationDeleteUserOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12956,16 +12936,16 @@ impl PyDeleteUserResponse {
 }
 
 #[pyclass(
-    name = "DeleteWebExperienceResponse",
+    name = "DeleteWebExperienceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDeleteWebExperienceResponse {
+struct PyOperationDeleteWebExperienceOutput {
     inner: aws_sdk_qbusiness::operation::delete_web_experience::DeleteWebExperienceOutput,
 }
 
 #[pymethods]
-impl PyDeleteWebExperienceResponse {
+impl PyOperationDeleteWebExperienceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12973,16 +12953,16 @@ impl PyDeleteWebExperienceResponse {
 }
 
 #[pyclass(
-    name = "DisassociatePermissionResponse",
+    name = "DisassociatePermissionOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyDisassociatePermissionResponse {
+struct PyOperationDisassociatePermissionOutput {
     inner: aws_sdk_qbusiness::operation::disassociate_permission::DisassociatePermissionOutput,
 }
 
 #[pymethods]
-impl PyDisassociatePermissionResponse {
+impl PyOperationDisassociatePermissionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -12990,16 +12970,16 @@ impl PyDisassociatePermissionResponse {
 }
 
 #[pyclass(
-    name = "GetApplicationResponse",
+    name = "GetApplicationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetApplicationResponse {
+struct PyOperationGetApplicationOutput {
     inner: aws_sdk_qbusiness::operation::get_application::GetApplicationOutput,
 }
 
 #[pymethods]
-impl PyGetApplicationResponse {
+impl PyOperationGetApplicationOutput {
     #[getter]
     fn display_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.display_name {
@@ -13363,16 +13343,16 @@ impl PyGetApplicationResponse {
 }
 
 #[pyclass(
-    name = "GetChatControlsConfigurationResponse",
+    name = "GetChatControlsConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetChatControlsConfigurationResponse {
+struct PyOperationGetChatControlsConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::get_chat_controls_configuration::GetChatControlsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetChatControlsConfigurationResponse {
+impl PyOperationGetChatControlsConfigurationOutput {
     #[getter]
     fn response_scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.response_scope {
@@ -13532,16 +13512,16 @@ impl PyGetChatControlsConfigurationResponse {
 }
 
 #[pyclass(
-    name = "GetChatResponseConfigurationResponse",
+    name = "GetChatResponseConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetChatResponseConfigurationResponse {
+struct PyOperationGetChatResponseConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::get_chat_response_configuration::GetChatResponseConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetChatResponseConfigurationResponse {
+impl PyOperationGetChatResponseConfigurationOutput {
     #[getter]
     fn chat_response_configuration_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.chat_response_configuration_id {
@@ -13657,16 +13637,16 @@ impl PyGetChatResponseConfigurationResponse {
 }
 
 #[pyclass(
-    name = "GetDataAccessorResponse",
+    name = "GetDataAccessorOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetDataAccessorResponse {
+struct PyOperationGetDataAccessorOutput {
     inner: aws_sdk_qbusiness::operation::get_data_accessor::GetDataAccessorOutput,
 }
 
 #[pymethods]
-impl PyGetDataAccessorResponse {
+impl PyOperationGetDataAccessorOutput {
     #[getter]
     fn display_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.display_name {
@@ -13856,16 +13836,16 @@ impl PyGetDataAccessorResponse {
 }
 
 #[pyclass(
-    name = "GetDataSourceResponse",
+    name = "GetDataSourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetDataSourceResponse {
+struct PyOperationGetDataSourceOutput {
     inner: aws_sdk_qbusiness::operation::get_data_source::GetDataSourceOutput,
 }
 
 #[pymethods]
-impl PyGetDataSourceResponse {
+impl PyOperationGetDataSourceOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -14169,16 +14149,16 @@ impl PyGetDataSourceResponse {
 }
 
 #[pyclass(
-    name = "GetDocumentContentResponse",
+    name = "GetDocumentContentOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetDocumentContentResponse {
+struct PyOperationGetDocumentContentOutput {
     inner: aws_sdk_qbusiness::operation::get_document_content::GetDocumentContentOutput,
 }
 
 #[pymethods]
-impl PyGetDocumentContentResponse {
+impl PyOperationGetDocumentContentOutput {
     #[getter]
     fn presigned_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2279 = (&self.inner.presigned_url).as_str().into_py_any(py)?;
@@ -14201,13 +14181,13 @@ impl PyGetDocumentContentResponse {
     }
 }
 
-#[pyclass(name = "GetGroupResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetGroupResponse {
+#[pyclass(name = "GetGroupOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetGroupOutput {
     inner: aws_sdk_qbusiness::operation::get_group::GetGroupOutput,
 }
 
 #[pymethods]
-impl PyGetGroupResponse {
+impl PyOperationGetGroupOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -14268,13 +14248,13 @@ impl PyGetGroupResponse {
     }
 }
 
-#[pyclass(name = "GetIndexResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetIndexResponse {
+#[pyclass(name = "GetIndexOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetIndexOutput {
     inner: aws_sdk_qbusiness::operation::get_index::GetIndexOutput,
 }
 
 #[pymethods]
-impl PyGetIndexResponse {
+impl PyOperationGetIndexOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -14523,13 +14503,13 @@ impl PyGetIndexResponse {
     }
 }
 
-#[pyclass(name = "GetMediaResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetMediaResponse {
+#[pyclass(name = "GetMediaOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetMediaOutput {
     inner: aws_sdk_qbusiness::operation::get_media::GetMediaOutput,
 }
 
 #[pymethods]
-impl PyGetMediaResponse {
+impl PyOperationGetMediaOutput {
     #[getter]
     fn media_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_bytes {
@@ -14568,13 +14548,13 @@ impl PyGetMediaResponse {
     }
 }
 
-#[pyclass(name = "GetPluginResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetPluginResponse {
+#[pyclass(name = "GetPluginOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetPluginOutput {
     inner: aws_sdk_qbusiness::operation::get_plugin::GetPluginOutput,
 }
 
 #[pymethods]
-impl PyGetPluginResponse {
+impl PyOperationGetPluginOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -14779,13 +14759,13 @@ impl PyGetPluginResponse {
     }
 }
 
-#[pyclass(name = "GetPolicyResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetPolicyResponse {
+#[pyclass(name = "GetPolicyOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetPolicyOutput {
     inner: aws_sdk_qbusiness::operation::get_policy::GetPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyResponse {
+impl PyOperationGetPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -14809,16 +14789,16 @@ impl PyGetPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetRetrieverResponse",
+    name = "GetRetrieverOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetRetrieverResponse {
+struct PyOperationGetRetrieverOutput {
     inner: aws_sdk_qbusiness::operation::get_retriever::GetRetrieverOutput,
 }
 
 #[pymethods]
-impl PyGetRetrieverResponse {
+impl PyOperationGetRetrieverOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -14985,13 +14965,13 @@ impl PyGetRetrieverResponse {
     }
 }
 
-#[pyclass(name = "GetUserResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyGetUserResponse {
+#[pyclass(name = "GetUserOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationGetUserOutput {
     inner: aws_sdk_qbusiness::operation::get_user::GetUserOutput,
 }
 
 #[pymethods]
-impl PyGetUserResponse {
+impl PyOperationGetUserOutput {
     #[getter]
     fn user_aliases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_aliases {
@@ -15031,16 +15011,16 @@ impl PyGetUserResponse {
 }
 
 #[pyclass(
-    name = "GetWebExperienceResponse",
+    name = "GetWebExperienceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyGetWebExperienceResponse {
+struct PyOperationGetWebExperienceOutput {
     inner: aws_sdk_qbusiness::operation::get_web_experience::GetWebExperienceOutput,
 }
 
 #[pymethods]
-impl PyGetWebExperienceResponse {
+impl PyOperationGetWebExperienceOutput {
     #[getter]
     fn application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_id {
@@ -15364,16 +15344,16 @@ impl PyGetWebExperienceResponse {
 }
 
 #[pyclass(
-    name = "ListApplicationsResponse",
+    name = "ListApplicationsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListApplicationsResponse {
+struct PyOperationListApplicationsOutput {
     inner: aws_sdk_qbusiness::operation::list_applications::ListApplicationsOutput,
 }
 
 #[pymethods]
-impl PyListApplicationsResponse {
+impl PyOperationListApplicationsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -15429,16 +15409,16 @@ impl PyListApplicationsResponse {
 }
 
 #[pyclass(
-    name = "ListAttachmentsResponse",
+    name = "ListAttachmentsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListAttachmentsResponse {
+struct PyOperationListAttachmentsOutput {
     inner: aws_sdk_qbusiness::operation::list_attachments::ListAttachmentsOutput,
 }
 
 #[pymethods]
-impl PyListAttachmentsResponse {
+impl PyOperationListAttachmentsOutput {
     #[getter]
     fn attachments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attachments {
@@ -15494,16 +15474,16 @@ impl PyListAttachmentsResponse {
 }
 
 #[pyclass(
-    name = "ListChatResponseConfigurationsResponse",
+    name = "ListChatResponseConfigurationsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListChatResponseConfigurationsResponse {
+struct PyOperationListChatResponseConfigurationsOutput {
     inner: aws_sdk_qbusiness::operation::list_chat_response_configurations::ListChatResponseConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListChatResponseConfigurationsResponse {
+impl PyOperationListChatResponseConfigurationsOutput {
     #[getter]
     fn chat_response_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.chat_response_configurations {
@@ -15559,16 +15539,16 @@ impl PyListChatResponseConfigurationsResponse {
 }
 
 #[pyclass(
-    name = "ListConversationsResponse",
+    name = "ListConversationsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListConversationsResponse {
+struct PyOperationListConversationsOutput {
     inner: aws_sdk_qbusiness::operation::list_conversations::ListConversationsOutput,
 }
 
 #[pymethods]
-impl PyListConversationsResponse {
+impl PyOperationListConversationsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -15624,16 +15604,16 @@ impl PyListConversationsResponse {
 }
 
 #[pyclass(
-    name = "ListDataAccessorsResponse",
+    name = "ListDataAccessorsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListDataAccessorsResponse {
+struct PyOperationListDataAccessorsOutput {
     inner: aws_sdk_qbusiness::operation::list_data_accessors::ListDataAccessorsOutput,
 }
 
 #[pymethods]
-impl PyListDataAccessorsResponse {
+impl PyOperationListDataAccessorsOutput {
     #[getter]
     fn data_accessors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_accessors {
@@ -15689,16 +15669,16 @@ impl PyListDataAccessorsResponse {
 }
 
 #[pyclass(
-    name = "ListDataSourceSyncJobsResponse",
+    name = "ListDataSourceSyncJobsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListDataSourceSyncJobsResponse {
+struct PyOperationListDataSourceSyncJobsOutput {
     inner: aws_sdk_qbusiness::operation::list_data_source_sync_jobs::ListDataSourceSyncJobsOutput,
 }
 
 #[pymethods]
-impl PyListDataSourceSyncJobsResponse {
+impl PyOperationListDataSourceSyncJobsOutput {
     #[getter]
     fn history(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.history {
@@ -15754,16 +15734,16 @@ impl PyListDataSourceSyncJobsResponse {
 }
 
 #[pyclass(
-    name = "ListDataSourcesResponse",
+    name = "ListDataSourcesOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListDataSourcesResponse {
+struct PyOperationListDataSourcesOutput {
     inner: aws_sdk_qbusiness::operation::list_data_sources::ListDataSourcesOutput,
 }
 
 #[pymethods]
-impl PyListDataSourcesResponse {
+impl PyOperationListDataSourcesOutput {
     #[getter]
     fn data_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_sources {
@@ -15819,16 +15799,16 @@ impl PyListDataSourcesResponse {
 }
 
 #[pyclass(
-    name = "ListDocumentsResponse",
+    name = "ListDocumentsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListDocumentsResponse {
+struct PyOperationListDocumentsOutput {
     inner: aws_sdk_qbusiness::operation::list_documents::ListDocumentsOutput,
 }
 
 #[pymethods]
-impl PyListDocumentsResponse {
+impl PyOperationListDocumentsOutput {
     #[getter]
     fn document_detail_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.document_detail_list {
@@ -15883,17 +15863,13 @@ impl PyListDocumentsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListGroupsResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyListGroupsResponse {
+#[pyclass(name = "ListGroupsOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationListGroupsOutput {
     inner: aws_sdk_qbusiness::operation::list_groups::ListGroupsOutput,
 }
 
 #[pymethods]
-impl PyListGroupsResponse {
+impl PyOperationListGroupsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -15948,17 +15924,13 @@ impl PyListGroupsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListIndicesResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyListIndicesResponse {
+#[pyclass(name = "ListIndicesOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationListIndicesOutput {
     inner: aws_sdk_qbusiness::operation::list_indices::ListIndicesOutput,
 }
 
 #[pymethods]
-impl PyListIndicesResponse {
+impl PyOperationListIndicesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16014,16 +15986,16 @@ impl PyListIndicesResponse {
 }
 
 #[pyclass(
-    name = "ListMessagesResponse",
+    name = "ListMessagesOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListMessagesResponse {
+struct PyOperationListMessagesOutput {
     inner: aws_sdk_qbusiness::operation::list_messages::ListMessagesOutput,
 }
 
 #[pymethods]
-impl PyListMessagesResponse {
+impl PyOperationListMessagesOutput {
     #[getter]
     fn messages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.messages {
@@ -16079,16 +16051,16 @@ impl PyListMessagesResponse {
 }
 
 #[pyclass(
-    name = "ListPluginActionsResponse",
+    name = "ListPluginActionsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListPluginActionsResponse {
+struct PyOperationListPluginActionsOutput {
     inner: aws_sdk_qbusiness::operation::list_plugin_actions::ListPluginActionsOutput,
 }
 
 #[pymethods]
-impl PyListPluginActionsResponse {
+impl PyOperationListPluginActionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16144,16 +16116,16 @@ impl PyListPluginActionsResponse {
 }
 
 #[pyclass(
-    name = "ListPluginTypeActionsResponse",
+    name = "ListPluginTypeActionsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListPluginTypeActionsResponse {
+struct PyOperationListPluginTypeActionsOutput {
     inner: aws_sdk_qbusiness::operation::list_plugin_type_actions::ListPluginTypeActionsOutput,
 }
 
 #[pymethods]
-impl PyListPluginTypeActionsResponse {
+impl PyOperationListPluginTypeActionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16209,16 +16181,16 @@ impl PyListPluginTypeActionsResponse {
 }
 
 #[pyclass(
-    name = "ListPluginTypeMetadataResponse",
+    name = "ListPluginTypeMetadataOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListPluginTypeMetadataResponse {
+struct PyOperationListPluginTypeMetadataOutput {
     inner: aws_sdk_qbusiness::operation::list_plugin_type_metadata::ListPluginTypeMetadataOutput,
 }
 
 #[pymethods]
-impl PyListPluginTypeMetadataResponse {
+impl PyOperationListPluginTypeMetadataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16273,17 +16245,13 @@ impl PyListPluginTypeMetadataResponse {
     }
 }
 
-#[pyclass(
-    name = "ListPluginsResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyListPluginsResponse {
+#[pyclass(name = "ListPluginsOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationListPluginsOutput {
     inner: aws_sdk_qbusiness::operation::list_plugins::ListPluginsOutput,
 }
 
 #[pymethods]
-impl PyListPluginsResponse {
+impl PyOperationListPluginsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16339,16 +16307,16 @@ impl PyListPluginsResponse {
 }
 
 #[pyclass(
-    name = "ListRetrieversResponse",
+    name = "ListRetrieversOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListRetrieversResponse {
+struct PyOperationListRetrieversOutput {
     inner: aws_sdk_qbusiness::operation::list_retrievers::ListRetrieversOutput,
 }
 
 #[pymethods]
-impl PyListRetrieversResponse {
+impl PyOperationListRetrieversOutput {
     #[getter]
     fn retrievers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retrievers {
@@ -16404,16 +16372,16 @@ impl PyListRetrieversResponse {
 }
 
 #[pyclass(
-    name = "ListSubscriptionsResponse",
+    name = "ListSubscriptionsOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListSubscriptionsResponse {
+struct PyOperationListSubscriptionsOutput {
     inner: aws_sdk_qbusiness::operation::list_subscriptions::ListSubscriptionsOutput,
 }
 
 #[pymethods]
-impl PyListSubscriptionsResponse {
+impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -16469,16 +16437,16 @@ impl PyListSubscriptionsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_qbusiness::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -16518,16 +16486,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListWebExperiencesResponse",
+    name = "ListWebExperiencesOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyListWebExperiencesResponse {
+struct PyOperationListWebExperiencesOutput {
     inner: aws_sdk_qbusiness::operation::list_web_experiences::ListWebExperiencesOutput,
 }
 
 #[pymethods]
-impl PyListWebExperiencesResponse {
+impl PyOperationListWebExperiencesOutput {
     #[getter]
     fn web_experiences(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_experiences {
@@ -16582,13 +16550,13 @@ impl PyListWebExperiencesResponse {
     }
 }
 
-#[pyclass(name = "PutGroupResponse", module = "rboto_qbusiness._native", frozen)]
-struct PyPutGroupResponse {
+#[pyclass(name = "PutGroupOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationPutGroupOutput {
     inner: aws_sdk_qbusiness::operation::put_group::PutGroupOutput,
 }
 
 #[pymethods]
-impl PyPutGroupResponse {
+impl PyOperationPutGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16596,16 +16564,16 @@ impl PyPutGroupResponse {
 }
 
 #[pyclass(
-    name = "SearchRelevantContentResponse",
+    name = "SearchRelevantContentOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PySearchRelevantContentResponse {
+struct PyOperationSearchRelevantContentOutput {
     inner: aws_sdk_qbusiness::operation::search_relevant_content::SearchRelevantContentOutput,
 }
 
 #[pymethods]
-impl PySearchRelevantContentResponse {
+impl PyOperationSearchRelevantContentOutput {
     #[getter]
     fn relevant_content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.relevant_content {
@@ -16661,16 +16629,16 @@ impl PySearchRelevantContentResponse {
 }
 
 #[pyclass(
-    name = "StartDataSourceSyncJobResponse",
+    name = "StartDataSourceSyncJobOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyStartDataSourceSyncJobResponse {
+struct PyOperationStartDataSourceSyncJobOutput {
     inner: aws_sdk_qbusiness::operation::start_data_source_sync_job::StartDataSourceSyncJobOutput,
 }
 
 #[pymethods]
-impl PyStartDataSourceSyncJobResponse {
+impl PyOperationStartDataSourceSyncJobOutput {
     #[getter]
     fn execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_id {
@@ -16694,33 +16662,29 @@ impl PyStartDataSourceSyncJobResponse {
 }
 
 #[pyclass(
-    name = "StopDataSourceSyncJobResponse",
+    name = "StopDataSourceSyncJobOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyStopDataSourceSyncJobResponse {
+struct PyOperationStopDataSourceSyncJobOutput {
     inner: aws_sdk_qbusiness::operation::stop_data_source_sync_job::StopDataSourceSyncJobOutput,
 }
 
 #[pymethods]
-impl PyStopDataSourceSyncJobResponse {
+impl PyOperationStopDataSourceSyncJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "TagResourceResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_qbusiness::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16728,16 +16692,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_qbusiness::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16745,16 +16709,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateApplicationResponse",
+    name = "UpdateApplicationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateApplicationResponse {
+struct PyOperationUpdateApplicationOutput {
     inner: aws_sdk_qbusiness::operation::update_application::UpdateApplicationOutput,
 }
 
 #[pymethods]
-impl PyUpdateApplicationResponse {
+impl PyOperationUpdateApplicationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16762,16 +16726,16 @@ impl PyUpdateApplicationResponse {
 }
 
 #[pyclass(
-    name = "UpdateChatControlsConfigurationResponse",
+    name = "UpdateChatControlsConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateChatControlsConfigurationResponse {
+struct PyOperationUpdateChatControlsConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::update_chat_controls_configuration::UpdateChatControlsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateChatControlsConfigurationResponse {
+impl PyOperationUpdateChatControlsConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16779,16 +16743,16 @@ impl PyUpdateChatControlsConfigurationResponse {
 }
 
 #[pyclass(
-    name = "UpdateChatResponseConfigurationResponse",
+    name = "UpdateChatResponseConfigurationOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateChatResponseConfigurationResponse {
+struct PyOperationUpdateChatResponseConfigurationOutput {
     inner: aws_sdk_qbusiness::operation::update_chat_response_configuration::UpdateChatResponseConfigurationOutput,
 }
 
 #[pymethods]
-impl PyUpdateChatResponseConfigurationResponse {
+impl PyOperationUpdateChatResponseConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16796,16 +16760,16 @@ impl PyUpdateChatResponseConfigurationResponse {
 }
 
 #[pyclass(
-    name = "UpdateDataAccessorResponse",
+    name = "UpdateDataAccessorOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateDataAccessorResponse {
+struct PyOperationUpdateDataAccessorOutput {
     inner: aws_sdk_qbusiness::operation::update_data_accessor::UpdateDataAccessorOutput,
 }
 
 #[pymethods]
-impl PyUpdateDataAccessorResponse {
+impl PyOperationUpdateDataAccessorOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16813,33 +16777,29 @@ impl PyUpdateDataAccessorResponse {
 }
 
 #[pyclass(
-    name = "UpdateDataSourceResponse",
+    name = "UpdateDataSourceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateDataSourceResponse {
+struct PyOperationUpdateDataSourceOutput {
     inner: aws_sdk_qbusiness::operation::update_data_source::UpdateDataSourceOutput,
 }
 
 #[pymethods]
-impl PyUpdateDataSourceResponse {
+impl PyOperationUpdateDataSourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "UpdateIndexResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyUpdateIndexResponse {
+#[pyclass(name = "UpdateIndexOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationUpdateIndexOutput {
     inner: aws_sdk_qbusiness::operation::update_index::UpdateIndexOutput,
 }
 
 #[pymethods]
-impl PyUpdateIndexResponse {
+impl PyOperationUpdateIndexOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16847,16 +16807,16 @@ impl PyUpdateIndexResponse {
 }
 
 #[pyclass(
-    name = "UpdatePluginResponse",
+    name = "UpdatePluginOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdatePluginResponse {
+struct PyOperationUpdatePluginOutput {
     inner: aws_sdk_qbusiness::operation::update_plugin::UpdatePluginOutput,
 }
 
 #[pymethods]
-impl PyUpdatePluginResponse {
+impl PyOperationUpdatePluginOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16864,16 +16824,16 @@ impl PyUpdatePluginResponse {
 }
 
 #[pyclass(
-    name = "UpdateRetrieverResponse",
+    name = "UpdateRetrieverOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateRetrieverResponse {
+struct PyOperationUpdateRetrieverOutput {
     inner: aws_sdk_qbusiness::operation::update_retriever::UpdateRetrieverOutput,
 }
 
 #[pymethods]
-impl PyUpdateRetrieverResponse {
+impl PyOperationUpdateRetrieverOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16881,16 +16841,16 @@ impl PyUpdateRetrieverResponse {
 }
 
 #[pyclass(
-    name = "UpdateSubscriptionResponse",
+    name = "UpdateSubscriptionOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateSubscriptionResponse {
+struct PyOperationUpdateSubscriptionOutput {
     inner: aws_sdk_qbusiness::operation::update_subscription::UpdateSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyUpdateSubscriptionResponse {
+impl PyOperationUpdateSubscriptionOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
@@ -16957,17 +16917,13 @@ impl PyUpdateSubscriptionResponse {
     }
 }
 
-#[pyclass(
-    name = "UpdateUserResponse",
-    module = "rboto_qbusiness._native",
-    frozen
-)]
-struct PyUpdateUserResponse {
+#[pyclass(name = "UpdateUserOutput", module = "rboto_qbusiness._native", frozen)]
+struct PyOperationUpdateUserOutput {
     inner: aws_sdk_qbusiness::operation::update_user::UpdateUserOutput,
 }
 
 #[pymethods]
-impl PyUpdateUserResponse {
+impl PyOperationUpdateUserOutput {
     #[getter]
     fn user_aliases_added(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_aliases_added {
@@ -17071,16 +17027,16 @@ impl PyUpdateUserResponse {
 }
 
 #[pyclass(
-    name = "UpdateWebExperienceResponse",
+    name = "UpdateWebExperienceOutput",
     module = "rboto_qbusiness._native",
     frozen
 )]
-struct PyUpdateWebExperienceResponse {
+struct PyOperationUpdateWebExperienceOutput {
     inner: aws_sdk_qbusiness::operation::update_web_experience::UpdateWebExperienceOutput,
 }
 
 #[pymethods]
-impl PyUpdateWebExperienceResponse {
+impl PyOperationUpdateWebExperienceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -17232,87 +17188,87 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyUsersAndGroups>()?;
     module.add_class::<PyVideoExtractionConfiguration>()?;
     module.add_class::<PyWebExperience>()?;
-    module.add_class::<PyAssociatePermissionResponse>()?;
-    module.add_class::<PyBatchDeleteDocumentResponse>()?;
-    module.add_class::<PyBatchPutDocumentResponse>()?;
-    module.add_class::<PyCancelSubscriptionResponse>()?;
-    module.add_class::<PyChatSyncOutput>()?;
-    module.add_class::<PyCheckDocumentAccessResponse>()?;
-    module.add_class::<PyCreateAnonymousWebExperienceUrlResponse>()?;
-    module.add_class::<PyCreateApplicationResponse>()?;
-    module.add_class::<PyCreateChatResponseConfigurationResponse>()?;
-    module.add_class::<PyCreateDataAccessorResponse>()?;
-    module.add_class::<PyCreateDataSourceResponse>()?;
-    module.add_class::<PyCreateIndexResponse>()?;
-    module.add_class::<PyCreatePluginResponse>()?;
-    module.add_class::<PyCreateRetrieverResponse>()?;
-    module.add_class::<PyCreateSubscriptionResponse>()?;
-    module.add_class::<PyCreateUserResponse>()?;
-    module.add_class::<PyCreateWebExperienceResponse>()?;
-    module.add_class::<PyDeleteApplicationResponse>()?;
-    module.add_class::<PyDeleteAttachmentResponse>()?;
-    module.add_class::<PyDeleteChatControlsConfigurationResponse>()?;
-    module.add_class::<PyDeleteChatResponseConfigurationResponse>()?;
-    module.add_class::<PyDeleteConversationResponse>()?;
-    module.add_class::<PyDeleteDataAccessorResponse>()?;
-    module.add_class::<PyDeleteDataSourceResponse>()?;
-    module.add_class::<PyDeleteGroupResponse>()?;
-    module.add_class::<PyDeleteIndexResponse>()?;
-    module.add_class::<PyDeletePluginResponse>()?;
-    module.add_class::<PyDeleteRetrieverResponse>()?;
-    module.add_class::<PyDeleteUserResponse>()?;
-    module.add_class::<PyDeleteWebExperienceResponse>()?;
-    module.add_class::<PyDisassociatePermissionResponse>()?;
-    module.add_class::<PyGetApplicationResponse>()?;
-    module.add_class::<PyGetChatControlsConfigurationResponse>()?;
-    module.add_class::<PyGetChatResponseConfigurationResponse>()?;
-    module.add_class::<PyGetDataAccessorResponse>()?;
-    module.add_class::<PyGetDataSourceResponse>()?;
-    module.add_class::<PyGetDocumentContentResponse>()?;
-    module.add_class::<PyGetGroupResponse>()?;
-    module.add_class::<PyGetIndexResponse>()?;
-    module.add_class::<PyGetMediaResponse>()?;
-    module.add_class::<PyGetPluginResponse>()?;
-    module.add_class::<PyGetPolicyResponse>()?;
-    module.add_class::<PyGetRetrieverResponse>()?;
-    module.add_class::<PyGetUserResponse>()?;
-    module.add_class::<PyGetWebExperienceResponse>()?;
-    module.add_class::<PyListApplicationsResponse>()?;
-    module.add_class::<PyListAttachmentsResponse>()?;
-    module.add_class::<PyListChatResponseConfigurationsResponse>()?;
-    module.add_class::<PyListConversationsResponse>()?;
-    module.add_class::<PyListDataAccessorsResponse>()?;
-    module.add_class::<PyListDataSourceSyncJobsResponse>()?;
-    module.add_class::<PyListDataSourcesResponse>()?;
-    module.add_class::<PyListDocumentsResponse>()?;
-    module.add_class::<PyListGroupsResponse>()?;
-    module.add_class::<PyListIndicesResponse>()?;
-    module.add_class::<PyListMessagesResponse>()?;
-    module.add_class::<PyListPluginActionsResponse>()?;
-    module.add_class::<PyListPluginTypeActionsResponse>()?;
-    module.add_class::<PyListPluginTypeMetadataResponse>()?;
-    module.add_class::<PyListPluginsResponse>()?;
-    module.add_class::<PyListRetrieversResponse>()?;
-    module.add_class::<PyListSubscriptionsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListWebExperiencesResponse>()?;
-    module.add_class::<PyPutGroupResponse>()?;
-    module.add_class::<PySearchRelevantContentResponse>()?;
-    module.add_class::<PyStartDataSourceSyncJobResponse>()?;
-    module.add_class::<PyStopDataSourceSyncJobResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateApplicationResponse>()?;
-    module.add_class::<PyUpdateChatControlsConfigurationResponse>()?;
-    module.add_class::<PyUpdateChatResponseConfigurationResponse>()?;
-    module.add_class::<PyUpdateDataAccessorResponse>()?;
-    module.add_class::<PyUpdateDataSourceResponse>()?;
-    module.add_class::<PyUpdateIndexResponse>()?;
-    module.add_class::<PyUpdatePluginResponse>()?;
-    module.add_class::<PyUpdateRetrieverResponse>()?;
-    module.add_class::<PyUpdateSubscriptionResponse>()?;
-    module.add_class::<PyUpdateUserResponse>()?;
-    module.add_class::<PyUpdateWebExperienceResponse>()?;
+    module.add_class::<PyOperationAssociatePermissionOutput>()?;
+    module.add_class::<PyOperationBatchDeleteDocumentOutput>()?;
+    module.add_class::<PyOperationBatchPutDocumentOutput>()?;
+    module.add_class::<PyOperationCancelSubscriptionOutput>()?;
+    module.add_class::<PyOperationChatSyncOutput>()?;
+    module.add_class::<PyOperationCheckDocumentAccessOutput>()?;
+    module.add_class::<PyOperationCreateAnonymousWebExperienceUrlOutput>()?;
+    module.add_class::<PyOperationCreateApplicationOutput>()?;
+    module.add_class::<PyOperationCreateChatResponseConfigurationOutput>()?;
+    module.add_class::<PyOperationCreateDataAccessorOutput>()?;
+    module.add_class::<PyOperationCreateDataSourceOutput>()?;
+    module.add_class::<PyOperationCreateIndexOutput>()?;
+    module.add_class::<PyOperationCreatePluginOutput>()?;
+    module.add_class::<PyOperationCreateRetrieverOutput>()?;
+    module.add_class::<PyOperationCreateSubscriptionOutput>()?;
+    module.add_class::<PyOperationCreateUserOutput>()?;
+    module.add_class::<PyOperationCreateWebExperienceOutput>()?;
+    module.add_class::<PyOperationDeleteApplicationOutput>()?;
+    module.add_class::<PyOperationDeleteAttachmentOutput>()?;
+    module.add_class::<PyOperationDeleteChatControlsConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteChatResponseConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteConversationOutput>()?;
+    module.add_class::<PyOperationDeleteDataAccessorOutput>()?;
+    module.add_class::<PyOperationDeleteDataSourceOutput>()?;
+    module.add_class::<PyOperationDeleteGroupOutput>()?;
+    module.add_class::<PyOperationDeleteIndexOutput>()?;
+    module.add_class::<PyOperationDeletePluginOutput>()?;
+    module.add_class::<PyOperationDeleteRetrieverOutput>()?;
+    module.add_class::<PyOperationDeleteUserOutput>()?;
+    module.add_class::<PyOperationDeleteWebExperienceOutput>()?;
+    module.add_class::<PyOperationDisassociatePermissionOutput>()?;
+    module.add_class::<PyOperationGetApplicationOutput>()?;
+    module.add_class::<PyOperationGetChatControlsConfigurationOutput>()?;
+    module.add_class::<PyOperationGetChatResponseConfigurationOutput>()?;
+    module.add_class::<PyOperationGetDataAccessorOutput>()?;
+    module.add_class::<PyOperationGetDataSourceOutput>()?;
+    module.add_class::<PyOperationGetDocumentContentOutput>()?;
+    module.add_class::<PyOperationGetGroupOutput>()?;
+    module.add_class::<PyOperationGetIndexOutput>()?;
+    module.add_class::<PyOperationGetMediaOutput>()?;
+    module.add_class::<PyOperationGetPluginOutput>()?;
+    module.add_class::<PyOperationGetPolicyOutput>()?;
+    module.add_class::<PyOperationGetRetrieverOutput>()?;
+    module.add_class::<PyOperationGetUserOutput>()?;
+    module.add_class::<PyOperationGetWebExperienceOutput>()?;
+    module.add_class::<PyOperationListApplicationsOutput>()?;
+    module.add_class::<PyOperationListAttachmentsOutput>()?;
+    module.add_class::<PyOperationListChatResponseConfigurationsOutput>()?;
+    module.add_class::<PyOperationListConversationsOutput>()?;
+    module.add_class::<PyOperationListDataAccessorsOutput>()?;
+    module.add_class::<PyOperationListDataSourceSyncJobsOutput>()?;
+    module.add_class::<PyOperationListDataSourcesOutput>()?;
+    module.add_class::<PyOperationListDocumentsOutput>()?;
+    module.add_class::<PyOperationListGroupsOutput>()?;
+    module.add_class::<PyOperationListIndicesOutput>()?;
+    module.add_class::<PyOperationListMessagesOutput>()?;
+    module.add_class::<PyOperationListPluginActionsOutput>()?;
+    module.add_class::<PyOperationListPluginTypeActionsOutput>()?;
+    module.add_class::<PyOperationListPluginTypeMetadataOutput>()?;
+    module.add_class::<PyOperationListPluginsOutput>()?;
+    module.add_class::<PyOperationListRetrieversOutput>()?;
+    module.add_class::<PyOperationListSubscriptionsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListWebExperiencesOutput>()?;
+    module.add_class::<PyOperationPutGroupOutput>()?;
+    module.add_class::<PyOperationSearchRelevantContentOutput>()?;
+    module.add_class::<PyOperationStartDataSourceSyncJobOutput>()?;
+    module.add_class::<PyOperationStopDataSourceSyncJobOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateApplicationOutput>()?;
+    module.add_class::<PyOperationUpdateChatControlsConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdateChatResponseConfigurationOutput>()?;
+    module.add_class::<PyOperationUpdateDataAccessorOutput>()?;
+    module.add_class::<PyOperationUpdateDataSourceOutput>()?;
+    module.add_class::<PyOperationUpdateIndexOutput>()?;
+    module.add_class::<PyOperationUpdatePluginOutput>()?;
+    module.add_class::<PyOperationUpdateRetrieverOutput>()?;
+    module.add_class::<PyOperationUpdateSubscriptionOutput>()?;
+    module.add_class::<PyOperationUpdateUserOutput>()?;
+    module.add_class::<PyOperationUpdateWebExperienceOutput>()?;
 
     module.add_class::<PyChatOutputStreamReceiver>()?;
     Ok(())
@@ -17420,7 +17376,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AssociatePermission"))
             })?;
-            Ok(PyAssociatePermissionResponse { inner: output })
+            Ok(PyOperationAssociatePermissionOutput { inner: output })
         })
     }
 
@@ -17486,7 +17442,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteDocument"))
             })?;
-            Ok(PyBatchDeleteDocumentResponse { inner: output })
+            Ok(PyOperationBatchDeleteDocumentOutput { inner: output })
         })
     }
 
@@ -17559,7 +17515,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchPutDocument"))
             })?;
-            Ok(PyBatchPutDocumentResponse { inner: output })
+            Ok(PyOperationBatchPutDocumentOutput { inner: output })
         })
     }
 
@@ -17604,7 +17560,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelSubscription"))
             })?;
-            Ok(PyCancelSubscriptionResponse { inner: output })
+            Ok(PyOperationCancelSubscriptionOutput { inner: output })
         })
     }
 
@@ -17843,7 +17799,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ChatSync")))?;
-            Ok(PyChatSyncOutput { inner: output })
+            Ok(PyOperationChatSyncOutput { inner: output })
         })
     }
 
@@ -17909,7 +17865,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckDocumentAccess"))
             })?;
-            Ok(PyCheckDocumentAccessResponse { inner: output })
+            Ok(PyOperationCheckDocumentAccessOutput { inner: output })
         })
     }
 
@@ -17963,7 +17919,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAnonymousWebExperienceUrl"))
             })?;
-            Ok(PyCreateAnonymousWebExperienceUrlResponse { inner: output })
+            Ok(PyOperationCreateAnonymousWebExperienceUrlOutput { inner: output })
         })
     }
 
@@ -18114,7 +18070,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApplication"))
             })?;
-            Ok(PyCreateApplicationResponse { inner: output })
+            Ok(PyOperationCreateApplicationOutput { inner: output })
         })
     }
 
@@ -18197,7 +18153,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateChatResponseConfiguration"))
             })?;
-            Ok(PyCreateChatResponseConfigurationResponse { inner: output })
+            Ok(PyOperationCreateChatResponseConfigurationOutput { inner: output })
         })
     }
 
@@ -18291,7 +18247,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAccessor"))
             })?;
-            Ok(PyCreateDataAccessorResponse { inner: output })
+            Ok(PyOperationCreateDataAccessorOutput { inner: output })
         })
     }
 
@@ -18415,7 +18371,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataSource"))
             })?;
-            Ok(PyCreateDataSourceResponse { inner: output })
+            Ok(PyOperationCreateDataSourceOutput { inner: output })
         })
     }
 
@@ -18503,7 +18459,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIndex")))?;
-            Ok(PyCreateIndexResponse { inner: output })
+            Ok(PyOperationCreateIndexOutput { inner: output })
         })
     }
 
@@ -18600,7 +18556,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlugin"))
             })?;
-            Ok(PyCreatePluginResponse { inner: output })
+            Ok(PyOperationCreatePluginOutput { inner: output })
         })
     }
 
@@ -18688,7 +18644,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRetriever"))
             })?;
-            Ok(PyCreateRetrieverResponse { inner: output })
+            Ok(PyOperationCreateRetrieverOutput { inner: output })
         })
     }
 
@@ -18749,7 +18705,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
             })?;
-            Ok(PyCreateSubscriptionResponse { inner: output })
+            Ok(PyOperationCreateSubscriptionOutput { inner: output })
         })
     }
 
@@ -18813,7 +18769,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateUser")))?;
-            Ok(PyCreateUserResponse { inner: output })
+            Ok(PyOperationCreateUserOutput { inner: output })
         })
     }
 
@@ -18948,7 +18904,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateWebExperience"))
             })?;
-            Ok(PyCreateWebExperienceResponse { inner: output })
+            Ok(PyOperationCreateWebExperienceOutput { inner: output })
         })
     }
 
@@ -18986,7 +18942,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApplication"))
             })?;
-            Ok(PyDeleteApplicationResponse { inner: output })
+            Ok(PyOperationDeleteApplicationOutput { inner: output })
         })
     }
 
@@ -19045,7 +19001,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAttachment"))
             })?;
-            Ok(PyDeleteAttachmentResponse { inner: output })
+            Ok(PyOperationDeleteAttachmentOutput { inner: output })
         })
     }
 
@@ -19083,7 +19039,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatControlsConfiguration"))
             })?;
-            Ok(PyDeleteChatControlsConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteChatControlsConfigurationOutput { inner: output })
         })
     }
 
@@ -19129,7 +19085,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatResponseConfiguration"))
             })?;
-            Ok(PyDeleteChatResponseConfigurationResponse { inner: output })
+            Ok(PyOperationDeleteChatResponseConfigurationOutput { inner: output })
         })
     }
 
@@ -19181,7 +19137,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConversation"))
             })?;
-            Ok(PyDeleteConversationResponse { inner: output })
+            Ok(PyOperationDeleteConversationOutput { inner: output })
         })
     }
 
@@ -19226,7 +19182,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAccessor"))
             })?;
-            Ok(PyDeleteDataAccessorResponse { inner: output })
+            Ok(PyOperationDeleteDataAccessorOutput { inner: output })
         })
     }
 
@@ -19278,7 +19234,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataSource"))
             })?;
-            Ok(PyDeleteDataSourceResponse { inner: output })
+            Ok(PyOperationDeleteDataSourceOutput { inner: output })
         })
     }
 
@@ -19336,7 +19292,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGroup")))?;
-            Ok(PyDeleteGroupResponse { inner: output })
+            Ok(PyOperationDeleteGroupOutput { inner: output })
         })
     }
 
@@ -19380,7 +19336,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndex")))?;
-            Ok(PyDeleteIndexResponse { inner: output })
+            Ok(PyOperationDeleteIndexOutput { inner: output })
         })
     }
 
@@ -19425,7 +19381,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePlugin"))
             })?;
-            Ok(PyDeletePluginResponse { inner: output })
+            Ok(PyOperationDeletePluginOutput { inner: output })
         })
     }
 
@@ -19470,7 +19426,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetriever"))
             })?;
-            Ok(PyDeleteRetrieverResponse { inner: output })
+            Ok(PyOperationDeleteRetrieverOutput { inner: output })
         })
     }
 
@@ -19514,7 +19470,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteUser")))?;
-            Ok(PyDeleteUserResponse { inner: output })
+            Ok(PyOperationDeleteUserOutput { inner: output })
         })
     }
 
@@ -19560,7 +19516,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteWebExperience"))
             })?;
-            Ok(PyDeleteWebExperienceResponse { inner: output })
+            Ok(PyOperationDeleteWebExperienceOutput { inner: output })
         })
     }
 
@@ -19605,7 +19561,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DisassociatePermission"))
             })?;
-            Ok(PyDisassociatePermissionResponse { inner: output })
+            Ok(PyOperationDisassociatePermissionOutput { inner: output })
         })
     }
 
@@ -19643,7 +19599,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetApplication"))
             })?;
-            Ok(PyGetApplicationResponse { inner: output })
+            Ok(PyOperationGetApplicationOutput { inner: output })
         })
     }
 
@@ -19695,7 +19651,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetChatControlsConfiguration"))
             })?;
-            Ok(PyGetChatControlsConfigurationResponse { inner: output })
+            Ok(PyOperationGetChatControlsConfigurationOutput { inner: output })
         })
     }
 
@@ -19741,7 +19697,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetChatResponseConfiguration"))
             })?;
-            Ok(PyGetChatResponseConfigurationResponse { inner: output })
+            Ok(PyOperationGetChatResponseConfigurationOutput { inner: output })
         })
     }
 
@@ -19786,7 +19742,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAccessor"))
             })?;
-            Ok(PyGetDataAccessorResponse { inner: output })
+            Ok(PyOperationGetDataAccessorOutput { inner: output })
         })
     }
 
@@ -19838,7 +19794,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataSource"))
             })?;
-            Ok(PyGetDataSourceResponse { inner: output })
+            Ok(PyOperationGetDataSourceOutput { inner: output })
         })
     }
 
@@ -19906,7 +19862,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
             })?;
-            Ok(PyGetDocumentContentResponse { inner: output })
+            Ok(PyOperationGetDocumentContentOutput { inner: output })
         })
     }
 
@@ -19964,7 +19920,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetGroup")))?;
-            Ok(PyGetGroupResponse { inner: output })
+            Ok(PyOperationGetGroupOutput { inner: output })
         })
     }
 
@@ -20008,7 +19964,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIndex")))?;
-            Ok(PyGetIndexResponse { inner: output })
+            Ok(PyOperationGetIndexOutput { inner: output })
         })
     }
 
@@ -20066,7 +20022,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMedia")))?;
-            Ok(PyGetMediaResponse { inner: output })
+            Ok(PyOperationGetMediaOutput { inner: output })
         })
     }
 
@@ -20110,7 +20066,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPlugin")))?;
-            Ok(PyGetPluginResponse { inner: output })
+            Ok(PyOperationGetPluginOutput { inner: output })
         })
     }
 
@@ -20145,7 +20101,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
-            Ok(PyGetPolicyResponse { inner: output })
+            Ok(PyOperationGetPolicyOutput { inner: output })
         })
     }
 
@@ -20190,7 +20146,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRetriever"))
             })?;
-            Ok(PyGetRetrieverResponse { inner: output })
+            Ok(PyOperationGetRetrieverOutput { inner: output })
         })
     }
 
@@ -20234,7 +20190,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUser")))?;
-            Ok(PyGetUserResponse { inner: output })
+            Ok(PyOperationGetUserOutput { inner: output })
         })
     }
 
@@ -20280,7 +20236,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWebExperience"))
             })?;
-            Ok(PyGetWebExperienceResponse { inner: output })
+            Ok(PyOperationGetWebExperienceOutput { inner: output })
         })
     }
 
@@ -20325,7 +20281,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListApplications"))
             })?;
-            Ok(PyListApplicationsResponse { inner: output })
+            Ok(PyOperationListApplicationsOutput { inner: output })
         })
     }
 
@@ -20391,7 +20347,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAttachments"))
             })?;
-            Ok(PyListAttachmentsResponse { inner: output })
+            Ok(PyOperationListAttachmentsOutput { inner: output })
         })
     }
 
@@ -20443,7 +20399,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListChatResponseConfigurations"))
             })?;
-            Ok(PyListChatResponseConfigurationsResponse { inner: output })
+            Ok(PyOperationListChatResponseConfigurationsOutput { inner: output })
         })
     }
 
@@ -20502,7 +20458,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConversations"))
             })?;
-            Ok(PyListConversationsResponse { inner: output })
+            Ok(PyOperationListConversationsOutput { inner: output })
         })
     }
 
@@ -20554,7 +20510,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAccessors"))
             })?;
-            Ok(PyListDataAccessorsResponse { inner: output })
+            Ok(PyOperationListDataAccessorsOutput { inner: output })
         })
     }
 
@@ -20653,7 +20609,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSourceSyncJobs"))
             })?;
-            Ok(PyListDataSourceSyncJobsResponse { inner: output })
+            Ok(PyOperationListDataSourceSyncJobsOutput { inner: output })
         })
     }
 
@@ -20712,7 +20668,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSources"))
             })?;
-            Ok(PyListDataSourcesResponse { inner: output })
+            Ok(PyOperationListDataSourcesOutput { inner: output })
         })
     }
 
@@ -20784,7 +20740,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
             })?;
-            Ok(PyListDocumentsResponse { inner: output })
+            Ok(PyOperationListDocumentsOutput { inner: output })
         })
     }
 
@@ -20862,7 +20818,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGroups")))?;
-            Ok(PyListGroupsResponse { inner: output })
+            Ok(PyOperationListGroupsOutput { inner: output })
         })
     }
 
@@ -20913,7 +20869,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIndices")))?;
-            Ok(PyListIndicesResponse { inner: output })
+            Ok(PyOperationListIndicesOutput { inner: output })
         })
     }
 
@@ -20979,7 +20935,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMessages"))
             })?;
-            Ok(PyListMessagesResponse { inner: output })
+            Ok(PyOperationListMessagesOutput { inner: output })
         })
     }
 
@@ -21038,7 +20994,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginActions"))
             })?;
-            Ok(PyListPluginActionsResponse { inner: output })
+            Ok(PyOperationListPluginActionsOutput { inner: output })
         })
     }
 
@@ -21092,7 +21048,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeActions"))
             })?;
-            Ok(PyListPluginTypeActionsResponse { inner: output })
+            Ok(PyOperationListPluginTypeActionsOutput { inner: output })
         })
     }
 
@@ -21137,7 +21093,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeMetadata"))
             })?;
-            Ok(PyListPluginTypeMetadataResponse { inner: output })
+            Ok(PyOperationListPluginTypeMetadataOutput { inner: output })
         })
     }
 
@@ -21188,7 +21144,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPlugins")))?;
-            Ok(PyListPluginsResponse { inner: output })
+            Ok(PyOperationListPluginsOutput { inner: output })
         })
     }
 
@@ -21240,7 +21196,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievers"))
             })?;
-            Ok(PyListRetrieversResponse { inner: output })
+            Ok(PyOperationListRetrieversOutput { inner: output })
         })
     }
 
@@ -21292,7 +21248,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Ok(PyListSubscriptionsResponse { inner: output })
+            Ok(PyOperationListSubscriptionsOutput { inner: output })
         })
     }
 
@@ -21330,7 +21286,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -21382,7 +21338,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListWebExperiences"))
             })?;
-            Ok(PyListWebExperiencesResponse { inner: output })
+            Ok(PyOperationListWebExperiencesOutput { inner: output })
         })
     }
 
@@ -21542,7 +21498,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutGroup")))?;
-            Ok(PyPutGroupResponse { inner: output })
+            Ok(PyOperationPutGroupOutput { inner: output })
         })
     }
 
@@ -21615,7 +21571,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchRelevantContent"))
             })?;
-            Ok(PySearchRelevantContentResponse { inner: output })
+            Ok(PyOperationSearchRelevantContentOutput { inner: output })
         })
     }
 
@@ -21667,7 +21623,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartDataSourceSyncJob"))
             })?;
-            Ok(PyStartDataSourceSyncJobResponse { inner: output })
+            Ok(PyOperationStartDataSourceSyncJobOutput { inner: output })
         })
     }
 
@@ -21719,7 +21675,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopDataSourceSyncJob"))
             })?;
-            Ok(PyStopDataSourceSyncJobResponse { inner: output })
+            Ok(PyOperationStopDataSourceSyncJobOutput { inner: output })
         })
     }
 
@@ -21769,7 +21725,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -21820,7 +21776,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -21919,7 +21875,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApplication"))
             })?;
-            Ok(PyUpdateApplicationResponse { inner: output })
+            Ok(PyOperationUpdateApplicationOutput { inner: output })
         })
     }
 
@@ -22039,7 +21995,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatControlsConfiguration"))
             })?;
-            Ok(PyUpdateChatControlsConfigurationResponse { inner: output })
+            Ok(PyOperationUpdateChatControlsConfigurationOutput { inner: output })
         })
     }
 
@@ -22117,7 +22073,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatResponseConfiguration"))
             })?;
-            Ok(PyUpdateChatResponseConfigurationResponse { inner: output })
+            Ok(PyOperationUpdateChatResponseConfigurationOutput { inner: output })
         })
     }
 
@@ -22191,7 +22147,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAccessor"))
             })?;
-            Ok(PyUpdateDataAccessorResponse { inner: output })
+            Ok(PyOperationUpdateDataAccessorOutput { inner: output })
         })
     }
 
@@ -22302,7 +22258,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataSource"))
             })?;
-            Ok(PyUpdateDataSourceResponse { inner: output })
+            Ok(PyOperationUpdateDataSourceOutput { inner: output })
         })
     }
 
@@ -22382,7 +22338,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIndex")))?;
-            Ok(PyUpdateIndexResponse { inner: output })
+            Ok(PyOperationUpdateIndexOutput { inner: output })
         })
     }
 
@@ -22466,7 +22422,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePlugin"))
             })?;
-            Ok(PyUpdatePluginResponse { inner: output })
+            Ok(PyOperationUpdatePluginOutput { inner: output })
         })
     }
 
@@ -22532,7 +22488,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRetriever"))
             })?;
-            Ok(PyUpdateRetrieverResponse { inner: output })
+            Ok(PyOperationUpdateRetrieverOutput { inner: output })
         })
     }
 
@@ -22586,7 +22542,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSubscription"))
             })?;
-            Ok(PyUpdateSubscriptionResponse { inner: output })
+            Ok(PyOperationUpdateSubscriptionOutput { inner: output })
         })
     }
 
@@ -22658,7 +22614,7 @@ impl QBusinessClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUser")))?;
-            Ok(PyUpdateUserResponse { inner: output })
+            Ok(PyOperationUpdateUserOutput { inner: output })
         })
     }
 
@@ -22789,7 +22745,7 @@ impl QBusinessClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateWebExperience"))
             })?;
-            Ok(PyUpdateWebExperienceResponse { inner: output })
+            Ok(PyOperationUpdateWebExperienceOutput { inner: output })
         })
     }
 }

@@ -85,158 +85,158 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>AddTagsToResourceResult</code> |
-| [`associate_ops_item_related_item`](#associate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_type: str</code>, <code>resource_type: str</code>, <code>resource_uri: str</code> | <code>AssociateOpsItemRelatedItemResponse</code> |
-| [`cancel_command`](#cancel_command) | <code>command_id: str</code> | <code>CancelCommandResult</code> |
-| [`cancel_maintenance_window_execution`](#cancel_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>CancelMaintenanceWindowExecutionResult</code> |
-| [`create_activation`](#create_activation) | <code>iam_role: str</code> | <code>CreateActivationResult</code> |
-| [`create_association`](#create_association) | <code>name: str</code> | <code>CreateAssociationResult</code> |
-| [`create_association_batch`](#create_association_batch) | <code>entries: Sequence[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchResult</code> |
-| [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code>, <code>config_connector_arn: str</code> | <code>CreateCloudConnectorResult</code> |
-| [`create_document`](#create_document) | <code>content: str</code>, <code>name: str</code> | <code>CreateDocumentResult</code> |
-| [`create_maintenance_window`](#create_maintenance_window) | <code>name: str</code>, <code>schedule: str</code>, <code>duration: int</code>, <code>cutoff: int</code>, <code>allow_unassociated_targets: bool</code> | <code>CreateMaintenanceWindowResult</code> |
-| [`create_ops_item`](#create_ops_item) | <code>description: str</code>, <code>source: str</code>, <code>title: str</code> | <code>CreateOpsItemResponse</code> |
-| [`create_ops_metadata`](#create_ops_metadata) | <code>resource_id: str</code> | <code>CreateOpsMetadataResult</code> |
-| [`create_patch_baseline`](#create_patch_baseline) | <code>name: str</code> | <code>CreatePatchBaselineResult</code> |
-| [`create_resource_data_sync`](#create_resource_data_sync) | <code>sync_name: str</code> | <code>CreateResourceDataSyncResult</code> |
-| [`delete_activation`](#delete_activation) | <code>activation_id: str</code> | <code>DeleteActivationResult</code> |
-| [`delete_association`](#delete_association) | None | <code>DeleteAssociationResult</code> |
-| [`delete_cloud_connector`](#delete_cloud_connector) | <code>cloud_connector_id: str</code> | <code>DeleteCloudConnectorResult</code> |
-| [`delete_document`](#delete_document) | <code>name: str</code> | <code>DeleteDocumentResult</code> |
-| [`delete_inventory`](#delete_inventory) | <code>type_name: str</code> | <code>DeleteInventoryResult</code> |
-| [`delete_maintenance_window`](#delete_maintenance_window) | <code>window_id: str</code> | <code>DeleteMaintenanceWindowResult</code> |
-| [`delete_ops_item`](#delete_ops_item) | <code>ops_item_id: str</code> | <code>DeleteOpsItemResponse</code> |
-| [`delete_ops_metadata`](#delete_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>DeleteOpsMetadataResult</code> |
-| [`delete_parameter`](#delete_parameter) | <code>name: str</code> | <code>DeleteParameterResult</code> |
-| [`delete_parameters`](#delete_parameters) | <code>names: Sequence[str]</code> | <code>DeleteParametersResult</code> |
-| [`delete_patch_baseline`](#delete_patch_baseline) | <code>baseline_id: str</code> | <code>DeletePatchBaselineResult</code> |
-| [`delete_resource_data_sync`](#delete_resource_data_sync) | <code>sync_name: str</code> | <code>DeleteResourceDataSyncResult</code> |
-| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code>, <code>policy_id: str</code>, <code>policy_hash: str</code> | <code>DeleteResourcePolicyResponse</code> |
-| [`deregister_managed_instance`](#deregister_managed_instance) | <code>instance_id: str</code> | <code>DeregisterManagedInstanceResult</code> |
-| [`deregister_patch_baseline_for_patch_group`](#deregister_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>DeregisterPatchBaselineForPatchGroupResult</code> |
-| [`deregister_target_from_maintenance_window`](#deregister_target_from_maintenance_window) | <code>window_id: str</code>, <code>window_target_id: str</code> | <code>DeregisterTargetFromMaintenanceWindowResult</code> |
-| [`deregister_task_from_maintenance_window`](#deregister_task_from_maintenance_window) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>DeregisterTaskFromMaintenanceWindowResult</code> |
-| [`describe_activations`](#describe_activations) | None | <code>DescribeActivationsResult</code> |
-| [`describe_association`](#describe_association) | None | <code>DescribeAssociationResult</code> |
-| [`describe_association_execution_targets`](#describe_association_execution_targets) | <code>association_id: str</code>, <code>execution_id: str</code> | <code>DescribeAssociationExecutionTargetsResult</code> |
-| [`describe_association_executions`](#describe_association_executions) | <code>association_id: str</code> | <code>DescribeAssociationExecutionsResult</code> |
-| [`describe_automation_executions`](#describe_automation_executions) | None | <code>DescribeAutomationExecutionsResult</code> |
-| [`describe_automation_step_executions`](#describe_automation_step_executions) | <code>automation_execution_id: str</code> | <code>DescribeAutomationStepExecutionsResult</code> |
-| [`describe_available_patches`](#describe_available_patches) | None | <code>DescribeAvailablePatchesResult</code> |
-| [`describe_document`](#describe_document) | <code>name: str</code> | <code>DescribeDocumentResult</code> |
-| [`describe_document_permission`](#describe_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>DescribeDocumentPermissionResponse</code> |
-| [`describe_effective_instance_associations`](#describe_effective_instance_associations) | <code>instance_id: str</code> | <code>DescribeEffectiveInstanceAssociationsResult</code> |
-| [`describe_effective_patches_for_patch_baseline`](#describe_effective_patches_for_patch_baseline) | <code>baseline_id: str</code> | <code>DescribeEffectivePatchesForPatchBaselineResult</code> |
-| [`describe_instance_associations_status`](#describe_instance_associations_status) | <code>instance_id: str</code> | <code>DescribeInstanceAssociationsStatusResult</code> |
-| [`describe_instance_information`](#describe_instance_information) | None | <code>DescribeInstanceInformationResult</code> |
-| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: Sequence[str]</code> | <code>DescribeInstancePatchStatesResult</code> |
-| [`describe_instance_patch_states_for_patch_group`](#describe_instance_patch_states_for_patch_group) | <code>patch_group: str</code> | <code>DescribeInstancePatchStatesForPatchGroupResult</code> |
-| [`describe_instance_patches`](#describe_instance_patches) | <code>instance_id: str</code> | <code>DescribeInstancePatchesResult</code> |
-| [`describe_instance_properties`](#describe_instance_properties) | None | <code>DescribeInstancePropertiesResult</code> |
-| [`describe_inventory_deletions`](#describe_inventory_deletions) | None | <code>DescribeInventoryDeletionsResult</code> |
-| [`describe_maintenance_window_execution_task_invocations`](#describe_maintenance_window_execution_task_invocations) | <code>window_execution_id: str</code>, <code>task_id: str</code> | <code>DescribeMaintenanceWindowExecutionTaskInvocationsResult</code> |
-| [`describe_maintenance_window_execution_tasks`](#describe_maintenance_window_execution_tasks) | <code>window_execution_id: str</code> | <code>DescribeMaintenanceWindowExecutionTasksResult</code> |
-| [`describe_maintenance_window_executions`](#describe_maintenance_window_executions) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowExecutionsResult</code> |
-| [`describe_maintenance_window_schedule`](#describe_maintenance_window_schedule) | None | <code>DescribeMaintenanceWindowScheduleResult</code> |
-| [`describe_maintenance_window_targets`](#describe_maintenance_window_targets) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTargetsResult</code> |
-| [`describe_maintenance_window_tasks`](#describe_maintenance_window_tasks) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTasksResult</code> |
-| [`describe_maintenance_windows`](#describe_maintenance_windows) | None | <code>DescribeMaintenanceWindowsResult</code> |
-| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: Sequence[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetResult</code> |
-| [`describe_ops_items`](#describe_ops_items) | None | <code>DescribeOpsItemsResponse</code> |
-| [`describe_parameters`](#describe_parameters) | None | <code>DescribeParametersResult</code> |
-| [`describe_patch_baselines`](#describe_patch_baselines) | None | <code>DescribePatchBaselinesResult</code> |
-| [`describe_patch_group_state`](#describe_patch_group_state) | <code>patch_group: str</code> | <code>DescribePatchGroupStateResult</code> |
-| [`describe_patch_groups`](#describe_patch_groups) | None | <code>DescribePatchGroupsResult</code> |
-| [`describe_patch_properties`](#describe_patch_properties) | <code>operating_system: OperatingSystem</code>, <code>property: PatchProperty</code> | <code>DescribePatchPropertiesResult</code> |
-| [`describe_sessions`](#describe_sessions) | <code>state: SessionState</code> | <code>DescribeSessionsResponse</code> |
-| [`disassociate_ops_item_related_item`](#disassociate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_id: str</code> | <code>DisassociateOpsItemRelatedItemResponse</code> |
-| [`get_access_token`](#get_access_token) | <code>access_request_id: str</code> | <code>GetAccessTokenResponse</code> |
-| [`get_automation_execution`](#get_automation_execution) | <code>automation_execution_id: str</code> | <code>GetAutomationExecutionResult</code> |
-| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: Sequence[str]</code> | <code>GetCalendarStateResponse</code> |
-| [`get_cloud_connector`](#get_cloud_connector) | <code>cloud_connector_id: str</code> | <code>GetCloudConnectorResult</code> |
-| [`get_command_invocation`](#get_command_invocation) | <code>command_id: str</code>, <code>instance_id: str</code> | <code>GetCommandInvocationResult</code> |
-| [`get_connection_status`](#get_connection_status) | <code>target: str</code> | <code>GetConnectionStatusResponse</code> |
-| [`get_default_patch_baseline`](#get_default_patch_baseline) | None | <code>GetDefaultPatchBaselineResult</code> |
-| [`get_deployable_patch_snapshot_for_instance`](#get_deployable_patch_snapshot_for_instance) | <code>instance_id: str</code>, <code>snapshot_id: str</code> | <code>GetDeployablePatchSnapshotForInstanceResult</code> |
-| [`get_document`](#get_document) | <code>name: str</code> | <code>GetDocumentResult</code> |
-| [`get_execution_preview`](#get_execution_preview) | <code>execution_preview_id: str</code> | <code>GetExecutionPreviewResponse</code> |
-| [`get_inventory`](#get_inventory) | None | <code>GetInventoryResult</code> |
-| [`get_inventory_schema`](#get_inventory_schema) | None | <code>GetInventorySchemaResult</code> |
-| [`get_maintenance_window`](#get_maintenance_window) | <code>window_id: str</code> | <code>GetMaintenanceWindowResult</code> |
-| [`get_maintenance_window_execution`](#get_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>GetMaintenanceWindowExecutionResult</code> |
-| [`get_maintenance_window_execution_task`](#get_maintenance_window_execution_task) | <code>window_execution_id: str</code>, <code>task_id: str</code> | <code>GetMaintenanceWindowExecutionTaskResult</code> |
-| [`get_maintenance_window_execution_task_invocation`](#get_maintenance_window_execution_task_invocation) | <code>window_execution_id: str</code>, <code>task_id: str</code>, <code>invocation_id: str</code> | <code>GetMaintenanceWindowExecutionTaskInvocationResult</code> |
-| [`get_maintenance_window_task`](#get_maintenance_window_task) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>GetMaintenanceWindowTaskResult</code> |
-| [`get_ops_item`](#get_ops_item) | <code>ops_item_id: str</code> | <code>GetOpsItemResponse</code> |
-| [`get_ops_metadata`](#get_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>GetOpsMetadataResult</code> |
-| [`get_ops_summary`](#get_ops_summary) | None | <code>GetOpsSummaryResult</code> |
-| [`get_parameter`](#get_parameter) | <code>name: str</code> | <code>GetParameterResult</code> |
-| [`get_parameter_history`](#get_parameter_history) | <code>name: str</code> | <code>GetParameterHistoryResult</code> |
-| [`get_parameters`](#get_parameters) | <code>names: Sequence[str]</code> | <code>GetParametersResult</code> |
-| [`get_parameters_by_path`](#get_parameters_by_path) | <code>path: str</code> | <code>GetParametersByPathResult</code> |
-| [`get_patch_baseline`](#get_patch_baseline) | <code>baseline_id: str</code> | <code>GetPatchBaselineResult</code> |
-| [`get_patch_baseline_for_patch_group`](#get_patch_baseline_for_patch_group) | <code>patch_group: str</code> | <code>GetPatchBaselineForPatchGroupResult</code> |
-| [`get_resource_policies`](#get_resource_policies) | <code>resource_arn: str</code> | <code>GetResourcePoliciesResponse</code> |
-| [`get_service_setting`](#get_service_setting) | <code>setting_id: str</code> | <code>GetServiceSettingResult</code> |
-| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: Sequence[str]</code> | <code>LabelParameterVersionResult</code> |
-| [`list_association_versions`](#list_association_versions) | <code>association_id: str</code> | <code>ListAssociationVersionsResult</code> |
-| [`list_associations`](#list_associations) | None | <code>ListAssociationsResult</code> |
-| [`list_cloud_connectors`](#list_cloud_connectors) | None | <code>ListCloudConnectorsResult</code> |
-| [`list_command_invocations`](#list_command_invocations) | None | <code>ListCommandInvocationsResult</code> |
-| [`list_commands`](#list_commands) | None | <code>ListCommandsResult</code> |
-| [`list_compliance_items`](#list_compliance_items) | None | <code>ListComplianceItemsResult</code> |
-| [`list_compliance_summaries`](#list_compliance_summaries) | None | <code>ListComplianceSummariesResult</code> |
-| [`list_document_metadata_history`](#list_document_metadata_history) | <code>name: str</code>, <code>metadata: DocumentMetadataEnum</code> | <code>ListDocumentMetadataHistoryResponse</code> |
-| [`list_document_versions`](#list_document_versions) | <code>name: str</code> | <code>ListDocumentVersionsResult</code> |
-| [`list_documents`](#list_documents) | None | <code>ListDocumentsResult</code> |
-| [`list_inventory_entries`](#list_inventory_entries) | <code>instance_id: str</code>, <code>type_name: str</code> | <code>ListInventoryEntriesResult</code> |
-| [`list_nodes`](#list_nodes) | None | <code>ListNodesResult</code> |
-| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: Sequence[NodeAggregator]</code> | <code>ListNodesSummaryResult</code> |
-| [`list_ops_item_events`](#list_ops_item_events) | None | <code>ListOpsItemEventsResponse</code> |
-| [`list_ops_item_related_items`](#list_ops_item_related_items) | None | <code>ListOpsItemRelatedItemsResponse</code> |
-| [`list_ops_metadata`](#list_ops_metadata) | None | <code>ListOpsMetadataResult</code> |
-| [`list_resource_compliance_summaries`](#list_resource_compliance_summaries) | None | <code>ListResourceComplianceSummariesResult</code> |
-| [`list_resource_data_sync`](#list_resource_data_sync) | None | <code>ListResourceDataSyncResult</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code> | <code>ListTagsForResourceResult</code> |
-| [`modify_document_permission`](#modify_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>ModifyDocumentPermissionResponse</code> |
-| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: Sequence[ComplianceItemEntry]</code> | <code>PutComplianceItemsResult</code> |
-| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: Sequence[InventoryItem]</code> | <code>PutInventoryResult</code> |
-| [`put_parameter`](#put_parameter) | <code>name: str</code>, <code>value: str</code> | <code>PutParameterResult</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`register_default_patch_baseline`](#register_default_patch_baseline) | <code>baseline_id: str</code> | <code>RegisterDefaultPatchBaselineResult</code> |
-| [`register_patch_baseline_for_patch_group`](#register_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>RegisterPatchBaselineForPatchGroupResult</code> |
-| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: Sequence[Target]</code> | <code>RegisterTargetWithMaintenanceWindowResult</code> |
-| [`register_task_with_maintenance_window`](#register_task_with_maintenance_window) | <code>window_id: str</code>, <code>task_arn: str</code>, <code>task_type: MaintenanceWindowTaskType</code> | <code>RegisterTaskWithMaintenanceWindowResult</code> |
-| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>RemoveTagsFromResourceResult</code> |
-| [`reset_service_setting`](#reset_service_setting) | <code>setting_id: str</code> | <code>ResetServiceSettingResult</code> |
-| [`resume_session`](#resume_session) | <code>session_id: str</code> | <code>ResumeSessionResponse</code> |
-| [`send_automation_signal`](#send_automation_signal) | <code>automation_execution_id: str</code>, <code>signal_type: SignalType</code> | <code>SendAutomationSignalResult</code> |
-| [`send_command`](#send_command) | <code>document_name: str</code> | <code>SendCommandResult</code> |
-| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: Sequence[Target]</code> | <code>StartAccessRequestResponse</code> |
-| [`start_associations_once`](#start_associations_once) | <code>association_ids: Sequence[str]</code> | <code>StartAssociationsOnceResult</code> |
-| [`start_automation_execution`](#start_automation_execution) | <code>document_name: str</code> | <code>StartAutomationExecutionResult</code> |
-| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: Sequence[Runbook]</code> | <code>StartChangeRequestExecutionResult</code> |
-| [`start_execution_preview`](#start_execution_preview) | <code>document_name: str</code> | <code>StartExecutionPreviewResponse</code> |
-| [`start_session`](#start_session) | <code>target: str</code> | <code>StartSessionResponse</code> |
-| [`stop_automation_execution`](#stop_automation_execution) | <code>automation_execution_id: str</code> | <code>StopAutomationExecutionResult</code> |
-| [`terminate_session`](#terminate_session) | <code>session_id: str</code> | <code>TerminateSessionResponse</code> |
-| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: Sequence[str]</code> | <code>UnlabelParameterVersionResult</code> |
-| [`update_association`](#update_association) | <code>association_id: str</code> | <code>UpdateAssociationResult</code> |
-| [`update_association_status`](#update_association_status) | <code>name: str</code>, <code>instance_id: str</code>, <code>association_status: AssociationStatus</code> | <code>UpdateAssociationStatusResult</code> |
-| [`update_cloud_connector`](#update_cloud_connector) | <code>cloud_connector_id: str</code> | <code>UpdateCloudConnectorResult</code> |
-| [`update_document`](#update_document) | <code>content: str</code>, <code>name: str</code> | <code>UpdateDocumentResult</code> |
-| [`update_document_default_version`](#update_document_default_version) | <code>name: str</code>, <code>document_version: str</code> | <code>UpdateDocumentDefaultVersionResult</code> |
-| [`update_document_metadata`](#update_document_metadata) | <code>name: str</code>, <code>document_reviews: DocumentReviews</code> | <code>UpdateDocumentMetadataResponse</code> |
-| [`update_maintenance_window`](#update_maintenance_window) | <code>window_id: str</code> | <code>UpdateMaintenanceWindowResult</code> |
-| [`update_maintenance_window_target`](#update_maintenance_window_target) | <code>window_id: str</code>, <code>window_target_id: str</code> | <code>UpdateMaintenanceWindowTargetResult</code> |
-| [`update_maintenance_window_task`](#update_maintenance_window_task) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>UpdateMaintenanceWindowTaskResult</code> |
-| [`update_managed_instance_role`](#update_managed_instance_role) | <code>instance_id: str</code>, <code>iam_role: str</code> | <code>UpdateManagedInstanceRoleResult</code> |
-| [`update_ops_item`](#update_ops_item) | <code>ops_item_id: str</code> | <code>UpdateOpsItemResponse</code> |
-| [`update_ops_metadata`](#update_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>UpdateOpsMetadataResult</code> |
-| [`update_patch_baseline`](#update_patch_baseline) | <code>baseline_id: str</code> | <code>UpdatePatchBaselineResult</code> |
-| [`update_resource_data_sync`](#update_resource_data_sync) | <code>sync_name: str</code>, <code>sync_type: str</code>, <code>sync_source: ResourceDataSyncSource</code> | <code>UpdateResourceDataSyncResult</code> |
-| [`update_service_setting`](#update_service_setting) | <code>setting_id: str</code>, <code>setting_value: str</code> | <code>UpdateServiceSettingResult</code> |
-| [`validate_cloud_connector`](#validate_cloud_connector) | <code>cloud_connector_id: str</code> | <code>ValidateCloudConnectorResult</code> |
+| [`add_tags_to_resource`](#add_tags_to_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tags: Sequence[Tag]</code> | <code>AddTagsToResourceOutput</code> |
+| [`associate_ops_item_related_item`](#associate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_type: str</code>, <code>resource_type: str</code>, <code>resource_uri: str</code> | <code>AssociateOpsItemRelatedItemOutput</code> |
+| [`cancel_command`](#cancel_command) | <code>command_id: str</code> | <code>CancelCommandOutput</code> |
+| [`cancel_maintenance_window_execution`](#cancel_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>CancelMaintenanceWindowExecutionOutput</code> |
+| [`create_activation`](#create_activation) | <code>iam_role: str</code> | <code>CreateActivationOutput</code> |
+| [`create_association`](#create_association) | <code>name: str</code> | <code>CreateAssociationOutput</code> |
+| [`create_association_batch`](#create_association_batch) | <code>entries: Sequence[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchOutput</code> |
+| [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code>, <code>config_connector_arn: str</code> | <code>CreateCloudConnectorOutput</code> |
+| [`create_document`](#create_document) | <code>content: str</code>, <code>name: str</code> | <code>CreateDocumentOutput</code> |
+| [`create_maintenance_window`](#create_maintenance_window) | <code>name: str</code>, <code>schedule: str</code>, <code>duration: int</code>, <code>cutoff: int</code>, <code>allow_unassociated_targets: bool</code> | <code>CreateMaintenanceWindowOutput</code> |
+| [`create_ops_item`](#create_ops_item) | <code>description: str</code>, <code>source: str</code>, <code>title: str</code> | <code>CreateOpsItemOutput</code> |
+| [`create_ops_metadata`](#create_ops_metadata) | <code>resource_id: str</code> | <code>CreateOpsMetadataOutput</code> |
+| [`create_patch_baseline`](#create_patch_baseline) | <code>name: str</code> | <code>CreatePatchBaselineOutput</code> |
+| [`create_resource_data_sync`](#create_resource_data_sync) | <code>sync_name: str</code> | <code>CreateResourceDataSyncOutput</code> |
+| [`delete_activation`](#delete_activation) | <code>activation_id: str</code> | <code>DeleteActivationOutput</code> |
+| [`delete_association`](#delete_association) | None | <code>DeleteAssociationOutput</code> |
+| [`delete_cloud_connector`](#delete_cloud_connector) | <code>cloud_connector_id: str</code> | <code>DeleteCloudConnectorOutput</code> |
+| [`delete_document`](#delete_document) | <code>name: str</code> | <code>DeleteDocumentOutput</code> |
+| [`delete_inventory`](#delete_inventory) | <code>type_name: str</code> | <code>DeleteInventoryOutput</code> |
+| [`delete_maintenance_window`](#delete_maintenance_window) | <code>window_id: str</code> | <code>DeleteMaintenanceWindowOutput</code> |
+| [`delete_ops_item`](#delete_ops_item) | <code>ops_item_id: str</code> | <code>DeleteOpsItemOutput</code> |
+| [`delete_ops_metadata`](#delete_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>DeleteOpsMetadataOutput</code> |
+| [`delete_parameter`](#delete_parameter) | <code>name: str</code> | <code>DeleteParameterOutput</code> |
+| [`delete_parameters`](#delete_parameters) | <code>names: Sequence[str]</code> | <code>DeleteParametersOutput</code> |
+| [`delete_patch_baseline`](#delete_patch_baseline) | <code>baseline_id: str</code> | <code>DeletePatchBaselineOutput</code> |
+| [`delete_resource_data_sync`](#delete_resource_data_sync) | <code>sync_name: str</code> | <code>DeleteResourceDataSyncOutput</code> |
+| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code>, <code>policy_id: str</code>, <code>policy_hash: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`deregister_managed_instance`](#deregister_managed_instance) | <code>instance_id: str</code> | <code>DeregisterManagedInstanceOutput</code> |
+| [`deregister_patch_baseline_for_patch_group`](#deregister_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>DeregisterPatchBaselineForPatchGroupOutput</code> |
+| [`deregister_target_from_maintenance_window`](#deregister_target_from_maintenance_window) | <code>window_id: str</code>, <code>window_target_id: str</code> | <code>DeregisterTargetFromMaintenanceWindowOutput</code> |
+| [`deregister_task_from_maintenance_window`](#deregister_task_from_maintenance_window) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>DeregisterTaskFromMaintenanceWindowOutput</code> |
+| [`describe_activations`](#describe_activations) | None | <code>DescribeActivationsOutput</code> |
+| [`describe_association`](#describe_association) | None | <code>DescribeAssociationOutput</code> |
+| [`describe_association_execution_targets`](#describe_association_execution_targets) | <code>association_id: str</code>, <code>execution_id: str</code> | <code>DescribeAssociationExecutionTargetsOutput</code> |
+| [`describe_association_executions`](#describe_association_executions) | <code>association_id: str</code> | <code>DescribeAssociationExecutionsOutput</code> |
+| [`describe_automation_executions`](#describe_automation_executions) | None | <code>DescribeAutomationExecutionsOutput</code> |
+| [`describe_automation_step_executions`](#describe_automation_step_executions) | <code>automation_execution_id: str</code> | <code>DescribeAutomationStepExecutionsOutput</code> |
+| [`describe_available_patches`](#describe_available_patches) | None | <code>DescribeAvailablePatchesOutput</code> |
+| [`describe_document`](#describe_document) | <code>name: str</code> | <code>DescribeDocumentOutput</code> |
+| [`describe_document_permission`](#describe_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>DescribeDocumentPermissionOutput</code> |
+| [`describe_effective_instance_associations`](#describe_effective_instance_associations) | <code>instance_id: str</code> | <code>DescribeEffectiveInstanceAssociationsOutput</code> |
+| [`describe_effective_patches_for_patch_baseline`](#describe_effective_patches_for_patch_baseline) | <code>baseline_id: str</code> | <code>DescribeEffectivePatchesForPatchBaselineOutput</code> |
+| [`describe_instance_associations_status`](#describe_instance_associations_status) | <code>instance_id: str</code> | <code>DescribeInstanceAssociationsStatusOutput</code> |
+| [`describe_instance_information`](#describe_instance_information) | None | <code>DescribeInstanceInformationOutput</code> |
+| [`describe_instance_patch_states`](#describe_instance_patch_states) | <code>instance_ids: Sequence[str]</code> | <code>DescribeInstancePatchStatesOutput</code> |
+| [`describe_instance_patch_states_for_patch_group`](#describe_instance_patch_states_for_patch_group) | <code>patch_group: str</code> | <code>DescribeInstancePatchStatesForPatchGroupOutput</code> |
+| [`describe_instance_patches`](#describe_instance_patches) | <code>instance_id: str</code> | <code>DescribeInstancePatchesOutput</code> |
+| [`describe_instance_properties`](#describe_instance_properties) | None | <code>DescribeInstancePropertiesOutput</code> |
+| [`describe_inventory_deletions`](#describe_inventory_deletions) | None | <code>DescribeInventoryDeletionsOutput</code> |
+| [`describe_maintenance_window_execution_task_invocations`](#describe_maintenance_window_execution_task_invocations) | <code>window_execution_id: str</code>, <code>task_id: str</code> | <code>DescribeMaintenanceWindowExecutionTaskInvocationsOutput</code> |
+| [`describe_maintenance_window_execution_tasks`](#describe_maintenance_window_execution_tasks) | <code>window_execution_id: str</code> | <code>DescribeMaintenanceWindowExecutionTasksOutput</code> |
+| [`describe_maintenance_window_executions`](#describe_maintenance_window_executions) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowExecutionsOutput</code> |
+| [`describe_maintenance_window_schedule`](#describe_maintenance_window_schedule) | None | <code>DescribeMaintenanceWindowScheduleOutput</code> |
+| [`describe_maintenance_window_targets`](#describe_maintenance_window_targets) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTargetsOutput</code> |
+| [`describe_maintenance_window_tasks`](#describe_maintenance_window_tasks) | <code>window_id: str</code> | <code>DescribeMaintenanceWindowTasksOutput</code> |
+| [`describe_maintenance_windows`](#describe_maintenance_windows) | None | <code>DescribeMaintenanceWindowsOutput</code> |
+| [`describe_maintenance_windows_for_target`](#describe_maintenance_windows_for_target) | <code>targets: Sequence[Target]</code>, <code>resource_type: MaintenanceWindowResourceType</code> | <code>DescribeMaintenanceWindowsForTargetOutput</code> |
+| [`describe_ops_items`](#describe_ops_items) | None | <code>DescribeOpsItemsOutput</code> |
+| [`describe_parameters`](#describe_parameters) | None | <code>DescribeParametersOutput</code> |
+| [`describe_patch_baselines`](#describe_patch_baselines) | None | <code>DescribePatchBaselinesOutput</code> |
+| [`describe_patch_group_state`](#describe_patch_group_state) | <code>patch_group: str</code> | <code>DescribePatchGroupStateOutput</code> |
+| [`describe_patch_groups`](#describe_patch_groups) | None | <code>DescribePatchGroupsOutput</code> |
+| [`describe_patch_properties`](#describe_patch_properties) | <code>operating_system: OperatingSystem</code>, <code>property: PatchProperty</code> | <code>DescribePatchPropertiesOutput</code> |
+| [`describe_sessions`](#describe_sessions) | <code>state: SessionState</code> | <code>DescribeSessionsOutput</code> |
+| [`disassociate_ops_item_related_item`](#disassociate_ops_item_related_item) | <code>ops_item_id: str</code>, <code>association_id: str</code> | <code>DisassociateOpsItemRelatedItemOutput</code> |
+| [`get_access_token`](#get_access_token) | <code>access_request_id: str</code> | <code>GetAccessTokenOutput</code> |
+| [`get_automation_execution`](#get_automation_execution) | <code>automation_execution_id: str</code> | <code>GetAutomationExecutionOutput</code> |
+| [`get_calendar_state`](#get_calendar_state) | <code>calendar_names: Sequence[str]</code> | <code>GetCalendarStateOutput</code> |
+| [`get_cloud_connector`](#get_cloud_connector) | <code>cloud_connector_id: str</code> | <code>GetCloudConnectorOutput</code> |
+| [`get_command_invocation`](#get_command_invocation) | <code>command_id: str</code>, <code>instance_id: str</code> | <code>GetCommandInvocationOutput</code> |
+| [`get_connection_status`](#get_connection_status) | <code>target: str</code> | <code>GetConnectionStatusOutput</code> |
+| [`get_default_patch_baseline`](#get_default_patch_baseline) | None | <code>GetDefaultPatchBaselineOutput</code> |
+| [`get_deployable_patch_snapshot_for_instance`](#get_deployable_patch_snapshot_for_instance) | <code>instance_id: str</code>, <code>snapshot_id: str</code> | <code>GetDeployablePatchSnapshotForInstanceOutput</code> |
+| [`get_document`](#get_document) | <code>name: str</code> | <code>GetDocumentOutput</code> |
+| [`get_execution_preview`](#get_execution_preview) | <code>execution_preview_id: str</code> | <code>GetExecutionPreviewOutput</code> |
+| [`get_inventory`](#get_inventory) | None | <code>GetInventoryOutput</code> |
+| [`get_inventory_schema`](#get_inventory_schema) | None | <code>GetInventorySchemaOutput</code> |
+| [`get_maintenance_window`](#get_maintenance_window) | <code>window_id: str</code> | <code>GetMaintenanceWindowOutput</code> |
+| [`get_maintenance_window_execution`](#get_maintenance_window_execution) | <code>window_execution_id: str</code> | <code>GetMaintenanceWindowExecutionOutput</code> |
+| [`get_maintenance_window_execution_task`](#get_maintenance_window_execution_task) | <code>window_execution_id: str</code>, <code>task_id: str</code> | <code>GetMaintenanceWindowExecutionTaskOutput</code> |
+| [`get_maintenance_window_execution_task_invocation`](#get_maintenance_window_execution_task_invocation) | <code>window_execution_id: str</code>, <code>task_id: str</code>, <code>invocation_id: str</code> | <code>GetMaintenanceWindowExecutionTaskInvocationOutput</code> |
+| [`get_maintenance_window_task`](#get_maintenance_window_task) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>GetMaintenanceWindowTaskOutput</code> |
+| [`get_ops_item`](#get_ops_item) | <code>ops_item_id: str</code> | <code>GetOpsItemOutput</code> |
+| [`get_ops_metadata`](#get_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>GetOpsMetadataOutput</code> |
+| [`get_ops_summary`](#get_ops_summary) | None | <code>GetOpsSummaryOutput</code> |
+| [`get_parameter`](#get_parameter) | <code>name: str</code> | <code>GetParameterOutput</code> |
+| [`get_parameter_history`](#get_parameter_history) | <code>name: str</code> | <code>GetParameterHistoryOutput</code> |
+| [`get_parameters`](#get_parameters) | <code>names: Sequence[str]</code> | <code>GetParametersOutput</code> |
+| [`get_parameters_by_path`](#get_parameters_by_path) | <code>path: str</code> | <code>GetParametersByPathOutput</code> |
+| [`get_patch_baseline`](#get_patch_baseline) | <code>baseline_id: str</code> | <code>GetPatchBaselineOutput</code> |
+| [`get_patch_baseline_for_patch_group`](#get_patch_baseline_for_patch_group) | <code>patch_group: str</code> | <code>GetPatchBaselineForPatchGroupOutput</code> |
+| [`get_resource_policies`](#get_resource_policies) | <code>resource_arn: str</code> | <code>GetResourcePoliciesOutput</code> |
+| [`get_service_setting`](#get_service_setting) | <code>setting_id: str</code> | <code>GetServiceSettingOutput</code> |
+| [`label_parameter_version`](#label_parameter_version) | <code>name: str</code>, <code>labels: Sequence[str]</code> | <code>LabelParameterVersionOutput</code> |
+| [`list_association_versions`](#list_association_versions) | <code>association_id: str</code> | <code>ListAssociationVersionsOutput</code> |
+| [`list_associations`](#list_associations) | None | <code>ListAssociationsOutput</code> |
+| [`list_cloud_connectors`](#list_cloud_connectors) | None | <code>ListCloudConnectorsOutput</code> |
+| [`list_command_invocations`](#list_command_invocations) | None | <code>ListCommandInvocationsOutput</code> |
+| [`list_commands`](#list_commands) | None | <code>ListCommandsOutput</code> |
+| [`list_compliance_items`](#list_compliance_items) | None | <code>ListComplianceItemsOutput</code> |
+| [`list_compliance_summaries`](#list_compliance_summaries) | None | <code>ListComplianceSummariesOutput</code> |
+| [`list_document_metadata_history`](#list_document_metadata_history) | <code>name: str</code>, <code>metadata: DocumentMetadataEnum</code> | <code>ListDocumentMetadataHistoryOutput</code> |
+| [`list_document_versions`](#list_document_versions) | <code>name: str</code> | <code>ListDocumentVersionsOutput</code> |
+| [`list_documents`](#list_documents) | None | <code>ListDocumentsOutput</code> |
+| [`list_inventory_entries`](#list_inventory_entries) | <code>instance_id: str</code>, <code>type_name: str</code> | <code>ListInventoryEntriesOutput</code> |
+| [`list_nodes`](#list_nodes) | None | <code>ListNodesOutput</code> |
+| [`list_nodes_summary`](#list_nodes_summary) | <code>aggregators: Sequence[NodeAggregator]</code> | <code>ListNodesSummaryOutput</code> |
+| [`list_ops_item_events`](#list_ops_item_events) | None | <code>ListOpsItemEventsOutput</code> |
+| [`list_ops_item_related_items`](#list_ops_item_related_items) | None | <code>ListOpsItemRelatedItemsOutput</code> |
+| [`list_ops_metadata`](#list_ops_metadata) | None | <code>ListOpsMetadataOutput</code> |
+| [`list_resource_compliance_summaries`](#list_resource_compliance_summaries) | None | <code>ListResourceComplianceSummariesOutput</code> |
+| [`list_resource_data_sync`](#list_resource_data_sync) | None | <code>ListResourceDataSyncOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`modify_document_permission`](#modify_document_permission) | <code>name: str</code>, <code>permission_type: DocumentPermissionType</code> | <code>ModifyDocumentPermissionOutput</code> |
+| [`put_compliance_items`](#put_compliance_items) | <code>resource_id: str</code>, <code>resource_type: str</code>, <code>compliance_type: str</code>, <code>execution_summary: ComplianceExecutionSummary</code>, <code>items: Sequence[ComplianceItemEntry]</code> | <code>PutComplianceItemsOutput</code> |
+| [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: Sequence[InventoryItem]</code> | <code>PutInventoryOutput</code> |
+| [`put_parameter`](#put_parameter) | <code>name: str</code>, <code>value: str</code> | <code>PutParameterOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`register_default_patch_baseline`](#register_default_patch_baseline) | <code>baseline_id: str</code> | <code>RegisterDefaultPatchBaselineOutput</code> |
+| [`register_patch_baseline_for_patch_group`](#register_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>RegisterPatchBaselineForPatchGroupOutput</code> |
+| [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: Sequence[Target]</code> | <code>RegisterTargetWithMaintenanceWindowOutput</code> |
+| [`register_task_with_maintenance_window`](#register_task_with_maintenance_window) | <code>window_id: str</code>, <code>task_arn: str</code>, <code>task_type: MaintenanceWindowTaskType</code> | <code>RegisterTaskWithMaintenanceWindowOutput</code> |
+| [`remove_tags_from_resource`](#remove_tags_from_resource) | <code>resource_type: ResourceTypeForTagging</code>, <code>resource_id: str</code>, <code>tag_keys: Sequence[str]</code> | <code>RemoveTagsFromResourceOutput</code> |
+| [`reset_service_setting`](#reset_service_setting) | <code>setting_id: str</code> | <code>ResetServiceSettingOutput</code> |
+| [`resume_session`](#resume_session) | <code>session_id: str</code> | <code>ResumeSessionOutput</code> |
+| [`send_automation_signal`](#send_automation_signal) | <code>automation_execution_id: str</code>, <code>signal_type: SignalType</code> | <code>SendAutomationSignalOutput</code> |
+| [`send_command`](#send_command) | <code>document_name: str</code> | <code>SendCommandOutput</code> |
+| [`start_access_request`](#start_access_request) | <code>reason: str</code>, <code>targets: Sequence[Target]</code> | <code>StartAccessRequestOutput</code> |
+| [`start_associations_once`](#start_associations_once) | <code>association_ids: Sequence[str]</code> | <code>StartAssociationsOnceOutput</code> |
+| [`start_automation_execution`](#start_automation_execution) | <code>document_name: str</code> | <code>StartAutomationExecutionOutput</code> |
+| [`start_change_request_execution`](#start_change_request_execution) | <code>document_name: str</code>, <code>runbooks: Sequence[Runbook]</code> | <code>StartChangeRequestExecutionOutput</code> |
+| [`start_execution_preview`](#start_execution_preview) | <code>document_name: str</code> | <code>StartExecutionPreviewOutput</code> |
+| [`start_session`](#start_session) | <code>target: str</code> | <code>StartSessionOutput</code> |
+| [`stop_automation_execution`](#stop_automation_execution) | <code>automation_execution_id: str</code> | <code>StopAutomationExecutionOutput</code> |
+| [`terminate_session`](#terminate_session) | <code>session_id: str</code> | <code>TerminateSessionOutput</code> |
+| [`unlabel_parameter_version`](#unlabel_parameter_version) | <code>name: str</code>, <code>parameter_version: int</code>, <code>labels: Sequence[str]</code> | <code>UnlabelParameterVersionOutput</code> |
+| [`update_association`](#update_association) | <code>association_id: str</code> | <code>UpdateAssociationOutput</code> |
+| [`update_association_status`](#update_association_status) | <code>name: str</code>, <code>instance_id: str</code>, <code>association_status: AssociationStatus</code> | <code>UpdateAssociationStatusOutput</code> |
+| [`update_cloud_connector`](#update_cloud_connector) | <code>cloud_connector_id: str</code> | <code>UpdateCloudConnectorOutput</code> |
+| [`update_document`](#update_document) | <code>content: str</code>, <code>name: str</code> | <code>UpdateDocumentOutput</code> |
+| [`update_document_default_version`](#update_document_default_version) | <code>name: str</code>, <code>document_version: str</code> | <code>UpdateDocumentDefaultVersionOutput</code> |
+| [`update_document_metadata`](#update_document_metadata) | <code>name: str</code>, <code>document_reviews: DocumentReviews</code> | <code>UpdateDocumentMetadataOutput</code> |
+| [`update_maintenance_window`](#update_maintenance_window) | <code>window_id: str</code> | <code>UpdateMaintenanceWindowOutput</code> |
+| [`update_maintenance_window_target`](#update_maintenance_window_target) | <code>window_id: str</code>, <code>window_target_id: str</code> | <code>UpdateMaintenanceWindowTargetOutput</code> |
+| [`update_maintenance_window_task`](#update_maintenance_window_task) | <code>window_id: str</code>, <code>window_task_id: str</code> | <code>UpdateMaintenanceWindowTaskOutput</code> |
+| [`update_managed_instance_role`](#update_managed_instance_role) | <code>instance_id: str</code>, <code>iam_role: str</code> | <code>UpdateManagedInstanceRoleOutput</code> |
+| [`update_ops_item`](#update_ops_item) | <code>ops_item_id: str</code> | <code>UpdateOpsItemOutput</code> |
+| [`update_ops_metadata`](#update_ops_metadata) | <code>ops_metadata_arn: str</code> | <code>UpdateOpsMetadataOutput</code> |
+| [`update_patch_baseline`](#update_patch_baseline) | <code>baseline_id: str</code> | <code>UpdatePatchBaselineOutput</code> |
+| [`update_resource_data_sync`](#update_resource_data_sync) | <code>sync_name: str</code>, <code>sync_type: str</code>, <code>sync_source: ResourceDataSyncSource</code> | <code>UpdateResourceDataSyncOutput</code> |
+| [`update_service_setting`](#update_service_setting) | <code>setting_id: str</code>, <code>setting_value: str</code> | <code>UpdateServiceSettingOutput</code> |
+| [`validate_cloud_connector`](#validate_cloud_connector) | <code>cloud_connector_id: str</code> | <code>ValidateCloudConnectorOutput</code> |
 
 ## Complete signatures
 
@@ -248,7 +248,7 @@ async def add_tags_to_resource(
     resource_type: ResourceTypeForTagging,
     resource_id: str,
     tags: Sequence[Tag],
-) -> AddTagsToResourceResult: ...
+) -> AddTagsToResourceOutput: ...
 ```
 
 
@@ -261,7 +261,7 @@ async def associate_ops_item_related_item(
     association_type: str,
     resource_type: str,
     resource_uri: str,
-) -> AssociateOpsItemRelatedItemResponse: ...
+) -> AssociateOpsItemRelatedItemOutput: ...
 ```
 
 
@@ -272,7 +272,7 @@ async def cancel_command(
     *,
     command_id: str,
     instance_ids: Sequence[str] | None = None,
-) -> CancelCommandResult: ...
+) -> CancelCommandOutput: ...
 ```
 
 
@@ -282,7 +282,7 @@ async def cancel_command(
 async def cancel_maintenance_window_execution(
     *,
     window_execution_id: str,
-) -> CancelMaintenanceWindowExecutionResult: ...
+) -> CancelMaintenanceWindowExecutionOutput: ...
 ```
 
 
@@ -298,7 +298,7 @@ async def create_activation(
     expiration_date: str | None = None,
     tags: Sequence[Tag] | None = None,
     registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
-) -> CreateActivationResult: ...
+) -> CreateActivationOutput: ...
 ```
 
 
@@ -329,7 +329,7 @@ async def create_association(
     tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
-) -> CreateAssociationResult: ...
+) -> CreateAssociationOutput: ...
 ```
 
 
@@ -340,7 +340,7 @@ async def create_association_batch(
     *,
     entries: Sequence[CreateAssociationBatchRequestEntry],
     association_dispatch_assume_role: str | None = None,
-) -> CreateAssociationBatchResult: ...
+) -> CreateAssociationBatchOutput: ...
 ```
 
 
@@ -355,7 +355,7 @@ async def create_cloud_connector(
     config_connector_arn: str,
     description: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateCloudConnectorResult: ...
+) -> CreateCloudConnectorOutput: ...
 ```
 
 
@@ -374,7 +374,7 @@ async def create_document(
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateDocumentResult: ...
+) -> CreateDocumentOutput: ...
 ```
 
 
@@ -395,7 +395,7 @@ async def create_maintenance_window(
     schedule_offset: int | None = None,
     client_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateMaintenanceWindowResult: ...
+) -> CreateMaintenanceWindowOutput: ...
 ```
 
 
@@ -420,7 +420,7 @@ async def create_ops_item(
     planned_start_time: str | None = None,
     planned_end_time: str | None = None,
     account_id: str | None = None,
-) -> CreateOpsItemResponse: ...
+) -> CreateOpsItemOutput: ...
 ```
 
 
@@ -432,7 +432,7 @@ async def create_ops_metadata(
     resource_id: str,
     metadata: dict[str, MetadataValue] | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateOpsMetadataResult: ...
+) -> CreateOpsMetadataOutput: ...
 ```
 
 
@@ -455,7 +455,7 @@ async def create_patch_baseline(
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     client_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreatePatchBaselineResult: ...
+) -> CreatePatchBaselineOutput: ...
 ```
 
 
@@ -468,7 +468,7 @@ async def create_resource_data_sync(
     s3_destination: ResourceDataSyncS3Destination | None = None,
     sync_type: str | None = None,
     sync_source: ResourceDataSyncSource | None = None,
-) -> CreateResourceDataSyncResult: ...
+) -> CreateResourceDataSyncOutput: ...
 ```
 
 
@@ -478,7 +478,7 @@ async def create_resource_data_sync(
 async def delete_activation(
     *,
     activation_id: str,
-) -> DeleteActivationResult: ...
+) -> DeleteActivationOutput: ...
 ```
 
 
@@ -490,7 +490,7 @@ async def delete_association(
     name: str | None = None,
     instance_id: str | None = None,
     association_id: str | None = None,
-) -> DeleteAssociationResult: ...
+) -> DeleteAssociationOutput: ...
 ```
 
 
@@ -500,7 +500,7 @@ async def delete_association(
 async def delete_cloud_connector(
     *,
     cloud_connector_id: str,
-) -> DeleteCloudConnectorResult: ...
+) -> DeleteCloudConnectorOutput: ...
 ```
 
 
@@ -513,7 +513,7 @@ async def delete_document(
     document_version: str | None = None,
     version_name: str | None = None,
     force: bool | None = None,
-) -> DeleteDocumentResult: ...
+) -> DeleteDocumentOutput: ...
 ```
 
 
@@ -526,7 +526,7 @@ async def delete_inventory(
     schema_delete_option: InventorySchemaDeleteOption | None = None,
     dry_run: bool | None = None,
     client_token: str | None = None,
-) -> DeleteInventoryResult: ...
+) -> DeleteInventoryOutput: ...
 ```
 
 
@@ -536,7 +536,7 @@ async def delete_inventory(
 async def delete_maintenance_window(
     *,
     window_id: str,
-) -> DeleteMaintenanceWindowResult: ...
+) -> DeleteMaintenanceWindowOutput: ...
 ```
 
 
@@ -546,7 +546,7 @@ async def delete_maintenance_window(
 async def delete_ops_item(
     *,
     ops_item_id: str,
-) -> DeleteOpsItemResponse: ...
+) -> DeleteOpsItemOutput: ...
 ```
 
 
@@ -556,7 +556,7 @@ async def delete_ops_item(
 async def delete_ops_metadata(
     *,
     ops_metadata_arn: str,
-) -> DeleteOpsMetadataResult: ...
+) -> DeleteOpsMetadataOutput: ...
 ```
 
 
@@ -566,7 +566,7 @@ async def delete_ops_metadata(
 async def delete_parameter(
     *,
     name: str,
-) -> DeleteParameterResult: ...
+) -> DeleteParameterOutput: ...
 ```
 
 
@@ -576,7 +576,7 @@ async def delete_parameter(
 async def delete_parameters(
     *,
     names: Sequence[str],
-) -> DeleteParametersResult: ...
+) -> DeleteParametersOutput: ...
 ```
 
 
@@ -586,7 +586,7 @@ async def delete_parameters(
 async def delete_patch_baseline(
     *,
     baseline_id: str,
-) -> DeletePatchBaselineResult: ...
+) -> DeletePatchBaselineOutput: ...
 ```
 
 
@@ -597,7 +597,7 @@ async def delete_resource_data_sync(
     *,
     sync_name: str,
     sync_type: str | None = None,
-) -> DeleteResourceDataSyncResult: ...
+) -> DeleteResourceDataSyncOutput: ...
 ```
 
 
@@ -610,7 +610,7 @@ async def delete_resource_policy(
     policy_id: str,
     policy_hash: str,
     deletion_mode: DeletionMode | None = None,
-) -> DeleteResourcePolicyResponse: ...
+) -> DeleteResourcePolicyOutput: ...
 ```
 
 
@@ -620,7 +620,7 @@ async def delete_resource_policy(
 async def deregister_managed_instance(
     *,
     instance_id: str,
-) -> DeregisterManagedInstanceResult: ...
+) -> DeregisterManagedInstanceOutput: ...
 ```
 
 
@@ -631,7 +631,7 @@ async def deregister_patch_baseline_for_patch_group(
     *,
     baseline_id: str,
     patch_group: str,
-) -> DeregisterPatchBaselineForPatchGroupResult: ...
+) -> DeregisterPatchBaselineForPatchGroupOutput: ...
 ```
 
 
@@ -643,7 +643,7 @@ async def deregister_target_from_maintenance_window(
     window_id: str,
     window_target_id: str,
     safe: bool | None = None,
-) -> DeregisterTargetFromMaintenanceWindowResult: ...
+) -> DeregisterTargetFromMaintenanceWindowOutput: ...
 ```
 
 
@@ -654,7 +654,7 @@ async def deregister_task_from_maintenance_window(
     *,
     window_id: str,
     window_task_id: str,
-) -> DeregisterTaskFromMaintenanceWindowResult: ...
+) -> DeregisterTaskFromMaintenanceWindowOutput: ...
 ```
 
 
@@ -666,7 +666,7 @@ async def describe_activations(
     filters: Sequence[DescribeActivationsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeActivationsResult: ...
+) -> DescribeActivationsOutput: ...
 ```
 
 Also available as `client.paginators.describe_activations(...)`, returning an
@@ -682,7 +682,7 @@ async def describe_association(
     instance_id: str | None = None,
     association_id: str | None = None,
     association_version: str | None = None,
-) -> DescribeAssociationResult: ...
+) -> DescribeAssociationOutput: ...
 ```
 
 
@@ -696,7 +696,7 @@ async def describe_association_execution_targets(
     filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeAssociationExecutionTargetsResult: ...
+) -> DescribeAssociationExecutionTargetsOutput: ...
 ```
 
 Also available as `client.paginators.describe_association_execution_targets(...)`, returning an
@@ -712,7 +712,7 @@ async def describe_association_executions(
     filters: Sequence[AssociationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeAssociationExecutionsResult: ...
+) -> DescribeAssociationExecutionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_association_executions(...)`, returning an
@@ -727,7 +727,7 @@ async def describe_automation_executions(
     filters: Sequence[AutomationExecutionFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeAutomationExecutionsResult: ...
+) -> DescribeAutomationExecutionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_automation_executions(...)`, returning an
@@ -744,7 +744,7 @@ async def describe_automation_step_executions(
     next_token: str | None = None,
     max_results: int | None = None,
     reverse_order: bool | None = None,
-) -> DescribeAutomationStepExecutionsResult: ...
+) -> DescribeAutomationStepExecutionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_automation_step_executions(...)`, returning an
@@ -759,7 +759,7 @@ async def describe_available_patches(
     filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeAvailablePatchesResult: ...
+) -> DescribeAvailablePatchesOutput: ...
 ```
 
 Also available as `client.paginators.describe_available_patches(...)`, returning an
@@ -774,7 +774,7 @@ async def describe_document(
     name: str,
     document_version: str | None = None,
     version_name: str | None = None,
-) -> DescribeDocumentResult: ...
+) -> DescribeDocumentOutput: ...
 ```
 
 
@@ -787,7 +787,7 @@ async def describe_document_permission(
     permission_type: DocumentPermissionType,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeDocumentPermissionResponse: ...
+) -> DescribeDocumentPermissionOutput: ...
 ```
 
 
@@ -799,7 +799,7 @@ async def describe_effective_instance_associations(
     instance_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeEffectiveInstanceAssociationsResult: ...
+) -> DescribeEffectiveInstanceAssociationsOutput: ...
 ```
 
 Also available as `client.paginators.describe_effective_instance_associations(...)`, returning an
@@ -814,7 +814,7 @@ async def describe_effective_patches_for_patch_baseline(
     baseline_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeEffectivePatchesForPatchBaselineResult: ...
+) -> DescribeEffectivePatchesForPatchBaselineOutput: ...
 ```
 
 Also available as `client.paginators.describe_effective_patches_for_patch_baseline(...)`, returning an
@@ -829,7 +829,7 @@ async def describe_instance_associations_status(
     instance_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeInstanceAssociationsStatusResult: ...
+) -> DescribeInstanceAssociationsStatusOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_associations_status(...)`, returning an
@@ -845,7 +845,7 @@ async def describe_instance_information(
     filters: Sequence[InstanceInformationStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeInstanceInformationResult: ...
+) -> DescribeInstanceInformationOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_information(...)`, returning an
@@ -860,7 +860,7 @@ async def describe_instance_patch_states(
     instance_ids: Sequence[str],
     next_token: str | None = None,
     max_results: int | None = None,
-) -> DescribeInstancePatchStatesResult: ...
+) -> DescribeInstancePatchStatesOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_patch_states(...)`, returning an
@@ -876,7 +876,7 @@ async def describe_instance_patch_states_for_patch_group(
     filters: Sequence[InstancePatchStateFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> DescribeInstancePatchStatesForPatchGroupResult: ...
+) -> DescribeInstancePatchStatesForPatchGroupOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_patch_states_for_patch_group(...)`, returning an
@@ -892,7 +892,7 @@ async def describe_instance_patches(
     filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> DescribeInstancePatchesResult: ...
+) -> DescribeInstancePatchesOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_patches(...)`, returning an
@@ -908,7 +908,7 @@ async def describe_instance_properties(
     filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeInstancePropertiesResult: ...
+) -> DescribeInstancePropertiesOutput: ...
 ```
 
 Also available as `client.paginators.describe_instance_properties(...)`, returning an
@@ -923,7 +923,7 @@ async def describe_inventory_deletions(
     deletion_id: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> DescribeInventoryDeletionsResult: ...
+) -> DescribeInventoryDeletionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_inventory_deletions(...)`, returning an
@@ -940,7 +940,7 @@ async def describe_maintenance_window_execution_task_invocations(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowExecutionTaskInvocationsResult: ...
+) -> DescribeMaintenanceWindowExecutionTaskInvocationsOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_execution_task_invocations(...)`, returning an
@@ -956,7 +956,7 @@ async def describe_maintenance_window_execution_tasks(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowExecutionTasksResult: ...
+) -> DescribeMaintenanceWindowExecutionTasksOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_execution_tasks(...)`, returning an
@@ -972,7 +972,7 @@ async def describe_maintenance_window_executions(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowExecutionsResult: ...
+) -> DescribeMaintenanceWindowExecutionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_executions(...)`, returning an
@@ -990,7 +990,7 @@ async def describe_maintenance_window_schedule(
     filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowScheduleResult: ...
+) -> DescribeMaintenanceWindowScheduleOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_schedule(...)`, returning an
@@ -1006,7 +1006,7 @@ async def describe_maintenance_window_targets(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowTargetsResult: ...
+) -> DescribeMaintenanceWindowTargetsOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_targets(...)`, returning an
@@ -1022,7 +1022,7 @@ async def describe_maintenance_window_tasks(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowTasksResult: ...
+) -> DescribeMaintenanceWindowTasksOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_window_tasks(...)`, returning an
@@ -1037,7 +1037,7 @@ async def describe_maintenance_windows(
     filters: Sequence[MaintenanceWindowFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowsResult: ...
+) -> DescribeMaintenanceWindowsOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_windows(...)`, returning an
@@ -1053,7 +1053,7 @@ async def describe_maintenance_windows_for_target(
     resource_type: MaintenanceWindowResourceType,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeMaintenanceWindowsForTargetResult: ...
+) -> DescribeMaintenanceWindowsForTargetOutput: ...
 ```
 
 Also available as `client.paginators.describe_maintenance_windows_for_target(...)`, returning an
@@ -1068,7 +1068,7 @@ async def describe_ops_items(
     ops_item_filters: Sequence[OpsItemFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribeOpsItemsResponse: ...
+) -> DescribeOpsItemsOutput: ...
 ```
 
 Also available as `client.paginators.describe_ops_items(...)`, returning an
@@ -1085,7 +1085,7 @@ async def describe_parameters(
     max_results: int | None = None,
     next_token: str | None = None,
     shared: bool | None = None,
-) -> DescribeParametersResult: ...
+) -> DescribeParametersOutput: ...
 ```
 
 Also available as `client.paginators.describe_parameters(...)`, returning an
@@ -1100,7 +1100,7 @@ async def describe_patch_baselines(
     filters: Sequence[PatchOrchestratorFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribePatchBaselinesResult: ...
+) -> DescribePatchBaselinesOutput: ...
 ```
 
 Also available as `client.paginators.describe_patch_baselines(...)`, returning an
@@ -1113,7 +1113,7 @@ async iterator of the response type above.
 async def describe_patch_group_state(
     *,
     patch_group: str,
-) -> DescribePatchGroupStateResult: ...
+) -> DescribePatchGroupStateOutput: ...
 ```
 
 
@@ -1125,7 +1125,7 @@ async def describe_patch_groups(
     max_results: int | None = None,
     filters: Sequence[PatchOrchestratorFilter] | None = None,
     next_token: str | None = None,
-) -> DescribePatchGroupsResult: ...
+) -> DescribePatchGroupsOutput: ...
 ```
 
 Also available as `client.paginators.describe_patch_groups(...)`, returning an
@@ -1142,7 +1142,7 @@ async def describe_patch_properties(
     patch_set: PatchSet | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> DescribePatchPropertiesResult: ...
+) -> DescribePatchPropertiesOutput: ...
 ```
 
 Also available as `client.paginators.describe_patch_properties(...)`, returning an
@@ -1158,7 +1158,7 @@ async def describe_sessions(
     max_results: int | None = None,
     next_token: str | None = None,
     filters: Sequence[SessionFilter] | None = None,
-) -> DescribeSessionsResponse: ...
+) -> DescribeSessionsOutput: ...
 ```
 
 Also available as `client.paginators.describe_sessions(...)`, returning an
@@ -1172,7 +1172,7 @@ async def disassociate_ops_item_related_item(
     *,
     ops_item_id: str,
     association_id: str,
-) -> DisassociateOpsItemRelatedItemResponse: ...
+) -> DisassociateOpsItemRelatedItemOutput: ...
 ```
 
 
@@ -1182,7 +1182,7 @@ async def disassociate_ops_item_related_item(
 async def get_access_token(
     *,
     access_request_id: str,
-) -> GetAccessTokenResponse: ...
+) -> GetAccessTokenOutput: ...
 ```
 
 
@@ -1192,7 +1192,7 @@ async def get_access_token(
 async def get_automation_execution(
     *,
     automation_execution_id: str,
-) -> GetAutomationExecutionResult: ...
+) -> GetAutomationExecutionOutput: ...
 ```
 
 
@@ -1203,7 +1203,7 @@ async def get_calendar_state(
     *,
     calendar_names: Sequence[str],
     at_time: str | None = None,
-) -> GetCalendarStateResponse: ...
+) -> GetCalendarStateOutput: ...
 ```
 
 
@@ -1213,7 +1213,7 @@ async def get_calendar_state(
 async def get_cloud_connector(
     *,
     cloud_connector_id: str,
-) -> GetCloudConnectorResult: ...
+) -> GetCloudConnectorOutput: ...
 ```
 
 
@@ -1225,7 +1225,7 @@ async def get_command_invocation(
     command_id: str,
     instance_id: str,
     plugin_name: str | None = None,
-) -> GetCommandInvocationResult: ...
+) -> GetCommandInvocationOutput: ...
 ```
 
 
@@ -1235,7 +1235,7 @@ async def get_command_invocation(
 async def get_connection_status(
     *,
     target: str,
-) -> GetConnectionStatusResponse: ...
+) -> GetConnectionStatusOutput: ...
 ```
 
 
@@ -1245,7 +1245,7 @@ async def get_connection_status(
 async def get_default_patch_baseline(
     *,
     operating_system: OperatingSystem | None = None,
-) -> GetDefaultPatchBaselineResult: ...
+) -> GetDefaultPatchBaselineOutput: ...
 ```
 
 
@@ -1258,7 +1258,7 @@ async def get_deployable_patch_snapshot_for_instance(
     snapshot_id: str,
     baseline_override: BaselineOverride | None = None,
     use_s3_dual_stack_endpoint: bool | None = None,
-) -> GetDeployablePatchSnapshotForInstanceResult: ...
+) -> GetDeployablePatchSnapshotForInstanceOutput: ...
 ```
 
 
@@ -1271,7 +1271,7 @@ async def get_document(
     version_name: str | None = None,
     document_version: str | None = None,
     document_format: DocumentFormat | None = None,
-) -> GetDocumentResult: ...
+) -> GetDocumentOutput: ...
 ```
 
 
@@ -1281,7 +1281,7 @@ async def get_document(
 async def get_execution_preview(
     *,
     execution_preview_id: str,
-) -> GetExecutionPreviewResponse: ...
+) -> GetExecutionPreviewOutput: ...
 ```
 
 
@@ -1295,7 +1295,7 @@ async def get_inventory(
     result_attributes: Sequence[ResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> GetInventoryResult: ...
+) -> GetInventoryOutput: ...
 ```
 
 Also available as `client.paginators.get_inventory(...)`, returning an
@@ -1312,7 +1312,7 @@ async def get_inventory_schema(
     max_results: int | None = None,
     aggregator: bool | None = None,
     sub_type: bool | None = None,
-) -> GetInventorySchemaResult: ...
+) -> GetInventorySchemaOutput: ...
 ```
 
 Also available as `client.paginators.get_inventory_schema(...)`, returning an
@@ -1325,7 +1325,7 @@ async iterator of the response type above.
 async def get_maintenance_window(
     *,
     window_id: str,
-) -> GetMaintenanceWindowResult: ...
+) -> GetMaintenanceWindowOutput: ...
 ```
 
 
@@ -1335,7 +1335,7 @@ async def get_maintenance_window(
 async def get_maintenance_window_execution(
     *,
     window_execution_id: str,
-) -> GetMaintenanceWindowExecutionResult: ...
+) -> GetMaintenanceWindowExecutionOutput: ...
 ```
 
 
@@ -1346,7 +1346,7 @@ async def get_maintenance_window_execution_task(
     *,
     window_execution_id: str,
     task_id: str,
-) -> GetMaintenanceWindowExecutionTaskResult: ...
+) -> GetMaintenanceWindowExecutionTaskOutput: ...
 ```
 
 
@@ -1358,7 +1358,7 @@ async def get_maintenance_window_execution_task_invocation(
     window_execution_id: str,
     task_id: str,
     invocation_id: str,
-) -> GetMaintenanceWindowExecutionTaskInvocationResult: ...
+) -> GetMaintenanceWindowExecutionTaskInvocationOutput: ...
 ```
 
 
@@ -1369,7 +1369,7 @@ async def get_maintenance_window_task(
     *,
     window_id: str,
     window_task_id: str,
-) -> GetMaintenanceWindowTaskResult: ...
+) -> GetMaintenanceWindowTaskOutput: ...
 ```
 
 
@@ -1380,7 +1380,7 @@ async def get_ops_item(
     *,
     ops_item_id: str,
     ops_item_arn: str | None = None,
-) -> GetOpsItemResponse: ...
+) -> GetOpsItemOutput: ...
 ```
 
 
@@ -1392,7 +1392,7 @@ async def get_ops_metadata(
     ops_metadata_arn: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetOpsMetadataResult: ...
+) -> GetOpsMetadataOutput: ...
 ```
 
 
@@ -1407,7 +1407,7 @@ async def get_ops_summary(
     result_attributes: Sequence[OpsResultAttribute] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> GetOpsSummaryResult: ...
+) -> GetOpsSummaryOutput: ...
 ```
 
 Also available as `client.paginators.get_ops_summary(...)`, returning an
@@ -1421,7 +1421,7 @@ async def get_parameter(
     *,
     name: str,
     with_decryption: bool | None = None,
-) -> GetParameterResult: ...
+) -> GetParameterOutput: ...
 ```
 
 
@@ -1434,7 +1434,7 @@ async def get_parameter_history(
     with_decryption: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetParameterHistoryResult: ...
+) -> GetParameterHistoryOutput: ...
 ```
 
 Also available as `client.paginators.get_parameter_history(...)`, returning an
@@ -1448,7 +1448,7 @@ async def get_parameters(
     *,
     names: Sequence[str],
     with_decryption: bool | None = None,
-) -> GetParametersResult: ...
+) -> GetParametersOutput: ...
 ```
 
 
@@ -1463,7 +1463,7 @@ async def get_parameters_by_path(
     with_decryption: bool | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> GetParametersByPathResult: ...
+) -> GetParametersByPathOutput: ...
 ```
 
 Also available as `client.paginators.get_parameters_by_path(...)`, returning an
@@ -1476,7 +1476,7 @@ async iterator of the response type above.
 async def get_patch_baseline(
     *,
     baseline_id: str,
-) -> GetPatchBaselineResult: ...
+) -> GetPatchBaselineOutput: ...
 ```
 
 
@@ -1487,7 +1487,7 @@ async def get_patch_baseline_for_patch_group(
     *,
     patch_group: str,
     operating_system: OperatingSystem | None = None,
-) -> GetPatchBaselineForPatchGroupResult: ...
+) -> GetPatchBaselineForPatchGroupOutput: ...
 ```
 
 
@@ -1499,7 +1499,7 @@ async def get_resource_policies(
     resource_arn: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> GetResourcePoliciesResponse: ...
+) -> GetResourcePoliciesOutput: ...
 ```
 
 Also available as `client.paginators.get_resource_policies(...)`, returning an
@@ -1512,7 +1512,7 @@ async iterator of the response type above.
 async def get_service_setting(
     *,
     setting_id: str,
-) -> GetServiceSettingResult: ...
+) -> GetServiceSettingOutput: ...
 ```
 
 
@@ -1524,7 +1524,7 @@ async def label_parameter_version(
     name: str,
     labels: Sequence[str],
     parameter_version: int | None = None,
-) -> LabelParameterVersionResult: ...
+) -> LabelParameterVersionOutput: ...
 ```
 
 
@@ -1536,7 +1536,7 @@ async def list_association_versions(
     association_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAssociationVersionsResult: ...
+) -> ListAssociationVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_association_versions(...)`, returning an
@@ -1551,7 +1551,7 @@ async def list_associations(
     association_filter_list: Sequence[AssociationFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAssociationsResult: ...
+) -> ListAssociationsOutput: ...
 ```
 
 Also available as `client.paginators.list_associations(...)`, returning an
@@ -1566,7 +1566,7 @@ async def list_cloud_connectors(
     max_results: int | None = None,
     next_token: str | None = None,
     filters: Sequence[CloudConnectorFilter] | None = None,
-) -> ListCloudConnectorsResult: ...
+) -> ListCloudConnectorsOutput: ...
 ```
 
 Also available as `client.paginators.list_cloud_connectors(...)`, returning an
@@ -1584,7 +1584,7 @@ async def list_command_invocations(
     next_token: str | None = None,
     filters: Sequence[CommandFilter] | None = None,
     details: bool | None = None,
-) -> ListCommandInvocationsResult: ...
+) -> ListCommandInvocationsOutput: ...
 ```
 
 Also available as `client.paginators.list_command_invocations(...)`, returning an
@@ -1601,7 +1601,7 @@ async def list_commands(
     max_results: int | None = None,
     next_token: str | None = None,
     filters: Sequence[CommandFilter] | None = None,
-) -> ListCommandsResult: ...
+) -> ListCommandsOutput: ...
 ```
 
 Also available as `client.paginators.list_commands(...)`, returning an
@@ -1618,7 +1618,7 @@ async def list_compliance_items(
     resource_types: Sequence[str] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListComplianceItemsResult: ...
+) -> ListComplianceItemsOutput: ...
 ```
 
 Also available as `client.paginators.list_compliance_items(...)`, returning an
@@ -1633,7 +1633,7 @@ async def list_compliance_summaries(
     filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListComplianceSummariesResult: ...
+) -> ListComplianceSummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_compliance_summaries(...)`, returning an
@@ -1650,7 +1650,7 @@ async def list_document_metadata_history(
     document_version: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDocumentMetadataHistoryResponse: ...
+) -> ListDocumentMetadataHistoryOutput: ...
 ```
 
 
@@ -1662,7 +1662,7 @@ async def list_document_versions(
     name: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDocumentVersionsResult: ...
+) -> ListDocumentVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_document_versions(...)`, returning an
@@ -1678,7 +1678,7 @@ async def list_documents(
     filters: Sequence[DocumentKeyValuesFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDocumentsResult: ...
+) -> ListDocumentsOutput: ...
 ```
 
 Also available as `client.paginators.list_documents(...)`, returning an
@@ -1695,7 +1695,7 @@ async def list_inventory_entries(
     filters: Sequence[InventoryFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListInventoryEntriesResult: ...
+) -> ListInventoryEntriesOutput: ...
 ```
 
 
@@ -1708,7 +1708,7 @@ async def list_nodes(
     filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListNodesResult: ...
+) -> ListNodesOutput: ...
 ```
 
 Also available as `client.paginators.list_nodes(...)`, returning an
@@ -1725,7 +1725,7 @@ async def list_nodes_summary(
     filters: Sequence[NodeFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListNodesSummaryResult: ...
+) -> ListNodesSummaryOutput: ...
 ```
 
 Also available as `client.paginators.list_nodes_summary(...)`, returning an
@@ -1740,7 +1740,7 @@ async def list_ops_item_events(
     filters: Sequence[OpsItemEventFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListOpsItemEventsResponse: ...
+) -> ListOpsItemEventsOutput: ...
 ```
 
 Also available as `client.paginators.list_ops_item_events(...)`, returning an
@@ -1756,7 +1756,7 @@ async def list_ops_item_related_items(
     filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListOpsItemRelatedItemsResponse: ...
+) -> ListOpsItemRelatedItemsOutput: ...
 ```
 
 Also available as `client.paginators.list_ops_item_related_items(...)`, returning an
@@ -1771,7 +1771,7 @@ async def list_ops_metadata(
     filters: Sequence[OpsMetadataFilter] | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListOpsMetadataResult: ...
+) -> ListOpsMetadataOutput: ...
 ```
 
 Also available as `client.paginators.list_ops_metadata(...)`, returning an
@@ -1786,7 +1786,7 @@ async def list_resource_compliance_summaries(
     filters: Sequence[ComplianceStringFilter] | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListResourceComplianceSummariesResult: ...
+) -> ListResourceComplianceSummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_resource_compliance_summaries(...)`, returning an
@@ -1801,7 +1801,7 @@ async def list_resource_data_sync(
     sync_type: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListResourceDataSyncResult: ...
+) -> ListResourceDataSyncOutput: ...
 ```
 
 Also available as `client.paginators.list_resource_data_sync(...)`, returning an
@@ -1815,7 +1815,7 @@ async def list_tags_for_resource(
     *,
     resource_type: ResourceTypeForTagging,
     resource_id: str,
-) -> ListTagsForResourceResult: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1829,7 +1829,7 @@ async def modify_document_permission(
     account_ids_to_add: Sequence[str] | None = None,
     account_ids_to_remove: Sequence[str] | None = None,
     shared_document_version: str | None = None,
-) -> ModifyDocumentPermissionResponse: ...
+) -> ModifyDocumentPermissionOutput: ...
 ```
 
 
@@ -1845,7 +1845,7 @@ async def put_compliance_items(
     items: Sequence[ComplianceItemEntry],
     item_content_hash: str | None = None,
     upload_type: ComplianceUploadType | None = None,
-) -> PutComplianceItemsResult: ...
+) -> PutComplianceItemsOutput: ...
 ```
 
 
@@ -1856,7 +1856,7 @@ async def put_inventory(
     *,
     instance_id: str,
     items: Sequence[InventoryItem],
-) -> PutInventoryResult: ...
+) -> PutInventoryOutput: ...
 ```
 
 
@@ -1876,7 +1876,7 @@ async def put_parameter(
     tier: ParameterTier | None = None,
     policies: str | None = None,
     data_type: str | None = None,
-) -> PutParameterResult: ...
+) -> PutParameterOutput: ...
 ```
 
 
@@ -1889,7 +1889,7 @@ async def put_resource_policy(
     policy: str,
     policy_id: str | None = None,
     policy_hash: str | None = None,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -1899,7 +1899,7 @@ async def put_resource_policy(
 async def register_default_patch_baseline(
     *,
     baseline_id: str,
-) -> RegisterDefaultPatchBaselineResult: ...
+) -> RegisterDefaultPatchBaselineOutput: ...
 ```
 
 
@@ -1910,7 +1910,7 @@ async def register_patch_baseline_for_patch_group(
     *,
     baseline_id: str,
     patch_group: str,
-) -> RegisterPatchBaselineForPatchGroupResult: ...
+) -> RegisterPatchBaselineForPatchGroupOutput: ...
 ```
 
 
@@ -1926,7 +1926,7 @@ async def register_target_with_maintenance_window(
     name: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
-) -> RegisterTargetWithMaintenanceWindowResult: ...
+) -> RegisterTargetWithMaintenanceWindowOutput: ...
 ```
 
 
@@ -1951,7 +1951,7 @@ async def register_task_with_maintenance_window(
     client_token: str | None = None,
     cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
-) -> RegisterTaskWithMaintenanceWindowResult: ...
+) -> RegisterTaskWithMaintenanceWindowOutput: ...
 ```
 
 
@@ -1963,7 +1963,7 @@ async def remove_tags_from_resource(
     resource_type: ResourceTypeForTagging,
     resource_id: str,
     tag_keys: Sequence[str],
-) -> RemoveTagsFromResourceResult: ...
+) -> RemoveTagsFromResourceOutput: ...
 ```
 
 
@@ -1973,7 +1973,7 @@ async def remove_tags_from_resource(
 async def reset_service_setting(
     *,
     setting_id: str,
-) -> ResetServiceSettingResult: ...
+) -> ResetServiceSettingOutput: ...
 ```
 
 
@@ -1983,7 +1983,7 @@ async def reset_service_setting(
 async def resume_session(
     *,
     session_id: str,
-) -> ResumeSessionResponse: ...
+) -> ResumeSessionOutput: ...
 ```
 
 
@@ -1995,7 +1995,7 @@ async def send_automation_signal(
     automation_execution_id: str,
     signal_type: SignalType,
     payload: dict[str, Sequence[str]] | None = None,
-) -> SendAutomationSignalResult: ...
+) -> SendAutomationSignalOutput: ...
 ```
 
 
@@ -2022,7 +2022,7 @@ async def send_command(
     notification_config: NotificationConfig | None = None,
     cloud_watch_output_config: CloudWatchOutputConfig | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
-) -> SendCommandResult: ...
+) -> SendCommandOutput: ...
 ```
 
 
@@ -2034,7 +2034,7 @@ async def start_access_request(
     reason: str,
     targets: Sequence[Target],
     tags: Sequence[Tag] | None = None,
-) -> StartAccessRequestResponse: ...
+) -> StartAccessRequestOutput: ...
 ```
 
 
@@ -2044,7 +2044,7 @@ async def start_access_request(
 async def start_associations_once(
     *,
     association_ids: Sequence[str],
-) -> StartAssociationsOnceResult: ...
+) -> StartAssociationsOnceOutput: ...
 ```
 
 
@@ -2067,7 +2067,7 @@ async def start_automation_execution(
     tags: Sequence[Tag] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     target_locations_url: str | None = None,
-) -> StartAutomationExecutionResult: ...
+) -> StartAutomationExecutionOutput: ...
 ```
 
 
@@ -2087,7 +2087,7 @@ async def start_change_request_execution(
     tags: Sequence[Tag] | None = None,
     scheduled_end_time: str | None = None,
     change_details: str | None = None,
-) -> StartChangeRequestExecutionResult: ...
+) -> StartChangeRequestExecutionOutput: ...
 ```
 
 
@@ -2099,7 +2099,7 @@ async def start_execution_preview(
     document_name: str,
     document_version: str | None = None,
     execution_inputs: ExecutionInputs | None = None,
-) -> StartExecutionPreviewResponse: ...
+) -> StartExecutionPreviewOutput: ...
 ```
 
 
@@ -2112,7 +2112,7 @@ async def start_session(
     document_name: str | None = None,
     reason: str | None = None,
     parameters: dict[str, Sequence[str]] | None = None,
-) -> StartSessionResponse: ...
+) -> StartSessionOutput: ...
 ```
 
 
@@ -2123,7 +2123,7 @@ async def stop_automation_execution(
     *,
     automation_execution_id: str,
     type: StopType | None = None,
-) -> StopAutomationExecutionResult: ...
+) -> StopAutomationExecutionOutput: ...
 ```
 
 
@@ -2133,7 +2133,7 @@ async def stop_automation_execution(
 async def terminate_session(
     *,
     session_id: str,
-) -> TerminateSessionResponse: ...
+) -> TerminateSessionOutput: ...
 ```
 
 
@@ -2145,7 +2145,7 @@ async def unlabel_parameter_version(
     name: str,
     parameter_version: int,
     labels: Sequence[str],
-) -> UnlabelParameterVersionResult: ...
+) -> UnlabelParameterVersionOutput: ...
 ```
 
 
@@ -2176,7 +2176,7 @@ async def update_association(
     target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
     association_dispatch_assume_role: str | None = None,
-) -> UpdateAssociationResult: ...
+) -> UpdateAssociationOutput: ...
 ```
 
 
@@ -2188,7 +2188,7 @@ async def update_association_status(
     name: str,
     instance_id: str,
     association_status: AssociationStatus,
-) -> UpdateAssociationStatusResult: ...
+) -> UpdateAssociationStatusOutput: ...
 ```
 
 
@@ -2201,7 +2201,7 @@ async def update_cloud_connector(
     display_name: str | None = None,
     configuration: CloudConnectorConfiguration | None = None,
     description: str | None = None,
-) -> UpdateCloudConnectorResult: ...
+) -> UpdateCloudConnectorOutput: ...
 ```
 
 
@@ -2218,7 +2218,7 @@ async def update_document(
     document_version: str | None = None,
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
-) -> UpdateDocumentResult: ...
+) -> UpdateDocumentOutput: ...
 ```
 
 
@@ -2229,7 +2229,7 @@ async def update_document_default_version(
     *,
     name: str,
     document_version: str,
-) -> UpdateDocumentDefaultVersionResult: ...
+) -> UpdateDocumentDefaultVersionOutput: ...
 ```
 
 
@@ -2241,7 +2241,7 @@ async def update_document_metadata(
     name: str,
     document_reviews: DocumentReviews,
     document_version: str | None = None,
-) -> UpdateDocumentMetadataResponse: ...
+) -> UpdateDocumentMetadataOutput: ...
 ```
 
 
@@ -2263,7 +2263,7 @@ async def update_maintenance_window(
     allow_unassociated_targets: bool | None = None,
     enabled: bool | None = None,
     replace: bool | None = None,
-) -> UpdateMaintenanceWindowResult: ...
+) -> UpdateMaintenanceWindowOutput: ...
 ```
 
 
@@ -2279,7 +2279,7 @@ async def update_maintenance_window_target(
     name: str | None = None,
     description: str | None = None,
     replace: bool | None = None,
-) -> UpdateMaintenanceWindowTargetResult: ...
+) -> UpdateMaintenanceWindowTargetOutput: ...
 ```
 
 
@@ -2304,7 +2304,7 @@ async def update_maintenance_window_task(
     replace: bool | None = None,
     cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
     alarm_configuration: AlarmConfiguration | None = None,
-) -> UpdateMaintenanceWindowTaskResult: ...
+) -> UpdateMaintenanceWindowTaskOutput: ...
 ```
 
 
@@ -2315,7 +2315,7 @@ async def update_managed_instance_role(
     *,
     instance_id: str,
     iam_role: str,
-) -> UpdateManagedInstanceRoleResult: ...
+) -> UpdateManagedInstanceRoleOutput: ...
 ```
 
 
@@ -2340,7 +2340,7 @@ async def update_ops_item(
     planned_start_time: str | None = None,
     planned_end_time: str | None = None,
     ops_item_arn: str | None = None,
-) -> UpdateOpsItemResponse: ...
+) -> UpdateOpsItemOutput: ...
 ```
 
 
@@ -2352,7 +2352,7 @@ async def update_ops_metadata(
     ops_metadata_arn: str,
     metadata_to_update: dict[str, MetadataValue] | None = None,
     keys_to_delete: Sequence[str] | None = None,
-) -> UpdateOpsMetadataResult: ...
+) -> UpdateOpsMetadataOutput: ...
 ```
 
 
@@ -2374,7 +2374,7 @@ async def update_patch_baseline(
     sources: Sequence[PatchSource] | None = None,
     available_security_updates_compliance_status: PatchComplianceStatus | None = None,
     replace: bool | None = None,
-) -> UpdatePatchBaselineResult: ...
+) -> UpdatePatchBaselineOutput: ...
 ```
 
 
@@ -2386,7 +2386,7 @@ async def update_resource_data_sync(
     sync_name: str,
     sync_type: str,
     sync_source: ResourceDataSyncSource,
-) -> UpdateResourceDataSyncResult: ...
+) -> UpdateResourceDataSyncOutput: ...
 ```
 
 
@@ -2397,7 +2397,7 @@ async def update_service_setting(
     *,
     setting_id: str,
     setting_value: str,
-) -> UpdateServiceSettingResult: ...
+) -> UpdateServiceSettingOutput: ...
 ```
 
 
@@ -2409,7 +2409,7 @@ async def validate_cloud_connector(
     cloud_connector_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ValidateCloudConnectorResult: ...
+) -> ValidateCloudConnectorOutput: ...
 ```
 
 Also available as `client.paginators.validate_cloud_connector(...)`, returning an

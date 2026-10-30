@@ -13764,12 +13764,12 @@ impl PyWriteRequest {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyBatchExecuteStatementOutput {
+struct PyOperationBatchExecuteStatementOutput {
     inner: aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementOutput,
 }
 
 #[pymethods]
-impl PyBatchExecuteStatementOutput {
+impl PyOperationBatchExecuteStatementOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
@@ -13841,12 +13841,12 @@ impl PyBatchExecuteStatementOutput {
 }
 
 #[pyclass(name = "BatchGetItemOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyBatchGetItemOutput {
+struct PyOperationBatchGetItemOutput {
     inner: aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemOutput,
 }
 
 #[pymethods]
-impl PyBatchGetItemOutput {
+impl PyOperationBatchGetItemOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
@@ -13976,12 +13976,12 @@ impl PyBatchGetItemOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyBatchWriteItemOutput {
+struct PyOperationBatchWriteItemOutput {
     inner: aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemOutput,
 }
 
 #[pymethods]
-impl PyBatchWriteItemOutput {
+impl PyOperationBatchWriteItemOutput {
     #[getter]
     fn unprocessed_items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_items {
@@ -14109,12 +14109,12 @@ impl PyBatchWriteItemOutput {
 }
 
 #[pyclass(name = "CreateBackupOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyCreateBackupOutput {
+struct PyOperationCreateBackupOutput {
     inner: aws_sdk_dynamodb::operation::create_backup::CreateBackupOutput,
 }
 
 #[pymethods]
-impl PyCreateBackupOutput {
+impl PyOperationCreateBackupOutput {
     #[getter]
     fn backup_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_details {
@@ -14148,12 +14148,12 @@ impl PyCreateBackupOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyCreateGlobalTableOutput {
+struct PyOperationCreateGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableOutput,
 }
 
 #[pymethods]
-impl PyCreateGlobalTableOutput {
+impl PyOperationCreateGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
@@ -14183,12 +14183,12 @@ impl PyCreateGlobalTableOutput {
 }
 
 #[pyclass(name = "CreateTableOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyCreateTableOutput {
+struct PyOperationCreateTableOutput {
     inner: aws_sdk_dynamodb::operation::create_table::CreateTableOutput,
 }
 
 #[pymethods]
-impl PyCreateTableOutput {
+impl PyOperationCreateTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
@@ -14218,12 +14218,12 @@ impl PyCreateTableOutput {
 }
 
 #[pyclass(name = "DeleteBackupOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyDeleteBackupOutput {
+struct PyOperationDeleteBackupOutput {
     inner: aws_sdk_dynamodb::operation::delete_backup::DeleteBackupOutput,
 }
 
 #[pymethods]
-impl PyDeleteBackupOutput {
+impl PyOperationDeleteBackupOutput {
     #[getter]
     fn backup_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_description {
@@ -14253,12 +14253,12 @@ impl PyDeleteBackupOutput {
 }
 
 #[pyclass(name = "DeleteItemOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyDeleteItemOutput {
+struct PyOperationDeleteItemOutput {
     inner: aws_sdk_dynamodb::operation::delete_item::DeleteItemOutput,
 }
 
 #[pymethods]
-impl PyDeleteItemOutput {
+impl PyOperationDeleteItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -14342,12 +14342,12 @@ impl PyDeleteItemOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDeleteResourcePolicyOutput {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyOutput {
+impl PyOperationDeleteResourcePolicyOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
@@ -14371,12 +14371,12 @@ impl PyDeleteResourcePolicyOutput {
 }
 
 #[pyclass(name = "DeleteTableOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyDeleteTableOutput {
+struct PyOperationDeleteTableOutput {
     inner: aws_sdk_dynamodb::operation::delete_table::DeleteTableOutput,
 }
 
 #[pymethods]
-impl PyDeleteTableOutput {
+impl PyOperationDeleteTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
@@ -14410,12 +14410,12 @@ impl PyDeleteTableOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeBackupOutput {
+struct PyOperationDescribeBackupOutput {
     inner: aws_sdk_dynamodb::operation::describe_backup::DescribeBackupOutput,
 }
 
 #[pymethods]
-impl PyDescribeBackupOutput {
+impl PyOperationDescribeBackupOutput {
     #[getter]
     fn backup_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_description {
@@ -14449,13 +14449,13 @@ impl PyDescribeBackupOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeContinuousBackupsOutput {
+struct PyOperationDescribeContinuousBackupsOutput {
     inner:
         aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsOutput,
 }
 
 #[pymethods]
-impl PyDescribeContinuousBackupsOutput {
+impl PyOperationDescribeContinuousBackupsOutput {
     #[getter]
     fn continuous_backups_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.continuous_backups_description {
@@ -14489,12 +14489,12 @@ impl PyDescribeContinuousBackupsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeContributorInsightsOutput {
+struct PyOperationDescribeContributorInsightsOutput {
     inner: aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsOutput,
 }
 
 #[pymethods]
-impl PyDescribeContributorInsightsOutput {
+impl PyOperationDescribeContributorInsightsOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -14630,16 +14630,16 @@ impl PyDescribeContributorInsightsOutput {
 }
 
 #[pyclass(
-    name = "DescribeEndpointsResponse",
+    name = "DescribeEndpointsOutput",
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeEndpointsResponse {
+struct PyOperationDescribeEndpointsOutput {
     inner: aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsOutput,
 }
 
 #[pymethods]
-impl PyDescribeEndpointsResponse {
+impl PyOperationDescribeEndpointsOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2842_list = PyList::empty(py);
@@ -14675,12 +14675,12 @@ impl PyDescribeEndpointsResponse {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeExportOutput {
+struct PyOperationDescribeExportOutput {
     inner: aws_sdk_dynamodb::operation::describe_export::DescribeExportOutput,
 }
 
 #[pymethods]
-impl PyDescribeExportOutput {
+impl PyOperationDescribeExportOutput {
     #[getter]
     fn export_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_description {
@@ -14714,12 +14714,12 @@ impl PyDescribeExportOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeGlobalTableOutput {
+struct PyOperationDescribeGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableOutput,
 }
 
 #[pymethods]
-impl PyDescribeGlobalTableOutput {
+impl PyOperationDescribeGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
@@ -14753,12 +14753,12 @@ impl PyDescribeGlobalTableOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeGlobalTableSettingsOutput {
+struct PyOperationDescribeGlobalTableSettingsOutput {
     inner: aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsOutput,
 }
 
 #[pymethods]
-impl PyDescribeGlobalTableSettingsOutput {
+impl PyOperationDescribeGlobalTableSettingsOutput {
     #[getter]
     fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_name {
@@ -14818,12 +14818,12 @@ impl PyDescribeGlobalTableSettingsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeImportOutput {
+struct PyOperationDescribeImportOutput {
     inner: aws_sdk_dynamodb::operation::describe_import::DescribeImportOutput,
 }
 
 #[pymethods]
-impl PyDescribeImportOutput {
+impl PyOperationDescribeImportOutput {
     #[getter]
     fn import_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_table_description {
@@ -14857,12 +14857,12 @@ impl PyDescribeImportOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeKinesisStreamingDestinationOutput {
+struct PyOperationDescribeKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
-impl PyDescribeKinesisStreamingDestinationOutput {
+impl PyOperationDescribeKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -14922,12 +14922,12 @@ impl PyDescribeKinesisStreamingDestinationOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeLimitsOutput {
+struct PyOperationDescribeLimitsOutput {
     inner: aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsOutput,
 }
 
 #[pymethods]
-impl PyDescribeLimitsOutput {
+impl PyOperationDescribeLimitsOutput {
     #[getter]
     fn account_max_read_capacity_units(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_max_read_capacity_units {
@@ -15003,12 +15003,12 @@ impl PyDescribeLimitsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeTableOutput {
+struct PyOperationDescribeTableOutput {
     inner: aws_sdk_dynamodb::operation::describe_table::DescribeTableOutput,
 }
 
 #[pymethods]
-impl PyDescribeTableOutput {
+impl PyOperationDescribeTableOutput {
     #[getter]
     fn table(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table {
@@ -15042,12 +15042,12 @@ impl PyDescribeTableOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeTableReplicaAutoScalingOutput {
+struct PyOperationDescribeTableReplicaAutoScalingOutput {
     inner: aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingOutput,
 }
 
 #[pymethods]
-impl PyDescribeTableReplicaAutoScalingOutput {
+impl PyOperationDescribeTableReplicaAutoScalingOutput {
     #[getter]
     fn table_auto_scaling_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_auto_scaling_description {
@@ -15081,12 +15081,12 @@ impl PyDescribeTableReplicaAutoScalingOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDescribeTimeToLiveOutput {
+struct PyOperationDescribeTimeToLiveOutput {
     inner: aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveOutput,
 }
 
 #[pymethods]
-impl PyDescribeTimeToLiveOutput {
+impl PyOperationDescribeTimeToLiveOutput {
     #[getter]
     fn time_to_live_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_description {
@@ -15120,12 +15120,12 @@ impl PyDescribeTimeToLiveOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyDisableKinesisStreamingDestinationOutput {
+struct PyOperationDisableKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
-impl PyDisableKinesisStreamingDestinationOutput {
+impl PyOperationDisableKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -15207,12 +15207,12 @@ impl PyDisableKinesisStreamingDestinationOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyEnableKinesisStreamingDestinationOutput {
+struct PyOperationEnableKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
-impl PyEnableKinesisStreamingDestinationOutput {
+impl PyOperationEnableKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -15294,12 +15294,12 @@ impl PyEnableKinesisStreamingDestinationOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyExecuteStatementOutput {
+struct PyOperationExecuteStatementOutput {
     inner: aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementOutput,
 }
 
 #[pymethods]
-impl PyExecuteStatementOutput {
+impl PyOperationExecuteStatementOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -15415,12 +15415,12 @@ impl PyExecuteStatementOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyExecuteTransactionOutput {
+struct PyOperationExecuteTransactionOutput {
     inner: aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionOutput,
 }
 
 #[pymethods]
-impl PyExecuteTransactionOutput {
+impl PyOperationExecuteTransactionOutput {
     #[getter]
     fn responses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.responses {
@@ -15496,13 +15496,13 @@ impl PyExecuteTransactionOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyExportTableToPointInTimeOutput {
+struct PyOperationExportTableToPointInTimeOutput {
     inner:
         aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeOutput,
 }
 
 #[pymethods]
-impl PyExportTableToPointInTimeOutput {
+impl PyOperationExportTableToPointInTimeOutput {
     #[getter]
     fn export_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_description {
@@ -15532,12 +15532,12 @@ impl PyExportTableToPointInTimeOutput {
 }
 
 #[pyclass(name = "GetItemOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyGetItemOutput {
+struct PyOperationGetItemOutput {
     inner: aws_sdk_dynamodb::operation::get_item::GetItemOutput,
 }
 
 #[pymethods]
-impl PyGetItemOutput {
+impl PyOperationGetItemOutput {
     #[getter]
     fn item(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.item {
@@ -15599,12 +15599,12 @@ impl PyGetItemOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyGetResourcePolicyOutput {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyOutput {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -15644,12 +15644,12 @@ impl PyGetResourcePolicyOutput {
 }
 
 #[pyclass(name = "ImportTableOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyImportTableOutput {
+struct PyOperationImportTableOutput {
     inner: aws_sdk_dynamodb::operation::import_table::ImportTableOutput,
 }
 
 #[pymethods]
-impl PyImportTableOutput {
+impl PyOperationImportTableOutput {
     #[getter]
     fn import_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_table_description {
@@ -15679,12 +15679,12 @@ impl PyImportTableOutput {
 }
 
 #[pyclass(name = "ListBackupsOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyListBackupsOutput {
+struct PyOperationListBackupsOutput {
     inner: aws_sdk_dynamodb::operation::list_backups::ListBackupsOutput,
 }
 
 #[pymethods]
-impl PyListBackupsOutput {
+impl PyOperationListBackupsOutput {
     #[getter]
     fn backup_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.backup_summaries {
@@ -15744,12 +15744,12 @@ impl PyListBackupsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyListContributorInsightsOutput {
+struct PyOperationListContributorInsightsOutput {
     inner: aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsOutput,
 }
 
 #[pymethods]
-impl PyListContributorInsightsOutput {
+impl PyOperationListContributorInsightsOutput {
     #[getter]
     fn contributor_insights_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contributor_insights_summaries {
@@ -15805,12 +15805,12 @@ impl PyListContributorInsightsOutput {
 }
 
 #[pyclass(name = "ListExportsOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyListExportsOutput {
+struct PyOperationListExportsOutput {
     inner: aws_sdk_dynamodb::operation::list_exports::ListExportsOutput,
 }
 
 #[pymethods]
-impl PyListExportsOutput {
+impl PyOperationListExportsOutput {
     #[getter]
     fn export_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_summaries {
@@ -15870,12 +15870,12 @@ impl PyListExportsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyListGlobalTablesOutput {
+struct PyOperationListGlobalTablesOutput {
     inner: aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesOutput,
 }
 
 #[pymethods]
-impl PyListGlobalTablesOutput {
+impl PyOperationListGlobalTablesOutput {
     #[getter]
     fn global_tables(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_tables {
@@ -15931,12 +15931,12 @@ impl PyListGlobalTablesOutput {
 }
 
 #[pyclass(name = "ListImportsOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyListImportsOutput {
+struct PyOperationListImportsOutput {
     inner: aws_sdk_dynamodb::operation::list_imports::ListImportsOutput,
 }
 
 #[pymethods]
-impl PyListImportsOutput {
+impl PyOperationListImportsOutput {
     #[getter]
     fn import_summary_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_summary_list {
@@ -15992,12 +15992,12 @@ impl PyListImportsOutput {
 }
 
 #[pyclass(name = "ListTablesOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyListTablesOutput {
+struct PyOperationListTablesOutput {
     inner: aws_sdk_dynamodb::operation::list_tables::ListTablesOutput,
 }
 
 #[pymethods]
-impl PyListTablesOutput {
+impl PyOperationListTablesOutput {
     #[getter]
     fn table_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_names {
@@ -16051,12 +16051,12 @@ impl PyListTablesOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyListTagsOfResourceOutput {
+struct PyOperationListTagsOfResourceOutput {
     inner: aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsOfResourceOutput {
+impl PyOperationListTagsOfResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -16112,12 +16112,12 @@ impl PyListTagsOfResourceOutput {
 }
 
 #[pyclass(name = "PutItemOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyPutItemOutput {
+struct PyOperationPutItemOutput {
     inner: aws_sdk_dynamodb::operation::put_item::PutItemOutput,
 }
 
 #[pymethods]
-impl PyPutItemOutput {
+impl PyOperationPutItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -16201,12 +16201,12 @@ impl PyPutItemOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyPutResourcePolicyOutput {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_dynamodb::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyOutput {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn revision_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.revision_id {
@@ -16230,12 +16230,12 @@ impl PyPutResourcePolicyOutput {
 }
 
 #[pyclass(name = "QueryOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyQueryOutput {
+struct PyOperationQueryOutput {
     inner: aws_sdk_dynamodb::operation::query::QueryOutput,
 }
 
 #[pymethods]
-impl PyQueryOutput {
+impl PyOperationQueryOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -16351,12 +16351,12 @@ impl PyQueryOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyRestoreTableFromBackupOutput {
+struct PyOperationRestoreTableFromBackupOutput {
     inner: aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupOutput,
 }
 
 #[pymethods]
-impl PyRestoreTableFromBackupOutput {
+impl PyOperationRestoreTableFromBackupOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
@@ -16390,12 +16390,12 @@ impl PyRestoreTableFromBackupOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyRestoreTableToPointInTimeOutput {
+struct PyOperationRestoreTableToPointInTimeOutput {
     inner: aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeOutput,
 }
 
 #[pymethods]
-impl PyRestoreTableToPointInTimeOutput {
+impl PyOperationRestoreTableToPointInTimeOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
@@ -16425,12 +16425,12 @@ impl PyRestoreTableToPointInTimeOutput {
 }
 
 #[pyclass(name = "ScanOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyScanOutput {
+struct PyOperationScanOutput {
     inner: aws_sdk_dynamodb::operation::scan::ScanOutput,
 }
 
 #[pymethods]
-impl PyScanOutput {
+impl PyOperationScanOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.items {
@@ -16546,12 +16546,12 @@ impl PyScanOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PySearchVectorsOutput {
+struct PyOperationSearchVectorsOutput {
     inner: aws_sdk_dynamodb::operation::search_vectors::SearchVectorsOutput,
 }
 
 #[pymethods]
-impl PySearchVectorsOutput {
+impl PyOperationSearchVectorsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
@@ -16617,12 +16617,12 @@ impl PySearchVectorsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyTransactGetItemsOutput {
+struct PyOperationTransactGetItemsOutput {
     inner: aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsOutput,
 }
 
 #[pymethods]
-impl PyTransactGetItemsOutput {
+impl PyOperationTransactGetItemsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
@@ -16698,12 +16698,12 @@ impl PyTransactGetItemsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyTransactWriteItemsOutput {
+struct PyOperationTransactWriteItemsOutput {
     inner: aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsOutput,
 }
 
 #[pymethods]
-impl PyTransactWriteItemsOutput {
+impl PyOperationTransactWriteItemsOutput {
     #[getter]
     fn consumed_capacity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.consumed_capacity {
@@ -16791,12 +16791,12 @@ impl PyTransactWriteItemsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateContinuousBackupsOutput {
+struct PyOperationUpdateContinuousBackupsOutput {
     inner: aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsOutput,
 }
 
 #[pymethods]
-impl PyUpdateContinuousBackupsOutput {
+impl PyOperationUpdateContinuousBackupsOutput {
     #[getter]
     fn continuous_backups_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.continuous_backups_description {
@@ -16830,13 +16830,13 @@ impl PyUpdateContinuousBackupsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateContributorInsightsOutput {
+struct PyOperationUpdateContributorInsightsOutput {
     inner:
         aws_sdk_dynamodb::operation::update_contributor_insights::UpdateContributorInsightsOutput,
 }
 
 #[pymethods]
-impl PyUpdateContributorInsightsOutput {
+impl PyOperationUpdateContributorInsightsOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -16912,12 +16912,12 @@ impl PyUpdateContributorInsightsOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateGlobalTableOutput {
+struct PyOperationUpdateGlobalTableOutput {
     inner: aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableOutput,
 }
 
 #[pymethods]
-impl PyUpdateGlobalTableOutput {
+impl PyOperationUpdateGlobalTableOutput {
     #[getter]
     fn global_table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_description {
@@ -16951,13 +16951,13 @@ impl PyUpdateGlobalTableOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateGlobalTableSettingsOutput {
+struct PyOperationUpdateGlobalTableSettingsOutput {
     inner:
         aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsOutput,
 }
 
 #[pymethods]
-impl PyUpdateGlobalTableSettingsOutput {
+impl PyOperationUpdateGlobalTableSettingsOutput {
     #[getter]
     fn global_table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.global_table_name {
@@ -17013,12 +17013,12 @@ impl PyUpdateGlobalTableSettingsOutput {
 }
 
 #[pyclass(name = "UpdateItemOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyUpdateItemOutput {
+struct PyOperationUpdateItemOutput {
     inner: aws_sdk_dynamodb::operation::update_item::UpdateItemOutput,
 }
 
 #[pymethods]
-impl PyUpdateItemOutput {
+impl PyOperationUpdateItemOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -17102,12 +17102,12 @@ impl PyUpdateItemOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateKinesisStreamingDestinationOutput {
+struct PyOperationUpdateKinesisStreamingDestinationOutput {
     inner: aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationOutput,
 }
 
 #[pymethods]
-impl PyUpdateKinesisStreamingDestinationOutput {
+impl PyOperationUpdateKinesisStreamingDestinationOutput {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
@@ -17185,12 +17185,12 @@ impl PyUpdateKinesisStreamingDestinationOutput {
 }
 
 #[pyclass(name = "UpdateTableOutput", module = "rboto_dynamodb._native", frozen)]
-struct PyUpdateTableOutput {
+struct PyOperationUpdateTableOutput {
     inner: aws_sdk_dynamodb::operation::update_table::UpdateTableOutput,
 }
 
 #[pymethods]
-impl PyUpdateTableOutput {
+impl PyOperationUpdateTableOutput {
     #[getter]
     fn table_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_description {
@@ -17224,12 +17224,12 @@ impl PyUpdateTableOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateTableReplicaAutoScalingOutput {
+struct PyOperationUpdateTableReplicaAutoScalingOutput {
     inner: aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingOutput,
 }
 
 #[pymethods]
-impl PyUpdateTableReplicaAutoScalingOutput {
+impl PyOperationUpdateTableReplicaAutoScalingOutput {
     #[getter]
     fn table_auto_scaling_description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_auto_scaling_description {
@@ -17263,12 +17263,12 @@ impl PyUpdateTableReplicaAutoScalingOutput {
     module = "rboto_dynamodb._native",
     frozen
 )]
-struct PyUpdateTimeToLiveOutput {
+struct PyOperationUpdateTimeToLiveOutput {
     inner: aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveOutput,
 }
 
 #[pymethods]
-impl PyUpdateTimeToLiveOutput {
+impl PyOperationUpdateTimeToLiveOutput {
     #[getter]
     fn time_to_live_specification(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.time_to_live_specification {
@@ -17379,62 +17379,62 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyVectorIndexInfo>()?;
     module.add_class::<PyWarmThroughput>()?;
     module.add_class::<PyWriteRequest>()?;
-    module.add_class::<PyBatchExecuteStatementOutput>()?;
-    module.add_class::<PyBatchGetItemOutput>()?;
-    module.add_class::<PyBatchWriteItemOutput>()?;
-    module.add_class::<PyCreateBackupOutput>()?;
-    module.add_class::<PyCreateGlobalTableOutput>()?;
-    module.add_class::<PyCreateTableOutput>()?;
-    module.add_class::<PyDeleteBackupOutput>()?;
-    module.add_class::<PyDeleteItemOutput>()?;
-    module.add_class::<PyDeleteResourcePolicyOutput>()?;
-    module.add_class::<PyDeleteTableOutput>()?;
-    module.add_class::<PyDescribeBackupOutput>()?;
-    module.add_class::<PyDescribeContinuousBackupsOutput>()?;
-    module.add_class::<PyDescribeContributorInsightsOutput>()?;
-    module.add_class::<PyDescribeEndpointsResponse>()?;
-    module.add_class::<PyDescribeExportOutput>()?;
-    module.add_class::<PyDescribeGlobalTableOutput>()?;
-    module.add_class::<PyDescribeGlobalTableSettingsOutput>()?;
-    module.add_class::<PyDescribeImportOutput>()?;
-    module.add_class::<PyDescribeKinesisStreamingDestinationOutput>()?;
-    module.add_class::<PyDescribeLimitsOutput>()?;
-    module.add_class::<PyDescribeTableOutput>()?;
-    module.add_class::<PyDescribeTableReplicaAutoScalingOutput>()?;
-    module.add_class::<PyDescribeTimeToLiveOutput>()?;
-    module.add_class::<PyDisableKinesisStreamingDestinationOutput>()?;
-    module.add_class::<PyEnableKinesisStreamingDestinationOutput>()?;
-    module.add_class::<PyExecuteStatementOutput>()?;
-    module.add_class::<PyExecuteTransactionOutput>()?;
-    module.add_class::<PyExportTableToPointInTimeOutput>()?;
-    module.add_class::<PyGetItemOutput>()?;
-    module.add_class::<PyGetResourcePolicyOutput>()?;
-    module.add_class::<PyImportTableOutput>()?;
-    module.add_class::<PyListBackupsOutput>()?;
-    module.add_class::<PyListContributorInsightsOutput>()?;
-    module.add_class::<PyListExportsOutput>()?;
-    module.add_class::<PyListGlobalTablesOutput>()?;
-    module.add_class::<PyListImportsOutput>()?;
-    module.add_class::<PyListTablesOutput>()?;
-    module.add_class::<PyListTagsOfResourceOutput>()?;
-    module.add_class::<PyPutItemOutput>()?;
-    module.add_class::<PyPutResourcePolicyOutput>()?;
-    module.add_class::<PyQueryOutput>()?;
-    module.add_class::<PyRestoreTableFromBackupOutput>()?;
-    module.add_class::<PyRestoreTableToPointInTimeOutput>()?;
-    module.add_class::<PyScanOutput>()?;
-    module.add_class::<PySearchVectorsOutput>()?;
-    module.add_class::<PyTransactGetItemsOutput>()?;
-    module.add_class::<PyTransactWriteItemsOutput>()?;
-    module.add_class::<PyUpdateContinuousBackupsOutput>()?;
-    module.add_class::<PyUpdateContributorInsightsOutput>()?;
-    module.add_class::<PyUpdateGlobalTableOutput>()?;
-    module.add_class::<PyUpdateGlobalTableSettingsOutput>()?;
-    module.add_class::<PyUpdateItemOutput>()?;
-    module.add_class::<PyUpdateKinesisStreamingDestinationOutput>()?;
-    module.add_class::<PyUpdateTableOutput>()?;
-    module.add_class::<PyUpdateTableReplicaAutoScalingOutput>()?;
-    module.add_class::<PyUpdateTimeToLiveOutput>()?;
+    module.add_class::<PyOperationBatchExecuteStatementOutput>()?;
+    module.add_class::<PyOperationBatchGetItemOutput>()?;
+    module.add_class::<PyOperationBatchWriteItemOutput>()?;
+    module.add_class::<PyOperationCreateBackupOutput>()?;
+    module.add_class::<PyOperationCreateGlobalTableOutput>()?;
+    module.add_class::<PyOperationCreateTableOutput>()?;
+    module.add_class::<PyOperationDeleteBackupOutput>()?;
+    module.add_class::<PyOperationDeleteItemOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeleteTableOutput>()?;
+    module.add_class::<PyOperationDescribeBackupOutput>()?;
+    module.add_class::<PyOperationDescribeContinuousBackupsOutput>()?;
+    module.add_class::<PyOperationDescribeContributorInsightsOutput>()?;
+    module.add_class::<PyOperationDescribeEndpointsOutput>()?;
+    module.add_class::<PyOperationDescribeExportOutput>()?;
+    module.add_class::<PyOperationDescribeGlobalTableOutput>()?;
+    module.add_class::<PyOperationDescribeGlobalTableSettingsOutput>()?;
+    module.add_class::<PyOperationDescribeImportOutput>()?;
+    module.add_class::<PyOperationDescribeKinesisStreamingDestinationOutput>()?;
+    module.add_class::<PyOperationDescribeLimitsOutput>()?;
+    module.add_class::<PyOperationDescribeTableOutput>()?;
+    module.add_class::<PyOperationDescribeTableReplicaAutoScalingOutput>()?;
+    module.add_class::<PyOperationDescribeTimeToLiveOutput>()?;
+    module.add_class::<PyOperationDisableKinesisStreamingDestinationOutput>()?;
+    module.add_class::<PyOperationEnableKinesisStreamingDestinationOutput>()?;
+    module.add_class::<PyOperationExecuteStatementOutput>()?;
+    module.add_class::<PyOperationExecuteTransactionOutput>()?;
+    module.add_class::<PyOperationExportTableToPointInTimeOutput>()?;
+    module.add_class::<PyOperationGetItemOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationImportTableOutput>()?;
+    module.add_class::<PyOperationListBackupsOutput>()?;
+    module.add_class::<PyOperationListContributorInsightsOutput>()?;
+    module.add_class::<PyOperationListExportsOutput>()?;
+    module.add_class::<PyOperationListGlobalTablesOutput>()?;
+    module.add_class::<PyOperationListImportsOutput>()?;
+    module.add_class::<PyOperationListTablesOutput>()?;
+    module.add_class::<PyOperationListTagsOfResourceOutput>()?;
+    module.add_class::<PyOperationPutItemOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationQueryOutput>()?;
+    module.add_class::<PyOperationRestoreTableFromBackupOutput>()?;
+    module.add_class::<PyOperationRestoreTableToPointInTimeOutput>()?;
+    module.add_class::<PyOperationScanOutput>()?;
+    module.add_class::<PyOperationSearchVectorsOutput>()?;
+    module.add_class::<PyOperationTransactGetItemsOutput>()?;
+    module.add_class::<PyOperationTransactWriteItemsOutput>()?;
+    module.add_class::<PyOperationUpdateContinuousBackupsOutput>()?;
+    module.add_class::<PyOperationUpdateContributorInsightsOutput>()?;
+    module.add_class::<PyOperationUpdateGlobalTableOutput>()?;
+    module.add_class::<PyOperationUpdateGlobalTableSettingsOutput>()?;
+    module.add_class::<PyOperationUpdateItemOutput>()?;
+    module.add_class::<PyOperationUpdateKinesisStreamingDestinationOutput>()?;
+    module.add_class::<PyOperationUpdateTableOutput>()?;
+    module.add_class::<PyOperationUpdateTableReplicaAutoScalingOutput>()?;
+    module.add_class::<PyOperationUpdateTimeToLiveOutput>()?;
 
     Ok(())
 }
@@ -17517,7 +17517,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchExecuteStatement"))
             })?;
-            Ok(PyBatchExecuteStatementOutput { inner: output })
+            Ok(PyOperationBatchExecuteStatementOutput { inner: output })
         })
     }
 
@@ -17571,7 +17571,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetItem"))
             })?;
-            Ok(PyBatchGetItemOutput { inner: output })
+            Ok(PyOperationBatchGetItemOutput { inner: output })
         })
     }
 
@@ -17642,7 +17642,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchWriteItem"))
             })?;
-            Ok(PyBatchWriteItemOutput { inner: output })
+            Ok(PyOperationBatchWriteItemOutput { inner: output })
         })
     }
 
@@ -17687,7 +17687,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBackup"))
             })?;
-            Ok(PyCreateBackupOutput { inner: output })
+            Ok(PyOperationCreateBackupOutput { inner: output })
         })
     }
 
@@ -17740,7 +17740,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGlobalTable"))
             })?;
-            Ok(PyCreateGlobalTableOutput { inner: output })
+            Ok(PyOperationCreateGlobalTableOutput { inner: output })
         })
     }
 
@@ -17952,7 +17952,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTable")))?;
-            Ok(PyCreateTableOutput { inner: output })
+            Ok(PyOperationCreateTableOutput { inner: output })
         })
     }
 
@@ -17988,7 +17988,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBackup"))
             })?;
-            Ok(PyDeleteBackupOutput { inner: output })
+            Ok(PyOperationDeleteBackupOutput { inner: output })
         })
     }
 
@@ -18141,7 +18141,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteItem")))?;
-            Ok(PyDeleteItemOutput { inner: output })
+            Ok(PyOperationDeleteItemOutput { inner: output })
         })
     }
 
@@ -18187,7 +18187,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyOutput { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -18222,7 +18222,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTable")))?;
-            Ok(PyDeleteTableOutput { inner: output })
+            Ok(PyOperationDeleteTableOutput { inner: output })
         })
     }
 
@@ -18258,7 +18258,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeBackup"))
             })?;
-            Ok(PyDescribeBackupOutput { inner: output })
+            Ok(PyOperationDescribeBackupOutput { inner: output })
         })
     }
 
@@ -18296,7 +18296,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContinuousBackups"))
             })?;
-            Ok(PyDescribeContinuousBackupsOutput { inner: output })
+            Ok(PyOperationDescribeContinuousBackupsOutput { inner: output })
         })
     }
 
@@ -18341,7 +18341,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContributorInsights"))
             })?;
-            Ok(PyDescribeContributorInsightsOutput { inner: output })
+            Ok(PyOperationDescribeContributorInsightsOutput { inner: output })
         })
     }
 
@@ -18371,7 +18371,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
             })?;
-            Ok(PyDescribeEndpointsResponse { inner: output })
+            Ok(PyOperationDescribeEndpointsOutput { inner: output })
         })
     }
 
@@ -18407,7 +18407,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExport"))
             })?;
-            Ok(PyDescribeExportOutput { inner: output })
+            Ok(PyOperationDescribeExportOutput { inner: output })
         })
     }
 
@@ -18446,7 +18446,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTable"))
             })?;
-            Ok(PyDescribeGlobalTableOutput { inner: output })
+            Ok(PyOperationDescribeGlobalTableOutput { inner: output })
         })
     }
 
@@ -18485,7 +18485,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTableSettings"))
             })?;
-            Ok(PyDescribeGlobalTableSettingsOutput { inner: output })
+            Ok(PyOperationDescribeGlobalTableSettingsOutput { inner: output })
         })
     }
 
@@ -18521,7 +18521,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImport"))
             })?;
-            Ok(PyDescribeImportOutput { inner: output })
+            Ok(PyOperationDescribeImportOutput { inner: output })
         })
     }
 
@@ -18561,7 +18561,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DescribeKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyDescribeKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationDescribeKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -18591,7 +18591,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLimits"))
             })?;
-            Ok(PyDescribeLimitsOutput { inner: output })
+            Ok(PyOperationDescribeLimitsOutput { inner: output })
         })
     }
 
@@ -18627,7 +18627,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTable"))
             })?;
-            Ok(PyDescribeTableOutput { inner: output })
+            Ok(PyOperationDescribeTableOutput { inner: output })
         })
     }
 
@@ -18665,7 +18665,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTableReplicaAutoScaling"))
             })?;
-            Ok(PyDescribeTableReplicaAutoScalingOutput { inner: output })
+            Ok(PyOperationDescribeTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
@@ -18703,7 +18703,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTimeToLive"))
             })?;
-            Ok(PyDescribeTimeToLiveOutput { inner: output })
+            Ok(PyOperationDescribeTimeToLiveOutput { inner: output })
         })
     }
 
@@ -18760,7 +18760,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "DisableKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyDisableKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationDisableKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -18817,7 +18817,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "EnableKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyEnableKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationEnableKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -18913,7 +18913,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteStatement"))
             })?;
-            Ok(PyExecuteStatementOutput { inner: output })
+            Ok(PyOperationExecuteStatementOutput { inner: output })
         })
     }
 
@@ -18976,7 +18976,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteTransaction"))
             })?;
-            Ok(PyExecuteTransactionOutput { inner: output })
+            Ok(PyOperationExecuteTransactionOutput { inner: output })
         })
     }
 
@@ -19105,7 +19105,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ExportTableToPointInTime"))
             })?;
-            Ok(PyExportTableToPointInTimeOutput { inner: output })
+            Ok(PyOperationExportTableToPointInTimeOutput { inner: output })
         })
     }
 
@@ -19208,7 +19208,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetItem")))?;
-            Ok(PyGetItemOutput { inner: output })
+            Ok(PyOperationGetItemOutput { inner: output })
         })
     }
 
@@ -19246,7 +19246,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyOutput { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -19325,7 +19325,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ImportTable")))?;
-            Ok(PyImportTableOutput { inner: output })
+            Ok(PyOperationImportTableOutput { inner: output })
         })
     }
 
@@ -19412,7 +19412,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBackups")))?;
-            Ok(PyListBackupsOutput { inner: output })
+            Ok(PyOperationListBackupsOutput { inner: output })
         })
     }
 
@@ -19464,7 +19464,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContributorInsights"))
             })?;
-            Ok(PyListContributorInsightsOutput { inner: output })
+            Ok(PyOperationListContributorInsightsOutput { inner: output })
         })
     }
 
@@ -19515,7 +19515,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListExports")))?;
-            Ok(PyListExportsOutput { inner: output })
+            Ok(PyOperationListExportsOutput { inner: output })
         })
     }
 
@@ -19568,7 +19568,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGlobalTables"))
             })?;
-            Ok(PyListGlobalTablesOutput { inner: output })
+            Ok(PyOperationListGlobalTablesOutput { inner: output })
         })
     }
 
@@ -19619,7 +19619,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
-            Ok(PyListImportsOutput { inner: output })
+            Ok(PyOperationListImportsOutput { inner: output })
         })
     }
 
@@ -19664,7 +19664,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTables")))?;
-            Ok(PyListTablesOutput { inner: output })
+            Ok(PyOperationListTablesOutput { inner: output })
         })
     }
 
@@ -19709,7 +19709,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsOfResource"))
             })?;
-            Ok(PyListTagsOfResourceOutput { inner: output })
+            Ok(PyOperationListTagsOfResourceOutput { inner: output })
         })
     }
 
@@ -19862,7 +19862,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutItem")))?;
-            Ok(PyPutItemOutput { inner: output })
+            Ok(PyOperationPutItemOutput { inner: output })
         })
     }
 
@@ -19923,7 +19923,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyOutput { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -20123,7 +20123,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Query")))?;
-            Ok(PyQueryOutput { inner: output })
+            Ok(PyOperationQueryOutput { inner: output })
         })
     }
 
@@ -20245,7 +20245,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableFromBackup"))
             })?;
-            Ok(PyRestoreTableFromBackupOutput { inner: output })
+            Ok(PyOperationRestoreTableFromBackupOutput { inner: output })
         })
     }
 
@@ -20396,7 +20396,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableToPointInTime"))
             })?;
-            Ok(PyRestoreTableToPointInTimeOutput { inner: output })
+            Ok(PyOperationRestoreTableToPointInTimeOutput { inner: output })
         })
     }
 
@@ -20581,7 +20581,7 @@ impl DynamoDBClient {
             };
             let output =
                 result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
-            Ok(PyScanOutput { inner: output })
+            Ok(PyOperationScanOutput { inner: output })
         })
     }
 
@@ -20700,7 +20700,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SearchVectors"))
             })?;
-            Ok(PySearchVectorsOutput { inner: output })
+            Ok(PyOperationSearchVectorsOutput { inner: output })
         })
     }
 
@@ -20804,7 +20804,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactGetItems"))
             })?;
-            Ok(PyTransactGetItemsOutput { inner: output })
+            Ok(PyOperationTransactGetItemsOutput { inner: output })
         })
     }
 
@@ -20877,7 +20877,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TransactWriteItems"))
             })?;
-            Ok(PyTransactWriteItemsOutput { inner: output })
+            Ok(PyOperationTransactWriteItemsOutput { inner: output })
         })
     }
 
@@ -20976,7 +20976,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContinuousBackups"))
             })?;
-            Ok(PyUpdateContinuousBackupsOutput { inner: output })
+            Ok(PyOperationUpdateContinuousBackupsOutput { inner: output })
         })
     }
 
@@ -21043,7 +21043,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContributorInsights"))
             })?;
-            Ok(PyUpdateContributorInsightsOutput { inner: output })
+            Ok(PyOperationUpdateContributorInsightsOutput { inner: output })
         })
     }
 
@@ -21095,7 +21095,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTable"))
             })?;
-            Ok(PyUpdateGlobalTableOutput { inner: output })
+            Ok(PyOperationUpdateGlobalTableOutput { inner: output })
         })
     }
 
@@ -21202,7 +21202,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTableSettings"))
             })?;
-            Ok(PyUpdateGlobalTableSettingsOutput { inner: output })
+            Ok(PyOperationUpdateGlobalTableSettingsOutput { inner: output })
         })
     }
 
@@ -21377,7 +21377,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateItem")))?;
-            Ok(PyUpdateItemOutput { inner: output })
+            Ok(PyOperationUpdateItemOutput { inner: output })
         })
     }
 
@@ -21434,7 +21434,7 @@ impl DynamoDBClient {
                     sdk_error_to_py(py, &error, "UpdateKinesisStreamingDestination")
                 })
             })?;
-            Ok(PyUpdateKinesisStreamingDestinationOutput { inner: output })
+            Ok(PyOperationUpdateKinesisStreamingDestinationOutput { inner: output })
         })
     }
 
@@ -21638,7 +21638,7 @@ impl DynamoDBClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTable")))?;
-            Ok(PyUpdateTableOutput { inner: output })
+            Ok(PyOperationUpdateTableOutput { inner: output })
         })
     }
 
@@ -21715,7 +21715,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTableReplicaAutoScaling"))
             })?;
-            Ok(PyUpdateTableReplicaAutoScalingOutput { inner: output })
+            Ok(PyOperationUpdateTableReplicaAutoScalingOutput { inner: output })
         })
     }
 
@@ -21761,7 +21761,7 @@ impl DynamoDBClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTimeToLive"))
             })?;
-            Ok(PyUpdateTimeToLiveOutput { inner: output })
+            Ok(PyOperationUpdateTimeToLiveOutput { inner: output })
         })
     }
 }

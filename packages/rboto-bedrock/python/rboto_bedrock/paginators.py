@@ -8,25 +8,25 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListAdvancedPromptOptimizationJobsResponse,
-    ListAutomatedReasoningPoliciesResponse,
-    ListAutomatedReasoningPolicyBuildWorkflowsResponse,
-    ListAutomatedReasoningPolicyTestCasesResponse,
-    ListAutomatedReasoningPolicyTestResultsResponse,
-    ListCustomModelDeploymentsResponse,
-    ListCustomModelsResponse,
-    ListEnforcedGuardrailsConfigurationResponse,
-    ListEvaluationJobsResponse,
-    ListGuardrailsResponse,
-    ListImportedModelsResponse,
-    ListInferenceProfilesResponse,
-    ListMarketplaceModelEndpointsResponse,
-    ListModelCopyJobsResponse,
-    ListModelCustomizationJobsResponse,
-    ListModelImportJobsResponse,
-    ListModelInvocationJobsResponse,
-    ListPromptRoutersResponse,
-    ListProvisionedModelThroughputsResponse,
+    ListAdvancedPromptOptimizationJobsOutput,
+    ListAutomatedReasoningPoliciesOutput,
+    ListAutomatedReasoningPolicyBuildWorkflowsOutput,
+    ListAutomatedReasoningPolicyTestCasesOutput,
+    ListAutomatedReasoningPolicyTestResultsOutput,
+    ListCustomModelDeploymentsOutput,
+    ListCustomModelsOutput,
+    ListEnforcedGuardrailsConfigurationOutput,
+    ListEvaluationJobsOutput,
+    ListGuardrailsOutput,
+    ListImportedModelsOutput,
+    ListInferenceProfilesOutput,
+    ListMarketplaceModelEndpointsOutput,
+    ListModelCopyJobsOutput,
+    ListModelCustomizationJobsOutput,
+    ListModelImportJobsOutput,
+    ListModelInvocationJobsOutput,
+    ListPromptRoutersOutput,
+    ListProvisionedModelThroughputsOutput,
 )
 
 from .types import (
@@ -63,7 +63,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListAdvancedPromptOptimizationJobsResponse]:
+    ) -> AsyncIterator[ListAdvancedPromptOptimizationJobsOutput]:
         """Yield each page from list_advanced_prompt_optimization_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -91,7 +91,7 @@ class BedrockClientPaginators:
         policy_arn: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListAutomatedReasoningPoliciesResponse]:
+    ) -> AsyncIterator[ListAutomatedReasoningPoliciesOutput]:
         """Yield each page from list_automated_reasoning_policies; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -117,7 +117,7 @@ class BedrockClientPaginators:
         policy_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListAutomatedReasoningPolicyBuildWorkflowsResponse]:
+    ) -> AsyncIterator[ListAutomatedReasoningPolicyBuildWorkflowsOutput]:
         """Yield each page from list_automated_reasoning_policy_build_workflows; requests start on iteration."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
@@ -142,7 +142,7 @@ class BedrockClientPaginators:
         policy_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListAutomatedReasoningPolicyTestCasesResponse]:
+    ) -> AsyncIterator[ListAutomatedReasoningPolicyTestCasesOutput]:
         """Yield each page from list_automated_reasoning_policy_test_cases; requests start on iteration."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
@@ -168,7 +168,7 @@ class BedrockClientPaginators:
         build_workflow_id: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListAutomatedReasoningPolicyTestResultsResponse]:
+    ) -> AsyncIterator[ListAutomatedReasoningPolicyTestResultsOutput]:
         """Yield each page from list_automated_reasoning_policy_test_results; requests start on iteration."""
         params: dict[str, object] = {
             "policy_arn": policy_arn,
@@ -200,7 +200,7 @@ class BedrockClientPaginators:
         sort_order: SortOrder | None = None,
         status_equals: CustomModelDeploymentStatus | None = None,
         model_arn_equals: str | None = None,
-    ) -> AsyncIterator[ListCustomModelDeploymentsResponse]:
+    ) -> AsyncIterator[ListCustomModelDeploymentsOutput]:
         """Yield each page from list_custom_model_deployments; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -246,7 +246,7 @@ class BedrockClientPaginators:
         sort_order: SortOrder | None = None,
         is_owned: bool | None = None,
         model_status: ModelStatus | None = None,
-    ) -> AsyncIterator[ListCustomModelsResponse]:
+    ) -> AsyncIterator[ListCustomModelsOutput]:
         """Yield each page from list_custom_models; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -286,7 +286,7 @@ class BedrockClientPaginators:
         self,
         *,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListEnforcedGuardrailsConfigurationResponse]:
+    ) -> AsyncIterator[ListEnforcedGuardrailsConfigurationOutput]:
         """Yield each page from list_enforced_guardrails_configuration; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -314,7 +314,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListEvaluationJobsResponse]:
+    ) -> AsyncIterator[ListEvaluationJobsOutput]:
         """Yield each page from list_evaluation_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -352,7 +352,7 @@ class BedrockClientPaginators:
         guardrail_identifier: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListGuardrailsResponse]:
+    ) -> AsyncIterator[ListGuardrailsOutput]:
         """Yield each page from list_guardrails; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -382,7 +382,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortModelsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListImportedModelsResponse]:
+    ) -> AsyncIterator[ListImportedModelsOutput]:
         """Yield each page from list_imported_models; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -416,7 +416,7 @@ class BedrockClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         type_equals: InferenceProfileType | None = None,
-    ) -> AsyncIterator[ListInferenceProfilesResponse]:
+    ) -> AsyncIterator[ListInferenceProfilesOutput]:
         """Yield each page from list_inference_profiles; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -442,7 +442,7 @@ class BedrockClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         model_source_equals: str | None = None,
-    ) -> AsyncIterator[ListMarketplaceModelEndpointsResponse]:
+    ) -> AsyncIterator[ListMarketplaceModelEndpointsOutput]:
         """Yield each page from list_marketplace_model_endpoints; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -475,7 +475,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListModelCopyJobsResponse]:
+    ) -> AsyncIterator[ListModelCopyJobsOutput]:
         """Yield each page from list_model_copy_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -520,7 +520,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListModelCustomizationJobsResponse]:
+    ) -> AsyncIterator[ListModelCustomizationJobsOutput]:
         """Yield each page from list_model_customization_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -561,7 +561,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListModelImportJobsResponse]:
+    ) -> AsyncIterator[ListModelImportJobsOutput]:
         """Yield each page from list_model_import_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -602,7 +602,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortJobsBy | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListModelInvocationJobsResponse]:
+    ) -> AsyncIterator[ListModelInvocationJobsOutput]:
         """Yield each page from list_model_invocation_jobs; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -638,7 +638,7 @@ class BedrockClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         type: PromptRouterType | None = None,
-    ) -> AsyncIterator[ListPromptRoutersResponse]:
+    ) -> AsyncIterator[ListPromptRoutersOutput]:
         """Yield each page from list_prompt_routers; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -670,7 +670,7 @@ class BedrockClientPaginators:
         next_token: str | None = None,
         sort_by: SortByProvisionedModels | None = None,
         sort_order: SortOrder | None = None,
-    ) -> AsyncIterator[ListProvisionedModelThroughputsResponse]:
+    ) -> AsyncIterator[ListProvisionedModelThroughputsOutput]:
         """Yield each page from list_provisioned_model_throughputs; requests start on iteration."""
         params: dict[str, object] = {
         }

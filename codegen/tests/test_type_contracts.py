@@ -29,7 +29,7 @@ def test_valid_response_and_sequence_usage(tmp_path: Path) -> None:
 from typing import assert_type
 from rboto import DynamoDBClient, SQSClient, UnknownEnumValue
 from rboto_bedrock_runtime.types import ToolUseBlockOutput
-from rboto_sqs import GetQueueAttributesResult
+from rboto_sqs import GetQueueAttributesOutput
 
 sample: ToolUseBlockOutput = {
     "tool_use_id": "call-1", "name": "lookup", "input": {}, "type": None,
@@ -39,7 +39,7 @@ def read_tool(block: ToolUseBlockOutput) -> str:
     kind = block["type"]
     return kind.upper() if kind is not None else "unspecified"
 
-def read_attributes(response: GetQueueAttributesResult) -> str | None:
+def read_attributes(response: GetQueueAttributesOutput) -> str | None:
     if response.attributes is None:
         return None
     assert_type(response.attributes["VisibilityTimeout"], str)
@@ -60,12 +60,12 @@ def test_invalid_inputs_and_unsafe_response_usage_are_rejected(tmp_path: Path) -
     result = check_consumer(tmp_path / "invalid.py", """
 from rboto import DynamoDBClient
 from rboto_bedrock_runtime.types import ToolUseBlock, ToolUseBlockOutput
-from rboto_sqs import GetQueueAttributesResult
+from rboto_sqs import GetQueueAttributesOutput
 
 def unsafe_tool(block: ToolUseBlockOutput) -> None:
     print(block["type"].upper())
 
-def misspelled_attribute(response: GetQueueAttributesResult) -> None:
+def misspelled_attribute(response: GetQueueAttributesOutput) -> None:
     if response.attributes is not None:
         print(response.attributes["VisibilityTimout"])
 
@@ -127,14 +127,15 @@ def test_response_types_are_public_alongside_input_types(tmp_path: Path) -> None
     result = check_consumer(tmp_path / "public_types.py", """
 from collections.abc import AsyncIterator
 from typing import assert_type
-from rboto import BedrockRuntimeClient, LambdaClient, S3Client
-from rboto_s3 import CreateBucketOutput as LegacyCreateBucketOutput
+from rboto import BedrockRuntimeClient, LambdaClient, S3Client, SQSClient
+from rboto_s3 import CreateBucketOutput as RootCreateBucketOutput
 from rboto_s3.types import (
     Bucket, BucketOutput, ByteStream, CreateBucketOutput, CreateBucketRequest,
     GetObjectOutput, ListBucketsOutput, ListMultipartUploadsOutput,
 )
-from rboto_lambda.types import FunctionConfiguration, ListFunctionsResponse
-from rboto_bedrock_runtime.types import ConverseStreamOutput, ConverseStreamResponse
+from rboto_lambda.types import FunctionConfiguration, ListFunctionsOutput
+from rboto_sqs.types import SendMessageOutput
+from rboto_bedrock_runtime.types import ConverseStreamEventOutput, ConverseStreamOutput
 
 def describe_bucket(bucket: BucketOutput) -> str | None:
     return bucket.name
@@ -143,8 +144,11 @@ async def create(client: S3Client) -> CreateBucketOutput:
     request: CreateBucketRequest = {"bucket": "example"}
     response = await client.create_bucket(bucket=request["bucket"])
     assert_type(response, CreateBucketOutput)
-    legacy: LegacyCreateBucketOutput = response
-    return legacy
+    root: RootCreateBucketOutput = response
+    return root
+
+async def send(sqs: SQSClient) -> SendMessageOutput:
+    return await sqs.send_message(queue_url="example", message_body="hello")
 
 async def consume(s3: S3Client, lamb: LambdaClient, bedrock: BedrockRuntimeClient) -> None:
     request_bucket: Bucket = {"name": "example"}
@@ -158,14 +162,14 @@ async def consume(s3: S3Client, lamb: LambdaClient, bedrock: BedrockRuntimeClien
     assert_type(obj, GetObjectOutput)
     assert_type(obj.body, ByteStream)
     functions = await lamb.list_functions()
-    assert_type(functions, ListFunctionsResponse)
+    assert_type(functions, ListFunctionsOutput)
     for function in functions.functions or []:
         assert_type(function, FunctionConfiguration)
     async for page in s3.paginators.list_multipart_uploads(bucket="example"):
         assert_type(page, ListMultipartUploadsOutput)
     streaming = await bedrock.converse_stream(model_id="example")
-    assert_type(streaming, ConverseStreamResponse)
-    assert_type(streaming["stream"], AsyncIterator[ConverseStreamOutput])
+    assert_type(streaming, ConverseStreamOutput)
+    assert_type(streaming["stream"], AsyncIterator[ConverseStreamEventOutput])
 """)
     assert result.returncode == 0, result.stdout + result.stderr
 
@@ -184,3 +188,49 @@ async def invalid(client: S3Client, output: BucketOutput) -> None:
     assert result.returncode == 1, result.stdout + result.stderr
     errors = [line for line in result.stdout.splitlines() if ": error:" in line]
     assert len(errors) == 3, result.stdout
+
+
+def test_old_operation_output_names_are_not_exported(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "old_outputs.py", """
+from rboto_sqs import SendMessageResult
+from rboto_sqs.types import SendMessageResult
+from rboto_lambda import ListFunctionsResponse
+from rboto_lambda.types import ListFunctionsResponse
+from rboto_bedrock_runtime.types import ConverseStreamResponse
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    errors = [line for line in result.stdout.splitlines() if ": error:" in line]
+    assert len(errors) == 5, result.stdout
+    assert all("[attr-defined]" in error for error in errors), result.stdout
+
+
+def test_operation_outputs_take_priority_over_nested_and_shared_models(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "output_names.py", """
+from typing import assert_type
+from rboto import APIGatewayClient, BedrockAgentRuntimeClient, KMSClient, LambdaClient
+from rboto_api_gateway.types import CreateRestApiOutput, GetRestApiOutput
+from rboto_bedrock_agent_runtime.types import (
+    RetrieveAndGenerateOutput, RetrieveAndGenerateValueOutput,
+)
+from rboto_kms.types import ListGrantsOutput, ListRetirableGrantsOutput
+from rboto_lambda.types import GetLayerVersionOutput, GetLayerVersionByArnOutput
+
+def content(response: RetrieveAndGenerateOutput) -> str | None:
+    assert_type(response.output, RetrieveAndGenerateValueOutput | None)
+    return response.output.text if response.output is not None else None
+
+async def operations(api: APIGatewayClient, kms: KMSClient, lamb: LambdaClient) -> None:
+    assert_type(await api.create_rest_api(name="example"), CreateRestApiOutput)
+    assert_type(await api.get_rest_api(rest_api_id="example"), GetRestApiOutput)
+    assert_type(await kms.list_grants(key_id="example"), ListGrantsOutput)
+    assert_type(
+        await kms.list_retirable_grants(retiring_principal="example"),
+        ListRetirableGrantsOutput,
+    )
+    assert_type(
+        await lamb.get_layer_version(layer_name="example", version_number=1),
+        GetLayerVersionOutput,
+    )
+    assert_type(await lamb.get_layer_version_by_arn(arn="example"), GetLayerVersionByArnOutput)
+""")
+    assert result.returncode == 0, result.stdout + result.stderr

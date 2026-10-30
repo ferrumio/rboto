@@ -8,11 +8,11 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    ListBlueprintsResponse,
-    ListDataAutomationLibrariesResponse,
-    ListDataAutomationLibraryEntitiesResponse,
-    ListDataAutomationLibraryIngestionJobsResponse,
-    ListDataAutomationProjectsResponse,
+    ListBlueprintsOutput,
+    ListDataAutomationLibrariesOutput,
+    ListDataAutomationLibraryEntitiesOutput,
+    ListDataAutomationLibraryIngestionJobsOutput,
+    ListDataAutomationProjectsOutput,
 )
 
 from .types import (
@@ -43,7 +43,7 @@ class BedrockDataAutomationClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
-    ) -> AsyncIterator[ListBlueprintsResponse]:
+    ) -> AsyncIterator[ListBlueprintsOutput]:
         """Yield each page from list_blueprints; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -75,7 +75,7 @@ class BedrockDataAutomationClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         project_filter: DataAutomationProjectFilter | None = None,
-    ) -> AsyncIterator[ListDataAutomationLibrariesResponse]:
+    ) -> AsyncIterator[ListDataAutomationLibrariesOutput]:
         """Yield each page from list_data_automation_libraries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -102,7 +102,7 @@ class BedrockDataAutomationClientPaginators:
         entity_type: EntityType,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDataAutomationLibraryEntitiesResponse]:
+    ) -> AsyncIterator[ListDataAutomationLibraryEntitiesOutput]:
         """Yield each page from list_data_automation_library_entities; requests start on iteration."""
         params: dict[str, object] = {
             "library_arn": library_arn,
@@ -128,7 +128,7 @@ class BedrockDataAutomationClientPaginators:
         library_arn: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDataAutomationLibraryIngestionJobsResponse]:
+    ) -> AsyncIterator[ListDataAutomationLibraryIngestionJobsOutput]:
         """Yield each page from list_data_automation_library_ingestion_jobs; requests start on iteration."""
         params: dict[str, object] = {
             "library_arn": library_arn,
@@ -156,7 +156,7 @@ class BedrockDataAutomationClientPaginators:
         blueprint_filter: BlueprintFilter | None = None,
         resource_owner: ResourceOwner | None = None,
         library_filter: DataAutomationLibraryFilter | None = None,
-    ) -> AsyncIterator[ListDataAutomationProjectsResponse]:
+    ) -> AsyncIterator[ListDataAutomationProjectsOutput]:
         """Yield each page from list_data_automation_projects; requests start on iteration."""
         params: dict[str, object] = {
         }

@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import SSMClient as NativeClient, AddTagsToResourceResult, AssociateOpsItemRelatedItemResponse, CancelCommandResult, CancelMaintenanceWindowExecutionResult, CreateActivationResult, CreateAssociationBatchResult, CreateAssociationResult, CreateCloudConnectorResult, CreateDocumentResult, CreateMaintenanceWindowResult, CreateOpsItemResponse, CreateOpsMetadataResult, CreatePatchBaselineResult, CreateResourceDataSyncResult, DeleteActivationResult, DeleteAssociationResult, DeleteCloudConnectorResult, DeleteDocumentResult, DeleteInventoryResult, DeleteMaintenanceWindowResult, DeleteOpsItemResponse, DeleteOpsMetadataResult, DeleteParameterResult, DeleteParametersResult, DeletePatchBaselineResult, DeleteResourceDataSyncResult, DeleteResourcePolicyResponse, DeregisterManagedInstanceResult, DeregisterPatchBaselineForPatchGroupResult, DeregisterTargetFromMaintenanceWindowResult, DeregisterTaskFromMaintenanceWindowResult, DescribeActivationsResult, DescribeAssociationExecutionTargetsResult, DescribeAssociationExecutionsResult, DescribeAssociationResult, DescribeAutomationExecutionsResult, DescribeAutomationStepExecutionsResult, DescribeAvailablePatchesResult, DescribeDocumentPermissionResponse, DescribeDocumentResult, DescribeEffectiveInstanceAssociationsResult, DescribeEffectivePatchesForPatchBaselineResult, DescribeInstanceAssociationsStatusResult, DescribeInstanceInformationResult, DescribeInstancePatchStatesForPatchGroupResult, DescribeInstancePatchStatesResult, DescribeInstancePatchesResult, DescribeInstancePropertiesResult, DescribeInventoryDeletionsResult, DescribeMaintenanceWindowExecutionTaskInvocationsResult, DescribeMaintenanceWindowExecutionTasksResult, DescribeMaintenanceWindowExecutionsResult, DescribeMaintenanceWindowScheduleResult, DescribeMaintenanceWindowTargetsResult, DescribeMaintenanceWindowTasksResult, DescribeMaintenanceWindowsForTargetResult, DescribeMaintenanceWindowsResult, DescribeOpsItemsResponse, DescribeParametersResult, DescribePatchBaselinesResult, DescribePatchGroupStateResult, DescribePatchGroupsResult, DescribePatchPropertiesResult, DescribeSessionsResponse, DisassociateOpsItemRelatedItemResponse, GetAccessTokenResponse, GetAutomationExecutionResult, GetCalendarStateResponse, GetCloudConnectorResult, GetCommandInvocationResult, GetConnectionStatusResponse, GetDefaultPatchBaselineResult, GetDeployablePatchSnapshotForInstanceResult, GetDocumentResult, GetExecutionPreviewResponse, GetInventoryResult, GetInventorySchemaResult, GetMaintenanceWindowExecutionResult, GetMaintenanceWindowExecutionTaskInvocationResult, GetMaintenanceWindowExecutionTaskResult, GetMaintenanceWindowResult, GetMaintenanceWindowTaskResult, GetOpsItemResponse, GetOpsMetadataResult, GetOpsSummaryResult, GetParameterHistoryResult, GetParameterResult, GetParametersByPathResult, GetParametersResult, GetPatchBaselineForPatchGroupResult, GetPatchBaselineResult, GetResourcePoliciesResponse, GetServiceSettingResult, LabelParameterVersionResult, ListAssociationVersionsResult, ListAssociationsResult, ListCloudConnectorsResult, ListCommandInvocationsResult, ListCommandsResult, ListComplianceItemsResult, ListComplianceSummariesResult, ListDocumentMetadataHistoryResponse, ListDocumentVersionsResult, ListDocumentsResult, ListInventoryEntriesResult, ListNodesResult, ListNodesSummaryResult, ListOpsItemEventsResponse, ListOpsItemRelatedItemsResponse, ListOpsMetadataResult, ListResourceComplianceSummariesResult, ListResourceDataSyncResult, ListTagsForResourceResult, ModifyDocumentPermissionResponse, PutComplianceItemsResult, PutInventoryResult, PutParameterResult, PutResourcePolicyResponse, RegisterDefaultPatchBaselineResult, RegisterPatchBaselineForPatchGroupResult, RegisterTargetWithMaintenanceWindowResult, RegisterTaskWithMaintenanceWindowResult, RemoveTagsFromResourceResult, ResetServiceSettingResult, ResumeSessionResponse, SendAutomationSignalResult, SendCommandResult, StartAccessRequestResponse, StartAssociationsOnceResult, StartAutomationExecutionResult, StartChangeRequestExecutionResult, StartExecutionPreviewResponse, StartSessionResponse, StopAutomationExecutionResult, TerminateSessionResponse, UnlabelParameterVersionResult, UpdateAssociationResult, UpdateAssociationStatusResult, UpdateCloudConnectorResult, UpdateDocumentDefaultVersionResult, UpdateDocumentMetadataResponse, UpdateDocumentResult, UpdateMaintenanceWindowResult, UpdateMaintenanceWindowTargetResult, UpdateMaintenanceWindowTaskResult, UpdateManagedInstanceRoleResult, UpdateOpsItemResponse, UpdateOpsMetadataResult, UpdatePatchBaselineResult, UpdateResourceDataSyncResult, UpdateServiceSettingResult, ValidateCloudConnectorResult
+from ._native import SSMClient as NativeClient, AddTagsToResourceOutput, AssociateOpsItemRelatedItemOutput, CancelCommandOutput, CancelMaintenanceWindowExecutionOutput, CreateActivationOutput, CreateAssociationBatchOutput, CreateAssociationOutput, CreateCloudConnectorOutput, CreateDocumentOutput, CreateMaintenanceWindowOutput, CreateOpsItemOutput, CreateOpsMetadataOutput, CreatePatchBaselineOutput, CreateResourceDataSyncOutput, DeleteActivationOutput, DeleteAssociationOutput, DeleteCloudConnectorOutput, DeleteDocumentOutput, DeleteInventoryOutput, DeleteMaintenanceWindowOutput, DeleteOpsItemOutput, DeleteOpsMetadataOutput, DeleteParameterOutput, DeleteParametersOutput, DeletePatchBaselineOutput, DeleteResourceDataSyncOutput, DeleteResourcePolicyOutput, DeregisterManagedInstanceOutput, DeregisterPatchBaselineForPatchGroupOutput, DeregisterTargetFromMaintenanceWindowOutput, DeregisterTaskFromMaintenanceWindowOutput, DescribeActivationsOutput, DescribeAssociationExecutionTargetsOutput, DescribeAssociationExecutionsOutput, DescribeAssociationOutput, DescribeAutomationExecutionsOutput, DescribeAutomationStepExecutionsOutput, DescribeAvailablePatchesOutput, DescribeDocumentOutput, DescribeDocumentPermissionOutput, DescribeEffectiveInstanceAssociationsOutput, DescribeEffectivePatchesForPatchBaselineOutput, DescribeInstanceAssociationsStatusOutput, DescribeInstanceInformationOutput, DescribeInstancePatchStatesForPatchGroupOutput, DescribeInstancePatchStatesOutput, DescribeInstancePatchesOutput, DescribeInstancePropertiesOutput, DescribeInventoryDeletionsOutput, DescribeMaintenanceWindowExecutionTaskInvocationsOutput, DescribeMaintenanceWindowExecutionTasksOutput, DescribeMaintenanceWindowExecutionsOutput, DescribeMaintenanceWindowScheduleOutput, DescribeMaintenanceWindowTargetsOutput, DescribeMaintenanceWindowTasksOutput, DescribeMaintenanceWindowsForTargetOutput, DescribeMaintenanceWindowsOutput, DescribeOpsItemsOutput, DescribeParametersOutput, DescribePatchBaselinesOutput, DescribePatchGroupStateOutput, DescribePatchGroupsOutput, DescribePatchPropertiesOutput, DescribeSessionsOutput, DisassociateOpsItemRelatedItemOutput, GetAccessTokenOutput, GetAutomationExecutionOutput, GetCalendarStateOutput, GetCloudConnectorOutput, GetCommandInvocationOutput, GetConnectionStatusOutput, GetDefaultPatchBaselineOutput, GetDeployablePatchSnapshotForInstanceOutput, GetDocumentOutput, GetExecutionPreviewOutput, GetInventoryOutput, GetInventorySchemaOutput, GetMaintenanceWindowExecutionOutput, GetMaintenanceWindowExecutionTaskInvocationOutput, GetMaintenanceWindowExecutionTaskOutput, GetMaintenanceWindowOutput, GetMaintenanceWindowTaskOutput, GetOpsItemOutput, GetOpsMetadataOutput, GetOpsSummaryOutput, GetParameterHistoryOutput, GetParameterOutput, GetParametersByPathOutput, GetParametersOutput, GetPatchBaselineForPatchGroupOutput, GetPatchBaselineOutput, GetResourcePoliciesOutput, GetServiceSettingOutput, LabelParameterVersionOutput, ListAssociationVersionsOutput, ListAssociationsOutput, ListCloudConnectorsOutput, ListCommandInvocationsOutput, ListCommandsOutput, ListComplianceItemsOutput, ListComplianceSummariesOutput, ListDocumentMetadataHistoryOutput, ListDocumentVersionsOutput, ListDocumentsOutput, ListInventoryEntriesOutput, ListNodesOutput, ListNodesSummaryOutput, ListOpsItemEventsOutput, ListOpsItemRelatedItemsOutput, ListOpsMetadataOutput, ListResourceComplianceSummariesOutput, ListResourceDataSyncOutput, ListTagsForResourceOutput, ModifyDocumentPermissionOutput, PutComplianceItemsOutput, PutInventoryOutput, PutParameterOutput, PutResourcePolicyOutput, RegisterDefaultPatchBaselineOutput, RegisterPatchBaselineForPatchGroupOutput, RegisterTargetWithMaintenanceWindowOutput, RegisterTaskWithMaintenanceWindowOutput, RemoveTagsFromResourceOutput, ResetServiceSettingOutput, ResumeSessionOutput, SendAutomationSignalOutput, SendCommandOutput, StartAccessRequestOutput, StartAssociationsOnceOutput, StartAutomationExecutionOutput, StartChangeRequestExecutionOutput, StartExecutionPreviewOutput, StartSessionOutput, StopAutomationExecutionOutput, TerminateSessionOutput, UnlabelParameterVersionOutput, UpdateAssociationOutput, UpdateAssociationStatusOutput, UpdateCloudConnectorOutput, UpdateDocumentDefaultVersionOutput, UpdateDocumentMetadataOutput, UpdateDocumentOutput, UpdateMaintenanceWindowOutput, UpdateMaintenanceWindowTargetOutput, UpdateMaintenanceWindowTaskOutput, UpdateManagedInstanceRoleOutput, UpdateOpsItemOutput, UpdateOpsMetadataOutput, UpdatePatchBaselineOutput, UpdateResourceDataSyncOutput, UpdateServiceSettingOutput, ValidateCloudConnectorOutput
 from .types import (
     AlarmConfiguration,
     AssociationComplianceSeverity,
@@ -150,7 +150,7 @@ class SSMClient:
         resource_type: ResourceTypeForTagging,
         resource_id: str,
         tags: Sequence[Tag],
-    ) -> AddTagsToResourceResult:
+    ) -> AddTagsToResourceOutput:
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -161,7 +161,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.add_tags_to_resource, params, _interceptors,
                 "ssm", "AddTagsToResource", self._region,
-                AddTagsToResourceResult,
+                AddTagsToResourceOutput,
                 ("resource_type", "resource_id", "tags", ),
                 ("resource_type", "resource_id", "tags", ),
             )
@@ -177,7 +177,7 @@ class SSMClient:
         association_type: str,
         resource_type: str,
         resource_uri: str,
-    ) -> AssociateOpsItemRelatedItemResponse:
+    ) -> AssociateOpsItemRelatedItemOutput:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
             "association_type": association_type,
@@ -189,7 +189,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.associate_ops_item_related_item, params, _interceptors,
                 "ssm", "AssociateOpsItemRelatedItem", self._region,
-                AssociateOpsItemRelatedItemResponse,
+                AssociateOpsItemRelatedItemOutput,
                 ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
                 ("ops_item_id", "association_type", "resource_type", "resource_uri", ),
             )
@@ -203,7 +203,7 @@ class SSMClient:
         *,
         command_id: str,
         instance_ids: Sequence[str] | None = None,
-    ) -> CancelCommandResult:
+    ) -> CancelCommandOutput:
         params: dict[str, object] = {
             "command_id": command_id,
         }
@@ -214,7 +214,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.cancel_command, params, _interceptors,
                 "ssm", "CancelCommand", self._region,
-                CancelCommandResult,
+                CancelCommandOutput,
                 ("command_id", "instance_ids", ),
                 ("command_id", ),
             )
@@ -227,7 +227,7 @@ class SSMClient:
         self,
         *,
         window_execution_id: str,
-    ) -> CancelMaintenanceWindowExecutionResult:
+    ) -> CancelMaintenanceWindowExecutionOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -236,7 +236,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.cancel_maintenance_window_execution, params, _interceptors,
                 "ssm", "CancelMaintenanceWindowExecution", self._region,
-                CancelMaintenanceWindowExecutionResult,
+                CancelMaintenanceWindowExecutionOutput,
                 ("window_execution_id", ),
                 ("window_execution_id", ),
             )
@@ -255,7 +255,7 @@ class SSMClient:
         expiration_date: str | None = None,
         tags: Sequence[Tag] | None = None,
         registration_metadata: Sequence[RegistrationMetadataItem] | None = None,
-    ) -> CreateActivationResult:
+    ) -> CreateActivationOutput:
         params: dict[str, object] = {
             "iam_role": iam_role,
         }
@@ -276,7 +276,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_activation, params, _interceptors,
                 "ssm", "CreateActivation", self._region,
-                CreateActivationResult,
+                CreateActivationOutput,
                 ("iam_role", "description", "default_instance_name", "registration_limit", "expiration_date", "tags", "registration_metadata", ),
                 ("iam_role", ),
             )
@@ -310,7 +310,7 @@ class SSMClient:
         tags: Sequence[Tag] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
-    ) -> CreateAssociationResult:
+    ) -> CreateAssociationOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -361,7 +361,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_association, params, _interceptors,
                 "ssm", "CreateAssociation", self._region,
-                CreateAssociationResult,
+                CreateAssociationOutput,
                 ("name", "document_version", "instance_id", "parameters", "targets", "schedule_expression", "output_location", "association_name", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "tags", "alarm_configuration", "association_dispatch_assume_role", ),
                 ("name", ),
             )
@@ -375,7 +375,7 @@ class SSMClient:
         *,
         entries: Sequence[CreateAssociationBatchRequestEntry],
         association_dispatch_assume_role: str | None = None,
-    ) -> CreateAssociationBatchResult:
+    ) -> CreateAssociationBatchOutput:
         params: dict[str, object] = {
             "entries": entries,
         }
@@ -386,7 +386,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_association_batch, params, _interceptors,
                 "ssm", "CreateAssociationBatch", self._region,
-                CreateAssociationBatchResult,
+                CreateAssociationBatchOutput,
                 ("entries", "association_dispatch_assume_role", ),
                 ("entries", ),
             )
@@ -404,7 +404,7 @@ class SSMClient:
         config_connector_arn: str,
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateCloudConnectorResult:
+    ) -> CreateCloudConnectorOutput:
         params: dict[str, object] = {
             "display_name": display_name,
             "role_arn": role_arn,
@@ -420,7 +420,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_cloud_connector, params, _interceptors,
                 "ssm", "CreateCloudConnector", self._region,
-                CreateCloudConnectorResult,
+                CreateCloudConnectorOutput,
                 ("display_name", "role_arn", "configuration", "config_connector_arn", "description", "tags", ),
                 ("display_name", "role_arn", "configuration", "config_connector_arn", ),
             )
@@ -442,7 +442,7 @@ class SSMClient:
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateDocumentResult:
+    ) -> CreateDocumentOutput:
         params: dict[str, object] = {
             "content": content,
             "name": name,
@@ -468,7 +468,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_document, params, _interceptors,
                 "ssm", "CreateDocument", self._region,
-                CreateDocumentResult,
+                CreateDocumentOutput,
                 ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", ),
                 ("content", "name", ),
             )
@@ -492,7 +492,7 @@ class SSMClient:
         schedule_offset: int | None = None,
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateMaintenanceWindowResult:
+    ) -> CreateMaintenanceWindowOutput:
         params: dict[str, object] = {
             "name": name,
             "schedule": schedule,
@@ -519,7 +519,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_maintenance_window, params, _interceptors,
                 "ssm", "CreateMaintenanceWindow", self._region,
-                CreateMaintenanceWindowResult,
+                CreateMaintenanceWindowOutput,
                 ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", "description", "start_date", "end_date", "schedule_timezone", "schedule_offset", "client_token", "tags", ),
                 ("name", "schedule", "duration", "cutoff", "allow_unassociated_targets", ),
             )
@@ -547,7 +547,7 @@ class SSMClient:
         planned_start_time: str | None = None,
         planned_end_time: str | None = None,
         account_id: str | None = None,
-    ) -> CreateOpsItemResponse:
+    ) -> CreateOpsItemOutput:
         params: dict[str, object] = {
             "description": description,
             "source": source,
@@ -584,7 +584,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_ops_item, params, _interceptors,
                 "ssm", "CreateOpsItem", self._region,
-                CreateOpsItemResponse,
+                CreateOpsItemOutput,
                 ("description", "source", "title", "ops_item_type", "operational_data", "notifications", "priority", "related_ops_items", "tags", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "account_id", ),
                 ("description", "source", "title", ),
             )
@@ -599,7 +599,7 @@ class SSMClient:
         resource_id: str,
         metadata: dict[str, MetadataValue] | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreateOpsMetadataResult:
+    ) -> CreateOpsMetadataOutput:
         params: dict[str, object] = {
             "resource_id": resource_id,
         }
@@ -612,7 +612,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_ops_metadata, params, _interceptors,
                 "ssm", "CreateOpsMetadata", self._region,
-                CreateOpsMetadataResult,
+                CreateOpsMetadataOutput,
                 ("resource_id", "metadata", "tags", ),
                 ("resource_id", ),
             )
@@ -638,7 +638,7 @@ class SSMClient:
         available_security_updates_compliance_status: PatchComplianceStatus | None = None,
         client_token: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> CreatePatchBaselineResult:
+    ) -> CreatePatchBaselineOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -673,7 +673,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_patch_baseline, params, _interceptors,
                 "ssm", "CreatePatchBaseline", self._region,
-                CreatePatchBaselineResult,
+                CreatePatchBaselineOutput,
                 ("name", "operating_system", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "client_token", "tags", ),
                 ("name", ),
             )
@@ -689,7 +689,7 @@ class SSMClient:
         s3_destination: ResourceDataSyncS3Destination | None = None,
         sync_type: str | None = None,
         sync_source: ResourceDataSyncSource | None = None,
-    ) -> CreateResourceDataSyncResult:
+    ) -> CreateResourceDataSyncOutput:
         params: dict[str, object] = {
             "sync_name": sync_name,
         }
@@ -704,7 +704,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.create_resource_data_sync, params, _interceptors,
                 "ssm", "CreateResourceDataSync", self._region,
-                CreateResourceDataSyncResult,
+                CreateResourceDataSyncOutput,
                 ("sync_name", "s3_destination", "sync_type", "sync_source", ),
                 ("sync_name", ),
             )
@@ -717,7 +717,7 @@ class SSMClient:
         self,
         *,
         activation_id: str,
-    ) -> DeleteActivationResult:
+    ) -> DeleteActivationOutput:
         params: dict[str, object] = {
             "activation_id": activation_id,
         }
@@ -726,7 +726,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_activation, params, _interceptors,
                 "ssm", "DeleteActivation", self._region,
-                DeleteActivationResult,
+                DeleteActivationOutput,
                 ("activation_id", ),
                 ("activation_id", ),
             )
@@ -741,7 +741,7 @@ class SSMClient:
         name: str | None = None,
         instance_id: str | None = None,
         association_id: str | None = None,
-    ) -> DeleteAssociationResult:
+    ) -> DeleteAssociationOutput:
         params: dict[str, object] = {
         }
         if name is not None:
@@ -755,7 +755,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_association, params, _interceptors,
                 "ssm", "DeleteAssociation", self._region,
-                DeleteAssociationResult,
+                DeleteAssociationOutput,
                 ("name", "instance_id", "association_id", ),
                 (),
             )
@@ -768,7 +768,7 @@ class SSMClient:
         self,
         *,
         cloud_connector_id: str,
-    ) -> DeleteCloudConnectorResult:
+    ) -> DeleteCloudConnectorOutput:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -777,7 +777,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_cloud_connector, params, _interceptors,
                 "ssm", "DeleteCloudConnector", self._region,
-                DeleteCloudConnectorResult,
+                DeleteCloudConnectorOutput,
                 ("cloud_connector_id", ),
                 ("cloud_connector_id", ),
             )
@@ -793,7 +793,7 @@ class SSMClient:
         document_version: str | None = None,
         version_name: str | None = None,
         force: bool | None = None,
-    ) -> DeleteDocumentResult:
+    ) -> DeleteDocumentOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -808,7 +808,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_document, params, _interceptors,
                 "ssm", "DeleteDocument", self._region,
-                DeleteDocumentResult,
+                DeleteDocumentOutput,
                 ("name", "document_version", "version_name", "force", ),
                 ("name", ),
             )
@@ -824,7 +824,7 @@ class SSMClient:
         schema_delete_option: InventorySchemaDeleteOption | None = None,
         dry_run: bool | None = None,
         client_token: str | None = None,
-    ) -> DeleteInventoryResult:
+    ) -> DeleteInventoryOutput:
         params: dict[str, object] = {
             "type_name": type_name,
         }
@@ -839,7 +839,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_inventory, params, _interceptors,
                 "ssm", "DeleteInventory", self._region,
-                DeleteInventoryResult,
+                DeleteInventoryOutput,
                 ("type_name", "schema_delete_option", "dry_run", "client_token", ),
                 ("type_name", ),
             )
@@ -852,7 +852,7 @@ class SSMClient:
         self,
         *,
         window_id: str,
-    ) -> DeleteMaintenanceWindowResult:
+    ) -> DeleteMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -861,7 +861,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_maintenance_window, params, _interceptors,
                 "ssm", "DeleteMaintenanceWindow", self._region,
-                DeleteMaintenanceWindowResult,
+                DeleteMaintenanceWindowOutput,
                 ("window_id", ),
                 ("window_id", ),
             )
@@ -874,7 +874,7 @@ class SSMClient:
         self,
         *,
         ops_item_id: str,
-    ) -> DeleteOpsItemResponse:
+    ) -> DeleteOpsItemOutput:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -883,7 +883,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_ops_item, params, _interceptors,
                 "ssm", "DeleteOpsItem", self._region,
-                DeleteOpsItemResponse,
+                DeleteOpsItemOutput,
                 ("ops_item_id", ),
                 ("ops_item_id", ),
             )
@@ -896,7 +896,7 @@ class SSMClient:
         self,
         *,
         ops_metadata_arn: str,
-    ) -> DeleteOpsMetadataResult:
+    ) -> DeleteOpsMetadataOutput:
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -905,7 +905,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_ops_metadata, params, _interceptors,
                 "ssm", "DeleteOpsMetadata", self._region,
-                DeleteOpsMetadataResult,
+                DeleteOpsMetadataOutput,
                 ("ops_metadata_arn", ),
                 ("ops_metadata_arn", ),
             )
@@ -918,7 +918,7 @@ class SSMClient:
         self,
         *,
         name: str,
-    ) -> DeleteParameterResult:
+    ) -> DeleteParameterOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -927,7 +927,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_parameter, params, _interceptors,
                 "ssm", "DeleteParameter", self._region,
-                DeleteParameterResult,
+                DeleteParameterOutput,
                 ("name", ),
                 ("name", ),
             )
@@ -940,7 +940,7 @@ class SSMClient:
         self,
         *,
         names: Sequence[str],
-    ) -> DeleteParametersResult:
+    ) -> DeleteParametersOutput:
         params: dict[str, object] = {
             "names": names,
         }
@@ -949,7 +949,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_parameters, params, _interceptors,
                 "ssm", "DeleteParameters", self._region,
-                DeleteParametersResult,
+                DeleteParametersOutput,
                 ("names", ),
                 ("names", ),
             )
@@ -962,7 +962,7 @@ class SSMClient:
         self,
         *,
         baseline_id: str,
-    ) -> DeletePatchBaselineResult:
+    ) -> DeletePatchBaselineOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -971,7 +971,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_patch_baseline, params, _interceptors,
                 "ssm", "DeletePatchBaseline", self._region,
-                DeletePatchBaselineResult,
+                DeletePatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
             )
@@ -985,7 +985,7 @@ class SSMClient:
         *,
         sync_name: str,
         sync_type: str | None = None,
-    ) -> DeleteResourceDataSyncResult:
+    ) -> DeleteResourceDataSyncOutput:
         params: dict[str, object] = {
             "sync_name": sync_name,
         }
@@ -996,7 +996,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_resource_data_sync, params, _interceptors,
                 "ssm", "DeleteResourceDataSync", self._region,
-                DeleteResourceDataSyncResult,
+                DeleteResourceDataSyncOutput,
                 ("sync_name", "sync_type", ),
                 ("sync_name", ),
             )
@@ -1012,7 +1012,7 @@ class SSMClient:
         policy_id: str,
         policy_hash: str,
         deletion_mode: DeletionMode | None = None,
-    ) -> DeleteResourcePolicyResponse:
+    ) -> DeleteResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy_id": policy_id,
@@ -1025,7 +1025,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, _interceptors,
                 "ssm", "DeleteResourcePolicy", self._region,
-                DeleteResourcePolicyResponse,
+                DeleteResourcePolicyOutput,
                 ("resource_arn", "policy_id", "policy_hash", "deletion_mode", ),
                 ("resource_arn", "policy_id", "policy_hash", ),
             )
@@ -1038,7 +1038,7 @@ class SSMClient:
         self,
         *,
         instance_id: str,
-    ) -> DeregisterManagedInstanceResult:
+    ) -> DeregisterManagedInstanceOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1047,7 +1047,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_managed_instance, params, _interceptors,
                 "ssm", "DeregisterManagedInstance", self._region,
-                DeregisterManagedInstanceResult,
+                DeregisterManagedInstanceOutput,
                 ("instance_id", ),
                 ("instance_id", ),
             )
@@ -1061,7 +1061,7 @@ class SSMClient:
         *,
         baseline_id: str,
         patch_group: str,
-    ) -> DeregisterPatchBaselineForPatchGroupResult:
+    ) -> DeregisterPatchBaselineForPatchGroupOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
             "patch_group": patch_group,
@@ -1071,7 +1071,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "DeregisterPatchBaselineForPatchGroup", self._region,
-                DeregisterPatchBaselineForPatchGroupResult,
+                DeregisterPatchBaselineForPatchGroupOutput,
                 ("baseline_id", "patch_group", ),
                 ("baseline_id", "patch_group", ),
             )
@@ -1086,7 +1086,7 @@ class SSMClient:
         window_id: str,
         window_target_id: str,
         safe: bool | None = None,
-    ) -> DeregisterTargetFromMaintenanceWindowResult:
+    ) -> DeregisterTargetFromMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "window_target_id": window_target_id,
@@ -1098,7 +1098,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_target_from_maintenance_window, params, _interceptors,
                 "ssm", "DeregisterTargetFromMaintenanceWindow", self._region,
-                DeregisterTargetFromMaintenanceWindowResult,
+                DeregisterTargetFromMaintenanceWindowOutput,
                 ("window_id", "window_target_id", "safe", ),
                 ("window_id", "window_target_id", ),
             )
@@ -1112,7 +1112,7 @@ class SSMClient:
         *,
         window_id: str,
         window_task_id: str,
-    ) -> DeregisterTaskFromMaintenanceWindowResult:
+    ) -> DeregisterTaskFromMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -1122,7 +1122,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.deregister_task_from_maintenance_window, params, _interceptors,
                 "ssm", "DeregisterTaskFromMaintenanceWindow", self._region,
-                DeregisterTaskFromMaintenanceWindowResult,
+                DeregisterTaskFromMaintenanceWindowOutput,
                 ("window_id", "window_task_id", ),
                 ("window_id", "window_task_id", ),
             )
@@ -1137,7 +1137,7 @@ class SSMClient:
         filters: Sequence[DescribeActivationsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeActivationsResult:
+    ) -> DescribeActivationsOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1151,7 +1151,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_activations, params, _interceptors,
                 "ssm", "DescribeActivations", self._region,
-                DescribeActivationsResult,
+                DescribeActivationsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -1167,7 +1167,7 @@ class SSMClient:
         instance_id: str | None = None,
         association_id: str | None = None,
         association_version: str | None = None,
-    ) -> DescribeAssociationResult:
+    ) -> DescribeAssociationOutput:
         params: dict[str, object] = {
         }
         if name is not None:
@@ -1183,7 +1183,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association, params, _interceptors,
                 "ssm", "DescribeAssociation", self._region,
-                DescribeAssociationResult,
+                DescribeAssociationOutput,
                 ("name", "instance_id", "association_id", "association_version", ),
                 (),
             )
@@ -1200,7 +1200,7 @@ class SSMClient:
         filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeAssociationExecutionTargetsResult:
+    ) -> DescribeAssociationExecutionTargetsOutput:
         params: dict[str, object] = {
             "association_id": association_id,
             "execution_id": execution_id,
@@ -1216,7 +1216,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association_execution_targets, params, _interceptors,
                 "ssm", "DescribeAssociationExecutionTargets", self._region,
-                DescribeAssociationExecutionTargetsResult,
+                DescribeAssociationExecutionTargetsOutput,
                 ("association_id", "execution_id", "filters", "max_results", "next_token", ),
                 ("association_id", "execution_id", ),
             )
@@ -1232,7 +1232,7 @@ class SSMClient:
         filters: Sequence[AssociationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeAssociationExecutionsResult:
+    ) -> DescribeAssociationExecutionsOutput:
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -1247,7 +1247,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_association_executions, params, _interceptors,
                 "ssm", "DescribeAssociationExecutions", self._region,
-                DescribeAssociationExecutionsResult,
+                DescribeAssociationExecutionsOutput,
                 ("association_id", "filters", "max_results", "next_token", ),
                 ("association_id", ),
             )
@@ -1262,7 +1262,7 @@ class SSMClient:
         filters: Sequence[AutomationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeAutomationExecutionsResult:
+    ) -> DescribeAutomationExecutionsOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1276,7 +1276,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_automation_executions, params, _interceptors,
                 "ssm", "DescribeAutomationExecutions", self._region,
-                DescribeAutomationExecutionsResult,
+                DescribeAutomationExecutionsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -1293,7 +1293,7 @@ class SSMClient:
         next_token: str | None = None,
         max_results: int | None = None,
         reverse_order: bool | None = None,
-    ) -> DescribeAutomationStepExecutionsResult:
+    ) -> DescribeAutomationStepExecutionsOutput:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -1310,7 +1310,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_automation_step_executions, params, _interceptors,
                 "ssm", "DescribeAutomationStepExecutions", self._region,
-                DescribeAutomationStepExecutionsResult,
+                DescribeAutomationStepExecutionsOutput,
                 ("automation_execution_id", "filters", "next_token", "max_results", "reverse_order", ),
                 ("automation_execution_id", ),
             )
@@ -1325,7 +1325,7 @@ class SSMClient:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeAvailablePatchesResult:
+    ) -> DescribeAvailablePatchesOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1339,7 +1339,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_available_patches, params, _interceptors,
                 "ssm", "DescribeAvailablePatches", self._region,
-                DescribeAvailablePatchesResult,
+                DescribeAvailablePatchesOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -1354,7 +1354,7 @@ class SSMClient:
         name: str,
         document_version: str | None = None,
         version_name: str | None = None,
-    ) -> DescribeDocumentResult:
+    ) -> DescribeDocumentOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -1367,7 +1367,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_document, params, _interceptors,
                 "ssm", "DescribeDocument", self._region,
-                DescribeDocumentResult,
+                DescribeDocumentOutput,
                 ("name", "document_version", "version_name", ),
                 ("name", ),
             )
@@ -1383,7 +1383,7 @@ class SSMClient:
         permission_type: DocumentPermissionType,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeDocumentPermissionResponse:
+    ) -> DescribeDocumentPermissionOutput:
         params: dict[str, object] = {
             "name": name,
             "permission_type": permission_type,
@@ -1397,7 +1397,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_document_permission, params, _interceptors,
                 "ssm", "DescribeDocumentPermission", self._region,
-                DescribeDocumentPermissionResponse,
+                DescribeDocumentPermissionOutput,
                 ("name", "permission_type", "max_results", "next_token", ),
                 ("name", "permission_type", ),
             )
@@ -1412,7 +1412,7 @@ class SSMClient:
         instance_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeEffectiveInstanceAssociationsResult:
+    ) -> DescribeEffectiveInstanceAssociationsOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1425,7 +1425,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_effective_instance_associations, params, _interceptors,
                 "ssm", "DescribeEffectiveInstanceAssociations", self._region,
-                DescribeEffectiveInstanceAssociationsResult,
+                DescribeEffectiveInstanceAssociationsOutput,
                 ("instance_id", "max_results", "next_token", ),
                 ("instance_id", ),
             )
@@ -1440,7 +1440,7 @@ class SSMClient:
         baseline_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeEffectivePatchesForPatchBaselineResult:
+    ) -> DescribeEffectivePatchesForPatchBaselineOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -1453,7 +1453,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_effective_patches_for_patch_baseline, params, _interceptors,
                 "ssm", "DescribeEffectivePatchesForPatchBaseline", self._region,
-                DescribeEffectivePatchesForPatchBaselineResult,
+                DescribeEffectivePatchesForPatchBaselineOutput,
                 ("baseline_id", "max_results", "next_token", ),
                 ("baseline_id", ),
             )
@@ -1468,7 +1468,7 @@ class SSMClient:
         instance_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeInstanceAssociationsStatusResult:
+    ) -> DescribeInstanceAssociationsStatusOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1481,7 +1481,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_associations_status, params, _interceptors,
                 "ssm", "DescribeInstanceAssociationsStatus", self._region,
-                DescribeInstanceAssociationsStatusResult,
+                DescribeInstanceAssociationsStatusOutput,
                 ("instance_id", "max_results", "next_token", ),
                 ("instance_id", ),
             )
@@ -1497,7 +1497,7 @@ class SSMClient:
         filters: Sequence[InstanceInformationStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeInstanceInformationResult:
+    ) -> DescribeInstanceInformationOutput:
         params: dict[str, object] = {
         }
         if instance_information_filter_list is not None:
@@ -1513,7 +1513,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_information, params, _interceptors,
                 "ssm", "DescribeInstanceInformation", self._region,
-                DescribeInstanceInformationResult,
+                DescribeInstanceInformationOutput,
                 ("instance_information_filter_list", "filters", "max_results", "next_token", ),
                 (),
             )
@@ -1528,7 +1528,7 @@ class SSMClient:
         instance_ids: Sequence[str],
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> DescribeInstancePatchStatesResult:
+    ) -> DescribeInstancePatchStatesOutput:
         params: dict[str, object] = {
             "instance_ids": instance_ids,
         }
@@ -1541,7 +1541,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patch_states, params, _interceptors,
                 "ssm", "DescribeInstancePatchStates", self._region,
-                DescribeInstancePatchStatesResult,
+                DescribeInstancePatchStatesOutput,
                 ("instance_ids", "next_token", "max_results", ),
                 ("instance_ids", ),
             )
@@ -1557,7 +1557,7 @@ class SSMClient:
         filters: Sequence[InstancePatchStateFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> DescribeInstancePatchStatesForPatchGroupResult:
+    ) -> DescribeInstancePatchStatesForPatchGroupOutput:
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -1572,7 +1572,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patch_states_for_patch_group, params, _interceptors,
                 "ssm", "DescribeInstancePatchStatesForPatchGroup", self._region,
-                DescribeInstancePatchStatesForPatchGroupResult,
+                DescribeInstancePatchStatesForPatchGroupOutput,
                 ("patch_group", "filters", "next_token", "max_results", ),
                 ("patch_group", ),
             )
@@ -1588,7 +1588,7 @@ class SSMClient:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> DescribeInstancePatchesResult:
+    ) -> DescribeInstancePatchesOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
         }
@@ -1603,7 +1603,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_patches, params, _interceptors,
                 "ssm", "DescribeInstancePatches", self._region,
-                DescribeInstancePatchesResult,
+                DescribeInstancePatchesOutput,
                 ("instance_id", "filters", "next_token", "max_results", ),
                 ("instance_id", ),
             )
@@ -1619,7 +1619,7 @@ class SSMClient:
         filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeInstancePropertiesResult:
+    ) -> DescribeInstancePropertiesOutput:
         params: dict[str, object] = {
         }
         if instance_property_filter_list is not None:
@@ -1635,7 +1635,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_instance_properties, params, _interceptors,
                 "ssm", "DescribeInstanceProperties", self._region,
-                DescribeInstancePropertiesResult,
+                DescribeInstancePropertiesOutput,
                 ("instance_property_filter_list", "filters_with_operator", "max_results", "next_token", ),
                 (),
             )
@@ -1650,7 +1650,7 @@ class SSMClient:
         deletion_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> DescribeInventoryDeletionsResult:
+    ) -> DescribeInventoryDeletionsOutput:
         params: dict[str, object] = {
         }
         if deletion_id is not None:
@@ -1664,7 +1664,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_inventory_deletions, params, _interceptors,
                 "ssm", "DescribeInventoryDeletions", self._region,
-                DescribeInventoryDeletionsResult,
+                DescribeInventoryDeletionsOutput,
                 ("deletion_id", "next_token", "max_results", ),
                 (),
             )
@@ -1681,7 +1681,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowExecutionTaskInvocationsResult:
+    ) -> DescribeMaintenanceWindowExecutionTaskInvocationsOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -1697,7 +1697,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_execution_task_invocations, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTaskInvocations", self._region,
-                DescribeMaintenanceWindowExecutionTaskInvocationsResult,
+                DescribeMaintenanceWindowExecutionTaskInvocationsOutput,
                 ("window_execution_id", "task_id", "filters", "max_results", "next_token", ),
                 ("window_execution_id", "task_id", ),
             )
@@ -1713,7 +1713,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowExecutionTasksResult:
+    ) -> DescribeMaintenanceWindowExecutionTasksOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -1728,7 +1728,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_execution_tasks, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutionTasks", self._region,
-                DescribeMaintenanceWindowExecutionTasksResult,
+                DescribeMaintenanceWindowExecutionTasksOutput,
                 ("window_execution_id", "filters", "max_results", "next_token", ),
                 ("window_execution_id", ),
             )
@@ -1744,7 +1744,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowExecutionsResult:
+    ) -> DescribeMaintenanceWindowExecutionsOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1759,7 +1759,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_executions, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowExecutions", self._region,
-                DescribeMaintenanceWindowExecutionsResult,
+                DescribeMaintenanceWindowExecutionsOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
             )
@@ -1777,7 +1777,7 @@ class SSMClient:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowScheduleResult:
+    ) -> DescribeMaintenanceWindowScheduleOutput:
         params: dict[str, object] = {
         }
         if window_id is not None:
@@ -1797,7 +1797,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_schedule, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowSchedule", self._region,
-                DescribeMaintenanceWindowScheduleResult,
+                DescribeMaintenanceWindowScheduleOutput,
                 ("window_id", "targets", "resource_type", "filters", "max_results", "next_token", ),
                 (),
             )
@@ -1813,7 +1813,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowTargetsResult:
+    ) -> DescribeMaintenanceWindowTargetsOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1828,7 +1828,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_targets, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowTargets", self._region,
-                DescribeMaintenanceWindowTargetsResult,
+                DescribeMaintenanceWindowTargetsOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
             )
@@ -1844,7 +1844,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowTasksResult:
+    ) -> DescribeMaintenanceWindowTasksOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -1859,7 +1859,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_window_tasks, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowTasks", self._region,
-                DescribeMaintenanceWindowTasksResult,
+                DescribeMaintenanceWindowTasksOutput,
                 ("window_id", "filters", "max_results", "next_token", ),
                 ("window_id", ),
             )
@@ -1874,7 +1874,7 @@ class SSMClient:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowsResult:
+    ) -> DescribeMaintenanceWindowsOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1888,7 +1888,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_windows, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindows", self._region,
-                DescribeMaintenanceWindowsResult,
+                DescribeMaintenanceWindowsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -1904,7 +1904,7 @@ class SSMClient:
         resource_type: MaintenanceWindowResourceType,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeMaintenanceWindowsForTargetResult:
+    ) -> DescribeMaintenanceWindowsForTargetOutput:
         params: dict[str, object] = {
             "targets": targets,
             "resource_type": resource_type,
@@ -1918,7 +1918,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_maintenance_windows_for_target, params, _interceptors,
                 "ssm", "DescribeMaintenanceWindowsForTarget", self._region,
-                DescribeMaintenanceWindowsForTargetResult,
+                DescribeMaintenanceWindowsForTargetOutput,
                 ("targets", "resource_type", "max_results", "next_token", ),
                 ("targets", "resource_type", ),
             )
@@ -1933,7 +1933,7 @@ class SSMClient:
         ops_item_filters: Sequence[OpsItemFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribeOpsItemsResponse:
+    ) -> DescribeOpsItemsOutput:
         params: dict[str, object] = {
         }
         if ops_item_filters is not None:
@@ -1947,7 +1947,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_ops_items, params, _interceptors,
                 "ssm", "DescribeOpsItems", self._region,
-                DescribeOpsItemsResponse,
+                DescribeOpsItemsOutput,
                 ("ops_item_filters", "max_results", "next_token", ),
                 (),
             )
@@ -1964,7 +1964,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
         shared: bool | None = None,
-    ) -> DescribeParametersResult:
+    ) -> DescribeParametersOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -1982,7 +1982,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_parameters, params, _interceptors,
                 "ssm", "DescribeParameters", self._region,
-                DescribeParametersResult,
+                DescribeParametersOutput,
                 ("filters", "parameter_filters", "max_results", "next_token", "shared", ),
                 (),
             )
@@ -1997,7 +1997,7 @@ class SSMClient:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribePatchBaselinesResult:
+    ) -> DescribePatchBaselinesOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -2011,7 +2011,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_baselines, params, _interceptors,
                 "ssm", "DescribePatchBaselines", self._region,
-                DescribePatchBaselinesResult,
+                DescribePatchBaselinesOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -2024,7 +2024,7 @@ class SSMClient:
         self,
         *,
         patch_group: str,
-    ) -> DescribePatchGroupStateResult:
+    ) -> DescribePatchGroupStateOutput:
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -2033,7 +2033,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_group_state, params, _interceptors,
                 "ssm", "DescribePatchGroupState", self._region,
-                DescribePatchGroupStateResult,
+                DescribePatchGroupStateOutput,
                 ("patch_group", ),
                 ("patch_group", ),
             )
@@ -2048,7 +2048,7 @@ class SSMClient:
         max_results: int | None = None,
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
-    ) -> DescribePatchGroupsResult:
+    ) -> DescribePatchGroupsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -2062,7 +2062,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_groups, params, _interceptors,
                 "ssm", "DescribePatchGroups", self._region,
-                DescribePatchGroupsResult,
+                DescribePatchGroupsOutput,
                 ("max_results", "filters", "next_token", ),
                 (),
             )
@@ -2079,7 +2079,7 @@ class SSMClient:
         patch_set: PatchSet | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> DescribePatchPropertiesResult:
+    ) -> DescribePatchPropertiesOutput:
         params: dict[str, object] = {
             "operating_system": operating_system,
             "property": property,
@@ -2095,7 +2095,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_patch_properties, params, _interceptors,
                 "ssm", "DescribePatchProperties", self._region,
-                DescribePatchPropertiesResult,
+                DescribePatchPropertiesOutput,
                 ("operating_system", "property", "patch_set", "max_results", "next_token", ),
                 ("operating_system", "property", ),
             )
@@ -2111,7 +2111,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[SessionFilter] | None = None,
-    ) -> DescribeSessionsResponse:
+    ) -> DescribeSessionsOutput:
         params: dict[str, object] = {
             "state": state,
         }
@@ -2126,7 +2126,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.describe_sessions, params, _interceptors,
                 "ssm", "DescribeSessions", self._region,
-                DescribeSessionsResponse,
+                DescribeSessionsOutput,
                 ("state", "max_results", "next_token", "filters", ),
                 ("state", ),
             )
@@ -2140,7 +2140,7 @@ class SSMClient:
         *,
         ops_item_id: str,
         association_id: str,
-    ) -> DisassociateOpsItemRelatedItemResponse:
+    ) -> DisassociateOpsItemRelatedItemOutput:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
             "association_id": association_id,
@@ -2150,7 +2150,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.disassociate_ops_item_related_item, params, _interceptors,
                 "ssm", "DisassociateOpsItemRelatedItem", self._region,
-                DisassociateOpsItemRelatedItemResponse,
+                DisassociateOpsItemRelatedItemOutput,
                 ("ops_item_id", "association_id", ),
                 ("ops_item_id", "association_id", ),
             )
@@ -2163,7 +2163,7 @@ class SSMClient:
         self,
         *,
         access_request_id: str,
-    ) -> GetAccessTokenResponse:
+    ) -> GetAccessTokenOutput:
         params: dict[str, object] = {
             "access_request_id": access_request_id,
         }
@@ -2172,7 +2172,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_access_token, params, _interceptors,
                 "ssm", "GetAccessToken", self._region,
-                GetAccessTokenResponse,
+                GetAccessTokenOutput,
                 ("access_request_id", ),
                 ("access_request_id", ),
             )
@@ -2185,7 +2185,7 @@ class SSMClient:
         self,
         *,
         automation_execution_id: str,
-    ) -> GetAutomationExecutionResult:
+    ) -> GetAutomationExecutionOutput:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -2194,7 +2194,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_automation_execution, params, _interceptors,
                 "ssm", "GetAutomationExecution", self._region,
-                GetAutomationExecutionResult,
+                GetAutomationExecutionOutput,
                 ("automation_execution_id", ),
                 ("automation_execution_id", ),
             )
@@ -2208,7 +2208,7 @@ class SSMClient:
         *,
         calendar_names: Sequence[str],
         at_time: str | None = None,
-    ) -> GetCalendarStateResponse:
+    ) -> GetCalendarStateOutput:
         params: dict[str, object] = {
             "calendar_names": calendar_names,
         }
@@ -2219,7 +2219,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_calendar_state, params, _interceptors,
                 "ssm", "GetCalendarState", self._region,
-                GetCalendarStateResponse,
+                GetCalendarStateOutput,
                 ("calendar_names", "at_time", ),
                 ("calendar_names", ),
             )
@@ -2232,7 +2232,7 @@ class SSMClient:
         self,
         *,
         cloud_connector_id: str,
-    ) -> GetCloudConnectorResult:
+    ) -> GetCloudConnectorOutput:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -2241,7 +2241,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_cloud_connector, params, _interceptors,
                 "ssm", "GetCloudConnector", self._region,
-                GetCloudConnectorResult,
+                GetCloudConnectorOutput,
                 ("cloud_connector_id", ),
                 ("cloud_connector_id", ),
             )
@@ -2256,7 +2256,7 @@ class SSMClient:
         command_id: str,
         instance_id: str,
         plugin_name: str | None = None,
-    ) -> GetCommandInvocationResult:
+    ) -> GetCommandInvocationOutput:
         params: dict[str, object] = {
             "command_id": command_id,
             "instance_id": instance_id,
@@ -2268,7 +2268,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_command_invocation, params, _interceptors,
                 "ssm", "GetCommandInvocation", self._region,
-                GetCommandInvocationResult,
+                GetCommandInvocationOutput,
                 ("command_id", "instance_id", "plugin_name", ),
                 ("command_id", "instance_id", ),
             )
@@ -2281,7 +2281,7 @@ class SSMClient:
         self,
         *,
         target: str,
-    ) -> GetConnectionStatusResponse:
+    ) -> GetConnectionStatusOutput:
         params: dict[str, object] = {
             "target": target,
         }
@@ -2290,7 +2290,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_connection_status, params, _interceptors,
                 "ssm", "GetConnectionStatus", self._region,
-                GetConnectionStatusResponse,
+                GetConnectionStatusOutput,
                 ("target", ),
                 ("target", ),
             )
@@ -2303,7 +2303,7 @@ class SSMClient:
         self,
         *,
         operating_system: OperatingSystem | None = None,
-    ) -> GetDefaultPatchBaselineResult:
+    ) -> GetDefaultPatchBaselineOutput:
         params: dict[str, object] = {
         }
         if operating_system is not None:
@@ -2313,7 +2313,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_default_patch_baseline, params, _interceptors,
                 "ssm", "GetDefaultPatchBaseline", self._region,
-                GetDefaultPatchBaselineResult,
+                GetDefaultPatchBaselineOutput,
                 ("operating_system", ),
                 (),
             )
@@ -2329,7 +2329,7 @@ class SSMClient:
         snapshot_id: str,
         baseline_override: BaselineOverride | None = None,
         use_s3_dual_stack_endpoint: bool | None = None,
-    ) -> GetDeployablePatchSnapshotForInstanceResult:
+    ) -> GetDeployablePatchSnapshotForInstanceOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
             "snapshot_id": snapshot_id,
@@ -2343,7 +2343,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_deployable_patch_snapshot_for_instance, params, _interceptors,
                 "ssm", "GetDeployablePatchSnapshotForInstance", self._region,
-                GetDeployablePatchSnapshotForInstanceResult,
+                GetDeployablePatchSnapshotForInstanceOutput,
                 ("instance_id", "snapshot_id", "baseline_override", "use_s3_dual_stack_endpoint", ),
                 ("instance_id", "snapshot_id", ),
             )
@@ -2359,7 +2359,7 @@ class SSMClient:
         version_name: str | None = None,
         document_version: str | None = None,
         document_format: DocumentFormat | None = None,
-    ) -> GetDocumentResult:
+    ) -> GetDocumentOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -2374,7 +2374,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_document, params, _interceptors,
                 "ssm", "GetDocument", self._region,
-                GetDocumentResult,
+                GetDocumentOutput,
                 ("name", "version_name", "document_version", "document_format", ),
                 ("name", ),
             )
@@ -2387,7 +2387,7 @@ class SSMClient:
         self,
         *,
         execution_preview_id: str,
-    ) -> GetExecutionPreviewResponse:
+    ) -> GetExecutionPreviewOutput:
         params: dict[str, object] = {
             "execution_preview_id": execution_preview_id,
         }
@@ -2396,7 +2396,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_execution_preview, params, _interceptors,
                 "ssm", "GetExecutionPreview", self._region,
-                GetExecutionPreviewResponse,
+                GetExecutionPreviewOutput,
                 ("execution_preview_id", ),
                 ("execution_preview_id", ),
             )
@@ -2413,7 +2413,7 @@ class SSMClient:
         result_attributes: Sequence[ResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> GetInventoryResult:
+    ) -> GetInventoryOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -2431,7 +2431,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_inventory, params, _interceptors,
                 "ssm", "GetInventory", self._region,
-                GetInventoryResult,
+                GetInventoryOutput,
                 ("filters", "aggregators", "result_attributes", "next_token", "max_results", ),
                 (),
             )
@@ -2448,7 +2448,7 @@ class SSMClient:
         max_results: int | None = None,
         aggregator: bool | None = None,
         sub_type: bool | None = None,
-    ) -> GetInventorySchemaResult:
+    ) -> GetInventorySchemaOutput:
         params: dict[str, object] = {
         }
         if type_name is not None:
@@ -2466,7 +2466,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_inventory_schema, params, _interceptors,
                 "ssm", "GetInventorySchema", self._region,
-                GetInventorySchemaResult,
+                GetInventorySchemaOutput,
                 ("type_name", "next_token", "max_results", "aggregator", "sub_type", ),
                 (),
             )
@@ -2479,7 +2479,7 @@ class SSMClient:
         self,
         *,
         window_id: str,
-    ) -> GetMaintenanceWindowResult:
+    ) -> GetMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -2488,7 +2488,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window, params, _interceptors,
                 "ssm", "GetMaintenanceWindow", self._region,
-                GetMaintenanceWindowResult,
+                GetMaintenanceWindowOutput,
                 ("window_id", ),
                 ("window_id", ),
             )
@@ -2501,7 +2501,7 @@ class SSMClient:
         self,
         *,
         window_execution_id: str,
-    ) -> GetMaintenanceWindowExecutionResult:
+    ) -> GetMaintenanceWindowExecutionOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
         }
@@ -2510,7 +2510,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecution", self._region,
-                GetMaintenanceWindowExecutionResult,
+                GetMaintenanceWindowExecutionOutput,
                 ("window_execution_id", ),
                 ("window_execution_id", ),
             )
@@ -2524,7 +2524,7 @@ class SSMClient:
         *,
         window_execution_id: str,
         task_id: str,
-    ) -> GetMaintenanceWindowExecutionTaskResult:
+    ) -> GetMaintenanceWindowExecutionTaskOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -2534,7 +2534,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution_task, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTask", self._region,
-                GetMaintenanceWindowExecutionTaskResult,
+                GetMaintenanceWindowExecutionTaskOutput,
                 ("window_execution_id", "task_id", ),
                 ("window_execution_id", "task_id", ),
             )
@@ -2549,7 +2549,7 @@ class SSMClient:
         window_execution_id: str,
         task_id: str,
         invocation_id: str,
-    ) -> GetMaintenanceWindowExecutionTaskInvocationResult:
+    ) -> GetMaintenanceWindowExecutionTaskInvocationOutput:
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
             "task_id": task_id,
@@ -2560,7 +2560,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_execution_task_invocation, params, _interceptors,
                 "ssm", "GetMaintenanceWindowExecutionTaskInvocation", self._region,
-                GetMaintenanceWindowExecutionTaskInvocationResult,
+                GetMaintenanceWindowExecutionTaskInvocationOutput,
                 ("window_execution_id", "task_id", "invocation_id", ),
                 ("window_execution_id", "task_id", "invocation_id", ),
             )
@@ -2574,7 +2574,7 @@ class SSMClient:
         *,
         window_id: str,
         window_task_id: str,
-    ) -> GetMaintenanceWindowTaskResult:
+    ) -> GetMaintenanceWindowTaskOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -2584,7 +2584,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_maintenance_window_task, params, _interceptors,
                 "ssm", "GetMaintenanceWindowTask", self._region,
-                GetMaintenanceWindowTaskResult,
+                GetMaintenanceWindowTaskOutput,
                 ("window_id", "window_task_id", ),
                 ("window_id", "window_task_id", ),
             )
@@ -2598,7 +2598,7 @@ class SSMClient:
         *,
         ops_item_id: str,
         ops_item_arn: str | None = None,
-    ) -> GetOpsItemResponse:
+    ) -> GetOpsItemOutput:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -2609,7 +2609,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_item, params, _interceptors,
                 "ssm", "GetOpsItem", self._region,
-                GetOpsItemResponse,
+                GetOpsItemOutput,
                 ("ops_item_id", "ops_item_arn", ),
                 ("ops_item_id", ),
             )
@@ -2624,7 +2624,7 @@ class SSMClient:
         ops_metadata_arn: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> GetOpsMetadataResult:
+    ) -> GetOpsMetadataOutput:
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -2637,7 +2637,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_metadata, params, _interceptors,
                 "ssm", "GetOpsMetadata", self._region,
-                GetOpsMetadataResult,
+                GetOpsMetadataOutput,
                 ("ops_metadata_arn", "max_results", "next_token", ),
                 ("ops_metadata_arn", ),
             )
@@ -2655,7 +2655,7 @@ class SSMClient:
         result_attributes: Sequence[OpsResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> GetOpsSummaryResult:
+    ) -> GetOpsSummaryOutput:
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -2675,7 +2675,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_ops_summary, params, _interceptors,
                 "ssm", "GetOpsSummary", self._region,
-                GetOpsSummaryResult,
+                GetOpsSummaryOutput,
                 ("sync_name", "filters", "aggregators", "result_attributes", "next_token", "max_results", ),
                 (),
             )
@@ -2689,7 +2689,7 @@ class SSMClient:
         *,
         name: str,
         with_decryption: bool | None = None,
-    ) -> GetParameterResult:
+    ) -> GetParameterOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -2700,7 +2700,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameter, params, _interceptors,
                 "ssm", "GetParameter", self._region,
-                GetParameterResult,
+                GetParameterOutput,
                 ("name", "with_decryption", ),
                 ("name", ),
             )
@@ -2716,7 +2716,7 @@ class SSMClient:
         with_decryption: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> GetParameterHistoryResult:
+    ) -> GetParameterHistoryOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -2731,7 +2731,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameter_history, params, _interceptors,
                 "ssm", "GetParameterHistory", self._region,
-                GetParameterHistoryResult,
+                GetParameterHistoryOutput,
                 ("name", "with_decryption", "max_results", "next_token", ),
                 ("name", ),
             )
@@ -2745,7 +2745,7 @@ class SSMClient:
         *,
         names: Sequence[str],
         with_decryption: bool | None = None,
-    ) -> GetParametersResult:
+    ) -> GetParametersOutput:
         params: dict[str, object] = {
             "names": names,
         }
@@ -2756,7 +2756,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameters, params, _interceptors,
                 "ssm", "GetParameters", self._region,
-                GetParametersResult,
+                GetParametersOutput,
                 ("names", "with_decryption", ),
                 ("names", ),
             )
@@ -2774,7 +2774,7 @@ class SSMClient:
         with_decryption: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> GetParametersByPathResult:
+    ) -> GetParametersByPathOutput:
         params: dict[str, object] = {
             "path": path,
         }
@@ -2793,7 +2793,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_parameters_by_path, params, _interceptors,
                 "ssm", "GetParametersByPath", self._region,
-                GetParametersByPathResult,
+                GetParametersByPathOutput,
                 ("path", "recursive", "parameter_filters", "with_decryption", "max_results", "next_token", ),
                 ("path", ),
             )
@@ -2806,7 +2806,7 @@ class SSMClient:
         self,
         *,
         baseline_id: str,
-    ) -> GetPatchBaselineResult:
+    ) -> GetPatchBaselineOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -2815,7 +2815,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_patch_baseline, params, _interceptors,
                 "ssm", "GetPatchBaseline", self._region,
-                GetPatchBaselineResult,
+                GetPatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
             )
@@ -2829,7 +2829,7 @@ class SSMClient:
         *,
         patch_group: str,
         operating_system: OperatingSystem | None = None,
-    ) -> GetPatchBaselineForPatchGroupResult:
+    ) -> GetPatchBaselineForPatchGroupOutput:
         params: dict[str, object] = {
             "patch_group": patch_group,
         }
@@ -2840,7 +2840,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "GetPatchBaselineForPatchGroup", self._region,
-                GetPatchBaselineForPatchGroupResult,
+                GetPatchBaselineForPatchGroupOutput,
                 ("patch_group", "operating_system", ),
                 ("patch_group", ),
             )
@@ -2855,7 +2855,7 @@ class SSMClient:
         resource_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> GetResourcePoliciesResponse:
+    ) -> GetResourcePoliciesOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2868,7 +2868,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_resource_policies, params, _interceptors,
                 "ssm", "GetResourcePolicies", self._region,
-                GetResourcePoliciesResponse,
+                GetResourcePoliciesOutput,
                 ("resource_arn", "next_token", "max_results", ),
                 ("resource_arn", ),
             )
@@ -2881,7 +2881,7 @@ class SSMClient:
         self,
         *,
         setting_id: str,
-    ) -> GetServiceSettingResult:
+    ) -> GetServiceSettingOutput:
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
@@ -2890,7 +2890,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.get_service_setting, params, _interceptors,
                 "ssm", "GetServiceSetting", self._region,
-                GetServiceSettingResult,
+                GetServiceSettingOutput,
                 ("setting_id", ),
                 ("setting_id", ),
             )
@@ -2905,7 +2905,7 @@ class SSMClient:
         name: str,
         labels: Sequence[str],
         parameter_version: int | None = None,
-    ) -> LabelParameterVersionResult:
+    ) -> LabelParameterVersionOutput:
         params: dict[str, object] = {
             "name": name,
             "labels": labels,
@@ -2917,7 +2917,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.label_parameter_version, params, _interceptors,
                 "ssm", "LabelParameterVersion", self._region,
-                LabelParameterVersionResult,
+                LabelParameterVersionOutput,
                 ("name", "labels", "parameter_version", ),
                 ("name", "labels", ),
             )
@@ -2932,7 +2932,7 @@ class SSMClient:
         association_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListAssociationVersionsResult:
+    ) -> ListAssociationVersionsOutput:
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -2945,7 +2945,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_association_versions, params, _interceptors,
                 "ssm", "ListAssociationVersions", self._region,
-                ListAssociationVersionsResult,
+                ListAssociationVersionsOutput,
                 ("association_id", "max_results", "next_token", ),
                 ("association_id", ),
             )
@@ -2960,7 +2960,7 @@ class SSMClient:
         association_filter_list: Sequence[AssociationFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListAssociationsResult:
+    ) -> ListAssociationsOutput:
         params: dict[str, object] = {
         }
         if association_filter_list is not None:
@@ -2974,7 +2974,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_associations, params, _interceptors,
                 "ssm", "ListAssociations", self._region,
-                ListAssociationsResult,
+                ListAssociationsOutput,
                 ("association_filter_list", "max_results", "next_token", ),
                 (),
             )
@@ -2989,7 +2989,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[CloudConnectorFilter] | None = None,
-    ) -> ListCloudConnectorsResult:
+    ) -> ListCloudConnectorsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -3003,7 +3003,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_cloud_connectors, params, _interceptors,
                 "ssm", "ListCloudConnectors", self._region,
-                ListCloudConnectorsResult,
+                ListCloudConnectorsOutput,
                 ("max_results", "next_token", "filters", ),
                 (),
             )
@@ -3021,7 +3021,7 @@ class SSMClient:
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
         details: bool | None = None,
-    ) -> ListCommandInvocationsResult:
+    ) -> ListCommandInvocationsOutput:
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -3041,7 +3041,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_command_invocations, params, _interceptors,
                 "ssm", "ListCommandInvocations", self._region,
-                ListCommandInvocationsResult,
+                ListCommandInvocationsOutput,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", "details", ),
                 (),
             )
@@ -3058,7 +3058,7 @@ class SSMClient:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
-    ) -> ListCommandsResult:
+    ) -> ListCommandsOutput:
         params: dict[str, object] = {
         }
         if command_id is not None:
@@ -3076,7 +3076,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_commands, params, _interceptors,
                 "ssm", "ListCommands", self._region,
-                ListCommandsResult,
+                ListCommandsOutput,
                 ("command_id", "instance_id", "max_results", "next_token", "filters", ),
                 (),
             )
@@ -3093,7 +3093,7 @@ class SSMClient:
         resource_types: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListComplianceItemsResult:
+    ) -> ListComplianceItemsOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3111,7 +3111,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_compliance_items, params, _interceptors,
                 "ssm", "ListComplianceItems", self._region,
-                ListComplianceItemsResult,
+                ListComplianceItemsOutput,
                 ("filters", "resource_ids", "resource_types", "next_token", "max_results", ),
                 (),
             )
@@ -3126,7 +3126,7 @@ class SSMClient:
         filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListComplianceSummariesResult:
+    ) -> ListComplianceSummariesOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3140,7 +3140,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_compliance_summaries, params, _interceptors,
                 "ssm", "ListComplianceSummaries", self._region,
-                ListComplianceSummariesResult,
+                ListComplianceSummariesOutput,
                 ("filters", "next_token", "max_results", ),
                 (),
             )
@@ -3157,7 +3157,7 @@ class SSMClient:
         document_version: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListDocumentMetadataHistoryResponse:
+    ) -> ListDocumentMetadataHistoryOutput:
         params: dict[str, object] = {
             "name": name,
             "metadata": metadata,
@@ -3173,7 +3173,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_document_metadata_history, params, _interceptors,
                 "ssm", "ListDocumentMetadataHistory", self._region,
-                ListDocumentMetadataHistoryResponse,
+                ListDocumentMetadataHistoryOutput,
                 ("name", "metadata", "document_version", "next_token", "max_results", ),
                 ("name", "metadata", ),
             )
@@ -3188,7 +3188,7 @@ class SSMClient:
         name: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListDocumentVersionsResult:
+    ) -> ListDocumentVersionsOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -3201,7 +3201,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_document_versions, params, _interceptors,
                 "ssm", "ListDocumentVersions", self._region,
-                ListDocumentVersionsResult,
+                ListDocumentVersionsOutput,
                 ("name", "max_results", "next_token", ),
                 ("name", ),
             )
@@ -3217,7 +3217,7 @@ class SSMClient:
         filters: Sequence[DocumentKeyValuesFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListDocumentsResult:
+    ) -> ListDocumentsOutput:
         params: dict[str, object] = {
         }
         if document_filter_list is not None:
@@ -3233,7 +3233,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_documents, params, _interceptors,
                 "ssm", "ListDocuments", self._region,
-                ListDocumentsResult,
+                ListDocumentsOutput,
                 ("document_filter_list", "filters", "max_results", "next_token", ),
                 (),
             )
@@ -3250,7 +3250,7 @@ class SSMClient:
         filters: Sequence[InventoryFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListInventoryEntriesResult:
+    ) -> ListInventoryEntriesOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
             "type_name": type_name,
@@ -3266,7 +3266,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_inventory_entries, params, _interceptors,
                 "ssm", "ListInventoryEntries", self._region,
-                ListInventoryEntriesResult,
+                ListInventoryEntriesOutput,
                 ("instance_id", "type_name", "filters", "next_token", "max_results", ),
                 ("instance_id", "type_name", ),
             )
@@ -3282,7 +3282,7 @@ class SSMClient:
         filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListNodesResult:
+    ) -> ListNodesOutput:
         params: dict[str, object] = {
         }
         if sync_name is not None:
@@ -3298,7 +3298,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_nodes, params, _interceptors,
                 "ssm", "ListNodes", self._region,
-                ListNodesResult,
+                ListNodesOutput,
                 ("sync_name", "filters", "next_token", "max_results", ),
                 (),
             )
@@ -3315,7 +3315,7 @@ class SSMClient:
         filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListNodesSummaryResult:
+    ) -> ListNodesSummaryOutput:
         params: dict[str, object] = {
             "aggregators": aggregators,
         }
@@ -3332,7 +3332,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_nodes_summary, params, _interceptors,
                 "ssm", "ListNodesSummary", self._region,
-                ListNodesSummaryResult,
+                ListNodesSummaryOutput,
                 ("aggregators", "sync_name", "filters", "next_token", "max_results", ),
                 ("aggregators", ),
             )
@@ -3347,7 +3347,7 @@ class SSMClient:
         filters: Sequence[OpsItemEventFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListOpsItemEventsResponse:
+    ) -> ListOpsItemEventsOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3361,7 +3361,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_item_events, params, _interceptors,
                 "ssm", "ListOpsItemEvents", self._region,
-                ListOpsItemEventsResponse,
+                ListOpsItemEventsOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -3377,7 +3377,7 @@ class SSMClient:
         filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListOpsItemRelatedItemsResponse:
+    ) -> ListOpsItemRelatedItemsOutput:
         params: dict[str, object] = {
         }
         if ops_item_id is not None:
@@ -3393,7 +3393,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_item_related_items, params, _interceptors,
                 "ssm", "ListOpsItemRelatedItems", self._region,
-                ListOpsItemRelatedItemsResponse,
+                ListOpsItemRelatedItemsOutput,
                 ("ops_item_id", "filters", "max_results", "next_token", ),
                 (),
             )
@@ -3408,7 +3408,7 @@ class SSMClient:
         filters: Sequence[OpsMetadataFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListOpsMetadataResult:
+    ) -> ListOpsMetadataOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3422,7 +3422,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_ops_metadata, params, _interceptors,
                 "ssm", "ListOpsMetadata", self._region,
-                ListOpsMetadataResult,
+                ListOpsMetadataOutput,
                 ("filters", "max_results", "next_token", ),
                 (),
             )
@@ -3437,7 +3437,7 @@ class SSMClient:
         filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListResourceComplianceSummariesResult:
+    ) -> ListResourceComplianceSummariesOutput:
         params: dict[str, object] = {
         }
         if filters is not None:
@@ -3451,7 +3451,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_resource_compliance_summaries, params, _interceptors,
                 "ssm", "ListResourceComplianceSummaries", self._region,
-                ListResourceComplianceSummariesResult,
+                ListResourceComplianceSummariesOutput,
                 ("filters", "next_token", "max_results", ),
                 (),
             )
@@ -3466,7 +3466,7 @@ class SSMClient:
         sync_type: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListResourceDataSyncResult:
+    ) -> ListResourceDataSyncOutput:
         params: dict[str, object] = {
         }
         if sync_type is not None:
@@ -3480,7 +3480,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_resource_data_sync, params, _interceptors,
                 "ssm", "ListResourceDataSync", self._region,
-                ListResourceDataSyncResult,
+                ListResourceDataSyncOutput,
                 ("sync_type", "next_token", "max_results", ),
                 (),
             )
@@ -3494,7 +3494,7 @@ class SSMClient:
         *,
         resource_type: ResourceTypeForTagging,
         resource_id: str,
-    ) -> ListTagsForResourceResult:
+    ) -> ListTagsForResourceOutput:
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -3504,7 +3504,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.list_tags_for_resource, params, _interceptors,
                 "ssm", "ListTagsForResource", self._region,
-                ListTagsForResourceResult,
+                ListTagsForResourceOutput,
                 ("resource_type", "resource_id", ),
                 ("resource_type", "resource_id", ),
             )
@@ -3521,7 +3521,7 @@ class SSMClient:
         account_ids_to_add: Sequence[str] | None = None,
         account_ids_to_remove: Sequence[str] | None = None,
         shared_document_version: str | None = None,
-    ) -> ModifyDocumentPermissionResponse:
+    ) -> ModifyDocumentPermissionOutput:
         params: dict[str, object] = {
             "name": name,
             "permission_type": permission_type,
@@ -3537,7 +3537,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.modify_document_permission, params, _interceptors,
                 "ssm", "ModifyDocumentPermission", self._region,
-                ModifyDocumentPermissionResponse,
+                ModifyDocumentPermissionOutput,
                 ("name", "permission_type", "account_ids_to_add", "account_ids_to_remove", "shared_document_version", ),
                 ("name", "permission_type", ),
             )
@@ -3556,7 +3556,7 @@ class SSMClient:
         items: Sequence[ComplianceItemEntry],
         item_content_hash: str | None = None,
         upload_type: ComplianceUploadType | None = None,
-    ) -> PutComplianceItemsResult:
+    ) -> PutComplianceItemsOutput:
         params: dict[str, object] = {
             "resource_id": resource_id,
             "resource_type": resource_type,
@@ -3573,7 +3573,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_compliance_items, params, _interceptors,
                 "ssm", "PutComplianceItems", self._region,
-                PutComplianceItemsResult,
+                PutComplianceItemsOutput,
                 ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", "item_content_hash", "upload_type", ),
                 ("resource_id", "resource_type", "compliance_type", "execution_summary", "items", ),
             )
@@ -3587,7 +3587,7 @@ class SSMClient:
         *,
         instance_id: str,
         items: Sequence[InventoryItem],
-    ) -> PutInventoryResult:
+    ) -> PutInventoryOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
             "items": items,
@@ -3597,7 +3597,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_inventory, params, _interceptors,
                 "ssm", "PutInventory", self._region,
-                PutInventoryResult,
+                PutInventoryOutput,
                 ("instance_id", "items", ),
                 ("instance_id", "items", ),
             )
@@ -3620,7 +3620,7 @@ class SSMClient:
         tier: ParameterTier | None = None,
         policies: str | None = None,
         data_type: str | None = None,
-    ) -> PutParameterResult:
+    ) -> PutParameterOutput:
         params: dict[str, object] = {
             "name": name,
             "value": value,
@@ -3648,7 +3648,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_parameter, params, _interceptors,
                 "ssm", "PutParameter", self._region,
-                PutParameterResult,
+                PutParameterOutput,
                 ("name", "value", "description", "type", "key_id", "overwrite", "allowed_pattern", "tags", "tier", "policies", "data_type", ),
                 ("name", "value", ),
             )
@@ -3664,7 +3664,7 @@ class SSMClient:
         policy: str,
         policy_id: str | None = None,
         policy_hash: str | None = None,
-    ) -> PutResourcePolicyResponse:
+    ) -> PutResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
             "policy": policy,
@@ -3678,7 +3678,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, _interceptors,
                 "ssm", "PutResourcePolicy", self._region,
-                PutResourcePolicyResponse,
+                PutResourcePolicyOutput,
                 ("resource_arn", "policy", "policy_id", "policy_hash", ),
                 ("resource_arn", "policy", ),
             )
@@ -3691,7 +3691,7 @@ class SSMClient:
         self,
         *,
         baseline_id: str,
-    ) -> RegisterDefaultPatchBaselineResult:
+    ) -> RegisterDefaultPatchBaselineOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -3700,7 +3700,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_default_patch_baseline, params, _interceptors,
                 "ssm", "RegisterDefaultPatchBaseline", self._region,
-                RegisterDefaultPatchBaselineResult,
+                RegisterDefaultPatchBaselineOutput,
                 ("baseline_id", ),
                 ("baseline_id", ),
             )
@@ -3714,7 +3714,7 @@ class SSMClient:
         *,
         baseline_id: str,
         patch_group: str,
-    ) -> RegisterPatchBaselineForPatchGroupResult:
+    ) -> RegisterPatchBaselineForPatchGroupOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
             "patch_group": patch_group,
@@ -3724,7 +3724,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_patch_baseline_for_patch_group, params, _interceptors,
                 "ssm", "RegisterPatchBaselineForPatchGroup", self._region,
-                RegisterPatchBaselineForPatchGroupResult,
+                RegisterPatchBaselineForPatchGroupOutput,
                 ("baseline_id", "patch_group", ),
                 ("baseline_id", "patch_group", ),
             )
@@ -3743,7 +3743,7 @@ class SSMClient:
         name: str | None = None,
         description: str | None = None,
         client_token: str | None = None,
-    ) -> RegisterTargetWithMaintenanceWindowResult:
+    ) -> RegisterTargetWithMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "resource_type": resource_type,
@@ -3762,7 +3762,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_target_with_maintenance_window, params, _interceptors,
                 "ssm", "RegisterTargetWithMaintenanceWindow", self._region,
-                RegisterTargetWithMaintenanceWindowResult,
+                RegisterTargetWithMaintenanceWindowOutput,
                 ("window_id", "resource_type", "targets", "owner_information", "name", "description", "client_token", ),
                 ("window_id", "resource_type", "targets", ),
             )
@@ -3790,7 +3790,7 @@ class SSMClient:
         client_token: str | None = None,
         cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
-    ) -> RegisterTaskWithMaintenanceWindowResult:
+    ) -> RegisterTaskWithMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "task_arn": task_arn,
@@ -3827,7 +3827,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.register_task_with_maintenance_window, params, _interceptors,
                 "ssm", "RegisterTaskWithMaintenanceWindow", self._region,
-                RegisterTaskWithMaintenanceWindowResult,
+                RegisterTaskWithMaintenanceWindowOutput,
                 ("window_id", "task_arn", "task_type", "targets", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "client_token", "cutoff_behavior", "alarm_configuration", ),
                 ("window_id", "task_arn", "task_type", ),
             )
@@ -3842,7 +3842,7 @@ class SSMClient:
         resource_type: ResourceTypeForTagging,
         resource_id: str,
         tag_keys: Sequence[str],
-    ) -> RemoveTagsFromResourceResult:
+    ) -> RemoveTagsFromResourceOutput:
         params: dict[str, object] = {
             "resource_type": resource_type,
             "resource_id": resource_id,
@@ -3853,7 +3853,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.remove_tags_from_resource, params, _interceptors,
                 "ssm", "RemoveTagsFromResource", self._region,
-                RemoveTagsFromResourceResult,
+                RemoveTagsFromResourceOutput,
                 ("resource_type", "resource_id", "tag_keys", ),
                 ("resource_type", "resource_id", "tag_keys", ),
             )
@@ -3866,7 +3866,7 @@ class SSMClient:
         self,
         *,
         setting_id: str,
-    ) -> ResetServiceSettingResult:
+    ) -> ResetServiceSettingOutput:
         params: dict[str, object] = {
             "setting_id": setting_id,
         }
@@ -3875,7 +3875,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.reset_service_setting, params, _interceptors,
                 "ssm", "ResetServiceSetting", self._region,
-                ResetServiceSettingResult,
+                ResetServiceSettingOutput,
                 ("setting_id", ),
                 ("setting_id", ),
             )
@@ -3888,7 +3888,7 @@ class SSMClient:
         self,
         *,
         session_id: str,
-    ) -> ResumeSessionResponse:
+    ) -> ResumeSessionOutput:
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -3897,7 +3897,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.resume_session, params, _interceptors,
                 "ssm", "ResumeSession", self._region,
-                ResumeSessionResponse,
+                ResumeSessionOutput,
                 ("session_id", ),
                 ("session_id", ),
             )
@@ -3912,7 +3912,7 @@ class SSMClient:
         automation_execution_id: str,
         signal_type: SignalType,
         payload: dict[str, Sequence[str]] | None = None,
-    ) -> SendAutomationSignalResult:
+    ) -> SendAutomationSignalOutput:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
             "signal_type": signal_type,
@@ -3924,7 +3924,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.send_automation_signal, params, _interceptors,
                 "ssm", "SendAutomationSignal", self._region,
-                SendAutomationSignalResult,
+                SendAutomationSignalOutput,
                 ("automation_execution_id", "signal_type", "payload", ),
                 ("automation_execution_id", "signal_type", ),
             )
@@ -3954,7 +3954,7 @@ class SSMClient:
         notification_config: NotificationConfig | None = None,
         cloud_watch_output_config: CloudWatchOutputConfig | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
-    ) -> SendCommandResult:
+    ) -> SendCommandOutput:
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -3997,7 +3997,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.send_command, params, _interceptors,
                 "ssm", "SendCommand", self._region,
-                SendCommandResult,
+                SendCommandOutput,
                 ("document_name", "instance_ids", "targets", "document_version", "document_hash", "document_hash_type", "timeout_seconds", "comment", "parameters", "output_s3_region", "output_s3_bucket_name", "output_s3_key_prefix", "max_concurrency", "max_errors", "service_role_arn", "notification_config", "cloud_watch_output_config", "alarm_configuration", ),
                 ("document_name", ),
             )
@@ -4012,7 +4012,7 @@ class SSMClient:
         reason: str,
         targets: Sequence[Target],
         tags: Sequence[Tag] | None = None,
-    ) -> StartAccessRequestResponse:
+    ) -> StartAccessRequestOutput:
         params: dict[str, object] = {
             "reason": reason,
             "targets": targets,
@@ -4024,7 +4024,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_access_request, params, _interceptors,
                 "ssm", "StartAccessRequest", self._region,
-                StartAccessRequestResponse,
+                StartAccessRequestOutput,
                 ("reason", "targets", "tags", ),
                 ("reason", "targets", ),
             )
@@ -4037,7 +4037,7 @@ class SSMClient:
         self,
         *,
         association_ids: Sequence[str],
-    ) -> StartAssociationsOnceResult:
+    ) -> StartAssociationsOnceOutput:
         params: dict[str, object] = {
             "association_ids": association_ids,
         }
@@ -4046,7 +4046,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_associations_once, params, _interceptors,
                 "ssm", "StartAssociationsOnce", self._region,
-                StartAssociationsOnceResult,
+                StartAssociationsOnceOutput,
                 ("association_ids", ),
                 ("association_ids", ),
             )
@@ -4072,7 +4072,7 @@ class SSMClient:
         tags: Sequence[Tag] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         target_locations_url: str | None = None,
-    ) -> StartAutomationExecutionResult:
+    ) -> StartAutomationExecutionOutput:
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -4107,7 +4107,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_automation_execution, params, _interceptors,
                 "ssm", "StartAutomationExecution", self._region,
-                StartAutomationExecutionResult,
+                StartAutomationExecutionOutput,
                 ("document_name", "document_version", "parameters", "client_token", "mode", "target_parameter_name", "targets", "target_maps", "max_concurrency", "max_errors", "target_locations", "tags", "alarm_configuration", "target_locations_url", ),
                 ("document_name", ),
             )
@@ -4130,7 +4130,7 @@ class SSMClient:
         tags: Sequence[Tag] | None = None,
         scheduled_end_time: str | None = None,
         change_details: str | None = None,
-    ) -> StartChangeRequestExecutionResult:
+    ) -> StartChangeRequestExecutionOutput:
         params: dict[str, object] = {
             "document_name": document_name,
             "runbooks": runbooks,
@@ -4158,7 +4158,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_change_request_execution, params, _interceptors,
                 "ssm", "StartChangeRequestExecution", self._region,
-                StartChangeRequestExecutionResult,
+                StartChangeRequestExecutionOutput,
                 ("document_name", "runbooks", "scheduled_time", "document_version", "parameters", "change_request_name", "client_token", "auto_approve", "tags", "scheduled_end_time", "change_details", ),
                 ("document_name", "runbooks", ),
             )
@@ -4173,7 +4173,7 @@ class SSMClient:
         document_name: str,
         document_version: str | None = None,
         execution_inputs: ExecutionInputs | None = None,
-    ) -> StartExecutionPreviewResponse:
+    ) -> StartExecutionPreviewOutput:
         params: dict[str, object] = {
             "document_name": document_name,
         }
@@ -4186,7 +4186,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_execution_preview, params, _interceptors,
                 "ssm", "StartExecutionPreview", self._region,
-                StartExecutionPreviewResponse,
+                StartExecutionPreviewOutput,
                 ("document_name", "document_version", "execution_inputs", ),
                 ("document_name", ),
             )
@@ -4202,7 +4202,7 @@ class SSMClient:
         document_name: str | None = None,
         reason: str | None = None,
         parameters: dict[str, Sequence[str]] | None = None,
-    ) -> StartSessionResponse:
+    ) -> StartSessionOutput:
         params: dict[str, object] = {
             "target": target,
         }
@@ -4217,7 +4217,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.start_session, params, _interceptors,
                 "ssm", "StartSession", self._region,
-                StartSessionResponse,
+                StartSessionOutput,
                 ("target", "document_name", "reason", "parameters", ),
                 ("target", ),
             )
@@ -4231,7 +4231,7 @@ class SSMClient:
         *,
         automation_execution_id: str,
         type: StopType | None = None,
-    ) -> StopAutomationExecutionResult:
+    ) -> StopAutomationExecutionOutput:
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
         }
@@ -4242,7 +4242,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.stop_automation_execution, params, _interceptors,
                 "ssm", "StopAutomationExecution", self._region,
-                StopAutomationExecutionResult,
+                StopAutomationExecutionOutput,
                 ("automation_execution_id", "type", ),
                 ("automation_execution_id", ),
             )
@@ -4255,7 +4255,7 @@ class SSMClient:
         self,
         *,
         session_id: str,
-    ) -> TerminateSessionResponse:
+    ) -> TerminateSessionOutput:
         params: dict[str, object] = {
             "session_id": session_id,
         }
@@ -4264,7 +4264,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.terminate_session, params, _interceptors,
                 "ssm", "TerminateSession", self._region,
-                TerminateSessionResponse,
+                TerminateSessionOutput,
                 ("session_id", ),
                 ("session_id", ),
             )
@@ -4279,7 +4279,7 @@ class SSMClient:
         name: str,
         parameter_version: int,
         labels: Sequence[str],
-    ) -> UnlabelParameterVersionResult:
+    ) -> UnlabelParameterVersionOutput:
         params: dict[str, object] = {
             "name": name,
             "parameter_version": parameter_version,
@@ -4290,7 +4290,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.unlabel_parameter_version, params, _interceptors,
                 "ssm", "UnlabelParameterVersion", self._region,
-                UnlabelParameterVersionResult,
+                UnlabelParameterVersionOutput,
                 ("name", "parameter_version", "labels", ),
                 ("name", "parameter_version", "labels", ),
             )
@@ -4324,7 +4324,7 @@ class SSMClient:
         target_maps: Sequence[dict[str, Sequence[str]]] | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
         association_dispatch_assume_role: str | None = None,
-    ) -> UpdateAssociationResult:
+    ) -> UpdateAssociationOutput:
         params: dict[str, object] = {
             "association_id": association_id,
         }
@@ -4375,7 +4375,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_association, params, _interceptors,
                 "ssm", "UpdateAssociation", self._region,
-                UpdateAssociationResult,
+                UpdateAssociationOutput,
                 ("association_id", "parameters", "document_version", "schedule_expression", "output_location", "name", "targets", "association_name", "association_version", "automation_target_parameter_name", "max_errors", "max_concurrency", "compliance_severity", "sync_compliance", "apply_only_at_cron_interval", "calendar_names", "target_locations", "schedule_offset", "duration", "target_maps", "alarm_configuration", "association_dispatch_assume_role", ),
                 ("association_id", ),
             )
@@ -4390,7 +4390,7 @@ class SSMClient:
         name: str,
         instance_id: str,
         association_status: AssociationStatus,
-    ) -> UpdateAssociationStatusResult:
+    ) -> UpdateAssociationStatusOutput:
         params: dict[str, object] = {
             "name": name,
             "instance_id": instance_id,
@@ -4401,7 +4401,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_association_status, params, _interceptors,
                 "ssm", "UpdateAssociationStatus", self._region,
-                UpdateAssociationStatusResult,
+                UpdateAssociationStatusOutput,
                 ("name", "instance_id", "association_status", ),
                 ("name", "instance_id", "association_status", ),
             )
@@ -4417,7 +4417,7 @@ class SSMClient:
         display_name: str | None = None,
         configuration: CloudConnectorConfiguration | None = None,
         description: str | None = None,
-    ) -> UpdateCloudConnectorResult:
+    ) -> UpdateCloudConnectorOutput:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -4432,7 +4432,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_cloud_connector, params, _interceptors,
                 "ssm", "UpdateCloudConnector", self._region,
-                UpdateCloudConnectorResult,
+                UpdateCloudConnectorOutput,
                 ("cloud_connector_id", "display_name", "configuration", "description", ),
                 ("cloud_connector_id", ),
             )
@@ -4452,7 +4452,7 @@ class SSMClient:
         document_version: str | None = None,
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
-    ) -> UpdateDocumentResult:
+    ) -> UpdateDocumentOutput:
         params: dict[str, object] = {
             "content": content,
             "name": name,
@@ -4474,7 +4474,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document, params, _interceptors,
                 "ssm", "UpdateDocument", self._region,
-                UpdateDocumentResult,
+                UpdateDocumentOutput,
                 ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", ),
                 ("content", "name", ),
             )
@@ -4488,7 +4488,7 @@ class SSMClient:
         *,
         name: str,
         document_version: str,
-    ) -> UpdateDocumentDefaultVersionResult:
+    ) -> UpdateDocumentDefaultVersionOutput:
         params: dict[str, object] = {
             "name": name,
             "document_version": document_version,
@@ -4498,7 +4498,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document_default_version, params, _interceptors,
                 "ssm", "UpdateDocumentDefaultVersion", self._region,
-                UpdateDocumentDefaultVersionResult,
+                UpdateDocumentDefaultVersionOutput,
                 ("name", "document_version", ),
                 ("name", "document_version", ),
             )
@@ -4513,7 +4513,7 @@ class SSMClient:
         name: str,
         document_reviews: DocumentReviews,
         document_version: str | None = None,
-    ) -> UpdateDocumentMetadataResponse:
+    ) -> UpdateDocumentMetadataOutput:
         params: dict[str, object] = {
             "name": name,
             "document_reviews": document_reviews,
@@ -4525,7 +4525,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_document_metadata, params, _interceptors,
                 "ssm", "UpdateDocumentMetadata", self._region,
-                UpdateDocumentMetadataResponse,
+                UpdateDocumentMetadataOutput,
                 ("name", "document_reviews", "document_version", ),
                 ("name", "document_reviews", ),
             )
@@ -4550,7 +4550,7 @@ class SSMClient:
         allow_unassociated_targets: bool | None = None,
         enabled: bool | None = None,
         replace: bool | None = None,
-    ) -> UpdateMaintenanceWindowResult:
+    ) -> UpdateMaintenanceWindowOutput:
         params: dict[str, object] = {
             "window_id": window_id,
         }
@@ -4583,7 +4583,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindow", self._region,
-                UpdateMaintenanceWindowResult,
+                UpdateMaintenanceWindowOutput,
                 ("window_id", "name", "description", "start_date", "end_date", "schedule", "schedule_timezone", "schedule_offset", "duration", "cutoff", "allow_unassociated_targets", "enabled", "replace", ),
                 ("window_id", ),
             )
@@ -4602,7 +4602,7 @@ class SSMClient:
         name: str | None = None,
         description: str | None = None,
         replace: bool | None = None,
-    ) -> UpdateMaintenanceWindowTargetResult:
+    ) -> UpdateMaintenanceWindowTargetOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "window_target_id": window_target_id,
@@ -4622,7 +4622,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window_target, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindowTarget", self._region,
-                UpdateMaintenanceWindowTargetResult,
+                UpdateMaintenanceWindowTargetOutput,
                 ("window_id", "window_target_id", "targets", "owner_information", "name", "description", "replace", ),
                 ("window_id", "window_target_id", ),
             )
@@ -4650,7 +4650,7 @@ class SSMClient:
         replace: bool | None = None,
         cutoff_behavior: MaintenanceWindowTaskCutoffBehavior | None = None,
         alarm_configuration: AlarmConfiguration | None = None,
-    ) -> UpdateMaintenanceWindowTaskResult:
+    ) -> UpdateMaintenanceWindowTaskOutput:
         params: dict[str, object] = {
             "window_id": window_id,
             "window_task_id": window_task_id,
@@ -4688,7 +4688,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_maintenance_window_task, params, _interceptors,
                 "ssm", "UpdateMaintenanceWindowTask", self._region,
-                UpdateMaintenanceWindowTaskResult,
+                UpdateMaintenanceWindowTaskOutput,
                 ("window_id", "window_task_id", "targets", "task_arn", "service_role_arn", "task_parameters", "task_invocation_parameters", "priority", "max_concurrency", "max_errors", "logging_info", "name", "description", "replace", "cutoff_behavior", "alarm_configuration", ),
                 ("window_id", "window_task_id", ),
             )
@@ -4702,7 +4702,7 @@ class SSMClient:
         *,
         instance_id: str,
         iam_role: str,
-    ) -> UpdateManagedInstanceRoleResult:
+    ) -> UpdateManagedInstanceRoleOutput:
         params: dict[str, object] = {
             "instance_id": instance_id,
             "iam_role": iam_role,
@@ -4712,7 +4712,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_managed_instance_role, params, _interceptors,
                 "ssm", "UpdateManagedInstanceRole", self._region,
-                UpdateManagedInstanceRoleResult,
+                UpdateManagedInstanceRoleOutput,
                 ("instance_id", "iam_role", ),
                 ("instance_id", "iam_role", ),
             )
@@ -4740,7 +4740,7 @@ class SSMClient:
         planned_start_time: str | None = None,
         planned_end_time: str | None = None,
         ops_item_arn: str | None = None,
-    ) -> UpdateOpsItemResponse:
+    ) -> UpdateOpsItemOutput:
         params: dict[str, object] = {
             "ops_item_id": ops_item_id,
         }
@@ -4779,7 +4779,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_ops_item, params, _interceptors,
                 "ssm", "UpdateOpsItem", self._region,
-                UpdateOpsItemResponse,
+                UpdateOpsItemOutput,
                 ("ops_item_id", "description", "operational_data", "operational_data_to_delete", "notifications", "priority", "related_ops_items", "status", "title", "category", "severity", "actual_start_time", "actual_end_time", "planned_start_time", "planned_end_time", "ops_item_arn", ),
                 ("ops_item_id", ),
             )
@@ -4794,7 +4794,7 @@ class SSMClient:
         ops_metadata_arn: str,
         metadata_to_update: dict[str, MetadataValue] | None = None,
         keys_to_delete: Sequence[str] | None = None,
-    ) -> UpdateOpsMetadataResult:
+    ) -> UpdateOpsMetadataOutput:
         params: dict[str, object] = {
             "ops_metadata_arn": ops_metadata_arn,
         }
@@ -4807,7 +4807,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_ops_metadata, params, _interceptors,
                 "ssm", "UpdateOpsMetadata", self._region,
-                UpdateOpsMetadataResult,
+                UpdateOpsMetadataOutput,
                 ("ops_metadata_arn", "metadata_to_update", "keys_to_delete", ),
                 ("ops_metadata_arn", ),
             )
@@ -4832,7 +4832,7 @@ class SSMClient:
         sources: Sequence[PatchSource] | None = None,
         available_security_updates_compliance_status: PatchComplianceStatus | None = None,
         replace: bool | None = None,
-    ) -> UpdatePatchBaselineResult:
+    ) -> UpdatePatchBaselineOutput:
         params: dict[str, object] = {
             "baseline_id": baseline_id,
         }
@@ -4865,7 +4865,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_patch_baseline, params, _interceptors,
                 "ssm", "UpdatePatchBaseline", self._region,
-                UpdatePatchBaselineResult,
+                UpdatePatchBaselineOutput,
                 ("baseline_id", "name", "global_filters", "approval_rules", "approved_patches", "approved_patches_compliance_level", "approved_patches_enable_non_security", "rejected_patches", "rejected_patches_action", "description", "sources", "available_security_updates_compliance_status", "replace", ),
                 ("baseline_id", ),
             )
@@ -4880,7 +4880,7 @@ class SSMClient:
         sync_name: str,
         sync_type: str,
         sync_source: ResourceDataSyncSource,
-    ) -> UpdateResourceDataSyncResult:
+    ) -> UpdateResourceDataSyncOutput:
         params: dict[str, object] = {
             "sync_name": sync_name,
             "sync_type": sync_type,
@@ -4891,7 +4891,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_resource_data_sync, params, _interceptors,
                 "ssm", "UpdateResourceDataSync", self._region,
-                UpdateResourceDataSyncResult,
+                UpdateResourceDataSyncOutput,
                 ("sync_name", "sync_type", "sync_source", ),
                 ("sync_name", "sync_type", "sync_source", ),
             )
@@ -4905,7 +4905,7 @@ class SSMClient:
         *,
         setting_id: str,
         setting_value: str,
-    ) -> UpdateServiceSettingResult:
+    ) -> UpdateServiceSettingOutput:
         params: dict[str, object] = {
             "setting_id": setting_id,
             "setting_value": setting_value,
@@ -4915,7 +4915,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.update_service_setting, params, _interceptors,
                 "ssm", "UpdateServiceSetting", self._region,
-                UpdateServiceSettingResult,
+                UpdateServiceSettingOutput,
                 ("setting_id", "setting_value", ),
                 ("setting_id", "setting_value", ),
             )
@@ -4930,7 +4930,7 @@ class SSMClient:
         cloud_connector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ValidateCloudConnectorResult:
+    ) -> ValidateCloudConnectorOutput:
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,
         }
@@ -4943,7 +4943,7 @@ class SSMClient:
             _response = await invoke(
                 self._native.validate_cloud_connector, params, _interceptors,
                 "ssm", "ValidateCloudConnector", self._region,
-                ValidateCloudConnectorResult,
+                ValidateCloudConnectorOutput,
                 ("cloud_connector_id", "max_results", "next_token", ),
                 ("cloud_connector_id", ),
             )

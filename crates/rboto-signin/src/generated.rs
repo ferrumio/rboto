@@ -687,16 +687,16 @@ impl PySigninResourceBasedPolicy {
 }
 
 #[pyclass(
-    name = "CreateOAuth2TokenResponse",
+    name = "CreateOAuth2TokenOutput",
     module = "rboto_signin._native",
     frozen
 )]
-struct PyCreateOAuth2TokenResponse {
+struct PyOperationCreateOAuth2TokenOutput {
     inner: aws_sdk_signin::operation::create_o_auth2_token::CreateOAuth2TokenOutput,
 }
 
 #[pymethods]
-impl PyCreateOAuth2TokenResponse {
+impl PyOperationCreateOAuth2TokenOutput {
     #[getter]
     fn token_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token_output {
@@ -726,16 +726,16 @@ impl PyCreateOAuth2TokenResponse {
 }
 
 #[pyclass(
-    name = "CreateOAuth2TokenWithIAMResponse",
+    name = "CreateOAuth2TokenWithIAMOutput",
     module = "rboto_signin._native",
     frozen
 )]
-struct PyCreateOAuth2TokenWithIAMResponse {
+struct PyOperationCreateOAuth2TokenWithIAMOutput {
     inner: aws_sdk_signin::operation::create_o_auth2_token_with_iam::CreateOAuth2TokenWithIamOutput,
 }
 
 #[pymethods]
-impl PyCreateOAuth2TokenWithIAMResponse {
+impl PyOperationCreateOAuth2TokenWithIAMOutput {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_180 = (&self.inner.access_token).as_str().into_py_any(py)?;
@@ -771,12 +771,12 @@ impl PyCreateOAuth2TokenWithIAMResponse {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyDeleteConsoleAuthorizationConfigurationOutput {
+struct PyOperationDeleteConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::delete_console_authorization_configuration::DeleteConsoleAuthorizationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyDeleteConsoleAuthorizationConfigurationOutput {
+impl PyOperationDeleteConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_186 = (&self.inner.target_id).as_str().into_py_any(py)?;
@@ -816,12 +816,12 @@ impl PyDeleteConsoleAuthorizationConfigurationOutput {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyDeleteResourcePermissionStatementOutput {
+struct PyOperationDeleteResourcePermissionStatementOutput {
     inner: aws_sdk_signin::operation::delete_resource_permission_statement::DeleteResourcePermissionStatementOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePermissionStatementOutput {
+impl PyOperationDeleteResourcePermissionStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -833,12 +833,12 @@ impl PyDeleteResourcePermissionStatementOutput {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyGetConsoleAuthorizationConfigurationOutput {
+struct PyOperationGetConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::get_console_authorization_configuration::GetConsoleAuthorizationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetConsoleAuthorizationConfigurationOutput {
+impl PyOperationGetConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_192 = (&self.inner.target_id).as_str().into_py_any(py)?;
@@ -878,12 +878,12 @@ impl PyGetConsoleAuthorizationConfigurationOutput {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyGetResourcePolicyOutput {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_signin::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyOutput {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn signin_resource_based_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signin_resource_based_policy {
@@ -913,16 +913,16 @@ impl PyGetResourcePolicyOutput {
 }
 
 #[pyclass(
-    name = "IntrospectOAuth2TokenWithIAMResponse",
+    name = "IntrospectOAuth2TokenWithIAMOutput",
     module = "rboto_signin._native",
     frozen
 )]
-struct PyIntrospectOAuth2TokenWithIAMResponse {
+struct PyOperationIntrospectOAuth2TokenWithIAMOutput {
     inner: aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIamOutput,
 }
 
 #[pymethods]
-impl PyIntrospectOAuth2TokenWithIAMResponse {
+impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn active(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_200 = (&self.inner.active).to_owned().into_py_any(py)?;
@@ -1150,12 +1150,12 @@ impl PyIntrospectOAuth2TokenWithIAMResponse {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyListResourcePermissionStatementsOutput {
+struct PyOperationListResourcePermissionStatementsOutput {
     inner: aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput,
 }
 
 #[pymethods]
-impl PyListResourcePermissionStatementsOutput {
+impl PyOperationListResourcePermissionStatementsOutput {
     #[getter]
     fn permission_statements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_228_list = PyList::empty(py);
@@ -1207,12 +1207,12 @@ impl PyListResourcePermissionStatementsOutput {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyPutConsoleAuthorizationConfigurationOutput {
+struct PyOperationPutConsoleAuthorizationConfigurationOutput {
     inner: aws_sdk_signin::operation::put_console_authorization_configuration::PutConsoleAuthorizationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutConsoleAuthorizationConfigurationOutput {
+impl PyOperationPutConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_236 = (&self.inner.target_id).as_str().into_py_any(py)?;
@@ -1252,12 +1252,12 @@ impl PyPutConsoleAuthorizationConfigurationOutput {
     module = "rboto_signin._native",
     frozen
 )]
-struct PyPutResourcePermissionStatementOutput {
+struct PyOperationPutResourcePermissionStatementOutput {
     inner: aws_sdk_signin::operation::put_resource_permission_statement::PutResourcePermissionStatementOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePermissionStatementOutput {
+impl PyOperationPutResourcePermissionStatementOutput {
     #[getter]
     fn statement_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_242 = (&self.inner.statement_id).as_str().into_py_any(py)?;
@@ -1273,16 +1273,16 @@ impl PyPutResourcePermissionStatementOutput {
 }
 
 #[pyclass(
-    name = "RevokeOAuth2TokenWithIAMResponse",
+    name = "RevokeOAuth2TokenWithIAMOutput",
     module = "rboto_signin._native",
     frozen
 )]
-struct PyRevokeOAuth2TokenWithIAMResponse {
+struct PyOperationRevokeOAuth2TokenWithIAMOutput {
     inner: aws_sdk_signin::operation::revoke_o_auth2_token_with_iam::RevokeOAuth2TokenWithIamOutput,
 }
 
 #[pymethods]
-impl PyRevokeOAuth2TokenWithIAMResponse {
+impl PyOperationRevokeOAuth2TokenWithIAMOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -1295,17 +1295,17 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyPermissionStatementSummary>()?;
     module.add_class::<PyPolicyStatement>()?;
     module.add_class::<PySigninResourceBasedPolicy>()?;
-    module.add_class::<PyCreateOAuth2TokenResponse>()?;
-    module.add_class::<PyCreateOAuth2TokenWithIAMResponse>()?;
-    module.add_class::<PyDeleteConsoleAuthorizationConfigurationOutput>()?;
-    module.add_class::<PyDeleteResourcePermissionStatementOutput>()?;
-    module.add_class::<PyGetConsoleAuthorizationConfigurationOutput>()?;
-    module.add_class::<PyGetResourcePolicyOutput>()?;
-    module.add_class::<PyIntrospectOAuth2TokenWithIAMResponse>()?;
-    module.add_class::<PyListResourcePermissionStatementsOutput>()?;
-    module.add_class::<PyPutConsoleAuthorizationConfigurationOutput>()?;
-    module.add_class::<PyPutResourcePermissionStatementOutput>()?;
-    module.add_class::<PyRevokeOAuth2TokenWithIAMResponse>()?;
+    module.add_class::<PyOperationCreateOAuth2TokenOutput>()?;
+    module.add_class::<PyOperationCreateOAuth2TokenWithIAMOutput>()?;
+    module.add_class::<PyOperationDeleteConsoleAuthorizationConfigurationOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePermissionStatementOutput>()?;
+    module.add_class::<PyOperationGetConsoleAuthorizationConfigurationOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationIntrospectOAuth2TokenWithIAMOutput>()?;
+    module.add_class::<PyOperationListResourcePermissionStatementsOutput>()?;
+    module.add_class::<PyOperationPutConsoleAuthorizationConfigurationOutput>()?;
+    module.add_class::<PyOperationPutResourcePermissionStatementOutput>()?;
+    module.add_class::<PyOperationRevokeOAuth2TokenWithIAMOutput>()?;
 
     Ok(())
 }
@@ -1372,7 +1372,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2Token"))
             })?;
-            Ok(PyCreateOAuth2TokenResponse { inner: output })
+            Ok(PyOperationCreateOAuth2TokenOutput { inner: output })
         })
     }
 
@@ -1417,7 +1417,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2TokenWithIAM"))
             })?;
-            Ok(PyCreateOAuth2TokenWithIAMResponse { inner: output })
+            Ok(PyOperationCreateOAuth2TokenWithIAMOutput { inner: output })
         })
     }
 
@@ -1457,7 +1457,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "DeleteConsoleAuthorizationConfiguration")
                 })
             })?;
-            Ok(PyDeleteConsoleAuthorizationConfigurationOutput { inner: output })
+            Ok(PyOperationDeleteConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1504,7 +1504,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "DeleteResourcePermissionStatement")
                 })
             })?;
-            Ok(PyDeleteResourcePermissionStatementOutput { inner: output })
+            Ok(PyOperationDeleteResourcePermissionStatementOutput { inner: output })
         })
     }
 
@@ -1544,7 +1544,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "GetConsoleAuthorizationConfiguration")
                 })
             })?;
-            Ok(PyGetConsoleAuthorizationConfigurationOutput { inner: output })
+            Ok(PyOperationGetConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1574,7 +1574,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyOutput { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -1619,7 +1619,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "IntrospectOAuth2TokenWithIAM"))
             })?;
-            Ok(PyIntrospectOAuth2TokenWithIAMResponse { inner: output })
+            Ok(PyOperationIntrospectOAuth2TokenWithIAMOutput { inner: output })
         })
     }
 
@@ -1664,7 +1664,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourcePermissionStatements"))
             })?;
-            Ok(PyListResourcePermissionStatementsOutput { inner: output })
+            Ok(PyOperationListResourcePermissionStatementsOutput { inner: output })
         })
     }
 
@@ -1704,7 +1704,7 @@ impl SignInClient {
                     sdk_error_to_py(py, &error, "PutConsoleAuthorizationConfiguration")
                 })
             })?;
-            Ok(PyPutConsoleAuthorizationConfigurationOutput { inner: output })
+            Ok(PyOperationPutConsoleAuthorizationConfigurationOutput { inner: output })
         })
     }
 
@@ -1794,7 +1794,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePermissionStatement"))
             })?;
-            Ok(PyPutResourcePermissionStatementOutput { inner: output })
+            Ok(PyOperationPutResourcePermissionStatementOutput { inner: output })
         })
     }
 
@@ -1832,7 +1832,7 @@ impl SignInClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RevokeOAuth2TokenWithIAM"))
             })?;
-            Ok(PyRevokeOAuth2TokenWithIAMResponse { inner: output })
+            Ok(PyOperationRevokeOAuth2TokenWithIAMOutput { inner: output })
         })
     }
 }

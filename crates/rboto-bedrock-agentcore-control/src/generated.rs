@@ -27439,17 +27439,17 @@ impl PyWorkloadIdentityType {
 }
 
 #[pyclass(
-    name = "AddDatasetExamplesResponse",
+    name = "AddDatasetExamplesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyAddDatasetExamplesResponse {
+struct PyOperationAddDatasetExamplesOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::add_dataset_examples::AddDatasetExamplesOutput,
 }
 
 #[pymethods]
-impl PyAddDatasetExamplesResponse {
+impl PyOperationAddDatasetExamplesOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5174 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -27515,16 +27515,16 @@ impl PyAddDatasetExamplesResponse {
 }
 
 #[pyclass(
-    name = "BatchPutGatewayRateLimitsResponse",
+    name = "BatchPutGatewayRateLimitsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyBatchPutGatewayRateLimitsResponse {
+struct PyOperationBatchPutGatewayRateLimitsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::batch_put_gateway_rate_limits::BatchPutGatewayRateLimitsOutput,
 }
 
 #[pymethods]
-impl PyBatchPutGatewayRateLimitsResponse {
+impl PyOperationBatchPutGatewayRateLimitsOutput {
     #[getter]
     fn rate_limits(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5190_list = PyList::empty(py);
@@ -27556,17 +27556,17 @@ impl PyBatchPutGatewayRateLimitsResponse {
 }
 
 #[pyclass(
-    name = "CreateAgentRuntimeResponse",
+    name = "CreateAgentRuntimeOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateAgentRuntimeResponse {
+struct PyOperationCreateAgentRuntimeOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::create_agent_runtime::CreateAgentRuntimeOutput,
 }
 
 #[pymethods]
-impl PyCreateAgentRuntimeResponse {
+impl PyOperationCreateAgentRuntimeOutput {
     #[getter]
     fn agent_runtime_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5196 = (&self.inner.agent_runtime_arn).as_str().into_py_any(py)?;
@@ -27640,16 +27640,16 @@ impl PyCreateAgentRuntimeResponse {
 }
 
 #[pyclass(
-    name = "CreateAgentRuntimeEndpointResponse",
+    name = "CreateAgentRuntimeEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateAgentRuntimeEndpointResponse {
+struct PyOperationCreateAgentRuntimeEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_agent_runtime_endpoint::CreateAgentRuntimeEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateAgentRuntimeEndpointResponse {
+impl PyOperationCreateAgentRuntimeEndpointOutput {
     #[getter]
     fn target_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5208 = (&self.inner.target_version).as_str().into_py_any(py)?;
@@ -27733,16 +27733,16 @@ impl PyCreateAgentRuntimeEndpointResponse {
 }
 
 #[pyclass(
-    name = "CreateApiKeyCredentialProviderResponse",
+    name = "CreateApiKeyCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateApiKeyCredentialProviderResponse {
+struct PyOperationCreateApiKeyCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_api_key_credential_provider::CreateApiKeyCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyCreateApiKeyCredentialProviderResponse {
+impl PyOperationCreateApiKeyCredentialProviderOutput {
     #[getter]
     fn api_key_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_key_secret_arn {
@@ -27824,16 +27824,16 @@ impl PyCreateApiKeyCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "CreateBrowserResponse",
+    name = "CreateBrowserOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateBrowserResponse {
+struct PyOperationCreateBrowserOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_browser::CreateBrowserOutput,
 }
 
 #[pymethods]
-impl PyCreateBrowserResponse {
+impl PyOperationCreateBrowserOutput {
     #[getter]
     fn browser_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5232 = (&self.inner.browser_id).as_str().into_py_any(py)?;
@@ -27873,16 +27873,16 @@ impl PyCreateBrowserResponse {
 }
 
 #[pyclass(
-    name = "CreateBrowserProfileResponse",
+    name = "CreateBrowserProfileOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateBrowserProfileResponse {
+struct PyOperationCreateBrowserProfileOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_browser_profile::CreateBrowserProfileOutput,
 }
 
 #[pymethods]
-impl PyCreateBrowserProfileResponse {
+impl PyOperationCreateBrowserProfileOutput {
     #[getter]
     fn profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5240 = (&self.inner.profile_id).as_str().into_py_any(py)?;
@@ -27926,12 +27926,12 @@ impl PyCreateBrowserProfileResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateCapacityProviderOutput {
+struct PyOperationCreateCapacityProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_capacity_provider::CreateCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyCreateCapacityProviderOutput {
+impl PyOperationCreateCapacityProviderOutput {
     #[getter]
     fn capacity_provider_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5248 = (&self.inner.capacity_provider_id)
@@ -27979,16 +27979,16 @@ impl PyCreateCapacityProviderOutput {
 }
 
 #[pyclass(
-    name = "CreateCodeInterpreterResponse",
+    name = "CreateCodeInterpreterOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateCodeInterpreterResponse {
+struct PyOperationCreateCodeInterpreterOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_code_interpreter::CreateCodeInterpreterOutput,
 }
 
 #[pymethods]
-impl PyCreateCodeInterpreterResponse {
+impl PyOperationCreateCodeInterpreterOutput {
     #[getter]
     fn code_interpreter_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5256 = (&self.inner.code_interpreter_id).as_str().into_py_any(py)?;
@@ -28032,16 +28032,16 @@ impl PyCreateCodeInterpreterResponse {
 }
 
 #[pyclass(
-    name = "CreateConfigurationBundleResponse",
+    name = "CreateConfigurationBundleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateConfigurationBundleResponse {
+struct PyOperationCreateConfigurationBundleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_configuration_bundle::CreateConfigurationBundleOutput,
 }
 
 #[pymethods]
-impl PyCreateConfigurationBundleResponse {
+impl PyOperationCreateConfigurationBundleOutput {
     #[getter]
     fn bundle_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5264 = (&self.inner.bundle_arn).as_str().into_py_any(py)?;
@@ -28081,16 +28081,16 @@ impl PyCreateConfigurationBundleResponse {
 }
 
 #[pyclass(
-    name = "CreateConsentPortalResponse",
+    name = "CreateConsentPortalOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateConsentPortalResponse {
+struct PyOperationCreateConsentPortalOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_consent_portal::CreateConsentPortalOutput,
 }
 
 #[pymethods]
-impl PyCreateConsentPortalResponse {
+impl PyOperationCreateConsentPortalOutput {
     #[getter]
     fn sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5272_list = PyList::empty(py);
@@ -28248,16 +28248,16 @@ impl PyCreateConsentPortalResponse {
 }
 
 #[pyclass(
-    name = "CreateDatasetResponse",
+    name = "CreateDatasetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateDatasetResponse {
+struct PyOperationCreateDatasetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_dataset::CreateDatasetOutput,
 }
 
 #[pymethods]
-impl PyCreateDatasetResponse {
+impl PyOperationCreateDatasetOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5300 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -28297,16 +28297,16 @@ impl PyCreateDatasetResponse {
 }
 
 #[pyclass(
-    name = "CreateDatasetVersionResponse",
+    name = "CreateDatasetVersionOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateDatasetVersionResponse {
+struct PyOperationCreateDatasetVersionOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_dataset_version::CreateDatasetVersionOutput,
 }
 
 #[pymethods]
-impl PyCreateDatasetVersionResponse {
+impl PyOperationCreateDatasetVersionOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5308 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -28354,16 +28354,16 @@ impl PyCreateDatasetVersionResponse {
 }
 
 #[pyclass(
-    name = "CreateEvaluatorResponse",
+    name = "CreateEvaluatorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateEvaluatorResponse {
+struct PyOperationCreateEvaluatorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_evaluator::CreateEvaluatorOutput,
 }
 
 #[pymethods]
-impl PyCreateEvaluatorResponse {
+impl PyOperationCreateEvaluatorOutput {
     #[getter]
     fn evaluator_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5318 = (&self.inner.evaluator_arn).as_str().into_py_any(py)?;
@@ -28403,16 +28403,16 @@ impl PyCreateEvaluatorResponse {
 }
 
 #[pyclass(
-    name = "CreateGatewayResponse",
+    name = "CreateGatewayOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateGatewayResponse {
+struct PyOperationCreateGatewayOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_gateway::CreateGatewayOutput,
 }
 
 #[pymethods]
-impl PyCreateGatewayResponse {
+impl PyOperationCreateGatewayOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5326 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -28758,16 +28758,16 @@ impl PyCreateGatewayResponse {
 }
 
 #[pyclass(
-    name = "CreateGatewayRateLimitResponse",
+    name = "CreateGatewayRateLimitOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateGatewayRateLimitResponse {
+struct PyOperationCreateGatewayRateLimitOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_gateway_rate_limit::CreateGatewayRateLimitOutput,
 }
 
 #[pymethods]
-impl PyCreateGatewayRateLimitResponse {
+impl PyOperationCreateGatewayRateLimitOutput {
     #[getter]
     fn rate_limit_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5378 = (&self.inner.rate_limit_id).as_str().into_py_any(py)?;
@@ -28873,16 +28873,16 @@ impl PyCreateGatewayRateLimitResponse {
 }
 
 #[pyclass(
-    name = "CreateGatewayRuleResponse",
+    name = "CreateGatewayRuleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateGatewayRuleResponse {
+struct PyOperationCreateGatewayRuleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_gateway_rule::CreateGatewayRuleOutput,
 }
 
 #[pymethods]
-impl PyCreateGatewayRuleResponse {
+impl PyOperationCreateGatewayRuleOutput {
     #[getter]
     fn rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5402 = (&self.inner.rule_id).as_str().into_py_any(py)?;
@@ -29012,16 +29012,16 @@ impl PyCreateGatewayRuleResponse {
 }
 
 #[pyclass(
-    name = "CreateGatewayTargetResponse",
+    name = "CreateGatewayTargetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateGatewayTargetResponse {
+struct PyOperationCreateGatewayTargetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_gateway_target::CreateGatewayTargetOutput,
 }
 
 #[pymethods]
-impl PyCreateGatewayTargetResponse {
+impl PyOperationCreateGatewayTargetOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5428 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -29303,16 +29303,16 @@ impl PyCreateGatewayTargetResponse {
 }
 
 #[pyclass(
-    name = "CreateHarnessResponse",
+    name = "CreateHarnessOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateHarnessResponse {
+struct PyOperationCreateHarnessOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_harness::CreateHarnessOutput,
 }
 
 #[pymethods]
-impl PyCreateHarnessResponse {
+impl PyOperationCreateHarnessOutput {
     #[getter]
     fn harness(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.harness {
@@ -29342,16 +29342,16 @@ impl PyCreateHarnessResponse {
 }
 
 #[pyclass(
-    name = "CreateHarnessEndpointResponse",
+    name = "CreateHarnessEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateHarnessEndpointResponse {
+struct PyOperationCreateHarnessEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_harness_endpoint::CreateHarnessEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateHarnessEndpointResponse {
+impl PyOperationCreateHarnessEndpointOutput {
     #[getter]
     fn endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint {
@@ -29385,12 +29385,12 @@ impl PyCreateHarnessEndpointResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateMemoryOutput {
+struct PyOperationCreateMemoryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_memory::CreateMemoryOutput,
 }
 
 #[pymethods]
-impl PyCreateMemoryOutput {
+impl PyOperationCreateMemoryOutput {
     #[getter]
     fn memory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory {
@@ -29420,16 +29420,16 @@ impl PyCreateMemoryOutput {
 }
 
 #[pyclass(
-    name = "CreateOauth2CredentialProviderResponse",
+    name = "CreateOauth2CredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateOauth2CredentialProviderResponse {
+struct PyOperationCreateOauth2CredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_oauth2_credential_provider::CreateOauth2CredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyCreateOauth2CredentialProviderResponse {
+impl PyOperationCreateOauth2CredentialProviderOutput {
     #[getter]
     fn client_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_secret_arn {
@@ -29559,16 +29559,16 @@ impl PyCreateOauth2CredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "CreateOnlineEvaluationConfigResponse",
+    name = "CreateOnlineEvaluationConfigOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateOnlineEvaluationConfigResponse {
+struct PyOperationCreateOnlineEvaluationConfigOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_online_evaluation_config::CreateOnlineEvaluationConfigOutput,
 }
 
 #[pymethods]
-impl PyCreateOnlineEvaluationConfigResponse {
+impl PyOperationCreateOnlineEvaluationConfigOutput {
     #[getter]
     fn online_evaluation_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5500 = (&self.inner.online_evaluation_config_arn)
@@ -29662,16 +29662,16 @@ impl PyCreateOnlineEvaluationConfigResponse {
 }
 
 #[pyclass(
-    name = "CreatePaymentConnectorResponse",
+    name = "CreatePaymentConnectorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreatePaymentConnectorResponse {
+struct PyOperationCreatePaymentConnectorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_payment_connector::CreatePaymentConnectorOutput,
 }
 
 #[pymethods]
-impl PyCreatePaymentConnectorResponse {
+impl PyOperationCreatePaymentConnectorOutput {
     #[getter]
     fn payment_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5514 = (&self.inner.payment_connector_id)
@@ -29765,16 +29765,16 @@ impl PyCreatePaymentConnectorResponse {
 }
 
 #[pyclass(
-    name = "CreatePaymentCredentialProviderResponse",
+    name = "CreatePaymentCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreatePaymentCredentialProviderResponse {
+struct PyOperationCreatePaymentCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_payment_credential_provider::CreatePaymentCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyCreatePaymentCredentialProviderResponse {
+impl PyOperationCreatePaymentCredentialProviderOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5534 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -29830,16 +29830,16 @@ impl PyCreatePaymentCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "CreatePaymentManagerResponse",
+    name = "CreatePaymentManagerOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreatePaymentManagerResponse {
+struct PyOperationCreatePaymentManagerOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_payment_manager::CreatePaymentManagerOutput,
 }
 
 #[pymethods]
-impl PyCreatePaymentManagerResponse {
+impl PyOperationCreatePaymentManagerOutput {
     #[getter]
     fn payment_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5542 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
@@ -29985,16 +29985,16 @@ impl PyCreatePaymentManagerResponse {
 }
 
 #[pyclass(
-    name = "CreatePolicyResponse",
+    name = "CreatePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreatePolicyResponse {
+struct PyOperationCreatePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_policy::CreatePolicyOutput,
 }
 
 #[pymethods]
-impl PyCreatePolicyResponse {
+impl PyOperationCreatePolicyOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5572 = (&self.inner.policy_id).as_str().into_py_any(py)?;
@@ -30116,17 +30116,17 @@ impl PyCreatePolicyResponse {
 }
 
 #[pyclass(
-    name = "CreatePolicyEngineResponse",
+    name = "CreatePolicyEngineOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreatePolicyEngineResponse {
+struct PyOperationCreatePolicyEngineOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::create_policy_engine::CreatePolicyEngineOutput,
 }
 
 #[pymethods]
-impl PyCreatePolicyEngineResponse {
+impl PyOperationCreatePolicyEngineOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5598 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -30232,16 +30232,16 @@ impl PyCreatePolicyEngineResponse {
 }
 
 #[pyclass(
-    name = "CreateRegistryResponse",
+    name = "CreateRegistryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateRegistryResponse {
+struct PyOperationCreateRegistryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_registry::CreateRegistryOutput,
 }
 
 #[pymethods]
-impl PyCreateRegistryResponse {
+impl PyOperationCreateRegistryOutput {
     #[getter]
     fn registry_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5620 = (&self.inner.registry_arn).as_str().into_py_any(py)?;
@@ -30257,16 +30257,16 @@ impl PyCreateRegistryResponse {
 }
 
 #[pyclass(
-    name = "CreateRegistryRecordResponse",
+    name = "CreateRegistryRecordOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateRegistryRecordResponse {
+struct PyOperationCreateRegistryRecordOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_registry_record::CreateRegistryRecordOutput,
 }
 
 #[pymethods]
-impl PyCreateRegistryRecordResponse {
+impl PyOperationCreateRegistryRecordOutput {
     #[getter]
     fn record_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5622 = (&self.inner.record_arn).as_str().into_py_any(py)?;
@@ -30290,16 +30290,16 @@ impl PyCreateRegistryRecordResponse {
 }
 
 #[pyclass(
-    name = "CreateWorkloadIdentityResponse",
+    name = "CreateWorkloadIdentityOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyCreateWorkloadIdentityResponse {
+struct PyOperationCreateWorkloadIdentityOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::create_workload_identity::CreateWorkloadIdentityOutput,
 }
 
 #[pymethods]
-impl PyCreateWorkloadIdentityResponse {
+impl PyOperationCreateWorkloadIdentityOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5626 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -30353,17 +30353,17 @@ impl PyCreateWorkloadIdentityResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentRuntimeResponse",
+    name = "DeleteAgentRuntimeOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteAgentRuntimeResponse {
+struct PyOperationDeleteAgentRuntimeOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::delete_agent_runtime::DeleteAgentRuntimeOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentRuntimeResponse {
+impl PyOperationDeleteAgentRuntimeOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5636 = (&self.inner.status).as_str().into_py_any(py)?;
@@ -30411,16 +30411,16 @@ impl PyDeleteAgentRuntimeResponse {
 }
 
 #[pyclass(
-    name = "DeleteAgentRuntimeEndpointResponse",
+    name = "DeleteAgentRuntimeEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteAgentRuntimeEndpointResponse {
+struct PyOperationDeleteAgentRuntimeEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_agent_runtime_endpoint::DeleteAgentRuntimeEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeleteAgentRuntimeEndpointResponse {
+impl PyOperationDeleteAgentRuntimeEndpointOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5642 = (&self.inner.status).as_str().into_py_any(py)?;
@@ -30468,16 +30468,16 @@ impl PyDeleteAgentRuntimeEndpointResponse {
 }
 
 #[pyclass(
-    name = "DeleteApiKeyCredentialProviderResponse",
+    name = "DeleteApiKeyCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteApiKeyCredentialProviderResponse {
+struct PyOperationDeleteApiKeyCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_api_key_credential_provider::DeleteApiKeyCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyDeleteApiKeyCredentialProviderResponse {
+impl PyOperationDeleteApiKeyCredentialProviderOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -30485,16 +30485,16 @@ impl PyDeleteApiKeyCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "DeleteBrowserResponse",
+    name = "DeleteBrowserOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteBrowserResponse {
+struct PyOperationDeleteBrowserOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_browser::DeleteBrowserOutput,
 }
 
 #[pymethods]
-impl PyDeleteBrowserResponse {
+impl PyOperationDeleteBrowserOutput {
     #[getter]
     fn browser_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5648 = (&self.inner.browser_id).as_str().into_py_any(py)?;
@@ -30526,16 +30526,16 @@ impl PyDeleteBrowserResponse {
 }
 
 #[pyclass(
-    name = "DeleteBrowserProfileResponse",
+    name = "DeleteBrowserProfileOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteBrowserProfileResponse {
+struct PyOperationDeleteBrowserProfileOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_browser_profile::DeleteBrowserProfileOutput,
 }
 
 #[pymethods]
-impl PyDeleteBrowserProfileResponse {
+impl PyOperationDeleteBrowserProfileOutput {
     #[getter]
     fn profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5654 = (&self.inner.profile_id).as_str().into_py_any(py)?;
@@ -30595,12 +30595,12 @@ impl PyDeleteBrowserProfileResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteCapacityProviderOutput {
+struct PyOperationDeleteCapacityProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_capacity_provider::DeleteCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyDeleteCapacityProviderOutput {
+impl PyOperationDeleteCapacityProviderOutput {
     #[getter]
     fn capacity_provider_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5664 = (&self.inner.capacity_provider_id)
@@ -30628,16 +30628,16 @@ impl PyDeleteCapacityProviderOutput {
 }
 
 #[pyclass(
-    name = "DeleteCodeInterpreterResponse",
+    name = "DeleteCodeInterpreterOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteCodeInterpreterResponse {
+struct PyOperationDeleteCodeInterpreterOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_code_interpreter::DeleteCodeInterpreterOutput,
 }
 
 #[pymethods]
-impl PyDeleteCodeInterpreterResponse {
+impl PyOperationDeleteCodeInterpreterOutput {
     #[getter]
     fn code_interpreter_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5668 = (&self.inner.code_interpreter_id).as_str().into_py_any(py)?;
@@ -30669,16 +30669,16 @@ impl PyDeleteCodeInterpreterResponse {
 }
 
 #[pyclass(
-    name = "DeleteConfigurationBundleResponse",
+    name = "DeleteConfigurationBundleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteConfigurationBundleResponse {
+struct PyOperationDeleteConfigurationBundleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_configuration_bundle::DeleteConfigurationBundleOutput,
 }
 
 #[pymethods]
-impl PyDeleteConfigurationBundleResponse {
+impl PyOperationDeleteConfigurationBundleOutput {
     #[getter]
     fn bundle_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bundle_arn {
@@ -30718,16 +30718,16 @@ impl PyDeleteConfigurationBundleResponse {
 }
 
 #[pyclass(
-    name = "DeleteConsentPortalResponse",
+    name = "DeleteConsentPortalOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteConsentPortalResponse {
+struct PyOperationDeleteConsentPortalOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_consent_portal::DeleteConsentPortalOutput,
 }
 
 #[pymethods]
-impl PyDeleteConsentPortalResponse {
+impl PyOperationDeleteConsentPortalOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -30735,16 +30735,16 @@ impl PyDeleteConsentPortalResponse {
 }
 
 #[pyclass(
-    name = "DeleteDatasetResponse",
+    name = "DeleteDatasetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteDatasetResponse {
+struct PyOperationDeleteDatasetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_dataset::DeleteDatasetOutput,
 }
 
 #[pymethods]
-impl PyDeleteDatasetResponse {
+impl PyOperationDeleteDatasetOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5680 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -30792,16 +30792,16 @@ impl PyDeleteDatasetResponse {
 }
 
 #[pyclass(
-    name = "DeleteDatasetExamplesResponse",
+    name = "DeleteDatasetExamplesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteDatasetExamplesResponse {
+struct PyOperationDeleteDatasetExamplesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_dataset_examples::DeleteDatasetExamplesOutput,
 }
 
 #[pymethods]
-impl PyDeleteDatasetExamplesResponse {
+impl PyOperationDeleteDatasetExamplesOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5690 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -30849,16 +30849,16 @@ impl PyDeleteDatasetExamplesResponse {
 }
 
 #[pyclass(
-    name = "DeleteEvaluatorResponse",
+    name = "DeleteEvaluatorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteEvaluatorResponse {
+struct PyOperationDeleteEvaluatorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_evaluator::DeleteEvaluatorOutput,
 }
 
 #[pymethods]
-impl PyDeleteEvaluatorResponse {
+impl PyOperationDeleteEvaluatorOutput {
     #[getter]
     fn evaluator_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5700 = (&self.inner.evaluator_arn).as_str().into_py_any(py)?;
@@ -30890,16 +30890,16 @@ impl PyDeleteEvaluatorResponse {
 }
 
 #[pyclass(
-    name = "DeleteGatewayResponse",
+    name = "DeleteGatewayOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteGatewayResponse {
+struct PyOperationDeleteGatewayOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_gateway::DeleteGatewayOutput,
 }
 
 #[pymethods]
-impl PyDeleteGatewayResponse {
+impl PyOperationDeleteGatewayOutput {
     #[getter]
     fn gateway_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5706 = (&self.inner.gateway_id).as_str().into_py_any(py)?;
@@ -30949,16 +30949,16 @@ impl PyDeleteGatewayResponse {
 }
 
 #[pyclass(
-    name = "DeleteGatewayRateLimitResponse",
+    name = "DeleteGatewayRateLimitOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteGatewayRateLimitResponse {
+struct PyOperationDeleteGatewayRateLimitOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_gateway_rate_limit::DeleteGatewayRateLimitOutput,
 }
 
 #[pymethods]
-impl PyDeleteGatewayRateLimitResponse {
+impl PyOperationDeleteGatewayRateLimitOutput {
     #[getter]
     fn rate_limit_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5716 = (&self.inner.rate_limit_id).as_str().into_py_any(py)?;
@@ -30982,16 +30982,16 @@ impl PyDeleteGatewayRateLimitResponse {
 }
 
 #[pyclass(
-    name = "DeleteGatewayRuleResponse",
+    name = "DeleteGatewayRuleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteGatewayRuleResponse {
+struct PyOperationDeleteGatewayRuleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_gateway_rule::DeleteGatewayRuleOutput,
 }
 
 #[pymethods]
-impl PyDeleteGatewayRuleResponse {
+impl PyOperationDeleteGatewayRuleOutput {
     #[getter]
     fn rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5720 = (&self.inner.rule_id).as_str().into_py_any(py)?;
@@ -31015,16 +31015,16 @@ impl PyDeleteGatewayRuleResponse {
 }
 
 #[pyclass(
-    name = "DeleteGatewayTargetResponse",
+    name = "DeleteGatewayTargetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteGatewayTargetResponse {
+struct PyOperationDeleteGatewayTargetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_gateway_target::DeleteGatewayTargetOutput,
 }
 
 #[pymethods]
-impl PyDeleteGatewayTargetResponse {
+impl PyOperationDeleteGatewayTargetOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5724 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -31082,16 +31082,16 @@ impl PyDeleteGatewayTargetResponse {
 }
 
 #[pyclass(
-    name = "DeleteHarnessResponse",
+    name = "DeleteHarnessOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteHarnessResponse {
+struct PyOperationDeleteHarnessOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_harness::DeleteHarnessOutput,
 }
 
 #[pymethods]
-impl PyDeleteHarnessResponse {
+impl PyOperationDeleteHarnessOutput {
     #[getter]
     fn harness(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.harness {
@@ -31121,16 +31121,16 @@ impl PyDeleteHarnessResponse {
 }
 
 #[pyclass(
-    name = "DeleteHarnessEndpointResponse",
+    name = "DeleteHarnessEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteHarnessEndpointResponse {
+struct PyOperationDeleteHarnessEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_harness_endpoint::DeleteHarnessEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeleteHarnessEndpointResponse {
+impl PyOperationDeleteHarnessEndpointOutput {
     #[getter]
     fn endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint {
@@ -31164,12 +31164,12 @@ impl PyDeleteHarnessEndpointResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteMemoryOutput {
+struct PyOperationDeleteMemoryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_memory::DeleteMemoryOutput,
 }
 
 #[pymethods]
-impl PyDeleteMemoryOutput {
+impl PyOperationDeleteMemoryOutput {
     #[getter]
     fn memory_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5740 = (&self.inner.memory_id).as_str().into_py_any(py)?;
@@ -31201,16 +31201,16 @@ impl PyDeleteMemoryOutput {
 }
 
 #[pyclass(
-    name = "DeleteOauth2CredentialProviderResponse",
+    name = "DeleteOauth2CredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteOauth2CredentialProviderResponse {
+struct PyOperationDeleteOauth2CredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_oauth2_credential_provider::DeleteOauth2CredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyDeleteOauth2CredentialProviderResponse {
+impl PyOperationDeleteOauth2CredentialProviderOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31218,16 +31218,16 @@ impl PyDeleteOauth2CredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "DeleteOnlineEvaluationConfigResponse",
+    name = "DeleteOnlineEvaluationConfigOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteOnlineEvaluationConfigResponse {
+struct PyOperationDeleteOnlineEvaluationConfigOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_online_evaluation_config::DeleteOnlineEvaluationConfigOutput,
 }
 
 #[pymethods]
-impl PyDeleteOnlineEvaluationConfigResponse {
+impl PyOperationDeleteOnlineEvaluationConfigOutput {
     #[getter]
     fn online_evaluation_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5744 = (&self.inner.online_evaluation_config_arn)
@@ -31267,16 +31267,16 @@ impl PyDeleteOnlineEvaluationConfigResponse {
 }
 
 #[pyclass(
-    name = "DeletePaymentConnectorResponse",
+    name = "DeletePaymentConnectorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeletePaymentConnectorResponse {
+struct PyOperationDeletePaymentConnectorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_payment_connector::DeletePaymentConnectorOutput,
 }
 
 #[pymethods]
-impl PyDeletePaymentConnectorResponse {
+impl PyOperationDeletePaymentConnectorOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5750 = (&self.inner.status).as_str().into_py_any(py)?;
@@ -31308,16 +31308,16 @@ impl PyDeletePaymentConnectorResponse {
 }
 
 #[pyclass(
-    name = "DeletePaymentCredentialProviderResponse",
+    name = "DeletePaymentCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeletePaymentCredentialProviderResponse {
+struct PyOperationDeletePaymentCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_payment_credential_provider::DeletePaymentCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyDeletePaymentCredentialProviderResponse {
+impl PyOperationDeletePaymentCredentialProviderOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31325,16 +31325,16 @@ impl PyDeletePaymentCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "DeletePaymentManagerResponse",
+    name = "DeletePaymentManagerOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeletePaymentManagerResponse {
+struct PyOperationDeletePaymentManagerOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_payment_manager::DeletePaymentManagerOutput,
 }
 
 #[pymethods]
-impl PyDeletePaymentManagerResponse {
+impl PyOperationDeletePaymentManagerOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5754 = (&self.inner.status).as_str().into_py_any(py)?;
@@ -31366,16 +31366,16 @@ impl PyDeletePaymentManagerResponse {
 }
 
 #[pyclass(
-    name = "DeletePolicyResponse",
+    name = "DeletePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeletePolicyResponse {
+struct PyOperationDeletePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_policy::DeletePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeletePolicyResponse {
+impl PyOperationDeletePolicyOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5758 = (&self.inner.policy_id).as_str().into_py_any(py)?;
@@ -31497,17 +31497,17 @@ impl PyDeletePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeletePolicyEngineResponse",
+    name = "DeletePolicyEngineOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeletePolicyEngineResponse {
+struct PyOperationDeletePolicyEngineOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::delete_policy_engine::DeletePolicyEngineOutput,
 }
 
 #[pymethods]
-impl PyDeletePolicyEngineResponse {
+impl PyOperationDeletePolicyEngineOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5784 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -31613,16 +31613,16 @@ impl PyDeletePolicyEngineResponse {
 }
 
 #[pyclass(
-    name = "DeleteRegistryResponse",
+    name = "DeleteRegistryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteRegistryResponse {
+struct PyOperationDeleteRegistryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_registry::DeleteRegistryOutput,
 }
 
 #[pymethods]
-impl PyDeleteRegistryResponse {
+impl PyOperationDeleteRegistryOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5806 = (&self.inner.status).as_str().into_py_any(py)?;
@@ -31638,16 +31638,16 @@ impl PyDeleteRegistryResponse {
 }
 
 #[pyclass(
-    name = "DeleteRegistryRecordResponse",
+    name = "DeleteRegistryRecordOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteRegistryRecordResponse {
+struct PyOperationDeleteRegistryRecordOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_registry_record::DeleteRegistryRecordOutput,
 }
 
 #[pymethods]
-impl PyDeleteRegistryRecordResponse {
+impl PyOperationDeleteRegistryRecordOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31655,16 +31655,16 @@ impl PyDeleteRegistryRecordResponse {
 }
 
 #[pyclass(
-    name = "DeleteResourcePolicyResponse",
+    name = "DeleteResourcePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteResourcePolicyResponse {
+struct PyOperationDeleteResourcePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_resource_policy::DeleteResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteResourcePolicyResponse {
+impl PyOperationDeleteResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31672,16 +31672,16 @@ impl PyDeleteResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteWorkloadIdentityResponse",
+    name = "DeleteWorkloadIdentityOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyDeleteWorkloadIdentityResponse {
+struct PyOperationDeleteWorkloadIdentityOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::delete_workload_identity::DeleteWorkloadIdentityOutput,
 }
 
 #[pymethods]
-impl PyDeleteWorkloadIdentityResponse {
+impl PyOperationDeleteWorkloadIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -31689,16 +31689,16 @@ impl PyDeleteWorkloadIdentityResponse {
 }
 
 #[pyclass(
-    name = "GetAgentRuntimeResponse",
+    name = "GetAgentRuntimeOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetAgentRuntimeResponse {
+struct PyOperationGetAgentRuntimeOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_agent_runtime::GetAgentRuntimeOutput,
 }
 
 #[pymethods]
-impl PyGetAgentRuntimeResponse {
+impl PyOperationGetAgentRuntimeOutput {
     #[getter]
     fn agent_runtime_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5808 = (&self.inner.agent_runtime_arn).as_str().into_py_any(py)?;
@@ -32056,16 +32056,16 @@ impl PyGetAgentRuntimeResponse {
 }
 
 #[pyclass(
-    name = "GetAgentRuntimeEndpointResponse",
+    name = "GetAgentRuntimeEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetAgentRuntimeEndpointResponse {
+struct PyOperationGetAgentRuntimeEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_agent_runtime_endpoint::GetAgentRuntimeEndpointOutput,
 }
 
 #[pymethods]
-impl PyGetAgentRuntimeEndpointResponse {
+impl PyOperationGetAgentRuntimeEndpointOutput {
     #[getter]
     fn live_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.live_version {
@@ -32197,16 +32197,16 @@ impl PyGetAgentRuntimeEndpointResponse {
 }
 
 #[pyclass(
-    name = "GetApiKeyCredentialProviderResponse",
+    name = "GetApiKeyCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetApiKeyCredentialProviderResponse {
+struct PyOperationGetApiKeyCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_api_key_credential_provider::GetApiKeyCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyGetApiKeyCredentialProviderResponse {
+impl PyOperationGetApiKeyCredentialProviderOutput {
     #[getter]
     fn api_key_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_key_secret_arn {
@@ -32308,16 +32308,16 @@ impl PyGetApiKeyCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "GetBrowserResponse",
+    name = "GetBrowserOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetBrowserResponse {
+struct PyOperationGetBrowserOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_browser::GetBrowserOutput,
 }
 
 #[pymethods]
-impl PyGetBrowserResponse {
+impl PyOperationGetBrowserOutput {
     #[getter]
     fn browser_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5900 = (&self.inner.browser_id).as_str().into_py_any(py)?;
@@ -32577,16 +32577,16 @@ impl PyGetBrowserResponse {
 }
 
 #[pyclass(
-    name = "GetBrowserProfileResponse",
+    name = "GetBrowserProfileOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetBrowserProfileResponse {
+struct PyOperationGetBrowserProfileOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_browser_profile::GetBrowserProfileOutput,
 }
 
 #[pymethods]
-impl PyGetBrowserProfileResponse {
+impl PyOperationGetBrowserProfileOutput {
     #[getter]
     fn profile_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5942 = (&self.inner.profile_id).as_str().into_py_any(py)?;
@@ -32710,12 +32710,12 @@ impl PyGetBrowserProfileResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetCapacityProviderOutput {
+struct PyOperationGetCapacityProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_capacity_provider::GetCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyGetCapacityProviderOutput {
+impl PyOperationGetCapacityProviderOutput {
     #[getter]
     fn capacity_provider_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5962 = (&self.inner.capacity_provider_id)
@@ -32865,17 +32865,17 @@ impl PyGetCapacityProviderOutput {
 }
 
 #[pyclass(
-    name = "GetCodeInterpreterResponse",
+    name = "GetCodeInterpreterOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetCodeInterpreterResponse {
+struct PyOperationGetCodeInterpreterOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::get_code_interpreter::GetCodeInterpreterOutput,
 }
 
 #[pymethods]
-impl PyGetCodeInterpreterResponse {
+impl PyOperationGetCodeInterpreterOutput {
     #[getter]
     fn code_interpreter_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_5984 = (&self.inner.code_interpreter_id).as_str().into_py_any(py)?;
@@ -33063,16 +33063,16 @@ impl PyGetCodeInterpreterResponse {
 }
 
 #[pyclass(
-    name = "GetConfigurationBundleResponse",
+    name = "GetConfigurationBundleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetConfigurationBundleResponse {
+struct PyOperationGetConfigurationBundleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_configuration_bundle::GetConfigurationBundleOutput,
 }
 
 #[pymethods]
-impl PyGetConfigurationBundleResponse {
+impl PyOperationGetConfigurationBundleOutput {
     #[getter]
     fn bundle_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6016 = (&self.inner.bundle_arn).as_str().into_py_any(py)?;
@@ -33208,16 +33208,16 @@ impl PyGetConfigurationBundleResponse {
 }
 
 #[pyclass(
-    name = "GetConfigurationBundleVersionResponse",
+    name = "GetConfigurationBundleVersionOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetConfigurationBundleVersionResponse {
+struct PyOperationGetConfigurationBundleVersionOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_configuration_bundle_version::GetConfigurationBundleVersionOutput,
 }
 
 #[pymethods]
-impl PyGetConfigurationBundleVersionResponse {
+impl PyOperationGetConfigurationBundleVersionOutput {
     #[getter]
     fn bundle_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6044 = (&self.inner.bundle_arn).as_str().into_py_any(py)?;
@@ -33357,16 +33357,16 @@ impl PyGetConfigurationBundleVersionResponse {
 }
 
 #[pyclass(
-    name = "GetConsentPortalResponse",
+    name = "GetConsentPortalOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetConsentPortalResponse {
+struct PyOperationGetConsentPortalOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_consent_portal::GetConsentPortalOutput,
 }
 
 #[pymethods]
-impl PyGetConsentPortalResponse {
+impl PyOperationGetConsentPortalOutput {
     #[getter]
     fn sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6072_list = PyList::empty(py);
@@ -33524,16 +33524,16 @@ impl PyGetConsentPortalResponse {
 }
 
 #[pyclass(
-    name = "GetDatasetResponse",
+    name = "GetDatasetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetDatasetResponse {
+struct PyOperationGetDatasetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_dataset::GetDatasetOutput,
 }
 
 #[pymethods]
-impl PyGetDatasetResponse {
+impl PyOperationGetDatasetOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6100 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -33737,16 +33737,16 @@ impl PyGetDatasetResponse {
 }
 
 #[pyclass(
-    name = "GetEvaluatorResponse",
+    name = "GetEvaluatorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetEvaluatorResponse {
+struct PyOperationGetEvaluatorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_evaluator::GetEvaluatorOutput,
 }
 
 #[pymethods]
-impl PyGetEvaluatorResponse {
+impl PyOperationGetEvaluatorOutput {
     #[getter]
     fn evaluator_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6140 = (&self.inner.evaluator_arn).as_str().into_py_any(py)?;
@@ -33906,16 +33906,16 @@ impl PyGetEvaluatorResponse {
 }
 
 #[pyclass(
-    name = "GetGatewayResponse",
+    name = "GetGatewayOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetGatewayResponse {
+struct PyOperationGetGatewayOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_gateway::GetGatewayOutput,
 }
 
 #[pymethods]
-impl PyGetGatewayResponse {
+impl PyOperationGetGatewayOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6166 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -34261,16 +34261,16 @@ impl PyGetGatewayResponse {
 }
 
 #[pyclass(
-    name = "GetGatewayRateLimitResponse",
+    name = "GetGatewayRateLimitOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetGatewayRateLimitResponse {
+struct PyOperationGetGatewayRateLimitOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_gateway_rate_limit::GetGatewayRateLimitOutput,
 }
 
 #[pymethods]
-impl PyGetGatewayRateLimitResponse {
+impl PyOperationGetGatewayRateLimitOutput {
     #[getter]
     fn rate_limit_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6218 = (&self.inner.rate_limit_id).as_str().into_py_any(py)?;
@@ -34376,16 +34376,16 @@ impl PyGetGatewayRateLimitResponse {
 }
 
 #[pyclass(
-    name = "GetGatewayRuleResponse",
+    name = "GetGatewayRuleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetGatewayRuleResponse {
+struct PyOperationGetGatewayRuleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_gateway_rule::GetGatewayRuleOutput,
 }
 
 #[pymethods]
-impl PyGetGatewayRuleResponse {
+impl PyOperationGetGatewayRuleOutput {
     #[getter]
     fn rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6242 = (&self.inner.rule_id).as_str().into_py_any(py)?;
@@ -34531,16 +34531,16 @@ impl PyGetGatewayRuleResponse {
 }
 
 #[pyclass(
-    name = "GetGatewayTargetResponse",
+    name = "GetGatewayTargetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetGatewayTargetResponse {
+struct PyOperationGetGatewayTargetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_gateway_target::GetGatewayTargetOutput,
 }
 
 #[pymethods]
-impl PyGetGatewayTargetResponse {
+impl PyOperationGetGatewayTargetOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6270 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -34822,16 +34822,16 @@ impl PyGetGatewayTargetResponse {
 }
 
 #[pyclass(
-    name = "GetHarnessResponse",
+    name = "GetHarnessOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetHarnessResponse {
+struct PyOperationGetHarnessOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_harness::GetHarnessOutput,
 }
 
 #[pymethods]
-impl PyGetHarnessResponse {
+impl PyOperationGetHarnessOutput {
     #[getter]
     fn harness(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.harness {
@@ -34861,17 +34861,17 @@ impl PyGetHarnessResponse {
 }
 
 #[pyclass(
-    name = "GetHarnessEndpointResponse",
+    name = "GetHarnessEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetHarnessEndpointResponse {
+struct PyOperationGetHarnessEndpointOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::get_harness_endpoint::GetHarnessEndpointOutput,
 }
 
 #[pymethods]
-impl PyGetHarnessEndpointResponse {
+impl PyOperationGetHarnessEndpointOutput {
     #[getter]
     fn endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint {
@@ -34905,12 +34905,12 @@ impl PyGetHarnessEndpointResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetMemoryOutput {
+struct PyOperationGetMemoryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_memory::GetMemoryOutput,
 }
 
 #[pymethods]
-impl PyGetMemoryOutput {
+impl PyOperationGetMemoryOutput {
     #[getter]
     fn memory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory {
@@ -34940,16 +34940,16 @@ impl PyGetMemoryOutput {
 }
 
 #[pyclass(
-    name = "GetOauth2CredentialProviderResponse",
+    name = "GetOauth2CredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetOauth2CredentialProviderResponse {
+struct PyOperationGetOauth2CredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_oauth2_credential_provider::GetOauth2CredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyGetOauth2CredentialProviderResponse {
+impl PyOperationGetOauth2CredentialProviderOutput {
     #[getter]
     fn client_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_secret_arn {
@@ -35127,16 +35127,16 @@ impl PyGetOauth2CredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "GetOnlineEvaluationConfigResponse",
+    name = "GetOnlineEvaluationConfigOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetOnlineEvaluationConfigResponse {
+struct PyOperationGetOnlineEvaluationConfigOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_online_evaluation_config::GetOnlineEvaluationConfigOutput,
 }
 
 #[pymethods]
-impl PyGetOnlineEvaluationConfigResponse {
+impl PyOperationGetOnlineEvaluationConfigOutput {
     #[getter]
     fn online_evaluation_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6350 = (&self.inner.online_evaluation_config_arn)
@@ -35392,16 +35392,16 @@ impl PyGetOnlineEvaluationConfigResponse {
 }
 
 #[pyclass(
-    name = "GetPaymentConnectorResponse",
+    name = "GetPaymentConnectorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPaymentConnectorResponse {
+struct PyOperationGetPaymentConnectorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_payment_connector::GetPaymentConnectorOutput,
 }
 
 #[pymethods]
-impl PyGetPaymentConnectorResponse {
+impl PyOperationGetPaymentConnectorOutput {
     #[getter]
     fn payment_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6390 = (&self.inner.payment_connector_id)
@@ -35543,16 +35543,16 @@ impl PyGetPaymentConnectorResponse {
 }
 
 #[pyclass(
-    name = "GetPaymentCredentialProviderResponse",
+    name = "GetPaymentCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPaymentCredentialProviderResponse {
+struct PyOperationGetPaymentCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_payment_credential_provider::GetPaymentCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyGetPaymentCredentialProviderResponse {
+impl PyOperationGetPaymentCredentialProviderOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6416 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -35656,16 +35656,16 @@ impl PyGetPaymentCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "GetPaymentManagerResponse",
+    name = "GetPaymentManagerOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPaymentManagerResponse {
+struct PyOperationGetPaymentManagerOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_payment_manager::GetPaymentManagerOutput,
 }
 
 #[pymethods]
-impl PyGetPaymentManagerResponse {
+impl PyOperationGetPaymentManagerOutput {
     #[getter]
     fn payment_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6438 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
@@ -35835,16 +35835,16 @@ impl PyGetPaymentManagerResponse {
 }
 
 #[pyclass(
-    name = "GetPolicyResponse",
+    name = "GetPolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicyResponse {
+struct PyOperationGetPolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy::GetPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyResponse {
+impl PyOperationGetPolicyOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6472 = (&self.inner.policy_id).as_str().into_py_any(py)?;
@@ -35966,16 +35966,16 @@ impl PyGetPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetPolicyEngineResponse",
+    name = "GetPolicyEngineOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicyEngineResponse {
+struct PyOperationGetPolicyEngineOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy_engine::GetPolicyEngineOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyEngineResponse {
+impl PyOperationGetPolicyEngineOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6498 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -36081,16 +36081,16 @@ impl PyGetPolicyEngineResponse {
 }
 
 #[pyclass(
-    name = "GetPolicyEngineSummaryResponse",
+    name = "GetPolicyEngineSummaryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicyEngineSummaryResponse {
+struct PyOperationGetPolicyEngineSummaryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy_engine_summary::GetPolicyEngineSummaryOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyEngineSummaryResponse {
+impl PyOperationGetPolicyEngineSummaryOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6520 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -36162,16 +36162,16 @@ impl PyGetPolicyEngineSummaryResponse {
 }
 
 #[pyclass(
-    name = "GetPolicyGenerationResponse",
+    name = "GetPolicyGenerationOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicyGenerationResponse {
+struct PyOperationGetPolicyGenerationOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy_generation::GetPolicyGenerationOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyGenerationResponse {
+impl PyOperationGetPolicyGenerationOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6534 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -36293,16 +36293,16 @@ impl PyGetPolicyGenerationResponse {
 }
 
 #[pyclass(
-    name = "GetPolicyGenerationSummaryResponse",
+    name = "GetPolicyGenerationSummaryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicyGenerationSummaryResponse {
+struct PyOperationGetPolicyGenerationSummaryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy_generation_summary::GetPolicyGenerationSummaryOutput,
 }
 
 #[pymethods]
-impl PyGetPolicyGenerationSummaryResponse {
+impl PyOperationGetPolicyGenerationSummaryOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6558 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -36406,16 +36406,16 @@ impl PyGetPolicyGenerationSummaryResponse {
 }
 
 #[pyclass(
-    name = "GetPolicySummaryResponse",
+    name = "GetPolicySummaryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetPolicySummaryResponse {
+struct PyOperationGetPolicySummaryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_policy_summary::GetPolicySummaryOutput,
 }
 
 #[pymethods]
-impl PyGetPolicySummaryResponse {
+impl PyOperationGetPolicySummaryOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6576 = (&self.inner.policy_id).as_str().into_py_any(py)?;
@@ -36487,16 +36487,16 @@ impl PyGetPolicySummaryResponse {
 }
 
 #[pyclass(
-    name = "GetRegistryResponse",
+    name = "GetRegistryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetRegistryResponse {
+struct PyOperationGetRegistryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_registry::GetRegistryOutput,
 }
 
 #[pymethods]
-impl PyGetRegistryResponse {
+impl PyOperationGetRegistryOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6592 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -36638,16 +36638,16 @@ impl PyGetRegistryResponse {
 }
 
 #[pyclass(
-    name = "GetRegistryRecordResponse",
+    name = "GetRegistryRecordOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetRegistryRecordResponse {
+struct PyOperationGetRegistryRecordOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_registry_record::GetRegistryRecordOutput,
 }
 
 #[pymethods]
-impl PyGetRegistryRecordResponse {
+impl PyOperationGetRegistryRecordOutput {
     #[getter]
     fn registry_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6614 = (&self.inner.registry_arn).as_str().into_py_any(py)?;
@@ -36827,16 +36827,16 @@ impl PyGetRegistryRecordResponse {
 }
 
 #[pyclass(
-    name = "GetResourcePolicyResponse",
+    name = "GetResourcePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetResourcePolicyResponse {
+struct PyOperationGetResourcePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_resource_policy::GetResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyGetResourcePolicyResponse {
+impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -36860,16 +36860,16 @@ impl PyGetResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "GetTokenVaultResponse",
+    name = "GetTokenVaultOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetTokenVaultResponse {
+struct PyOperationGetTokenVaultOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_token_vault::GetTokenVaultOutput,
 }
 
 #[pymethods]
-impl PyGetTokenVaultResponse {
+impl PyOperationGetTokenVaultOutput {
     #[getter]
     fn token_vault_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6644 = (&self.inner.token_vault_id).as_str().into_py_any(py)?;
@@ -36919,16 +36919,16 @@ impl PyGetTokenVaultResponse {
 }
 
 #[pyclass(
-    name = "GetWorkloadIdentityResponse",
+    name = "GetWorkloadIdentityOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyGetWorkloadIdentityResponse {
+struct PyOperationGetWorkloadIdentityOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::get_workload_identity::GetWorkloadIdentityOutput,
 }
 
 #[pymethods]
-impl PyGetWorkloadIdentityResponse {
+impl PyOperationGetWorkloadIdentityOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6650 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -37002,16 +37002,16 @@ impl PyGetWorkloadIdentityResponse {
 }
 
 #[pyclass(
-    name = "ListAgentRuntimeEndpointsResponse",
+    name = "ListAgentRuntimeEndpointsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListAgentRuntimeEndpointsResponse {
+struct PyOperationListAgentRuntimeEndpointsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_agent_runtime_endpoints::ListAgentRuntimeEndpointsOutput,
 }
 
 #[pymethods]
-impl PyListAgentRuntimeEndpointsResponse {
+impl PyOperationListAgentRuntimeEndpointsOutput {
     #[getter]
     fn runtime_endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6664_list = PyList::empty(py);
@@ -37059,16 +37059,16 @@ impl PyListAgentRuntimeEndpointsResponse {
 }
 
 #[pyclass(
-    name = "ListAgentRuntimeVersionsResponse",
+    name = "ListAgentRuntimeVersionsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListAgentRuntimeVersionsResponse {
+struct PyOperationListAgentRuntimeVersionsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_agent_runtime_versions::ListAgentRuntimeVersionsOutput,
 }
 
 #[pymethods]
-impl PyListAgentRuntimeVersionsResponse {
+impl PyOperationListAgentRuntimeVersionsOutput {
     #[getter]
     fn agent_runtimes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6672_list = PyList::empty(py);
@@ -37120,12 +37120,12 @@ impl PyListAgentRuntimeVersionsResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListAgentRuntimeVersionsByCapacityProviderOutput {
+struct PyOperationListAgentRuntimeVersionsByCapacityProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_agent_runtime_versions_by_capacity_provider::ListAgentRuntimeVersionsByCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyListAgentRuntimeVersionsByCapacityProviderOutput {
+impl PyOperationListAgentRuntimeVersionsByCapacityProviderOutput {
     #[getter]
     fn agent_runtimes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6680_list = PyList::empty(py);
@@ -37173,16 +37173,16 @@ impl PyListAgentRuntimeVersionsByCapacityProviderOutput {
 }
 
 #[pyclass(
-    name = "ListAgentRuntimesResponse",
+    name = "ListAgentRuntimesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListAgentRuntimesResponse {
+struct PyOperationListAgentRuntimesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_agent_runtimes::ListAgentRuntimesOutput,
 }
 
 #[pymethods]
-impl PyListAgentRuntimesResponse {
+impl PyOperationListAgentRuntimesOutput {
     #[getter]
     fn agent_runtimes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6688_list = PyList::empty(py);
@@ -37230,16 +37230,16 @@ impl PyListAgentRuntimesResponse {
 }
 
 #[pyclass(
-    name = "ListApiKeyCredentialProvidersResponse",
+    name = "ListApiKeyCredentialProvidersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListApiKeyCredentialProvidersResponse {
+struct PyOperationListApiKeyCredentialProvidersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_api_key_credential_providers::ListApiKeyCredentialProvidersOutput,
 }
 
 #[pymethods]
-impl PyListApiKeyCredentialProvidersResponse {
+impl PyOperationListApiKeyCredentialProvidersOutput {
     #[getter]
     fn credential_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6696_list = PyList::empty(py);
@@ -37287,16 +37287,16 @@ impl PyListApiKeyCredentialProvidersResponse {
 }
 
 #[pyclass(
-    name = "ListBrowserProfilesResponse",
+    name = "ListBrowserProfilesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListBrowserProfilesResponse {
+struct PyOperationListBrowserProfilesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_browser_profiles::ListBrowserProfilesOutput,
 }
 
 #[pymethods]
-impl PyListBrowserProfilesResponse {
+impl PyOperationListBrowserProfilesOutput {
     #[getter]
     fn profile_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6704_list = PyList::empty(py);
@@ -37344,16 +37344,16 @@ impl PyListBrowserProfilesResponse {
 }
 
 #[pyclass(
-    name = "ListBrowsersResponse",
+    name = "ListBrowsersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListBrowsersResponse {
+struct PyOperationListBrowsersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_browsers::ListBrowsersOutput,
 }
 
 #[pymethods]
-impl PyListBrowsersResponse {
+impl PyOperationListBrowsersOutput {
     #[getter]
     fn browser_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6712_list = PyList::empty(py);
@@ -37405,12 +37405,12 @@ impl PyListBrowsersResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListCapacityProvidersOutput {
+struct PyOperationListCapacityProvidersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_capacity_providers::ListCapacityProvidersOutput,
 }
 
 #[pymethods]
-impl PyListCapacityProvidersOutput {
+impl PyOperationListCapacityProvidersOutput {
     #[getter]
     fn capacity_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6720_list = PyList::empty(py);
@@ -37458,16 +37458,16 @@ impl PyListCapacityProvidersOutput {
 }
 
 #[pyclass(
-    name = "ListCodeInterpretersResponse",
+    name = "ListCodeInterpretersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListCodeInterpretersResponse {
+struct PyOperationListCodeInterpretersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_code_interpreters::ListCodeInterpretersOutput,
 }
 
 #[pymethods]
-impl PyListCodeInterpretersResponse {
+impl PyOperationListCodeInterpretersOutput {
     #[getter]
     fn code_interpreter_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6728_list = PyList::empty(py);
@@ -37515,16 +37515,16 @@ impl PyListCodeInterpretersResponse {
 }
 
 #[pyclass(
-    name = "ListConfigurationBundleVersionsResponse",
+    name = "ListConfigurationBundleVersionsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListConfigurationBundleVersionsResponse {
+struct PyOperationListConfigurationBundleVersionsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_configuration_bundle_versions::ListConfigurationBundleVersionsOutput,
 }
 
 #[pymethods]
-impl PyListConfigurationBundleVersionsResponse {
+impl PyOperationListConfigurationBundleVersionsOutput {
     #[getter]
     fn versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6736_list = PyList::empty(py);
@@ -37572,16 +37572,16 @@ impl PyListConfigurationBundleVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListConfigurationBundlesResponse",
+    name = "ListConfigurationBundlesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListConfigurationBundlesResponse {
+struct PyOperationListConfigurationBundlesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_configuration_bundles::ListConfigurationBundlesOutput,
 }
 
 #[pymethods]
-impl PyListConfigurationBundlesResponse {
+impl PyOperationListConfigurationBundlesOutput {
     #[getter]
     fn bundles(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6744_list = PyList::empty(py);
@@ -37629,17 +37629,17 @@ impl PyListConfigurationBundlesResponse {
 }
 
 #[pyclass(
-    name = "ListConsentPortalsResponse",
+    name = "ListConsentPortalsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListConsentPortalsResponse {
+struct PyOperationListConsentPortalsOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::list_consent_portals::ListConsentPortalsOutput,
 }
 
 #[pymethods]
-impl PyListConsentPortalsResponse {
+impl PyOperationListConsentPortalsOutput {
     #[getter]
     fn consent_portals(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6752_list = PyList::empty(py);
@@ -37687,16 +37687,16 @@ impl PyListConsentPortalsResponse {
 }
 
 #[pyclass(
-    name = "ListDatasetExamplesResponse",
+    name = "ListDatasetExamplesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListDatasetExamplesResponse {
+struct PyOperationListDatasetExamplesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_dataset_examples::ListDatasetExamplesOutput,
 }
 
 #[pymethods]
-impl PyListDatasetExamplesResponse {
+impl PyOperationListDatasetExamplesOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6760 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -37762,16 +37762,16 @@ impl PyListDatasetExamplesResponse {
 }
 
 #[pyclass(
-    name = "ListDatasetVersionsResponse",
+    name = "ListDatasetVersionsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListDatasetVersionsResponse {
+struct PyOperationListDatasetVersionsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_dataset_versions::ListDatasetVersionsOutput,
 }
 
 #[pymethods]
-impl PyListDatasetVersionsResponse {
+impl PyOperationListDatasetVersionsOutput {
     #[getter]
     fn versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6774_list = PyList::empty(py);
@@ -37819,16 +37819,16 @@ impl PyListDatasetVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListDatasetsResponse",
+    name = "ListDatasetsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListDatasetsResponse {
+struct PyOperationListDatasetsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_datasets::ListDatasetsOutput,
 }
 
 #[pymethods]
-impl PyListDatasetsResponse {
+impl PyOperationListDatasetsOutput {
     #[getter]
     fn datasets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6782_list = PyList::empty(py);
@@ -37876,16 +37876,16 @@ impl PyListDatasetsResponse {
 }
 
 #[pyclass(
-    name = "ListEvaluatorsResponse",
+    name = "ListEvaluatorsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListEvaluatorsResponse {
+struct PyOperationListEvaluatorsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_evaluators::ListEvaluatorsOutput,
 }
 
 #[pymethods]
-impl PyListEvaluatorsResponse {
+impl PyOperationListEvaluatorsOutput {
     #[getter]
     fn evaluators(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6790_list = PyList::empty(py);
@@ -37933,16 +37933,16 @@ impl PyListEvaluatorsResponse {
 }
 
 #[pyclass(
-    name = "ListGatewayRateLimitsResponse",
+    name = "ListGatewayRateLimitsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListGatewayRateLimitsResponse {
+struct PyOperationListGatewayRateLimitsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_gateway_rate_limits::ListGatewayRateLimitsOutput,
 }
 
 #[pymethods]
-impl PyListGatewayRateLimitsResponse {
+impl PyOperationListGatewayRateLimitsOutput {
     #[getter]
     fn rate_limits(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6798_list = PyList::empty(py);
@@ -37990,16 +37990,16 @@ impl PyListGatewayRateLimitsResponse {
 }
 
 #[pyclass(
-    name = "ListGatewayRulesResponse",
+    name = "ListGatewayRulesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListGatewayRulesResponse {
+struct PyOperationListGatewayRulesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_gateway_rules::ListGatewayRulesOutput,
 }
 
 #[pymethods]
-impl PyListGatewayRulesResponse {
+impl PyOperationListGatewayRulesOutput {
     #[getter]
     fn gateway_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6806_list = PyList::empty(py);
@@ -38047,17 +38047,17 @@ impl PyListGatewayRulesResponse {
 }
 
 #[pyclass(
-    name = "ListGatewayTargetsResponse",
+    name = "ListGatewayTargetsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListGatewayTargetsResponse {
+struct PyOperationListGatewayTargetsOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::list_gateway_targets::ListGatewayTargetsOutput,
 }
 
 #[pymethods]
-impl PyListGatewayTargetsResponse {
+impl PyOperationListGatewayTargetsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6814_list = PyList::empty(py);
@@ -38105,16 +38105,16 @@ impl PyListGatewayTargetsResponse {
 }
 
 #[pyclass(
-    name = "ListGatewaysResponse",
+    name = "ListGatewaysOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListGatewaysResponse {
+struct PyOperationListGatewaysOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_gateways::ListGatewaysOutput,
 }
 
 #[pymethods]
-impl PyListGatewaysResponse {
+impl PyOperationListGatewaysOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6822_list = PyList::empty(py);
@@ -38162,16 +38162,16 @@ impl PyListGatewaysResponse {
 }
 
 #[pyclass(
-    name = "ListHarnessEndpointsResponse",
+    name = "ListHarnessEndpointsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListHarnessEndpointsResponse {
+struct PyOperationListHarnessEndpointsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_harness_endpoints::ListHarnessEndpointsOutput,
 }
 
 #[pymethods]
-impl PyListHarnessEndpointsResponse {
+impl PyOperationListHarnessEndpointsOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6830_list = PyList::empty(py);
@@ -38219,16 +38219,16 @@ impl PyListHarnessEndpointsResponse {
 }
 
 #[pyclass(
-    name = "ListHarnessVersionsResponse",
+    name = "ListHarnessVersionsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListHarnessVersionsResponse {
+struct PyOperationListHarnessVersionsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_harness_versions::ListHarnessVersionsOutput,
 }
 
 #[pymethods]
-impl PyListHarnessVersionsResponse {
+impl PyOperationListHarnessVersionsOutput {
     #[getter]
     fn harness_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6838_list = PyList::empty(py);
@@ -38276,16 +38276,16 @@ impl PyListHarnessVersionsResponse {
 }
 
 #[pyclass(
-    name = "ListHarnessesResponse",
+    name = "ListHarnessesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListHarnessesResponse {
+struct PyOperationListHarnessesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_harnesses::ListHarnessesOutput,
 }
 
 #[pymethods]
-impl PyListHarnessesResponse {
+impl PyOperationListHarnessesOutput {
     #[getter]
     fn harnesses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6846_list = PyList::empty(py);
@@ -38337,12 +38337,12 @@ impl PyListHarnessesResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListMemoriesOutput {
+struct PyOperationListMemoriesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_memories::ListMemoriesOutput,
 }
 
 #[pymethods]
-impl PyListMemoriesOutput {
+impl PyOperationListMemoriesOutput {
     #[getter]
     fn memories(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6854_list = PyList::empty(py);
@@ -38390,16 +38390,16 @@ impl PyListMemoriesOutput {
 }
 
 #[pyclass(
-    name = "ListOauth2CredentialProvidersResponse",
+    name = "ListOauth2CredentialProvidersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListOauth2CredentialProvidersResponse {
+struct PyOperationListOauth2CredentialProvidersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_oauth2_credential_providers::ListOauth2CredentialProvidersOutput,
 }
 
 #[pymethods]
-impl PyListOauth2CredentialProvidersResponse {
+impl PyOperationListOauth2CredentialProvidersOutput {
     #[getter]
     fn credential_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6862_list = PyList::empty(py);
@@ -38447,16 +38447,16 @@ impl PyListOauth2CredentialProvidersResponse {
 }
 
 #[pyclass(
-    name = "ListOnlineEvaluationConfigsResponse",
+    name = "ListOnlineEvaluationConfigsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListOnlineEvaluationConfigsResponse {
+struct PyOperationListOnlineEvaluationConfigsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_online_evaluation_configs::ListOnlineEvaluationConfigsOutput,
 }
 
 #[pymethods]
-impl PyListOnlineEvaluationConfigsResponse {
+impl PyOperationListOnlineEvaluationConfigsOutput {
     #[getter]
     fn online_evaluation_configs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6870_list = PyList::empty(py);
@@ -38504,16 +38504,16 @@ impl PyListOnlineEvaluationConfigsResponse {
 }
 
 #[pyclass(
-    name = "ListPaymentConnectorsResponse",
+    name = "ListPaymentConnectorsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPaymentConnectorsResponse {
+struct PyOperationListPaymentConnectorsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_payment_connectors::ListPaymentConnectorsOutput,
 }
 
 #[pymethods]
-impl PyListPaymentConnectorsResponse {
+impl PyOperationListPaymentConnectorsOutput {
     #[getter]
     fn payment_connectors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6878_list = PyList::empty(py);
@@ -38561,16 +38561,16 @@ impl PyListPaymentConnectorsResponse {
 }
 
 #[pyclass(
-    name = "ListPaymentCredentialProvidersResponse",
+    name = "ListPaymentCredentialProvidersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPaymentCredentialProvidersResponse {
+struct PyOperationListPaymentCredentialProvidersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_payment_credential_providers::ListPaymentCredentialProvidersOutput,
 }
 
 #[pymethods]
-impl PyListPaymentCredentialProvidersResponse {
+impl PyOperationListPaymentCredentialProvidersOutput {
     #[getter]
     fn credential_providers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6886_list = PyList::empty(py);
@@ -38618,16 +38618,16 @@ impl PyListPaymentCredentialProvidersResponse {
 }
 
 #[pyclass(
-    name = "ListPaymentManagersResponse",
+    name = "ListPaymentManagersOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPaymentManagersResponse {
+struct PyOperationListPaymentManagersOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_payment_managers::ListPaymentManagersOutput,
 }
 
 #[pymethods]
-impl PyListPaymentManagersResponse {
+impl PyOperationListPaymentManagersOutput {
     #[getter]
     fn payment_managers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6894_list = PyList::empty(py);
@@ -38675,16 +38675,16 @@ impl PyListPaymentManagersResponse {
 }
 
 #[pyclass(
-    name = "ListPoliciesResponse",
+    name = "ListPoliciesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPoliciesResponse {
+struct PyOperationListPoliciesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policies::ListPoliciesOutput,
 }
 
 #[pymethods]
-impl PyListPoliciesResponse {
+impl PyOperationListPoliciesOutput {
     #[getter]
     fn policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6902_list = PyList::empty(py);
@@ -38732,16 +38732,16 @@ impl PyListPoliciesResponse {
 }
 
 #[pyclass(
-    name = "ListPolicyEngineSummariesResponse",
+    name = "ListPolicyEngineSummariesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicyEngineSummariesResponse {
+struct PyOperationListPolicyEngineSummariesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_engine_summaries::ListPolicyEngineSummariesOutput,
 }
 
 #[pymethods]
-impl PyListPolicyEngineSummariesResponse {
+impl PyOperationListPolicyEngineSummariesOutput {
     #[getter]
     fn policy_engines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6910_list = PyList::empty(py);
@@ -38789,16 +38789,16 @@ impl PyListPolicyEngineSummariesResponse {
 }
 
 #[pyclass(
-    name = "ListPolicyEnginesResponse",
+    name = "ListPolicyEnginesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicyEnginesResponse {
+struct PyOperationListPolicyEnginesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_engines::ListPolicyEnginesOutput,
 }
 
 #[pymethods]
-impl PyListPolicyEnginesResponse {
+impl PyOperationListPolicyEnginesOutput {
     #[getter]
     fn policy_engines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6918_list = PyList::empty(py);
@@ -38846,16 +38846,16 @@ impl PyListPolicyEnginesResponse {
 }
 
 #[pyclass(
-    name = "ListPolicyGenerationAssetsResponse",
+    name = "ListPolicyGenerationAssetsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicyGenerationAssetsResponse {
+struct PyOperationListPolicyGenerationAssetsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_generation_assets::ListPolicyGenerationAssetsOutput,
 }
 
 #[pymethods]
-impl PyListPolicyGenerationAssetsResponse {
+impl PyOperationListPolicyGenerationAssetsOutput {
     #[getter]
     fn policy_generation_assets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_generation_assets {
@@ -38911,16 +38911,16 @@ impl PyListPolicyGenerationAssetsResponse {
 }
 
 #[pyclass(
-    name = "ListPolicyGenerationSummariesResponse",
+    name = "ListPolicyGenerationSummariesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicyGenerationSummariesResponse {
+struct PyOperationListPolicyGenerationSummariesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_generation_summaries::ListPolicyGenerationSummariesOutput,
 }
 
 #[pymethods]
-impl PyListPolicyGenerationSummariesResponse {
+impl PyOperationListPolicyGenerationSummariesOutput {
     #[getter]
     fn policy_generations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6934_list = PyList::empty(py);
@@ -38968,16 +38968,16 @@ impl PyListPolicyGenerationSummariesResponse {
 }
 
 #[pyclass(
-    name = "ListPolicyGenerationsResponse",
+    name = "ListPolicyGenerationsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicyGenerationsResponse {
+struct PyOperationListPolicyGenerationsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_generations::ListPolicyGenerationsOutput,
 }
 
 #[pymethods]
-impl PyListPolicyGenerationsResponse {
+impl PyOperationListPolicyGenerationsOutput {
     #[getter]
     fn policy_generations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6942_list = PyList::empty(py);
@@ -39025,16 +39025,16 @@ impl PyListPolicyGenerationsResponse {
 }
 
 #[pyclass(
-    name = "ListPolicySummariesResponse",
+    name = "ListPolicySummariesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListPolicySummariesResponse {
+struct PyOperationListPolicySummariesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_policy_summaries::ListPolicySummariesOutput,
 }
 
 #[pymethods]
-impl PyListPolicySummariesResponse {
+impl PyOperationListPolicySummariesOutput {
     #[getter]
     fn policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6950_list = PyList::empty(py);
@@ -39082,16 +39082,16 @@ impl PyListPolicySummariesResponse {
 }
 
 #[pyclass(
-    name = "ListRegistriesResponse",
+    name = "ListRegistriesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListRegistriesResponse {
+struct PyOperationListRegistriesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_registries::ListRegistriesOutput,
 }
 
 #[pymethods]
-impl PyListRegistriesResponse {
+impl PyOperationListRegistriesOutput {
     #[getter]
     fn registries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6958_list = PyList::empty(py);
@@ -39139,16 +39139,16 @@ impl PyListRegistriesResponse {
 }
 
 #[pyclass(
-    name = "ListRegistryRecordsResponse",
+    name = "ListRegistryRecordsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListRegistryRecordsResponse {
+struct PyOperationListRegistryRecordsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_registry_records::ListRegistryRecordsOutput,
 }
 
 #[pymethods]
-impl PyListRegistryRecordsResponse {
+impl PyOperationListRegistryRecordsOutput {
     #[getter]
     fn registry_records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6966_list = PyList::empty(py);
@@ -39196,16 +39196,16 @@ impl PyListRegistryRecordsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -39241,16 +39241,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListWorkloadIdentitiesResponse",
+    name = "ListWorkloadIdentitiesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyListWorkloadIdentitiesResponse {
+struct PyOperationListWorkloadIdentitiesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::list_workload_identities::ListWorkloadIdentitiesOutput,
 }
 
 #[pymethods]
-impl PyListWorkloadIdentitiesResponse {
+impl PyOperationListWorkloadIdentitiesOutput {
     #[getter]
     fn workload_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6984_list = PyList::empty(py);
@@ -39298,16 +39298,16 @@ impl PyListWorkloadIdentitiesResponse {
 }
 
 #[pyclass(
-    name = "PutResourcePolicyResponse",
+    name = "PutResourcePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyPutResourcePolicyResponse {
+struct PyOperationPutResourcePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::put_resource_policy::PutResourcePolicyOutput,
 }
 
 #[pymethods]
-impl PyPutResourcePolicyResponse {
+impl PyOperationPutResourcePolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6992 = (&self.inner.policy).as_str().into_py_any(py)?;
@@ -39323,16 +39323,16 @@ impl PyPutResourcePolicyResponse {
 }
 
 #[pyclass(
-    name = "RotatePaymentConnectorCredentialsResponse",
+    name = "RotatePaymentConnectorCredentialsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyRotatePaymentConnectorCredentialsResponse {
+struct PyOperationRotatePaymentConnectorCredentialsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::rotate_payment_connector_credentials::RotatePaymentConnectorCredentialsOutput,
 }
 
 #[pymethods]
-impl PyRotatePaymentConnectorCredentialsResponse {
+impl PyOperationRotatePaymentConnectorCredentialsOutput {
     #[getter]
     fn payment_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_6994 = (&self.inner.payment_connector_id)
@@ -39376,16 +39376,16 @@ impl PyRotatePaymentConnectorCredentialsResponse {
 }
 
 #[pyclass(
-    name = "SetTokenVaultCMKResponse",
+    name = "SetTokenVaultCMKOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PySetTokenVaultCMKResponse {
+struct PyOperationSetTokenVaultCMKOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::set_token_vault_cmk::SetTokenVaultCmkOutput,
 }
 
 #[pymethods]
-impl PySetTokenVaultCMKResponse {
+impl PyOperationSetTokenVaultCMKOutput {
     #[getter]
     fn token_vault_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7002 = (&self.inner.token_vault_id).as_str().into_py_any(py)?;
@@ -39435,16 +39435,16 @@ impl PySetTokenVaultCMKResponse {
 }
 
 #[pyclass(
-    name = "StartPolicyGenerationResponse",
+    name = "StartPolicyGenerationOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyStartPolicyGenerationResponse {
+struct PyOperationStartPolicyGenerationOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::start_policy_generation::StartPolicyGenerationOutput,
 }
 
 #[pymethods]
-impl PyStartPolicyGenerationResponse {
+impl PyOperationStartPolicyGenerationOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7008 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -39566,16 +39566,16 @@ impl PyStartPolicyGenerationResponse {
 }
 
 #[pyclass(
-    name = "SubmitRegistryRecordForApprovalResponse",
+    name = "SubmitRegistryRecordForApprovalOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PySubmitRegistryRecordForApprovalResponse {
+struct PyOperationSubmitRegistryRecordForApprovalOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::submit_registry_record_for_approval::SubmitRegistryRecordForApprovalOutput,
 }
 
 #[pymethods]
-impl PySubmitRegistryRecordForApprovalResponse {
+impl PyOperationSubmitRegistryRecordForApprovalOutput {
     #[getter]
     fn registry_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7032 = (&self.inner.registry_arn).as_str().into_py_any(py)?;
@@ -39623,16 +39623,16 @@ impl PySubmitRegistryRecordForApprovalResponse {
 }
 
 #[pyclass(
-    name = "SynchronizeGatewayTargetsResponse",
+    name = "SynchronizeGatewayTargetsOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PySynchronizeGatewayTargetsResponse {
+struct PyOperationSynchronizeGatewayTargetsOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::synchronize_gateway_targets::SynchronizeGatewayTargetsOutput,
 }
 
 #[pymethods]
-impl PySynchronizeGatewayTargetsResponse {
+impl PyOperationSynchronizeGatewayTargetsOutput {
     #[getter]
     fn targets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.targets {
@@ -39672,16 +39672,16 @@ impl PySynchronizeGatewayTargetsResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -39689,16 +39689,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -39706,17 +39706,17 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentRuntimeResponse",
+    name = "UpdateAgentRuntimeOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateAgentRuntimeResponse {
+struct PyOperationUpdateAgentRuntimeOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::update_agent_runtime::UpdateAgentRuntimeOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentRuntimeResponse {
+impl PyOperationUpdateAgentRuntimeOutput {
     #[getter]
     fn agent_runtime_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7048 = (&self.inner.agent_runtime_arn).as_str().into_py_any(py)?;
@@ -39798,16 +39798,16 @@ impl PyUpdateAgentRuntimeResponse {
 }
 
 #[pyclass(
-    name = "UpdateAgentRuntimeEndpointResponse",
+    name = "UpdateAgentRuntimeEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateAgentRuntimeEndpointResponse {
+struct PyOperationUpdateAgentRuntimeEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_agent_runtime_endpoint::UpdateAgentRuntimeEndpointOutput,
 }
 
 #[pymethods]
-impl PyUpdateAgentRuntimeEndpointResponse {
+impl PyOperationUpdateAgentRuntimeEndpointOutput {
     #[getter]
     fn live_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.live_version {
@@ -39891,16 +39891,16 @@ impl PyUpdateAgentRuntimeEndpointResponse {
 }
 
 #[pyclass(
-    name = "UpdateApiKeyCredentialProviderResponse",
+    name = "UpdateApiKeyCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateApiKeyCredentialProviderResponse {
+struct PyOperationUpdateApiKeyCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_api_key_credential_provider::UpdateApiKeyCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyUpdateApiKeyCredentialProviderResponse {
+impl PyOperationUpdateApiKeyCredentialProviderOutput {
     #[getter]
     fn api_key_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_key_secret_arn {
@@ -40006,12 +40006,12 @@ impl PyUpdateApiKeyCredentialProviderResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateCapacityProviderOutput {
+struct PyOperationUpdateCapacityProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_capacity_provider::UpdateCapacityProviderOutput,
 }
 
 #[pymethods]
-impl PyUpdateCapacityProviderOutput {
+impl PyOperationUpdateCapacityProviderOutput {
     #[getter]
     fn capacity_provider_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7090 = (&self.inner.capacity_provider_id)
@@ -40075,16 +40075,16 @@ impl PyUpdateCapacityProviderOutput {
 }
 
 #[pyclass(
-    name = "UpdateConfigurationBundleResponse",
+    name = "UpdateConfigurationBundleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateConfigurationBundleResponse {
+struct PyOperationUpdateConfigurationBundleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_configuration_bundle::UpdateConfigurationBundleOutput,
 }
 
 #[pymethods]
-impl PyUpdateConfigurationBundleResponse {
+impl PyOperationUpdateConfigurationBundleOutput {
     #[getter]
     fn bundle_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7102 = (&self.inner.bundle_arn).as_str().into_py_any(py)?;
@@ -40124,16 +40124,16 @@ impl PyUpdateConfigurationBundleResponse {
 }
 
 #[pyclass(
-    name = "UpdateConsentPortalResponse",
+    name = "UpdateConsentPortalOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateConsentPortalResponse {
+struct PyOperationUpdateConsentPortalOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_consent_portal::UpdateConsentPortalOutput,
 }
 
 #[pymethods]
-impl PyUpdateConsentPortalResponse {
+impl PyOperationUpdateConsentPortalOutput {
     #[getter]
     fn sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7110_list = PyList::empty(py);
@@ -40291,16 +40291,16 @@ impl PyUpdateConsentPortalResponse {
 }
 
 #[pyclass(
-    name = "UpdateDatasetResponse",
+    name = "UpdateDatasetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateDatasetResponse {
+struct PyOperationUpdateDatasetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_dataset::UpdateDatasetOutput,
 }
 
 #[pymethods]
-impl PyUpdateDatasetResponse {
+impl PyOperationUpdateDatasetOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7138 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -40332,16 +40332,16 @@ impl PyUpdateDatasetResponse {
 }
 
 #[pyclass(
-    name = "UpdateDatasetExamplesResponse",
+    name = "UpdateDatasetExamplesOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateDatasetExamplesResponse {
+struct PyOperationUpdateDatasetExamplesOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_dataset_examples::UpdateDatasetExamplesOutput,
 }
 
 #[pymethods]
-impl PyUpdateDatasetExamplesResponse {
+impl PyOperationUpdateDatasetExamplesOutput {
     #[getter]
     fn dataset_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7144 = (&self.inner.dataset_arn).as_str().into_py_any(py)?;
@@ -40389,16 +40389,16 @@ impl PyUpdateDatasetExamplesResponse {
 }
 
 #[pyclass(
-    name = "UpdateEvaluatorResponse",
+    name = "UpdateEvaluatorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateEvaluatorResponse {
+struct PyOperationUpdateEvaluatorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_evaluator::UpdateEvaluatorOutput,
 }
 
 #[pymethods]
-impl PyUpdateEvaluatorResponse {
+impl PyOperationUpdateEvaluatorOutput {
     #[getter]
     fn evaluator_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7154 = (&self.inner.evaluator_arn).as_str().into_py_any(py)?;
@@ -40438,16 +40438,16 @@ impl PyUpdateEvaluatorResponse {
 }
 
 #[pyclass(
-    name = "UpdateGatewayResponse",
+    name = "UpdateGatewayOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateGatewayResponse {
+struct PyOperationUpdateGatewayOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_gateway::UpdateGatewayOutput,
 }
 
 #[pymethods]
-impl PyUpdateGatewayResponse {
+impl PyOperationUpdateGatewayOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7162 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -40793,16 +40793,16 @@ impl PyUpdateGatewayResponse {
 }
 
 #[pyclass(
-    name = "UpdateGatewayRateLimitResponse",
+    name = "UpdateGatewayRateLimitOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateGatewayRateLimitResponse {
+struct PyOperationUpdateGatewayRateLimitOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_gateway_rate_limit::UpdateGatewayRateLimitOutput,
 }
 
 #[pymethods]
-impl PyUpdateGatewayRateLimitResponse {
+impl PyOperationUpdateGatewayRateLimitOutput {
     #[getter]
     fn rate_limit_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7214 = (&self.inner.rate_limit_id).as_str().into_py_any(py)?;
@@ -40908,16 +40908,16 @@ impl PyUpdateGatewayRateLimitResponse {
 }
 
 #[pyclass(
-    name = "UpdateGatewayRuleResponse",
+    name = "UpdateGatewayRuleOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateGatewayRuleResponse {
+struct PyOperationUpdateGatewayRuleOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_gateway_rule::UpdateGatewayRuleOutput,
 }
 
 #[pymethods]
-impl PyUpdateGatewayRuleResponse {
+impl PyOperationUpdateGatewayRuleOutput {
     #[getter]
     fn rule_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7238 = (&self.inner.rule_id).as_str().into_py_any(py)?;
@@ -41063,16 +41063,16 @@ impl PyUpdateGatewayRuleResponse {
 }
 
 #[pyclass(
-    name = "UpdateGatewayTargetResponse",
+    name = "UpdateGatewayTargetOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateGatewayTargetResponse {
+struct PyOperationUpdateGatewayTargetOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_gateway_target::UpdateGatewayTargetOutput,
 }
 
 #[pymethods]
-impl PyUpdateGatewayTargetResponse {
+impl PyOperationUpdateGatewayTargetOutput {
     #[getter]
     fn gateway_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7266 = (&self.inner.gateway_arn).as_str().into_py_any(py)?;
@@ -41354,16 +41354,16 @@ impl PyUpdateGatewayTargetResponse {
 }
 
 #[pyclass(
-    name = "UpdateHarnessResponse",
+    name = "UpdateHarnessOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateHarnessResponse {
+struct PyOperationUpdateHarnessOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_harness::UpdateHarnessOutput,
 }
 
 #[pymethods]
-impl PyUpdateHarnessResponse {
+impl PyOperationUpdateHarnessOutput {
     #[getter]
     fn harness(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.harness {
@@ -41393,16 +41393,16 @@ impl PyUpdateHarnessResponse {
 }
 
 #[pyclass(
-    name = "UpdateHarnessEndpointResponse",
+    name = "UpdateHarnessEndpointOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateHarnessEndpointResponse {
+struct PyOperationUpdateHarnessEndpointOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_harness_endpoint::UpdateHarnessEndpointOutput,
 }
 
 #[pymethods]
-impl PyUpdateHarnessEndpointResponse {
+impl PyOperationUpdateHarnessEndpointOutput {
     #[getter]
     fn endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint {
@@ -41436,12 +41436,12 @@ impl PyUpdateHarnessEndpointResponse {
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateMemoryOutput {
+struct PyOperationUpdateMemoryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_memory::UpdateMemoryOutput,
 }
 
 #[pymethods]
-impl PyUpdateMemoryOutput {
+impl PyOperationUpdateMemoryOutput {
     #[getter]
     fn memory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.memory {
@@ -41471,16 +41471,16 @@ impl PyUpdateMemoryOutput {
 }
 
 #[pyclass(
-    name = "UpdateOauth2CredentialProviderResponse",
+    name = "UpdateOauth2CredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateOauth2CredentialProviderResponse {
+struct PyOperationUpdateOauth2CredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_oauth2_credential_provider::UpdateOauth2CredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyUpdateOauth2CredentialProviderResponse {
+impl PyOperationUpdateOauth2CredentialProviderOutput {
     #[getter]
     fn client_secret_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_secret_arn {
@@ -41642,16 +41642,16 @@ impl PyUpdateOauth2CredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "UpdateOnlineEvaluationConfigResponse",
+    name = "UpdateOnlineEvaluationConfigOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateOnlineEvaluationConfigResponse {
+struct PyOperationUpdateOnlineEvaluationConfigOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_online_evaluation_config::UpdateOnlineEvaluationConfigOutput,
 }
 
 #[pymethods]
-impl PyUpdateOnlineEvaluationConfigResponse {
+impl PyOperationUpdateOnlineEvaluationConfigOutput {
     #[getter]
     fn online_evaluation_config_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7344 = (&self.inner.online_evaluation_config_arn)
@@ -41723,16 +41723,16 @@ impl PyUpdateOnlineEvaluationConfigResponse {
 }
 
 #[pyclass(
-    name = "UpdatePaymentConnectorResponse",
+    name = "UpdatePaymentConnectorOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdatePaymentConnectorResponse {
+struct PyOperationUpdatePaymentConnectorOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_payment_connector::UpdatePaymentConnectorOutput,
 }
 
 #[pymethods]
-impl PyUpdatePaymentConnectorResponse {
+impl PyOperationUpdatePaymentConnectorOutput {
     #[getter]
     fn payment_connector_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7356 = (&self.inner.payment_connector_id)
@@ -41826,16 +41826,16 @@ impl PyUpdatePaymentConnectorResponse {
 }
 
 #[pyclass(
-    name = "UpdatePaymentCredentialProviderResponse",
+    name = "UpdatePaymentCredentialProviderOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdatePaymentCredentialProviderResponse {
+struct PyOperationUpdatePaymentCredentialProviderOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_payment_credential_provider::UpdatePaymentCredentialProviderOutput,
 }
 
 #[pymethods]
-impl PyUpdatePaymentCredentialProviderResponse {
+impl PyOperationUpdatePaymentCredentialProviderOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7376 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -41911,16 +41911,16 @@ impl PyUpdatePaymentCredentialProviderResponse {
 }
 
 #[pyclass(
-    name = "UpdatePaymentManagerResponse",
+    name = "UpdatePaymentManagerOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdatePaymentManagerResponse {
+struct PyOperationUpdatePaymentManagerOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_payment_manager::UpdatePaymentManagerOutput,
 }
 
 #[pymethods]
-impl PyUpdatePaymentManagerResponse {
+impl PyOperationUpdatePaymentManagerOutput {
     #[getter]
     fn payment_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7388 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
@@ -42022,16 +42022,16 @@ impl PyUpdatePaymentManagerResponse {
 }
 
 #[pyclass(
-    name = "UpdatePolicyResponse",
+    name = "UpdatePolicyOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdatePolicyResponse {
+struct PyOperationUpdatePolicyOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_policy::UpdatePolicyOutput,
 }
 
 #[pymethods]
-impl PyUpdatePolicyResponse {
+impl PyOperationUpdatePolicyOutput {
     #[getter]
     fn policy_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7406 = (&self.inner.policy_id).as_str().into_py_any(py)?;
@@ -42153,17 +42153,17 @@ impl PyUpdatePolicyResponse {
 }
 
 #[pyclass(
-    name = "UpdatePolicyEngineResponse",
+    name = "UpdatePolicyEngineOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdatePolicyEngineResponse {
+struct PyOperationUpdatePolicyEngineOutput {
     inner:
         aws_sdk_bedrockagentcorecontrol::operation::update_policy_engine::UpdatePolicyEngineOutput,
 }
 
 #[pymethods]
-impl PyUpdatePolicyEngineResponse {
+impl PyOperationUpdatePolicyEngineOutput {
     #[getter]
     fn policy_engine_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7432 = (&self.inner.policy_engine_id).as_str().into_py_any(py)?;
@@ -42269,16 +42269,16 @@ impl PyUpdatePolicyEngineResponse {
 }
 
 #[pyclass(
-    name = "UpdateRegistryResponse",
+    name = "UpdateRegistryOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateRegistryResponse {
+struct PyOperationUpdateRegistryOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_registry::UpdateRegistryOutput,
 }
 
 #[pymethods]
-impl PyUpdateRegistryResponse {
+impl PyOperationUpdateRegistryOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7454 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -42420,16 +42420,16 @@ impl PyUpdateRegistryResponse {
 }
 
 #[pyclass(
-    name = "UpdateRegistryRecordResponse",
+    name = "UpdateRegistryRecordOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateRegistryRecordResponse {
+struct PyOperationUpdateRegistryRecordOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_registry_record::UpdateRegistryRecordOutput,
 }
 
 #[pymethods]
-impl PyUpdateRegistryRecordResponse {
+impl PyOperationUpdateRegistryRecordOutput {
     #[getter]
     fn registry_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7476 = (&self.inner.registry_arn).as_str().into_py_any(py)?;
@@ -42609,16 +42609,16 @@ impl PyUpdateRegistryRecordResponse {
 }
 
 #[pyclass(
-    name = "UpdateRegistryRecordStatusResponse",
+    name = "UpdateRegistryRecordStatusOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateRegistryRecordStatusResponse {
+struct PyOperationUpdateRegistryRecordStatusOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_registry_record_status::UpdateRegistryRecordStatusOutput,
 }
 
 #[pymethods]
-impl PyUpdateRegistryRecordStatusResponse {
+impl PyOperationUpdateRegistryRecordStatusOutput {
     #[getter]
     fn registry_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7504 = (&self.inner.registry_arn).as_str().into_py_any(py)?;
@@ -42674,16 +42674,16 @@ impl PyUpdateRegistryRecordStatusResponse {
 }
 
 #[pyclass(
-    name = "UpdateWorkloadIdentityResponse",
+    name = "UpdateWorkloadIdentityOutput",
     module = "rboto_bedrock_agentcore_control._native",
     frozen
 )]
-struct PyUpdateWorkloadIdentityResponse {
+struct PyOperationUpdateWorkloadIdentityOutput {
     inner: aws_sdk_bedrockagentcorecontrol::operation::update_workload_identity::UpdateWorkloadIdentityOutput,
 }
 
 #[pymethods]
-impl PyUpdateWorkloadIdentityResponse {
+impl PyOperationUpdateWorkloadIdentityOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_7516 = (&self.inner.name).as_str().into_py_any(py)?;
@@ -42867,177 +42867,177 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyWafConfiguration>()?;
     module.add_class::<PyWorkloadIdentityDetails>()?;
     module.add_class::<PyWorkloadIdentityType>()?;
-    module.add_class::<PyAddDatasetExamplesResponse>()?;
-    module.add_class::<PyBatchPutGatewayRateLimitsResponse>()?;
-    module.add_class::<PyCreateAgentRuntimeResponse>()?;
-    module.add_class::<PyCreateAgentRuntimeEndpointResponse>()?;
-    module.add_class::<PyCreateApiKeyCredentialProviderResponse>()?;
-    module.add_class::<PyCreateBrowserResponse>()?;
-    module.add_class::<PyCreateBrowserProfileResponse>()?;
-    module.add_class::<PyCreateCapacityProviderOutput>()?;
-    module.add_class::<PyCreateCodeInterpreterResponse>()?;
-    module.add_class::<PyCreateConfigurationBundleResponse>()?;
-    module.add_class::<PyCreateConsentPortalResponse>()?;
-    module.add_class::<PyCreateDatasetResponse>()?;
-    module.add_class::<PyCreateDatasetVersionResponse>()?;
-    module.add_class::<PyCreateEvaluatorResponse>()?;
-    module.add_class::<PyCreateGatewayResponse>()?;
-    module.add_class::<PyCreateGatewayRateLimitResponse>()?;
-    module.add_class::<PyCreateGatewayRuleResponse>()?;
-    module.add_class::<PyCreateGatewayTargetResponse>()?;
-    module.add_class::<PyCreateHarnessResponse>()?;
-    module.add_class::<PyCreateHarnessEndpointResponse>()?;
-    module.add_class::<PyCreateMemoryOutput>()?;
-    module.add_class::<PyCreateOauth2CredentialProviderResponse>()?;
-    module.add_class::<PyCreateOnlineEvaluationConfigResponse>()?;
-    module.add_class::<PyCreatePaymentConnectorResponse>()?;
-    module.add_class::<PyCreatePaymentCredentialProviderResponse>()?;
-    module.add_class::<PyCreatePaymentManagerResponse>()?;
-    module.add_class::<PyCreatePolicyResponse>()?;
-    module.add_class::<PyCreatePolicyEngineResponse>()?;
-    module.add_class::<PyCreateRegistryResponse>()?;
-    module.add_class::<PyCreateRegistryRecordResponse>()?;
-    module.add_class::<PyCreateWorkloadIdentityResponse>()?;
-    module.add_class::<PyDeleteAgentRuntimeResponse>()?;
-    module.add_class::<PyDeleteAgentRuntimeEndpointResponse>()?;
-    module.add_class::<PyDeleteApiKeyCredentialProviderResponse>()?;
-    module.add_class::<PyDeleteBrowserResponse>()?;
-    module.add_class::<PyDeleteBrowserProfileResponse>()?;
-    module.add_class::<PyDeleteCapacityProviderOutput>()?;
-    module.add_class::<PyDeleteCodeInterpreterResponse>()?;
-    module.add_class::<PyDeleteConfigurationBundleResponse>()?;
-    module.add_class::<PyDeleteConsentPortalResponse>()?;
-    module.add_class::<PyDeleteDatasetResponse>()?;
-    module.add_class::<PyDeleteDatasetExamplesResponse>()?;
-    module.add_class::<PyDeleteEvaluatorResponse>()?;
-    module.add_class::<PyDeleteGatewayResponse>()?;
-    module.add_class::<PyDeleteGatewayRateLimitResponse>()?;
-    module.add_class::<PyDeleteGatewayRuleResponse>()?;
-    module.add_class::<PyDeleteGatewayTargetResponse>()?;
-    module.add_class::<PyDeleteHarnessResponse>()?;
-    module.add_class::<PyDeleteHarnessEndpointResponse>()?;
-    module.add_class::<PyDeleteMemoryOutput>()?;
-    module.add_class::<PyDeleteOauth2CredentialProviderResponse>()?;
-    module.add_class::<PyDeleteOnlineEvaluationConfigResponse>()?;
-    module.add_class::<PyDeletePaymentConnectorResponse>()?;
-    module.add_class::<PyDeletePaymentCredentialProviderResponse>()?;
-    module.add_class::<PyDeletePaymentManagerResponse>()?;
-    module.add_class::<PyDeletePolicyResponse>()?;
-    module.add_class::<PyDeletePolicyEngineResponse>()?;
-    module.add_class::<PyDeleteRegistryResponse>()?;
-    module.add_class::<PyDeleteRegistryRecordResponse>()?;
-    module.add_class::<PyDeleteResourcePolicyResponse>()?;
-    module.add_class::<PyDeleteWorkloadIdentityResponse>()?;
-    module.add_class::<PyGetAgentRuntimeResponse>()?;
-    module.add_class::<PyGetAgentRuntimeEndpointResponse>()?;
-    module.add_class::<PyGetApiKeyCredentialProviderResponse>()?;
-    module.add_class::<PyGetBrowserResponse>()?;
-    module.add_class::<PyGetBrowserProfileResponse>()?;
-    module.add_class::<PyGetCapacityProviderOutput>()?;
-    module.add_class::<PyGetCodeInterpreterResponse>()?;
-    module.add_class::<PyGetConfigurationBundleResponse>()?;
-    module.add_class::<PyGetConfigurationBundleVersionResponse>()?;
-    module.add_class::<PyGetConsentPortalResponse>()?;
-    module.add_class::<PyGetDatasetResponse>()?;
-    module.add_class::<PyGetEvaluatorResponse>()?;
-    module.add_class::<PyGetGatewayResponse>()?;
-    module.add_class::<PyGetGatewayRateLimitResponse>()?;
-    module.add_class::<PyGetGatewayRuleResponse>()?;
-    module.add_class::<PyGetGatewayTargetResponse>()?;
-    module.add_class::<PyGetHarnessResponse>()?;
-    module.add_class::<PyGetHarnessEndpointResponse>()?;
-    module.add_class::<PyGetMemoryOutput>()?;
-    module.add_class::<PyGetOauth2CredentialProviderResponse>()?;
-    module.add_class::<PyGetOnlineEvaluationConfigResponse>()?;
-    module.add_class::<PyGetPaymentConnectorResponse>()?;
-    module.add_class::<PyGetPaymentCredentialProviderResponse>()?;
-    module.add_class::<PyGetPaymentManagerResponse>()?;
-    module.add_class::<PyGetPolicyResponse>()?;
-    module.add_class::<PyGetPolicyEngineResponse>()?;
-    module.add_class::<PyGetPolicyEngineSummaryResponse>()?;
-    module.add_class::<PyGetPolicyGenerationResponse>()?;
-    module.add_class::<PyGetPolicyGenerationSummaryResponse>()?;
-    module.add_class::<PyGetPolicySummaryResponse>()?;
-    module.add_class::<PyGetRegistryResponse>()?;
-    module.add_class::<PyGetRegistryRecordResponse>()?;
-    module.add_class::<PyGetResourcePolicyResponse>()?;
-    module.add_class::<PyGetTokenVaultResponse>()?;
-    module.add_class::<PyGetWorkloadIdentityResponse>()?;
-    module.add_class::<PyListAgentRuntimeEndpointsResponse>()?;
-    module.add_class::<PyListAgentRuntimeVersionsResponse>()?;
-    module.add_class::<PyListAgentRuntimeVersionsByCapacityProviderOutput>()?;
-    module.add_class::<PyListAgentRuntimesResponse>()?;
-    module.add_class::<PyListApiKeyCredentialProvidersResponse>()?;
-    module.add_class::<PyListBrowserProfilesResponse>()?;
-    module.add_class::<PyListBrowsersResponse>()?;
-    module.add_class::<PyListCapacityProvidersOutput>()?;
-    module.add_class::<PyListCodeInterpretersResponse>()?;
-    module.add_class::<PyListConfigurationBundleVersionsResponse>()?;
-    module.add_class::<PyListConfigurationBundlesResponse>()?;
-    module.add_class::<PyListConsentPortalsResponse>()?;
-    module.add_class::<PyListDatasetExamplesResponse>()?;
-    module.add_class::<PyListDatasetVersionsResponse>()?;
-    module.add_class::<PyListDatasetsResponse>()?;
-    module.add_class::<PyListEvaluatorsResponse>()?;
-    module.add_class::<PyListGatewayRateLimitsResponse>()?;
-    module.add_class::<PyListGatewayRulesResponse>()?;
-    module.add_class::<PyListGatewayTargetsResponse>()?;
-    module.add_class::<PyListGatewaysResponse>()?;
-    module.add_class::<PyListHarnessEndpointsResponse>()?;
-    module.add_class::<PyListHarnessVersionsResponse>()?;
-    module.add_class::<PyListHarnessesResponse>()?;
-    module.add_class::<PyListMemoriesOutput>()?;
-    module.add_class::<PyListOauth2CredentialProvidersResponse>()?;
-    module.add_class::<PyListOnlineEvaluationConfigsResponse>()?;
-    module.add_class::<PyListPaymentConnectorsResponse>()?;
-    module.add_class::<PyListPaymentCredentialProvidersResponse>()?;
-    module.add_class::<PyListPaymentManagersResponse>()?;
-    module.add_class::<PyListPoliciesResponse>()?;
-    module.add_class::<PyListPolicyEngineSummariesResponse>()?;
-    module.add_class::<PyListPolicyEnginesResponse>()?;
-    module.add_class::<PyListPolicyGenerationAssetsResponse>()?;
-    module.add_class::<PyListPolicyGenerationSummariesResponse>()?;
-    module.add_class::<PyListPolicyGenerationsResponse>()?;
-    module.add_class::<PyListPolicySummariesResponse>()?;
-    module.add_class::<PyListRegistriesResponse>()?;
-    module.add_class::<PyListRegistryRecordsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListWorkloadIdentitiesResponse>()?;
-    module.add_class::<PyPutResourcePolicyResponse>()?;
-    module.add_class::<PyRotatePaymentConnectorCredentialsResponse>()?;
-    module.add_class::<PySetTokenVaultCMKResponse>()?;
-    module.add_class::<PyStartPolicyGenerationResponse>()?;
-    module.add_class::<PySubmitRegistryRecordForApprovalResponse>()?;
-    module.add_class::<PySynchronizeGatewayTargetsResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateAgentRuntimeResponse>()?;
-    module.add_class::<PyUpdateAgentRuntimeEndpointResponse>()?;
-    module.add_class::<PyUpdateApiKeyCredentialProviderResponse>()?;
-    module.add_class::<PyUpdateCapacityProviderOutput>()?;
-    module.add_class::<PyUpdateConfigurationBundleResponse>()?;
-    module.add_class::<PyUpdateConsentPortalResponse>()?;
-    module.add_class::<PyUpdateDatasetResponse>()?;
-    module.add_class::<PyUpdateDatasetExamplesResponse>()?;
-    module.add_class::<PyUpdateEvaluatorResponse>()?;
-    module.add_class::<PyUpdateGatewayResponse>()?;
-    module.add_class::<PyUpdateGatewayRateLimitResponse>()?;
-    module.add_class::<PyUpdateGatewayRuleResponse>()?;
-    module.add_class::<PyUpdateGatewayTargetResponse>()?;
-    module.add_class::<PyUpdateHarnessResponse>()?;
-    module.add_class::<PyUpdateHarnessEndpointResponse>()?;
-    module.add_class::<PyUpdateMemoryOutput>()?;
-    module.add_class::<PyUpdateOauth2CredentialProviderResponse>()?;
-    module.add_class::<PyUpdateOnlineEvaluationConfigResponse>()?;
-    module.add_class::<PyUpdatePaymentConnectorResponse>()?;
-    module.add_class::<PyUpdatePaymentCredentialProviderResponse>()?;
-    module.add_class::<PyUpdatePaymentManagerResponse>()?;
-    module.add_class::<PyUpdatePolicyResponse>()?;
-    module.add_class::<PyUpdatePolicyEngineResponse>()?;
-    module.add_class::<PyUpdateRegistryResponse>()?;
-    module.add_class::<PyUpdateRegistryRecordResponse>()?;
-    module.add_class::<PyUpdateRegistryRecordStatusResponse>()?;
-    module.add_class::<PyUpdateWorkloadIdentityResponse>()?;
+    module.add_class::<PyOperationAddDatasetExamplesOutput>()?;
+    module.add_class::<PyOperationBatchPutGatewayRateLimitsOutput>()?;
+    module.add_class::<PyOperationCreateAgentRuntimeOutput>()?;
+    module.add_class::<PyOperationCreateAgentRuntimeEndpointOutput>()?;
+    module.add_class::<PyOperationCreateApiKeyCredentialProviderOutput>()?;
+    module.add_class::<PyOperationCreateBrowserOutput>()?;
+    module.add_class::<PyOperationCreateBrowserProfileOutput>()?;
+    module.add_class::<PyOperationCreateCapacityProviderOutput>()?;
+    module.add_class::<PyOperationCreateCodeInterpreterOutput>()?;
+    module.add_class::<PyOperationCreateConfigurationBundleOutput>()?;
+    module.add_class::<PyOperationCreateConsentPortalOutput>()?;
+    module.add_class::<PyOperationCreateDatasetOutput>()?;
+    module.add_class::<PyOperationCreateDatasetVersionOutput>()?;
+    module.add_class::<PyOperationCreateEvaluatorOutput>()?;
+    module.add_class::<PyOperationCreateGatewayOutput>()?;
+    module.add_class::<PyOperationCreateGatewayRateLimitOutput>()?;
+    module.add_class::<PyOperationCreateGatewayRuleOutput>()?;
+    module.add_class::<PyOperationCreateGatewayTargetOutput>()?;
+    module.add_class::<PyOperationCreateHarnessOutput>()?;
+    module.add_class::<PyOperationCreateHarnessEndpointOutput>()?;
+    module.add_class::<PyOperationCreateMemoryOutput>()?;
+    module.add_class::<PyOperationCreateOauth2CredentialProviderOutput>()?;
+    module.add_class::<PyOperationCreateOnlineEvaluationConfigOutput>()?;
+    module.add_class::<PyOperationCreatePaymentConnectorOutput>()?;
+    module.add_class::<PyOperationCreatePaymentCredentialProviderOutput>()?;
+    module.add_class::<PyOperationCreatePaymentManagerOutput>()?;
+    module.add_class::<PyOperationCreatePolicyOutput>()?;
+    module.add_class::<PyOperationCreatePolicyEngineOutput>()?;
+    module.add_class::<PyOperationCreateRegistryOutput>()?;
+    module.add_class::<PyOperationCreateRegistryRecordOutput>()?;
+    module.add_class::<PyOperationCreateWorkloadIdentityOutput>()?;
+    module.add_class::<PyOperationDeleteAgentRuntimeOutput>()?;
+    module.add_class::<PyOperationDeleteAgentRuntimeEndpointOutput>()?;
+    module.add_class::<PyOperationDeleteApiKeyCredentialProviderOutput>()?;
+    module.add_class::<PyOperationDeleteBrowserOutput>()?;
+    module.add_class::<PyOperationDeleteBrowserProfileOutput>()?;
+    module.add_class::<PyOperationDeleteCapacityProviderOutput>()?;
+    module.add_class::<PyOperationDeleteCodeInterpreterOutput>()?;
+    module.add_class::<PyOperationDeleteConfigurationBundleOutput>()?;
+    module.add_class::<PyOperationDeleteConsentPortalOutput>()?;
+    module.add_class::<PyOperationDeleteDatasetOutput>()?;
+    module.add_class::<PyOperationDeleteDatasetExamplesOutput>()?;
+    module.add_class::<PyOperationDeleteEvaluatorOutput>()?;
+    module.add_class::<PyOperationDeleteGatewayOutput>()?;
+    module.add_class::<PyOperationDeleteGatewayRateLimitOutput>()?;
+    module.add_class::<PyOperationDeleteGatewayRuleOutput>()?;
+    module.add_class::<PyOperationDeleteGatewayTargetOutput>()?;
+    module.add_class::<PyOperationDeleteHarnessOutput>()?;
+    module.add_class::<PyOperationDeleteHarnessEndpointOutput>()?;
+    module.add_class::<PyOperationDeleteMemoryOutput>()?;
+    module.add_class::<PyOperationDeleteOauth2CredentialProviderOutput>()?;
+    module.add_class::<PyOperationDeleteOnlineEvaluationConfigOutput>()?;
+    module.add_class::<PyOperationDeletePaymentConnectorOutput>()?;
+    module.add_class::<PyOperationDeletePaymentCredentialProviderOutput>()?;
+    module.add_class::<PyOperationDeletePaymentManagerOutput>()?;
+    module.add_class::<PyOperationDeletePolicyOutput>()?;
+    module.add_class::<PyOperationDeletePolicyEngineOutput>()?;
+    module.add_class::<PyOperationDeleteRegistryOutput>()?;
+    module.add_class::<PyOperationDeleteRegistryRecordOutput>()?;
+    module.add_class::<PyOperationDeleteResourcePolicyOutput>()?;
+    module.add_class::<PyOperationDeleteWorkloadIdentityOutput>()?;
+    module.add_class::<PyOperationGetAgentRuntimeOutput>()?;
+    module.add_class::<PyOperationGetAgentRuntimeEndpointOutput>()?;
+    module.add_class::<PyOperationGetApiKeyCredentialProviderOutput>()?;
+    module.add_class::<PyOperationGetBrowserOutput>()?;
+    module.add_class::<PyOperationGetBrowserProfileOutput>()?;
+    module.add_class::<PyOperationGetCapacityProviderOutput>()?;
+    module.add_class::<PyOperationGetCodeInterpreterOutput>()?;
+    module.add_class::<PyOperationGetConfigurationBundleOutput>()?;
+    module.add_class::<PyOperationGetConfigurationBundleVersionOutput>()?;
+    module.add_class::<PyOperationGetConsentPortalOutput>()?;
+    module.add_class::<PyOperationGetDatasetOutput>()?;
+    module.add_class::<PyOperationGetEvaluatorOutput>()?;
+    module.add_class::<PyOperationGetGatewayOutput>()?;
+    module.add_class::<PyOperationGetGatewayRateLimitOutput>()?;
+    module.add_class::<PyOperationGetGatewayRuleOutput>()?;
+    module.add_class::<PyOperationGetGatewayTargetOutput>()?;
+    module.add_class::<PyOperationGetHarnessOutput>()?;
+    module.add_class::<PyOperationGetHarnessEndpointOutput>()?;
+    module.add_class::<PyOperationGetMemoryOutput>()?;
+    module.add_class::<PyOperationGetOauth2CredentialProviderOutput>()?;
+    module.add_class::<PyOperationGetOnlineEvaluationConfigOutput>()?;
+    module.add_class::<PyOperationGetPaymentConnectorOutput>()?;
+    module.add_class::<PyOperationGetPaymentCredentialProviderOutput>()?;
+    module.add_class::<PyOperationGetPaymentManagerOutput>()?;
+    module.add_class::<PyOperationGetPolicyOutput>()?;
+    module.add_class::<PyOperationGetPolicyEngineOutput>()?;
+    module.add_class::<PyOperationGetPolicyEngineSummaryOutput>()?;
+    module.add_class::<PyOperationGetPolicyGenerationOutput>()?;
+    module.add_class::<PyOperationGetPolicyGenerationSummaryOutput>()?;
+    module.add_class::<PyOperationGetPolicySummaryOutput>()?;
+    module.add_class::<PyOperationGetRegistryOutput>()?;
+    module.add_class::<PyOperationGetRegistryRecordOutput>()?;
+    module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetTokenVaultOutput>()?;
+    module.add_class::<PyOperationGetWorkloadIdentityOutput>()?;
+    module.add_class::<PyOperationListAgentRuntimeEndpointsOutput>()?;
+    module.add_class::<PyOperationListAgentRuntimeVersionsOutput>()?;
+    module.add_class::<PyOperationListAgentRuntimeVersionsByCapacityProviderOutput>()?;
+    module.add_class::<PyOperationListAgentRuntimesOutput>()?;
+    module.add_class::<PyOperationListApiKeyCredentialProvidersOutput>()?;
+    module.add_class::<PyOperationListBrowserProfilesOutput>()?;
+    module.add_class::<PyOperationListBrowsersOutput>()?;
+    module.add_class::<PyOperationListCapacityProvidersOutput>()?;
+    module.add_class::<PyOperationListCodeInterpretersOutput>()?;
+    module.add_class::<PyOperationListConfigurationBundleVersionsOutput>()?;
+    module.add_class::<PyOperationListConfigurationBundlesOutput>()?;
+    module.add_class::<PyOperationListConsentPortalsOutput>()?;
+    module.add_class::<PyOperationListDatasetExamplesOutput>()?;
+    module.add_class::<PyOperationListDatasetVersionsOutput>()?;
+    module.add_class::<PyOperationListDatasetsOutput>()?;
+    module.add_class::<PyOperationListEvaluatorsOutput>()?;
+    module.add_class::<PyOperationListGatewayRateLimitsOutput>()?;
+    module.add_class::<PyOperationListGatewayRulesOutput>()?;
+    module.add_class::<PyOperationListGatewayTargetsOutput>()?;
+    module.add_class::<PyOperationListGatewaysOutput>()?;
+    module.add_class::<PyOperationListHarnessEndpointsOutput>()?;
+    module.add_class::<PyOperationListHarnessVersionsOutput>()?;
+    module.add_class::<PyOperationListHarnessesOutput>()?;
+    module.add_class::<PyOperationListMemoriesOutput>()?;
+    module.add_class::<PyOperationListOauth2CredentialProvidersOutput>()?;
+    module.add_class::<PyOperationListOnlineEvaluationConfigsOutput>()?;
+    module.add_class::<PyOperationListPaymentConnectorsOutput>()?;
+    module.add_class::<PyOperationListPaymentCredentialProvidersOutput>()?;
+    module.add_class::<PyOperationListPaymentManagersOutput>()?;
+    module.add_class::<PyOperationListPoliciesOutput>()?;
+    module.add_class::<PyOperationListPolicyEngineSummariesOutput>()?;
+    module.add_class::<PyOperationListPolicyEnginesOutput>()?;
+    module.add_class::<PyOperationListPolicyGenerationAssetsOutput>()?;
+    module.add_class::<PyOperationListPolicyGenerationSummariesOutput>()?;
+    module.add_class::<PyOperationListPolicyGenerationsOutput>()?;
+    module.add_class::<PyOperationListPolicySummariesOutput>()?;
+    module.add_class::<PyOperationListRegistriesOutput>()?;
+    module.add_class::<PyOperationListRegistryRecordsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListWorkloadIdentitiesOutput>()?;
+    module.add_class::<PyOperationPutResourcePolicyOutput>()?;
+    module.add_class::<PyOperationRotatePaymentConnectorCredentialsOutput>()?;
+    module.add_class::<PyOperationSetTokenVaultCMKOutput>()?;
+    module.add_class::<PyOperationStartPolicyGenerationOutput>()?;
+    module.add_class::<PyOperationSubmitRegistryRecordForApprovalOutput>()?;
+    module.add_class::<PyOperationSynchronizeGatewayTargetsOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateAgentRuntimeOutput>()?;
+    module.add_class::<PyOperationUpdateAgentRuntimeEndpointOutput>()?;
+    module.add_class::<PyOperationUpdateApiKeyCredentialProviderOutput>()?;
+    module.add_class::<PyOperationUpdateCapacityProviderOutput>()?;
+    module.add_class::<PyOperationUpdateConfigurationBundleOutput>()?;
+    module.add_class::<PyOperationUpdateConsentPortalOutput>()?;
+    module.add_class::<PyOperationUpdateDatasetOutput>()?;
+    module.add_class::<PyOperationUpdateDatasetExamplesOutput>()?;
+    module.add_class::<PyOperationUpdateEvaluatorOutput>()?;
+    module.add_class::<PyOperationUpdateGatewayOutput>()?;
+    module.add_class::<PyOperationUpdateGatewayRateLimitOutput>()?;
+    module.add_class::<PyOperationUpdateGatewayRuleOutput>()?;
+    module.add_class::<PyOperationUpdateGatewayTargetOutput>()?;
+    module.add_class::<PyOperationUpdateHarnessOutput>()?;
+    module.add_class::<PyOperationUpdateHarnessEndpointOutput>()?;
+    module.add_class::<PyOperationUpdateMemoryOutput>()?;
+    module.add_class::<PyOperationUpdateOauth2CredentialProviderOutput>()?;
+    module.add_class::<PyOperationUpdateOnlineEvaluationConfigOutput>()?;
+    module.add_class::<PyOperationUpdatePaymentConnectorOutput>()?;
+    module.add_class::<PyOperationUpdatePaymentCredentialProviderOutput>()?;
+    module.add_class::<PyOperationUpdatePaymentManagerOutput>()?;
+    module.add_class::<PyOperationUpdatePolicyOutput>()?;
+    module.add_class::<PyOperationUpdatePolicyEngineOutput>()?;
+    module.add_class::<PyOperationUpdateRegistryOutput>()?;
+    module.add_class::<PyOperationUpdateRegistryRecordOutput>()?;
+    module.add_class::<PyOperationUpdateRegistryRecordStatusOutput>()?;
+    module.add_class::<PyOperationUpdateWorkloadIdentityOutput>()?;
 
     Ok(())
 }
@@ -43118,7 +43118,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AddDatasetExamples"))
             })?;
-            Ok(PyAddDatasetExamplesResponse { inner: output })
+            Ok(PyOperationAddDatasetExamplesOutput { inner: output })
         })
     }
 
@@ -43177,7 +43177,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchPutGatewayRateLimits"))
             })?;
-            Ok(PyBatchPutGatewayRateLimitsResponse { inner: output })
+            Ok(PyOperationBatchPutGatewayRateLimitsOutput { inner: output })
         })
     }
 
@@ -43341,7 +43341,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentRuntime"))
             })?;
-            Ok(PyCreateAgentRuntimeResponse { inner: output })
+            Ok(PyOperationCreateAgentRuntimeOutput { inner: output })
         })
     }
 
@@ -43421,7 +43421,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateAgentRuntimeEndpoint"))
             })?;
-            Ok(PyCreateAgentRuntimeEndpointResponse { inner: output })
+            Ok(PyOperationCreateAgentRuntimeEndpointOutput { inner: output })
         })
     }
 
@@ -43498,7 +43498,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiKeyCredentialProvider"))
             })?;
-            Ok(PyCreateApiKeyCredentialProviderResponse { inner: output })
+            Ok(PyOperationCreateApiKeyCredentialProviderOutput { inner: output })
         })
     }
 
@@ -43634,7 +43634,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBrowser"))
             })?;
-            Ok(PyCreateBrowserResponse { inner: output })
+            Ok(PyOperationCreateBrowserOutput { inner: output })
         })
     }
 
@@ -43699,7 +43699,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBrowserProfile"))
             })?;
-            Ok(PyCreateBrowserProfileResponse { inner: output })
+            Ok(PyOperationCreateBrowserProfileOutput { inner: output })
         })
     }
 
@@ -43780,7 +43780,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCapacityProvider"))
             })?;
-            Ok(PyCreateCapacityProviderOutput { inner: output })
+            Ok(PyOperationCreateCapacityProviderOutput { inner: output })
         })
     }
 
@@ -43888,7 +43888,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateCodeInterpreter"))
             })?;
-            Ok(PyCreateCodeInterpreterResponse { inner: output })
+            Ok(PyOperationCreateCodeInterpreterOutput { inner: output })
         })
     }
 
@@ -43994,7 +43994,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateConfigurationBundle"))
             })?;
-            Ok(PyCreateConfigurationBundleResponse { inner: output })
+            Ok(PyOperationCreateConfigurationBundleOutput { inner: output })
         })
     }
 
@@ -44080,7 +44080,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateConsentPortal"))
             })?;
-            Ok(PyCreateConsentPortalResponse { inner: output })
+            Ok(PyOperationCreateConsentPortalOutput { inner: output })
         })
     }
 
@@ -44169,7 +44169,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataset"))
             })?;
-            Ok(PyCreateDatasetResponse { inner: output })
+            Ok(PyOperationCreateDatasetOutput { inner: output })
         })
     }
 
@@ -44214,7 +44214,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDatasetVersion"))
             })?;
-            Ok(PyCreateDatasetVersionResponse { inner: output })
+            Ok(PyOperationCreateDatasetVersionOutput { inner: output })
         })
     }
 
@@ -44303,7 +44303,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEvaluator"))
             })?;
-            Ok(PyCreateEvaluatorResponse { inner: output })
+            Ok(PyOperationCreateEvaluatorOutput { inner: output })
         })
     }
 
@@ -44451,7 +44451,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGateway"))
             })?;
-            Ok(PyCreateGatewayResponse { inner: output })
+            Ok(PyOperationCreateGatewayOutput { inner: output })
         })
     }
 
@@ -44537,7 +44537,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGatewayRateLimit"))
             })?;
-            Ok(PyCreateGatewayRateLimitResponse { inner: output })
+            Ok(PyOperationCreateGatewayRateLimitOutput { inner: output })
         })
     }
 
@@ -44623,7 +44623,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGatewayRule"))
             })?;
-            Ok(PyCreateGatewayRuleResponse { inner: output })
+            Ok(PyOperationCreateGatewayRuleOutput { inner: output })
         })
     }
 
@@ -44735,7 +44735,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateGatewayTarget"))
             })?;
-            Ok(PyCreateGatewayTargetResponse { inner: output })
+            Ok(PyOperationCreateGatewayTargetOutput { inner: output })
         })
     }
 
@@ -44945,7 +44945,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateHarness"))
             })?;
-            Ok(PyCreateHarnessResponse { inner: output })
+            Ok(PyOperationCreateHarnessOutput { inner: output })
         })
     }
 
@@ -45024,7 +45024,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateHarnessEndpoint"))
             })?;
-            Ok(PyCreateHarnessEndpointResponse { inner: output })
+            Ok(PyOperationCreateHarnessEndpointOutput { inner: output })
         })
     }
 
@@ -45161,7 +45161,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMemory"))
             })?;
-            Ok(PyCreateMemoryOutput { inner: output })
+            Ok(PyOperationCreateMemoryOutput { inner: output })
         })
     }
 
@@ -45232,7 +45232,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOauth2CredentialProvider"))
             })?;
-            Ok(PyCreateOauth2CredentialProviderResponse { inner: output })
+            Ok(PyOperationCreateOauth2CredentialProviderOutput { inner: output })
         })
     }
 
@@ -45369,7 +45369,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateOnlineEvaluationConfig"))
             })?;
-            Ok(PyCreateOnlineEvaluationConfigResponse { inner: output })
+            Ok(PyOperationCreateOnlineEvaluationConfigOutput { inner: output })
         })
     }
 
@@ -45465,7 +45465,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePaymentConnector"))
             })?;
-            Ok(PyCreatePaymentConnectorResponse { inner: output })
+            Ok(PyOperationCreatePaymentConnectorOutput { inner: output })
         })
     }
 
@@ -45536,7 +45536,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePaymentCredentialProvider"))
             })?;
-            Ok(PyCreatePaymentCredentialProviderResponse { inner: output })
+            Ok(PyOperationCreatePaymentCredentialProviderOutput { inner: output })
         })
     }
 
@@ -45634,7 +45634,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePaymentManager"))
             })?;
-            Ok(PyCreatePaymentManagerResponse { inner: output })
+            Ok(PyOperationCreatePaymentManagerOutput { inner: output })
         })
     }
 
@@ -45720,7 +45720,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePolicy"))
             })?;
-            Ok(PyCreatePolicyResponse { inner: output })
+            Ok(PyOperationCreatePolicyOutput { inner: output })
         })
     }
 
@@ -45793,7 +45793,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePolicyEngine"))
             })?;
-            Ok(PyCreatePolicyEngineResponse { inner: output })
+            Ok(PyOperationCreatePolicyEngineOutput { inner: output })
         })
     }
 
@@ -45872,7 +45872,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRegistry"))
             })?;
-            Ok(PyCreateRegistryResponse { inner: output })
+            Ok(PyOperationCreateRegistryOutput { inner: output })
         })
     }
 
@@ -45975,7 +45975,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateRegistryRecord"))
             })?;
-            Ok(PyCreateRegistryRecordResponse { inner: output })
+            Ok(PyOperationCreateRegistryRecordOutput { inner: output })
         })
     }
 
@@ -46040,7 +46040,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateWorkloadIdentity"))
             })?;
-            Ok(PyCreateWorkloadIdentityResponse { inner: output })
+            Ok(PyOperationCreateWorkloadIdentityOutput { inner: output })
         })
     }
 
@@ -46093,7 +46093,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentRuntime"))
             })?;
-            Ok(PyDeleteAgentRuntimeResponse { inner: output })
+            Ok(PyOperationDeleteAgentRuntimeOutput { inner: output })
         })
     }
 
@@ -46145,7 +46145,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentRuntimeEndpoint"))
             })?;
-            Ok(PyDeleteAgentRuntimeEndpointResponse { inner: output })
+            Ok(PyOperationDeleteAgentRuntimeEndpointOutput { inner: output })
         })
     }
 
@@ -46183,7 +46183,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApiKeyCredentialProvider"))
             })?;
-            Ok(PyDeleteApiKeyCredentialProviderResponse { inner: output })
+            Ok(PyOperationDeleteApiKeyCredentialProviderOutput { inner: output })
         })
     }
 
@@ -46228,7 +46228,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBrowser"))
             })?;
-            Ok(PyDeleteBrowserResponse { inner: output })
+            Ok(PyOperationDeleteBrowserOutput { inner: output })
         })
     }
 
@@ -46273,7 +46273,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBrowserProfile"))
             })?;
-            Ok(PyDeleteBrowserProfileResponse { inner: output })
+            Ok(PyOperationDeleteBrowserProfileOutput { inner: output })
         })
     }
 
@@ -46319,7 +46319,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCapacityProvider"))
             })?;
-            Ok(PyDeleteCapacityProviderOutput { inner: output })
+            Ok(PyOperationDeleteCapacityProviderOutput { inner: output })
         })
     }
 
@@ -46365,7 +46365,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCodeInterpreter"))
             })?;
-            Ok(PyDeleteCodeInterpreterResponse { inner: output })
+            Ok(PyOperationDeleteCodeInterpreterOutput { inner: output })
         })
     }
 
@@ -46403,7 +46403,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConfigurationBundle"))
             })?;
-            Ok(PyDeleteConfigurationBundleResponse { inner: output })
+            Ok(PyOperationDeleteConfigurationBundleOutput { inner: output })
         })
     }
 
@@ -46442,7 +46442,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConsentPortal"))
             })?;
-            Ok(PyDeleteConsentPortalResponse { inner: output })
+            Ok(PyOperationDeleteConsentPortalOutput { inner: output })
         })
     }
 
@@ -46487,7 +46487,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataset"))
             })?;
-            Ok(PyDeleteDatasetResponse { inner: output })
+            Ok(PyOperationDeleteDatasetOutput { inner: output })
         })
     }
 
@@ -46545,7 +46545,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDatasetExamples"))
             })?;
-            Ok(PyDeleteDatasetExamplesResponse { inner: output })
+            Ok(PyOperationDeleteDatasetExamplesOutput { inner: output })
         })
     }
 
@@ -46583,7 +46583,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEvaluator"))
             })?;
-            Ok(PyDeleteEvaluatorResponse { inner: output })
+            Ok(PyOperationDeleteEvaluatorOutput { inner: output })
         })
     }
 
@@ -46622,7 +46622,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGateway"))
             })?;
-            Ok(PyDeleteGatewayResponse { inner: output })
+            Ok(PyOperationDeleteGatewayOutput { inner: output })
         })
     }
 
@@ -46668,7 +46668,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGatewayRateLimit"))
             })?;
-            Ok(PyDeleteGatewayRateLimitResponse { inner: output })
+            Ok(PyOperationDeleteGatewayRateLimitOutput { inner: output })
         })
     }
 
@@ -46714,7 +46714,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGatewayRule"))
             })?;
-            Ok(PyDeleteGatewayRuleResponse { inner: output })
+            Ok(PyOperationDeleteGatewayRuleOutput { inner: output })
         })
     }
 
@@ -46760,7 +46760,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGatewayTarget"))
             })?;
-            Ok(PyDeleteGatewayTargetResponse { inner: output })
+            Ok(PyOperationDeleteGatewayTargetOutput { inner: output })
         })
     }
 
@@ -46813,7 +46813,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteHarness"))
             })?;
-            Ok(PyDeleteHarnessResponse { inner: output })
+            Ok(PyOperationDeleteHarnessOutput { inner: output })
         })
     }
 
@@ -46865,7 +46865,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteHarnessEndpoint"))
             })?;
-            Ok(PyDeleteHarnessEndpointResponse { inner: output })
+            Ok(PyOperationDeleteHarnessEndpointOutput { inner: output })
         })
     }
 
@@ -46910,7 +46910,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMemory"))
             })?;
-            Ok(PyDeleteMemoryOutput { inner: output })
+            Ok(PyOperationDeleteMemoryOutput { inner: output })
         })
     }
 
@@ -46948,7 +46948,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOauth2CredentialProvider"))
             })?;
-            Ok(PyDeleteOauth2CredentialProviderResponse { inner: output })
+            Ok(PyOperationDeleteOauth2CredentialProviderOutput { inner: output })
         })
     }
 
@@ -46987,7 +46987,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOnlineEvaluationConfig"))
             })?;
-            Ok(PyDeleteOnlineEvaluationConfigResponse { inner: output })
+            Ok(PyOperationDeleteOnlineEvaluationConfigOutput { inner: output })
         })
     }
 
@@ -47041,7 +47041,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePaymentConnector"))
             })?;
-            Ok(PyDeletePaymentConnectorResponse { inner: output })
+            Ok(PyOperationDeletePaymentConnectorOutput { inner: output })
         })
     }
 
@@ -47079,7 +47079,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePaymentCredentialProvider"))
             })?;
-            Ok(PyDeletePaymentCredentialProviderResponse { inner: output })
+            Ok(PyOperationDeletePaymentCredentialProviderOutput { inner: output })
         })
     }
 
@@ -47125,7 +47125,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePaymentManager"))
             })?;
-            Ok(PyDeletePaymentManagerResponse { inner: output })
+            Ok(PyOperationDeletePaymentManagerOutput { inner: output })
         })
     }
 
@@ -47170,7 +47170,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePolicy"))
             })?;
-            Ok(PyDeletePolicyResponse { inner: output })
+            Ok(PyOperationDeletePolicyOutput { inner: output })
         })
     }
 
@@ -47208,7 +47208,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeletePolicyEngine"))
             })?;
-            Ok(PyDeletePolicyEngineResponse { inner: output })
+            Ok(PyOperationDeletePolicyEngineOutput { inner: output })
         })
     }
 
@@ -47244,7 +47244,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRegistry"))
             })?;
-            Ok(PyDeleteRegistryResponse { inner: output })
+            Ok(PyOperationDeleteRegistryOutput { inner: output })
         })
     }
 
@@ -47289,7 +47289,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRegistryRecord"))
             })?;
-            Ok(PyDeleteRegistryRecordResponse { inner: output })
+            Ok(PyOperationDeleteRegistryRecordOutput { inner: output })
         })
     }
 
@@ -47327,7 +47327,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
             })?;
-            Ok(PyDeleteResourcePolicyResponse { inner: output })
+            Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
     }
 
@@ -47363,7 +47363,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteWorkloadIdentity"))
             })?;
-            Ok(PyDeleteWorkloadIdentityResponse { inner: output })
+            Ok(PyOperationDeleteWorkloadIdentityOutput { inner: output })
         })
     }
 
@@ -47409,7 +47409,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentRuntime"))
             })?;
-            Ok(PyGetAgentRuntimeResponse { inner: output })
+            Ok(PyOperationGetAgentRuntimeOutput { inner: output })
         })
     }
 
@@ -47454,7 +47454,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentRuntimeEndpoint"))
             })?;
-            Ok(PyGetAgentRuntimeEndpointResponse { inner: output })
+            Ok(PyOperationGetAgentRuntimeEndpointOutput { inner: output })
         })
     }
 
@@ -47492,7 +47492,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKeyCredentialProvider"))
             })?;
-            Ok(PyGetApiKeyCredentialProviderResponse { inner: output })
+            Ok(PyOperationGetApiKeyCredentialProviderOutput { inner: output })
         })
     }
 
@@ -47527,7 +47527,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetBrowser")))?;
-            Ok(PyGetBrowserResponse { inner: output })
+            Ok(PyOperationGetBrowserOutput { inner: output })
         })
     }
 
@@ -47565,7 +47565,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBrowserProfile"))
             })?;
-            Ok(PyGetBrowserProfileResponse { inner: output })
+            Ok(PyOperationGetBrowserProfileOutput { inner: output })
         })
     }
 
@@ -47604,7 +47604,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCapacityProvider"))
             })?;
-            Ok(PyGetCapacityProviderOutput { inner: output })
+            Ok(PyOperationGetCapacityProviderOutput { inner: output })
         })
     }
 
@@ -47643,7 +47643,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetCodeInterpreter"))
             })?;
-            Ok(PyGetCodeInterpreterResponse { inner: output })
+            Ok(PyOperationGetCodeInterpreterOutput { inner: output })
         })
     }
 
@@ -47688,7 +47688,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConfigurationBundle"))
             })?;
-            Ok(PyGetConfigurationBundleResponse { inner: output })
+            Ok(PyOperationGetConfigurationBundleOutput { inner: output })
         })
     }
 
@@ -47733,7 +47733,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConfigurationBundleVersion"))
             })?;
-            Ok(PyGetConfigurationBundleVersionResponse { inner: output })
+            Ok(PyOperationGetConfigurationBundleVersionOutput { inner: output })
         })
     }
 
@@ -47772,7 +47772,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConsentPortal"))
             })?;
-            Ok(PyGetConsentPortalResponse { inner: output })
+            Ok(PyOperationGetConsentPortalOutput { inner: output })
         })
     }
 
@@ -47816,7 +47816,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDataset")))?;
-            Ok(PyGetDatasetResponse { inner: output })
+            Ok(PyOperationGetDatasetOutput { inner: output })
         })
     }
 
@@ -47864,7 +47864,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEvaluator"))
             })?;
-            Ok(PyGetEvaluatorResponse { inner: output })
+            Ok(PyOperationGetEvaluatorOutput { inner: output })
         })
     }
 
@@ -47902,7 +47902,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetGateway")))?;
-            Ok(PyGetGatewayResponse { inner: output })
+            Ok(PyOperationGetGatewayOutput { inner: output })
         })
     }
 
@@ -47948,7 +47948,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayRateLimit"))
             })?;
-            Ok(PyGetGatewayRateLimitResponse { inner: output })
+            Ok(PyOperationGetGatewayRateLimitOutput { inner: output })
         })
     }
 
@@ -47994,7 +47994,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayRule"))
             })?;
-            Ok(PyGetGatewayRuleResponse { inner: output })
+            Ok(PyOperationGetGatewayRuleOutput { inner: output })
         })
     }
 
@@ -48040,7 +48040,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayTarget"))
             })?;
-            Ok(PyGetGatewayTargetResponse { inner: output })
+            Ok(PyOperationGetGatewayTargetOutput { inner: output })
         })
     }
 
@@ -48084,7 +48084,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetHarness")))?;
-            Ok(PyGetHarnessResponse { inner: output })
+            Ok(PyOperationGetHarnessOutput { inner: output })
         })
     }
 
@@ -48129,7 +48129,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetHarnessEndpoint"))
             })?;
-            Ok(PyGetHarnessEndpointResponse { inner: output })
+            Ok(PyOperationGetHarnessEndpointOutput { inner: output })
         })
     }
 
@@ -48175,7 +48175,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMemory")))?;
-            Ok(PyGetMemoryOutput { inner: output })
+            Ok(PyOperationGetMemoryOutput { inner: output })
         })
     }
 
@@ -48211,7 +48211,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOauth2CredentialProvider"))
             })?;
-            Ok(PyGetOauth2CredentialProviderResponse { inner: output })
+            Ok(PyOperationGetOauth2CredentialProviderOutput { inner: output })
         })
     }
 
@@ -48250,7 +48250,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetOnlineEvaluationConfig"))
             })?;
-            Ok(PyGetOnlineEvaluationConfigResponse { inner: output })
+            Ok(PyOperationGetOnlineEvaluationConfigOutput { inner: output })
         })
     }
 
@@ -48297,7 +48297,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentConnector"))
             })?;
-            Ok(PyGetPaymentConnectorResponse { inner: output })
+            Ok(PyOperationGetPaymentConnectorOutput { inner: output })
         })
     }
 
@@ -48335,7 +48335,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentCredentialProvider"))
             })?;
-            Ok(PyGetPaymentCredentialProviderResponse { inner: output })
+            Ok(PyOperationGetPaymentCredentialProviderOutput { inner: output })
         })
     }
 
@@ -48374,7 +48374,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPaymentManager"))
             })?;
-            Ok(PyGetPaymentManagerResponse { inner: output })
+            Ok(PyOperationGetPaymentManagerOutput { inner: output })
         })
     }
 
@@ -48418,7 +48418,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
-            Ok(PyGetPolicyResponse { inner: output })
+            Ok(PyOperationGetPolicyOutput { inner: output })
         })
     }
 
@@ -48456,7 +48456,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicyEngine"))
             })?;
-            Ok(PyGetPolicyEngineResponse { inner: output })
+            Ok(PyOperationGetPolicyEngineOutput { inner: output })
         })
     }
 
@@ -48494,7 +48494,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicyEngineSummary"))
             })?;
-            Ok(PyGetPolicyEngineSummaryResponse { inner: output })
+            Ok(PyOperationGetPolicyEngineSummaryOutput { inner: output })
         })
     }
 
@@ -48540,7 +48540,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicyGeneration"))
             })?;
-            Ok(PyGetPolicyGenerationResponse { inner: output })
+            Ok(PyOperationGetPolicyGenerationOutput { inner: output })
         })
     }
 
@@ -48586,7 +48586,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicyGenerationSummary"))
             })?;
-            Ok(PyGetPolicyGenerationSummaryResponse { inner: output })
+            Ok(PyOperationGetPolicyGenerationSummaryOutput { inner: output })
         })
     }
 
@@ -48631,7 +48631,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicySummary"))
             })?;
-            Ok(PyGetPolicySummaryResponse { inner: output })
+            Ok(PyOperationGetPolicySummaryOutput { inner: output })
         })
     }
 
@@ -48666,7 +48666,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRegistry")))?;
-            Ok(PyGetRegistryResponse { inner: output })
+            Ok(PyOperationGetRegistryOutput { inner: output })
         })
     }
 
@@ -48711,7 +48711,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetRegistryRecord"))
             })?;
-            Ok(PyGetRegistryRecordResponse { inner: output })
+            Ok(PyOperationGetRegistryRecordOutput { inner: output })
         })
     }
 
@@ -48749,7 +48749,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
             })?;
-            Ok(PyGetResourcePolicyResponse { inner: output })
+            Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
     }
 
@@ -48787,7 +48787,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTokenVault"))
             })?;
-            Ok(PyGetTokenVaultResponse { inner: output })
+            Ok(PyOperationGetTokenVaultOutput { inner: output })
         })
     }
 
@@ -48823,7 +48823,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetWorkloadIdentity"))
             })?;
-            Ok(PyGetWorkloadIdentityResponse { inner: output })
+            Ok(PyOperationGetWorkloadIdentityOutput { inner: output })
         })
     }
 
@@ -48875,7 +48875,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentRuntimeEndpoints"))
             })?;
-            Ok(PyListAgentRuntimeEndpointsResponse { inner: output })
+            Ok(PyOperationListAgentRuntimeEndpointsOutput { inner: output })
         })
     }
 
@@ -48927,7 +48927,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentRuntimeVersions"))
             })?;
-            Ok(PyListAgentRuntimeVersionsResponse { inner: output })
+            Ok(PyOperationListAgentRuntimeVersionsOutput { inner: output })
         })
     }
 
@@ -48982,7 +48982,7 @@ impl BedrockAgentCoreControlClient {
                     sdk_error_to_py(py, &error, "ListAgentRuntimeVersionsByCapacityProvider")
                 })
             })?;
-            Ok(PyListAgentRuntimeVersionsByCapacityProviderOutput { inner: output })
+            Ok(PyOperationListAgentRuntimeVersionsByCapacityProviderOutput { inner: output })
         })
     }
 
@@ -49027,7 +49027,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListAgentRuntimes"))
             })?;
-            Ok(PyListAgentRuntimesResponse { inner: output })
+            Ok(PyOperationListAgentRuntimesOutput { inner: output })
         })
     }
 
@@ -49072,7 +49072,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListApiKeyCredentialProviders"))
             })?;
-            Ok(PyListApiKeyCredentialProvidersResponse { inner: output })
+            Ok(PyOperationListApiKeyCredentialProvidersOutput { inner: output })
         })
     }
 
@@ -49124,7 +49124,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBrowserProfiles"))
             })?;
-            Ok(PyListBrowserProfilesResponse { inner: output })
+            Ok(PyOperationListBrowserProfilesOutput { inner: output })
         })
     }
 
@@ -49179,7 +49179,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBrowsers"))
             })?;
-            Ok(PyListBrowsersResponse { inner: output })
+            Ok(PyOperationListBrowsersOutput { inner: output })
         })
     }
 
@@ -49224,7 +49224,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCapacityProviders"))
             })?;
-            Ok(PyListCapacityProvidersOutput { inner: output })
+            Ok(PyOperationListCapacityProvidersOutput { inner: output })
         })
     }
 
@@ -49279,7 +49279,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListCodeInterpreters"))
             })?;
-            Ok(PyListCodeInterpretersResponse { inner: output })
+            Ok(PyOperationListCodeInterpretersOutput { inner: output })
         })
     }
 
@@ -49338,7 +49338,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConfigurationBundleVersions"))
             })?;
-            Ok(PyListConfigurationBundleVersionsResponse { inner: output })
+            Ok(PyOperationListConfigurationBundleVersionsOutput { inner: output })
         })
     }
 
@@ -49383,7 +49383,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConfigurationBundles"))
             })?;
-            Ok(PyListConfigurationBundlesResponse { inner: output })
+            Ok(PyOperationListConfigurationBundlesOutput { inner: output })
         })
     }
 
@@ -49428,7 +49428,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConsentPortals"))
             })?;
-            Ok(PyListConsentPortalsResponse { inner: output })
+            Ok(PyOperationListConsentPortalsOutput { inner: output })
         })
     }
 
@@ -49487,7 +49487,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDatasetExamples"))
             })?;
-            Ok(PyListDatasetExamplesResponse { inner: output })
+            Ok(PyOperationListDatasetExamplesOutput { inner: output })
         })
     }
 
@@ -49539,7 +49539,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDatasetVersions"))
             })?;
-            Ok(PyListDatasetVersionsResponse { inner: output })
+            Ok(PyOperationListDatasetVersionsOutput { inner: output })
         })
     }
 
@@ -49584,7 +49584,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDatasets"))
             })?;
-            Ok(PyListDatasetsResponse { inner: output })
+            Ok(PyOperationListDatasetsOutput { inner: output })
         })
     }
 
@@ -49629,7 +49629,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEvaluators"))
             })?;
-            Ok(PyListEvaluatorsResponse { inner: output })
+            Ok(PyOperationListEvaluatorsOutput { inner: output })
         })
     }
 
@@ -49682,7 +49682,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGatewayRateLimits"))
             })?;
-            Ok(PyListGatewayRateLimitsResponse { inner: output })
+            Ok(PyOperationListGatewayRateLimitsOutput { inner: output })
         })
     }
 
@@ -49735,7 +49735,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGatewayRules"))
             })?;
-            Ok(PyListGatewayRulesResponse { inner: output })
+            Ok(PyOperationListGatewayRulesOutput { inner: output })
         })
     }
 
@@ -49788,7 +49788,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGatewayTargets"))
             })?;
-            Ok(PyListGatewayTargetsResponse { inner: output })
+            Ok(PyOperationListGatewayTargetsOutput { inner: output })
         })
     }
 
@@ -49833,7 +49833,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListGateways"))
             })?;
-            Ok(PyListGatewaysResponse { inner: output })
+            Ok(PyOperationListGatewaysOutput { inner: output })
         })
     }
 
@@ -49885,7 +49885,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListHarnessEndpoints"))
             })?;
-            Ok(PyListHarnessEndpointsResponse { inner: output })
+            Ok(PyOperationListHarnessEndpointsOutput { inner: output })
         })
     }
 
@@ -49937,7 +49937,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListHarnessVersions"))
             })?;
-            Ok(PyListHarnessVersionsResponse { inner: output })
+            Ok(PyOperationListHarnessVersionsOutput { inner: output })
         })
     }
 
@@ -49982,7 +49982,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListHarnesses"))
             })?;
-            Ok(PyListHarnessesResponse { inner: output })
+            Ok(PyOperationListHarnessesOutput { inner: output })
         })
     }
 
@@ -50027,7 +50027,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMemories"))
             })?;
-            Ok(PyListMemoriesOutput { inner: output })
+            Ok(PyOperationListMemoriesOutput { inner: output })
         })
     }
 
@@ -50072,7 +50072,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOauth2CredentialProviders"))
             })?;
-            Ok(PyListOauth2CredentialProvidersResponse { inner: output })
+            Ok(PyOperationListOauth2CredentialProvidersOutput { inner: output })
         })
     }
 
@@ -50117,7 +50117,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOnlineEvaluationConfigs"))
             })?;
-            Ok(PyListOnlineEvaluationConfigsResponse { inner: output })
+            Ok(PyOperationListOnlineEvaluationConfigsOutput { inner: output })
         })
     }
 
@@ -50170,7 +50170,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPaymentConnectors"))
             })?;
-            Ok(PyListPaymentConnectorsResponse { inner: output })
+            Ok(PyOperationListPaymentConnectorsOutput { inner: output })
         })
     }
 
@@ -50215,7 +50215,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPaymentCredentialProviders"))
             })?;
-            Ok(PyListPaymentCredentialProvidersResponse { inner: output })
+            Ok(PyOperationListPaymentCredentialProvidersOutput { inner: output })
         })
     }
 
@@ -50260,7 +50260,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPaymentManagers"))
             })?;
-            Ok(PyListPaymentManagersResponse { inner: output })
+            Ok(PyOperationListPaymentManagersOutput { inner: output })
         })
     }
 
@@ -50320,7 +50320,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicies"))
             })?;
-            Ok(PyListPoliciesResponse { inner: output })
+            Ok(PyOperationListPoliciesOutput { inner: output })
         })
     }
 
@@ -50365,7 +50365,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicyEngineSummaries"))
             })?;
-            Ok(PyListPolicyEngineSummariesResponse { inner: output })
+            Ok(PyOperationListPolicyEngineSummariesOutput { inner: output })
         })
     }
 
@@ -50410,7 +50410,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicyEngines"))
             })?;
-            Ok(PyListPolicyEnginesResponse { inner: output })
+            Ok(PyOperationListPolicyEnginesOutput { inner: output })
         })
     }
 
@@ -50470,7 +50470,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicyGenerationAssets"))
             })?;
-            Ok(PyListPolicyGenerationAssetsResponse { inner: output })
+            Ok(PyOperationListPolicyGenerationAssetsOutput { inner: output })
         })
     }
 
@@ -50522,7 +50522,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicyGenerationSummaries"))
             })?;
-            Ok(PyListPolicyGenerationSummariesResponse { inner: output })
+            Ok(PyOperationListPolicyGenerationSummariesOutput { inner: output })
         })
     }
 
@@ -50574,7 +50574,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicyGenerations"))
             })?;
-            Ok(PyListPolicyGenerationsResponse { inner: output })
+            Ok(PyOperationListPolicyGenerationsOutput { inner: output })
         })
     }
 
@@ -50634,7 +50634,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPolicySummaries"))
             })?;
-            Ok(PyListPolicySummariesResponse { inner: output })
+            Ok(PyOperationListPolicySummariesOutput { inner: output })
         })
     }
 
@@ -50700,7 +50700,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRegistries"))
             })?;
-            Ok(PyListRegistriesResponse { inner: output })
+            Ok(PyOperationListRegistriesOutput { inner: output })
         })
     }
 
@@ -50779,7 +50779,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRegistryRecords"))
             })?;
-            Ok(PyListRegistryRecordsResponse { inner: output })
+            Ok(PyOperationListRegistryRecordsOutput { inner: output })
         })
     }
 
@@ -50817,7 +50817,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -50862,7 +50862,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListWorkloadIdentities"))
             })?;
-            Ok(PyListWorkloadIdentitiesResponse { inner: output })
+            Ok(PyOperationListWorkloadIdentitiesOutput { inner: output })
         })
     }
 
@@ -50907,7 +50907,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
             })?;
-            Ok(PyPutResourcePolicyResponse { inner: output })
+            Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
     }
 
@@ -50971,7 +50971,7 @@ impl BedrockAgentCoreControlClient {
                     sdk_error_to_py(py, &error, "RotatePaymentConnectorCredentials")
                 })
             })?;
-            Ok(PyRotatePaymentConnectorCredentialsResponse { inner: output })
+            Ok(PyOperationRotatePaymentConnectorCredentialsOutput { inner: output })
         })
     }
 
@@ -51017,7 +51017,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SetTokenVaultCMK"))
             })?;
-            Ok(PySetTokenVaultCMKResponse { inner: output })
+            Ok(PyOperationSetTokenVaultCMKOutput { inner: output })
         })
     }
 
@@ -51083,7 +51083,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartPolicyGeneration"))
             })?;
-            Ok(PyStartPolicyGenerationResponse { inner: output })
+            Ok(PyOperationStartPolicyGenerationOutput { inner: output })
         })
     }
 
@@ -51128,7 +51128,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SubmitRegistryRecordForApproval"))
             })?;
-            Ok(PySubmitRegistryRecordForApprovalResponse { inner: output })
+            Ok(PyOperationSubmitRegistryRecordForApprovalOutput { inner: output })
         })
     }
 
@@ -51180,7 +51180,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SynchronizeGatewayTargets"))
             })?;
-            Ok(PySynchronizeGatewayTargetsResponse { inner: output })
+            Ok(PyOperationSynchronizeGatewayTargetsOutput { inner: output })
         })
     }
 
@@ -51230,7 +51230,7 @@ impl BedrockAgentCoreControlClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -51281,7 +51281,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -51439,7 +51439,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentRuntime"))
             })?;
-            Ok(PyUpdateAgentRuntimeResponse { inner: output })
+            Ok(PyOperationUpdateAgentRuntimeOutput { inner: output })
         })
     }
 
@@ -51506,7 +51506,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAgentRuntimeEndpoint"))
             })?;
-            Ok(PyUpdateAgentRuntimeEndpointResponse { inner: output })
+            Ok(PyOperationUpdateAgentRuntimeEndpointOutput { inner: output })
         })
     }
 
@@ -51570,7 +51570,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiKeyCredentialProvider"))
             })?;
-            Ok(PyUpdateApiKeyCredentialProviderResponse { inner: output })
+            Ok(PyOperationUpdateApiKeyCredentialProviderOutput { inner: output })
         })
     }
 
@@ -51623,7 +51623,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCapacityProvider"))
             })?;
-            Ok(PyUpdateCapacityProviderOutput { inner: output })
+            Ok(PyOperationUpdateCapacityProviderOutput { inner: output })
         })
     }
 
@@ -51737,7 +51737,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConfigurationBundle"))
             })?;
-            Ok(PyUpdateConfigurationBundleResponse { inner: output })
+            Ok(PyOperationUpdateConfigurationBundleOutput { inner: output })
         })
     }
 
@@ -51798,7 +51798,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConsentPortal"))
             })?;
-            Ok(PyUpdateConsentPortalResponse { inner: output })
+            Ok(PyOperationUpdateConsentPortalOutput { inner: output })
         })
     }
 
@@ -51850,7 +51850,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataset"))
             })?;
-            Ok(PyUpdateDatasetResponse { inner: output })
+            Ok(PyOperationUpdateDatasetOutput { inner: output })
         })
     }
 
@@ -51908,7 +51908,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDatasetExamples"))
             })?;
-            Ok(PyUpdateDatasetExamplesResponse { inner: output })
+            Ok(PyOperationUpdateDatasetExamplesOutput { inner: output })
         })
     }
 
@@ -51984,7 +51984,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEvaluator"))
             })?;
-            Ok(PyUpdateEvaluatorResponse { inner: output })
+            Ok(PyOperationUpdateEvaluatorOutput { inner: output })
         })
     }
 
@@ -52136,7 +52136,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGateway"))
             })?;
-            Ok(PyUpdateGatewayResponse { inner: output })
+            Ok(PyOperationUpdateGatewayOutput { inner: output })
         })
     }
 
@@ -52202,7 +52202,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayRateLimit"))
             })?;
-            Ok(PyUpdateGatewayRateLimitResponse { inner: output })
+            Ok(PyOperationUpdateGatewayRateLimitOutput { inner: output })
         })
     }
 
@@ -52288,7 +52288,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayRule"))
             })?;
-            Ok(PyUpdateGatewayRuleResponse { inner: output })
+            Ok(PyOperationUpdateGatewayRuleOutput { inner: output })
         })
     }
 
@@ -52400,7 +52400,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayTarget"))
             })?;
-            Ok(PyUpdateGatewayTargetResponse { inner: output })
+            Ok(PyOperationUpdateGatewayTargetOutput { inner: output })
         })
     }
 
@@ -52597,7 +52597,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateHarness"))
             })?;
-            Ok(PyUpdateHarnessResponse { inner: output })
+            Ok(PyOperationUpdateHarnessOutput { inner: output })
         })
     }
 
@@ -52663,7 +52663,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateHarnessEndpoint"))
             })?;
-            Ok(PyUpdateHarnessEndpointResponse { inner: output })
+            Ok(PyOperationUpdateHarnessEndpointOutput { inner: output })
         })
     }
 
@@ -52773,7 +52773,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMemory"))
             })?;
-            Ok(PyUpdateMemoryOutput { inner: output })
+            Ok(PyOperationUpdateMemoryOutput { inner: output })
         })
     }
 
@@ -52831,7 +52831,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOauth2CredentialProvider"))
             })?;
-            Ok(PyUpdateOauth2CredentialProviderResponse { inner: output })
+            Ok(PyOperationUpdateOauth2CredentialProviderOutput { inner: output })
         })
     }
 
@@ -52959,7 +52959,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOnlineEvaluationConfig"))
             })?;
-            Ok(PyUpdateOnlineEvaluationConfigResponse { inner: output })
+            Ok(PyOperationUpdateOnlineEvaluationConfigOutput { inner: output })
         })
     }
 
@@ -53045,7 +53045,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePaymentConnector"))
             })?;
-            Ok(PyUpdatePaymentConnectorResponse { inner: output })
+            Ok(PyOperationUpdatePaymentConnectorOutput { inner: output })
         })
     }
 
@@ -53103,7 +53103,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePaymentCredentialProvider"))
             })?;
-            Ok(PyUpdatePaymentCredentialProviderResponse { inner: output })
+            Ok(PyOperationUpdatePaymentCredentialProviderOutput { inner: output })
         })
     }
 
@@ -53189,7 +53189,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePaymentManager"))
             })?;
-            Ok(PyUpdatePaymentManagerResponse { inner: output })
+            Ok(PyOperationUpdatePaymentManagerOutput { inner: output })
         })
     }
 
@@ -53268,7 +53268,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePolicy"))
             })?;
-            Ok(PyUpdatePolicyResponse { inner: output })
+            Ok(PyOperationUpdatePolicyOutput { inner: output })
         })
     }
 
@@ -53313,7 +53313,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePolicyEngine"))
             })?;
-            Ok(PyUpdatePolicyEngineResponse { inner: output })
+            Ok(PyOperationUpdatePolicyEngineOutput { inner: output })
         })
     }
 
@@ -53381,7 +53381,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRegistry"))
             })?;
-            Ok(PyUpdateRegistryResponse { inner: output })
+            Ok(PyOperationUpdateRegistryOutput { inner: output })
         })
     }
 
@@ -53488,7 +53488,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRegistryRecord"))
             })?;
-            Ok(PyUpdateRegistryRecordResponse { inner: output })
+            Ok(PyOperationUpdateRegistryRecordOutput { inner: output })
         })
     }
 
@@ -53550,7 +53550,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRegistryRecordStatus"))
             })?;
-            Ok(PyUpdateRegistryRecordStatusResponse { inner: output })
+            Ok(PyOperationUpdateRegistryRecordStatusOutput { inner: output })
         })
     }
 
@@ -53602,7 +53602,7 @@ impl BedrockAgentCoreControlClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateWorkloadIdentity"))
             })?;
-            Ok(PyUpdateWorkloadIdentityResponse { inner: output })
+            Ok(PyOperationUpdateWorkloadIdentityOutput { inner: output })
         })
     }
 }

@@ -6826,16 +6826,16 @@ impl PyTarget {
 }
 
 #[pyclass(
-    name = "CancelReplayResponse",
+    name = "CancelReplayOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCancelReplayResponse {
+struct PyOperationCancelReplayOutput {
     inner: aws_sdk_eventbridge::operation::cancel_replay::CancelReplayOutput,
 }
 
 #[pymethods]
-impl PyCancelReplayResponse {
+impl PyOperationCancelReplayOutput {
     #[getter]
     fn replay_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replay_arn {
@@ -6891,16 +6891,16 @@ impl PyCancelReplayResponse {
 }
 
 #[pyclass(
-    name = "CreateApiDestinationResponse",
+    name = "CreateApiDestinationOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreateApiDestinationResponse {
+struct PyOperationCreateApiDestinationOutput {
     inner: aws_sdk_eventbridge::operation::create_api_destination::CreateApiDestinationOutput,
 }
 
 #[pymethods]
-impl PyCreateApiDestinationResponse {
+impl PyOperationCreateApiDestinationOutput {
     #[getter]
     fn api_destination_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_destination_arn {
@@ -6972,16 +6972,16 @@ impl PyCreateApiDestinationResponse {
 }
 
 #[pyclass(
-    name = "CreateArchiveResponse",
+    name = "CreateArchiveOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreateArchiveResponse {
+struct PyOperationCreateArchiveOutput {
     inner: aws_sdk_eventbridge::operation::create_archive::CreateArchiveOutput,
 }
 
 #[pymethods]
-impl PyCreateArchiveResponse {
+impl PyOperationCreateArchiveOutput {
     #[getter]
     fn archive_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.archive_arn {
@@ -7053,16 +7053,16 @@ impl PyCreateArchiveResponse {
 }
 
 #[pyclass(
-    name = "CreateConnectionResponse",
+    name = "CreateConnectionOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreateConnectionResponse {
+struct PyOperationCreateConnectionOutput {
     inner: aws_sdk_eventbridge::operation::create_connection::CreateConnectionOutput,
 }
 
 #[pymethods]
-impl PyCreateConnectionResponse {
+impl PyOperationCreateConnectionOutput {
     #[getter]
     fn connection_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_arn {
@@ -7134,16 +7134,16 @@ impl PyCreateConnectionResponse {
 }
 
 #[pyclass(
-    name = "CreateEndpointResponse",
+    name = "CreateEndpointOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreateEndpointResponse {
+struct PyOperationCreateEndpointOutput {
     inner: aws_sdk_eventbridge::operation::create_endpoint::CreateEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateEndpointResponse {
+impl PyOperationCreateEndpointOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -7291,16 +7291,16 @@ impl PyCreateEndpointResponse {
 }
 
 #[pyclass(
-    name = "CreateEventBusResponse",
+    name = "CreateEventBusOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreateEventBusResponse {
+struct PyOperationCreateEventBusOutput {
     inner: aws_sdk_eventbridge::operation::create_event_bus::CreateEventBusOutput,
 }
 
 #[pymethods]
-impl PyCreateEventBusResponse {
+impl PyOperationCreateEventBusOutput {
     #[getter]
     fn event_bus_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_bus_arn {
@@ -7400,17 +7400,17 @@ impl PyCreateEventBusResponse {
 }
 
 #[pyclass(
-    name = "CreatePartnerEventSourceResponse",
+    name = "CreatePartnerEventSourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyCreatePartnerEventSourceResponse {
+struct PyOperationCreatePartnerEventSourceOutput {
     inner:
         aws_sdk_eventbridge::operation::create_partner_event_source::CreatePartnerEventSourceOutput,
 }
 
 #[pymethods]
-impl PyCreatePartnerEventSourceResponse {
+impl PyOperationCreatePartnerEventSourceOutput {
     #[getter]
     fn event_source_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_source_arn {
@@ -7434,16 +7434,16 @@ impl PyCreatePartnerEventSourceResponse {
 }
 
 #[pyclass(
-    name = "DeauthorizeConnectionResponse",
+    name = "DeauthorizeConnectionOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDeauthorizeConnectionResponse {
+struct PyOperationDeauthorizeConnectionOutput {
     inner: aws_sdk_eventbridge::operation::deauthorize_connection::DeauthorizeConnectionOutput,
 }
 
 #[pymethods]
-impl PyDeauthorizeConnectionResponse {
+impl PyOperationDeauthorizeConnectionOutput {
     #[getter]
     fn connection_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_arn {
@@ -7531,16 +7531,16 @@ impl PyDeauthorizeConnectionResponse {
 }
 
 #[pyclass(
-    name = "DeleteApiDestinationResponse",
+    name = "DeleteApiDestinationOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDeleteApiDestinationResponse {
+struct PyOperationDeleteApiDestinationOutput {
     inner: aws_sdk_eventbridge::operation::delete_api_destination::DeleteApiDestinationOutput,
 }
 
 #[pymethods]
-impl PyDeleteApiDestinationResponse {
+impl PyOperationDeleteApiDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -7548,16 +7548,16 @@ impl PyDeleteApiDestinationResponse {
 }
 
 #[pyclass(
-    name = "DeleteArchiveResponse",
+    name = "DeleteArchiveOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDeleteArchiveResponse {
+struct PyOperationDeleteArchiveOutput {
     inner: aws_sdk_eventbridge::operation::delete_archive::DeleteArchiveOutput,
 }
 
 #[pymethods]
-impl PyDeleteArchiveResponse {
+impl PyOperationDeleteArchiveOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -7565,16 +7565,16 @@ impl PyDeleteArchiveResponse {
 }
 
 #[pyclass(
-    name = "DeleteConnectionResponse",
+    name = "DeleteConnectionOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDeleteConnectionResponse {
+struct PyOperationDeleteConnectionOutput {
     inner: aws_sdk_eventbridge::operation::delete_connection::DeleteConnectionOutput,
 }
 
 #[pymethods]
-impl PyDeleteConnectionResponse {
+impl PyOperationDeleteConnectionOutput {
     #[getter]
     fn connection_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_arn {
@@ -7662,16 +7662,16 @@ impl PyDeleteConnectionResponse {
 }
 
 #[pyclass(
-    name = "DeleteEndpointResponse",
+    name = "DeleteEndpointOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDeleteEndpointResponse {
+struct PyOperationDeleteEndpointOutput {
     inner: aws_sdk_eventbridge::operation::delete_endpoint::DeleteEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeleteEndpointResponse {
+impl PyOperationDeleteEndpointOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -7679,16 +7679,16 @@ impl PyDeleteEndpointResponse {
 }
 
 #[pyclass(
-    name = "DescribeApiDestinationResponse",
+    name = "DescribeApiDestinationOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeApiDestinationResponse {
+struct PyOperationDescribeApiDestinationOutput {
     inner: aws_sdk_eventbridge::operation::describe_api_destination::DescribeApiDestinationOutput,
 }
 
 #[pymethods]
-impl PyDescribeApiDestinationResponse {
+impl PyOperationDescribeApiDestinationOutput {
     #[getter]
     fn api_destination_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_destination_arn {
@@ -7856,16 +7856,16 @@ impl PyDescribeApiDestinationResponse {
 }
 
 #[pyclass(
-    name = "DescribeArchiveResponse",
+    name = "DescribeArchiveOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeArchiveResponse {
+struct PyOperationDescribeArchiveOutput {
     inner: aws_sdk_eventbridge::operation::describe_archive::DescribeArchiveOutput,
 }
 
 #[pymethods]
-impl PyDescribeArchiveResponse {
+impl PyOperationDescribeArchiveOutput {
     #[getter]
     fn archive_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.archive_arn {
@@ -8049,16 +8049,16 @@ impl PyDescribeArchiveResponse {
 }
 
 #[pyclass(
-    name = "DescribeConnectionResponse",
+    name = "DescribeConnectionOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeConnectionResponse {
+struct PyOperationDescribeConnectionOutput {
     inner: aws_sdk_eventbridge::operation::describe_connection::DescribeConnectionOutput,
 }
 
 #[pymethods]
-impl PyDescribeConnectionResponse {
+impl PyOperationDescribeConnectionOutput {
     #[getter]
     fn connection_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_arn {
@@ -8286,16 +8286,16 @@ impl PyDescribeConnectionResponse {
 }
 
 #[pyclass(
-    name = "DescribeEndpointResponse",
+    name = "DescribeEndpointOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeEndpointResponse {
+struct PyOperationDescribeEndpointOutput {
     inner: aws_sdk_eventbridge::operation::describe_endpoint::DescribeEndpointOutput,
 }
 
 #[pymethods]
-impl PyDescribeEndpointResponse {
+impl PyOperationDescribeEndpointOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -8539,16 +8539,16 @@ impl PyDescribeEndpointResponse {
 }
 
 #[pyclass(
-    name = "DescribeEventBusResponse",
+    name = "DescribeEventBusOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeEventBusResponse {
+struct PyOperationDescribeEventBusOutput {
     inner: aws_sdk_eventbridge::operation::describe_event_bus::DescribeEventBusOutput,
 }
 
 #[pymethods]
-impl PyDescribeEventBusResponse {
+impl PyOperationDescribeEventBusOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -8728,16 +8728,16 @@ impl PyDescribeEventBusResponse {
 }
 
 #[pyclass(
-    name = "DescribeEventSourceResponse",
+    name = "DescribeEventSourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeEventSourceResponse {
+struct PyOperationDescribeEventSourceOutput {
     inner: aws_sdk_eventbridge::operation::describe_event_source::DescribeEventSourceOutput,
 }
 
 #[pymethods]
-impl PyDescribeEventSourceResponse {
+impl PyOperationDescribeEventSourceOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -8841,16 +8841,16 @@ impl PyDescribeEventSourceResponse {
 }
 
 #[pyclass(
-    name = "DescribePartnerEventSourceResponse",
+    name = "DescribePartnerEventSourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribePartnerEventSourceResponse {
+struct PyOperationDescribePartnerEventSourceOutput {
     inner: aws_sdk_eventbridge::operation::describe_partner_event_source::DescribePartnerEventSourceOutput,
 }
 
 #[pymethods]
-impl PyDescribePartnerEventSourceResponse {
+impl PyOperationDescribePartnerEventSourceOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -8890,16 +8890,16 @@ impl PyDescribePartnerEventSourceResponse {
 }
 
 #[pyclass(
-    name = "DescribeReplayResponse",
+    name = "DescribeReplayOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeReplayResponse {
+struct PyOperationDescribeReplayOutput {
     inner: aws_sdk_eventbridge::operation::describe_replay::DescribeReplayOutput,
 }
 
 #[pymethods]
-impl PyDescribeReplayResponse {
+impl PyOperationDescribeReplayOutput {
     #[getter]
     fn replay_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replay_name {
@@ -9105,16 +9105,16 @@ impl PyDescribeReplayResponse {
 }
 
 #[pyclass(
-    name = "DescribeRuleResponse",
+    name = "DescribeRuleOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyDescribeRuleResponse {
+struct PyOperationDescribeRuleOutput {
     inner: aws_sdk_eventbridge::operation::describe_rule::DescribeRuleOutput,
 }
 
 #[pymethods]
-impl PyDescribeRuleResponse {
+impl PyOperationDescribeRuleOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -9282,16 +9282,16 @@ impl PyDescribeRuleResponse {
 }
 
 #[pyclass(
-    name = "ListApiDestinationsResponse",
+    name = "ListApiDestinationsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListApiDestinationsResponse {
+struct PyOperationListApiDestinationsOutput {
     inner: aws_sdk_eventbridge::operation::list_api_destinations::ListApiDestinationsOutput,
 }
 
 #[pymethods]
-impl PyListApiDestinationsResponse {
+impl PyOperationListApiDestinationsOutput {
     #[getter]
     fn api_destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_destinations {
@@ -9347,16 +9347,16 @@ impl PyListApiDestinationsResponse {
 }
 
 #[pyclass(
-    name = "ListArchivesResponse",
+    name = "ListArchivesOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListArchivesResponse {
+struct PyOperationListArchivesOutput {
     inner: aws_sdk_eventbridge::operation::list_archives::ListArchivesOutput,
 }
 
 #[pymethods]
-impl PyListArchivesResponse {
+impl PyOperationListArchivesOutput {
     #[getter]
     fn archives(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.archives {
@@ -9412,16 +9412,16 @@ impl PyListArchivesResponse {
 }
 
 #[pyclass(
-    name = "ListConnectionsResponse",
+    name = "ListConnectionsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListConnectionsResponse {
+struct PyOperationListConnectionsOutput {
     inner: aws_sdk_eventbridge::operation::list_connections::ListConnectionsOutput,
 }
 
 #[pymethods]
-impl PyListConnectionsResponse {
+impl PyOperationListConnectionsOutput {
     #[getter]
     fn connections(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connections {
@@ -9477,16 +9477,16 @@ impl PyListConnectionsResponse {
 }
 
 #[pyclass(
-    name = "ListEndpointsResponse",
+    name = "ListEndpointsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListEndpointsResponse {
+struct PyOperationListEndpointsOutput {
     inner: aws_sdk_eventbridge::operation::list_endpoints::ListEndpointsOutput,
 }
 
 #[pymethods]
-impl PyListEndpointsResponse {
+impl PyOperationListEndpointsOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoints {
@@ -9542,16 +9542,16 @@ impl PyListEndpointsResponse {
 }
 
 #[pyclass(
-    name = "ListEventBusesResponse",
+    name = "ListEventBusesOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListEventBusesResponse {
+struct PyOperationListEventBusesOutput {
     inner: aws_sdk_eventbridge::operation::list_event_buses::ListEventBusesOutput,
 }
 
 #[pymethods]
-impl PyListEventBusesResponse {
+impl PyOperationListEventBusesOutput {
     #[getter]
     fn event_buses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_buses {
@@ -9607,16 +9607,16 @@ impl PyListEventBusesResponse {
 }
 
 #[pyclass(
-    name = "ListEventSourcesResponse",
+    name = "ListEventSourcesOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListEventSourcesResponse {
+struct PyOperationListEventSourcesOutput {
     inner: aws_sdk_eventbridge::operation::list_event_sources::ListEventSourcesOutput,
 }
 
 #[pymethods]
-impl PyListEventSourcesResponse {
+impl PyOperationListEventSourcesOutput {
     #[getter]
     fn event_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_sources {
@@ -9672,16 +9672,16 @@ impl PyListEventSourcesResponse {
 }
 
 #[pyclass(
-    name = "ListPartnerEventSourceAccountsResponse",
+    name = "ListPartnerEventSourceAccountsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListPartnerEventSourceAccountsResponse {
+struct PyOperationListPartnerEventSourceAccountsOutput {
     inner: aws_sdk_eventbridge::operation::list_partner_event_source_accounts::ListPartnerEventSourceAccountsOutput,
 }
 
 #[pymethods]
-impl PyListPartnerEventSourceAccountsResponse {
+impl PyOperationListPartnerEventSourceAccountsOutput {
     #[getter]
     fn partner_event_source_accounts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partner_event_source_accounts {
@@ -9737,17 +9737,17 @@ impl PyListPartnerEventSourceAccountsResponse {
 }
 
 #[pyclass(
-    name = "ListPartnerEventSourcesResponse",
+    name = "ListPartnerEventSourcesOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListPartnerEventSourcesResponse {
+struct PyOperationListPartnerEventSourcesOutput {
     inner:
         aws_sdk_eventbridge::operation::list_partner_event_sources::ListPartnerEventSourcesOutput,
 }
 
 #[pymethods]
-impl PyListPartnerEventSourcesResponse {
+impl PyOperationListPartnerEventSourcesOutput {
     #[getter]
     fn partner_event_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partner_event_sources {
@@ -9803,16 +9803,16 @@ impl PyListPartnerEventSourcesResponse {
 }
 
 #[pyclass(
-    name = "ListReplaysResponse",
+    name = "ListReplaysOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListReplaysResponse {
+struct PyOperationListReplaysOutput {
     inner: aws_sdk_eventbridge::operation::list_replays::ListReplaysOutput,
 }
 
 #[pymethods]
-impl PyListReplaysResponse {
+impl PyOperationListReplaysOutput {
     #[getter]
     fn replays(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replays {
@@ -9868,16 +9868,16 @@ impl PyListReplaysResponse {
 }
 
 #[pyclass(
-    name = "ListRuleNamesByTargetResponse",
+    name = "ListRuleNamesByTargetOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListRuleNamesByTargetResponse {
+struct PyOperationListRuleNamesByTargetOutput {
     inner: aws_sdk_eventbridge::operation::list_rule_names_by_target::ListRuleNamesByTargetOutput,
 }
 
 #[pymethods]
-impl PyListRuleNamesByTargetResponse {
+impl PyOperationListRuleNamesByTargetOutput {
     #[getter]
     fn rule_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_names {
@@ -9926,17 +9926,13 @@ impl PyListRuleNamesByTargetResponse {
     }
 }
 
-#[pyclass(
-    name = "ListRulesResponse",
-    module = "rboto_eventbridge._native",
-    frozen
-)]
-struct PyListRulesResponse {
+#[pyclass(name = "ListRulesOutput", module = "rboto_eventbridge._native", frozen)]
+struct PyOperationListRulesOutput {
     inner: aws_sdk_eventbridge::operation::list_rules::ListRulesOutput,
 }
 
 #[pymethods]
-impl PyListRulesResponse {
+impl PyOperationListRulesOutput {
     #[getter]
     fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rules {
@@ -9992,16 +9988,16 @@ impl PyListRulesResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_eventbridge::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -10041,16 +10037,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListTargetsByRuleResponse",
+    name = "ListTargetsByRuleOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyListTargetsByRuleResponse {
+struct PyOperationListTargetsByRuleOutput {
     inner: aws_sdk_eventbridge::operation::list_targets_by_rule::ListTargetsByRuleOutput,
 }
 
 #[pymethods]
-impl PyListTargetsByRuleResponse {
+impl PyOperationListTargetsByRuleOutput {
     #[getter]
     fn targets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.targets {
@@ -10105,17 +10101,13 @@ impl PyListTargetsByRuleResponse {
     }
 }
 
-#[pyclass(
-    name = "PutEventsResponse",
-    module = "rboto_eventbridge._native",
-    frozen
-)]
-struct PyPutEventsResponse {
+#[pyclass(name = "PutEventsOutput", module = "rboto_eventbridge._native", frozen)]
+struct PyOperationPutEventsOutput {
     inner: aws_sdk_eventbridge::operation::put_events::PutEventsOutput,
 }
 
 #[pymethods]
-impl PyPutEventsResponse {
+impl PyOperationPutEventsOutput {
     #[getter]
     fn failed_entry_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1473 = (&self.inner.failed_entry_count)
@@ -10167,16 +10159,16 @@ impl PyPutEventsResponse {
 }
 
 #[pyclass(
-    name = "PutPartnerEventsResponse",
+    name = "PutPartnerEventsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyPutPartnerEventsResponse {
+struct PyOperationPutPartnerEventsOutput {
     inner: aws_sdk_eventbridge::operation::put_partner_events::PutPartnerEventsOutput,
 }
 
 #[pymethods]
-impl PyPutPartnerEventsResponse {
+impl PyOperationPutPartnerEventsOutput {
     #[getter]
     fn failed_entry_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1481 = (&self.inner.failed_entry_count)
@@ -10227,13 +10219,13 @@ impl PyPutPartnerEventsResponse {
     }
 }
 
-#[pyclass(name = "PutRuleResponse", module = "rboto_eventbridge._native", frozen)]
-struct PyPutRuleResponse {
+#[pyclass(name = "PutRuleOutput", module = "rboto_eventbridge._native", frozen)]
+struct PyOperationPutRuleOutput {
     inner: aws_sdk_eventbridge::operation::put_rule::PutRuleOutput,
 }
 
 #[pymethods]
-impl PyPutRuleResponse {
+impl PyOperationPutRuleOutput {
     #[getter]
     fn rule_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rule_arn {
@@ -10257,16 +10249,16 @@ impl PyPutRuleResponse {
 }
 
 #[pyclass(
-    name = "PutTargetsResponse",
+    name = "PutTargetsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyPutTargetsResponse {
+struct PyOperationPutTargetsOutput {
     inner: aws_sdk_eventbridge::operation::put_targets::PutTargetsOutput,
 }
 
 #[pymethods]
-impl PyPutTargetsResponse {
+impl PyOperationPutTargetsOutput {
     #[getter]
     fn failed_entry_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1491 = (&self.inner.failed_entry_count)
@@ -10318,16 +10310,16 @@ impl PyPutTargetsResponse {
 }
 
 #[pyclass(
-    name = "RemoveTargetsResponse",
+    name = "RemoveTargetsOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyRemoveTargetsResponse {
+struct PyOperationRemoveTargetsOutput {
     inner: aws_sdk_eventbridge::operation::remove_targets::RemoveTargetsOutput,
 }
 
 #[pymethods]
-impl PyRemoveTargetsResponse {
+impl PyOperationRemoveTargetsOutput {
     #[getter]
     fn failed_entry_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1499 = (&self.inner.failed_entry_count)
@@ -10379,16 +10371,16 @@ impl PyRemoveTargetsResponse {
 }
 
 #[pyclass(
-    name = "StartReplayResponse",
+    name = "StartReplayOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyStartReplayResponse {
+struct PyOperationStartReplayOutput {
     inner: aws_sdk_eventbridge::operation::start_replay::StartReplayOutput,
 }
 
 #[pymethods]
-impl PyStartReplayResponse {
+impl PyOperationStartReplayOutput {
     #[getter]
     fn replay_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replay_arn {
@@ -10460,16 +10452,16 @@ impl PyStartReplayResponse {
 }
 
 #[pyclass(
-    name = "TagResourceResponse",
+    name = "TagResourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyTagResourceResponse {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_eventbridge::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10477,16 +10469,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "TestEventPatternResponse",
+    name = "TestEventPatternOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyTestEventPatternResponse {
+struct PyOperationTestEventPatternOutput {
     inner: aws_sdk_eventbridge::operation::test_event_pattern::TestEventPatternOutput,
 }
 
 #[pymethods]
-impl PyTestEventPatternResponse {
+impl PyOperationTestEventPatternOutput {
     #[getter]
     fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1515 = (&self.inner.result).to_owned().into_py_any(py)?;
@@ -10502,16 +10494,16 @@ impl PyTestEventPatternResponse {
 }
 
 #[pyclass(
-    name = "UntagResourceResponse",
+    name = "UntagResourceOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUntagResourceResponse {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_eventbridge::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10519,16 +10511,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateApiDestinationResponse",
+    name = "UpdateApiDestinationOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUpdateApiDestinationResponse {
+struct PyOperationUpdateApiDestinationOutput {
     inner: aws_sdk_eventbridge::operation::update_api_destination::UpdateApiDestinationOutput,
 }
 
 #[pymethods]
-impl PyUpdateApiDestinationResponse {
+impl PyOperationUpdateApiDestinationOutput {
     #[getter]
     fn api_destination_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.api_destination_arn {
@@ -10600,16 +10592,16 @@ impl PyUpdateApiDestinationResponse {
 }
 
 #[pyclass(
-    name = "UpdateArchiveResponse",
+    name = "UpdateArchiveOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUpdateArchiveResponse {
+struct PyOperationUpdateArchiveOutput {
     inner: aws_sdk_eventbridge::operation::update_archive::UpdateArchiveOutput,
 }
 
 #[pymethods]
-impl PyUpdateArchiveResponse {
+impl PyOperationUpdateArchiveOutput {
     #[getter]
     fn archive_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.archive_arn {
@@ -10681,16 +10673,16 @@ impl PyUpdateArchiveResponse {
 }
 
 #[pyclass(
-    name = "UpdateConnectionResponse",
+    name = "UpdateConnectionOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUpdateConnectionResponse {
+struct PyOperationUpdateConnectionOutput {
     inner: aws_sdk_eventbridge::operation::update_connection::UpdateConnectionOutput,
 }
 
 #[pymethods]
-impl PyUpdateConnectionResponse {
+impl PyOperationUpdateConnectionOutput {
     #[getter]
     fn connection_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_arn {
@@ -10778,16 +10770,16 @@ impl PyUpdateConnectionResponse {
 }
 
 #[pyclass(
-    name = "UpdateEndpointResponse",
+    name = "UpdateEndpointOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUpdateEndpointResponse {
+struct PyOperationUpdateEndpointOutput {
     inner: aws_sdk_eventbridge::operation::update_endpoint::UpdateEndpointOutput,
 }
 
 #[pymethods]
-impl PyUpdateEndpointResponse {
+impl PyOperationUpdateEndpointOutput {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
@@ -10967,16 +10959,16 @@ impl PyUpdateEndpointResponse {
 }
 
 #[pyclass(
-    name = "UpdateEventBusResponse",
+    name = "UpdateEventBusOutput",
     module = "rboto_eventbridge._native",
     frozen
 )]
-struct PyUpdateEventBusResponse {
+struct PyOperationUpdateEventBusOutput {
     inner: aws_sdk_eventbridge::operation::update_event_bus::UpdateEventBusOutput,
 }
 
 #[pymethods]
-impl PyUpdateEventBusResponse {
+impl PyOperationUpdateEventBusOutput {
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.arn {
@@ -11148,54 +11140,54 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySqsParameters>()?;
     module.add_class::<PyTag>()?;
     module.add_class::<PyTarget>()?;
-    module.add_class::<PyCancelReplayResponse>()?;
-    module.add_class::<PyCreateApiDestinationResponse>()?;
-    module.add_class::<PyCreateArchiveResponse>()?;
-    module.add_class::<PyCreateConnectionResponse>()?;
-    module.add_class::<PyCreateEndpointResponse>()?;
-    module.add_class::<PyCreateEventBusResponse>()?;
-    module.add_class::<PyCreatePartnerEventSourceResponse>()?;
-    module.add_class::<PyDeauthorizeConnectionResponse>()?;
-    module.add_class::<PyDeleteApiDestinationResponse>()?;
-    module.add_class::<PyDeleteArchiveResponse>()?;
-    module.add_class::<PyDeleteConnectionResponse>()?;
-    module.add_class::<PyDeleteEndpointResponse>()?;
-    module.add_class::<PyDescribeApiDestinationResponse>()?;
-    module.add_class::<PyDescribeArchiveResponse>()?;
-    module.add_class::<PyDescribeConnectionResponse>()?;
-    module.add_class::<PyDescribeEndpointResponse>()?;
-    module.add_class::<PyDescribeEventBusResponse>()?;
-    module.add_class::<PyDescribeEventSourceResponse>()?;
-    module.add_class::<PyDescribePartnerEventSourceResponse>()?;
-    module.add_class::<PyDescribeReplayResponse>()?;
-    module.add_class::<PyDescribeRuleResponse>()?;
-    module.add_class::<PyListApiDestinationsResponse>()?;
-    module.add_class::<PyListArchivesResponse>()?;
-    module.add_class::<PyListConnectionsResponse>()?;
-    module.add_class::<PyListEndpointsResponse>()?;
-    module.add_class::<PyListEventBusesResponse>()?;
-    module.add_class::<PyListEventSourcesResponse>()?;
-    module.add_class::<PyListPartnerEventSourceAccountsResponse>()?;
-    module.add_class::<PyListPartnerEventSourcesResponse>()?;
-    module.add_class::<PyListReplaysResponse>()?;
-    module.add_class::<PyListRuleNamesByTargetResponse>()?;
-    module.add_class::<PyListRulesResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListTargetsByRuleResponse>()?;
-    module.add_class::<PyPutEventsResponse>()?;
-    module.add_class::<PyPutPartnerEventsResponse>()?;
-    module.add_class::<PyPutRuleResponse>()?;
-    module.add_class::<PyPutTargetsResponse>()?;
-    module.add_class::<PyRemoveTargetsResponse>()?;
-    module.add_class::<PyStartReplayResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyTestEventPatternResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateApiDestinationResponse>()?;
-    module.add_class::<PyUpdateArchiveResponse>()?;
-    module.add_class::<PyUpdateConnectionResponse>()?;
-    module.add_class::<PyUpdateEndpointResponse>()?;
-    module.add_class::<PyUpdateEventBusResponse>()?;
+    module.add_class::<PyOperationCancelReplayOutput>()?;
+    module.add_class::<PyOperationCreateApiDestinationOutput>()?;
+    module.add_class::<PyOperationCreateArchiveOutput>()?;
+    module.add_class::<PyOperationCreateConnectionOutput>()?;
+    module.add_class::<PyOperationCreateEndpointOutput>()?;
+    module.add_class::<PyOperationCreateEventBusOutput>()?;
+    module.add_class::<PyOperationCreatePartnerEventSourceOutput>()?;
+    module.add_class::<PyOperationDeauthorizeConnectionOutput>()?;
+    module.add_class::<PyOperationDeleteApiDestinationOutput>()?;
+    module.add_class::<PyOperationDeleteArchiveOutput>()?;
+    module.add_class::<PyOperationDeleteConnectionOutput>()?;
+    module.add_class::<PyOperationDeleteEndpointOutput>()?;
+    module.add_class::<PyOperationDescribeApiDestinationOutput>()?;
+    module.add_class::<PyOperationDescribeArchiveOutput>()?;
+    module.add_class::<PyOperationDescribeConnectionOutput>()?;
+    module.add_class::<PyOperationDescribeEndpointOutput>()?;
+    module.add_class::<PyOperationDescribeEventBusOutput>()?;
+    module.add_class::<PyOperationDescribeEventSourceOutput>()?;
+    module.add_class::<PyOperationDescribePartnerEventSourceOutput>()?;
+    module.add_class::<PyOperationDescribeReplayOutput>()?;
+    module.add_class::<PyOperationDescribeRuleOutput>()?;
+    module.add_class::<PyOperationListApiDestinationsOutput>()?;
+    module.add_class::<PyOperationListArchivesOutput>()?;
+    module.add_class::<PyOperationListConnectionsOutput>()?;
+    module.add_class::<PyOperationListEndpointsOutput>()?;
+    module.add_class::<PyOperationListEventBusesOutput>()?;
+    module.add_class::<PyOperationListEventSourcesOutput>()?;
+    module.add_class::<PyOperationListPartnerEventSourceAccountsOutput>()?;
+    module.add_class::<PyOperationListPartnerEventSourcesOutput>()?;
+    module.add_class::<PyOperationListReplaysOutput>()?;
+    module.add_class::<PyOperationListRuleNamesByTargetOutput>()?;
+    module.add_class::<PyOperationListRulesOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListTargetsByRuleOutput>()?;
+    module.add_class::<PyOperationPutEventsOutput>()?;
+    module.add_class::<PyOperationPutPartnerEventsOutput>()?;
+    module.add_class::<PyOperationPutRuleOutput>()?;
+    module.add_class::<PyOperationPutTargetsOutput>()?;
+    module.add_class::<PyOperationRemoveTargetsOutput>()?;
+    module.add_class::<PyOperationStartReplayOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationTestEventPatternOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateApiDestinationOutput>()?;
+    module.add_class::<PyOperationUpdateArchiveOutput>()?;
+    module.add_class::<PyOperationUpdateConnectionOutput>()?;
+    module.add_class::<PyOperationUpdateEndpointOutput>()?;
+    module.add_class::<PyOperationUpdateEventBusOutput>()?;
 
     Ok(())
 }
@@ -11296,7 +11288,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelReplay"))
             })?;
-            Ok(PyCancelReplayResponse { inner: output })
+            Ok(PyOperationCancelReplayOutput { inner: output })
         })
     }
 
@@ -11373,7 +11365,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiDestination"))
             })?;
-            Ok(PyCreateApiDestinationResponse { inner: output })
+            Ok(PyOperationCreateApiDestinationOutput { inner: output })
         })
     }
 
@@ -11447,7 +11439,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateArchive"))
             })?;
-            Ok(PyCreateArchiveResponse { inner: output })
+            Ok(PyOperationCreateArchiveOutput { inner: output })
         })
     }
 
@@ -11526,7 +11518,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateConnection"))
             })?;
-            Ok(PyCreateConnectionResponse { inner: output })
+            Ok(PyOperationCreateConnectionOutput { inner: output })
         })
     }
 
@@ -11606,7 +11598,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEndpoint"))
             })?;
-            Ok(PyCreateEndpointResponse { inner: output })
+            Ok(PyOperationCreateEndpointOutput { inner: output })
         })
     }
 
@@ -11695,7 +11687,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventBus"))
             })?;
-            Ok(PyCreateEventBusResponse { inner: output })
+            Ok(PyOperationCreateEventBusOutput { inner: output })
         })
     }
 
@@ -11740,7 +11732,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePartnerEventSource"))
             })?;
-            Ok(PyCreatePartnerEventSourceResponse { inner: output })
+            Ok(PyOperationCreatePartnerEventSourceOutput { inner: output })
         })
     }
 
@@ -11812,7 +11804,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeauthorizeConnection"))
             })?;
-            Ok(PyDeauthorizeConnectionResponse { inner: output })
+            Ok(PyOperationDeauthorizeConnectionOutput { inner: output })
         })
     }
 
@@ -11848,7 +11840,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApiDestination"))
             })?;
-            Ok(PyDeleteApiDestinationResponse { inner: output })
+            Ok(PyOperationDeleteApiDestinationOutput { inner: output })
         })
     }
 
@@ -11884,7 +11876,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteArchive"))
             })?;
-            Ok(PyDeleteArchiveResponse { inner: output })
+            Ok(PyOperationDeleteArchiveOutput { inner: output })
         })
     }
 
@@ -11920,7 +11912,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConnection"))
             })?;
-            Ok(PyDeleteConnectionResponse { inner: output })
+            Ok(PyOperationDeleteConnectionOutput { inner: output })
         })
     }
 
@@ -11956,7 +11948,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEndpoint"))
             })?;
-            Ok(PyDeleteEndpointResponse { inner: output })
+            Ok(PyOperationDeleteEndpointOutput { inner: output })
         })
     }
 
@@ -12124,7 +12116,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeApiDestination"))
             })?;
-            Ok(PyDescribeApiDestinationResponse { inner: output })
+            Ok(PyOperationDescribeApiDestinationOutput { inner: output })
         })
     }
 
@@ -12162,7 +12154,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeArchive"))
             })?;
-            Ok(PyDescribeArchiveResponse { inner: output })
+            Ok(PyOperationDescribeArchiveOutput { inner: output })
         })
     }
 
@@ -12198,7 +12190,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeConnection"))
             })?;
-            Ok(PyDescribeConnectionResponse { inner: output })
+            Ok(PyOperationDescribeConnectionOutput { inner: output })
         })
     }
 
@@ -12243,7 +12235,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoint"))
             })?;
-            Ok(PyDescribeEndpointResponse { inner: output })
+            Ok(PyOperationDescribeEndpointOutput { inner: output })
         })
     }
 
@@ -12279,7 +12271,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEventBus"))
             })?;
-            Ok(PyDescribeEventBusResponse { inner: output })
+            Ok(PyOperationDescribeEventBusOutput { inner: output })
         })
     }
 
@@ -12315,7 +12307,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEventSource"))
             })?;
-            Ok(PyDescribeEventSourceResponse { inner: output })
+            Ok(PyOperationDescribeEventSourceOutput { inner: output })
         })
     }
 
@@ -12351,7 +12343,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribePartnerEventSource"))
             })?;
-            Ok(PyDescribePartnerEventSourceResponse { inner: output })
+            Ok(PyOperationDescribePartnerEventSourceOutput { inner: output })
         })
     }
 
@@ -12387,7 +12379,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeReplay"))
             })?;
-            Ok(PyDescribeReplayResponse { inner: output })
+            Ok(PyOperationDescribeReplayOutput { inner: output })
         })
     }
 
@@ -12432,7 +12424,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeRule"))
             })?;
-            Ok(PyDescribeRuleResponse { inner: output })
+            Ok(PyOperationDescribeRuleOutput { inner: output })
         })
     }
 
@@ -12579,7 +12571,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListApiDestinations"))
             })?;
-            Ok(PyListApiDestinationsResponse { inner: output })
+            Ok(PyOperationListApiDestinationsOutput { inner: output })
         })
     }
 
@@ -12647,7 +12639,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListArchives"))
             })?;
-            Ok(PyListArchivesResponse { inner: output })
+            Ok(PyOperationListArchivesOutput { inner: output })
         })
     }
 
@@ -12708,7 +12700,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConnections"))
             })?;
-            Ok(PyListConnectionsResponse { inner: output })
+            Ok(PyOperationListConnectionsOutput { inner: output })
         })
     }
 
@@ -12767,7 +12759,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEndpoints"))
             })?;
-            Ok(PyListEndpointsResponse { inner: output })
+            Ok(PyOperationListEndpointsOutput { inner: output })
         })
     }
 
@@ -12819,7 +12811,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventBuses"))
             })?;
-            Ok(PyListEventBusesResponse { inner: output })
+            Ok(PyOperationListEventBusesOutput { inner: output })
         })
     }
 
@@ -12871,7 +12863,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEventSources"))
             })?;
-            Ok(PyListEventSourcesResponse { inner: output })
+            Ok(PyOperationListEventSourcesOutput { inner: output })
         })
     }
 
@@ -12924,7 +12916,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPartnerEventSourceAccounts"))
             })?;
-            Ok(PyListPartnerEventSourceAccountsResponse { inner: output })
+            Ok(PyOperationListPartnerEventSourceAccountsOutput { inner: output })
         })
     }
 
@@ -12976,7 +12968,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPartnerEventSources"))
             })?;
-            Ok(PyListPartnerEventSourcesResponse { inner: output })
+            Ok(PyOperationListPartnerEventSourcesOutput { inner: output })
         })
     }
 
@@ -13043,7 +13035,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListReplays")))?;
-            Ok(PyListReplaysResponse { inner: output })
+            Ok(PyOperationListReplaysOutput { inner: output })
         })
     }
 
@@ -13102,7 +13094,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRuleNamesByTarget"))
             })?;
-            Ok(PyListRuleNamesByTargetResponse { inner: output })
+            Ok(PyOperationListRuleNamesByTargetOutput { inner: output })
         })
     }
 
@@ -13160,7 +13152,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListRules")))?;
-            Ok(PyListRulesResponse { inner: output })
+            Ok(PyOperationListRulesOutput { inner: output })
         })
     }
 
@@ -13198,7 +13190,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -13257,7 +13249,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTargetsByRule"))
             })?;
-            Ok(PyListTargetsByRuleResponse { inner: output })
+            Ok(PyOperationListTargetsByRuleOutput { inner: output })
         })
     }
 
@@ -13307,7 +13299,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutEvents")))?;
-            Ok(PyPutEventsResponse { inner: output })
+            Ok(PyOperationPutEventsOutput { inner: output })
         })
     }
 
@@ -13349,7 +13341,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutPartnerEvents"))
             })?;
-            Ok(PyPutPartnerEventsResponse { inner: output })
+            Ok(PyOperationPutPartnerEventsOutput { inner: output })
         })
     }
 
@@ -13517,7 +13509,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutRule")))?;
-            Ok(PyPutRuleResponse { inner: output })
+            Ok(PyOperationPutRuleOutput { inner: output })
         })
     }
 
@@ -13574,7 +13566,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutTargets")))?;
-            Ok(PyPutTargetsResponse { inner: output })
+            Ok(PyOperationPutTargetsOutput { inner: output })
         })
     }
 
@@ -13692,7 +13684,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTargets"))
             })?;
-            Ok(PyRemoveTargetsResponse { inner: output })
+            Ok(PyOperationRemoveTargetsOutput { inner: output })
         })
     }
 
@@ -13774,7 +13766,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartReplay")))?;
-            Ok(PyStartReplayResponse { inner: output })
+            Ok(PyOperationStartReplayOutput { inner: output })
         })
     }
 
@@ -13824,7 +13816,7 @@ impl EventBridgeClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -13869,7 +13861,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestEventPattern"))
             })?;
-            Ok(PyTestEventPatternResponse { inner: output })
+            Ok(PyOperationTestEventPatternOutput { inner: output })
         })
     }
 
@@ -13920,7 +13912,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -13997,7 +13989,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiDestination"))
             })?;
-            Ok(PyUpdateApiDestinationResponse { inner: output })
+            Ok(PyOperationUpdateApiDestinationOutput { inner: output })
         })
     }
 
@@ -14064,7 +14056,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateArchive"))
             })?;
-            Ok(PyUpdateArchiveResponse { inner: output })
+            Ok(PyOperationUpdateArchiveOutput { inner: output })
         })
     }
 
@@ -14143,7 +14135,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConnection"))
             })?;
-            Ok(PyUpdateConnectionResponse { inner: output })
+            Ok(PyOperationUpdateConnectionOutput { inner: output })
         })
     }
 
@@ -14223,7 +14215,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEndpoint"))
             })?;
-            Ok(PyUpdateEndpointResponse { inner: output })
+            Ok(PyOperationUpdateEndpointOutput { inner: output })
         })
     }
 
@@ -14291,7 +14283,7 @@ impl EventBridgeClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventBus"))
             })?;
-            Ok(PyUpdateEventBusResponse { inner: output })
+            Ok(PyOperationUpdateEventBusOutput { inner: output })
         })
     }
 }

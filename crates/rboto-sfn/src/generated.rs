@@ -6618,12 +6618,12 @@ impl PyValidateStateMachineDefinitionDiagnostic {
 }
 
 #[pyclass(name = "CreateActivityOutput", module = "rboto_sfn._native", frozen)]
-struct PyCreateActivityOutput {
+struct PyOperationCreateActivityOutput {
     inner: aws_sdk_sfn::operation::create_activity::CreateActivityOutput,
 }
 
 #[pymethods]
-impl PyCreateActivityOutput {
+impl PyOperationCreateActivityOutput {
     #[getter]
     fn activity_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_913 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
@@ -6651,12 +6651,12 @@ impl PyCreateActivityOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyCreateStateMachineOutput {
+struct PyOperationCreateStateMachineOutput {
     inner: aws_sdk_sfn::operation::create_state_machine::CreateStateMachineOutput,
 }
 
 #[pymethods]
-impl PyCreateStateMachineOutput {
+impl PyOperationCreateStateMachineOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_917 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
@@ -6700,12 +6700,12 @@ impl PyCreateStateMachineOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyCreateStateMachineAliasOutput {
+struct PyOperationCreateStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::create_state_machine_alias::CreateStateMachineAliasOutput,
 }
 
 #[pymethods]
-impl PyCreateStateMachineAliasOutput {
+impl PyOperationCreateStateMachineAliasOutput {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_923 = (&self.inner.state_machine_alias_arn)
@@ -6733,12 +6733,12 @@ impl PyCreateStateMachineAliasOutput {
 }
 
 #[pyclass(name = "DeleteActivityOutput", module = "rboto_sfn._native", frozen)]
-struct PyDeleteActivityOutput {
+struct PyOperationDeleteActivityOutput {
     inner: aws_sdk_sfn::operation::delete_activity::DeleteActivityOutput,
 }
 
 #[pymethods]
-impl PyDeleteActivityOutput {
+impl PyOperationDeleteActivityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6750,12 +6750,12 @@ impl PyDeleteActivityOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDeleteStateMachineOutput {
+struct PyOperationDeleteStateMachineOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine::DeleteStateMachineOutput,
 }
 
 #[pymethods]
-impl PyDeleteStateMachineOutput {
+impl PyOperationDeleteStateMachineOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6767,12 +6767,12 @@ impl PyDeleteStateMachineOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDeleteStateMachineAliasOutput {
+struct PyOperationDeleteStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine_alias::DeleteStateMachineAliasOutput,
 }
 
 #[pymethods]
-impl PyDeleteStateMachineAliasOutput {
+impl PyOperationDeleteStateMachineAliasOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6784,12 +6784,12 @@ impl PyDeleteStateMachineAliasOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDeleteStateMachineVersionOutput {
+struct PyOperationDeleteStateMachineVersionOutput {
     inner: aws_sdk_sfn::operation::delete_state_machine_version::DeleteStateMachineVersionOutput,
 }
 
 #[pymethods]
-impl PyDeleteStateMachineVersionOutput {
+impl PyOperationDeleteStateMachineVersionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -6797,12 +6797,12 @@ impl PyDeleteStateMachineVersionOutput {
 }
 
 #[pyclass(name = "DescribeActivityOutput", module = "rboto_sfn._native", frozen)]
-struct PyDescribeActivityOutput {
+struct PyOperationDescribeActivityOutput {
     inner: aws_sdk_sfn::operation::describe_activity::DescribeActivityOutput,
 }
 
 #[pymethods]
-impl PyDescribeActivityOutput {
+impl PyOperationDescribeActivityOutput {
     #[getter]
     fn activity_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_927 = (&self.inner.activity_arn).as_str().into_py_any(py)?;
@@ -6856,12 +6856,12 @@ impl PyDescribeActivityOutput {
 }
 
 #[pyclass(name = "DescribeExecutionOutput", module = "rboto_sfn._native", frozen)]
-struct PyDescribeExecutionOutput {
+struct PyOperationDescribeExecutionOutput {
     inner: aws_sdk_sfn::operation::describe_execution::DescribeExecutionOutput,
 }
 
 #[pymethods]
-impl PyDescribeExecutionOutput {
+impl PyOperationDescribeExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_935 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
@@ -7169,12 +7169,12 @@ impl PyDescribeExecutionOutput {
 }
 
 #[pyclass(name = "DescribeMapRunOutput", module = "rboto_sfn._native", frozen)]
-struct PyDescribeMapRunOutput {
+struct PyOperationDescribeMapRunOutput {
     inner: aws_sdk_sfn::operation::describe_map_run::DescribeMapRunOutput,
 }
 
 #[pymethods]
-impl PyDescribeMapRunOutput {
+impl PyOperationDescribeMapRunOutput {
     #[getter]
     fn map_run_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_975 = (&self.inner.map_run_arn).as_str().into_py_any(py)?;
@@ -7342,12 +7342,12 @@ impl PyDescribeMapRunOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDescribeStateMachineOutput {
+struct PyOperationDescribeStateMachineOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineOutput,
 }
 
 #[pymethods]
-impl PyDescribeStateMachineOutput {
+impl PyOperationDescribeStateMachineOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_999 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
@@ -7575,12 +7575,12 @@ impl PyDescribeStateMachineOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDescribeStateMachineAliasOutput {
+struct PyOperationDescribeStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasOutput,
 }
 
 #[pymethods]
-impl PyDescribeStateMachineAliasOutput {
+impl PyOperationDescribeStateMachineAliasOutput {
     #[getter]
     fn state_machine_alias_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_machine_alias_arn {
@@ -7704,12 +7704,12 @@ impl PyDescribeStateMachineAliasOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyDescribeStateMachineForExecutionOutput {
+struct PyOperationDescribeStateMachineForExecutionOutput {
     inner: aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionOutput,
 }
 
 #[pymethods]
-impl PyDescribeStateMachineForExecutionOutput {
+impl PyOperationDescribeStateMachineForExecutionOutput {
     #[getter]
     fn state_machine_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1055 = (&self.inner.state_machine_arn).as_str().into_py_any(py)?;
@@ -7909,12 +7909,12 @@ impl PyDescribeStateMachineForExecutionOutput {
 }
 
 #[pyclass(name = "GetActivityTaskOutput", module = "rboto_sfn._native", frozen)]
-struct PyGetActivityTaskOutput {
+struct PyOperationGetActivityTaskOutput {
     inner: aws_sdk_sfn::operation::get_activity_task::GetActivityTaskOutput,
 }
 
 #[pymethods]
-impl PyGetActivityTaskOutput {
+impl PyOperationGetActivityTaskOutput {
     #[getter]
     fn task_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_token {
@@ -7958,12 +7958,12 @@ impl PyGetActivityTaskOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyGetExecutionHistoryOutput {
+struct PyOperationGetExecutionHistoryOutput {
     inner: aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryOutput,
 }
 
 #[pymethods]
-impl PyGetExecutionHistoryOutput {
+impl PyOperationGetExecutionHistoryOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1095_list = PyList::empty(py);
@@ -8011,12 +8011,12 @@ impl PyGetExecutionHistoryOutput {
 }
 
 #[pyclass(name = "ListActivitiesOutput", module = "rboto_sfn._native", frozen)]
-struct PyListActivitiesOutput {
+struct PyOperationListActivitiesOutput {
     inner: aws_sdk_sfn::operation::list_activities::ListActivitiesOutput,
 }
 
 #[pymethods]
-impl PyListActivitiesOutput {
+impl PyOperationListActivitiesOutput {
     #[getter]
     fn activities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1103_list = PyList::empty(py);
@@ -8064,12 +8064,12 @@ impl PyListActivitiesOutput {
 }
 
 #[pyclass(name = "ListExecutionsOutput", module = "rboto_sfn._native", frozen)]
-struct PyListExecutionsOutput {
+struct PyOperationListExecutionsOutput {
     inner: aws_sdk_sfn::operation::list_executions::ListExecutionsOutput,
 }
 
 #[pymethods]
-impl PyListExecutionsOutput {
+impl PyOperationListExecutionsOutput {
     #[getter]
     fn executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1111_list = PyList::empty(py);
@@ -8117,12 +8117,12 @@ impl PyListExecutionsOutput {
 }
 
 #[pyclass(name = "ListMapRunsOutput", module = "rboto_sfn._native", frozen)]
-struct PyListMapRunsOutput {
+struct PyOperationListMapRunsOutput {
     inner: aws_sdk_sfn::operation::list_map_runs::ListMapRunsOutput,
 }
 
 #[pymethods]
-impl PyListMapRunsOutput {
+impl PyOperationListMapRunsOutput {
     #[getter]
     fn map_runs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1119_list = PyList::empty(py);
@@ -8174,12 +8174,12 @@ impl PyListMapRunsOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyListStateMachineAliasesOutput {
+struct PyOperationListStateMachineAliasesOutput {
     inner: aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesOutput,
 }
 
 #[pymethods]
-impl PyListStateMachineAliasesOutput {
+impl PyOperationListStateMachineAliasesOutput {
     #[getter]
     fn state_machine_aliases(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1127_list = PyList::empty(py);
@@ -8231,12 +8231,12 @@ impl PyListStateMachineAliasesOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyListStateMachineVersionsOutput {
+struct PyOperationListStateMachineVersionsOutput {
     inner: aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsOutput,
 }
 
 #[pymethods]
-impl PyListStateMachineVersionsOutput {
+impl PyOperationListStateMachineVersionsOutput {
     #[getter]
     fn state_machine_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1135_list = PyList::empty(py);
@@ -8284,12 +8284,12 @@ impl PyListStateMachineVersionsOutput {
 }
 
 #[pyclass(name = "ListStateMachinesOutput", module = "rboto_sfn._native", frozen)]
-struct PyListStateMachinesOutput {
+struct PyOperationListStateMachinesOutput {
     inner: aws_sdk_sfn::operation::list_state_machines::ListStateMachinesOutput,
 }
 
 #[pymethods]
-impl PyListStateMachinesOutput {
+impl PyOperationListStateMachinesOutput {
     #[getter]
     fn state_machines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1143_list = PyList::empty(py);
@@ -8341,12 +8341,12 @@ impl PyListStateMachinesOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyListTagsForResourceOutput {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceOutput {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -8390,12 +8390,12 @@ impl PyListTagsForResourceOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyPublishStateMachineVersionOutput {
+struct PyOperationPublishStateMachineVersionOutput {
     inner: aws_sdk_sfn::operation::publish_state_machine_version::PublishStateMachineVersionOutput,
 }
 
 #[pymethods]
-impl PyPublishStateMachineVersionOutput {
+impl PyOperationPublishStateMachineVersionOutput {
     #[getter]
     fn creation_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1157 = (&self.inner.creation_date).to_string().into_py_any(py)?;
@@ -8423,12 +8423,12 @@ impl PyPublishStateMachineVersionOutput {
 }
 
 #[pyclass(name = "RedriveExecutionOutput", module = "rboto_sfn._native", frozen)]
-struct PyRedriveExecutionOutput {
+struct PyOperationRedriveExecutionOutput {
     inner: aws_sdk_sfn::operation::redrive_execution::RedriveExecutionOutput,
 }
 
 #[pymethods]
-impl PyRedriveExecutionOutput {
+impl PyOperationRedriveExecutionOutput {
     #[getter]
     fn redrive_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1161 = (&self.inner.redrive_date).to_string().into_py_any(py)?;
@@ -8444,12 +8444,12 @@ impl PyRedriveExecutionOutput {
 }
 
 #[pyclass(name = "SendTaskFailureOutput", module = "rboto_sfn._native", frozen)]
-struct PySendTaskFailureOutput {
+struct PyOperationSendTaskFailureOutput {
     inner: aws_sdk_sfn::operation::send_task_failure::SendTaskFailureOutput,
 }
 
 #[pymethods]
-impl PySendTaskFailureOutput {
+impl PyOperationSendTaskFailureOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8457,12 +8457,12 @@ impl PySendTaskFailureOutput {
 }
 
 #[pyclass(name = "SendTaskHeartbeatOutput", module = "rboto_sfn._native", frozen)]
-struct PySendTaskHeartbeatOutput {
+struct PyOperationSendTaskHeartbeatOutput {
     inner: aws_sdk_sfn::operation::send_task_heartbeat::SendTaskHeartbeatOutput,
 }
 
 #[pymethods]
-impl PySendTaskHeartbeatOutput {
+impl PyOperationSendTaskHeartbeatOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8470,12 +8470,12 @@ impl PySendTaskHeartbeatOutput {
 }
 
 #[pyclass(name = "SendTaskSuccessOutput", module = "rboto_sfn._native", frozen)]
-struct PySendTaskSuccessOutput {
+struct PyOperationSendTaskSuccessOutput {
     inner: aws_sdk_sfn::operation::send_task_success::SendTaskSuccessOutput,
 }
 
 #[pymethods]
-impl PySendTaskSuccessOutput {
+impl PyOperationSendTaskSuccessOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8483,12 +8483,12 @@ impl PySendTaskSuccessOutput {
 }
 
 #[pyclass(name = "StartExecutionOutput", module = "rboto_sfn._native", frozen)]
-struct PyStartExecutionOutput {
+struct PyOperationStartExecutionOutput {
     inner: aws_sdk_sfn::operation::start_execution::StartExecutionOutput,
 }
 
 #[pymethods]
-impl PyStartExecutionOutput {
+impl PyOperationStartExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1163 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
@@ -8516,12 +8516,12 @@ impl PyStartExecutionOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyStartSyncExecutionOutput {
+struct PyOperationStartSyncExecutionOutput {
     inner: aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionOutput,
 }
 
 #[pymethods]
-impl PyStartSyncExecutionOutput {
+impl PyOperationStartSyncExecutionOutput {
     #[getter]
     fn execution_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1167 = (&self.inner.execution_arn).as_str().into_py_any(py)?;
@@ -8739,12 +8739,12 @@ impl PyStartSyncExecutionOutput {
 }
 
 #[pyclass(name = "StopExecutionOutput", module = "rboto_sfn._native", frozen)]
-struct PyStopExecutionOutput {
+struct PyOperationStopExecutionOutput {
     inner: aws_sdk_sfn::operation::stop_execution::StopExecutionOutput,
 }
 
 #[pymethods]
-impl PyStopExecutionOutput {
+impl PyOperationStopExecutionOutput {
     #[getter]
     fn stop_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1195 = (&self.inner.stop_date).to_string().into_py_any(py)?;
@@ -8760,12 +8760,12 @@ impl PyStopExecutionOutput {
 }
 
 #[pyclass(name = "TagResourceOutput", module = "rboto_sfn._native", frozen)]
-struct PyTagResourceOutput {
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_sfn::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceOutput {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8773,12 +8773,12 @@ impl PyTagResourceOutput {
 }
 
 #[pyclass(name = "TestStateOutput", module = "rboto_sfn._native", frozen)]
-struct PyTestStateOutput {
+struct PyOperationTestStateOutput {
     inner: aws_sdk_sfn::operation::test_state::TestStateOutput,
 }
 
 #[pymethods]
-impl PyTestStateOutput {
+impl PyOperationTestStateOutput {
     #[getter]
     fn output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output {
@@ -8888,12 +8888,12 @@ impl PyTestStateOutput {
 }
 
 #[pyclass(name = "UntagResourceOutput", module = "rboto_sfn._native", frozen)]
-struct PyUntagResourceOutput {
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_sfn::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceOutput {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8901,12 +8901,12 @@ impl PyUntagResourceOutput {
 }
 
 #[pyclass(name = "UpdateMapRunOutput", module = "rboto_sfn._native", frozen)]
-struct PyUpdateMapRunOutput {
+struct PyOperationUpdateMapRunOutput {
     inner: aws_sdk_sfn::operation::update_map_run::UpdateMapRunOutput,
 }
 
 #[pymethods]
-impl PyUpdateMapRunOutput {
+impl PyOperationUpdateMapRunOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -8918,12 +8918,12 @@ impl PyUpdateMapRunOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyUpdateStateMachineOutput {
+struct PyOperationUpdateStateMachineOutput {
     inner: aws_sdk_sfn::operation::update_state_machine::UpdateStateMachineOutput,
 }
 
 #[pymethods]
-impl PyUpdateStateMachineOutput {
+impl PyOperationUpdateStateMachineOutput {
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1209 = (&self.inner.update_date).to_string().into_py_any(py)?;
@@ -8975,12 +8975,12 @@ impl PyUpdateStateMachineOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyUpdateStateMachineAliasOutput {
+struct PyOperationUpdateStateMachineAliasOutput {
     inner: aws_sdk_sfn::operation::update_state_machine_alias::UpdateStateMachineAliasOutput,
 }
 
 #[pymethods]
-impl PyUpdateStateMachineAliasOutput {
+impl PyOperationUpdateStateMachineAliasOutput {
     #[getter]
     fn update_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1215 = (&self.inner.update_date).to_string().into_py_any(py)?;
@@ -9000,12 +9000,12 @@ impl PyUpdateStateMachineAliasOutput {
     module = "rboto_sfn._native",
     frozen
 )]
-struct PyValidateStateMachineDefinitionOutput {
+struct PyOperationValidateStateMachineDefinitionOutput {
     inner: aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionOutput,
 }
 
 #[pymethods]
-impl PyValidateStateMachineDefinitionOutput {
+impl PyOperationValidateStateMachineDefinitionOutput {
     #[getter]
     fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1217 = (&self.inner.result).as_str().into_py_any(py)?;
@@ -9122,43 +9122,43 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTaskTimedOutEventDetails>()?;
     module.add_class::<PyTracingConfiguration>()?;
     module.add_class::<PyValidateStateMachineDefinitionDiagnostic>()?;
-    module.add_class::<PyCreateActivityOutput>()?;
-    module.add_class::<PyCreateStateMachineOutput>()?;
-    module.add_class::<PyCreateStateMachineAliasOutput>()?;
-    module.add_class::<PyDeleteActivityOutput>()?;
-    module.add_class::<PyDeleteStateMachineOutput>()?;
-    module.add_class::<PyDeleteStateMachineAliasOutput>()?;
-    module.add_class::<PyDeleteStateMachineVersionOutput>()?;
-    module.add_class::<PyDescribeActivityOutput>()?;
-    module.add_class::<PyDescribeExecutionOutput>()?;
-    module.add_class::<PyDescribeMapRunOutput>()?;
-    module.add_class::<PyDescribeStateMachineOutput>()?;
-    module.add_class::<PyDescribeStateMachineAliasOutput>()?;
-    module.add_class::<PyDescribeStateMachineForExecutionOutput>()?;
-    module.add_class::<PyGetActivityTaskOutput>()?;
-    module.add_class::<PyGetExecutionHistoryOutput>()?;
-    module.add_class::<PyListActivitiesOutput>()?;
-    module.add_class::<PyListExecutionsOutput>()?;
-    module.add_class::<PyListMapRunsOutput>()?;
-    module.add_class::<PyListStateMachineAliasesOutput>()?;
-    module.add_class::<PyListStateMachineVersionsOutput>()?;
-    module.add_class::<PyListStateMachinesOutput>()?;
-    module.add_class::<PyListTagsForResourceOutput>()?;
-    module.add_class::<PyPublishStateMachineVersionOutput>()?;
-    module.add_class::<PyRedriveExecutionOutput>()?;
-    module.add_class::<PySendTaskFailureOutput>()?;
-    module.add_class::<PySendTaskHeartbeatOutput>()?;
-    module.add_class::<PySendTaskSuccessOutput>()?;
-    module.add_class::<PyStartExecutionOutput>()?;
-    module.add_class::<PyStartSyncExecutionOutput>()?;
-    module.add_class::<PyStopExecutionOutput>()?;
-    module.add_class::<PyTagResourceOutput>()?;
-    module.add_class::<PyTestStateOutput>()?;
-    module.add_class::<PyUntagResourceOutput>()?;
-    module.add_class::<PyUpdateMapRunOutput>()?;
-    module.add_class::<PyUpdateStateMachineOutput>()?;
-    module.add_class::<PyUpdateStateMachineAliasOutput>()?;
-    module.add_class::<PyValidateStateMachineDefinitionOutput>()?;
+    module.add_class::<PyOperationCreateActivityOutput>()?;
+    module.add_class::<PyOperationCreateStateMachineOutput>()?;
+    module.add_class::<PyOperationCreateStateMachineAliasOutput>()?;
+    module.add_class::<PyOperationDeleteActivityOutput>()?;
+    module.add_class::<PyOperationDeleteStateMachineOutput>()?;
+    module.add_class::<PyOperationDeleteStateMachineAliasOutput>()?;
+    module.add_class::<PyOperationDeleteStateMachineVersionOutput>()?;
+    module.add_class::<PyOperationDescribeActivityOutput>()?;
+    module.add_class::<PyOperationDescribeExecutionOutput>()?;
+    module.add_class::<PyOperationDescribeMapRunOutput>()?;
+    module.add_class::<PyOperationDescribeStateMachineOutput>()?;
+    module.add_class::<PyOperationDescribeStateMachineAliasOutput>()?;
+    module.add_class::<PyOperationDescribeStateMachineForExecutionOutput>()?;
+    module.add_class::<PyOperationGetActivityTaskOutput>()?;
+    module.add_class::<PyOperationGetExecutionHistoryOutput>()?;
+    module.add_class::<PyOperationListActivitiesOutput>()?;
+    module.add_class::<PyOperationListExecutionsOutput>()?;
+    module.add_class::<PyOperationListMapRunsOutput>()?;
+    module.add_class::<PyOperationListStateMachineAliasesOutput>()?;
+    module.add_class::<PyOperationListStateMachineVersionsOutput>()?;
+    module.add_class::<PyOperationListStateMachinesOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationPublishStateMachineVersionOutput>()?;
+    module.add_class::<PyOperationRedriveExecutionOutput>()?;
+    module.add_class::<PyOperationSendTaskFailureOutput>()?;
+    module.add_class::<PyOperationSendTaskHeartbeatOutput>()?;
+    module.add_class::<PyOperationSendTaskSuccessOutput>()?;
+    module.add_class::<PyOperationStartExecutionOutput>()?;
+    module.add_class::<PyOperationStartSyncExecutionOutput>()?;
+    module.add_class::<PyOperationStopExecutionOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationTestStateOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateMapRunOutput>()?;
+    module.add_class::<PyOperationUpdateStateMachineOutput>()?;
+    module.add_class::<PyOperationUpdateStateMachineAliasOutput>()?;
+    module.add_class::<PyOperationValidateStateMachineDefinitionOutput>()?;
 
     Ok(())
 }
@@ -9246,7 +9246,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateActivity"))
             })?;
-            Ok(PyCreateActivityOutput { inner: output })
+            Ok(PyOperationCreateActivityOutput { inner: output })
         })
     }
 
@@ -9358,7 +9358,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateStateMachine"))
             })?;
-            Ok(PyCreateStateMachineOutput { inner: output })
+            Ok(PyOperationCreateStateMachineOutput { inner: output })
         })
     }
 
@@ -9417,7 +9417,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateStateMachineAlias"))
             })?;
-            Ok(PyCreateStateMachineAliasOutput { inner: output })
+            Ok(PyOperationCreateStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9455,7 +9455,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteActivity"))
             })?;
-            Ok(PyDeleteActivityOutput { inner: output })
+            Ok(PyOperationDeleteActivityOutput { inner: output })
         })
     }
 
@@ -9494,7 +9494,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachine"))
             })?;
-            Ok(PyDeleteStateMachineOutput { inner: output })
+            Ok(PyOperationDeleteStateMachineOutput { inner: output })
         })
     }
 
@@ -9533,7 +9533,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachineAlias"))
             })?;
-            Ok(PyDeleteStateMachineAliasOutput { inner: output })
+            Ok(PyOperationDeleteStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9572,7 +9572,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStateMachineVersion"))
             })?;
-            Ok(PyDeleteStateMachineVersionOutput { inner: output })
+            Ok(PyOperationDeleteStateMachineVersionOutput { inner: output })
         })
     }
 
@@ -9610,7 +9610,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivity"))
             })?;
-            Ok(PyDescribeActivityOutput { inner: output })
+            Ok(PyOperationDescribeActivityOutput { inner: output })
         })
     }
 
@@ -9656,7 +9656,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExecution"))
             })?;
-            Ok(PyDescribeExecutionOutput { inner: output })
+            Ok(PyOperationDescribeExecutionOutput { inner: output })
         })
     }
 
@@ -9692,7 +9692,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMapRun"))
             })?;
-            Ok(PyDescribeMapRunOutput { inner: output })
+            Ok(PyOperationDescribeMapRunOutput { inner: output })
         })
     }
 
@@ -9739,7 +9739,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachine"))
             })?;
-            Ok(PyDescribeStateMachineOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineOutput { inner: output })
         })
     }
 
@@ -9778,7 +9778,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineAlias"))
             })?;
-            Ok(PyDescribeStateMachineAliasOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -9824,7 +9824,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DescribeStateMachineForExecution"))
             })?;
-            Ok(PyDescribeStateMachineForExecutionOutput { inner: output })
+            Ok(PyOperationDescribeStateMachineForExecutionOutput { inner: output })
         })
     }
 
@@ -9869,7 +9869,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetActivityTask"))
             })?;
-            Ok(PyGetActivityTaskOutput { inner: output })
+            Ok(PyOperationGetActivityTaskOutput { inner: output })
         })
     }
 
@@ -9936,7 +9936,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionHistory"))
             })?;
-            Ok(PyGetExecutionHistoryOutput { inner: output })
+            Ok(PyOperationGetExecutionHistoryOutput { inner: output })
         })
     }
 
@@ -9981,7 +9981,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListActivities"))
             })?;
-            Ok(PyListActivitiesOutput { inner: output })
+            Ok(PyOperationListActivitiesOutput { inner: output })
         })
     }
 
@@ -10058,7 +10058,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListExecutions"))
             })?;
-            Ok(PyListExecutionsOutput { inner: output })
+            Ok(PyOperationListExecutionsOutput { inner: output })
         })
     }
 
@@ -10109,7 +10109,7 @@ impl SFNClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMapRuns")))?;
-            Ok(PyListMapRunsOutput { inner: output })
+            Ok(PyOperationListMapRunsOutput { inner: output })
         })
     }
 
@@ -10162,7 +10162,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineAliases"))
             })?;
-            Ok(PyListStateMachineAliasesOutput { inner: output })
+            Ok(PyOperationListStateMachineAliasesOutput { inner: output })
         })
     }
 
@@ -10215,7 +10215,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachineVersions"))
             })?;
-            Ok(PyListStateMachineVersionsOutput { inner: output })
+            Ok(PyOperationListStateMachineVersionsOutput { inner: output })
         })
     }
 
@@ -10260,7 +10260,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListStateMachines"))
             })?;
-            Ok(PyListStateMachinesOutput { inner: output })
+            Ok(PyOperationListStateMachinesOutput { inner: output })
         })
     }
 
@@ -10298,7 +10298,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceOutput { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -10351,7 +10351,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishStateMachineVersion"))
             })?;
-            Ok(PyPublishStateMachineVersionOutput { inner: output })
+            Ok(PyOperationPublishStateMachineVersionOutput { inner: output })
         })
     }
 
@@ -10396,7 +10396,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RedriveExecution"))
             })?;
-            Ok(PyRedriveExecutionOutput { inner: output })
+            Ok(PyOperationRedriveExecutionOutput { inner: output })
         })
     }
 
@@ -10448,7 +10448,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskFailure"))
             })?;
-            Ok(PySendTaskFailureOutput { inner: output })
+            Ok(PyOperationSendTaskFailureOutput { inner: output })
         })
     }
 
@@ -10486,7 +10486,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskHeartbeat"))
             })?;
-            Ok(PySendTaskHeartbeatOutput { inner: output })
+            Ok(PyOperationSendTaskHeartbeatOutput { inner: output })
         })
     }
 
@@ -10531,7 +10531,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendTaskSuccess"))
             })?;
-            Ok(PySendTaskSuccessOutput { inner: output })
+            Ok(PyOperationSendTaskSuccessOutput { inner: output })
         })
     }
 
@@ -10591,7 +10591,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartExecution"))
             })?;
-            Ok(PyStartExecutionOutput { inner: output })
+            Ok(PyOperationStartExecutionOutput { inner: output })
         })
     }
 
@@ -10659,7 +10659,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StartSyncExecution"))
             })?;
-            Ok(PyStartSyncExecutionOutput { inner: output })
+            Ok(PyOperationStartSyncExecutionOutput { inner: output })
         })
     }
 
@@ -10711,7 +10711,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "StopExecution"))
             })?;
-            Ok(PyStopExecutionOutput { inner: output })
+            Ok(PyOperationStopExecutionOutput { inner: output })
         })
     }
 
@@ -10761,7 +10761,7 @@ impl SFNClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceOutput { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -10863,7 +10863,7 @@ impl SFNClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TestState")))?;
-            Ok(PyTestStateOutput { inner: output })
+            Ok(PyOperationTestStateOutput { inner: output })
         })
     }
 
@@ -10914,7 +10914,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceOutput { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -10975,7 +10975,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMapRun"))
             })?;
-            Ok(PyUpdateMapRunOutput { inner: output })
+            Ok(PyOperationUpdateMapRunOutput { inner: output })
         })
     }
 
@@ -11067,7 +11067,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStateMachine"))
             })?;
-            Ok(PyUpdateStateMachineOutput { inner: output })
+            Ok(PyOperationUpdateStateMachineOutput { inner: output })
         })
     }
 
@@ -11127,7 +11127,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStateMachineAlias"))
             })?;
-            Ok(PyUpdateStateMachineAliasOutput { inner: output })
+            Ok(PyOperationUpdateStateMachineAliasOutput { inner: output })
         })
     }
 
@@ -11190,7 +11190,7 @@ impl SFNClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ValidateStateMachineDefinition"))
             })?;
-            Ok(PyValidateStateMachineDefinitionOutput { inner: output })
+            Ok(PyOperationValidateStateMachineDefinitionOutput { inner: output })
         })
     }
 }

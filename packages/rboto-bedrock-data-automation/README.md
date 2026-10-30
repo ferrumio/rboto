@@ -85,33 +85,33 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`copy_blueprint_stage`](#copy_blueprint_stage) | <code>blueprint_arn: str</code>, <code>source_stage: BlueprintStage</code>, <code>target_stage: BlueprintStage</code> | <code>CopyBlueprintStageResponse</code> |
-| [`create_blueprint`](#create_blueprint) | <code>blueprint_name: str</code>, <code>type: Type</code>, <code>schema: str</code> | <code>CreateBlueprintResponse</code> |
-| [`create_blueprint_version`](#create_blueprint_version) | <code>blueprint_arn: str</code> | <code>CreateBlueprintVersionResponse</code> |
-| [`create_data_automation_library`](#create_data_automation_library) | <code>library_name: str</code> | <code>CreateDataAutomationLibraryResponse</code> |
-| [`create_data_automation_project`](#create_data_automation_project) | <code>project_name: str</code>, <code>standard_output_configuration: StandardOutputConfiguration</code> | <code>CreateDataAutomationProjectResponse</code> |
-| [`delete_blueprint`](#delete_blueprint) | <code>blueprint_arn: str</code> | <code>DeleteBlueprintResponse</code> |
-| [`delete_data_automation_library`](#delete_data_automation_library) | <code>library_arn: str</code> | <code>DeleteDataAutomationLibraryResponse</code> |
-| [`delete_data_automation_project`](#delete_data_automation_project) | <code>project_arn: str</code> | <code>DeleteDataAutomationProjectResponse</code> |
-| [`get_blueprint`](#get_blueprint) | <code>blueprint_arn: str</code> | <code>GetBlueprintResponse</code> |
-| [`get_blueprint_optimization_status`](#get_blueprint_optimization_status) | <code>invocation_arn: str</code> | <code>GetBlueprintOptimizationStatusResponse</code> |
-| [`get_data_automation_library`](#get_data_automation_library) | <code>library_arn: str</code> | <code>GetDataAutomationLibraryResponse</code> |
-| [`get_data_automation_library_entity`](#get_data_automation_library_entity) | <code>library_arn: str</code>, <code>entity_type: EntityType</code>, <code>entity_id: str</code> | <code>GetDataAutomationLibraryEntityResponse</code> |
-| [`get_data_automation_library_ingestion_job`](#get_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>job_arn: str</code> | <code>GetDataAutomationLibraryIngestionJobResponse</code> |
-| [`get_data_automation_project`](#get_data_automation_project) | <code>project_arn: str</code> | <code>GetDataAutomationProjectResponse</code> |
-| [`invoke_blueprint_optimization_async`](#invoke_blueprint_optimization_async) | <code>blueprint: BlueprintOptimizationObject</code>, <code>samples: Sequence[BlueprintOptimizationSample]</code>, <code>output_configuration: BlueprintOptimizationOutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeBlueprintOptimizationAsyncResponse</code> |
-| [`invoke_data_automation_library_ingestion_job`](#invoke_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>input_configuration: InputConfiguration</code>, <code>entity_type: EntityType</code>, <code>operation_type: LibraryIngestionJobOperationType</code>, <code>output_configuration: OutputConfiguration</code> | <code>InvokeDataAutomationLibraryIngestionJobResponse</code> |
-| [`list_blueprints`](#list_blueprints) | None | <code>ListBlueprintsResponse</code> |
-| [`list_data_automation_libraries`](#list_data_automation_libraries) | None | <code>ListDataAutomationLibrariesResponse</code> |
-| [`list_data_automation_library_entities`](#list_data_automation_library_entities) | <code>library_arn: str</code>, <code>entity_type: EntityType</code> | <code>ListDataAutomationLibraryEntitiesResponse</code> |
-| [`list_data_automation_library_ingestion_jobs`](#list_data_automation_library_ingestion_jobs) | <code>library_arn: str</code> | <code>ListDataAutomationLibraryIngestionJobsResponse</code> |
-| [`list_data_automation_projects`](#list_data_automation_projects) | None | <code>ListDataAutomationProjectsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_blueprint`](#update_blueprint) | <code>blueprint_arn: str</code>, <code>schema: str</code> | <code>UpdateBlueprintResponse</code> |
-| [`update_data_automation_library`](#update_data_automation_library) | <code>library_arn: str</code> | <code>UpdateDataAutomationLibraryResponse</code> |
-| [`update_data_automation_project`](#update_data_automation_project) | <code>project_arn: str</code>, <code>standard_output_configuration: StandardOutputConfiguration</code> | <code>UpdateDataAutomationProjectResponse</code> |
+| [`copy_blueprint_stage`](#copy_blueprint_stage) | <code>blueprint_arn: str</code>, <code>source_stage: BlueprintStage</code>, <code>target_stage: BlueprintStage</code> | <code>CopyBlueprintStageOutput</code> |
+| [`create_blueprint`](#create_blueprint) | <code>blueprint_name: str</code>, <code>type: Type</code>, <code>schema: str</code> | <code>CreateBlueprintOutput</code> |
+| [`create_blueprint_version`](#create_blueprint_version) | <code>blueprint_arn: str</code> | <code>CreateBlueprintVersionOutput</code> |
+| [`create_data_automation_library`](#create_data_automation_library) | <code>library_name: str</code> | <code>CreateDataAutomationLibraryOutput</code> |
+| [`create_data_automation_project`](#create_data_automation_project) | <code>project_name: str</code>, <code>standard_output_configuration: StandardOutputConfiguration</code> | <code>CreateDataAutomationProjectOutput</code> |
+| [`delete_blueprint`](#delete_blueprint) | <code>blueprint_arn: str</code> | <code>DeleteBlueprintOutput</code> |
+| [`delete_data_automation_library`](#delete_data_automation_library) | <code>library_arn: str</code> | <code>DeleteDataAutomationLibraryOutput</code> |
+| [`delete_data_automation_project`](#delete_data_automation_project) | <code>project_arn: str</code> | <code>DeleteDataAutomationProjectOutput</code> |
+| [`get_blueprint`](#get_blueprint) | <code>blueprint_arn: str</code> | <code>GetBlueprintOutput</code> |
+| [`get_blueprint_optimization_status`](#get_blueprint_optimization_status) | <code>invocation_arn: str</code> | <code>GetBlueprintOptimizationStatusOutput</code> |
+| [`get_data_automation_library`](#get_data_automation_library) | <code>library_arn: str</code> | <code>GetDataAutomationLibraryOutput</code> |
+| [`get_data_automation_library_entity`](#get_data_automation_library_entity) | <code>library_arn: str</code>, <code>entity_type: EntityType</code>, <code>entity_id: str</code> | <code>GetDataAutomationLibraryEntityOutput</code> |
+| [`get_data_automation_library_ingestion_job`](#get_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>job_arn: str</code> | <code>GetDataAutomationLibraryIngestionJobOutput</code> |
+| [`get_data_automation_project`](#get_data_automation_project) | <code>project_arn: str</code> | <code>GetDataAutomationProjectOutput</code> |
+| [`invoke_blueprint_optimization_async`](#invoke_blueprint_optimization_async) | <code>blueprint: BlueprintOptimizationObject</code>, <code>samples: Sequence[BlueprintOptimizationSample]</code>, <code>output_configuration: BlueprintOptimizationOutputConfiguration</code>, <code>data_automation_profile_arn: str</code> | <code>InvokeBlueprintOptimizationAsyncOutput</code> |
+| [`invoke_data_automation_library_ingestion_job`](#invoke_data_automation_library_ingestion_job) | <code>library_arn: str</code>, <code>input_configuration: InputConfiguration</code>, <code>entity_type: EntityType</code>, <code>operation_type: LibraryIngestionJobOperationType</code>, <code>output_configuration: OutputConfiguration</code> | <code>InvokeDataAutomationLibraryIngestionJobOutput</code> |
+| [`list_blueprints`](#list_blueprints) | None | <code>ListBlueprintsOutput</code> |
+| [`list_data_automation_libraries`](#list_data_automation_libraries) | None | <code>ListDataAutomationLibrariesOutput</code> |
+| [`list_data_automation_library_entities`](#list_data_automation_library_entities) | <code>library_arn: str</code>, <code>entity_type: EntityType</code> | <code>ListDataAutomationLibraryEntitiesOutput</code> |
+| [`list_data_automation_library_ingestion_jobs`](#list_data_automation_library_ingestion_jobs) | <code>library_arn: str</code> | <code>ListDataAutomationLibraryIngestionJobsOutput</code> |
+| [`list_data_automation_projects`](#list_data_automation_projects) | None | <code>ListDataAutomationProjectsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_blueprint`](#update_blueprint) | <code>blueprint_arn: str</code>, <code>schema: str</code> | <code>UpdateBlueprintOutput</code> |
+| [`update_data_automation_library`](#update_data_automation_library) | <code>library_arn: str</code> | <code>UpdateDataAutomationLibraryOutput</code> |
+| [`update_data_automation_project`](#update_data_automation_project) | <code>project_arn: str</code>, <code>standard_output_configuration: StandardOutputConfiguration</code> | <code>UpdateDataAutomationProjectOutput</code> |
 
 ## Complete signatures
 
@@ -124,7 +124,7 @@ async def copy_blueprint_stage(
     source_stage: BlueprintStage,
     target_stage: BlueprintStage,
     client_token: str | None = None,
-) -> CopyBlueprintStageResponse: ...
+) -> CopyBlueprintStageOutput: ...
 ```
 
 
@@ -140,7 +140,7 @@ async def create_blueprint(
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateBlueprintResponse: ...
+) -> CreateBlueprintOutput: ...
 ```
 
 
@@ -151,7 +151,7 @@ async def create_blueprint_version(
     *,
     blueprint_arn: str,
     client_token: str | None = None,
-) -> CreateBlueprintVersionResponse: ...
+) -> CreateBlueprintVersionOutput: ...
 ```
 
 
@@ -165,7 +165,7 @@ async def create_data_automation_library(
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateDataAutomationLibraryResponse: ...
+) -> CreateDataAutomationLibraryOutput: ...
 ```
 
 
@@ -185,7 +185,7 @@ async def create_data_automation_project(
     client_token: str | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateDataAutomationProjectResponse: ...
+) -> CreateDataAutomationProjectOutput: ...
 ```
 
 
@@ -196,7 +196,7 @@ async def delete_blueprint(
     *,
     blueprint_arn: str,
     blueprint_version: str | None = None,
-) -> DeleteBlueprintResponse: ...
+) -> DeleteBlueprintOutput: ...
 ```
 
 
@@ -206,7 +206,7 @@ async def delete_blueprint(
 async def delete_data_automation_library(
     *,
     library_arn: str,
-) -> DeleteDataAutomationLibraryResponse: ...
+) -> DeleteDataAutomationLibraryOutput: ...
 ```
 
 
@@ -216,7 +216,7 @@ async def delete_data_automation_library(
 async def delete_data_automation_project(
     *,
     project_arn: str,
-) -> DeleteDataAutomationProjectResponse: ...
+) -> DeleteDataAutomationProjectOutput: ...
 ```
 
 
@@ -228,7 +228,7 @@ async def get_blueprint(
     blueprint_arn: str,
     blueprint_version: str | None = None,
     blueprint_stage: BlueprintStage | None = None,
-) -> GetBlueprintResponse: ...
+) -> GetBlueprintOutput: ...
 ```
 
 
@@ -238,7 +238,7 @@ async def get_blueprint(
 async def get_blueprint_optimization_status(
     *,
     invocation_arn: str,
-) -> GetBlueprintOptimizationStatusResponse: ...
+) -> GetBlueprintOptimizationStatusOutput: ...
 ```
 
 
@@ -248,7 +248,7 @@ async def get_blueprint_optimization_status(
 async def get_data_automation_library(
     *,
     library_arn: str,
-) -> GetDataAutomationLibraryResponse: ...
+) -> GetDataAutomationLibraryOutput: ...
 ```
 
 
@@ -260,7 +260,7 @@ async def get_data_automation_library_entity(
     library_arn: str,
     entity_type: EntityType,
     entity_id: str,
-) -> GetDataAutomationLibraryEntityResponse: ...
+) -> GetDataAutomationLibraryEntityOutput: ...
 ```
 
 
@@ -271,7 +271,7 @@ async def get_data_automation_library_ingestion_job(
     *,
     library_arn: str,
     job_arn: str,
-) -> GetDataAutomationLibraryIngestionJobResponse: ...
+) -> GetDataAutomationLibraryIngestionJobOutput: ...
 ```
 
 
@@ -282,7 +282,7 @@ async def get_data_automation_project(
     *,
     project_arn: str,
     project_stage: DataAutomationProjectStage | None = None,
-) -> GetDataAutomationProjectResponse: ...
+) -> GetDataAutomationProjectOutput: ...
 ```
 
 
@@ -297,7 +297,7 @@ async def invoke_blueprint_optimization_async(
     data_automation_profile_arn: str,
     encryption_configuration: EncryptionConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> InvokeBlueprintOptimizationAsyncResponse: ...
+) -> InvokeBlueprintOptimizationAsyncOutput: ...
 ```
 
 
@@ -314,7 +314,7 @@ async def invoke_data_automation_library_ingestion_job(
     client_token: str | None = None,
     notification_configuration: NotificationConfiguration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> InvokeDataAutomationLibraryIngestionJobResponse: ...
+) -> InvokeDataAutomationLibraryIngestionJobOutput: ...
 ```
 
 
@@ -329,7 +329,7 @@ async def list_blueprints(
     max_results: int | None = None,
     next_token: str | None = None,
     project_filter: DataAutomationProjectFilter | None = None,
-) -> ListBlueprintsResponse: ...
+) -> ListBlueprintsOutput: ...
 ```
 
 Also available as `client.paginators.list_blueprints(...)`, returning an
@@ -344,7 +344,7 @@ async def list_data_automation_libraries(
     max_results: int | None = None,
     next_token: str | None = None,
     project_filter: DataAutomationProjectFilter | None = None,
-) -> ListDataAutomationLibrariesResponse: ...
+) -> ListDataAutomationLibrariesOutput: ...
 ```
 
 Also available as `client.paginators.list_data_automation_libraries(...)`, returning an
@@ -360,7 +360,7 @@ async def list_data_automation_library_entities(
     entity_type: EntityType,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDataAutomationLibraryEntitiesResponse: ...
+) -> ListDataAutomationLibraryEntitiesOutput: ...
 ```
 
 Also available as `client.paginators.list_data_automation_library_entities(...)`, returning an
@@ -375,7 +375,7 @@ async def list_data_automation_library_ingestion_jobs(
     library_arn: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDataAutomationLibraryIngestionJobsResponse: ...
+) -> ListDataAutomationLibraryIngestionJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_data_automation_library_ingestion_jobs(...)`, returning an
@@ -393,7 +393,7 @@ async def list_data_automation_projects(
     blueprint_filter: BlueprintFilter | None = None,
     resource_owner: ResourceOwner | None = None,
     library_filter: DataAutomationLibraryFilter | None = None,
-) -> ListDataAutomationProjectsResponse: ...
+) -> ListDataAutomationProjectsOutput: ...
 ```
 
 Also available as `client.paginators.list_data_automation_projects(...)`, returning an
@@ -406,7 +406,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -417,7 +417,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -428,7 +428,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -441,7 +441,7 @@ async def update_blueprint(
     schema: str,
     blueprint_stage: BlueprintStage | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-) -> UpdateBlueprintResponse: ...
+) -> UpdateBlueprintOutput: ...
 ```
 
 
@@ -453,7 +453,7 @@ async def update_data_automation_library(
     library_arn: str,
     library_description: str | None = None,
     client_token: str | None = None,
-) -> UpdateDataAutomationLibraryResponse: ...
+) -> UpdateDataAutomationLibraryOutput: ...
 ```
 
 
@@ -470,7 +470,7 @@ async def update_data_automation_project(
     override_configuration: OverrideConfiguration | None = None,
     data_automation_library_configuration: DataAutomationLibraryConfiguration | None = None,
     encryption_configuration: EncryptionConfiguration | None = None,
-) -> UpdateDataAutomationProjectResponse: ...
+) -> UpdateDataAutomationProjectOutput: ...
 ```
 
 

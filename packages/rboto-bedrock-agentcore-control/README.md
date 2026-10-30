@@ -85,177 +85,177 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`add_dataset_examples`](#add_dataset_examples) | <code>dataset_id: str</code>, <code>source: DataSourceType</code> | <code>AddDatasetExamplesResponse</code> |
-| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: Sequence[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsResponse</code> |
-| [`create_agent_runtime`](#create_agent_runtime) | <code>agent_runtime_name: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>CreateAgentRuntimeResponse</code> |
-| [`create_agent_runtime_endpoint`](#create_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>name: str</code> | <code>CreateAgentRuntimeEndpointResponse</code> |
-| [`create_api_key_credential_provider`](#create_api_key_credential_provider) | <code>name: str</code> | <code>CreateApiKeyCredentialProviderResponse</code> |
-| [`create_browser`](#create_browser) | <code>name: str</code>, <code>network_configuration: BrowserNetworkConfiguration</code> | <code>CreateBrowserResponse</code> |
-| [`create_browser_profile`](#create_browser_profile) | <code>name: str</code> | <code>CreateBrowserProfileResponse</code> |
+| [`add_dataset_examples`](#add_dataset_examples) | <code>dataset_id: str</code>, <code>source: DataSourceType</code> | <code>AddDatasetExamplesOutput</code> |
+| [`batch_put_gateway_rate_limits`](#batch_put_gateway_rate_limits) | <code>gateway_identifier: str</code>, <code>rate_limits: Sequence[BatchPutLimitEntry]</code> | <code>BatchPutGatewayRateLimitsOutput</code> |
+| [`create_agent_runtime`](#create_agent_runtime) | <code>agent_runtime_name: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>CreateAgentRuntimeOutput</code> |
+| [`create_agent_runtime_endpoint`](#create_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>name: str</code> | <code>CreateAgentRuntimeEndpointOutput</code> |
+| [`create_api_key_credential_provider`](#create_api_key_credential_provider) | <code>name: str</code> | <code>CreateApiKeyCredentialProviderOutput</code> |
+| [`create_browser`](#create_browser) | <code>name: str</code>, <code>network_configuration: BrowserNetworkConfiguration</code> | <code>CreateBrowserOutput</code> |
+| [`create_browser_profile`](#create_browser_profile) | <code>name: str</code> | <code>CreateBrowserProfileOutput</code> |
 | [`create_capacity_provider`](#create_capacity_provider) | <code>name: str</code>, <code>permissions_configuration: PermissionsConfiguration</code>, <code>compute_configuration: ComputeConfiguration</code> | <code>CreateCapacityProviderOutput</code> |
-| [`create_code_interpreter`](#create_code_interpreter) | <code>name: str</code>, <code>network_configuration: CodeInterpreterNetworkConfiguration</code> | <code>CreateCodeInterpreterResponse</code> |
-| [`create_configuration_bundle`](#create_configuration_bundle) | <code>bundle_name: str</code>, <code>components: dict[str, ComponentConfiguration]</code> | <code>CreateConfigurationBundleResponse</code> |
-| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: Sequence[ConsentPortalSource]</code> | <code>CreateConsentPortalResponse</code> |
-| [`create_dataset`](#create_dataset) | <code>dataset_name: str</code>, <code>source: DataSourceType</code>, <code>schema_type: DatasetSchemaType</code> | <code>CreateDatasetResponse</code> |
-| [`create_dataset_version`](#create_dataset_version) | <code>dataset_id: str</code> | <code>CreateDatasetVersionResponse</code> |
-| [`create_evaluator`](#create_evaluator) | <code>evaluator_name: str</code>, <code>evaluator_config: EvaluatorConfig</code>, <code>level: EvaluatorLevel</code> | <code>CreateEvaluatorResponse</code> |
-| [`create_gateway`](#create_gateway) | <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>CreateGatewayResponse</code> |
-| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: Sequence[str]</code>, <code>entries: Sequence[LimitEntry]</code> | <code>CreateGatewayRateLimitResponse</code> |
-| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: Sequence[Action]</code> | <code>CreateGatewayRuleResponse</code> |
-| [`create_gateway_target`](#create_gateway_target) | <code>gateway_identifier: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>CreateGatewayTargetResponse</code> |
-| [`create_harness`](#create_harness) | <code>harness_name: str</code>, <code>execution_role_arn: str</code> | <code>CreateHarnessResponse</code> |
-| [`create_harness_endpoint`](#create_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>CreateHarnessEndpointResponse</code> |
+| [`create_code_interpreter`](#create_code_interpreter) | <code>name: str</code>, <code>network_configuration: CodeInterpreterNetworkConfiguration</code> | <code>CreateCodeInterpreterOutput</code> |
+| [`create_configuration_bundle`](#create_configuration_bundle) | <code>bundle_name: str</code>, <code>components: dict[str, ComponentConfiguration]</code> | <code>CreateConfigurationBundleOutput</code> |
+| [`create_consent_portal`](#create_consent_portal) | <code>execution_role_arn: str</code>, <code>idp_config: ConsentPortalIdpConfig</code>, <code>name: str</code>, <code>sources: Sequence[ConsentPortalSource]</code> | <code>CreateConsentPortalOutput</code> |
+| [`create_dataset`](#create_dataset) | <code>dataset_name: str</code>, <code>source: DataSourceType</code>, <code>schema_type: DatasetSchemaType</code> | <code>CreateDatasetOutput</code> |
+| [`create_dataset_version`](#create_dataset_version) | <code>dataset_id: str</code> | <code>CreateDatasetVersionOutput</code> |
+| [`create_evaluator`](#create_evaluator) | <code>evaluator_name: str</code>, <code>evaluator_config: EvaluatorConfig</code>, <code>level: EvaluatorLevel</code> | <code>CreateEvaluatorOutput</code> |
+| [`create_gateway`](#create_gateway) | <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>CreateGatewayOutput</code> |
+| [`create_gateway_rate_limit`](#create_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>dimension_keys: Sequence[str]</code>, <code>entries: Sequence[LimitEntry]</code> | <code>CreateGatewayRateLimitOutput</code> |
+| [`create_gateway_rule`](#create_gateway_rule) | <code>gateway_identifier: str</code>, <code>priority: int</code>, <code>actions: Sequence[Action]</code> | <code>CreateGatewayRuleOutput</code> |
+| [`create_gateway_target`](#create_gateway_target) | <code>gateway_identifier: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>CreateGatewayTargetOutput</code> |
+| [`create_harness`](#create_harness) | <code>harness_name: str</code>, <code>execution_role_arn: str</code> | <code>CreateHarnessOutput</code> |
+| [`create_harness_endpoint`](#create_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>CreateHarnessEndpointOutput</code> |
 | [`create_memory`](#create_memory) | <code>name: str</code>, <code>event_expiry_duration: int</code> | <code>CreateMemoryOutput</code> |
-| [`create_oauth2_credential_provider`](#create_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>CreateOauth2CredentialProviderResponse</code> |
-| [`create_online_evaluation_config`](#create_online_evaluation_config) | <code>online_evaluation_config_name: str</code>, <code>rule: Rule</code>, <code>data_source_config: DataSourceConfig</code>, <code>evaluation_execution_role_arn: str</code>, <code>enable_on_create: bool</code> | <code>CreateOnlineEvaluationConfigResponse</code> |
-| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: Sequence[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorResponse</code> |
-| [`create_payment_credential_provider`](#create_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>CreatePaymentCredentialProviderResponse</code> |
-| [`create_payment_manager`](#create_payment_manager) | <code>name: str</code>, <code>authorizer_type: PaymentsAuthorizerType</code>, <code>role_arn: str</code> | <code>CreatePaymentManagerResponse</code> |
-| [`create_policy`](#create_policy) | <code>name: str</code>, <code>definition: PolicyDefinition</code>, <code>policy_engine_id: str</code> | <code>CreatePolicyResponse</code> |
-| [`create_policy_engine`](#create_policy_engine) | <code>name: str</code> | <code>CreatePolicyEngineResponse</code> |
-| [`create_registry`](#create_registry) | <code>name: str</code> | <code>CreateRegistryResponse</code> |
-| [`create_registry_record`](#create_registry_record) | <code>registry_id: str</code>, <code>name: str</code>, <code>descriptor_type: DescriptorType</code> | <code>CreateRegistryRecordResponse</code> |
-| [`create_workload_identity`](#create_workload_identity) | <code>name: str</code> | <code>CreateWorkloadIdentityResponse</code> |
-| [`delete_agent_runtime`](#delete_agent_runtime) | <code>agent_runtime_id: str</code> | <code>DeleteAgentRuntimeResponse</code> |
-| [`delete_agent_runtime_endpoint`](#delete_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>DeleteAgentRuntimeEndpointResponse</code> |
-| [`delete_api_key_credential_provider`](#delete_api_key_credential_provider) | <code>name: str</code> | <code>DeleteApiKeyCredentialProviderResponse</code> |
-| [`delete_browser`](#delete_browser) | <code>browser_id: str</code> | <code>DeleteBrowserResponse</code> |
-| [`delete_browser_profile`](#delete_browser_profile) | <code>profile_id: str</code> | <code>DeleteBrowserProfileResponse</code> |
+| [`create_oauth2_credential_provider`](#create_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>CreateOauth2CredentialProviderOutput</code> |
+| [`create_online_evaluation_config`](#create_online_evaluation_config) | <code>online_evaluation_config_name: str</code>, <code>rule: Rule</code>, <code>data_source_config: DataSourceConfig</code>, <code>evaluation_execution_role_arn: str</code>, <code>enable_on_create: bool</code> | <code>CreateOnlineEvaluationConfigOutput</code> |
+| [`create_payment_connector`](#create_payment_connector) | <code>payment_manager_id: str</code>, <code>name: str</code>, <code>type: PaymentConnectorType</code>, <code>credential_provider_configurations: Sequence[CredentialsProviderConfiguration]</code> | <code>CreatePaymentConnectorOutput</code> |
+| [`create_payment_credential_provider`](#create_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>CreatePaymentCredentialProviderOutput</code> |
+| [`create_payment_manager`](#create_payment_manager) | <code>name: str</code>, <code>authorizer_type: PaymentsAuthorizerType</code>, <code>role_arn: str</code> | <code>CreatePaymentManagerOutput</code> |
+| [`create_policy`](#create_policy) | <code>name: str</code>, <code>definition: PolicyDefinition</code>, <code>policy_engine_id: str</code> | <code>CreatePolicyOutput</code> |
+| [`create_policy_engine`](#create_policy_engine) | <code>name: str</code> | <code>CreatePolicyEngineOutput</code> |
+| [`create_registry`](#create_registry) | <code>name: str</code> | <code>CreateRegistryOutput</code> |
+| [`create_registry_record`](#create_registry_record) | <code>registry_id: str</code>, <code>name: str</code>, <code>descriptor_type: DescriptorType</code> | <code>CreateRegistryRecordOutput</code> |
+| [`create_workload_identity`](#create_workload_identity) | <code>name: str</code> | <code>CreateWorkloadIdentityOutput</code> |
+| [`delete_agent_runtime`](#delete_agent_runtime) | <code>agent_runtime_id: str</code> | <code>DeleteAgentRuntimeOutput</code> |
+| [`delete_agent_runtime_endpoint`](#delete_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>DeleteAgentRuntimeEndpointOutput</code> |
+| [`delete_api_key_credential_provider`](#delete_api_key_credential_provider) | <code>name: str</code> | <code>DeleteApiKeyCredentialProviderOutput</code> |
+| [`delete_browser`](#delete_browser) | <code>browser_id: str</code> | <code>DeleteBrowserOutput</code> |
+| [`delete_browser_profile`](#delete_browser_profile) | <code>profile_id: str</code> | <code>DeleteBrowserProfileOutput</code> |
 | [`delete_capacity_provider`](#delete_capacity_provider) | <code>capacity_provider_id: str</code> | <code>DeleteCapacityProviderOutput</code> |
-| [`delete_code_interpreter`](#delete_code_interpreter) | <code>code_interpreter_id: str</code> | <code>DeleteCodeInterpreterResponse</code> |
-| [`delete_configuration_bundle`](#delete_configuration_bundle) | <code>bundle_id: str</code> | <code>DeleteConfigurationBundleResponse</code> |
-| [`delete_consent_portal`](#delete_consent_portal) | <code>consent_portal_identifier: str</code> | <code>DeleteConsentPortalResponse</code> |
-| [`delete_dataset`](#delete_dataset) | <code>dataset_id: str</code> | <code>DeleteDatasetResponse</code> |
-| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: Sequence[str]</code> | <code>DeleteDatasetExamplesResponse</code> |
-| [`delete_evaluator`](#delete_evaluator) | <code>evaluator_id: str</code> | <code>DeleteEvaluatorResponse</code> |
-| [`delete_gateway`](#delete_gateway) | <code>gateway_identifier: str</code> | <code>DeleteGatewayResponse</code> |
-| [`delete_gateway_rate_limit`](#delete_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>DeleteGatewayRateLimitResponse</code> |
-| [`delete_gateway_rule`](#delete_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>DeleteGatewayRuleResponse</code> |
-| [`delete_gateway_target`](#delete_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code> | <code>DeleteGatewayTargetResponse</code> |
-| [`delete_harness`](#delete_harness) | <code>harness_id: str</code> | <code>DeleteHarnessResponse</code> |
-| [`delete_harness_endpoint`](#delete_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>DeleteHarnessEndpointResponse</code> |
+| [`delete_code_interpreter`](#delete_code_interpreter) | <code>code_interpreter_id: str</code> | <code>DeleteCodeInterpreterOutput</code> |
+| [`delete_configuration_bundle`](#delete_configuration_bundle) | <code>bundle_id: str</code> | <code>DeleteConfigurationBundleOutput</code> |
+| [`delete_consent_portal`](#delete_consent_portal) | <code>consent_portal_identifier: str</code> | <code>DeleteConsentPortalOutput</code> |
+| [`delete_dataset`](#delete_dataset) | <code>dataset_id: str</code> | <code>DeleteDatasetOutput</code> |
+| [`delete_dataset_examples`](#delete_dataset_examples) | <code>dataset_id: str</code>, <code>example_ids: Sequence[str]</code> | <code>DeleteDatasetExamplesOutput</code> |
+| [`delete_evaluator`](#delete_evaluator) | <code>evaluator_id: str</code> | <code>DeleteEvaluatorOutput</code> |
+| [`delete_gateway`](#delete_gateway) | <code>gateway_identifier: str</code> | <code>DeleteGatewayOutput</code> |
+| [`delete_gateway_rate_limit`](#delete_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>DeleteGatewayRateLimitOutput</code> |
+| [`delete_gateway_rule`](#delete_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>DeleteGatewayRuleOutput</code> |
+| [`delete_gateway_target`](#delete_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code> | <code>DeleteGatewayTargetOutput</code> |
+| [`delete_harness`](#delete_harness) | <code>harness_id: str</code> | <code>DeleteHarnessOutput</code> |
+| [`delete_harness_endpoint`](#delete_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>DeleteHarnessEndpointOutput</code> |
 | [`delete_memory`](#delete_memory) | <code>memory_id: str</code> | <code>DeleteMemoryOutput</code> |
-| [`delete_oauth2_credential_provider`](#delete_oauth2_credential_provider) | <code>name: str</code> | <code>DeleteOauth2CredentialProviderResponse</code> |
-| [`delete_online_evaluation_config`](#delete_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>DeleteOnlineEvaluationConfigResponse</code> |
-| [`delete_payment_connector`](#delete_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>DeletePaymentConnectorResponse</code> |
-| [`delete_payment_credential_provider`](#delete_payment_credential_provider) | <code>name: str</code> | <code>DeletePaymentCredentialProviderResponse</code> |
-| [`delete_payment_manager`](#delete_payment_manager) | <code>payment_manager_id: str</code> | <code>DeletePaymentManagerResponse</code> |
-| [`delete_policy`](#delete_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>DeletePolicyResponse</code> |
-| [`delete_policy_engine`](#delete_policy_engine) | <code>policy_engine_id: str</code> | <code>DeletePolicyEngineResponse</code> |
-| [`delete_registry`](#delete_registry) | <code>registry_id: str</code> | <code>DeleteRegistryResponse</code> |
-| [`delete_registry_record`](#delete_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>DeleteRegistryRecordResponse</code> |
-| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
-| [`delete_workload_identity`](#delete_workload_identity) | <code>name: str</code> | <code>DeleteWorkloadIdentityResponse</code> |
-| [`get_agent_runtime`](#get_agent_runtime) | <code>agent_runtime_id: str</code> | <code>GetAgentRuntimeResponse</code> |
-| [`get_agent_runtime_endpoint`](#get_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>GetAgentRuntimeEndpointResponse</code> |
-| [`get_api_key_credential_provider`](#get_api_key_credential_provider) | <code>name: str</code> | <code>GetApiKeyCredentialProviderResponse</code> |
-| [`get_browser`](#get_browser) | <code>browser_id: str</code> | <code>GetBrowserResponse</code> |
-| [`get_browser_profile`](#get_browser_profile) | <code>profile_id: str</code> | <code>GetBrowserProfileResponse</code> |
+| [`delete_oauth2_credential_provider`](#delete_oauth2_credential_provider) | <code>name: str</code> | <code>DeleteOauth2CredentialProviderOutput</code> |
+| [`delete_online_evaluation_config`](#delete_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>DeleteOnlineEvaluationConfigOutput</code> |
+| [`delete_payment_connector`](#delete_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>DeletePaymentConnectorOutput</code> |
+| [`delete_payment_credential_provider`](#delete_payment_credential_provider) | <code>name: str</code> | <code>DeletePaymentCredentialProviderOutput</code> |
+| [`delete_payment_manager`](#delete_payment_manager) | <code>payment_manager_id: str</code> | <code>DeletePaymentManagerOutput</code> |
+| [`delete_policy`](#delete_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>DeletePolicyOutput</code> |
+| [`delete_policy_engine`](#delete_policy_engine) | <code>policy_engine_id: str</code> | <code>DeletePolicyEngineOutput</code> |
+| [`delete_registry`](#delete_registry) | <code>registry_id: str</code> | <code>DeleteRegistryOutput</code> |
+| [`delete_registry_record`](#delete_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>DeleteRegistryRecordOutput</code> |
+| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`delete_workload_identity`](#delete_workload_identity) | <code>name: str</code> | <code>DeleteWorkloadIdentityOutput</code> |
+| [`get_agent_runtime`](#get_agent_runtime) | <code>agent_runtime_id: str</code> | <code>GetAgentRuntimeOutput</code> |
+| [`get_agent_runtime_endpoint`](#get_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>GetAgentRuntimeEndpointOutput</code> |
+| [`get_api_key_credential_provider`](#get_api_key_credential_provider) | <code>name: str</code> | <code>GetApiKeyCredentialProviderOutput</code> |
+| [`get_browser`](#get_browser) | <code>browser_id: str</code> | <code>GetBrowserOutput</code> |
+| [`get_browser_profile`](#get_browser_profile) | <code>profile_id: str</code> | <code>GetBrowserProfileOutput</code> |
 | [`get_capacity_provider`](#get_capacity_provider) | <code>capacity_provider_id: str</code> | <code>GetCapacityProviderOutput</code> |
-| [`get_code_interpreter`](#get_code_interpreter) | <code>code_interpreter_id: str</code> | <code>GetCodeInterpreterResponse</code> |
-| [`get_configuration_bundle`](#get_configuration_bundle) | <code>bundle_id: str</code> | <code>GetConfigurationBundleResponse</code> |
-| [`get_configuration_bundle_version`](#get_configuration_bundle_version) | <code>bundle_id: str</code>, <code>version_id: str</code> | <code>GetConfigurationBundleVersionResponse</code> |
-| [`get_consent_portal`](#get_consent_portal) | <code>consent_portal_identifier: str</code> | <code>GetConsentPortalResponse</code> |
-| [`get_dataset`](#get_dataset) | <code>dataset_id: str</code> | <code>GetDatasetResponse</code> |
-| [`get_evaluator`](#get_evaluator) | <code>evaluator_id: str</code> | <code>GetEvaluatorResponse</code> |
-| [`get_gateway`](#get_gateway) | <code>gateway_identifier: str</code> | <code>GetGatewayResponse</code> |
-| [`get_gateway_rate_limit`](#get_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>GetGatewayRateLimitResponse</code> |
-| [`get_gateway_rule`](#get_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>GetGatewayRuleResponse</code> |
-| [`get_gateway_target`](#get_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code> | <code>GetGatewayTargetResponse</code> |
-| [`get_harness`](#get_harness) | <code>harness_id: str</code> | <code>GetHarnessResponse</code> |
-| [`get_harness_endpoint`](#get_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>GetHarnessEndpointResponse</code> |
+| [`get_code_interpreter`](#get_code_interpreter) | <code>code_interpreter_id: str</code> | <code>GetCodeInterpreterOutput</code> |
+| [`get_configuration_bundle`](#get_configuration_bundle) | <code>bundle_id: str</code> | <code>GetConfigurationBundleOutput</code> |
+| [`get_configuration_bundle_version`](#get_configuration_bundle_version) | <code>bundle_id: str</code>, <code>version_id: str</code> | <code>GetConfigurationBundleVersionOutput</code> |
+| [`get_consent_portal`](#get_consent_portal) | <code>consent_portal_identifier: str</code> | <code>GetConsentPortalOutput</code> |
+| [`get_dataset`](#get_dataset) | <code>dataset_id: str</code> | <code>GetDatasetOutput</code> |
+| [`get_evaluator`](#get_evaluator) | <code>evaluator_id: str</code> | <code>GetEvaluatorOutput</code> |
+| [`get_gateway`](#get_gateway) | <code>gateway_identifier: str</code> | <code>GetGatewayOutput</code> |
+| [`get_gateway_rate_limit`](#get_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code> | <code>GetGatewayRateLimitOutput</code> |
+| [`get_gateway_rule`](#get_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>GetGatewayRuleOutput</code> |
+| [`get_gateway_target`](#get_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code> | <code>GetGatewayTargetOutput</code> |
+| [`get_harness`](#get_harness) | <code>harness_id: str</code> | <code>GetHarnessOutput</code> |
+| [`get_harness_endpoint`](#get_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>GetHarnessEndpointOutput</code> |
 | [`get_memory`](#get_memory) | <code>memory_id: str</code> | <code>GetMemoryOutput</code> |
-| [`get_oauth2_credential_provider`](#get_oauth2_credential_provider) | <code>name: str</code> | <code>GetOauth2CredentialProviderResponse</code> |
-| [`get_online_evaluation_config`](#get_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>GetOnlineEvaluationConfigResponse</code> |
-| [`get_payment_connector`](#get_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>GetPaymentConnectorResponse</code> |
-| [`get_payment_credential_provider`](#get_payment_credential_provider) | <code>name: str</code> | <code>GetPaymentCredentialProviderResponse</code> |
-| [`get_payment_manager`](#get_payment_manager) | <code>payment_manager_id: str</code> | <code>GetPaymentManagerResponse</code> |
-| [`get_policy`](#get_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>GetPolicyResponse</code> |
-| [`get_policy_engine`](#get_policy_engine) | <code>policy_engine_id: str</code> | <code>GetPolicyEngineResponse</code> |
-| [`get_policy_engine_summary`](#get_policy_engine_summary) | <code>policy_engine_id: str</code> | <code>GetPolicyEngineSummaryResponse</code> |
-| [`get_policy_generation`](#get_policy_generation) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>GetPolicyGenerationResponse</code> |
-| [`get_policy_generation_summary`](#get_policy_generation_summary) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>GetPolicyGenerationSummaryResponse</code> |
-| [`get_policy_summary`](#get_policy_summary) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>GetPolicySummaryResponse</code> |
-| [`get_registry`](#get_registry) | <code>registry_id: str</code> | <code>GetRegistryResponse</code> |
-| [`get_registry_record`](#get_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>GetRegistryRecordResponse</code> |
-| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
-| [`get_token_vault`](#get_token_vault) | None | <code>GetTokenVaultResponse</code> |
-| [`get_workload_identity`](#get_workload_identity) | <code>name: str</code> | <code>GetWorkloadIdentityResponse</code> |
-| [`list_agent_runtime_endpoints`](#list_agent_runtime_endpoints) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeEndpointsResponse</code> |
-| [`list_agent_runtime_versions`](#list_agent_runtime_versions) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeVersionsResponse</code> |
+| [`get_oauth2_credential_provider`](#get_oauth2_credential_provider) | <code>name: str</code> | <code>GetOauth2CredentialProviderOutput</code> |
+| [`get_online_evaluation_config`](#get_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>GetOnlineEvaluationConfigOutput</code> |
+| [`get_payment_connector`](#get_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>GetPaymentConnectorOutput</code> |
+| [`get_payment_credential_provider`](#get_payment_credential_provider) | <code>name: str</code> | <code>GetPaymentCredentialProviderOutput</code> |
+| [`get_payment_manager`](#get_payment_manager) | <code>payment_manager_id: str</code> | <code>GetPaymentManagerOutput</code> |
+| [`get_policy`](#get_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>GetPolicyOutput</code> |
+| [`get_policy_engine`](#get_policy_engine) | <code>policy_engine_id: str</code> | <code>GetPolicyEngineOutput</code> |
+| [`get_policy_engine_summary`](#get_policy_engine_summary) | <code>policy_engine_id: str</code> | <code>GetPolicyEngineSummaryOutput</code> |
+| [`get_policy_generation`](#get_policy_generation) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>GetPolicyGenerationOutput</code> |
+| [`get_policy_generation_summary`](#get_policy_generation_summary) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>GetPolicyGenerationSummaryOutput</code> |
+| [`get_policy_summary`](#get_policy_summary) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>GetPolicySummaryOutput</code> |
+| [`get_registry`](#get_registry) | <code>registry_id: str</code> | <code>GetRegistryOutput</code> |
+| [`get_registry_record`](#get_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>GetRegistryRecordOutput</code> |
+| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_token_vault`](#get_token_vault) | None | <code>GetTokenVaultOutput</code> |
+| [`get_workload_identity`](#get_workload_identity) | <code>name: str</code> | <code>GetWorkloadIdentityOutput</code> |
+| [`list_agent_runtime_endpoints`](#list_agent_runtime_endpoints) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeEndpointsOutput</code> |
+| [`list_agent_runtime_versions`](#list_agent_runtime_versions) | <code>agent_runtime_id: str</code> | <code>ListAgentRuntimeVersionsOutput</code> |
 | [`list_agent_runtime_versions_by_capacity_provider`](#list_agent_runtime_versions_by_capacity_provider) | <code>capacity_provider_id: str</code> | <code>ListAgentRuntimeVersionsByCapacityProviderOutput</code> |
-| [`list_agent_runtimes`](#list_agent_runtimes) | None | <code>ListAgentRuntimesResponse</code> |
-| [`list_api_key_credential_providers`](#list_api_key_credential_providers) | None | <code>ListApiKeyCredentialProvidersResponse</code> |
-| [`list_browser_profiles`](#list_browser_profiles) | None | <code>ListBrowserProfilesResponse</code> |
-| [`list_browsers`](#list_browsers) | None | <code>ListBrowsersResponse</code> |
+| [`list_agent_runtimes`](#list_agent_runtimes) | None | <code>ListAgentRuntimesOutput</code> |
+| [`list_api_key_credential_providers`](#list_api_key_credential_providers) | None | <code>ListApiKeyCredentialProvidersOutput</code> |
+| [`list_browser_profiles`](#list_browser_profiles) | None | <code>ListBrowserProfilesOutput</code> |
+| [`list_browsers`](#list_browsers) | None | <code>ListBrowsersOutput</code> |
 | [`list_capacity_providers`](#list_capacity_providers) | None | <code>ListCapacityProvidersOutput</code> |
-| [`list_code_interpreters`](#list_code_interpreters) | None | <code>ListCodeInterpretersResponse</code> |
-| [`list_configuration_bundle_versions`](#list_configuration_bundle_versions) | <code>bundle_id: str</code> | <code>ListConfigurationBundleVersionsResponse</code> |
-| [`list_configuration_bundles`](#list_configuration_bundles) | None | <code>ListConfigurationBundlesResponse</code> |
-| [`list_consent_portals`](#list_consent_portals) | None | <code>ListConsentPortalsResponse</code> |
-| [`list_dataset_examples`](#list_dataset_examples) | <code>dataset_id: str</code> | <code>ListDatasetExamplesResponse</code> |
-| [`list_dataset_versions`](#list_dataset_versions) | <code>dataset_id: str</code> | <code>ListDatasetVersionsResponse</code> |
-| [`list_datasets`](#list_datasets) | None | <code>ListDatasetsResponse</code> |
-| [`list_evaluators`](#list_evaluators) | None | <code>ListEvaluatorsResponse</code> |
-| [`list_gateway_rate_limits`](#list_gateway_rate_limits) | <code>gateway_identifier: str</code> | <code>ListGatewayRateLimitsResponse</code> |
-| [`list_gateway_rules`](#list_gateway_rules) | <code>gateway_identifier: str</code> | <code>ListGatewayRulesResponse</code> |
-| [`list_gateway_targets`](#list_gateway_targets) | <code>gateway_identifier: str</code> | <code>ListGatewayTargetsResponse</code> |
-| [`list_gateways`](#list_gateways) | None | <code>ListGatewaysResponse</code> |
-| [`list_harness_endpoints`](#list_harness_endpoints) | <code>harness_id: str</code> | <code>ListHarnessEndpointsResponse</code> |
-| [`list_harness_versions`](#list_harness_versions) | <code>harness_id: str</code> | <code>ListHarnessVersionsResponse</code> |
-| [`list_harnesses`](#list_harnesses) | None | <code>ListHarnessesResponse</code> |
+| [`list_code_interpreters`](#list_code_interpreters) | None | <code>ListCodeInterpretersOutput</code> |
+| [`list_configuration_bundle_versions`](#list_configuration_bundle_versions) | <code>bundle_id: str</code> | <code>ListConfigurationBundleVersionsOutput</code> |
+| [`list_configuration_bundles`](#list_configuration_bundles) | None | <code>ListConfigurationBundlesOutput</code> |
+| [`list_consent_portals`](#list_consent_portals) | None | <code>ListConsentPortalsOutput</code> |
+| [`list_dataset_examples`](#list_dataset_examples) | <code>dataset_id: str</code> | <code>ListDatasetExamplesOutput</code> |
+| [`list_dataset_versions`](#list_dataset_versions) | <code>dataset_id: str</code> | <code>ListDatasetVersionsOutput</code> |
+| [`list_datasets`](#list_datasets) | None | <code>ListDatasetsOutput</code> |
+| [`list_evaluators`](#list_evaluators) | None | <code>ListEvaluatorsOutput</code> |
+| [`list_gateway_rate_limits`](#list_gateway_rate_limits) | <code>gateway_identifier: str</code> | <code>ListGatewayRateLimitsOutput</code> |
+| [`list_gateway_rules`](#list_gateway_rules) | <code>gateway_identifier: str</code> | <code>ListGatewayRulesOutput</code> |
+| [`list_gateway_targets`](#list_gateway_targets) | <code>gateway_identifier: str</code> | <code>ListGatewayTargetsOutput</code> |
+| [`list_gateways`](#list_gateways) | None | <code>ListGatewaysOutput</code> |
+| [`list_harness_endpoints`](#list_harness_endpoints) | <code>harness_id: str</code> | <code>ListHarnessEndpointsOutput</code> |
+| [`list_harness_versions`](#list_harness_versions) | <code>harness_id: str</code> | <code>ListHarnessVersionsOutput</code> |
+| [`list_harnesses`](#list_harnesses) | None | <code>ListHarnessesOutput</code> |
 | [`list_memories`](#list_memories) | None | <code>ListMemoriesOutput</code> |
-| [`list_oauth2_credential_providers`](#list_oauth2_credential_providers) | None | <code>ListOauth2CredentialProvidersResponse</code> |
-| [`list_online_evaluation_configs`](#list_online_evaluation_configs) | None | <code>ListOnlineEvaluationConfigsResponse</code> |
-| [`list_payment_connectors`](#list_payment_connectors) | <code>payment_manager_id: str</code> | <code>ListPaymentConnectorsResponse</code> |
-| [`list_payment_credential_providers`](#list_payment_credential_providers) | None | <code>ListPaymentCredentialProvidersResponse</code> |
-| [`list_payment_managers`](#list_payment_managers) | None | <code>ListPaymentManagersResponse</code> |
-| [`list_policies`](#list_policies) | <code>policy_engine_id: str</code> | <code>ListPoliciesResponse</code> |
-| [`list_policy_engine_summaries`](#list_policy_engine_summaries) | None | <code>ListPolicyEngineSummariesResponse</code> |
-| [`list_policy_engines`](#list_policy_engines) | None | <code>ListPolicyEnginesResponse</code> |
-| [`list_policy_generation_assets`](#list_policy_generation_assets) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>ListPolicyGenerationAssetsResponse</code> |
-| [`list_policy_generation_summaries`](#list_policy_generation_summaries) | <code>policy_engine_id: str</code> | <code>ListPolicyGenerationSummariesResponse</code> |
-| [`list_policy_generations`](#list_policy_generations) | <code>policy_engine_id: str</code> | <code>ListPolicyGenerationsResponse</code> |
-| [`list_policy_summaries`](#list_policy_summaries) | <code>policy_engine_id: str</code> | <code>ListPolicySummariesResponse</code> |
-| [`list_registries`](#list_registries) | None | <code>ListRegistriesResponse</code> |
-| [`list_registry_records`](#list_registry_records) | <code>registry_id: str</code> | <code>ListRegistryRecordsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_workload_identities`](#list_workload_identities) | None | <code>ListWorkloadIdentitiesResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`rotate_payment_connector_credentials`](#rotate_payment_connector_credentials) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code>, <code>credentials_to_rotate: CredentialRotationConfig</code> | <code>RotatePaymentConnectorCredentialsResponse</code> |
-| [`set_token_vault_cmk`](#set_token_vault_cmk) | <code>kms_configuration: KmsConfiguration</code> | <code>SetTokenVaultCMKResponse</code> |
-| [`start_policy_generation`](#start_policy_generation) | <code>policy_engine_id: str</code>, <code>resource: Resource</code>, <code>content: Content</code>, <code>name: str</code> | <code>StartPolicyGenerationResponse</code> |
-| [`submit_registry_record_for_approval`](#submit_registry_record_for_approval) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>SubmitRegistryRecordForApprovalResponse</code> |
-| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: Sequence[str]</code> | <code>SynchronizeGatewayTargetsResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_agent_runtime`](#update_agent_runtime) | <code>agent_runtime_id: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>UpdateAgentRuntimeResponse</code> |
-| [`update_agent_runtime_endpoint`](#update_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateAgentRuntimeEndpointResponse</code> |
-| [`update_api_key_credential_provider`](#update_api_key_credential_provider) | <code>name: str</code> | <code>UpdateApiKeyCredentialProviderResponse</code> |
+| [`list_oauth2_credential_providers`](#list_oauth2_credential_providers) | None | <code>ListOauth2CredentialProvidersOutput</code> |
+| [`list_online_evaluation_configs`](#list_online_evaluation_configs) | None | <code>ListOnlineEvaluationConfigsOutput</code> |
+| [`list_payment_connectors`](#list_payment_connectors) | <code>payment_manager_id: str</code> | <code>ListPaymentConnectorsOutput</code> |
+| [`list_payment_credential_providers`](#list_payment_credential_providers) | None | <code>ListPaymentCredentialProvidersOutput</code> |
+| [`list_payment_managers`](#list_payment_managers) | None | <code>ListPaymentManagersOutput</code> |
+| [`list_policies`](#list_policies) | <code>policy_engine_id: str</code> | <code>ListPoliciesOutput</code> |
+| [`list_policy_engine_summaries`](#list_policy_engine_summaries) | None | <code>ListPolicyEngineSummariesOutput</code> |
+| [`list_policy_engines`](#list_policy_engines) | None | <code>ListPolicyEnginesOutput</code> |
+| [`list_policy_generation_assets`](#list_policy_generation_assets) | <code>policy_generation_id: str</code>, <code>policy_engine_id: str</code> | <code>ListPolicyGenerationAssetsOutput</code> |
+| [`list_policy_generation_summaries`](#list_policy_generation_summaries) | <code>policy_engine_id: str</code> | <code>ListPolicyGenerationSummariesOutput</code> |
+| [`list_policy_generations`](#list_policy_generations) | <code>policy_engine_id: str</code> | <code>ListPolicyGenerationsOutput</code> |
+| [`list_policy_summaries`](#list_policy_summaries) | <code>policy_engine_id: str</code> | <code>ListPolicySummariesOutput</code> |
+| [`list_registries`](#list_registries) | None | <code>ListRegistriesOutput</code> |
+| [`list_registry_records`](#list_registry_records) | <code>registry_id: str</code> | <code>ListRegistryRecordsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_workload_identities`](#list_workload_identities) | None | <code>ListWorkloadIdentitiesOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`rotate_payment_connector_credentials`](#rotate_payment_connector_credentials) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code>, <code>credentials_to_rotate: CredentialRotationConfig</code> | <code>RotatePaymentConnectorCredentialsOutput</code> |
+| [`set_token_vault_cmk`](#set_token_vault_cmk) | <code>kms_configuration: KmsConfiguration</code> | <code>SetTokenVaultCMKOutput</code> |
+| [`start_policy_generation`](#start_policy_generation) | <code>policy_engine_id: str</code>, <code>resource: Resource</code>, <code>content: Content</code>, <code>name: str</code> | <code>StartPolicyGenerationOutput</code> |
+| [`submit_registry_record_for_approval`](#submit_registry_record_for_approval) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>SubmitRegistryRecordForApprovalOutput</code> |
+| [`synchronize_gateway_targets`](#synchronize_gateway_targets) | <code>gateway_identifier: str</code>, <code>target_id_list: Sequence[str]</code> | <code>SynchronizeGatewayTargetsOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_agent_runtime`](#update_agent_runtime) | <code>agent_runtime_id: str</code>, <code>agent_runtime_artifact: AgentRuntimeArtifact</code>, <code>role_arn: str</code> | <code>UpdateAgentRuntimeOutput</code> |
+| [`update_agent_runtime_endpoint`](#update_agent_runtime_endpoint) | <code>agent_runtime_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateAgentRuntimeEndpointOutput</code> |
+| [`update_api_key_credential_provider`](#update_api_key_credential_provider) | <code>name: str</code> | <code>UpdateApiKeyCredentialProviderOutput</code> |
 | [`update_capacity_provider`](#update_capacity_provider) | <code>capacity_provider_id: str</code> | <code>UpdateCapacityProviderOutput</code> |
-| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: Sequence[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleResponse</code> |
-| [`update_consent_portal`](#update_consent_portal) | <code>consent_portal_identifier: str</code> | <code>UpdateConsentPortalResponse</code> |
-| [`update_dataset`](#update_dataset) | <code>dataset_id: str</code> | <code>UpdateDatasetResponse</code> |
-| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: Sequence[JSONValue]</code> | <code>UpdateDatasetExamplesResponse</code> |
-| [`update_evaluator`](#update_evaluator) | <code>evaluator_id: str</code> | <code>UpdateEvaluatorResponse</code> |
-| [`update_gateway`](#update_gateway) | <code>gateway_identifier: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>UpdateGatewayResponse</code> |
-| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: Sequence[LimitEntry]</code> | <code>UpdateGatewayRateLimitResponse</code> |
-| [`update_gateway_rule`](#update_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>UpdateGatewayRuleResponse</code> |
-| [`update_gateway_target`](#update_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>UpdateGatewayTargetResponse</code> |
-| [`update_harness`](#update_harness) | <code>harness_id: str</code> | <code>UpdateHarnessResponse</code> |
-| [`update_harness_endpoint`](#update_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateHarnessEndpointResponse</code> |
+| [`update_configuration_bundle`](#update_configuration_bundle) | <code>bundle_id: str</code>, <code>parent_version_ids: Sequence[str]</code>, <code>commit_message: str</code> | <code>UpdateConfigurationBundleOutput</code> |
+| [`update_consent_portal`](#update_consent_portal) | <code>consent_portal_identifier: str</code> | <code>UpdateConsentPortalOutput</code> |
+| [`update_dataset`](#update_dataset) | <code>dataset_id: str</code> | <code>UpdateDatasetOutput</code> |
+| [`update_dataset_examples`](#update_dataset_examples) | <code>dataset_id: str</code>, <code>examples: Sequence[JSONValue]</code> | <code>UpdateDatasetExamplesOutput</code> |
+| [`update_evaluator`](#update_evaluator) | <code>evaluator_id: str</code> | <code>UpdateEvaluatorOutput</code> |
+| [`update_gateway`](#update_gateway) | <code>gateway_identifier: str</code>, <code>name: str</code>, <code>role_arn: str</code>, <code>authorizer_type: AuthorizerType</code> | <code>UpdateGatewayOutput</code> |
+| [`update_gateway_rate_limit`](#update_gateway_rate_limit) | <code>gateway_identifier: str</code>, <code>rate_limit_id: str</code>, <code>entries: Sequence[LimitEntry]</code> | <code>UpdateGatewayRateLimitOutput</code> |
+| [`update_gateway_rule`](#update_gateway_rule) | <code>gateway_identifier: str</code>, <code>rule_id: str</code> | <code>UpdateGatewayRuleOutput</code> |
+| [`update_gateway_target`](#update_gateway_target) | <code>gateway_identifier: str</code>, <code>target_id: str</code>, <code>target_configuration: TargetConfiguration</code> | <code>UpdateGatewayTargetOutput</code> |
+| [`update_harness`](#update_harness) | <code>harness_id: str</code> | <code>UpdateHarnessOutput</code> |
+| [`update_harness_endpoint`](#update_harness_endpoint) | <code>harness_id: str</code>, <code>endpoint_name: str</code> | <code>UpdateHarnessEndpointOutput</code> |
 | [`update_memory`](#update_memory) | <code>memory_id: str</code> | <code>UpdateMemoryOutput</code> |
-| [`update_oauth2_credential_provider`](#update_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>UpdateOauth2CredentialProviderResponse</code> |
-| [`update_online_evaluation_config`](#update_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>UpdateOnlineEvaluationConfigResponse</code> |
-| [`update_payment_connector`](#update_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>UpdatePaymentConnectorResponse</code> |
-| [`update_payment_credential_provider`](#update_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>UpdatePaymentCredentialProviderResponse</code> |
-| [`update_payment_manager`](#update_payment_manager) | <code>payment_manager_id: str</code> | <code>UpdatePaymentManagerResponse</code> |
-| [`update_policy`](#update_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>UpdatePolicyResponse</code> |
-| [`update_policy_engine`](#update_policy_engine) | <code>policy_engine_id: str</code> | <code>UpdatePolicyEngineResponse</code> |
-| [`update_registry`](#update_registry) | <code>registry_id: str</code> | <code>UpdateRegistryResponse</code> |
-| [`update_registry_record`](#update_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>UpdateRegistryRecordResponse</code> |
-| [`update_registry_record_status`](#update_registry_record_status) | <code>registry_id: str</code>, <code>record_id: str</code>, <code>status: RegistryRecordStatus</code>, <code>status_reason: str</code> | <code>UpdateRegistryRecordStatusResponse</code> |
-| [`update_workload_identity`](#update_workload_identity) | <code>name: str</code> | <code>UpdateWorkloadIdentityResponse</code> |
+| [`update_oauth2_credential_provider`](#update_oauth2_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: CredentialProviderVendorType</code>, <code>oauth2_provider_config_input: Oauth2ProviderConfigInput</code> | <code>UpdateOauth2CredentialProviderOutput</code> |
+| [`update_online_evaluation_config`](#update_online_evaluation_config) | <code>online_evaluation_config_id: str</code> | <code>UpdateOnlineEvaluationConfigOutput</code> |
+| [`update_payment_connector`](#update_payment_connector) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code> | <code>UpdatePaymentConnectorOutput</code> |
+| [`update_payment_credential_provider`](#update_payment_credential_provider) | <code>name: str</code>, <code>credential_provider_vendor: PaymentCredentialProviderVendorType</code>, <code>provider_configuration_input: PaymentProviderConfigurationInput</code> | <code>UpdatePaymentCredentialProviderOutput</code> |
+| [`update_payment_manager`](#update_payment_manager) | <code>payment_manager_id: str</code> | <code>UpdatePaymentManagerOutput</code> |
+| [`update_policy`](#update_policy) | <code>policy_engine_id: str</code>, <code>policy_id: str</code> | <code>UpdatePolicyOutput</code> |
+| [`update_policy_engine`](#update_policy_engine) | <code>policy_engine_id: str</code> | <code>UpdatePolicyEngineOutput</code> |
+| [`update_registry`](#update_registry) | <code>registry_id: str</code> | <code>UpdateRegistryOutput</code> |
+| [`update_registry_record`](#update_registry_record) | <code>registry_id: str</code>, <code>record_id: str</code> | <code>UpdateRegistryRecordOutput</code> |
+| [`update_registry_record_status`](#update_registry_record_status) | <code>registry_id: str</code>, <code>record_id: str</code>, <code>status: RegistryRecordStatus</code>, <code>status_reason: str</code> | <code>UpdateRegistryRecordStatusOutput</code> |
+| [`update_workload_identity`](#update_workload_identity) | <code>name: str</code> | <code>UpdateWorkloadIdentityOutput</code> |
 
 ## Complete signatures
 
@@ -267,7 +267,7 @@ async def add_dataset_examples(
     dataset_id: str,
     source: DataSourceType,
     client_token: str | None = None,
-) -> AddDatasetExamplesResponse: ...
+) -> AddDatasetExamplesOutput: ...
 ```
 
 
@@ -279,7 +279,7 @@ async def batch_put_gateway_rate_limits(
     gateway_identifier: str,
     rate_limits: Sequence[BatchPutLimitEntry],
     client_token: str | None = None,
-) -> BatchPutGatewayRateLimitsResponse: ...
+) -> BatchPutGatewayRateLimitsOutput: ...
 ```
 
 
@@ -303,7 +303,7 @@ async def create_agent_runtime(
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     tags: dict[str, str] | None = None,
     platform_version: str | None = None,
-) -> CreateAgentRuntimeResponse: ...
+) -> CreateAgentRuntimeOutput: ...
 ```
 
 
@@ -318,7 +318,7 @@ async def create_agent_runtime_endpoint(
     description: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateAgentRuntimeEndpointResponse: ...
+) -> CreateAgentRuntimeEndpointOutput: ...
 ```
 
 
@@ -332,7 +332,7 @@ async def create_api_key_credential_provider(
     api_key_secret_config: SecretReference | None = None,
     api_key_secret_source: SecretSourceType | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateApiKeyCredentialProviderResponse: ...
+) -> CreateApiKeyCredentialProviderOutput: ...
 ```
 
 
@@ -352,7 +352,7 @@ async def create_browser(
     filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateBrowserResponse: ...
+) -> CreateBrowserOutput: ...
 ```
 
 
@@ -365,7 +365,7 @@ async def create_browser_profile(
     description: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateBrowserProfileResponse: ...
+) -> CreateBrowserProfileOutput: ...
 ```
 
 
@@ -397,7 +397,7 @@ async def create_code_interpreter(
     filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateCodeInterpreterResponse: ...
+) -> CreateCodeInterpreterOutput: ...
 ```
 
 
@@ -415,7 +415,7 @@ async def create_configuration_bundle(
     created_by: VersionCreatedBySource | None = None,
     kms_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateConfigurationBundleResponse: ...
+) -> CreateConfigurationBundleOutput: ...
 ```
 
 
@@ -430,7 +430,7 @@ async def create_consent_portal(
     sources: Sequence[ConsentPortalSource],
     description: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateConsentPortalResponse: ...
+) -> CreateConsentPortalOutput: ...
 ```
 
 
@@ -446,7 +446,7 @@ async def create_dataset(
     description: str | None = None,
     kms_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateDatasetResponse: ...
+) -> CreateDatasetOutput: ...
 ```
 
 
@@ -457,7 +457,7 @@ async def create_dataset_version(
     *,
     dataset_id: str,
     client_token: str | None = None,
-) -> CreateDatasetVersionResponse: ...
+) -> CreateDatasetVersionOutput: ...
 ```
 
 
@@ -473,7 +473,7 @@ async def create_evaluator(
     description: str | None = None,
     kms_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateEvaluatorResponse: ...
+) -> CreateEvaluatorOutput: ...
 ```
 
 
@@ -495,7 +495,7 @@ async def create_gateway(
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateGatewayResponse: ...
+) -> CreateGatewayOutput: ...
 ```
 
 
@@ -510,7 +510,7 @@ async def create_gateway_rate_limit(
     client_token: str | None = None,
     rate_limit_id: str | None = None,
     description: str | None = None,
-) -> CreateGatewayRateLimitResponse: ...
+) -> CreateGatewayRateLimitOutput: ...
 ```
 
 
@@ -525,7 +525,7 @@ async def create_gateway_rule(
     client_token: str | None = None,
     conditions: Sequence[Condition] | None = None,
     description: str | None = None,
-) -> CreateGatewayRuleResponse: ...
+) -> CreateGatewayRuleOutput: ...
 ```
 
 
@@ -543,7 +543,7 @@ async def create_gateway_target(
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
     certificate_configurations: Sequence[CertificateConfiguration] | None = None,
-) -> CreateGatewayTargetResponse: ...
+) -> CreateGatewayTargetOutput: ...
 ```
 
 
@@ -571,7 +571,7 @@ async def create_harness(
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateHarnessResponse: ...
+) -> CreateHarnessOutput: ...
 ```
 
 
@@ -586,7 +586,7 @@ async def create_harness_endpoint(
     description: str | None = None,
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateHarnessEndpointResponse: ...
+) -> CreateHarnessEndpointOutput: ...
 ```
 
 
@@ -619,7 +619,7 @@ async def create_oauth2_credential_provider(
     credential_provider_vendor: CredentialProviderVendorType,
     oauth2_provider_config_input: Oauth2ProviderConfigInput,
     tags: dict[str, str] | None = None,
-) -> CreateOauth2CredentialProviderResponse: ...
+) -> CreateOauth2CredentialProviderOutput: ...
 ```
 
 
@@ -640,7 +640,7 @@ async def create_online_evaluation_config(
     clustering_config: ClusteringConfig | None = None,
     output_config: OutputConfig | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateOnlineEvaluationConfigResponse: ...
+) -> CreateOnlineEvaluationConfigOutput: ...
 ```
 
 
@@ -656,7 +656,7 @@ async def create_payment_connector(
     description: str | None = None,
     provision_mode: PaymentConnectorProvisionMode | None = None,
     client_token: str | None = None,
-) -> CreatePaymentConnectorResponse: ...
+) -> CreatePaymentConnectorOutput: ...
 ```
 
 
@@ -669,7 +669,7 @@ async def create_payment_credential_provider(
     credential_provider_vendor: PaymentCredentialProviderVendorType,
     provider_configuration_input: PaymentProviderConfigurationInput,
     tags: dict[str, str] | None = None,
-) -> CreatePaymentCredentialProviderResponse: ...
+) -> CreatePaymentCredentialProviderOutput: ...
 ```
 
 
@@ -686,7 +686,7 @@ async def create_payment_manager(
     client_token: str | None = None,
     tags: dict[str, str] | None = None,
     kms_key_arn: str | None = None,
-) -> CreatePaymentManagerResponse: ...
+) -> CreatePaymentManagerOutput: ...
 ```
 
 
@@ -702,7 +702,7 @@ async def create_policy(
     validation_mode: PolicyValidationMode | None = None,
     enforcement_mode: EnforcementMode | None = None,
     client_token: str | None = None,
-) -> CreatePolicyResponse: ...
+) -> CreatePolicyOutput: ...
 ```
 
 
@@ -716,7 +716,7 @@ async def create_policy_engine(
     client_token: str | None = None,
     encryption_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreatePolicyEngineResponse: ...
+) -> CreatePolicyEngineOutput: ...
 ```
 
 
@@ -731,7 +731,7 @@ async def create_registry(
     authorizer_configuration: AuthorizerConfiguration | None = None,
     client_token: str | None = None,
     approval_configuration: ApprovalConfiguration | None = None,
-) -> CreateRegistryResponse: ...
+) -> CreateRegistryOutput: ...
 ```
 
 
@@ -749,7 +749,7 @@ async def create_registry_record(
     synchronization_type: SynchronizationType | None = None,
     synchronization_configuration: SynchronizationConfiguration | None = None,
     client_token: str | None = None,
-) -> CreateRegistryRecordResponse: ...
+) -> CreateRegistryRecordOutput: ...
 ```
 
 
@@ -761,7 +761,7 @@ async def create_workload_identity(
     name: str,
     allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateWorkloadIdentityResponse: ...
+) -> CreateWorkloadIdentityOutput: ...
 ```
 
 
@@ -773,7 +773,7 @@ async def delete_agent_runtime(
     agent_runtime_id: str,
     agent_runtime_version: str | None = None,
     client_token: str | None = None,
-) -> DeleteAgentRuntimeResponse: ...
+) -> DeleteAgentRuntimeOutput: ...
 ```
 
 
@@ -785,7 +785,7 @@ async def delete_agent_runtime_endpoint(
     agent_runtime_id: str,
     endpoint_name: str,
     client_token: str | None = None,
-) -> DeleteAgentRuntimeEndpointResponse: ...
+) -> DeleteAgentRuntimeEndpointOutput: ...
 ```
 
 
@@ -795,7 +795,7 @@ async def delete_agent_runtime_endpoint(
 async def delete_api_key_credential_provider(
     *,
     name: str,
-) -> DeleteApiKeyCredentialProviderResponse: ...
+) -> DeleteApiKeyCredentialProviderOutput: ...
 ```
 
 
@@ -806,7 +806,7 @@ async def delete_browser(
     *,
     browser_id: str,
     client_token: str | None = None,
-) -> DeleteBrowserResponse: ...
+) -> DeleteBrowserOutput: ...
 ```
 
 
@@ -817,7 +817,7 @@ async def delete_browser_profile(
     *,
     profile_id: str,
     client_token: str | None = None,
-) -> DeleteBrowserProfileResponse: ...
+) -> DeleteBrowserProfileOutput: ...
 ```
 
 
@@ -839,7 +839,7 @@ async def delete_code_interpreter(
     *,
     code_interpreter_id: str,
     client_token: str | None = None,
-) -> DeleteCodeInterpreterResponse: ...
+) -> DeleteCodeInterpreterOutput: ...
 ```
 
 
@@ -849,7 +849,7 @@ async def delete_code_interpreter(
 async def delete_configuration_bundle(
     *,
     bundle_id: str,
-) -> DeleteConfigurationBundleResponse: ...
+) -> DeleteConfigurationBundleOutput: ...
 ```
 
 
@@ -859,7 +859,7 @@ async def delete_configuration_bundle(
 async def delete_consent_portal(
     *,
     consent_portal_identifier: str,
-) -> DeleteConsentPortalResponse: ...
+) -> DeleteConsentPortalOutput: ...
 ```
 
 
@@ -870,7 +870,7 @@ async def delete_dataset(
     *,
     dataset_id: str,
     dataset_version: str | None = None,
-) -> DeleteDatasetResponse: ...
+) -> DeleteDatasetOutput: ...
 ```
 
 
@@ -882,7 +882,7 @@ async def delete_dataset_examples(
     dataset_id: str,
     example_ids: Sequence[str],
     client_token: str | None = None,
-) -> DeleteDatasetExamplesResponse: ...
+) -> DeleteDatasetExamplesOutput: ...
 ```
 
 
@@ -892,7 +892,7 @@ async def delete_dataset_examples(
 async def delete_evaluator(
     *,
     evaluator_id: str,
-) -> DeleteEvaluatorResponse: ...
+) -> DeleteEvaluatorOutput: ...
 ```
 
 
@@ -902,7 +902,7 @@ async def delete_evaluator(
 async def delete_gateway(
     *,
     gateway_identifier: str,
-) -> DeleteGatewayResponse: ...
+) -> DeleteGatewayOutput: ...
 ```
 
 
@@ -913,7 +913,7 @@ async def delete_gateway_rate_limit(
     *,
     gateway_identifier: str,
     rate_limit_id: str,
-) -> DeleteGatewayRateLimitResponse: ...
+) -> DeleteGatewayRateLimitOutput: ...
 ```
 
 
@@ -924,7 +924,7 @@ async def delete_gateway_rule(
     *,
     gateway_identifier: str,
     rule_id: str,
-) -> DeleteGatewayRuleResponse: ...
+) -> DeleteGatewayRuleOutput: ...
 ```
 
 
@@ -935,7 +935,7 @@ async def delete_gateway_target(
     *,
     gateway_identifier: str,
     target_id: str,
-) -> DeleteGatewayTargetResponse: ...
+) -> DeleteGatewayTargetOutput: ...
 ```
 
 
@@ -947,7 +947,7 @@ async def delete_harness(
     harness_id: str,
     client_token: str | None = None,
     delete_managed_memory: bool | None = None,
-) -> DeleteHarnessResponse: ...
+) -> DeleteHarnessOutput: ...
 ```
 
 
@@ -959,7 +959,7 @@ async def delete_harness_endpoint(
     harness_id: str,
     endpoint_name: str,
     client_token: str | None = None,
-) -> DeleteHarnessEndpointResponse: ...
+) -> DeleteHarnessEndpointOutput: ...
 ```
 
 
@@ -980,7 +980,7 @@ async def delete_memory(
 async def delete_oauth2_credential_provider(
     *,
     name: str,
-) -> DeleteOauth2CredentialProviderResponse: ...
+) -> DeleteOauth2CredentialProviderOutput: ...
 ```
 
 
@@ -990,7 +990,7 @@ async def delete_oauth2_credential_provider(
 async def delete_online_evaluation_config(
     *,
     online_evaluation_config_id: str,
-) -> DeleteOnlineEvaluationConfigResponse: ...
+) -> DeleteOnlineEvaluationConfigOutput: ...
 ```
 
 
@@ -1002,7 +1002,7 @@ async def delete_payment_connector(
     payment_manager_id: str,
     payment_connector_id: str,
     client_token: str | None = None,
-) -> DeletePaymentConnectorResponse: ...
+) -> DeletePaymentConnectorOutput: ...
 ```
 
 
@@ -1012,7 +1012,7 @@ async def delete_payment_connector(
 async def delete_payment_credential_provider(
     *,
     name: str,
-) -> DeletePaymentCredentialProviderResponse: ...
+) -> DeletePaymentCredentialProviderOutput: ...
 ```
 
 
@@ -1023,7 +1023,7 @@ async def delete_payment_manager(
     *,
     payment_manager_id: str,
     client_token: str | None = None,
-) -> DeletePaymentManagerResponse: ...
+) -> DeletePaymentManagerOutput: ...
 ```
 
 
@@ -1034,7 +1034,7 @@ async def delete_policy(
     *,
     policy_engine_id: str,
     policy_id: str,
-) -> DeletePolicyResponse: ...
+) -> DeletePolicyOutput: ...
 ```
 
 
@@ -1044,7 +1044,7 @@ async def delete_policy(
 async def delete_policy_engine(
     *,
     policy_engine_id: str,
-) -> DeletePolicyEngineResponse: ...
+) -> DeletePolicyEngineOutput: ...
 ```
 
 
@@ -1054,7 +1054,7 @@ async def delete_policy_engine(
 async def delete_registry(
     *,
     registry_id: str,
-) -> DeleteRegistryResponse: ...
+) -> DeleteRegistryOutput: ...
 ```
 
 
@@ -1065,7 +1065,7 @@ async def delete_registry_record(
     *,
     registry_id: str,
     record_id: str,
-) -> DeleteRegistryRecordResponse: ...
+) -> DeleteRegistryRecordOutput: ...
 ```
 
 
@@ -1075,7 +1075,7 @@ async def delete_registry_record(
 async def delete_resource_policy(
     *,
     resource_arn: str,
-) -> DeleteResourcePolicyResponse: ...
+) -> DeleteResourcePolicyOutput: ...
 ```
 
 
@@ -1085,7 +1085,7 @@ async def delete_resource_policy(
 async def delete_workload_identity(
     *,
     name: str,
-) -> DeleteWorkloadIdentityResponse: ...
+) -> DeleteWorkloadIdentityOutput: ...
 ```
 
 
@@ -1096,7 +1096,7 @@ async def get_agent_runtime(
     *,
     agent_runtime_id: str,
     agent_runtime_version: str | None = None,
-) -> GetAgentRuntimeResponse: ...
+) -> GetAgentRuntimeOutput: ...
 ```
 
 
@@ -1107,7 +1107,7 @@ async def get_agent_runtime_endpoint(
     *,
     agent_runtime_id: str,
     endpoint_name: str,
-) -> GetAgentRuntimeEndpointResponse: ...
+) -> GetAgentRuntimeEndpointOutput: ...
 ```
 
 
@@ -1117,7 +1117,7 @@ async def get_agent_runtime_endpoint(
 async def get_api_key_credential_provider(
     *,
     name: str,
-) -> GetApiKeyCredentialProviderResponse: ...
+) -> GetApiKeyCredentialProviderOutput: ...
 ```
 
 
@@ -1127,7 +1127,7 @@ async def get_api_key_credential_provider(
 async def get_browser(
     *,
     browser_id: str,
-) -> GetBrowserResponse: ...
+) -> GetBrowserOutput: ...
 ```
 
 
@@ -1137,7 +1137,7 @@ async def get_browser(
 async def get_browser_profile(
     *,
     profile_id: str,
-) -> GetBrowserProfileResponse: ...
+) -> GetBrowserProfileOutput: ...
 ```
 
 
@@ -1157,7 +1157,7 @@ async def get_capacity_provider(
 async def get_code_interpreter(
     *,
     code_interpreter_id: str,
-) -> GetCodeInterpreterResponse: ...
+) -> GetCodeInterpreterOutput: ...
 ```
 
 
@@ -1168,7 +1168,7 @@ async def get_configuration_bundle(
     *,
     bundle_id: str,
     branch_name: str | None = None,
-) -> GetConfigurationBundleResponse: ...
+) -> GetConfigurationBundleOutput: ...
 ```
 
 
@@ -1179,7 +1179,7 @@ async def get_configuration_bundle_version(
     *,
     bundle_id: str,
     version_id: str,
-) -> GetConfigurationBundleVersionResponse: ...
+) -> GetConfigurationBundleVersionOutput: ...
 ```
 
 
@@ -1189,7 +1189,7 @@ async def get_configuration_bundle_version(
 async def get_consent_portal(
     *,
     consent_portal_identifier: str,
-) -> GetConsentPortalResponse: ...
+) -> GetConsentPortalOutput: ...
 ```
 
 
@@ -1200,7 +1200,7 @@ async def get_dataset(
     *,
     dataset_id: str,
     dataset_version: str | None = None,
-) -> GetDatasetResponse: ...
+) -> GetDatasetOutput: ...
 ```
 
 
@@ -1211,7 +1211,7 @@ async def get_evaluator(
     *,
     evaluator_id: str,
     included_data: IncludedData | None = None,
-) -> GetEvaluatorResponse: ...
+) -> GetEvaluatorOutput: ...
 ```
 
 
@@ -1221,7 +1221,7 @@ async def get_evaluator(
 async def get_gateway(
     *,
     gateway_identifier: str,
-) -> GetGatewayResponse: ...
+) -> GetGatewayOutput: ...
 ```
 
 
@@ -1232,7 +1232,7 @@ async def get_gateway_rate_limit(
     *,
     gateway_identifier: str,
     rate_limit_id: str,
-) -> GetGatewayRateLimitResponse: ...
+) -> GetGatewayRateLimitOutput: ...
 ```
 
 
@@ -1243,7 +1243,7 @@ async def get_gateway_rule(
     *,
     gateway_identifier: str,
     rule_id: str,
-) -> GetGatewayRuleResponse: ...
+) -> GetGatewayRuleOutput: ...
 ```
 
 
@@ -1254,7 +1254,7 @@ async def get_gateway_target(
     *,
     gateway_identifier: str,
     target_id: str,
-) -> GetGatewayTargetResponse: ...
+) -> GetGatewayTargetOutput: ...
 ```
 
 
@@ -1265,7 +1265,7 @@ async def get_harness(
     *,
     harness_id: str,
     harness_version: str | None = None,
-) -> GetHarnessResponse: ...
+) -> GetHarnessOutput: ...
 ```
 
 
@@ -1276,7 +1276,7 @@ async def get_harness_endpoint(
     *,
     harness_id: str,
     endpoint_name: str,
-) -> GetHarnessEndpointResponse: ...
+) -> GetHarnessEndpointOutput: ...
 ```
 
 
@@ -1297,7 +1297,7 @@ async def get_memory(
 async def get_oauth2_credential_provider(
     *,
     name: str,
-) -> GetOauth2CredentialProviderResponse: ...
+) -> GetOauth2CredentialProviderOutput: ...
 ```
 
 
@@ -1307,7 +1307,7 @@ async def get_oauth2_credential_provider(
 async def get_online_evaluation_config(
     *,
     online_evaluation_config_id: str,
-) -> GetOnlineEvaluationConfigResponse: ...
+) -> GetOnlineEvaluationConfigOutput: ...
 ```
 
 
@@ -1318,7 +1318,7 @@ async def get_payment_connector(
     *,
     payment_manager_id: str,
     payment_connector_id: str,
-) -> GetPaymentConnectorResponse: ...
+) -> GetPaymentConnectorOutput: ...
 ```
 
 
@@ -1328,7 +1328,7 @@ async def get_payment_connector(
 async def get_payment_credential_provider(
     *,
     name: str,
-) -> GetPaymentCredentialProviderResponse: ...
+) -> GetPaymentCredentialProviderOutput: ...
 ```
 
 
@@ -1338,7 +1338,7 @@ async def get_payment_credential_provider(
 async def get_payment_manager(
     *,
     payment_manager_id: str,
-) -> GetPaymentManagerResponse: ...
+) -> GetPaymentManagerOutput: ...
 ```
 
 
@@ -1349,7 +1349,7 @@ async def get_policy(
     *,
     policy_engine_id: str,
     policy_id: str,
-) -> GetPolicyResponse: ...
+) -> GetPolicyOutput: ...
 ```
 
 
@@ -1359,7 +1359,7 @@ async def get_policy(
 async def get_policy_engine(
     *,
     policy_engine_id: str,
-) -> GetPolicyEngineResponse: ...
+) -> GetPolicyEngineOutput: ...
 ```
 
 
@@ -1369,7 +1369,7 @@ async def get_policy_engine(
 async def get_policy_engine_summary(
     *,
     policy_engine_id: str,
-) -> GetPolicyEngineSummaryResponse: ...
+) -> GetPolicyEngineSummaryOutput: ...
 ```
 
 
@@ -1380,7 +1380,7 @@ async def get_policy_generation(
     *,
     policy_generation_id: str,
     policy_engine_id: str,
-) -> GetPolicyGenerationResponse: ...
+) -> GetPolicyGenerationOutput: ...
 ```
 
 
@@ -1391,7 +1391,7 @@ async def get_policy_generation_summary(
     *,
     policy_generation_id: str,
     policy_engine_id: str,
-) -> GetPolicyGenerationSummaryResponse: ...
+) -> GetPolicyGenerationSummaryOutput: ...
 ```
 
 
@@ -1402,7 +1402,7 @@ async def get_policy_summary(
     *,
     policy_engine_id: str,
     policy_id: str,
-) -> GetPolicySummaryResponse: ...
+) -> GetPolicySummaryOutput: ...
 ```
 
 
@@ -1412,7 +1412,7 @@ async def get_policy_summary(
 async def get_registry(
     *,
     registry_id: str,
-) -> GetRegistryResponse: ...
+) -> GetRegistryOutput: ...
 ```
 
 
@@ -1423,7 +1423,7 @@ async def get_registry_record(
     *,
     registry_id: str,
     record_id: str,
-) -> GetRegistryRecordResponse: ...
+) -> GetRegistryRecordOutput: ...
 ```
 
 
@@ -1433,7 +1433,7 @@ async def get_registry_record(
 async def get_resource_policy(
     *,
     resource_arn: str,
-) -> GetResourcePolicyResponse: ...
+) -> GetResourcePolicyOutput: ...
 ```
 
 
@@ -1443,7 +1443,7 @@ async def get_resource_policy(
 async def get_token_vault(
     *,
     token_vault_id: str | None = None,
-) -> GetTokenVaultResponse: ...
+) -> GetTokenVaultOutput: ...
 ```
 
 
@@ -1453,7 +1453,7 @@ async def get_token_vault(
 async def get_workload_identity(
     *,
     name: str,
-) -> GetWorkloadIdentityResponse: ...
+) -> GetWorkloadIdentityOutput: ...
 ```
 
 
@@ -1465,7 +1465,7 @@ async def list_agent_runtime_endpoints(
     agent_runtime_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentRuntimeEndpointsResponse: ...
+) -> ListAgentRuntimeEndpointsOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_runtime_endpoints(...)`, returning an
@@ -1480,7 +1480,7 @@ async def list_agent_runtime_versions(
     agent_runtime_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentRuntimeVersionsResponse: ...
+) -> ListAgentRuntimeVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_runtime_versions(...)`, returning an
@@ -1509,7 +1509,7 @@ async def list_agent_runtimes(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListAgentRuntimesResponse: ...
+) -> ListAgentRuntimesOutput: ...
 ```
 
 Also available as `client.paginators.list_agent_runtimes(...)`, returning an
@@ -1523,7 +1523,7 @@ async def list_api_key_credential_providers(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListApiKeyCredentialProvidersResponse: ...
+) -> ListApiKeyCredentialProvidersOutput: ...
 ```
 
 Also available as `client.paginators.list_api_key_credential_providers(...)`, returning an
@@ -1538,7 +1538,7 @@ async def list_browser_profiles(
     max_results: int | None = None,
     next_token: str | None = None,
     name: str | None = None,
-) -> ListBrowserProfilesResponse: ...
+) -> ListBrowserProfilesOutput: ...
 ```
 
 Also available as `client.paginators.list_browser_profiles(...)`, returning an
@@ -1553,7 +1553,7 @@ async def list_browsers(
     max_results: int | None = None,
     next_token: str | None = None,
     type: ResourceType | None = None,
-) -> ListBrowsersResponse: ...
+) -> ListBrowsersOutput: ...
 ```
 
 Also available as `client.paginators.list_browsers(...)`, returning an
@@ -1582,7 +1582,7 @@ async def list_code_interpreters(
     max_results: int | None = None,
     next_token: str | None = None,
     type: ResourceType | None = None,
-) -> ListCodeInterpretersResponse: ...
+) -> ListCodeInterpretersOutput: ...
 ```
 
 Also available as `client.paginators.list_code_interpreters(...)`, returning an
@@ -1598,7 +1598,7 @@ async def list_configuration_bundle_versions(
     next_token: str | None = None,
     max_results: int | None = None,
     filter: VersionFilter | None = None,
-) -> ListConfigurationBundleVersionsResponse: ...
+) -> ListConfigurationBundleVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_configuration_bundle_versions(...)`, returning an
@@ -1612,7 +1612,7 @@ async def list_configuration_bundles(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListConfigurationBundlesResponse: ...
+) -> ListConfigurationBundlesOutput: ...
 ```
 
 Also available as `client.paginators.list_configuration_bundles(...)`, returning an
@@ -1626,7 +1626,7 @@ async def list_consent_portals(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListConsentPortalsResponse: ...
+) -> ListConsentPortalsOutput: ...
 ```
 
 Also available as `client.paginators.list_consent_portals(...)`, returning an
@@ -1642,7 +1642,7 @@ async def list_dataset_examples(
     dataset_version: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListDatasetExamplesResponse: ...
+) -> ListDatasetExamplesOutput: ...
 ```
 
 Also available as `client.paginators.list_dataset_examples(...)`, returning an
@@ -1657,7 +1657,7 @@ async def list_dataset_versions(
     dataset_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDatasetVersionsResponse: ...
+) -> ListDatasetVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_dataset_versions(...)`, returning an
@@ -1671,7 +1671,7 @@ async def list_datasets(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDatasetsResponse: ...
+) -> ListDatasetsOutput: ...
 ```
 
 Also available as `client.paginators.list_datasets(...)`, returning an
@@ -1685,7 +1685,7 @@ async def list_evaluators(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListEvaluatorsResponse: ...
+) -> ListEvaluatorsOutput: ...
 ```
 
 Also available as `client.paginators.list_evaluators(...)`, returning an
@@ -1700,7 +1700,7 @@ async def list_gateway_rate_limits(
     gateway_identifier: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListGatewayRateLimitsResponse: ...
+) -> ListGatewayRateLimitsOutput: ...
 ```
 
 Also available as `client.paginators.list_gateway_rate_limits(...)`, returning an
@@ -1715,7 +1715,7 @@ async def list_gateway_rules(
     gateway_identifier: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListGatewayRulesResponse: ...
+) -> ListGatewayRulesOutput: ...
 ```
 
 Also available as `client.paginators.list_gateway_rules(...)`, returning an
@@ -1730,7 +1730,7 @@ async def list_gateway_targets(
     gateway_identifier: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListGatewayTargetsResponse: ...
+) -> ListGatewayTargetsOutput: ...
 ```
 
 Also available as `client.paginators.list_gateway_targets(...)`, returning an
@@ -1744,7 +1744,7 @@ async def list_gateways(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListGatewaysResponse: ...
+) -> ListGatewaysOutput: ...
 ```
 
 Also available as `client.paginators.list_gateways(...)`, returning an
@@ -1759,7 +1759,7 @@ async def list_harness_endpoints(
     harness_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListHarnessEndpointsResponse: ...
+) -> ListHarnessEndpointsOutput: ...
 ```
 
 Also available as `client.paginators.list_harness_endpoints(...)`, returning an
@@ -1774,7 +1774,7 @@ async def list_harness_versions(
     harness_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListHarnessVersionsResponse: ...
+) -> ListHarnessVersionsOutput: ...
 ```
 
 Also available as `client.paginators.list_harness_versions(...)`, returning an
@@ -1788,7 +1788,7 @@ async def list_harnesses(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListHarnessesResponse: ...
+) -> ListHarnessesOutput: ...
 ```
 
 Also available as `client.paginators.list_harnesses(...)`, returning an
@@ -1816,7 +1816,7 @@ async def list_oauth2_credential_providers(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListOauth2CredentialProvidersResponse: ...
+) -> ListOauth2CredentialProvidersOutput: ...
 ```
 
 Also available as `client.paginators.list_oauth2_credential_providers(...)`, returning an
@@ -1830,7 +1830,7 @@ async def list_online_evaluation_configs(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListOnlineEvaluationConfigsResponse: ...
+) -> ListOnlineEvaluationConfigsOutput: ...
 ```
 
 Also available as `client.paginators.list_online_evaluation_configs(...)`, returning an
@@ -1845,7 +1845,7 @@ async def list_payment_connectors(
     payment_manager_id: str,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListPaymentConnectorsResponse: ...
+) -> ListPaymentConnectorsOutput: ...
 ```
 
 Also available as `client.paginators.list_payment_connectors(...)`, returning an
@@ -1859,7 +1859,7 @@ async def list_payment_credential_providers(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPaymentCredentialProvidersResponse: ...
+) -> ListPaymentCredentialProvidersOutput: ...
 ```
 
 Also available as `client.paginators.list_payment_credential_providers(...)`, returning an
@@ -1873,7 +1873,7 @@ async def list_payment_managers(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListPaymentManagersResponse: ...
+) -> ListPaymentManagersOutput: ...
 ```
 
 Also available as `client.paginators.list_payment_managers(...)`, returning an
@@ -1889,7 +1889,7 @@ async def list_policies(
     next_token: str | None = None,
     max_results: int | None = None,
     target_resource_scope: str | None = None,
-) -> ListPoliciesResponse: ...
+) -> ListPoliciesOutput: ...
 ```
 
 Also available as `client.paginators.list_policies(...)`, returning an
@@ -1903,7 +1903,7 @@ async def list_policy_engine_summaries(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPolicyEngineSummariesResponse: ...
+) -> ListPolicyEngineSummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_engine_summaries(...)`, returning an
@@ -1917,7 +1917,7 @@ async def list_policy_engines(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPolicyEnginesResponse: ...
+) -> ListPolicyEnginesOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_engines(...)`, returning an
@@ -1933,7 +1933,7 @@ async def list_policy_generation_assets(
     policy_engine_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPolicyGenerationAssetsResponse: ...
+) -> ListPolicyGenerationAssetsOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_generation_assets(...)`, returning an
@@ -1948,7 +1948,7 @@ async def list_policy_generation_summaries(
     policy_engine_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPolicyGenerationSummariesResponse: ...
+) -> ListPolicyGenerationSummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_generation_summaries(...)`, returning an
@@ -1963,7 +1963,7 @@ async def list_policy_generations(
     policy_engine_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListPolicyGenerationsResponse: ...
+) -> ListPolicyGenerationsOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_generations(...)`, returning an
@@ -1979,7 +1979,7 @@ async def list_policy_summaries(
     next_token: str | None = None,
     max_results: int | None = None,
     target_resource_scope: str | None = None,
-) -> ListPolicySummariesResponse: ...
+) -> ListPolicySummariesOutput: ...
 ```
 
 Also available as `client.paginators.list_policy_summaries(...)`, returning an
@@ -1995,7 +1995,7 @@ async def list_registries(
     next_token: str | None = None,
     status: RegistryStatus | None = None,
     authorizer_type: RegistryAuthorizerType | None = None,
-) -> ListRegistriesResponse: ...
+) -> ListRegistriesOutput: ...
 ```
 
 Also available as `client.paginators.list_registries(...)`, returning an
@@ -2013,7 +2013,7 @@ async def list_registry_records(
     name: str | None = None,
     status: RegistryRecordStatus | None = None,
     descriptor_type: DescriptorType | None = None,
-) -> ListRegistryRecordsResponse: ...
+) -> ListRegistryRecordsOutput: ...
 ```
 
 Also available as `client.paginators.list_registry_records(...)`, returning an
@@ -2026,7 +2026,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -2037,7 +2037,7 @@ async def list_workload_identities(
     *,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListWorkloadIdentitiesResponse: ...
+) -> ListWorkloadIdentitiesOutput: ...
 ```
 
 Also available as `client.paginators.list_workload_identities(...)`, returning an
@@ -2051,7 +2051,7 @@ async def put_resource_policy(
     *,
     resource_arn: str,
     policy: str,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -2064,7 +2064,7 @@ async def rotate_payment_connector_credentials(
     payment_connector_id: str,
     credentials_to_rotate: CredentialRotationConfig,
     client_token: str | None = None,
-) -> RotatePaymentConnectorCredentialsResponse: ...
+) -> RotatePaymentConnectorCredentialsOutput: ...
 ```
 
 
@@ -2075,7 +2075,7 @@ async def set_token_vault_cmk(
     *,
     kms_configuration: KmsConfiguration,
     token_vault_id: str | None = None,
-) -> SetTokenVaultCMKResponse: ...
+) -> SetTokenVaultCMKOutput: ...
 ```
 
 
@@ -2089,7 +2089,7 @@ async def start_policy_generation(
     content: Content,
     name: str,
     client_token: str | None = None,
-) -> StartPolicyGenerationResponse: ...
+) -> StartPolicyGenerationOutput: ...
 ```
 
 
@@ -2100,7 +2100,7 @@ async def submit_registry_record_for_approval(
     *,
     registry_id: str,
     record_id: str,
-) -> SubmitRegistryRecordForApprovalResponse: ...
+) -> SubmitRegistryRecordForApprovalOutput: ...
 ```
 
 
@@ -2111,7 +2111,7 @@ async def synchronize_gateway_targets(
     *,
     gateway_identifier: str,
     target_id_list: Sequence[str],
-) -> SynchronizeGatewayTargetsResponse: ...
+) -> SynchronizeGatewayTargetsOutput: ...
 ```
 
 
@@ -2122,7 +2122,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -2133,7 +2133,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -2157,7 +2157,7 @@ async def update_agent_runtime(
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     platform_version: str | None = None,
     client_token: str | None = None,
-) -> UpdateAgentRuntimeResponse: ...
+) -> UpdateAgentRuntimeOutput: ...
 ```
 
 
@@ -2171,7 +2171,7 @@ async def update_agent_runtime_endpoint(
     agent_runtime_version: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
-) -> UpdateAgentRuntimeEndpointResponse: ...
+) -> UpdateAgentRuntimeEndpointOutput: ...
 ```
 
 
@@ -2184,7 +2184,7 @@ async def update_api_key_credential_provider(
     api_key: str | None = None,
     api_key_secret_config: SecretReference | None = None,
     api_key_secret_source: SecretSourceType | None = None,
-) -> UpdateApiKeyCredentialProviderResponse: ...
+) -> UpdateApiKeyCredentialProviderOutput: ...
 ```
 
 
@@ -2215,7 +2215,7 @@ async def update_configuration_bundle(
     branch_name: str | None = None,
     created_by: VersionCreatedBySource | None = None,
     kms_key_arn: str | None = None,
-) -> UpdateConfigurationBundleResponse: ...
+) -> UpdateConfigurationBundleOutput: ...
 ```
 
 
@@ -2228,7 +2228,7 @@ async def update_consent_portal(
     execution_role_arn: str | None = None,
     idp_config: ConsentPortalIdpConfig | None = None,
     description: str | None = None,
-) -> UpdateConsentPortalResponse: ...
+) -> UpdateConsentPortalOutput: ...
 ```
 
 
@@ -2240,7 +2240,7 @@ async def update_dataset(
     dataset_id: str,
     client_token: str | None = None,
     description: str | None = None,
-) -> UpdateDatasetResponse: ...
+) -> UpdateDatasetOutput: ...
 ```
 
 
@@ -2252,7 +2252,7 @@ async def update_dataset_examples(
     dataset_id: str,
     examples: Sequence[JSONValue],
     client_token: str | None = None,
-) -> UpdateDatasetExamplesResponse: ...
+) -> UpdateDatasetExamplesOutput: ...
 ```
 
 
@@ -2267,7 +2267,7 @@ async def update_evaluator(
     evaluator_config: EvaluatorConfig | None = None,
     level: EvaluatorLevel | None = None,
     kms_key_arn: str | None = None,
-) -> UpdateEvaluatorResponse: ...
+) -> UpdateEvaluatorOutput: ...
 ```
 
 
@@ -2290,7 +2290,7 @@ async def update_gateway(
     policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
     exception_level: ExceptionLevel | None = None,
     waf_configuration: WafConfiguration | None = None,
-) -> UpdateGatewayResponse: ...
+) -> UpdateGatewayOutput: ...
 ```
 
 
@@ -2303,7 +2303,7 @@ async def update_gateway_rate_limit(
     rate_limit_id: str,
     entries: Sequence[LimitEntry],
     description: str | None = None,
-) -> UpdateGatewayRateLimitResponse: ...
+) -> UpdateGatewayRateLimitOutput: ...
 ```
 
 
@@ -2318,7 +2318,7 @@ async def update_gateway_rule(
     conditions: Sequence[Condition] | None = None,
     actions: Sequence[Action] | None = None,
     description: str | None = None,
-) -> UpdateGatewayRuleResponse: ...
+) -> UpdateGatewayRuleOutput: ...
 ```
 
 
@@ -2336,7 +2336,7 @@ async def update_gateway_target(
     metadata_configuration: MetadataConfiguration | None = None,
     private_endpoint: PrivateEndpoint | None = None,
     certificate_configurations: Sequence[CertificateConfiguration] | None = None,
-) -> UpdateGatewayTargetResponse: ...
+) -> UpdateGatewayTargetOutput: ...
 ```
 
 
@@ -2363,7 +2363,7 @@ async def update_harness(
     max_iterations: int | None = None,
     max_tokens: int | None = None,
     timeout_seconds: int | None = None,
-) -> UpdateHarnessResponse: ...
+) -> UpdateHarnessOutput: ...
 ```
 
 
@@ -2377,7 +2377,7 @@ async def update_harness_endpoint(
     target_version: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
-) -> UpdateHarnessEndpointResponse: ...
+) -> UpdateHarnessEndpointOutput: ...
 ```
 
 
@@ -2407,7 +2407,7 @@ async def update_oauth2_credential_provider(
     name: str,
     credential_provider_vendor: CredentialProviderVendorType,
     oauth2_provider_config_input: Oauth2ProviderConfigInput,
-) -> UpdateOauth2CredentialProviderResponse: ...
+) -> UpdateOauth2CredentialProviderOutput: ...
 ```
 
 
@@ -2427,7 +2427,7 @@ async def update_online_evaluation_config(
     output_config: OutputConfig | None = None,
     evaluation_execution_role_arn: str | None = None,
     execution_status: OnlineEvaluationExecutionStatus | None = None,
-) -> UpdateOnlineEvaluationConfigResponse: ...
+) -> UpdateOnlineEvaluationConfigOutput: ...
 ```
 
 
@@ -2442,7 +2442,7 @@ async def update_payment_connector(
     type: PaymentConnectorType | None = None,
     credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
     client_token: str | None = None,
-) -> UpdatePaymentConnectorResponse: ...
+) -> UpdatePaymentConnectorOutput: ...
 ```
 
 
@@ -2454,7 +2454,7 @@ async def update_payment_credential_provider(
     name: str,
     credential_provider_vendor: PaymentCredentialProviderVendorType,
     provider_configuration_input: PaymentProviderConfigurationInput,
-) -> UpdatePaymentCredentialProviderResponse: ...
+) -> UpdatePaymentCredentialProviderOutput: ...
 ```
 
 
@@ -2470,7 +2470,7 @@ async def update_payment_manager(
     role_arn: str | None = None,
     client_token: str | None = None,
     kms_key_arn: str | None = None,
-) -> UpdatePaymentManagerResponse: ...
+) -> UpdatePaymentManagerOutput: ...
 ```
 
 
@@ -2485,7 +2485,7 @@ async def update_policy(
     definition: PolicyDefinition | None = None,
     validation_mode: PolicyValidationMode | None = None,
     enforcement_mode: EnforcementMode | None = None,
-) -> UpdatePolicyResponse: ...
+) -> UpdatePolicyOutput: ...
 ```
 
 
@@ -2496,7 +2496,7 @@ async def update_policy_engine(
     *,
     policy_engine_id: str,
     description: UpdatedDescription | None = None,
-) -> UpdatePolicyEngineResponse: ...
+) -> UpdatePolicyEngineOutput: ...
 ```
 
 
@@ -2510,7 +2510,7 @@ async def update_registry(
     description: UpdatedDescription | None = None,
     authorizer_configuration: UpdatedAuthorizerConfiguration | None = None,
     approval_configuration: UpdatedApprovalConfiguration | None = None,
-) -> UpdateRegistryResponse: ...
+) -> UpdateRegistryOutput: ...
 ```
 
 
@@ -2529,7 +2529,7 @@ async def update_registry_record(
     synchronization_type: UpdatedSynchronizationType | None = None,
     synchronization_configuration: UpdatedSynchronizationConfiguration | None = None,
     trigger_synchronization: bool | None = None,
-) -> UpdateRegistryRecordResponse: ...
+) -> UpdateRegistryRecordOutput: ...
 ```
 
 
@@ -2542,7 +2542,7 @@ async def update_registry_record_status(
     record_id: str,
     status: RegistryRecordStatus,
     status_reason: str,
-) -> UpdateRegistryRecordStatusResponse: ...
+) -> UpdateRegistryRecordStatusOutput: ...
 ```
 
 
@@ -2553,7 +2553,7 @@ async def update_workload_identity(
     *,
     name: str,
     allowed_resource_oauth2_return_urls: Sequence[str] | None = None,
-) -> UpdateWorkloadIdentityResponse: ...
+) -> UpdateWorkloadIdentityOutput: ...
 ```
 
 

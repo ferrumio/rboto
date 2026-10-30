@@ -83,17 +83,17 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`assume_role`](#assume_role) | <code>role_arn: str</code>, <code>role_session_name: str</code> | <code>AssumeRoleResponse</code> |
-| [`assume_role_with_saml`](#assume_role_with_saml) | <code>role_arn: str</code>, <code>principal_arn: str</code>, <code>saml_assertion: str</code> | <code>AssumeRoleWithSAMLResponse</code> |
-| [`assume_role_with_web_identity`](#assume_role_with_web_identity) | <code>role_arn: str</code>, <code>role_session_name: str</code>, <code>web_identity_token: str</code> | <code>AssumeRoleWithWebIdentityResponse</code> |
-| [`assume_root`](#assume_root) | <code>target_principal: str</code>, <code>task_policy_arn: PolicyDescriptorType</code> | <code>AssumeRootResponse</code> |
-| [`decode_authorization_message`](#decode_authorization_message) | <code>encoded_message: str</code> | <code>DecodeAuthorizationMessageResponse</code> |
-| [`get_access_key_info`](#get_access_key_info) | <code>access_key_id: str</code> | <code>GetAccessKeyInfoResponse</code> |
-| [`get_caller_identity`](#get_caller_identity) | None | <code>GetCallerIdentityResponse</code> |
-| [`get_delegated_access_token`](#get_delegated_access_token) | <code>trade_in_token: str</code> | <code>GetDelegatedAccessTokenResponse</code> |
-| [`get_federation_token`](#get_federation_token) | <code>name: str</code> | <code>GetFederationTokenResponse</code> |
-| [`get_session_token`](#get_session_token) | None | <code>GetSessionTokenResponse</code> |
-| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: Sequence[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenResponse</code> |
+| [`assume_role`](#assume_role) | <code>role_arn: str</code>, <code>role_session_name: str</code> | <code>AssumeRoleOutput</code> |
+| [`assume_role_with_saml`](#assume_role_with_saml) | <code>role_arn: str</code>, <code>principal_arn: str</code>, <code>saml_assertion: str</code> | <code>AssumeRoleWithSAMLOutput</code> |
+| [`assume_role_with_web_identity`](#assume_role_with_web_identity) | <code>role_arn: str</code>, <code>role_session_name: str</code>, <code>web_identity_token: str</code> | <code>AssumeRoleWithWebIdentityOutput</code> |
+| [`assume_root`](#assume_root) | <code>target_principal: str</code>, <code>task_policy_arn: PolicyDescriptorType</code> | <code>AssumeRootOutput</code> |
+| [`decode_authorization_message`](#decode_authorization_message) | <code>encoded_message: str</code> | <code>DecodeAuthorizationMessageOutput</code> |
+| [`get_access_key_info`](#get_access_key_info) | <code>access_key_id: str</code> | <code>GetAccessKeyInfoOutput</code> |
+| [`get_caller_identity`](#get_caller_identity) | None | <code>GetCallerIdentityOutput</code> |
+| [`get_delegated_access_token`](#get_delegated_access_token) | <code>trade_in_token: str</code> | <code>GetDelegatedAccessTokenOutput</code> |
+| [`get_federation_token`](#get_federation_token) | <code>name: str</code> | <code>GetFederationTokenOutput</code> |
+| [`get_session_token`](#get_session_token) | None | <code>GetSessionTokenOutput</code> |
+| [`get_web_identity_token`](#get_web_identity_token) | <code>audience: Sequence[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenOutput</code> |
 
 ## Complete signatures
 
@@ -115,7 +115,7 @@ async def assume_role(
     source_identity: str | None = None,
     provided_contexts: Sequence[ProvidedContext] | None = None,
     minimum_session_token_size: int | None = None,
-) -> AssumeRoleResponse: ...
+) -> AssumeRoleOutput: ...
 ```
 
 
@@ -131,7 +131,7 @@ async def assume_role_with_saml(
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
-) -> AssumeRoleWithSAMLResponse: ...
+) -> AssumeRoleWithSAMLOutput: ...
 ```
 
 
@@ -148,7 +148,7 @@ async def assume_role_with_web_identity(
     policy: str | None = None,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
-) -> AssumeRoleWithWebIdentityResponse: ...
+) -> AssumeRoleWithWebIdentityOutput: ...
 ```
 
 
@@ -161,7 +161,7 @@ async def assume_root(
     task_policy_arn: PolicyDescriptorType,
     duration_seconds: int | None = None,
     minimum_session_token_size: int | None = None,
-) -> AssumeRootResponse: ...
+) -> AssumeRootOutput: ...
 ```
 
 
@@ -171,7 +171,7 @@ async def assume_root(
 async def decode_authorization_message(
     *,
     encoded_message: str,
-) -> DecodeAuthorizationMessageResponse: ...
+) -> DecodeAuthorizationMessageOutput: ...
 ```
 
 
@@ -181,14 +181,14 @@ async def decode_authorization_message(
 async def get_access_key_info(
     *,
     access_key_id: str,
-) -> GetAccessKeyInfoResponse: ...
+) -> GetAccessKeyInfoOutput: ...
 ```
 
 
 ### get_caller_identity
 
 ```python
-async def get_caller_identity() -> GetCallerIdentityResponse: ...
+async def get_caller_identity() -> GetCallerIdentityOutput: ...
 ```
 
 
@@ -198,7 +198,7 @@ async def get_caller_identity() -> GetCallerIdentityResponse: ...
 async def get_delegated_access_token(
     *,
     trade_in_token: str,
-) -> GetDelegatedAccessTokenResponse: ...
+) -> GetDelegatedAccessTokenOutput: ...
 ```
 
 
@@ -213,7 +213,7 @@ async def get_federation_token(
     duration_seconds: int | None = None,
     tags: Sequence[Tag] | None = None,
     minimum_session_token_size: int | None = None,
-) -> GetFederationTokenResponse: ...
+) -> GetFederationTokenOutput: ...
 ```
 
 
@@ -226,7 +226,7 @@ async def get_session_token(
     serial_number: str | None = None,
     token_code: str | None = None,
     minimum_session_token_size: int | None = None,
-) -> GetSessionTokenResponse: ...
+) -> GetSessionTokenOutput: ...
 ```
 
 
@@ -239,7 +239,7 @@ async def get_web_identity_token(
     signing_algorithm: str,
     duration_seconds: int | None = None,
     tags: Sequence[Tag] | None = None,
-) -> GetWebIdentityTokenResponse: ...
+) -> GetWebIdentityTokenOutput: ...
 ```
 
 

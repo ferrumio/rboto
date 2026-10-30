@@ -2,7 +2,7 @@ from typing import assert_type
 
 from rboto import DynamoDBClient, SQSClient, UnknownEnumValue
 from rboto_bedrock_runtime.types import ToolUseBlockOutput
-from rboto_sqs.types import GetQueueAttributesResult
+from rboto_sqs.types import GetQueueAttributesOutput
 
 
 def read_tool_kind(block: ToolUseBlockOutput) -> str:
@@ -10,7 +10,7 @@ def read_tool_kind(block: ToolUseBlockOutput) -> str:
     return kind.upper() if kind is not None else "unspecified"
 
 
-def queue_attributes(response: GetQueueAttributesResult) -> str | None:
+def queue_attributes(response: GetQueueAttributesOutput) -> str | None:
     attributes = response.attributes
     if attributes is None:
         return None

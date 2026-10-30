@@ -23,8 +23,8 @@ AgentKnowledgeBaseSummaryOutput: TypeAlias = _native.AgentKnowledgeBaseSummary
 AgentSummaryOutput: TypeAlias = _native.AgentSummary
 AgentVersionOutput: TypeAlias = _native.AgentVersion
 AgentVersionSummaryOutput: TypeAlias = _native.AgentVersionSummary
-AssociateAgentCollaboratorResponse: TypeAlias = _native.AssociateAgentCollaboratorResponse
-AssociateAgentKnowledgeBaseResponse: TypeAlias = _native.AssociateAgentKnowledgeBaseResponse
+AssociateAgentCollaboratorOutput: TypeAlias = _native.AssociateAgentCollaboratorOutput
+AssociateAgentKnowledgeBaseOutput: TypeAlias = _native.AssociateAgentKnowledgeBaseOutput
 AudioConfigurationOutput: TypeAlias = _native.AudioConfiguration
 AudioExtractionConfigurationOutput: TypeAlias = _native.AudioExtractionConfiguration
 AudioSegmentationConfigurationOutput: TypeAlias = _native.AudioSegmentationConfiguration
@@ -39,19 +39,19 @@ ConfluenceDataSourceConfigurationOutput: TypeAlias = _native.ConfluenceDataSourc
 ConfluenceSourceConfigurationOutput: TypeAlias = _native.ConfluenceSourceConfiguration
 ContextEnrichmentConfigurationOutput: TypeAlias = _native.ContextEnrichmentConfiguration
 CrawlFilterConfigurationOutput: TypeAlias = _native.CrawlFilterConfiguration
-CreateAgentActionGroupResponse: TypeAlias = _native.CreateAgentActionGroupResponse
-CreateAgentAliasResponse: TypeAlias = _native.CreateAgentAliasResponse
-CreateAgentResponse: TypeAlias = _native.CreateAgentResponse
-CreateDataSourceResponse: TypeAlias = _native.CreateDataSourceResponse
-CreateFlowAliasResponse: TypeAlias = _native.CreateFlowAliasResponse
-CreateFlowResponse: TypeAlias = _native.CreateFlowResponse
-CreateFlowVersionResponse: TypeAlias = _native.CreateFlowVersionResponse
-CreateKnowledgeBaseResponse: TypeAlias = _native.CreateKnowledgeBaseResponse
-CreatePromptResponse: TypeAlias = _native.CreatePromptResponse
-CreatePromptVersionResponse: TypeAlias = _native.CreatePromptVersionResponse
-CreateRetrievalInstructionResponse: TypeAlias = _native.CreateRetrievalInstructionResponse
-CreateRetrievalInstructionVersionResponse: TypeAlias = _native.CreateRetrievalInstructionVersionResponse
-CreateVpcConfigurationResponse: TypeAlias = _native.CreateVpcConfigurationResponse
+CreateAgentActionGroupOutput: TypeAlias = _native.CreateAgentActionGroupOutput
+CreateAgentAliasOutput: TypeAlias = _native.CreateAgentAliasOutput
+CreateAgentOutput: TypeAlias = _native.CreateAgentOutput
+CreateDataSourceOutput: TypeAlias = _native.CreateDataSourceOutput
+CreateFlowAliasOutput: TypeAlias = _native.CreateFlowAliasOutput
+CreateFlowOutput: TypeAlias = _native.CreateFlowOutput
+CreateFlowVersionOutput: TypeAlias = _native.CreateFlowVersionOutput
+CreateKnowledgeBaseOutput: TypeAlias = _native.CreateKnowledgeBaseOutput
+CreatePromptOutput: TypeAlias = _native.CreatePromptOutput
+CreatePromptVersionOutput: TypeAlias = _native.CreatePromptVersionOutput
+CreateRetrievalInstructionOutput: TypeAlias = _native.CreateRetrievalInstructionOutput
+CreateRetrievalInstructionVersionOutput: TypeAlias = _native.CreateRetrievalInstructionVersionOutput
+CreateVpcConfigurationOutput: TypeAlias = _native.CreateVpcConfigurationOutput
 CuratedQueryOutput: TypeAlias = _native.CuratedQuery
 CustomDocumentIdentifierOutput: TypeAlias = _native.CustomDocumentIdentifier
 CustomOrchestrationOutput: TypeAlias = _native.CustomOrchestration
@@ -59,23 +59,23 @@ CustomTransformationConfigurationOutput: TypeAlias = _native.CustomTransformatio
 DataSourceOutput: TypeAlias = _native.DataSource
 DataSourceConfigurationOutput: TypeAlias = _native.DataSourceConfiguration
 DataSourceSummaryOutput: TypeAlias = _native.DataSourceSummary
-DeleteAgentActionGroupResponse: TypeAlias = _native.DeleteAgentActionGroupResponse
-DeleteAgentAliasResponse: TypeAlias = _native.DeleteAgentAliasResponse
-DeleteAgentResponse: TypeAlias = _native.DeleteAgentResponse
-DeleteAgentVersionResponse: TypeAlias = _native.DeleteAgentVersionResponse
-DeleteDataSourceResponse: TypeAlias = _native.DeleteDataSourceResponse
-DeleteFlowAliasResponse: TypeAlias = _native.DeleteFlowAliasResponse
-DeleteFlowResponse: TypeAlias = _native.DeleteFlowResponse
-DeleteFlowVersionResponse: TypeAlias = _native.DeleteFlowVersionResponse
-DeleteKnowledgeBaseDocumentsResponse: TypeAlias = _native.DeleteKnowledgeBaseDocumentsResponse
-DeleteKnowledgeBaseResponse: TypeAlias = _native.DeleteKnowledgeBaseResponse
-DeletePromptResponse: TypeAlias = _native.DeletePromptResponse
-DeleteResourcePolicyResponse: TypeAlias = _native.DeleteResourcePolicyResponse
-DeleteRetrievalInstructionResponse: TypeAlias = _native.DeleteRetrievalInstructionResponse
-DeleteVpcConfigurationResponse: TypeAlias = _native.DeleteVpcConfigurationResponse
+DeleteAgentActionGroupOutput: TypeAlias = _native.DeleteAgentActionGroupOutput
+DeleteAgentAliasOutput: TypeAlias = _native.DeleteAgentAliasOutput
+DeleteAgentOutput: TypeAlias = _native.DeleteAgentOutput
+DeleteAgentVersionOutput: TypeAlias = _native.DeleteAgentVersionOutput
+DeleteDataSourceOutput: TypeAlias = _native.DeleteDataSourceOutput
+DeleteFlowAliasOutput: TypeAlias = _native.DeleteFlowAliasOutput
+DeleteFlowOutput: TypeAlias = _native.DeleteFlowOutput
+DeleteFlowVersionOutput: TypeAlias = _native.DeleteFlowVersionOutput
+DeleteKnowledgeBaseDocumentsOutput: TypeAlias = _native.DeleteKnowledgeBaseDocumentsOutput
+DeleteKnowledgeBaseOutput: TypeAlias = _native.DeleteKnowledgeBaseOutput
+DeletePromptOutput: TypeAlias = _native.DeletePromptOutput
+DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
+DeleteRetrievalInstructionOutput: TypeAlias = _native.DeleteRetrievalInstructionOutput
+DeleteVpcConfigurationOutput: TypeAlias = _native.DeleteVpcConfigurationOutput
 DeletionProtectionConfigurationOutput: TypeAlias = _native.DeletionProtectionConfiguration
-DisassociateAgentCollaboratorResponse: TypeAlias = _native.DisassociateAgentCollaboratorResponse
-DisassociateAgentKnowledgeBaseResponse: TypeAlias = _native.DisassociateAgentKnowledgeBaseResponse
+DisassociateAgentCollaboratorOutput: TypeAlias = _native.DisassociateAgentCollaboratorOutput
+DisassociateAgentKnowledgeBaseOutput: TypeAlias = _native.DisassociateAgentKnowledgeBaseOutput
 DocumentIdentifierOutput: TypeAlias = _native.DocumentIdentifier
 EmbeddingModelConfigurationOutput: TypeAlias = _native.EmbeddingModelConfiguration
 EnrichmentStrategyConfigurationOutput: TypeAlias = _native.EnrichmentStrategyConfiguration
@@ -83,37 +83,37 @@ FixedSizeChunkingConfigurationOutput: TypeAlias = _native.FixedSizeChunkingConfi
 FlowAliasConcurrencyConfigurationOutput: TypeAlias = _native.FlowAliasConcurrencyConfiguration
 FlowAliasRoutingConfigurationListItemOutput: TypeAlias = _native.FlowAliasRoutingConfigurationListItem
 FlowAliasSummaryOutput: TypeAlias = _native.FlowAliasSummary
-FlowConnectionOutputValue: TypeAlias = _native.FlowConnection
-FlowDefinitionOutputValue: TypeAlias = _native.FlowDefinition
-FlowNodeOutputValueValue: TypeAlias = _native.FlowNode
-FlowNodeInputOutputValue: TypeAlias = _native.FlowNodeInput
-FlowNodeOutputResponseValue: TypeAlias = _native.FlowNodeOutput
+FlowConnectionValueOutput: TypeAlias = _native.FlowConnection
+FlowDefinitionValueOutput: TypeAlias = _native.FlowDefinition
+FlowNodeValueValueValueOutput: TypeAlias = _native.FlowNode
+FlowNodeInputValueOutput: TypeAlias = _native.FlowNodeInput
+FlowNodeValueValueValueValueOutput: TypeAlias = _native.FlowNodeOutput
 FlowSummaryOutput: TypeAlias = _native.FlowSummary
 FlowValidationOutput: TypeAlias = _native.FlowValidation
 FlowVersionSummaryOutput: TypeAlias = _native.FlowVersionSummary
-GetAgentActionGroupResponse: TypeAlias = _native.GetAgentActionGroupResponse
-GetAgentAliasResponse: TypeAlias = _native.GetAgentAliasResponse
-GetAgentCollaboratorResponse: TypeAlias = _native.GetAgentCollaboratorResponse
-GetAgentKnowledgeBaseResponse: TypeAlias = _native.GetAgentKnowledgeBaseResponse
-GetAgentResponse: TypeAlias = _native.GetAgentResponse
-GetAgentVersionResponse: TypeAlias = _native.GetAgentVersionResponse
-GetDataSourceResponse: TypeAlias = _native.GetDataSourceResponse
-GetFlowAliasResponse: TypeAlias = _native.GetFlowAliasResponse
-GetFlowResponse: TypeAlias = _native.GetFlowResponse
-GetFlowVersionResponse: TypeAlias = _native.GetFlowVersionResponse
-GetIngestionJobResponse: TypeAlias = _native.GetIngestionJobResponse
-GetKnowledgeBaseDocumentsResponse: TypeAlias = _native.GetKnowledgeBaseDocumentsResponse
-GetKnowledgeBaseResponse: TypeAlias = _native.GetKnowledgeBaseResponse
-GetPromptResponse: TypeAlias = _native.GetPromptResponse
-GetResourcePolicyResponse: TypeAlias = _native.GetResourcePolicyResponse
-GetRetrievalInstructionResponse: TypeAlias = _native.GetRetrievalInstructionResponse
-GetVpcConfigurationResponse: TypeAlias = _native.GetVpcConfigurationResponse
-GuardrailConfigurationOutputValue: TypeAlias = _native.GuardrailConfiguration
+GetAgentActionGroupOutput: TypeAlias = _native.GetAgentActionGroupOutput
+GetAgentAliasOutput: TypeAlias = _native.GetAgentAliasOutput
+GetAgentCollaboratorOutput: TypeAlias = _native.GetAgentCollaboratorOutput
+GetAgentKnowledgeBaseOutput: TypeAlias = _native.GetAgentKnowledgeBaseOutput
+GetAgentOutput: TypeAlias = _native.GetAgentOutput
+GetAgentVersionOutput: TypeAlias = _native.GetAgentVersionOutput
+GetDataSourceOutput: TypeAlias = _native.GetDataSourceOutput
+GetFlowAliasOutput: TypeAlias = _native.GetFlowAliasOutput
+GetFlowOutput: TypeAlias = _native.GetFlowOutput
+GetFlowVersionOutput: TypeAlias = _native.GetFlowVersionOutput
+GetIngestionJobOutput: TypeAlias = _native.GetIngestionJobOutput
+GetKnowledgeBaseDocumentsOutput: TypeAlias = _native.GetKnowledgeBaseDocumentsOutput
+GetKnowledgeBaseOutput: TypeAlias = _native.GetKnowledgeBaseOutput
+GetPromptOutput: TypeAlias = _native.GetPromptOutput
+GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
+GetRetrievalInstructionOutput: TypeAlias = _native.GetRetrievalInstructionOutput
+GetVpcConfigurationOutput: TypeAlias = _native.GetVpcConfigurationOutput
+GuardrailConfigurationValueOutput: TypeAlias = _native.GuardrailConfiguration
 HierarchicalChunkingConfigurationOutput: TypeAlias = _native.HierarchicalChunkingConfiguration
 HierarchicalChunkingLevelConfigurationOutput: TypeAlias = _native.HierarchicalChunkingLevelConfiguration
 ImageExtractionConfigurationOutput: TypeAlias = _native.ImageExtractionConfiguration
 InferenceConfigurationOutput: TypeAlias = _native.InferenceConfiguration
-IngestKnowledgeBaseDocumentsResponse: TypeAlias = _native.IngestKnowledgeBaseDocumentsResponse
+IngestKnowledgeBaseDocumentsOutput: TypeAlias = _native.IngestKnowledgeBaseDocumentsOutput
 IngestionJobOutput: TypeAlias = _native.IngestionJob
 IngestionJobStatisticsOutput: TypeAlias = _native.IngestionJobStatistics
 IngestionJobSummaryOutput: TypeAlias = _native.IngestionJobSummary
@@ -123,24 +123,24 @@ KnowledgeBaseOutput: TypeAlias = _native.KnowledgeBase
 KnowledgeBaseConfigurationOutput: TypeAlias = _native.KnowledgeBaseConfiguration
 KnowledgeBaseDocumentDetailOutput: TypeAlias = _native.KnowledgeBaseDocumentDetail
 KnowledgeBaseSummaryOutput: TypeAlias = _native.KnowledgeBaseSummary
-ListAgentActionGroupsResponse: TypeAlias = _native.ListAgentActionGroupsResponse
-ListAgentAliasesResponse: TypeAlias = _native.ListAgentAliasesResponse
-ListAgentCollaboratorsResponse: TypeAlias = _native.ListAgentCollaboratorsResponse
-ListAgentKnowledgeBasesResponse: TypeAlias = _native.ListAgentKnowledgeBasesResponse
-ListAgentVersionsResponse: TypeAlias = _native.ListAgentVersionsResponse
-ListAgentsResponse: TypeAlias = _native.ListAgentsResponse
-ListDataSourcesResponse: TypeAlias = _native.ListDataSourcesResponse
-ListFlowAliasesResponse: TypeAlias = _native.ListFlowAliasesResponse
-ListFlowVersionsResponse: TypeAlias = _native.ListFlowVersionsResponse
-ListFlowsResponse: TypeAlias = _native.ListFlowsResponse
-ListIngestionJobsResponse: TypeAlias = _native.ListIngestionJobsResponse
-ListKnowledgeBaseDocumentsResponse: TypeAlias = _native.ListKnowledgeBaseDocumentsResponse
-ListKnowledgeBasesResponse: TypeAlias = _native.ListKnowledgeBasesResponse
-ListPromptsResponse: TypeAlias = _native.ListPromptsResponse
-ListRetrievalInstructionVersionsResponse: TypeAlias = _native.ListRetrievalInstructionVersionsResponse
-ListRetrievalInstructionsResponse: TypeAlias = _native.ListRetrievalInstructionsResponse
-ListTagsForResourceResponse: TypeAlias = _native.ListTagsForResourceResponse
-ListVpcConfigurationsResponse: TypeAlias = _native.ListVpcConfigurationsResponse
+ListAgentActionGroupsOutput: TypeAlias = _native.ListAgentActionGroupsOutput
+ListAgentAliasesOutput: TypeAlias = _native.ListAgentAliasesOutput
+ListAgentCollaboratorsOutput: TypeAlias = _native.ListAgentCollaboratorsOutput
+ListAgentKnowledgeBasesOutput: TypeAlias = _native.ListAgentKnowledgeBasesOutput
+ListAgentVersionsOutput: TypeAlias = _native.ListAgentVersionsOutput
+ListAgentsOutput: TypeAlias = _native.ListAgentsOutput
+ListDataSourcesOutput: TypeAlias = _native.ListDataSourcesOutput
+ListFlowAliasesOutput: TypeAlias = _native.ListFlowAliasesOutput
+ListFlowVersionsOutput: TypeAlias = _native.ListFlowVersionsOutput
+ListFlowsOutput: TypeAlias = _native.ListFlowsOutput
+ListIngestionJobsOutput: TypeAlias = _native.ListIngestionJobsOutput
+ListKnowledgeBaseDocumentsOutput: TypeAlias = _native.ListKnowledgeBaseDocumentsOutput
+ListKnowledgeBasesOutput: TypeAlias = _native.ListKnowledgeBasesOutput
+ListPromptsOutput: TypeAlias = _native.ListPromptsOutput
+ListRetrievalInstructionVersionsOutput: TypeAlias = _native.ListRetrievalInstructionVersionsOutput
+ListRetrievalInstructionsOutput: TypeAlias = _native.ListRetrievalInstructionsOutput
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+ListVpcConfigurationsOutput: TypeAlias = _native.ListVpcConfigurationsOutput
 ManagedKnowledgeBaseConfigurationOutput: TypeAlias = _native.ManagedKnowledgeBaseConfiguration
 ManagedKnowledgeBaseConnectorConfigurationOutput: TypeAlias = _native.ManagedKnowledgeBaseConnectorConfiguration
 MediaExtractionConfigurationOutput: TypeAlias = _native.MediaExtractionConfiguration
@@ -159,14 +159,14 @@ PatternObjectFilterOutput: TypeAlias = _native.PatternObjectFilter
 PatternObjectFilterConfigurationOutput: TypeAlias = _native.PatternObjectFilterConfiguration
 PineconeConfigurationOutput: TypeAlias = _native.PineconeConfiguration
 PineconeFieldMappingOutput: TypeAlias = _native.PineconeFieldMapping
-PrepareAgentResponse: TypeAlias = _native.PrepareAgentResponse
-PrepareFlowResponse: TypeAlias = _native.PrepareFlowResponse
+PrepareAgentOutput: TypeAlias = _native.PrepareAgentOutput
+PrepareFlowOutput: TypeAlias = _native.PrepareFlowOutput
 PromptConfigurationOutput: TypeAlias = _native.PromptConfiguration
 PromptMetadataEntryOutput: TypeAlias = _native.PromptMetadataEntry
 PromptOverrideConfigurationOutput: TypeAlias = _native.PromptOverrideConfiguration
 PromptSummaryOutput: TypeAlias = _native.PromptSummary
 PromptVariantOutput: TypeAlias = _native.PromptVariant
-PutResourcePolicyResponse: TypeAlias = _native.PutResourcePolicyResponse
+PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
 QueryGenerationColumnOutput: TypeAlias = _native.QueryGenerationColumn
 QueryGenerationConfigurationOutput: TypeAlias = _native.QueryGenerationConfiguration
 QueryGenerationContextOutput: TypeAlias = _native.QueryGenerationContext
@@ -202,29 +202,29 @@ SharePointCrawlerConfigurationOutput: TypeAlias = _native.SharePointCrawlerConfi
 SharePointDataSourceConfigurationOutput: TypeAlias = _native.SharePointDataSourceConfiguration
 SharePointSourceConfigurationOutput: TypeAlias = _native.SharePointSourceConfiguration
 SqlKnowledgeBaseConfigurationOutput: TypeAlias = _native.SqlKnowledgeBaseConfiguration
-StartIngestionJobResponse: TypeAlias = _native.StartIngestionJobResponse
-StopIngestionJobResponse: TypeAlias = _native.StopIngestionJobResponse
+StartIngestionJobOutput: TypeAlias = _native.StartIngestionJobOutput
+StopIngestionJobOutput: TypeAlias = _native.StopIngestionJobOutput
 StorageConfigurationOutput: TypeAlias = _native.StorageConfiguration
 SupplementalDataStorageConfigurationOutput: TypeAlias = _native.SupplementalDataStorageConfiguration
 SupplementalDataStorageLocationOutput: TypeAlias = _native.SupplementalDataStorageLocation
-TagResourceResponse: TypeAlias = _native.TagResourceResponse
+TagResourceOutput: TypeAlias = _native.TagResourceOutput
 TransformationOutput: TypeAlias = _native.Transformation
 TransformationFunctionOutput: TypeAlias = _native.TransformationFunction
 TransformationLambdaConfigurationOutput: TypeAlias = _native.TransformationLambdaConfiguration
-UntagResourceResponse: TypeAlias = _native.UntagResourceResponse
-UpdateAgentActionGroupResponse: TypeAlias = _native.UpdateAgentActionGroupResponse
-UpdateAgentAliasResponse: TypeAlias = _native.UpdateAgentAliasResponse
-UpdateAgentCollaboratorResponse: TypeAlias = _native.UpdateAgentCollaboratorResponse
-UpdateAgentKnowledgeBaseResponse: TypeAlias = _native.UpdateAgentKnowledgeBaseResponse
-UpdateAgentResponse: TypeAlias = _native.UpdateAgentResponse
-UpdateDataSourceResponse: TypeAlias = _native.UpdateDataSourceResponse
-UpdateFlowAliasResponse: TypeAlias = _native.UpdateFlowAliasResponse
-UpdateFlowResponse: TypeAlias = _native.UpdateFlowResponse
-UpdateKnowledgeBaseResponse: TypeAlias = _native.UpdateKnowledgeBaseResponse
-UpdatePromptResponse: TypeAlias = _native.UpdatePromptResponse
-UpdateRetrievalInstructionResponse: TypeAlias = _native.UpdateRetrievalInstructionResponse
+UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+UpdateAgentActionGroupOutput: TypeAlias = _native.UpdateAgentActionGroupOutput
+UpdateAgentAliasOutput: TypeAlias = _native.UpdateAgentAliasOutput
+UpdateAgentCollaboratorOutput: TypeAlias = _native.UpdateAgentCollaboratorOutput
+UpdateAgentKnowledgeBaseOutput: TypeAlias = _native.UpdateAgentKnowledgeBaseOutput
+UpdateAgentOutput: TypeAlias = _native.UpdateAgentOutput
+UpdateDataSourceOutput: TypeAlias = _native.UpdateDataSourceOutput
+UpdateFlowAliasOutput: TypeAlias = _native.UpdateFlowAliasOutput
+UpdateFlowOutput: TypeAlias = _native.UpdateFlowOutput
+UpdateKnowledgeBaseOutput: TypeAlias = _native.UpdateKnowledgeBaseOutput
+UpdatePromptOutput: TypeAlias = _native.UpdatePromptOutput
+UpdateRetrievalInstructionOutput: TypeAlias = _native.UpdateRetrievalInstructionOutput
 UrlConfigurationOutput: TypeAlias = _native.UrlConfiguration
-ValidateFlowDefinitionResponse: TypeAlias = _native.ValidateFlowDefinitionResponse
+ValidateFlowDefinitionOutput: TypeAlias = _native.ValidateFlowDefinitionOutput
 VectorIngestionConfigurationOutput: TypeAlias = _native.VectorIngestionConfiguration
 VectorKnowledgeBaseConfigurationOutput: TypeAlias = _native.VectorKnowledgeBaseConfiguration
 VideoConfigurationOutput: TypeAlias = _native.VideoConfiguration
@@ -1535,7 +1535,7 @@ FlowDefinition = TypedDict(
 FlowDefinitionOutput = TypedDict(
     "FlowDefinitionOutput",
     {
-    "nodes": Required["list[FlowNodeOutputValue] | None"],
+    "nodes": Required["list[FlowNodeValueOutput] | None"],
     "connections": Required["list[FlowConnectionOutput] | None"],
     },
 )
@@ -1551,14 +1551,14 @@ FlowNode = TypedDict(
     },
 )
 
-FlowNodeOutputValue = TypedDict(
-    "FlowNodeOutputValue",
+FlowNodeValueOutput = TypedDict(
+    "FlowNodeValueOutput",
     {
     "name": Required["str"],
     "type": Required["FlowNodeTypeOutput"],
     "configuration": Required["FlowNodeConfigurationOutput | None"],
     "inputs": Required["list[FlowNodeInputOutput] | None"],
-    "outputs": Required["list[FlowNodeOutputResponse] | None"],
+    "outputs": Required["list[FlowNodeValueValueOutput] | None"],
     },
 )
 
@@ -1627,8 +1627,8 @@ FlowNodeOutput = TypedDict(
     },
 )
 
-FlowNodeOutputResponse = TypedDict(
-    "FlowNodeOutputResponse",
+FlowNodeValueValueOutput = TypedDict(
+    "FlowNodeValueValueOutput",
     {
     "name": Required["str"],
     "type": Required["FlowNodeIODataTypeOutput"],

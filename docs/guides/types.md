@@ -13,6 +13,22 @@ Import clients from `rboto` and service types from `rboto_<service>.types`:
 describes the returned object. Both are available in `rboto_s3.types`.
 You can let the checker infer local variables such as `response`.
 
+Every operation with a modeled return value uses `<Operation>Output`, including
+streaming operations and paginator pages:
+
+```python
+from rboto_lambda.types import ListFunctionsOutput
+from rboto_sqs.types import SendMessageOutput
+from rboto_bedrock_runtime.types import ConverseStreamOutput, ConverseStreamEventOutput
+```
+
+`ConverseStreamOutput` describes the response dictionary; its `stream` yields
+`ConverseStreamEventOutput` values. Operations without a modeled return value
+return `None`.
+
+Names such as `ListFunctionsResponse`, `SendMessageResult`, and
+`ConverseStreamResponse` are not exported.
+
 ## Typed inputs
 
 Operations use keyword arguments. Nested structures use typed dictionaries:
@@ -44,10 +60,13 @@ Native response classes, nested response classes, `ByteStream`, and event-stream
 receivers are also available from the service's `types` module. These imports
 refer to the same native classes returned by the client.
 
-Existing dictionary types keep their names. When a nested native class shares
-one of those names, its public alias adds `Output`: `Bucket` remains the typed
-dictionary, while `BucketOutput` describes an object from `response.buckets`.
-Existing response imports from the service package root remain supported.
+When a nested native class shares a name with a dictionary, its public name adds
+`Output`: `Bucket` is the typed dictionary, while `BucketOutput` describes an
+object from `response.buckets`. Operation output names take priority over nested
+types. Further conflicts add `Value` before `Output`.
+
+Native operation outputs are also exported from the service package root under
+the same `<Operation>Output` names.
 
 ## Dictionaries
 
@@ -119,10 +138,10 @@ For an explicit lookup of an attribute introduced after your installed model:
 
 ```python
 from rboto import UnknownEnumValue
-from rboto_sqs.types import GetQueueAttributesResult
+from rboto_sqs.types import GetQueueAttributesOutput
 
 
-def future_attribute(response: GetQueueAttributesResult) -> str | None:
+def future_attribute(response: GetQueueAttributesOutput) -> str | None:
     if response.attributes is None:
         return None
     return response.attributes.get(UnknownEnumValue("FutureAttribute"))

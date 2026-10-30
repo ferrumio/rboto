@@ -85,114 +85,114 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`batch_delete_advanced_prompt_optimization_job`](#batch_delete_advanced_prompt_optimization_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteAdvancedPromptOptimizationJobResponse</code> |
-| [`batch_delete_evaluation_job`](#batch_delete_evaluation_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteEvaluationJobResponse</code> |
-| [`cancel_automated_reasoning_policy_build_workflow`](#cancel_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>CancelAutomatedReasoningPolicyBuildWorkflowResponse</code> |
-| [`create_advanced_prompt_optimization_job`](#create_advanced_prompt_optimization_job) | <code>job_name: str</code>, <code>input_config: AdvancedPromptOptimizationInputConfig</code>, <code>output_config: AdvancedPromptOptimizationOutputConfig</code>, <code>model_configurations: Sequence[ModelConfiguration]</code> | <code>CreateAdvancedPromptOptimizationJobResponse</code> |
-| [`create_automated_reasoning_policy`](#create_automated_reasoning_policy) | <code>name: str</code> | <code>CreateAutomatedReasoningPolicyResponse</code> |
-| [`create_automated_reasoning_policy_test_case`](#create_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>guard_content: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>CreateAutomatedReasoningPolicyTestCaseResponse</code> |
-| [`create_automated_reasoning_policy_version`](#create_automated_reasoning_policy_version) | <code>policy_arn: str</code>, <code>last_updated_definition_hash: str</code> | <code>CreateAutomatedReasoningPolicyVersionResponse</code> |
-| [`create_custom_model`](#create_custom_model) | <code>model_name: str</code> | <code>CreateCustomModelResponse</code> |
-| [`create_custom_model_deployment`](#create_custom_model_deployment) | <code>model_deployment_name: str</code>, <code>model_arn: str</code> | <code>CreateCustomModelDeploymentResponse</code> |
-| [`create_evaluation_job`](#create_evaluation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>evaluation_config: EvaluationConfig</code>, <code>inference_config: EvaluationInferenceConfig</code>, <code>output_data_config: EvaluationOutputDataConfig</code> | <code>CreateEvaluationJobResponse</code> |
-| [`create_foundation_model_agreement`](#create_foundation_model_agreement) | <code>offer_token: str</code>, <code>model_id: str</code> | <code>CreateFoundationModelAgreementResponse</code> |
-| [`create_guardrail`](#create_guardrail) | <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>CreateGuardrailResponse</code> |
-| [`create_guardrail_version`](#create_guardrail_version) | <code>guardrail_identifier: str</code> | <code>CreateGuardrailVersionResponse</code> |
-| [`create_inference_profile`](#create_inference_profile) | <code>inference_profile_name: str</code>, <code>model_source: InferenceProfileModelSource</code> | <code>CreateInferenceProfileResponse</code> |
-| [`create_marketplace_model_endpoint`](#create_marketplace_model_endpoint) | <code>model_source_identifier: str</code>, <code>endpoint_config: EndpointConfig</code>, <code>endpoint_name: str</code> | <code>CreateMarketplaceModelEndpointResponse</code> |
-| [`create_model_copy_job`](#create_model_copy_job) | <code>source_model_arn: str</code>, <code>target_model_name: str</code> | <code>CreateModelCopyJobResponse</code> |
-| [`create_model_customization_job`](#create_model_customization_job) | <code>job_name: str</code>, <code>custom_model_name: str</code>, <code>role_arn: str</code>, <code>base_model_identifier: str</code>, <code>training_data_config: TrainingDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>CreateModelCustomizationJobResponse</code> |
-| [`create_model_import_job`](#create_model_import_job) | <code>job_name: str</code>, <code>imported_model_name: str</code>, <code>role_arn: str</code>, <code>model_data_source: ModelDataSource</code> | <code>CreateModelImportJobResponse</code> |
-| [`create_model_invocation_job`](#create_model_invocation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>model_id: str</code>, <code>input_data_config: ModelInvocationJobInputDataConfig</code>, <code>output_data_config: ModelInvocationJobOutputDataConfig</code> | <code>CreateModelInvocationJobResponse</code> |
-| [`create_prompt_router`](#create_prompt_router) | <code>prompt_router_name: str</code>, <code>models: Sequence[PromptRouterTargetModel]</code>, <code>routing_criteria: RoutingCriteria</code>, <code>fallback_model: PromptRouterTargetModel</code> | <code>CreatePromptRouterResponse</code> |
-| [`create_provisioned_model_throughput`](#create_provisioned_model_throughput) | <code>model_units: int</code>, <code>provisioned_model_name: str</code>, <code>model_id: str</code> | <code>CreateProvisionedModelThroughputResponse</code> |
-| [`delete_automated_reasoning_policy`](#delete_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>DeleteAutomatedReasoningPolicyResponse</code> |
-| [`delete_automated_reasoning_policy_build_workflow`](#delete_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyBuildWorkflowResponse</code> |
-| [`delete_automated_reasoning_policy_test_case`](#delete_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyTestCaseResponse</code> |
-| [`delete_custom_model`](#delete_custom_model) | <code>model_identifier: str</code> | <code>DeleteCustomModelResponse</code> |
-| [`delete_custom_model_deployment`](#delete_custom_model_deployment) | <code>custom_model_deployment_identifier: str</code> | <code>DeleteCustomModelDeploymentResponse</code> |
-| [`delete_enforced_guardrail_configuration`](#delete_enforced_guardrail_configuration) | <code>config_id: str</code> | <code>DeleteEnforcedGuardrailConfigurationResponse</code> |
-| [`delete_foundation_model_agreement`](#delete_foundation_model_agreement) | <code>model_id: str</code> | <code>DeleteFoundationModelAgreementResponse</code> |
-| [`delete_guardrail`](#delete_guardrail) | <code>guardrail_identifier: str</code> | <code>DeleteGuardrailResponse</code> |
-| [`delete_imported_model`](#delete_imported_model) | <code>model_identifier: str</code> | <code>DeleteImportedModelResponse</code> |
-| [`delete_inference_profile`](#delete_inference_profile) | <code>inference_profile_identifier: str</code> | <code>DeleteInferenceProfileResponse</code> |
-| [`delete_marketplace_model_endpoint`](#delete_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeleteMarketplaceModelEndpointResponse</code> |
-| [`delete_model_invocation_logging_configuration`](#delete_model_invocation_logging_configuration) | None | <code>DeleteModelInvocationLoggingConfigurationResponse</code> |
-| [`delete_prompt_router`](#delete_prompt_router) | <code>prompt_router_arn: str</code> | <code>DeletePromptRouterResponse</code> |
-| [`delete_provisioned_model_throughput`](#delete_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>DeleteProvisionedModelThroughputResponse</code> |
-| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyResponse</code> |
-| [`deregister_marketplace_model_endpoint`](#deregister_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeregisterMarketplaceModelEndpointResponse</code> |
-| [`export_automated_reasoning_policy_version`](#export_automated_reasoning_policy_version) | <code>policy_arn: str</code> | <code>ExportAutomatedReasoningPolicyVersionResponse</code> |
-| [`get_account_data_retention`](#get_account_data_retention) | None | <code>GetAccountDataRetentionResponse</code> |
-| [`get_advanced_prompt_optimization_job`](#get_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>GetAdvancedPromptOptimizationJobResponse</code> |
-| [`get_automated_reasoning_policy`](#get_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>GetAutomatedReasoningPolicyResponse</code> |
-| [`get_automated_reasoning_policy_annotations`](#get_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyAnnotationsResponse</code> |
-| [`get_automated_reasoning_policy_build_workflow`](#get_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyBuildWorkflowResponse</code> |
-| [`get_automated_reasoning_policy_build_workflow_result_assets`](#get_automated_reasoning_policy_build_workflow_result_assets) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>asset_type: AutomatedReasoningPolicyBuildResultAssetType</code> | <code>GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse</code> |
-| [`get_automated_reasoning_policy_next_scenario`](#get_automated_reasoning_policy_next_scenario) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyNextScenarioResponse</code> |
-| [`get_automated_reasoning_policy_test_case`](#get_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code> | <code>GetAutomatedReasoningPolicyTestCaseResponse</code> |
-| [`get_automated_reasoning_policy_test_result`](#get_automated_reasoning_policy_test_result) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>test_case_id: str</code> | <code>GetAutomatedReasoningPolicyTestResultResponse</code> |
-| [`get_custom_model`](#get_custom_model) | <code>model_identifier: str</code> | <code>GetCustomModelResponse</code> |
-| [`get_custom_model_deployment`](#get_custom_model_deployment) | <code>custom_model_deployment_identifier: str</code> | <code>GetCustomModelDeploymentResponse</code> |
-| [`get_evaluation_job`](#get_evaluation_job) | <code>job_identifier: str</code> | <code>GetEvaluationJobResponse</code> |
-| [`get_foundation_model`](#get_foundation_model) | <code>model_identifier: str</code> | <code>GetFoundationModelResponse</code> |
-| [`get_foundation_model_availability`](#get_foundation_model_availability) | <code>model_id: str</code> | <code>GetFoundationModelAvailabilityResponse</code> |
-| [`get_guardrail`](#get_guardrail) | <code>guardrail_identifier: str</code> | <code>GetGuardrailResponse</code> |
-| [`get_imported_model`](#get_imported_model) | <code>model_identifier: str</code> | <code>GetImportedModelResponse</code> |
-| [`get_inference_profile`](#get_inference_profile) | <code>inference_profile_identifier: str</code> | <code>GetInferenceProfileResponse</code> |
-| [`get_marketplace_model_endpoint`](#get_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>GetMarketplaceModelEndpointResponse</code> |
-| [`get_model_copy_job`](#get_model_copy_job) | <code>job_arn: str</code> | <code>GetModelCopyJobResponse</code> |
-| [`get_model_customization_job`](#get_model_customization_job) | <code>job_identifier: str</code> | <code>GetModelCustomizationJobResponse</code> |
-| [`get_model_import_job`](#get_model_import_job) | <code>job_identifier: str</code> | <code>GetModelImportJobResponse</code> |
-| [`get_model_invocation_job`](#get_model_invocation_job) | <code>job_identifier: str</code> | <code>GetModelInvocationJobResponse</code> |
-| [`get_model_invocation_logging_configuration`](#get_model_invocation_logging_configuration) | None | <code>GetModelInvocationLoggingConfigurationResponse</code> |
-| [`get_prompt_router`](#get_prompt_router) | <code>prompt_router_arn: str</code> | <code>GetPromptRouterResponse</code> |
-| [`get_provisioned_model_throughput`](#get_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>GetProvisionedModelThroughputResponse</code> |
-| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyResponse</code> |
-| [`get_use_case_for_model_access`](#get_use_case_for_model_access) | None | <code>GetUseCaseForModelAccessResponse</code> |
-| [`list_advanced_prompt_optimization_jobs`](#list_advanced_prompt_optimization_jobs) | None | <code>ListAdvancedPromptOptimizationJobsResponse</code> |
-| [`list_automated_reasoning_policies`](#list_automated_reasoning_policies) | None | <code>ListAutomatedReasoningPoliciesResponse</code> |
-| [`list_automated_reasoning_policy_build_workflows`](#list_automated_reasoning_policy_build_workflows) | <code>policy_arn: str</code> | <code>ListAutomatedReasoningPolicyBuildWorkflowsResponse</code> |
-| [`list_automated_reasoning_policy_test_cases`](#list_automated_reasoning_policy_test_cases) | <code>policy_arn: str</code> | <code>ListAutomatedReasoningPolicyTestCasesResponse</code> |
-| [`list_automated_reasoning_policy_test_results`](#list_automated_reasoning_policy_test_results) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>ListAutomatedReasoningPolicyTestResultsResponse</code> |
-| [`list_custom_model_deployments`](#list_custom_model_deployments) | None | <code>ListCustomModelDeploymentsResponse</code> |
-| [`list_custom_models`](#list_custom_models) | None | <code>ListCustomModelsResponse</code> |
-| [`list_enforced_guardrails_configuration`](#list_enforced_guardrails_configuration) | None | <code>ListEnforcedGuardrailsConfigurationResponse</code> |
-| [`list_evaluation_jobs`](#list_evaluation_jobs) | None | <code>ListEvaluationJobsResponse</code> |
-| [`list_foundation_model_agreement_offers`](#list_foundation_model_agreement_offers) | <code>model_id: str</code> | <code>ListFoundationModelAgreementOffersResponse</code> |
-| [`list_foundation_models`](#list_foundation_models) | None | <code>ListFoundationModelsResponse</code> |
-| [`list_guardrails`](#list_guardrails) | None | <code>ListGuardrailsResponse</code> |
-| [`list_imported_models`](#list_imported_models) | None | <code>ListImportedModelsResponse</code> |
-| [`list_inference_profiles`](#list_inference_profiles) | None | <code>ListInferenceProfilesResponse</code> |
-| [`list_marketplace_model_endpoints`](#list_marketplace_model_endpoints) | None | <code>ListMarketplaceModelEndpointsResponse</code> |
-| [`list_model_copy_jobs`](#list_model_copy_jobs) | None | <code>ListModelCopyJobsResponse</code> |
-| [`list_model_customization_jobs`](#list_model_customization_jobs) | None | <code>ListModelCustomizationJobsResponse</code> |
-| [`list_model_import_jobs`](#list_model_import_jobs) | None | <code>ListModelImportJobsResponse</code> |
-| [`list_model_invocation_jobs`](#list_model_invocation_jobs) | None | <code>ListModelInvocationJobsResponse</code> |
-| [`list_prompt_routers`](#list_prompt_routers) | None | <code>ListPromptRoutersResponse</code> |
-| [`list_provisioned_model_throughputs`](#list_provisioned_model_throughputs) | None | <code>ListProvisionedModelThroughputsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`put_account_data_retention`](#put_account_data_retention) | <code>mode: DataRetentionMode</code> | <code>PutAccountDataRetentionResponse</code> |
-| [`put_enforced_guardrail_configuration`](#put_enforced_guardrail_configuration) | <code>guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration</code> | <code>PutEnforcedGuardrailConfigurationResponse</code> |
-| [`put_model_invocation_logging_configuration`](#put_model_invocation_logging_configuration) | <code>logging_config: LoggingConfig</code> | <code>PutModelInvocationLoggingConfigurationResponse</code> |
-| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyResponse</code> |
-| [`put_use_case_for_model_access`](#put_use_case_for_model_access) | <code>form_data: bytes</code> | <code>PutUseCaseForModelAccessResponse</code> |
-| [`register_marketplace_model_endpoint`](#register_marketplace_model_endpoint) | <code>endpoint_identifier: str</code>, <code>model_source_identifier: str</code> | <code>RegisterMarketplaceModelEndpointResponse</code> |
-| [`start_automated_reasoning_policy_build_workflow`](#start_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_type: AutomatedReasoningPolicyBuildWorkflowType</code>, <code>source_content: AutomatedReasoningPolicyBuildWorkflowSource</code> | <code>StartAutomatedReasoningPolicyBuildWorkflowResponse</code> |
-| [`start_automated_reasoning_policy_test_workflow`](#start_automated_reasoning_policy_test_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>StartAutomatedReasoningPolicyTestWorkflowResponse</code> |
-| [`stop_advanced_prompt_optimization_job`](#stop_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>StopAdvancedPromptOptimizationJobResponse</code> |
-| [`stop_evaluation_job`](#stop_evaluation_job) | <code>job_identifier: str</code> | <code>StopEvaluationJobResponse</code> |
-| [`stop_model_customization_job`](#stop_model_customization_job) | <code>job_identifier: str</code> | <code>StopModelCustomizationJobResponse</code> |
-| [`stop_model_invocation_job`](#stop_model_invocation_job) | <code>job_identifier: str</code> | <code>StopModelInvocationJobResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_automated_reasoning_policy`](#update_automated_reasoning_policy) | <code>policy_arn: str</code>, <code>policy_definition: AutomatedReasoningPolicyDefinition</code> | <code>UpdateAutomatedReasoningPolicyResponse</code> |
-| [`update_automated_reasoning_policy_annotations`](#update_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>annotations: Sequence[AutomatedReasoningPolicyAnnotation]</code>, <code>last_updated_annotation_set_hash: str</code> | <code>UpdateAutomatedReasoningPolicyAnnotationsResponse</code> |
-| [`update_automated_reasoning_policy_test_case`](#update_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>guard_content: str</code>, <code>last_updated_at: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>UpdateAutomatedReasoningPolicyTestCaseResponse</code> |
-| [`update_custom_model_deployment`](#update_custom_model_deployment) | <code>model_arn: str</code>, <code>custom_model_deployment_identifier: str</code> | <code>UpdateCustomModelDeploymentResponse</code> |
-| [`update_guardrail`](#update_guardrail) | <code>guardrail_identifier: str</code>, <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>UpdateGuardrailResponse</code> |
-| [`update_marketplace_model_endpoint`](#update_marketplace_model_endpoint) | <code>endpoint_arn: str</code>, <code>endpoint_config: EndpointConfig</code> | <code>UpdateMarketplaceModelEndpointResponse</code> |
-| [`update_provisioned_model_throughput`](#update_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>UpdateProvisionedModelThroughputResponse</code> |
+| [`batch_delete_advanced_prompt_optimization_job`](#batch_delete_advanced_prompt_optimization_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteAdvancedPromptOptimizationJobOutput</code> |
+| [`batch_delete_evaluation_job`](#batch_delete_evaluation_job) | <code>job_identifiers: Sequence[str]</code> | <code>BatchDeleteEvaluationJobOutput</code> |
+| [`cancel_automated_reasoning_policy_build_workflow`](#cancel_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>CancelAutomatedReasoningPolicyBuildWorkflowOutput</code> |
+| [`create_advanced_prompt_optimization_job`](#create_advanced_prompt_optimization_job) | <code>job_name: str</code>, <code>input_config: AdvancedPromptOptimizationInputConfig</code>, <code>output_config: AdvancedPromptOptimizationOutputConfig</code>, <code>model_configurations: Sequence[ModelConfiguration]</code> | <code>CreateAdvancedPromptOptimizationJobOutput</code> |
+| [`create_automated_reasoning_policy`](#create_automated_reasoning_policy) | <code>name: str</code> | <code>CreateAutomatedReasoningPolicyOutput</code> |
+| [`create_automated_reasoning_policy_test_case`](#create_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>guard_content: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>CreateAutomatedReasoningPolicyTestCaseOutput</code> |
+| [`create_automated_reasoning_policy_version`](#create_automated_reasoning_policy_version) | <code>policy_arn: str</code>, <code>last_updated_definition_hash: str</code> | <code>CreateAutomatedReasoningPolicyVersionOutput</code> |
+| [`create_custom_model`](#create_custom_model) | <code>model_name: str</code> | <code>CreateCustomModelOutput</code> |
+| [`create_custom_model_deployment`](#create_custom_model_deployment) | <code>model_deployment_name: str</code>, <code>model_arn: str</code> | <code>CreateCustomModelDeploymentOutput</code> |
+| [`create_evaluation_job`](#create_evaluation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>evaluation_config: EvaluationConfig</code>, <code>inference_config: EvaluationInferenceConfig</code>, <code>output_data_config: EvaluationOutputDataConfig</code> | <code>CreateEvaluationJobOutput</code> |
+| [`create_foundation_model_agreement`](#create_foundation_model_agreement) | <code>offer_token: str</code>, <code>model_id: str</code> | <code>CreateFoundationModelAgreementOutput</code> |
+| [`create_guardrail`](#create_guardrail) | <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>CreateGuardrailOutput</code> |
+| [`create_guardrail_version`](#create_guardrail_version) | <code>guardrail_identifier: str</code> | <code>CreateGuardrailVersionOutput</code> |
+| [`create_inference_profile`](#create_inference_profile) | <code>inference_profile_name: str</code>, <code>model_source: InferenceProfileModelSource</code> | <code>CreateInferenceProfileOutput</code> |
+| [`create_marketplace_model_endpoint`](#create_marketplace_model_endpoint) | <code>model_source_identifier: str</code>, <code>endpoint_config: EndpointConfig</code>, <code>endpoint_name: str</code> | <code>CreateMarketplaceModelEndpointOutput</code> |
+| [`create_model_copy_job`](#create_model_copy_job) | <code>source_model_arn: str</code>, <code>target_model_name: str</code> | <code>CreateModelCopyJobOutput</code> |
+| [`create_model_customization_job`](#create_model_customization_job) | <code>job_name: str</code>, <code>custom_model_name: str</code>, <code>role_arn: str</code>, <code>base_model_identifier: str</code>, <code>training_data_config: TrainingDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>CreateModelCustomizationJobOutput</code> |
+| [`create_model_import_job`](#create_model_import_job) | <code>job_name: str</code>, <code>imported_model_name: str</code>, <code>role_arn: str</code>, <code>model_data_source: ModelDataSource</code> | <code>CreateModelImportJobOutput</code> |
+| [`create_model_invocation_job`](#create_model_invocation_job) | <code>job_name: str</code>, <code>role_arn: str</code>, <code>model_id: str</code>, <code>input_data_config: ModelInvocationJobInputDataConfig</code>, <code>output_data_config: ModelInvocationJobOutputDataConfig</code> | <code>CreateModelInvocationJobOutput</code> |
+| [`create_prompt_router`](#create_prompt_router) | <code>prompt_router_name: str</code>, <code>models: Sequence[PromptRouterTargetModel]</code>, <code>routing_criteria: RoutingCriteria</code>, <code>fallback_model: PromptRouterTargetModel</code> | <code>CreatePromptRouterOutput</code> |
+| [`create_provisioned_model_throughput`](#create_provisioned_model_throughput) | <code>model_units: int</code>, <code>provisioned_model_name: str</code>, <code>model_id: str</code> | <code>CreateProvisionedModelThroughputOutput</code> |
+| [`delete_automated_reasoning_policy`](#delete_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>DeleteAutomatedReasoningPolicyOutput</code> |
+| [`delete_automated_reasoning_policy_build_workflow`](#delete_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyBuildWorkflowOutput</code> |
+| [`delete_automated_reasoning_policy_test_case`](#delete_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>last_updated_at: str</code> | <code>DeleteAutomatedReasoningPolicyTestCaseOutput</code> |
+| [`delete_custom_model`](#delete_custom_model) | <code>model_identifier: str</code> | <code>DeleteCustomModelOutput</code> |
+| [`delete_custom_model_deployment`](#delete_custom_model_deployment) | <code>custom_model_deployment_identifier: str</code> | <code>DeleteCustomModelDeploymentOutput</code> |
+| [`delete_enforced_guardrail_configuration`](#delete_enforced_guardrail_configuration) | <code>config_id: str</code> | <code>DeleteEnforcedGuardrailConfigurationOutput</code> |
+| [`delete_foundation_model_agreement`](#delete_foundation_model_agreement) | <code>model_id: str</code> | <code>DeleteFoundationModelAgreementOutput</code> |
+| [`delete_guardrail`](#delete_guardrail) | <code>guardrail_identifier: str</code> | <code>DeleteGuardrailOutput</code> |
+| [`delete_imported_model`](#delete_imported_model) | <code>model_identifier: str</code> | <code>DeleteImportedModelOutput</code> |
+| [`delete_inference_profile`](#delete_inference_profile) | <code>inference_profile_identifier: str</code> | <code>DeleteInferenceProfileOutput</code> |
+| [`delete_marketplace_model_endpoint`](#delete_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeleteMarketplaceModelEndpointOutput</code> |
+| [`delete_model_invocation_logging_configuration`](#delete_model_invocation_logging_configuration) | None | <code>DeleteModelInvocationLoggingConfigurationOutput</code> |
+| [`delete_prompt_router`](#delete_prompt_router) | <code>prompt_router_arn: str</code> | <code>DeletePromptRouterOutput</code> |
+| [`delete_provisioned_model_throughput`](#delete_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>DeleteProvisionedModelThroughputOutput</code> |
+| [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`deregister_marketplace_model_endpoint`](#deregister_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>DeregisterMarketplaceModelEndpointOutput</code> |
+| [`export_automated_reasoning_policy_version`](#export_automated_reasoning_policy_version) | <code>policy_arn: str</code> | <code>ExportAutomatedReasoningPolicyVersionOutput</code> |
+| [`get_account_data_retention`](#get_account_data_retention) | None | <code>GetAccountDataRetentionOutput</code> |
+| [`get_advanced_prompt_optimization_job`](#get_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>GetAdvancedPromptOptimizationJobOutput</code> |
+| [`get_automated_reasoning_policy`](#get_automated_reasoning_policy) | <code>policy_arn: str</code> | <code>GetAutomatedReasoningPolicyOutput</code> |
+| [`get_automated_reasoning_policy_annotations`](#get_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyAnnotationsOutput</code> |
+| [`get_automated_reasoning_policy_build_workflow`](#get_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyBuildWorkflowOutput</code> |
+| [`get_automated_reasoning_policy_build_workflow_result_assets`](#get_automated_reasoning_policy_build_workflow_result_assets) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>asset_type: AutomatedReasoningPolicyBuildResultAssetType</code> | <code>GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput</code> |
+| [`get_automated_reasoning_policy_next_scenario`](#get_automated_reasoning_policy_next_scenario) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>GetAutomatedReasoningPolicyNextScenarioOutput</code> |
+| [`get_automated_reasoning_policy_test_case`](#get_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code> | <code>GetAutomatedReasoningPolicyTestCaseOutput</code> |
+| [`get_automated_reasoning_policy_test_result`](#get_automated_reasoning_policy_test_result) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>test_case_id: str</code> | <code>GetAutomatedReasoningPolicyTestResultOutput</code> |
+| [`get_custom_model`](#get_custom_model) | <code>model_identifier: str</code> | <code>GetCustomModelOutput</code> |
+| [`get_custom_model_deployment`](#get_custom_model_deployment) | <code>custom_model_deployment_identifier: str</code> | <code>GetCustomModelDeploymentOutput</code> |
+| [`get_evaluation_job`](#get_evaluation_job) | <code>job_identifier: str</code> | <code>GetEvaluationJobOutput</code> |
+| [`get_foundation_model`](#get_foundation_model) | <code>model_identifier: str</code> | <code>GetFoundationModelOutput</code> |
+| [`get_foundation_model_availability`](#get_foundation_model_availability) | <code>model_id: str</code> | <code>GetFoundationModelAvailabilityOutput</code> |
+| [`get_guardrail`](#get_guardrail) | <code>guardrail_identifier: str</code> | <code>GetGuardrailOutput</code> |
+| [`get_imported_model`](#get_imported_model) | <code>model_identifier: str</code> | <code>GetImportedModelOutput</code> |
+| [`get_inference_profile`](#get_inference_profile) | <code>inference_profile_identifier: str</code> | <code>GetInferenceProfileOutput</code> |
+| [`get_marketplace_model_endpoint`](#get_marketplace_model_endpoint) | <code>endpoint_arn: str</code> | <code>GetMarketplaceModelEndpointOutput</code> |
+| [`get_model_copy_job`](#get_model_copy_job) | <code>job_arn: str</code> | <code>GetModelCopyJobOutput</code> |
+| [`get_model_customization_job`](#get_model_customization_job) | <code>job_identifier: str</code> | <code>GetModelCustomizationJobOutput</code> |
+| [`get_model_import_job`](#get_model_import_job) | <code>job_identifier: str</code> | <code>GetModelImportJobOutput</code> |
+| [`get_model_invocation_job`](#get_model_invocation_job) | <code>job_identifier: str</code> | <code>GetModelInvocationJobOutput</code> |
+| [`get_model_invocation_logging_configuration`](#get_model_invocation_logging_configuration) | None | <code>GetModelInvocationLoggingConfigurationOutput</code> |
+| [`get_prompt_router`](#get_prompt_router) | <code>prompt_router_arn: str</code> | <code>GetPromptRouterOutput</code> |
+| [`get_provisioned_model_throughput`](#get_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>GetProvisionedModelThroughputOutput</code> |
+| [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
+| [`get_use_case_for_model_access`](#get_use_case_for_model_access) | None | <code>GetUseCaseForModelAccessOutput</code> |
+| [`list_advanced_prompt_optimization_jobs`](#list_advanced_prompt_optimization_jobs) | None | <code>ListAdvancedPromptOptimizationJobsOutput</code> |
+| [`list_automated_reasoning_policies`](#list_automated_reasoning_policies) | None | <code>ListAutomatedReasoningPoliciesOutput</code> |
+| [`list_automated_reasoning_policy_build_workflows`](#list_automated_reasoning_policy_build_workflows) | <code>policy_arn: str</code> | <code>ListAutomatedReasoningPolicyBuildWorkflowsOutput</code> |
+| [`list_automated_reasoning_policy_test_cases`](#list_automated_reasoning_policy_test_cases) | <code>policy_arn: str</code> | <code>ListAutomatedReasoningPolicyTestCasesOutput</code> |
+| [`list_automated_reasoning_policy_test_results`](#list_automated_reasoning_policy_test_results) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>ListAutomatedReasoningPolicyTestResultsOutput</code> |
+| [`list_custom_model_deployments`](#list_custom_model_deployments) | None | <code>ListCustomModelDeploymentsOutput</code> |
+| [`list_custom_models`](#list_custom_models) | None | <code>ListCustomModelsOutput</code> |
+| [`list_enforced_guardrails_configuration`](#list_enforced_guardrails_configuration) | None | <code>ListEnforcedGuardrailsConfigurationOutput</code> |
+| [`list_evaluation_jobs`](#list_evaluation_jobs) | None | <code>ListEvaluationJobsOutput</code> |
+| [`list_foundation_model_agreement_offers`](#list_foundation_model_agreement_offers) | <code>model_id: str</code> | <code>ListFoundationModelAgreementOffersOutput</code> |
+| [`list_foundation_models`](#list_foundation_models) | None | <code>ListFoundationModelsOutput</code> |
+| [`list_guardrails`](#list_guardrails) | None | <code>ListGuardrailsOutput</code> |
+| [`list_imported_models`](#list_imported_models) | None | <code>ListImportedModelsOutput</code> |
+| [`list_inference_profiles`](#list_inference_profiles) | None | <code>ListInferenceProfilesOutput</code> |
+| [`list_marketplace_model_endpoints`](#list_marketplace_model_endpoints) | None | <code>ListMarketplaceModelEndpointsOutput</code> |
+| [`list_model_copy_jobs`](#list_model_copy_jobs) | None | <code>ListModelCopyJobsOutput</code> |
+| [`list_model_customization_jobs`](#list_model_customization_jobs) | None | <code>ListModelCustomizationJobsOutput</code> |
+| [`list_model_import_jobs`](#list_model_import_jobs) | None | <code>ListModelImportJobsOutput</code> |
+| [`list_model_invocation_jobs`](#list_model_invocation_jobs) | None | <code>ListModelInvocationJobsOutput</code> |
+| [`list_prompt_routers`](#list_prompt_routers) | None | <code>ListPromptRoutersOutput</code> |
+| [`list_provisioned_model_throughputs`](#list_provisioned_model_throughputs) | None | <code>ListProvisionedModelThroughputsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`put_account_data_retention`](#put_account_data_retention) | <code>mode: DataRetentionMode</code> | <code>PutAccountDataRetentionOutput</code> |
+| [`put_enforced_guardrail_configuration`](#put_enforced_guardrail_configuration) | <code>guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration</code> | <code>PutEnforcedGuardrailConfigurationOutput</code> |
+| [`put_model_invocation_logging_configuration`](#put_model_invocation_logging_configuration) | <code>logging_config: LoggingConfig</code> | <code>PutModelInvocationLoggingConfigurationOutput</code> |
+| [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`put_use_case_for_model_access`](#put_use_case_for_model_access) | <code>form_data: bytes</code> | <code>PutUseCaseForModelAccessOutput</code> |
+| [`register_marketplace_model_endpoint`](#register_marketplace_model_endpoint) | <code>endpoint_identifier: str</code>, <code>model_source_identifier: str</code> | <code>RegisterMarketplaceModelEndpointOutput</code> |
+| [`start_automated_reasoning_policy_build_workflow`](#start_automated_reasoning_policy_build_workflow) | <code>policy_arn: str</code>, <code>build_workflow_type: AutomatedReasoningPolicyBuildWorkflowType</code>, <code>source_content: AutomatedReasoningPolicyBuildWorkflowSource</code> | <code>StartAutomatedReasoningPolicyBuildWorkflowOutput</code> |
+| [`start_automated_reasoning_policy_test_workflow`](#start_automated_reasoning_policy_test_workflow) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code> | <code>StartAutomatedReasoningPolicyTestWorkflowOutput</code> |
+| [`stop_advanced_prompt_optimization_job`](#stop_advanced_prompt_optimization_job) | <code>job_identifier: str</code> | <code>StopAdvancedPromptOptimizationJobOutput</code> |
+| [`stop_evaluation_job`](#stop_evaluation_job) | <code>job_identifier: str</code> | <code>StopEvaluationJobOutput</code> |
+| [`stop_model_customization_job`](#stop_model_customization_job) | <code>job_identifier: str</code> | <code>StopModelCustomizationJobOutput</code> |
+| [`stop_model_invocation_job`](#stop_model_invocation_job) | <code>job_identifier: str</code> | <code>StopModelInvocationJobOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_automated_reasoning_policy`](#update_automated_reasoning_policy) | <code>policy_arn: str</code>, <code>policy_definition: AutomatedReasoningPolicyDefinition</code> | <code>UpdateAutomatedReasoningPolicyOutput</code> |
+| [`update_automated_reasoning_policy_annotations`](#update_automated_reasoning_policy_annotations) | <code>policy_arn: str</code>, <code>build_workflow_id: str</code>, <code>annotations: Sequence[AutomatedReasoningPolicyAnnotation]</code>, <code>last_updated_annotation_set_hash: str</code> | <code>UpdateAutomatedReasoningPolicyAnnotationsOutput</code> |
+| [`update_automated_reasoning_policy_test_case`](#update_automated_reasoning_policy_test_case) | <code>policy_arn: str</code>, <code>test_case_id: str</code>, <code>guard_content: str</code>, <code>last_updated_at: str</code>, <code>expected_aggregated_findings_result: AutomatedReasoningCheckResult</code> | <code>UpdateAutomatedReasoningPolicyTestCaseOutput</code> |
+| [`update_custom_model_deployment`](#update_custom_model_deployment) | <code>model_arn: str</code>, <code>custom_model_deployment_identifier: str</code> | <code>UpdateCustomModelDeploymentOutput</code> |
+| [`update_guardrail`](#update_guardrail) | <code>guardrail_identifier: str</code>, <code>name: str</code>, <code>blocked_input_messaging: str</code>, <code>blocked_outputs_messaging: str</code> | <code>UpdateGuardrailOutput</code> |
+| [`update_marketplace_model_endpoint`](#update_marketplace_model_endpoint) | <code>endpoint_arn: str</code>, <code>endpoint_config: EndpointConfig</code> | <code>UpdateMarketplaceModelEndpointOutput</code> |
+| [`update_provisioned_model_throughput`](#update_provisioned_model_throughput) | <code>provisioned_model_id: str</code> | <code>UpdateProvisionedModelThroughputOutput</code> |
 
 ## Complete signatures
 
@@ -202,7 +202,7 @@ native response definitions are in the package's `_native.pyi`.
 async def batch_delete_advanced_prompt_optimization_job(
     *,
     job_identifiers: Sequence[str],
-) -> BatchDeleteAdvancedPromptOptimizationJobResponse: ...
+) -> BatchDeleteAdvancedPromptOptimizationJobOutput: ...
 ```
 
 
@@ -212,7 +212,7 @@ async def batch_delete_advanced_prompt_optimization_job(
 async def batch_delete_evaluation_job(
     *,
     job_identifiers: Sequence[str],
-) -> BatchDeleteEvaluationJobResponse: ...
+) -> BatchDeleteEvaluationJobOutput: ...
 ```
 
 
@@ -223,7 +223,7 @@ async def cancel_automated_reasoning_policy_build_workflow(
     *,
     policy_arn: str,
     build_workflow_id: str,
-) -> CancelAutomatedReasoningPolicyBuildWorkflowResponse: ...
+) -> CancelAutomatedReasoningPolicyBuildWorkflowOutput: ...
 ```
 
 
@@ -240,7 +240,7 @@ async def create_advanced_prompt_optimization_job(
     client_token: str | None = None,
     encryption_key_arn: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateAdvancedPromptOptimizationJobResponse: ...
+) -> CreateAdvancedPromptOptimizationJobOutput: ...
 ```
 
 
@@ -255,7 +255,7 @@ async def create_automated_reasoning_policy(
     policy_definition: AutomatedReasoningPolicyDefinition | None = None,
     kms_key_id: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateAutomatedReasoningPolicyResponse: ...
+) -> CreateAutomatedReasoningPolicyOutput: ...
 ```
 
 
@@ -270,7 +270,7 @@ async def create_automated_reasoning_policy_test_case(
     query_content: str | None = None,
     client_request_token: str | None = None,
     confidence_threshold: float | None = None,
-) -> CreateAutomatedReasoningPolicyTestCaseResponse: ...
+) -> CreateAutomatedReasoningPolicyTestCaseOutput: ...
 ```
 
 
@@ -283,7 +283,7 @@ async def create_automated_reasoning_policy_version(
     last_updated_definition_hash: str,
     client_request_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateAutomatedReasoningPolicyVersionResponse: ...
+) -> CreateAutomatedReasoningPolicyVersionOutput: ...
 ```
 
 
@@ -299,7 +299,7 @@ async def create_custom_model(
     role_arn: str | None = None,
     model_tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
-) -> CreateCustomModelResponse: ...
+) -> CreateCustomModelOutput: ...
 ```
 
 
@@ -313,7 +313,7 @@ async def create_custom_model_deployment(
     description: str | None = None,
     tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
-) -> CreateCustomModelDeploymentResponse: ...
+) -> CreateCustomModelDeploymentOutput: ...
 ```
 
 
@@ -332,7 +332,7 @@ async def create_evaluation_job(
     customer_encryption_key_id: str | None = None,
     job_tags: Sequence[Tag] | None = None,
     application_type: ApplicationType | None = None,
-) -> CreateEvaluationJobResponse: ...
+) -> CreateEvaluationJobOutput: ...
 ```
 
 
@@ -343,7 +343,7 @@ async def create_foundation_model_agreement(
     *,
     offer_token: str,
     model_id: str,
-) -> CreateFoundationModelAgreementResponse: ...
+) -> CreateFoundationModelAgreementOutput: ...
 ```
 
 
@@ -366,7 +366,7 @@ async def create_guardrail(
     kms_key_id: str | None = None,
     tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
-) -> CreateGuardrailResponse: ...
+) -> CreateGuardrailOutput: ...
 ```
 
 
@@ -378,7 +378,7 @@ async def create_guardrail_version(
     guardrail_identifier: str,
     description: str | None = None,
     client_request_token: str | None = None,
-) -> CreateGuardrailVersionResponse: ...
+) -> CreateGuardrailVersionOutput: ...
 ```
 
 
@@ -392,7 +392,7 @@ async def create_inference_profile(
     description: str | None = None,
     client_request_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateInferenceProfileResponse: ...
+) -> CreateInferenceProfileOutput: ...
 ```
 
 
@@ -407,7 +407,7 @@ async def create_marketplace_model_endpoint(
     accept_eula: bool | None = None,
     client_request_token: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateMarketplaceModelEndpointResponse: ...
+) -> CreateMarketplaceModelEndpointOutput: ...
 ```
 
 
@@ -421,7 +421,7 @@ async def create_model_copy_job(
     model_kms_key_id: str | None = None,
     target_model_tags: Sequence[Tag] | None = None,
     client_request_token: str | None = None,
-) -> CreateModelCopyJobResponse: ...
+) -> CreateModelCopyJobOutput: ...
 ```
 
 
@@ -445,7 +445,7 @@ async def create_model_customization_job(
     hyper_parameters: dict[str, str] | None = None,
     vpc_config: VpcConfig | None = None,
     customization_config: CustomizationConfig | None = None,
-) -> CreateModelCustomizationJobResponse: ...
+) -> CreateModelCustomizationJobOutput: ...
 ```
 
 
@@ -463,7 +463,7 @@ async def create_model_import_job(
     client_request_token: str | None = None,
     vpc_config: VpcConfig | None = None,
     imported_model_kms_key_id: str | None = None,
-) -> CreateModelImportJobResponse: ...
+) -> CreateModelImportJobOutput: ...
 ```
 
 
@@ -482,7 +482,7 @@ async def create_model_invocation_job(
     timeout_duration_in_hours: int | None = None,
     tags: Sequence[Tag] | None = None,
     model_invocation_type: ModelInvocationType | None = None,
-) -> CreateModelInvocationJobResponse: ...
+) -> CreateModelInvocationJobOutput: ...
 ```
 
 
@@ -498,7 +498,7 @@ async def create_prompt_router(
     client_request_token: str | None = None,
     description: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreatePromptRouterResponse: ...
+) -> CreatePromptRouterOutput: ...
 ```
 
 
@@ -513,7 +513,7 @@ async def create_provisioned_model_throughput(
     client_request_token: str | None = None,
     commitment_duration: CommitmentDuration | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateProvisionedModelThroughputResponse: ...
+) -> CreateProvisionedModelThroughputOutput: ...
 ```
 
 
@@ -524,7 +524,7 @@ async def delete_automated_reasoning_policy(
     *,
     policy_arn: str,
     force: bool | None = None,
-) -> DeleteAutomatedReasoningPolicyResponse: ...
+) -> DeleteAutomatedReasoningPolicyOutput: ...
 ```
 
 
@@ -536,7 +536,7 @@ async def delete_automated_reasoning_policy_build_workflow(
     policy_arn: str,
     build_workflow_id: str,
     last_updated_at: str,
-) -> DeleteAutomatedReasoningPolicyBuildWorkflowResponse: ...
+) -> DeleteAutomatedReasoningPolicyBuildWorkflowOutput: ...
 ```
 
 
@@ -548,7 +548,7 @@ async def delete_automated_reasoning_policy_test_case(
     policy_arn: str,
     test_case_id: str,
     last_updated_at: str,
-) -> DeleteAutomatedReasoningPolicyTestCaseResponse: ...
+) -> DeleteAutomatedReasoningPolicyTestCaseOutput: ...
 ```
 
 
@@ -558,7 +558,7 @@ async def delete_automated_reasoning_policy_test_case(
 async def delete_custom_model(
     *,
     model_identifier: str,
-) -> DeleteCustomModelResponse: ...
+) -> DeleteCustomModelOutput: ...
 ```
 
 
@@ -568,7 +568,7 @@ async def delete_custom_model(
 async def delete_custom_model_deployment(
     *,
     custom_model_deployment_identifier: str,
-) -> DeleteCustomModelDeploymentResponse: ...
+) -> DeleteCustomModelDeploymentOutput: ...
 ```
 
 
@@ -578,7 +578,7 @@ async def delete_custom_model_deployment(
 async def delete_enforced_guardrail_configuration(
     *,
     config_id: str,
-) -> DeleteEnforcedGuardrailConfigurationResponse: ...
+) -> DeleteEnforcedGuardrailConfigurationOutput: ...
 ```
 
 
@@ -588,7 +588,7 @@ async def delete_enforced_guardrail_configuration(
 async def delete_foundation_model_agreement(
     *,
     model_id: str,
-) -> DeleteFoundationModelAgreementResponse: ...
+) -> DeleteFoundationModelAgreementOutput: ...
 ```
 
 
@@ -599,7 +599,7 @@ async def delete_guardrail(
     *,
     guardrail_identifier: str,
     guardrail_version: str | None = None,
-) -> DeleteGuardrailResponse: ...
+) -> DeleteGuardrailOutput: ...
 ```
 
 
@@ -609,7 +609,7 @@ async def delete_guardrail(
 async def delete_imported_model(
     *,
     model_identifier: str,
-) -> DeleteImportedModelResponse: ...
+) -> DeleteImportedModelOutput: ...
 ```
 
 
@@ -619,7 +619,7 @@ async def delete_imported_model(
 async def delete_inference_profile(
     *,
     inference_profile_identifier: str,
-) -> DeleteInferenceProfileResponse: ...
+) -> DeleteInferenceProfileOutput: ...
 ```
 
 
@@ -629,14 +629,14 @@ async def delete_inference_profile(
 async def delete_marketplace_model_endpoint(
     *,
     endpoint_arn: str,
-) -> DeleteMarketplaceModelEndpointResponse: ...
+) -> DeleteMarketplaceModelEndpointOutput: ...
 ```
 
 
 ### delete_model_invocation_logging_configuration
 
 ```python
-async def delete_model_invocation_logging_configuration() -> DeleteModelInvocationLoggingConfigurationResponse: ...
+async def delete_model_invocation_logging_configuration() -> DeleteModelInvocationLoggingConfigurationOutput: ...
 ```
 
 
@@ -646,7 +646,7 @@ async def delete_model_invocation_logging_configuration() -> DeleteModelInvocati
 async def delete_prompt_router(
     *,
     prompt_router_arn: str,
-) -> DeletePromptRouterResponse: ...
+) -> DeletePromptRouterOutput: ...
 ```
 
 
@@ -656,7 +656,7 @@ async def delete_prompt_router(
 async def delete_provisioned_model_throughput(
     *,
     provisioned_model_id: str,
-) -> DeleteProvisionedModelThroughputResponse: ...
+) -> DeleteProvisionedModelThroughputOutput: ...
 ```
 
 
@@ -666,7 +666,7 @@ async def delete_provisioned_model_throughput(
 async def delete_resource_policy(
     *,
     resource_arn: str,
-) -> DeleteResourcePolicyResponse: ...
+) -> DeleteResourcePolicyOutput: ...
 ```
 
 
@@ -676,7 +676,7 @@ async def delete_resource_policy(
 async def deregister_marketplace_model_endpoint(
     *,
     endpoint_arn: str,
-) -> DeregisterMarketplaceModelEndpointResponse: ...
+) -> DeregisterMarketplaceModelEndpointOutput: ...
 ```
 
 
@@ -686,14 +686,14 @@ async def deregister_marketplace_model_endpoint(
 async def export_automated_reasoning_policy_version(
     *,
     policy_arn: str,
-) -> ExportAutomatedReasoningPolicyVersionResponse: ...
+) -> ExportAutomatedReasoningPolicyVersionOutput: ...
 ```
 
 
 ### get_account_data_retention
 
 ```python
-async def get_account_data_retention() -> GetAccountDataRetentionResponse: ...
+async def get_account_data_retention() -> GetAccountDataRetentionOutput: ...
 ```
 
 
@@ -703,7 +703,7 @@ async def get_account_data_retention() -> GetAccountDataRetentionResponse: ...
 async def get_advanced_prompt_optimization_job(
     *,
     job_identifier: str,
-) -> GetAdvancedPromptOptimizationJobResponse: ...
+) -> GetAdvancedPromptOptimizationJobOutput: ...
 ```
 
 
@@ -713,7 +713,7 @@ async def get_advanced_prompt_optimization_job(
 async def get_automated_reasoning_policy(
     *,
     policy_arn: str,
-) -> GetAutomatedReasoningPolicyResponse: ...
+) -> GetAutomatedReasoningPolicyOutput: ...
 ```
 
 
@@ -724,7 +724,7 @@ async def get_automated_reasoning_policy_annotations(
     *,
     policy_arn: str,
     build_workflow_id: str,
-) -> GetAutomatedReasoningPolicyAnnotationsResponse: ...
+) -> GetAutomatedReasoningPolicyAnnotationsOutput: ...
 ```
 
 
@@ -735,7 +735,7 @@ async def get_automated_reasoning_policy_build_workflow(
     *,
     policy_arn: str,
     build_workflow_id: str,
-) -> GetAutomatedReasoningPolicyBuildWorkflowResponse: ...
+) -> GetAutomatedReasoningPolicyBuildWorkflowOutput: ...
 ```
 
 
@@ -748,7 +748,7 @@ async def get_automated_reasoning_policy_build_workflow_result_assets(
     build_workflow_id: str,
     asset_type: AutomatedReasoningPolicyBuildResultAssetType,
     asset_id: str | None = None,
-) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsResponse: ...
+) -> GetAutomatedReasoningPolicyBuildWorkflowResultAssetsOutput: ...
 ```
 
 
@@ -759,7 +759,7 @@ async def get_automated_reasoning_policy_next_scenario(
     *,
     policy_arn: str,
     build_workflow_id: str,
-) -> GetAutomatedReasoningPolicyNextScenarioResponse: ...
+) -> GetAutomatedReasoningPolicyNextScenarioOutput: ...
 ```
 
 
@@ -770,7 +770,7 @@ async def get_automated_reasoning_policy_test_case(
     *,
     policy_arn: str,
     test_case_id: str,
-) -> GetAutomatedReasoningPolicyTestCaseResponse: ...
+) -> GetAutomatedReasoningPolicyTestCaseOutput: ...
 ```
 
 
@@ -782,7 +782,7 @@ async def get_automated_reasoning_policy_test_result(
     policy_arn: str,
     build_workflow_id: str,
     test_case_id: str,
-) -> GetAutomatedReasoningPolicyTestResultResponse: ...
+) -> GetAutomatedReasoningPolicyTestResultOutput: ...
 ```
 
 
@@ -792,7 +792,7 @@ async def get_automated_reasoning_policy_test_result(
 async def get_custom_model(
     *,
     model_identifier: str,
-) -> GetCustomModelResponse: ...
+) -> GetCustomModelOutput: ...
 ```
 
 
@@ -802,7 +802,7 @@ async def get_custom_model(
 async def get_custom_model_deployment(
     *,
     custom_model_deployment_identifier: str,
-) -> GetCustomModelDeploymentResponse: ...
+) -> GetCustomModelDeploymentOutput: ...
 ```
 
 
@@ -812,7 +812,7 @@ async def get_custom_model_deployment(
 async def get_evaluation_job(
     *,
     job_identifier: str,
-) -> GetEvaluationJobResponse: ...
+) -> GetEvaluationJobOutput: ...
 ```
 
 
@@ -822,7 +822,7 @@ async def get_evaluation_job(
 async def get_foundation_model(
     *,
     model_identifier: str,
-) -> GetFoundationModelResponse: ...
+) -> GetFoundationModelOutput: ...
 ```
 
 
@@ -832,7 +832,7 @@ async def get_foundation_model(
 async def get_foundation_model_availability(
     *,
     model_id: str,
-) -> GetFoundationModelAvailabilityResponse: ...
+) -> GetFoundationModelAvailabilityOutput: ...
 ```
 
 
@@ -843,7 +843,7 @@ async def get_guardrail(
     *,
     guardrail_identifier: str,
     guardrail_version: str | None = None,
-) -> GetGuardrailResponse: ...
+) -> GetGuardrailOutput: ...
 ```
 
 
@@ -853,7 +853,7 @@ async def get_guardrail(
 async def get_imported_model(
     *,
     model_identifier: str,
-) -> GetImportedModelResponse: ...
+) -> GetImportedModelOutput: ...
 ```
 
 
@@ -863,7 +863,7 @@ async def get_imported_model(
 async def get_inference_profile(
     *,
     inference_profile_identifier: str,
-) -> GetInferenceProfileResponse: ...
+) -> GetInferenceProfileOutput: ...
 ```
 
 
@@ -873,7 +873,7 @@ async def get_inference_profile(
 async def get_marketplace_model_endpoint(
     *,
     endpoint_arn: str,
-) -> GetMarketplaceModelEndpointResponse: ...
+) -> GetMarketplaceModelEndpointOutput: ...
 ```
 
 
@@ -883,7 +883,7 @@ async def get_marketplace_model_endpoint(
 async def get_model_copy_job(
     *,
     job_arn: str,
-) -> GetModelCopyJobResponse: ...
+) -> GetModelCopyJobOutput: ...
 ```
 
 
@@ -893,7 +893,7 @@ async def get_model_copy_job(
 async def get_model_customization_job(
     *,
     job_identifier: str,
-) -> GetModelCustomizationJobResponse: ...
+) -> GetModelCustomizationJobOutput: ...
 ```
 
 
@@ -903,7 +903,7 @@ async def get_model_customization_job(
 async def get_model_import_job(
     *,
     job_identifier: str,
-) -> GetModelImportJobResponse: ...
+) -> GetModelImportJobOutput: ...
 ```
 
 
@@ -913,14 +913,14 @@ async def get_model_import_job(
 async def get_model_invocation_job(
     *,
     job_identifier: str,
-) -> GetModelInvocationJobResponse: ...
+) -> GetModelInvocationJobOutput: ...
 ```
 
 
 ### get_model_invocation_logging_configuration
 
 ```python
-async def get_model_invocation_logging_configuration() -> GetModelInvocationLoggingConfigurationResponse: ...
+async def get_model_invocation_logging_configuration() -> GetModelInvocationLoggingConfigurationOutput: ...
 ```
 
 
@@ -930,7 +930,7 @@ async def get_model_invocation_logging_configuration() -> GetModelInvocationLogg
 async def get_prompt_router(
     *,
     prompt_router_arn: str,
-) -> GetPromptRouterResponse: ...
+) -> GetPromptRouterOutput: ...
 ```
 
 
@@ -940,7 +940,7 @@ async def get_prompt_router(
 async def get_provisioned_model_throughput(
     *,
     provisioned_model_id: str,
-) -> GetProvisionedModelThroughputResponse: ...
+) -> GetProvisionedModelThroughputOutput: ...
 ```
 
 
@@ -950,14 +950,14 @@ async def get_provisioned_model_throughput(
 async def get_resource_policy(
     *,
     resource_arn: str,
-) -> GetResourcePolicyResponse: ...
+) -> GetResourcePolicyOutput: ...
 ```
 
 
 ### get_use_case_for_model_access
 
 ```python
-async def get_use_case_for_model_access() -> GetUseCaseForModelAccessResponse: ...
+async def get_use_case_for_model_access() -> GetUseCaseForModelAccessOutput: ...
 ```
 
 
@@ -970,7 +970,7 @@ async def list_advanced_prompt_optimization_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListAdvancedPromptOptimizationJobsResponse: ...
+) -> ListAdvancedPromptOptimizationJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_advanced_prompt_optimization_jobs(...)`, returning an
@@ -985,7 +985,7 @@ async def list_automated_reasoning_policies(
     policy_arn: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListAutomatedReasoningPoliciesResponse: ...
+) -> ListAutomatedReasoningPoliciesOutput: ...
 ```
 
 Also available as `client.paginators.list_automated_reasoning_policies(...)`, returning an
@@ -1000,7 +1000,7 @@ async def list_automated_reasoning_policy_build_workflows(
     policy_arn: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListAutomatedReasoningPolicyBuildWorkflowsResponse: ...
+) -> ListAutomatedReasoningPolicyBuildWorkflowsOutput: ...
 ```
 
 Also available as `client.paginators.list_automated_reasoning_policy_build_workflows(...)`, returning an
@@ -1015,7 +1015,7 @@ async def list_automated_reasoning_policy_test_cases(
     policy_arn: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListAutomatedReasoningPolicyTestCasesResponse: ...
+) -> ListAutomatedReasoningPolicyTestCasesOutput: ...
 ```
 
 Also available as `client.paginators.list_automated_reasoning_policy_test_cases(...)`, returning an
@@ -1031,7 +1031,7 @@ async def list_automated_reasoning_policy_test_results(
     build_workflow_id: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListAutomatedReasoningPolicyTestResultsResponse: ...
+) -> ListAutomatedReasoningPolicyTestResultsOutput: ...
 ```
 
 Also available as `client.paginators.list_automated_reasoning_policy_test_results(...)`, returning an
@@ -1052,7 +1052,7 @@ async def list_custom_model_deployments(
     sort_order: SortOrder | None = None,
     status_equals: CustomModelDeploymentStatus | None = None,
     model_arn_equals: str | None = None,
-) -> ListCustomModelDeploymentsResponse: ...
+) -> ListCustomModelDeploymentsOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_model_deployments(...)`, returning an
@@ -1075,7 +1075,7 @@ async def list_custom_models(
     sort_order: SortOrder | None = None,
     is_owned: bool | None = None,
     model_status: ModelStatus | None = None,
-) -> ListCustomModelsResponse: ...
+) -> ListCustomModelsOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_models(...)`, returning an
@@ -1088,7 +1088,7 @@ async iterator of the response type above.
 async def list_enforced_guardrails_configuration(
     *,
     next_token: str | None = None,
-) -> ListEnforcedGuardrailsConfigurationResponse: ...
+) -> ListEnforcedGuardrailsConfigurationOutput: ...
 ```
 
 Also available as `client.paginators.list_enforced_guardrails_configuration(...)`, returning an
@@ -1109,7 +1109,7 @@ async def list_evaluation_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListEvaluationJobsResponse: ...
+) -> ListEvaluationJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_evaluation_jobs(...)`, returning an
@@ -1123,7 +1123,7 @@ async def list_foundation_model_agreement_offers(
     *,
     model_id: str,
     offer_type: OfferType | None = None,
-) -> ListFoundationModelAgreementOffersResponse: ...
+) -> ListFoundationModelAgreementOffersOutput: ...
 ```
 
 
@@ -1136,7 +1136,7 @@ async def list_foundation_models(
     by_customization_type: ModelCustomization | None = None,
     by_output_modality: ModelModality | None = None,
     by_inference_type: InferenceType | None = None,
-) -> ListFoundationModelsResponse: ...
+) -> ListFoundationModelsOutput: ...
 ```
 
 
@@ -1148,7 +1148,7 @@ async def list_guardrails(
     guardrail_identifier: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListGuardrailsResponse: ...
+) -> ListGuardrailsOutput: ...
 ```
 
 Also available as `client.paginators.list_guardrails(...)`, returning an
@@ -1167,7 +1167,7 @@ async def list_imported_models(
     next_token: str | None = None,
     sort_by: SortModelsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListImportedModelsResponse: ...
+) -> ListImportedModelsOutput: ...
 ```
 
 Also available as `client.paginators.list_imported_models(...)`, returning an
@@ -1182,7 +1182,7 @@ async def list_inference_profiles(
     max_results: int | None = None,
     next_token: str | None = None,
     type_equals: InferenceProfileType | None = None,
-) -> ListInferenceProfilesResponse: ...
+) -> ListInferenceProfilesOutput: ...
 ```
 
 Also available as `client.paginators.list_inference_profiles(...)`, returning an
@@ -1197,7 +1197,7 @@ async def list_marketplace_model_endpoints(
     max_results: int | None = None,
     next_token: str | None = None,
     model_source_equals: str | None = None,
-) -> ListMarketplaceModelEndpointsResponse: ...
+) -> ListMarketplaceModelEndpointsOutput: ...
 ```
 
 Also available as `client.paginators.list_marketplace_model_endpoints(...)`, returning an
@@ -1219,7 +1219,7 @@ async def list_model_copy_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListModelCopyJobsResponse: ...
+) -> ListModelCopyJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_model_copy_jobs(...)`, returning an
@@ -1239,7 +1239,7 @@ async def list_model_customization_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListModelCustomizationJobsResponse: ...
+) -> ListModelCustomizationJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_model_customization_jobs(...)`, returning an
@@ -1259,7 +1259,7 @@ async def list_model_import_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListModelImportJobsResponse: ...
+) -> ListModelImportJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_model_import_jobs(...)`, returning an
@@ -1279,7 +1279,7 @@ async def list_model_invocation_jobs(
     next_token: str | None = None,
     sort_by: SortJobsBy | None = None,
     sort_order: SortOrder | None = None,
-) -> ListModelInvocationJobsResponse: ...
+) -> ListModelInvocationJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_model_invocation_jobs(...)`, returning an
@@ -1294,7 +1294,7 @@ async def list_prompt_routers(
     max_results: int | None = None,
     next_token: str | None = None,
     type: PromptRouterType | None = None,
-) -> ListPromptRoutersResponse: ...
+) -> ListPromptRoutersOutput: ...
 ```
 
 Also available as `client.paginators.list_prompt_routers(...)`, returning an
@@ -1315,7 +1315,7 @@ async def list_provisioned_model_throughputs(
     next_token: str | None = None,
     sort_by: SortByProvisionedModels | None = None,
     sort_order: SortOrder | None = None,
-) -> ListProvisionedModelThroughputsResponse: ...
+) -> ListProvisionedModelThroughputsOutput: ...
 ```
 
 Also available as `client.paginators.list_provisioned_model_throughputs(...)`, returning an
@@ -1328,7 +1328,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1338,7 +1338,7 @@ async def list_tags_for_resource(
 async def put_account_data_retention(
     *,
     mode: DataRetentionMode,
-) -> PutAccountDataRetentionResponse: ...
+) -> PutAccountDataRetentionOutput: ...
 ```
 
 
@@ -1349,7 +1349,7 @@ async def put_enforced_guardrail_configuration(
     *,
     guardrail_inference_config: AccountEnforcedGuardrailInferenceInputConfiguration,
     config_id: str | None = None,
-) -> PutEnforcedGuardrailConfigurationResponse: ...
+) -> PutEnforcedGuardrailConfigurationOutput: ...
 ```
 
 
@@ -1359,7 +1359,7 @@ async def put_enforced_guardrail_configuration(
 async def put_model_invocation_logging_configuration(
     *,
     logging_config: LoggingConfig,
-) -> PutModelInvocationLoggingConfigurationResponse: ...
+) -> PutModelInvocationLoggingConfigurationOutput: ...
 ```
 
 
@@ -1370,7 +1370,7 @@ async def put_resource_policy(
     *,
     resource_arn: str,
     resource_policy: str,
-) -> PutResourcePolicyResponse: ...
+) -> PutResourcePolicyOutput: ...
 ```
 
 
@@ -1380,7 +1380,7 @@ async def put_resource_policy(
 async def put_use_case_for_model_access(
     *,
     form_data: bytes,
-) -> PutUseCaseForModelAccessResponse: ...
+) -> PutUseCaseForModelAccessOutput: ...
 ```
 
 
@@ -1391,7 +1391,7 @@ async def register_marketplace_model_endpoint(
     *,
     endpoint_identifier: str,
     model_source_identifier: str,
-) -> RegisterMarketplaceModelEndpointResponse: ...
+) -> RegisterMarketplaceModelEndpointOutput: ...
 ```
 
 
@@ -1404,7 +1404,7 @@ async def start_automated_reasoning_policy_build_workflow(
     build_workflow_type: AutomatedReasoningPolicyBuildWorkflowType,
     source_content: AutomatedReasoningPolicyBuildWorkflowSource,
     client_request_token: str | None = None,
-) -> StartAutomatedReasoningPolicyBuildWorkflowResponse: ...
+) -> StartAutomatedReasoningPolicyBuildWorkflowOutput: ...
 ```
 
 
@@ -1417,7 +1417,7 @@ async def start_automated_reasoning_policy_test_workflow(
     build_workflow_id: str,
     test_case_ids: Sequence[str] | None = None,
     client_request_token: str | None = None,
-) -> StartAutomatedReasoningPolicyTestWorkflowResponse: ...
+) -> StartAutomatedReasoningPolicyTestWorkflowOutput: ...
 ```
 
 
@@ -1427,7 +1427,7 @@ async def start_automated_reasoning_policy_test_workflow(
 async def stop_advanced_prompt_optimization_job(
     *,
     job_identifier: str,
-) -> StopAdvancedPromptOptimizationJobResponse: ...
+) -> StopAdvancedPromptOptimizationJobOutput: ...
 ```
 
 
@@ -1437,7 +1437,7 @@ async def stop_advanced_prompt_optimization_job(
 async def stop_evaluation_job(
     *,
     job_identifier: str,
-) -> StopEvaluationJobResponse: ...
+) -> StopEvaluationJobOutput: ...
 ```
 
 
@@ -1447,7 +1447,7 @@ async def stop_evaluation_job(
 async def stop_model_customization_job(
     *,
     job_identifier: str,
-) -> StopModelCustomizationJobResponse: ...
+) -> StopModelCustomizationJobOutput: ...
 ```
 
 
@@ -1457,7 +1457,7 @@ async def stop_model_customization_job(
 async def stop_model_invocation_job(
     *,
     job_identifier: str,
-) -> StopModelInvocationJobResponse: ...
+) -> StopModelInvocationJobOutput: ...
 ```
 
 
@@ -1468,7 +1468,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -1479,7 +1479,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -1492,7 +1492,7 @@ async def update_automated_reasoning_policy(
     policy_definition: AutomatedReasoningPolicyDefinition,
     name: str | None = None,
     description: str | None = None,
-) -> UpdateAutomatedReasoningPolicyResponse: ...
+) -> UpdateAutomatedReasoningPolicyOutput: ...
 ```
 
 
@@ -1505,7 +1505,7 @@ async def update_automated_reasoning_policy_annotations(
     build_workflow_id: str,
     annotations: Sequence[AutomatedReasoningPolicyAnnotation],
     last_updated_annotation_set_hash: str,
-) -> UpdateAutomatedReasoningPolicyAnnotationsResponse: ...
+) -> UpdateAutomatedReasoningPolicyAnnotationsOutput: ...
 ```
 
 
@@ -1522,7 +1522,7 @@ async def update_automated_reasoning_policy_test_case(
     query_content: str | None = None,
     confidence_threshold: float | None = None,
     client_request_token: str | None = None,
-) -> UpdateAutomatedReasoningPolicyTestCaseResponse: ...
+) -> UpdateAutomatedReasoningPolicyTestCaseOutput: ...
 ```
 
 
@@ -1533,7 +1533,7 @@ async def update_custom_model_deployment(
     *,
     model_arn: str,
     custom_model_deployment_identifier: str,
-) -> UpdateCustomModelDeploymentResponse: ...
+) -> UpdateCustomModelDeploymentOutput: ...
 ```
 
 
@@ -1555,7 +1555,7 @@ async def update_guardrail(
     automated_reasoning_policy_config: GuardrailAutomatedReasoningPolicyConfig | None = None,
     cross_region_config: GuardrailCrossRegionConfig | None = None,
     kms_key_id: str | None = None,
-) -> UpdateGuardrailResponse: ...
+) -> UpdateGuardrailOutput: ...
 ```
 
 
@@ -1567,7 +1567,7 @@ async def update_marketplace_model_endpoint(
     endpoint_arn: str,
     endpoint_config: EndpointConfig,
     client_request_token: str | None = None,
-) -> UpdateMarketplaceModelEndpointResponse: ...
+) -> UpdateMarketplaceModelEndpointOutput: ...
 ```
 
 
@@ -1579,7 +1579,7 @@ async def update_provisioned_model_throughput(
     provisioned_model_id: str,
     desired_provisioned_model_name: str | None = None,
     desired_model_id: str | None = None,
-) -> UpdateProvisionedModelThroughputResponse: ...
+) -> UpdateProvisionedModelThroughputOutput: ...
 ```
 
 

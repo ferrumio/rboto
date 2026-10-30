@@ -88,27 +88,27 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`create_identity_pool`](#create_identity_pool) | <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>CreateIdentityPoolOutput</code> |
-| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: Sequence[str]</code> | <code>DeleteIdentitiesResponse</code> |
+| [`delete_identities`](#delete_identities) | <code>identity_ids_to_delete: Sequence[str]</code> | <code>DeleteIdentitiesOutput</code> |
 | [`delete_identity_pool`](#delete_identity_pool) | <code>identity_pool_id: str</code> | <code>None</code> |
 | [`describe_identity`](#describe_identity) | <code>identity_id: str</code> | <code>DescribeIdentityOutput</code> |
 | [`describe_identity_pool`](#describe_identity_pool) | <code>identity_pool_id: str</code> | <code>DescribeIdentityPoolOutput</code> |
-| [`get_credentials_for_identity`](#get_credentials_for_identity) | <code>identity_id: str</code> | <code>GetCredentialsForIdentityResponse</code> |
-| [`get_id`](#get_id) | <code>identity_pool_id: str</code> | <code>GetIdResponse</code> |
-| [`get_identity_pool_roles`](#get_identity_pool_roles) | <code>identity_pool_id: str</code> | <code>GetIdentityPoolRolesResponse</code> |
-| [`get_open_id_token`](#get_open_id_token) | <code>identity_id: str</code> | <code>GetOpenIdTokenResponse</code> |
-| [`get_open_id_token_for_developer_identity`](#get_open_id_token_for_developer_identity) | <code>identity_pool_id: str</code>, <code>logins: dict[str, str]</code> | <code>GetOpenIdTokenForDeveloperIdentityResponse</code> |
-| [`get_principal_tag_attribute_map`](#get_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>GetPrincipalTagAttributeMapResponse</code> |
-| [`list_identities`](#list_identities) | <code>identity_pool_id: str</code>, <code>max_results: int</code> | <code>ListIdentitiesResponse</code> |
-| [`list_identity_pools`](#list_identity_pools) | <code>max_results: int</code> | <code>ListIdentityPoolsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`lookup_developer_identity`](#lookup_developer_identity) | <code>identity_pool_id: str</code> | <code>LookupDeveloperIdentityResponse</code> |
-| [`merge_developer_identities`](#merge_developer_identities) | <code>source_user_identifier: str</code>, <code>destination_user_identifier: str</code>, <code>developer_provider_name: str</code>, <code>identity_pool_id: str</code> | <code>MergeDeveloperIdentitiesResponse</code> |
+| [`get_credentials_for_identity`](#get_credentials_for_identity) | <code>identity_id: str</code> | <code>GetCredentialsForIdentityOutput</code> |
+| [`get_id`](#get_id) | <code>identity_pool_id: str</code> | <code>GetIdOutput</code> |
+| [`get_identity_pool_roles`](#get_identity_pool_roles) | <code>identity_pool_id: str</code> | <code>GetIdentityPoolRolesOutput</code> |
+| [`get_open_id_token`](#get_open_id_token) | <code>identity_id: str</code> | <code>GetOpenIdTokenOutput</code> |
+| [`get_open_id_token_for_developer_identity`](#get_open_id_token_for_developer_identity) | <code>identity_pool_id: str</code>, <code>logins: dict[str, str]</code> | <code>GetOpenIdTokenForDeveloperIdentityOutput</code> |
+| [`get_principal_tag_attribute_map`](#get_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>GetPrincipalTagAttributeMapOutput</code> |
+| [`list_identities`](#list_identities) | <code>identity_pool_id: str</code>, <code>max_results: int</code> | <code>ListIdentitiesOutput</code> |
+| [`list_identity_pools`](#list_identity_pools) | <code>max_results: int</code> | <code>ListIdentityPoolsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`lookup_developer_identity`](#lookup_developer_identity) | <code>identity_pool_id: str</code> | <code>LookupDeveloperIdentityOutput</code> |
+| [`merge_developer_identities`](#merge_developer_identities) | <code>source_user_identifier: str</code>, <code>destination_user_identifier: str</code>, <code>developer_provider_name: str</code>, <code>identity_pool_id: str</code> | <code>MergeDeveloperIdentitiesOutput</code> |
 | [`set_identity_pool_roles`](#set_identity_pool_roles) | <code>identity_pool_id: str</code>, <code>roles: dict[str, str]</code> | <code>None</code> |
-| [`set_principal_tag_attribute_map`](#set_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>SetPrincipalTagAttributeMapResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
+| [`set_principal_tag_attribute_map`](#set_principal_tag_attribute_map) | <code>identity_pool_id: str</code>, <code>identity_provider_name: str</code> | <code>SetPrincipalTagAttributeMapOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
 | [`unlink_developer_identity`](#unlink_developer_identity) | <code>identity_id: str</code>, <code>identity_pool_id: str</code>, <code>developer_provider_name: str</code>, <code>developer_user_identifier: str</code> | <code>None</code> |
 | [`unlink_identity`](#unlink_identity) | <code>identity_id: str</code>, <code>logins: dict[str, str]</code>, <code>logins_to_remove: Sequence[str]</code> | <code>None</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 | [`update_identity_pool`](#update_identity_pool) | <code>identity_pool_id: str</code>, <code>identity_pool_name: str</code>, <code>allow_unauthenticated_identities: bool</code> | <code>UpdateIdentityPoolOutput</code> |
 
 ## Complete signatures
@@ -137,7 +137,7 @@ async def create_identity_pool(
 async def delete_identities(
     *,
     identity_ids_to_delete: Sequence[str],
-) -> DeleteIdentitiesResponse: ...
+) -> DeleteIdentitiesOutput: ...
 ```
 
 
@@ -179,7 +179,7 @@ async def get_credentials_for_identity(
     identity_id: str,
     logins: dict[str, str] | None = None,
     custom_role_arn: str | None = None,
-) -> GetCredentialsForIdentityResponse: ...
+) -> GetCredentialsForIdentityOutput: ...
 ```
 
 
@@ -191,7 +191,7 @@ async def get_id(
     identity_pool_id: str,
     account_id: str | None = None,
     logins: dict[str, str] | None = None,
-) -> GetIdResponse: ...
+) -> GetIdOutput: ...
 ```
 
 
@@ -201,7 +201,7 @@ async def get_id(
 async def get_identity_pool_roles(
     *,
     identity_pool_id: str,
-) -> GetIdentityPoolRolesResponse: ...
+) -> GetIdentityPoolRolesOutput: ...
 ```
 
 
@@ -212,7 +212,7 @@ async def get_open_id_token(
     *,
     identity_id: str,
     logins: dict[str, str] | None = None,
-) -> GetOpenIdTokenResponse: ...
+) -> GetOpenIdTokenOutput: ...
 ```
 
 
@@ -226,7 +226,7 @@ async def get_open_id_token_for_developer_identity(
     identity_id: str | None = None,
     principal_tags: dict[str, str] | None = None,
     token_duration: int | None = None,
-) -> GetOpenIdTokenForDeveloperIdentityResponse: ...
+) -> GetOpenIdTokenForDeveloperIdentityOutput: ...
 ```
 
 
@@ -237,7 +237,7 @@ async def get_principal_tag_attribute_map(
     *,
     identity_pool_id: str,
     identity_provider_name: str,
-) -> GetPrincipalTagAttributeMapResponse: ...
+) -> GetPrincipalTagAttributeMapOutput: ...
 ```
 
 
@@ -250,7 +250,7 @@ async def list_identities(
     max_results: int,
     next_token: str | None = None,
     hide_disabled: bool | None = None,
-) -> ListIdentitiesResponse: ...
+) -> ListIdentitiesOutput: ...
 ```
 
 
@@ -261,7 +261,7 @@ async def list_identity_pools(
     *,
     max_results: int,
     next_token: str | None = None,
-) -> ListIdentityPoolsResponse: ...
+) -> ListIdentityPoolsOutput: ...
 ```
 
 Also available as `client.paginators.list_identity_pools(...)`, returning an
@@ -274,7 +274,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -288,7 +288,7 @@ async def lookup_developer_identity(
     developer_user_identifier: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> LookupDeveloperIdentityResponse: ...
+) -> LookupDeveloperIdentityOutput: ...
 ```
 
 
@@ -301,7 +301,7 @@ async def merge_developer_identities(
     destination_user_identifier: str,
     developer_provider_name: str,
     identity_pool_id: str,
-) -> MergeDeveloperIdentitiesResponse: ...
+) -> MergeDeveloperIdentitiesOutput: ...
 ```
 
 
@@ -326,7 +326,7 @@ async def set_principal_tag_attribute_map(
     identity_provider_name: str,
     use_defaults: bool | None = None,
     principal_tags: dict[str, str] | None = None,
-) -> SetPrincipalTagAttributeMapResponse: ...
+) -> SetPrincipalTagAttributeMapOutput: ...
 ```
 
 
@@ -337,7 +337,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -373,7 +373,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 

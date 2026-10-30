@@ -8,58 +8,58 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    DescribeActivationsResult,
-    DescribeAssociationExecutionTargetsResult,
-    DescribeAssociationExecutionsResult,
-    DescribeAutomationExecutionsResult,
-    DescribeAutomationStepExecutionsResult,
-    DescribeAvailablePatchesResult,
-    DescribeEffectiveInstanceAssociationsResult,
-    DescribeEffectivePatchesForPatchBaselineResult,
-    DescribeInstanceAssociationsStatusResult,
-    DescribeInstanceInformationResult,
-    DescribeInstancePatchStatesForPatchGroupResult,
-    DescribeInstancePatchStatesResult,
-    DescribeInstancePatchesResult,
-    DescribeInstancePropertiesResult,
-    DescribeInventoryDeletionsResult,
-    DescribeMaintenanceWindowExecutionTaskInvocationsResult,
-    DescribeMaintenanceWindowExecutionTasksResult,
-    DescribeMaintenanceWindowExecutionsResult,
-    DescribeMaintenanceWindowScheduleResult,
-    DescribeMaintenanceWindowTargetsResult,
-    DescribeMaintenanceWindowTasksResult,
-    DescribeMaintenanceWindowsForTargetResult,
-    DescribeMaintenanceWindowsResult,
-    DescribeOpsItemsResponse,
-    DescribeParametersResult,
-    DescribePatchBaselinesResult,
-    DescribePatchGroupsResult,
-    DescribePatchPropertiesResult,
-    DescribeSessionsResponse,
-    GetInventoryResult,
-    GetInventorySchemaResult,
-    GetOpsSummaryResult,
-    GetParameterHistoryResult,
-    GetParametersByPathResult,
-    GetResourcePoliciesResponse,
-    ListAssociationVersionsResult,
-    ListAssociationsResult,
-    ListCloudConnectorsResult,
-    ListCommandInvocationsResult,
-    ListCommandsResult,
-    ListComplianceItemsResult,
-    ListComplianceSummariesResult,
-    ListDocumentVersionsResult,
-    ListDocumentsResult,
-    ListNodesResult,
-    ListNodesSummaryResult,
-    ListOpsItemEventsResponse,
-    ListOpsItemRelatedItemsResponse,
-    ListOpsMetadataResult,
-    ListResourceComplianceSummariesResult,
-    ListResourceDataSyncResult,
-    ValidateCloudConnectorResult,
+    DescribeActivationsOutput,
+    DescribeAssociationExecutionTargetsOutput,
+    DescribeAssociationExecutionsOutput,
+    DescribeAutomationExecutionsOutput,
+    DescribeAutomationStepExecutionsOutput,
+    DescribeAvailablePatchesOutput,
+    DescribeEffectiveInstanceAssociationsOutput,
+    DescribeEffectivePatchesForPatchBaselineOutput,
+    DescribeInstanceAssociationsStatusOutput,
+    DescribeInstanceInformationOutput,
+    DescribeInstancePatchStatesForPatchGroupOutput,
+    DescribeInstancePatchStatesOutput,
+    DescribeInstancePatchesOutput,
+    DescribeInstancePropertiesOutput,
+    DescribeInventoryDeletionsOutput,
+    DescribeMaintenanceWindowExecutionTaskInvocationsOutput,
+    DescribeMaintenanceWindowExecutionTasksOutput,
+    DescribeMaintenanceWindowExecutionsOutput,
+    DescribeMaintenanceWindowScheduleOutput,
+    DescribeMaintenanceWindowTargetsOutput,
+    DescribeMaintenanceWindowTasksOutput,
+    DescribeMaintenanceWindowsForTargetOutput,
+    DescribeMaintenanceWindowsOutput,
+    DescribeOpsItemsOutput,
+    DescribeParametersOutput,
+    DescribePatchBaselinesOutput,
+    DescribePatchGroupsOutput,
+    DescribePatchPropertiesOutput,
+    DescribeSessionsOutput,
+    GetInventoryOutput,
+    GetInventorySchemaOutput,
+    GetOpsSummaryOutput,
+    GetParameterHistoryOutput,
+    GetParametersByPathOutput,
+    GetResourcePoliciesOutput,
+    ListAssociationVersionsOutput,
+    ListAssociationsOutput,
+    ListCloudConnectorsOutput,
+    ListCommandInvocationsOutput,
+    ListCommandsOutput,
+    ListComplianceItemsOutput,
+    ListComplianceSummariesOutput,
+    ListDocumentVersionsOutput,
+    ListDocumentsOutput,
+    ListNodesOutput,
+    ListNodesSummaryOutput,
+    ListOpsItemEventsOutput,
+    ListOpsItemRelatedItemsOutput,
+    ListOpsMetadataOutput,
+    ListResourceComplianceSummariesOutput,
+    ListResourceDataSyncOutput,
+    ValidateCloudConnectorOutput,
 )
 
 from .types import (
@@ -119,7 +119,7 @@ class SSMClientPaginators:
         filters: Sequence[DescribeActivationsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeActivationsResult]:
+    ) -> AsyncIterator[DescribeActivationsOutput]:
         """Yield each page from describe_activations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -147,7 +147,7 @@ class SSMClientPaginators:
         filters: Sequence[AssociationExecutionTargetsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeAssociationExecutionTargetsResult]:
+    ) -> AsyncIterator[DescribeAssociationExecutionTargetsOutput]:
         """Yield each page from describe_association_execution_targets; requests start on iteration."""
         params: dict[str, object] = {
             "association_id": association_id,
@@ -176,7 +176,7 @@ class SSMClientPaginators:
         filters: Sequence[AssociationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeAssociationExecutionsResult]:
+    ) -> AsyncIterator[DescribeAssociationExecutionsOutput]:
         """Yield each page from describe_association_executions; requests start on iteration."""
         params: dict[str, object] = {
             "association_id": association_id,
@@ -203,7 +203,7 @@ class SSMClientPaginators:
         filters: Sequence[AutomationExecutionFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeAutomationExecutionsResult]:
+    ) -> AsyncIterator[DescribeAutomationExecutionsOutput]:
         """Yield each page from describe_automation_executions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -231,7 +231,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         reverse_order: bool | None = None,
-    ) -> AsyncIterator[DescribeAutomationStepExecutionsResult]:
+    ) -> AsyncIterator[DescribeAutomationStepExecutionsOutput]:
         """Yield each page from describe_automation_step_executions; requests start on iteration."""
         params: dict[str, object] = {
             "automation_execution_id": automation_execution_id,
@@ -260,7 +260,7 @@ class SSMClientPaginators:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeAvailablePatchesResult]:
+    ) -> AsyncIterator[DescribeAvailablePatchesOutput]:
         """Yield each page from describe_available_patches; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -286,7 +286,7 @@ class SSMClientPaginators:
         instance_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeEffectiveInstanceAssociationsResult]:
+    ) -> AsyncIterator[DescribeEffectiveInstanceAssociationsOutput]:
         """Yield each page from describe_effective_instance_associations; requests start on iteration."""
         params: dict[str, object] = {
             "instance_id": instance_id,
@@ -311,7 +311,7 @@ class SSMClientPaginators:
         baseline_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeEffectivePatchesForPatchBaselineResult]:
+    ) -> AsyncIterator[DescribeEffectivePatchesForPatchBaselineOutput]:
         """Yield each page from describe_effective_patches_for_patch_baseline; requests start on iteration."""
         params: dict[str, object] = {
             "baseline_id": baseline_id,
@@ -336,7 +336,7 @@ class SSMClientPaginators:
         instance_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeInstanceAssociationsStatusResult]:
+    ) -> AsyncIterator[DescribeInstanceAssociationsStatusOutput]:
         """Yield each page from describe_instance_associations_status; requests start on iteration."""
         params: dict[str, object] = {
             "instance_id": instance_id,
@@ -362,7 +362,7 @@ class SSMClientPaginators:
         filters: Sequence[InstanceInformationStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeInstanceInformationResult]:
+    ) -> AsyncIterator[DescribeInstanceInformationOutput]:
         """Yield each page from describe_instance_information; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -390,7 +390,7 @@ class SSMClientPaginators:
         instance_ids: Sequence[str],
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[DescribeInstancePatchStatesResult]:
+    ) -> AsyncIterator[DescribeInstancePatchStatesOutput]:
         """Yield each page from describe_instance_patch_states; requests start on iteration."""
         params: dict[str, object] = {
             "instance_ids": instance_ids,
@@ -416,7 +416,7 @@ class SSMClientPaginators:
         filters: Sequence[InstancePatchStateFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[DescribeInstancePatchStatesForPatchGroupResult]:
+    ) -> AsyncIterator[DescribeInstancePatchStatesForPatchGroupOutput]:
         """Yield each page from describe_instance_patch_states_for_patch_group; requests start on iteration."""
         params: dict[str, object] = {
             "patch_group": patch_group,
@@ -444,7 +444,7 @@ class SSMClientPaginators:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[DescribeInstancePatchesResult]:
+    ) -> AsyncIterator[DescribeInstancePatchesOutput]:
         """Yield each page from describe_instance_patches; requests start on iteration."""
         params: dict[str, object] = {
             "instance_id": instance_id,
@@ -472,7 +472,7 @@ class SSMClientPaginators:
         filters_with_operator: Sequence[InstancePropertyStringFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeInstancePropertiesResult]:
+    ) -> AsyncIterator[DescribeInstancePropertiesOutput]:
         """Yield each page from describe_instance_properties; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -500,7 +500,7 @@ class SSMClientPaginators:
         deletion_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[DescribeInventoryDeletionsResult]:
+    ) -> AsyncIterator[DescribeInventoryDeletionsOutput]:
         """Yield each page from describe_inventory_deletions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -528,7 +528,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTaskInvocationsResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTaskInvocationsOutput]:
         """Yield each page from describe_maintenance_window_execution_task_invocations; requests start on iteration."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
@@ -557,7 +557,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTasksResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionTasksOutput]:
         """Yield each page from describe_maintenance_window_execution_tasks; requests start on iteration."""
         params: dict[str, object] = {
             "window_execution_id": window_execution_id,
@@ -585,7 +585,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionsResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowExecutionsOutput]:
         """Yield each page from describe_maintenance_window_executions; requests start on iteration."""
         params: dict[str, object] = {
             "window_id": window_id,
@@ -615,7 +615,7 @@ class SSMClientPaginators:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowScheduleResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowScheduleOutput]:
         """Yield each page from describe_maintenance_window_schedule; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -648,7 +648,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowTargetsResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowTargetsOutput]:
         """Yield each page from describe_maintenance_window_targets; requests start on iteration."""
         params: dict[str, object] = {
             "window_id": window_id,
@@ -676,7 +676,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowTasksResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowTasksOutput]:
         """Yield each page from describe_maintenance_window_tasks; requests start on iteration."""
         params: dict[str, object] = {
             "window_id": window_id,
@@ -703,7 +703,7 @@ class SSMClientPaginators:
         filters: Sequence[MaintenanceWindowFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowsResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowsOutput]:
         """Yield each page from describe_maintenance_windows; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -730,7 +730,7 @@ class SSMClientPaginators:
         resource_type: MaintenanceWindowResourceType,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeMaintenanceWindowsForTargetResult]:
+    ) -> AsyncIterator[DescribeMaintenanceWindowsForTargetOutput]:
         """Yield each page from describe_maintenance_windows_for_target; requests start on iteration."""
         params: dict[str, object] = {
             "targets": targets,
@@ -756,7 +756,7 @@ class SSMClientPaginators:
         ops_item_filters: Sequence[OpsItemFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribeOpsItemsResponse]:
+    ) -> AsyncIterator[DescribeOpsItemsOutput]:
         """Yield each page from describe_ops_items; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -784,7 +784,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         shared: bool | None = None,
-    ) -> AsyncIterator[DescribeParametersResult]:
+    ) -> AsyncIterator[DescribeParametersOutput]:
         """Yield each page from describe_parameters; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -814,7 +814,7 @@ class SSMClientPaginators:
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribePatchBaselinesResult]:
+    ) -> AsyncIterator[DescribePatchBaselinesOutput]:
         """Yield each page from describe_patch_baselines; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -840,7 +840,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         filters: Sequence[PatchOrchestratorFilter] | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribePatchGroupsResult]:
+    ) -> AsyncIterator[DescribePatchGroupsOutput]:
         """Yield each page from describe_patch_groups; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -868,7 +868,7 @@ class SSMClientPaginators:
         patch_set: PatchSet | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[DescribePatchPropertiesResult]:
+    ) -> AsyncIterator[DescribePatchPropertiesOutput]:
         """Yield each page from describe_patch_properties; requests start on iteration."""
         params: dict[str, object] = {
             "operating_system": operating_system,
@@ -897,7 +897,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[SessionFilter] | None = None,
-    ) -> AsyncIterator[DescribeSessionsResponse]:
+    ) -> AsyncIterator[DescribeSessionsOutput]:
         """Yield each page from describe_sessions; requests start on iteration."""
         params: dict[str, object] = {
             "state": state,
@@ -926,7 +926,7 @@ class SSMClientPaginators:
         result_attributes: Sequence[ResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[GetInventoryResult]:
+    ) -> AsyncIterator[GetInventoryOutput]:
         """Yield each page from get_inventory; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -958,7 +958,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         aggregator: bool | None = None,
         sub_type: bool | None = None,
-    ) -> AsyncIterator[GetInventorySchemaResult]:
+    ) -> AsyncIterator[GetInventorySchemaOutput]:
         """Yield each page from get_inventory_schema; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -991,7 +991,7 @@ class SSMClientPaginators:
         result_attributes: Sequence[OpsResultAttribute] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[GetOpsSummaryResult]:
+    ) -> AsyncIterator[GetOpsSummaryOutput]:
         """Yield each page from get_ops_summary; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1024,7 +1024,7 @@ class SSMClientPaginators:
         with_decryption: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[GetParameterHistoryResult]:
+    ) -> AsyncIterator[GetParameterHistoryOutput]:
         """Yield each page from get_parameter_history; requests start on iteration."""
         params: dict[str, object] = {
             "name": name,
@@ -1054,7 +1054,7 @@ class SSMClientPaginators:
         with_decryption: bool | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[GetParametersByPathResult]:
+    ) -> AsyncIterator[GetParametersByPathOutput]:
         """Yield each page from get_parameters_by_path; requests start on iteration."""
         params: dict[str, object] = {
             "path": path,
@@ -1085,7 +1085,7 @@ class SSMClientPaginators:
         resource_arn: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[GetResourcePoliciesResponse]:
+    ) -> AsyncIterator[GetResourcePoliciesOutput]:
         """Yield each page from get_resource_policies; requests start on iteration."""
         params: dict[str, object] = {
             "resource_arn": resource_arn,
@@ -1110,7 +1110,7 @@ class SSMClientPaginators:
         association_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAssociationVersionsResult]:
+    ) -> AsyncIterator[ListAssociationVersionsOutput]:
         """Yield each page from list_association_versions; requests start on iteration."""
         params: dict[str, object] = {
             "association_id": association_id,
@@ -1135,7 +1135,7 @@ class SSMClientPaginators:
         association_filter_list: Sequence[AssociationFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListAssociationsResult]:
+    ) -> AsyncIterator[ListAssociationsOutput]:
         """Yield each page from list_associations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1161,7 +1161,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[CloudConnectorFilter] | None = None,
-    ) -> AsyncIterator[ListCloudConnectorsResult]:
+    ) -> AsyncIterator[ListCloudConnectorsOutput]:
         """Yield each page from list_cloud_connectors; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1190,7 +1190,7 @@ class SSMClientPaginators:
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
         details: bool | None = None,
-    ) -> AsyncIterator[ListCommandInvocationsResult]:
+    ) -> AsyncIterator[ListCommandInvocationsOutput]:
         """Yield each page from list_command_invocations; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1224,7 +1224,7 @@ class SSMClientPaginators:
         max_results: int | None = None,
         next_token: str | None = None,
         filters: Sequence[CommandFilter] | None = None,
-    ) -> AsyncIterator[ListCommandsResult]:
+    ) -> AsyncIterator[ListCommandsOutput]:
         """Yield each page from list_commands; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1256,7 +1256,7 @@ class SSMClientPaginators:
         resource_types: Sequence[str] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListComplianceItemsResult]:
+    ) -> AsyncIterator[ListComplianceItemsOutput]:
         """Yield each page from list_compliance_items; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1286,7 +1286,7 @@ class SSMClientPaginators:
         filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListComplianceSummariesResult]:
+    ) -> AsyncIterator[ListComplianceSummariesOutput]:
         """Yield each page from list_compliance_summaries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1312,7 +1312,7 @@ class SSMClientPaginators:
         name: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDocumentVersionsResult]:
+    ) -> AsyncIterator[ListDocumentVersionsOutput]:
         """Yield each page from list_document_versions; requests start on iteration."""
         params: dict[str, object] = {
             "name": name,
@@ -1338,7 +1338,7 @@ class SSMClientPaginators:
         filters: Sequence[DocumentKeyValuesFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListDocumentsResult]:
+    ) -> AsyncIterator[ListDocumentsOutput]:
         """Yield each page from list_documents; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1367,7 +1367,7 @@ class SSMClientPaginators:
         filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListNodesResult]:
+    ) -> AsyncIterator[ListNodesOutput]:
         """Yield each page from list_nodes; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1397,7 +1397,7 @@ class SSMClientPaginators:
         filters: Sequence[NodeFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListNodesSummaryResult]:
+    ) -> AsyncIterator[ListNodesSummaryOutput]:
         """Yield each page from list_nodes_summary; requests start on iteration."""
         params: dict[str, object] = {
             "aggregators": aggregators,
@@ -1426,7 +1426,7 @@ class SSMClientPaginators:
         filters: Sequence[OpsItemEventFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListOpsItemEventsResponse]:
+    ) -> AsyncIterator[ListOpsItemEventsOutput]:
         """Yield each page from list_ops_item_events; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1453,7 +1453,7 @@ class SSMClientPaginators:
         filters: Sequence[OpsItemRelatedItemsFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListOpsItemRelatedItemsResponse]:
+    ) -> AsyncIterator[ListOpsItemRelatedItemsOutput]:
         """Yield each page from list_ops_item_related_items; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1481,7 +1481,7 @@ class SSMClientPaginators:
         filters: Sequence[OpsMetadataFilter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListOpsMetadataResult]:
+    ) -> AsyncIterator[ListOpsMetadataOutput]:
         """Yield each page from list_ops_metadata; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1507,7 +1507,7 @@ class SSMClientPaginators:
         filters: Sequence[ComplianceStringFilter] | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListResourceComplianceSummariesResult]:
+    ) -> AsyncIterator[ListResourceComplianceSummariesOutput]:
         """Yield each page from list_resource_compliance_summaries; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1533,7 +1533,7 @@ class SSMClientPaginators:
         sync_type: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListResourceDataSyncResult]:
+    ) -> AsyncIterator[ListResourceDataSyncOutput]:
         """Yield each page from list_resource_data_sync; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -1559,7 +1559,7 @@ class SSMClientPaginators:
         cloud_connector_id: str,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ValidateCloudConnectorResult]:
+    ) -> AsyncIterator[ValidateCloudConnectorOutput]:
         """Yield each page from validate_cloud_connector; requests start on iteration."""
         params: dict[str, object] = {
             "cloud_connector_id": cloud_connector_id,

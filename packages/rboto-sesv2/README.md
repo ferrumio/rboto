@@ -96,122 +96,122 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`associate_email_identity_certificate`](#associate_email_identity_certificate) | <code>email_identity: str</code>, <code>certificate_arn: str</code> | <code>AssociateEmailIdentityCertificateResponse</code> |
-| [`batch_get_metric_data`](#batch_get_metric_data) | <code>queries: Sequence[BatchGetMetricDataQuery]</code> | <code>BatchGetMetricDataResponse</code> |
-| [`cancel_export_job`](#cancel_export_job) | <code>job_id: str</code> | <code>CancelExportJobResponse</code> |
-| [`create_configuration_set`](#create_configuration_set) | <code>configuration_set_name: str</code> | <code>CreateConfigurationSetResponse</code> |
-| [`create_configuration_set_event_destination`](#create_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code>, <code>event_destination: EventDestinationDefinition</code> | <code>CreateConfigurationSetEventDestinationResponse</code> |
-| [`create_contact`](#create_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>CreateContactResponse</code> |
-| [`create_contact_list`](#create_contact_list) | <code>contact_list_name: str</code> | <code>CreateContactListResponse</code> |
-| [`create_custom_verification_email_template`](#create_custom_verification_email_template) | <code>template_name: str</code>, <code>from_email_address: str</code>, <code>template_subject: str</code>, <code>template_content: str</code>, <code>success_redirection_url: str</code>, <code>failure_redirection_url: str</code> | <code>CreateCustomVerificationEmailTemplateResponse</code> |
-| [`create_dedicated_ip_pool`](#create_dedicated_ip_pool) | <code>pool_name: str</code> | <code>CreateDedicatedIpPoolResponse</code> |
-| [`create_deliverability_test_report`](#create_deliverability_test_report) | <code>from_email_address: str</code>, <code>content: EmailContent</code> | <code>CreateDeliverabilityTestReportResponse</code> |
-| [`create_email_identity`](#create_email_identity) | <code>email_identity: str</code> | <code>CreateEmailIdentityResponse</code> |
-| [`create_email_identity_policy`](#create_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code>, <code>policy: str</code> | <code>CreateEmailIdentityPolicyResponse</code> |
-| [`create_email_template`](#create_email_template) | <code>template_name: str</code>, <code>template_content: EmailTemplateContent</code> | <code>CreateEmailTemplateResponse</code> |
-| [`create_export_job`](#create_export_job) | <code>export_data_source: ExportDataSource</code>, <code>export_destination: ExportDestination</code> | <code>CreateExportJobResponse</code> |
-| [`create_import_job`](#create_import_job) | <code>import_destination: ImportDestination</code>, <code>import_data_source: ImportDataSource</code> | <code>CreateImportJobResponse</code> |
-| [`create_multi_region_endpoint`](#create_multi_region_endpoint) | <code>endpoint_name: str</code>, <code>details: Details</code> | <code>CreateMultiRegionEndpointResponse</code> |
-| [`create_tenant`](#create_tenant) | <code>tenant_name: str</code> | <code>CreateTenantResponse</code> |
-| [`create_tenant_resource_association`](#create_tenant_resource_association) | <code>tenant_name: str</code>, <code>resource_arn: str</code> | <code>CreateTenantResourceAssociationResponse</code> |
-| [`delete_configuration_set`](#delete_configuration_set) | <code>configuration_set_name: str</code> | <code>DeleteConfigurationSetResponse</code> |
-| [`delete_configuration_set_event_destination`](#delete_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code> | <code>DeleteConfigurationSetEventDestinationResponse</code> |
-| [`delete_contact`](#delete_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>DeleteContactResponse</code> |
-| [`delete_contact_list`](#delete_contact_list) | <code>contact_list_name: str</code> | <code>DeleteContactListResponse</code> |
-| [`delete_custom_verification_email_template`](#delete_custom_verification_email_template) | <code>template_name: str</code> | <code>DeleteCustomVerificationEmailTemplateResponse</code> |
-| [`delete_dedicated_ip_pool`](#delete_dedicated_ip_pool) | <code>pool_name: str</code> | <code>DeleteDedicatedIpPoolResponse</code> |
-| [`delete_email_identity`](#delete_email_identity) | <code>email_identity: str</code> | <code>DeleteEmailIdentityResponse</code> |
-| [`delete_email_identity_policy`](#delete_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code> | <code>DeleteEmailIdentityPolicyResponse</code> |
-| [`delete_email_template`](#delete_email_template) | <code>template_name: str</code> | <code>DeleteEmailTemplateResponse</code> |
-| [`delete_multi_region_endpoint`](#delete_multi_region_endpoint) | <code>endpoint_name: str</code> | <code>DeleteMultiRegionEndpointResponse</code> |
-| [`delete_suppressed_destination`](#delete_suppressed_destination) | <code>email_address: str</code> | <code>DeleteSuppressedDestinationResponse</code> |
-| [`delete_tenant`](#delete_tenant) | <code>tenant_name: str</code> | <code>DeleteTenantResponse</code> |
-| [`delete_tenant_resource_association`](#delete_tenant_resource_association) | <code>tenant_name: str</code>, <code>resource_arn: str</code> | <code>DeleteTenantResourceAssociationResponse</code> |
-| [`disassociate_email_identity_certificate`](#disassociate_email_identity_certificate) | <code>email_identity: str</code> | <code>DisassociateEmailIdentityCertificateResponse</code> |
-| [`get_account`](#get_account) | None | <code>GetAccountResponse</code> |
-| [`get_blacklist_reports`](#get_blacklist_reports) | <code>blacklist_item_names: Sequence[str]</code> | <code>GetBlacklistReportsResponse</code> |
-| [`get_configuration_set`](#get_configuration_set) | <code>configuration_set_name: str</code> | <code>GetConfigurationSetResponse</code> |
-| [`get_configuration_set_event_destinations`](#get_configuration_set_event_destinations) | <code>configuration_set_name: str</code> | <code>GetConfigurationSetEventDestinationsResponse</code> |
-| [`get_contact`](#get_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>GetContactResponse</code> |
-| [`get_contact_list`](#get_contact_list) | <code>contact_list_name: str</code> | <code>GetContactListResponse</code> |
-| [`get_custom_verification_email_template`](#get_custom_verification_email_template) | <code>template_name: str</code> | <code>GetCustomVerificationEmailTemplateResponse</code> |
-| [`get_dedicated_ip`](#get_dedicated_ip) | <code>ip: str</code> | <code>GetDedicatedIpResponse</code> |
-| [`get_dedicated_ip_pool`](#get_dedicated_ip_pool) | <code>pool_name: str</code> | <code>GetDedicatedIpPoolResponse</code> |
-| [`get_dedicated_ips`](#get_dedicated_ips) | None | <code>GetDedicatedIpsResponse</code> |
-| [`get_deliverability_dashboard_options`](#get_deliverability_dashboard_options) | None | <code>GetDeliverabilityDashboardOptionsResponse</code> |
-| [`get_deliverability_test_report`](#get_deliverability_test_report) | <code>report_id: str</code> | <code>GetDeliverabilityTestReportResponse</code> |
-| [`get_domain_deliverability_campaign`](#get_domain_deliverability_campaign) | <code>campaign_id: str</code> | <code>GetDomainDeliverabilityCampaignResponse</code> |
-| [`get_domain_statistics_report`](#get_domain_statistics_report) | <code>domain: str</code>, <code>start_date: str</code>, <code>end_date: str</code> | <code>GetDomainStatisticsReportResponse</code> |
-| [`get_email_address_insights`](#get_email_address_insights) | <code>email_address: str</code> | <code>GetEmailAddressInsightsResponse</code> |
-| [`get_email_identity`](#get_email_identity) | <code>email_identity: str</code> | <code>GetEmailIdentityResponse</code> |
-| [`get_email_identity_policies`](#get_email_identity_policies) | <code>email_identity: str</code> | <code>GetEmailIdentityPoliciesResponse</code> |
-| [`get_email_template`](#get_email_template) | <code>template_name: str</code> | <code>GetEmailTemplateResponse</code> |
-| [`get_export_job`](#get_export_job) | <code>job_id: str</code> | <code>GetExportJobResponse</code> |
-| [`get_import_job`](#get_import_job) | <code>job_id: str</code> | <code>GetImportJobResponse</code> |
-| [`get_message_insights`](#get_message_insights) | <code>message_id: str</code> | <code>GetMessageInsightsResponse</code> |
-| [`get_multi_region_endpoint`](#get_multi_region_endpoint) | <code>endpoint_name: str</code> | <code>GetMultiRegionEndpointResponse</code> |
-| [`get_reputation_entity`](#get_reputation_entity) | <code>reputation_entity_reference: str</code>, <code>reputation_entity_type: ReputationEntityType</code> | <code>GetReputationEntityResponse</code> |
-| [`get_suppressed_destination`](#get_suppressed_destination) | <code>email_address: str</code> | <code>GetSuppressedDestinationResponse</code> |
-| [`get_tenant`](#get_tenant) | <code>tenant_name: str</code> | <code>GetTenantResponse</code> |
-| [`list_configuration_sets`](#list_configuration_sets) | None | <code>ListConfigurationSetsResponse</code> |
-| [`list_contact_lists`](#list_contact_lists) | None | <code>ListContactListsResponse</code> |
-| [`list_contacts`](#list_contacts) | <code>contact_list_name: str</code> | <code>ListContactsResponse</code> |
-| [`list_custom_verification_email_templates`](#list_custom_verification_email_templates) | None | <code>ListCustomVerificationEmailTemplatesResponse</code> |
-| [`list_dedicated_ip_pools`](#list_dedicated_ip_pools) | None | <code>ListDedicatedIpPoolsResponse</code> |
-| [`list_deliverability_test_reports`](#list_deliverability_test_reports) | None | <code>ListDeliverabilityTestReportsResponse</code> |
-| [`list_domain_deliverability_campaigns`](#list_domain_deliverability_campaigns) | <code>start_date: str</code>, <code>end_date: str</code>, <code>subscribed_domain: str</code> | <code>ListDomainDeliverabilityCampaignsResponse</code> |
-| [`list_email_identities`](#list_email_identities) | None | <code>ListEmailIdentitiesResponse</code> |
-| [`list_email_identity_certificates`](#list_email_identity_certificates) | <code>email_identity: str</code> | <code>ListEmailIdentityCertificatesResponse</code> |
-| [`list_email_templates`](#list_email_templates) | None | <code>ListEmailTemplatesResponse</code> |
-| [`list_export_jobs`](#list_export_jobs) | None | <code>ListExportJobsResponse</code> |
-| [`list_import_jobs`](#list_import_jobs) | None | <code>ListImportJobsResponse</code> |
-| [`list_multi_region_endpoints`](#list_multi_region_endpoints) | None | <code>ListMultiRegionEndpointsResponse</code> |
-| [`list_recommendations`](#list_recommendations) | None | <code>ListRecommendationsResponse</code> |
-| [`list_reputation_entities`](#list_reputation_entities) | None | <code>ListReputationEntitiesResponse</code> |
-| [`list_resource_tenants`](#list_resource_tenants) | <code>resource_arn: str</code> | <code>ListResourceTenantsResponse</code> |
-| [`list_suppressed_destinations`](#list_suppressed_destinations) | None | <code>ListSuppressedDestinationsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`list_tenant_resources`](#list_tenant_resources) | <code>tenant_name: str</code> | <code>ListTenantResourcesResponse</code> |
-| [`list_tenants`](#list_tenants) | None | <code>ListTenantsResponse</code> |
-| [`put_account_dedicated_ip_warmup_attributes`](#put_account_dedicated_ip_warmup_attributes) | None | <code>PutAccountDedicatedIpWarmupAttributesResponse</code> |
-| [`put_account_details`](#put_account_details) | <code>mail_type: MailType</code>, <code>website_url: str</code> | <code>PutAccountDetailsResponse</code> |
-| [`put_account_pricing_attributes`](#put_account_pricing_attributes) | <code>plan: PricingPlan</code> | <code>PutAccountPricingAttributesResponse</code> |
-| [`put_account_sending_attributes`](#put_account_sending_attributes) | None | <code>PutAccountSendingAttributesResponse</code> |
-| [`put_account_suppression_attributes`](#put_account_suppression_attributes) | None | <code>PutAccountSuppressionAttributesResponse</code> |
-| [`put_account_vdm_attributes`](#put_account_vdm_attributes) | <code>vdm_attributes: VdmAttributes</code> | <code>PutAccountVdmAttributesResponse</code> |
-| [`put_configuration_set_archiving_options`](#put_configuration_set_archiving_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetArchivingOptionsResponse</code> |
-| [`put_configuration_set_delivery_options`](#put_configuration_set_delivery_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetDeliveryOptionsResponse</code> |
-| [`put_configuration_set_reputation_options`](#put_configuration_set_reputation_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetReputationOptionsResponse</code> |
-| [`put_configuration_set_sending_options`](#put_configuration_set_sending_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetSendingOptionsResponse</code> |
-| [`put_configuration_set_suppression_options`](#put_configuration_set_suppression_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetSuppressionOptionsResponse</code> |
-| [`put_configuration_set_tracking_options`](#put_configuration_set_tracking_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetTrackingOptionsResponse</code> |
-| [`put_configuration_set_vdm_options`](#put_configuration_set_vdm_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetVdmOptionsResponse</code> |
-| [`put_dedicated_ip_in_pool`](#put_dedicated_ip_in_pool) | <code>ip: str</code>, <code>destination_pool_name: str</code> | <code>PutDedicatedIpInPoolResponse</code> |
-| [`put_dedicated_ip_pool_scaling_attributes`](#put_dedicated_ip_pool_scaling_attributes) | <code>pool_name: str</code>, <code>scaling_mode: ScalingMode</code> | <code>PutDedicatedIpPoolScalingAttributesResponse</code> |
-| [`put_dedicated_ip_warmup_attributes`](#put_dedicated_ip_warmup_attributes) | <code>ip: str</code>, <code>warmup_percentage: int</code> | <code>PutDedicatedIpWarmupAttributesResponse</code> |
-| [`put_deliverability_dashboard_option`](#put_deliverability_dashboard_option) | <code>dashboard_enabled: bool</code> | <code>PutDeliverabilityDashboardOptionResponse</code> |
-| [`put_email_identity_configuration_set_attributes`](#put_email_identity_configuration_set_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityConfigurationSetAttributesResponse</code> |
-| [`put_email_identity_dkim_attributes`](#put_email_identity_dkim_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityDkimAttributesResponse</code> |
-| [`put_email_identity_dkim_signing_attributes`](#put_email_identity_dkim_signing_attributes) | <code>email_identity: str</code>, <code>signing_attributes_origin: DkimSigningAttributesOrigin</code> | <code>PutEmailIdentityDkimSigningAttributesResponse</code> |
-| [`put_email_identity_feedback_attributes`](#put_email_identity_feedback_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityFeedbackAttributesResponse</code> |
-| [`put_email_identity_mail_from_attributes`](#put_email_identity_mail_from_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityMailFromAttributesResponse</code> |
-| [`put_suppressed_destination`](#put_suppressed_destination) | <code>email_address: str</code>, <code>reason: SuppressionListReason</code> | <code>PutSuppressedDestinationResponse</code> |
-| [`put_tenant_suppression_attributes`](#put_tenant_suppression_attributes) | <code>tenant_name: str</code> | <code>PutTenantSuppressionAttributesResponse</code> |
-| [`send_bulk_email`](#send_bulk_email) | <code>default_content: BulkEmailContent</code>, <code>bulk_email_entries: Sequence[BulkEmailEntry]</code> | <code>SendBulkEmailResponse</code> |
-| [`send_custom_verification_email`](#send_custom_verification_email) | <code>email_address: str</code>, <code>template_name: str</code> | <code>SendCustomVerificationEmailResponse</code> |
-| [`send_email`](#send_email) | <code>content: EmailContent</code> | <code>SendEmailResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceResponse</code> |
-| [`test_render_email_template`](#test_render_email_template) | <code>template_name: str</code>, <code>template_data: str</code> | <code>TestRenderEmailTemplateResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_configuration_set`](#update_configuration_set) | <code>configuration_set_name: str</code> | <code>UpdateConfigurationSetResponse</code> |
-| [`update_configuration_set_event_destination`](#update_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code>, <code>event_destination: EventDestinationDefinition</code> | <code>UpdateConfigurationSetEventDestinationResponse</code> |
-| [`update_contact`](#update_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>UpdateContactResponse</code> |
-| [`update_contact_list`](#update_contact_list) | <code>contact_list_name: str</code> | <code>UpdateContactListResponse</code> |
-| [`update_custom_verification_email_template`](#update_custom_verification_email_template) | <code>template_name: str</code>, <code>from_email_address: str</code>, <code>template_subject: str</code>, <code>template_content: str</code>, <code>success_redirection_url: str</code>, <code>failure_redirection_url: str</code> | <code>UpdateCustomVerificationEmailTemplateResponse</code> |
-| [`update_email_identity_policy`](#update_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code>, <code>policy: str</code> | <code>UpdateEmailIdentityPolicyResponse</code> |
-| [`update_email_template`](#update_email_template) | <code>template_name: str</code>, <code>template_content: EmailTemplateContent</code> | <code>UpdateEmailTemplateResponse</code> |
-| [`update_reputation_entity_customer_managed_status`](#update_reputation_entity_customer_managed_status) | <code>reputation_entity_type: ReputationEntityType</code>, <code>reputation_entity_reference: str</code>, <code>sending_status: SendingStatus</code> | <code>UpdateReputationEntityCustomerManagedStatusResponse</code> |
-| [`update_reputation_entity_policy`](#update_reputation_entity_policy) | <code>reputation_entity_type: ReputationEntityType</code>, <code>reputation_entity_reference: str</code>, <code>reputation_entity_policy: str</code> | <code>UpdateReputationEntityPolicyResponse</code> |
+| [`associate_email_identity_certificate`](#associate_email_identity_certificate) | <code>email_identity: str</code>, <code>certificate_arn: str</code> | <code>AssociateEmailIdentityCertificateOutput</code> |
+| [`batch_get_metric_data`](#batch_get_metric_data) | <code>queries: Sequence[BatchGetMetricDataQuery]</code> | <code>BatchGetMetricDataOutput</code> |
+| [`cancel_export_job`](#cancel_export_job) | <code>job_id: str</code> | <code>CancelExportJobOutput</code> |
+| [`create_configuration_set`](#create_configuration_set) | <code>configuration_set_name: str</code> | <code>CreateConfigurationSetOutput</code> |
+| [`create_configuration_set_event_destination`](#create_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code>, <code>event_destination: EventDestinationDefinition</code> | <code>CreateConfigurationSetEventDestinationOutput</code> |
+| [`create_contact`](#create_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>CreateContactOutput</code> |
+| [`create_contact_list`](#create_contact_list) | <code>contact_list_name: str</code> | <code>CreateContactListOutput</code> |
+| [`create_custom_verification_email_template`](#create_custom_verification_email_template) | <code>template_name: str</code>, <code>from_email_address: str</code>, <code>template_subject: str</code>, <code>template_content: str</code>, <code>success_redirection_url: str</code>, <code>failure_redirection_url: str</code> | <code>CreateCustomVerificationEmailTemplateOutput</code> |
+| [`create_dedicated_ip_pool`](#create_dedicated_ip_pool) | <code>pool_name: str</code> | <code>CreateDedicatedIpPoolOutput</code> |
+| [`create_deliverability_test_report`](#create_deliverability_test_report) | <code>from_email_address: str</code>, <code>content: EmailContent</code> | <code>CreateDeliverabilityTestReportOutput</code> |
+| [`create_email_identity`](#create_email_identity) | <code>email_identity: str</code> | <code>CreateEmailIdentityOutput</code> |
+| [`create_email_identity_policy`](#create_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code>, <code>policy: str</code> | <code>CreateEmailIdentityPolicyOutput</code> |
+| [`create_email_template`](#create_email_template) | <code>template_name: str</code>, <code>template_content: EmailTemplateContent</code> | <code>CreateEmailTemplateOutput</code> |
+| [`create_export_job`](#create_export_job) | <code>export_data_source: ExportDataSource</code>, <code>export_destination: ExportDestination</code> | <code>CreateExportJobOutput</code> |
+| [`create_import_job`](#create_import_job) | <code>import_destination: ImportDestination</code>, <code>import_data_source: ImportDataSource</code> | <code>CreateImportJobOutput</code> |
+| [`create_multi_region_endpoint`](#create_multi_region_endpoint) | <code>endpoint_name: str</code>, <code>details: Details</code> | <code>CreateMultiRegionEndpointOutput</code> |
+| [`create_tenant`](#create_tenant) | <code>tenant_name: str</code> | <code>CreateTenantOutput</code> |
+| [`create_tenant_resource_association`](#create_tenant_resource_association) | <code>tenant_name: str</code>, <code>resource_arn: str</code> | <code>CreateTenantResourceAssociationOutput</code> |
+| [`delete_configuration_set`](#delete_configuration_set) | <code>configuration_set_name: str</code> | <code>DeleteConfigurationSetOutput</code> |
+| [`delete_configuration_set_event_destination`](#delete_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code> | <code>DeleteConfigurationSetEventDestinationOutput</code> |
+| [`delete_contact`](#delete_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>DeleteContactOutput</code> |
+| [`delete_contact_list`](#delete_contact_list) | <code>contact_list_name: str</code> | <code>DeleteContactListOutput</code> |
+| [`delete_custom_verification_email_template`](#delete_custom_verification_email_template) | <code>template_name: str</code> | <code>DeleteCustomVerificationEmailTemplateOutput</code> |
+| [`delete_dedicated_ip_pool`](#delete_dedicated_ip_pool) | <code>pool_name: str</code> | <code>DeleteDedicatedIpPoolOutput</code> |
+| [`delete_email_identity`](#delete_email_identity) | <code>email_identity: str</code> | <code>DeleteEmailIdentityOutput</code> |
+| [`delete_email_identity_policy`](#delete_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code> | <code>DeleteEmailIdentityPolicyOutput</code> |
+| [`delete_email_template`](#delete_email_template) | <code>template_name: str</code> | <code>DeleteEmailTemplateOutput</code> |
+| [`delete_multi_region_endpoint`](#delete_multi_region_endpoint) | <code>endpoint_name: str</code> | <code>DeleteMultiRegionEndpointOutput</code> |
+| [`delete_suppressed_destination`](#delete_suppressed_destination) | <code>email_address: str</code> | <code>DeleteSuppressedDestinationOutput</code> |
+| [`delete_tenant`](#delete_tenant) | <code>tenant_name: str</code> | <code>DeleteTenantOutput</code> |
+| [`delete_tenant_resource_association`](#delete_tenant_resource_association) | <code>tenant_name: str</code>, <code>resource_arn: str</code> | <code>DeleteTenantResourceAssociationOutput</code> |
+| [`disassociate_email_identity_certificate`](#disassociate_email_identity_certificate) | <code>email_identity: str</code> | <code>DisassociateEmailIdentityCertificateOutput</code> |
+| [`get_account`](#get_account) | None | <code>GetAccountOutput</code> |
+| [`get_blacklist_reports`](#get_blacklist_reports) | <code>blacklist_item_names: Sequence[str]</code> | <code>GetBlacklistReportsOutput</code> |
+| [`get_configuration_set`](#get_configuration_set) | <code>configuration_set_name: str</code> | <code>GetConfigurationSetOutput</code> |
+| [`get_configuration_set_event_destinations`](#get_configuration_set_event_destinations) | <code>configuration_set_name: str</code> | <code>GetConfigurationSetEventDestinationsOutput</code> |
+| [`get_contact`](#get_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>GetContactOutput</code> |
+| [`get_contact_list`](#get_contact_list) | <code>contact_list_name: str</code> | <code>GetContactListOutput</code> |
+| [`get_custom_verification_email_template`](#get_custom_verification_email_template) | <code>template_name: str</code> | <code>GetCustomVerificationEmailTemplateOutput</code> |
+| [`get_dedicated_ip`](#get_dedicated_ip) | <code>ip: str</code> | <code>GetDedicatedIpOutput</code> |
+| [`get_dedicated_ip_pool`](#get_dedicated_ip_pool) | <code>pool_name: str</code> | <code>GetDedicatedIpPoolOutput</code> |
+| [`get_dedicated_ips`](#get_dedicated_ips) | None | <code>GetDedicatedIpsOutput</code> |
+| [`get_deliverability_dashboard_options`](#get_deliverability_dashboard_options) | None | <code>GetDeliverabilityDashboardOptionsOutput</code> |
+| [`get_deliverability_test_report`](#get_deliverability_test_report) | <code>report_id: str</code> | <code>GetDeliverabilityTestReportOutput</code> |
+| [`get_domain_deliverability_campaign`](#get_domain_deliverability_campaign) | <code>campaign_id: str</code> | <code>GetDomainDeliverabilityCampaignOutput</code> |
+| [`get_domain_statistics_report`](#get_domain_statistics_report) | <code>domain: str</code>, <code>start_date: str</code>, <code>end_date: str</code> | <code>GetDomainStatisticsReportOutput</code> |
+| [`get_email_address_insights`](#get_email_address_insights) | <code>email_address: str</code> | <code>GetEmailAddressInsightsOutput</code> |
+| [`get_email_identity`](#get_email_identity) | <code>email_identity: str</code> | <code>GetEmailIdentityOutput</code> |
+| [`get_email_identity_policies`](#get_email_identity_policies) | <code>email_identity: str</code> | <code>GetEmailIdentityPoliciesOutput</code> |
+| [`get_email_template`](#get_email_template) | <code>template_name: str</code> | <code>GetEmailTemplateOutput</code> |
+| [`get_export_job`](#get_export_job) | <code>job_id: str</code> | <code>GetExportJobOutput</code> |
+| [`get_import_job`](#get_import_job) | <code>job_id: str</code> | <code>GetImportJobOutput</code> |
+| [`get_message_insights`](#get_message_insights) | <code>message_id: str</code> | <code>GetMessageInsightsOutput</code> |
+| [`get_multi_region_endpoint`](#get_multi_region_endpoint) | <code>endpoint_name: str</code> | <code>GetMultiRegionEndpointOutput</code> |
+| [`get_reputation_entity`](#get_reputation_entity) | <code>reputation_entity_reference: str</code>, <code>reputation_entity_type: ReputationEntityType</code> | <code>GetReputationEntityOutput</code> |
+| [`get_suppressed_destination`](#get_suppressed_destination) | <code>email_address: str</code> | <code>GetSuppressedDestinationOutput</code> |
+| [`get_tenant`](#get_tenant) | <code>tenant_name: str</code> | <code>GetTenantOutput</code> |
+| [`list_configuration_sets`](#list_configuration_sets) | None | <code>ListConfigurationSetsOutput</code> |
+| [`list_contact_lists`](#list_contact_lists) | None | <code>ListContactListsOutput</code> |
+| [`list_contacts`](#list_contacts) | <code>contact_list_name: str</code> | <code>ListContactsOutput</code> |
+| [`list_custom_verification_email_templates`](#list_custom_verification_email_templates) | None | <code>ListCustomVerificationEmailTemplatesOutput</code> |
+| [`list_dedicated_ip_pools`](#list_dedicated_ip_pools) | None | <code>ListDedicatedIpPoolsOutput</code> |
+| [`list_deliverability_test_reports`](#list_deliverability_test_reports) | None | <code>ListDeliverabilityTestReportsOutput</code> |
+| [`list_domain_deliverability_campaigns`](#list_domain_deliverability_campaigns) | <code>start_date: str</code>, <code>end_date: str</code>, <code>subscribed_domain: str</code> | <code>ListDomainDeliverabilityCampaignsOutput</code> |
+| [`list_email_identities`](#list_email_identities) | None | <code>ListEmailIdentitiesOutput</code> |
+| [`list_email_identity_certificates`](#list_email_identity_certificates) | <code>email_identity: str</code> | <code>ListEmailIdentityCertificatesOutput</code> |
+| [`list_email_templates`](#list_email_templates) | None | <code>ListEmailTemplatesOutput</code> |
+| [`list_export_jobs`](#list_export_jobs) | None | <code>ListExportJobsOutput</code> |
+| [`list_import_jobs`](#list_import_jobs) | None | <code>ListImportJobsOutput</code> |
+| [`list_multi_region_endpoints`](#list_multi_region_endpoints) | None | <code>ListMultiRegionEndpointsOutput</code> |
+| [`list_recommendations`](#list_recommendations) | None | <code>ListRecommendationsOutput</code> |
+| [`list_reputation_entities`](#list_reputation_entities) | None | <code>ListReputationEntitiesOutput</code> |
+| [`list_resource_tenants`](#list_resource_tenants) | <code>resource_arn: str</code> | <code>ListResourceTenantsOutput</code> |
+| [`list_suppressed_destinations`](#list_suppressed_destinations) | None | <code>ListSuppressedDestinationsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`list_tenant_resources`](#list_tenant_resources) | <code>tenant_name: str</code> | <code>ListTenantResourcesOutput</code> |
+| [`list_tenants`](#list_tenants) | None | <code>ListTenantsOutput</code> |
+| [`put_account_dedicated_ip_warmup_attributes`](#put_account_dedicated_ip_warmup_attributes) | None | <code>PutAccountDedicatedIpWarmupAttributesOutput</code> |
+| [`put_account_details`](#put_account_details) | <code>mail_type: MailType</code>, <code>website_url: str</code> | <code>PutAccountDetailsOutput</code> |
+| [`put_account_pricing_attributes`](#put_account_pricing_attributes) | <code>plan: PricingPlan</code> | <code>PutAccountPricingAttributesOutput</code> |
+| [`put_account_sending_attributes`](#put_account_sending_attributes) | None | <code>PutAccountSendingAttributesOutput</code> |
+| [`put_account_suppression_attributes`](#put_account_suppression_attributes) | None | <code>PutAccountSuppressionAttributesOutput</code> |
+| [`put_account_vdm_attributes`](#put_account_vdm_attributes) | <code>vdm_attributes: VdmAttributes</code> | <code>PutAccountVdmAttributesOutput</code> |
+| [`put_configuration_set_archiving_options`](#put_configuration_set_archiving_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetArchivingOptionsOutput</code> |
+| [`put_configuration_set_delivery_options`](#put_configuration_set_delivery_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetDeliveryOptionsOutput</code> |
+| [`put_configuration_set_reputation_options`](#put_configuration_set_reputation_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetReputationOptionsOutput</code> |
+| [`put_configuration_set_sending_options`](#put_configuration_set_sending_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetSendingOptionsOutput</code> |
+| [`put_configuration_set_suppression_options`](#put_configuration_set_suppression_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetSuppressionOptionsOutput</code> |
+| [`put_configuration_set_tracking_options`](#put_configuration_set_tracking_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetTrackingOptionsOutput</code> |
+| [`put_configuration_set_vdm_options`](#put_configuration_set_vdm_options) | <code>configuration_set_name: str</code> | <code>PutConfigurationSetVdmOptionsOutput</code> |
+| [`put_dedicated_ip_in_pool`](#put_dedicated_ip_in_pool) | <code>ip: str</code>, <code>destination_pool_name: str</code> | <code>PutDedicatedIpInPoolOutput</code> |
+| [`put_dedicated_ip_pool_scaling_attributes`](#put_dedicated_ip_pool_scaling_attributes) | <code>pool_name: str</code>, <code>scaling_mode: ScalingMode</code> | <code>PutDedicatedIpPoolScalingAttributesOutput</code> |
+| [`put_dedicated_ip_warmup_attributes`](#put_dedicated_ip_warmup_attributes) | <code>ip: str</code>, <code>warmup_percentage: int</code> | <code>PutDedicatedIpWarmupAttributesOutput</code> |
+| [`put_deliverability_dashboard_option`](#put_deliverability_dashboard_option) | <code>dashboard_enabled: bool</code> | <code>PutDeliverabilityDashboardOptionOutput</code> |
+| [`put_email_identity_configuration_set_attributes`](#put_email_identity_configuration_set_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityConfigurationSetAttributesOutput</code> |
+| [`put_email_identity_dkim_attributes`](#put_email_identity_dkim_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityDkimAttributesOutput</code> |
+| [`put_email_identity_dkim_signing_attributes`](#put_email_identity_dkim_signing_attributes) | <code>email_identity: str</code>, <code>signing_attributes_origin: DkimSigningAttributesOrigin</code> | <code>PutEmailIdentityDkimSigningAttributesOutput</code> |
+| [`put_email_identity_feedback_attributes`](#put_email_identity_feedback_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityFeedbackAttributesOutput</code> |
+| [`put_email_identity_mail_from_attributes`](#put_email_identity_mail_from_attributes) | <code>email_identity: str</code> | <code>PutEmailIdentityMailFromAttributesOutput</code> |
+| [`put_suppressed_destination`](#put_suppressed_destination) | <code>email_address: str</code>, <code>reason: SuppressionListReason</code> | <code>PutSuppressedDestinationOutput</code> |
+| [`put_tenant_suppression_attributes`](#put_tenant_suppression_attributes) | <code>tenant_name: str</code> | <code>PutTenantSuppressionAttributesOutput</code> |
+| [`send_bulk_email`](#send_bulk_email) | <code>default_content: BulkEmailContent</code>, <code>bulk_email_entries: Sequence[BulkEmailEntry]</code> | <code>SendBulkEmailOutput</code> |
+| [`send_custom_verification_email`](#send_custom_verification_email) | <code>email_address: str</code>, <code>template_name: str</code> | <code>SendCustomVerificationEmailOutput</code> |
+| [`send_email`](#send_email) | <code>content: EmailContent</code> | <code>SendEmailOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>TagResourceOutput</code> |
+| [`test_render_email_template`](#test_render_email_template) | <code>template_name: str</code>, <code>template_data: str</code> | <code>TestRenderEmailTemplateOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_configuration_set`](#update_configuration_set) | <code>configuration_set_name: str</code> | <code>UpdateConfigurationSetOutput</code> |
+| [`update_configuration_set_event_destination`](#update_configuration_set_event_destination) | <code>configuration_set_name: str</code>, <code>event_destination_name: str</code>, <code>event_destination: EventDestinationDefinition</code> | <code>UpdateConfigurationSetEventDestinationOutput</code> |
+| [`update_contact`](#update_contact) | <code>contact_list_name: str</code>, <code>email_address: str</code> | <code>UpdateContactOutput</code> |
+| [`update_contact_list`](#update_contact_list) | <code>contact_list_name: str</code> | <code>UpdateContactListOutput</code> |
+| [`update_custom_verification_email_template`](#update_custom_verification_email_template) | <code>template_name: str</code>, <code>from_email_address: str</code>, <code>template_subject: str</code>, <code>template_content: str</code>, <code>success_redirection_url: str</code>, <code>failure_redirection_url: str</code> | <code>UpdateCustomVerificationEmailTemplateOutput</code> |
+| [`update_email_identity_policy`](#update_email_identity_policy) | <code>email_identity: str</code>, <code>policy_name: str</code>, <code>policy: str</code> | <code>UpdateEmailIdentityPolicyOutput</code> |
+| [`update_email_template`](#update_email_template) | <code>template_name: str</code>, <code>template_content: EmailTemplateContent</code> | <code>UpdateEmailTemplateOutput</code> |
+| [`update_reputation_entity_customer_managed_status`](#update_reputation_entity_customer_managed_status) | <code>reputation_entity_type: ReputationEntityType</code>, <code>reputation_entity_reference: str</code>, <code>sending_status: SendingStatus</code> | <code>UpdateReputationEntityCustomerManagedStatusOutput</code> |
+| [`update_reputation_entity_policy`](#update_reputation_entity_policy) | <code>reputation_entity_type: ReputationEntityType</code>, <code>reputation_entity_reference: str</code>, <code>reputation_entity_policy: str</code> | <code>UpdateReputationEntityPolicyOutput</code> |
 
 ## Complete signatures
 
@@ -223,7 +223,7 @@ async def associate_email_identity_certificate(
     email_identity: str,
     certificate_arn: str,
     from_address: str | None = None,
-) -> AssociateEmailIdentityCertificateResponse: ...
+) -> AssociateEmailIdentityCertificateOutput: ...
 ```
 
 
@@ -233,7 +233,7 @@ async def associate_email_identity_certificate(
 async def batch_get_metric_data(
     *,
     queries: Sequence[BatchGetMetricDataQuery],
-) -> BatchGetMetricDataResponse: ...
+) -> BatchGetMetricDataOutput: ...
 ```
 
 
@@ -243,7 +243,7 @@ async def batch_get_metric_data(
 async def cancel_export_job(
     *,
     job_id: str,
-) -> CancelExportJobResponse: ...
+) -> CancelExportJobOutput: ...
 ```
 
 
@@ -262,7 +262,7 @@ async def create_configuration_set(
     vdm_options: VdmOptions | None = None,
     archiving_options: ArchivingOptions | None = None,
     message_security_options: MessageSecurityOptions | None = None,
-) -> CreateConfigurationSetResponse: ...
+) -> CreateConfigurationSetOutput: ...
 ```
 
 
@@ -274,7 +274,7 @@ async def create_configuration_set_event_destination(
     configuration_set_name: str,
     event_destination_name: str,
     event_destination: EventDestinationDefinition,
-) -> CreateConfigurationSetEventDestinationResponse: ...
+) -> CreateConfigurationSetEventDestinationOutput: ...
 ```
 
 
@@ -288,7 +288,7 @@ async def create_contact(
     topic_preferences: Sequence[TopicPreference] | None = None,
     unsubscribe_all: bool | None = None,
     attributes_data: str | None = None,
-) -> CreateContactResponse: ...
+) -> CreateContactOutput: ...
 ```
 
 
@@ -301,7 +301,7 @@ async def create_contact_list(
     topics: Sequence[Topic] | None = None,
     description: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateContactListResponse: ...
+) -> CreateContactListOutput: ...
 ```
 
 
@@ -317,7 +317,7 @@ async def create_custom_verification_email_template(
     success_redirection_url: str,
     failure_redirection_url: str,
     tags: Sequence[Tag] | None = None,
-) -> CreateCustomVerificationEmailTemplateResponse: ...
+) -> CreateCustomVerificationEmailTemplateOutput: ...
 ```
 
 
@@ -329,7 +329,7 @@ async def create_dedicated_ip_pool(
     pool_name: str,
     tags: Sequence[Tag] | None = None,
     scaling_mode: ScalingMode | None = None,
-) -> CreateDedicatedIpPoolResponse: ...
+) -> CreateDedicatedIpPoolOutput: ...
 ```
 
 
@@ -342,7 +342,7 @@ async def create_deliverability_test_report(
     content: EmailContent,
     report_name: str | None = None,
     tags: Sequence[Tag] | None = None,
-) -> CreateDeliverabilityTestReportResponse: ...
+) -> CreateDeliverabilityTestReportOutput: ...
 ```
 
 
@@ -355,7 +355,7 @@ async def create_email_identity(
     tags: Sequence[Tag] | None = None,
     dkim_signing_attributes: DkimSigningAttributes | None = None,
     configuration_set_name: str | None = None,
-) -> CreateEmailIdentityResponse: ...
+) -> CreateEmailIdentityOutput: ...
 ```
 
 
@@ -367,7 +367,7 @@ async def create_email_identity_policy(
     email_identity: str,
     policy_name: str,
     policy: str,
-) -> CreateEmailIdentityPolicyResponse: ...
+) -> CreateEmailIdentityPolicyOutput: ...
 ```
 
 
@@ -379,7 +379,7 @@ async def create_email_template(
     template_name: str,
     template_content: EmailTemplateContent,
     tags: Sequence[Tag] | None = None,
-) -> CreateEmailTemplateResponse: ...
+) -> CreateEmailTemplateOutput: ...
 ```
 
 
@@ -390,7 +390,7 @@ async def create_export_job(
     *,
     export_data_source: ExportDataSource,
     export_destination: ExportDestination,
-) -> CreateExportJobResponse: ...
+) -> CreateExportJobOutput: ...
 ```
 
 
@@ -401,7 +401,7 @@ async def create_import_job(
     *,
     import_destination: ImportDestination,
     import_data_source: ImportDataSource,
-) -> CreateImportJobResponse: ...
+) -> CreateImportJobOutput: ...
 ```
 
 
@@ -413,7 +413,7 @@ async def create_multi_region_endpoint(
     endpoint_name: str,
     details: Details,
     tags: Sequence[Tag] | None = None,
-) -> CreateMultiRegionEndpointResponse: ...
+) -> CreateMultiRegionEndpointOutput: ...
 ```
 
 
@@ -425,7 +425,7 @@ async def create_tenant(
     tenant_name: str,
     tags: Sequence[Tag] | None = None,
     suppression_attributes: TenantSuppressionAttributes | None = None,
-) -> CreateTenantResponse: ...
+) -> CreateTenantOutput: ...
 ```
 
 
@@ -436,7 +436,7 @@ async def create_tenant_resource_association(
     *,
     tenant_name: str,
     resource_arn: str,
-) -> CreateTenantResourceAssociationResponse: ...
+) -> CreateTenantResourceAssociationOutput: ...
 ```
 
 
@@ -446,7 +446,7 @@ async def create_tenant_resource_association(
 async def delete_configuration_set(
     *,
     configuration_set_name: str,
-) -> DeleteConfigurationSetResponse: ...
+) -> DeleteConfigurationSetOutput: ...
 ```
 
 
@@ -457,7 +457,7 @@ async def delete_configuration_set_event_destination(
     *,
     configuration_set_name: str,
     event_destination_name: str,
-) -> DeleteConfigurationSetEventDestinationResponse: ...
+) -> DeleteConfigurationSetEventDestinationOutput: ...
 ```
 
 
@@ -468,7 +468,7 @@ async def delete_contact(
     *,
     contact_list_name: str,
     email_address: str,
-) -> DeleteContactResponse: ...
+) -> DeleteContactOutput: ...
 ```
 
 
@@ -478,7 +478,7 @@ async def delete_contact(
 async def delete_contact_list(
     *,
     contact_list_name: str,
-) -> DeleteContactListResponse: ...
+) -> DeleteContactListOutput: ...
 ```
 
 
@@ -488,7 +488,7 @@ async def delete_contact_list(
 async def delete_custom_verification_email_template(
     *,
     template_name: str,
-) -> DeleteCustomVerificationEmailTemplateResponse: ...
+) -> DeleteCustomVerificationEmailTemplateOutput: ...
 ```
 
 
@@ -498,7 +498,7 @@ async def delete_custom_verification_email_template(
 async def delete_dedicated_ip_pool(
     *,
     pool_name: str,
-) -> DeleteDedicatedIpPoolResponse: ...
+) -> DeleteDedicatedIpPoolOutput: ...
 ```
 
 
@@ -508,7 +508,7 @@ async def delete_dedicated_ip_pool(
 async def delete_email_identity(
     *,
     email_identity: str,
-) -> DeleteEmailIdentityResponse: ...
+) -> DeleteEmailIdentityOutput: ...
 ```
 
 
@@ -519,7 +519,7 @@ async def delete_email_identity_policy(
     *,
     email_identity: str,
     policy_name: str,
-) -> DeleteEmailIdentityPolicyResponse: ...
+) -> DeleteEmailIdentityPolicyOutput: ...
 ```
 
 
@@ -529,7 +529,7 @@ async def delete_email_identity_policy(
 async def delete_email_template(
     *,
     template_name: str,
-) -> DeleteEmailTemplateResponse: ...
+) -> DeleteEmailTemplateOutput: ...
 ```
 
 
@@ -539,7 +539,7 @@ async def delete_email_template(
 async def delete_multi_region_endpoint(
     *,
     endpoint_name: str,
-) -> DeleteMultiRegionEndpointResponse: ...
+) -> DeleteMultiRegionEndpointOutput: ...
 ```
 
 
@@ -550,7 +550,7 @@ async def delete_suppressed_destination(
     *,
     email_address: str,
     tenant_name: str | None = None,
-) -> DeleteSuppressedDestinationResponse: ...
+) -> DeleteSuppressedDestinationOutput: ...
 ```
 
 
@@ -560,7 +560,7 @@ async def delete_suppressed_destination(
 async def delete_tenant(
     *,
     tenant_name: str,
-) -> DeleteTenantResponse: ...
+) -> DeleteTenantOutput: ...
 ```
 
 
@@ -571,7 +571,7 @@ async def delete_tenant_resource_association(
     *,
     tenant_name: str,
     resource_arn: str,
-) -> DeleteTenantResourceAssociationResponse: ...
+) -> DeleteTenantResourceAssociationOutput: ...
 ```
 
 
@@ -582,14 +582,14 @@ async def disassociate_email_identity_certificate(
     *,
     email_identity: str,
     from_address: str | None = None,
-) -> DisassociateEmailIdentityCertificateResponse: ...
+) -> DisassociateEmailIdentityCertificateOutput: ...
 ```
 
 
 ### get_account
 
 ```python
-async def get_account() -> GetAccountResponse: ...
+async def get_account() -> GetAccountOutput: ...
 ```
 
 
@@ -599,7 +599,7 @@ async def get_account() -> GetAccountResponse: ...
 async def get_blacklist_reports(
     *,
     blacklist_item_names: Sequence[str],
-) -> GetBlacklistReportsResponse: ...
+) -> GetBlacklistReportsOutput: ...
 ```
 
 
@@ -609,7 +609,7 @@ async def get_blacklist_reports(
 async def get_configuration_set(
     *,
     configuration_set_name: str,
-) -> GetConfigurationSetResponse: ...
+) -> GetConfigurationSetOutput: ...
 ```
 
 
@@ -619,7 +619,7 @@ async def get_configuration_set(
 async def get_configuration_set_event_destinations(
     *,
     configuration_set_name: str,
-) -> GetConfigurationSetEventDestinationsResponse: ...
+) -> GetConfigurationSetEventDestinationsOutput: ...
 ```
 
 
@@ -630,7 +630,7 @@ async def get_contact(
     *,
     contact_list_name: str,
     email_address: str,
-) -> GetContactResponse: ...
+) -> GetContactOutput: ...
 ```
 
 
@@ -640,7 +640,7 @@ async def get_contact(
 async def get_contact_list(
     *,
     contact_list_name: str,
-) -> GetContactListResponse: ...
+) -> GetContactListOutput: ...
 ```
 
 
@@ -650,7 +650,7 @@ async def get_contact_list(
 async def get_custom_verification_email_template(
     *,
     template_name: str,
-) -> GetCustomVerificationEmailTemplateResponse: ...
+) -> GetCustomVerificationEmailTemplateOutput: ...
 ```
 
 
@@ -660,7 +660,7 @@ async def get_custom_verification_email_template(
 async def get_dedicated_ip(
     *,
     ip: str,
-) -> GetDedicatedIpResponse: ...
+) -> GetDedicatedIpOutput: ...
 ```
 
 
@@ -670,7 +670,7 @@ async def get_dedicated_ip(
 async def get_dedicated_ip_pool(
     *,
     pool_name: str,
-) -> GetDedicatedIpPoolResponse: ...
+) -> GetDedicatedIpPoolOutput: ...
 ```
 
 
@@ -682,7 +682,7 @@ async def get_dedicated_ips(
     pool_name: str | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> GetDedicatedIpsResponse: ...
+) -> GetDedicatedIpsOutput: ...
 ```
 
 Also available as `client.paginators.get_dedicated_ips(...)`, returning an
@@ -692,7 +692,7 @@ async iterator of the response type above.
 ### get_deliverability_dashboard_options
 
 ```python
-async def get_deliverability_dashboard_options() -> GetDeliverabilityDashboardOptionsResponse: ...
+async def get_deliverability_dashboard_options() -> GetDeliverabilityDashboardOptionsOutput: ...
 ```
 
 
@@ -702,7 +702,7 @@ async def get_deliverability_dashboard_options() -> GetDeliverabilityDashboardOp
 async def get_deliverability_test_report(
     *,
     report_id: str,
-) -> GetDeliverabilityTestReportResponse: ...
+) -> GetDeliverabilityTestReportOutput: ...
 ```
 
 
@@ -712,7 +712,7 @@ async def get_deliverability_test_report(
 async def get_domain_deliverability_campaign(
     *,
     campaign_id: str,
-) -> GetDomainDeliverabilityCampaignResponse: ...
+) -> GetDomainDeliverabilityCampaignOutput: ...
 ```
 
 
@@ -724,7 +724,7 @@ async def get_domain_statistics_report(
     domain: str,
     start_date: str,
     end_date: str,
-) -> GetDomainStatisticsReportResponse: ...
+) -> GetDomainStatisticsReportOutput: ...
 ```
 
 
@@ -734,7 +734,7 @@ async def get_domain_statistics_report(
 async def get_email_address_insights(
     *,
     email_address: str,
-) -> GetEmailAddressInsightsResponse: ...
+) -> GetEmailAddressInsightsOutput: ...
 ```
 
 
@@ -744,7 +744,7 @@ async def get_email_address_insights(
 async def get_email_identity(
     *,
     email_identity: str,
-) -> GetEmailIdentityResponse: ...
+) -> GetEmailIdentityOutput: ...
 ```
 
 
@@ -754,7 +754,7 @@ async def get_email_identity(
 async def get_email_identity_policies(
     *,
     email_identity: str,
-) -> GetEmailIdentityPoliciesResponse: ...
+) -> GetEmailIdentityPoliciesOutput: ...
 ```
 
 
@@ -764,7 +764,7 @@ async def get_email_identity_policies(
 async def get_email_template(
     *,
     template_name: str,
-) -> GetEmailTemplateResponse: ...
+) -> GetEmailTemplateOutput: ...
 ```
 
 
@@ -774,7 +774,7 @@ async def get_email_template(
 async def get_export_job(
     *,
     job_id: str,
-) -> GetExportJobResponse: ...
+) -> GetExportJobOutput: ...
 ```
 
 
@@ -784,7 +784,7 @@ async def get_export_job(
 async def get_import_job(
     *,
     job_id: str,
-) -> GetImportJobResponse: ...
+) -> GetImportJobOutput: ...
 ```
 
 
@@ -794,7 +794,7 @@ async def get_import_job(
 async def get_message_insights(
     *,
     message_id: str,
-) -> GetMessageInsightsResponse: ...
+) -> GetMessageInsightsOutput: ...
 ```
 
 
@@ -804,7 +804,7 @@ async def get_message_insights(
 async def get_multi_region_endpoint(
     *,
     endpoint_name: str,
-) -> GetMultiRegionEndpointResponse: ...
+) -> GetMultiRegionEndpointOutput: ...
 ```
 
 
@@ -815,7 +815,7 @@ async def get_reputation_entity(
     *,
     reputation_entity_reference: str,
     reputation_entity_type: ReputationEntityType,
-) -> GetReputationEntityResponse: ...
+) -> GetReputationEntityOutput: ...
 ```
 
 
@@ -826,7 +826,7 @@ async def get_suppressed_destination(
     *,
     email_address: str,
     tenant_name: str | None = None,
-) -> GetSuppressedDestinationResponse: ...
+) -> GetSuppressedDestinationOutput: ...
 ```
 
 
@@ -836,7 +836,7 @@ async def get_suppressed_destination(
 async def get_tenant(
     *,
     tenant_name: str,
-) -> GetTenantResponse: ...
+) -> GetTenantOutput: ...
 ```
 
 
@@ -848,7 +848,7 @@ async def list_configuration_sets(
     filter: dict[ConfigurationSetFilterKey, str] | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListConfigurationSetsResponse: ...
+) -> ListConfigurationSetsOutput: ...
 ```
 
 Also available as `client.paginators.list_configuration_sets(...)`, returning an
@@ -862,7 +862,7 @@ async def list_contact_lists(
     *,
     page_size: int | None = None,
     next_token: str | None = None,
-) -> ListContactListsResponse: ...
+) -> ListContactListsOutput: ...
 ```
 
 Also available as `client.paginators.list_contact_lists(...)`, returning an
@@ -878,7 +878,7 @@ async def list_contacts(
     filter: ListContactsFilter | None = None,
     page_size: int | None = None,
     next_token: str | None = None,
-) -> ListContactsResponse: ...
+) -> ListContactsOutput: ...
 ```
 
 Also available as `client.paginators.list_contacts(...)`, returning an
@@ -892,7 +892,7 @@ async def list_custom_verification_email_templates(
     *,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListCustomVerificationEmailTemplatesResponse: ...
+) -> ListCustomVerificationEmailTemplatesOutput: ...
 ```
 
 Also available as `client.paginators.list_custom_verification_email_templates(...)`, returning an
@@ -906,7 +906,7 @@ async def list_dedicated_ip_pools(
     *,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListDedicatedIpPoolsResponse: ...
+) -> ListDedicatedIpPoolsOutput: ...
 ```
 
 Also available as `client.paginators.list_dedicated_ip_pools(...)`, returning an
@@ -920,7 +920,7 @@ async def list_deliverability_test_reports(
     *,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListDeliverabilityTestReportsResponse: ...
+) -> ListDeliverabilityTestReportsOutput: ...
 ```
 
 Also available as `client.paginators.list_deliverability_test_reports(...)`, returning an
@@ -937,7 +937,7 @@ async def list_domain_deliverability_campaigns(
     subscribed_domain: str,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListDomainDeliverabilityCampaignsResponse: ...
+) -> ListDomainDeliverabilityCampaignsOutput: ...
 ```
 
 Also available as `client.paginators.list_domain_deliverability_campaigns(...)`, returning an
@@ -952,7 +952,7 @@ async def list_email_identities(
     filter: dict[IdentityFilterKey, str] | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListEmailIdentitiesResponse: ...
+) -> ListEmailIdentitiesOutput: ...
 ```
 
 Also available as `client.paginators.list_email_identities(...)`, returning an
@@ -967,7 +967,7 @@ async def list_email_identity_certificates(
     email_identity: str,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListEmailIdentityCertificatesResponse: ...
+) -> ListEmailIdentityCertificatesOutput: ...
 ```
 
 Also available as `client.paginators.list_email_identity_certificates(...)`, returning an
@@ -981,7 +981,7 @@ async def list_email_templates(
     *,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListEmailTemplatesResponse: ...
+) -> ListEmailTemplatesOutput: ...
 ```
 
 Also available as `client.paginators.list_email_templates(...)`, returning an
@@ -997,7 +997,7 @@ async def list_export_jobs(
     page_size: int | None = None,
     export_source_type: ExportSourceType | None = None,
     job_status: JobStatus | None = None,
-) -> ListExportJobsResponse: ...
+) -> ListExportJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_export_jobs(...)`, returning an
@@ -1012,7 +1012,7 @@ async def list_import_jobs(
     import_destination_type: ImportDestinationType | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListImportJobsResponse: ...
+) -> ListImportJobsOutput: ...
 ```
 
 Also available as `client.paginators.list_import_jobs(...)`, returning an
@@ -1026,7 +1026,7 @@ async def list_multi_region_endpoints(
     *,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListMultiRegionEndpointsResponse: ...
+) -> ListMultiRegionEndpointsOutput: ...
 ```
 
 Also available as `client.paginators.list_multi_region_endpoints(...)`, returning an
@@ -1041,7 +1041,7 @@ async def list_recommendations(
     filter: dict[ListRecommendationsFilterKey, str] | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListRecommendationsResponse: ...
+) -> ListRecommendationsOutput: ...
 ```
 
 Also available as `client.paginators.list_recommendations(...)`, returning an
@@ -1056,7 +1056,7 @@ async def list_reputation_entities(
     filter: dict[ReputationEntityFilterKey, str] | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListReputationEntitiesResponse: ...
+) -> ListReputationEntitiesOutput: ...
 ```
 
 Also available as `client.paginators.list_reputation_entities(...)`, returning an
@@ -1071,7 +1071,7 @@ async def list_resource_tenants(
     resource_arn: str,
     page_size: int | None = None,
     next_token: str | None = None,
-) -> ListResourceTenantsResponse: ...
+) -> ListResourceTenantsOutput: ...
 ```
 
 Also available as `client.paginators.list_resource_tenants(...)`, returning an
@@ -1089,7 +1089,7 @@ async def list_suppressed_destinations(
     end_date: str | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListSuppressedDestinationsResponse: ...
+) -> ListSuppressedDestinationsOutput: ...
 ```
 
 Also available as `client.paginators.list_suppressed_destinations(...)`, returning an
@@ -1102,7 +1102,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -1115,7 +1115,7 @@ async def list_tenant_resources(
     filter: dict[ListTenantResourcesFilterKey, str] | None = None,
     page_size: int | None = None,
     next_token: str | None = None,
-) -> ListTenantResourcesResponse: ...
+) -> ListTenantResourcesOutput: ...
 ```
 
 Also available as `client.paginators.list_tenant_resources(...)`, returning an
@@ -1130,7 +1130,7 @@ async def list_tenants(
     filter: dict[ListTenantsFilterKey, str] | None = None,
     next_token: str | None = None,
     page_size: int | None = None,
-) -> ListTenantsResponse: ...
+) -> ListTenantsOutput: ...
 ```
 
 Also available as `client.paginators.list_tenants(...)`, returning an
@@ -1143,7 +1143,7 @@ async iterator of the response type above.
 async def put_account_dedicated_ip_warmup_attributes(
     *,
     auto_warmup_enabled: bool | None = None,
-) -> PutAccountDedicatedIpWarmupAttributesResponse: ...
+) -> PutAccountDedicatedIpWarmupAttributesOutput: ...
 ```
 
 
@@ -1158,7 +1158,7 @@ async def put_account_details(
     use_case_description: str | None = None,
     additional_contact_email_addresses: Sequence[str] | None = None,
     production_access_enabled: bool | None = None,
-) -> PutAccountDetailsResponse: ...
+) -> PutAccountDetailsOutput: ...
 ```
 
 
@@ -1168,7 +1168,7 @@ async def put_account_details(
 async def put_account_pricing_attributes(
     *,
     plan: PricingPlan,
-) -> PutAccountPricingAttributesResponse: ...
+) -> PutAccountPricingAttributesOutput: ...
 ```
 
 
@@ -1178,7 +1178,7 @@ async def put_account_pricing_attributes(
 async def put_account_sending_attributes(
     *,
     sending_enabled: bool | None = None,
-) -> PutAccountSendingAttributesResponse: ...
+) -> PutAccountSendingAttributesOutput: ...
 ```
 
 
@@ -1189,7 +1189,7 @@ async def put_account_suppression_attributes(
     *,
     suppressed_reasons: Sequence[SuppressionListReason] | None = None,
     validation_attributes: SuppressionValidationAttributes | None = None,
-) -> PutAccountSuppressionAttributesResponse: ...
+) -> PutAccountSuppressionAttributesOutput: ...
 ```
 
 
@@ -1199,7 +1199,7 @@ async def put_account_suppression_attributes(
 async def put_account_vdm_attributes(
     *,
     vdm_attributes: VdmAttributes,
-) -> PutAccountVdmAttributesResponse: ...
+) -> PutAccountVdmAttributesOutput: ...
 ```
 
 
@@ -1210,7 +1210,7 @@ async def put_configuration_set_archiving_options(
     *,
     configuration_set_name: str,
     archive_arn: str | None = None,
-) -> PutConfigurationSetArchivingOptionsResponse: ...
+) -> PutConfigurationSetArchivingOptionsOutput: ...
 ```
 
 
@@ -1223,7 +1223,7 @@ async def put_configuration_set_delivery_options(
     tls_policy: TlsPolicy | None = None,
     sending_pool_name: str | None = None,
     max_delivery_seconds: int | None = None,
-) -> PutConfigurationSetDeliveryOptionsResponse: ...
+) -> PutConfigurationSetDeliveryOptionsOutput: ...
 ```
 
 
@@ -1234,7 +1234,7 @@ async def put_configuration_set_reputation_options(
     *,
     configuration_set_name: str,
     reputation_metrics_enabled: bool | None = None,
-) -> PutConfigurationSetReputationOptionsResponse: ...
+) -> PutConfigurationSetReputationOptionsOutput: ...
 ```
 
 
@@ -1245,7 +1245,7 @@ async def put_configuration_set_sending_options(
     *,
     configuration_set_name: str,
     sending_enabled: bool | None = None,
-) -> PutConfigurationSetSendingOptionsResponse: ...
+) -> PutConfigurationSetSendingOptionsOutput: ...
 ```
 
 
@@ -1258,7 +1258,7 @@ async def put_configuration_set_suppression_options(
     suppression_scope: SuppressionListScope | None = None,
     suppressed_reasons: Sequence[SuppressionListReason] | None = None,
     validation_options: SuppressionValidationOptions | None = None,
-) -> PutConfigurationSetSuppressionOptionsResponse: ...
+) -> PutConfigurationSetSuppressionOptionsOutput: ...
 ```
 
 
@@ -1270,7 +1270,7 @@ async def put_configuration_set_tracking_options(
     configuration_set_name: str,
     custom_redirect_domain: str | None = None,
     https_policy: HttpsPolicy | None = None,
-) -> PutConfigurationSetTrackingOptionsResponse: ...
+) -> PutConfigurationSetTrackingOptionsOutput: ...
 ```
 
 
@@ -1281,7 +1281,7 @@ async def put_configuration_set_vdm_options(
     *,
     configuration_set_name: str,
     vdm_options: VdmOptions | None = None,
-) -> PutConfigurationSetVdmOptionsResponse: ...
+) -> PutConfigurationSetVdmOptionsOutput: ...
 ```
 
 
@@ -1292,7 +1292,7 @@ async def put_dedicated_ip_in_pool(
     *,
     ip: str,
     destination_pool_name: str,
-) -> PutDedicatedIpInPoolResponse: ...
+) -> PutDedicatedIpInPoolOutput: ...
 ```
 
 
@@ -1303,7 +1303,7 @@ async def put_dedicated_ip_pool_scaling_attributes(
     *,
     pool_name: str,
     scaling_mode: ScalingMode,
-) -> PutDedicatedIpPoolScalingAttributesResponse: ...
+) -> PutDedicatedIpPoolScalingAttributesOutput: ...
 ```
 
 
@@ -1314,7 +1314,7 @@ async def put_dedicated_ip_warmup_attributes(
     *,
     ip: str,
     warmup_percentage: int,
-) -> PutDedicatedIpWarmupAttributesResponse: ...
+) -> PutDedicatedIpWarmupAttributesOutput: ...
 ```
 
 
@@ -1325,7 +1325,7 @@ async def put_deliverability_dashboard_option(
     *,
     dashboard_enabled: bool,
     subscribed_domains: Sequence[DomainDeliverabilityTrackingOption] | None = None,
-) -> PutDeliverabilityDashboardOptionResponse: ...
+) -> PutDeliverabilityDashboardOptionOutput: ...
 ```
 
 
@@ -1336,7 +1336,7 @@ async def put_email_identity_configuration_set_attributes(
     *,
     email_identity: str,
     configuration_set_name: str | None = None,
-) -> PutEmailIdentityConfigurationSetAttributesResponse: ...
+) -> PutEmailIdentityConfigurationSetAttributesOutput: ...
 ```
 
 
@@ -1347,7 +1347,7 @@ async def put_email_identity_dkim_attributes(
     *,
     email_identity: str,
     signing_enabled: bool | None = None,
-) -> PutEmailIdentityDkimAttributesResponse: ...
+) -> PutEmailIdentityDkimAttributesOutput: ...
 ```
 
 
@@ -1359,7 +1359,7 @@ async def put_email_identity_dkim_signing_attributes(
     email_identity: str,
     signing_attributes_origin: DkimSigningAttributesOrigin,
     signing_attributes: DkimSigningAttributes | None = None,
-) -> PutEmailIdentityDkimSigningAttributesResponse: ...
+) -> PutEmailIdentityDkimSigningAttributesOutput: ...
 ```
 
 
@@ -1370,7 +1370,7 @@ async def put_email_identity_feedback_attributes(
     *,
     email_identity: str,
     email_forwarding_enabled: bool | None = None,
-) -> PutEmailIdentityFeedbackAttributesResponse: ...
+) -> PutEmailIdentityFeedbackAttributesOutput: ...
 ```
 
 
@@ -1382,7 +1382,7 @@ async def put_email_identity_mail_from_attributes(
     email_identity: str,
     mail_from_domain: str | None = None,
     behavior_on_mx_failure: BehaviorOnMxFailure | None = None,
-) -> PutEmailIdentityMailFromAttributesResponse: ...
+) -> PutEmailIdentityMailFromAttributesOutput: ...
 ```
 
 
@@ -1394,7 +1394,7 @@ async def put_suppressed_destination(
     email_address: str,
     reason: SuppressionListReason,
     tenant_name: str | None = None,
-) -> PutSuppressedDestinationResponse: ...
+) -> PutSuppressedDestinationOutput: ...
 ```
 
 
@@ -1406,7 +1406,7 @@ async def put_tenant_suppression_attributes(
     tenant_name: str,
     suppressed_reasons: Sequence[SuppressionListReason] | None = None,
     suppression_scope: SuppressionListScope | None = None,
-) -> PutTenantSuppressionAttributesResponse: ...
+) -> PutTenantSuppressionAttributesOutput: ...
 ```
 
 
@@ -1427,7 +1427,7 @@ async def send_bulk_email(
     endpoint_id: str | None = None,
     tenant_name: str | None = None,
     configuration_overrides: ConfigurationOverrides | None = None,
-) -> SendBulkEmailResponse: ...
+) -> SendBulkEmailOutput: ...
 ```
 
 
@@ -1439,7 +1439,7 @@ async def send_custom_verification_email(
     email_address: str,
     template_name: str,
     configuration_set_name: str | None = None,
-) -> SendCustomVerificationEmailResponse: ...
+) -> SendCustomVerificationEmailOutput: ...
 ```
 
 
@@ -1461,7 +1461,7 @@ async def send_email(
     tenant_name: str | None = None,
     list_management_options: ListManagementOptions | None = None,
     configuration_overrides: ConfigurationOverrides | None = None,
-) -> SendEmailResponse: ...
+) -> SendEmailOutput: ...
 ```
 
 
@@ -1472,7 +1472,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: Sequence[Tag],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -1483,7 +1483,7 @@ async def test_render_email_template(
     *,
     template_name: str,
     template_data: str,
-) -> TestRenderEmailTemplateResponse: ...
+) -> TestRenderEmailTemplateOutput: ...
 ```
 
 
@@ -1494,7 +1494,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -1505,7 +1505,7 @@ async def update_configuration_set(
     *,
     configuration_set_name: str,
     message_security_options: MessageSecurityOptions | None = None,
-) -> UpdateConfigurationSetResponse: ...
+) -> UpdateConfigurationSetOutput: ...
 ```
 
 
@@ -1517,7 +1517,7 @@ async def update_configuration_set_event_destination(
     configuration_set_name: str,
     event_destination_name: str,
     event_destination: EventDestinationDefinition,
-) -> UpdateConfigurationSetEventDestinationResponse: ...
+) -> UpdateConfigurationSetEventDestinationOutput: ...
 ```
 
 
@@ -1531,7 +1531,7 @@ async def update_contact(
     topic_preferences: Sequence[TopicPreference] | None = None,
     unsubscribe_all: bool | None = None,
     attributes_data: str | None = None,
-) -> UpdateContactResponse: ...
+) -> UpdateContactOutput: ...
 ```
 
 
@@ -1543,7 +1543,7 @@ async def update_contact_list(
     contact_list_name: str,
     topics: Sequence[Topic] | None = None,
     description: str | None = None,
-) -> UpdateContactListResponse: ...
+) -> UpdateContactListOutput: ...
 ```
 
 
@@ -1558,7 +1558,7 @@ async def update_custom_verification_email_template(
     template_content: str,
     success_redirection_url: str,
     failure_redirection_url: str,
-) -> UpdateCustomVerificationEmailTemplateResponse: ...
+) -> UpdateCustomVerificationEmailTemplateOutput: ...
 ```
 
 
@@ -1570,7 +1570,7 @@ async def update_email_identity_policy(
     email_identity: str,
     policy_name: str,
     policy: str,
-) -> UpdateEmailIdentityPolicyResponse: ...
+) -> UpdateEmailIdentityPolicyOutput: ...
 ```
 
 
@@ -1581,7 +1581,7 @@ async def update_email_template(
     *,
     template_name: str,
     template_content: EmailTemplateContent,
-) -> UpdateEmailTemplateResponse: ...
+) -> UpdateEmailTemplateOutput: ...
 ```
 
 
@@ -1593,7 +1593,7 @@ async def update_reputation_entity_customer_managed_status(
     reputation_entity_type: ReputationEntityType,
     reputation_entity_reference: str,
     sending_status: SendingStatus,
-) -> UpdateReputationEntityCustomerManagedStatusResponse: ...
+) -> UpdateReputationEntityCustomerManagedStatusOutput: ...
 ```
 
 
@@ -1605,7 +1605,7 @@ async def update_reputation_entity_policy(
     reputation_entity_type: ReputationEntityType,
     reputation_entity_reference: str,
     reputation_entity_policy: str,
-) -> UpdateReputationEntityPolicyResponse: ...
+) -> UpdateReputationEntityPolicyOutput: ...
 ```
 
 

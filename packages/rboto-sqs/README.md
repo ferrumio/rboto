@@ -88,26 +88,26 @@ native response definitions are in the package's `_native.pyi`.
 | Method | Required arguments | Return type |
 |---|---|---|
 | [`add_permission`](#add_permission) | <code>queue_url: str</code>, <code>label: str</code>, <code>aws_account_ids: Sequence[str]</code>, <code>actions: Sequence[str]</code> | <code>None</code> |
-| [`cancel_message_move_task`](#cancel_message_move_task) | <code>task_handle: str</code> | <code>CancelMessageMoveTaskResult</code> |
+| [`cancel_message_move_task`](#cancel_message_move_task) | <code>task_handle: str</code> | <code>CancelMessageMoveTaskOutput</code> |
 | [`change_message_visibility`](#change_message_visibility) | <code>queue_url: str</code>, <code>receipt_handle: str</code>, <code>visibility_timeout: int</code> | <code>None</code> |
-| [`change_message_visibility_batch`](#change_message_visibility_batch) | <code>queue_url: str</code>, <code>entries: Sequence[ChangeMessageVisibilityBatchRequestEntry]</code> | <code>ChangeMessageVisibilityBatchResult</code> |
-| [`create_queue`](#create_queue) | <code>queue_name: str</code> | <code>CreateQueueResult</code> |
+| [`change_message_visibility_batch`](#change_message_visibility_batch) | <code>queue_url: str</code>, <code>entries: Sequence[ChangeMessageVisibilityBatchRequestEntry]</code> | <code>ChangeMessageVisibilityBatchOutput</code> |
+| [`create_queue`](#create_queue) | <code>queue_name: str</code> | <code>CreateQueueOutput</code> |
 | [`delete_message`](#delete_message) | <code>queue_url: str</code>, <code>receipt_handle: str</code> | <code>None</code> |
-| [`delete_message_batch`](#delete_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[DeleteMessageBatchRequestEntry]</code> | <code>DeleteMessageBatchResult</code> |
+| [`delete_message_batch`](#delete_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[DeleteMessageBatchRequestEntry]</code> | <code>DeleteMessageBatchOutput</code> |
 | [`delete_queue`](#delete_queue) | <code>queue_url: str</code> | <code>None</code> |
-| [`get_queue_attributes`](#get_queue_attributes) | <code>queue_url: str</code> | <code>GetQueueAttributesResult</code> |
-| [`get_queue_url`](#get_queue_url) | <code>queue_name: str</code> | <code>GetQueueUrlResult</code> |
-| [`list_dead_letter_source_queues`](#list_dead_letter_source_queues) | <code>queue_url: str</code> | <code>ListDeadLetterSourceQueuesResult</code> |
-| [`list_message_move_tasks`](#list_message_move_tasks) | <code>source_arn: str</code> | <code>ListMessageMoveTasksResult</code> |
-| [`list_queue_tags`](#list_queue_tags) | <code>queue_url: str</code> | <code>ListQueueTagsResult</code> |
-| [`list_queues`](#list_queues) | None | <code>ListQueuesResult</code> |
+| [`get_queue_attributes`](#get_queue_attributes) | <code>queue_url: str</code> | <code>GetQueueAttributesOutput</code> |
+| [`get_queue_url`](#get_queue_url) | <code>queue_name: str</code> | <code>GetQueueUrlOutput</code> |
+| [`list_dead_letter_source_queues`](#list_dead_letter_source_queues) | <code>queue_url: str</code> | <code>ListDeadLetterSourceQueuesOutput</code> |
+| [`list_message_move_tasks`](#list_message_move_tasks) | <code>source_arn: str</code> | <code>ListMessageMoveTasksOutput</code> |
+| [`list_queue_tags`](#list_queue_tags) | <code>queue_url: str</code> | <code>ListQueueTagsOutput</code> |
+| [`list_queues`](#list_queues) | None | <code>ListQueuesOutput</code> |
 | [`purge_queue`](#purge_queue) | <code>queue_url: str</code> | <code>None</code> |
-| [`receive_message`](#receive_message) | <code>queue_url: str</code> | <code>ReceiveMessageResult</code> |
+| [`receive_message`](#receive_message) | <code>queue_url: str</code> | <code>ReceiveMessageOutput</code> |
 | [`remove_permission`](#remove_permission) | <code>queue_url: str</code>, <code>label: str</code> | <code>None</code> |
-| [`send_message`](#send_message) | <code>queue_url: str</code>, <code>message_body: str</code> | <code>SendMessageResult</code> |
-| [`send_message_batch`](#send_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[SendMessageBatchRequestEntry]</code> | <code>SendMessageBatchResult</code> |
+| [`send_message`](#send_message) | <code>queue_url: str</code>, <code>message_body: str</code> | <code>SendMessageOutput</code> |
+| [`send_message_batch`](#send_message_batch) | <code>queue_url: str</code>, <code>entries: Sequence[SendMessageBatchRequestEntry]</code> | <code>SendMessageBatchOutput</code> |
 | [`set_queue_attributes`](#set_queue_attributes) | <code>queue_url: str</code>, <code>attributes: dict[QueueAttributeName, str]</code> | <code>None</code> |
-| [`start_message_move_task`](#start_message_move_task) | <code>source_arn: str</code> | <code>StartMessageMoveTaskResult</code> |
+| [`start_message_move_task`](#start_message_move_task) | <code>source_arn: str</code> | <code>StartMessageMoveTaskOutput</code> |
 | [`tag_queue`](#tag_queue) | <code>queue_url: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`untag_queue`](#untag_queue) | <code>queue_url: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
@@ -132,7 +132,7 @@ async def add_permission(
 async def cancel_message_move_task(
     *,
     task_handle: str,
-) -> CancelMessageMoveTaskResult: ...
+) -> CancelMessageMoveTaskOutput: ...
 ```
 
 
@@ -155,7 +155,7 @@ async def change_message_visibility_batch(
     *,
     queue_url: str,
     entries: Sequence[ChangeMessageVisibilityBatchRequestEntry],
-) -> ChangeMessageVisibilityBatchResult: ...
+) -> ChangeMessageVisibilityBatchOutput: ...
 ```
 
 
@@ -167,7 +167,7 @@ async def create_queue(
     queue_name: str,
     attributes: dict[QueueAttributeName, str] | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateQueueResult: ...
+) -> CreateQueueOutput: ...
 ```
 
 
@@ -189,7 +189,7 @@ async def delete_message_batch(
     *,
     queue_url: str,
     entries: Sequence[DeleteMessageBatchRequestEntry],
-) -> DeleteMessageBatchResult: ...
+) -> DeleteMessageBatchOutput: ...
 ```
 
 
@@ -210,7 +210,7 @@ async def get_queue_attributes(
     *,
     queue_url: str,
     attribute_names: Sequence[QueueAttributeName] | None = None,
-) -> GetQueueAttributesResult: ...
+) -> GetQueueAttributesOutput: ...
 ```
 
 
@@ -221,7 +221,7 @@ async def get_queue_url(
     *,
     queue_name: str,
     queue_owner_aws_account_id: str | None = None,
-) -> GetQueueUrlResult: ...
+) -> GetQueueUrlOutput: ...
 ```
 
 
@@ -233,7 +233,7 @@ async def list_dead_letter_source_queues(
     queue_url: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListDeadLetterSourceQueuesResult: ...
+) -> ListDeadLetterSourceQueuesOutput: ...
 ```
 
 Also available as `client.paginators.list_dead_letter_source_queues(...)`, returning an
@@ -247,7 +247,7 @@ async def list_message_move_tasks(
     *,
     source_arn: str,
     max_results: int | None = None,
-) -> ListMessageMoveTasksResult: ...
+) -> ListMessageMoveTasksOutput: ...
 ```
 
 
@@ -257,7 +257,7 @@ async def list_message_move_tasks(
 async def list_queue_tags(
     *,
     queue_url: str,
-) -> ListQueueTagsResult: ...
+) -> ListQueueTagsOutput: ...
 ```
 
 
@@ -269,7 +269,7 @@ async def list_queues(
     queue_name_prefix: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListQueuesResult: ...
+) -> ListQueuesOutput: ...
 ```
 
 Also available as `client.paginators.list_queues(...)`, returning an
@@ -299,7 +299,7 @@ async def receive_message(
     visibility_timeout: int | None = None,
     wait_time_seconds: int | None = None,
     receive_request_attempt_id: str | None = None,
-) -> ReceiveMessageResult: ...
+) -> ReceiveMessageOutput: ...
 ```
 
 
@@ -326,7 +326,7 @@ async def send_message(
     message_system_attributes: dict[MessageSystemAttributeNameForSends, MessageSystemAttributeValue] | None = None,
     message_deduplication_id: str | None = None,
     message_group_id: str | None = None,
-) -> SendMessageResult: ...
+) -> SendMessageOutput: ...
 ```
 
 
@@ -337,7 +337,7 @@ async def send_message_batch(
     *,
     queue_url: str,
     entries: Sequence[SendMessageBatchRequestEntry],
-) -> SendMessageBatchResult: ...
+) -> SendMessageBatchOutput: ...
 ```
 
 
@@ -360,7 +360,7 @@ async def start_message_move_task(
     source_arn: str,
     destination_arn: str | None = None,
     max_number_of_messages_per_second: int | None = None,
-) -> StartMessageMoveTaskResult: ...
+) -> StartMessageMoveTaskOutput: ...
 ```
 
 

@@ -84,17 +84,17 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`create_o_auth2_token`](#create_o_auth2_token) | <code>token_input: CreateOAuth2TokenRequestBody</code> | <code>CreateOAuth2TokenResponse</code> |
-| [`create_o_auth2_token_with_iam`](#create_o_auth2_token_with_iam) | <code>grant_type: str</code>, <code>resource: str</code> | <code>CreateOAuth2TokenWithIAMResponse</code> |
+| [`create_o_auth2_token`](#create_o_auth2_token) | <code>token_input: CreateOAuth2TokenRequestBody</code> | <code>CreateOAuth2TokenOutput</code> |
+| [`create_o_auth2_token_with_iam`](#create_o_auth2_token_with_iam) | <code>grant_type: str</code>, <code>resource: str</code> | <code>CreateOAuth2TokenWithIAMOutput</code> |
 | [`delete_console_authorization_configuration`](#delete_console_authorization_configuration) | None | <code>DeleteConsoleAuthorizationConfigurationOutput</code> |
 | [`delete_resource_permission_statement`](#delete_resource_permission_statement) | <code>statement_id: str</code> | <code>DeleteResourcePermissionStatementOutput</code> |
 | [`get_console_authorization_configuration`](#get_console_authorization_configuration) | None | <code>GetConsoleAuthorizationConfigurationOutput</code> |
 | [`get_resource_policy`](#get_resource_policy) | None | <code>GetResourcePolicyOutput</code> |
-| [`introspect_o_auth2_token_with_iam`](#introspect_o_auth2_token_with_iam) | <code>token: str</code> | <code>IntrospectOAuth2TokenWithIAMResponse</code> |
+| [`introspect_o_auth2_token_with_iam`](#introspect_o_auth2_token_with_iam) | <code>token: str</code> | <code>IntrospectOAuth2TokenWithIAMOutput</code> |
 | [`list_resource_permission_statements`](#list_resource_permission_statements) | None | <code>ListResourcePermissionStatementsOutput</code> |
 | [`put_console_authorization_configuration`](#put_console_authorization_configuration) | None | <code>PutConsoleAuthorizationConfigurationOutput</code> |
 | [`put_resource_permission_statement`](#put_resource_permission_statement) | None | <code>PutResourcePermissionStatementOutput</code> |
-| [`revoke_o_auth2_token_with_iam`](#revoke_o_auth2_token_with_iam) | <code>token: str</code> | <code>RevokeOAuth2TokenWithIAMResponse</code> |
+| [`revoke_o_auth2_token_with_iam`](#revoke_o_auth2_token_with_iam) | <code>token: str</code> | <code>RevokeOAuth2TokenWithIAMOutput</code> |
 
 ## Complete signatures
 
@@ -104,7 +104,7 @@ native response definitions are in the package's `_native.pyi`.
 async def create_o_auth2_token(
     *,
     token_input: CreateOAuth2TokenRequestBody,
-) -> CreateOAuth2TokenResponse: ...
+) -> CreateOAuth2TokenOutput: ...
 ```
 
 
@@ -115,7 +115,7 @@ async def create_o_auth2_token_with_iam(
     *,
     grant_type: str,
     resource: str,
-) -> CreateOAuth2TokenWithIAMResponse: ...
+) -> CreateOAuth2TokenWithIAMOutput: ...
 ```
 
 
@@ -164,7 +164,7 @@ async def introspect_o_auth2_token_with_iam(
     *,
     token: str,
     token_type_hint: str | None = None,
-) -> IntrospectOAuth2TokenWithIAMResponse: ...
+) -> IntrospectOAuth2TokenWithIAMOutput: ...
 ```
 
 
@@ -215,7 +215,7 @@ async def put_resource_permission_statement(
 async def revoke_o_auth2_token_with_iam(
     *,
     token: str,
-) -> RevokeOAuth2TokenWithIAMResponse: ...
+) -> RevokeOAuth2TokenWithIAMOutput: ...
 ```
 
 

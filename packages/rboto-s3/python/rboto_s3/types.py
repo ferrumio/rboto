@@ -179,13 +179,13 @@ Ssekms: TypeAlias = _native.Ssekms
 Sses3: TypeAlias = _native.Sses3
 StorageClassAnalysisOutput: TypeAlias = _native.StorageClassAnalysis
 StorageClassAnalysisDataExportOutput: TypeAlias = _native.StorageClassAnalysisDataExport
-TagOutputValue: TypeAlias = _native.Tag
+TagValueOutput: TypeAlias = _native.Tag
 TargetGrantOutput: TypeAlias = _native.TargetGrant
 TargetObjectKeyFormatOutput: TypeAlias = _native.TargetObjectKeyFormat
 TieringOutput: TypeAlias = _native.Tiering
 TopicConfigurationOutput: TypeAlias = _native.TopicConfiguration
 TransitionOutput: TypeAlias = _native.Transition
-UpdateObjectEncryptionResponse: TypeAlias = _native.UpdateObjectEncryptionResponse
+UpdateObjectEncryptionOutput: TypeAlias = _native.UpdateObjectEncryptionOutput
 UploadPartCopyOutput: TypeAlias = _native.UploadPartCopyOutput
 UploadPartOutput: TypeAlias = _native.UploadPartOutput
 

@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import KMSClient as NativeClient, CancelKeyDeletionResponse, ConnectCustomKeyStoreResponse, CreateCustomKeyStoreResponse, CreateGrantResponse, CreateKeyResponse, DecryptResponse, DeleteCustomKeyStoreResponse, DeleteImportedKeyMaterialResponse, DeriveSharedSecretResponse, DescribeCustomKeyStoresResponse, DescribeKeyResponse, DisconnectCustomKeyStoreResponse, EncryptResponse, GenerateDataKeyPairResponse, GenerateDataKeyPairWithoutPlaintextResponse, GenerateDataKeyResponse, GenerateDataKeyWithoutPlaintextResponse, GenerateMacResponse, GenerateRandomResponse, GetKeyLastUsageResponse, GetKeyPolicyResponse, GetKeyRotationStatusResponse, GetParametersForImportResponse, GetPublicKeyResponse, ImportKeyMaterialResponse, ListAliasesResponse, ListGrantsOutput, ListKeyPoliciesResponse, ListKeyRotationsResponse, ListKeysResponse, ListResourceTagsResponse, ListRetirableGrantsOutput, ReEncryptResponse, ReplicateKeyResponse, RotateKeyOnDemandResponse, ScheduleKeyDeletionResponse, SignResponse, UpdateCustomKeyStoreResponse, VerifyMacResponse, VerifyResponse
+from ._native import KMSClient as NativeClient, CancelKeyDeletionOutput, ConnectCustomKeyStoreOutput, CreateCustomKeyStoreOutput, CreateGrantOutput, CreateKeyOutput, DecryptOutput, DeleteCustomKeyStoreOutput, DeleteImportedKeyMaterialOutput, DeriveSharedSecretOutput, DescribeCustomKeyStoresOutput, DescribeKeyOutput, DisconnectCustomKeyStoreOutput, EncryptOutput, GenerateDataKeyOutput, GenerateDataKeyPairOutput, GenerateDataKeyPairWithoutPlaintextOutput, GenerateDataKeyWithoutPlaintextOutput, GenerateMacOutput, GenerateRandomOutput, GetKeyLastUsageOutput, GetKeyPolicyOutput, GetKeyRotationStatusOutput, GetParametersForImportOutput, GetPublicKeyOutput, ImportKeyMaterialOutput, ListAliasesOutput, ListGrantsOutput, ListKeyPoliciesOutput, ListKeyRotationsOutput, ListKeysOutput, ListResourceTagsOutput, ListRetirableGrantsOutput, ReEncryptOutput, ReplicateKeyOutput, RotateKeyOnDemandOutput, ScheduleKeyDeletionOutput, SignOutput, UpdateCustomKeyStoreOutput, VerifyMacOutput, VerifyOutput
 from .types import (
     AlgorithmSpec,
     CustomKeyStoreType,
@@ -80,7 +80,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-    ) -> CancelKeyDeletionResponse:
+    ) -> CancelKeyDeletionOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -89,7 +89,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.cancel_key_deletion, params, _interceptors,
                 "kms", "CancelKeyDeletion", self._region,
-                CancelKeyDeletionResponse,
+                CancelKeyDeletionOutput,
                 ("key_id", ),
                 ("key_id", ),
             )
@@ -102,7 +102,7 @@ class KMSClient:
         self,
         *,
         custom_key_store_id: str,
-    ) -> ConnectCustomKeyStoreResponse:
+    ) -> ConnectCustomKeyStoreOutput:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -111,7 +111,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.connect_custom_key_store, params, _interceptors,
                 "kms", "ConnectCustomKeyStore", self._region,
-                ConnectCustomKeyStoreResponse,
+                ConnectCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
             )
@@ -158,7 +158,7 @@ class KMSClient:
         xks_proxy_vpc_endpoint_service_owner: str | None = None,
         xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
         xks_proxy_connectivity: XksProxyConnectivityType | None = None,
-    ) -> CreateCustomKeyStoreResponse:
+    ) -> CreateCustomKeyStoreOutput:
         params: dict[str, object] = {
             "custom_key_store_name": custom_key_store_name,
         }
@@ -187,7 +187,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_custom_key_store, params, _interceptors,
                 "kms", "CreateCustomKeyStore", self._region,
-                CreateCustomKeyStoreResponse,
+                CreateCustomKeyStoreOutput,
                 ("custom_key_store_name", "cloud_hsm_cluster_id", "trust_anchor_certificate", "key_store_password", "custom_key_store_type", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
                 ("custom_key_store_name", ),
             )
@@ -209,7 +209,7 @@ class KMSClient:
         dry_run: bool | None = None,
         grantee_service_principal: str | None = None,
         retiring_service_principal: str | None = None,
-    ) -> CreateGrantResponse:
+    ) -> CreateGrantOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "operations": operations,
@@ -235,7 +235,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_grant, params, _interceptors,
                 "kms", "CreateGrant", self._region,
-                CreateGrantResponse,
+                CreateGrantOutput,
                 ("key_id", "operations", "grantee_principal", "retiring_principal", "constraints", "grant_tokens", "name", "dry_run", "grantee_service_principal", "retiring_service_principal", ),
                 ("key_id", "operations", ),
             )
@@ -258,7 +258,7 @@ class KMSClient:
         tags: Sequence[Tag] | None = None,
         multi_region: bool | None = None,
         xks_key_id: str | None = None,
-    ) -> CreateKeyResponse:
+    ) -> CreateKeyOutput:
         params: dict[str, object] = {
         }
         if policy is not None:
@@ -288,7 +288,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.create_key, params, _interceptors,
                 "kms", "CreateKey", self._region,
-                CreateKeyResponse,
+                CreateKeyOutput,
                 ("policy", "description", "key_usage", "customer_master_key_spec", "key_spec", "origin", "custom_key_store_id", "bypass_policy_lockout_safety_check", "tags", "multi_region", "xks_key_id", ),
                 (),
             )
@@ -308,7 +308,7 @@ class KMSClient:
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
         dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
-    ) -> DecryptResponse:
+    ) -> DecryptOutput:
         params: dict[str, object] = {
         }
         if ciphertext_blob is not None:
@@ -332,7 +332,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.decrypt, params, _interceptors,
                 "kms", "Decrypt", self._region,
-                DecryptResponse,
+                DecryptOutput,
                 ("ciphertext_blob", "encryption_context", "grant_tokens", "key_id", "encryption_algorithm", "recipient", "dry_run", "dry_run_modifiers", ),
                 (),
             )
@@ -367,7 +367,7 @@ class KMSClient:
         self,
         *,
         custom_key_store_id: str,
-    ) -> DeleteCustomKeyStoreResponse:
+    ) -> DeleteCustomKeyStoreOutput:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -376,7 +376,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.delete_custom_key_store, params, _interceptors,
                 "kms", "DeleteCustomKeyStore", self._region,
-                DeleteCustomKeyStoreResponse,
+                DeleteCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
             )
@@ -390,7 +390,7 @@ class KMSClient:
         *,
         key_id: str,
         key_material_id: str | None = None,
-    ) -> DeleteImportedKeyMaterialResponse:
+    ) -> DeleteImportedKeyMaterialOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -401,7 +401,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.delete_imported_key_material, params, _interceptors,
                 "kms", "DeleteImportedKeyMaterial", self._region,
-                DeleteImportedKeyMaterialResponse,
+                DeleteImportedKeyMaterialOutput,
                 ("key_id", "key_material_id", ),
                 ("key_id", ),
             )
@@ -419,7 +419,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
         recipient: RecipientInfo | None = None,
-    ) -> DeriveSharedSecretResponse:
+    ) -> DeriveSharedSecretOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "key_agreement_algorithm": key_agreement_algorithm,
@@ -436,7 +436,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.derive_shared_secret, params, _interceptors,
                 "kms", "DeriveSharedSecret", self._region,
-                DeriveSharedSecretResponse,
+                DeriveSharedSecretOutput,
                 ("key_id", "key_agreement_algorithm", "public_key", "grant_tokens", "dry_run", "recipient", ),
                 ("key_id", "key_agreement_algorithm", "public_key", ),
             )
@@ -452,7 +452,7 @@ class KMSClient:
         custom_key_store_name: str | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> DescribeCustomKeyStoresResponse:
+    ) -> DescribeCustomKeyStoresOutput:
         params: dict[str, object] = {
         }
         if custom_key_store_id is not None:
@@ -468,7 +468,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.describe_custom_key_stores, params, _interceptors,
                 "kms", "DescribeCustomKeyStores", self._region,
-                DescribeCustomKeyStoresResponse,
+                DescribeCustomKeyStoresOutput,
                 ("custom_key_store_id", "custom_key_store_name", "limit", "marker", ),
                 (),
             )
@@ -482,7 +482,7 @@ class KMSClient:
         *,
         key_id: str,
         grant_tokens: Sequence[str] | None = None,
-    ) -> DescribeKeyResponse:
+    ) -> DescribeKeyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -493,7 +493,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.describe_key, params, _interceptors,
                 "kms", "DescribeKey", self._region,
-                DescribeKeyResponse,
+                DescribeKeyOutput,
                 ("key_id", "grant_tokens", ),
                 ("key_id", ),
             )
@@ -550,7 +550,7 @@ class KMSClient:
         self,
         *,
         custom_key_store_id: str,
-    ) -> DisconnectCustomKeyStoreResponse:
+    ) -> DisconnectCustomKeyStoreOutput:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -559,7 +559,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.disconnect_custom_key_store, params, _interceptors,
                 "kms", "DisconnectCustomKeyStore", self._region,
-                DisconnectCustomKeyStoreResponse,
+                DisconnectCustomKeyStoreOutput,
                 ("custom_key_store_id", ),
                 ("custom_key_store_id", ),
             )
@@ -624,7 +624,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         encryption_algorithm: EncryptionAlgorithmSpec | None = None,
         dry_run: bool | None = None,
-    ) -> EncryptResponse:
+    ) -> EncryptOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "plaintext": plaintext,
@@ -642,7 +642,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.encrypt, params, _interceptors,
                 "kms", "Encrypt", self._region,
-                EncryptResponse,
+                EncryptOutput,
                 ("key_id", "plaintext", "encryption_context", "grant_tokens", "encryption_algorithm", "dry_run", ),
                 ("key_id", "plaintext", ),
             )
@@ -661,7 +661,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
-    ) -> GenerateDataKeyResponse:
+    ) -> GenerateDataKeyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -682,7 +682,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key, params, _interceptors,
                 "kms", "GenerateDataKey", self._region,
-                GenerateDataKeyResponse,
+                GenerateDataKeyOutput,
                 ("key_id", "encryption_context", "number_of_bytes", "key_spec", "grant_tokens", "recipient", "dry_run", ),
                 ("key_id", ),
             )
@@ -700,7 +700,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         recipient: RecipientInfo | None = None,
         dry_run: bool | None = None,
-    ) -> GenerateDataKeyPairResponse:
+    ) -> GenerateDataKeyPairOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "key_pair_spec": key_pair_spec,
@@ -718,7 +718,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_pair, params, _interceptors,
                 "kms", "GenerateDataKeyPair", self._region,
-                GenerateDataKeyPairResponse,
+                GenerateDataKeyPairOutput,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "recipient", "dry_run", ),
                 ("key_id", "key_pair_spec", ),
             )
@@ -735,7 +735,7 @@ class KMSClient:
         encryption_context: dict[str, str] | None = None,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> GenerateDataKeyPairWithoutPlaintextResponse:
+    ) -> GenerateDataKeyPairWithoutPlaintextOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "key_pair_spec": key_pair_spec,
@@ -751,7 +751,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_pair_without_plaintext, params, _interceptors,
                 "kms", "GenerateDataKeyPairWithoutPlaintext", self._region,
-                GenerateDataKeyPairWithoutPlaintextResponse,
+                GenerateDataKeyPairWithoutPlaintextOutput,
                 ("key_id", "key_pair_spec", "encryption_context", "grant_tokens", "dry_run", ),
                 ("key_id", "key_pair_spec", ),
             )
@@ -769,7 +769,7 @@ class KMSClient:
         number_of_bytes: int | None = None,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> GenerateDataKeyWithoutPlaintextResponse:
+    ) -> GenerateDataKeyWithoutPlaintextOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -788,7 +788,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_data_key_without_plaintext, params, _interceptors,
                 "kms", "GenerateDataKeyWithoutPlaintext", self._region,
-                GenerateDataKeyWithoutPlaintextResponse,
+                GenerateDataKeyWithoutPlaintextOutput,
                 ("key_id", "encryption_context", "key_spec", "number_of_bytes", "grant_tokens", "dry_run", ),
                 ("key_id", ),
             )
@@ -805,7 +805,7 @@ class KMSClient:
         mac_algorithm: MacAlgorithmSpec,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> GenerateMacResponse:
+    ) -> GenerateMacOutput:
         params: dict[str, object] = {
             "message": message,
             "key_id": key_id,
@@ -820,7 +820,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_mac, params, _interceptors,
                 "kms", "GenerateMac", self._region,
-                GenerateMacResponse,
+                GenerateMacOutput,
                 ("message", "key_id", "mac_algorithm", "grant_tokens", "dry_run", ),
                 ("message", "key_id", "mac_algorithm", ),
             )
@@ -835,7 +835,7 @@ class KMSClient:
         number_of_bytes: int | None = None,
         custom_key_store_id: str | None = None,
         recipient: RecipientInfo | None = None,
-    ) -> GenerateRandomResponse:
+    ) -> GenerateRandomOutput:
         params: dict[str, object] = {
         }
         if number_of_bytes is not None:
@@ -849,7 +849,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.generate_random, params, _interceptors,
                 "kms", "GenerateRandom", self._region,
-                GenerateRandomResponse,
+                GenerateRandomOutput,
                 ("number_of_bytes", "custom_key_store_id", "recipient", ),
                 (),
             )
@@ -862,7 +862,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-    ) -> GetKeyLastUsageResponse:
+    ) -> GetKeyLastUsageOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -871,7 +871,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_last_usage, params, _interceptors,
                 "kms", "GetKeyLastUsage", self._region,
-                GetKeyLastUsageResponse,
+                GetKeyLastUsageOutput,
                 ("key_id", ),
                 ("key_id", ),
             )
@@ -885,7 +885,7 @@ class KMSClient:
         *,
         key_id: str,
         policy_name: str | None = None,
-    ) -> GetKeyPolicyResponse:
+    ) -> GetKeyPolicyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -896,7 +896,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_policy, params, _interceptors,
                 "kms", "GetKeyPolicy", self._region,
-                GetKeyPolicyResponse,
+                GetKeyPolicyOutput,
                 ("key_id", "policy_name", ),
                 ("key_id", ),
             )
@@ -909,7 +909,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-    ) -> GetKeyRotationStatusResponse:
+    ) -> GetKeyRotationStatusOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -918,7 +918,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_key_rotation_status, params, _interceptors,
                 "kms", "GetKeyRotationStatus", self._region,
-                GetKeyRotationStatusResponse,
+                GetKeyRotationStatusOutput,
                 ("key_id", ),
                 ("key_id", ),
             )
@@ -933,7 +933,7 @@ class KMSClient:
         key_id: str,
         wrapping_algorithm: AlgorithmSpec,
         wrapping_key_spec: WrappingKeySpec,
-    ) -> GetParametersForImportResponse:
+    ) -> GetParametersForImportOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "wrapping_algorithm": wrapping_algorithm,
@@ -944,7 +944,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_parameters_for_import, params, _interceptors,
                 "kms", "GetParametersForImport", self._region,
-                GetParametersForImportResponse,
+                GetParametersForImportOutput,
                 ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
                 ("key_id", "wrapping_algorithm", "wrapping_key_spec", ),
             )
@@ -958,7 +958,7 @@ class KMSClient:
         *,
         key_id: str,
         grant_tokens: Sequence[str] | None = None,
-    ) -> GetPublicKeyResponse:
+    ) -> GetPublicKeyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -969,7 +969,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.get_public_key, params, _interceptors,
                 "kms", "GetPublicKey", self._region,
-                GetPublicKeyResponse,
+                GetPublicKeyOutput,
                 ("key_id", "grant_tokens", ),
                 ("key_id", ),
             )
@@ -989,7 +989,7 @@ class KMSClient:
         import_type: ImportType | None = None,
         key_material_description: str | None = None,
         key_material_id: str | None = None,
-    ) -> ImportKeyMaterialResponse:
+    ) -> ImportKeyMaterialOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "import_token": import_token,
@@ -1010,7 +1010,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.import_key_material, params, _interceptors,
                 "kms", "ImportKeyMaterial", self._region,
-                ImportKeyMaterialResponse,
+                ImportKeyMaterialOutput,
                 ("key_id", "import_token", "encrypted_key_material", "valid_to", "expiration_model", "import_type", "key_material_description", "key_material_id", ),
                 ("key_id", "import_token", "encrypted_key_material", ),
             )
@@ -1025,7 +1025,7 @@ class KMSClient:
         key_id: str | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> ListAliasesResponse:
+    ) -> ListAliasesOutput:
         params: dict[str, object] = {
         }
         if key_id is not None:
@@ -1039,7 +1039,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_aliases, params, _interceptors,
                 "kms", "ListAliases", self._region,
-                ListAliasesResponse,
+                ListAliasesOutput,
                 ("key_id", "limit", "marker", ),
                 (),
             )
@@ -1091,7 +1091,7 @@ class KMSClient:
         key_id: str,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> ListKeyPoliciesResponse:
+    ) -> ListKeyPoliciesOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1104,7 +1104,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_key_policies, params, _interceptors,
                 "kms", "ListKeyPolicies", self._region,
-                ListKeyPoliciesResponse,
+                ListKeyPoliciesOutput,
                 ("key_id", "limit", "marker", ),
                 ("key_id", ),
             )
@@ -1120,7 +1120,7 @@ class KMSClient:
         include_key_material: IncludeKeyMaterial | None = None,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> ListKeyRotationsResponse:
+    ) -> ListKeyRotationsOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1135,7 +1135,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_key_rotations, params, _interceptors,
                 "kms", "ListKeyRotations", self._region,
-                ListKeyRotationsResponse,
+                ListKeyRotationsOutput,
                 ("key_id", "include_key_material", "limit", "marker", ),
                 ("key_id", ),
             )
@@ -1149,7 +1149,7 @@ class KMSClient:
         *,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> ListKeysResponse:
+    ) -> ListKeysOutput:
         params: dict[str, object] = {
         }
         if limit is not None:
@@ -1161,7 +1161,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_keys, params, _interceptors,
                 "kms", "ListKeys", self._region,
-                ListKeysResponse,
+                ListKeysOutput,
                 ("limit", "marker", ),
                 (),
             )
@@ -1176,7 +1176,7 @@ class KMSClient:
         key_id: str,
         limit: int | None = None,
         marker: str | None = None,
-    ) -> ListResourceTagsResponse:
+    ) -> ListResourceTagsOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1189,7 +1189,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.list_resource_tags, params, _interceptors,
                 "kms", "ListResourceTags", self._region,
-                ListResourceTagsResponse,
+                ListResourceTagsOutput,
                 ("key_id", "limit", "marker", ),
                 ("key_id", ),
             )
@@ -1273,7 +1273,7 @@ class KMSClient:
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
         dry_run_modifiers: Sequence[DryRunModifierType] | None = None,
-    ) -> ReEncryptResponse:
+    ) -> ReEncryptOutput:
         params: dict[str, object] = {
             "destination_key_id": destination_key_id,
         }
@@ -1300,7 +1300,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.re_encrypt, params, _interceptors,
                 "kms", "ReEncrypt", self._region,
-                ReEncryptResponse,
+                ReEncryptOutput,
                 ("destination_key_id", "ciphertext_blob", "source_encryption_context", "source_key_id", "destination_encryption_context", "source_encryption_algorithm", "destination_encryption_algorithm", "grant_tokens", "dry_run", "dry_run_modifiers", ),
                 ("destination_key_id", ),
             )
@@ -1318,7 +1318,7 @@ class KMSClient:
         bypass_policy_lockout_safety_check: bool | None = None,
         description: str | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> ReplicateKeyResponse:
+    ) -> ReplicateKeyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "replica_region": replica_region,
@@ -1336,7 +1336,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.replicate_key, params, _interceptors,
                 "kms", "ReplicateKey", self._region,
-                ReplicateKeyResponse,
+                ReplicateKeyOutput,
                 ("key_id", "replica_region", "policy", "bypass_policy_lockout_safety_check", "description", "tags", ),
                 ("key_id", "replica_region", ),
             )
@@ -1408,7 +1408,7 @@ class KMSClient:
         self,
         *,
         key_id: str,
-    ) -> RotateKeyOnDemandResponse:
+    ) -> RotateKeyOnDemandOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1417,7 +1417,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.rotate_key_on_demand, params, _interceptors,
                 "kms", "RotateKeyOnDemand", self._region,
-                RotateKeyOnDemandResponse,
+                RotateKeyOnDemandOutput,
                 ("key_id", ),
                 ("key_id", ),
             )
@@ -1431,7 +1431,7 @@ class KMSClient:
         *,
         key_id: str,
         pending_window_in_days: int | None = None,
-    ) -> ScheduleKeyDeletionResponse:
+    ) -> ScheduleKeyDeletionOutput:
         params: dict[str, object] = {
             "key_id": key_id,
         }
@@ -1442,7 +1442,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.schedule_key_deletion, params, _interceptors,
                 "kms", "ScheduleKeyDeletion", self._region,
-                ScheduleKeyDeletionResponse,
+                ScheduleKeyDeletionOutput,
                 ("key_id", "pending_window_in_days", ),
                 ("key_id", ),
             )
@@ -1460,7 +1460,7 @@ class KMSClient:
         message_type: MessageType | None = None,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> SignResponse:
+    ) -> SignOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "message": message,
@@ -1477,7 +1477,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.sign, params, _interceptors,
                 "kms", "Sign", self._region,
-                SignResponse,
+                SignOutput,
                 ("key_id", "message", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
                 ("key_id", "message", "signing_algorithm", ),
             )
@@ -1571,7 +1571,7 @@ class KMSClient:
         xks_proxy_vpc_endpoint_service_owner: str | None = None,
         xks_proxy_authentication_credential: XksProxyAuthenticationCredentialType | None = None,
         xks_proxy_connectivity: XksProxyConnectivityType | None = None,
-    ) -> UpdateCustomKeyStoreResponse:
+    ) -> UpdateCustomKeyStoreOutput:
         params: dict[str, object] = {
             "custom_key_store_id": custom_key_store_id,
         }
@@ -1598,7 +1598,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.update_custom_key_store, params, _interceptors,
                 "kms", "UpdateCustomKeyStore", self._region,
-                UpdateCustomKeyStoreResponse,
+                UpdateCustomKeyStoreOutput,
                 ("custom_key_store_id", "new_custom_key_store_name", "key_store_password", "cloud_hsm_cluster_id", "xks_proxy_uri_endpoint", "xks_proxy_uri_path", "xks_proxy_vpc_endpoint_service_name", "xks_proxy_vpc_endpoint_service_owner", "xks_proxy_authentication_credential", "xks_proxy_connectivity", ),
                 ("custom_key_store_id", ),
             )
@@ -1665,7 +1665,7 @@ class KMSClient:
         message_type: MessageType | None = None,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> VerifyResponse:
+    ) -> VerifyOutput:
         params: dict[str, object] = {
             "key_id": key_id,
             "message": message,
@@ -1683,7 +1683,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.verify, params, _interceptors,
                 "kms", "Verify", self._region,
-                VerifyResponse,
+                VerifyOutput,
                 ("key_id", "message", "signature", "signing_algorithm", "message_type", "grant_tokens", "dry_run", ),
                 ("key_id", "message", "signature", "signing_algorithm", ),
             )
@@ -1701,7 +1701,7 @@ class KMSClient:
         mac: bytes,
         grant_tokens: Sequence[str] | None = None,
         dry_run: bool | None = None,
-    ) -> VerifyMacResponse:
+    ) -> VerifyMacOutput:
         params: dict[str, object] = {
             "message": message,
             "key_id": key_id,
@@ -1717,7 +1717,7 @@ class KMSClient:
             _response = await invoke(
                 self._native.verify_mac, params, _interceptors,
                 "kms", "VerifyMac", self._region,
-                VerifyMacResponse,
+                VerifyMacOutput,
                 ("message", "key_id", "mac_algorithm", "mac", "grant_tokens", "dry_run", ),
                 ("message", "key_id", "mac_algorithm", "mac", ),
             )

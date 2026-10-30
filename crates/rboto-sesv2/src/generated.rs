@@ -10470,16 +10470,16 @@ impl PyVolumeStatistics {
 }
 
 #[pyclass(
-    name = "AssociateEmailIdentityCertificateResponse",
+    name = "AssociateEmailIdentityCertificateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyAssociateEmailIdentityCertificateResponse {
+struct PyOperationAssociateEmailIdentityCertificateOutput {
     inner: aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateOutput,
 }
 
 #[pymethods]
-impl PyAssociateEmailIdentityCertificateResponse {
+impl PyOperationAssociateEmailIdentityCertificateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10487,16 +10487,16 @@ impl PyAssociateEmailIdentityCertificateResponse {
 }
 
 #[pyclass(
-    name = "BatchGetMetricDataResponse",
+    name = "BatchGetMetricDataOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyBatchGetMetricDataResponse {
+struct PyOperationBatchGetMetricDataOutput {
     inner: aws_sdk_sesv2::operation::batch_get_metric_data::BatchGetMetricDataOutput,
 }
 
 #[pymethods]
-impl PyBatchGetMetricDataResponse {
+impl PyOperationBatchGetMetricDataOutput {
     #[getter]
     fn results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.results {
@@ -10567,17 +10567,13 @@ impl PyBatchGetMetricDataResponse {
     }
 }
 
-#[pyclass(
-    name = "CancelExportJobResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyCancelExportJobResponse {
+#[pyclass(name = "CancelExportJobOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationCancelExportJobOutput {
     inner: aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobOutput,
 }
 
 #[pymethods]
-impl PyCancelExportJobResponse {
+impl PyOperationCancelExportJobOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10585,16 +10581,16 @@ impl PyCancelExportJobResponse {
 }
 
 #[pyclass(
-    name = "CreateConfigurationSetResponse",
+    name = "CreateConfigurationSetOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateConfigurationSetResponse {
+struct PyOperationCreateConfigurationSetOutput {
     inner: aws_sdk_sesv2::operation::create_configuration_set::CreateConfigurationSetOutput,
 }
 
 #[pymethods]
-impl PyCreateConfigurationSetResponse {
+impl PyOperationCreateConfigurationSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10602,29 +10598,29 @@ impl PyCreateConfigurationSetResponse {
 }
 
 #[pyclass(
-    name = "CreateConfigurationSetEventDestinationResponse",
+    name = "CreateConfigurationSetEventDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateConfigurationSetEventDestinationResponse {
+struct PyOperationCreateConfigurationSetEventDestinationOutput {
     inner: aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationOutput,
 }
 
 #[pymethods]
-impl PyCreateConfigurationSetEventDestinationResponse {
+impl PyOperationCreateConfigurationSetEventDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "CreateContactResponse", module = "rboto_sesv2._native", frozen)]
-struct PyCreateContactResponse {
+#[pyclass(name = "CreateContactOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationCreateContactOutput {
     inner: aws_sdk_sesv2::operation::create_contact::CreateContactOutput,
 }
 
 #[pymethods]
-impl PyCreateContactResponse {
+impl PyOperationCreateContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10632,16 +10628,16 @@ impl PyCreateContactResponse {
 }
 
 #[pyclass(
-    name = "CreateContactListResponse",
+    name = "CreateContactListOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateContactListResponse {
+struct PyOperationCreateContactListOutput {
     inner: aws_sdk_sesv2::operation::create_contact_list::CreateContactListOutput,
 }
 
 #[pymethods]
-impl PyCreateContactListResponse {
+impl PyOperationCreateContactListOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10649,16 +10645,16 @@ impl PyCreateContactListResponse {
 }
 
 #[pyclass(
-    name = "CreateCustomVerificationEmailTemplateResponse",
+    name = "CreateCustomVerificationEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateCustomVerificationEmailTemplateResponse {
+struct PyOperationCreateCustomVerificationEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyCreateCustomVerificationEmailTemplateResponse {
+impl PyOperationCreateCustomVerificationEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10666,16 +10662,16 @@ impl PyCreateCustomVerificationEmailTemplateResponse {
 }
 
 #[pyclass(
-    name = "CreateDedicatedIpPoolResponse",
+    name = "CreateDedicatedIpPoolOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateDedicatedIpPoolResponse {
+struct PyOperationCreateDedicatedIpPoolOutput {
     inner: aws_sdk_sesv2::operation::create_dedicated_ip_pool::CreateDedicatedIpPoolOutput,
 }
 
 #[pymethods]
-impl PyCreateDedicatedIpPoolResponse {
+impl PyOperationCreateDedicatedIpPoolOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10683,16 +10679,16 @@ impl PyCreateDedicatedIpPoolResponse {
 }
 
 #[pyclass(
-    name = "CreateDeliverabilityTestReportResponse",
+    name = "CreateDeliverabilityTestReportOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateDeliverabilityTestReportResponse {
+struct PyOperationCreateDeliverabilityTestReportOutput {
     inner: aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportOutput,
 }
 
 #[pymethods]
-impl PyCreateDeliverabilityTestReportResponse {
+impl PyOperationCreateDeliverabilityTestReportOutput {
     #[getter]
     fn report_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1875 = (&self.inner.report_id).as_str().into_py_any(py)?;
@@ -10720,16 +10716,16 @@ impl PyCreateDeliverabilityTestReportResponse {
 }
 
 #[pyclass(
-    name = "CreateEmailIdentityResponse",
+    name = "CreateEmailIdentityOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateEmailIdentityResponse {
+struct PyOperationCreateEmailIdentityOutput {
     inner: aws_sdk_sesv2::operation::create_email_identity::CreateEmailIdentityOutput,
 }
 
 #[pymethods]
-impl PyCreateEmailIdentityResponse {
+impl PyOperationCreateEmailIdentityOutput {
     #[getter]
     fn identity_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_type {
@@ -10787,16 +10783,16 @@ impl PyCreateEmailIdentityResponse {
 }
 
 #[pyclass(
-    name = "CreateEmailIdentityPolicyResponse",
+    name = "CreateEmailIdentityPolicyOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateEmailIdentityPolicyResponse {
+struct PyOperationCreateEmailIdentityPolicyOutput {
     inner: aws_sdk_sesv2::operation::create_email_identity_policy::CreateEmailIdentityPolicyOutput,
 }
 
 #[pymethods]
-impl PyCreateEmailIdentityPolicyResponse {
+impl PyOperationCreateEmailIdentityPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -10804,33 +10800,29 @@ impl PyCreateEmailIdentityPolicyResponse {
 }
 
 #[pyclass(
-    name = "CreateEmailTemplateResponse",
+    name = "CreateEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateEmailTemplateResponse {
+struct PyOperationCreateEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::create_email_template::CreateEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyCreateEmailTemplateResponse {
+impl PyOperationCreateEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(
-    name = "CreateExportJobResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyCreateExportJobResponse {
+#[pyclass(name = "CreateExportJobOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationCreateExportJobOutput {
     inner: aws_sdk_sesv2::operation::create_export_job::CreateExportJobOutput,
 }
 
 #[pymethods]
-impl PyCreateExportJobResponse {
+impl PyOperationCreateExportJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_id {
@@ -10853,17 +10845,13 @@ impl PyCreateExportJobResponse {
     }
 }
 
-#[pyclass(
-    name = "CreateImportJobResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyCreateImportJobResponse {
+#[pyclass(name = "CreateImportJobOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationCreateImportJobOutput {
     inner: aws_sdk_sesv2::operation::create_import_job::CreateImportJobOutput,
 }
 
 #[pymethods]
-impl PyCreateImportJobResponse {
+impl PyOperationCreateImportJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_id {
@@ -10887,16 +10875,16 @@ impl PyCreateImportJobResponse {
 }
 
 #[pyclass(
-    name = "CreateMultiRegionEndpointResponse",
+    name = "CreateMultiRegionEndpointOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateMultiRegionEndpointResponse {
+struct PyOperationCreateMultiRegionEndpointOutput {
     inner: aws_sdk_sesv2::operation::create_multi_region_endpoint::CreateMultiRegionEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateMultiRegionEndpointResponse {
+impl PyOperationCreateMultiRegionEndpointOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -10935,13 +10923,13 @@ impl PyCreateMultiRegionEndpointResponse {
     }
 }
 
-#[pyclass(name = "CreateTenantResponse", module = "rboto_sesv2._native", frozen)]
-struct PyCreateTenantResponse {
+#[pyclass(name = "CreateTenantOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationCreateTenantOutput {
     inner: aws_sdk_sesv2::operation::create_tenant::CreateTenantOutput,
 }
 
 #[pymethods]
-impl PyCreateTenantResponse {
+impl PyOperationCreateTenantOutput {
     #[getter]
     fn tenant_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tenant_name {
@@ -11083,16 +11071,16 @@ impl PyCreateTenantResponse {
 }
 
 #[pyclass(
-    name = "CreateTenantResourceAssociationResponse",
+    name = "CreateTenantResourceAssociationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyCreateTenantResourceAssociationResponse {
+struct PyOperationCreateTenantResourceAssociationOutput {
     inner: aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationOutput,
 }
 
 #[pymethods]
-impl PyCreateTenantResourceAssociationResponse {
+impl PyOperationCreateTenantResourceAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11100,16 +11088,16 @@ impl PyCreateTenantResourceAssociationResponse {
 }
 
 #[pyclass(
-    name = "DeleteConfigurationSetResponse",
+    name = "DeleteConfigurationSetOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteConfigurationSetResponse {
+struct PyOperationDeleteConfigurationSetOutput {
     inner: aws_sdk_sesv2::operation::delete_configuration_set::DeleteConfigurationSetOutput,
 }
 
 #[pymethods]
-impl PyDeleteConfigurationSetResponse {
+impl PyOperationDeleteConfigurationSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11117,29 +11105,29 @@ impl PyDeleteConfigurationSetResponse {
 }
 
 #[pyclass(
-    name = "DeleteConfigurationSetEventDestinationResponse",
+    name = "DeleteConfigurationSetEventDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteConfigurationSetEventDestinationResponse {
+struct PyOperationDeleteConfigurationSetEventDestinationOutput {
     inner: aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationOutput,
 }
 
 #[pymethods]
-impl PyDeleteConfigurationSetEventDestinationResponse {
+impl PyOperationDeleteConfigurationSetEventDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteContactResponse", module = "rboto_sesv2._native", frozen)]
-struct PyDeleteContactResponse {
+#[pyclass(name = "DeleteContactOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationDeleteContactOutput {
     inner: aws_sdk_sesv2::operation::delete_contact::DeleteContactOutput,
 }
 
 #[pymethods]
-impl PyDeleteContactResponse {
+impl PyOperationDeleteContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11147,16 +11135,16 @@ impl PyDeleteContactResponse {
 }
 
 #[pyclass(
-    name = "DeleteContactListResponse",
+    name = "DeleteContactListOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteContactListResponse {
+struct PyOperationDeleteContactListOutput {
     inner: aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListOutput,
 }
 
 #[pymethods]
-impl PyDeleteContactListResponse {
+impl PyOperationDeleteContactListOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11164,16 +11152,16 @@ impl PyDeleteContactListResponse {
 }
 
 #[pyclass(
-    name = "DeleteCustomVerificationEmailTemplateResponse",
+    name = "DeleteCustomVerificationEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteCustomVerificationEmailTemplateResponse {
+struct PyOperationDeleteCustomVerificationEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyDeleteCustomVerificationEmailTemplateResponse {
+impl PyOperationDeleteCustomVerificationEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11181,16 +11169,16 @@ impl PyDeleteCustomVerificationEmailTemplateResponse {
 }
 
 #[pyclass(
-    name = "DeleteDedicatedIpPoolResponse",
+    name = "DeleteDedicatedIpPoolOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteDedicatedIpPoolResponse {
+struct PyOperationDeleteDedicatedIpPoolOutput {
     inner: aws_sdk_sesv2::operation::delete_dedicated_ip_pool::DeleteDedicatedIpPoolOutput,
 }
 
 #[pymethods]
-impl PyDeleteDedicatedIpPoolResponse {
+impl PyOperationDeleteDedicatedIpPoolOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11198,16 +11186,16 @@ impl PyDeleteDedicatedIpPoolResponse {
 }
 
 #[pyclass(
-    name = "DeleteEmailIdentityResponse",
+    name = "DeleteEmailIdentityOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteEmailIdentityResponse {
+struct PyOperationDeleteEmailIdentityOutput {
     inner: aws_sdk_sesv2::operation::delete_email_identity::DeleteEmailIdentityOutput,
 }
 
 #[pymethods]
-impl PyDeleteEmailIdentityResponse {
+impl PyOperationDeleteEmailIdentityOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11215,16 +11203,16 @@ impl PyDeleteEmailIdentityResponse {
 }
 
 #[pyclass(
-    name = "DeleteEmailIdentityPolicyResponse",
+    name = "DeleteEmailIdentityPolicyOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteEmailIdentityPolicyResponse {
+struct PyOperationDeleteEmailIdentityPolicyOutput {
     inner: aws_sdk_sesv2::operation::delete_email_identity_policy::DeleteEmailIdentityPolicyOutput,
 }
 
 #[pymethods]
-impl PyDeleteEmailIdentityPolicyResponse {
+impl PyOperationDeleteEmailIdentityPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11232,16 +11220,16 @@ impl PyDeleteEmailIdentityPolicyResponse {
 }
 
 #[pyclass(
-    name = "DeleteEmailTemplateResponse",
+    name = "DeleteEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteEmailTemplateResponse {
+struct PyOperationDeleteEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::delete_email_template::DeleteEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyDeleteEmailTemplateResponse {
+impl PyOperationDeleteEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11249,16 +11237,16 @@ impl PyDeleteEmailTemplateResponse {
 }
 
 #[pyclass(
-    name = "DeleteMultiRegionEndpointResponse",
+    name = "DeleteMultiRegionEndpointOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteMultiRegionEndpointResponse {
+struct PyOperationDeleteMultiRegionEndpointOutput {
     inner: aws_sdk_sesv2::operation::delete_multi_region_endpoint::DeleteMultiRegionEndpointOutput,
 }
 
 #[pymethods]
-impl PyDeleteMultiRegionEndpointResponse {
+impl PyOperationDeleteMultiRegionEndpointOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -11282,30 +11270,30 @@ impl PyDeleteMultiRegionEndpointResponse {
 }
 
 #[pyclass(
-    name = "DeleteSuppressedDestinationResponse",
+    name = "DeleteSuppressedDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteSuppressedDestinationResponse {
+struct PyOperationDeleteSuppressedDestinationOutput {
     inner:
         aws_sdk_sesv2::operation::delete_suppressed_destination::DeleteSuppressedDestinationOutput,
 }
 
 #[pymethods]
-impl PyDeleteSuppressedDestinationResponse {
+impl PyOperationDeleteSuppressedDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "DeleteTenantResponse", module = "rboto_sesv2._native", frozen)]
-struct PyDeleteTenantResponse {
+#[pyclass(name = "DeleteTenantOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationDeleteTenantOutput {
     inner: aws_sdk_sesv2::operation::delete_tenant::DeleteTenantOutput,
 }
 
 #[pymethods]
-impl PyDeleteTenantResponse {
+impl PyOperationDeleteTenantOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11313,16 +11301,16 @@ impl PyDeleteTenantResponse {
 }
 
 #[pyclass(
-    name = "DeleteTenantResourceAssociationResponse",
+    name = "DeleteTenantResourceAssociationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDeleteTenantResourceAssociationResponse {
+struct PyOperationDeleteTenantResourceAssociationOutput {
     inner: aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationOutput,
 }
 
 #[pymethods]
-impl PyDeleteTenantResourceAssociationResponse {
+impl PyOperationDeleteTenantResourceAssociationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -11330,29 +11318,29 @@ impl PyDeleteTenantResourceAssociationResponse {
 }
 
 #[pyclass(
-    name = "DisassociateEmailIdentityCertificateResponse",
+    name = "DisassociateEmailIdentityCertificateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyDisassociateEmailIdentityCertificateResponse {
+struct PyOperationDisassociateEmailIdentityCertificateOutput {
     inner: aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateOutput,
 }
 
 #[pymethods]
-impl PyDisassociateEmailIdentityCertificateResponse {
+impl PyOperationDisassociateEmailIdentityCertificateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "GetAccountResponse", module = "rboto_sesv2._native", frozen)]
-struct PyGetAccountResponse {
+#[pyclass(name = "GetAccountOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetAccountOutput {
     inner: aws_sdk_sesv2::operation::get_account::GetAccountOutput,
 }
 
 #[pymethods]
-impl PyGetAccountResponse {
+impl PyOperationGetAccountOutput {
     #[getter]
     fn dedicated_ip_auto_warmup_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1913 = (&self.inner.dedicated_ip_auto_warmup_enabled)
@@ -11518,16 +11506,16 @@ impl PyGetAccountResponse {
 }
 
 #[pyclass(
-    name = "GetBlacklistReportsResponse",
+    name = "GetBlacklistReportsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetBlacklistReportsResponse {
+struct PyOperationGetBlacklistReportsOutput {
     inner: aws_sdk_sesv2::operation::get_blacklist_reports::GetBlacklistReportsOutput,
 }
 
 #[pymethods]
-impl PyGetBlacklistReportsResponse {
+impl PyOperationGetBlacklistReportsOutput {
     #[getter]
     fn blacklist_report(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_1931_dict = PyDict::new(py);
@@ -11571,16 +11559,16 @@ impl PyGetBlacklistReportsResponse {
 }
 
 #[pyclass(
-    name = "GetConfigurationSetResponse",
+    name = "GetConfigurationSetOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetConfigurationSetResponse {
+struct PyOperationGetConfigurationSetOutput {
     inner: aws_sdk_sesv2::operation::get_configuration_set::GetConfigurationSetOutput,
 }
 
 #[pymethods]
-impl PyGetConfigurationSetResponse {
+impl PyOperationGetConfigurationSetOutput {
     #[getter]
     fn configuration_set_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration_set_name {
@@ -11812,16 +11800,16 @@ impl PyGetConfigurationSetResponse {
 }
 
 #[pyclass(
-    name = "GetConfigurationSetEventDestinationsResponse",
+    name = "GetConfigurationSetEventDestinationsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetConfigurationSetEventDestinationsResponse {
+struct PyOperationGetConfigurationSetEventDestinationsOutput {
     inner: aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsOutput,
 }
 
 #[pymethods]
-impl PyGetConfigurationSetEventDestinationsResponse {
+impl PyOperationGetConfigurationSetEventDestinationsOutput {
     #[getter]
     fn event_destinations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.event_destinations {
@@ -11860,13 +11848,13 @@ impl PyGetConfigurationSetEventDestinationsResponse {
     }
 }
 
-#[pyclass(name = "GetContactResponse", module = "rboto_sesv2._native", frozen)]
-struct PyGetContactResponse {
+#[pyclass(name = "GetContactOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetContactOutput {
     inner: aws_sdk_sesv2::operation::get_contact::GetContactOutput,
 }
 
 #[pymethods]
-impl PyGetContactResponse {
+impl PyOperationGetContactOutput {
     #[getter]
     fn contact_list_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contact_list_name {
@@ -12025,17 +12013,13 @@ impl PyGetContactResponse {
     }
 }
 
-#[pyclass(
-    name = "GetContactListResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyGetContactListResponse {
+#[pyclass(name = "GetContactListOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetContactListOutput {
     inner: aws_sdk_sesv2::operation::get_contact_list::GetContactListOutput,
 }
 
 #[pymethods]
-impl PyGetContactListResponse {
+impl PyOperationGetContactListOutput {
     #[getter]
     fn contact_list_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contact_list_name {
@@ -12171,16 +12155,16 @@ impl PyGetContactListResponse {
 }
 
 #[pyclass(
-    name = "GetCustomVerificationEmailTemplateResponse",
+    name = "GetCustomVerificationEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetCustomVerificationEmailTemplateResponse {
+struct PyOperationGetCustomVerificationEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyGetCustomVerificationEmailTemplateResponse {
+impl PyOperationGetCustomVerificationEmailTemplateOutput {
     #[getter]
     fn template_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.template_name {
@@ -12316,17 +12300,13 @@ impl PyGetCustomVerificationEmailTemplateResponse {
     }
 }
 
-#[pyclass(
-    name = "GetDedicatedIpResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyGetDedicatedIpResponse {
+#[pyclass(name = "GetDedicatedIpOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetDedicatedIpOutput {
     inner: aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpOutput,
 }
 
 #[pymethods]
-impl PyGetDedicatedIpResponse {
+impl PyOperationGetDedicatedIpOutput {
     #[getter]
     fn dedicated_ip(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dedicated_ip {
@@ -12356,16 +12336,16 @@ impl PyGetDedicatedIpResponse {
 }
 
 #[pyclass(
-    name = "GetDedicatedIpPoolResponse",
+    name = "GetDedicatedIpPoolOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetDedicatedIpPoolResponse {
+struct PyOperationGetDedicatedIpPoolOutput {
     inner: aws_sdk_sesv2::operation::get_dedicated_ip_pool::GetDedicatedIpPoolOutput,
 }
 
 #[pymethods]
-impl PyGetDedicatedIpPoolResponse {
+impl PyOperationGetDedicatedIpPoolOutput {
     #[getter]
     fn dedicated_ip_pool(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dedicated_ip_pool {
@@ -12394,17 +12374,13 @@ impl PyGetDedicatedIpPoolResponse {
     }
 }
 
-#[pyclass(
-    name = "GetDedicatedIpsResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyGetDedicatedIpsResponse {
+#[pyclass(name = "GetDedicatedIpsOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetDedicatedIpsOutput {
     inner: aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsOutput,
 }
 
 #[pymethods]
-impl PyGetDedicatedIpsResponse {
+impl PyOperationGetDedicatedIpsOutput {
     #[getter]
     fn dedicated_ips(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dedicated_ips {
@@ -12460,16 +12436,16 @@ impl PyGetDedicatedIpsResponse {
 }
 
 #[pyclass(
-    name = "GetDeliverabilityDashboardOptionsResponse",
+    name = "GetDeliverabilityDashboardOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetDeliverabilityDashboardOptionsResponse {
+struct PyOperationGetDeliverabilityDashboardOptionsOutput {
     inner: aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsOutput,
 }
 
 #[pymethods]
-impl PyGetDeliverabilityDashboardOptionsResponse {
+impl PyOperationGetDeliverabilityDashboardOptionsOutput {
     #[getter]
     fn dashboard_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2049 = (&self.inner.dashboard_enabled).to_owned().into_py_any(py)?;
@@ -12583,17 +12559,17 @@ impl PyGetDeliverabilityDashboardOptionsResponse {
 }
 
 #[pyclass(
-    name = "GetDeliverabilityTestReportResponse",
+    name = "GetDeliverabilityTestReportOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetDeliverabilityTestReportResponse {
+struct PyOperationGetDeliverabilityTestReportOutput {
     inner:
         aws_sdk_sesv2::operation::get_deliverability_test_report::GetDeliverabilityTestReportOutput,
 }
 
 #[pymethods]
-impl PyGetDeliverabilityTestReportResponse {
+impl PyOperationGetDeliverabilityTestReportOutput {
     #[getter]
     fn deliverability_test_report(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deliverability_test_report {
@@ -12717,16 +12693,16 @@ impl PyGetDeliverabilityTestReportResponse {
 }
 
 #[pyclass(
-    name = "GetDomainDeliverabilityCampaignResponse",
+    name = "GetDomainDeliverabilityCampaignOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetDomainDeliverabilityCampaignResponse {
+struct PyOperationGetDomainDeliverabilityCampaignOutput {
     inner: aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignOutput,
 }
 
 #[pymethods]
-impl PyGetDomainDeliverabilityCampaignResponse {
+impl PyOperationGetDomainDeliverabilityCampaignOutput {
     #[getter]
     fn domain_deliverability_campaign(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_deliverability_campaign {
@@ -12756,16 +12732,16 @@ impl PyGetDomainDeliverabilityCampaignResponse {
 }
 
 #[pyclass(
-    name = "GetDomainStatisticsReportResponse",
+    name = "GetDomainStatisticsReportOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetDomainStatisticsReportResponse {
+struct PyOperationGetDomainStatisticsReportOutput {
     inner: aws_sdk_sesv2::operation::get_domain_statistics_report::GetDomainStatisticsReportOutput,
 }
 
 #[pymethods]
-impl PyGetDomainStatisticsReportResponse {
+impl PyOperationGetDomainStatisticsReportOutput {
     #[getter]
     fn overall_volume(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.overall_volume {
@@ -12819,16 +12795,16 @@ impl PyGetDomainStatisticsReportResponse {
 }
 
 #[pyclass(
-    name = "GetEmailAddressInsightsResponse",
+    name = "GetEmailAddressInsightsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetEmailAddressInsightsResponse {
+struct PyOperationGetEmailAddressInsightsOutput {
     inner: aws_sdk_sesv2::operation::get_email_address_insights::GetEmailAddressInsightsOutput,
 }
 
 #[pymethods]
-impl PyGetEmailAddressInsightsResponse {
+impl PyOperationGetEmailAddressInsightsOutput {
     #[getter]
     fn mailbox_validation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.mailbox_validation {
@@ -12858,16 +12834,16 @@ impl PyGetEmailAddressInsightsResponse {
 }
 
 #[pyclass(
-    name = "GetEmailIdentityResponse",
+    name = "GetEmailIdentityOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetEmailIdentityResponse {
+struct PyOperationGetEmailIdentityOutput {
     inner: aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityOutput,
 }
 
 #[pymethods]
-impl PyGetEmailIdentityResponse {
+impl PyOperationGetEmailIdentityOutput {
     #[getter]
     fn identity_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_type {
@@ -13073,16 +13049,16 @@ impl PyGetEmailIdentityResponse {
 }
 
 #[pyclass(
-    name = "GetEmailIdentityPoliciesResponse",
+    name = "GetEmailIdentityPoliciesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetEmailIdentityPoliciesResponse {
+struct PyOperationGetEmailIdentityPoliciesOutput {
     inner: aws_sdk_sesv2::operation::get_email_identity_policies::GetEmailIdentityPoliciesOutput,
 }
 
 #[pymethods]
-impl PyGetEmailIdentityPoliciesResponse {
+impl PyOperationGetEmailIdentityPoliciesOutput {
     #[getter]
     fn policies(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policies {
@@ -13118,16 +13094,16 @@ impl PyGetEmailIdentityPoliciesResponse {
 }
 
 #[pyclass(
-    name = "GetEmailTemplateResponse",
+    name = "GetEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetEmailTemplateResponse {
+struct PyOperationGetEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyGetEmailTemplateResponse {
+impl PyOperationGetEmailTemplateOutput {
     #[getter]
     fn template_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2139 = (&self.inner.template_name).as_str().into_py_any(py)?;
@@ -13196,13 +13172,13 @@ impl PyGetEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "GetExportJobResponse", module = "rboto_sesv2._native", frozen)]
-struct PyGetExportJobResponse {
+#[pyclass(name = "GetExportJobOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetExportJobOutput {
     inner: aws_sdk_sesv2::operation::get_export_job::GetExportJobOutput,
 }
 
 #[pymethods]
-impl PyGetExportJobResponse {
+impl PyOperationGetExportJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_id {
@@ -13377,13 +13353,13 @@ impl PyGetExportJobResponse {
     }
 }
 
-#[pyclass(name = "GetImportJobResponse", module = "rboto_sesv2._native", frozen)]
-struct PyGetImportJobResponse {
+#[pyclass(name = "GetImportJobOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetImportJobOutput {
     inner: aws_sdk_sesv2::operation::get_import_job::GetImportJobOutput,
 }
 
 #[pymethods]
-impl PyGetImportJobResponse {
+impl PyOperationGetImportJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.job_id {
@@ -13553,16 +13529,16 @@ impl PyGetImportJobResponse {
 }
 
 #[pyclass(
-    name = "GetMessageInsightsResponse",
+    name = "GetMessageInsightsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetMessageInsightsResponse {
+struct PyOperationGetMessageInsightsOutput {
     inner: aws_sdk_sesv2::operation::get_message_insights::GetMessageInsightsOutput,
 }
 
 #[pymethods]
-impl PyGetMessageInsightsResponse {
+impl PyOperationGetMessageInsightsOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
@@ -13683,16 +13659,16 @@ impl PyGetMessageInsightsResponse {
 }
 
 #[pyclass(
-    name = "GetMultiRegionEndpointResponse",
+    name = "GetMultiRegionEndpointOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetMultiRegionEndpointResponse {
+struct PyOperationGetMultiRegionEndpointOutput {
     inner: aws_sdk_sesv2::operation::get_multi_region_endpoint::GetMultiRegionEndpointOutput,
 }
 
 #[pymethods]
-impl PyGetMultiRegionEndpointResponse {
+impl PyOperationGetMultiRegionEndpointOutput {
     #[getter]
     fn endpoint_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_name {
@@ -13812,16 +13788,16 @@ impl PyGetMultiRegionEndpointResponse {
 }
 
 #[pyclass(
-    name = "GetReputationEntityResponse",
+    name = "GetReputationEntityOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetReputationEntityResponse {
+struct PyOperationGetReputationEntityOutput {
     inner: aws_sdk_sesv2::operation::get_reputation_entity::GetReputationEntityOutput,
 }
 
 #[pymethods]
-impl PyGetReputationEntityResponse {
+impl PyOperationGetReputationEntityOutput {
     #[getter]
     fn reputation_entity(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.reputation_entity {
@@ -13851,16 +13827,16 @@ impl PyGetReputationEntityResponse {
 }
 
 #[pyclass(
-    name = "GetSuppressedDestinationResponse",
+    name = "GetSuppressedDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyGetSuppressedDestinationResponse {
+struct PyOperationGetSuppressedDestinationOutput {
     inner: aws_sdk_sesv2::operation::get_suppressed_destination::GetSuppressedDestinationOutput,
 }
 
 #[pymethods]
-impl PyGetSuppressedDestinationResponse {
+impl PyOperationGetSuppressedDestinationOutput {
     #[getter]
     fn suppressed_destination(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.suppressed_destination {
@@ -13889,13 +13865,13 @@ impl PyGetSuppressedDestinationResponse {
     }
 }
 
-#[pyclass(name = "GetTenantResponse", module = "rboto_sesv2._native", frozen)]
-struct PyGetTenantResponse {
+#[pyclass(name = "GetTenantOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationGetTenantOutput {
     inner: aws_sdk_sesv2::operation::get_tenant::GetTenantOutput,
 }
 
 #[pymethods]
-impl PyGetTenantResponse {
+impl PyOperationGetTenantOutput {
     #[getter]
     fn tenant(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tenant {
@@ -13925,16 +13901,16 @@ impl PyGetTenantResponse {
 }
 
 #[pyclass(
-    name = "ListConfigurationSetsResponse",
+    name = "ListConfigurationSetsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListConfigurationSetsResponse {
+struct PyOperationListConfigurationSetsOutput {
     inner: aws_sdk_sesv2::operation::list_configuration_sets::ListConfigurationSetsOutput,
 }
 
 #[pymethods]
-impl PyListConfigurationSetsResponse {
+impl PyOperationListConfigurationSetsOutput {
     #[getter]
     fn configuration_sets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration_sets {
@@ -13984,16 +13960,16 @@ impl PyListConfigurationSetsResponse {
 }
 
 #[pyclass(
-    name = "ListContactListsResponse",
+    name = "ListContactListsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListContactListsResponse {
+struct PyOperationListContactListsOutput {
     inner: aws_sdk_sesv2::operation::list_contact_lists::ListContactListsOutput,
 }
 
 #[pymethods]
-impl PyListContactListsResponse {
+impl PyOperationListContactListsOutput {
     #[getter]
     fn contact_lists(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contact_lists {
@@ -14048,13 +14024,13 @@ impl PyListContactListsResponse {
     }
 }
 
-#[pyclass(name = "ListContactsResponse", module = "rboto_sesv2._native", frozen)]
-struct PyListContactsResponse {
+#[pyclass(name = "ListContactsOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationListContactsOutput {
     inner: aws_sdk_sesv2::operation::list_contacts::ListContactsOutput,
 }
 
 #[pymethods]
-impl PyListContactsResponse {
+impl PyOperationListContactsOutput {
     #[getter]
     fn contacts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.contacts {
@@ -14110,16 +14086,16 @@ impl PyListContactsResponse {
 }
 
 #[pyclass(
-    name = "ListCustomVerificationEmailTemplatesResponse",
+    name = "ListCustomVerificationEmailTemplatesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListCustomVerificationEmailTemplatesResponse {
+struct PyOperationListCustomVerificationEmailTemplatesOutput {
     inner: aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesOutput,
 }
 
 #[pymethods]
-impl PyListCustomVerificationEmailTemplatesResponse {
+impl PyOperationListCustomVerificationEmailTemplatesOutput {
     #[getter]
     fn custom_verification_email_templates(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.custom_verification_email_templates {
@@ -14176,16 +14152,16 @@ impl PyListCustomVerificationEmailTemplatesResponse {
 }
 
 #[pyclass(
-    name = "ListDedicatedIpPoolsResponse",
+    name = "ListDedicatedIpPoolsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListDedicatedIpPoolsResponse {
+struct PyOperationListDedicatedIpPoolsOutput {
     inner: aws_sdk_sesv2::operation::list_dedicated_ip_pools::ListDedicatedIpPoolsOutput,
 }
 
 #[pymethods]
-impl PyListDedicatedIpPoolsResponse {
+impl PyOperationListDedicatedIpPoolsOutput {
     #[getter]
     fn dedicated_ip_pools(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dedicated_ip_pools {
@@ -14235,16 +14211,16 @@ impl PyListDedicatedIpPoolsResponse {
 }
 
 #[pyclass(
-    name = "ListDeliverabilityTestReportsResponse",
+    name = "ListDeliverabilityTestReportsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListDeliverabilityTestReportsResponse {
+struct PyOperationListDeliverabilityTestReportsOutput {
     inner: aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsOutput,
 }
 
 #[pymethods]
-impl PyListDeliverabilityTestReportsResponse {
+impl PyOperationListDeliverabilityTestReportsOutput {
     #[getter]
     fn deliverability_test_reports(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2265_list = PyList::empty(py);
@@ -14292,16 +14268,16 @@ impl PyListDeliverabilityTestReportsResponse {
 }
 
 #[pyclass(
-    name = "ListDomainDeliverabilityCampaignsResponse",
+    name = "ListDomainDeliverabilityCampaignsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListDomainDeliverabilityCampaignsResponse {
+struct PyOperationListDomainDeliverabilityCampaignsOutput {
     inner: aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsOutput,
 }
 
 #[pymethods]
-impl PyListDomainDeliverabilityCampaignsResponse {
+impl PyOperationListDomainDeliverabilityCampaignsOutput {
     #[getter]
     fn domain_deliverability_campaigns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2273_list = PyList::empty(py);
@@ -14349,16 +14325,16 @@ impl PyListDomainDeliverabilityCampaignsResponse {
 }
 
 #[pyclass(
-    name = "ListEmailIdentitiesResponse",
+    name = "ListEmailIdentitiesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListEmailIdentitiesResponse {
+struct PyOperationListEmailIdentitiesOutput {
     inner: aws_sdk_sesv2::operation::list_email_identities::ListEmailIdentitiesOutput,
 }
 
 #[pymethods]
-impl PyListEmailIdentitiesResponse {
+impl PyOperationListEmailIdentitiesOutput {
     #[getter]
     fn email_identities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.email_identities {
@@ -14414,16 +14390,16 @@ impl PyListEmailIdentitiesResponse {
 }
 
 #[pyclass(
-    name = "ListEmailIdentityCertificatesResponse",
+    name = "ListEmailIdentityCertificatesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListEmailIdentityCertificatesResponse {
+struct PyOperationListEmailIdentityCertificatesOutput {
     inner: aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesOutput,
 }
 
 #[pymethods]
-impl PyListEmailIdentityCertificatesResponse {
+impl PyOperationListEmailIdentityCertificatesOutput {
     #[getter]
     fn certificates(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.certificates {
@@ -14479,16 +14455,16 @@ impl PyListEmailIdentityCertificatesResponse {
 }
 
 #[pyclass(
-    name = "ListEmailTemplatesResponse",
+    name = "ListEmailTemplatesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListEmailTemplatesResponse {
+struct PyOperationListEmailTemplatesOutput {
     inner: aws_sdk_sesv2::operation::list_email_templates::ListEmailTemplatesOutput,
 }
 
 #[pymethods]
-impl PyListEmailTemplatesResponse {
+impl PyOperationListEmailTemplatesOutput {
     #[getter]
     fn templates_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.templates_metadata {
@@ -14543,17 +14519,13 @@ impl PyListEmailTemplatesResponse {
     }
 }
 
-#[pyclass(
-    name = "ListExportJobsResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyListExportJobsResponse {
+#[pyclass(name = "ListExportJobsOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationListExportJobsOutput {
     inner: aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsOutput,
 }
 
 #[pymethods]
-impl PyListExportJobsResponse {
+impl PyOperationListExportJobsOutput {
     #[getter]
     fn export_jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.export_jobs {
@@ -14608,17 +14580,13 @@ impl PyListExportJobsResponse {
     }
 }
 
-#[pyclass(
-    name = "ListImportJobsResponse",
-    module = "rboto_sesv2._native",
-    frozen
-)]
-struct PyListImportJobsResponse {
+#[pyclass(name = "ListImportJobsOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationListImportJobsOutput {
     inner: aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsOutput,
 }
 
 #[pymethods]
-impl PyListImportJobsResponse {
+impl PyOperationListImportJobsOutput {
     #[getter]
     fn import_jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.import_jobs {
@@ -14674,16 +14642,16 @@ impl PyListImportJobsResponse {
 }
 
 #[pyclass(
-    name = "ListMultiRegionEndpointsResponse",
+    name = "ListMultiRegionEndpointsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListMultiRegionEndpointsResponse {
+struct PyOperationListMultiRegionEndpointsOutput {
     inner: aws_sdk_sesv2::operation::list_multi_region_endpoints::ListMultiRegionEndpointsOutput,
 }
 
 #[pymethods]
-impl PyListMultiRegionEndpointsResponse {
+impl PyOperationListMultiRegionEndpointsOutput {
     #[getter]
     fn multi_region_endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.multi_region_endpoints {
@@ -14739,16 +14707,16 @@ impl PyListMultiRegionEndpointsResponse {
 }
 
 #[pyclass(
-    name = "ListRecommendationsResponse",
+    name = "ListRecommendationsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListRecommendationsResponse {
+struct PyOperationListRecommendationsOutput {
     inner: aws_sdk_sesv2::operation::list_recommendations::ListRecommendationsOutput,
 }
 
 #[pymethods]
-impl PyListRecommendationsResponse {
+impl PyOperationListRecommendationsOutput {
     #[getter]
     fn recommendations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.recommendations {
@@ -14804,16 +14772,16 @@ impl PyListRecommendationsResponse {
 }
 
 #[pyclass(
-    name = "ListReputationEntitiesResponse",
+    name = "ListReputationEntitiesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListReputationEntitiesResponse {
+struct PyOperationListReputationEntitiesOutput {
     inner: aws_sdk_sesv2::operation::list_reputation_entities::ListReputationEntitiesOutput,
 }
 
 #[pymethods]
-impl PyListReputationEntitiesResponse {
+impl PyOperationListReputationEntitiesOutput {
     #[getter]
     fn reputation_entities(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.reputation_entities {
@@ -14869,16 +14837,16 @@ impl PyListReputationEntitiesResponse {
 }
 
 #[pyclass(
-    name = "ListResourceTenantsResponse",
+    name = "ListResourceTenantsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListResourceTenantsResponse {
+struct PyOperationListResourceTenantsOutput {
     inner: aws_sdk_sesv2::operation::list_resource_tenants::ListResourceTenantsOutput,
 }
 
 #[pymethods]
-impl PyListResourceTenantsResponse {
+impl PyOperationListResourceTenantsOutput {
     #[getter]
     fn resource_tenants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource_tenants {
@@ -14934,16 +14902,16 @@ impl PyListResourceTenantsResponse {
 }
 
 #[pyclass(
-    name = "ListSuppressedDestinationsResponse",
+    name = "ListSuppressedDestinationsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListSuppressedDestinationsResponse {
+struct PyOperationListSuppressedDestinationsOutput {
     inner: aws_sdk_sesv2::operation::list_suppressed_destinations::ListSuppressedDestinationsOutput,
 }
 
 #[pymethods]
-impl PyListSuppressedDestinationsResponse {
+impl PyOperationListSuppressedDestinationsOutput {
     #[getter]
     fn suppressed_destination_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.suppressed_destination_summaries {
@@ -14999,16 +14967,16 @@ impl PyListSuppressedDestinationsResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_sesv2::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2361_list = PyList::empty(py);
@@ -15040,16 +15008,16 @@ impl PyListTagsForResourceResponse {
 }
 
 #[pyclass(
-    name = "ListTenantResourcesResponse",
+    name = "ListTenantResourcesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyListTenantResourcesResponse {
+struct PyOperationListTenantResourcesOutput {
     inner: aws_sdk_sesv2::operation::list_tenant_resources::ListTenantResourcesOutput,
 }
 
 #[pymethods]
-impl PyListTenantResourcesResponse {
+impl PyOperationListTenantResourcesOutput {
     #[getter]
     fn tenant_resources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tenant_resources {
@@ -15104,13 +15072,13 @@ impl PyListTenantResourcesResponse {
     }
 }
 
-#[pyclass(name = "ListTenantsResponse", module = "rboto_sesv2._native", frozen)]
-struct PyListTenantsResponse {
+#[pyclass(name = "ListTenantsOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationListTenantsOutput {
     inner: aws_sdk_sesv2::operation::list_tenants::ListTenantsOutput,
 }
 
 #[pymethods]
-impl PyListTenantsResponse {
+impl PyOperationListTenantsOutput {
     #[getter]
     fn tenants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tenants {
@@ -15166,16 +15134,16 @@ impl PyListTenantsResponse {
 }
 
 #[pyclass(
-    name = "PutAccountDedicatedIpWarmupAttributesResponse",
+    name = "PutAccountDedicatedIpWarmupAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountDedicatedIpWarmupAttributesResponse {
+struct PyOperationPutAccountDedicatedIpWarmupAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutAccountDedicatedIpWarmupAttributesResponse {
+impl PyOperationPutAccountDedicatedIpWarmupAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15183,16 +15151,16 @@ impl PyPutAccountDedicatedIpWarmupAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutAccountDetailsResponse",
+    name = "PutAccountDetailsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountDetailsResponse {
+struct PyOperationPutAccountDetailsOutput {
     inner: aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsOutput,
 }
 
 #[pymethods]
-impl PyPutAccountDetailsResponse {
+impl PyOperationPutAccountDetailsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15200,17 +15168,17 @@ impl PyPutAccountDetailsResponse {
 }
 
 #[pyclass(
-    name = "PutAccountPricingAttributesResponse",
+    name = "PutAccountPricingAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountPricingAttributesResponse {
+struct PyOperationPutAccountPricingAttributesOutput {
     inner:
         aws_sdk_sesv2::operation::put_account_pricing_attributes::PutAccountPricingAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutAccountPricingAttributesResponse {
+impl PyOperationPutAccountPricingAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15218,17 +15186,17 @@ impl PyPutAccountPricingAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutAccountSendingAttributesResponse",
+    name = "PutAccountSendingAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountSendingAttributesResponse {
+struct PyOperationPutAccountSendingAttributesOutput {
     inner:
         aws_sdk_sesv2::operation::put_account_sending_attributes::PutAccountSendingAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutAccountSendingAttributesResponse {
+impl PyOperationPutAccountSendingAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15236,16 +15204,16 @@ impl PyPutAccountSendingAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutAccountSuppressionAttributesResponse",
+    name = "PutAccountSuppressionAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountSuppressionAttributesResponse {
+struct PyOperationPutAccountSuppressionAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutAccountSuppressionAttributesResponse {
+impl PyOperationPutAccountSuppressionAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15253,16 +15221,16 @@ impl PyPutAccountSuppressionAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutAccountVdmAttributesResponse",
+    name = "PutAccountVdmAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutAccountVdmAttributesResponse {
+struct PyOperationPutAccountVdmAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_account_vdm_attributes::PutAccountVdmAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutAccountVdmAttributesResponse {
+impl PyOperationPutAccountVdmAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15270,16 +15238,16 @@ impl PyPutAccountVdmAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetArchivingOptionsResponse",
+    name = "PutConfigurationSetArchivingOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetArchivingOptionsResponse {
+struct PyOperationPutConfigurationSetArchivingOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetArchivingOptionsResponse {
+impl PyOperationPutConfigurationSetArchivingOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15287,16 +15255,16 @@ impl PyPutConfigurationSetArchivingOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetDeliveryOptionsResponse",
+    name = "PutConfigurationSetDeliveryOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetDeliveryOptionsResponse {
+struct PyOperationPutConfigurationSetDeliveryOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetDeliveryOptionsResponse {
+impl PyOperationPutConfigurationSetDeliveryOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15304,16 +15272,16 @@ impl PyPutConfigurationSetDeliveryOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetReputationOptionsResponse",
+    name = "PutConfigurationSetReputationOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetReputationOptionsResponse {
+struct PyOperationPutConfigurationSetReputationOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetReputationOptionsResponse {
+impl PyOperationPutConfigurationSetReputationOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15321,16 +15289,16 @@ impl PyPutConfigurationSetReputationOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetSendingOptionsResponse",
+    name = "PutConfigurationSetSendingOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetSendingOptionsResponse {
+struct PyOperationPutConfigurationSetSendingOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetSendingOptionsResponse {
+impl PyOperationPutConfigurationSetSendingOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15338,16 +15306,16 @@ impl PyPutConfigurationSetSendingOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetSuppressionOptionsResponse",
+    name = "PutConfigurationSetSuppressionOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetSuppressionOptionsResponse {
+struct PyOperationPutConfigurationSetSuppressionOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetSuppressionOptionsResponse {
+impl PyOperationPutConfigurationSetSuppressionOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15355,16 +15323,16 @@ impl PyPutConfigurationSetSuppressionOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetTrackingOptionsResponse",
+    name = "PutConfigurationSetTrackingOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetTrackingOptionsResponse {
+struct PyOperationPutConfigurationSetTrackingOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetTrackingOptionsResponse {
+impl PyOperationPutConfigurationSetTrackingOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15372,16 +15340,16 @@ impl PyPutConfigurationSetTrackingOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutConfigurationSetVdmOptionsResponse",
+    name = "PutConfigurationSetVdmOptionsOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutConfigurationSetVdmOptionsResponse {
+struct PyOperationPutConfigurationSetVdmOptionsOutput {
     inner: aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsOutput,
 }
 
 #[pymethods]
-impl PyPutConfigurationSetVdmOptionsResponse {
+impl PyOperationPutConfigurationSetVdmOptionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15389,16 +15357,16 @@ impl PyPutConfigurationSetVdmOptionsResponse {
 }
 
 #[pyclass(
-    name = "PutDedicatedIpInPoolResponse",
+    name = "PutDedicatedIpInPoolOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutDedicatedIpInPoolResponse {
+struct PyOperationPutDedicatedIpInPoolOutput {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_in_pool::PutDedicatedIpInPoolOutput,
 }
 
 #[pymethods]
-impl PyPutDedicatedIpInPoolResponse {
+impl PyOperationPutDedicatedIpInPoolOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15406,16 +15374,16 @@ impl PyPutDedicatedIpInPoolResponse {
 }
 
 #[pyclass(
-    name = "PutDedicatedIpPoolScalingAttributesResponse",
+    name = "PutDedicatedIpPoolScalingAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutDedicatedIpPoolScalingAttributesResponse {
+struct PyOperationPutDedicatedIpPoolScalingAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutDedicatedIpPoolScalingAttributesResponse {
+impl PyOperationPutDedicatedIpPoolScalingAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15423,16 +15391,16 @@ impl PyPutDedicatedIpPoolScalingAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutDedicatedIpWarmupAttributesResponse",
+    name = "PutDedicatedIpWarmupAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutDedicatedIpWarmupAttributesResponse {
+struct PyOperationPutDedicatedIpWarmupAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutDedicatedIpWarmupAttributesResponse {
+impl PyOperationPutDedicatedIpWarmupAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15440,16 +15408,16 @@ impl PyPutDedicatedIpWarmupAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutDeliverabilityDashboardOptionResponse",
+    name = "PutDeliverabilityDashboardOptionOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutDeliverabilityDashboardOptionResponse {
+struct PyOperationPutDeliverabilityDashboardOptionOutput {
     inner: aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionOutput,
 }
 
 #[pymethods]
-impl PyPutDeliverabilityDashboardOptionResponse {
+impl PyOperationPutDeliverabilityDashboardOptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15457,16 +15425,16 @@ impl PyPutDeliverabilityDashboardOptionResponse {
 }
 
 #[pyclass(
-    name = "PutEmailIdentityConfigurationSetAttributesResponse",
+    name = "PutEmailIdentityConfigurationSetAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutEmailIdentityConfigurationSetAttributesResponse {
+struct PyOperationPutEmailIdentityConfigurationSetAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutEmailIdentityConfigurationSetAttributesResponse {
+impl PyOperationPutEmailIdentityConfigurationSetAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15474,16 +15442,16 @@ impl PyPutEmailIdentityConfigurationSetAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutEmailIdentityDkimAttributesResponse",
+    name = "PutEmailIdentityDkimAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutEmailIdentityDkimAttributesResponse {
+struct PyOperationPutEmailIdentityDkimAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutEmailIdentityDkimAttributesResponse {
+impl PyOperationPutEmailIdentityDkimAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15491,16 +15459,16 @@ impl PyPutEmailIdentityDkimAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutEmailIdentityDkimSigningAttributesResponse",
+    name = "PutEmailIdentityDkimSigningAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutEmailIdentityDkimSigningAttributesResponse {
+struct PyOperationPutEmailIdentityDkimSigningAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutEmailIdentityDkimSigningAttributesResponse {
+impl PyOperationPutEmailIdentityDkimSigningAttributesOutput {
     #[getter]
     fn dkim_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dkim_status {
@@ -15566,16 +15534,16 @@ impl PyPutEmailIdentityDkimSigningAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutEmailIdentityFeedbackAttributesResponse",
+    name = "PutEmailIdentityFeedbackAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutEmailIdentityFeedbackAttributesResponse {
+struct PyOperationPutEmailIdentityFeedbackAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutEmailIdentityFeedbackAttributesResponse {
+impl PyOperationPutEmailIdentityFeedbackAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15583,16 +15551,16 @@ impl PyPutEmailIdentityFeedbackAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutEmailIdentityMailFromAttributesResponse",
+    name = "PutEmailIdentityMailFromAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutEmailIdentityMailFromAttributesResponse {
+struct PyOperationPutEmailIdentityMailFromAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutEmailIdentityMailFromAttributesResponse {
+impl PyOperationPutEmailIdentityMailFromAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15600,16 +15568,16 @@ impl PyPutEmailIdentityMailFromAttributesResponse {
 }
 
 #[pyclass(
-    name = "PutSuppressedDestinationResponse",
+    name = "PutSuppressedDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutSuppressedDestinationResponse {
+struct PyOperationPutSuppressedDestinationOutput {
     inner: aws_sdk_sesv2::operation::put_suppressed_destination::PutSuppressedDestinationOutput,
 }
 
 #[pymethods]
-impl PyPutSuppressedDestinationResponse {
+impl PyOperationPutSuppressedDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15617,29 +15585,29 @@ impl PyPutSuppressedDestinationResponse {
 }
 
 #[pyclass(
-    name = "PutTenantSuppressionAttributesResponse",
+    name = "PutTenantSuppressionAttributesOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyPutTenantSuppressionAttributesResponse {
+struct PyOperationPutTenantSuppressionAttributesOutput {
     inner: aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesOutput,
 }
 
 #[pymethods]
-impl PyPutTenantSuppressionAttributesResponse {
+impl PyOperationPutTenantSuppressionAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "SendBulkEmailResponse", module = "rboto_sesv2._native", frozen)]
-struct PySendBulkEmailResponse {
+#[pyclass(name = "SendBulkEmailOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationSendBulkEmailOutput {
     inner: aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailOutput,
 }
 
 #[pymethods]
-impl PySendBulkEmailResponse {
+impl PyOperationSendBulkEmailOutput {
     #[getter]
     fn bulk_email_entry_results(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2393_list = PyList::empty(py);
@@ -15671,17 +15639,17 @@ impl PySendBulkEmailResponse {
 }
 
 #[pyclass(
-    name = "SendCustomVerificationEmailResponse",
+    name = "SendCustomVerificationEmailOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PySendCustomVerificationEmailResponse {
+struct PyOperationSendCustomVerificationEmailOutput {
     inner:
         aws_sdk_sesv2::operation::send_custom_verification_email::SendCustomVerificationEmailOutput,
 }
 
 #[pymethods]
-impl PySendCustomVerificationEmailResponse {
+impl PyOperationSendCustomVerificationEmailOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
@@ -15704,13 +15672,13 @@ impl PySendCustomVerificationEmailResponse {
     }
 }
 
-#[pyclass(name = "SendEmailResponse", module = "rboto_sesv2._native", frozen)]
-struct PySendEmailResponse {
+#[pyclass(name = "SendEmailOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationSendEmailOutput {
     inner: aws_sdk_sesv2::operation::send_email::SendEmailOutput,
 }
 
 #[pymethods]
-impl PySendEmailResponse {
+impl PyOperationSendEmailOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
@@ -15733,13 +15701,13 @@ impl PySendEmailResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", module = "rboto_sesv2._native", frozen)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_sesv2::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15747,16 +15715,16 @@ impl PyTagResourceResponse {
 }
 
 #[pyclass(
-    name = "TestRenderEmailTemplateResponse",
+    name = "TestRenderEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyTestRenderEmailTemplateResponse {
+struct PyOperationTestRenderEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::test_render_email_template::TestRenderEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyTestRenderEmailTemplateResponse {
+impl PyOperationTestRenderEmailTemplateOutput {
     #[getter]
     fn rendered_template(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2403 = (&self.inner.rendered_template).as_str().into_py_any(py)?;
@@ -15771,13 +15739,13 @@ impl PyTestRenderEmailTemplateResponse {
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", module = "rboto_sesv2._native", frozen)]
-struct PyUntagResourceResponse {
+#[pyclass(name = "UntagResourceOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_sesv2::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15785,16 +15753,16 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "UpdateConfigurationSetResponse",
+    name = "UpdateConfigurationSetOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateConfigurationSetResponse {
+struct PyOperationUpdateConfigurationSetOutput {
     inner: aws_sdk_sesv2::operation::update_configuration_set::UpdateConfigurationSetOutput,
 }
 
 #[pymethods]
-impl PyUpdateConfigurationSetResponse {
+impl PyOperationUpdateConfigurationSetOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15802,29 +15770,29 @@ impl PyUpdateConfigurationSetResponse {
 }
 
 #[pyclass(
-    name = "UpdateConfigurationSetEventDestinationResponse",
+    name = "UpdateConfigurationSetEventDestinationOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateConfigurationSetEventDestinationResponse {
+struct PyOperationUpdateConfigurationSetEventDestinationOutput {
     inner: aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationOutput,
 }
 
 #[pymethods]
-impl PyUpdateConfigurationSetEventDestinationResponse {
+impl PyOperationUpdateConfigurationSetEventDestinationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UpdateContactResponse", module = "rboto_sesv2._native", frozen)]
-struct PyUpdateContactResponse {
+#[pyclass(name = "UpdateContactOutput", module = "rboto_sesv2._native", frozen)]
+struct PyOperationUpdateContactOutput {
     inner: aws_sdk_sesv2::operation::update_contact::UpdateContactOutput,
 }
 
 #[pymethods]
-impl PyUpdateContactResponse {
+impl PyOperationUpdateContactOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15832,16 +15800,16 @@ impl PyUpdateContactResponse {
 }
 
 #[pyclass(
-    name = "UpdateContactListResponse",
+    name = "UpdateContactListOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateContactListResponse {
+struct PyOperationUpdateContactListOutput {
     inner: aws_sdk_sesv2::operation::update_contact_list::UpdateContactListOutput,
 }
 
 #[pymethods]
-impl PyUpdateContactListResponse {
+impl PyOperationUpdateContactListOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15849,16 +15817,16 @@ impl PyUpdateContactListResponse {
 }
 
 #[pyclass(
-    name = "UpdateCustomVerificationEmailTemplateResponse",
+    name = "UpdateCustomVerificationEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateCustomVerificationEmailTemplateResponse {
+struct PyOperationUpdateCustomVerificationEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyUpdateCustomVerificationEmailTemplateResponse {
+impl PyOperationUpdateCustomVerificationEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15866,16 +15834,16 @@ impl PyUpdateCustomVerificationEmailTemplateResponse {
 }
 
 #[pyclass(
-    name = "UpdateEmailIdentityPolicyResponse",
+    name = "UpdateEmailIdentityPolicyOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateEmailIdentityPolicyResponse {
+struct PyOperationUpdateEmailIdentityPolicyOutput {
     inner: aws_sdk_sesv2::operation::update_email_identity_policy::UpdateEmailIdentityPolicyOutput,
 }
 
 #[pymethods]
-impl PyUpdateEmailIdentityPolicyResponse {
+impl PyOperationUpdateEmailIdentityPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15883,16 +15851,16 @@ impl PyUpdateEmailIdentityPolicyResponse {
 }
 
 #[pyclass(
-    name = "UpdateEmailTemplateResponse",
+    name = "UpdateEmailTemplateOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateEmailTemplateResponse {
+struct PyOperationUpdateEmailTemplateOutput {
     inner: aws_sdk_sesv2::operation::update_email_template::UpdateEmailTemplateOutput,
 }
 
 #[pymethods]
-impl PyUpdateEmailTemplateResponse {
+impl PyOperationUpdateEmailTemplateOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15900,16 +15868,16 @@ impl PyUpdateEmailTemplateResponse {
 }
 
 #[pyclass(
-    name = "UpdateReputationEntityCustomerManagedStatusResponse",
+    name = "UpdateReputationEntityCustomerManagedStatusOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateReputationEntityCustomerManagedStatusResponse {
+struct PyOperationUpdateReputationEntityCustomerManagedStatusOutput {
     inner: aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusOutput,
 }
 
 #[pymethods]
-impl PyUpdateReputationEntityCustomerManagedStatusResponse {
+impl PyOperationUpdateReputationEntityCustomerManagedStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -15917,16 +15885,16 @@ impl PyUpdateReputationEntityCustomerManagedStatusResponse {
 }
 
 #[pyclass(
-    name = "UpdateReputationEntityPolicyResponse",
+    name = "UpdateReputationEntityPolicyOutput",
     module = "rboto_sesv2._native",
     frozen
 )]
-struct PyUpdateReputationEntityPolicyResponse {
+struct PyOperationUpdateReputationEntityPolicyOutput {
     inner: aws_sdk_sesv2::operation::update_reputation_entity_policy::UpdateReputationEntityPolicyOutput,
 }
 
 #[pymethods]
-impl PyUpdateReputationEntityPolicyResponse {
+impl PyOperationUpdateReputationEntityPolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -16029,122 +15997,122 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyVdmOptions>()?;
     module.add_class::<PyVerificationInfo>()?;
     module.add_class::<PyVolumeStatistics>()?;
-    module.add_class::<PyAssociateEmailIdentityCertificateResponse>()?;
-    module.add_class::<PyBatchGetMetricDataResponse>()?;
-    module.add_class::<PyCancelExportJobResponse>()?;
-    module.add_class::<PyCreateConfigurationSetResponse>()?;
-    module.add_class::<PyCreateConfigurationSetEventDestinationResponse>()?;
-    module.add_class::<PyCreateContactResponse>()?;
-    module.add_class::<PyCreateContactListResponse>()?;
-    module.add_class::<PyCreateCustomVerificationEmailTemplateResponse>()?;
-    module.add_class::<PyCreateDedicatedIpPoolResponse>()?;
-    module.add_class::<PyCreateDeliverabilityTestReportResponse>()?;
-    module.add_class::<PyCreateEmailIdentityResponse>()?;
-    module.add_class::<PyCreateEmailIdentityPolicyResponse>()?;
-    module.add_class::<PyCreateEmailTemplateResponse>()?;
-    module.add_class::<PyCreateExportJobResponse>()?;
-    module.add_class::<PyCreateImportJobResponse>()?;
-    module.add_class::<PyCreateMultiRegionEndpointResponse>()?;
-    module.add_class::<PyCreateTenantResponse>()?;
-    module.add_class::<PyCreateTenantResourceAssociationResponse>()?;
-    module.add_class::<PyDeleteConfigurationSetResponse>()?;
-    module.add_class::<PyDeleteConfigurationSetEventDestinationResponse>()?;
-    module.add_class::<PyDeleteContactResponse>()?;
-    module.add_class::<PyDeleteContactListResponse>()?;
-    module.add_class::<PyDeleteCustomVerificationEmailTemplateResponse>()?;
-    module.add_class::<PyDeleteDedicatedIpPoolResponse>()?;
-    module.add_class::<PyDeleteEmailIdentityResponse>()?;
-    module.add_class::<PyDeleteEmailIdentityPolicyResponse>()?;
-    module.add_class::<PyDeleteEmailTemplateResponse>()?;
-    module.add_class::<PyDeleteMultiRegionEndpointResponse>()?;
-    module.add_class::<PyDeleteSuppressedDestinationResponse>()?;
-    module.add_class::<PyDeleteTenantResponse>()?;
-    module.add_class::<PyDeleteTenantResourceAssociationResponse>()?;
-    module.add_class::<PyDisassociateEmailIdentityCertificateResponse>()?;
-    module.add_class::<PyGetAccountResponse>()?;
-    module.add_class::<PyGetBlacklistReportsResponse>()?;
-    module.add_class::<PyGetConfigurationSetResponse>()?;
-    module.add_class::<PyGetConfigurationSetEventDestinationsResponse>()?;
-    module.add_class::<PyGetContactResponse>()?;
-    module.add_class::<PyGetContactListResponse>()?;
-    module.add_class::<PyGetCustomVerificationEmailTemplateResponse>()?;
-    module.add_class::<PyGetDedicatedIpResponse>()?;
-    module.add_class::<PyGetDedicatedIpPoolResponse>()?;
-    module.add_class::<PyGetDedicatedIpsResponse>()?;
-    module.add_class::<PyGetDeliverabilityDashboardOptionsResponse>()?;
-    module.add_class::<PyGetDeliverabilityTestReportResponse>()?;
-    module.add_class::<PyGetDomainDeliverabilityCampaignResponse>()?;
-    module.add_class::<PyGetDomainStatisticsReportResponse>()?;
-    module.add_class::<PyGetEmailAddressInsightsResponse>()?;
-    module.add_class::<PyGetEmailIdentityResponse>()?;
-    module.add_class::<PyGetEmailIdentityPoliciesResponse>()?;
-    module.add_class::<PyGetEmailTemplateResponse>()?;
-    module.add_class::<PyGetExportJobResponse>()?;
-    module.add_class::<PyGetImportJobResponse>()?;
-    module.add_class::<PyGetMessageInsightsResponse>()?;
-    module.add_class::<PyGetMultiRegionEndpointResponse>()?;
-    module.add_class::<PyGetReputationEntityResponse>()?;
-    module.add_class::<PyGetSuppressedDestinationResponse>()?;
-    module.add_class::<PyGetTenantResponse>()?;
-    module.add_class::<PyListConfigurationSetsResponse>()?;
-    module.add_class::<PyListContactListsResponse>()?;
-    module.add_class::<PyListContactsResponse>()?;
-    module.add_class::<PyListCustomVerificationEmailTemplatesResponse>()?;
-    module.add_class::<PyListDedicatedIpPoolsResponse>()?;
-    module.add_class::<PyListDeliverabilityTestReportsResponse>()?;
-    module.add_class::<PyListDomainDeliverabilityCampaignsResponse>()?;
-    module.add_class::<PyListEmailIdentitiesResponse>()?;
-    module.add_class::<PyListEmailIdentityCertificatesResponse>()?;
-    module.add_class::<PyListEmailTemplatesResponse>()?;
-    module.add_class::<PyListExportJobsResponse>()?;
-    module.add_class::<PyListImportJobsResponse>()?;
-    module.add_class::<PyListMultiRegionEndpointsResponse>()?;
-    module.add_class::<PyListRecommendationsResponse>()?;
-    module.add_class::<PyListReputationEntitiesResponse>()?;
-    module.add_class::<PyListResourceTenantsResponse>()?;
-    module.add_class::<PyListSuppressedDestinationsResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListTenantResourcesResponse>()?;
-    module.add_class::<PyListTenantsResponse>()?;
-    module.add_class::<PyPutAccountDedicatedIpWarmupAttributesResponse>()?;
-    module.add_class::<PyPutAccountDetailsResponse>()?;
-    module.add_class::<PyPutAccountPricingAttributesResponse>()?;
-    module.add_class::<PyPutAccountSendingAttributesResponse>()?;
-    module.add_class::<PyPutAccountSuppressionAttributesResponse>()?;
-    module.add_class::<PyPutAccountVdmAttributesResponse>()?;
-    module.add_class::<PyPutConfigurationSetArchivingOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetDeliveryOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetReputationOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetSendingOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetSuppressionOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetTrackingOptionsResponse>()?;
-    module.add_class::<PyPutConfigurationSetVdmOptionsResponse>()?;
-    module.add_class::<PyPutDedicatedIpInPoolResponse>()?;
-    module.add_class::<PyPutDedicatedIpPoolScalingAttributesResponse>()?;
-    module.add_class::<PyPutDedicatedIpWarmupAttributesResponse>()?;
-    module.add_class::<PyPutDeliverabilityDashboardOptionResponse>()?;
-    module.add_class::<PyPutEmailIdentityConfigurationSetAttributesResponse>()?;
-    module.add_class::<PyPutEmailIdentityDkimAttributesResponse>()?;
-    module.add_class::<PyPutEmailIdentityDkimSigningAttributesResponse>()?;
-    module.add_class::<PyPutEmailIdentityFeedbackAttributesResponse>()?;
-    module.add_class::<PyPutEmailIdentityMailFromAttributesResponse>()?;
-    module.add_class::<PyPutSuppressedDestinationResponse>()?;
-    module.add_class::<PyPutTenantSuppressionAttributesResponse>()?;
-    module.add_class::<PySendBulkEmailResponse>()?;
-    module.add_class::<PySendCustomVerificationEmailResponse>()?;
-    module.add_class::<PySendEmailResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyTestRenderEmailTemplateResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyUpdateConfigurationSetResponse>()?;
-    module.add_class::<PyUpdateConfigurationSetEventDestinationResponse>()?;
-    module.add_class::<PyUpdateContactResponse>()?;
-    module.add_class::<PyUpdateContactListResponse>()?;
-    module.add_class::<PyUpdateCustomVerificationEmailTemplateResponse>()?;
-    module.add_class::<PyUpdateEmailIdentityPolicyResponse>()?;
-    module.add_class::<PyUpdateEmailTemplateResponse>()?;
-    module.add_class::<PyUpdateReputationEntityCustomerManagedStatusResponse>()?;
-    module.add_class::<PyUpdateReputationEntityPolicyResponse>()?;
+    module.add_class::<PyOperationAssociateEmailIdentityCertificateOutput>()?;
+    module.add_class::<PyOperationBatchGetMetricDataOutput>()?;
+    module.add_class::<PyOperationCancelExportJobOutput>()?;
+    module.add_class::<PyOperationCreateConfigurationSetOutput>()?;
+    module.add_class::<PyOperationCreateConfigurationSetEventDestinationOutput>()?;
+    module.add_class::<PyOperationCreateContactOutput>()?;
+    module.add_class::<PyOperationCreateContactListOutput>()?;
+    module.add_class::<PyOperationCreateCustomVerificationEmailTemplateOutput>()?;
+    module.add_class::<PyOperationCreateDedicatedIpPoolOutput>()?;
+    module.add_class::<PyOperationCreateDeliverabilityTestReportOutput>()?;
+    module.add_class::<PyOperationCreateEmailIdentityOutput>()?;
+    module.add_class::<PyOperationCreateEmailIdentityPolicyOutput>()?;
+    module.add_class::<PyOperationCreateEmailTemplateOutput>()?;
+    module.add_class::<PyOperationCreateExportJobOutput>()?;
+    module.add_class::<PyOperationCreateImportJobOutput>()?;
+    module.add_class::<PyOperationCreateMultiRegionEndpointOutput>()?;
+    module.add_class::<PyOperationCreateTenantOutput>()?;
+    module.add_class::<PyOperationCreateTenantResourceAssociationOutput>()?;
+    module.add_class::<PyOperationDeleteConfigurationSetOutput>()?;
+    module.add_class::<PyOperationDeleteConfigurationSetEventDestinationOutput>()?;
+    module.add_class::<PyOperationDeleteContactOutput>()?;
+    module.add_class::<PyOperationDeleteContactListOutput>()?;
+    module.add_class::<PyOperationDeleteCustomVerificationEmailTemplateOutput>()?;
+    module.add_class::<PyOperationDeleteDedicatedIpPoolOutput>()?;
+    module.add_class::<PyOperationDeleteEmailIdentityOutput>()?;
+    module.add_class::<PyOperationDeleteEmailIdentityPolicyOutput>()?;
+    module.add_class::<PyOperationDeleteEmailTemplateOutput>()?;
+    module.add_class::<PyOperationDeleteMultiRegionEndpointOutput>()?;
+    module.add_class::<PyOperationDeleteSuppressedDestinationOutput>()?;
+    module.add_class::<PyOperationDeleteTenantOutput>()?;
+    module.add_class::<PyOperationDeleteTenantResourceAssociationOutput>()?;
+    module.add_class::<PyOperationDisassociateEmailIdentityCertificateOutput>()?;
+    module.add_class::<PyOperationGetAccountOutput>()?;
+    module.add_class::<PyOperationGetBlacklistReportsOutput>()?;
+    module.add_class::<PyOperationGetConfigurationSetOutput>()?;
+    module.add_class::<PyOperationGetConfigurationSetEventDestinationsOutput>()?;
+    module.add_class::<PyOperationGetContactOutput>()?;
+    module.add_class::<PyOperationGetContactListOutput>()?;
+    module.add_class::<PyOperationGetCustomVerificationEmailTemplateOutput>()?;
+    module.add_class::<PyOperationGetDedicatedIpOutput>()?;
+    module.add_class::<PyOperationGetDedicatedIpPoolOutput>()?;
+    module.add_class::<PyOperationGetDedicatedIpsOutput>()?;
+    module.add_class::<PyOperationGetDeliverabilityDashboardOptionsOutput>()?;
+    module.add_class::<PyOperationGetDeliverabilityTestReportOutput>()?;
+    module.add_class::<PyOperationGetDomainDeliverabilityCampaignOutput>()?;
+    module.add_class::<PyOperationGetDomainStatisticsReportOutput>()?;
+    module.add_class::<PyOperationGetEmailAddressInsightsOutput>()?;
+    module.add_class::<PyOperationGetEmailIdentityOutput>()?;
+    module.add_class::<PyOperationGetEmailIdentityPoliciesOutput>()?;
+    module.add_class::<PyOperationGetEmailTemplateOutput>()?;
+    module.add_class::<PyOperationGetExportJobOutput>()?;
+    module.add_class::<PyOperationGetImportJobOutput>()?;
+    module.add_class::<PyOperationGetMessageInsightsOutput>()?;
+    module.add_class::<PyOperationGetMultiRegionEndpointOutput>()?;
+    module.add_class::<PyOperationGetReputationEntityOutput>()?;
+    module.add_class::<PyOperationGetSuppressedDestinationOutput>()?;
+    module.add_class::<PyOperationGetTenantOutput>()?;
+    module.add_class::<PyOperationListConfigurationSetsOutput>()?;
+    module.add_class::<PyOperationListContactListsOutput>()?;
+    module.add_class::<PyOperationListContactsOutput>()?;
+    module.add_class::<PyOperationListCustomVerificationEmailTemplatesOutput>()?;
+    module.add_class::<PyOperationListDedicatedIpPoolsOutput>()?;
+    module.add_class::<PyOperationListDeliverabilityTestReportsOutput>()?;
+    module.add_class::<PyOperationListDomainDeliverabilityCampaignsOutput>()?;
+    module.add_class::<PyOperationListEmailIdentitiesOutput>()?;
+    module.add_class::<PyOperationListEmailIdentityCertificatesOutput>()?;
+    module.add_class::<PyOperationListEmailTemplatesOutput>()?;
+    module.add_class::<PyOperationListExportJobsOutput>()?;
+    module.add_class::<PyOperationListImportJobsOutput>()?;
+    module.add_class::<PyOperationListMultiRegionEndpointsOutput>()?;
+    module.add_class::<PyOperationListRecommendationsOutput>()?;
+    module.add_class::<PyOperationListReputationEntitiesOutput>()?;
+    module.add_class::<PyOperationListResourceTenantsOutput>()?;
+    module.add_class::<PyOperationListSuppressedDestinationsOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListTenantResourcesOutput>()?;
+    module.add_class::<PyOperationListTenantsOutput>()?;
+    module.add_class::<PyOperationPutAccountDedicatedIpWarmupAttributesOutput>()?;
+    module.add_class::<PyOperationPutAccountDetailsOutput>()?;
+    module.add_class::<PyOperationPutAccountPricingAttributesOutput>()?;
+    module.add_class::<PyOperationPutAccountSendingAttributesOutput>()?;
+    module.add_class::<PyOperationPutAccountSuppressionAttributesOutput>()?;
+    module.add_class::<PyOperationPutAccountVdmAttributesOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetArchivingOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetDeliveryOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetReputationOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetSendingOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetSuppressionOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetTrackingOptionsOutput>()?;
+    module.add_class::<PyOperationPutConfigurationSetVdmOptionsOutput>()?;
+    module.add_class::<PyOperationPutDedicatedIpInPoolOutput>()?;
+    module.add_class::<PyOperationPutDedicatedIpPoolScalingAttributesOutput>()?;
+    module.add_class::<PyOperationPutDedicatedIpWarmupAttributesOutput>()?;
+    module.add_class::<PyOperationPutDeliverabilityDashboardOptionOutput>()?;
+    module.add_class::<PyOperationPutEmailIdentityConfigurationSetAttributesOutput>()?;
+    module.add_class::<PyOperationPutEmailIdentityDkimAttributesOutput>()?;
+    module.add_class::<PyOperationPutEmailIdentityDkimSigningAttributesOutput>()?;
+    module.add_class::<PyOperationPutEmailIdentityFeedbackAttributesOutput>()?;
+    module.add_class::<PyOperationPutEmailIdentityMailFromAttributesOutput>()?;
+    module.add_class::<PyOperationPutSuppressedDestinationOutput>()?;
+    module.add_class::<PyOperationPutTenantSuppressionAttributesOutput>()?;
+    module.add_class::<PyOperationSendBulkEmailOutput>()?;
+    module.add_class::<PyOperationSendCustomVerificationEmailOutput>()?;
+    module.add_class::<PyOperationSendEmailOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationTestRenderEmailTemplateOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationUpdateConfigurationSetOutput>()?;
+    module.add_class::<PyOperationUpdateConfigurationSetEventDestinationOutput>()?;
+    module.add_class::<PyOperationUpdateContactOutput>()?;
+    module.add_class::<PyOperationUpdateContactListOutput>()?;
+    module.add_class::<PyOperationUpdateCustomVerificationEmailTemplateOutput>()?;
+    module.add_class::<PyOperationUpdateEmailIdentityPolicyOutput>()?;
+    module.add_class::<PyOperationUpdateEmailTemplateOutput>()?;
+    module.add_class::<PyOperationUpdateReputationEntityCustomerManagedStatusOutput>()?;
+    module.add_class::<PyOperationUpdateReputationEntityPolicyOutput>()?;
 
     Ok(())
 }
@@ -16227,7 +16195,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "AssociateEmailIdentityCertificate")
                 })
             })?;
-            Ok(PyAssociateEmailIdentityCertificateResponse { inner: output })
+            Ok(PyOperationAssociateEmailIdentityCertificateOutput { inner: output })
         })
     }
 
@@ -16269,7 +16237,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetMetricData"))
             })?;
-            Ok(PyBatchGetMetricDataResponse { inner: output })
+            Ok(PyOperationBatchGetMetricDataOutput { inner: output })
         })
     }
 
@@ -16305,7 +16273,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CancelExportJob"))
             })?;
-            Ok(PyCancelExportJobResponse { inner: output })
+            Ok(PyOperationCancelExportJobOutput { inner: output })
         })
     }
 
@@ -16417,7 +16385,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateConfigurationSet"))
             })?;
-            Ok(PyCreateConfigurationSetResponse { inner: output })
+            Ok(PyOperationCreateConfigurationSetOutput { inner: output })
         })
     }
 
@@ -16474,7 +16442,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "CreateConfigurationSetEventDestination")
                 })
             })?;
-            Ok(PyCreateConfigurationSetEventDestinationResponse { inner: output })
+            Ok(PyOperationCreateConfigurationSetEventDestinationOutput { inner: output })
         })
     }
 
@@ -16548,7 +16516,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateContact"))
             })?;
-            Ok(PyCreateContactResponse { inner: output })
+            Ok(PyOperationCreateContactOutput { inner: output })
         })
     }
 
@@ -16620,7 +16588,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateContactList"))
             })?;
-            Ok(PyCreateContactListResponse { inner: output })
+            Ok(PyOperationCreateContactListOutput { inner: output })
         })
     }
 
@@ -16711,7 +16679,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "CreateCustomVerificationEmailTemplate")
                 })
             })?;
-            Ok(PyCreateCustomVerificationEmailTemplateResponse { inner: output })
+            Ok(PyOperationCreateCustomVerificationEmailTemplateOutput { inner: output })
         })
     }
 
@@ -16770,7 +16738,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDedicatedIpPool"))
             })?;
-            Ok(PyCreateDedicatedIpPoolResponse { inner: output })
+            Ok(PyOperationCreateDedicatedIpPoolOutput { inner: output })
         })
     }
 
@@ -16836,7 +16804,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeliverabilityTestReport"))
             })?;
-            Ok(PyCreateDeliverabilityTestReportResponse { inner: output })
+            Ok(PyOperationCreateDeliverabilityTestReportOutput { inner: output })
         })
     }
 
@@ -16903,7 +16871,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentity"))
             })?;
-            Ok(PyCreateEmailIdentityResponse { inner: output })
+            Ok(PyOperationCreateEmailIdentityOutput { inner: output })
         })
     }
 
@@ -16955,7 +16923,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentityPolicy"))
             })?;
-            Ok(PyCreateEmailIdentityPolicyResponse { inner: output })
+            Ok(PyOperationCreateEmailIdentityPolicyOutput { inner: output })
         })
     }
 
@@ -17013,7 +16981,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailTemplate"))
             })?;
-            Ok(PyCreateEmailTemplateResponse { inner: output })
+            Ok(PyOperationCreateEmailTemplateOutput { inner: output })
         })
     }
 
@@ -17060,7 +17028,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportJob"))
             })?;
-            Ok(PyCreateExportJobResponse { inner: output })
+            Ok(PyOperationCreateExportJobOutput { inner: output })
         })
     }
 
@@ -17107,7 +17075,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportJob"))
             })?;
-            Ok(PyCreateImportJobResponse { inner: output })
+            Ok(PyOperationCreateImportJobOutput { inner: output })
         })
     }
 
@@ -17165,7 +17133,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultiRegionEndpoint"))
             })?;
-            Ok(PyCreateMultiRegionEndpointResponse { inner: output })
+            Ok(PyOperationCreateMultiRegionEndpointOutput { inner: output })
         })
     }
 
@@ -17224,7 +17192,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenant"))
             })?;
-            Ok(PyCreateTenantResponse { inner: output })
+            Ok(PyOperationCreateTenantOutput { inner: output })
         })
     }
 
@@ -17269,7 +17237,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenantResourceAssociation"))
             })?;
-            Ok(PyCreateTenantResourceAssociationResponse { inner: output })
+            Ok(PyOperationCreateTenantResourceAssociationOutput { inner: output })
         })
     }
 
@@ -17308,7 +17276,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConfigurationSet"))
             })?;
-            Ok(PyDeleteConfigurationSetResponse { inner: output })
+            Ok(PyOperationDeleteConfigurationSetOutput { inner: output })
         })
     }
 
@@ -17357,7 +17325,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DeleteConfigurationSetEventDestination")
                 })
             })?;
-            Ok(PyDeleteConfigurationSetEventDestinationResponse { inner: output })
+            Ok(PyOperationDeleteConfigurationSetEventDestinationOutput { inner: output })
         })
     }
 
@@ -17403,7 +17371,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContact"))
             })?;
-            Ok(PyDeleteContactResponse { inner: output })
+            Ok(PyOperationDeleteContactOutput { inner: output })
         })
     }
 
@@ -17442,7 +17410,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContactList"))
             })?;
-            Ok(PyDeleteContactListResponse { inner: output })
+            Ok(PyOperationDeleteContactListOutput { inner: output })
         })
     }
 
@@ -17482,7 +17450,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DeleteCustomVerificationEmailTemplate")
                 })
             })?;
-            Ok(PyDeleteCustomVerificationEmailTemplateResponse { inner: output })
+            Ok(PyOperationDeleteCustomVerificationEmailTemplateOutput { inner: output })
         })
     }
 
@@ -17520,7 +17488,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDedicatedIpPool"))
             })?;
-            Ok(PyDeleteDedicatedIpPoolResponse { inner: output })
+            Ok(PyOperationDeleteDedicatedIpPoolOutput { inner: output })
         })
     }
 
@@ -17558,7 +17526,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentity"))
             })?;
-            Ok(PyDeleteEmailIdentityResponse { inner: output })
+            Ok(PyOperationDeleteEmailIdentityOutput { inner: output })
         })
     }
 
@@ -17603,7 +17571,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentityPolicy"))
             })?;
-            Ok(PyDeleteEmailIdentityPolicyResponse { inner: output })
+            Ok(PyOperationDeleteEmailIdentityPolicyOutput { inner: output })
         })
     }
 
@@ -17641,7 +17609,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailTemplate"))
             })?;
-            Ok(PyDeleteEmailTemplateResponse { inner: output })
+            Ok(PyOperationDeleteEmailTemplateOutput { inner: output })
         })
     }
 
@@ -17679,7 +17647,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMultiRegionEndpoint"))
             })?;
-            Ok(PyDeleteMultiRegionEndpointResponse { inner: output })
+            Ok(PyOperationDeleteMultiRegionEndpointOutput { inner: output })
         })
     }
 
@@ -17724,7 +17692,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSuppressedDestination"))
             })?;
-            Ok(PyDeleteSuppressedDestinationResponse { inner: output })
+            Ok(PyOperationDeleteSuppressedDestinationOutput { inner: output })
         })
     }
 
@@ -17760,7 +17728,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenant"))
             })?;
-            Ok(PyDeleteTenantResponse { inner: output })
+            Ok(PyOperationDeleteTenantOutput { inner: output })
         })
     }
 
@@ -17805,7 +17773,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenantResourceAssociation"))
             })?;
-            Ok(PyDeleteTenantResourceAssociationResponse { inner: output })
+            Ok(PyOperationDeleteTenantResourceAssociationOutput { inner: output })
         })
     }
 
@@ -17852,7 +17820,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "DisassociateEmailIdentityCertificate")
                 })
             })?;
-            Ok(PyDisassociateEmailIdentityCertificateResponse { inner: output })
+            Ok(PyOperationDisassociateEmailIdentityCertificateOutput { inner: output })
         })
     }
 
@@ -17881,7 +17849,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
-            Ok(PyGetAccountResponse { inner: output })
+            Ok(PyOperationGetAccountOutput { inner: output })
         })
     }
 
@@ -17926,7 +17894,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBlacklistReports"))
             })?;
-            Ok(PyGetBlacklistReportsResponse { inner: output })
+            Ok(PyOperationGetBlacklistReportsOutput { inner: output })
         })
     }
 
@@ -17965,7 +17933,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetConfigurationSet"))
             })?;
-            Ok(PyGetConfigurationSetResponse { inner: output })
+            Ok(PyOperationGetConfigurationSetOutput { inner: output })
         })
     }
 
@@ -18006,7 +17974,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetConfigurationSetEventDestinations")
                 })
             })?;
-            Ok(PyGetConfigurationSetEventDestinationsResponse { inner: output })
+            Ok(PyOperationGetConfigurationSetEventDestinationsOutput { inner: output })
         })
     }
 
@@ -18051,7 +18019,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetContact")))?;
-            Ok(PyGetContactResponse { inner: output })
+            Ok(PyOperationGetContactOutput { inner: output })
         })
     }
 
@@ -18090,7 +18058,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetContactList"))
             })?;
-            Ok(PyGetContactListResponse { inner: output })
+            Ok(PyOperationGetContactListOutput { inner: output })
         })
     }
 
@@ -18130,7 +18098,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetCustomVerificationEmailTemplate")
                 })
             })?;
-            Ok(PyGetCustomVerificationEmailTemplateResponse { inner: output })
+            Ok(PyOperationGetCustomVerificationEmailTemplateOutput { inner: output })
         })
     }
 
@@ -18166,7 +18134,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIp"))
             })?;
-            Ok(PyGetDedicatedIpResponse { inner: output })
+            Ok(PyOperationGetDedicatedIpOutput { inner: output })
         })
     }
 
@@ -18204,7 +18172,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIpPool"))
             })?;
-            Ok(PyGetDedicatedIpPoolResponse { inner: output })
+            Ok(PyOperationGetDedicatedIpPoolOutput { inner: output })
         })
     }
 
@@ -18256,7 +18224,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIps"))
             })?;
-            Ok(PyGetDedicatedIpsResponse { inner: output })
+            Ok(PyOperationGetDedicatedIpsOutput { inner: output })
         })
     }
 
@@ -18288,7 +18256,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "GetDeliverabilityDashboardOptions")
                 })
             })?;
-            Ok(PyGetDeliverabilityDashboardOptionsResponse { inner: output })
+            Ok(PyOperationGetDeliverabilityDashboardOptionsOutput { inner: output })
         })
     }
 
@@ -18326,7 +18294,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverabilityTestReport"))
             })?;
-            Ok(PyGetDeliverabilityTestReportResponse { inner: output })
+            Ok(PyOperationGetDeliverabilityTestReportOutput { inner: output })
         })
     }
 
@@ -18364,7 +18332,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainDeliverabilityCampaign"))
             })?;
-            Ok(PyGetDomainDeliverabilityCampaignResponse { inner: output })
+            Ok(PyOperationGetDomainDeliverabilityCampaignOutput { inner: output })
         })
     }
 
@@ -18426,7 +18394,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainStatisticsReport"))
             })?;
-            Ok(PyGetDomainStatisticsReportResponse { inner: output })
+            Ok(PyOperationGetDomainStatisticsReportOutput { inner: output })
         })
     }
 
@@ -18464,7 +18432,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailAddressInsights"))
             })?;
-            Ok(PyGetEmailAddressInsightsResponse { inner: output })
+            Ok(PyOperationGetEmailAddressInsightsOutput { inner: output })
         })
     }
 
@@ -18502,7 +18470,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentity"))
             })?;
-            Ok(PyGetEmailIdentityResponse { inner: output })
+            Ok(PyOperationGetEmailIdentityOutput { inner: output })
         })
     }
 
@@ -18540,7 +18508,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentityPolicies"))
             })?;
-            Ok(PyGetEmailIdentityPoliciesResponse { inner: output })
+            Ok(PyOperationGetEmailIdentityPoliciesOutput { inner: output })
         })
     }
 
@@ -18578,7 +18546,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailTemplate"))
             })?;
-            Ok(PyGetEmailTemplateResponse { inner: output })
+            Ok(PyOperationGetEmailTemplateOutput { inner: output })
         })
     }
 
@@ -18614,7 +18582,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetExportJob"))
             })?;
-            Ok(PyGetExportJobResponse { inner: output })
+            Ok(PyOperationGetExportJobOutput { inner: output })
         })
     }
 
@@ -18650,7 +18618,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetImportJob"))
             })?;
-            Ok(PyGetImportJobResponse { inner: output })
+            Ok(PyOperationGetImportJobOutput { inner: output })
         })
     }
 
@@ -18688,7 +18656,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMessageInsights"))
             })?;
-            Ok(PyGetMessageInsightsResponse { inner: output })
+            Ok(PyOperationGetMessageInsightsOutput { inner: output })
         })
     }
 
@@ -18726,7 +18694,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetMultiRegionEndpoint"))
             })?;
-            Ok(PyGetMultiRegionEndpointResponse { inner: output })
+            Ok(PyOperationGetMultiRegionEndpointOutput { inner: output })
         })
     }
 
@@ -18775,7 +18743,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetReputationEntity"))
             })?;
-            Ok(PyGetReputationEntityResponse { inner: output })
+            Ok(PyOperationGetReputationEntityOutput { inner: output })
         })
     }
 
@@ -18820,7 +18788,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSuppressedDestination"))
             })?;
-            Ok(PyGetSuppressedDestinationResponse { inner: output })
+            Ok(PyOperationGetSuppressedDestinationOutput { inner: output })
         })
     }
 
@@ -18855,7 +18823,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTenant")))?;
-            Ok(PyGetTenantResponse { inner: output })
+            Ok(PyOperationGetTenantOutput { inner: output })
         })
     }
 
@@ -18915,7 +18883,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListConfigurationSets"))
             })?;
-            Ok(PyListConfigurationSetsResponse { inner: output })
+            Ok(PyOperationListConfigurationSetsOutput { inner: output })
         })
     }
 
@@ -18960,7 +18928,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContactLists"))
             })?;
-            Ok(PyListContactListsResponse { inner: output })
+            Ok(PyOperationListContactListsOutput { inner: output })
         })
     }
 
@@ -19020,7 +18988,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListContacts"))
             })?;
-            Ok(PyListContactsResponse { inner: output })
+            Ok(PyOperationListContactsOutput { inner: output })
         })
     }
 
@@ -19067,7 +19035,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "ListCustomVerificationEmailTemplates")
                 })
             })?;
-            Ok(PyListCustomVerificationEmailTemplatesResponse { inner: output })
+            Ok(PyOperationListCustomVerificationEmailTemplatesOutput { inner: output })
         })
     }
 
@@ -19112,7 +19080,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDedicatedIpPools"))
             })?;
-            Ok(PyListDedicatedIpPoolsResponse { inner: output })
+            Ok(PyOperationListDedicatedIpPoolsOutput { inner: output })
         })
     }
 
@@ -19157,7 +19125,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDeliverabilityTestReports"))
             })?;
-            Ok(PyListDeliverabilityTestReportsResponse { inner: output })
+            Ok(PyOperationListDeliverabilityTestReportsOutput { inner: output })
         })
     }
 
@@ -19236,7 +19204,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "ListDomainDeliverabilityCampaigns")
                 })
             })?;
-            Ok(PyListDomainDeliverabilityCampaignsResponse { inner: output })
+            Ok(PyOperationListDomainDeliverabilityCampaignsOutput { inner: output })
         })
     }
 
@@ -19296,7 +19264,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentities"))
             })?;
-            Ok(PyListEmailIdentitiesResponse { inner: output })
+            Ok(PyOperationListEmailIdentitiesOutput { inner: output })
         })
     }
 
@@ -19348,7 +19316,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentityCertificates"))
             })?;
-            Ok(PyListEmailIdentityCertificatesResponse { inner: output })
+            Ok(PyOperationListEmailIdentityCertificatesOutput { inner: output })
         })
     }
 
@@ -19393,7 +19361,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailTemplates"))
             })?;
-            Ok(PyListEmailTemplatesResponse { inner: output })
+            Ok(PyOperationListEmailTemplatesOutput { inner: output })
         })
     }
 
@@ -19456,7 +19424,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListExportJobs"))
             })?;
-            Ok(PyListExportJobsResponse { inner: output })
+            Ok(PyOperationListExportJobsOutput { inner: output })
         })
     }
 
@@ -19511,7 +19479,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListImportJobs"))
             })?;
-            Ok(PyListImportJobsResponse { inner: output })
+            Ok(PyOperationListImportJobsOutput { inner: output })
         })
     }
 
@@ -19556,7 +19524,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultiRegionEndpoints"))
             })?;
-            Ok(PyListMultiRegionEndpointsResponse { inner: output })
+            Ok(PyOperationListMultiRegionEndpointsOutput { inner: output })
         })
     }
 
@@ -19617,7 +19585,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListRecommendations"))
             })?;
-            Ok(PyListRecommendationsResponse { inner: output })
+            Ok(PyOperationListRecommendationsOutput { inner: output })
         })
     }
 
@@ -19677,7 +19645,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListReputationEntities"))
             })?;
-            Ok(PyListReputationEntitiesResponse { inner: output })
+            Ok(PyOperationListReputationEntitiesOutput { inner: output })
         })
     }
 
@@ -19729,7 +19697,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTenants"))
             })?;
-            Ok(PyListResourceTenantsResponse { inner: output })
+            Ok(PyOperationListResourceTenantsOutput { inner: output })
         })
     }
 
@@ -19820,7 +19788,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSuppressedDestinations"))
             })?;
-            Ok(PyListSuppressedDestinationsResponse { inner: output })
+            Ok(PyOperationListSuppressedDestinationsOutput { inner: output })
         })
     }
 
@@ -19858,7 +19826,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -19926,7 +19894,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTenantResources"))
             })?;
-            Ok(PyListTenantResourcesResponse { inner: output })
+            Ok(PyOperationListTenantResourcesOutput { inner: output })
         })
     }
 
@@ -19985,7 +19953,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTenants")))?;
-            Ok(PyListTenantsResponse { inner: output })
+            Ok(PyOperationListTenantsOutput { inner: output })
         })
     }
 
@@ -20026,7 +19994,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutAccountDedicatedIpWarmupAttributes")
                 })
             })?;
-            Ok(PyPutAccountDedicatedIpWarmupAttributesResponse { inner: output })
+            Ok(PyOperationPutAccountDedicatedIpWarmupAttributesOutput { inner: output })
         })
     }
 
@@ -20111,7 +20079,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountDetails"))
             })?;
-            Ok(PyPutAccountDetailsResponse { inner: output })
+            Ok(PyOperationPutAccountDetailsOutput { inner: output })
         })
     }
 
@@ -20148,7 +20116,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPricingAttributes"))
             })?;
-            Ok(PyPutAccountPricingAttributesResponse { inner: output })
+            Ok(PyOperationPutAccountPricingAttributesOutput { inner: output })
         })
     }
 
@@ -20186,7 +20154,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSendingAttributes"))
             })?;
-            Ok(PyPutAccountSendingAttributesResponse { inner: output })
+            Ok(PyOperationPutAccountSendingAttributesOutput { inner: output })
         })
     }
 
@@ -20241,7 +20209,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSuppressionAttributes"))
             })?;
-            Ok(PyPutAccountSuppressionAttributesResponse { inner: output })
+            Ok(PyOperationPutAccountSuppressionAttributesOutput { inner: output })
         })
     }
 
@@ -20279,7 +20247,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountVdmAttributes"))
             })?;
-            Ok(PyPutAccountVdmAttributesResponse { inner: output })
+            Ok(PyOperationPutAccountVdmAttributesOutput { inner: output })
         })
     }
 
@@ -20327,7 +20295,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetArchivingOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetArchivingOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetArchivingOptionsOutput { inner: output })
         })
     }
 
@@ -20392,7 +20360,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetDeliveryOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetDeliveryOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetDeliveryOptionsOutput { inner: output })
         })
     }
 
@@ -20441,7 +20409,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetReputationOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetReputationOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetReputationOptionsOutput { inner: output })
         })
     }
 
@@ -20489,7 +20457,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetSendingOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetSendingOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetSendingOptionsOutput { inner: output })
         })
     }
 
@@ -20564,7 +20532,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetSuppressionOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetSuppressionOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetSuppressionOptionsOutput { inner: output })
         })
     }
 
@@ -20621,7 +20589,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutConfigurationSetTrackingOptions")
                 })
             })?;
-            Ok(PyPutConfigurationSetTrackingOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetTrackingOptionsOutput { inner: output })
         })
     }
 
@@ -20667,7 +20635,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutConfigurationSetVdmOptions"))
             })?;
-            Ok(PyPutConfigurationSetVdmOptionsResponse { inner: output })
+            Ok(PyOperationPutConfigurationSetVdmOptionsOutput { inner: output })
         })
     }
 
@@ -20713,7 +20681,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpInPool"))
             })?;
-            Ok(PyPutDedicatedIpInPoolResponse { inner: output })
+            Ok(PyOperationPutDedicatedIpInPoolOutput { inner: output })
         })
     }
 
@@ -20761,7 +20729,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutDedicatedIpPoolScalingAttributes")
                 })
             })?;
-            Ok(PyPutDedicatedIpPoolScalingAttributesResponse { inner: output })
+            Ok(PyOperationPutDedicatedIpPoolScalingAttributesOutput { inner: output })
         })
     }
 
@@ -20807,7 +20775,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpWarmupAttributes"))
             })?;
-            Ok(PyPutDedicatedIpWarmupAttributesResponse { inner: output })
+            Ok(PyOperationPutDedicatedIpWarmupAttributesOutput { inner: output })
         })
     }
 
@@ -20861,7 +20829,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverabilityDashboardOption"))
             })?;
-            Ok(PyPutDeliverabilityDashboardOptionResponse { inner: output })
+            Ok(PyOperationPutDeliverabilityDashboardOptionOutput { inner: output })
         })
     }
 
@@ -20909,7 +20877,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityConfigurationSetAttributes")
                 })
             })?;
-            Ok(PyPutEmailIdentityConfigurationSetAttributesResponse { inner: output })
+            Ok(PyOperationPutEmailIdentityConfigurationSetAttributesOutput { inner: output })
         })
     }
 
@@ -20954,7 +20922,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutEmailIdentityDkimAttributes"))
             })?;
-            Ok(PyPutEmailIdentityDkimAttributesResponse { inner: output })
+            Ok(PyOperationPutEmailIdentityDkimAttributesOutput { inner: output })
         })
     }
 
@@ -21013,7 +20981,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityDkimSigningAttributes")
                 })
             })?;
-            Ok(PyPutEmailIdentityDkimSigningAttributesResponse { inner: output })
+            Ok(PyOperationPutEmailIdentityDkimSigningAttributesOutput { inner: output })
         })
     }
 
@@ -21061,7 +21029,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityFeedbackAttributes")
                 })
             })?;
-            Ok(PyPutEmailIdentityFeedbackAttributesResponse { inner: output })
+            Ok(PyOperationPutEmailIdentityFeedbackAttributesOutput { inner: output })
         })
     }
 
@@ -21118,7 +21086,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "PutEmailIdentityMailFromAttributes")
                 })
             })?;
-            Ok(PyPutEmailIdentityMailFromAttributesResponse { inner: output })
+            Ok(PyOperationPutEmailIdentityMailFromAttributesOutput { inner: output })
         })
     }
 
@@ -21172,7 +21140,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutSuppressedDestination"))
             })?;
-            Ok(PyPutSuppressedDestinationResponse { inner: output })
+            Ok(PyOperationPutSuppressedDestinationOutput { inner: output })
         })
     }
 
@@ -21236,7 +21204,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutTenantSuppressionAttributes"))
             })?;
-            Ok(PyPutTenantSuppressionAttributesResponse { inner: output })
+            Ok(PyOperationPutTenantSuppressionAttributesOutput { inner: output })
         })
     }
 
@@ -21381,7 +21349,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendBulkEmail"))
             })?;
-            Ok(PySendBulkEmailResponse { inner: output })
+            Ok(PyOperationSendBulkEmailOutput { inner: output })
         })
     }
 
@@ -21434,7 +21402,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SendCustomVerificationEmail"))
             })?;
-            Ok(PySendCustomVerificationEmailResponse { inner: output })
+            Ok(PyOperationSendCustomVerificationEmailOutput { inner: output })
         })
     }
 
@@ -21578,7 +21546,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendEmail")))?;
-            Ok(PySendEmailResponse { inner: output })
+            Ok(PyOperationSendEmailOutput { inner: output })
         })
     }
 
@@ -21628,7 +21596,7 @@ impl SESv2Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -21673,7 +21641,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "TestRenderEmailTemplate"))
             })?;
-            Ok(PyTestRenderEmailTemplateResponse { inner: output })
+            Ok(PyOperationTestRenderEmailTemplateOutput { inner: output })
         })
     }
 
@@ -21724,7 +21692,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -21771,7 +21739,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConfigurationSet"))
             })?;
-            Ok(PyUpdateConfigurationSetResponse { inner: output })
+            Ok(PyOperationUpdateConfigurationSetOutput { inner: output })
         })
     }
 
@@ -21828,7 +21796,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateConfigurationSetEventDestination")
                 })
             })?;
-            Ok(PyUpdateConfigurationSetEventDestinationResponse { inner: output })
+            Ok(PyOperationUpdateConfigurationSetEventDestinationOutput { inner: output })
         })
     }
 
@@ -21902,7 +21870,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContact"))
             })?;
-            Ok(PyUpdateContactResponse { inner: output })
+            Ok(PyOperationUpdateContactOutput { inner: output })
         })
     }
 
@@ -21961,7 +21929,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContactList"))
             })?;
-            Ok(PyUpdateContactListResponse { inner: output })
+            Ok(PyOperationUpdateContactListOutput { inner: output })
         })
     }
 
@@ -22039,7 +22007,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateCustomVerificationEmailTemplate")
                 })
             })?;
-            Ok(PyUpdateCustomVerificationEmailTemplateResponse { inner: output })
+            Ok(PyOperationUpdateCustomVerificationEmailTemplateOutput { inner: output })
         })
     }
 
@@ -22091,7 +22059,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailIdentityPolicy"))
             })?;
-            Ok(PyUpdateEmailIdentityPolicyResponse { inner: output })
+            Ok(PyOperationUpdateEmailIdentityPolicyOutput { inner: output })
         })
     }
 
@@ -22136,7 +22104,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailTemplate"))
             })?;
-            Ok(PyUpdateEmailTemplateResponse { inner: output })
+            Ok(PyOperationUpdateEmailTemplateOutput { inner: output })
         })
     }
 
@@ -22196,7 +22164,7 @@ impl SESv2Client {
                     sdk_error_to_py(py, &error, "UpdateReputationEntityCustomerManagedStatus")
                 })
             })?;
-            Ok(PyUpdateReputationEntityCustomerManagedStatusResponse { inner: output })
+            Ok(PyOperationUpdateReputationEntityCustomerManagedStatusOutput { inner: output })
         })
     }
 
@@ -22253,7 +22221,7 @@ impl SESv2Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateReputationEntityPolicy"))
             })?;
-            Ok(PyUpdateReputationEntityPolicyResponse { inner: output })
+            Ok(PyOperationUpdateReputationEntityPolicyOutput { inner: output })
         })
     }
 }

@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import STSClient as NativeClient, AssumeRoleResponse, AssumeRoleWithSAMLResponse, AssumeRoleWithWebIdentityResponse, AssumeRootResponse, DecodeAuthorizationMessageResponse, GetAccessKeyInfoResponse, GetCallerIdentityResponse, GetDelegatedAccessTokenResponse, GetFederationTokenResponse, GetSessionTokenResponse, GetWebIdentityTokenResponse
+from ._native import STSClient as NativeClient, AssumeRoleOutput, AssumeRoleWithSAMLOutput, AssumeRoleWithWebIdentityOutput, AssumeRootOutput, DecodeAuthorizationMessageOutput, GetAccessKeyInfoOutput, GetCallerIdentityOutput, GetDelegatedAccessTokenOutput, GetFederationTokenOutput, GetSessionTokenOutput, GetWebIdentityTokenOutput
 from .types import (
     PolicyDescriptorType,
     ProvidedContext,
@@ -61,7 +61,7 @@ class STSClient:
         source_identity: str | None = None,
         provided_contexts: Sequence[ProvidedContext] | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> AssumeRoleResponse:
+    ) -> AssumeRoleOutput:
         params: dict[str, object] = {
             "role_arn": role_arn,
             "role_session_name": role_session_name,
@@ -93,7 +93,7 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role, params, _interceptors,
                 "sts", "AssumeRole", self._region,
-                AssumeRoleResponse,
+                AssumeRoleOutput,
                 ("role_arn", "role_session_name", "policy_arns", "policy", "duration_seconds", "tags", "transitive_tag_keys", "external_id", "serial_number", "token_code", "source_identity", "provided_contexts", "minimum_session_token_size", ),
                 ("role_arn", "role_session_name", ),
             )
@@ -112,7 +112,7 @@ class STSClient:
         policy: str | None = None,
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> AssumeRoleWithSAMLResponse:
+    ) -> AssumeRoleWithSAMLOutput:
         params: dict[str, object] = {
             "role_arn": role_arn,
             "principal_arn": principal_arn,
@@ -131,7 +131,7 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role_with_saml, params, _interceptors,
                 "sts", "AssumeRoleWithSAML", self._region,
-                AssumeRoleWithSAMLResponse,
+                AssumeRoleWithSAMLOutput,
                 ("role_arn", "principal_arn", "saml_assertion", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
                 ("role_arn", "principal_arn", "saml_assertion", ),
             )
@@ -151,7 +151,7 @@ class STSClient:
         policy: str | None = None,
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> AssumeRoleWithWebIdentityResponse:
+    ) -> AssumeRoleWithWebIdentityOutput:
         params: dict[str, object] = {
             "role_arn": role_arn,
             "role_session_name": role_session_name,
@@ -172,7 +172,7 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_role_with_web_identity, params, _interceptors,
                 "sts", "AssumeRoleWithWebIdentity", self._region,
-                AssumeRoleWithWebIdentityResponse,
+                AssumeRoleWithWebIdentityOutput,
                 ("role_arn", "role_session_name", "web_identity_token", "provider_id", "policy_arns", "policy", "duration_seconds", "minimum_session_token_size", ),
                 ("role_arn", "role_session_name", "web_identity_token", ),
             )
@@ -188,7 +188,7 @@ class STSClient:
         task_policy_arn: PolicyDescriptorType,
         duration_seconds: int | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> AssumeRootResponse:
+    ) -> AssumeRootOutput:
         params: dict[str, object] = {
             "target_principal": target_principal,
             "task_policy_arn": task_policy_arn,
@@ -202,7 +202,7 @@ class STSClient:
             _response = await invoke(
                 self._native.assume_root, params, _interceptors,
                 "sts", "AssumeRoot", self._region,
-                AssumeRootResponse,
+                AssumeRootOutput,
                 ("target_principal", "task_policy_arn", "duration_seconds", "minimum_session_token_size", ),
                 ("target_principal", "task_policy_arn", ),
             )
@@ -215,7 +215,7 @@ class STSClient:
         self,
         *,
         encoded_message: str,
-    ) -> DecodeAuthorizationMessageResponse:
+    ) -> DecodeAuthorizationMessageOutput:
         params: dict[str, object] = {
             "encoded_message": encoded_message,
         }
@@ -224,7 +224,7 @@ class STSClient:
             _response = await invoke(
                 self._native.decode_authorization_message, params, _interceptors,
                 "sts", "DecodeAuthorizationMessage", self._region,
-                DecodeAuthorizationMessageResponse,
+                DecodeAuthorizationMessageOutput,
                 ("encoded_message", ),
                 ("encoded_message", ),
             )
@@ -237,7 +237,7 @@ class STSClient:
         self,
         *,
         access_key_id: str,
-    ) -> GetAccessKeyInfoResponse:
+    ) -> GetAccessKeyInfoOutput:
         params: dict[str, object] = {
             "access_key_id": access_key_id,
         }
@@ -246,7 +246,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_access_key_info, params, _interceptors,
                 "sts", "GetAccessKeyInfo", self._region,
-                GetAccessKeyInfoResponse,
+                GetAccessKeyInfoOutput,
                 ("access_key_id", ),
                 ("access_key_id", ),
             )
@@ -257,7 +257,7 @@ class STSClient:
 
     async def get_caller_identity(
         self,
-    ) -> GetCallerIdentityResponse:
+    ) -> GetCallerIdentityOutput:
         params: dict[str, object] = {
         }
         _interceptors = operation_interceptors("sts", self._interceptors)
@@ -265,7 +265,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_caller_identity, params, _interceptors,
                 "sts", "GetCallerIdentity", self._region,
-                GetCallerIdentityResponse,
+                GetCallerIdentityOutput,
                 (),
                 (),
             )
@@ -278,7 +278,7 @@ class STSClient:
         self,
         *,
         trade_in_token: str,
-    ) -> GetDelegatedAccessTokenResponse:
+    ) -> GetDelegatedAccessTokenOutput:
         params: dict[str, object] = {
             "trade_in_token": trade_in_token,
         }
@@ -287,7 +287,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_delegated_access_token, params, _interceptors,
                 "sts", "GetDelegatedAccessToken", self._region,
-                GetDelegatedAccessTokenResponse,
+                GetDelegatedAccessTokenOutput,
                 ("trade_in_token", ),
                 ("trade_in_token", ),
             )
@@ -305,7 +305,7 @@ class STSClient:
         duration_seconds: int | None = None,
         tags: Sequence[Tag] | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> GetFederationTokenResponse:
+    ) -> GetFederationTokenOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -324,7 +324,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_federation_token, params, _interceptors,
                 "sts", "GetFederationToken", self._region,
-                GetFederationTokenResponse,
+                GetFederationTokenOutput,
                 ("name", "policy", "policy_arns", "duration_seconds", "tags", "minimum_session_token_size", ),
                 ("name", ),
             )
@@ -340,7 +340,7 @@ class STSClient:
         serial_number: str | None = None,
         token_code: str | None = None,
         minimum_session_token_size: int | None = None,
-    ) -> GetSessionTokenResponse:
+    ) -> GetSessionTokenOutput:
         params: dict[str, object] = {
         }
         if duration_seconds is not None:
@@ -356,7 +356,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_session_token, params, _interceptors,
                 "sts", "GetSessionToken", self._region,
-                GetSessionTokenResponse,
+                GetSessionTokenOutput,
                 ("duration_seconds", "serial_number", "token_code", "minimum_session_token_size", ),
                 (),
             )
@@ -372,7 +372,7 @@ class STSClient:
         signing_algorithm: str,
         duration_seconds: int | None = None,
         tags: Sequence[Tag] | None = None,
-    ) -> GetWebIdentityTokenResponse:
+    ) -> GetWebIdentityTokenOutput:
         params: dict[str, object] = {
             "audience": audience,
             "signing_algorithm": signing_algorithm,
@@ -386,7 +386,7 @@ class STSClient:
             _response = await invoke(
                 self._native.get_web_identity_token, params, _interceptors,
                 "sts", "GetWebIdentityToken", self._region,
-                GetWebIdentityTokenResponse,
+                GetWebIdentityTokenOutput,
                 ("audience", "signing_algorithm", "duration_seconds", "tags", ),
                 ("audience", "signing_algorithm", ),
             )

@@ -8,21 +8,21 @@ from rboto.types import UnknownEnumValue
 
 from . import _native
 
-AssumeRoleResponse: TypeAlias = _native.AssumeRoleResponse
-AssumeRoleWithSAMLResponse: TypeAlias = _native.AssumeRoleWithSAMLResponse
-AssumeRoleWithWebIdentityResponse: TypeAlias = _native.AssumeRoleWithWebIdentityResponse
-AssumeRootResponse: TypeAlias = _native.AssumeRootResponse
+AssumeRoleOutput: TypeAlias = _native.AssumeRoleOutput
+AssumeRoleWithSAMLOutput: TypeAlias = _native.AssumeRoleWithSAMLOutput
+AssumeRoleWithWebIdentityOutput: TypeAlias = _native.AssumeRoleWithWebIdentityOutput
+AssumeRootOutput: TypeAlias = _native.AssumeRootOutput
 AssumedRoleUserOutput: TypeAlias = _native.AssumedRoleUser
 ByteStream: TypeAlias = _native.ByteStream
 CredentialsOutput: TypeAlias = _native.Credentials
-DecodeAuthorizationMessageResponse: TypeAlias = _native.DecodeAuthorizationMessageResponse
+DecodeAuthorizationMessageOutput: TypeAlias = _native.DecodeAuthorizationMessageOutput
 FederatedUserOutput: TypeAlias = _native.FederatedUser
-GetAccessKeyInfoResponse: TypeAlias = _native.GetAccessKeyInfoResponse
-GetCallerIdentityResponse: TypeAlias = _native.GetCallerIdentityResponse
-GetDelegatedAccessTokenResponse: TypeAlias = _native.GetDelegatedAccessTokenResponse
-GetFederationTokenResponse: TypeAlias = _native.GetFederationTokenResponse
-GetSessionTokenResponse: TypeAlias = _native.GetSessionTokenResponse
-GetWebIdentityTokenResponse: TypeAlias = _native.GetWebIdentityTokenResponse
+GetAccessKeyInfoOutput: TypeAlias = _native.GetAccessKeyInfoOutput
+GetCallerIdentityOutput: TypeAlias = _native.GetCallerIdentityOutput
+GetDelegatedAccessTokenOutput: TypeAlias = _native.GetDelegatedAccessTokenOutput
+GetFederationTokenOutput: TypeAlias = _native.GetFederationTokenOutput
+GetSessionTokenOutput: TypeAlias = _native.GetSessionTokenOutput
+GetWebIdentityTokenOutput: TypeAlias = _native.GetWebIdentityTokenOutput
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 

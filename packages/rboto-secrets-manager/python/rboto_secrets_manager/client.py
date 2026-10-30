@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import SecretsManagerClient as NativeClient, BatchGetSecretValueResponse, CancelRotateSecretResponse, CreateSecretResponse, DeleteResourcePolicyResponse, DeleteSecretResponse, DescribeSecretResponse, GetRandomPasswordResponse, GetResourcePolicyResponse, GetSecretValueResponse, ListSecretVersionIdsResponse, ListSecretsResponse, PutResourcePolicyResponse, PutSecretValueResponse, RemoveRegionsFromReplicationResponse, ReplicateSecretToRegionsResponse, RestoreSecretResponse, RotateSecretResponse, StopReplicationToReplicaResponse, UpdateSecretResponse, UpdateSecretVersionStageResponse, ValidateResourcePolicyResponse
+from ._native import SecretsManagerClient as NativeClient, BatchGetSecretValueOutput, CancelRotateSecretOutput, CreateSecretOutput, DeleteResourcePolicyOutput, DeleteSecretOutput, DescribeSecretOutput, GetRandomPasswordOutput, GetResourcePolicyOutput, GetSecretValueOutput, ListSecretVersionIdsOutput, ListSecretsOutput, PutResourcePolicyOutput, PutSecretValueOutput, RemoveRegionsFromReplicationOutput, ReplicateSecretToRegionsOutput, RestoreSecretOutput, RotateSecretOutput, StopReplicationToReplicaOutput, UpdateSecretOutput, UpdateSecretVersionStageOutput, ValidateResourcePolicyOutput
 from .types import (
     ExternalSecretRotationMetadataItem,
     Filter,
@@ -66,7 +66,7 @@ class SecretsManagerClient:
         filters: Sequence[Filter] | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> BatchGetSecretValueResponse:
+    ) -> BatchGetSecretValueOutput:
         params: dict[str, object] = {
         }
         if secret_id_list is not None:
@@ -82,7 +82,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.batch_get_secret_value, params, _interceptors,
                 "secrets-manager", "BatchGetSecretValue", self._region,
-                BatchGetSecretValueResponse,
+                BatchGetSecretValueOutput,
                 ("secret_id_list", "filters", "max_results", "next_token", ),
                 (),
             )
@@ -95,7 +95,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> CancelRotateSecretResponse:
+    ) -> CancelRotateSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -104,7 +104,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.cancel_rotate_secret, params, _interceptors,
                 "secrets-manager", "CancelRotateSecret", self._region,
-                CancelRotateSecretResponse,
+                CancelRotateSecretOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -126,7 +126,7 @@ class SecretsManagerClient:
         add_replica_regions: Sequence[ReplicaRegionType] | None = None,
         force_overwrite_replica_secret: bool | None = None,
         type: str | None = None,
-    ) -> CreateSecretResponse:
+    ) -> CreateSecretOutput:
         params: dict[str, object] = {
             "name": name,
         }
@@ -153,7 +153,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.create_secret, params, _interceptors,
                 "secrets-manager", "CreateSecret", self._region,
-                CreateSecretResponse,
+                CreateSecretOutput,
                 ("name", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "tags", "add_replica_regions", "force_overwrite_replica_secret", "type", ),
                 ("name", ),
             )
@@ -166,7 +166,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> DeleteResourcePolicyResponse:
+    ) -> DeleteResourcePolicyOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -175,7 +175,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.delete_resource_policy, params, _interceptors,
                 "secrets-manager", "DeleteResourcePolicy", self._region,
-                DeleteResourcePolicyResponse,
+                DeleteResourcePolicyOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -190,7 +190,7 @@ class SecretsManagerClient:
         secret_id: str,
         recovery_window_in_days: int | None = None,
         force_delete_without_recovery: bool | None = None,
-    ) -> DeleteSecretResponse:
+    ) -> DeleteSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -203,7 +203,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.delete_secret, params, _interceptors,
                 "secrets-manager", "DeleteSecret", self._region,
-                DeleteSecretResponse,
+                DeleteSecretOutput,
                 ("secret_id", "recovery_window_in_days", "force_delete_without_recovery", ),
                 ("secret_id", ),
             )
@@ -216,7 +216,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> DescribeSecretResponse:
+    ) -> DescribeSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -225,7 +225,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.describe_secret, params, _interceptors,
                 "secrets-manager", "DescribeSecret", self._region,
-                DescribeSecretResponse,
+                DescribeSecretOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -245,7 +245,7 @@ class SecretsManagerClient:
         exclude_lowercase: bool | None = None,
         include_space: bool | None = None,
         require_each_included_type: bool | None = None,
-    ) -> GetRandomPasswordResponse:
+    ) -> GetRandomPasswordOutput:
         params: dict[str, object] = {
         }
         if password_length is not None:
@@ -269,7 +269,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_random_password, params, _interceptors,
                 "secrets-manager", "GetRandomPassword", self._region,
-                GetRandomPasswordResponse,
+                GetRandomPasswordOutput,
                 ("password_length", "exclude_characters", "exclude_numbers", "exclude_punctuation", "exclude_uppercase", "exclude_lowercase", "include_space", "require_each_included_type", ),
                 (),
             )
@@ -282,7 +282,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> GetResourcePolicyResponse:
+    ) -> GetResourcePolicyOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -291,7 +291,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_resource_policy, params, _interceptors,
                 "secrets-manager", "GetResourcePolicy", self._region,
-                GetResourcePolicyResponse,
+                GetResourcePolicyOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -306,7 +306,7 @@ class SecretsManagerClient:
         secret_id: str,
         version_id: str | None = None,
         version_stage: str | None = None,
-    ) -> GetSecretValueResponse:
+    ) -> GetSecretValueOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -319,7 +319,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.get_secret_value, params, _interceptors,
                 "secrets-manager", "GetSecretValue", self._region,
-                GetSecretValueResponse,
+                GetSecretValueOutput,
                 ("secret_id", "version_id", "version_stage", ),
                 ("secret_id", ),
             )
@@ -335,7 +335,7 @@ class SecretsManagerClient:
         max_results: int | None = None,
         next_token: str | None = None,
         include_deprecated: bool | None = None,
-    ) -> ListSecretVersionIdsResponse:
+    ) -> ListSecretVersionIdsOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -350,7 +350,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.list_secret_version_ids, params, _interceptors,
                 "secrets-manager", "ListSecretVersionIds", self._region,
-                ListSecretVersionIdsResponse,
+                ListSecretVersionIdsOutput,
                 ("secret_id", "max_results", "next_token", "include_deprecated", ),
                 ("secret_id", ),
             )
@@ -368,7 +368,7 @@ class SecretsManagerClient:
         filters: Sequence[Filter] | None = None,
         sort_order: SortOrderType | None = None,
         sort_by: SortByType | None = None,
-    ) -> ListSecretsResponse:
+    ) -> ListSecretsOutput:
         params: dict[str, object] = {
         }
         if include_planned_deletion is not None:
@@ -388,7 +388,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.list_secrets, params, _interceptors,
                 "secrets-manager", "ListSecrets", self._region,
-                ListSecretsResponse,
+                ListSecretsOutput,
                 ("include_planned_deletion", "max_results", "next_token", "filters", "sort_order", "sort_by", ),
                 (),
             )
@@ -403,7 +403,7 @@ class SecretsManagerClient:
         secret_id: str,
         resource_policy: str,
         block_public_policy: bool | None = None,
-    ) -> PutResourcePolicyResponse:
+    ) -> PutResourcePolicyOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
             "resource_policy": resource_policy,
@@ -415,7 +415,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.put_resource_policy, params, _interceptors,
                 "secrets-manager", "PutResourcePolicy", self._region,
-                PutResourcePolicyResponse,
+                PutResourcePolicyOutput,
                 ("secret_id", "resource_policy", "block_public_policy", ),
                 ("secret_id", "resource_policy", ),
             )
@@ -433,7 +433,7 @@ class SecretsManagerClient:
         secret_string: str | None = None,
         version_stages: Sequence[str] | None = None,
         rotation_token: str | None = None,
-    ) -> PutSecretValueResponse:
+    ) -> PutSecretValueOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -452,7 +452,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.put_secret_value, params, _interceptors,
                 "secrets-manager", "PutSecretValue", self._region,
-                PutSecretValueResponse,
+                PutSecretValueOutput,
                 ("secret_id", "client_request_token", "secret_binary", "secret_string", "version_stages", "rotation_token", ),
                 ("secret_id", ),
             )
@@ -466,7 +466,7 @@ class SecretsManagerClient:
         *,
         secret_id: str,
         remove_replica_regions: Sequence[str],
-    ) -> RemoveRegionsFromReplicationResponse:
+    ) -> RemoveRegionsFromReplicationOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
             "remove_replica_regions": remove_replica_regions,
@@ -476,7 +476,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.remove_regions_from_replication, params, _interceptors,
                 "secrets-manager", "RemoveRegionsFromReplication", self._region,
-                RemoveRegionsFromReplicationResponse,
+                RemoveRegionsFromReplicationOutput,
                 ("secret_id", "remove_replica_regions", ),
                 ("secret_id", "remove_replica_regions", ),
             )
@@ -491,7 +491,7 @@ class SecretsManagerClient:
         secret_id: str,
         add_replica_regions: Sequence[ReplicaRegionType],
         force_overwrite_replica_secret: bool | None = None,
-    ) -> ReplicateSecretToRegionsResponse:
+    ) -> ReplicateSecretToRegionsOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
             "add_replica_regions": add_replica_regions,
@@ -503,7 +503,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.replicate_secret_to_regions, params, _interceptors,
                 "secrets-manager", "ReplicateSecretToRegions", self._region,
-                ReplicateSecretToRegionsResponse,
+                ReplicateSecretToRegionsOutput,
                 ("secret_id", "add_replica_regions", "force_overwrite_replica_secret", ),
                 ("secret_id", "add_replica_regions", ),
             )
@@ -516,7 +516,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> RestoreSecretResponse:
+    ) -> RestoreSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -525,7 +525,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.restore_secret, params, _interceptors,
                 "secrets-manager", "RestoreSecret", self._region,
-                RestoreSecretResponse,
+                RestoreSecretOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -544,7 +544,7 @@ class SecretsManagerClient:
         external_secret_rotation_metadata: Sequence[ExternalSecretRotationMetadataItem] | None = None,
         external_secret_rotation_role_arn: str | None = None,
         rotate_immediately: bool | None = None,
-    ) -> RotateSecretResponse:
+    ) -> RotateSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -565,7 +565,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.rotate_secret, params, _interceptors,
                 "secrets-manager", "RotateSecret", self._region,
-                RotateSecretResponse,
+                RotateSecretOutput,
                 ("secret_id", "client_request_token", "rotation_lambda_arn", "rotation_rules", "external_secret_rotation_metadata", "external_secret_rotation_role_arn", "rotate_immediately", ),
                 ("secret_id", ),
             )
@@ -578,7 +578,7 @@ class SecretsManagerClient:
         self,
         *,
         secret_id: str,
-    ) -> StopReplicationToReplicaResponse:
+    ) -> StopReplicationToReplicaOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -587,7 +587,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.stop_replication_to_replica, params, _interceptors,
                 "secrets-manager", "StopReplicationToReplica", self._region,
-                StopReplicationToReplicaResponse,
+                StopReplicationToReplicaOutput,
                 ("secret_id", ),
                 ("secret_id", ),
             )
@@ -654,7 +654,7 @@ class SecretsManagerClient:
         secret_binary: bytes | None = None,
         secret_string: str | None = None,
         type: str | None = None,
-    ) -> UpdateSecretResponse:
+    ) -> UpdateSecretOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
         }
@@ -675,7 +675,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.update_secret, params, _interceptors,
                 "secrets-manager", "UpdateSecret", self._region,
-                UpdateSecretResponse,
+                UpdateSecretOutput,
                 ("secret_id", "client_request_token", "description", "kms_key_id", "secret_binary", "secret_string", "type", ),
                 ("secret_id", ),
             )
@@ -691,7 +691,7 @@ class SecretsManagerClient:
         version_stage: str,
         remove_from_version_id: str | None = None,
         move_to_version_id: str | None = None,
-    ) -> UpdateSecretVersionStageResponse:
+    ) -> UpdateSecretVersionStageOutput:
         params: dict[str, object] = {
             "secret_id": secret_id,
             "version_stage": version_stage,
@@ -705,7 +705,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.update_secret_version_stage, params, _interceptors,
                 "secrets-manager", "UpdateSecretVersionStage", self._region,
-                UpdateSecretVersionStageResponse,
+                UpdateSecretVersionStageOutput,
                 ("secret_id", "version_stage", "remove_from_version_id", "move_to_version_id", ),
                 ("secret_id", "version_stage", ),
             )
@@ -719,7 +719,7 @@ class SecretsManagerClient:
         *,
         resource_policy: str,
         secret_id: str | None = None,
-    ) -> ValidateResourcePolicyResponse:
+    ) -> ValidateResourcePolicyOutput:
         params: dict[str, object] = {
             "resource_policy": resource_policy,
         }
@@ -730,7 +730,7 @@ class SecretsManagerClient:
             _response = await invoke(
                 self._native.validate_resource_policy, params, _interceptors,
                 "secrets-manager", "ValidateResourcePolicy", self._region,
-                ValidateResourcePolicyResponse,
+                ValidateResourcePolicyOutput,
                 ("resource_policy", "secret_id", ),
                 ("resource_policy", ),
             )

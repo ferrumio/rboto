@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import APIGatewayClient as NativeClient, ApiKeyIds, ApiKeys, Authorizers, BasePathMappings, ClientCertificates, CreateApiKeyOutput, CreateAuthorizerOutput, CreateBasePathMappingOutput, CreateDeploymentOutput, CreateDocumentationPartOutput, CreateDocumentationVersionOutput, CreateDomainNameAccessAssociationOutput, CreateDomainNameOutput, CreateModelOutput, CreateRequestValidatorOutput, CreateResourceOutput, CreateRestApiOutput, CreateStageOutput, CreateUsagePlanKeyOutput, CreateUsagePlanOutput, CreateVpcLinkOutput, Deployments, DocumentationPartIds, DocumentationParts, DocumentationVersions, DomainNameAccessAssociations, DomainNames, ExportResponse, GatewayResponses, GenerateClientCertificateOutput, GetAccountOutput, GetApiKeyOutput, GetAuthorizerOutput, GetBasePathMappingOutput, GetClientCertificateOutput, GetDeploymentOutput, GetDocumentationPartOutput, GetDocumentationVersionOutput, GetDomainNameOutput, GetGatewayResponseOutput, GetIntegrationOutput, GetIntegrationResponseOutput, GetMethodOutput, GetMethodResponseOutput, GetModelOutput, GetRequestValidatorOutput, GetResourceOutput, GetRestApiOutput, GetSdkTypeOutput, GetStageOutput, GetUsageOutput, GetUsagePlanKeyOutput, GetUsagePlanOutput, GetVpcLinkOutput, ImportRestApiOutput, Models, PutGatewayResponseOutput, PutIntegrationOutput, PutIntegrationResponseOutput, PutMethodOutput, PutMethodResponseOutput, PutRestApiOutput, RequestValidators, Resources, RestApis, SdkResponse, SdkTypes, Stages, Tags, Template, TestInvokeAuthorizerResponse, TestInvokeMethodResponse, UpdateAccountOutput, UpdateApiKeyOutput, UpdateAuthorizerOutput, UpdateBasePathMappingOutput, UpdateClientCertificateOutput, UpdateDeploymentOutput, UpdateDocumentationPartOutput, UpdateDocumentationVersionOutput, UpdateDomainNameOutput, UpdateGatewayResponseOutput, UpdateIntegrationOutput, UpdateIntegrationResponseOutput, UpdateMethodOutput, UpdateMethodResponseOutput, UpdateModelOutput, UpdateRequestValidatorOutput, UpdateResourceOutput, UpdateRestApiOutput, UpdateStageOutput, UpdateUsageOutput, UpdateUsagePlanOutput, UpdateVpcLinkOutput, UsagePlanKeys, UsagePlans, VpcLinks
+from ._native import APIGatewayClient as NativeClient, CreateApiKeyOutput, CreateAuthorizerOutput, CreateBasePathMappingOutput, CreateDeploymentOutput, CreateDocumentationPartOutput, CreateDocumentationVersionOutput, CreateDomainNameAccessAssociationOutput, CreateDomainNameOutput, CreateModelOutput, CreateRequestValidatorOutput, CreateResourceOutput, CreateRestApiOutput, CreateStageOutput, CreateUsagePlanKeyOutput, CreateUsagePlanOutput, CreateVpcLinkOutput, GenerateClientCertificateOutput, GetAccountOutput, GetApiKeyOutput, GetApiKeysOutput, GetAuthorizerOutput, GetAuthorizersOutput, GetBasePathMappingOutput, GetBasePathMappingsOutput, GetClientCertificateOutput, GetClientCertificatesOutput, GetDeploymentOutput, GetDeploymentsOutput, GetDocumentationPartOutput, GetDocumentationPartsOutput, GetDocumentationVersionOutput, GetDocumentationVersionsOutput, GetDomainNameAccessAssociationsOutput, GetDomainNameOutput, GetDomainNamesOutput, GetExportOutput, GetGatewayResponseOutput, GetGatewayResponsesOutput, GetIntegrationOutput, GetIntegrationResponseOutput, GetMethodOutput, GetMethodResponseOutput, GetModelOutput, GetModelTemplateOutput, GetModelsOutput, GetRequestValidatorOutput, GetRequestValidatorsOutput, GetResourceOutput, GetResourcesOutput, GetRestApiOutput, GetRestApisOutput, GetSdkOutput, GetSdkTypeOutput, GetSdkTypesOutput, GetStageOutput, GetStagesOutput, GetTagsOutput, GetUsageOutput, GetUsagePlanKeyOutput, GetUsagePlanKeysOutput, GetUsagePlanOutput, GetUsagePlansOutput, GetVpcLinkOutput, GetVpcLinksOutput, ImportApiKeysOutput, ImportDocumentationPartsOutput, ImportRestApiOutput, PutGatewayResponseOutput, PutIntegrationOutput, PutIntegrationResponseOutput, PutMethodOutput, PutMethodResponseOutput, PutRestApiOutput, TestInvokeAuthorizerOutput, TestInvokeMethodOutput, UpdateAccountOutput, UpdateApiKeyOutput, UpdateAuthorizerOutput, UpdateBasePathMappingOutput, UpdateClientCertificateOutput, UpdateDeploymentOutput, UpdateDocumentationPartOutput, UpdateDocumentationVersionOutput, UpdateDomainNameOutput, UpdateGatewayResponseOutput, UpdateIntegrationOutput, UpdateIntegrationResponseOutput, UpdateMethodOutput, UpdateMethodResponseOutput, UpdateModelOutput, UpdateRequestValidatorOutput, UpdateResourceOutput, UpdateRestApiOutput, UpdateStageOutput, UpdateUsageOutput, UpdateUsagePlanOutput, UpdateVpcLinkOutput
 from .types import (
     AccessAssociationSourceType,
     ApiKeySourceType,
@@ -1350,7 +1350,7 @@ class APIGatewayClient:
         name_query: str | None = None,
         customer_id: str | None = None,
         include_values: bool | None = None,
-    ) -> ApiKeys:
+    ) -> GetApiKeysOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1368,7 +1368,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_api_keys, params, _interceptors,
                 "api-gateway", "GetApiKeys", self._region,
-                ApiKeys,
+                GetApiKeysOutput,
                 ("position", "limit", "name_query", "customer_id", "include_values", ),
                 (),
             )
@@ -1407,7 +1407,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> Authorizers:
+    ) -> GetAuthorizersOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1420,7 +1420,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_authorizers, params, _interceptors,
                 "api-gateway", "GetAuthorizers", self._region,
-                Authorizers,
+                GetAuthorizersOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -1463,7 +1463,7 @@ class APIGatewayClient:
         domain_name_id: str | None = None,
         position: str | None = None,
         limit: int | None = None,
-    ) -> BasePathMappings:
+    ) -> GetBasePathMappingsOutput:
         params: dict[str, object] = {
             "domain_name": domain_name,
         }
@@ -1478,7 +1478,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_base_path_mappings, params, _interceptors,
                 "api-gateway", "GetBasePathMappings", self._region,
-                BasePathMappings,
+                GetBasePathMappingsOutput,
                 ("domain_name", "domain_name_id", "position", "limit", ),
                 ("domain_name", ),
             )
@@ -1514,7 +1514,7 @@ class APIGatewayClient:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> ClientCertificates:
+    ) -> GetClientCertificatesOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1526,7 +1526,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_client_certificates, params, _interceptors,
                 "api-gateway", "GetClientCertificates", self._region,
-                ClientCertificates,
+                GetClientCertificatesOutput,
                 ("position", "limit", ),
                 (),
             )
@@ -1568,7 +1568,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> Deployments:
+    ) -> GetDeploymentsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1581,7 +1581,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_deployments, params, _interceptors,
                 "api-gateway", "GetDeployments", self._region,
-                Deployments,
+                GetDeploymentsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -1624,7 +1624,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
         location_status: LocationStatusType | None = None,
-    ) -> DocumentationParts:
+    ) -> GetDocumentationPartsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1645,7 +1645,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_documentation_parts, params, _interceptors,
                 "api-gateway", "GetDocumentationParts", self._region,
-                DocumentationParts,
+                GetDocumentationPartsOutput,
                 ("rest_api_id", "type", "name_query", "path", "position", "limit", "location_status", ),
                 ("rest_api_id", ),
             )
@@ -1684,7 +1684,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> DocumentationVersions:
+    ) -> GetDocumentationVersionsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1697,7 +1697,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_documentation_versions, params, _interceptors,
                 "api-gateway", "GetDocumentationVersions", self._region,
-                DocumentationVersions,
+                GetDocumentationVersionsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -1737,7 +1737,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
-    ) -> DomainNameAccessAssociations:
+    ) -> GetDomainNameAccessAssociationsOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1751,7 +1751,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_domain_name_access_associations, params, _interceptors,
                 "api-gateway", "GetDomainNameAccessAssociations", self._region,
-                DomainNameAccessAssociations,
+                GetDomainNameAccessAssociationsOutput,
                 ("position", "limit", "resource_owner", ),
                 (),
             )
@@ -1766,7 +1766,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
         resource_owner: ResourceOwner | None = None,
-    ) -> DomainNames:
+    ) -> GetDomainNamesOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -1780,7 +1780,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_domain_names, params, _interceptors,
                 "api-gateway", "GetDomainNames", self._region,
-                DomainNames,
+                GetDomainNamesOutput,
                 ("position", "limit", "resource_owner", ),
                 (),
             )
@@ -1797,7 +1797,7 @@ class APIGatewayClient:
         export_type: str,
         parameters: dict[str, str] | None = None,
         accepts: str | None = None,
-    ) -> ExportResponse:
+    ) -> GetExportOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -1812,7 +1812,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_export, params, _interceptors,
                 "api-gateway", "GetExport", self._region,
-                ExportResponse,
+                GetExportOutput,
                 ("rest_api_id", "stage_name", "export_type", "parameters", "accepts", ),
                 ("rest_api_id", "stage_name", "export_type", ),
             )
@@ -1851,7 +1851,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> GatewayResponses:
+    ) -> GetGatewayResponsesOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -1864,7 +1864,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_gateway_responses, params, _interceptors,
                 "api-gateway", "GetGatewayResponses", self._region,
-                GatewayResponses,
+                GetGatewayResponsesOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -2013,7 +2013,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         model_name: str,
-    ) -> Template:
+    ) -> GetModelTemplateOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "model_name": model_name,
@@ -2023,7 +2023,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_model_template, params, _interceptors,
                 "api-gateway", "GetModelTemplate", self._region,
-                Template,
+                GetModelTemplateOutput,
                 ("rest_api_id", "model_name", ),
                 ("rest_api_id", "model_name", ),
             )
@@ -2038,7 +2038,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> Models:
+    ) -> GetModelsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2051,7 +2051,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_models, params, _interceptors,
                 "api-gateway", "GetModels", self._region,
-                Models,
+                GetModelsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -2090,7 +2090,7 @@ class APIGatewayClient:
         rest_api_id: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> RequestValidators:
+    ) -> GetRequestValidatorsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2103,7 +2103,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_request_validators, params, _interceptors,
                 "api-gateway", "GetRequestValidators", self._region,
-                RequestValidators,
+                GetRequestValidatorsOutput,
                 ("rest_api_id", "position", "limit", ),
                 ("rest_api_id", ),
             )
@@ -2146,7 +2146,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
         embed: Sequence[str] | None = None,
-    ) -> Resources:
+    ) -> GetResourcesOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2161,7 +2161,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_resources, params, _interceptors,
                 "api-gateway", "GetResources", self._region,
-                Resources,
+                GetResourcesOutput,
                 ("rest_api_id", "position", "limit", "embed", ),
                 ("rest_api_id", ),
             )
@@ -2197,7 +2197,7 @@ class APIGatewayClient:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> RestApis:
+    ) -> GetRestApisOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2209,7 +2209,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_rest_apis, params, _interceptors,
                 "api-gateway", "GetRestApis", self._region,
-                RestApis,
+                GetRestApisOutput,
                 ("position", "limit", ),
                 (),
             )
@@ -2225,7 +2225,7 @@ class APIGatewayClient:
         stage_name: str,
         sdk_type: str,
         parameters: dict[str, str] | None = None,
-    ) -> SdkResponse:
+    ) -> GetSdkOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "stage_name": stage_name,
@@ -2238,7 +2238,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_sdk, params, _interceptors,
                 "api-gateway", "GetSdk", self._region,
-                SdkResponse,
+                GetSdkOutput,
                 ("rest_api_id", "stage_name", "sdk_type", "parameters", ),
                 ("rest_api_id", "stage_name", "sdk_type", ),
             )
@@ -2274,7 +2274,7 @@ class APIGatewayClient:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> SdkTypes:
+    ) -> GetSdkTypesOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2286,7 +2286,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_sdk_types, params, _interceptors,
                 "api-gateway", "GetSdkTypes", self._region,
-                SdkTypes,
+                GetSdkTypesOutput,
                 ("position", "limit", ),
                 (),
             )
@@ -2324,7 +2324,7 @@ class APIGatewayClient:
         *,
         rest_api_id: str,
         deployment_id: str | None = None,
-    ) -> Stages:
+    ) -> GetStagesOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
         }
@@ -2335,7 +2335,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_stages, params, _interceptors,
                 "api-gateway", "GetStages", self._region,
-                Stages,
+                GetStagesOutput,
                 ("rest_api_id", "deployment_id", ),
                 ("rest_api_id", ),
             )
@@ -2350,7 +2350,7 @@ class APIGatewayClient:
         resource_arn: str,
         position: str | None = None,
         limit: int | None = None,
-    ) -> Tags:
+    ) -> GetTagsOutput:
         params: dict[str, object] = {
             "resource_arn": resource_arn,
         }
@@ -2363,7 +2363,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_tags, params, _interceptors,
                 "api-gateway", "GetTags", self._region,
-                Tags,
+                GetTagsOutput,
                 ("resource_arn", "position", "limit", ),
                 ("resource_arn", ),
             )
@@ -2460,7 +2460,7 @@ class APIGatewayClient:
         position: str | None = None,
         limit: int | None = None,
         name_query: str | None = None,
-    ) -> UsagePlanKeys:
+    ) -> GetUsagePlanKeysOutput:
         params: dict[str, object] = {
             "usage_plan_id": usage_plan_id,
         }
@@ -2475,7 +2475,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_usage_plan_keys, params, _interceptors,
                 "api-gateway", "GetUsagePlanKeys", self._region,
-                UsagePlanKeys,
+                GetUsagePlanKeysOutput,
                 ("usage_plan_id", "position", "limit", "name_query", ),
                 ("usage_plan_id", ),
             )
@@ -2490,7 +2490,7 @@ class APIGatewayClient:
         position: str | None = None,
         key_id: str | None = None,
         limit: int | None = None,
-    ) -> UsagePlans:
+    ) -> GetUsagePlansOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2504,7 +2504,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_usage_plans, params, _interceptors,
                 "api-gateway", "GetUsagePlans", self._region,
-                UsagePlans,
+                GetUsagePlansOutput,
                 ("position", "key_id", "limit", ),
                 (),
             )
@@ -2540,7 +2540,7 @@ class APIGatewayClient:
         *,
         position: str | None = None,
         limit: int | None = None,
-    ) -> VpcLinks:
+    ) -> GetVpcLinksOutput:
         params: dict[str, object] = {
         }
         if position is not None:
@@ -2552,7 +2552,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.get_vpc_links, params, _interceptors,
                 "api-gateway", "GetVpcLinks", self._region,
-                VpcLinks,
+                GetVpcLinksOutput,
                 ("position", "limit", ),
                 (),
             )
@@ -2567,7 +2567,7 @@ class APIGatewayClient:
         body: bytes,
         format: ApiKeysFormat,
         fail_on_warnings: bool | None = None,
-    ) -> ApiKeyIds:
+    ) -> ImportApiKeysOutput:
         params: dict[str, object] = {
             "body": body,
             "format": format,
@@ -2579,7 +2579,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.import_api_keys, params, _interceptors,
                 "api-gateway", "ImportApiKeys", self._region,
-                ApiKeyIds,
+                ImportApiKeysOutput,
                 ("body", "format", "fail_on_warnings", ),
                 ("body", "format", ),
             )
@@ -2595,7 +2595,7 @@ class APIGatewayClient:
         body: bytes,
         mode: PutMode | None = None,
         fail_on_warnings: bool | None = None,
-    ) -> DocumentationPartIds:
+    ) -> ImportDocumentationPartsOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "body": body,
@@ -2609,7 +2609,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.import_documentation_parts, params, _interceptors,
                 "api-gateway", "ImportDocumentationParts", self._region,
-                DocumentationPartIds,
+                ImportDocumentationPartsOutput,
                 ("rest_api_id", "body", "mode", "fail_on_warnings", ),
                 ("rest_api_id", "body", ),
             )
@@ -2967,7 +2967,7 @@ class APIGatewayClient:
         body: str | None = None,
         stage_variables: dict[str, str] | None = None,
         additional_context: dict[str, str] | None = None,
-    ) -> TestInvokeAuthorizerResponse:
+    ) -> TestInvokeAuthorizerOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "authorizer_id": authorizer_id,
@@ -2989,7 +2989,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.test_invoke_authorizer, params, _interceptors,
                 "api-gateway", "TestInvokeAuthorizer", self._region,
-                TestInvokeAuthorizerResponse,
+                TestInvokeAuthorizerOutput,
                 ("rest_api_id", "authorizer_id", "headers", "multi_value_headers", "path_with_query_string", "body", "stage_variables", "additional_context", ),
                 ("rest_api_id", "authorizer_id", ),
             )
@@ -3010,7 +3010,7 @@ class APIGatewayClient:
         multi_value_headers: dict[str, Sequence[str]] | None = None,
         client_certificate_id: str | None = None,
         stage_variables: dict[str, str] | None = None,
-    ) -> TestInvokeMethodResponse:
+    ) -> TestInvokeMethodOutput:
         params: dict[str, object] = {
             "rest_api_id": rest_api_id,
             "resource_id": resource_id,
@@ -3033,7 +3033,7 @@ class APIGatewayClient:
             _response = await invoke(
                 self._native.test_invoke_method, params, _interceptors,
                 "api-gateway", "TestInvokeMethod", self._region,
-                TestInvokeMethodResponse,
+                TestInvokeMethodOutput,
                 ("rest_api_id", "resource_id", "http_method", "path_with_query_string", "body", "headers", "multi_value_headers", "client_certificate_id", "stage_variables", ),
                 ("rest_api_id", "resource_id", "http_method", ),
             )

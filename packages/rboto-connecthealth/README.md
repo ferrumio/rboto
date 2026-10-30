@@ -92,13 +92,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_domain`](#delete_domain) | <code>domain_id: str</code> | <code>DeleteDomainOutput</code> |
 | [`get_domain`](#get_domain) | <code>domain_id: str</code> | <code>GetDomainOutput</code> |
 | [`get_medical_scribe_listening_session`](#get_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>GetMedicalScribeListeningSessionOutput</code> |
-| [`get_patient_insights_job`](#get_patient_insights_job) | <code>domain_id: str</code>, <code>job_id: str</code> | <code>GetPatientInsightsJobResponse</code> |
+| [`get_patient_insights_job`](#get_patient_insights_job) | <code>domain_id: str</code>, <code>job_id: str</code> | <code>GetPatientInsightsJobOutput</code> |
 | [`get_subscription`](#get_subscription) | <code>domain_id: str</code>, <code>subscription_id: str</code> | <code>GetSubscriptionOutput</code> |
 | [`list_domains`](#list_domains) | None | <code>ListDomainsOutput</code> |
 | [`list_subscriptions`](#list_subscriptions) | <code>domain_id: str</code> | <code>ListSubscriptionsOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
 | [`start_medical_scribe_listening_session`](#start_medical_scribe_listening_session) | <code>session_id: str</code>, <code>domain_id: str</code>, <code>subscription_id: str</code>, <code>language_code: MedicalScribeLanguageCode</code>, <code>media_sample_rate_hertz: int</code>, <code>media_encoding: MedicalScribeMediaEncoding</code> | <code>StartMedicalScribeListeningSessionOutput</code> |
-| [`start_patient_insights_job`](#start_patient_insights_job) | <code>domain_id: str</code>, <code>patient_context: PatientInsightsPatientContext</code>, <code>insights_context: InsightsContext</code>, <code>encounter_context: PatientInsightsEncounterContext</code>, <code>user_context: UserContext</code>, <code>input_data_config: InputDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>StartPatientInsightsJobResponse</code> |
+| [`start_patient_insights_job`](#start_patient_insights_job) | <code>domain_id: str</code>, <code>patient_context: PatientInsightsPatientContext</code>, <code>insights_context: InsightsContext</code>, <code>encounter_context: PatientInsightsEncounterContext</code>, <code>user_context: UserContext</code>, <code>input_data_config: InputDataConfig</code>, <code>output_data_config: OutputDataConfig</code> | <code>StartPatientInsightsJobOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>None</code> |
 
@@ -188,7 +188,7 @@ async def get_patient_insights_job(
     *,
     domain_id: str,
     job_id: str,
-) -> GetPatientInsightsJobResponse: ...
+) -> GetPatientInsightsJobOutput: ...
 ```
 
 
@@ -272,7 +272,7 @@ async def start_patient_insights_job(
     input_data_config: InputDataConfig,
     output_data_config: OutputDataConfig,
     client_token: str | None = None,
-) -> StartPatientInsightsJobResponse: ...
+) -> StartPatientInsightsJobOutput: ...
 ```
 
 

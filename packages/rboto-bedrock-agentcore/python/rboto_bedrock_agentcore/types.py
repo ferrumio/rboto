@@ -32,25 +32,25 @@ ByteStream: TypeAlias = _native.ByteStream
 CertificateOutput: TypeAlias = _native.Certificate
 CodeInterpreterSessionSummaryOutput: TypeAlias = _native.CodeInterpreterSessionSummary
 CodeInterpreterStreamOutputReceiver: TypeAlias = _native.CodeInterpreterStreamOutputReceiver
-CompleteResourceTokenAuthResponse: TypeAlias = _native.CompleteResourceTokenAuthResponse
+CompleteResourceTokenAuthOutput: TypeAlias = _native.CompleteResourceTokenAuthOutput
 ConfidenceIntervalOutput: TypeAlias = _native.ConfidenceInterval
 ConfigurationBundleRefOutput: TypeAlias = _native.ConfigurationBundleRef
 ControlStatsOutput: TypeAlias = _native.ControlStats
-CreateABTestResponse: TypeAlias = _native.CreateABTestResponse
+CreateABTestOutput: TypeAlias = _native.CreateABTestOutput
 CreateEventOutput: TypeAlias = _native.CreateEventOutput
-CreatePaymentInstrumentResponse: TypeAlias = _native.CreatePaymentInstrumentResponse
-CreatePaymentSessionResponse: TypeAlias = _native.CreatePaymentSessionResponse
+CreatePaymentInstrumentOutput: TypeAlias = _native.CreatePaymentInstrumentOutput
+CreatePaymentSessionOutput: TypeAlias = _native.CreatePaymentSessionOutput
 CustomDescriptorOutput: TypeAlias = _native.CustomDescriptor
-DeleteABTestResponse: TypeAlias = _native.DeleteABTestResponse
-DeleteBatchEvaluationResponse: TypeAlias = _native.DeleteBatchEvaluationResponse
-DeleteCapacityProviderSessionResponse: TypeAlias = _native.DeleteCapacityProviderSessionResponse
+DeleteABTestOutput: TypeAlias = _native.DeleteABTestOutput
+DeleteBatchEvaluationOutput: TypeAlias = _native.DeleteBatchEvaluationOutput
+DeleteCapacityProviderSessionOutput: TypeAlias = _native.DeleteCapacityProviderSessionOutput
 DeleteEventOutput: TypeAlias = _native.DeleteEventOutput
 DeleteMemoryRecordOutput: TypeAlias = _native.DeleteMemoryRecordOutput
-DeletePaymentInstrumentResponse: TypeAlias = _native.DeletePaymentInstrumentResponse
-DeletePaymentSessionResponse: TypeAlias = _native.DeletePaymentSessionResponse
-DeleteRecommendationResponse: TypeAlias = _native.DeleteRecommendationResponse
+DeletePaymentInstrumentOutput: TypeAlias = _native.DeletePaymentInstrumentOutput
+DeletePaymentSessionOutput: TypeAlias = _native.DeletePaymentSessionOutput
+DeleteRecommendationOutput: TypeAlias = _native.DeleteRecommendationOutput
 DescriptorsOutput: TypeAlias = _native.Descriptors
-EvaluateResponse: TypeAlias = _native.EvaluateResponse
+EvaluateOutput: TypeAlias = _native.EvaluateOutput
 EvaluationJobResultsOutput: TypeAlias = _native.EvaluationJobResults
 EvaluationResultContentOutput: TypeAlias = _native.EvaluationResultContent
 EvaluatorOutput: TypeAlias = _native.Evaluator
@@ -67,54 +67,54 @@ FailureCategoryClusterOutput: TypeAlias = _native.FailureCategoryCluster
 FailureSpanDetailOutput: TypeAlias = _native.FailureSpanDetail
 FailureSubCategoryClusterOutput: TypeAlias = _native.FailureSubCategoryCluster
 GatewayFilterOutput: TypeAlias = _native.GatewayFilter
-GetABTestResponse: TypeAlias = _native.GetABTestResponse
-GetAgentCardResponse: TypeAlias = _native.GetAgentCardResponse
-GetBatchEvaluationResponse: TypeAlias = _native.GetBatchEvaluationResponse
-GetBrowserSessionResponse: TypeAlias = _native.GetBrowserSessionResponse
-GetCodeInterpreterSessionResponse: TypeAlias = _native.GetCodeInterpreterSessionResponse
+GetABTestOutput: TypeAlias = _native.GetABTestOutput
+GetAgentCardOutput: TypeAlias = _native.GetAgentCardOutput
+GetBatchEvaluationOutput: TypeAlias = _native.GetBatchEvaluationOutput
+GetBrowserSessionOutput: TypeAlias = _native.GetBrowserSessionOutput
+GetCodeInterpreterSessionOutput: TypeAlias = _native.GetCodeInterpreterSessionOutput
 GetEventOutput: TypeAlias = _native.GetEventOutput
 GetMemoryRecordOutput: TypeAlias = _native.GetMemoryRecordOutput
-GetPaymentInstrumentBalanceResponse: TypeAlias = _native.GetPaymentInstrumentBalanceResponse
-GetPaymentInstrumentResponse: TypeAlias = _native.GetPaymentInstrumentResponse
-GetPaymentSessionResponse: TypeAlias = _native.GetPaymentSessionResponse
-GetRecommendationResponse: TypeAlias = _native.GetRecommendationResponse
-GetResourceApiKeyResponse: TypeAlias = _native.GetResourceApiKeyResponse
-GetResourceOauth2TokenResponse: TypeAlias = _native.GetResourceOauth2TokenResponse
-GetResourcePaymentTokenResponse: TypeAlias = _native.GetResourcePaymentTokenResponse
-GetWorkloadAccessTokenForJWTResponse: TypeAlias = _native.GetWorkloadAccessTokenForJWTResponse
-GetWorkloadAccessTokenForUserIdResponse: TypeAlias = _native.GetWorkloadAccessTokenForUserIdResponse
-GetWorkloadAccessTokenResponse: TypeAlias = _native.GetWorkloadAccessTokenResponse
+GetPaymentInstrumentBalanceOutput: TypeAlias = _native.GetPaymentInstrumentBalanceOutput
+GetPaymentInstrumentOutput: TypeAlias = _native.GetPaymentInstrumentOutput
+GetPaymentSessionOutput: TypeAlias = _native.GetPaymentSessionOutput
+GetRecommendationOutput: TypeAlias = _native.GetRecommendationOutput
+GetResourceApiKeyOutput: TypeAlias = _native.GetResourceApiKeyOutput
+GetResourceOauth2TokenOutput: TypeAlias = _native.GetResourceOauth2TokenOutput
+GetResourcePaymentTokenOutput: TypeAlias = _native.GetResourcePaymentTokenOutput
+GetWorkloadAccessTokenForJWTOutput: TypeAlias = _native.GetWorkloadAccessTokenForJWTOutput
+GetWorkloadAccessTokenForUserIdOutput: TypeAlias = _native.GetWorkloadAccessTokenForUserIdOutput
+GetWorkloadAccessTokenOutput: TypeAlias = _native.GetWorkloadAccessTokenOutput
 IngestDataOutput: TypeAlias = _native.IngestDataOutput
 InsightOutput: TypeAlias = _native.Insight
 InsightResultOutput: TypeAlias = _native.InsightResult
 InsightRootCauseOutput: TypeAlias = _native.InsightRootCause
 InsightsFailureSignalOutput: TypeAlias = _native.InsightsFailureSignal
 InvokeAgentRuntimeCommandStreamOutputReceiver: TypeAlias = _native.InvokeAgentRuntimeCommandStreamOutputReceiver
-InvokeAgentRuntimeResponse: TypeAlias = _native.InvokeAgentRuntimeResponse
-InvokeBrowserResponse: TypeAlias = _native.InvokeBrowserResponse
+InvokeAgentRuntimeOutput: TypeAlias = _native.InvokeAgentRuntimeOutput
+InvokeBrowserOutput: TypeAlias = _native.InvokeBrowserOutput
 InvokeHarnessStreamOutputReceiver: TypeAlias = _native.InvokeHarnessStreamOutputReceiver
-ListABTestsResponse: TypeAlias = _native.ListABTestsResponse
+ListABTestsOutput: TypeAlias = _native.ListABTestsOutput
 ListActorsOutput: TypeAlias = _native.ListActorsOutput
-ListBatchEvaluationsResponse: TypeAlias = _native.ListBatchEvaluationsResponse
-ListBrowserSessionsResponse: TypeAlias = _native.ListBrowserSessionsResponse
-ListCodeInterpreterSessionsResponse: TypeAlias = _native.ListCodeInterpreterSessionsResponse
+ListBatchEvaluationsOutput: TypeAlias = _native.ListBatchEvaluationsOutput
+ListBrowserSessionsOutput: TypeAlias = _native.ListBrowserSessionsOutput
+ListCodeInterpreterSessionsOutput: TypeAlias = _native.ListCodeInterpreterSessionsOutput
 ListEventsOutput: TypeAlias = _native.ListEventsOutput
 ListMemoryExtractionJobsOutput: TypeAlias = _native.ListMemoryExtractionJobsOutput
 ListMemoryRecordsOutput: TypeAlias = _native.ListMemoryRecordsOutput
-ListPaymentInstrumentsResponse: TypeAlias = _native.ListPaymentInstrumentsResponse
-ListPaymentSessionsResponse: TypeAlias = _native.ListPaymentSessionsResponse
-ListRecommendationsResponse: TypeAlias = _native.ListRecommendationsResponse
+ListPaymentInstrumentsOutput: TypeAlias = _native.ListPaymentInstrumentsOutput
+ListPaymentSessionsOutput: TypeAlias = _native.ListPaymentSessionsOutput
+ListRecommendationsOutput: TypeAlias = _native.ListRecommendationsOutput
 ListSessionsOutput: TypeAlias = _native.ListSessionsOutput
 LiveViewStreamOutput: TypeAlias = _native.LiveViewStream
 McpDescriptorOutput: TypeAlias = _native.McpDescriptor
-MemoryRecordOutputValue: TypeAlias = _native.MemoryRecord
-MemoryRecordOutputResponse: TypeAlias = _native.MemoryRecordOutput
+MemoryRecordValueOutput: TypeAlias = _native.MemoryRecord
+MemoryRecordValueValueOutput: TypeAlias = _native.MemoryRecordOutput
 MemoryRecordSummaryOutput: TypeAlias = _native.MemoryRecordSummary
 PaymentInstrumentOutput: TypeAlias = _native.PaymentInstrument
 PaymentInstrumentSummaryOutput: TypeAlias = _native.PaymentInstrumentSummary
 PaymentSessionOutput: TypeAlias = _native.PaymentSession
 PaymentSessionSummaryOutput: TypeAlias = _native.PaymentSessionSummary
-ProcessPaymentResponse: TypeAlias = _native.ProcessPaymentResponse
+ProcessPaymentOutput: TypeAlias = _native.ProcessPaymentOutput
 ProxyBypassOutput: TypeAlias = _native.ProxyBypass
 ProxyConfigurationOutput: TypeAlias = _native.ProxyConfiguration
 RecommendationSummaryOutput: TypeAlias = _native.RecommendationSummary
@@ -122,29 +122,29 @@ RegistryRecordSummaryOutput: TypeAlias = _native.RegistryRecordSummary
 RetrieveMemoryRecordsOutput: TypeAlias = _native.RetrieveMemoryRecordsOutput
 RootCauseClusterOutput: TypeAlias = _native.RootCauseCluster
 SampleSessionOutput: TypeAlias = _native.SampleSession
-SaveBrowserSessionProfileResponse: TypeAlias = _native.SaveBrowserSessionProfileResponse
-SearchRegistryRecordsResponse: TypeAlias = _native.SearchRegistryRecordsResponse
+SaveBrowserSessionProfileOutput: TypeAlias = _native.SaveBrowserSessionProfileOutput
+SearchRegistryRecordsOutput: TypeAlias = _native.SearchRegistryRecordsOutput
 ServerDefinitionOutput: TypeAlias = _native.ServerDefinition
 SessionFindingOutput: TypeAlias = _native.SessionFinding
 SessionLimitsOutput: TypeAlias = _native.SessionLimits
 SessionSummaryOutput: TypeAlias = _native.SessionSummary
 SkillDefinitionOutput: TypeAlias = _native.SkillDefinition
 SkillMdDefinitionOutput: TypeAlias = _native.SkillMdDefinition
-StartBatchEvaluationResponse: TypeAlias = _native.StartBatchEvaluationResponse
-StartBrowserSessionResponse: TypeAlias = _native.StartBrowserSessionResponse
-StartCodeInterpreterSessionResponse: TypeAlias = _native.StartCodeInterpreterSessionResponse
+StartBatchEvaluationOutput: TypeAlias = _native.StartBatchEvaluationOutput
+StartBrowserSessionOutput: TypeAlias = _native.StartBrowserSessionOutput
+StartCodeInterpreterSessionOutput: TypeAlias = _native.StartCodeInterpreterSessionOutput
 StartMemoryExtractionJobOutput: TypeAlias = _native.StartMemoryExtractionJobOutput
-StartRecommendationResponse: TypeAlias = _native.StartRecommendationResponse
-StopBatchEvaluationResponse: TypeAlias = _native.StopBatchEvaluationResponse
-StopBrowserSessionResponse: TypeAlias = _native.StopBrowserSessionResponse
-StopCodeInterpreterSessionResponse: TypeAlias = _native.StopCodeInterpreterSessionResponse
-StopRuntimeSessionResponse: TypeAlias = _native.StopRuntimeSessionResponse
+StartRecommendationOutput: TypeAlias = _native.StartRecommendationOutput
+StopBatchEvaluationOutput: TypeAlias = _native.StopBatchEvaluationOutput
+StopBrowserSessionOutput: TypeAlias = _native.StopBrowserSessionOutput
+StopCodeInterpreterSessionOutput: TypeAlias = _native.StopCodeInterpreterSessionOutput
+StopRuntimeSessionOutput: TypeAlias = _native.StopRuntimeSessionOutput
 TargetRefOutput: TypeAlias = _native.TargetRef
 TokenBalanceOutput: TypeAlias = _native.TokenBalance
 TokenUsageOutput: TypeAlias = _native.TokenUsage
 ToolsDefinitionOutput: TypeAlias = _native.ToolsDefinition
-UpdateABTestResponse: TypeAlias = _native.UpdateABTestResponse
-UpdateBrowserStreamResponse: TypeAlias = _native.UpdateBrowserStreamResponse
+UpdateABTestOutput: TypeAlias = _native.UpdateABTestOutput
+UpdateBrowserStreamOutput: TypeAlias = _native.UpdateBrowserStreamOutput
 UserIntentAffectedSessionOutput: TypeAlias = _native.UserIntentAffectedSession
 UserIntentClusterOutput: TypeAlias = _native.UserIntentCluster
 UserIntentClusteringResultContentOutput: TypeAlias = _native.UserIntentClusteringResultContent
@@ -1930,8 +1930,8 @@ InvokeAgentRuntimeCommandRequestBody = TypedDict(
     },
 )
 
-InvokeAgentRuntimeCommandResponse = TypedDict(
-    "InvokeAgentRuntimeCommandResponse",
+InvokeAgentRuntimeCommandOutput = TypedDict(
+    "InvokeAgentRuntimeCommandOutput",
     {
     "runtime_session_id": Required["str | None"],
     "trace_id": Required["str | None"],
@@ -1991,8 +1991,8 @@ InvokeCodeInterpreterRequest = TypedDict(
     },
 )
 
-InvokeCodeInterpreterResponse = TypedDict(
-    "InvokeCodeInterpreterResponse",
+InvokeCodeInterpreterOutput = TypedDict(
+    "InvokeCodeInterpreterOutput",
     {
     "session_id": Required["str | None"],
     "stream": Required["AsyncIterator[CodeInterpreterStreamOutput]"],
@@ -2023,8 +2023,8 @@ InvokeHarnessRequest = TypedDict(
     },
 )
 
-InvokeHarnessResponse = TypedDict(
-    "InvokeHarnessResponse",
+InvokeHarnessOutput = TypedDict(
+    "InvokeHarnessOutput",
     {
     "stream": Required["AsyncIterator[InvokeHarnessStreamOutput]"],
     },

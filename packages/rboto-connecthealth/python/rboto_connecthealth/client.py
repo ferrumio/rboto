@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDomainOutput, GetDomainOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobResponse, GetSubscriptionOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartPatientInsightsJobResponse
+from ._native import ConnectHealthClient as NativeClient, ActivateSubscriptionOutput, CreateDomainOutput, CreateSubscriptionOutput, DeactivateSubscriptionOutput, DeleteDomainOutput, GetDomainOutput, GetMedicalScribeListeningSessionOutput, GetPatientInsightsJobOutput, GetSubscriptionOutput, ListDomainsOutput, ListSubscriptionsOutput, ListTagsForResourceOutput, StartPatientInsightsJobOutput
 from .types import (
     CreateWebAppConfiguration,
     DomainStatus,
@@ -240,7 +240,7 @@ class ConnectHealthClient:
         *,
         domain_id: str,
         job_id: str,
-    ) -> GetPatientInsightsJobResponse:
+    ) -> GetPatientInsightsJobOutput:
         params: dict[str, object] = {
             "domain_id": domain_id,
             "job_id": job_id,
@@ -250,7 +250,7 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.get_patient_insights_job, params, _interceptors,
                 "connecthealth", "GetPatientInsightsJob", self._region,
-                GetPatientInsightsJobResponse,
+                GetPatientInsightsJobOutput,
                 ("domain_id", "job_id", ),
                 ("domain_id", "job_id", ),
             )
@@ -408,7 +408,7 @@ class ConnectHealthClient:
         input_data_config: InputDataConfig,
         output_data_config: OutputDataConfig,
         client_token: str | None = None,
-    ) -> StartPatientInsightsJobResponse:
+    ) -> StartPatientInsightsJobOutput:
         params: dict[str, object] = {
             "domain_id": domain_id,
             "patient_context": patient_context,
@@ -425,7 +425,7 @@ class ConnectHealthClient:
             _response = await invoke(
                 self._native.start_patient_insights_job, params, _interceptors,
                 "connecthealth", "StartPatientInsightsJob", self._region,
-                StartPatientInsightsJobResponse,
+                StartPatientInsightsJobOutput,
                 ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", "client_token", ),
                 ("domain_id", "patient_context", "insights_context", "encounter_context", "user_context", "input_data_config", "output_data_config", ),
             )

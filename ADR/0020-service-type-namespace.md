@@ -1,6 +1,6 @@
 # ADR-0020: Expose service input and response types together
 
-- Status: Accepted
+- Status: Superseded by [ADR-0021](0021-operation-output-names.md)
 - Date: 2026-10-30
 
 ## Context

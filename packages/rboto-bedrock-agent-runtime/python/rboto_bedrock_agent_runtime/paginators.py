@@ -8,14 +8,14 @@ from typing import TYPE_CHECKING
 from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _paginate
 
 from ._native import (
-    GetAgentMemoryResponse,
-    ListFlowExecutionEventsResponse,
-    ListFlowExecutionsResponse,
-    ListInvocationStepsResponse,
-    ListInvocationsResponse,
-    ListSessionsResponse,
-    RerankResponse,
-    RetrieveResponse,
+    GetAgentMemoryOutput,
+    ListFlowExecutionEventsOutput,
+    ListFlowExecutionsOutput,
+    ListInvocationStepsOutput,
+    ListInvocationsOutput,
+    ListSessionsOutput,
+    RerankOutput,
+    RetrieveOutput,
 )
 
 from .types import (
@@ -48,7 +48,7 @@ class BedrockAgentRuntimeClientPaginators:
         memory_id: str,
         next_token: str | None = None,
         max_items: int | None = None,
-    ) -> AsyncIterator[GetAgentMemoryResponse]:
+    ) -> AsyncIterator[GetAgentMemoryOutput]:
         """Yield each page from get_agent_memory; requests start on iteration."""
         params: dict[str, object] = {
             "agent_id": agent_id,
@@ -79,7 +79,7 @@ class BedrockAgentRuntimeClientPaginators:
         event_type: FlowExecutionEventType,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFlowExecutionEventsResponse]:
+    ) -> AsyncIterator[ListFlowExecutionEventsOutput]:
         """Yield each page from list_flow_execution_events; requests start on iteration."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
@@ -108,7 +108,7 @@ class BedrockAgentRuntimeClientPaginators:
         flow_alias_identifier: str | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListFlowExecutionsResponse]:
+    ) -> AsyncIterator[ListFlowExecutionsOutput]:
         """Yield each page from list_flow_executions; requests start on iteration."""
         params: dict[str, object] = {
             "flow_identifier": flow_identifier,
@@ -136,7 +136,7 @@ class BedrockAgentRuntimeClientPaginators:
         invocation_identifier: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListInvocationStepsResponse]:
+    ) -> AsyncIterator[ListInvocationStepsOutput]:
         """Yield each page from list_invocation_steps; requests start on iteration."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
@@ -163,7 +163,7 @@ class BedrockAgentRuntimeClientPaginators:
         session_identifier: str,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> AsyncIterator[ListInvocationsResponse]:
+    ) -> AsyncIterator[ListInvocationsOutput]:
         """Yield each page from list_invocations; requests start on iteration."""
         params: dict[str, object] = {
             "session_identifier": session_identifier,
@@ -187,7 +187,7 @@ class BedrockAgentRuntimeClientPaginators:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> AsyncIterator[ListSessionsResponse]:
+    ) -> AsyncIterator[ListSessionsOutput]:
         """Yield each page from list_sessions; requests start on iteration."""
         params: dict[str, object] = {
         }
@@ -212,7 +212,7 @@ class BedrockAgentRuntimeClientPaginators:
         sources: Sequence[RerankSource],
         reranking_configuration: RerankingConfiguration,
         next_token: str | None = None,
-    ) -> AsyncIterator[RerankResponse]:
+    ) -> AsyncIterator[RerankOutput]:
         """Yield each page from rerank; requests start on iteration."""
         params: dict[str, object] = {
             "queries": queries,
@@ -240,7 +240,7 @@ class BedrockAgentRuntimeClientPaginators:
         guardrail_configuration: GuardrailConfiguration | None = None,
         next_token: str | None = None,
         user_context: UserContext | None = None,
-    ) -> AsyncIterator[RetrieveResponse]:
+    ) -> AsyncIterator[RetrieveOutput]:
         """Yield each page from retrieve; requests start on iteration."""
         params: dict[str, object] = {
             "knowledge_base_id": knowledge_base_id,

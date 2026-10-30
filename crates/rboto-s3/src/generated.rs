@@ -13173,12 +13173,12 @@ impl PyTransition {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyAbortMultipartUploadOutput {
+struct PyOperationAbortMultipartUploadOutput {
     inner: aws_sdk_s3::operation::abort_multipart_upload::AbortMultipartUploadOutput,
 }
 
 #[pymethods]
-impl PyAbortMultipartUploadOutput {
+impl PyOperationAbortMultipartUploadOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -13206,12 +13206,12 @@ impl PyAbortMultipartUploadOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyCompleteMultipartUploadOutput {
+struct PyOperationCompleteMultipartUploadOutput {
     inner: aws_sdk_s3::operation::complete_multipart_upload::CompleteMultipartUploadOutput,
 }
 
 #[pymethods]
-impl PyCompleteMultipartUploadOutput {
+impl PyOperationCompleteMultipartUploadOutput {
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location {
@@ -13555,12 +13555,12 @@ impl PyCompleteMultipartUploadOutput {
 }
 
 #[pyclass(name = "CopyObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyCopyObjectOutput {
+struct PyOperationCopyObjectOutput {
     inner: aws_sdk_s3::operation::copy_object::CopyObjectOutput,
 }
 
 #[pymethods]
-impl PyCopyObjectOutput {
+impl PyOperationCopyObjectOutput {
     #[getter]
     fn copy_object_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.copy_object_result {
@@ -13750,12 +13750,12 @@ impl PyCopyObjectOutput {
 }
 
 #[pyclass(name = "CreateBucketOutput", module = "rboto_s3._native", frozen)]
-struct PyCreateBucketOutput {
+struct PyOperationCreateBucketOutput {
     inner: aws_sdk_s3::operation::create_bucket::CreateBucketOutput,
 }
 
 #[pymethods]
-impl PyCreateBucketOutput {
+impl PyOperationCreateBucketOutput {
     #[getter]
     fn location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location {
@@ -13799,12 +13799,12 @@ impl PyCreateBucketOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyCreateMultipartUploadOutput {
+struct PyOperationCreateMultipartUploadOutput {
     inner: aws_sdk_s3::operation::create_multipart_upload::CreateMultipartUploadOutput,
 }
 
 #[pymethods]
-impl PyCreateMultipartUploadOutput {
+impl PyOperationCreateMultipartUploadOutput {
     #[getter]
     fn abort_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.abort_date {
@@ -14036,12 +14036,12 @@ impl PyCreateMultipartUploadOutput {
 }
 
 #[pyclass(name = "CreateSessionOutput", module = "rboto_s3._native", frozen)]
-struct PyCreateSessionOutput {
+struct PyOperationCreateSessionOutput {
     inner: aws_sdk_s3::operation::create_session::CreateSessionOutput,
 }
 
 #[pymethods]
-impl PyCreateSessionOutput {
+impl PyOperationCreateSessionOutput {
     #[getter]
     fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.server_side_encryption {
@@ -14135,12 +14135,12 @@ impl PyCreateSessionOutput {
 }
 
 #[pyclass(name = "DeleteObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyDeleteObjectOutput {
+struct PyOperationDeleteObjectOutput {
     inner: aws_sdk_s3::operation::delete_object::DeleteObjectOutput,
 }
 
 #[pymethods]
-impl PyDeleteObjectOutput {
+impl PyOperationDeleteObjectOutput {
     #[getter]
     fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delete_marker {
@@ -14200,12 +14200,12 @@ impl PyDeleteObjectOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyDeleteObjectAnnotationOutput {
+struct PyOperationDeleteObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::delete_object_annotation::DeleteObjectAnnotationOutput,
 }
 
 #[pymethods]
-impl PyDeleteObjectAnnotationOutput {
+impl PyOperationDeleteObjectAnnotationOutput {
     #[getter]
     fn object_version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.object_version_id {
@@ -14249,12 +14249,12 @@ impl PyDeleteObjectAnnotationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyDeleteObjectTaggingOutput {
+struct PyOperationDeleteObjectTaggingOutput {
     inner: aws_sdk_s3::operation::delete_object_tagging::DeleteObjectTaggingOutput,
 }
 
 #[pymethods]
-impl PyDeleteObjectTaggingOutput {
+impl PyOperationDeleteObjectTaggingOutput {
     #[getter]
     fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version_id {
@@ -14278,12 +14278,12 @@ impl PyDeleteObjectTaggingOutput {
 }
 
 #[pyclass(name = "DeleteObjectsOutput", module = "rboto_s3._native", frozen)]
-struct PyDeleteObjectsOutput {
+struct PyOperationDeleteObjectsOutput {
     inner: aws_sdk_s3::operation::delete_objects::DeleteObjectsOutput,
 }
 
 #[pymethods]
-impl PyDeleteObjectsOutput {
+impl PyOperationDeleteObjectsOutput {
     #[getter]
     fn deleted(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deleted {
@@ -14371,12 +14371,12 @@ impl PyDeleteObjectsOutput {
 }
 
 #[pyclass(name = "GetBucketAbacOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketAbacOutput {
+struct PyOperationGetBucketAbacOutput {
     inner: aws_sdk_s3::operation::get_bucket_abac::GetBucketAbacOutput,
 }
 
 #[pymethods]
-impl PyGetBucketAbacOutput {
+impl PyOperationGetBucketAbacOutput {
     #[getter]
     fn abac_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.abac_status {
@@ -14410,12 +14410,12 @@ impl PyGetBucketAbacOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketAccelerateConfigurationOutput {
+struct PyOperationGetBucketAccelerateConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_accelerate_configuration::GetBucketAccelerateConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketAccelerateConfigurationOutput {
+impl PyOperationGetBucketAccelerateConfigurationOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -14455,12 +14455,12 @@ impl PyGetBucketAccelerateConfigurationOutput {
 }
 
 #[pyclass(name = "GetBucketAclOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketAclOutput {
+struct PyOperationGetBucketAclOutput {
     inner: aws_sdk_s3::operation::get_bucket_acl::GetBucketAclOutput,
 }
 
 #[pymethods]
-impl PyGetBucketAclOutput {
+impl PyOperationGetBucketAclOutput {
     #[getter]
     fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.owner {
@@ -14526,12 +14526,12 @@ impl PyGetBucketAclOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketAnalyticsConfigurationOutput {
+struct PyOperationGetBucketAnalyticsConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_analytics_configuration::GetBucketAnalyticsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketAnalyticsConfigurationOutput {
+impl PyOperationGetBucketAnalyticsConfigurationOutput {
     #[getter]
     fn analytics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.analytics_configuration {
@@ -14561,12 +14561,12 @@ impl PyGetBucketAnalyticsConfigurationOutput {
 }
 
 #[pyclass(name = "GetBucketCorsOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketCorsOutput {
+struct PyOperationGetBucketCorsOutput {
     inner: aws_sdk_s3::operation::get_bucket_cors::GetBucketCorsOutput,
 }
 
 #[pymethods]
-impl PyGetBucketCorsOutput {
+impl PyOperationGetBucketCorsOutput {
     #[getter]
     fn cors_rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cors_rules {
@@ -14610,12 +14610,12 @@ impl PyGetBucketCorsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketEncryptionOutput {
+struct PyOperationGetBucketEncryptionOutput {
     inner: aws_sdk_s3::operation::get_bucket_encryption::GetBucketEncryptionOutput,
 }
 
 #[pymethods]
-impl PyGetBucketEncryptionOutput {
+impl PyOperationGetBucketEncryptionOutput {
     #[getter]
     fn server_side_encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.server_side_encryption_configuration {
@@ -14649,12 +14649,12 @@ impl PyGetBucketEncryptionOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketIntelligentTieringConfigurationOutput {
+struct PyOperationGetBucketIntelligentTieringConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_intelligent_tiering_configuration::GetBucketIntelligentTieringConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketIntelligentTieringConfigurationOutput {
+impl PyOperationGetBucketIntelligentTieringConfigurationOutput {
     #[getter]
     fn intelligent_tiering_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.intelligent_tiering_configuration {
@@ -14688,12 +14688,12 @@ impl PyGetBucketIntelligentTieringConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketInventoryConfigurationOutput {
+struct PyOperationGetBucketInventoryConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_inventory_configuration::GetBucketInventoryConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketInventoryConfigurationOutput {
+impl PyOperationGetBucketInventoryConfigurationOutput {
     #[getter]
     fn inventory_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.inventory_configuration {
@@ -14727,12 +14727,12 @@ impl PyGetBucketInventoryConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketLifecycleConfigurationOutput {
+struct PyOperationGetBucketLifecycleConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_lifecycle_configuration::GetBucketLifecycleConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketLifecycleConfigurationOutput {
+impl PyOperationGetBucketLifecycleConfigurationOutput {
     #[getter]
     fn rules(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rules {
@@ -14788,12 +14788,12 @@ impl PyGetBucketLifecycleConfigurationOutput {
 }
 
 #[pyclass(name = "GetBucketLocationOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketLocationOutput {
+struct PyOperationGetBucketLocationOutput {
     inner: aws_sdk_s3::operation::get_bucket_location::GetBucketLocationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketLocationOutput {
+impl PyOperationGetBucketLocationOutput {
     #[getter]
     fn location_constraint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.location_constraint {
@@ -14817,12 +14817,12 @@ impl PyGetBucketLocationOutput {
 }
 
 #[pyclass(name = "GetBucketLoggingOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketLoggingOutput {
+struct PyOperationGetBucketLoggingOutput {
     inner: aws_sdk_s3::operation::get_bucket_logging::GetBucketLoggingOutput,
 }
 
 #[pymethods]
-impl PyGetBucketLoggingOutput {
+impl PyOperationGetBucketLoggingOutput {
     #[getter]
     fn logging_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.logging_enabled {
@@ -14856,12 +14856,12 @@ impl PyGetBucketLoggingOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketMetadataConfigurationOutput {
+struct PyOperationGetBucketMetadataConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metadata_configuration::GetBucketMetadataConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketMetadataConfigurationOutput {
+impl PyOperationGetBucketMetadataConfigurationOutput {
     #[getter(get_bucket_metadata_configuration_result)]
     fn get_bucket_metadata_configuration_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.get_bucket_metadata_configuration_result {
@@ -14895,12 +14895,12 @@ impl PyGetBucketMetadataConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketMetadataTableConfigurationOutput {
+struct PyOperationGetBucketMetadataTableConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metadata_table_configuration::GetBucketMetadataTableConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketMetadataTableConfigurationOutput {
+impl PyOperationGetBucketMetadataTableConfigurationOutput {
     #[getter(get_bucket_metadata_table_configuration_result)]
     fn get_bucket_metadata_table_configuration_result(
         &self,
@@ -14940,12 +14940,12 @@ impl PyGetBucketMetadataTableConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketMetricsConfigurationOutput {
+struct PyOperationGetBucketMetricsConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_metrics_configuration::GetBucketMetricsConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketMetricsConfigurationOutput {
+impl PyOperationGetBucketMetricsConfigurationOutput {
     #[getter]
     fn metrics_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.metrics_configuration {
@@ -14979,12 +14979,12 @@ impl PyGetBucketMetricsConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketNotificationConfigurationOutput {
+struct PyOperationGetBucketNotificationConfigurationOutput {
     inner: aws_sdk_s3::operation::get_bucket_notification_configuration::GetBucketNotificationConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketNotificationConfigurationOutput {
+impl PyOperationGetBucketNotificationConfigurationOutput {
     #[getter]
     fn topic_configurations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_configurations {
@@ -15114,12 +15114,12 @@ impl PyGetBucketNotificationConfigurationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketOwnershipControlsOutput {
+struct PyOperationGetBucketOwnershipControlsOutput {
     inner: aws_sdk_s3::operation::get_bucket_ownership_controls::GetBucketOwnershipControlsOutput,
 }
 
 #[pymethods]
-impl PyGetBucketOwnershipControlsOutput {
+impl PyOperationGetBucketOwnershipControlsOutput {
     #[getter]
     fn ownership_controls(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.ownership_controls {
@@ -15149,12 +15149,12 @@ impl PyGetBucketOwnershipControlsOutput {
 }
 
 #[pyclass(name = "GetBucketPolicyOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketPolicyOutput {
+struct PyOperationGetBucketPolicyOutput {
     inner: aws_sdk_s3::operation::get_bucket_policy::GetBucketPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetBucketPolicyOutput {
+impl PyOperationGetBucketPolicyOutput {
     #[getter]
     fn policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy {
@@ -15182,12 +15182,12 @@ impl PyGetBucketPolicyOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketPolicyStatusOutput {
+struct PyOperationGetBucketPolicyStatusOutput {
     inner: aws_sdk_s3::operation::get_bucket_policy_status::GetBucketPolicyStatusOutput,
 }
 
 #[pymethods]
-impl PyGetBucketPolicyStatusOutput {
+impl PyOperationGetBucketPolicyStatusOutput {
     #[getter]
     fn policy_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.policy_status {
@@ -15221,12 +15221,12 @@ impl PyGetBucketPolicyStatusOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketReplicationOutput {
+struct PyOperationGetBucketReplicationOutput {
     inner: aws_sdk_s3::operation::get_bucket_replication::GetBucketReplicationOutput,
 }
 
 #[pymethods]
-impl PyGetBucketReplicationOutput {
+impl PyOperationGetBucketReplicationOutput {
     #[getter]
     fn replication_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.replication_configuration {
@@ -15260,12 +15260,12 @@ impl PyGetBucketReplicationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketRequestPaymentOutput {
+struct PyOperationGetBucketRequestPaymentOutput {
     inner: aws_sdk_s3::operation::get_bucket_request_payment::GetBucketRequestPaymentOutput,
 }
 
 #[pymethods]
-impl PyGetBucketRequestPaymentOutput {
+impl PyOperationGetBucketRequestPaymentOutput {
     #[getter]
     fn payer(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.payer {
@@ -15289,12 +15289,12 @@ impl PyGetBucketRequestPaymentOutput {
 }
 
 #[pyclass(name = "GetBucketTaggingOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketTaggingOutput {
+struct PyOperationGetBucketTaggingOutput {
     inner: aws_sdk_s3::operation::get_bucket_tagging::GetBucketTaggingOutput,
 }
 
 #[pymethods]
-impl PyGetBucketTaggingOutput {
+impl PyOperationGetBucketTaggingOutput {
     #[getter]
     fn tag_set(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_2862_list = PyList::empty(py);
@@ -15330,12 +15330,12 @@ impl PyGetBucketTaggingOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetBucketVersioningOutput {
+struct PyOperationGetBucketVersioningOutput {
     inner: aws_sdk_s3::operation::get_bucket_versioning::GetBucketVersioningOutput,
 }
 
 #[pymethods]
-impl PyGetBucketVersioningOutput {
+impl PyOperationGetBucketVersioningOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
@@ -15375,12 +15375,12 @@ impl PyGetBucketVersioningOutput {
 }
 
 #[pyclass(name = "GetBucketWebsiteOutput", module = "rboto_s3._native", frozen)]
-struct PyGetBucketWebsiteOutput {
+struct PyOperationGetBucketWebsiteOutput {
     inner: aws_sdk_s3::operation::get_bucket_website::GetBucketWebsiteOutput,
 }
 
 #[pymethods]
-impl PyGetBucketWebsiteOutput {
+impl PyOperationGetBucketWebsiteOutput {
     #[getter]
     fn redirect_all_requests_to(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.redirect_all_requests_to {
@@ -15486,13 +15486,13 @@ impl PyGetBucketWebsiteOutput {
 }
 
 #[pyclass(name = "GetObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectOutput {
+struct PyOperationGetObjectOutput {
     inner: aws_sdk_s3::operation::get_object::GetObjectOutput,
     body: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PyGetObjectOutput {
+impl PyOperationGetObjectOutput {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         self.body.clone_ref(py).into_py_any(py)
@@ -16254,12 +16254,12 @@ impl PyGetObjectOutput {
 }
 
 #[pyclass(name = "GetObjectAclOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectAclOutput {
+struct PyOperationGetObjectAclOutput {
     inner: aws_sdk_s3::operation::get_object_acl::GetObjectAclOutput,
 }
 
 #[pymethods]
-impl PyGetObjectAclOutput {
+impl PyOperationGetObjectAclOutput {
     #[getter]
     fn owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.owner {
@@ -16341,13 +16341,13 @@ impl PyGetObjectAclOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetObjectAnnotationOutput {
+struct PyOperationGetObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::get_object_annotation::GetObjectAnnotationOutput,
     annotation_payload: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PyGetObjectAnnotationOutput {
+impl PyOperationGetObjectAnnotationOutput {
     #[getter]
     fn annotation_payload(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         self.annotation_payload.clone_ref(py).into_py_any(py)
@@ -16653,12 +16653,12 @@ impl PyGetObjectAnnotationOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetObjectAttributesOutput {
+struct PyOperationGetObjectAttributesOutput {
     inner: aws_sdk_s3::operation::get_object_attributes::GetObjectAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetObjectAttributesOutput {
+impl PyOperationGetObjectAttributesOutput {
     #[getter]
     fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delete_marker {
@@ -16822,12 +16822,12 @@ impl PyGetObjectAttributesOutput {
 }
 
 #[pyclass(name = "GetObjectLegalHoldOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectLegalHoldOutput {
+struct PyOperationGetObjectLegalHoldOutput {
     inner: aws_sdk_s3::operation::get_object_legal_hold::GetObjectLegalHoldOutput,
 }
 
 #[pymethods]
-impl PyGetObjectLegalHoldOutput {
+impl PyOperationGetObjectLegalHoldOutput {
     #[getter]
     fn legal_hold(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.legal_hold {
@@ -16861,12 +16861,12 @@ impl PyGetObjectLegalHoldOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetObjectLockConfigurationOutput {
+struct PyOperationGetObjectLockConfigurationOutput {
     inner: aws_sdk_s3::operation::get_object_lock_configuration::GetObjectLockConfigurationOutput,
 }
 
 #[pymethods]
-impl PyGetObjectLockConfigurationOutput {
+impl PyOperationGetObjectLockConfigurationOutput {
     #[getter]
     fn object_lock_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.object_lock_configuration {
@@ -16896,12 +16896,12 @@ impl PyGetObjectLockConfigurationOutput {
 }
 
 #[pyclass(name = "GetObjectRetentionOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectRetentionOutput {
+struct PyOperationGetObjectRetentionOutput {
     inner: aws_sdk_s3::operation::get_object_retention::GetObjectRetentionOutput,
 }
 
 #[pymethods]
-impl PyGetObjectRetentionOutput {
+impl PyOperationGetObjectRetentionOutput {
     #[getter]
     fn retention(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.retention {
@@ -16931,12 +16931,12 @@ impl PyGetObjectRetentionOutput {
 }
 
 #[pyclass(name = "GetObjectTaggingOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectTaggingOutput {
+struct PyOperationGetObjectTaggingOutput {
     inner: aws_sdk_s3::operation::get_object_tagging::GetObjectTaggingOutput,
 }
 
 #[pymethods]
-impl PyGetObjectTaggingOutput {
+impl PyOperationGetObjectTaggingOutput {
     #[getter]
     fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version_id {
@@ -16984,13 +16984,13 @@ impl PyGetObjectTaggingOutput {
 }
 
 #[pyclass(name = "GetObjectTorrentOutput", module = "rboto_s3._native", frozen)]
-struct PyGetObjectTorrentOutput {
+struct PyOperationGetObjectTorrentOutput {
     inner: aws_sdk_s3::operation::get_object_torrent::GetObjectTorrentOutput,
     body: Py<PyByteStream>,
 }
 
 #[pymethods]
-impl PyGetObjectTorrentOutput {
+impl PyOperationGetObjectTorrentOutput {
     #[getter]
     fn body(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         self.body.clone_ref(py).into_py_any(py)
@@ -17024,12 +17024,12 @@ impl PyGetObjectTorrentOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyGetPublicAccessBlockOutput {
+struct PyOperationGetPublicAccessBlockOutput {
     inner: aws_sdk_s3::operation::get_public_access_block::GetPublicAccessBlockOutput,
 }
 
 #[pymethods]
-impl PyGetPublicAccessBlockOutput {
+impl PyOperationGetPublicAccessBlockOutput {
     #[getter]
     fn public_access_block_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.public_access_block_configuration {
@@ -17059,12 +17059,12 @@ impl PyGetPublicAccessBlockOutput {
 }
 
 #[pyclass(name = "HeadBucketOutput", module = "rboto_s3._native", frozen)]
-struct PyHeadBucketOutput {
+struct PyOperationHeadBucketOutput {
     inner: aws_sdk_s3::operation::head_bucket::HeadBucketOutput,
 }
 
 #[pymethods]
-impl PyHeadBucketOutput {
+impl PyOperationHeadBucketOutput {
     #[getter]
     fn bucket_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bucket_arn {
@@ -17152,12 +17152,12 @@ impl PyHeadBucketOutput {
 }
 
 #[pyclass(name = "HeadObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyHeadObjectOutput {
+struct PyOperationHeadObjectOutput {
     inner: aws_sdk_s3::operation::head_object::HeadObjectOutput,
 }
 
 #[pymethods]
-impl PyHeadObjectOutput {
+impl PyOperationHeadObjectOutput {
     #[getter]
     fn delete_marker(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.delete_marker {
@@ -17933,12 +17933,12 @@ impl PyHeadObjectOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListBucketAnalyticsConfigurationsOutput {
+struct PyOperationListBucketAnalyticsConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_analytics_configurations::ListBucketAnalyticsConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListBucketAnalyticsConfigurationsOutput {
+impl PyOperationListBucketAnalyticsConfigurationsOutput {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -18030,12 +18030,12 @@ impl PyListBucketAnalyticsConfigurationsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListBucketIntelligentTieringConfigurationsOutput {
+struct PyOperationListBucketIntelligentTieringConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_intelligent_tiering_configurations::ListBucketIntelligentTieringConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListBucketIntelligentTieringConfigurationsOutput {
+impl PyOperationListBucketIntelligentTieringConfigurationsOutput {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -18127,12 +18127,12 @@ impl PyListBucketIntelligentTieringConfigurationsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListBucketInventoryConfigurationsOutput {
+struct PyOperationListBucketInventoryConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_inventory_configurations::ListBucketInventoryConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListBucketInventoryConfigurationsOutput {
+impl PyOperationListBucketInventoryConfigurationsOutput {
     #[getter]
     fn continuation_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.continuation_token {
@@ -18224,12 +18224,12 @@ impl PyListBucketInventoryConfigurationsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListBucketMetricsConfigurationsOutput {
+struct PyOperationListBucketMetricsConfigurationsOutput {
     inner: aws_sdk_s3::operation::list_bucket_metrics_configurations::ListBucketMetricsConfigurationsOutput,
 }
 
 #[pymethods]
-impl PyListBucketMetricsConfigurationsOutput {
+impl PyOperationListBucketMetricsConfigurationsOutput {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -18317,12 +18317,12 @@ impl PyListBucketMetricsConfigurationsOutput {
 }
 
 #[pyclass(name = "ListBucketsOutput", module = "rboto_s3._native", frozen)]
-struct PyListBucketsOutput {
+struct PyOperationListBucketsOutput {
     inner: aws_sdk_s3::operation::list_buckets::ListBucketsOutput,
 }
 
 #[pymethods]
-impl PyListBucketsOutput {
+impl PyOperationListBucketsOutput {
     #[getter]
     fn buckets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.buckets {
@@ -18420,12 +18420,12 @@ impl PyListBucketsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListDirectoryBucketsOutput {
+struct PyOperationListDirectoryBucketsOutput {
     inner: aws_sdk_s3::operation::list_directory_buckets::ListDirectoryBucketsOutput,
 }
 
 #[pymethods]
-impl PyListDirectoryBucketsOutput {
+impl PyOperationListDirectoryBucketsOutput {
     #[getter]
     fn buckets(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.buckets {
@@ -18485,12 +18485,12 @@ impl PyListDirectoryBucketsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListMultipartUploadsOutput {
+struct PyOperationListMultipartUploadsOutput {
     inner: aws_sdk_s3::operation::list_multipart_uploads::ListMultipartUploadsOutput,
 }
 
 #[pymethods]
-impl PyListMultipartUploadsOutput {
+impl PyOperationListMultipartUploadsOutput {
     #[getter]
     fn bucket(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bucket {
@@ -18742,12 +18742,12 @@ impl PyListMultipartUploadsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyListObjectAnnotationsOutput {
+struct PyOperationListObjectAnnotationsOutput {
     inner: aws_sdk_s3::operation::list_object_annotations::ListObjectAnnotationsOutput,
 }
 
 #[pymethods]
-impl PyListObjectAnnotationsOutput {
+impl PyOperationListObjectAnnotationsOutput {
     #[getter]
     fn annotations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.annotations {
@@ -18931,12 +18931,12 @@ impl PyListObjectAnnotationsOutput {
 }
 
 #[pyclass(name = "ListObjectVersionsOutput", module = "rboto_s3._native", frozen)]
-struct PyListObjectVersionsOutput {
+struct PyOperationListObjectVersionsOutput {
     inner: aws_sdk_s3::operation::list_object_versions::ListObjectVersionsOutput,
 }
 
 #[pymethods]
-impl PyListObjectVersionsOutput {
+impl PyOperationListObjectVersionsOutput {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -19216,12 +19216,12 @@ impl PyListObjectVersionsOutput {
 }
 
 #[pyclass(name = "ListObjectsOutput", module = "rboto_s3._native", frozen)]
-struct PyListObjectsOutput {
+struct PyOperationListObjectsOutput {
     inner: aws_sdk_s3::operation::list_objects::ListObjectsOutput,
 }
 
 #[pymethods]
-impl PyListObjectsOutput {
+impl PyOperationListObjectsOutput {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -19437,12 +19437,12 @@ impl PyListObjectsOutput {
 }
 
 #[pyclass(name = "ListObjectsV2Output", module = "rboto_s3._native", frozen)]
-struct PyListObjectsV2Output {
+struct PyOperationListObjectsV2Output {
     inner: aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Output,
 }
 
 #[pymethods]
-impl PyListObjectsV2Output {
+impl PyOperationListObjectsV2Output {
     #[getter]
     fn is_truncated(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.is_truncated {
@@ -19690,12 +19690,12 @@ impl PyListObjectsV2Output {
 }
 
 #[pyclass(name = "ListPartsOutput", module = "rboto_s3._native", frozen)]
-struct PyListPartsOutput {
+struct PyOperationListPartsOutput {
     inner: aws_sdk_s3::operation::list_parts::ListPartsOutput,
 }
 
 #[pymethods]
-impl PyListPartsOutput {
+impl PyOperationListPartsOutput {
     #[getter]
     fn abort_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.abort_date {
@@ -19991,12 +19991,12 @@ impl PyListPartsOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyPutBucketLifecycleConfigurationOutput {
+struct PyOperationPutBucketLifecycleConfigurationOutput {
     inner: aws_sdk_s3::operation::put_bucket_lifecycle_configuration::PutBucketLifecycleConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutBucketLifecycleConfigurationOutput {
+impl PyOperationPutBucketLifecycleConfigurationOutput {
     #[getter]
     fn transition_default_minimum_object_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.transition_default_minimum_object_size {
@@ -20020,12 +20020,12 @@ impl PyPutBucketLifecycleConfigurationOutput {
 }
 
 #[pyclass(name = "PutObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyPutObjectOutput {
+struct PyOperationPutObjectOutput {
     inner: aws_sdk_s3::operation::put_object::PutObjectOutput,
 }
 
 #[pymethods]
-impl PyPutObjectOutput {
+impl PyOperationPutObjectOutput {
     #[getter]
     fn expiration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expiration {
@@ -20385,12 +20385,12 @@ impl PyPutObjectOutput {
 }
 
 #[pyclass(name = "PutObjectAclOutput", module = "rboto_s3._native", frozen)]
-struct PyPutObjectAclOutput {
+struct PyOperationPutObjectAclOutput {
     inner: aws_sdk_s3::operation::put_object_acl::PutObjectAclOutput,
 }
 
 #[pymethods]
-impl PyPutObjectAclOutput {
+impl PyOperationPutObjectAclOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20418,12 +20418,12 @@ impl PyPutObjectAclOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyPutObjectAnnotationOutput {
+struct PyOperationPutObjectAnnotationOutput {
     inner: aws_sdk_s3::operation::put_object_annotation::PutObjectAnnotationOutput,
 }
 
 #[pymethods]
-impl PyPutObjectAnnotationOutput {
+impl PyOperationPutObjectAnnotationOutput {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key {
@@ -20703,12 +20703,12 @@ impl PyPutObjectAnnotationOutput {
 }
 
 #[pyclass(name = "PutObjectLegalHoldOutput", module = "rboto_s3._native", frozen)]
-struct PyPutObjectLegalHoldOutput {
+struct PyOperationPutObjectLegalHoldOutput {
     inner: aws_sdk_s3::operation::put_object_legal_hold::PutObjectLegalHoldOutput,
 }
 
 #[pymethods]
-impl PyPutObjectLegalHoldOutput {
+impl PyOperationPutObjectLegalHoldOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20736,12 +20736,12 @@ impl PyPutObjectLegalHoldOutput {
     module = "rboto_s3._native",
     frozen
 )]
-struct PyPutObjectLockConfigurationOutput {
+struct PyOperationPutObjectLockConfigurationOutput {
     inner: aws_sdk_s3::operation::put_object_lock_configuration::PutObjectLockConfigurationOutput,
 }
 
 #[pymethods]
-impl PyPutObjectLockConfigurationOutput {
+impl PyOperationPutObjectLockConfigurationOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20765,12 +20765,12 @@ impl PyPutObjectLockConfigurationOutput {
 }
 
 #[pyclass(name = "PutObjectRetentionOutput", module = "rboto_s3._native", frozen)]
-struct PyPutObjectRetentionOutput {
+struct PyOperationPutObjectRetentionOutput {
     inner: aws_sdk_s3::operation::put_object_retention::PutObjectRetentionOutput,
 }
 
 #[pymethods]
-impl PyPutObjectRetentionOutput {
+impl PyOperationPutObjectRetentionOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20794,12 +20794,12 @@ impl PyPutObjectRetentionOutput {
 }
 
 #[pyclass(name = "PutObjectTaggingOutput", module = "rboto_s3._native", frozen)]
-struct PyPutObjectTaggingOutput {
+struct PyOperationPutObjectTaggingOutput {
     inner: aws_sdk_s3::operation::put_object_tagging::PutObjectTaggingOutput,
 }
 
 #[pymethods]
-impl PyPutObjectTaggingOutput {
+impl PyOperationPutObjectTaggingOutput {
     #[getter]
     fn version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version_id {
@@ -20823,12 +20823,12 @@ impl PyPutObjectTaggingOutput {
 }
 
 #[pyclass(name = "RenameObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyRenameObjectOutput {
+struct PyOperationRenameObjectOutput {
     inner: aws_sdk_s3::operation::rename_object::RenameObjectOutput,
 }
 
 #[pymethods]
-impl PyRenameObjectOutput {
+impl PyOperationRenameObjectOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -20836,12 +20836,12 @@ impl PyRenameObjectOutput {
 }
 
 #[pyclass(name = "RestoreObjectOutput", module = "rboto_s3._native", frozen)]
-struct PyRestoreObjectOutput {
+struct PyOperationRestoreObjectOutput {
     inner: aws_sdk_s3::operation::restore_object::RestoreObjectOutput,
 }
 
 #[pymethods]
-impl PyRestoreObjectOutput {
+impl PyOperationRestoreObjectOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20881,16 +20881,16 @@ impl PyRestoreObjectOutput {
 }
 
 #[pyclass(
-    name = "UpdateObjectEncryptionResponse",
+    name = "UpdateObjectEncryptionOutput",
     module = "rboto_s3._native",
     frozen
 )]
-struct PyUpdateObjectEncryptionResponse {
+struct PyOperationUpdateObjectEncryptionOutput {
     inner: aws_sdk_s3::operation::update_object_encryption::UpdateObjectEncryptionOutput,
 }
 
 #[pymethods]
-impl PyUpdateObjectEncryptionResponse {
+impl PyOperationUpdateObjectEncryptionOutput {
     #[getter]
     fn request_charged(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_charged {
@@ -20914,12 +20914,12 @@ impl PyUpdateObjectEncryptionResponse {
 }
 
 #[pyclass(name = "UploadPartOutput", module = "rboto_s3._native", frozen)]
-struct PyUploadPartOutput {
+struct PyOperationUploadPartOutput {
     inner: aws_sdk_s3::operation::upload_part::UploadPartOutput,
 }
 
 #[pymethods]
-impl PyUploadPartOutput {
+impl PyOperationUploadPartOutput {
     #[getter]
     fn server_side_encryption(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.server_side_encryption {
@@ -21199,12 +21199,12 @@ impl PyUploadPartOutput {
 }
 
 #[pyclass(name = "UploadPartCopyOutput", module = "rboto_s3._native", frozen)]
-struct PyUploadPartCopyOutput {
+struct PyOperationUploadPartCopyOutput {
     inner: aws_sdk_s3::operation::upload_part_copy::UploadPartCopyOutput,
 }
 
 #[pymethods]
-impl PyUploadPartCopyOutput {
+impl PyOperationUploadPartCopyOutput {
     #[getter]
     fn copy_source_version_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.copy_source_version_id {
@@ -21522,76 +21522,76 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyTiering>()?;
     module.add_class::<PyTopicConfiguration>()?;
     module.add_class::<PyTransition>()?;
-    module.add_class::<PyAbortMultipartUploadOutput>()?;
-    module.add_class::<PyCompleteMultipartUploadOutput>()?;
-    module.add_class::<PyCopyObjectOutput>()?;
-    module.add_class::<PyCreateBucketOutput>()?;
-    module.add_class::<PyCreateMultipartUploadOutput>()?;
-    module.add_class::<PyCreateSessionOutput>()?;
-    module.add_class::<PyDeleteObjectOutput>()?;
-    module.add_class::<PyDeleteObjectAnnotationOutput>()?;
-    module.add_class::<PyDeleteObjectTaggingOutput>()?;
-    module.add_class::<PyDeleteObjectsOutput>()?;
-    module.add_class::<PyGetBucketAbacOutput>()?;
-    module.add_class::<PyGetBucketAccelerateConfigurationOutput>()?;
-    module.add_class::<PyGetBucketAclOutput>()?;
-    module.add_class::<PyGetBucketAnalyticsConfigurationOutput>()?;
-    module.add_class::<PyGetBucketCorsOutput>()?;
-    module.add_class::<PyGetBucketEncryptionOutput>()?;
-    module.add_class::<PyGetBucketIntelligentTieringConfigurationOutput>()?;
-    module.add_class::<PyGetBucketInventoryConfigurationOutput>()?;
-    module.add_class::<PyGetBucketLifecycleConfigurationOutput>()?;
-    module.add_class::<PyGetBucketLocationOutput>()?;
-    module.add_class::<PyGetBucketLoggingOutput>()?;
-    module.add_class::<PyGetBucketMetadataConfigurationOutput>()?;
-    module.add_class::<PyGetBucketMetadataTableConfigurationOutput>()?;
-    module.add_class::<PyGetBucketMetricsConfigurationOutput>()?;
-    module.add_class::<PyGetBucketNotificationConfigurationOutput>()?;
-    module.add_class::<PyGetBucketOwnershipControlsOutput>()?;
-    module.add_class::<PyGetBucketPolicyOutput>()?;
-    module.add_class::<PyGetBucketPolicyStatusOutput>()?;
-    module.add_class::<PyGetBucketReplicationOutput>()?;
-    module.add_class::<PyGetBucketRequestPaymentOutput>()?;
-    module.add_class::<PyGetBucketTaggingOutput>()?;
-    module.add_class::<PyGetBucketVersioningOutput>()?;
-    module.add_class::<PyGetBucketWebsiteOutput>()?;
-    module.add_class::<PyGetObjectOutput>()?;
-    module.add_class::<PyGetObjectAclOutput>()?;
-    module.add_class::<PyGetObjectAnnotationOutput>()?;
-    module.add_class::<PyGetObjectAttributesOutput>()?;
-    module.add_class::<PyGetObjectLegalHoldOutput>()?;
-    module.add_class::<PyGetObjectLockConfigurationOutput>()?;
-    module.add_class::<PyGetObjectRetentionOutput>()?;
-    module.add_class::<PyGetObjectTaggingOutput>()?;
-    module.add_class::<PyGetObjectTorrentOutput>()?;
-    module.add_class::<PyGetPublicAccessBlockOutput>()?;
-    module.add_class::<PyHeadBucketOutput>()?;
-    module.add_class::<PyHeadObjectOutput>()?;
-    module.add_class::<PyListBucketAnalyticsConfigurationsOutput>()?;
-    module.add_class::<PyListBucketIntelligentTieringConfigurationsOutput>()?;
-    module.add_class::<PyListBucketInventoryConfigurationsOutput>()?;
-    module.add_class::<PyListBucketMetricsConfigurationsOutput>()?;
-    module.add_class::<PyListBucketsOutput>()?;
-    module.add_class::<PyListDirectoryBucketsOutput>()?;
-    module.add_class::<PyListMultipartUploadsOutput>()?;
-    module.add_class::<PyListObjectAnnotationsOutput>()?;
-    module.add_class::<PyListObjectVersionsOutput>()?;
-    module.add_class::<PyListObjectsOutput>()?;
-    module.add_class::<PyListObjectsV2Output>()?;
-    module.add_class::<PyListPartsOutput>()?;
-    module.add_class::<PyPutBucketLifecycleConfigurationOutput>()?;
-    module.add_class::<PyPutObjectOutput>()?;
-    module.add_class::<PyPutObjectAclOutput>()?;
-    module.add_class::<PyPutObjectAnnotationOutput>()?;
-    module.add_class::<PyPutObjectLegalHoldOutput>()?;
-    module.add_class::<PyPutObjectLockConfigurationOutput>()?;
-    module.add_class::<PyPutObjectRetentionOutput>()?;
-    module.add_class::<PyPutObjectTaggingOutput>()?;
-    module.add_class::<PyRenameObjectOutput>()?;
-    module.add_class::<PyRestoreObjectOutput>()?;
-    module.add_class::<PyUpdateObjectEncryptionResponse>()?;
-    module.add_class::<PyUploadPartOutput>()?;
-    module.add_class::<PyUploadPartCopyOutput>()?;
+    module.add_class::<PyOperationAbortMultipartUploadOutput>()?;
+    module.add_class::<PyOperationCompleteMultipartUploadOutput>()?;
+    module.add_class::<PyOperationCopyObjectOutput>()?;
+    module.add_class::<PyOperationCreateBucketOutput>()?;
+    module.add_class::<PyOperationCreateMultipartUploadOutput>()?;
+    module.add_class::<PyOperationCreateSessionOutput>()?;
+    module.add_class::<PyOperationDeleteObjectOutput>()?;
+    module.add_class::<PyOperationDeleteObjectAnnotationOutput>()?;
+    module.add_class::<PyOperationDeleteObjectTaggingOutput>()?;
+    module.add_class::<PyOperationDeleteObjectsOutput>()?;
+    module.add_class::<PyOperationGetBucketAbacOutput>()?;
+    module.add_class::<PyOperationGetBucketAccelerateConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketAclOutput>()?;
+    module.add_class::<PyOperationGetBucketAnalyticsConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketCorsOutput>()?;
+    module.add_class::<PyOperationGetBucketEncryptionOutput>()?;
+    module.add_class::<PyOperationGetBucketIntelligentTieringConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketInventoryConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketLifecycleConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketLocationOutput>()?;
+    module.add_class::<PyOperationGetBucketLoggingOutput>()?;
+    module.add_class::<PyOperationGetBucketMetadataConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketMetadataTableConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketMetricsConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketNotificationConfigurationOutput>()?;
+    module.add_class::<PyOperationGetBucketOwnershipControlsOutput>()?;
+    module.add_class::<PyOperationGetBucketPolicyOutput>()?;
+    module.add_class::<PyOperationGetBucketPolicyStatusOutput>()?;
+    module.add_class::<PyOperationGetBucketReplicationOutput>()?;
+    module.add_class::<PyOperationGetBucketRequestPaymentOutput>()?;
+    module.add_class::<PyOperationGetBucketTaggingOutput>()?;
+    module.add_class::<PyOperationGetBucketVersioningOutput>()?;
+    module.add_class::<PyOperationGetBucketWebsiteOutput>()?;
+    module.add_class::<PyOperationGetObjectOutput>()?;
+    module.add_class::<PyOperationGetObjectAclOutput>()?;
+    module.add_class::<PyOperationGetObjectAnnotationOutput>()?;
+    module.add_class::<PyOperationGetObjectAttributesOutput>()?;
+    module.add_class::<PyOperationGetObjectLegalHoldOutput>()?;
+    module.add_class::<PyOperationGetObjectLockConfigurationOutput>()?;
+    module.add_class::<PyOperationGetObjectRetentionOutput>()?;
+    module.add_class::<PyOperationGetObjectTaggingOutput>()?;
+    module.add_class::<PyOperationGetObjectTorrentOutput>()?;
+    module.add_class::<PyOperationGetPublicAccessBlockOutput>()?;
+    module.add_class::<PyOperationHeadBucketOutput>()?;
+    module.add_class::<PyOperationHeadObjectOutput>()?;
+    module.add_class::<PyOperationListBucketAnalyticsConfigurationsOutput>()?;
+    module.add_class::<PyOperationListBucketIntelligentTieringConfigurationsOutput>()?;
+    module.add_class::<PyOperationListBucketInventoryConfigurationsOutput>()?;
+    module.add_class::<PyOperationListBucketMetricsConfigurationsOutput>()?;
+    module.add_class::<PyOperationListBucketsOutput>()?;
+    module.add_class::<PyOperationListDirectoryBucketsOutput>()?;
+    module.add_class::<PyOperationListMultipartUploadsOutput>()?;
+    module.add_class::<PyOperationListObjectAnnotationsOutput>()?;
+    module.add_class::<PyOperationListObjectVersionsOutput>()?;
+    module.add_class::<PyOperationListObjectsOutput>()?;
+    module.add_class::<PyOperationListObjectsV2Output>()?;
+    module.add_class::<PyOperationListPartsOutput>()?;
+    module.add_class::<PyOperationPutBucketLifecycleConfigurationOutput>()?;
+    module.add_class::<PyOperationPutObjectOutput>()?;
+    module.add_class::<PyOperationPutObjectAclOutput>()?;
+    module.add_class::<PyOperationPutObjectAnnotationOutput>()?;
+    module.add_class::<PyOperationPutObjectLegalHoldOutput>()?;
+    module.add_class::<PyOperationPutObjectLockConfigurationOutput>()?;
+    module.add_class::<PyOperationPutObjectRetentionOutput>()?;
+    module.add_class::<PyOperationPutObjectTaggingOutput>()?;
+    module.add_class::<PyOperationRenameObjectOutput>()?;
+    module.add_class::<PyOperationRestoreObjectOutput>()?;
+    module.add_class::<PyOperationUpdateObjectEncryptionOutput>()?;
+    module.add_class::<PyOperationUploadPartOutput>()?;
+    module.add_class::<PyOperationUploadPartCopyOutput>()?;
 
     module.add_class::<PySelectObjectContentEventStreamReceiver>()?;
     Ok(())
@@ -21702,7 +21702,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "AbortMultipartUpload"))
             })?;
-            Ok(PyAbortMultipartUploadOutput { inner: output })
+            Ok(PyOperationAbortMultipartUploadOutput { inner: output })
         })
     }
 
@@ -21902,7 +21902,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CompleteMultipartUpload"))
             })?;
-            Ok(PyCompleteMultipartUploadOutput { inner: output })
+            Ok(PyOperationCompleteMultipartUploadOutput { inner: output })
         })
     }
 
@@ -22335,7 +22335,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CopyObject")))?;
-            Ok(PyCopyObjectOutput { inner: output })
+            Ok(PyOperationCopyObjectOutput { inner: output })
         })
     }
 
@@ -22449,7 +22449,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateBucket"))
             })?;
-            Ok(PyCreateBucketOutput { inner: output })
+            Ok(PyOperationCreateBucketOutput { inner: output })
         })
     }
 
@@ -22912,7 +22912,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultipartUpload"))
             })?;
-            Ok(PyCreateMultipartUploadOutput { inner: output })
+            Ok(PyOperationCreateMultipartUploadOutput { inner: output })
         })
     }
 
@@ -22991,7 +22991,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
             })?;
-            Ok(PyCreateSessionOutput { inner: output })
+            Ok(PyOperationCreateSessionOutput { inner: output })
         })
     }
 
@@ -23829,7 +23829,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObject"))
             })?;
-            Ok(PyDeleteObjectOutput { inner: output })
+            Ok(PyOperationDeleteObjectOutput { inner: output })
         })
     }
 
@@ -23911,7 +23911,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectAnnotation"))
             })?;
-            Ok(PyDeleteObjectAnnotationOutput { inner: output })
+            Ok(PyOperationDeleteObjectAnnotationOutput { inner: output })
         })
     }
 
@@ -23971,7 +23971,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectTagging"))
             })?;
-            Ok(PyDeleteObjectTaggingOutput { inner: output })
+            Ok(PyOperationDeleteObjectTaggingOutput { inner: output })
         })
     }
 
@@ -24057,7 +24057,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjects"))
             })?;
-            Ok(PyDeleteObjectsOutput { inner: output })
+            Ok(PyOperationDeleteObjectsOutput { inner: output })
         })
     }
 
@@ -24149,7 +24149,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAbac"))
             })?;
-            Ok(PyGetBucketAbacOutput { inner: output })
+            Ok(PyOperationGetBucketAbacOutput { inner: output })
         })
     }
 
@@ -24203,7 +24203,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAccelerateConfiguration"))
             })?;
-            Ok(PyGetBucketAccelerateConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketAccelerateConfigurationOutput { inner: output })
         })
     }
 
@@ -24249,7 +24249,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAcl"))
             })?;
-            Ok(PyGetBucketAclOutput { inner: output })
+            Ok(PyOperationGetBucketAclOutput { inner: output })
         })
     }
 
@@ -24302,7 +24302,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAnalyticsConfiguration"))
             })?;
-            Ok(PyGetBucketAnalyticsConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketAnalyticsConfigurationOutput { inner: output })
         })
     }
 
@@ -24348,7 +24348,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketCors"))
             })?;
-            Ok(PyGetBucketCorsOutput { inner: output })
+            Ok(PyOperationGetBucketCorsOutput { inner: output })
         })
     }
 
@@ -24394,7 +24394,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketEncryption"))
             })?;
-            Ok(PyGetBucketEncryptionOutput { inner: output })
+            Ok(PyOperationGetBucketEncryptionOutput { inner: output })
         })
     }
 
@@ -24449,7 +24449,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketIntelligentTieringConfiguration")
                 })
             })?;
-            Ok(PyGetBucketIntelligentTieringConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketIntelligentTieringConfigurationOutput { inner: output })
         })
     }
 
@@ -24502,7 +24502,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketInventoryConfiguration"))
             })?;
-            Ok(PyGetBucketInventoryConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketInventoryConfigurationOutput { inner: output })
         })
     }
 
@@ -24548,7 +24548,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLifecycleConfiguration"))
             })?;
-            Ok(PyGetBucketLifecycleConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
@@ -24594,7 +24594,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLocation"))
             })?;
-            Ok(PyGetBucketLocationOutput { inner: output })
+            Ok(PyOperationGetBucketLocationOutput { inner: output })
         })
     }
 
@@ -24640,7 +24640,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLogging"))
             })?;
-            Ok(PyGetBucketLoggingOutput { inner: output })
+            Ok(PyOperationGetBucketLoggingOutput { inner: output })
         })
     }
 
@@ -24686,7 +24686,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetadataConfiguration"))
             })?;
-            Ok(PyGetBucketMetadataConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketMetadataConfigurationOutput { inner: output })
         })
     }
 
@@ -24734,7 +24734,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketMetadataTableConfiguration")
                 })
             })?;
-            Ok(PyGetBucketMetadataTableConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketMetadataTableConfigurationOutput { inner: output })
         })
     }
 
@@ -24787,7 +24787,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetricsConfiguration"))
             })?;
-            Ok(PyGetBucketMetricsConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketMetricsConfigurationOutput { inner: output })
         })
     }
 
@@ -24835,7 +24835,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "GetBucketNotificationConfiguration")
                 })
             })?;
-            Ok(PyGetBucketNotificationConfigurationOutput { inner: output })
+            Ok(PyOperationGetBucketNotificationConfigurationOutput { inner: output })
         })
     }
 
@@ -24881,7 +24881,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketOwnershipControls"))
             })?;
-            Ok(PyGetBucketOwnershipControlsOutput { inner: output })
+            Ok(PyOperationGetBucketOwnershipControlsOutput { inner: output })
         })
     }
 
@@ -24927,7 +24927,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicy"))
             })?;
-            Ok(PyGetBucketPolicyOutput { inner: output })
+            Ok(PyOperationGetBucketPolicyOutput { inner: output })
         })
     }
 
@@ -24973,7 +24973,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicyStatus"))
             })?;
-            Ok(PyGetBucketPolicyStatusOutput { inner: output })
+            Ok(PyOperationGetBucketPolicyStatusOutput { inner: output })
         })
     }
 
@@ -25019,7 +25019,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketReplication"))
             })?;
-            Ok(PyGetBucketReplicationOutput { inner: output })
+            Ok(PyOperationGetBucketReplicationOutput { inner: output })
         })
     }
 
@@ -25065,7 +25065,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketRequestPayment"))
             })?;
-            Ok(PyGetBucketRequestPaymentOutput { inner: output })
+            Ok(PyOperationGetBucketRequestPaymentOutput { inner: output })
         })
     }
 
@@ -25111,7 +25111,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketTagging"))
             })?;
-            Ok(PyGetBucketTaggingOutput { inner: output })
+            Ok(PyOperationGetBucketTaggingOutput { inner: output })
         })
     }
 
@@ -25157,7 +25157,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketVersioning"))
             })?;
-            Ok(PyGetBucketVersioningOutput { inner: output })
+            Ok(PyOperationGetBucketVersioningOutput { inner: output })
         })
     }
 
@@ -25203,7 +25203,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketWebsite"))
             })?;
-            Ok(PyGetBucketWebsiteOutput { inner: output })
+            Ok(PyOperationGetBucketWebsiteOutput { inner: output })
         })
     }
 
@@ -25412,7 +25412,7 @@ impl S3Client {
                 let py_body = Py::new(py, PyByteStream::new(body))?;
                 Py::new(
                     py,
-                    PyGetObjectOutput {
+                    PyOperationGetObjectOutput {
                         inner: output,
                         body: py_body,
                     },
@@ -25485,7 +25485,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAcl"))
             })?;
-            Ok(PyGetObjectAclOutput { inner: output })
+            Ok(PyOperationGetObjectAclOutput { inner: output })
         })
     }
 
@@ -25573,7 +25573,7 @@ impl S3Client {
                 let py_annotation_payload = Py::new(py, PyByteStream::new(annotation_payload))?;
                 Py::new(
                     py,
-                    PyGetObjectAnnotationOutput {
+                    PyOperationGetObjectAnnotationOutput {
                         inner: output,
                         annotation_payload: py_annotation_payload,
                     },
@@ -25700,7 +25700,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAttributes"))
             })?;
-            Ok(PyGetObjectAttributesOutput { inner: output })
+            Ok(PyOperationGetObjectAttributesOutput { inner: output })
         })
     }
 
@@ -25768,7 +25768,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLegalHold"))
             })?;
-            Ok(PyGetObjectLegalHoldOutput { inner: output })
+            Ok(PyOperationGetObjectLegalHoldOutput { inner: output })
         })
     }
 
@@ -25814,7 +25814,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLockConfiguration"))
             })?;
-            Ok(PyGetObjectLockConfigurationOutput { inner: output })
+            Ok(PyOperationGetObjectLockConfigurationOutput { inner: output })
         })
     }
 
@@ -25882,7 +25882,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectRetention"))
             })?;
-            Ok(PyGetObjectRetentionOutput { inner: output })
+            Ok(PyOperationGetObjectRetentionOutput { inner: output })
         })
     }
 
@@ -25950,7 +25950,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTagging"))
             })?;
-            Ok(PyGetObjectTaggingOutput { inner: output })
+            Ok(PyOperationGetObjectTaggingOutput { inner: output })
         })
     }
 
@@ -26016,7 +26016,7 @@ impl S3Client {
                 let py_body = Py::new(py, PyByteStream::new(body))?;
                 Py::new(
                     py,
-                    PyGetObjectTorrentOutput {
+                    PyOperationGetObjectTorrentOutput {
                         inner: output,
                         body: py_body,
                     },
@@ -26067,7 +26067,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicAccessBlock"))
             })?;
-            Ok(PyGetPublicAccessBlockOutput { inner: output })
+            Ok(PyOperationGetPublicAccessBlockOutput { inner: output })
         })
     }
 
@@ -26112,7 +26112,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadBucket")))?;
-            Ok(PyHeadBucketOutput { inner: output })
+            Ok(PyOperationHeadBucketOutput { inner: output })
         })
     }
 
@@ -26316,7 +26316,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadObject")))?;
-            Ok(PyHeadObjectOutput { inner: output })
+            Ok(PyOperationHeadObjectOutput { inner: output })
         })
     }
 
@@ -26372,7 +26372,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketAnalyticsConfigurations")
                 })
             })?;
-            Ok(PyListBucketAnalyticsConfigurationsOutput { inner: output })
+            Ok(PyOperationListBucketAnalyticsConfigurationsOutput { inner: output })
         })
     }
 
@@ -26428,7 +26428,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketIntelligentTieringConfigurations")
                 })
             })?;
-            Ok(PyListBucketIntelligentTieringConfigurationsOutput { inner: output })
+            Ok(PyOperationListBucketIntelligentTieringConfigurationsOutput { inner: output })
         })
     }
 
@@ -26484,7 +26484,7 @@ impl S3Client {
                     sdk_error_to_py(py, &error, "ListBucketInventoryConfigurations")
                 })
             })?;
-            Ok(PyListBucketInventoryConfigurationsOutput { inner: output })
+            Ok(PyOperationListBucketInventoryConfigurationsOutput { inner: output })
         })
     }
 
@@ -26538,7 +26538,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListBucketMetricsConfigurations"))
             })?;
-            Ok(PyListBucketMetricsConfigurationsOutput { inner: output })
+            Ok(PyOperationListBucketMetricsConfigurationsOutput { inner: output })
         })
     }
 
@@ -26597,7 +26597,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBuckets")))?;
-            Ok(PyListBucketsOutput { inner: output })
+            Ok(PyOperationListBucketsOutput { inner: output })
         })
     }
 
@@ -26644,7 +26644,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListDirectoryBuckets"))
             })?;
-            Ok(PyListDirectoryBucketsOutput { inner: output })
+            Ok(PyOperationListDirectoryBucketsOutput { inner: output })
         })
     }
 
@@ -26741,7 +26741,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListMultipartUploads"))
             })?;
-            Ok(PyListMultipartUploadsOutput { inner: output })
+            Ok(PyOperationListMultipartUploadsOutput { inner: output })
         })
     }
 
@@ -26833,7 +26833,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectAnnotations"))
             })?;
-            Ok(PyListObjectAnnotationsOutput { inner: output })
+            Ok(PyOperationListObjectAnnotationsOutput { inner: output })
         })
     }
 
@@ -26947,7 +26947,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectVersions"))
             })?;
-            Ok(PyListObjectVersionsOutput { inner: output })
+            Ok(PyOperationListObjectVersionsOutput { inner: output })
         })
     }
 
@@ -27052,7 +27052,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListObjects")))?;
-            Ok(PyListObjectsOutput { inner: output })
+            Ok(PyOperationListObjectsOutput { inner: output })
         })
     }
 
@@ -27173,7 +27173,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectsV2"))
             })?;
-            Ok(PyListObjectsV2Output { inner: output })
+            Ok(PyOperationListObjectsV2Output { inner: output })
         })
     }
 
@@ -27278,7 +27278,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListParts")))?;
-            Ok(PyListPartsOutput { inner: output })
+            Ok(PyOperationListPartsOutput { inner: output })
         })
     }
 
@@ -27933,7 +27933,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLifecycleConfiguration"))
             })?;
-            Ok(PyPutBucketLifecycleConfigurationOutput { inner: output })
+            Ok(PyOperationPutBucketLifecycleConfigurationOutput { inner: output })
         })
     }
 
@@ -29071,7 +29071,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutObject")))?;
-            Ok(PyPutObjectOutput { inner: output })
+            Ok(PyOperationPutObjectOutput { inner: output })
         })
     }
 
@@ -29208,7 +29208,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAcl"))
             })?;
-            Ok(PyPutObjectAclOutput { inner: output })
+            Ok(PyOperationPutObjectAclOutput { inner: output })
         })
     }
 
@@ -29389,7 +29389,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAnnotation"))
             })?;
-            Ok(PyPutObjectAnnotationOutput { inner: output })
+            Ok(PyOperationPutObjectAnnotationOutput { inner: output })
         })
     }
 
@@ -29481,7 +29481,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLegalHold"))
             })?;
-            Ok(PyPutObjectLegalHoldOutput { inner: output })
+            Ok(PyOperationPutObjectLegalHoldOutput { inner: output })
         })
     }
 
@@ -29567,7 +29567,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLockConfiguration"))
             })?;
-            Ok(PyPutObjectLockConfigurationOutput { inner: output })
+            Ok(PyOperationPutObjectLockConfigurationOutput { inner: output })
         })
     }
 
@@ -29667,7 +29667,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectRetention"))
             })?;
-            Ok(PyPutObjectRetentionOutput { inner: output })
+            Ok(PyOperationPutObjectRetentionOutput { inner: output })
         })
     }
 
@@ -29759,7 +29759,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectTagging"))
             })?;
-            Ok(PyPutObjectTaggingOutput { inner: output })
+            Ok(PyOperationPutObjectTaggingOutput { inner: output })
         })
     }
 
@@ -29972,7 +29972,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RenameObject"))
             })?;
-            Ok(PyRenameObjectOutput { inner: output })
+            Ok(PyOperationRenameObjectOutput { inner: output })
         })
     }
 
@@ -30057,7 +30057,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "RestoreObject"))
             })?;
-            Ok(PyRestoreObjectOutput { inner: output })
+            Ok(PyOperationRestoreObjectOutput { inner: output })
         })
     }
 
@@ -30509,7 +30509,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UpdateObjectEncryption"))
             })?;
-            Ok(PyUpdateObjectEncryptionResponse { inner: output })
+            Ok(PyOperationUpdateObjectEncryptionOutput { inner: output })
         })
     }
 
@@ -30711,7 +30711,7 @@ impl S3Client {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UploadPart")))?;
-            Ok(PyUploadPartOutput { inner: output })
+            Ok(PyOperationUploadPartOutput { inner: output })
         })
     }
 
@@ -30898,7 +30898,7 @@ impl S3Client {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UploadPartCopy"))
             })?;
-            Ok(PyUploadPartCopyOutput { inner: output })
+            Ok(PyOperationUploadPartCopyOutput { inner: output })
         })
     }
 

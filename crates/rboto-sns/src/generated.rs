@@ -950,16 +950,16 @@ impl PyTopic {
 }
 
 #[pyclass(
-    name = "CheckIfPhoneNumberIsOptedOutResponse",
+    name = "CheckIfPhoneNumberIsOptedOutOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyCheckIfPhoneNumberIsOptedOutResponse {
+struct PyOperationCheckIfPhoneNumberIsOptedOutOutput {
     inner: aws_sdk_sns::operation::check_if_phone_number_is_opted_out::CheckIfPhoneNumberIsOptedOutOutput,
 }
 
 #[pymethods]
-impl PyCheckIfPhoneNumberIsOptedOutResponse {
+impl PyOperationCheckIfPhoneNumberIsOptedOutOutput {
     #[getter]
     fn is_opted_out(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_294 = (&self.inner.is_opted_out).to_owned().into_py_any(py)?;
@@ -975,16 +975,16 @@ impl PyCheckIfPhoneNumberIsOptedOutResponse {
 }
 
 #[pyclass(
-    name = "ConfirmSubscriptionResponse",
+    name = "ConfirmSubscriptionOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyConfirmSubscriptionResponse {
+struct PyOperationConfirmSubscriptionOutput {
     inner: aws_sdk_sns::operation::confirm_subscription::ConfirmSubscriptionOutput,
 }
 
 #[pymethods]
-impl PyConfirmSubscriptionResponse {
+impl PyOperationConfirmSubscriptionOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
@@ -1008,16 +1008,16 @@ impl PyConfirmSubscriptionResponse {
 }
 
 #[pyclass(
-    name = "CreatePlatformApplicationResponse",
+    name = "CreatePlatformApplicationOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyCreatePlatformApplicationResponse {
+struct PyOperationCreatePlatformApplicationOutput {
     inner: aws_sdk_sns::operation::create_platform_application::CreatePlatformApplicationOutput,
 }
 
 #[pymethods]
-impl PyCreatePlatformApplicationResponse {
+impl PyOperationCreatePlatformApplicationOutput {
     #[getter]
     fn platform_application_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_application_arn {
@@ -1040,13 +1040,17 @@ impl PyCreatePlatformApplicationResponse {
     }
 }
 
-#[pyclass(name = "CreateEndpointResponse", module = "rboto_sns._native", frozen)]
-struct PyCreateEndpointResponse {
+#[pyclass(
+    name = "CreatePlatformEndpointOutput",
+    module = "rboto_sns._native",
+    frozen
+)]
+struct PyOperationCreatePlatformEndpointOutput {
     inner: aws_sdk_sns::operation::create_platform_endpoint::CreatePlatformEndpointOutput,
 }
 
 #[pymethods]
-impl PyCreateEndpointResponse {
+impl PyOperationCreatePlatformEndpointOutput {
     #[getter]
     fn endpoint_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoint_arn {
@@ -1070,30 +1074,30 @@ impl PyCreateEndpointResponse {
 }
 
 #[pyclass(
-    name = "CreateSMSSandboxPhoneNumberResult",
+    name = "CreateSMSSandboxPhoneNumberOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyCreateSMSSandboxPhoneNumberResult {
+struct PyOperationCreateSMSSandboxPhoneNumberOutput {
     inner:
         aws_sdk_sns::operation::create_sms_sandbox_phone_number::CreateSmsSandboxPhoneNumberOutput,
 }
 
 #[pymethods]
-impl PyCreateSMSSandboxPhoneNumberResult {
+impl PyOperationCreateSMSSandboxPhoneNumberOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "CreateTopicResponse", module = "rboto_sns._native", frozen)]
-struct PyCreateTopicResponse {
+#[pyclass(name = "CreateTopicOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationCreateTopicOutput {
     inner: aws_sdk_sns::operation::create_topic::CreateTopicOutput,
 }
 
 #[pymethods]
-impl PyCreateTopicResponse {
+impl PyOperationCreateTopicOutput {
     #[getter]
     fn topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topic_arn {
@@ -1117,17 +1121,17 @@ impl PyCreateTopicResponse {
 }
 
 #[pyclass(
-    name = "DeleteSMSSandboxPhoneNumberResult",
+    name = "DeleteSMSSandboxPhoneNumberOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyDeleteSMSSandboxPhoneNumberResult {
+struct PyOperationDeleteSMSSandboxPhoneNumberOutput {
     inner:
         aws_sdk_sns::operation::delete_sms_sandbox_phone_number::DeleteSmsSandboxPhoneNumberOutput,
 }
 
 #[pymethods]
-impl PyDeleteSMSSandboxPhoneNumberResult {
+impl PyOperationDeleteSMSSandboxPhoneNumberOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -1135,16 +1139,16 @@ impl PyDeleteSMSSandboxPhoneNumberResult {
 }
 
 #[pyclass(
-    name = "GetDataProtectionPolicyResponse",
+    name = "GetDataProtectionPolicyOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetDataProtectionPolicyResponse {
+struct PyOperationGetDataProtectionPolicyOutput {
     inner: aws_sdk_sns::operation::get_data_protection_policy::GetDataProtectionPolicyOutput,
 }
 
 #[pymethods]
-impl PyGetDataProtectionPolicyResponse {
+impl PyOperationGetDataProtectionPolicyOutput {
     #[getter]
     fn data_protection_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_protection_policy {
@@ -1168,16 +1172,16 @@ impl PyGetDataProtectionPolicyResponse {
 }
 
 #[pyclass(
-    name = "GetEndpointAttributesResponse",
+    name = "GetEndpointAttributesOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetEndpointAttributesResponse {
+struct PyOperationGetEndpointAttributesOutput {
     inner: aws_sdk_sns::operation::get_endpoint_attributes::GetEndpointAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetEndpointAttributesResponse {
+impl PyOperationGetEndpointAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1213,16 +1217,16 @@ impl PyGetEndpointAttributesResponse {
 }
 
 #[pyclass(
-    name = "GetPlatformApplicationAttributesResponse",
+    name = "GetPlatformApplicationAttributesOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetPlatformApplicationAttributesResponse {
+struct PyOperationGetPlatformApplicationAttributesOutput {
     inner: aws_sdk_sns::operation::get_platform_application_attributes::GetPlatformApplicationAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetPlatformApplicationAttributesResponse {
+impl PyOperationGetPlatformApplicationAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1257,17 +1261,13 @@ impl PyGetPlatformApplicationAttributesResponse {
     }
 }
 
-#[pyclass(
-    name = "GetSMSAttributesResponse",
-    module = "rboto_sns._native",
-    frozen
-)]
-struct PyGetSMSAttributesResponse {
+#[pyclass(name = "GetSMSAttributesOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationGetSMSAttributesOutput {
     inner: aws_sdk_sns::operation::get_sms_attributes::GetSmsAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetSMSAttributesResponse {
+impl PyOperationGetSMSAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1303,16 +1303,16 @@ impl PyGetSMSAttributesResponse {
 }
 
 #[pyclass(
-    name = "GetSMSSandboxAccountStatusResult",
+    name = "GetSMSSandboxAccountStatusOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetSMSSandboxAccountStatusResult {
+struct PyOperationGetSMSSandboxAccountStatusOutput {
     inner: aws_sdk_sns::operation::get_sms_sandbox_account_status::GetSmsSandboxAccountStatusOutput,
 }
 
 #[pymethods]
-impl PyGetSMSSandboxAccountStatusResult {
+impl PyOperationGetSMSSandboxAccountStatusOutput {
     #[getter]
     fn is_in_sandbox(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_336 = (&self.inner.is_in_sandbox).to_owned().into_py_any(py)?;
@@ -1328,16 +1328,16 @@ impl PyGetSMSSandboxAccountStatusResult {
 }
 
 #[pyclass(
-    name = "GetSubscriptionAttributesResponse",
+    name = "GetSubscriptionAttributesOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetSubscriptionAttributesResponse {
+struct PyOperationGetSubscriptionAttributesOutput {
     inner: aws_sdk_sns::operation::get_subscription_attributes::GetSubscriptionAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetSubscriptionAttributesResponse {
+impl PyOperationGetSubscriptionAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1373,16 +1373,16 @@ impl PyGetSubscriptionAttributesResponse {
 }
 
 #[pyclass(
-    name = "GetTopicAttributesResponse",
+    name = "GetTopicAttributesOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyGetTopicAttributesResponse {
+struct PyOperationGetTopicAttributesOutput {
     inner: aws_sdk_sns::operation::get_topic_attributes::GetTopicAttributesOutput,
 }
 
 #[pymethods]
-impl PyGetTopicAttributesResponse {
+impl PyOperationGetTopicAttributesOutput {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
@@ -1418,16 +1418,16 @@ impl PyGetTopicAttributesResponse {
 }
 
 #[pyclass(
-    name = "ListEndpointsByPlatformApplicationResponse",
+    name = "ListEndpointsByPlatformApplicationOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListEndpointsByPlatformApplicationResponse {
+struct PyOperationListEndpointsByPlatformApplicationOutput {
     inner: aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationOutput,
 }
 
 #[pymethods]
-impl PyListEndpointsByPlatformApplicationResponse {
+impl PyOperationListEndpointsByPlatformApplicationOutput {
     #[getter]
     fn endpoints(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.endpoints {
@@ -1483,16 +1483,16 @@ impl PyListEndpointsByPlatformApplicationResponse {
 }
 
 #[pyclass(
-    name = "ListOriginationNumbersResult",
+    name = "ListOriginationNumbersOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListOriginationNumbersResult {
+struct PyOperationListOriginationNumbersOutput {
     inner: aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersOutput,
 }
 
 #[pymethods]
-impl PyListOriginationNumbersResult {
+impl PyOperationListOriginationNumbersOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
@@ -1548,16 +1548,16 @@ impl PyListOriginationNumbersResult {
 }
 
 #[pyclass(
-    name = "ListPhoneNumbersOptedOutResponse",
+    name = "ListPhoneNumbersOptedOutOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListPhoneNumbersOptedOutResponse {
+struct PyOperationListPhoneNumbersOptedOutOutput {
     inner: aws_sdk_sns::operation::list_phone_numbers_opted_out::ListPhoneNumbersOptedOutOutput,
 }
 
 #[pymethods]
-impl PyListPhoneNumbersOptedOutResponse {
+impl PyOperationListPhoneNumbersOptedOutOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.phone_numbers {
@@ -1607,16 +1607,16 @@ impl PyListPhoneNumbersOptedOutResponse {
 }
 
 #[pyclass(
-    name = "ListPlatformApplicationsResponse",
+    name = "ListPlatformApplicationsOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListPlatformApplicationsResponse {
+struct PyOperationListPlatformApplicationsOutput {
     inner: aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsOutput,
 }
 
 #[pymethods]
-impl PyListPlatformApplicationsResponse {
+impl PyOperationListPlatformApplicationsOutput {
     #[getter]
     fn platform_applications(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.platform_applications {
@@ -1672,16 +1672,16 @@ impl PyListPlatformApplicationsResponse {
 }
 
 #[pyclass(
-    name = "ListSMSSandboxPhoneNumbersResult",
+    name = "ListSMSSandboxPhoneNumbersOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListSMSSandboxPhoneNumbersResult {
+struct PyOperationListSMSSandboxPhoneNumbersOutput {
     inner: aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSmsSandboxPhoneNumbersOutput,
 }
 
 #[pymethods]
-impl PyListSMSSandboxPhoneNumbersResult {
+impl PyOperationListSMSSandboxPhoneNumbersOutput {
     #[getter]
     fn phone_numbers(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let converted_390_list = PyList::empty(py);
@@ -1728,17 +1728,13 @@ impl PyListSMSSandboxPhoneNumbersResult {
     }
 }
 
-#[pyclass(
-    name = "ListSubscriptionsResponse",
-    module = "rboto_sns._native",
-    frozen
-)]
-struct PyListSubscriptionsResponse {
+#[pyclass(name = "ListSubscriptionsOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationListSubscriptionsOutput {
     inner: aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsOutput,
 }
 
 #[pymethods]
-impl PyListSubscriptionsResponse {
+impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
@@ -1794,16 +1790,16 @@ impl PyListSubscriptionsResponse {
 }
 
 #[pyclass(
-    name = "ListSubscriptionsByTopicResponse",
+    name = "ListSubscriptionsByTopicOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListSubscriptionsByTopicResponse {
+struct PyOperationListSubscriptionsByTopicOutput {
     inner: aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicOutput,
 }
 
 #[pymethods]
-impl PyListSubscriptionsByTopicResponse {
+impl PyOperationListSubscriptionsByTopicOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscriptions {
@@ -1859,16 +1855,16 @@ impl PyListSubscriptionsByTopicResponse {
 }
 
 #[pyclass(
-    name = "ListTagsForResourceResponse",
+    name = "ListTagsForResourceOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyListTagsForResourceResponse {
+struct PyOperationListTagsForResourceOutput {
     inner: aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceOutput,
 }
 
 #[pymethods]
-impl PyListTagsForResourceResponse {
+impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
@@ -1907,13 +1903,13 @@ impl PyListTagsForResourceResponse {
     }
 }
 
-#[pyclass(name = "ListTopicsResponse", module = "rboto_sns._native", frozen)]
-struct PyListTopicsResponse {
+#[pyclass(name = "ListTopicsOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationListTopicsOutput {
     inner: aws_sdk_sns::operation::list_topics::ListTopicsOutput,
 }
 
 #[pymethods]
-impl PyListTopicsResponse {
+impl PyOperationListTopicsOutput {
     #[getter]
     fn topics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.topics {
@@ -1968,30 +1964,26 @@ impl PyListTopicsResponse {
     }
 }
 
-#[pyclass(
-    name = "OptInPhoneNumberResponse",
-    module = "rboto_sns._native",
-    frozen
-)]
-struct PyOptInPhoneNumberResponse {
+#[pyclass(name = "OptInPhoneNumberOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationOptInPhoneNumberOutput {
     inner: aws_sdk_sns::operation::opt_in_phone_number::OptInPhoneNumberOutput,
 }
 
 #[pymethods]
-impl PyOptInPhoneNumberResponse {
+impl PyOperationOptInPhoneNumberOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "PublishResponse", module = "rboto_sns._native", frozen)]
-struct PyPublishResponse {
+#[pyclass(name = "PublishOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationPublishOutput {
     inner: aws_sdk_sns::operation::publish::PublishOutput,
 }
 
 #[pymethods]
-impl PyPublishResponse {
+impl PyOperationPublishOutput {
     #[getter]
     fn message_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.message_id {
@@ -2030,13 +2022,13 @@ impl PyPublishResponse {
     }
 }
 
-#[pyclass(name = "PublishBatchResponse", module = "rboto_sns._native", frozen)]
-struct PyPublishBatchResponse {
+#[pyclass(name = "PublishBatchOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationPublishBatchOutput {
     inner: aws_sdk_sns::operation::publish_batch::PublishBatchOutput,
 }
 
 #[pymethods]
-impl PyPublishBatchResponse {
+impl PyOperationPublishBatchOutput {
     #[getter]
     fn successful(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.successful {
@@ -2107,30 +2099,26 @@ impl PyPublishBatchResponse {
     }
 }
 
-#[pyclass(
-    name = "SetSMSAttributesResponse",
-    module = "rboto_sns._native",
-    frozen
-)]
-struct PySetSMSAttributesResponse {
+#[pyclass(name = "SetSMSAttributesOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationSetSMSAttributesOutput {
     inner: aws_sdk_sns::operation::set_sms_attributes::SetSmsAttributesOutput,
 }
 
 #[pymethods]
-impl PySetSMSAttributesResponse {
+impl PyOperationSetSMSAttributesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "SubscribeResponse", module = "rboto_sns._native", frozen)]
-struct PySubscribeResponse {
+#[pyclass(name = "SubscribeOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationSubscribeOutput {
     inner: aws_sdk_sns::operation::subscribe::SubscribeOutput,
 }
 
 #[pymethods]
-impl PySubscribeResponse {
+impl PyOperationSubscribeOutput {
     #[getter]
     fn subscription_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_arn {
@@ -2153,26 +2141,26 @@ impl PySubscribeResponse {
     }
 }
 
-#[pyclass(name = "TagResourceResponse", module = "rboto_sns._native", frozen)]
-struct PyTagResourceResponse {
+#[pyclass(name = "TagResourceOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationTagResourceOutput {
     inner: aws_sdk_sns::operation::tag_resource::TagResourceOutput,
 }
 
 #[pymethods]
-impl PyTagResourceResponse {
+impl PyOperationTagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
 
-#[pyclass(name = "UntagResourceResponse", module = "rboto_sns._native", frozen)]
-struct PyUntagResourceResponse {
+#[pyclass(name = "UntagResourceOutput", module = "rboto_sns._native", frozen)]
+struct PyOperationUntagResourceOutput {
     inner: aws_sdk_sns::operation::untag_resource::UntagResourceOutput,
 }
 
 #[pymethods]
-impl PyUntagResourceResponse {
+impl PyOperationUntagResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2180,17 +2168,17 @@ impl PyUntagResourceResponse {
 }
 
 #[pyclass(
-    name = "VerifySMSSandboxPhoneNumberResult",
+    name = "VerifySMSSandboxPhoneNumberOutput",
     module = "rboto_sns._native",
     frozen
 )]
-struct PyVerifySMSSandboxPhoneNumberResult {
+struct PyOperationVerifySMSSandboxPhoneNumberOutput {
     inner:
         aws_sdk_sns::operation::verify_sms_sandbox_phone_number::VerifySmsSandboxPhoneNumberOutput,
 }
 
 #[pymethods]
-impl PyVerifySMSSandboxPhoneNumberResult {
+impl PyOperationVerifySMSSandboxPhoneNumberOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         Ok(result.into_any().unbind())
@@ -2207,37 +2195,37 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySubscription>()?;
     module.add_class::<PyTag>()?;
     module.add_class::<PyTopic>()?;
-    module.add_class::<PyCheckIfPhoneNumberIsOptedOutResponse>()?;
-    module.add_class::<PyConfirmSubscriptionResponse>()?;
-    module.add_class::<PyCreatePlatformApplicationResponse>()?;
-    module.add_class::<PyCreateEndpointResponse>()?;
-    module.add_class::<PyCreateSMSSandboxPhoneNumberResult>()?;
-    module.add_class::<PyCreateTopicResponse>()?;
-    module.add_class::<PyDeleteSMSSandboxPhoneNumberResult>()?;
-    module.add_class::<PyGetDataProtectionPolicyResponse>()?;
-    module.add_class::<PyGetEndpointAttributesResponse>()?;
-    module.add_class::<PyGetPlatformApplicationAttributesResponse>()?;
-    module.add_class::<PyGetSMSAttributesResponse>()?;
-    module.add_class::<PyGetSMSSandboxAccountStatusResult>()?;
-    module.add_class::<PyGetSubscriptionAttributesResponse>()?;
-    module.add_class::<PyGetTopicAttributesResponse>()?;
-    module.add_class::<PyListEndpointsByPlatformApplicationResponse>()?;
-    module.add_class::<PyListOriginationNumbersResult>()?;
-    module.add_class::<PyListPhoneNumbersOptedOutResponse>()?;
-    module.add_class::<PyListPlatformApplicationsResponse>()?;
-    module.add_class::<PyListSMSSandboxPhoneNumbersResult>()?;
-    module.add_class::<PyListSubscriptionsResponse>()?;
-    module.add_class::<PyListSubscriptionsByTopicResponse>()?;
-    module.add_class::<PyListTagsForResourceResponse>()?;
-    module.add_class::<PyListTopicsResponse>()?;
-    module.add_class::<PyOptInPhoneNumberResponse>()?;
-    module.add_class::<PyPublishResponse>()?;
-    module.add_class::<PyPublishBatchResponse>()?;
-    module.add_class::<PySetSMSAttributesResponse>()?;
-    module.add_class::<PySubscribeResponse>()?;
-    module.add_class::<PyTagResourceResponse>()?;
-    module.add_class::<PyUntagResourceResponse>()?;
-    module.add_class::<PyVerifySMSSandboxPhoneNumberResult>()?;
+    module.add_class::<PyOperationCheckIfPhoneNumberIsOptedOutOutput>()?;
+    module.add_class::<PyOperationConfirmSubscriptionOutput>()?;
+    module.add_class::<PyOperationCreatePlatformApplicationOutput>()?;
+    module.add_class::<PyOperationCreatePlatformEndpointOutput>()?;
+    module.add_class::<PyOperationCreateSMSSandboxPhoneNumberOutput>()?;
+    module.add_class::<PyOperationCreateTopicOutput>()?;
+    module.add_class::<PyOperationDeleteSMSSandboxPhoneNumberOutput>()?;
+    module.add_class::<PyOperationGetDataProtectionPolicyOutput>()?;
+    module.add_class::<PyOperationGetEndpointAttributesOutput>()?;
+    module.add_class::<PyOperationGetPlatformApplicationAttributesOutput>()?;
+    module.add_class::<PyOperationGetSMSAttributesOutput>()?;
+    module.add_class::<PyOperationGetSMSSandboxAccountStatusOutput>()?;
+    module.add_class::<PyOperationGetSubscriptionAttributesOutput>()?;
+    module.add_class::<PyOperationGetTopicAttributesOutput>()?;
+    module.add_class::<PyOperationListEndpointsByPlatformApplicationOutput>()?;
+    module.add_class::<PyOperationListOriginationNumbersOutput>()?;
+    module.add_class::<PyOperationListPhoneNumbersOptedOutOutput>()?;
+    module.add_class::<PyOperationListPlatformApplicationsOutput>()?;
+    module.add_class::<PyOperationListSMSSandboxPhoneNumbersOutput>()?;
+    module.add_class::<PyOperationListSubscriptionsOutput>()?;
+    module.add_class::<PyOperationListSubscriptionsByTopicOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationListTopicsOutput>()?;
+    module.add_class::<PyOperationOptInPhoneNumberOutput>()?;
+    module.add_class::<PyOperationPublishOutput>()?;
+    module.add_class::<PyOperationPublishBatchOutput>()?;
+    module.add_class::<PyOperationSetSMSAttributesOutput>()?;
+    module.add_class::<PyOperationSubscribeOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
+    module.add_class::<PyOperationVerifySMSSandboxPhoneNumberOutput>()?;
 
     Ok(())
 }
@@ -2375,7 +2363,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CheckIfPhoneNumberIsOptedOut"))
             })?;
-            Ok(PyCheckIfPhoneNumberIsOptedOutResponse { inner: output })
+            Ok(PyOperationCheckIfPhoneNumberIsOptedOutOutput { inner: output })
         })
     }
 
@@ -2428,7 +2416,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ConfirmSubscription"))
             })?;
-            Ok(PyConfirmSubscriptionResponse { inner: output })
+            Ok(PyOperationConfirmSubscriptionOutput { inner: output })
         })
     }
 
@@ -2486,7 +2474,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformApplication"))
             })?;
-            Ok(PyCreatePlatformApplicationResponse { inner: output })
+            Ok(PyOperationCreatePlatformApplicationOutput { inner: output })
         })
     }
 
@@ -2552,7 +2540,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformEndpoint"))
             })?;
-            Ok(PyCreateEndpointResponse { inner: output })
+            Ok(PyOperationCreatePlatformEndpointOutput { inner: output })
         })
     }
 
@@ -2599,7 +2587,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "CreateSMSSandboxPhoneNumber"))
             })?;
-            Ok(PyCreateSMSSandboxPhoneNumberResult { inner: output })
+            Ok(PyOperationCreateSMSSandboxPhoneNumberOutput { inner: output })
         })
     }
 
@@ -2670,7 +2658,7 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTopic")))?;
-            Ok(PyCreateTopicResponse { inner: output })
+            Ok(PyOperationCreateTopicOutput { inner: output })
         })
     }
 
@@ -2785,7 +2773,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSMSSandboxPhoneNumber"))
             })?;
-            Ok(PyDeleteSMSSandboxPhoneNumberResult { inner: output })
+            Ok(PyOperationDeleteSMSSandboxPhoneNumberOutput { inner: output })
         })
     }
 
@@ -2858,7 +2846,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
             })?;
-            Ok(PyGetDataProtectionPolicyResponse { inner: output })
+            Ok(PyOperationGetDataProtectionPolicyOutput { inner: output })
         })
     }
 
@@ -2896,7 +2884,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetEndpointAttributes"))
             })?;
-            Ok(PyGetEndpointAttributesResponse { inner: output })
+            Ok(PyOperationGetEndpointAttributesOutput { inner: output })
         })
     }
 
@@ -2935,7 +2923,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetPlatformApplicationAttributes"))
             })?;
-            Ok(PyGetPlatformApplicationAttributesResponse { inner: output })
+            Ok(PyOperationGetPlatformApplicationAttributesOutput { inner: output })
         })
     }
 
@@ -2977,7 +2965,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSAttributes"))
             })?;
-            Ok(PyGetSMSAttributesResponse { inner: output })
+            Ok(PyOperationGetSMSAttributesOutput { inner: output })
         })
     }
 
@@ -3007,7 +2995,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSSandboxAccountStatus"))
             })?;
-            Ok(PyGetSMSSandboxAccountStatusResult { inner: output })
+            Ok(PyOperationGetSMSSandboxAccountStatusOutput { inner: output })
         })
     }
 
@@ -3045,7 +3033,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscriptionAttributes"))
             })?;
-            Ok(PyGetSubscriptionAttributesResponse { inner: output })
+            Ok(PyOperationGetSubscriptionAttributesOutput { inner: output })
         })
     }
 
@@ -3081,7 +3069,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "GetTopicAttributes"))
             })?;
-            Ok(PyGetTopicAttributesResponse { inner: output })
+            Ok(PyOperationGetTopicAttributesOutput { inner: output })
         })
     }
 
@@ -3129,7 +3117,7 @@ impl SNSClient {
                     sdk_error_to_py(py, &error, "ListEndpointsByPlatformApplication")
                 })
             })?;
-            Ok(PyListEndpointsByPlatformApplicationResponse { inner: output })
+            Ok(PyOperationListEndpointsByPlatformApplicationOutput { inner: output })
         })
     }
 
@@ -3174,7 +3162,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListOriginationNumbers"))
             })?;
-            Ok(PyListOriginationNumbersResult { inner: output })
+            Ok(PyOperationListOriginationNumbersOutput { inner: output })
         })
     }
 
@@ -3212,7 +3200,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPhoneNumbersOptedOut"))
             })?;
-            Ok(PyListPhoneNumbersOptedOutResponse { inner: output })
+            Ok(PyOperationListPhoneNumbersOptedOutOutput { inner: output })
         })
     }
 
@@ -3250,7 +3238,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListPlatformApplications"))
             })?;
-            Ok(PyListPlatformApplicationsResponse { inner: output })
+            Ok(PyOperationListPlatformApplicationsOutput { inner: output })
         })
     }
 
@@ -3295,7 +3283,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSMSSandboxPhoneNumbers"))
             })?;
-            Ok(PyListSMSSandboxPhoneNumbersResult { inner: output })
+            Ok(PyOperationListSMSSandboxPhoneNumbersOutput { inner: output })
         })
     }
 
@@ -3331,7 +3319,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
             })?;
-            Ok(PyListSubscriptionsResponse { inner: output })
+            Ok(PyOperationListSubscriptionsOutput { inner: output })
         })
     }
 
@@ -3376,7 +3364,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptionsByTopic"))
             })?;
-            Ok(PyListSubscriptionsByTopicResponse { inner: output })
+            Ok(PyOperationListSubscriptionsByTopicOutput { inner: output })
         })
     }
 
@@ -3414,7 +3402,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
             })?;
-            Ok(PyListTagsForResourceResponse { inner: output })
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
     }
 
@@ -3449,7 +3437,7 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTopics")))?;
-            Ok(PyListTopicsResponse { inner: output })
+            Ok(PyOperationListTopicsOutput { inner: output })
         })
     }
 
@@ -3487,7 +3475,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "OptInPhoneNumber"))
             })?;
-            Ok(PyOptInPhoneNumberResponse { inner: output })
+            Ok(PyOperationOptInPhoneNumberOutput { inner: output })
         })
     }
 
@@ -3589,7 +3577,7 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Publish")))?;
-            Ok(PyPublishResponse { inner: output })
+            Ok(PyOperationPublishOutput { inner: output })
         })
     }
 
@@ -3641,7 +3629,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "PublishBatch"))
             })?;
-            Ok(PyPublishBatchResponse { inner: output })
+            Ok(PyOperationPublishBatchOutput { inner: output })
         })
     }
 
@@ -3877,7 +3865,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "SetSMSAttributes"))
             })?;
-            Ok(PySetSMSAttributesResponse { inner: output })
+            Ok(PyOperationSetSMSAttributesOutput { inner: output })
         })
     }
 
@@ -4053,7 +4041,7 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Subscribe")))?;
-            Ok(PySubscribeResponse { inner: output })
+            Ok(PyOperationSubscribeOutput { inner: output })
         })
     }
 
@@ -4103,7 +4091,7 @@ impl SNSClient {
             };
             let output = result
                 .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
-            Ok(PyTagResourceResponse { inner: output })
+            Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
 
@@ -4191,7 +4179,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
             })?;
-            Ok(PyUntagResourceResponse { inner: output })
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 
@@ -4237,7 +4225,7 @@ impl SNSClient {
             let output = result.map_err(|error| {
                 Python::attach(|py| sdk_error_to_py(py, &error, "VerifySMSSandboxPhoneNumber"))
             })?;
-            Ok(PyVerifySMSSandboxPhoneNumberResult { inner: output })
+            Ok(PyOperationVerifySMSSandboxPhoneNumberOutput { inner: output })
         })
     }
 }

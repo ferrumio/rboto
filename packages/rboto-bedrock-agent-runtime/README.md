@@ -87,41 +87,41 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
-| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: Sequence[AgenticRetrieveMessage]</code>, <code>retrievers: Sequence[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamResponse</code> |
-| [`check_ingested_document_acl`](#check_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code>, <code>user_context: UserContext</code> | <code>CheckIngestedDocumentAclResponse</code> |
-| [`create_invocation`](#create_invocation) | <code>session_identifier: str</code> | <code>CreateInvocationResponse</code> |
-| [`create_session`](#create_session) | None | <code>CreateSessionResponse</code> |
-| [`delete_agent_memory`](#delete_agent_memory) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentMemoryResponse</code> |
-| [`delete_session`](#delete_session) | <code>session_identifier: str</code> | <code>DeleteSessionResponse</code> |
-| [`end_session`](#end_session) | <code>session_identifier: str</code> | <code>EndSessionResponse</code> |
-| [`generate_query`](#generate_query) | <code>query_generation_input: QueryGenerationInput</code>, <code>transformation_configuration: TransformationConfiguration</code> | <code>GenerateQueryResponse</code> |
-| [`get_agent_memory`](#get_agent_memory) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>memory_type: MemoryType</code>, <code>memory_id: str</code> | <code>GetAgentMemoryResponse</code> |
-| [`get_document_content`](#get_document_content) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code> | <code>GetDocumentContentResponse</code> |
-| [`get_execution_flow_snapshot`](#get_execution_flow_snapshot) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>GetExecutionFlowSnapshotResponse</code> |
-| [`get_flow_execution`](#get_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>GetFlowExecutionResponse</code> |
-| [`get_ingested_document_acl`](#get_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code> | <code>GetIngestedDocumentAclResponse</code> |
-| [`get_invocation_step`](#get_invocation_step) | <code>invocation_identifier: str</code>, <code>invocation_step_id: str</code>, <code>session_identifier: str</code> | <code>GetInvocationStepResponse</code> |
-| [`get_session`](#get_session) | <code>session_identifier: str</code> | <code>GetSessionResponse</code> |
-| [`invoke_agent`](#invoke_agent) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>session_id: str</code> | <code>InvokeAgentResponse</code> |
-| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>InvokeFlowResponse</code> |
-| [`invoke_inline_agent`](#invoke_inline_agent) | <code>foundation_model: str</code>, <code>instruction: str</code>, <code>session_id: str</code> | <code>InvokeInlineAgentResponse</code> |
-| [`list_flow_execution_events`](#list_flow_execution_events) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code>, <code>event_type: FlowExecutionEventType</code> | <code>ListFlowExecutionEventsResponse</code> |
-| [`list_flow_executions`](#list_flow_executions) | <code>flow_identifier: str</code> | <code>ListFlowExecutionsResponse</code> |
-| [`list_invocation_steps`](#list_invocation_steps) | <code>session_identifier: str</code> | <code>ListInvocationStepsResponse</code> |
-| [`list_invocations`](#list_invocations) | <code>session_identifier: str</code> | <code>ListInvocationsResponse</code> |
-| [`list_sessions`](#list_sessions) | None | <code>ListSessionsResponse</code> |
-| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceResponse</code> |
-| [`optimize_prompt`](#optimize_prompt) | <code>input: InputPrompt</code>, <code>target_model_id: str</code> | <code>OptimizePromptResponse</code> |
-| [`put_invocation_step`](#put_invocation_step) | <code>session_identifier: str</code>, <code>invocation_identifier: str</code>, <code>invocation_step_time: str</code>, <code>payload: InvocationStepPayload</code> | <code>PutInvocationStepResponse</code> |
-| [`rerank`](#rerank) | <code>queries: Sequence[RerankQuery]</code>, <code>sources: Sequence[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankResponse</code> |
-| [`retrieve`](#retrieve) | <code>knowledge_base_id: str</code>, <code>retrieval_query: KnowledgeBaseQuery</code> | <code>RetrieveResponse</code> |
-| [`retrieve_and_generate`](#retrieve_and_generate) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateResponse</code> |
-| [`retrieve_and_generate_stream`](#retrieve_and_generate_stream) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateStreamResponse</code> |
-| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>StartFlowExecutionResponse</code> |
-| [`stop_flow_execution`](#stop_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>StopFlowExecutionResponse</code> |
-| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceResponse</code> |
-| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceResponse</code> |
-| [`update_session`](#update_session) | <code>session_identifier: str</code> | <code>UpdateSessionResponse</code> |
+| [`agentic_retrieve_stream`](#agentic_retrieve_stream) | <code>messages: Sequence[AgenticRetrieveMessage]</code>, <code>retrievers: Sequence[AgenticRetriever]</code>, <code>agentic_retrieve_configuration: AgenticRetrieveConfiguration</code> | <code>AgenticRetrieveStreamOutput</code> |
+| [`check_ingested_document_acl`](#check_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code>, <code>user_context: UserContext</code> | <code>CheckIngestedDocumentAclOutput</code> |
+| [`create_invocation`](#create_invocation) | <code>session_identifier: str</code> | <code>CreateInvocationOutput</code> |
+| [`create_session`](#create_session) | None | <code>CreateSessionOutput</code> |
+| [`delete_agent_memory`](#delete_agent_memory) | <code>agent_id: str</code>, <code>agent_alias_id: str</code> | <code>DeleteAgentMemoryOutput</code> |
+| [`delete_session`](#delete_session) | <code>session_identifier: str</code> | <code>DeleteSessionOutput</code> |
+| [`end_session`](#end_session) | <code>session_identifier: str</code> | <code>EndSessionOutput</code> |
+| [`generate_query`](#generate_query) | <code>query_generation_input: QueryGenerationInput</code>, <code>transformation_configuration: TransformationConfiguration</code> | <code>GenerateQueryOutput</code> |
+| [`get_agent_memory`](#get_agent_memory) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>memory_type: MemoryType</code>, <code>memory_id: str</code> | <code>GetAgentMemoryOutput</code> |
+| [`get_document_content`](#get_document_content) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code> | <code>GetDocumentContentOutput</code> |
+| [`get_execution_flow_snapshot`](#get_execution_flow_snapshot) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>GetExecutionFlowSnapshotOutput</code> |
+| [`get_flow_execution`](#get_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>GetFlowExecutionOutput</code> |
+| [`get_ingested_document_acl`](#get_ingested_document_acl) | <code>knowledge_base_id: str</code>, <code>data_source_id: str</code>, <code>document_id: str</code> | <code>GetIngestedDocumentAclOutput</code> |
+| [`get_invocation_step`](#get_invocation_step) | <code>invocation_identifier: str</code>, <code>invocation_step_id: str</code>, <code>session_identifier: str</code> | <code>GetInvocationStepOutput</code> |
+| [`get_session`](#get_session) | <code>session_identifier: str</code> | <code>GetSessionOutput</code> |
+| [`invoke_agent`](#invoke_agent) | <code>agent_id: str</code>, <code>agent_alias_id: str</code>, <code>session_id: str</code> | <code>InvokeAgentOutput</code> |
+| [`invoke_flow`](#invoke_flow) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>InvokeFlowOutput</code> |
+| [`invoke_inline_agent`](#invoke_inline_agent) | <code>foundation_model: str</code>, <code>instruction: str</code>, <code>session_id: str</code> | <code>InvokeInlineAgentOutput</code> |
+| [`list_flow_execution_events`](#list_flow_execution_events) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code>, <code>event_type: FlowExecutionEventType</code> | <code>ListFlowExecutionEventsOutput</code> |
+| [`list_flow_executions`](#list_flow_executions) | <code>flow_identifier: str</code> | <code>ListFlowExecutionsOutput</code> |
+| [`list_invocation_steps`](#list_invocation_steps) | <code>session_identifier: str</code> | <code>ListInvocationStepsOutput</code> |
+| [`list_invocations`](#list_invocations) | <code>session_identifier: str</code> | <code>ListInvocationsOutput</code> |
+| [`list_sessions`](#list_sessions) | None | <code>ListSessionsOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
+| [`optimize_prompt`](#optimize_prompt) | <code>input: InputPrompt</code>, <code>target_model_id: str</code> | <code>OptimizePromptOutput</code> |
+| [`put_invocation_step`](#put_invocation_step) | <code>session_identifier: str</code>, <code>invocation_identifier: str</code>, <code>invocation_step_time: str</code>, <code>payload: InvocationStepPayload</code> | <code>PutInvocationStepOutput</code> |
+| [`rerank`](#rerank) | <code>queries: Sequence[RerankQuery]</code>, <code>sources: Sequence[RerankSource]</code>, <code>reranking_configuration: RerankingConfiguration</code> | <code>RerankOutput</code> |
+| [`retrieve`](#retrieve) | <code>knowledge_base_id: str</code>, <code>retrieval_query: KnowledgeBaseQuery</code> | <code>RetrieveOutput</code> |
+| [`retrieve_and_generate`](#retrieve_and_generate) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateOutput</code> |
+| [`retrieve_and_generate_stream`](#retrieve_and_generate_stream) | <code>input: RetrieveAndGenerateInput</code> | <code>RetrieveAndGenerateStreamOutput</code> |
+| [`start_flow_execution`](#start_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>inputs: Sequence[FlowInput]</code> | <code>StartFlowExecutionOutput</code> |
+| [`stop_flow_execution`](#stop_flow_execution) | <code>flow_identifier: str</code>, <code>flow_alias_identifier: str</code>, <code>execution_identifier: str</code> | <code>StopFlowExecutionOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
+| [`update_session`](#update_session) | <code>session_identifier: str</code> | <code>UpdateSessionOutput</code> |
 
 ## Complete signatures
 
@@ -139,7 +139,7 @@ async def agentic_retrieve_stream(
     memory_configuration: AgenticRetrieveMemoryConfiguration | None = None,
     retrieval_instruction_configuration: AgenticRetrieveInstructionConfiguration | None = None,
     generate_response: bool | None = None,
-) -> AgenticRetrieveStreamResponse: ...
+) -> AgenticRetrieveStreamOutput: ...
 ```
 
 
@@ -152,7 +152,7 @@ async def check_ingested_document_acl(
     data_source_id: str,
     document_id: str,
     user_context: UserContext,
-) -> CheckIngestedDocumentAclResponse: ...
+) -> CheckIngestedDocumentAclOutput: ...
 ```
 
 
@@ -164,7 +164,7 @@ async def create_invocation(
     session_identifier: str,
     invocation_id: str | None = None,
     description: str | None = None,
-) -> CreateInvocationResponse: ...
+) -> CreateInvocationOutput: ...
 ```
 
 
@@ -176,7 +176,7 @@ async def create_session(
     session_metadata: dict[str, str] | None = None,
     encryption_key_arn: str | None = None,
     tags: dict[str, str] | None = None,
-) -> CreateSessionResponse: ...
+) -> CreateSessionOutput: ...
 ```
 
 
@@ -189,7 +189,7 @@ async def delete_agent_memory(
     agent_alias_id: str,
     memory_id: str | None = None,
     session_id: str | None = None,
-) -> DeleteAgentMemoryResponse: ...
+) -> DeleteAgentMemoryOutput: ...
 ```
 
 
@@ -199,7 +199,7 @@ async def delete_agent_memory(
 async def delete_session(
     *,
     session_identifier: str,
-) -> DeleteSessionResponse: ...
+) -> DeleteSessionOutput: ...
 ```
 
 
@@ -209,7 +209,7 @@ async def delete_session(
 async def end_session(
     *,
     session_identifier: str,
-) -> EndSessionResponse: ...
+) -> EndSessionOutput: ...
 ```
 
 
@@ -220,7 +220,7 @@ async def generate_query(
     *,
     query_generation_input: QueryGenerationInput,
     transformation_configuration: TransformationConfiguration,
-) -> GenerateQueryResponse: ...
+) -> GenerateQueryOutput: ...
 ```
 
 
@@ -235,7 +235,7 @@ async def get_agent_memory(
     memory_id: str,
     next_token: str | None = None,
     max_items: int | None = None,
-) -> GetAgentMemoryResponse: ...
+) -> GetAgentMemoryOutput: ...
 ```
 
 Also available as `client.paginators.get_agent_memory(...)`, returning an
@@ -252,7 +252,7 @@ async def get_document_content(
     document_id: str,
     output_format: DocumentOutputFormat | None = None,
     user_context: UserContext | None = None,
-) -> GetDocumentContentResponse: ...
+) -> GetDocumentContentOutput: ...
 ```
 
 
@@ -264,7 +264,7 @@ async def get_execution_flow_snapshot(
     flow_identifier: str,
     flow_alias_identifier: str,
     execution_identifier: str,
-) -> GetExecutionFlowSnapshotResponse: ...
+) -> GetExecutionFlowSnapshotOutput: ...
 ```
 
 
@@ -276,7 +276,7 @@ async def get_flow_execution(
     flow_identifier: str,
     flow_alias_identifier: str,
     execution_identifier: str,
-) -> GetFlowExecutionResponse: ...
+) -> GetFlowExecutionOutput: ...
 ```
 
 
@@ -288,7 +288,7 @@ async def get_ingested_document_acl(
     knowledge_base_id: str,
     data_source_id: str,
     document_id: str,
-) -> GetIngestedDocumentAclResponse: ...
+) -> GetIngestedDocumentAclOutput: ...
 ```
 
 
@@ -300,7 +300,7 @@ async def get_invocation_step(
     invocation_identifier: str,
     invocation_step_id: str,
     session_identifier: str,
-) -> GetInvocationStepResponse: ...
+) -> GetInvocationStepOutput: ...
 ```
 
 
@@ -310,7 +310,7 @@ async def get_invocation_step(
 async def get_session(
     *,
     session_identifier: str,
-) -> GetSessionResponse: ...
+) -> GetSessionOutput: ...
 ```
 
 
@@ -331,7 +331,7 @@ async def invoke_agent(
     streaming_configurations: StreamingConfigurations | None = None,
     prompt_creation_configurations: PromptCreationConfigurations | None = None,
     source_arn: str | None = None,
-) -> InvokeAgentResponse: ...
+) -> InvokeAgentOutput: ...
 ```
 
 
@@ -346,7 +346,7 @@ async def invoke_flow(
     enable_trace: bool | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
     execution_id: str | None = None,
-) -> InvokeFlowResponse: ...
+) -> InvokeFlowOutput: ...
 ```
 
 
@@ -377,7 +377,7 @@ async def invoke_inline_agent(
     bedrock_model_configurations: InlineBedrockModelConfigurations | None = None,
     orchestration_type: OrchestrationType | None = None,
     custom_orchestration: CustomOrchestration | None = None,
-) -> InvokeInlineAgentResponse: ...
+) -> InvokeInlineAgentOutput: ...
 ```
 
 
@@ -392,7 +392,7 @@ async def list_flow_execution_events(
     event_type: FlowExecutionEventType,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFlowExecutionEventsResponse: ...
+) -> ListFlowExecutionEventsOutput: ...
 ```
 
 Also available as `client.paginators.list_flow_execution_events(...)`, returning an
@@ -408,7 +408,7 @@ async def list_flow_executions(
     flow_alias_identifier: str | None = None,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListFlowExecutionsResponse: ...
+) -> ListFlowExecutionsOutput: ...
 ```
 
 Also available as `client.paginators.list_flow_executions(...)`, returning an
@@ -424,7 +424,7 @@ async def list_invocation_steps(
     invocation_identifier: str | None = None,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListInvocationStepsResponse: ...
+) -> ListInvocationStepsOutput: ...
 ```
 
 Also available as `client.paginators.list_invocation_steps(...)`, returning an
@@ -439,7 +439,7 @@ async def list_invocations(
     session_identifier: str,
     next_token: str | None = None,
     max_results: int | None = None,
-) -> ListInvocationsResponse: ...
+) -> ListInvocationsOutput: ...
 ```
 
 Also available as `client.paginators.list_invocations(...)`, returning an
@@ -453,7 +453,7 @@ async def list_sessions(
     *,
     max_results: int | None = None,
     next_token: str | None = None,
-) -> ListSessionsResponse: ...
+) -> ListSessionsOutput: ...
 ```
 
 Also available as `client.paginators.list_sessions(...)`, returning an
@@ -466,7 +466,7 @@ async iterator of the response type above.
 async def list_tags_for_resource(
     *,
     resource_arn: str,
-) -> ListTagsForResourceResponse: ...
+) -> ListTagsForResourceOutput: ...
 ```
 
 
@@ -477,7 +477,7 @@ async def optimize_prompt(
     *,
     input: InputPrompt,
     target_model_id: str,
-) -> OptimizePromptResponse: ...
+) -> OptimizePromptOutput: ...
 ```
 
 
@@ -491,7 +491,7 @@ async def put_invocation_step(
     invocation_step_time: str,
     payload: InvocationStepPayload,
     invocation_step_id: str | None = None,
-) -> PutInvocationStepResponse: ...
+) -> PutInvocationStepOutput: ...
 ```
 
 
@@ -504,7 +504,7 @@ async def rerank(
     sources: Sequence[RerankSource],
     reranking_configuration: RerankingConfiguration,
     next_token: str | None = None,
-) -> RerankResponse: ...
+) -> RerankOutput: ...
 ```
 
 Also available as `client.paginators.rerank(...)`, returning an
@@ -522,7 +522,7 @@ async def retrieve(
     guardrail_configuration: GuardrailConfiguration | None = None,
     next_token: str | None = None,
     user_context: UserContext | None = None,
-) -> RetrieveResponse: ...
+) -> RetrieveOutput: ...
 ```
 
 Also available as `client.paginators.retrieve(...)`, returning an
@@ -539,7 +539,7 @@ async def retrieve_and_generate(
     retrieve_and_generate_configuration: RetrieveAndGenerateConfiguration | None = None,
     session_configuration: RetrieveAndGenerateSessionConfiguration | None = None,
     user_context: UserContext | None = None,
-) -> RetrieveAndGenerateResponse: ...
+) -> RetrieveAndGenerateOutput: ...
 ```
 
 
@@ -553,7 +553,7 @@ async def retrieve_and_generate_stream(
     retrieve_and_generate_configuration: RetrieveAndGenerateConfiguration | None = None,
     session_configuration: RetrieveAndGenerateSessionConfiguration | None = None,
     user_context: UserContext | None = None,
-) -> RetrieveAndGenerateStreamResponse: ...
+) -> RetrieveAndGenerateStreamOutput: ...
 ```
 
 
@@ -567,7 +567,7 @@ async def start_flow_execution(
     inputs: Sequence[FlowInput],
     flow_execution_name: str | None = None,
     model_performance_configuration: ModelPerformanceConfiguration | None = None,
-) -> StartFlowExecutionResponse: ...
+) -> StartFlowExecutionOutput: ...
 ```
 
 
@@ -579,7 +579,7 @@ async def stop_flow_execution(
     flow_identifier: str,
     flow_alias_identifier: str,
     execution_identifier: str,
-) -> StopFlowExecutionResponse: ...
+) -> StopFlowExecutionOutput: ...
 ```
 
 
@@ -590,7 +590,7 @@ async def tag_resource(
     *,
     resource_arn: str,
     tags: dict[str, str],
-) -> TagResourceResponse: ...
+) -> TagResourceOutput: ...
 ```
 
 
@@ -601,7 +601,7 @@ async def untag_resource(
     *,
     resource_arn: str,
     tag_keys: Sequence[str],
-) -> UntagResourceResponse: ...
+) -> UntagResourceOutput: ...
 ```
 
 
@@ -612,7 +612,7 @@ async def update_session(
     *,
     session_identifier: str,
     session_metadata: dict[str, str] | None = None,
-) -> UpdateSessionResponse: ...
+) -> UpdateSessionOutput: ...
 ```
 
 

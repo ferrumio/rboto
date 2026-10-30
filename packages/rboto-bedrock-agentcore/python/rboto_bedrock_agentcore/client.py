@@ -9,7 +9,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto.logging import operation_interceptors
 
-from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthResponse, CreateABTestResponse, CreateEventOutput, CreatePaymentInstrumentResponse, CreatePaymentSessionResponse, DeleteABTestResponse, DeleteBatchEvaluationResponse, DeleteCapacityProviderSessionResponse, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentResponse, DeletePaymentSessionResponse, DeleteRecommendationResponse, EvaluateResponse, GetABTestResponse, GetAgentCardResponse, GetBatchEvaluationResponse, GetBrowserSessionResponse, GetCodeInterpreterSessionResponse, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceResponse, GetPaymentInstrumentResponse, GetPaymentSessionResponse, GetRecommendationResponse, GetResourceApiKeyResponse, GetResourceOauth2TokenResponse, GetResourcePaymentTokenResponse, GetWorkloadAccessTokenForJWTResponse, GetWorkloadAccessTokenForUserIdResponse, GetWorkloadAccessTokenResponse, IngestDataOutput, InvokeAgentRuntimeResponse, InvokeBrowserResponse, ListABTestsResponse, ListActorsOutput, ListBatchEvaluationsResponse, ListBrowserSessionsResponse, ListCodeInterpreterSessionsResponse, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsResponse, ListPaymentSessionsResponse, ListRecommendationsResponse, ListSessionsOutput, ProcessPaymentResponse, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileResponse, SearchRegistryRecordsResponse, StartBatchEvaluationResponse, StartBrowserSessionResponse, StartCodeInterpreterSessionResponse, StartMemoryExtractionJobOutput, StartRecommendationResponse, StopBatchEvaluationResponse, StopBrowserSessionResponse, StopCodeInterpreterSessionResponse, StopRuntimeSessionResponse, UpdateABTestResponse, UpdateBrowserStreamResponse
+from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthOutput, CreateABTestOutput, CreateEventOutput, CreatePaymentInstrumentOutput, CreatePaymentSessionOutput, DeleteABTestOutput, DeleteBatchEvaluationOutput, DeleteCapacityProviderSessionOutput, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentOutput, DeletePaymentSessionOutput, DeleteRecommendationOutput, EvaluateOutput, GetABTestOutput, GetAgentCardOutput, GetBatchEvaluationOutput, GetBrowserSessionOutput, GetCodeInterpreterSessionOutput, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceOutput, GetPaymentInstrumentOutput, GetPaymentSessionOutput, GetRecommendationOutput, GetResourceApiKeyOutput, GetResourceOauth2TokenOutput, GetResourcePaymentTokenOutput, GetWorkloadAccessTokenForJWTOutput, GetWorkloadAccessTokenForUserIdOutput, GetWorkloadAccessTokenOutput, IngestDataOutput, InvokeAgentRuntimeOutput, InvokeBrowserOutput, ListABTestsOutput, ListActorsOutput, ListBatchEvaluationsOutput, ListBrowserSessionsOutput, ListCodeInterpreterSessionsOutput, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsOutput, ListPaymentSessionsOutput, ListRecommendationsOutput, ListSessionsOutput, ProcessPaymentOutput, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileOutput, SearchRegistryRecordsOutput, StartBatchEvaluationOutput, StartBrowserSessionOutput, StartCodeInterpreterSessionOutput, StartMemoryExtractionJobOutput, StartRecommendationOutput, StopBatchEvaluationOutput, StopBrowserSessionOutput, StopCodeInterpreterSessionOutput, StopRuntimeSessionOutput, UpdateABTestOutput, UpdateBrowserStreamOutput
 from .types import (
     ABTestEvaluationConfig,
     ABTestExecutionStatus,
@@ -42,10 +42,10 @@ from .types import (
     HarnessTool,
     Insight,
     InstrumentBalanceToken,
+    InvokeAgentRuntimeCommandOutput,
     InvokeAgentRuntimeCommandRequestBody,
-    InvokeAgentRuntimeCommandResponse,
-    InvokeCodeInterpreterResponse,
-    InvokeHarnessResponse,
+    InvokeCodeInterpreterOutput,
+    InvokeHarnessOutput,
     JSONValue,
     MemoryMetadataFilterExpression,
     MemoryRecordCreateInput,
@@ -202,7 +202,7 @@ class BedrockAgentCoreClient:
         *,
         user_identifier: UserIdentifier,
         session_uri: str,
-    ) -> CompleteResourceTokenAuthResponse:
+    ) -> CompleteResourceTokenAuthOutput:
         params: dict[str, object] = {
             "user_identifier": user_identifier,
             "session_uri": session_uri,
@@ -212,7 +212,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.complete_resource_token_auth, params, _interceptors,
                 "bedrock-agentcore", "CompleteResourceTokenAuth", self._region,
-                CompleteResourceTokenAuthResponse,
+                CompleteResourceTokenAuthOutput,
                 ("user_identifier", "session_uri", ),
                 ("user_identifier", "session_uri", ),
             )
@@ -234,7 +234,7 @@ class BedrockAgentCoreClient:
         enable_on_create: bool | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> CreateABTestResponse:
+    ) -> CreateABTestOutput:
         params: dict[str, object] = {
             "name": name,
             "gateway_arn": gateway_arn,
@@ -257,7 +257,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.create_ab_test, params, _interceptors,
                 "bedrock-agentcore", "CreateABTest", self._region,
-                CreateABTestResponse,
+                CreateABTestOutput,
                 ("name", "gateway_arn", "variants", "evaluation_config", "role_arn", "description", "gateway_filter", "enable_on_create", "client_token", "tags", ),
                 ("name", "gateway_arn", "variants", "evaluation_config", "role_arn", ),
             )
@@ -322,7 +322,7 @@ class BedrockAgentCoreClient:
         user_id: str | None = None,
         agent_name: str | None = None,
         client_token: str | None = None,
-    ) -> CreatePaymentInstrumentResponse:
+    ) -> CreatePaymentInstrumentOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -340,7 +340,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.create_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "CreatePaymentInstrument", self._region,
-                CreatePaymentInstrumentResponse,
+                CreatePaymentInstrumentOutput,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_type", "payment_instrument_details", "user_id", "agent_name", "client_token", ),
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_type", "payment_instrument_details", ),
             )
@@ -358,7 +358,7 @@ class BedrockAgentCoreClient:
         agent_name: str | None = None,
         limits: SessionLimits | None = None,
         client_token: str | None = None,
-    ) -> CreatePaymentSessionResponse:
+    ) -> CreatePaymentSessionOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "expiry_time_in_minutes": expiry_time_in_minutes,
@@ -376,7 +376,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.create_payment_session, params, _interceptors,
                 "bedrock-agentcore", "CreatePaymentSession", self._region,
-                CreatePaymentSessionResponse,
+                CreatePaymentSessionOutput,
                 ("payment_manager_arn", "expiry_time_in_minutes", "user_id", "agent_name", "limits", "client_token", ),
                 ("payment_manager_arn", "expiry_time_in_minutes", ),
             )
@@ -389,7 +389,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         ab_test_id: str,
-    ) -> DeleteABTestResponse:
+    ) -> DeleteABTestOutput:
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -398,7 +398,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_ab_test, params, _interceptors,
                 "bedrock-agentcore", "DeleteABTest", self._region,
-                DeleteABTestResponse,
+                DeleteABTestOutput,
                 ("ab_test_id", ),
                 ("ab_test_id", ),
             )
@@ -411,7 +411,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         batch_evaluation_id: str,
-    ) -> DeleteBatchEvaluationResponse:
+    ) -> DeleteBatchEvaluationOutput:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -420,7 +420,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "DeleteBatchEvaluation", self._region,
-                DeleteBatchEvaluationResponse,
+                DeleteBatchEvaluationOutput,
                 ("batch_evaluation_id", ),
                 ("batch_evaluation_id", ),
             )
@@ -434,7 +434,7 @@ class BedrockAgentCoreClient:
         *,
         capacity_provider_id: str,
         session_id: str,
-    ) -> DeleteCapacityProviderSessionResponse:
+    ) -> DeleteCapacityProviderSessionOutput:
         params: dict[str, object] = {
             "capacity_provider_id": capacity_provider_id,
             "session_id": session_id,
@@ -444,7 +444,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_capacity_provider_session, params, _interceptors,
                 "bedrock-agentcore", "DeleteCapacityProviderSession", self._region,
-                DeleteCapacityProviderSessionResponse,
+                DeleteCapacityProviderSessionOutput,
                 ("capacity_provider_id", "session_id", ),
                 ("capacity_provider_id", "session_id", ),
             )
@@ -515,7 +515,7 @@ class BedrockAgentCoreClient:
         payment_connector_id: str,
         payment_instrument_id: str,
         user_id: str | None = None,
-    ) -> DeletePaymentInstrumentResponse:
+    ) -> DeletePaymentInstrumentOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -528,7 +528,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "DeletePaymentInstrument", self._region,
-                DeletePaymentInstrumentResponse,
+                DeletePaymentInstrumentOutput,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", "user_id", ),
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", ),
             )
@@ -543,7 +543,7 @@ class BedrockAgentCoreClient:
         payment_manager_arn: str,
         payment_session_id: str,
         user_id: str | None = None,
-    ) -> DeletePaymentSessionResponse:
+    ) -> DeletePaymentSessionOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -555,7 +555,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_payment_session, params, _interceptors,
                 "bedrock-agentcore", "DeletePaymentSession", self._region,
-                DeletePaymentSessionResponse,
+                DeletePaymentSessionOutput,
                 ("payment_manager_arn", "payment_session_id", "user_id", ),
                 ("payment_manager_arn", "payment_session_id", ),
             )
@@ -568,7 +568,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         recommendation_id: str,
-    ) -> DeleteRecommendationResponse:
+    ) -> DeleteRecommendationOutput:
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
@@ -577,7 +577,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.delete_recommendation, params, _interceptors,
                 "bedrock-agentcore", "DeleteRecommendation", self._region,
-                DeleteRecommendationResponse,
+                DeleteRecommendationOutput,
                 ("recommendation_id", ),
                 ("recommendation_id", ),
             )
@@ -593,7 +593,7 @@ class BedrockAgentCoreClient:
         evaluation_input: EvaluationInput,
         evaluation_target: EvaluationTarget | None = None,
         evaluation_reference_inputs: Sequence[EvaluationReferenceInput] | None = None,
-    ) -> EvaluateResponse:
+    ) -> EvaluateOutput:
         params: dict[str, object] = {
             "evaluator_id": evaluator_id,
             "evaluation_input": evaluation_input,
@@ -607,7 +607,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.evaluate, params, _interceptors,
                 "bedrock-agentcore", "Evaluate", self._region,
-                EvaluateResponse,
+                EvaluateOutput,
                 ("evaluator_id", "evaluation_input", "evaluation_target", "evaluation_reference_inputs", ),
                 ("evaluator_id", "evaluation_input", ),
             )
@@ -620,7 +620,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         ab_test_id: str,
-    ) -> GetABTestResponse:
+    ) -> GetABTestOutput:
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -629,7 +629,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_ab_test, params, _interceptors,
                 "bedrock-agentcore", "GetABTest", self._region,
-                GetABTestResponse,
+                GetABTestOutput,
                 ("ab_test_id", ),
                 ("ab_test_id", ),
             )
@@ -644,7 +644,7 @@ class BedrockAgentCoreClient:
         agent_runtime_arn: str,
         runtime_session_id: str | None = None,
         qualifier: str | None = None,
-    ) -> GetAgentCardResponse:
+    ) -> GetAgentCardOutput:
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
         }
@@ -657,7 +657,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_agent_card, params, _interceptors,
                 "bedrock-agentcore", "GetAgentCard", self._region,
-                GetAgentCardResponse,
+                GetAgentCardOutput,
                 ("agent_runtime_arn", "runtime_session_id", "qualifier", ),
                 ("agent_runtime_arn", ),
             )
@@ -670,7 +670,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         batch_evaluation_id: str,
-    ) -> GetBatchEvaluationResponse:
+    ) -> GetBatchEvaluationOutput:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -679,7 +679,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "GetBatchEvaluation", self._region,
-                GetBatchEvaluationResponse,
+                GetBatchEvaluationOutput,
                 ("batch_evaluation_id", ),
                 ("batch_evaluation_id", ),
             )
@@ -693,7 +693,7 @@ class BedrockAgentCoreClient:
         *,
         browser_identifier: str,
         session_id: str,
-    ) -> GetBrowserSessionResponse:
+    ) -> GetBrowserSessionOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -703,7 +703,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_browser_session, params, _interceptors,
                 "bedrock-agentcore", "GetBrowserSession", self._region,
-                GetBrowserSessionResponse,
+                GetBrowserSessionOutput,
                 ("browser_identifier", "session_id", ),
                 ("browser_identifier", "session_id", ),
             )
@@ -717,7 +717,7 @@ class BedrockAgentCoreClient:
         *,
         code_interpreter_identifier: str,
         session_id: str,
-    ) -> GetCodeInterpreterSessionResponse:
+    ) -> GetCodeInterpreterSessionOutput:
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "session_id": session_id,
@@ -727,7 +727,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "GetCodeInterpreterSession", self._region,
-                GetCodeInterpreterSessionResponse,
+                GetCodeInterpreterSessionOutput,
                 ("code_interpreter_identifier", "session_id", ),
                 ("code_interpreter_identifier", "session_id", ),
             )
@@ -799,7 +799,7 @@ class BedrockAgentCoreClient:
         user_id: str | None = None,
         agent_name: str | None = None,
         payment_connector_id: str | None = None,
-    ) -> GetPaymentInstrumentResponse:
+    ) -> GetPaymentInstrumentOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_instrument_id": payment_instrument_id,
@@ -815,7 +815,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_payment_instrument, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentInstrument", self._region,
-                GetPaymentInstrumentResponse,
+                GetPaymentInstrumentOutput,
                 ("payment_manager_arn", "payment_instrument_id", "user_id", "agent_name", "payment_connector_id", ),
                 ("payment_manager_arn", "payment_instrument_id", ),
             )
@@ -834,7 +834,7 @@ class BedrockAgentCoreClient:
         token: InstrumentBalanceToken,
         user_id: str | None = None,
         agent_name: str | None = None,
-    ) -> GetPaymentInstrumentBalanceResponse:
+    ) -> GetPaymentInstrumentBalanceOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_connector_id": payment_connector_id,
@@ -851,7 +851,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_payment_instrument_balance, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentInstrumentBalance", self._region,
-                GetPaymentInstrumentBalanceResponse,
+                GetPaymentInstrumentBalanceOutput,
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", "chain", "token", "user_id", "agent_name", ),
                 ("payment_manager_arn", "payment_connector_id", "payment_instrument_id", "chain", "token", ),
             )
@@ -867,7 +867,7 @@ class BedrockAgentCoreClient:
         payment_session_id: str,
         user_id: str | None = None,
         agent_name: str | None = None,
-    ) -> GetPaymentSessionResponse:
+    ) -> GetPaymentSessionOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -881,7 +881,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_payment_session, params, _interceptors,
                 "bedrock-agentcore", "GetPaymentSession", self._region,
-                GetPaymentSessionResponse,
+                GetPaymentSessionOutput,
                 ("payment_manager_arn", "payment_session_id", "user_id", "agent_name", ),
                 ("payment_manager_arn", "payment_session_id", ),
             )
@@ -894,7 +894,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         recommendation_id: str,
-    ) -> GetRecommendationResponse:
+    ) -> GetRecommendationOutput:
         params: dict[str, object] = {
             "recommendation_id": recommendation_id,
         }
@@ -903,7 +903,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_recommendation, params, _interceptors,
                 "bedrock-agentcore", "GetRecommendation", self._region,
-                GetRecommendationResponse,
+                GetRecommendationOutput,
                 ("recommendation_id", ),
                 ("recommendation_id", ),
             )
@@ -917,7 +917,7 @@ class BedrockAgentCoreClient:
         *,
         workload_identity_token: str,
         resource_credential_provider_name: str,
-    ) -> GetResourceApiKeyResponse:
+    ) -> GetResourceApiKeyOutput:
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -927,7 +927,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_resource_api_key, params, _interceptors,
                 "bedrock-agentcore", "GetResourceApiKey", self._region,
-                GetResourceApiKeyResponse,
+                GetResourceApiKeyOutput,
                 ("workload_identity_token", "resource_credential_provider_name", ),
                 ("workload_identity_token", "resource_credential_provider_name", ),
             )
@@ -950,7 +950,7 @@ class BedrockAgentCoreClient:
         custom_state: str | None = None,
         resources: Sequence[str] | None = None,
         audiences: Sequence[str] | None = None,
-    ) -> GetResourceOauth2TokenResponse:
+    ) -> GetResourceOauth2TokenOutput:
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -976,7 +976,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_resource_oauth2_token, params, _interceptors,
                 "bedrock-agentcore", "GetResourceOauth2Token", self._region,
-                GetResourceOauth2TokenResponse,
+                GetResourceOauth2TokenOutput,
                 ("workload_identity_token", "resource_credential_provider_name", "scopes", "oauth2_flow", "session_uri", "resource_oauth2_return_url", "force_authentication", "custom_parameters", "custom_state", "resources", "audiences", ),
                 ("workload_identity_token", "resource_credential_provider_name", "scopes", "oauth2_flow", ),
             )
@@ -991,7 +991,7 @@ class BedrockAgentCoreClient:
         workload_identity_token: str,
         resource_credential_provider_name: str,
         payment_token_request: PaymentTokenRequestInput,
-    ) -> GetResourcePaymentTokenResponse:
+    ) -> GetResourcePaymentTokenOutput:
         params: dict[str, object] = {
             "workload_identity_token": workload_identity_token,
             "resource_credential_provider_name": resource_credential_provider_name,
@@ -1002,7 +1002,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_resource_payment_token, params, _interceptors,
                 "bedrock-agentcore", "GetResourcePaymentToken", self._region,
-                GetResourcePaymentTokenResponse,
+                GetResourcePaymentTokenOutput,
                 ("workload_identity_token", "resource_credential_provider_name", "payment_token_request", ),
                 ("workload_identity_token", "resource_credential_provider_name", "payment_token_request", ),
             )
@@ -1015,7 +1015,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         workload_name: str,
-    ) -> GetWorkloadAccessTokenResponse:
+    ) -> GetWorkloadAccessTokenOutput:
         params: dict[str, object] = {
             "workload_name": workload_name,
         }
@@ -1024,7 +1024,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_workload_access_token, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessToken", self._region,
-                GetWorkloadAccessTokenResponse,
+                GetWorkloadAccessTokenOutput,
                 ("workload_name", ),
                 ("workload_name", ),
             )
@@ -1038,7 +1038,7 @@ class BedrockAgentCoreClient:
         *,
         workload_name: str,
         user_token: str,
-    ) -> GetWorkloadAccessTokenForJWTResponse:
+    ) -> GetWorkloadAccessTokenForJWTOutput:
         params: dict[str, object] = {
             "workload_name": workload_name,
             "user_token": user_token,
@@ -1048,7 +1048,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_workload_access_token_for_jwt, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessTokenForJWT", self._region,
-                GetWorkloadAccessTokenForJWTResponse,
+                GetWorkloadAccessTokenForJWTOutput,
                 ("workload_name", "user_token", ),
                 ("workload_name", "user_token", ),
             )
@@ -1062,7 +1062,7 @@ class BedrockAgentCoreClient:
         *,
         workload_name: str,
         user_id: str,
-    ) -> GetWorkloadAccessTokenForUserIdResponse:
+    ) -> GetWorkloadAccessTokenForUserIdOutput:
         params: dict[str, object] = {
             "workload_name": workload_name,
             "user_id": user_id,
@@ -1072,7 +1072,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.get_workload_access_token_for_user_id, params, _interceptors,
                 "bedrock-agentcore", "GetWorkloadAccessTokenForUserId", self._region,
-                GetWorkloadAccessTokenForUserIdResponse,
+                GetWorkloadAccessTokenForUserIdOutput,
                 ("workload_name", "user_id", ),
                 ("workload_name", "user_id", ),
             )
@@ -1140,7 +1140,7 @@ class BedrockAgentCoreClient:
         baggage: str | None = None,
         qualifier: str | None = None,
         account_id: str | None = None,
-    ) -> InvokeAgentRuntimeResponse:
+    ) -> InvokeAgentRuntimeOutput:
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
             "payload": payload,
@@ -1178,7 +1178,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.invoke_agent_runtime, params, _interceptors,
                 "bedrock-agentcore", "InvokeAgentRuntime", self._region,
-                InvokeAgentRuntimeResponse,
+                InvokeAgentRuntimeOutput,
                 ("agent_runtime_arn", "payload", "content_type", "accept", "mcp_session_id", "runtime_session_id", "mcp_protocol_version", "mcp_method", "mcp_name", "runtime_user_id", "trace_id", "trace_parent", "trace_state", "baggage", "qualifier", "account_id", ),
                 ("agent_runtime_arn", "payload", ),
             )
@@ -1201,7 +1201,7 @@ class BedrockAgentCoreClient:
         baggage: str | None = None,
         qualifier: str | None = None,
         account_id: str | None = None,
-    ) -> InvokeAgentRuntimeCommandResponse:
+    ) -> InvokeAgentRuntimeCommandOutput:
         params: dict[str, object] = {
             "agent_runtime_arn": agent_runtime_arn,
             "body": body,
@@ -1244,7 +1244,7 @@ class BedrockAgentCoreClient:
         browser_identifier: str,
         session_id: str,
         action: BrowserAction,
-    ) -> InvokeBrowserResponse:
+    ) -> InvokeBrowserOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -1255,7 +1255,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.invoke_browser, params, _interceptors,
                 "bedrock-agentcore", "InvokeBrowser", self._region,
-                InvokeBrowserResponse,
+                InvokeBrowserOutput,
                 ("browser_identifier", "session_id", "action", ),
                 ("browser_identifier", "session_id", "action", ),
             )
@@ -1273,7 +1273,7 @@ class BedrockAgentCoreClient:
         trace_id: str | None = None,
         trace_parent: str | None = None,
         arguments: ToolArguments | None = None,
-    ) -> InvokeCodeInterpreterResponse:
+    ) -> InvokeCodeInterpreterOutput:
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "name": name,
@@ -1321,7 +1321,7 @@ class BedrockAgentCoreClient:
         max_tokens: int | None = None,
         timeout_seconds: int | None = None,
         actor_id: str | None = None,
-    ) -> InvokeHarnessResponse:
+    ) -> InvokeHarnessOutput:
         params: dict[str, object] = {
             "harness_arn": harness_arn,
             "runtime_session_id": runtime_session_id,
@@ -1376,7 +1376,7 @@ class BedrockAgentCoreClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListABTestsResponse:
+    ) -> ListABTestsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1388,7 +1388,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_ab_tests, params, _interceptors,
                 "bedrock-agentcore", "ListABTests", self._region,
-                ListABTestsResponse,
+                ListABTestsOutput,
                 ("max_results", "next_token", ),
                 (),
             )
@@ -1430,7 +1430,7 @@ class BedrockAgentCoreClient:
         *,
         max_results: int | None = None,
         next_token: str | None = None,
-    ) -> ListBatchEvaluationsResponse:
+    ) -> ListBatchEvaluationsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1442,7 +1442,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_batch_evaluations, params, _interceptors,
                 "bedrock-agentcore", "ListBatchEvaluations", self._region,
-                ListBatchEvaluationsResponse,
+                ListBatchEvaluationsOutput,
                 ("max_results", "next_token", ),
                 (),
             )
@@ -1458,7 +1458,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
         status: BrowserSessionStatus | None = None,
-    ) -> ListBrowserSessionsResponse:
+    ) -> ListBrowserSessionsOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
         }
@@ -1473,7 +1473,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_browser_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListBrowserSessions", self._region,
-                ListBrowserSessionsResponse,
+                ListBrowserSessionsOutput,
                 ("browser_identifier", "max_results", "next_token", "status", ),
                 ("browser_identifier", ),
             )
@@ -1489,7 +1489,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
         status: CodeInterpreterSessionStatus | None = None,
-    ) -> ListCodeInterpreterSessionsResponse:
+    ) -> ListCodeInterpreterSessionsOutput:
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
         }
@@ -1504,7 +1504,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_code_interpreter_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListCodeInterpreterSessions", self._region,
-                ListCodeInterpreterSessionsResponse,
+                ListCodeInterpreterSessionsOutput,
                 ("code_interpreter_identifier", "max_results", "next_token", "status", ),
                 ("code_interpreter_identifier", ),
             )
@@ -1631,7 +1631,7 @@ class BedrockAgentCoreClient:
         payment_connector_id: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPaymentInstrumentsResponse:
+    ) -> ListPaymentInstrumentsOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -1650,7 +1650,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_payment_instruments, params, _interceptors,
                 "bedrock-agentcore", "ListPaymentInstruments", self._region,
-                ListPaymentInstrumentsResponse,
+                ListPaymentInstrumentsOutput,
                 ("payment_manager_arn", "user_id", "agent_name", "payment_connector_id", "next_token", "max_results", ),
                 ("payment_manager_arn", ),
             )
@@ -1667,7 +1667,7 @@ class BedrockAgentCoreClient:
         agent_name: str | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
-    ) -> ListPaymentSessionsResponse:
+    ) -> ListPaymentSessionsOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
         }
@@ -1684,7 +1684,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_payment_sessions, params, _interceptors,
                 "bedrock-agentcore", "ListPaymentSessions", self._region,
-                ListPaymentSessionsResponse,
+                ListPaymentSessionsOutput,
                 ("payment_manager_arn", "user_id", "agent_name", "next_token", "max_results", ),
                 ("payment_manager_arn", ),
             )
@@ -1699,7 +1699,7 @@ class BedrockAgentCoreClient:
         max_results: int | None = None,
         next_token: str | None = None,
         status_filter: RecommendationStatus | None = None,
-    ) -> ListRecommendationsResponse:
+    ) -> ListRecommendationsOutput:
         params: dict[str, object] = {
         }
         if max_results is not None:
@@ -1713,7 +1713,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.list_recommendations, params, _interceptors,
                 "bedrock-agentcore", "ListRecommendations", self._region,
-                ListRecommendationsResponse,
+                ListRecommendationsOutput,
                 ("max_results", "next_token", "status_filter", ),
                 (),
             )
@@ -1766,7 +1766,7 @@ class BedrockAgentCoreClient:
         user_id: str | None = None,
         agent_name: str | None = None,
         client_token: str | None = None,
-    ) -> ProcessPaymentResponse:
+    ) -> ProcessPaymentOutput:
         params: dict[str, object] = {
             "payment_manager_arn": payment_manager_arn,
             "payment_session_id": payment_session_id,
@@ -1785,7 +1785,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.process_payment, params, _interceptors,
                 "bedrock-agentcore", "ProcessPayment", self._region,
-                ProcessPaymentResponse,
+                ProcessPaymentOutput,
                 ("payment_manager_arn", "payment_session_id", "payment_instrument_id", "payment_type", "payment_input", "user_id", "agent_name", "client_token", ),
                 ("payment_manager_arn", "payment_session_id", "payment_instrument_id", "payment_type", "payment_input", ),
             )
@@ -1839,7 +1839,7 @@ class BedrockAgentCoreClient:
         trace_id: str | None = None,
         trace_parent: str | None = None,
         client_token: str | None = None,
-    ) -> SaveBrowserSessionProfileResponse:
+    ) -> SaveBrowserSessionProfileOutput:
         params: dict[str, object] = {
             "profile_identifier": profile_identifier,
             "browser_identifier": browser_identifier,
@@ -1856,7 +1856,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.save_browser_session_profile, params, _interceptors,
                 "bedrock-agentcore", "SaveBrowserSessionProfile", self._region,
-                SaveBrowserSessionProfileResponse,
+                SaveBrowserSessionProfileOutput,
                 ("profile_identifier", "browser_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
                 ("profile_identifier", "browser_identifier", "session_id", ),
             )
@@ -1872,7 +1872,7 @@ class BedrockAgentCoreClient:
         registry_ids: Sequence[str],
         max_results: int | None = None,
         filters: JSONValue | None = None,
-    ) -> SearchRegistryRecordsResponse:
+    ) -> SearchRegistryRecordsOutput:
         params: dict[str, object] = {
             "search_query": search_query,
             "registry_ids": registry_ids,
@@ -1886,7 +1886,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.search_registry_records, params, _interceptors,
                 "bedrock-agentcore", "SearchRegistryRecords", self._region,
-                SearchRegistryRecordsResponse,
+                SearchRegistryRecordsOutput,
                 ("search_query", "registry_ids", "max_results", "filters", ),
                 ("search_query", "registry_ids", ),
             )
@@ -1908,7 +1908,7 @@ class BedrockAgentCoreClient:
         kms_key_arn: str | None = None,
         description: str | None = None,
         output_config: OutputConfig | None = None,
-    ) -> StartBatchEvaluationResponse:
+    ) -> StartBatchEvaluationOutput:
         params: dict[str, object] = {
             "batch_evaluation_name": batch_evaluation_name,
             "data_source_config": data_source_config,
@@ -1934,7 +1934,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.start_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "StartBatchEvaluation", self._region,
-                StartBatchEvaluationResponse,
+                StartBatchEvaluationOutput,
                 ("batch_evaluation_name", "data_source_config", "evaluators", "insights", "client_token", "evaluation_metadata", "tags", "kms_key_arn", "description", "output_config", ),
                 ("batch_evaluation_name", "data_source_config", ),
             )
@@ -1959,7 +1959,7 @@ class BedrockAgentCoreClient:
         certificates: Sequence[Certificate] | None = None,
         filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
-    ) -> StartBrowserSessionResponse:
+    ) -> StartBrowserSessionOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
         }
@@ -1992,7 +1992,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.start_browser_session, params, _interceptors,
                 "bedrock-agentcore", "StartBrowserSession", self._region,
-                StartBrowserSessionResponse,
+                StartBrowserSessionOutput,
                 ("browser_identifier", "trace_id", "trace_parent", "name", "session_timeout_seconds", "view_port", "extensions", "profile_configuration", "proxy_configuration", "enterprise_policies", "certificates", "filesystem_configurations", "client_token", ),
                 ("browser_identifier", ),
             )
@@ -2012,7 +2012,7 @@ class BedrockAgentCoreClient:
         certificates: Sequence[Certificate] | None = None,
         filesystem_configurations: Sequence[ToolsFileSystemConfiguration] | None = None,
         client_token: str | None = None,
-    ) -> StartCodeInterpreterSessionResponse:
+    ) -> StartCodeInterpreterSessionOutput:
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
         }
@@ -2035,7 +2035,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.start_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "StartCodeInterpreterSession", self._region,
-                StartCodeInterpreterSessionResponse,
+                StartCodeInterpreterSessionOutput,
                 ("code_interpreter_identifier", "trace_id", "trace_parent", "name", "session_timeout_seconds", "certificates", "filesystem_configurations", "client_token", ),
                 ("code_interpreter_identifier", ),
             )
@@ -2081,7 +2081,7 @@ class BedrockAgentCoreClient:
         kms_key_arn: str | None = None,
         client_token: str | None = None,
         tags: dict[str, str] | None = None,
-    ) -> StartRecommendationResponse:
+    ) -> StartRecommendationOutput:
         params: dict[str, object] = {
             "name": name,
             "type": type,
@@ -2100,7 +2100,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.start_recommendation, params, _interceptors,
                 "bedrock-agentcore", "StartRecommendation", self._region,
-                StartRecommendationResponse,
+                StartRecommendationOutput,
                 ("name", "type", "recommendation_config", "description", "kms_key_arn", "client_token", "tags", ),
                 ("name", "type", "recommendation_config", ),
             )
@@ -2113,7 +2113,7 @@ class BedrockAgentCoreClient:
         self,
         *,
         batch_evaluation_id: str,
-    ) -> StopBatchEvaluationResponse:
+    ) -> StopBatchEvaluationOutput:
         params: dict[str, object] = {
             "batch_evaluation_id": batch_evaluation_id,
         }
@@ -2122,7 +2122,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.stop_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "StopBatchEvaluation", self._region,
-                StopBatchEvaluationResponse,
+                StopBatchEvaluationOutput,
                 ("batch_evaluation_id", ),
                 ("batch_evaluation_id", ),
             )
@@ -2139,7 +2139,7 @@ class BedrockAgentCoreClient:
         trace_id: str | None = None,
         trace_parent: str | None = None,
         client_token: str | None = None,
-    ) -> StopBrowserSessionResponse:
+    ) -> StopBrowserSessionOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -2155,7 +2155,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.stop_browser_session, params, _interceptors,
                 "bedrock-agentcore", "StopBrowserSession", self._region,
-                StopBrowserSessionResponse,
+                StopBrowserSessionOutput,
                 ("browser_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
                 ("browser_identifier", "session_id", ),
             )
@@ -2172,7 +2172,7 @@ class BedrockAgentCoreClient:
         trace_id: str | None = None,
         trace_parent: str | None = None,
         client_token: str | None = None,
-    ) -> StopCodeInterpreterSessionResponse:
+    ) -> StopCodeInterpreterSessionOutput:
         params: dict[str, object] = {
             "code_interpreter_identifier": code_interpreter_identifier,
             "session_id": session_id,
@@ -2188,7 +2188,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.stop_code_interpreter_session, params, _interceptors,
                 "bedrock-agentcore", "StopCodeInterpreterSession", self._region,
-                StopCodeInterpreterSessionResponse,
+                StopCodeInterpreterSessionOutput,
                 ("code_interpreter_identifier", "session_id", "trace_id", "trace_parent", "client_token", ),
                 ("code_interpreter_identifier", "session_id", ),
             )
@@ -2204,7 +2204,7 @@ class BedrockAgentCoreClient:
         agent_runtime_arn: str,
         qualifier: str | None = None,
         client_token: str | None = None,
-    ) -> StopRuntimeSessionResponse:
+    ) -> StopRuntimeSessionOutput:
         params: dict[str, object] = {
             "runtime_session_id": runtime_session_id,
             "agent_runtime_arn": agent_runtime_arn,
@@ -2218,7 +2218,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.stop_runtime_session, params, _interceptors,
                 "bedrock-agentcore", "StopRuntimeSession", self._region,
-                StopRuntimeSessionResponse,
+                StopRuntimeSessionOutput,
                 ("runtime_session_id", "agent_runtime_arn", "qualifier", "client_token", ),
                 ("runtime_session_id", "agent_runtime_arn", ),
             )
@@ -2239,7 +2239,7 @@ class BedrockAgentCoreClient:
         evaluation_config: ABTestEvaluationConfig | None = None,
         role_arn: str | None = None,
         execution_status: ABTestExecutionStatus | None = None,
-    ) -> UpdateABTestResponse:
+    ) -> UpdateABTestOutput:
         params: dict[str, object] = {
             "ab_test_id": ab_test_id,
         }
@@ -2264,7 +2264,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.update_ab_test, params, _interceptors,
                 "bedrock-agentcore", "UpdateABTest", self._region,
-                UpdateABTestResponse,
+                UpdateABTestOutput,
                 ("ab_test_id", "client_token", "name", "description", "variants", "gateway_filter", "evaluation_config", "role_arn", "execution_status", ),
                 ("ab_test_id", ),
             )
@@ -2280,7 +2280,7 @@ class BedrockAgentCoreClient:
         session_id: str,
         stream_update: StreamUpdate,
         client_token: str | None = None,
-    ) -> UpdateBrowserStreamResponse:
+    ) -> UpdateBrowserStreamOutput:
         params: dict[str, object] = {
             "browser_identifier": browser_identifier,
             "session_id": session_id,
@@ -2293,7 +2293,7 @@ class BedrockAgentCoreClient:
             _response = await invoke(
                 self._native.update_browser_stream, params, _interceptors,
                 "bedrock-agentcore", "UpdateBrowserStream", self._region,
-                UpdateBrowserStreamResponse,
+                UpdateBrowserStreamOutput,
                 ("browser_identifier", "session_id", "stream_update", "client_token", ),
                 ("browser_identifier", "session_id", "stream_update", ),
             )
